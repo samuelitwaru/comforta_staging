@@ -648,7 +648,6 @@ class MediaComponent {
       const saveBtn = modal.querySelector("#saveBtn");
       saveBtn.onclick = () => {
           if (this.selectedFile) {
-            console.log(globalEditor.getSelected().find(".template-block"))
           const templateBlock =  this.editorManager.selectedComponent
               // .find(".template-block")[0];
           templateBlock.addStyle({

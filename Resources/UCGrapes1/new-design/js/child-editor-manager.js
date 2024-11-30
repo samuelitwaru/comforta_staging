@@ -1,15 +1,27 @@
 class ChildEditorManager{
     // child editor manager
     editors = {}
-
+    pages = []
+    toolsSection = null
     currentEditor = null
+    currentPageId = null
 
     container = document.getElementById('child-container')
 
     constructor(dataManager) {
         this.dataManager = dataManager
-        // this.container.innerHTML = ""
-
+        this.dataManager.getPages().then(pages=>{
+            this.pages = pages
+            const homePage = this.pages.find(page=>page.PageName=="Home")
+            if (homePage) {
+                this.createChildEditor(homePage)
+                this.currentPageId = homePage.PageId
+            }
+            else {
+                alert("No Home Page Found")
+                return
+            }
+        })
     }
 
     createChildEditor(page) {
@@ -17,6 +29,8 @@ class ChildEditorManager{
         const count = this.container.children.length
         const editorContainer = document.createElement('div')
         editorContainer.id = `gjs-${count}`
+        console.log(editorContainer.dataset)
+        editorContainer.dataset.pageid = pageId
         editorContainer.classList.add('mobile-frame')
         this.container.appendChild(editorContainer)
         
@@ -34,7 +48,7 @@ class ChildEditorManager{
                 "/Resources/UCGrapes1/new-design/css/child-editor.css",
                 ],
                 scripts: [
-                    "/Resources/UCGrapes11/new-design/js/child-editor.js",
+                    "/Resources/UCGrapes1/new-design/js/child-editor.js",
                 ]
             },
             baseCss: " ",
@@ -52,8 +66,11 @@ class ChildEditorManager{
         // editor.addComponents({type: 'tile'})
 
         editor.loadProjectData(JSON.parse(page.PageGJSJson))
-        this.editors[`gjs-${count}`] = editor
-        console.log(editor.id)
+        const editorData = {
+            pageId: pageId,
+            editor: editor
+        }
+        this.editors[`#gjs-${count}`] = editorData
         console.log('>>>>>>>>>>>>', this.editors)
     }
 
@@ -63,15 +80,14 @@ class ChildEditorManager{
 
     addEditorEventListners(editor) {
         editor.on('load', (model) => {
-            console.log(model)
             const wrapper = editor.getWrapper();
-            const component = wrapper.find('.action-button')[0];
-            
             wrapper.view.el.addEventListener("click", (e) => {
                 const editorContainerId = editor.getConfig().container
                 $(editorContainerId).nextAll().remove()
-                alert(editorContainerId)
                 this.currentEditor = this.editors[editorContainerId]
+                this.currentPageId = $(editorContainerId).data().pageid
+                console.log(this.currentPageId)
+                console.log('Current Editor: ', this.currentEditor)
 
                 if (e.target.attributes['tile-action-object-id']) {
                     const page = this.getPage(e.target.attributes['tile-action-object-id'].value)
@@ -98,6 +114,44 @@ class ChildEditorManager{
                 this.addTemplateRight(this.templateComponent, editor);
                 }
             })
+        });
+
+        editor.on("component:selected", (component) => {
+            this.toolsSection.resetPropertySection();
+            this.selectedTemplateWrapper = component.getEl();
+      
+            this.selectedComponent = component;
+      
+            const sidebarInputTitle = document.getElementById("tile-title");
+            if (this.selectedTemplateWrapper) {
+              const tileLabel =
+                this.selectedTemplateWrapper.querySelector(".tile-title");
+              if (tileLabel) {
+                sidebarInputTitle.value = tileLabel.textContent;
+              }
+      
+            //   this.removeElementOnClick(".selected-tile-icon", ".tile-icon-section");
+            //   this.removeElementOnClick(
+            //     ".selected-tile-title",
+            //     ".tile-title-section"
+            //   );
+      
+            //   this.updateUIState();
+            //   this.activateFrame(`#default-container`);
+      
+              // clear existing frames first
+            //   this.clearEditors();
+      
+            //   this.handlePageSelection();
+            }
+      
+            this.toolsSection.updateTileProperties(
+              this.currentEditor.editor,
+              this.currentPageId
+            );
+            this.hideContextMenu();
+      
+            this.toolsSection.unDoReDo(this.editor);
         });
     }
 
@@ -129,7 +183,7 @@ class ChildEditorManager{
         const containerRow = templateComponent.parent();
         if (!containerRow || containerRow.components().length >= 3) return;
         const newComponents = editorInstance.addComponents(
-            {type: 'tile'}
+          createTemplateHTML()
         );
         const newTemplate = newComponents[0];
         if (!newTemplate) return;
@@ -144,18 +198,63 @@ class ChildEditorManager{
             flex: `0 0 calc(${equalWidth}% - 0.3.5rem)`,
           });
         });
+    
+        this.updateRightButtons(containerRow);
     }
     
     addTemplateBottom(templateComponent, editorInstance) {
-        const currentRow = templateComponent.parent();
-        const containerColumn = currentRow?.parent();
+    const currentRow = templateComponent.parent();
+    const containerColumn = currentRow?.parent();
 
-        if (!containerColumn) return;
+    if (!containerColumn) return;
 
-        const newRow = editorInstance.addComponents({type: 'tile'})[0];
+    const newRow = editorInstance.addComponents(`
+        <div class="container-row"
+            data-gjs-type="template-wrapper"
+            data-gjs-draggable="false"
+            data-gjs-selectable="false"
+            data-gjs-editable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="false">
+            ${createTemplateHTML()}
+        </div>
+        `)[0];
 
-        const index = currentRow.index();
-        containerColumn.append(newRow, { at: index + 1 });
+    const index = currentRow.index();
+    containerColumn.append(newRow, { at: index + 1 });
+    }
+
+    updateRightButtons(containerRow) {
+        if (!containerRow) return;
+    
+        const templates = containerRow.components();
+        let totalWidth = 0;
+        templates.forEach((template) => {
+          if (!template || !template.view || !template.view.el) return;
+    
+          const rightButton = template.view.el.querySelector(".add-button-right");
+          if (!rightButton) return;
+          const rightButtonComponent = template.find(".add-button-right")[0];
+    
+          if (templates.length >= 3) {
+            rightButton.setAttribute("disabled", "true");
+            rightButtonComponent.addStyle({ display: "none" });
+          } else {
+            rightButton.removeAttribute("disabled");
+            rightButtonComponent.addStyle({ display: "flex" });
+          }
+        });
+    }
+
+    setToolsSection(toolBox) {
+        this.toolsSection = toolBox;
+    }
+
+    hideContextMenu() {
+        const contextMenu = document.getElementById("contextMenu");
+        if (contextMenu) {
+          contextMenu.style.display = "none";
+        }
     }
 
 }

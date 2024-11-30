@@ -28,13 +28,13 @@ class ToolBoxManager {
     let self = this;
     this.dataManager.getPages().then((pages) => {
       localStorage.clear();
-      pages.forEach((page) => {
-        if (page.PageName === "Home") {
-          this.editorManager.pageId = page.PageId;
-          this.editorManager.setCurrentPage(page);
-          globalEditor.trigger("load");
-        }
-      });
+      // pages.forEach((page) => {
+      //   if (page.PageName === "Home") {
+      //     this.editorManager.pageId = page.PageId;
+      //     // this.editorManager.setCurrentPage(page);
+      //     // globalEditor.trigger("load");
+      //   }
+      // });
     });
 
     this.dataManager.getLocationTheme().then((theme) => {
@@ -104,42 +104,41 @@ class ToolBoxManager {
 
     publishButton.onclick = (e) => {
       e.preventDefault();
-      let editor = this.editorManager.editor;
-      let projectData = editor.getProjectData();
-      let htmlData = editor.getHtml();
-      let jsonData;
-
-      let pageId = this.editorManager.getCurrentPageId();
-      let pageName = this.editorManager.getCurrentPageName();
-
-      const pageIsContent = this.dataManager.pages.find(
-        (page) => page.PageId === pageId
-      );
-
-      if (pageIsContent.PageIsContentPage) {
-        jsonData = mapContentToPageData(projectData);
-        console.log("ProjectData is: ", jsonData);
-      } else {
-        jsonData = mapTemplateToPageData(projectData);
-        console.log("ProjectData is: ", jsonData);
-      }
-
-      if (pageId) {
-        let data = {
-          PageId: pageId,
-          PageName: pageName,
-          PageJsonContent: JSON.stringify(jsonData),
-          PageGJSHtml: htmlData,
-          PageGJSJson: JSON.stringify(projectData),
-          SDT_Page: jsonData,
-          PageIsPublished: true,
-        };
-        this.dataManager.updatePage(data).then((res) => {
-          this.displayAlertMessage("Page Save Successfully", "success");
-        });
-      }
-
       this.publishPages();
+      // let editor = this.editorManager.currentEditor
+      // let projectData = editor.getProjectData();
+      // let htmlData = editor.getHtml();
+      // let jsonData;
+
+      // let pageId = this.editorManager.getCurrentPageId();
+      // let pageName = this.editorManager.getCurrentPageName();
+
+      // const pageIsContent = this.dataManager.pages.find(
+      //   (page) => page.PageId === pageId
+      // );
+
+      // if (pageIsContent.PageIsContentPage) {
+      //   jsonData = mapContentToPageData(projectData);
+      //   console.log("ProjectData is: ", jsonData);
+      // } else {
+      //   jsonData = mapTemplateToPageData(projectData);
+      //   console.log("ProjectData is: ", jsonData);
+      // }
+
+      // if (pageId) {
+      //   let data = {
+      //     PageId: pageId,
+      //     PageName: pageName,
+      //     PageJsonContent: JSON.stringify(jsonData),
+      //     PageGJSHtml: htmlData,
+      //     PageGJSJson: JSON.stringify(projectData),
+      //     SDT_Page: jsonData,
+      //     PageIsPublished: true,
+      //   };
+      //   this.dataManager.updatePage(data).then((res) => {
+      //     this.displayAlertMessage("Page Save Successfully", "success");
+      //   });
+      // }
     };
 
     // tile title alignment
@@ -302,7 +301,11 @@ class ToolBoxManager {
   }
 
   publishPages() {
-    let editors = this.editorManager.editors;
+    console.log(this.editorManager.editors)
+    const editors = Object.values(this.editorManager.editors)
+
+    console.log(editors)
+    // let editors = this.editorManager.editors;
     if (editors && editors.length) {
       for (let index = 0; index < editors.length; index++) {
         const editorData = editors[index];
@@ -423,8 +426,8 @@ class ToolBoxManager {
     this.applyTheme();
 
     // TODO: Apply theme attribute to json out output (research on editor methods to do this)
-    let wrapper = globalEditor.getWrapper();
-    wrapper.addAttributes({ theme: theme.name });
+    // let wrapper = globalEditor.getWrapper();
+    // wrapper.addAttributes({ theme: theme.name });
     this.icons = theme.icons.map((icon) => {
       return {
         name: icon.IconName,
@@ -1387,46 +1390,6 @@ class ToolBoxManager {
     // if (customSelectContainer) customSelectContainer.style.display = "none";
     // if (servicesSection) servicesSection.style.display = "none";
     if (contentPageSection) contentPageSection.style.display = "block";
-  }
-
-  publishPages() {
-    let editors = this.editorManager.editors;
-    if (editors && editors.length) {
-      for (let index = 0; index < editors.length; index++) {
-        const editorData = editors[index];
-        console.log(editorData);
-        let pageId = editorData.pageId;
-        let editor = editorData.editor;
-        let page = this.dataManager.pages.find((page) => page.PageId == pageId);
-        let projectData = editor.getProjectData();
-        let htmlData = editor.getHtml();
-        let jsonData;
-        let pageName = page.PageName;
-
-        if (page.PageIsContentPage) {
-          jsonData = mapContentToPageData(projectData);
-          console.log("ProjectData is: ", jsonData);
-        } else {
-          jsonData = mapTemplateToPageData(projectData);
-          console.log("ProjectData is: ", jsonData);
-        }
-
-        if (pageId) {
-          let data = {
-            PageId: pageId,
-            PageName: pageName,
-            PageJsonContent: JSON.stringify(jsonData),
-            PageGJSHtml: htmlData,
-            PageGJSJson: JSON.stringify(projectData),
-            SDT_Page: jsonData,
-            PageIsPublished: true,
-          };
-          this.dataManager.updatePage(data).then((res) => {
-            this.displayAlertMessage("Page Save Successfully", "success");
-          });
-        }
-      }
-    }
   }
 }
 
