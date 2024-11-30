@@ -107,6 +107,11 @@ class ToolBoxManager {
       this.publishPages();
     };
 
+    const sidebarInputTitle = document.getElementById("tile-title");
+    sidebarInputTitle.addEventListener("input", (e) => {
+      this.updateTileTitle(e.target.value);
+    });
+
     // tile title alignment
     const leftAlign = document.getElementById("text-align-left");
     const centerAlign = document.getElementById("text-align-center");
