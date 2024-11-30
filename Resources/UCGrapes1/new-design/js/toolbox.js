@@ -391,7 +391,6 @@ class ToolBoxManager {
   loadTheme() {
     const savedTheme = localStorage.getItem("selectedTheme");
     if (savedTheme) {
-      alert(savedTheme)
       this.setTheme(savedTheme);
     }
   }
@@ -402,8 +401,6 @@ class ToolBoxManager {
     if (!theme) {
       return false;
     }
-
-    alert(themeName)
 
     this.currentTheme = theme;
     //this.applyTheme();
@@ -430,8 +427,6 @@ class ToolBoxManager {
     const root = document.documentElement;
     // const iframe = document.querySelector("#gjs iframe");
     const iframe = document.querySelector("#gjs-0");
-
-    alert(iframe)
 
     // Set CSS variables from the selected theme
     root.style.setProperty(
@@ -950,6 +945,8 @@ class ToolBoxManager {
     };
 
     renderCtas();
+
+    return
 
     // handling badge clicks
     const wrapper = editorInstance.getWrapper();

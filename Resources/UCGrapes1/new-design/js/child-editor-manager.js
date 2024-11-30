@@ -78,11 +78,14 @@ class ChildEditorManager{
             highlightable: false,
         });
         this.addEditorEventListners(editor)
-        editor.DomComponents.addType('tile', tileComponent)
+        // editor.DomComponents.addType('tile', tileComponent)
         // editor.addComponents({type: 'tile'})
-        editor.loadProjectData(JSON.parse(page.PageGJSJson))
+
         if (page.PageIsContentPage) {
+            editor.addComponents(page.PageGJSHtml)
             this.loadContentPage(page, editor)
+        }else{
+            editor.loadProjectData(JSON.parse(page.PageGJSJson))
         }
         const editorData = {
             pageId: pageId,
@@ -97,25 +100,30 @@ class ChildEditorManager{
     }
 
     loadContentPage(page, editor) {
-        this.dataManager.getContentPageData(page.PageId).then((res) => {
-            let img = editor
-              .getWrapper()
-              .find("#product-service-image");
+        this.dataManager.getContentPageData(page.PageId).then((contentPageData) => {
+            
+            console.log(editor.getHtml())
 
-            let p = editor
-              .getWrapper()
-              .find("#product-service-description");
-            if (img.length) {
-              img[0].setAttributes({ src: res.ProductServiceImage });
-            }
-            if (p.length) {
-              p[0].replaceWith(`
-                <p id="product-service-description" class="content-page-block">
-                  ${res.ProductServiceDescription}
-                </p>
+
+            let img = editor.getWrapper().find("#product-service-image");
+            let p = editor.getWrapper().find("#product-service-description");
+            if (img.length && p.length) {
+                img[0].setAttributes({ src: contentPageData.ProductServiceImage });
+                p[0].replaceWith(`
+                    <p id="product-service-description" class="content-page-block">
+                        ${contentPageData.ProductServiceDescription}
+                    </p>
                 `);
+            } else {
+                const projectData = this.initialContentPageTemplate(contentPageData);
+                editor.addComponents(projectData)
             }
-          });
+
+            this.toolsSection.pageContentCtas(
+                contentPageData.CallToActions,
+                editor
+            );    
+        });
     }
 
     addEditorEventListners(editor) {
@@ -296,6 +304,92 @@ class ChildEditorManager{
         if (contextMenu) {
           contextMenu.style.display = "none";
         }
+    }
+
+    initialContentPageTemplate(contentPageData) {
+        return `
+          <div
+            class="content-frame-container"
+            id="frame-container"
+            data-gjs-draggable="false"
+            data-gjs-selectable="false"
+            data-gjs-editable="false"
+            data-gjs-highlightable="false"
+            data-gjs-droppable="false"
+            data-gjs-hoverable="false"
+          >
+            <div
+              class="container-column"
+              data-gjs-draggable="false"
+              data-gjs-selectable="false"
+              data-gjs-editable="false"
+              data-gjs-highlightable="false"
+              data-gjs-droppable="false"
+              data-gjs-hoverable="false"
+            >
+              <div
+                class="container-row"
+                data-gjs-draggable="false"
+                data-gjs-selectable="false"
+                data-gjs-editable="false"
+                data-gjs-droppable="false"
+                data-gjs-highlightable="true"
+                data-gjs-hoverable="true"
+              >
+                <div
+                  class="template-wrapper"
+                  data-gjs-draggable="false"
+                  data-gjs-selectable="false"
+                  data-gjs-editable="false"
+                  data-gjs-droppable="false"
+                  data-gjs-highlightable="true"
+                  data-gjs-hoverable="true"
+                  style="display: flex; width: 100%"
+                >
+                  <div
+                    data-gjs-draggable="false"
+                    data-gjs-selectable="false"
+                    data-gjs-editable="false"
+                    data-gjs-highlightable="false"
+                    data-gjs-droppable="true"
+                    data-gjs-resizable="false"
+                    data-gjs-hoverable="false"
+                    style="flex: 1; padding: 0"
+                  >
+                    <img
+                      class="content-page-block"
+                      id="product-service-image"
+                      data-gjs-draggable="true"
+                      data-gjs-selectable="false"
+                      data-gjs-editable="false"
+                      data-gjs-droppable="false"
+                      data-gjs-highlightable="false"
+                      data-gjs-hoverable="false"
+                      src="${contentPageData.ProductServiceImage}"
+                      style="width: 100%; height: 7rem; border-radius: 14px; margin-bottom: 15px"
+                      alt="Full-width Image"
+                    />
+                    <p
+                      style="flex: 1; padding: 0; margin: 0; height: auto; margin-bottom: 15px"
+                      class="content-page-block"
+                      data-gjs-draggable="true"
+                      data-gjs-selectable="false"
+                      data-gjs-editable="false"
+                      data-gjs-droppable="false"
+                      data-gjs-highlightable="false"
+                      data-gjs-hoverable="false"
+                      id="product-service-description"
+                    >
+                    ${contentPageData.ProductServiceDescription}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="cta-button-container" ${defaultConstraints}></div>      
+            </div>
+          </div>
+    
+        `;
     }
 
 }

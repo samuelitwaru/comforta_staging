@@ -278,7 +278,7 @@ button#open-mapping {
 }
 
 /* Input field */
-.form-control {
+.toolbox-form-control {
   padding: 8px;
   border-radius: 7px;
   width: 100%;
@@ -300,7 +300,7 @@ input:focus {
   min-width: 200px;
   margin-right: 10px;
 }
-.theme-selection .form-control {
+.theme-selection .toolbox-form-control {
   padding: 10px;
   height: 35px;
 }
