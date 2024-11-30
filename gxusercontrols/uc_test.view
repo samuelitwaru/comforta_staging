@@ -1,0 +1,9 @@
+<div>
+	<input type="file" />
+</div>
+
+<script>
+//	 window.addEventListener("click", function (event) {
+//   event.preventDefault();
+// });
+</script>

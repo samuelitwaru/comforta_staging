@@ -1,0 +1,1 @@
+var Changeonscroll={shrinkOnHeight:30,res:"",doAlert:function(n){alert(n);this.res=n;console.log(this.res)}};$(function(){$(window).on("scroll",function(){var n=window.pageYOffset||document.documentElement.scrollTop,t=Changeonscroll.shrinkOnHeight;n>t?gx.fx.obs.notify("Changeonscroll.scrolltoShrink"):gx.fx.obs.notify("Changeonscroll.scrolltoExpand")})})

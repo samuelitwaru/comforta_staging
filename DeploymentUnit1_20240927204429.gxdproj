@@ -1,0 +1,3074 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="CreatePackage">
+
+	<!-- Model Properties -->
+	<PropertyGroup>
+		<ModelId>18</ModelId>
+		<Generator>.NET</Generator>
+		<CacheExpiration>36</CacheExpiration>
+		<OpenAPI>true</OpenAPI>
+		<SignificantObjectNameLength>128</SignificantObjectNameLength>
+		<StaticDir>.</StaticDir>
+		<NationalLanguageSupport>true</NationalLanguageSupport>
+		<WebNotifProvider>GeneXus</WebNotifProvider>
+		<CloudServices>true</CloudServices>
+		<OfflineSupport>false</OfflineSupport>
+		<Https>false</Https>
+		<Searchable>false</Searchable>
+		<PostgreSQL>true</PostgreSQL>
+		<IntegratedSecurity>true</IntegratedSecurity>
+		<GAMDBMSType>15</GAMDBMSType>
+		<LogEnabled>true</LogEnabled>
+		<LogJsonFormat>false</LogJsonFormat>
+	</PropertyGroup>
+
+	<!-- Deploy Properties -->
+	<PropertyGroup>
+		<ApplicationKey>AC2BE0229D255DFC9D6116F2C57E8F9B5A7DD361F4C1D21DACC772A6D2ABD5D0</ApplicationKey>
+		<ApplicationServer>Kestrel</ApplicationServer>
+		<AppName>DeploymentUnit1_20240927204429</AppName>
+		<AppUpdate>NONE</AppUpdate>
+		<DeploymentUnit>DeploymentUnit1</DeploymentUnit>
+		<DeployTarget>DOCKER</DeployTarget>
+		<DeployTargetTask>C:\Program Files (x86)\GeneXus\GeneXus18\DeploymentTargets\Docker\docker.targets</DeployTargetTask>
+		<DeployType>BINARIES</DeployType>
+		<EnableKBN>False</EnableKBN>
+		<ImagesInvolved>true</ImagesInvolved>
+		<IncludeGAMBackend>False</IncludeGAMBackend>
+		<IsCMD>false</IsCMD>
+		<IsWEBUI>true</IsWEBUI>
+		<KBPath>C:\KBs\Comforta_version2</KBPath>
+		<Namespace>GeneXus.Programs</Namespace>
+		<PackageFormat>Automatic</PackageFormat>
+		<ProjectName>DeploymentUnit1_20240927204429</ProjectName>
+		<RestSpecFolder>C:\KBs\Comforta_version2\GXRESTSPC\Development</RestSpecFolder>
+		<SourcePath>C:\KBs\Comforta_version2\Data018</SourcePath>
+		<TargetJRE>9</TargetJRE>
+		<TimeStamp>20240927204429</TimeStamp>
+	</PropertyGroup>
+
+	<!-- General Properties -->
+	<PropertyGroup>
+		<GX_PROGRAM_DIR Condition=" '$(GX_PROGRAM_DIR)' == '' ">C:\Program Files (x86)\GeneXus\GeneXus18</GX_PROGRAM_DIR>
+		<AdditionalItems Condition=" '$(AdditionalItems)' == ''">$(DeploymentUnit)_user.gxdproj</AdditionalItems>
+	</PropertyGroup>
+
+	<!-- Destination paths -->
+	<PropertyGroup>
+		<DeployFileFullPath>$(SourcePath)\Deploy\$(DeployTarget)</DeployFileFullPath>
+		<DeployFullPath>$(DeployFileFullPath)\$(DeploymentUnit)\$(TimeStamp)</DeployFullPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(DeployType)' == 'SOURCES' or ('$(Generator)' == 'Java' and '$(IsCMD)' == 'false' and '$(JavaFrameWork)'=='JAVA_FRAMEWORK_SPRINGBOOT')">
+		<DeployAppDir>$(DeployFullPath)\web</DeployAppDir>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(DeployType)' != 'SOURCES' and ('$(Generator)' != 'Java' or '$(IsCMD)' == 'true' or '$(JavaFrameWork)'!='JAVA_FRAMEWORK_SPRINGBOOT')">
+		<DeployAppDir>$(DeployFullPath)</DeployAppDir>
+	</PropertyGroup>
+
+	<!-- Languages -->
+	<ItemGroup> 
+		<Language Include="English">
+			<QualifiedName>English</QualifiedName>
+			<Description>English</Description>
+			<Code>en</Code>
+			<MessageCode>eng</MessageCode>
+		</Language>
+	</ItemGroup>
+
+	<!-- External Objects -->
+	<ItemGroup> 
+		<ExternalObjectFile Include="ApplicationDesign.dll"/>
+		<ExternalObjectFile Include="QRCodeLibrary.dll"/>
+	</ItemGroup>
+
+	<!-- Files -->
+	<ItemGroup> 
+		<ExternalFile Include="bin\GeneXusSecurity.dll"/>
+		<ExternalFile Include="bin\GeneXusSecurityCommon.dll"/>
+		<ExternalFile Include="bin\GeneXus.dll"/>
+		<ExternalFile Include="GeneXus.services"/>
+		<ExternalFile Include="GeneXus\SD\Synchronization\OfflineEventReplicator.svc"/>
+		<ExternalFile Include="bin\GeneXusCryptography.dll"/>
+		<ExternalFile Include="bin\GeneXusCryptographyNetCoreImpl.dll"/>
+		<ExternalFile Include="bin\SecurityAPICommons.dll"/>
+		<ExternalFile Include="bin\GeneXusSecurityAPICommonsNetCoreImpl.dll"/>
+		<ExternalFile Include="bin\BouncyCastle.Cryptography.dll"/>
+	</ItemGroup>
+
+	<!-- Objects -->
+	<ItemGroup> 
+		<Object Include="API_ResidentService">
+			<Type>API</Type>
+			<QualifiedName>API_ResidentService</QualifiedName>
+			<Description>API_Resident Service</Description>
+			<Main>true</Main>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<IsGrpc>false</IsGrpc>
+			<Selected>true</Selected>
+		</Object>
+		<Object Include="DP_Country">
+			<Type>DataProvider</Type>
+			<QualifiedName>DP_Country</QualifiedName>
+			<Description>DP_Country</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<Online>true</Online>
+		</Object>
+		<Object Include="DP_GetDashboardItems">
+			<Type>DataProvider</Type>
+			<QualifiedName>DP_GetDashboardItems</QualifiedName>
+			<Description>DP_Get Dashboard Items</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<Online>true</Online>
+		</Object>
+		<Object Include="MenuOptionsData">
+			<Type>DataProvider</Type>
+			<QualifiedName>WWPBaseObjects.MenuOptionsData</QualifiedName>
+			<Description>Menu Options Data</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<Online>true</Online>
+		</Object>
+		<Object Include="SecGAMGetAdvancedSecurityWWPFunctionalities">
+			<Type>DataProvider</Type>
+			<QualifiedName>WWPBaseObjects.SecGAMGetAdvancedSecurityWWPFunctionalities</QualifiedName>
+			<Description>Get Advanced Security WWP Functionalities</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_Template_DataProvider">
+			<Type>DataProvider</Type>
+			<QualifiedName>Trn_Template_DataProvider</QualifiedName>
+			<Description>Trn_Template_Data Provider</Description>
+			<Main>true</Main>
+			<Generate>true</Generate>
+			<Selected>true</Selected>
+			<GenOpenAPI>false</GenOpenAPI>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_Theme_DataProvider">
+			<Type>DataProvider</Type>
+			<QualifiedName>Trn_Theme_DataProvider</QualifiedName>
+			<Description>Trn_Theme_Data Provider</Description>
+			<Main>true</Main>
+			<Generate>true</Generate>
+			<Selected>true</Selected>
+			<GenOpenAPI>false</GenOpenAPI>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_AutomaticNotificationDefinitionsToLoad">
+			<Type>DataProvider</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Common.WWP_AutomaticNotificationDefinitionsToLoad</QualifiedName>
+			<Description>WWP_Automatic Notification Definitions To Load</Description>
+			<Module>WWPBaseObjects.Notifications.Common</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_Calendar_GetEvents">
+			<Type>DataProvider</Type>
+			<QualifiedName>WorkWithPlus.WWP_Calendar_GetEvents</QualifiedName>
+			<Description>WWP_Calendar_Get Events</Description>
+			<Module>WorkWithPlus</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_GetNotificationsForUser">
+			<Type>DataProvider</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Common.WWP_GetNotificationsForUser</QualifiedName>
+			<Description>Get Notifications For User</Description>
+			<Module>WWPBaseObjects.Notifications.Common</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_Parameter_DataProvider">
+			<Type>DataProvider</Type>
+			<QualifiedName>WorkWithPlus.WWP_Parameter_DataProvider</QualifiedName>
+			<Description>WWP_Parameter_Data Provider</Description>
+			<Module>WorkWithPlus</Module>
+			<Main>true</Main>
+			<Generate>true</Generate>
+			<Selected>true</Selected>
+			<GenOpenAPI>false</GenOpenAPI>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WorkWithPlusBaseDS">
+			<Type>DesignSystem</Type>
+			<QualifiedName>WWPBaseObjects.WorkWithPlusBaseDS</QualifiedName>
+			<Description>WorkWithPlus Base Design System</Description>
+			<Module>WWPBaseObjects</Module>
+		</Object>
+		<Object Include="WorkWithPlusDS">
+			<Type>DesignSystem</Type>
+			<QualifiedName>WorkWithPlusDS</QualifiedName>
+			<Description>Work With Plus DS</Description>
+		</Object>
+		<Object Include="WWP_DynamicForm_DS">
+			<Type>DesignSystem</Type>
+			<QualifiedName>WorkWithPlus.DynamicForms.WWP_DynamicForm_DS</QualifiedName>
+			<Description>WWP_Dynamic Form_DS</Description>
+			<Module>WorkWithPlus.DynamicForms</Module>
+		</Object>
+		<Object Include="WorkWithPlusMasterPage">
+			<Type>MasterPage</Type>
+			<QualifiedName>WWPBaseObjects.WorkWithPlusMasterPage</QualifiedName>
+			<Description>Master Page</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WorkWithPlusMasterPageEmpty">
+			<Type>MasterPage</Type>
+			<QualifiedName>WWPBaseObjects.WorkWithPlusMasterPageEmpty</QualifiedName>
+			<Description>Master Page</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="DVMessageGetAdvancedNotificationMsg">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.DVMessageGetAdvancedNotificationMsg</QualifiedName>
+			<Description>DVMessage Get Advanced Notification</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="DVMessageGetBasicNotificationMsg">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.DVMessageGetBasicNotificationMsg</QualifiedName>
+			<Description>DVMessage Get Basic Notification Msg</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="DVMessageGetDesktopNotificationMsg">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.DVMessageGetDesktopNotificationMsg</QualifiedName>
+			<Description>DVMessage Get Desktop Notification Msg</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="GetFilterByName">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.GetFilterByName</QualifiedName>
+			<Description>Get Filter By Name</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="GetMenuAuthorizedOptions">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.GetMenuAuthorizedOptions</QualifiedName>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="GetMenuAuthorizedOptionsRecursive">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.GetMenuAuthorizedOptionsRecursive</QualifiedName>
+			<Description>Get Menu Authorized Options Recursive</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="GetWWPTitleSettingsIcons">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.GetWWPTitleSettingsIcons</QualifiedName>
+			<Description>Get WWPTitle Settings Icons</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="IsMenuAuthorizedOption">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.IsMenuAuthorizedOption</QualifiedName>
+			<Description>Is Sidebar Authorized Option</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="LoadGridState">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.LoadGridState</QualifiedName>
+			<Description>Load Filters State</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="LoadManageFiltersState">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.LoadManageFiltersState</QualifiedName>
+			<Description>Load Manage Filters State</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="LoadUserKeyValue">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.LoadUserKeyValue</QualifiedName>
+			<Description>Load User Key Value</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="LoadWWPContext">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.LoadWWPContext</QualifiedName>
+			<Description>Load Work With Plus Context</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_ActivateResidentAccount">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_ActivateResidentAccount</QualifiedName>
+			<Description>Prc_Activate Resident Account</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_ApplicationDesign">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_ApplicationDesign</QualifiedName>
+			<Description>Prc_Application Design</Description>
+			<Main>true</Main>
+			<Generate>true</Generate>
+			<Selected>true</Selected>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_ConcatenateAddress">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_ConcatenateAddress</QualifiedName>
+			<Description>Prc_Concatenate Address</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_CreateGamUserAccount">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_CreateGamUserAccount</QualifiedName>
+			<Description>Prc_Create Gam User Account</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_DecodeQrCode">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_DecodeQrCode</QualifiedName>
+			<Description>Prc_Decode Qr Code</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_DeleteGamUserAccount">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_DeleteGamUserAccount</QualifiedName>
+			<Description>Prc_Delete Gam User Account</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_GenerateQrCodeImage">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_GenerateQrCodeImage</QualifiedName>
+			<Description>Prc_Generate Qr Code Image</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_GetLoggedInUser">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_GetLoggedInUser</QualifiedName>
+			<Description>Prc_Get Logged In User</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_GetLoggedInUserId">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_GetLoggedInUserId</QualifiedName>
+			<Description>Prc_Get Logged In User Id</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_GetNameInitials">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_GetNameInitials</QualifiedName>
+			<Description>Prc_Get Name Initials</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_GetUserDashboardItems">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_GetUserDashboardItems</QualifiedName>
+			<Description>Prc_Get User Dashboard Items</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_GetUserFooterCaption">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_GetUserFooterCaption</QualifiedName>
+			<Description>Prc_Get User Footer Caption</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_GetUserLocationId">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_GetUserLocationId</QualifiedName>
+			<Description>Prc_Get User Location Id</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_GetUserOrganisationId">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_GetUserOrganisationId</QualifiedName>
+			<Description>Prc_Get User Organisation Id</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_InitializeGamRoles">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_InitializeGamRoles</QualifiedName>
+			<Description>Prc_Initialize Gam Roles</Description>
+			<Main>true</Main>
+			<Generate>true</Generate>
+			<Selected>true</Selected>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_LoginResident">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_LoginResident</QualifiedName>
+			<Description>Prc_Login Resident</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_LogToFile">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_LogToFile</QualifiedName>
+			<Description>Prc_Log To File</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_OrganisationSetting">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_OrganisationSetting</QualifiedName>
+			<Description>Prc_Organisation Setting</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_OrganizationSettingId">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_OrganizationSettingId</QualifiedName>
+			<Description>Prc_Organization Setting Id</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_OrganizationSettingTrnMode">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_OrganizationSettingTrnMode</QualifiedName>
+			<Description>Prc_Organization Setting Trn Mode</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Prc_UpdateGamUserAccount">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_UpdateGamUserAccount</QualifiedName>
+			<Description>Prc_Update Gam User Account</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="SaveGridState">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.SaveGridState</QualifiedName>
+			<Description>Save Grid State</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="SaveManageFiltersState">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.SaveManageFiltersState</QualifiedName>
+			<Description>Save Grid State</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="SaveUserKeyValue">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.SaveUserKeyValue</QualifiedName>
+			<Description>Save User Key Value</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="SecGAMIsAuthByFunctionalityKey">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.SecGAMIsAuthByFunctionalityKey</QualifiedName>
+			<Description>Is Authorized By Functionality</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="SecGAMUpdatePermissions">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.SecGAMUpdatePermissions</QualifiedName>
+			<Description>Sec GAMUpdate Permissions</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_AmenityWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_AmenityWWGetFilterData</QualifiedName>
+			<Description>Trn_Amenity WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_ColLoadDVCombo">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_ColLoadDVCombo</QualifiedName>
+			<Description>Trn_Col Load DVCombo</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_ColWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_ColWWGetFilterData</QualifiedName>
+			<Description>Trn_Col WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_LocationWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_LocationWWGetFilterData</QualifiedName>
+			<Description>Trn_Location WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_ManagerWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_ManagerWWGetFilterData</QualifiedName>
+			<Description>Trn_Manager WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_MedicalIndicationWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_MedicalIndicationWWGetFilterData</QualifiedName>
+			<Description>Trn_Medical Indication WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_OrganisationLoadDVCombo">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_OrganisationLoadDVCombo</QualifiedName>
+			<Description>Trn_Organisation Load DVCombo</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_OrganisationSettingLoadDVCombo">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_OrganisationSettingLoadDVCombo</QualifiedName>
+			<Description>Trn_Organisation Setting Load DVCombo</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_OrganisationSettingWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_OrganisationSettingWWGetFilterData</QualifiedName>
+			<Description>Trn_Organisation Setting WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_OrganisationTypeWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_OrganisationTypeWWGetFilterData</QualifiedName>
+			<Description>Trn_Organisation Type WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_OrganisationWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_OrganisationWWGetFilterData</QualifiedName>
+			<Description>Trn_Organisation WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_PageWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_PageWWGetFilterData</QualifiedName>
+			<Description>Trn_Page WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_ProductServiceLoadDVCombo">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_ProductServiceLoadDVCombo</QualifiedName>
+			<Description>Trn_Product Service Load DVCombo</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_ProductServiceWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_ProductServiceWWGetFilterData</QualifiedName>
+			<Description>Trn_Product Service WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_ReceptionistWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_ReceptionistWWGetFilterData</QualifiedName>
+			<Description>Trn_Receptionist WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_ResidentLoadDVCombo">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_ResidentLoadDVCombo</QualifiedName>
+			<Description>Trn_Resident Load DVCombo</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_ResidentTypeWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_ResidentTypeWWGetFilterData</QualifiedName>
+			<Description>Trn_Resident Type WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_ResidentWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_ResidentWWGetFilterData</QualifiedName>
+			<Description>Trn_Resident WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_RowLoadDVCombo">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_RowLoadDVCombo</QualifiedName>
+			<Description>Trn_Row Load DVCombo</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_RowWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_RowWWGetFilterData</QualifiedName>
+			<Description>Trn_Row WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_SupplierAgbLoadDVCombo">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_SupplierAgbLoadDVCombo</QualifiedName>
+			<Description>Trn_Supplier Agb Load DVCombo</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_SupplierAgbTypeWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_SupplierAgbTypeWWGetFilterData</QualifiedName>
+			<Description>Trn_Supplier Agb Type WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_SupplierAgbWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_SupplierAgbWWGetFilterData</QualifiedName>
+			<Description>Trn_Supplier Agb WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_SupplierGenLoadDVCombo">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_SupplierGenLoadDVCombo</QualifiedName>
+			<Description>Trn_Supplier Gen Load DVCombo</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_SupplierGenTypeWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_SupplierGenTypeWWGetFilterData</QualifiedName>
+			<Description>Trn_Supplier Gen Type WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_SupplierGenWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_SupplierGenWWGetFilterData</QualifiedName>
+			<Description>Trn_Supplier Gen WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_TemplateWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_TemplateWWGetFilterData</QualifiedName>
+			<Description>Trn_Template WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_ThemeWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_ThemeWWGetFilterData</QualifiedName>
+			<Description>Trn_Theme WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_TileLoadDVCombo">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_TileLoadDVCombo</QualifiedName>
+			<Description>Trn_Tile Load DVCombo</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_TileWWGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>Trn_TileWWGetFilterData</QualifiedName>
+			<Description>Trn_Tile WWGet Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WC_ColsGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>WC_ColsGetFilterData</QualifiedName>
+			<Description>WC_Cols Get Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WC_RowsGetFilterData">
+			<Type>Procedure</Type>
+			<QualifiedName>WC_RowsGetFilterData</QualifiedName>
+			<Description>WC_Rows Get Filter Data</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>true</GenOpenAPI>
+			<IsRest>true</IsRest>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_Calendar_DeleteEvent">
+			<Type>Procedure</Type>
+			<QualifiedName>WorkWithPlus.WWP_Calendar_DeleteEvent</QualifiedName>
+			<Description>WWP_Calendar_Delete Event</Description>
+			<Module>WorkWithPlus</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_Calendar_EditEvent">
+			<Type>Procedure</Type>
+			<QualifiedName>WorkWithPlus.WWP_Calendar_EditEvent</QualifiedName>
+			<Description>WWP_Calendar_Edit Event</Description>
+			<Module>WorkWithPlus</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_Calendar_GetDisabledDays">
+			<Type>Procedure</Type>
+			<QualifiedName>WorkWithPlus.WWP_Calendar_GetDisabledDays</QualifiedName>
+			<Description>WWP_Calendar_Get Disabled Days</Description>
+			<Module>WorkWithPlus</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_Calendar_GetEvent">
+			<Type>Procedure</Type>
+			<QualifiedName>WorkWithPlus.WWP_Calendar_GetEvent</QualifiedName>
+			<Description>WWP_Calendar_Get Event</Description>
+			<Module>WorkWithPlus</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_Calendar_UpdateEventDate">
+			<Type>Procedure</Type>
+			<QualifiedName>WorkWithPlus.WWP_Calendar_UpdateEventDate</QualifiedName>
+			<Description>WWP_Calendar_Update Event Date</Description>
+			<Module>WorkWithPlus</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_ChangeNotificationStatus">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Common.WWP_ChangeNotificationStatus</QualifiedName>
+			<Description>Set Notification Read/Unread</Description>
+			<Module>WWPBaseObjects.Notifications.Common</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_CheckUserIsNotUnsubscribed">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Subscriptions.WWP_CheckUserIsNotUnsubscribed</QualifiedName>
+			<Description>Check User Is Not Unsubscribed</Description>
+			<Module>WWPBaseObjects.Subscriptions</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_CleanNotificationURL">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Common.WWP_CleanNotificationURL</QualifiedName>
+			<Description>Clean Notification URL</Description>
+			<Module>WWPBaseObjects.Notifications.Common</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_CreateAndNotifyDiscussionMessage">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Discussions.WWP_CreateAndNotifyDiscussionMessage</QualifiedName>
+			<Description>Create and notify a DiscussionMessage</Description>
+			<Module>WWPBaseObjects.Discussions</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_CreateEvents">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_CreateEvents</QualifiedName>
+			<Description>WWP_Create Events</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_CreateNotificationToUser">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Common.WWP_CreateNotificationToUser</QualifiedName>
+			<Description>Create Notification To User</Description>
+			<Module>WWPBaseObjects.Notifications.Common</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_ExistsUserExtended">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_ExistsUserExtended</QualifiedName>
+			<Description>WWP_Exists User Extended</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_GetAppliedFiltersDescription">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_GetAppliedFiltersDescription</QualifiedName>
+			<Description>WWP_Get Applied Filters Description</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_GetDesignSystemSettings">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_GetDesignSystemSettings</QualifiedName>
+			<Description>Get Design System Settings</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_GetEntityByName">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_GetEntityByName</QualifiedName>
+			<Description>WWP_Get Entity By Name</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_GetEventsForFlatDate">
+			<Type>Procedure</Type>
+			<QualifiedName>WorkWithPlus.WWP_GetEventsForFlatDate</QualifiedName>
+			<Description>WWP_Get Events For Flat Date</Description>
+			<Module>WorkWithPlus</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_GetFilterVal">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_GetFilterVal</QualifiedName>
+			<Description>WWP_Get Filter Val</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_GetLoggedUserId">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_GetLoggedUserId</QualifiedName>
+			<Description>WWP_Get Logged User Id</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_GetLoggedUserRoles">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_GetLoggedUserRoles</QualifiedName>
+			<Description>WWP_Get Logged User Roles</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_GetNotificationDefinitionByName">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Common.WWP_GetNotificationDefinitionByName</QualifiedName>
+			<Description>WWP_Get Notification Definition By Name</Description>
+			<Module>WWPBaseObjects.Notifications.Common</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_GetParameter">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_GetParameter</QualifiedName>
+			<Description>Get Parameter</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_GetSMSParameters">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.SMS.WWP_GetSMSParameters</QualifiedName>
+			<Description>Get SMS Parameters</Description>
+			<Module>WWPBaseObjects.SMS</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_GetSMTPParameters">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Mail.WWP_GetSMTPParameters</QualifiedName>
+			<Description>Get SMTPParameters</Description>
+			<Module>WWPBaseObjects.Mail</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_GetStatusCodeMessage">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Mail.WWP_GetStatusCodeMessage</QualifiedName>
+			<Description>Get Status Code Message</Description>
+			<Module>WWPBaseObjects.Mail</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_GetStyledDVCombo">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_GetStyledDVCombo</QualifiedName>
+			<Description>WWP_Get Styled DVCombo</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_GetUsersFromRole">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_GetUsersFromRole</QualifiedName>
+			<Description>WWP_Get Users From Role</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_GridStateAddFilterValue">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_GridStateAddFilterValue</QualifiedName>
+			<Description>WWP_Grid State Add Filter Value</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_GridStateAddFilterValueAndSel">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_GridStateAddFilterValueAndSel</QualifiedName>
+			<Description>WWP_Grid State Add Filter Value And Sel</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_HasDiscussionMessages">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Discussions.WWP_HasDiscussionMessages</QualifiedName>
+			<Description>Has Discussion Messages</Description>
+			<Module>WWPBaseObjects.Discussions</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_HasSubscriptionsToDisplay">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Subscriptions.WWP_HasSubscriptionsToDisplay</QualifiedName>
+			<Description>WWP_Has Subscriptions To Display</Description>
+			<Module>WWPBaseObjects.Subscriptions</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_ImpactMetadata">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_ImpactMetadata</QualifiedName>
+			<Description>WWP_Impact Metadata</Description>
+			<Module>WWPBaseObjects</Module>
+			<Main>true</Main>
+			<Generate>true</Generate>
+			<Selected>true</Selected>
+			<GenOpenAPI>false</GenOpenAPI>
+			<IsCMD>true</IsCMD>
+			<CallProtocol>CLINE</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_IsReceivedWebNotification">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Web.WWP_IsReceivedWebNotification</QualifiedName>
+			<Description>Is Received Web Notification</Description>
+			<Module>WWPBaseObjects.Notifications.Web</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_Logger">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_Logger</QualifiedName>
+			<Description>Logger</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_ManageFiltersLoadSavedFilters">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_ManageFiltersLoadSavedFilters</QualifiedName>
+			<Description>WWP_Manage Filters Load Saved Filters</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_NotifyDiscussionMessage">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Discussions.WWP_NotifyDiscussionMessage</QualifiedName>
+			<Description>WWP_Notify Discussion Message</Description>
+			<Module>WWPBaseObjects.Discussions</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_ParseMailAddressList">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Mail.WWP_ParseMailAddressList</QualifiedName>
+			<Description>Parse Mail Address List</Description>
+			<Module>WWPBaseObjects.Mail</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_ParsePhoneNumbersList">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.SMS.WWP_ParsePhoneNumbersList</QualifiedName>
+			<Description>Parse Phone Numbers List</Description>
+			<Module>WWPBaseObjects.SMS</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_RegisterWebClient">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Web.WWP_RegisterWebClient</QualifiedName>
+			<Description>Register Web Client</Description>
+			<Module>WWPBaseObjects.Notifications.Web</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_SendMail">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Mail.WWP_SendMail</QualifiedName>
+			<Description>Send Mail</Description>
+			<Module>WWPBaseObjects.Mail</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_SendMentionNotification">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Common.WWP_SendMentionNotification</QualifiedName>
+			<Description>WWPSend Mention Notification</Description>
+			<Module>WWPBaseObjects.Notifications.Common</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_SendNotification">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Common.WWP_SendNotification</QualifiedName>
+			<Description>WWP_Send Notification</Description>
+			<Module>WWPBaseObjects.Notifications.Common</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_SendPendingNotifications">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Common.WWP_SendPendingNotifications</QualifiedName>
+			<Description>Send Pending Notifications</Description>
+			<Module>WWPBaseObjects.Notifications.Common</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_SendSMS">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.SMS.WWP_SendSMS</QualifiedName>
+			<Description>Send SMS</Description>
+			<Module>WWPBaseObjects.SMS</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_SendWebNotification">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Web.WWP_SendWebNotification</QualifiedName>
+			<Description>Send Web Notification</Description>
+			<Module>WWPBaseObjects.Notifications.Web</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_SetWebNotificationReceived">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Web.WWP_SetWebNotificationReceived</QualifiedName>
+			<Description>Set Web Notification Received</Description>
+			<Module>WWPBaseObjects.Notifications.Web</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_SubscribeLoggedUserToDiscussion">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Discussions.WWP_SubscribeLoggedUserToDiscussion</QualifiedName>
+			<Description>Subscribe the logged user to a discussion</Description>
+			<Module>WWPBaseObjects.Discussions</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_SubscribeMentionedUsersToDiscussion">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Discussions.WWP_SubscribeMentionedUsersToDiscussion</QualifiedName>
+			<Description>Subscribe the mentioned users to a discussion</Description>
+			<Module>WWPBaseObjects.Discussions</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_SyncHandler">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_SyncHandler</QualifiedName>
+			<Description>WWP_Sync Handler</Description>
+			<Module>WWPBaseObjects</Module>
+			<Main>true</Main>
+			<Generate>true</Generate>
+			<Selected>true</Selected>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_UpdateApplicationParameters">
+			<Type>Procedure</Type>
+			<QualifiedName>WorkWithPlus.WWP_UpdateApplicationParameters</QualifiedName>
+			<Description>Update Application Parameters</Description>
+			<Module>WorkWithPlus</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_UpdateMailStatus">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Mail.WWP_UpdateMailStatus</QualifiedName>
+			<Description>Update Mail Status</Description>
+			<Module>WWPBaseObjects.Mail</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_UpdateNotificationDefinitions">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Common.WWP_UpdateNotificationDefinitions</QualifiedName>
+			<Description>WWP_Update Notification Definitions</Description>
+			<Module>WWPBaseObjects.Notifications.Common</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_UpdateSMSStatus">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.SMS.WWP_UpdateSMSStatus</QualifiedName>
+			<Description>Update SMS Status</Description>
+			<Module>WWPBaseObjects.SMS</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_UpdateWebNotificationStatus">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Web.WWP_UpdateWebNotificationStatus</QualifiedName>
+			<Description>Update Web Notification Status</Description>
+			<Module>WWPBaseObjects.Notifications.Web</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_UserSync">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_UserSync</QualifiedName>
+			<Description>User Sync</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_UserUpdateSubscription">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.Subscriptions.WWP_UserUpdateSubscription</QualifiedName>
+			<Description>User Update Subscription</Description>
+			<Module>WWPBaseObjects.Subscriptions</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<CallProtocol>INTERNAL</CallProtocol>
+			<Online>true</Online>
+		</Object>
+		<Object Include="DVB_SDTComboData_Item">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.DVB_SDTComboData</QualifiedName>
+			<Description>DVB_SDTCombo Data</Description>
+			<Module>WWPBaseObjects</Module>
+			<Collection>true</Collection>
+		</Object>
+		<Object Include="DVB_SDTDropDownOptionsData_Item">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.DVB_SDTDropDownOptionsData</QualifiedName>
+			<Description>DVB_SDTDrop Down Options Data</Description>
+			<Module>WWPBaseObjects</Module>
+			<Collection>true</Collection>
+		</Object>
+		<Object Include="DVB_SDTDropDownOptionsTitleSettingsIcons">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.DVB_SDTDropDownOptionsTitleSettingsIcons</QualifiedName>
+			<Description>DVB_SDTDrop Down Options Title Settings Icons</Description>
+			<Module>WWPBaseObjects</Module>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="DVelop_Menu_Item">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.DVelop_Menu</QualifiedName>
+			<Description>DVelop Menu</Description>
+			<Module>WWPBaseObjects</Module>
+			<Collection>true</Collection>
+		</Object>
+		<Object Include="DVelop_Menu_UserData">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.DVelop_Menu_UserData</QualifiedName>
+			<Description>Menu User Data</Description>
+			<Module>WWPBaseObjects</Module>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="GridStateCollection_Item">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.GridStateCollection</QualifiedName>
+			<Description>Grid State Collection</Description>
+			<Module>WWPBaseObjects</Module>
+			<Collection>true</Collection>
+		</Object>
+		<Object Include="HomeModulesSDT_HomeModulesSDTItem">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.HomeModulesSDT</QualifiedName>
+			<Description>Home Modules SDT</Description>
+			<Module>WWPBaseObjects</Module>
+			<Collection>true</Collection>
+		</Object>
+		<Object Include="Messages_Message">
+			<Type>SDT</Type>
+			<QualifiedName>GeneXus.Common.Messages</QualifiedName>
+			<Description>Messages</Description>
+			<Module>GeneXus.Common</Module>
+			<Collection>true</Collection>
+			<IsInterface>true</IsInterface>
+		</Object>
+		<Object Include="NotificationInfo">
+			<Type>SDT</Type>
+			<QualifiedName>GeneXus.Server.NotificationInfo</QualifiedName>
+			<Description>Notification Info</Description>
+			<Module>GeneXus.Server</Module>
+			<Collection>false</Collection>
+			<IsInterface>true</IsInterface>
+		</Object>
+		<Object Include="ProgramNames_ProgramName">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.ProgramNames</QualifiedName>
+			<Description>Program Names</Description>
+			<Module>WWPBaseObjects</Module>
+			<Collection>true</Collection>
+		</Object>
+		<Object Include="SDT_Col">
+			<Type>SDT</Type>
+			<QualifiedName>SDT_Col</QualifiedName>
+			<Description>SDT_Col</Description>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="SDT_Country_SDT_CountryItem">
+			<Type>SDT</Type>
+			<QualifiedName>SDT_Country</QualifiedName>
+			<Description>SDT_Country</Description>
+			<Collection>true</Collection>
+		</Object>
+		<Object Include="SDT_LoginResidentResponse">
+			<Type>SDT</Type>
+			<QualifiedName>SDT_LoginResidentResponse</QualifiedName>
+			<Description>SDT_Login Resident Response</Description>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="SDT_Managers_SDT_ManagersItem">
+			<Type>SDT</Type>
+			<QualifiedName>SDT_Managers</QualifiedName>
+			<Description>SDT_Managers</Description>
+			<Collection>true</Collection>
+		</Object>
+		<Object Include="SDT_NetworkCompany">
+			<Type>SDT</Type>
+			<QualifiedName>SDT_NetworkCompany</QualifiedName>
+			<Description>SDT_Network Company</Description>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="SDT_NetworkIndividual">
+			<Type>SDT</Type>
+			<QualifiedName>SDT_NetworkIndividual</QualifiedName>
+			<Description>SDT_Network Individual</Description>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="SDT_OrganisationSetting">
+			<Type>SDT</Type>
+			<QualifiedName>SDT_OrganisationSetting</QualifiedName>
+			<Description>SDT_Organisation Setting</Description>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="SDT_Page">
+			<Type>SDT</Type>
+			<QualifiedName>SDT_Page</QualifiedName>
+			<Description>SDT_Page</Description>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="SDT_Receptionist">
+			<Type>SDT</Type>
+			<QualifiedName>SDT_Receptionist</QualifiedName>
+			<Description>SDT_Receptionist</Description>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="SDT_Resident">
+			<Type>SDT</Type>
+			<QualifiedName>SDT_Resident</QualifiedName>
+			<Description>SDT_Resident</Description>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="SDT_Row">
+			<Type>SDT</Type>
+			<QualifiedName>SDT_Row</QualifiedName>
+			<Description>SDT_Row</Description>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="SDT_Tile">
+			<Type>SDT</Type>
+			<QualifiedName>SDT_Tile</QualifiedName>
+			<Description>SDT_Tile</Description>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="SecGAMFunctionalitiesToLoad">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.SecGAMFunctionalitiesToLoad</QualifiedName>
+			<Description>GAM Functionalities To Load</Description>
+			<Module>WWPBaseObjects</Module>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="SplitScreenDetailInfo">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.SplitScreenDetailInfo</QualifiedName>
+			<Description>Split Screen Detail Info</Description>
+			<Module>WWPBaseObjects</Module>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="WizardAuxiliarData_WizardAuxiliarDataItem">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.WizardAuxiliarData</QualifiedName>
+			<Description>Wizard Auxiliar Data</Description>
+			<Module>WWPBaseObjects</Module>
+			<Collection>true</Collection>
+		</Object>
+		<Object Include="WizardSteps_WizardStepsItem">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.WizardSteps</QualifiedName>
+			<Description>Wizard Steps</Description>
+			<Module>WWPBaseObjects</Module>
+			<Collection>true</Collection>
+		</Object>
+		<Object Include="WP_CreateLocationAndReceptionistData">
+			<Type>SDT</Type>
+			<QualifiedName>WP_CreateLocationAndReceptionistData</QualifiedName>
+			<Description>WP_Create Location And Receptionist Data</Description>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="WP_CreateOrganisationAndManagerData">
+			<Type>SDT</Type>
+			<QualifiedName>WP_CreateOrganisationAndManagerData</QualifiedName>
+			<Description>WP_Create Organisation And Manager Data</Description>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="WP_CreateResidentAndNetworkData">
+			<Type>SDT</Type>
+			<QualifiedName>WP_CreateResidentAndNetworkData</QualifiedName>
+			<Description>WP_Create Resident And Network Data</Description>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="WWP_Calendar_Events_Item">
+			<Type>SDT</Type>
+			<QualifiedName>WorkWithPlus.WWP_Calendar_Events</QualifiedName>
+			<Description>WWP_Calendar_Events</Description>
+			<Module>WorkWithPlus</Module>
+			<Collection>true</Collection>
+		</Object>
+		<Object Include="WWP_DesignSystemSettings">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.WWP_DesignSystemSettings</QualifiedName>
+			<Description>WWP_Design System Settings</Description>
+			<Module>WWPBaseObjects</Module>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="WWP_SDTNotificationMetadata">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Common.WWP_SDTNotificationMetadata</QualifiedName>
+			<Description>SDT Notification Metadata</Description>
+			<Module>WWPBaseObjects.Notifications.Common</Module>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="WWP_SDTNotificationsData_WWP_SDTNotificationsDataItem">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Common.WWP_SDTNotificationsData</QualifiedName>
+			<Description>SDT Notifications Data</Description>
+			<Module>WWPBaseObjects.Notifications.Common</Module>
+			<Collection>true</Collection>
+		</Object>
+		<Object Include="WWP_SendSMSResultSDT">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.SMS.WWP_SendSMSResultSDT</QualifiedName>
+			<Description>Send SMSResult SDT</Description>
+			<Module>WWPBaseObjects.SMS</Module>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="WWP_SMSParametersSDT">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.SMS.WWP_SMSParametersSDT</QualifiedName>
+			<Description>SMS Parameters SDT</Description>
+			<Module>WWPBaseObjects.SMS</Module>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="WWP_SMTPParametersSDT">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.Mail.WWP_SMTPParametersSDT</QualifiedName>
+			<Description>WWP_SMTPParameters SDT</Description>
+			<Module>WWPBaseObjects.Mail</Module>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="WWPConfFormattingVariable">
+			<Type>SDT</Type>
+			<QualifiedName>WorkWithPlus.WWPConfFormattingVariable</QualifiedName>
+			<Description>WWPConf Formatting Variable</Description>
+			<Module>WorkWithPlus</Module>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="WWPContext">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.WWPContext</QualifiedName>
+			<Description>WWPContext</Description>
+			<Module>WWPBaseObjects</Module>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="WWPDateRangePickerOptions">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.WWPDateRangePickerOptions</QualifiedName>
+			<Description>WWPDate Range Picker Options</Description>
+			<Module>WWPBaseObjects</Module>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="WWPGridState">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.WWPGridState</QualifiedName>
+			<Description>Grid State</Description>
+			<Module>WWPBaseObjects</Module>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="WWPTransactionContext">
+			<Type>SDT</Type>
+			<QualifiedName>WWPBaseObjects.WWPTransactionContext</QualifiedName>
+			<Description>WWP Transaction Context</Description>
+			<Module>WWPBaseObjects</Module>
+			<Collection>false</Collection>
+		</Object>
+		<Object Include="Trn_AgendaCalendar">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_AgendaCalendar</QualifiedName>
+			<Description>Trn_Agenda Calendar</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_Amenity">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_Amenity</QualifiedName>
+			<Description>Amenities</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_Col">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_Col</QualifiedName>
+			<Description>Trn_Col</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_Location">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_Location</QualifiedName>
+			<Description>Location</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_Manager">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_Manager</QualifiedName>
+			<Description>Managers</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_MedicalIndication">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_MedicalIndication</QualifiedName>
+			<Description>Medical Indication</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>false</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_NetworkCompany">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_NetworkCompany</QualifiedName>
+			<Description>Trn_Network Company</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_NetworkIndividual">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_NetworkIndividual</QualifiedName>
+			<Description>Trn_Network Individual</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_Organisation">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_Organisation</QualifiedName>
+			<Description>Organisations</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_OrganisationSetting">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_OrganisationSetting</QualifiedName>
+			<Description>Organisation Settings</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_OrganisationType">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_OrganisationType</QualifiedName>
+			<Description>Organisation Types</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>false</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_Page">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_Page</QualifiedName>
+			<Description>Trn_Page</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_ProductService">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_ProductService</QualifiedName>
+			<Description>Product/Service</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>false</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_Receptionist">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_Receptionist</QualifiedName>
+			<Description>Receptionist</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_Resident">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_Resident</QualifiedName>
+			<Description>Residents</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_ResidentType">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_ResidentType</QualifiedName>
+			<Description>Resident Types</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>false</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_Row">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_Row</QualifiedName>
+			<Description>Trn_Row</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_SupplierAgb">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_SupplierAgb</QualifiedName>
+			<Description>Agb Suppliers</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_SupplierAgbType">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_SupplierAgbType</QualifiedName>
+			<Description>Agb Supplier Types</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>false</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_SupplierGen">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_SupplierGen</QualifiedName>
+			<Description>General Suppliers</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>false</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_SupplierGenType">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_SupplierGenType</QualifiedName>
+			<Description>General Supplier Types</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>false</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_Template">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_Template</QualifiedName>
+			<Description>Template</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_Theme">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_Theme</QualifiedName>
+			<Description>Trn_Theme</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="Trn_Tile">
+			<Type>Transaction</Type>
+			<QualifiedName>Trn_Tile</QualifiedName>
+			<Description>Tile</Description>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="UserCustomizations">
+			<Type>Transaction</Type>
+			<QualifiedName>WWPBaseObjects.UserCustomizations</QualifiedName>
+			<Description>User Custom</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_DiscussionMessage">
+			<Type>Transaction</Type>
+			<QualifiedName>WWPBaseObjects.Discussions.WWP_DiscussionMessage</QualifiedName>
+			<Description>Discussion Message</Description>
+			<Module>WWPBaseObjects.Discussions</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_DiscussionMessageMention">
+			<Type>Transaction</Type>
+			<QualifiedName>WWPBaseObjects.Discussions.WWP_DiscussionMessageMention</QualifiedName>
+			<Description>Discussion Message Mention</Description>
+			<Module>WWPBaseObjects.Discussions</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_Entity">
+			<Type>Transaction</Type>
+			<QualifiedName>WWPBaseObjects.WWP_Entity</QualifiedName>
+			<Description>WWP_Entity</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_Mail">
+			<Type>Transaction</Type>
+			<QualifiedName>WWPBaseObjects.Mail.WWP_Mail</QualifiedName>
+			<Description>Mail</Description>
+			<Module>WWPBaseObjects.Mail</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_MailTemplate">
+			<Type>Transaction</Type>
+			<QualifiedName>WWPBaseObjects.Mail.WWP_MailTemplate</QualifiedName>
+			<Description>Mail Template</Description>
+			<Module>WWPBaseObjects.Mail</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_Notification">
+			<Type>Transaction</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Common.WWP_Notification</QualifiedName>
+			<Description>Notification</Description>
+			<Module>WWPBaseObjects.Notifications.Common</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_NotificationDefinition">
+			<Type>Transaction</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Common.WWP_NotificationDefinition</QualifiedName>
+			<Description>Notification Definition</Description>
+			<Module>WWPBaseObjects.Notifications.Common</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_Parameter">
+			<Type>Transaction</Type>
+			<QualifiedName>WorkWithPlus.WWP_Parameter</QualifiedName>
+			<Description>WWP_Parameter_Transaction_Description</Description>
+			<Module>WorkWithPlus</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_SMS">
+			<Type>Transaction</Type>
+			<QualifiedName>WWPBaseObjects.SMS.WWP_SMS</QualifiedName>
+			<Description>WWP_SMS</Description>
+			<Module>WWPBaseObjects.SMS</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_Subscription">
+			<Type>Transaction</Type>
+			<QualifiedName>WWPBaseObjects.Subscriptions.WWP_Subscription</QualifiedName>
+			<Description>WWP_Subscription</Description>
+			<Module>WWPBaseObjects.Subscriptions</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_UserExtended">
+			<Type>Transaction</Type>
+			<QualifiedName>WWPBaseObjects.WWP_UserExtended</QualifiedName>
+			<Description>Extended User from GAMUser</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="WWP_WebNotification">
+			<Type>Transaction</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Web.WWP_WebNotification</QualifiedName>
+			<Description>WWP_Web Notification</Description>
+			<Module>WWPBaseObjects.Notifications.Web</Module>
+			<Generate>true</Generate>
+			<GenOpenAPI>false</GenOpenAPI>
+			<BC>true</BC>
+			<Online>true</Online>
+		</Object>
+		<Object Include="UC_AppToolBox">
+			<Type>UserControl</Type>
+			<QualifiedName>UC_AppToolBox</QualifiedName>
+			<Description>UC_App Tool Box</Description>
+		</Object>
+		<Object Include="WWP_IconButton">
+			<Type>UserControl</Type>
+			<QualifiedName>WWP_IconButton</QualifiedName>
+			<Description>WWP_Icon Button</Description>
+		</Object>
+		<Object Include="HomeProgressBarCircleWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>WWPBaseObjects.HomeProgressBarCircleWC</QualifiedName>
+			<Description>Home Progress Bar Circle WC</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="HomeProgressBarWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>WWPBaseObjects.HomeProgressBarWC</QualifiedName>
+			<Description>Home Progress Bar WC</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_AmenityGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_AmenityGeneral</QualifiedName>
+			<Description>Trn_Amenity General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ColGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_ColGeneral</QualifiedName>
+			<Description>Trn_Col General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_LocationGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_LocationGeneral</QualifiedName>
+			<Description>Trn_Location General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_LocationTrn_AmenityWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_LocationTrn_AmenityWC</QualifiedName>
+			<Description>Trn_Location Trn_Amenity WC</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_LocationTrn_ReceptionistWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_LocationTrn_ReceptionistWC</QualifiedName>
+			<Description>Trn_Location Trn_Receptionist WC</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ManagerGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_ManagerGeneral</QualifiedName>
+			<Description>Trn_Manager General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_MedicalIndicationGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_MedicalIndicationGeneral</QualifiedName>
+			<Description>Trn_Medical Indication General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_OrganisationGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_OrganisationGeneral</QualifiedName>
+			<Description>Trn_Organisation General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_OrganisationSettingGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_OrganisationSettingGeneral</QualifiedName>
+			<Description>Trn_Organisation Setting General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_OrganisationTypeGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_OrganisationTypeGeneral</QualifiedName>
+			<Description>Trn_Organisation Type General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_OrganisationTypeTrn_OrganisationWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_OrganisationTypeTrn_OrganisationWC</QualifiedName>
+			<Description>Trn_Organisation Type Trn_Organisation WC</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_PageGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_PageGeneral</QualifiedName>
+			<Description>Trn_Page General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_PageTrn_RowWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_PageTrn_RowWC</QualifiedName>
+			<Description>Trn_Page Trn_Row WC</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ProductServiceGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_ProductServiceGeneral</QualifiedName>
+			<Description>Trn_Product Service General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ReceptionistGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_ReceptionistGeneral</QualifiedName>
+			<Description>Trn_Receptionist General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ResidentGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_ResidentGeneral</QualifiedName>
+			<Description>Trn_Resident General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ResidentNetworkCompanyWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_ResidentNetworkCompanyWC</QualifiedName>
+			<Description>Trn_Resident Network Company WC</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ResidentNetworkIndividualWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_ResidentNetworkIndividualWC</QualifiedName>
+			<Description>Trn_Resident Network Individual WC</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ResidentTypeGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_ResidentTypeGeneral</QualifiedName>
+			<Description>Trn_Resident Type General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ResidentTypeTrn_ResidentWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_ResidentTypeTrn_ResidentWC</QualifiedName>
+			<Description>Trn_Resident Type Trn_Resident WC</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_RowGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_RowGeneral</QualifiedName>
+			<Description>Trn_Row General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_RowTrn_ColWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_RowTrn_ColWC</QualifiedName>
+			<Description>Trn_Row Trn_Col WC</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_SupplierAgbGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_SupplierAgbGeneral</QualifiedName>
+			<Description>Trn_Supplier Agb General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_SupplierAgbTypeGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_SupplierAgbTypeGeneral</QualifiedName>
+			<Description>Trn_Supplier Agb Type General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_SupplierAgbTypeTrn_SupplierAgbWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_SupplierAgbTypeTrn_SupplierAgbWC</QualifiedName>
+			<Description>Trn_Supplier Agb Type Trn_Supplier Agb WC</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_SupplierGenGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_SupplierGenGeneral</QualifiedName>
+			<Description>Trn_Supplier Gen General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_SupplierGenTypeGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_SupplierGenTypeGeneral</QualifiedName>
+			<Description>Trn_Supplier Gen Type General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_SupplierGenTypeTrn_SupplierGenWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_SupplierGenTypeTrn_SupplierGenWC</QualifiedName>
+			<Description>Trn_Supplier Gen Type Trn_Supplier Gen WC</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_TemplateGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_TemplateGeneral</QualifiedName>
+			<Description>Trn_Template General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ThemeColorWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_ThemeColorWC</QualifiedName>
+			<Description>Trn_Theme Color WC</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ThemeGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_ThemeGeneral</QualifiedName>
+			<Description>Trn_Theme General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ThemeIconWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_ThemeIconWC</QualifiedName>
+			<Description>Trn_Theme Icon WC</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_TileAttributeWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_TileAttributeWC</QualifiedName>
+			<Description>Trn_Tile Attribute WC</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_TileGeneral">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_TileGeneral</QualifiedName>
+			<Description>Trn_Tile General</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_TileTrn_ColWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>Trn_TileTrn_ColWC</QualifiedName>
+			<Description>Trn_Tile Trn_Col WC</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WC_ChangeLanguage">
+			<Type>WebComponent</Type>
+			<QualifiedName>WC_ChangeLanguage</QualifiedName>
+			<Description>WC_Change Language</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WC_Color">
+			<Type>WebComponent</Type>
+			<QualifiedName>WC_Color</QualifiedName>
+			<Description>WC_Color</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WC_Cols">
+			<Type>WebComponent</Type>
+			<QualifiedName>WC_Cols</QualifiedName>
+			<Description>Trn_Col</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WC_CreatePageRow">
+			<Type>WebComponent</Type>
+			<QualifiedName>WC_CreatePageRow</QualifiedName>
+			<Description>WC_Create Page Row</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WC_CreateRowCol">
+			<Type>WebComponent</Type>
+			<QualifiedName>WC_CreateRowCol</QualifiedName>
+			<Description>WC_Create Row Col</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WC_Rows">
+			<Type>WebComponent</Type>
+			<QualifiedName>WC_Rows</QualifiedName>
+			<Description>Trn_Row</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WizardStepsBulletWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>WWPBaseObjects.WizardStepsBulletWC</QualifiedName>
+			<Description>Wizard Steps Bullet WC.</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WP_CreateLocationAndReceptionistStep1">
+			<Type>WebComponent</Type>
+			<QualifiedName>WP_CreateLocationAndReceptionistStep1</QualifiedName>
+			<Description>WP_Create Location And Receptionist Step1</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WP_CreateLocationAndReceptionistStep2">
+			<Type>WebComponent</Type>
+			<QualifiedName>WP_CreateLocationAndReceptionistStep2</QualifiedName>
+			<Description>WP_Create Location And Receptionist Step2</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WP_CreateOrganisationAndManagerStep1">
+			<Type>WebComponent</Type>
+			<QualifiedName>WP_CreateOrganisationAndManagerStep1</QualifiedName>
+			<Description>WP_Create Organisation And Manager Step1</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WP_CreateOrganisationAndManagerStep2">
+			<Type>WebComponent</Type>
+			<QualifiedName>WP_CreateOrganisationAndManagerStep2</QualifiedName>
+			<Description>WP_Create Organisation And Manager Step2</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WP_CreateResidentAndNetworkStep1">
+			<Type>WebComponent</Type>
+			<QualifiedName>WP_CreateResidentAndNetworkStep1</QualifiedName>
+			<Description>WP_Create Resident And Network Step1</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WP_CreateResidentAndNetworkStep2">
+			<Type>WebComponent</Type>
+			<QualifiedName>WP_CreateResidentAndNetworkStep2</QualifiedName>
+			<Description>WP_Create Resident And Network Step2</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WP_CreateResidentAndNetworkStep3">
+			<Type>WebComponent</Type>
+			<QualifiedName>WP_CreateResidentAndNetworkStep3</QualifiedName>
+			<Description>WP_Create Resident And Network Step3</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WWP_DiscussionsOneThreadCollapsedWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>WWPBaseObjects.Discussions.WWP_DiscussionsOneThreadCollapsedWC</QualifiedName>
+			<Description>Discussions of one thread collapsed</Description>
+			<Module>WWPBaseObjects.Discussions</Module>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WWP_DiscussionsOneThreadWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>WWPBaseObjects.Discussions.WWP_DiscussionsOneThreadWC</QualifiedName>
+			<Description>Discussions of one thread</Description>
+			<Module>WWPBaseObjects.Discussions</Module>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WWP_DiscussionsWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>WWPBaseObjects.Discussions.WWP_DiscussionsWC</QualifiedName>
+			<Description>Discussions of a record</Description>
+			<Module>WWPBaseObjects.Discussions</Module>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WWP_EventInfoWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>WorkWithPlus.WWP_EventInfoWC</QualifiedName>
+			<Description>Event</Description>
+			<Module>WorkWithPlus</Module>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WWP_MasterPageNotificationsWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Common.WWP_MasterPageNotificationsWC</QualifiedName>
+			<Description>Master Page Notifications</Description>
+			<Module>WWPBaseObjects.Notifications.Common</Module>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WWP_MasterPageTopActionsWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>WWPBaseObjects.WWP_MasterPageTopActionsWC</QualifiedName>
+			<Description>WWP_Master Page Top Actions WC</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WWP_SubscriptionsPanel">
+			<Type>WebComponent</Type>
+			<QualifiedName>WWPBaseObjects.Subscriptions.WWP_SubscriptionsPanel</QualifiedName>
+			<Description>Subscriptions of an Entity/Record</Description>
+			<Module>WWPBaseObjects.Subscriptions</Module>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WWP_SubscriptionsSettingsWC">
+			<Type>WebComponent</Type>
+			<QualifiedName>WWPBaseObjects.Subscriptions.WWP_SubscriptionsSettingsWC</QualifiedName>
+			<Description>Subscriptions Settings</Description>
+			<Module>WWPBaseObjects.Subscriptions</Module>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="GAMChangePassword">
+			<Type>WebPanel</Type>
+			<QualifiedName>GAMChangePassword</QualifiedName>
+			<Description>Change password</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="GAMExampleLogin">
+			<Type>WebPanel</Type>
+			<QualifiedName>GAMExampleLogin</QualifiedName>
+			<Description>Login</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="GAMHome">
+			<Type>WebPanel</Type>
+			<QualifiedName>GAMHome</QualifiedName>
+			<Description>WWP_GAM_Home</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="GAMNotAuthorized">
+			<Type>WebPanel</Type>
+			<QualifiedName>GAMNotAuthorized</QualifiedName>
+			<Description>Not Authorized</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="GAMOTPAuthentication">
+			<Type>WebPanel</Type>
+			<QualifiedName>GAMOTPAuthentication</QualifiedName>
+			<Description>GAM_Auth OTP</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="GAMRecoverPasswordStep1">
+			<Type>WebPanel</Type>
+			<QualifiedName>GAMRecoverPasswordStep1</QualifiedName>
+			<Description>Recover Password</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="GAMRecoverPasswordStep2">
+			<Type>WebPanel</Type>
+			<QualifiedName>GAMRecoverPasswordStep2</QualifiedName>
+			<Description>Recover Password</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="GAMRemoteLogin">
+			<Type>WebPanel</Type>
+			<QualifiedName>GAMRemoteLogin</QualifiedName>
+			<Description>Remote Login</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="GAMUpdateRegisterUser">
+			<Type>WebPanel</Type>
+			<QualifiedName>GAMUpdateRegisterUser</QualifiedName>
+			<Description>Update register user</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Home">
+			<Type>WebPanel</Type>
+			<QualifiedName>Home</QualifiedName>
+			<Description>WWP_HomeTitle</Description>
+			<Main>true</Main>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+			<Selected>true</Selected>
+		</Object>
+		<Object Include="ManageFilters">
+			<Type>WebPanel</Type>
+			<QualifiedName>WWPBaseObjects.ManageFilters</QualifiedName>
+			<Description>WWP_ManageFiltersDescription</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="SaveFilterAs">
+			<Type>WebPanel</Type>
+			<QualifiedName>WWPBaseObjects.SaveFilterAs</QualifiedName>
+			<Description>WWP_SaveFilterAsDescription</Description>
+			<Module>WWPBaseObjects</Module>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_AmenityView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_AmenityView</QualifiedName>
+			<Description>Trn_Amenity View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_AmenityWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_AmenityWW</QualifiedName>
+			<Description>Amenities</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ColView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_ColView</QualifiedName>
+			<Description>Trn_Col View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ColWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_ColWW</QualifiedName>
+			<Description>Trn_Col</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_LocationView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_LocationView</QualifiedName>
+			<Description>Trn_Location View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_LocationWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_LocationWW</QualifiedName>
+			<Description>Location</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ManagerView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_ManagerView</QualifiedName>
+			<Description>Trn_Manager View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ManagerWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_ManagerWW</QualifiedName>
+			<Description>Managers</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_MedicalIndicationView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_MedicalIndicationView</QualifiedName>
+			<Description>Trn_Medical Indication View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_MedicalIndicationWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_MedicalIndicationWW</QualifiedName>
+			<Description>Medical Indications</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_OrganisationSettingView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_OrganisationSettingView</QualifiedName>
+			<Description>Trn_Organisation Setting View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_OrganisationSettingWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_OrganisationSettingWW</QualifiedName>
+			<Description>Organisation Settings</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_OrganisationTypeView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_OrganisationTypeView</QualifiedName>
+			<Description>Trn_Organisation Type View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_OrganisationTypeWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_OrganisationTypeWW</QualifiedName>
+			<Description>Organisation Types</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_OrganisationView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_OrganisationView</QualifiedName>
+			<Description>Trn_Organisation View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_OrganisationWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_OrganisationWW</QualifiedName>
+			<Description>Organisations</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_PageView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_PageView</QualifiedName>
+			<Description>Trn_Page View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_PageWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_PageWW</QualifiedName>
+			<Description>Trn_Page</Description>
+			<Main>true</Main>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+			<Selected>true</Selected>
+		</Object>
+		<Object Include="Trn_ProductServiceView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_ProductServiceView</QualifiedName>
+			<Description>Trn_Product Service View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ProductServiceWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_ProductServiceWW</QualifiedName>
+			<Description>Products/Services</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ReceptionistView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_ReceptionistView</QualifiedName>
+			<Description>Trn_Receptionist View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ReceptionistWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_ReceptionistWW</QualifiedName>
+			<Description>Receptionist</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ResidentTypeView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_ResidentTypeView</QualifiedName>
+			<Description>Trn_Resident Type View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ResidentTypeWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_ResidentTypeWW</QualifiedName>
+			<Description>Resident Types</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ResidentView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_ResidentView</QualifiedName>
+			<Description>Trn_Resident View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ResidentWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_ResidentWW</QualifiedName>
+			<Description>Residents</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_RowView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_RowView</QualifiedName>
+			<Description>Trn_Row View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_RowWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_RowWW</QualifiedName>
+			<Description>Trn_Row</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_SupplierAgbTypeView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_SupplierAgbTypeView</QualifiedName>
+			<Description>Trn_Supplier Agb Type View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_SupplierAgbTypeWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_SupplierAgbTypeWW</QualifiedName>
+			<Description>Agb Supplier Types</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_SupplierAgbView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_SupplierAgbView</QualifiedName>
+			<Description>Trn_Supplier Agb View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_SupplierAgbWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_SupplierAgbWW</QualifiedName>
+			<Description>Agb Suppliers</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_SupplierGenTypeView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_SupplierGenTypeView</QualifiedName>
+			<Description>Trn_Supplier Gen Type View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_SupplierGenTypeWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_SupplierGenTypeWW</QualifiedName>
+			<Description>General Supplier Types</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_SupplierGenView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_SupplierGenView</QualifiedName>
+			<Description>Trn_Supplier Gen View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_SupplierGenWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_SupplierGenWW</QualifiedName>
+			<Description>General Suppliers</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_TemplateView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_TemplateView</QualifiedName>
+			<Description>Trn_Template View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_TemplateWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_TemplateWW</QualifiedName>
+			<Description>Template</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ThemeView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_ThemeView</QualifiedName>
+			<Description>Trn_Theme View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_ThemeWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_ThemeWW</QualifiedName>
+			<Description>Trn_Theme</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_TileView">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_TileView</QualifiedName>
+			<Description>Trn_Tile View</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="Trn_TileWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_TileWW</QualifiedName>
+			<Description>Tile</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WP_ApplicationDesign">
+			<Type>WebPanel</Type>
+			<QualifiedName>WP_ApplicationDesign</QualifiedName>
+			<Description>WP_Application Design</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WP_CalendarAgenda">
+			<Type>WebPanel</Type>
+			<QualifiedName>WP_CalendarAgenda</QualifiedName>
+			<Description>Agenda</Description>
+			<Main>true</Main>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+			<Selected>true</Selected>
+		</Object>
+		<Object Include="WP_CreateLocationAndReceptionist">
+			<Type>WebPanel</Type>
+			<QualifiedName>WP_CreateLocationAndReceptionist</QualifiedName>
+			<Description>Create Location</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WP_CreateOrganisationAndManager">
+			<Type>WebPanel</Type>
+			<QualifiedName>WP_CreateOrganisationAndManager</QualifiedName>
+			<Description>Create Organisation</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WP_CreateResidentAndNetwork">
+			<Type>WebPanel</Type>
+			<QualifiedName>WP_CreateResidentAndNetwork</QualifiedName>
+			<Description>Create Resident</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WP_LocationReceptionists">
+			<Type>WebPanel</Type>
+			<QualifiedName>WP_LocationReceptionists</QualifiedName>
+			<Description>Location Receptionists</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WP_LocationResidents">
+			<Type>WebPanel</Type>
+			<QualifiedName>WP_LocationResidents</QualifiedName>
+			<Description>Location Residents</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WP_NotAuthorized">
+			<Type>WebPanel</Type>
+			<QualifiedName>WP_NotAuthorized</QualifiedName>
+			<Description>Not Authorized</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WP_ResidentQrCode">
+			<Type>WebPanel</Type>
+			<QualifiedName>WP_ResidentQrCode</QualifiedName>
+			<Description>Resident Qr Code</Description>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WWP_SubscriptionsSettings">
+			<Type>WebPanel</Type>
+			<QualifiedName>WWPBaseObjects.Subscriptions.WWP_SubscriptionsSettings</QualifiedName>
+			<Description>Manage my Subscriptions</Description>
+			<Module>WWPBaseObjects.Subscriptions</Module>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WWP_VisualizeAllNotifications">
+			<Type>WebPanel</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Common.WWP_VisualizeAllNotifications</QualifiedName>
+			<Description>Visualize all notifications</Description>
+			<Module>WWPBaseObjects.Notifications.Common</Module>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+		<Object Include="WWP_VisualizeNotification">
+			<Type>WebPanel</Type>
+			<QualifiedName>WWPBaseObjects.Notifications.Common.WWP_VisualizeNotification</QualifiedName>
+			<Description>Visualize one notification</Description>
+			<Module>WWPBaseObjects.Notifications.Common</Module>
+			<Generate>true</Generate>
+			<WebApplication>idDefault</WebApplication>
+		</Object>
+	</ItemGroup>
+
+	<!-- Selected Objects -->
+	<ItemGroup> 
+		<SelectedObject Include="API_ResidentService">
+			<Type>API</Type>
+			<QualifiedName>API_ResidentService</QualifiedName>
+			<Description>API_Resident Service</Description>
+		</SelectedObject>
+		<SelectedObject Include="Trn_Template_DataProvider">
+			<Type>DataProvider</Type>
+			<QualifiedName>Trn_Template_DataProvider</QualifiedName>
+			<Description>Trn_Template_Data Provider</Description>
+		</SelectedObject>
+		<SelectedObject Include="Trn_Theme_DataProvider">
+			<Type>DataProvider</Type>
+			<QualifiedName>Trn_Theme_DataProvider</QualifiedName>
+			<Description>Trn_Theme_Data Provider</Description>
+		</SelectedObject>
+		<SelectedObject Include="WWP_Parameter_DataProvider">
+			<Type>DataProvider</Type>
+			<QualifiedName>WorkWithPlus.WWP_Parameter_DataProvider</QualifiedName>
+			<Description>WWP_Parameter_Data Provider</Description>
+			<Module>WorkWithPlus</Module>
+		</SelectedObject>
+		<SelectedObject Include="Prc_ApplicationDesign">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_ApplicationDesign</QualifiedName>
+			<Description>Prc_Application Design</Description>
+		</SelectedObject>
+		<SelectedObject Include="Prc_InitializeGamRoles">
+			<Type>Procedure</Type>
+			<QualifiedName>Prc_InitializeGamRoles</QualifiedName>
+			<Description>Prc_Initialize Gam Roles</Description>
+		</SelectedObject>
+		<SelectedObject Include="WWP_ImpactMetadata">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_ImpactMetadata</QualifiedName>
+			<Description>WWP_Impact Metadata</Description>
+			<Module>WWPBaseObjects</Module>
+		</SelectedObject>
+		<SelectedObject Include="WWP_SyncHandler">
+			<Type>Procedure</Type>
+			<QualifiedName>WWPBaseObjects.WWP_SyncHandler</QualifiedName>
+			<Description>WWP_Sync Handler</Description>
+			<Module>WWPBaseObjects</Module>
+		</SelectedObject>
+		<SelectedObject Include="Home">
+			<Type>WebPanel</Type>
+			<QualifiedName>Home</QualifiedName>
+			<Description>WWP_HomeTitle</Description>
+		</SelectedObject>
+		<SelectedObject Include="Trn_PageWW">
+			<Type>WebPanel</Type>
+			<QualifiedName>Trn_PageWW</QualifiedName>
+			<Description>Trn_Page</Description>
+		</SelectedObject>
+		<SelectedObject Include="WP_CalendarAgenda">
+			<Type>WebPanel</Type>
+			<QualifiedName>WP_CalendarAgenda</QualifiedName>
+			<Description>Agenda</Description>
+		</SelectedObject>
+	</ItemGroup>
+
+	<Target Name="ValidateDeployment">
+		<!-- overrideable on custom targets -->
+
+	</Target>
+
+	<Import Project="$(GX_PROGRAM_DIR)\Imports.targets"/>
+	<Import Project="$(AdditionalItems)" Condition="'$(AdditionalItems)'!='' and Exists('$(AdditionalItems)')" />
+
+</Project>
+

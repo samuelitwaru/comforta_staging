@@ -1,0 +1,13 @@
+ALTER TABLE Trn_Resident DROP CONSTRAINT ITRN_RESIDENT1;
+ALTER TABLE Trn_Resident ALTER COLUMN MedicalIndicationId DROP NOT NULL;
+
+ALTER TABLE Trn_ResidentNetworkIndividual ADD CONSTRAINT ITRN_RESIDENTNETWORKINDIVIDUA2 FOREIGN KEY (ResidentId, LocationId, OrganisationId) REFERENCES Trn_Resident (ResidentId, LocationId, OrganisationId);
+ALTER TABLE Trn_ResidentNetworkIndividual ADD CONSTRAINT ITRN_RESIDENTNETWORKINDIVIDUA1 FOREIGN KEY (NetworkIndividualId) REFERENCES Trn_NetworkIndividual (NetworkIndividualId);
+
+ALTER TABLE Trn_ResidentNetworkCompany ADD CONSTRAINT ITRN_RESIDENTNETWORKCOMPANY1 FOREIGN KEY (NetworkCompanyId) REFERENCES Trn_NetworkCompany (NetworkCompanyId);
+ALTER TABLE Trn_ResidentNetworkCompany ADD CONSTRAINT ITRN_RESIDENTNETWORKCOMPANY2 FOREIGN KEY (ResidentId, LocationId, OrganisationId) REFERENCES Trn_Resident (ResidentId, LocationId, OrganisationId);
+
+ALTER TABLE Trn_Resident ADD CONSTRAINT ITRN_RESIDENT3 FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId);
+ALTER TABLE Trn_Resident ADD CONSTRAINT ITRN_RESIDENT2 FOREIGN KEY (ResidentTypeId) REFERENCES Trn_ResidentType (ResidentTypeId);
+ALTER TABLE Trn_Resident ADD CONSTRAINT ITRN_RESIDENT1 FOREIGN KEY (MedicalIndicationId) REFERENCES Trn_MedicalIndication (MedicalIndicationId);
+

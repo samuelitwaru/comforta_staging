@@ -1,0 +1,1 @@
+<%@ServiceHost Service= "GeneXus.Programs.wp_organisationlocalgensupplierswcgetfilterdata,wp_organisationlocalgensupplierswcgetfilterdata" %>
