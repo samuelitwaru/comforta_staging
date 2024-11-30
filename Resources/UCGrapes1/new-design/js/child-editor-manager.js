@@ -117,6 +117,7 @@ class ChildEditorManager{
         });
 
         editor.on("component:selected", (component) => {
+            alert()
             this.toolsSection.resetPropertySection();
             this.selectedTemplateWrapper = component.getEl();
       

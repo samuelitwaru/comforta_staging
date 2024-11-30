@@ -105,40 +105,6 @@ class ToolBoxManager {
     publishButton.onclick = (e) => {
       e.preventDefault();
       this.publishPages();
-      // let editor = this.editorManager.currentEditor
-      // let projectData = editor.getProjectData();
-      // let htmlData = editor.getHtml();
-      // let jsonData;
-
-      // let pageId = this.editorManager.getCurrentPageId();
-      // let pageName = this.editorManager.getCurrentPageName();
-
-      // const pageIsContent = this.dataManager.pages.find(
-      //   (page) => page.PageId === pageId
-      // );
-
-      // if (pageIsContent.PageIsContentPage) {
-      //   jsonData = mapContentToPageData(projectData);
-      //   console.log("ProjectData is: ", jsonData);
-      // } else {
-      //   jsonData = mapTemplateToPageData(projectData);
-      //   console.log("ProjectData is: ", jsonData);
-      // }
-
-      // if (pageId) {
-      //   let data = {
-      //     PageId: pageId,
-      //     PageName: pageName,
-      //     PageJsonContent: JSON.stringify(jsonData),
-      //     PageGJSHtml: htmlData,
-      //     PageGJSJson: JSON.stringify(projectData),
-      //     SDT_Page: jsonData,
-      //     PageIsPublished: true,
-      //   };
-      //   this.dataManager.updatePage(data).then((res) => {
-      //     this.displayAlertMessage("Page Save Successfully", "success");
-      //   });
-      // }
     };
 
     // tile title alignment
