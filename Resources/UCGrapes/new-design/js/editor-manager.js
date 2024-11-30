@@ -97,7 +97,7 @@ class EditorManager {
 
   loadEditor(newEditorInstance, page, parentId) {
     newEditorInstance.on("load", () => {
-      //globalEditor = newEditorInstance;
+      // globalEditor = newEditorInstance;
 
       this.toolBox.resetPropertySection();
       this.toolBox.unDoReDo(newEditorInstance);
