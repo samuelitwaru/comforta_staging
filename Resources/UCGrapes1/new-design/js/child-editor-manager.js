@@ -24,12 +24,28 @@ class ChildEditorManager{
         })
     }
 
+    getCurrentEditor(){
+        return this.currentEditor.editor
+    }
+
     createChildEditor(page) {
         const pageId = page.PageId
         const count = this.container.children.length
         const editorContainer = document.createElement('div')
-        editorContainer.id = `gjs-${count}`
-        console.log(editorContainer.dataset)
+
+        editorContainer.innerHTML = `
+            <div class="header">
+                <span id="current-time"></span>
+                <span class="icons">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery"></i>
+                </span>
+            </div>
+            <div id="gjs-${count}"></div>
+        `
+
+        editorContainer.id = `gjs-${count}-frame`
         editorContainer.dataset.pageid = pageId
         editorContainer.classList.add('mobile-frame')
         this.container.appendChild(editorContainer)
@@ -64,8 +80,10 @@ class ChildEditorManager{
         this.addEditorEventListners(editor)
         editor.DomComponents.addType('tile', tileComponent)
         // editor.addComponents({type: 'tile'})
-
         editor.loadProjectData(JSON.parse(page.PageGJSJson))
+        if (page.PageIsContentPage) {
+            this.loadContentPage(page, editor)
+        }
         const editorData = {
             pageId: pageId,
             editor: editor
@@ -78,13 +96,36 @@ class ChildEditorManager{
         return this.dataManager.pages.find(page=>page.PageId==pageId)
     }
 
+    loadContentPage(page, editor) {
+        this.dataManager.getContentPageData(page.PageId).then((res) => {
+            let img = editor
+              .getWrapper()
+              .find("#product-service-image");
+
+            let p = editor
+              .getWrapper()
+              .find("#product-service-description");
+            if (img.length) {
+              img[0].setAttributes({ src: res.ProductServiceImage });
+            }
+            if (p.length) {
+              p[0].replaceWith(`
+                <p id="product-service-description" class="content-page-block">
+                  ${res.ProductServiceDescription}
+                </p>
+                `);
+            }
+          });
+    }
+
     addEditorEventListners(editor) {
         editor.on('load', (model) => {
             const wrapper = editor.getWrapper();
             wrapper.view.el.addEventListener("click", (e) => {
-                const editorContainerId = editor.getConfig().container
+                const editorId = editor.getConfig().container
+                const editorContainerId = editorId + '-frame'
                 $(editorContainerId).nextAll().remove()
-                this.currentEditor = this.editors[editorContainerId]
+                this.currentEditor = this.editors[editorId]
                 this.currentPageId = $(editorContainerId).data().pageid
                 console.log(this.currentPageId)
                 console.log('Current Editor: ', this.currentEditor)
@@ -117,7 +158,6 @@ class ChildEditorManager{
         });
 
         editor.on("component:selected", (component) => {
-            alert()
             this.toolsSection.resetPropertySection();
             this.selectedTemplateWrapper = component.getEl();
       
@@ -152,7 +192,7 @@ class ChildEditorManager{
             );
             this.hideContextMenu();
       
-            this.toolsSection.unDoReDo(this.editor);
+            this.toolsSection.unDoReDo(this.currentEditor.editor);
         });
     }
 

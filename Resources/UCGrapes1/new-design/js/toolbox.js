@@ -271,6 +271,16 @@ class ToolBoxManager {
     updateButtonVisibility();
   }
 
+  updateTileTitle(inputTitle) {
+    if (this.editorManager.selectedTemplateWrapper) {
+      const titleComponent = this.editorManager.selectedComponent.find(".tile-title")[0];
+      if (titleComponent) {
+        titleComponent.components(inputTitle);
+        this.selectedComponent.addAttributes({ "tile-title": inputTitle });
+      }
+    }
+  }
+
   publishPages() {
     console.log(this.editorManager.editors)
     const editors = Object.values(this.editorManager.editors)
@@ -381,6 +391,7 @@ class ToolBoxManager {
   loadTheme() {
     const savedTheme = localStorage.getItem("selectedTheme");
     if (savedTheme) {
+      alert(savedTheme)
       this.setTheme(savedTheme);
     }
   }
@@ -388,13 +399,14 @@ class ToolBoxManager {
   setTheme(themeName) {
     const theme = this.themes.find((theme) => theme.name === themeName);
     document.getElementById("theme-select").value = themeName;
-    console.log(theme);
     if (!theme) {
       return false;
     }
 
+    alert(themeName)
+
     this.currentTheme = theme;
-    this.applyTheme();
+    //this.applyTheme();
 
     // TODO: Apply theme attribute to json out output (research on editor methods to do this)
     // let wrapper = globalEditor.getWrapper();
@@ -416,7 +428,10 @@ class ToolBoxManager {
 
   applyTheme() {
     const root = document.documentElement;
-    const iframe = document.querySelector("#gjs iframe");
+    // const iframe = document.querySelector("#gjs iframe");
+    const iframe = document.querySelector("#gjs-0");
+
+    alert(iframe)
 
     // Set CSS variables from the selected theme
     root.style.setProperty(

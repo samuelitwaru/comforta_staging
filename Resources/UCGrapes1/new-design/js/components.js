@@ -163,9 +163,10 @@ class ActionListComponent {
           this.closest(".category").dataset.category
         }, ${this.textContent}`;
 
-        // add value to the tile
-        if (globalEditor.getSelected()) {
-          const titleComponent = globalEditor
+        console.log(self.editorManager.getCurrentEditor())
+        const editor = self.editorManager.getCurrentEditor()
+        if (editor.getSelected()) {
+          const titleComponent = editor
             .getSelected()
             .find(".tile-title")[0];
 
