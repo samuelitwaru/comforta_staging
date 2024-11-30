@@ -152,17 +152,10 @@ namespace GeneXus.Programs {
             if (true) break;
          }
          pr_default.close(1);
-         new prc_logtofile(context ).execute(  context.GetMessage( "CCP>>>> pag ", "")+AV12PageId.ToString()) ;
-         new prc_logtofile(context ).execute(  context.GetMessage( "CCP>>>> pagname ", "")+AV16PageName) ;
-         new prc_logtofile(context ).execute(  context.GetMessage( "CCP>>>> loc ", "")+AV19LocationId.ToString()) ;
-         new prc_logtofile(context ).execute(  context.GetMessage( "CCP>>>> org ", "")+AV20OrganisationId.ToString()) ;
-         new prc_logtofile(context ).execute(  context.GetMessage( "CCP>>>> usr ", "")+AV21UserName) ;
          if ( ! (Guid.Empty==AV18BC_Trn_ProductService.gxTpr_Productserviceid) )
          {
             AV8BC_Trn_Page = new SdtTrn_Page(context);
-            new prc_logtofile(context ).execute(  context.GetMessage( "CCP>>>> bc_page ", "")+AV8BC_Trn_Page.ToJSonString(true, true)) ;
             AV8BC_Trn_Page.Load(AV12PageId, AV16PageName, AV19LocationId);
-            new prc_logtofile(context ).execute(  context.GetMessage( "CCP>>>> bc_page ", "")+AV8BC_Trn_Page.ToJSonString(true, true)) ;
             AV8BC_Trn_Page.gxTpr_Trn_pageid = AV18BC_Trn_ProductService.gxTpr_Productserviceid;
             AV8BC_Trn_Page.gxTpr_Trn_pagename = AV18BC_Trn_ProductService.gxTpr_Productservicename;
             AV8BC_Trn_Page.gxTpr_Productserviceid = AV18BC_Trn_ProductService.gxTpr_Productserviceid;

@@ -16,7 +16,7 @@
             </button>
          </div>
          <div class="custom-selection">
-            <select class="form-control" name="theme" id="theme-select"></select>
+            <select class="toolbox-form-control" name="theme" id="theme-select"></select>
          </div>
          <button id="open-mapping" class="toolbox-btn toolbox-btn-outline">
             <svg xmlns="http://www.w3.org/2000/svg" width="18.818" height="16" viewBox="0 0 18.818 18">
@@ -45,21 +45,8 @@
                </g>
             </svg>
          </div>
-         <div class="frame-list" id="editors-container">
-            <div class="mobile-frame active-editor" id="default-container">
-               <div class="header">
-                  <span id="current-time"></span>
-                  <span class="icons">
-                  <i class="fas fa-signal"></i>
-                  <i class="fas fa-wifi"></i>
-                  <i class="fas fa-battery"></i>
-                  </span>
-               </div>
-               <div id="gjs"></div>
-            </div>
+         <div class="frame-list" id="child-container">
          </div>
-		 
-		 <div id="child-container"></div>
 		 
          <div class="navigator page-navigator-right" style="display:none">
             <svg id="scroll-right" xmlns="http://www.w3.org/2000/svg" id="Component_42_4" data-name="Component 42 – 4" width="46" height="46" viewBox="0 0 46 46">
@@ -99,7 +86,7 @@
                <div class="sidebar-section title-section">
                   <input
                      type="text"
-                     class="form-control"
+                     class="toolbox-form-control"
                      id="tile-title"
                      placeholder="Enter title"
                      />
@@ -153,7 +140,7 @@
                   </div>
                </div>
                <div class="sidebar-section services-section">
-                  <select class="form-control" name="theme" id="theme_icon_category">
+                  <select class="toolbox-form-control" name="theme" id="theme_icon_category">
                      <option value="Services">Services</option>
                      <option value="General" selected>General</option>
                      <option value="Health">Health</option>
