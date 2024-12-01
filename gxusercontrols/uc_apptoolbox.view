@@ -194,8 +194,9 @@
                <div
                   class="sidebar-section content-page-section"
                   id="content-page-section"
+				  style="display:none;"
                   >
-                  <div class="cta-button-layout-container">
+                  <div class="cta-button-layout-container" >
                      <button class="toolbox-btn cta-button-layout" id="plain-button-layout">Button</button>
                      <button class="toolbox-btn cta-button-layout" id="img-button-layout">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40.999 28.865">
