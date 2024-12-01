@@ -4,7 +4,7 @@ info:
   description: "API Services"
   version: "20241201074311"
 servers:
-  - url: https://staging.comforta.yukon.software/api
+  - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/api
 paths:
   /auth/resident-login:
     post:

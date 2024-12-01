@@ -134,7 +134,10 @@ namespace GeneXus.Programs {
                AV8SDT_Page.gxTpr_Pageiscontentpage = A439PageIsContentPage;
                AV8SDT_Page.gxTpr_Locationid = A29LocationId;
             }
-            AV9SDT_PageCollection.Add(AV8SDT_Page, 0);
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV8SDT_Page.gxTpr_Pagename))) )
+            {
+               AV9SDT_PageCollection.Add(AV8SDT_Page, 0);
+            }
             pr_default.readNext(0);
          }
          pr_default.close(0);

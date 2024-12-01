@@ -135,6 +135,8 @@ function mapContentToPageData(templateData, page) {
     Cta: [],
   };
 
+  console.log(output)
+
   // Find image and text content
   components.forEach((component) => {
     // Image content
