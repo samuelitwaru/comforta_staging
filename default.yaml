@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241201062229"
+  version: "20241201074311"
 servers:
   - url: https://staging.comforta.yukon.software//rest
 paths:
@@ -1728,6 +1728,22 @@ components:
       properties:
         SearchTxt:
           type: "string"
+    GeneXusReporting.SDT_LocationTheme:
+      properties:
+        ThemeId:
+          description: "Theme Id"
+          type: "string"
+          format: "uuid"
+        ThemeName:
+          description: "Trn_Theme Name"
+          type: "string"
+        ThemeFontFamily:
+          description: "Trn_Theme Font Family"
+          type: "string"
+        ThemeFontSize:
+          description: "Trn_Theme Font Size"
+          type: "integer"
+          format: "int32"
     SDT_AgendaLocation:
       properties:
         AgendaCalendarId:
@@ -1950,6 +1966,22 @@ components:
         LocationDescription:
           description: "Location Description"
           type: "string"
+    SDT_LocationTheme:
+      properties:
+        ThemeId:
+          description: "Theme Id"
+          type: "string"
+          format: "uuid"
+        ThemeName:
+          description: "Trn_Theme Name"
+          type: "string"
+        ThemeFontFamily:
+          description: "Trn_Theme Font Family"
+          type: "string"
+        ThemeFontSize:
+          description: "Trn_Theme Font Size"
+          type: "integer"
+          format: "int32"
     SDT_LoginResidentResponse:
       properties:
         access_token:

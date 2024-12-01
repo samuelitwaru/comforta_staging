@@ -24,6 +24,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ErrorResponse.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Location.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_LocationDynamicForm_SDT_LocationDynamicFormItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_LocationTheme.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_LoginResidentResponse.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Managers_SDT_ManagersItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_MobilePage.cs" />

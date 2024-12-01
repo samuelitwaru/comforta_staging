@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241201062229"
+  version: "20241201074311"
 servers:
-  - url: https://staging.comforta.yukon.software/api
+  - url: https://staging/comforta.yukon.software/api
 paths:
   /auth/resident-login:
     post:
@@ -695,7 +695,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Trn_Theme"  
+                $ref: "#/components/schemas/SDT_LocationTheme"  
 
         404:
           description: "Not found"
@@ -1365,65 +1365,24 @@ components:
 
 
 
-    Trn_Theme:
+    SDT_LocationTheme:
       properties:
-        Trn_ThemeId:
-          description: "Trn_Theme Id"
+        ThemeId:
+          description: "Theme Id"
           type: "string"
           format: "uuid"
-        Trn_ThemeName:
+        ThemeName:
           description: "Trn_Theme Name"
           type: "string"
-        Trn_ThemeFontFamily:
+        ThemeFontFamily:
           description: "Trn_Theme Font Family"
           type: "string"
-        Trn_ThemeFontSize:
+        ThemeFontSize:
           description: "Trn_Theme Font Size"
           type: "integer"
           format: "int32"
 
-        Icon:
-          $ref: "#/components/schemas/Trn_Theme.Icon"
 
-        Color:
-          $ref: "#/components/schemas/Trn_Theme.Color"
-
-
-    Trn_Theme.Icon:
-      properties:
-        IconId:
-          description: "Icon Id"
-          type: "string"
-          format: "uuid"
-        IconCategory:
-          description: "Icon Category"
-          type: "string"
-        IconName:
-          description: "Icon Name"
-          type: "string"
-        IconSVG:
-          description: "Icon SVG"
-          type: "string"
-
-
-      x-gx-level: "Trn_Theme"
-
-
-    Trn_Theme.Color:
-      properties:
-        ColorId:
-          description: "Color Id"
-          type: "string"
-          format: "uuid"
-        ColorName:
-          description: "Color Name"
-          type: "string"
-        ColorCode:
-          description: "Color Code"
-          type: "string"
-
-
-      x-gx-level: "Trn_Theme"
 
     SDT_CallToAction_SDT_CallToActionItem:
       properties:

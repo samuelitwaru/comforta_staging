@@ -38,7 +38,7 @@ class ToolBoxManager {
     });
 
     this.dataManager.getLocationTheme().then((theme) => {
-      this.setTheme(theme.Trn_ThemeName);
+      this.setTheme(theme.ThemeName);
     });
 
     this.loadTheme();
@@ -402,6 +402,8 @@ class ToolBoxManager {
     }
 
     this.currentTheme = theme;
+
+    console.log(this.currentTheme)
     //this.applyTheme();
 
     // TODO: Apply theme attribute to json out output (research on editor methods to do this)

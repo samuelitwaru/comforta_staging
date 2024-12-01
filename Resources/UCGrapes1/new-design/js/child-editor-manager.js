@@ -52,7 +52,13 @@ class ChildEditorManager{
         editorContainer.id = `${editorId}-frame`
         editorContainer.dataset.pageid = pageId
         editorContainer.classList.add('mobile-frame')
+        editorContainer.classList.add('adding')
         this.container.appendChild(editorContainer)
+
+        requestAnimationFrame(() => {
+            editorContainer.classList.remove('adding');
+        });
+
         const editor = grapesjs.init({
             container: `#${editorId}`,
             fromElement: true,
@@ -151,18 +157,26 @@ class ChildEditorManager{
                         }
                     }
                 }
+                
+                if (e.target.classList.contains("fa-minus")) {
+                    // remove call to action
+                }
+
+
                 const button = e.target.closest(".action-button");
                 if (!button) return;
                 const templateWrapper = button.closest(".template-wrapper");
                 if (!templateWrapper) return;
                 
+                console.log(templateWrapper)
+
                 this.templateComponent = editor.Components.getById(
                     templateWrapper.id
                 );
                 if (!this.templateComponent) return;
     
                 if (button.classList.contains("delete-button")) {
-                this.deleteTemplate(this.templateComponent);
+                    this.deleteTemplate(this.templateComponent);
                 } else if (button.classList.contains("add-button-bottom")) {
                 this.addTemplateBottom(this.templateComponent, editor);
                 } else if (button.classList.contains("add-button-right")) {

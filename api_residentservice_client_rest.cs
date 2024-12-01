@@ -798,7 +798,7 @@ namespace GeneXus.Programs {
 
       public void gxep_getlocationtheme( Guid aP0_locationId ,
                                          Guid aP1_organisationId ,
-                                         out SdtTrn_Theme aP2_Location_BC_Trn_Theme )
+                                         out SdtSDT_LocationTheme aP2_SDT_LocationTheme )
       {
          restCliGetLocationTheme = new GXRestAPIClient();
          if ( restLocation == null )
@@ -816,11 +816,11 @@ namespace GeneXus.Programs {
             gxProperties.ErrorCode = restCliGetLocationTheme.ErrorCode;
             gxProperties.ErrorMessage = restCliGetLocationTheme.ErrorMessage;
             gxProperties.StatusCode = restCliGetLocationTheme.StatusCode;
-            aP2_Location_BC_Trn_Theme = new SdtTrn_Theme();
+            aP2_SDT_LocationTheme = new SdtSDT_LocationTheme();
          }
          else
          {
-            aP2_Location_BC_Trn_Theme = restCliGetLocationTheme.GetBodySdt<SdtTrn_Theme>("Location_BC_Trn_Theme");
+            aP2_SDT_LocationTheme = restCliGetLocationTheme.GetBodySdt<SdtSDT_LocationTheme>("SDT_LocationTheme");
          }
          /* GetLocationTheme Constructor */
       }
@@ -879,7 +879,7 @@ namespace GeneXus.Programs {
          restCliProductSericeAPI = new GXRestAPIClient();
          aP1_SDT_ProductService = new SdtSDT_ProductService();
          restCliGetLocationTheme = new GXRestAPIClient();
-         aP2_Location_BC_Trn_Theme = new SdtTrn_Theme();
+         aP2_SDT_LocationTheme = new SdtSDT_LocationTheme();
          /* GeneXus formulas. */
       }
 
@@ -935,7 +935,7 @@ namespace GeneXus.Programs {
       protected string aP5_result ;
       protected SdtSDT_Theme aP3_SDT_Theme ;
       protected SdtSDT_ProductService aP1_SDT_ProductService ;
-      protected SdtTrn_Theme aP2_Location_BC_Trn_Theme ;
+      protected SdtSDT_LocationTheme aP2_SDT_LocationTheme ;
    }
 
 }

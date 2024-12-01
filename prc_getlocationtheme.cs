@@ -46,36 +46,36 @@ namespace GeneXus.Programs {
 
       public void execute( ref Guid aP0_LocationId ,
                            ref Guid aP1_OrganisationId ,
-                           out SdtTrn_Theme aP2_Location_BC_Trn_Theme )
+                           out SdtSDT_LocationTheme aP2_SDT_LocationTheme )
       {
          this.AV8LocationId = aP0_LocationId;
          this.AV9OrganisationId = aP1_OrganisationId;
-         this.AV10Location_BC_Trn_Theme = new SdtTrn_Theme(context) ;
+         this.AV11SDT_LocationTheme = new SdtSDT_LocationTheme(context) ;
          initialize();
          ExecuteImpl();
          aP0_LocationId=this.AV8LocationId;
          aP1_OrganisationId=this.AV9OrganisationId;
-         aP2_Location_BC_Trn_Theme=this.AV10Location_BC_Trn_Theme;
+         aP2_SDT_LocationTheme=this.AV11SDT_LocationTheme;
       }
 
-      public SdtTrn_Theme executeUdp( ref Guid aP0_LocationId ,
-                                      ref Guid aP1_OrganisationId )
+      public SdtSDT_LocationTheme executeUdp( ref Guid aP0_LocationId ,
+                                              ref Guid aP1_OrganisationId )
       {
-         execute(ref aP0_LocationId, ref aP1_OrganisationId, out aP2_Location_BC_Trn_Theme);
-         return AV10Location_BC_Trn_Theme ;
+         execute(ref aP0_LocationId, ref aP1_OrganisationId, out aP2_SDT_LocationTheme);
+         return AV11SDT_LocationTheme ;
       }
 
       public void executeSubmit( ref Guid aP0_LocationId ,
                                  ref Guid aP1_OrganisationId ,
-                                 out SdtTrn_Theme aP2_Location_BC_Trn_Theme )
+                                 out SdtSDT_LocationTheme aP2_SDT_LocationTheme )
       {
          this.AV8LocationId = aP0_LocationId;
          this.AV9OrganisationId = aP1_OrganisationId;
-         this.AV10Location_BC_Trn_Theme = new SdtTrn_Theme(context) ;
+         this.AV11SDT_LocationTheme = new SdtSDT_LocationTheme(context) ;
          SubmitImpl();
          aP0_LocationId=this.AV8LocationId;
          aP1_OrganisationId=this.AV9OrganisationId;
-         aP2_Location_BC_Trn_Theme=this.AV10Location_BC_Trn_Theme;
+         aP2_SDT_LocationTheme=this.AV11SDT_LocationTheme;
       }
 
       protected override void ExecutePrivate( )
@@ -90,7 +90,17 @@ namespace GeneXus.Programs {
             A29LocationId = P009G2_A29LocationId[0];
             A247Trn_ThemeId = P009G2_A247Trn_ThemeId[0];
             n247Trn_ThemeId = P009G2_n247Trn_ThemeId[0];
-            AV10Location_BC_Trn_Theme.Load(A247Trn_ThemeId);
+            A248Trn_ThemeName = P009G2_A248Trn_ThemeName[0];
+            A260Trn_ThemeFontFamily = P009G2_A260Trn_ThemeFontFamily[0];
+            A399Trn_ThemeFontSize = P009G2_A399Trn_ThemeFontSize[0];
+            A248Trn_ThemeName = P009G2_A248Trn_ThemeName[0];
+            A260Trn_ThemeFontFamily = P009G2_A260Trn_ThemeFontFamily[0];
+            A399Trn_ThemeFontSize = P009G2_A399Trn_ThemeFontSize[0];
+            AV11SDT_LocationTheme = new SdtSDT_LocationTheme(context);
+            AV11SDT_LocationTheme.gxTpr_Themeid = A247Trn_ThemeId;
+            AV11SDT_LocationTheme.gxTpr_Themename = A248Trn_ThemeName;
+            AV11SDT_LocationTheme.gxTpr_Themefontfamily = A260Trn_ThemeFontFamily;
+            AV11SDT_LocationTheme.gxTpr_Themefontsize = A399Trn_ThemeFontSize;
             /* Exiting from a For First loop. */
             if (true) break;
          }
@@ -110,25 +120,33 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV10Location_BC_Trn_Theme = new SdtTrn_Theme(context);
+         AV11SDT_LocationTheme = new SdtSDT_LocationTheme(context);
          P009G2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P009G2_A29LocationId = new Guid[] {Guid.Empty} ;
          P009G2_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          P009G2_n247Trn_ThemeId = new bool[] {false} ;
+         P009G2_A248Trn_ThemeName = new string[] {""} ;
+         P009G2_A260Trn_ThemeFontFamily = new string[] {""} ;
+         P009G2_A399Trn_ThemeFontSize = new short[1] ;
          A11OrganisationId = Guid.Empty;
          A29LocationId = Guid.Empty;
          A247Trn_ThemeId = Guid.Empty;
+         A248Trn_ThemeName = "";
+         A260Trn_ThemeFontFamily = "";
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_getlocationtheme__default(),
             new Object[][] {
                 new Object[] {
-               P009G2_A11OrganisationId, P009G2_A29LocationId, P009G2_A247Trn_ThemeId, P009G2_n247Trn_ThemeId
+               P009G2_A11OrganisationId, P009G2_A29LocationId, P009G2_A247Trn_ThemeId, P009G2_n247Trn_ThemeId, P009G2_A248Trn_ThemeName, P009G2_A260Trn_ThemeFontFamily, P009G2_A399Trn_ThemeFontSize
                }
             }
          );
          /* GeneXus formulas. */
       }
 
+      private short A399Trn_ThemeFontSize ;
       private bool n247Trn_ThemeId ;
+      private string A248Trn_ThemeName ;
+      private string A260Trn_ThemeFontFamily ;
       private Guid AV8LocationId ;
       private Guid AV9OrganisationId ;
       private Guid A11OrganisationId ;
@@ -139,13 +157,16 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDefault ;
       private Guid aP0_LocationId ;
       private Guid aP1_OrganisationId ;
-      private SdtTrn_Theme AV10Location_BC_Trn_Theme ;
+      private SdtSDT_LocationTheme AV11SDT_LocationTheme ;
       private IDataStoreProvider pr_default ;
       private Guid[] P009G2_A11OrganisationId ;
       private Guid[] P009G2_A29LocationId ;
       private Guid[] P009G2_A247Trn_ThemeId ;
       private bool[] P009G2_n247Trn_ThemeId ;
-      private SdtTrn_Theme aP2_Location_BC_Trn_Theme ;
+      private string[] P009G2_A248Trn_ThemeName ;
+      private string[] P009G2_A260Trn_ThemeFontFamily ;
+      private short[] P009G2_A399Trn_ThemeFontSize ;
+      private SdtSDT_LocationTheme aP2_SDT_LocationTheme ;
    }
 
    public class prc_getlocationtheme__default : DataStoreHelperBase, IDataStoreHelper
@@ -169,7 +190,7 @@ namespace GeneXus.Programs {
           new ParDef("AV9OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P009G2", "SELECT OrganisationId, LocationId, Trn_ThemeId FROM Trn_Location WHERE LocationId = :AV8LocationId and OrganisationId = :AV9OrganisationId ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009G2,1, GxCacheFrequency.OFF ,true,true )
+              new CursorDef("P009G2", "SELECT T1.OrganisationId, T1.LocationId, T1.Trn_ThemeId, T2.Trn_ThemeName, T2.Trn_ThemeFontFamily, T2.Trn_ThemeFontSize FROM (Trn_Location T1 LEFT JOIN Trn_Theme T2 ON T2.Trn_ThemeId = T1.Trn_ThemeId) WHERE T1.LocationId = :AV8LocationId and T1.OrganisationId = :AV9OrganisationId ORDER BY T1.LocationId, T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009G2,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }
@@ -185,6 +206,9 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((Guid[]) buf[2])[0] = rslt.getGuid(3);
                 ((bool[]) buf[3])[0] = rslt.wasNull(3);
+                ((string[]) buf[4])[0] = rslt.getVarchar(4);
+                ((string[]) buf[5])[0] = rslt.getVarchar(5);
+                ((short[]) buf[6])[0] = rslt.getShort(6);
                 return;
        }
     }

@@ -16,7 +16,7 @@ const tileComponent = {
           'tile-text': 'Tile',
           'tile-text-color': '#000000',
           'tile-text-align': 'left',
-          'tile-icon': 'icon-name',
+          'tile-icon': '',
           'tile-icon-color': '#000000',
           'tile-icon-align': 'left',
           'tile-bg-color': '#ffffff',
