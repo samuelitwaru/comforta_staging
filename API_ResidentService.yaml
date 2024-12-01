@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241129113337"
+  version: "20241201062229"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -1220,6 +1220,9 @@ components:
           type: "string"
         IsFullWidth:
           description: "Is Full Width"
+          type: "boolean"
+        IsImageButton:
+          description: "Is Image Button"
           type: "boolean"
 
 

@@ -1,4 +1,4 @@
-function mapTemplateToPageData(templateData) {
+function mapTemplateToPageData(templateData, page) {
   // Helper function to generate UUID
   function generateUUID() {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
@@ -13,8 +13,8 @@ function mapTemplateToPageData(templateData) {
 
   // Create the base page structure
   const pageData = {
-    PageId: localStorage.getItem("pageId"),
-    PageName: localStorage.getItem("pageName"),
+    PageId: page.PageId,
+    PageName: page.PageName,
     Row: [],
   };
 
@@ -123,14 +123,14 @@ function mapTemplateToPageData(templateData) {
   return pageData;
 }
 
-function mapContentToPageData(templateData) {
-  const page = templateData.pages[0];
+function mapContentToPageData(templateData, page) {
+  const pages = templateData.pages;
   const components =
-    page.frames[0].component.components[0].components[0].components;
+    pages[0].frames[0].component.components[0].components[0].components;
 
   const output = {
-    PageId: localStorage.getItem("pageId"),
-    PageName: localStorage.getItem("pageName"),
+    PageId: page.PageId,
+    PageName: page.PageName,
     Content: [],
     Cta: [],
   };
@@ -141,10 +141,12 @@ function mapContentToPageData(templateData) {
     const imageComponent =
       component.components?.[0]?.components?.[0]?.components?.[0];
     if (imageComponent?.type === "image") {
-      console.log('imageComponent?.attributes.src', imageComponent?.attributes.src)
+
+      const imageUrl = imageComponent?.attributes.src.startsWith('http') ? imageComponent?.attributes.src : baseURL + '/' + imageComponent?.attributes.src 
+
       output.Content.push({
         ContentType: "Image",
-        ContentValue: baseURL + '/' + imageComponent?.attributes.src,
+        ContentValue: imageUrl,
       });
     }
 
@@ -166,44 +168,56 @@ function mapContentToPageData(templateData) {
       const ctaChildren = component.components;
       
       ctaChildren.forEach((ctaChild) => {
+        console.log(ctaChild)
       const attributes = ctaChild.attributes || {};
-        if (ctaChild.classes?.includes("cta-container-child")) {
+        if (ctaChild.classes?.includes("cta-container-child") || ctaChild.classes?.includes("img-button-container") || ctaChild.classes?.includes("plain-button-container")) {
+          if (ctaChild.classes?.includes("plain-button-container")) {
+            attributes["is-full-width"] = true
+          }
+          if (ctaChild.classes?.includes("img-button-container")) {
+            attributes["is-full-width"] = true
+            attributes["is-image-button"] = true
+          }
+
+
           output.Cta.push({
               CtaId: attributes["cta-button-id"],
               CtaType: attributes["cta-button-type"],
               CtaLabel: attributes["cta-button-label"] || "Email Us",
               CtaAction: attributes["cta-button-action"],
               CtaBGColor: attributes["cta-background-color"] || "#EEA622",
+              IsFullWidth: attributes["is-full-width"] || false,
+              IsImageButton: attributes["is-image-button"] || false,
           });
         }
       });
     }
 
-    // Website CTA
-    const websiteButton =
-      component.components?.[0]?.components?.[0]?.components?.[0];
-      const websiteAttributes = websiteButton.attributes || {};
-    if (websiteButton?.classes?.includes("cta-url-button")) {
-      output.Cta.push({
-          CtaType: websiteAttributes["cta-button-type"],
-          CtaLabel: websiteAttributes["cta-button-label"] || "Email Us",
-          CtaAction: websiteAttributes["cta-button-action"],
-          CtaBGColor: websiteAttributes["cta-background-color"] || "#EEA622",
-      });
-    }
+    // // Website CTA
+    // const websiteButton =
+    //   component.components?.[0]?.components?.[0]?.components?.[0];
+    //   const websiteAttributes = websiteButton.attributes || {};
+    // if (websiteButton?.classes?.includes("cta-url-button")) {
+    //   output.Cta.push({
+    //       CtaType: websiteAttributes["cta-button-type"],
+    //       CtaLabel: websiteAttributes["cta-button-label"] || "Email Us",
+    //       CtaAction: websiteAttributes["cta-button-action"],
+    //       CtaBGColor: websiteAttributes["cta-background-color"] || "#EEA622",
+    //   });
+    // }
 
-    // Form CTA
-    const formButton =
-      component.components?.[0]?.components?.[0]?.components?.[0];
-      const formAttributes = websiteButton.attributes || {};
-    if (websiteButton?.classes?.includes("cta-form-button")) {
-      output.Cta.push({
-          CtaType: formAttributes["cta-button-type"],
-          CtaLabel: formAttributes["cta-button-label"] || "Fill Form",
-          CtaAction: formAttributes["cta-button-action"],
-          CtaBGColor: formAttributes["cta-background-color"] || "#EEA622",
-      });
-    }
+    // // Form CTA
+    // const formButton =
+    //   component.components?.[0]?.components?.[0]?.components?.[0];
+    //   const formAttributes = websiteButton.attributes || {};
+    // if (websiteButton?.classes?.includes("cta-form-button")) {
+    //   output.Cta.push({
+    //       CtaType: formAttributes["cta-button-type"],
+    //       CtaLabel: formAttributes["cta-button-label"] || "Fill Form",
+    //       CtaAction: formAttributes["cta-button-action"],
+    //       CtaBGColor: formAttributes["cta-background-color"] || "#EEA622",
+    //   });
+    // }
   });
 
   return output;

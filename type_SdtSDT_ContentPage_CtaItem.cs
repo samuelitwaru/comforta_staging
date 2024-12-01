@@ -79,6 +79,9 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("IsFullWidth", gxTpr_Isfullwidth, false);
 
+
+			AddObjectProperty("IsImageButton", gxTpr_Isimagebutton, false);
+
 			return;
 		}
 		#endregion
@@ -164,6 +167,22 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="IsImageButton")]
+		[XmlElement(ElementName="IsImageButton")]
+		public bool gxTpr_Isimagebutton
+		{
+			get {
+				return gxTv_SdtSDT_ContentPage_CtaItem_Isimagebutton; 
+			}
+			set {
+				gxTv_SdtSDT_ContentPage_CtaItem_Isimagebutton = value;
+				SetDirty("Isimagebutton");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -190,6 +209,7 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_ContentPage_CtaItem_Ctaaction = "";
 			gxTv_SdtSDT_ContentPage_CtaItem_Ctabgcolor = "";
 
+
 			return  ;
 		}
 
@@ -212,6 +232,9 @@ namespace GeneXus.Programs
 		 
 
 		protected bool gxTv_SdtSDT_ContentPage_CtaItem_Isfullwidth;
+		 
+
+		protected bool gxTv_SdtSDT_ContentPage_CtaItem_Isimagebutton;
 		 
 
 
@@ -288,6 +311,18 @@ namespace GeneXus.Programs
 			}
 			set { 
 				sdt.gxTpr_Isfullwidth = value;
+			}
+		}
+
+		[DataMember(Name="IsImageButton", Order=5)]
+		public bool gxTpr_Isimagebutton
+		{
+			get { 
+				return sdt.gxTpr_Isimagebutton;
+
+			}
+			set { 
+				sdt.gxTpr_Isimagebutton = value;
 			}
 		}
 

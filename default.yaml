@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241129113336"
+  version: "20241201062229"
 servers:
-  - url: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/rest
+  - url: https://staging.comforta.yukon.software//rest
 paths:
   /Trn_AuditLoadDVCombo:
     post:
@@ -1048,7 +1048,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/oauth/gam/v2.0/access_token
+          tokenUrl: https://staging.comforta.yukon.software//oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
   schemas:
@@ -1908,6 +1908,9 @@ components:
           type: "string"
         IsFullWidth:
           description: "Is Full Width"
+          type: "boolean"
+        IsImageButton:
+          description: "Is Image Button"
           type: "boolean"
       x-gx-level: "SDT_ContentPage"
     SDT_Location:

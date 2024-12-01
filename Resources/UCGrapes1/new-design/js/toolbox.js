@@ -282,7 +282,6 @@ class ToolBoxManager {
   }
 
   publishPages() {
-    console.log(this.editorManager.editors)
     const editors = Object.values(this.editorManager.editors)
 
     console.log(editors)
@@ -300,10 +299,10 @@ class ToolBoxManager {
         let pageName = page.PageName;
 
         if (page.PageIsContentPage) {
-          jsonData = mapContentToPageData(projectData);
+          jsonData = mapContentToPageData(projectData, page);
           console.log("ProjectData is: ", jsonData);
         } else {
-          jsonData = mapTemplateToPageData(projectData);
+          jsonData = mapTemplateToPageData(projectData, page);
           console.log("ProjectData is: ", jsonData);
         }
 
@@ -844,6 +843,7 @@ class ToolBoxManager {
                       cta-button-type="${ctaType}"
                       cta-button-action="${ctaAction}"
                       cta-background-color="${ctaButtonBgColor}"
+                      cta-full-width="true"
                     >
                       <button style="background-color: ${ctaButtonBgColor}; border-color: ${ctaButtonBgColor};" class="plain-button" ${defaultConstraints}>
                         <div class="cta-badge" ${defaultConstraints}><i class="fa fa-minus" ${defaultConstraints}></i></div>
@@ -926,6 +926,7 @@ class ToolBoxManager {
                       cta-button-type="${ctaType}"
                       cta-button-action="${ctaAction}"
                       cta-background-color="${ctaButtonBgColor}"
+                      cta-full-width="true"
                     >
                       <div style="background-color: ${ctaButtonBgColor}; border-color: ${ctaButtonBgColor};" class="img-button" ${defaultConstraints}>
                         <i class="${icon} img-button-icon" ${defaultConstraints}></i>
