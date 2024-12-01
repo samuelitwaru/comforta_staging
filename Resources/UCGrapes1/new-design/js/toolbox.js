@@ -233,7 +233,7 @@ class ToolBoxManager {
     });
 
     // Navigators
-    const editorsContainer = document.getElementById("editors-container");
+    const editorsContainer = document.getElementById("child-container");
     const leftButton = document.getElementById("scroll-left");
     const rightButton = document.getElementById("scroll-right");
 
@@ -694,6 +694,13 @@ class ToolBoxManager {
 
     const renderCtas = () => {
       contentPageCtas.innerHTML = "";
+
+      if (!callToActions) {
+        $("#content-page-section").show()
+        return
+      }
+
+      $("#content-page-section").show()
 
       callToActions.forEach((cta) => {
         const ctaItem = document.createElement("div");

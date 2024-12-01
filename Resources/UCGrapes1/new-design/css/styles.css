@@ -146,13 +146,13 @@ button#open-mapping {
   align-items: center;
   padding: 10px;
   flex-direction: row;
-  padding: 60px;
+  /* padding: 60px; */
   justify-content: center;
 }
 
 .sidebar,
 .main-content {
-  height: 100vh;
+  height: 78vh;
   overflow: auto;
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
@@ -203,17 +203,17 @@ button#open-mapping {
 /* Mobile frame */
 .mobile-frame {
   flex-shrink: 0;
-  width: 90vw;
+  width: 50vw;
   height: 90vh;
-  max-width: 320px;
-  max-height: 650px;
+  max-width: 280px;
+  max-height: 560px;
   background-color: #fdfdfd;
   border-radius: 25px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   position: relative;
   border: #373737 solid 5px;
-  margin-top: 20px;
-  min-height: 650px;
+  /* margin-top: 20px; */
+  min-height: 400px;
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
 }
@@ -1217,8 +1217,8 @@ i.fa {
       height: 85vh; */
     max-width: 280px;
     max-height: 560px;
-    margin-top: 15px;
-    min-height: 560px;
+    
+    /* min-height: 560px; */
   }
 
   .sidebar {

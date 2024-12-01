@@ -51,10 +51,6 @@ button {
   overflow: hidden;
 }
 
-.frame-container {
-  margin-top: 95px;
-}
-
 .content-frame-container {
   margin-top: 5px !important;
 }
@@ -113,7 +109,7 @@ button {
 
 .content-page-block {
   border-radius: 13px;
-  /* height: 7rem; */
+  width: 100% !important; 
   background-color: transparent;
   display: flex;
   flex-direction: column;
