@@ -403,12 +403,8 @@ class ToolBoxManager {
 
     this.currentTheme = theme;
 
-    console.log(this.currentTheme)
-    //this.applyTheme();
+    this.applyTheme();
 
-    // TODO: Apply theme attribute to json out output (research on editor methods to do this)
-    // let wrapper = globalEditor.getWrapper();
-    // wrapper.addAttributes({ theme: theme.name });
     this.icons = theme.icons.map((icon) => {
       return {
         name: icon.IconName,
@@ -426,8 +422,10 @@ class ToolBoxManager {
 
   applyTheme() {
     const root = document.documentElement;
-    // const iframe = document.querySelector("#gjs iframe");
-    const iframe = document.querySelector("#gjs-0");
+    const iframe = document.querySelector(".mobile-frame iframe");
+
+    if (!iframe) return
+
 
     // Set CSS variables from the selected theme
     root.style.setProperty(
@@ -463,6 +461,9 @@ class ToolBoxManager {
       "--accent-color",
       this.currentTheme.colors.accentColor
     );
+
+    console.log(this.currentTheme)
+
     root.style.setProperty("--font-family", this.currentTheme.fontFamily);
 
     // Apply this.currentTheme to iframe (canvas editor)

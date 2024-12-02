@@ -182,7 +182,6 @@ function mapContentToPageData(templateData, page) {
             attributes["is-image-button"] = true
           }
 
-
           output.Cta.push({
               CtaId: attributes["cta-button-id"],
               CtaType: attributes["cta-button-type"],

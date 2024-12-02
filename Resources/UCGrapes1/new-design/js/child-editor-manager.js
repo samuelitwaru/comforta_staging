@@ -2,6 +2,7 @@ class ChildEditorManager{
     // child editor manager
     editors = {}
     pages = []
+    theme = []
     toolsSection = null
     currentEditor = null
     currentPageId = null
@@ -10,6 +11,9 @@ class ChildEditorManager{
 
     constructor(dataManager) {
         this.dataManager = dataManager
+        this.dataManager.getLocationTheme().then(res => {
+          this.theme = res
+        })
         this.dataManager.getPages().then(pages=>{
             this.pages = pages
             console.log(pages)
@@ -143,6 +147,7 @@ class ChildEditorManager{
         if (page.PageName == "Home") {
             this.setCurrentEditor(`#${editorId}`)
         }
+        this.applyTheme()
         this.activateNavigators()
     }
 
@@ -726,6 +731,98 @@ class ChildEditorManager{
                     ${wrappers}
                 </div>
           `;
+    }
+  
+    applyTheme() {
+      $('iframe').each((index, iframe) => {
+        const root = document.documentElement;
+        // const iframe = document.querySelector(".mobile-frame iframe");
+        this.themeData = this.toolsSection.themes.find((theme) => theme.name === this.theme.ThemeName);
+        console.log(this.themeData)
+        if (!iframe) return
+    
+    
+        // Set CSS variables from the selected theme
+        root.style.setProperty(
+          "--primary-color",
+         this.themeData.colors.primaryColor
+        );
+        root.style.setProperty(
+          "--secondary-color",
+         this.themeData.colors.secondaryColor
+        );
+        root.style.setProperty(
+          "--background-color",
+         this.themeData.colors.backgroundColor
+        );
+        root.style.setProperty("--text-color",this.themeData.colors.textColor);
+        root.style.setProperty(
+          "--button-bg-color",
+         this.themeData.colors.buttonBgColor
+        );
+        root.style.setProperty(
+          "--button-text-color",
+         this.themeData.colors.buttonTextColor
+        );
+        root.style.setProperty(
+          "--card-bg-color",
+         this.themeData.colors.cardBgColor
+        );
+        root.style.setProperty(
+          "--card-text-color",
+         this.themeData.colors.cardTextColor
+        );
+        root.style.setProperty(
+          "--accent-color",
+         this.themeData.colors.accentColor
+        );
+    
+        root.style.setProperty("--font-family", this.theme.fontFamily);
+    
+        // Apply this.theme to iframe (canvas editor)
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        iframeDoc.body.style.setProperty(
+          "--primary-color",
+         this.themeData.colors.primaryColor
+        );
+        iframeDoc.body.style.setProperty(
+          "--secondary-color",
+         this.themeData.colors.secondaryColor
+        );
+        iframeDoc.body.style.setProperty(
+          "--background-color",
+         this.themeData.colors.backgroundColor
+        );
+        iframeDoc.body.style.setProperty(
+          "--text-color",
+         this.themeData.colors.textColor
+        );
+        iframeDoc.body.style.setProperty(
+          "--button-bg-color",
+         this.themeData.colors.buttonBgColor
+        );
+        iframeDoc.body.style.setProperty(
+          "--button-text-color",
+         this.themeData.colors.buttonTextColor
+        );
+        iframeDoc.body.style.setProperty(
+          "--card-bg-color",
+         this.themeData.colors.cardBgColor
+        );
+        iframeDoc.body.style.setProperty(
+          "--card-text-color",
+         this.themeData.colors.cardTextColor
+        );
+        iframeDoc.body.style.setProperty(
+          "--accent-color",
+         this.themeData.colors.accentColor
+        );
+        iframeDoc.body.style.setProperty(
+          "--font-family",
+          this.theme.fontFamily
+        );
+      })
+
     }
 
 }
