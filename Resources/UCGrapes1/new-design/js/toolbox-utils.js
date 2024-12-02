@@ -140,13 +140,13 @@ function mapContentToPageData(templateData, page) {
   // Find image and text content
   components.forEach((component) => {
     
-    topComponents = component.components?.[0]?.components?.[0]?.components
+    const topComponents = component.components?.[0]?.components?.[0]?.components
 
     for (let index = 0; index < topComponents.length; index++) {
       const component = topComponents[index];
       if (component?.type === "image") {
 
-        const imageUrl = imageComponent?.attributes.src.startsWith('http') ? imageComponent?.attributes.src : baseURL + '/' + imageComponent?.attributes.src 
+        const imageUrl = component?.attributes.src.startsWith('http') ? component?.attributes.src : baseURL + '/' + component?.attributes.src 
   
         output.Content.push({
           ContentType: "Image",
@@ -155,7 +155,7 @@ function mapContentToPageData(templateData, page) {
       }
 
       if (component?.tagName === "p") {
-        const textContent = textComponent.components?.[0]?.content?.trim();
+        const textContent = component.components?.[0]?.content?.trim();
         if (textContent) {
           output.Content.push({
             ContentType: "Description",
@@ -165,32 +165,6 @@ function mapContentToPageData(templateData, page) {
       }
 
     }
-
-    // Image content
-    // const imageComponent =
-    //   component.components?.[0]?.components?.[0]?.components?.[0];
-    // if (imageComponent?.type === "image") {
-
-    //   const imageUrl = imageComponent?.attributes.src.startsWith('http') ? imageComponent?.attributes.src : baseURL + '/' + imageComponent?.attributes.src 
-
-    //   output.Content.push({
-    //     ContentType: "Image",
-    //     ContentValue: imageUrl,
-    //   });
-    // }
-
-    // // Text content
-    // const textComponent =
-    //   component.components?.[0]?.components?.[0]?.components?.[0];
-    // if (textComponent?.tagName === "p") {
-    //   const textContent = textComponent.components?.[0]?.content?.trim();
-    //   if (textContent) {
-    //     output.Content.push({
-    //       ContentType: "Description",
-    //       ContentValue: textContent,
-    //     });
-    //   }
-    // }
 
     // CTA buttons
     if (component.classes?.includes("cta-button-container")) {
@@ -221,33 +195,6 @@ function mapContentToPageData(templateData, page) {
         }
       });
     }
-
-    // // Website CTA
-    // const websiteButton =
-    //   component.components?.[0]?.components?.[0]?.components?.[0];
-    //   const websiteAttributes = websiteButton.attributes || {};
-    // if (websiteButton?.classes?.includes("cta-url-button")) {
-    //   output.Cta.push({
-    //       CtaType: websiteAttributes["cta-button-type"],
-    //       CtaLabel: websiteAttributes["cta-button-label"] || "Email Us",
-    //       CtaAction: websiteAttributes["cta-button-action"],
-    //       CtaBGColor: websiteAttributes["cta-background-color"] || "#EEA622",
-    //   });
-    // }
-
-    // // Form CTA
-    // const formButton =
-    //   component.components?.[0]?.components?.[0]?.components?.[0];
-    //   const formAttributes = websiteButton.attributes || {};
-    // if (websiteButton?.classes?.includes("cta-form-button")) {
-    //   output.Cta.push({
-    //       CtaType: formAttributes["cta-button-type"],
-    //       CtaLabel: formAttributes["cta-button-label"] || "Fill Form",
-    //       CtaAction: formAttributes["cta-button-action"],
-    //       CtaBGColor: formAttributes["cta-background-color"] || "#EEA622",
-    //   });
-    // }
   });
-
   return output;
 }
