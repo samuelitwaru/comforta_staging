@@ -130,14 +130,24 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                                    bool includeNonInitialized )
       {
          AddObjectProperty("WWPFormInstanceId", gxTv_SdtWWP_FormInstance_Wwpforminstanceid, false, includeNonInitialized);
+         datetime_STZ = gxTv_SdtWWP_FormInstance_Wwpforminstancedate;
          sDateCnv = "";
-         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Year( gxTv_SdtWWP_FormInstance_Wwpforminstancedate)), 10, 0));
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Year( datetime_STZ)), 10, 0));
          sDateCnv += StringUtil.Substring( "0000", 1, 4-StringUtil.Len( sNumToPad)) + sNumToPad;
          sDateCnv += "-";
-         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Month( gxTv_SdtWWP_FormInstance_Wwpforminstancedate)), 10, 0));
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Month( datetime_STZ)), 10, 0));
          sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
          sDateCnv += "-";
-         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Day( gxTv_SdtWWP_FormInstance_Wwpforminstancedate)), 10, 0));
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Day( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+         sDateCnv += "T";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Hour( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+         sDateCnv += ":";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Minute( datetime_STZ)), 10, 0));
+         sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+         sDateCnv += ":";
+         sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Second( datetime_STZ)), 10, 0));
          sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
          AddObjectProperty("WWPFormInstanceDate", sDateCnv, false, includeNonInitialized);
          AddObjectProperty("WWPFormId", gxTv_SdtWWP_FormInstance_Wwpformid, false, includeNonInitialized);
@@ -159,14 +169,24 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             AddObjectProperty("Mode", gxTv_SdtWWP_FormInstance_Mode, false, includeNonInitialized);
             AddObjectProperty("Initialized", gxTv_SdtWWP_FormInstance_Initialized, false, includeNonInitialized);
             AddObjectProperty("WWPFormInstanceId_Z", gxTv_SdtWWP_FormInstance_Wwpforminstanceid_Z, false, includeNonInitialized);
+            datetime_STZ = gxTv_SdtWWP_FormInstance_Wwpforminstancedate_Z;
             sDateCnv = "";
-            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Year( gxTv_SdtWWP_FormInstance_Wwpforminstancedate_Z)), 10, 0));
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Year( datetime_STZ)), 10, 0));
             sDateCnv += StringUtil.Substring( "0000", 1, 4-StringUtil.Len( sNumToPad)) + sNumToPad;
             sDateCnv += "-";
-            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Month( gxTv_SdtWWP_FormInstance_Wwpforminstancedate_Z)), 10, 0));
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Month( datetime_STZ)), 10, 0));
             sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
             sDateCnv += "-";
-            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Day( gxTv_SdtWWP_FormInstance_Wwpforminstancedate_Z)), 10, 0));
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Day( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+            sDateCnv += "T";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Hour( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+            sDateCnv += ":";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Minute( datetime_STZ)), 10, 0));
+            sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
+            sDateCnv += ":";
+            sNumToPad = StringUtil.Trim( StringUtil.Str( (decimal)(DateTimeUtil.Second( datetime_STZ)), 10, 0));
             sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
             AddObjectProperty("WWPFormInstanceDate_Z", sDateCnv, false, includeNonInitialized);
             AddObjectProperty("WWPFormId_Z", gxTv_SdtWWP_FormInstance_Wwpformid_Z, false, includeNonInitialized);
@@ -317,12 +337,12 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          get {
             if ( gxTv_SdtWWP_FormInstance_Wwpforminstancedate == DateTime.MinValue)
                return null;
-            return new GxDateString(gxTv_SdtWWP_FormInstance_Wwpforminstancedate).value ;
+            return new GxDatetimeString(gxTv_SdtWWP_FormInstance_Wwpforminstancedate).value ;
          }
 
          set {
             sdtIsNull = 0;
-            if (String.IsNullOrEmpty(value) || value == GxDateString.NullValue )
+            if (String.IsNullOrEmpty(value) || value == GxDatetimeString.NullValue )
                gxTv_SdtWWP_FormInstance_Wwpforminstancedate = DateTime.MinValue;
             else
                gxTv_SdtWWP_FormInstance_Wwpforminstancedate = DateTime.Parse( value);
@@ -654,12 +674,12 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          get {
             if ( gxTv_SdtWWP_FormInstance_Wwpforminstancedate_Z == DateTime.MinValue)
                return null;
-            return new GxDateString(gxTv_SdtWWP_FormInstance_Wwpforminstancedate_Z).value ;
+            return new GxDatetimeString(gxTv_SdtWWP_FormInstance_Wwpforminstancedate_Z).value ;
          }
 
          set {
             sdtIsNull = 0;
-            if (String.IsNullOrEmpty(value) || value == GxDateString.NullValue )
+            if (String.IsNullOrEmpty(value) || value == GxDatetimeString.NullValue )
                gxTv_SdtWWP_FormInstance_Wwpforminstancedate_Z = DateTime.MinValue;
             else
                gxTv_SdtWWP_FormInstance_Wwpforminstancedate_Z = DateTime.Parse( value);
@@ -935,7 +955,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       public void initialize( )
       {
          sdtIsNull = 1;
-         gxTv_SdtWWP_FormInstance_Wwpforminstancedate = DateTime.MinValue;
+         gxTv_SdtWWP_FormInstance_Wwpforminstancedate = (DateTime)(DateTime.MinValue);
          gxTv_SdtWWP_FormInstance_Wwpformreferencename = "";
          gxTv_SdtWWP_FormInstance_Wwpformtitle = "";
          gxTv_SdtWWP_FormInstance_Wwpuserextendedid = "";
@@ -943,11 +963,12 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          gxTv_SdtWWP_FormInstance_Wwpformvalidations = "";
          gxTv_SdtWWP_FormInstance_Wwpforminstancerecordkey = "";
          gxTv_SdtWWP_FormInstance_Mode = "";
-         gxTv_SdtWWP_FormInstance_Wwpforminstancedate_Z = DateTime.MinValue;
+         gxTv_SdtWWP_FormInstance_Wwpforminstancedate_Z = (DateTime)(DateTime.MinValue);
          gxTv_SdtWWP_FormInstance_Wwpformreferencename_Z = "";
          gxTv_SdtWWP_FormInstance_Wwpformtitle_Z = "";
          gxTv_SdtWWP_FormInstance_Wwpuserextendedid_Z = "";
          gxTv_SdtWWP_FormInstance_Wwpuserextendedfullname_Z = "";
+         datetime_STZ = (DateTime)(DateTime.MinValue);
          sDateCnv = "";
          sNumToPad = "";
          IGxSilentTrn obj;
@@ -982,6 +1003,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string sNumToPad ;
       private DateTime gxTv_SdtWWP_FormInstance_Wwpforminstancedate ;
       private DateTime gxTv_SdtWWP_FormInstance_Wwpforminstancedate_Z ;
+      private DateTime datetime_STZ ;
       private string gxTv_SdtWWP_FormInstance_Wwpformvalidations ;
       private string gxTv_SdtWWP_FormInstance_Wwpforminstancerecordkey ;
       private string gxTv_SdtWWP_FormInstance_Wwpformreferencename ;
@@ -1024,11 +1046,11 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       public string gxTpr_Wwpforminstancedate
       {
          get {
-            return DateTimeUtil.DToC2( sdt.gxTpr_Wwpforminstancedate) ;
+            return DateTimeUtil.TToC2( sdt.gxTpr_Wwpforminstancedate, (IGxContext)(context)) ;
          }
 
          set {
-            sdt.gxTpr_Wwpforminstancedate = DateTimeUtil.CToD2( value);
+            sdt.gxTpr_Wwpforminstancedate = DateTimeUtil.CToT2( value, (IGxContext)(context));
          }
 
       }
@@ -1228,11 +1250,11 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       public string gxTpr_Wwpforminstancedate
       {
          get {
-            return DateTimeUtil.DToC2( sdt.gxTpr_Wwpforminstancedate) ;
+            return DateTimeUtil.TToC2( sdt.gxTpr_Wwpforminstancedate, (IGxContext)(context)) ;
          }
 
          set {
-            sdt.gxTpr_Wwpforminstancedate = DateTimeUtil.CToD2( value);
+            sdt.gxTpr_Wwpforminstancedate = DateTimeUtil.CToT2( value, (IGxContext)(context));
          }
 
       }

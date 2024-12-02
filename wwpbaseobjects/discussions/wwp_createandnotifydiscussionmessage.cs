@@ -125,20 +125,40 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             {
                AV12MentionWWPUserExtendedIdCollection.FromJSonString(AV13MentionWWPUserExtendedIdCollectionJson, null);
                AV8ExcludedWWPUserExtendedIdCollection = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
-               AV23GXV1 = 1;
-               while ( AV23GXV1 <= AV12MentionWWPUserExtendedIdCollection.Count )
+               AV28GXV1 = 1;
+               while ( AV28GXV1 <= AV12MentionWWPUserExtendedIdCollection.Count )
                {
-                  AV22WWPUserExtendedId = AV12MentionWWPUserExtendedIdCollection.GetString(AV23GXV1);
+                  AV22WWPUserExtendedId = AV12MentionWWPUserExtendedIdCollection.GetString(AV28GXV1);
                   AV10WWPDiscussionMessageMention = new GeneXus.Programs.wwpbaseobjects.discussions.SdtWWP_DiscussionMessageMention(context);
                   AV10WWPDiscussionMessageMention.gxTpr_Wwpdiscussionmessageid = AV9WWPDiscussionMessage.gxTpr_Wwpdiscussionmessageid;
                   AV10WWPDiscussionMessageMention.gxTpr_Wwpdiscussionmentionuserid = AV22WWPUserExtendedId;
                   AV10WWPDiscussionMessageMention.Save();
                   AV8ExcludedWWPUserExtendedIdCollection.Add(StringUtil.Trim( AV22WWPUserExtendedId), 0);
-                  AV23GXV1 = (int)(AV23GXV1+1);
+                  AV28GXV1 = (int)(AV28GXV1+1);
                }
             }
             context.CommitDataStores("wwpbaseobjects.discussions.wwp_createandnotifydiscussionmessage",pr_default);
-            new GeneXus.Programs.wwpbaseobjects.discussions.wwp_notifydiscussionmessage(context ).execute(  AV9WWPDiscussionMessage.gxTpr_Wwpuserextendedfullname,  AV9WWPDiscussionMessage.gxTpr_Wwpentityname,  AV16WWPDiscussionMessageEntityRecordId,  AV8ExcludedWWPUserExtendedIdCollection.ToJSonString(false),  AV15SessionValue,  AV19NotificationTitle,  AV21WWPSubscriptionEntityRecordDescription,  AV20WWPNotificationLink) ;
+            AV25GAMUser.load( AV9WWPDiscussionMessage.gxTpr_Wwpuserextendedid);
+            if ( AV25GAMUser.success() )
+            {
+               if ( AV25GAMUser.checkrole(context.GetMessage( "Resident", "")) )
+               {
+                  AV26RoleName = context.GetMessage( "Resident", "");
+               }
+               if ( AV25GAMUser.checkrole(context.GetMessage( "Receptionist", "")) )
+               {
+                  AV26RoleName = context.GetMessage( "Receptionist", "");
+               }
+               if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV26RoleName)) )
+               {
+                  AV27UserFullName = AV26RoleName + ": " + AV9WWPDiscussionMessage.gxTpr_Wwpuserextendedfullname;
+               }
+               else
+               {
+                  AV27UserFullName = AV9WWPDiscussionMessage.gxTpr_Wwpuserextendedfullname;
+               }
+            }
+            new GeneXus.Programs.wwpbaseobjects.discussions.wwp_notifydiscussionmessage(context ).execute(  AV27UserFullName,  AV9WWPDiscussionMessage.gxTpr_Wwpentityname,  AV16WWPDiscussionMessageEntityRecordId,  AV8ExcludedWWPUserExtendedIdCollection.ToJSonString(false),  AV15SessionValue,  AV19NotificationTitle,  AV21WWPSubscriptionEntityRecordDescription,  AV20WWPNotificationLink) ;
             AV11DiscussionMessageCreated = true;
          }
          cleanup();
@@ -161,6 +181,9 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          AV8ExcludedWWPUserExtendedIdCollection = new GxSimpleCollection<string>();
          AV22WWPUserExtendedId = "";
          AV10WWPDiscussionMessageMention = new GeneXus.Programs.wwpbaseobjects.discussions.SdtWWP_DiscussionMessageMention(context);
+         AV25GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
+         AV26RoleName = "";
+         AV27UserFullName = "";
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.discussions.wwp_createandnotifydiscussionmessage__datastore1(),
             new Object[][] {
             }
@@ -176,7 +199,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /* GeneXus formulas. */
       }
 
-      private int AV23GXV1 ;
+      private int AV28GXV1 ;
       private long AV18WWPEntityId ;
       private long AV17WWPDiscussionMessageThreadId ;
       private string AV22WWPUserExtendedId ;
@@ -188,6 +211,8 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private string AV19NotificationTitle ;
       private string AV21WWPSubscriptionEntityRecordDescription ;
       private string AV20WWPNotificationLink ;
+      private string AV26RoleName ;
+      private string AV27UserFullName ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
@@ -196,6 +221,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private GxSimpleCollection<string> AV8ExcludedWWPUserExtendedIdCollection ;
       private GeneXus.Programs.wwpbaseobjects.discussions.SdtWWP_DiscussionMessageMention AV10WWPDiscussionMessageMention ;
       private IDataStoreProvider pr_default ;
+      private GeneXus.Programs.genexussecurity.SdtGAMUser AV25GAMUser ;
       private bool aP9_DiscussionMessageCreated ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;

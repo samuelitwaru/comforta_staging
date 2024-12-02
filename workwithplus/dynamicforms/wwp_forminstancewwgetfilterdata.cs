@@ -179,8 +179,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             }
             else if ( StringUtil.StrCmp(AV33GridStateFilterValue.gxTpr_Name, "TFWWPFORMINSTANCEDATE") == 0 )
             {
-               AV13TFWWPFormInstanceDate = context.localUtil.CToD( AV33GridStateFilterValue.gxTpr_Value, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
-               AV14TFWWPFormInstanceDate_To = context.localUtil.CToD( AV33GridStateFilterValue.gxTpr_Valueto, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
+               AV13TFWWPFormInstanceDate = context.localUtil.CToT( AV33GridStateFilterValue.gxTpr_Value, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
+               AV14TFWWPFormInstanceDate_To = context.localUtil.CToT( AV33GridStateFilterValue.gxTpr_Valueto, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
             }
             else if ( StringUtil.StrCmp(AV33GridStateFilterValue.gxTpr_Name, "TFWWPFORMVERSIONNUMBER") == 0 )
             {
@@ -318,20 +318,20 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          AV32GridState = new GeneXus.Programs.wwpbaseobjects.SdtWWPGridState(context);
          AV33GridStateFilterValue = new GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue(context);
          AV41FilterFullText = "";
-         AV13TFWWPFormInstanceDate = DateTime.MinValue;
-         AV14TFWWPFormInstanceDate_To = DateTime.MinValue;
+         AV13TFWWPFormInstanceDate = (DateTime)(DateTime.MinValue);
+         AV14TFWWPFormInstanceDate_To = (DateTime)(DateTime.MinValue);
          AV17TFWWPUserExtendedFullName = "";
          AV18TFWWPUserExtendedFullName_Sel = "";
          AV43WWPFormTitle = "";
          AV47Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfulltext = "";
-         AV50Workwithplus_dynamicforms_wwp_forminstancewwds_5_tfwwpforminstancedate = DateTime.MinValue;
-         AV51Workwithplus_dynamicforms_wwp_forminstancewwds_6_tfwwpforminstancedate_to = DateTime.MinValue;
+         AV50Workwithplus_dynamicforms_wwp_forminstancewwds_5_tfwwpforminstancedate = (DateTime)(DateTime.MinValue);
+         AV51Workwithplus_dynamicforms_wwp_forminstancewwds_6_tfwwpforminstancedate_to = (DateTime)(DateTime.MinValue);
          AV54Workwithplus_dynamicforms_wwp_forminstancewwds_9_tfwwpuserextendedfullname = "";
          AV55Workwithplus_dynamicforms_wwp_forminstancewwds_10_tfwwpuserextendedfullname_sel = "";
          lV47Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfulltext = "";
          lV54Workwithplus_dynamicforms_wwp_forminstancewwds_9_tfwwpuserextendedfullname = "";
          A113WWPUserExtendedFullName = "";
-         A239WWPFormInstanceDate = DateTime.MinValue;
+         A239WWPFormInstanceDate = (DateTime)(DateTime.MinValue);
          P00632_A112WWPUserExtendedId = new string[] {""} ;
          P00632_A206WWPFormId = new short[1] ;
          P00632_A113WWPUserExtendedFullName = new string[] {""} ;
@@ -559,8 +559,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
           new ParDef("lV47Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfull",GXType.VarChar,100,0) ,
           new ParDef("AV48Workwithplus_dynamicforms_wwp_forminstancewwds_3_tfwwpformi",GXType.Int32,6,0) ,
           new ParDef("AV49Workwithplus_dynamicforms_wwp_forminstancewwds_4_tfwwpformi",GXType.Int32,6,0) ,
-          new ParDef("AV50Workwithplus_dynamicforms_wwp_forminstancewwds_5_tfwwpformi",GXType.Date,8,0) ,
-          new ParDef("AV51Workwithplus_dynamicforms_wwp_forminstancewwds_6_tfwwpformi",GXType.Date,8,0) ,
+          new ParDef("AV50Workwithplus_dynamicforms_wwp_forminstancewwds_5_tfwwpformi",GXType.DateTime,8,5) ,
+          new ParDef("AV51Workwithplus_dynamicforms_wwp_forminstancewwds_6_tfwwpformi",GXType.DateTime,8,5) ,
           new ParDef("AV52Workwithplus_dynamicforms_wwp_forminstancewwds_7_tfwwpformv",GXType.Int16,4,0) ,
           new ParDef("AV53Workwithplus_dynamicforms_wwp_forminstancewwds_8_tfwwpformv",GXType.Int16,4,0) ,
           new ParDef("lV54Workwithplus_dynamicforms_wwp_forminstancewwds_9_tfwwpusere",GXType.VarChar,100,0) ,
@@ -583,7 +583,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                 ((short[]) buf[1])[0] = rslt.getShort(2);
                 ((string[]) buf[2])[0] = rslt.getVarchar(3);
                 ((short[]) buf[3])[0] = rslt.getShort(4);
-                ((DateTime[]) buf[4])[0] = rslt.getGXDate(5);
+                ((DateTime[]) buf[4])[0] = rslt.getGXDateTime(5);
                 ((int[]) buf[5])[0] = rslt.getInt(6);
                 return;
        }

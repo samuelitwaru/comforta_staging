@@ -95,6 +95,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         new prc_logtofile(context ).execute(  context.GetMessage( "&WWPUserExtendedId ***********", "")+StringUtil.RTrim( context.localUtil.Format( AV16WWPUserExtendedId, ""))) ;
          /* Using cursor P003L2 */
          pr_default.execute(0, new Object[] {AV16WWPUserExtendedId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -216,6 +217,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       {
          /* 'CREATEDESKTOPNOTIFICATION' Routine */
          returnInSub = false;
+         new prc_logtofile(context ).execute(  context.GetMessage( "CREATE Desktop Notification ***********", "")) ;
          /* Using cursor P003L3 */
          pr_default.execute(1, new Object[] {AV16WWPUserExtendedId});
          while ( (pr_default.getStatus(1) != 101) )

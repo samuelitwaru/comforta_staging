@@ -73,29 +73,29 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV13GXLvl1 = 0;
-         AV14Udparg1 = new GeneXus.Programs.wwpbaseobjects.wwp_getentitybyname(context).executeUdp(  AV12WWPEntityName);
+         AV14GXLvl1 = 0;
+         AV15Udparg1 = new GeneXus.Programs.wwpbaseobjects.wwp_getentitybyname(context).executeUdp(  AV12WWPEntityName);
          /* Using cursor P003Y2 */
-         pr_default.execute(0, new Object[] {AV14Udparg1, AV8WWPNotificationDefinitionName});
+         pr_default.execute(0, new Object[] {AV15Udparg1, AV8WWPNotificationDefinitionName});
          while ( (pr_default.getStatus(0) != 101) )
          {
             A128WWPNotificationDefinitionId = P003Y2_A128WWPNotificationDefinitionId[0];
             A125WWPEntityId = P003Y2_A125WWPEntityId[0];
             A164WWPNotificationDefinitionName = P003Y2_A164WWPNotificationDefinitionName[0];
-            AV13GXLvl1 = 1;
-            AV15GXLvl5 = 0;
-            AV16Udparg2 = new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context).executeUdp( );
+            AV14GXLvl1 = 1;
+            AV16GXLvl5 = 0;
+            AV17Udparg2 = new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context).executeUdp( );
             /* Optimized UPDATE. */
             /* Using cursor P003Y3 */
-            pr_default.execute(1, new Object[] {AV16Udparg2, A128WWPNotificationDefinitionId, AV9WWPSubscriptionEntityRecordId});
+            pr_default.execute(1, new Object[] {AV17Udparg2, A128WWPNotificationDefinitionId, AV9WWPSubscriptionEntityRecordId});
             if ( (pr_default.getStatus(1) != 101) )
             {
-               AV15GXLvl5 = 1;
+               AV16GXLvl5 = 1;
             }
             pr_default.close(1);
             pr_default.SmartCacheProvider.SetUpdated("WWP_Subscription");
             /* End optimized UPDATE. */
-            if ( AV15GXLvl5 == 0 )
+            if ( AV16GXLvl5 == 0 )
             {
                AV10WWPSubscription = new GeneXus.Programs.wwpbaseobjects.subscriptions.SdtWWP_Subscription(context);
                AV10WWPSubscription.gxTpr_Wwpnotificationdefinitionid = A128WWPNotificationDefinitionId;
@@ -114,9 +114,12 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             pr_default.readNext(0);
          }
          pr_default.close(0);
-         if ( AV13GXLvl1 == 0 )
+         if ( AV14GXLvl1 == 0 )
          {
-            new GeneXus.Programs.wwpbaseobjects.wwp_logger(context ).gxep_error(  AV17Pgmname,  StringUtil.Format( "WWP_NotificationDefinition not found: %1", AV8WWPNotificationDefinitionName, "", "", "", "", "", "", "", "")) ;
+            GXt_int2 = AV13WWPEntityId;
+            new GeneXus.Programs.wwpbaseobjects.wwp_getentitybyname(context ).execute(  AV12WWPEntityName, out  GXt_int2) ;
+            AV13WWPEntityId = GXt_int2;
+            new GeneXus.Programs.wwpbaseobjects.wwp_logger(context ).gxep_error(  AV18Pgmname,  StringUtil.Format( "WWP_NotificationDefinition not found: %1", AV8WWPNotificationDefinitionName, "", "", "", "", "", "", "", "")) ;
          }
          cleanup();
       }
@@ -138,10 +141,10 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          P003Y2_A125WWPEntityId = new long[1] ;
          P003Y2_A164WWPNotificationDefinitionName = new string[] {""} ;
          A164WWPNotificationDefinitionName = "";
-         AV16Udparg2 = "";
+         AV17Udparg2 = "";
          AV10WWPSubscription = new GeneXus.Programs.wwpbaseobjects.subscriptions.SdtWWP_Subscription(context);
          GXt_char1 = "";
-         AV17Pgmname = "";
+         AV18Pgmname = "";
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.discussions.wwp_subscribeloggedusertodiscussion__datastore1(),
             new Object[][] {
             }
@@ -159,19 +162,21 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                }
             }
          );
-         AV17Pgmname = "WWPBaseObjects.Discussions.WWP_SubscribeLoggedUserToDiscussion";
+         AV18Pgmname = "WWPBaseObjects.Discussions.WWP_SubscribeLoggedUserToDiscussion";
          /* GeneXus formulas. */
-         AV17Pgmname = "WWPBaseObjects.Discussions.WWP_SubscribeLoggedUserToDiscussion";
+         AV18Pgmname = "WWPBaseObjects.Discussions.WWP_SubscribeLoggedUserToDiscussion";
       }
 
-      private short AV13GXLvl1 ;
-      private short AV15GXLvl5 ;
-      private long AV14Udparg1 ;
+      private short AV14GXLvl1 ;
+      private short AV16GXLvl5 ;
+      private long AV15Udparg1 ;
       private long A128WWPNotificationDefinitionId ;
       private long A125WWPEntityId ;
-      private string AV16Udparg2 ;
+      private long AV13WWPEntityId ;
+      private long GXt_int2 ;
+      private string AV17Udparg2 ;
       private string GXt_char1 ;
-      private string AV17Pgmname ;
+      private string AV18Pgmname ;
       private string AV8WWPNotificationDefinitionName ;
       private string AV12WWPEntityName ;
       private string AV9WWPSubscriptionEntityRecordId ;
@@ -271,18 +276,18 @@ public class wwp_subscribeloggedusertodiscussion__default : DataStoreHelperBase,
     {
        Object[] prmP003Y2;
        prmP003Y2 = new Object[] {
-       new ParDef("AV14Udparg1",GXType.Int64,10,0) ,
+       new ParDef("AV15Udparg1",GXType.Int64,10,0) ,
        new ParDef("AV8WWPNotificationDefinitionName",GXType.VarChar,100,0)
        };
        Object[] prmP003Y3;
        prmP003Y3 = new Object[] {
-       new ParDef("AV16Udparg2",GXType.Char,40,0) ,
+       new ParDef("AV17Udparg2",GXType.Char,40,0) ,
        new ParDef("WWPNotificationDefinitionId",GXType.Int64,10,0) ,
        new ParDef("AV9WWPSubscriptionEntityRecordId",GXType.VarChar,2000,0)
        };
        def= new CursorDef[] {
-           new CursorDef("P003Y2", "SELECT WWPNotificationDefinitionId, WWPEntityId, WWPNotificationDefinitionName FROM WWP_NotificationDefinition WHERE (WWPEntityId = :AV14Udparg1) AND (WWPNotificationDefinitionName = ( :AV8WWPNotificationDefinitionName)) ORDER BY WWPEntityId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP003Y2,100, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("P003Y3", "UPDATE WWP_Subscription SET WWPSubscriptionSubscribed=TRUE  WHERE (WWPUserExtendedId = ( :AV16Udparg2)) AND (WWPNotificationDefinitionId = :WWPNotificationDefinitionId) AND (WWPSubscriptionEntityRecordId = ( :AV9WWPSubscriptionEntityRecordId))", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP003Y3)
+           new CursorDef("P003Y2", "SELECT WWPNotificationDefinitionId, WWPEntityId, WWPNotificationDefinitionName FROM WWP_NotificationDefinition WHERE (WWPEntityId = :AV15Udparg1) AND (WWPNotificationDefinitionName = ( :AV8WWPNotificationDefinitionName)) ORDER BY WWPEntityId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP003Y2,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("P003Y3", "UPDATE WWP_Subscription SET WWPSubscriptionSubscribed=TRUE  WHERE (WWPUserExtendedId = ( :AV17Udparg2)) AND (WWPNotificationDefinitionId = :WWPNotificationDefinitionId) AND (WWPSubscriptionEntityRecordId = ( :AV9WWPSubscriptionEntityRecordId))", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP003Y3)
        };
     }
  }

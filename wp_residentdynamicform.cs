@@ -802,7 +802,7 @@ namespace GeneXus.Programs {
          AV11ResidentId = GXt_char1;
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV11ResidentId)) )
          {
-            AV12WebSession.Set(context.GetMessage( "ResidentId", ""), AV11ResidentId);
+            AV12WebSession.Set(context.GetMessage( "WebViewResidentId", ""), AV11ResidentId);
          }
          AV14ShowNoRecordFound = false;
          AssignAttri("", false, "AV14ShowNoRecordFound", AV14ShowNoRecordFound);
@@ -966,7 +966,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112210565599", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241224545912", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -982,7 +982,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_residentdynamicform.js", "?2024112210565599", false, true);
+         context.AddJavascriptSource("wp_residentdynamicform.js", "?20241224545912", false, true);
          /* End function include_jscripts */
       }
 

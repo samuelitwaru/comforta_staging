@@ -1537,6 +1537,22 @@ namespace GeneXus.Programs {
             returnInSub = true;
             if (true) return;
          }
+         chkavListgen.Visible = 0;
+         AssignProp(sPrefix, false, chkavListgen_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavListgen.Visible), 5, 0), true);
+         chkavListagb.Visible = 0;
+         AssignProp(sPrefix, false, chkavListagb_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavListagb.Visible), 5, 0), true);
+         chkavListagbpre.Visible = 0;
+         AssignProp(sPrefix, false, chkavListagbpre_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavListagbpre.Visible), 5, 0), true);
+         chkavListgenpre.Visible = 0;
+         AssignProp(sPrefix, false, chkavListgenpre_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavListgenpre.Visible), 5, 0), true);
+         lblTransactiondetail_textblock1_Visible = 0;
+         AssignProp(sPrefix, false, lblTransactiondetail_textblock1_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(lblTransactiondetail_textblock1_Visible), 5, 0), true);
+         lblTransactiondetail_textblock2_Visible = 0;
+         AssignProp(sPrefix, false, lblTransactiondetail_textblock2_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(lblTransactiondetail_textblock2_Visible), 5, 0), true);
+         lblTransactiondetail_textblock3_Visible = 0;
+         AssignProp(sPrefix, false, lblTransactiondetail_textblock3_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(lblTransactiondetail_textblock3_Visible), 5, 0), true);
+         lblTransactiondetail_textblock4_Visible = 0;
+         AssignProp(sPrefix, false, lblTransactiondetail_textblock4_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(lblTransactiondetail_textblock4_Visible), 5, 0), true);
       }
 
       protected void nextLoad( )
@@ -1633,7 +1649,7 @@ namespace GeneXus.Programs {
             cellListgen_cell_Class = "DataContentCell";
             AssignProp(sPrefix, false, cellListgen_cell_Internalname, "Class", cellListgen_cell_Class, true);
          }
-         if ( ! ( ( AV29Ismanager == Convert.ToDecimal( true )) ) )
+         if ( ! ( ( AV28isManager ) ) )
          {
             dynLocationId.Visible = 0;
             AssignProp(sPrefix, false, dynLocationId_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(dynLocationId.Visible), 5, 0), true);
@@ -1745,7 +1761,7 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTransactiondetail_textblock4_Internalname, context.GetMessage( "Preffered", ""), "", "", lblTransactiondetail_textblock4_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Trn_ProductServiceGeneral.htm");
+            GxWebStd.gx_label_ctrl( context, lblTransactiondetail_textblock4_Internalname, context.GetMessage( "Preffered", ""), "", "", lblTransactiondetail_textblock4_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", lblTransactiondetail_textblock4_Visible, 1, 0, 0, "HLP_Trn_ProductServiceGeneral.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -1790,7 +1806,7 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTransactiondetail_textblock3_Internalname, context.GetMessage( "Preffered", ""), "", "", lblTransactiondetail_textblock3_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Trn_ProductServiceGeneral.htm");
+            GxWebStd.gx_label_ctrl( context, lblTransactiondetail_textblock3_Internalname, context.GetMessage( "Preffered", ""), "", "", lblTransactiondetail_textblock3_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", lblTransactiondetail_textblock3_Visible, 1, 0, 0, "HLP_Trn_ProductServiceGeneral.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -1830,12 +1846,12 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 88,'" + sPrefix + "',false,'',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavListgenpre_Internalname, StringUtil.BoolToStr( AV26ListGenPre), "", context.GetMessage( "List Gen Pre", ""), 1, chkavListgenpre.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(88, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,88);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavListgenpre_Internalname, StringUtil.BoolToStr( AV26ListGenPre), "", context.GetMessage( "List Gen Pre", ""), chkavListgenpre.Visible, chkavListgenpre.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(88, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,88);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTransactiondetail_textblock2_Internalname, context.GetMessage( "Preffered", ""), "", "", lblTransactiondetail_textblock2_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Trn_ProductServiceGeneral.htm");
+            GxWebStd.gx_label_ctrl( context, lblTransactiondetail_textblock2_Internalname, context.GetMessage( "Preffered", ""), "", "", lblTransactiondetail_textblock2_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", lblTransactiondetail_textblock2_Visible, 1, 0, 0, "HLP_Trn_ProductServiceGeneral.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -1880,7 +1896,7 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTransactiondetail_textblock1_Internalname, context.GetMessage( "Preffered", ""), "", "", lblTransactiondetail_textblock1_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_Trn_ProductServiceGeneral.htm");
+            GxWebStd.gx_label_ctrl( context, lblTransactiondetail_textblock1_Internalname, context.GetMessage( "Preffered", ""), "", "", lblTransactiondetail_textblock1_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", lblTransactiondetail_textblock1_Visible, 1, 0, 0, "HLP_Trn_ProductServiceGeneral.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -2138,7 +2154,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411291429344", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241224534278", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2154,7 +2170,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_productservicegeneral.js", "?202411291429345", false, true);
+         context.AddJavascriptSource("trn_productservicegeneral.js", "?20241224534279", false, true);
          /* End function include_jscripts */
       }
 
@@ -2269,24 +2285,29 @@ namespace GeneXus.Programs {
          chkavListagb.Caption = context.GetMessage( "List Agb", "");
          chkavListgenpre.Caption = context.GetMessage( "List Gen Pre", "");
          chkavListgen.Caption = context.GetMessage( "List Gen", "");
+         lblTransactiondetail_textblock1_Visible = 1;
          chkavListgen.Enabled = 1;
          cellListgen_cell_Class = "";
          edtSupplierGenCompanyName_Jsonclick = "";
+         lblTransactiondetail_textblock2_Visible = 1;
          chkavListgenpre.Enabled = 1;
          edtavSuppliergen_id_Jsonclick = "";
          edtavSuppliergen_id_Enabled = 1;
+         lblTransactiondetail_textblock3_Visible = 1;
          chkavListagb.Enabled = 1;
          cellListagb_cell_Class = "";
          edtSupplierAgbName_Jsonclick = "";
+         lblTransactiondetail_textblock4_Visible = 1;
          chkavListagbpre.Enabled = 1;
          cellListagbpre_cell_Class = "";
          edtavSupplieragb_id_Jsonclick = "";
          edtavSupplieragb_id_Enabled = 1;
-         chkavListgen.Visible = 1;
-         chkavListagb.Visible = 1;
-         chkavListagbpre.Visible = 1;
          edtSupplierGenCompanyName_Link = "";
          edtSupplierAgbName_Link = "";
+         chkavListgenpre.Visible = 1;
+         chkavListagbpre.Visible = 1;
+         chkavListagb.Visible = 1;
+         chkavListgen.Visible = 1;
          edtOrganisationId_Enabled = 0;
          edtProductServiceId_Enabled = 0;
          edtSupplierAgbName_Enabled = 0;
@@ -2510,8 +2531,11 @@ namespace GeneXus.Programs {
       private int edtSupplierAgbName_Enabled ;
       private int edtProductServiceId_Enabled ;
       private int edtOrganisationId_Enabled ;
+      private int lblTransactiondetail_textblock1_Visible ;
+      private int lblTransactiondetail_textblock2_Visible ;
+      private int lblTransactiondetail_textblock3_Visible ;
+      private int lblTransactiondetail_textblock4_Visible ;
       private int idxLst ;
-      private decimal AV29Ismanager ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
       private string sPrefix ;
@@ -2591,6 +2615,10 @@ namespace GeneXus.Programs {
       private string edtSupplierGenCompanyName_Internalname ;
       private string edtSupplierAgbName_Internalname ;
       private string hsh ;
+      private string lblTransactiondetail_textblock1_Internalname ;
+      private string lblTransactiondetail_textblock2_Internalname ;
+      private string lblTransactiondetail_textblock3_Internalname ;
+      private string lblTransactiondetail_textblock4_Internalname ;
       private string edtSupplierAgbName_Link ;
       private string edtSupplierGenCompanyName_Link ;
       private string Gx_mode ;
@@ -2603,19 +2631,15 @@ namespace GeneXus.Programs {
       private string sStyleString ;
       private string tblTablemergedsupplieragb_id_Internalname ;
       private string edtavSupplieragb_id_Jsonclick ;
-      private string lblTransactiondetail_textblock4_Internalname ;
       private string lblTransactiondetail_textblock4_Jsonclick ;
       private string tblTablemergedsupplieragbname_Internalname ;
       private string edtSupplierAgbName_Jsonclick ;
-      private string lblTransactiondetail_textblock3_Internalname ;
       private string lblTransactiondetail_textblock3_Jsonclick ;
       private string tblTablemergedsuppliergen_id_Internalname ;
       private string edtavSuppliergen_id_Jsonclick ;
-      private string lblTransactiondetail_textblock2_Internalname ;
       private string lblTransactiondetail_textblock2_Jsonclick ;
       private string tblTablemergedsuppliergencompanyname_Internalname ;
       private string edtSupplierGenCompanyName_Jsonclick ;
-      private string lblTransactiondetail_textblock1_Internalname ;
       private string lblTransactiondetail_textblock1_Jsonclick ;
       private string sCtrlA58ProductServiceId ;
       private string sCtrlA29LocationId ;
@@ -2638,6 +2662,7 @@ namespace GeneXus.Programs {
       private bool returnInSub ;
       private bool AV21TempBoolean ;
       private bool GXt_boolean1 ;
+      private bool AV28isManager ;
       private string A60ProductServiceDescription ;
       private string A366ProductServiceGroup ;
       private string A59ProductServiceName ;

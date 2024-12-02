@@ -28,6 +28,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -108,9 +110,14 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             AV10ExcludedWWPUserExtendedIdCollection.FromJSonString(AV11ExcludedWWPUserExtendedIdCollectionJson, null);
          }
          AV10ExcludedWWPUserExtendedIdCollection.Add(new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context).executeUdp( ), 0);
-         AV29Udparg1 = new GeneXus.Programs.wwpbaseobjects.wwp_getentitybyname(context).executeUdp(  AV18WWPEntityName);
+         GXt_objcol_svchar1 = AV30ReceptionistsToNotify;
+         GXt_char2 = "";
+         new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context ).execute( out  GXt_char2) ;
+         new prc_getlocationreceptioniststonotify(context ).execute(  GXt_char2, out  GXt_objcol_svchar1) ;
+         AV30ReceptionistsToNotify = GXt_objcol_svchar1;
+         AV33Udparg1 = new GeneXus.Programs.wwpbaseobjects.wwp_getentitybyname(context).executeUdp(  AV18WWPEntityName);
          /* Using cursor P003K2 */
-         pr_default.execute(0, new Object[] {AV29Udparg1, AV23WWPNotificationDefinitionName});
+         pr_default.execute(0, new Object[] {AV33Udparg1, AV23WWPNotificationDefinitionName});
          while ( (pr_default.getStatus(0) != 101) )
          {
             A128WWPNotificationDefinitionId = P003K2_A128WWPNotificationDefinitionId[0];
@@ -181,22 +188,24 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
                A124WWPSubscriptionRoleId = P003K3_A124WWPSubscriptionRoleId[0];
                n124WWPSubscriptionRoleId = P003K3_n124WWPSubscriptionRoleId[0];
                A130WWPSubscriptionId = P003K3_A130WWPSubscriptionId[0];
-               if ( ! ( (AV10ExcludedWWPUserExtendedIdCollection.IndexOf(StringUtil.RTrim( A112WWPUserExtendedId))>0) ) )
+               if ( ! ( (AV10ExcludedWWPUserExtendedIdCollection.IndexOf(StringUtil.RTrim( A112WWPUserExtendedId))>0) ) && ( (AV30ReceptionistsToNotify.IndexOf(StringUtil.RTrim( A112WWPUserExtendedId))>0) ) )
                {
                   if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A112WWPUserExtendedId)) && A132WWPSubscriptionSubscribed )
                   {
                      AV8WWPUserExtendedId = A112WWPUserExtendedId;
-                     new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_createnotificationtouser(context ).execute(  AV8WWPUserExtendedId,  AV20WWPNotificationDefinitionId,  AV25WWPNotificationDefinitionTitle,  AV24WWPNotificationDefinitionShortDescription,  AV22WWPNotificationDefinitionLongDescription, ref  AV21WWPNotificationDefinitionLink,  AV26WWPNotificationMetadata,  AV19WWPNotificationDefinitionIcon,  StringUtil.StartsWith( AV23WWPNotificationDefinitionName, "Discussion")) ;
+                     new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_createnotificationtouser(context ).execute(  AV8WWPUserExtendedId,  AV20WWPNotificationDefinitionId,  AV25WWPNotificationDefinitionTitle,  AV24WWPNotificationDefinitionShortDescription,  AV22WWPNotificationDefinitionLongDescription, ref  AV21WWPNotificationDefinitionLink,  AV26WWPNotificationMetadata,  AV19WWPNotificationDefinitionIcon,  StringUtil.Contains( AV23WWPNotificationDefinitionName, context.GetMessage( "Discussion", ""))) ;
                   }
                   else
                   {
-                     AV32GXV2 = 1;
-                     GXt_objcol_char1 = AV31GXV1;
-                     new GeneXus.Programs.wwpbaseobjects.wwp_getusersfromrole(context ).execute(  A124WWPSubscriptionRoleId, out  GXt_objcol_char1) ;
-                     AV31GXV1 = GXt_objcol_char1;
-                     while ( AV32GXV2 <= AV31GXV1.Count )
+                     AV36GXV2 = 1;
+                     GXt_objcol_svchar1 = (GxSimpleCollection<string>)(AV35GXV1);
+                     GXt_objcol_char3 = (GxSimpleCollection<string>)(GXt_objcol_svchar1);
+                     new GeneXus.Programs.wwpbaseobjects.wwp_getusersfromrole(context ).execute(  A124WWPSubscriptionRoleId, out  GXt_objcol_char3) ;
+                     GXt_objcol_svchar1 = GXt_objcol_char3;
+                     AV35GXV1 = GXt_objcol_svchar1;
+                     while ( AV36GXV2 <= AV35GXV1.Count )
                      {
-                        AV8WWPUserExtendedId = AV31GXV1.GetString(AV32GXV2);
+                        AV8WWPUserExtendedId = AV35GXV1.GetString(AV36GXV2);
                         /* Execute user subroutine: 'INCLUDENOTIFICATIONTOUSER' */
                         S111 ();
                         if ( returnInSub )
@@ -207,9 +216,9 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
                         }
                         if ( AV12IncludeNotificationToUser )
                         {
-                           new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_createnotificationtouser(context ).execute(  AV8WWPUserExtendedId,  AV20WWPNotificationDefinitionId,  AV25WWPNotificationDefinitionTitle,  AV24WWPNotificationDefinitionShortDescription,  AV22WWPNotificationDefinitionLongDescription, ref  AV21WWPNotificationDefinitionLink,  AV26WWPNotificationMetadata,  AV19WWPNotificationDefinitionIcon,  StringUtil.StartsWith( AV23WWPNotificationDefinitionName, "Discussion")) ;
+                           new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_createnotificationtouser(context ).execute(  AV8WWPUserExtendedId,  AV20WWPNotificationDefinitionId,  AV25WWPNotificationDefinitionTitle,  AV24WWPNotificationDefinitionShortDescription,  AV22WWPNotificationDefinitionLongDescription, ref  AV21WWPNotificationDefinitionLink,  AV26WWPNotificationMetadata,  AV19WWPNotificationDefinitionIcon,  StringUtil.Contains( AV23WWPNotificationDefinitionName, context.GetMessage( "Discussion", ""))) ;
                         }
-                        AV32GXV2 = (int)(AV32GXV2+1);
+                        AV36GXV2 = (int)(AV36GXV2+1);
                      }
                   }
                }
@@ -264,6 +273,8 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       public override void initialize( )
       {
          AV10ExcludedWWPUserExtendedIdCollection = new GxSimpleCollection<string>();
+         AV30ReceptionistsToNotify = new GxSimpleCollection<string>();
+         GXt_char2 = "";
          P003K2_A128WWPNotificationDefinitionId = new long[1] ;
          P003K2_A125WWPEntityId = new long[1] ;
          P003K2_A164WWPNotificationDefinitionName = new string[] {""} ;
@@ -295,10 +306,15 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          A112WWPUserExtendedId = "";
          A124WWPSubscriptionRoleId = "";
          AV8WWPUserExtendedId = "";
-         AV31GXV1 = new GxSimpleCollection<string>();
-         GXt_objcol_char1 = new GxSimpleCollection<string>();
+         AV35GXV1 = new GxSimpleCollection<string>();
+         GXt_objcol_svchar1 = new GxSimpleCollection<string>();
+         GXt_objcol_char3 = new GxSimpleCollection<string>();
          P003K5_A40000GXC1 = new int[1] ;
          P003K5_n40000GXC1 = new bool[] {false} ;
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification__gam(),
             new Object[][] {
             }
@@ -319,13 +335,14 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          /* GeneXus formulas. */
       }
 
-      private int AV32GXV2 ;
+      private int AV36GXV2 ;
       private int A40000GXC1 ;
-      private long AV29Udparg1 ;
+      private long AV33Udparg1 ;
       private long A128WWPNotificationDefinitionId ;
       private long A125WWPEntityId ;
       private long AV20WWPNotificationDefinitionId ;
       private long A130WWPSubscriptionId ;
+      private string GXt_char2 ;
       private string A112WWPUserExtendedId ;
       private string A124WWPSubscriptionRoleId ;
       private string AV8WWPUserExtendedId ;
@@ -358,9 +375,11 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       private string AV22WWPNotificationDefinitionLongDescription ;
       private string AV21WWPNotificationDefinitionLink ;
       private string A131WWPSubscriptionEntityRecordId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GxSimpleCollection<string> AV10ExcludedWWPUserExtendedIdCollection ;
+      private GxSimpleCollection<string> AV30ReceptionistsToNotify ;
       private IDataStoreProvider pr_default ;
       private long[] P003K2_A128WWPNotificationDefinitionId ;
       private long[] P003K2_A125WWPEntityId ;
@@ -378,14 +397,16 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       private string[] P003K3_A124WWPSubscriptionRoleId ;
       private bool[] P003K3_n124WWPSubscriptionRoleId ;
       private long[] P003K3_A130WWPSubscriptionId ;
-      private GxSimpleCollection<string> AV31GXV1 ;
-      private GxSimpleCollection<string> GXt_objcol_char1 ;
+      private GxSimpleCollection<string> AV35GXV1 ;
+      private GxSimpleCollection<string> GXt_objcol_svchar1 ;
+      private GxSimpleCollection<string> GXt_objcol_char3 ;
       private int[] P003K5_A40000GXC1 ;
       private bool[] P003K5_n40000GXC1 ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_sendnotification__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_sendnotification__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -412,58 +433,17 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_sendnotification__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_sendnotification__gam : DataStoreHelperBase, IDataStoreHelper
  {
-    protected Object[] conditional_P003K3( IGxContext context ,
-                                           string AV27WWPSubscriptionEntityRecordId ,
-                                           string A131WWPSubscriptionEntityRecordId ,
-                                           long A128WWPNotificationDefinitionId )
-    {
-       System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
-       string scmdbuf;
-       short[] GXv_int2 = new short[2];
-       Object[] GXv_Object3 = new Object[2];
-       scmdbuf = "SELECT WWPNotificationDefinitionId, WWPSubscriptionEntityRecordId, WWPUserExtendedId, WWPSubscriptionSubscribed, WWPSubscriptionRoleId, WWPSubscriptionId FROM WWP_Subscription";
-       AddWhere(sWhereString, "(WWPNotificationDefinitionId = :WWPNotificationDefinitionId)");
-       if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV27WWPSubscriptionEntityRecordId)) )
-       {
-          AddWhere(sWhereString, "(WWPSubscriptionEntityRecordId = ( :AV27WWPSubscriptionEntityRecordId))");
-       }
-       else
-       {
-          GXv_int2[1] = 1;
-       }
-       scmdbuf += sWhereString;
-       scmdbuf += " ORDER BY WWPNotificationDefinitionId";
-       GXv_Object3[0] = scmdbuf;
-       GXv_Object3[1] = GXv_int2;
-       return GXv_Object3 ;
-    }
-
-    public override Object [] getDynamicStatement( int cursor ,
-                                                   IGxContext context ,
-                                                   Object [] dynConstraints )
-    {
-       switch ( cursor )
-       {
-             case 1 :
-                   return conditional_P003K3(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (long)dynConstraints[2] );
-       }
-       return base.getDynamicStatement(cursor, context, dynConstraints);
-    }
-
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new ForEachCursor(def[0])
-       ,new ForEachCursor(def[1])
-       ,new ForEachCursor(def[2])
      };
   }
 
@@ -472,25 +452,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
   {
      if ( def == null )
      {
-        Object[] prmP003K2;
-        prmP003K2 = new Object[] {
-        new ParDef("AV29Udparg1",GXType.Int64,10,0) ,
-        new ParDef("AV23WWPNotificationDefinitionName",GXType.VarChar,100,0)
-        };
-        Object[] prmP003K5;
-        prmP003K5 = new Object[] {
-        new ParDef("AV20WWPNotificationDefinitionId",GXType.Int64,10,0) ,
-        new ParDef("AV8WWPUserExtendedId",GXType.Char,40,0)
-        };
-        Object[] prmP003K3;
-        prmP003K3 = new Object[] {
-        new ParDef("WWPNotificationDefinitionId",GXType.Int64,10,0) ,
-        new ParDef("AV27WWPSubscriptionEntityRecordId",GXType.VarChar,2000,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("P003K2", "SELECT WWPNotificationDefinitionId, WWPEntityId, WWPNotificationDefinitionName, WWPNotificationDefinitionIcon, WWPNotificationDefinitionTitle, WWPNotificationDefinitionShort, WWPNotificationDefinitionLongD, WWPNotificationDefinitionLink FROM WWP_NotificationDefinition WHERE (WWPEntityId = :AV29Udparg1) AND (WWPNotificationDefinitionName = ( :AV23WWPNotificationDefinitionName)) ORDER BY WWPEntityId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP003K2,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("P003K3", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP003K3,100, GxCacheFrequency.OFF ,true,false )
-           ,new CursorDef("P003K5", "SELECT COALESCE( T1.GXC1, 0) AS GXC1 FROM (SELECT COUNT(*) AS GXC1 FROM (WWP_Subscription T2 INNER JOIN WWP_NotificationDefinition T3 ON T3.WWPNotificationDefinitionId = T2.WWPNotificationDefinitionId) WHERE (T2.WWPNotificationDefinitionId = :AV20WWPNotificationDefinitionId) AND (T2.WWPUserExtendedId = ( :AV8WWPUserExtendedId)) ) T1 ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP003K5,1, GxCacheFrequency.OFF ,true,false )
         };
      }
   }
@@ -499,34 +461,125 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
                           IFieldGetter rslt ,
                           Object[] buf )
   {
-     switch ( cursor )
-     {
-           case 0 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((long[]) buf[1])[0] = rslt.getLong(2);
-              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-              ((string[]) buf[3])[0] = rslt.getVarchar(4);
-              ((string[]) buf[4])[0] = rslt.getVarchar(5);
-              ((string[]) buf[5])[0] = rslt.getVarchar(6);
-              ((string[]) buf[6])[0] = rslt.getVarchar(7);
-              ((string[]) buf[7])[0] = rslt.getVarchar(8);
-              return;
-           case 1 :
-              ((long[]) buf[0])[0] = rslt.getLong(1);
-              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-              ((string[]) buf[2])[0] = rslt.getString(3, 40);
-              ((bool[]) buf[3])[0] = rslt.wasNull(3);
-              ((bool[]) buf[4])[0] = rslt.getBool(4);
-              ((string[]) buf[5])[0] = rslt.getString(5, 40);
-              ((bool[]) buf[6])[0] = rslt.wasNull(5);
-              ((long[]) buf[7])[0] = rslt.getLong(6);
-              return;
-           case 2 :
-              ((int[]) buf[0])[0] = rslt.getInt(1);
-              ((bool[]) buf[1])[0] = rslt.wasNull(1);
-              return;
-     }
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_sendnotification__default : DataStoreHelperBase, IDataStoreHelper
+{
+   protected Object[] conditional_P003K3( IGxContext context ,
+                                          string AV27WWPSubscriptionEntityRecordId ,
+                                          string A131WWPSubscriptionEntityRecordId ,
+                                          long A128WWPNotificationDefinitionId )
+   {
+      System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
+      string scmdbuf;
+      short[] GXv_int4 = new short[2];
+      Object[] GXv_Object5 = new Object[2];
+      scmdbuf = "SELECT WWPNotificationDefinitionId, WWPSubscriptionEntityRecordId, WWPUserExtendedId, WWPSubscriptionSubscribed, WWPSubscriptionRoleId, WWPSubscriptionId FROM WWP_Subscription";
+      AddWhere(sWhereString, "(WWPNotificationDefinitionId = :WWPNotificationDefinitionId)");
+      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV27WWPSubscriptionEntityRecordId)) )
+      {
+         AddWhere(sWhereString, "(WWPSubscriptionEntityRecordId = ( :AV27WWPSubscriptionEntityRecordId))");
+      }
+      else
+      {
+         GXv_int4[1] = 1;
+      }
+      scmdbuf += sWhereString;
+      scmdbuf += " ORDER BY WWPNotificationDefinitionId";
+      GXv_Object5[0] = scmdbuf;
+      GXv_Object5[1] = GXv_int4;
+      return GXv_Object5 ;
+   }
+
+   public override Object [] getDynamicStatement( int cursor ,
+                                                  IGxContext context ,
+                                                  Object [] dynConstraints )
+   {
+      switch ( cursor )
+      {
+            case 1 :
+                  return conditional_P003K3(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (long)dynConstraints[2] );
+      }
+      return base.getDynamicStatement(cursor, context, dynConstraints);
+   }
+
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new ForEachCursor(def[0])
+      ,new ForEachCursor(def[1])
+      ,new ForEachCursor(def[2])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmP003K2;
+       prmP003K2 = new Object[] {
+       new ParDef("AV33Udparg1",GXType.Int64,10,0) ,
+       new ParDef("AV23WWPNotificationDefinitionName",GXType.VarChar,100,0)
+       };
+       Object[] prmP003K5;
+       prmP003K5 = new Object[] {
+       new ParDef("AV20WWPNotificationDefinitionId",GXType.Int64,10,0) ,
+       new ParDef("AV8WWPUserExtendedId",GXType.Char,40,0)
+       };
+       Object[] prmP003K3;
+       prmP003K3 = new Object[] {
+       new ParDef("WWPNotificationDefinitionId",GXType.Int64,10,0) ,
+       new ParDef("AV27WWPSubscriptionEntityRecordId",GXType.VarChar,2000,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("P003K2", "SELECT WWPNotificationDefinitionId, WWPEntityId, WWPNotificationDefinitionName, WWPNotificationDefinitionIcon, WWPNotificationDefinitionTitle, WWPNotificationDefinitionShort, WWPNotificationDefinitionLongD, WWPNotificationDefinitionLink FROM WWP_NotificationDefinition WHERE (WWPEntityId = :AV33Udparg1) AND (WWPNotificationDefinitionName = ( :AV23WWPNotificationDefinitionName)) ORDER BY WWPEntityId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP003K2,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("P003K3", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP003K3,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("P003K5", "SELECT COALESCE( T1.GXC1, 0) AS GXC1 FROM (SELECT COUNT(*) AS GXC1 FROM (WWP_Subscription T2 INNER JOIN WWP_NotificationDefinition T3 ON T3.WWPNotificationDefinitionId = T2.WWPNotificationDefinitionId) WHERE (T2.WWPNotificationDefinitionId = :AV20WWPNotificationDefinitionId) AND (T2.WWPUserExtendedId = ( :AV8WWPUserExtendedId)) ) T1 ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP003K5,1, GxCacheFrequency.OFF ,true,false )
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+    switch ( cursor )
+    {
+          case 0 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((long[]) buf[1])[0] = rslt.getLong(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             return;
+          case 1 :
+             ((long[]) buf[0])[0] = rslt.getLong(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getString(3, 40);
+             ((bool[]) buf[3])[0] = rslt.wasNull(3);
+             ((bool[]) buf[4])[0] = rslt.getBool(4);
+             ((string[]) buf[5])[0] = rslt.getString(5, 40);
+             ((bool[]) buf[6])[0] = rslt.wasNull(5);
+             ((long[]) buf[7])[0] = rslt.getLong(6);
+             return;
+          case 2 :
+             ((int[]) buf[0])[0] = rslt.getInt(1);
+             ((bool[]) buf[1])[0] = rslt.wasNull(1);
+             return;
+    }
+ }
 
 }
 

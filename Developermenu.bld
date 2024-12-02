@@ -326,6 +326,7 @@ gx0040
 gx0030
 general\ui\masterprompt
 general\ui\masterunanimosidebar
+aprc_getlocationreceptioniststonotify
 aprc_createpermissions
 trn_pageloaddvcombo
 aprc_createlocationhomepage

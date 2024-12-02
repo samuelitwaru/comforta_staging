@@ -1025,18 +1025,17 @@ namespace GeneXus.Programs {
          while ( (pr_default.getStatus(0) != 101) )
          {
             A112WWPUserExtendedId = H009P2_A112WWPUserExtendedId[0];
-            A239WWPFormInstanceDate = H009P2_A239WWPFormInstanceDate[0];
             A214WWPFormInstanceId = H009P2_A214WWPFormInstanceId[0];
             A206WWPFormId = H009P2_A206WWPFormId[0];
             A208WWPFormReferenceName = H009P2_A208WWPFormReferenceName[0];
             A207WWPFormVersionNumber = H009P2_A207WWPFormVersionNumber[0];
             A209WWPFormTitle = H009P2_A209WWPFormTitle[0];
+            A239WWPFormInstanceDate = H009P2_A239WWPFormInstanceDate[0];
             A208WWPFormReferenceName = H009P2_A208WWPFormReferenceName[0];
             A209WWPFormTitle = H009P2_A209WWPFormTitle[0];
             AV10SDT_ResidentFilledFormsItem = new SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem(context);
             AV10SDT_ResidentFilledFormsItem.gxTpr_Formfilledby = A112WWPUserExtendedId;
-            GXt_dtime2 = DateTimeUtil.ResetTime( A239WWPFormInstanceDate ) ;
-            AV10SDT_ResidentFilledFormsItem.gxTpr_Formfilleddate = GXt_dtime2;
+            AV10SDT_ResidentFilledFormsItem.gxTpr_Formfilleddate = A239WWPFormInstanceDate;
             AV10SDT_ResidentFilledFormsItem.gxTpr_Forminstanceid = (short)(A214WWPFormInstanceId);
             AV10SDT_ResidentFilledFormsItem.gxTpr_Formid = A206WWPFormId;
             AV10SDT_ResidentFilledFormsItem.gxTpr_Formreferencename = A208WWPFormReferenceName;
@@ -1092,7 +1091,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112914315343", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024122455029", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1108,7 +1107,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_residentfilledforms.js", "?2024112914315343", false, true);
+         context.AddJavascriptSource("wp_residentfilledforms.js", "?2024122455030", false, true);
          /* End function include_jscripts */
       }
 
@@ -1662,18 +1661,17 @@ namespace GeneXus.Programs {
          GXt_char1 = "";
          Freestylegrid1Row = new GXWebRow();
          H009P2_A112WWPUserExtendedId = new string[] {""} ;
-         H009P2_A239WWPFormInstanceDate = new DateTime[] {DateTime.MinValue} ;
          H009P2_A214WWPFormInstanceId = new int[1] ;
          H009P2_A206WWPFormId = new short[1] ;
          H009P2_A208WWPFormReferenceName = new string[] {""} ;
          H009P2_A207WWPFormVersionNumber = new short[1] ;
          H009P2_A209WWPFormTitle = new string[] {""} ;
+         H009P2_A239WWPFormInstanceDate = new DateTime[] {DateTime.MinValue} ;
          A112WWPUserExtendedId = "";
-         A239WWPFormInstanceDate = DateTime.MinValue;
          A208WWPFormReferenceName = "";
          A209WWPFormTitle = "";
+         A239WWPFormInstanceDate = (DateTime)(DateTime.MinValue);
          AV10SDT_ResidentFilledFormsItem = new SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem(context);
-         GXt_dtime2 = (DateTime)(DateTime.MinValue);
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          subFreestylegrid1_Linesclass = "";
@@ -1686,7 +1684,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.wp_residentfilledforms__default(),
             new Object[][] {
                 new Object[] {
-               H009P2_A112WWPUserExtendedId, H009P2_A239WWPFormInstanceDate, H009P2_A214WWPFormInstanceId, H009P2_A206WWPFormId, H009P2_A208WWPFormReferenceName, H009P2_A207WWPFormVersionNumber, H009P2_A209WWPFormTitle
+               H009P2_A112WWPUserExtendedId, H009P2_A214WWPFormInstanceId, H009P2_A206WWPFormId, H009P2_A208WWPFormReferenceName, H009P2_A207WWPFormVersionNumber, H009P2_A209WWPFormTitle, H009P2_A239WWPFormInstanceDate
                }
             }
          );
@@ -1789,7 +1787,6 @@ namespace GeneXus.Programs {
       private string subFreestylegrid1_Header ;
       private string lblNotificationitemicon_Caption ;
       private string lblViewformresponse_Caption ;
-      private DateTime GXt_dtime2 ;
       private DateTime A239WWPFormInstanceDate ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
@@ -1816,12 +1813,12 @@ namespace GeneXus.Programs {
       private GXBaseCollection<SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem> AV9SDT_ResidentFilledForms ;
       private IDataStoreProvider pr_default ;
       private string[] H009P2_A112WWPUserExtendedId ;
-      private DateTime[] H009P2_A239WWPFormInstanceDate ;
       private int[] H009P2_A214WWPFormInstanceId ;
       private short[] H009P2_A206WWPFormId ;
       private string[] H009P2_A208WWPFormReferenceName ;
       private short[] H009P2_A207WWPFormVersionNumber ;
       private string[] H009P2_A209WWPFormTitle ;
+      private DateTime[] H009P2_A239WWPFormInstanceDate ;
       private SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem AV10SDT_ResidentFilledFormsItem ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
@@ -1847,7 +1844,7 @@ namespace GeneXus.Programs {
           new ParDef("AV8ResidentId",GXType.VarChar,100,60)
           };
           def= new CursorDef[] {
-              new CursorDef("H009P2", "SELECT T1.WWPUserExtendedId, T1.WWPFormInstanceDate, T1.WWPFormInstanceId, T1.WWPFormId, T2.WWPFormReferenceName, T1.WWPFormVersionNumber, T2.WWPFormTitle FROM (WWP_FormInstance T1 INNER JOIN WWP_Form T2 ON T2.WWPFormId = T1.WWPFormId AND T2.WWPFormVersionNumber = T1.WWPFormVersionNumber) WHERE T1.WWPUserExtendedId = ( :AV8ResidentId) ORDER BY T1.WWPUserExtendedId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH009P2,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("H009P2", "SELECT T1.WWPUserExtendedId, T1.WWPFormInstanceId, T1.WWPFormId, T2.WWPFormReferenceName, T1.WWPFormVersionNumber, T2.WWPFormTitle, T1.WWPFormInstanceDate FROM (WWP_FormInstance T1 INNER JOIN WWP_Form T2 ON T2.WWPFormId = T1.WWPFormId AND T2.WWPFormVersionNumber = T1.WWPFormVersionNumber) WHERE T1.WWPUserExtendedId = ( :AV8ResidentId) ORDER BY T1.WWPFormInstanceDate DESC ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH009P2,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
@@ -1860,12 +1857,12 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((string[]) buf[0])[0] = rslt.getString(1, 40);
-                ((DateTime[]) buf[1])[0] = rslt.getGXDate(2);
-                ((int[]) buf[2])[0] = rslt.getInt(3);
-                ((short[]) buf[3])[0] = rslt.getShort(4);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
-                ((short[]) buf[5])[0] = rslt.getShort(6);
-                ((string[]) buf[6])[0] = rslt.getVarchar(7);
+                ((int[]) buf[1])[0] = rslt.getInt(2);
+                ((short[]) buf[2])[0] = rslt.getShort(3);
+                ((string[]) buf[3])[0] = rslt.getVarchar(4);
+                ((short[]) buf[4])[0] = rslt.getShort(5);
+                ((string[]) buf[5])[0] = rslt.getVarchar(6);
+                ((DateTime[]) buf[6])[0] = rslt.getGXDateTime(7);
                 return;
        }
     }

@@ -780,12 +780,13 @@ namespace GeneXus.Programs {
          /* Start Routine */
          returnInSub = false;
          AV12WWPEntityName = context.GetMessage( "Discussion", "");
+         AV19Description = context.GetMessage( "discussion", "");
          GXt_char1 = AV9ResidentId;
          new prc_getuseridfromaccesstoken(context ).execute(  AV18AccessToken, out  GXt_char1) ;
          AV9ResidentId = GXt_char1;
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV9ResidentId)) )
          {
-            AV11WebSession.Set(context.GetMessage( "DiscussionResidentId", ""), AV9ResidentId);
+            AV11WebSession.Set(context.GetMessage( "WebViewResidentId", ""), AV9ResidentId);
             AV16WWP_UserExtended.Load(AV9ResidentId);
             if ( AV16WWP_UserExtended.Success() )
             {
@@ -795,6 +796,7 @@ namespace GeneXus.Programs {
                   AV12WWPEntityName = context.GetMessage( "WWP_DynamicForm", "");
                   AV15WWPFormReferenceName = AV14WWP_FormInstance.gxTpr_Wwpformreferencename;
                   AssignAttri("", false, "AV15WWPFormReferenceName", AV15WWPFormReferenceName);
+                  AV19Description = context.GetMessage( "A filled ", "") + AV14WWP_FormInstance.gxTpr_Wwpformtitle;
                }
                tblSpacetable2_Height = 30;
                AssignProp("", false, tblSpacetable2_Internalname, "Height", StringUtil.LTrimStr( (decimal)(tblSpacetable2_Height), 9, 0), true);
@@ -818,8 +820,8 @@ namespace GeneXus.Programs {
                if ( StringUtil.Len( WebComp_Discussioncomponent_Component) != 0 )
                {
                   WebComp_Discussioncomponent.setjustcreated();
-                  WebComp_Discussioncomponent.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV12WWPEntityName,StringUtil.Trim( AV13DiscussionRecordId),context.GetMessage( "Discussion", ""),formatLink("workwithplus.dynamicforms.wwp_dynamicform.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV15WWPFormReferenceName)),UrlEncode(StringUtil.RTrim(StringUtil.Trim( AV13DiscussionRecordId))),UrlEncode(StringUtil.RTrim("DSP")),UrlEncode(StringUtil.BoolToStr(true))}, new string[] {"WWPFormReferenceName","WWPFormInstanceId","WWPDynamicFormMode","isLinkingDiscussion"}) });
-                  WebComp_Discussioncomponent.componentbind(new Object[] {(string)"",(string)""+""+"",(string)""+""+"",(string)""+"",(string)"",(string)""+""+"",(string)"",(string)""+""});
+                  WebComp_Discussioncomponent.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV12WWPEntityName,StringUtil.Trim( AV13DiscussionRecordId),(string)AV19Description,formatLink("workwithplus.dynamicforms.wwp_dynamicform.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV15WWPFormReferenceName)),UrlEncode(StringUtil.RTrim(StringUtil.Trim( AV13DiscussionRecordId))),UrlEncode(StringUtil.RTrim("DSP")),UrlEncode(StringUtil.BoolToStr(true))}, new string[] {"WWPFormReferenceName","WWPFormInstanceId","WWPDynamicFormMode","isLinkingDiscussion"}) });
+                  WebComp_Discussioncomponent.componentbind(new Object[] {(string)"",(string)""+""+"",(string)"",(string)""+"",(string)"",(string)""+""+"",(string)"",(string)""+""});
                }
             }
             else
@@ -948,7 +950,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411211546689", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241224545955", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -964,7 +966,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_residentdiscussion.js", "?202411211546689", false, true);
+         context.AddJavascriptSource("wp_residentdiscussion.js", "?20241224545955", false, true);
          /* End function include_jscripts */
       }
 
@@ -1055,6 +1057,7 @@ namespace GeneXus.Programs {
          EvtRowId = "";
          sEvtType = "";
          AV12WWPEntityName = "";
+         AV19Description = "";
          AV9ResidentId = "";
          GXt_char1 = "";
          AV11WebSession = context.GetSession();
@@ -1129,6 +1132,7 @@ namespace GeneXus.Programs {
       private string AV13DiscussionRecordId ;
       private string wcpOAV13DiscussionRecordId ;
       private string AV12WWPEntityName ;
+      private string AV19Description ;
       private string AV9ResidentId ;
       private string AV15WWPFormReferenceName ;
       private GXWebComponent WebComp_Discussioncomponent ;

@@ -486,14 +486,14 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPFormInstanceDate_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPFormInstanceDate_Internalname, context.GetMessage( "Date", ""), "col-sm-4 AttributeDateLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPFormInstanceDate_Internalname, context.GetMessage( "Date", ""), "col-sm-4 AttributeDateTimeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
-         AssignAttri(sPrefix, false, "A239WWPFormInstanceDate", context.localUtil.Format(A239WWPFormInstanceDate, "99/99/99"));
+         AssignAttri(sPrefix, false, "A239WWPFormInstanceDate", context.localUtil.TToC( A239WWPFormInstanceDate, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 26,'" + sPrefix + "',false,'',0)\"";
          context.WriteHtmlText( "<div id=\""+edtWWPFormInstanceDate_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-         GxWebStd.gx_single_line_edit( context, edtWWPFormInstanceDate_Internalname, context.localUtil.Format(A239WWPFormInstanceDate, "99/99/99"), context.localUtil.Format( A239WWPFormInstanceDate, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,26);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPFormInstanceDate_Jsonclick, 0, "AttributeDate", "", "", "", "", 1, edtWWPFormInstanceDate_Enabled, 0, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
+         GxWebStd.gx_single_line_edit( context, edtWWPFormInstanceDate_Internalname, context.localUtil.TToC( A239WWPFormInstanceDate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( A239WWPFormInstanceDate, "99/99/99 99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,26);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPFormInstanceDate_Jsonclick, 0, "AttributeDateTime", "", "", "", "", 1, edtWWPFormInstanceDate_Enabled, 0, "text", "", 17, "chr", 1, "row", 17, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
          GxWebStd.gx_bitmap( context, edtWWPFormInstanceDate_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtWWPFormInstanceDate_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WorkWithPlus/DynamicForms/WWP_FormInstance.htm");
          context.WriteHtmlTextNl( "</div>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -804,7 +804,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                /* Read saved SDTs. */
                /* Read saved values. */
                Z214WWPFormInstanceId = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"Z214WWPFormInstanceId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-               Z239WWPFormInstanceDate = context.localUtil.CToD( cgiGet( sPrefix+"Z239WWPFormInstanceDate"), 0);
+               Z239WWPFormInstanceDate = context.localUtil.CToT( cgiGet( sPrefix+"Z239WWPFormInstanceDate"), 0);
                Z206WWPFormId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"Z206WWPFormId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Z207WWPFormVersionNumber = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"Z207WWPFormVersionNumber"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Z112WWPUserExtendedId = cgiGet( sPrefix+"Z112WWPUserExtendedId");
@@ -823,7 +823,6 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                AV12Insert_WWPFormVersionNumber = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vINSERT_WWPFORMVERSIONNUMBER"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AV16Insert_WWPUserExtendedId = cgiGet( sPrefix+"vINSERT_WWPUSEREXTENDEDID");
                A112WWPUserExtendedId = cgiGet( sPrefix+"WWPUSEREXTENDEDID");
-               Gx_date = context.localUtil.CToD( cgiGet( sPrefix+"vTODAY"), 0);
                Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"vGXBSCREEN"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                A243WWPFormInstanceRecordKey = cgiGet( sPrefix+"WWPFORMINSTANCERECORDKEY");
                n243WWPFormInstanceRecordKey = false;
@@ -832,7 +831,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                A216WWPFormResume = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMRESUME"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                A233WWPFormValidations = cgiGet( sPrefix+"WWPFORMVALIDATIONS");
                A113WWPUserExtendedFullName = cgiGet( sPrefix+"WWPUSEREXTENDEDFULLNAME");
-               AV22Pgmname = cgiGet( sPrefix+"vPGMNAME");
+               AV21Pgmname = cgiGet( sPrefix+"vPGMNAME");
                A217WWPFormElementType = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTTYPE"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                A236WWPFormElementMetadata = cgiGet( sPrefix+"WWPFORMELEMENTMETADATA");
                A237WWPFormElementCaption = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WWPFORMELEMENTCAPTION"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
@@ -840,20 +839,20 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                /* Read variables values. */
                A214WWPFormInstanceId = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPFormInstanceId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                AssignAttri(sPrefix, false, "A214WWPFormInstanceId", StringUtil.LTrimStr( (decimal)(A214WWPFormInstanceId), 6, 0));
-               if ( context.localUtil.VCDate( cgiGet( edtWWPFormInstanceDate_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")))) == 0 )
+               if ( context.localUtil.VCDateTime( cgiGet( edtWWPFormInstanceDate_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt"))), (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0))) == 0 )
                {
-                  GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {context.GetMessage( "Instance Date", "")}), 1, "WWPFORMINSTANCEDATE");
+                  GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {context.GetMessage( "Instance Date", "")}), 1, "WWPFORMINSTANCEDATE");
                   AnyError = 1;
                   GX_FocusControl = edtWWPFormInstanceDate_Internalname;
                   AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
                   wbErr = true;
-                  A239WWPFormInstanceDate = DateTime.MinValue;
-                  AssignAttri(sPrefix, false, "A239WWPFormInstanceDate", context.localUtil.Format(A239WWPFormInstanceDate, "99/99/99"));
+                  A239WWPFormInstanceDate = (DateTime)(DateTime.MinValue);
+                  AssignAttri(sPrefix, false, "A239WWPFormInstanceDate", context.localUtil.TToC( A239WWPFormInstanceDate, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
                }
                else
                {
-                  A239WWPFormInstanceDate = context.localUtil.CToD( cgiGet( edtWWPFormInstanceDate_Internalname), DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
-                  AssignAttri(sPrefix, false, "A239WWPFormInstanceDate", context.localUtil.Format(A239WWPFormInstanceDate, "99/99/99"));
+                  A239WWPFormInstanceDate = context.localUtil.CToT( cgiGet( edtWWPFormInstanceDate_Internalname));
+                  AssignAttri(sPrefix, false, "A239WWPFormInstanceDate", context.localUtil.TToC( A239WWPFormInstanceDate, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
                }
                if ( ( ( context.localUtil.CToN( cgiGet( edtWWPFormId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtWWPFormId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999 )) ) )
                {
@@ -1300,13 +1299,13 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          AssignProp(sPrefix, false, divLayoutmaintable_Internalname, "Class", divLayoutmaintable_Class, true);
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV8WWPContext) ;
          AV9TrnContext.FromXml(AV10WebSession.Get("TrnContext"), null, "", "");
-         if ( ( StringUtil.StrCmp(AV9TrnContext.gxTpr_Transactionname, AV22Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         if ( ( StringUtil.StrCmp(AV9TrnContext.gxTpr_Transactionname, AV21Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
          {
-            AV23GXV1 = 1;
-            AssignAttri(sPrefix, false, "AV23GXV1", StringUtil.LTrimStr( (decimal)(AV23GXV1), 8, 0));
-            while ( AV23GXV1 <= AV9TrnContext.gxTpr_Attributes.Count )
+            AV22GXV1 = 1;
+            AssignAttri(sPrefix, false, "AV22GXV1", StringUtil.LTrimStr( (decimal)(AV22GXV1), 8, 0));
+            while ( AV22GXV1 <= AV9TrnContext.gxTpr_Attributes.Count )
             {
-               AV13TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV9TrnContext.gxTpr_Attributes.Item(AV23GXV1));
+               AV13TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV9TrnContext.gxTpr_Attributes.Item(AV22GXV1));
                if ( StringUtil.StrCmp(AV13TrnContextAtt.gxTpr_Attributename, "WWPFormId") == 0 )
                {
                   AV11Insert_WWPFormId = (short)(Math.Round(NumberUtil.Val( AV13TrnContextAtt.gxTpr_Attributevalue, "."), 18, MidpointRounding.ToEven));
@@ -1322,8 +1321,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                   AV16Insert_WWPUserExtendedId = AV13TrnContextAtt.gxTpr_Attributevalue;
                   AssignAttri(sPrefix, false, "AV16Insert_WWPUserExtendedId", AV16Insert_WWPUserExtendedId);
                }
-               AV23GXV1 = (int)(AV23GXV1+1);
-               AssignAttri(sPrefix, false, "AV23GXV1", StringUtil.LTrimStr( (decimal)(AV23GXV1), 8, 0));
+               AV22GXV1 = (int)(AV22GXV1+1);
+               AssignAttri(sPrefix, false, "AV22GXV1", StringUtil.LTrimStr( (decimal)(AV22GXV1), 8, 0));
             }
          }
       }
@@ -1379,12 +1378,10 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          edtWWPFormInstanceId_Enabled = 0;
          AssignProp(sPrefix, false, edtWWPFormInstanceId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceId_Enabled), 5, 0), true);
-         AV22Pgmname = "WorkWithPlus.DynamicForms.WWP_FormInstance";
-         AssignAttri(sPrefix, false, "AV22Pgmname", AV22Pgmname);
+         AV21Pgmname = "WorkWithPlus.DynamicForms.WWP_FormInstance";
+         AssignAttri(sPrefix, false, "AV21Pgmname", AV21Pgmname);
          Gx_BScreen = 0;
          AssignAttri(sPrefix, false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
-         Gx_date = DateTimeUtil.Today( context);
-         AssignAttri(sPrefix, false, "Gx_date", context.localUtil.Format(Gx_date, "99/99/99"));
          edtWWPFormInstanceId_Enabled = 0;
          AssignProp(sPrefix, false, edtWWPFormInstanceId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtWWPFormInstanceId_Enabled), 5, 0), true);
          bttBtntrn_delete_Enabled = 0;
@@ -1445,8 +1442,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          }
          if ( IsIns( )  && (DateTime.MinValue==A239WWPFormInstanceDate) && ( Gx_BScreen == 0 ) )
          {
-            A239WWPFormInstanceDate = Gx_date;
-            AssignAttri(sPrefix, false, "A239WWPFormInstanceDate", context.localUtil.Format(A239WWPFormInstanceDate, "99/99/99"));
+            A239WWPFormInstanceDate = DateTimeUtil.Now( context);
+            AssignAttri(sPrefix, false, "A239WWPFormInstanceDate", context.localUtil.TToC( A239WWPFormInstanceDate, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          }
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ( Gx_BScreen == 0 ) )
          {
@@ -1473,7 +1470,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          {
             RcdFound42 = 1;
             A239WWPFormInstanceDate = T000U10_A239WWPFormInstanceDate[0];
-            AssignAttri(sPrefix, false, "A239WWPFormInstanceDate", context.localUtil.Format(A239WWPFormInstanceDate, "99/99/99"));
+            AssignAttri(sPrefix, false, "A239WWPFormInstanceDate", context.localUtil.TToC( A239WWPFormInstanceDate, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A208WWPFormReferenceName = T000U10_A208WWPFormReferenceName[0];
             A209WWPFormTitle = T000U10_A209WWPFormTitle[0];
             AssignAttri(sPrefix, false, "A209WWPFormTitle", A209WWPFormTitle);
@@ -1617,7 +1614,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             A214WWPFormInstanceId = T000U7_A214WWPFormInstanceId[0];
             AssignAttri(sPrefix, false, "A214WWPFormInstanceId", StringUtil.LTrimStr( (decimal)(A214WWPFormInstanceId), 6, 0));
             A239WWPFormInstanceDate = T000U7_A239WWPFormInstanceDate[0];
-            AssignAttri(sPrefix, false, "A239WWPFormInstanceDate", context.localUtil.Format(A239WWPFormInstanceDate, "99/99/99"));
+            AssignAttri(sPrefix, false, "A239WWPFormInstanceDate", context.localUtil.TToC( A239WWPFormInstanceDate, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             A243WWPFormInstanceRecordKey = T000U7_A243WWPFormInstanceRecordKey[0];
             n243WWPFormInstanceRecordKey = T000U7_n243WWPFormInstanceRecordKey[0];
             A206WWPFormId = T000U7_A206WWPFormId[0];
@@ -1833,9 +1830,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                AnyError = 1;
                return  ;
             }
-            if ( (pr_default.getStatus(4) == 101) || ( DateTimeUtil.ResetTime ( Z239WWPFormInstanceDate ) != DateTimeUtil.ResetTime ( T000U6_A239WWPFormInstanceDate[0] ) ) || ( Z206WWPFormId != T000U6_A206WWPFormId[0] ) || ( Z207WWPFormVersionNumber != T000U6_A207WWPFormVersionNumber[0] ) || ( StringUtil.StrCmp(Z112WWPUserExtendedId, T000U6_A112WWPUserExtendedId[0]) != 0 ) )
+            if ( (pr_default.getStatus(4) == 101) || ( Z239WWPFormInstanceDate != T000U6_A239WWPFormInstanceDate[0] ) || ( Z206WWPFormId != T000U6_A206WWPFormId[0] ) || ( Z207WWPFormVersionNumber != T000U6_A207WWPFormVersionNumber[0] ) || ( StringUtil.StrCmp(Z112WWPUserExtendedId, T000U6_A112WWPUserExtendedId[0]) != 0 ) )
             {
-               if ( DateTimeUtil.ResetTime ( Z239WWPFormInstanceDate ) != DateTimeUtil.ResetTime ( T000U6_A239WWPFormInstanceDate[0] ) )
+               if ( Z239WWPFormInstanceDate != T000U6_A239WWPFormInstanceDate[0] )
                {
                   GXUtil.WriteLog("workwithplus.dynamicforms.wwp_forminstance:[seudo value changed for attri]"+"WWPFormInstanceDate");
                   GXUtil.WriteLogRaw("Old: ",Z239WWPFormInstanceDate);
@@ -3532,7 +3529,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
          GxWebStd.gx_hidden_field( context, sPrefix+"Z214WWPFormInstanceId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z214WWPFormInstanceId), 6, 0, context.GetLanguageProperty( "decimal_point"), "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"Z239WWPFormInstanceDate", context.localUtil.DToC( Z239WWPFormInstanceDate, 0, "/"));
+         GxWebStd.gx_hidden_field( context, sPrefix+"Z239WWPFormInstanceDate", context.localUtil.TToC( Z239WWPFormInstanceDate, 10, 8, 0, 0, "/", ":", " "));
          GxWebStd.gx_hidden_field( context, sPrefix+"Z206WWPFormId", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z206WWPFormId), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"Z207WWPFormVersionNumber", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z207WWPFormVersionNumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"Z112WWPUserExtendedId", StringUtil.RTrim( Z112WWPUserExtendedId));
@@ -3551,14 +3548,13 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          GxWebStd.gx_hidden_field( context, sPrefix+"vINSERT_WWPFORMVERSIONNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV12Insert_WWPFormVersionNumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"vINSERT_WWPUSEREXTENDEDID", StringUtil.RTrim( AV16Insert_WWPUserExtendedId));
          GxWebStd.gx_hidden_field( context, sPrefix+"WWPUSEREXTENDEDID", StringUtil.RTrim( A112WWPUserExtendedId));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vTODAY", context.localUtil.DToC( Gx_date, 0, "/"));
          GxWebStd.gx_hidden_field( context, sPrefix+"vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMINSTANCERECORDKEY", A243WWPFormInstanceRecordKey);
          GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMREFERENCENAME", A208WWPFormReferenceName);
          GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMRESUME", StringUtil.LTrim( StringUtil.NToC( (decimal)(A216WWPFormResume), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMVALIDATIONS", A233WWPFormValidations);
          GxWebStd.gx_hidden_field( context, sPrefix+"WWPUSEREXTENDEDFULLNAME", A113WWPUserExtendedFullName);
-         GxWebStd.gx_hidden_field( context, sPrefix+"vPGMNAME", StringUtil.RTrim( AV22Pgmname));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vPGMNAME", StringUtil.RTrim( AV21Pgmname));
          GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTTYPE", StringUtil.LTrim( StringUtil.NToC( (decimal)(A217WWPFormElementType), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTMETADATA", A236WWPFormElementMetadata);
          GxWebStd.gx_hidden_field( context, sPrefix+"WWPFORMELEMENTCAPTION", StringUtil.LTrim( StringUtil.NToC( (decimal)(A237WWPFormElementCaption), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
@@ -3643,9 +3639,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          A243WWPFormInstanceRecordKey = "";
          n243WWPFormInstanceRecordKey = false;
          AssignAttri(sPrefix, false, "A243WWPFormInstanceRecordKey", A243WWPFormInstanceRecordKey);
-         A239WWPFormInstanceDate = Gx_date;
-         AssignAttri(sPrefix, false, "A239WWPFormInstanceDate", context.localUtil.Format(A239WWPFormInstanceDate, "99/99/99"));
-         Z239WWPFormInstanceDate = DateTime.MinValue;
+         A239WWPFormInstanceDate = DateTimeUtil.Now( context);
+         AssignAttri(sPrefix, false, "A239WWPFormInstanceDate", context.localUtil.TToC( A239WWPFormInstanceDate, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+         Z239WWPFormInstanceDate = (DateTime)(DateTime.MinValue);
          Z206WWPFormId = 0;
          Z207WWPFormVersionNumber = 0;
          Z112WWPUserExtendedId = "";
@@ -3661,7 +3657,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       protected void StandaloneModalInsert( )
       {
          A239WWPFormInstanceDate = i239WWPFormInstanceDate;
-         AssignAttri(sPrefix, false, "A239WWPFormInstanceDate", context.localUtil.Format(A239WWPFormInstanceDate, "99/99/99"));
+         AssignAttri(sPrefix, false, "A239WWPFormInstanceDate", context.localUtil.TToC( A239WWPFormInstanceDate, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
       }
 
       protected void InitializeNonKey0U43( )
@@ -3916,7 +3912,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411261512593", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241224542577", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3932,7 +3928,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_forminstance.js", "?202411261512593", false, true);
+         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_forminstance.js", "?20241224542578", false, true);
          /* End function include_jscripts */
       }
 
@@ -4332,7 +4328,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          sPrefix = "";
          wcpOGx_mode = "";
-         Z239WWPFormInstanceDate = DateTime.MinValue;
+         Z239WWPFormInstanceDate = (DateTime)(DateTime.MinValue);
          Z112WWPUserExtendedId = "";
          N112WWPUserExtendedId = "";
          Z220WWPFormInstanceElemDate = DateTime.MinValue;
@@ -4350,7 +4346,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          ClassString = "";
          StyleString = "";
          TempTags = "";
-         A239WWPFormInstanceDate = DateTime.MinValue;
+         A239WWPFormInstanceDate = (DateTime)(DateTime.MinValue);
          A209WWPFormTitle = "";
          bttBtntrn_enter_Jsonclick = "";
          bttBtntrn_cancel_Jsonclick = "";
@@ -4359,12 +4355,11 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          sMode43 = "";
          sStyleString = "";
          AV16Insert_WWPUserExtendedId = "";
-         Gx_date = DateTime.MinValue;
          A243WWPFormInstanceRecordKey = "";
          A208WWPFormReferenceName = "";
          A233WWPFormValidations = "";
          A113WWPUserExtendedFullName = "";
-         AV22Pgmname = "";
+         AV21Pgmname = "";
          A236WWPFormElementMetadata = "";
          forbiddenHiddens = new GXProperties();
          hsh = "";
@@ -4554,7 +4549,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          FormProcess = "";
          bodyStyle = "";
          GXEncryptionTmp = "";
-         i239WWPFormInstanceDate = DateTime.MinValue;
+         i239WWPFormInstanceDate = (DateTime)(DateTime.MinValue);
          sCtrlGx_mode = "";
          sCtrlAV7WWPFormInstanceId = "";
          BackMsgLst = new msglist();
@@ -4666,11 +4661,10 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                }
             }
          );
-         AV22Pgmname = "WorkWithPlus.DynamicForms.WWP_FormInstance";
-         Z239WWPFormInstanceDate = DateTime.MinValue;
-         A239WWPFormInstanceDate = DateTime.MinValue;
-         i239WWPFormInstanceDate = DateTime.MinValue;
-         Gx_date = DateTimeUtil.Today( context);
+         AV21Pgmname = "WorkWithPlus.DynamicForms.WWP_FormInstance";
+         Z239WWPFormInstanceDate = DateTimeUtil.Now( context);
+         A239WWPFormInstanceDate = DateTimeUtil.Now( context);
+         i239WWPFormInstanceDate = DateTimeUtil.Now( context);
       }
 
       private short Z206WWPFormId ;
@@ -4750,7 +4744,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private int edtWWPFormInstanceElemBlobFileNam_Enabled ;
       private int edtWWPFormInstanceElemBlobFileTyp_Enabled ;
       private int fRowAdded ;
-      private int AV23GXV1 ;
+      private int AV22GXV1 ;
       private int subGridlevel_element_Backcolor ;
       private int subGridlevel_element_Allbackcolor ;
       private int defedtWWPFormInstanceElementId_Enabled ;
@@ -4823,7 +4817,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string sStyleString ;
       private string subGridlevel_element_Internalname ;
       private string AV16Insert_WWPUserExtendedId ;
-      private string AV22Pgmname ;
+      private string AV21Pgmname ;
       private string hsh ;
       private string sMode42 ;
       private string sEvt ;
@@ -4862,14 +4856,13 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string sCtrlGx_mode ;
       private string sCtrlAV7WWPFormInstanceId ;
       private string subGridlevel_element_Header ;
-      private DateTime Z227WWPFormInstanceElemDateTime ;
-      private DateTime A227WWPFormInstanceElemDateTime ;
       private DateTime Z239WWPFormInstanceDate ;
-      private DateTime Z220WWPFormInstanceElemDate ;
+      private DateTime Z227WWPFormInstanceElemDateTime ;
       private DateTime A239WWPFormInstanceDate ;
-      private DateTime Gx_date ;
-      private DateTime A220WWPFormInstanceElemDate ;
+      private DateTime A227WWPFormInstanceElemDateTime ;
       private DateTime i239WWPFormInstanceDate ;
+      private DateTime Z220WWPFormInstanceElemDate ;
+      private DateTime A220WWPFormInstanceElemDate ;
       private bool Z226WWPFormInstanceElemBoolean ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
@@ -5254,7 +5247,7 @@ public class wwp_forminstance__default : DataStoreHelperBase, IDataStoreHelper
        };
        Object[] prmT000U16;
        prmT000U16 = new Object[] {
-       new ParDef("WWPFormInstanceDate",GXType.Date,8,0) ,
+       new ParDef("WWPFormInstanceDate",GXType.DateTime,8,5) ,
        new ParDef("WWPFormInstanceRecordKey",GXType.LongVarChar,2097152,0){Nullable=true} ,
        new ParDef("WWPFormId",GXType.Int16,4,0) ,
        new ParDef("WWPFormVersionNumber",GXType.Int16,4,0) ,
@@ -5265,7 +5258,7 @@ public class wwp_forminstance__default : DataStoreHelperBase, IDataStoreHelper
        };
        Object[] prmT000U18;
        prmT000U18 = new Object[] {
-       new ParDef("WWPFormInstanceDate",GXType.Date,8,0) ,
+       new ParDef("WWPFormInstanceDate",GXType.DateTime,8,5) ,
        new ParDef("WWPFormInstanceRecordKey",GXType.LongVarChar,2097152,0){Nullable=true} ,
        new ParDef("WWPFormId",GXType.Int16,4,0) ,
        new ParDef("WWPFormVersionNumber",GXType.Int16,4,0) ,
@@ -5468,7 +5461,7 @@ public class wwp_forminstance__default : DataStoreHelperBase, IDataStoreHelper
              return;
           case 4 :
              ((int[]) buf[0])[0] = rslt.getInt(1);
-             ((DateTime[]) buf[1])[0] = rslt.getGXDate(2);
+             ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
              ((bool[]) buf[3])[0] = rslt.wasNull(3);
              ((short[]) buf[4])[0] = rslt.getShort(4);
@@ -5477,7 +5470,7 @@ public class wwp_forminstance__default : DataStoreHelperBase, IDataStoreHelper
              return;
           case 5 :
              ((int[]) buf[0])[0] = rslt.getInt(1);
-             ((DateTime[]) buf[1])[0] = rslt.getGXDate(2);
+             ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
              ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
              ((bool[]) buf[3])[0] = rslt.wasNull(3);
              ((short[]) buf[4])[0] = rslt.getShort(4);
@@ -5495,7 +5488,7 @@ public class wwp_forminstance__default : DataStoreHelperBase, IDataStoreHelper
              return;
           case 8 :
              ((int[]) buf[0])[0] = rslt.getInt(1);
-             ((DateTime[]) buf[1])[0] = rslt.getGXDate(2);
+             ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
              ((string[]) buf[3])[0] = rslt.getVarchar(4);
              ((string[]) buf[4])[0] = rslt.getVarchar(5);

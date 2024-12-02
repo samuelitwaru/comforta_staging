@@ -463,7 +463,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, divTablemain_Internalname, 1, divTablemain_Width, "px", 0, "px", "TableMain", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, divTablemain_Internalname, 1, 0, "px", 0, "px", "TableMain", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
@@ -1186,8 +1186,6 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       {
          /* Start Routine */
          returnInSub = false;
-         divTablemain_Width = 760;
-         AssignProp("", false, divTablemain_Internalname, "Width", StringUtil.LTrimStr( (decimal)(divTablemain_Width), 9, 0), true);
          edtWWPNotificationId_Visible = 0;
          AssignProp("", false, edtWWPNotificationId_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtWWPNotificationId_Visible), 5, 0), !bGXsfl_24_Refreshing);
          edtWWPNotificationLink_Visible = 0;
@@ -1437,7 +1435,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411211544348", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241224545225", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1455,7 +1453,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wwpbaseobjects/notifications/common/wwp_visualizeallnotifications.js", "?202411211544348", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/notifications/common/wwp_visualizeallnotifications.js", "?20241224545226", false, true);
          }
          /* End function include_jscripts */
       }
@@ -1989,7 +1987,6 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          subGrid_Visible = 1;
          lblNonotifications_Visible = 1;
          bttBtnmanagesubscriptions_Visible = 1;
-         divTablemain_Width = 0;
          Form.Headerrawhtml = "";
          Form.Background = "";
          Form.Textcolor = 0;
@@ -2145,7 +2142,6 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       private int nRC_GXsfl_24 ;
       private int subGrid_Rows ;
       private int nGXsfl_24_idx=1 ;
-      private int divTablemain_Width ;
       private int bttBtnmanagesubscriptions_Visible ;
       private int lblNonotifications_Visible ;
       private int subGrid_Visible ;

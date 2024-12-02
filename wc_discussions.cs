@@ -1592,7 +1592,7 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
-         AV29DiscussionResidentId = AV19WebSession.Get(context.GetMessage( "DiscussionResidentId", ""));
+         AV29DiscussionResidentId = AV19WebSession.Get(context.GetMessage( "WebViewResidentId", ""));
          AssignAttri(sPrefix, false, "AV29DiscussionResidentId", AV29DiscussionResidentId);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vDISCUSSIONRESIDENTID", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV29DiscussionResidentId, "")), context));
          AV28GAMSession = new GeneXus.Programs.genexussecurity.SdtGAMSession(context).get(out  AV27GAMErrors);
@@ -1827,7 +1827,6 @@ namespace GeneXus.Programs {
                AV31NotificationInfo.gxTpr_Id = "1";
                AV31NotificationInfo.gxTpr_Message = AV13Message;
                AV32socket.broadcast( AV31NotificationInfo);
-               new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  context.GetMessage( "GeneralDiscussion", ""),  context.GetMessage( "Discussion", ""),  AV22WWPDiscussionMessageEntityRecordId,  "",  context.GetMessage( "New Discussion Message", ""),  context.GetMessage( "A new message has been sent to the discussion", ""),  context.GetMessage( "A new message has been sent to the discussion", ""),  AV25WWPNotificationLink,  "",  "",  true) ;
                if ( new GeneXus.Programs.wwpbaseobjects.discussions.wwp_createandnotifydiscussionmessage(context).executeUdp(  AV6WWPEntityId,  0,  AV22WWPDiscussionMessageEntityRecordId,  AV13Message,  Ucmentions_Selecteditemsjson,  StringUtil.Str( (decimal)(AV5WWPDiscussionMessage.gxTpr_Wwpdiscussionmessageid), 10, 0),  context.GetMessage( "WWP_Notifications_NewDiscussionThread", ""),  AV26WWPSubscriptionEntityRecordDescription,  AV25WWPNotificationLink) )
                {
                   AV13Message = "";
@@ -2243,7 +2242,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115423716", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241224543110", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2259,7 +2258,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_discussions.js", "?2024112115423719", false, true);
+         context.AddJavascriptSource("wc_discussions.js", "?20241224543113", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Suggest/SuggestRender.js", "", false, true);
          /* End function include_jscripts */

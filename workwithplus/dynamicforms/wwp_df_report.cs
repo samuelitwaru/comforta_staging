@@ -132,7 +132,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             AV90WWPFormVersionNumber = AV10WWPFormInstance.gxTpr_Wwpformversionnumber;
             AV93DynamicFormDescription = AV10WWPFormInstance.gxTpr_Wwpformtitle;
             AV92DynamicFormNumber = "#" + StringUtil.Trim( StringUtil.Str( (decimal)(AV10WWPFormInstance.gxTpr_Wwpforminstanceid), 6, 0));
-            AV95Date = StringUtil.Trim( context.localUtil.Format( AV10WWPFormInstance.gxTpr_Wwpforminstancedate, "99/99/99"));
+            AV95Date = StringUtil.Trim( context.localUtil.Format( AV10WWPFormInstance.gxTpr_Wwpforminstancedate, "99/99/99 99:99"));
             AV94User = AV10WWPFormInstance.gxTpr_Wwpuserextendedfullname;
             H4X0( false, 108) ;
             getPrinter().GxDrawRect(0, Gx_line+0, 552, Gx_line+108, 1, 0, 0, 0, 1, 34, 47, 84, 1, 1, 1, 1, 0, 0, 0, 0) ;

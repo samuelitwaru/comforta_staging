@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241201074311"
+  version: "20241202015611"
 servers:
   - url: https://staging.comforta.yukon.software//rest
 paths:
@@ -2466,7 +2466,7 @@ components:
         WWPFormInstanceDate:
           description: "Instance Date"
           type: "string"
-          format: "date"
+          format: "date-time"
         WWPFormId:
           description: "WWPForm Id"
           type: "integer"

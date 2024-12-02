@@ -1845,6 +1845,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             {
                if ( new GeneXus.Programs.wwpbaseobjects.discussions.wwp_createandnotifydiscussionmessage(context).executeUdp(  AV8WWPEntityId,  0,  AV24WWPDiscussionMessageEntityRecordId,  AV15Message,  Ucmentions_Selecteditemsjson,  StringUtil.Str( (decimal)(AV7WWPDiscussionMessage.gxTpr_Wwpdiscussionmessageid), 10, 0),  context.GetMessage( "WWP_Notifications_NewDiscussionThread", ""),  AV28WWPSubscriptionEntityRecordDescription,  AV27WWPNotificationLink) )
                {
+                  new prc_logtofile(context ).execute(  context.GetMessage( "Triggered from WWP_DiscussionWC: ", "")+AV28WWPSubscriptionEntityRecordDescription) ;
                   AV15Message = "";
                   AssignAttri(sPrefix, false, "AV15Message", AV15Message);
                   divNewthreadcell_Visible = 0;
@@ -2260,7 +2261,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411258573482", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024122454265", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2277,7 +2278,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionswc.js", "?202411258573483", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionswc.js", "?2024122454268", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Suggest/SuggestRender.js", "", false, true);
          /* End function include_jscripts */

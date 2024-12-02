@@ -111,6 +111,8 @@ namespace GeneXus.Programs {
          /* GeneXus formulas */
          /* Output device settings */
          AV9SDT_PageCollection.Clear();
+         new prc_logtofile(context ).execute(  AV16LocationId.ToString()) ;
+         new prc_logtofile(context ).execute(  AV17OrganisationId.ToString()) ;
          /* Using cursor P007W2 */
          pr_default.execute(0, new Object[] {AV16LocationId, AV17OrganisationId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -119,12 +121,13 @@ namespace GeneXus.Programs {
             A29LocationId = P007W2_A29LocationId[0];
             A431PageJsonContent = P007W2_A431PageJsonContent[0];
             n431PageJsonContent = P007W2_n431PageJsonContent[0];
-            A310Trn_PageId = P007W2_A310Trn_PageId[0];
             A318Trn_PageName = P007W2_A318Trn_PageName[0];
+            A310Trn_PageId = P007W2_A310Trn_PageId[0];
             AV8SDT_Page = new SdtSDT_MobilePage(context);
             AV8SDT_Page.FromJSonString(A431PageJsonContent, null);
             if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV8SDT_Page.gxTpr_Pagename))) )
             {
+               new prc_logtofile(context ).execute(  ">>>>>>>>>>>>"+A318Trn_PageName) ;
                AV9SDT_PageCollection.Add(AV8SDT_Page, 0);
             }
             pr_default.readNext(0);
@@ -150,18 +153,18 @@ namespace GeneXus.Programs {
          P007W2_A29LocationId = new Guid[] {Guid.Empty} ;
          P007W2_A431PageJsonContent = new string[] {""} ;
          P007W2_n431PageJsonContent = new bool[] {false} ;
-         P007W2_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          P007W2_A318Trn_PageName = new string[] {""} ;
+         P007W2_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          A11OrganisationId = Guid.Empty;
          A29LocationId = Guid.Empty;
          A431PageJsonContent = "";
-         A310Trn_PageId = Guid.Empty;
          A318Trn_PageName = "";
+         A310Trn_PageId = Guid.Empty;
          AV8SDT_Page = new SdtSDT_MobilePage(context);
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.aprc_pagesapi__default(),
             new Object[][] {
                 new Object[] {
-               P007W2_A11OrganisationId, P007W2_A29LocationId, P007W2_A431PageJsonContent, P007W2_n431PageJsonContent, P007W2_A310Trn_PageId, P007W2_A318Trn_PageName
+               P007W2_A11OrganisationId, P007W2_A29LocationId, P007W2_A431PageJsonContent, P007W2_n431PageJsonContent, P007W2_A318Trn_PageName, P007W2_A310Trn_PageId
                }
             }
          );
@@ -185,8 +188,8 @@ namespace GeneXus.Programs {
       private Guid[] P007W2_A29LocationId ;
       private string[] P007W2_A431PageJsonContent ;
       private bool[] P007W2_n431PageJsonContent ;
-      private Guid[] P007W2_A310Trn_PageId ;
       private string[] P007W2_A318Trn_PageName ;
+      private Guid[] P007W2_A310Trn_PageId ;
       private SdtSDT_MobilePage AV8SDT_Page ;
       private GXBaseCollection<SdtSDT_MobilePage> aP2_SDT_PageCollection ;
    }
@@ -212,7 +215,7 @@ namespace GeneXus.Programs {
           new ParDef("AV17OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P007W2", "SELECT OrganisationId, LocationId, PageJsonContent, Trn_PageId, Trn_PageName FROM Trn_Page WHERE (LocationId = :AV16LocationId) AND (OrganisationId = :AV17OrganisationId) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007W2,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P007W2", "SELECT OrganisationId, LocationId, PageJsonContent, Trn_PageName, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV16LocationId) AND (OrganisationId = :AV17OrganisationId) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007W2,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }
@@ -228,8 +231,8 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
                 ((bool[]) buf[3])[0] = rslt.wasNull(3);
-                ((Guid[]) buf[4])[0] = rslt.getGuid(4);
-                ((string[]) buf[5])[0] = rslt.getVarchar(5);
+                ((string[]) buf[4])[0] = rslt.getVarchar(4);
+                ((Guid[]) buf[5])[0] = rslt.getGuid(5);
                 return;
        }
     }
