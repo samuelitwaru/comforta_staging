@@ -125,6 +125,7 @@ function mapTemplateToPageData(templateData, page) {
 
 function mapContentToPageData(templateData, page) {
   const pages = templateData.pages;
+  console.log(pages)
   const components =
     pages[0].frames[0].component.components[0].components[0].components;
 
@@ -135,35 +136,61 @@ function mapContentToPageData(templateData, page) {
     Cta: [],
   };
 
-  console.log(output)
-
+  
   // Find image and text content
   components.forEach((component) => {
-    // Image content
-    const imageComponent =
-      component.components?.[0]?.components?.[0]?.components?.[0];
-    if (imageComponent?.type === "image") {
+    
+    topComponents = component.components?.[0]?.components?.[0]?.components
 
-      const imageUrl = imageComponent?.attributes.src.startsWith('http') ? imageComponent?.attributes.src : baseURL + '/' + imageComponent?.attributes.src 
+    for (let index = 0; index < topComponents.length; index++) {
+      const component = topComponents[index];
+      if (component?.type === "image") {
 
-      output.Content.push({
-        ContentType: "Image",
-        ContentValue: imageUrl,
-      });
-    }
-
-    // Text content
-    const textComponent =
-      component.components?.[0]?.components?.[0]?.components?.[0];
-    if (textComponent?.tagName === "p") {
-      const textContent = textComponent.components?.[0]?.content?.trim();
-      if (textContent) {
+        const imageUrl = imageComponent?.attributes.src.startsWith('http') ? imageComponent?.attributes.src : baseURL + '/' + imageComponent?.attributes.src 
+  
         output.Content.push({
-          ContentType: "Description",
-          ContentValue: textContent,
+          ContentType: "Image",
+          ContentValue: imageUrl,
         });
       }
+
+      if (component?.tagName === "p") {
+        const textContent = textComponent.components?.[0]?.content?.trim();
+        if (textContent) {
+          output.Content.push({
+            ContentType: "Description",
+            ContentValue: textContent,
+          });
+        }
+      }
+
     }
+
+    // Image content
+    // const imageComponent =
+    //   component.components?.[0]?.components?.[0]?.components?.[0];
+    // if (imageComponent?.type === "image") {
+
+    //   const imageUrl = imageComponent?.attributes.src.startsWith('http') ? imageComponent?.attributes.src : baseURL + '/' + imageComponent?.attributes.src 
+
+    //   output.Content.push({
+    //     ContentType: "Image",
+    //     ContentValue: imageUrl,
+    //   });
+    // }
+
+    // // Text content
+    // const textComponent =
+    //   component.components?.[0]?.components?.[0]?.components?.[0];
+    // if (textComponent?.tagName === "p") {
+    //   const textContent = textComponent.components?.[0]?.content?.trim();
+    //   if (textContent) {
+    //     output.Content.push({
+    //       ContentType: "Description",
+    //       ContentValue: textContent,
+    //     });
+    //   }
+    // }
 
     // CTA buttons
     if (component.classes?.includes("cta-button-container")) {
