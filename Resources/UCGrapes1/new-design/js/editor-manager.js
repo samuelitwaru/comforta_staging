@@ -1704,7 +1704,6 @@ class EditorManager {
       backButton.addEventListener("click", (e) => {
         e.preventDefault();
         this.removeEditor(pageId);
-        // this.activateFrame()
       });
     }
   }

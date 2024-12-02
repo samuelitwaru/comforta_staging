@@ -167,7 +167,7 @@ function mapContentToPageData(templateData, page) {
 
     // CTA buttons
     if (component.classes?.includes("cta-button-container")) {
-      const ctaChildren = component.components;
+      const ctaChildren = component.components || [];
       
       ctaChildren.forEach((ctaChild) => {
         console.log(ctaChild)

@@ -12,6 +12,7 @@ class ChildEditorManager{
         this.dataManager = dataManager
         this.dataManager.getPages().then(pages=>{
             this.pages = pages
+            console.log(pages)
             const homePage = this.pages.find(page=>page.PageName=="Home")
             if (homePage) {
                 this.createChildEditor(homePage)
@@ -29,13 +30,42 @@ class ChildEditorManager{
     }
 
     setCurrentEditor(editorId){
+
         this.currentEditor = this.editors[editorId]
+        this.activateFrame(editorId + '-frame')
+    }
+
+    activateFrame(activeFrameClass) {
+      const activeFrame = document.querySelector(activeFrameClass);
+  
+      const inactiveFrames = document.querySelectorAll(".active-editor");
+      inactiveFrames.forEach((frame) => {
+        if (frame !== activeFrame) {
+          frame.classList.remove("active-editor");
+        }
+      });
+  
+      activeFrame.classList.add("active-editor");
     }
 
     createChildEditor(page) {
         const pageId = page.PageId
         const count = this.container.children.length
         const editorContainer = document.createElement('div')
+        let appBar = ""
+        if (page.PageIsContentPage) {
+          appBar = `
+            <div class="app-bar">
+              <button id="content-back-button" class="back-button">
+                  <svg class="back-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M19 12H5M5 12L12 19M5 12L12 5"/>
+                      <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M5 12L12 19M5 12L12 5"/>
+                  </svg>
+              </button>
+              <h1 class="title">${page.PageName}</h1>
+            </div>
+          `
+        }
 
         editorContainer.innerHTML = `
             <div class="header">
@@ -46,6 +76,7 @@ class ChildEditorManager{
                 <i class="fas fa-battery"></i>
                 </span>
             </div>
+            ${appBar}
             <div id="gjs-${count}"></div>
         `
         const editorId = `gjs-${count}`
@@ -85,10 +116,9 @@ class ChildEditorManager{
             commands: false,
             hoverable: false,
             highlightable: false,
+            selectable: false,
         });
         this.addEditorEventListners(editor)
-        // editor.DomComponents.addType('tile', tileComponent)
-        // editor.addComponents({type: 'tile'})
 
         if (page.PageIsContentPage) {
             try {
@@ -96,6 +126,12 @@ class ChildEditorManager{
             } catch (error) {
             }
             this.loadContentPage(page, editor)
+            this.backButtonAction(editorContainer.id)
+            const canvas = editor.Canvas.getElement();
+            if (canvas) {
+              canvas.style.setProperty("height", "calc(100% - 100px)", "important");
+              console.log("canvas found, ", canvas);
+            }
         }else{
             editor.loadProjectData(JSON.parse(page.PageGJSJson))
         }
@@ -105,13 +141,23 @@ class ChildEditorManager{
         }
         this.editors[`#${editorId}`] = editorData
         if (page.PageName == "Home") {
-            this.setCurrentEditor(editorId)
+            this.setCurrentEditor(`#${editorId}`)
         }
         this.activateNavigators()
     }
 
     getPage(pageId){
         return this.dataManager.pages.find(page=>page.PageId==pageId)
+    }
+
+    backButtonAction(editorContainerId) {
+      const backButton = document.getElementById("content-back-button");
+      if (backButton) {
+        backButton.addEventListener("click", (e) => {
+          e.preventDefault();
+          $('#'+editorContainerId).remove()
+        });
+      }
     }
 
     loadContentPage(page, editor) {
@@ -121,7 +167,14 @@ class ChildEditorManager{
             if (img.length && p.length) {
                 img[0].setAttributes({ src: contentPageData.ProductServiceImage });
                 p[0].replaceWith(`
-                    <p id="product-service-description" class="content-page-block">
+                    <p id="product-service-description" class="content-page-block" style="flex: 1; padding: 0; margin: 0; height: auto; margin-bottom: 15px"
+                      class="content-page-block"
+                      data-gjs-draggable="true"
+                      data-gjs-selectable="false"
+                      data-gjs-editable="false"
+                      data-gjs-droppable="false"
+                      data-gjs-highlightable="false"
+                      data-gjs-hoverable="false">
                         ${contentPageData.ProductServiceDescription}
                     </p>
                 `);
@@ -146,9 +199,10 @@ class ChildEditorManager{
                 $(editorContainerId).nextAll().remove()
                 this.setCurrentEditor(editorId)
                 this.currentPageId = $(editorContainerId).data().pageid
-
                 if (e.target.attributes['tile-action-object-id']) {
+                    console.log(this.dataManager.pages)
                     const page = this.getPage(e.target.attributes['tile-action-object-id'].value)
+                    console.log(page)
                     if (page) {
                         this.createChildEditor(page)
                         $("#content-page-section").hide()
@@ -199,11 +253,11 @@ class ChildEditorManager{
                 sidebarInputTitle.value = tileLabel.textContent;
               }
       
-            //   this.removeElementOnClick(".selected-tile-icon", ".tile-icon-section");
-            //   this.removeElementOnClick(
-            //     ".selected-tile-title",
-            //     ".tile-title-section"
-            //   );
+            this.removeElementOnClick(".selected-tile-icon", ".tile-icon-section");
+            this.removeElementOnClick(
+              ".selected-tile-title",
+              ".tile-title-section"
+            );
       
             //   this.updateUIState();
             //   this.activateFrame(`#default-container`);
@@ -317,6 +371,18 @@ class ChildEditorManager{
 
     setToolsSection(toolBox) {
         this.toolsSection = toolBox;
+    }
+
+    removeElementOnClick(targetSelector, sectionSelector) {
+      const closeSection = this.selectedComponent?.find(targetSelector)[0];
+      if (closeSection) {
+        const closeEl = closeSection.getEl();
+        if (closeEl) {
+          closeEl.onclick = () => {
+            this.selectedComponent.find(sectionSelector)[0].remove();
+          };
+        }
+      }
     }
 
     hideContextMenu() {

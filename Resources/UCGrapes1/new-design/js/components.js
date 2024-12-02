@@ -34,7 +34,6 @@ class ActionListComponent {
   }
 
   init() {
-    
     this.dataManager
       .getPagesService()
       .then((pages) => {
@@ -68,7 +67,6 @@ class ActionListComponent {
     let self = this;
     const dropdownMenu = document.getElementById("dropdownMenu");
     dropdownMenu.innerHTML = "";
-
     this.categoryData.forEach((category) => {
       const categoryElement = document.createElement("details");
       categoryElement.classList.add("category");
@@ -108,12 +106,17 @@ class ActionListComponent {
     const categories = document.querySelectorAll(".category");
 
     // Toggle dropdown menu visibility
-    dropdownHeader.addEventListener("click", () => {
+    
+    if(!this.added){
+    dropdownHeader.removeEventListener('click', (e)=>{})
+    dropdownHeader.addEventListener("click", (e) => {
       dropdownMenu.style.display =
-        dropdownMenu.style.display === "block" ? "none" : "block";
+      dropdownMenu.style.display === "block" ? "none" : "block";
       dropdownHeader.querySelector("i").classList.toggle("fa-angle-up");
       dropdownHeader.querySelector("i").classList.toggle("fa-angle-down");
-    });
+    });}
+
+    this.added = true
 
     // Close dropdown when clicking outside
     document.addEventListener("click", (event) => {
@@ -187,6 +190,9 @@ class ActionListComponent {
             if (self.selectedObject == 'Service/Product Page'){
               self.createContentPage(this.id)
             }
+            // let page = self.toolBoxManager.editorManager.getPage(this.id)
+            // console.log(page)
+            // self.toolBoxManager.editorManager.createChildEditor(page)
 
           }
 
@@ -318,6 +324,7 @@ class MappingComponent {
         let treePages = pages.map(page=>{return {Id:page.PageId, Name:page.PageName}})
         const newTree = this.createTree(treePages, true); // Set isRoot to true if it's the root
         this.treeContainer.appendChild(newTree);
+        this.toolBoxManager.actionList.init()
       })
 
       // this.displayMessage(`Page "${pageTitle}" created successfully`, "success");
