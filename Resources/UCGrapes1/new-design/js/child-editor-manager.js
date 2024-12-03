@@ -30,7 +30,7 @@ class ChildEditorManager{
     }
 
     getCurrentEditor(){
-        return this.currentEditor.editor
+      return this.currentEditor.editor
     }
 
     setCurrentEditor(editorId){
