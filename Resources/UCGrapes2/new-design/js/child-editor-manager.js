@@ -1,5 +1,4 @@
 class ChildEditorManager {
-  // child editor manager
   editors = {};
   pages = [];
   theme = [];
