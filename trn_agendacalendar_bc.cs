@@ -205,13 +205,13 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Location", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem("No matching 'Trn_Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
          if ( ! ( ( StringUtil.StrCmp(A454AgendaCalendarType, "Event") == 0 ) || ( StringUtil.StrCmp(A454AgendaCalendarType, "Activity") == 0 ) ) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Agenda Calendar Type", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            GX_msglist.addItem("Field Agenda Calendar Type is out of range", "OutOfRange", 1, "");
             AnyError = 1;
          }
       }
@@ -506,7 +506,7 @@ namespace GeneXus.Programs {
             pr_default.execute(8, new Object[] {A303AgendaCalendarId});
             if ( (pr_default.getStatus(8) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_AgendaEventGroup", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_AgendaEventGroup"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(8);

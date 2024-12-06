@@ -141,13 +141,13 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             AV25GAMUser.load( AV9WWPDiscussionMessage.gxTpr_Wwpuserextendedid);
             if ( AV25GAMUser.success() )
             {
-               if ( AV25GAMUser.checkrole(context.GetMessage( "Resident", "")) )
+               if ( AV25GAMUser.checkrole("Resident") )
                {
-                  AV26RoleName = context.GetMessage( "Resident", "");
+                  AV26RoleName = "Resident";
                }
-               if ( AV25GAMUser.checkrole(context.GetMessage( "Receptionist", "")) )
+               if ( AV25GAMUser.checkrole("Receptionist") )
                {
-                  AV26RoleName = context.GetMessage( "Receptionist", "");
+                  AV26RoleName = "Receptionist";
                }
                if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV26RoleName)) )
                {

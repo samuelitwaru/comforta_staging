@@ -45,6 +45,8 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+wc_uploadavatar
+wp_userprofile
 trn_pageview
 wp_residentfilledforms
 wp_residentfilledforms
@@ -329,7 +331,7 @@ general\ui\masterunanimosidebar
 aprc_getlocationreceptioniststonotify
 aprc_createpermissions
 trn_pageloaddvcombo
-aprc_createlocationhomepage
+aprc_createlocationpages
 aprc_contentpageapi
 aprc_productserviceapi
 aprc_contentpagesapi

@@ -64,7 +64,7 @@ namespace GeneXus.Programs {
          restLocation = new GxLocation();
          restLocation.Host = "localhost";
          restLocation.Port = 8082;
-         restLocation.BaseUrl = "staging.comforta.yukon.software/api";
+         restLocation.BaseUrl = "Comforta_version2DevelopmentNETPostgreSQL/api";
          gxProperties = new GxObjectProperties();
       }
 
@@ -219,6 +219,35 @@ namespace GeneXus.Programs {
             aP1_SDT_ResidentNotification = restCliGetResidentNotificationHistory.GetBodySdtCollection<SdtSDT_ResidentNotification>("SDT_ResidentNotification");
          }
          /* GetResidentNotificationHistory Constructor */
+      }
+
+      public void gxep_updateresidentavatar( string aP0_Base64Image ,
+                                             string aP1_ResidentId ,
+                                             out string aP2_result )
+      {
+         restCliUpdateResidentAvatar = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/resident/update-avatar";
+         restCliUpdateResidentAvatar.Location = restLocation;
+         restCliUpdateResidentAvatar.HttpMethod = "POST";
+         restCliUpdateResidentAvatar.AddBodyVar("Base64Image", (string)(aP0_Base64Image));
+         restCliUpdateResidentAvatar.AddBodyVar("ResidentId", (string)(aP1_ResidentId));
+         restCliUpdateResidentAvatar.RestExecute();
+         if ( restCliUpdateResidentAvatar.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliUpdateResidentAvatar.ErrorCode;
+            gxProperties.ErrorMessage = restCliUpdateResidentAvatar.ErrorMessage;
+            gxProperties.StatusCode = restCliUpdateResidentAvatar.StatusCode;
+            aP2_result = "";
+         }
+         else
+         {
+            aP2_result = restCliUpdateResidentAvatar.GetBodyString("result");
+         }
+         /* UpdateResidentAvatar Constructor */
       }
 
       public void gxep_registerdevice( string aP0_DeviceToken ,
@@ -376,6 +405,57 @@ namespace GeneXus.Programs {
             aP5_BC_Trn_Media = restCliUploadMedia.GetBodySdt<SdtTrn_Media>("BC_Trn_Media");
          }
          /* UploadMedia Constructor */
+      }
+
+      public void gxep_deletemedia( Guid aP0_MediaId ,
+                                    string aP1_result )
+      {
+         restCliDeleteMedia = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/media/delete";
+         restCliDeleteMedia.Location = restLocation;
+         restCliDeleteMedia.HttpMethod = "GET";
+         restCliDeleteMedia.AddQueryVar("Mediaid", (Guid)(aP0_MediaId));
+         restCliDeleteMedia.AddQueryVar("Result", aP1_result);
+         restCliDeleteMedia.RestExecute();
+         if ( restCliDeleteMedia.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliDeleteMedia.ErrorCode;
+            gxProperties.ErrorMessage = restCliDeleteMedia.ErrorMessage;
+            gxProperties.StatusCode = restCliDeleteMedia.StatusCode;
+         }
+         else
+         {
+         }
+         /* DeleteMedia Constructor */
+      }
+
+      public void gxep_getmedia( out GXBaseCollection<SdtSDT_Media> aP0_SDT_MediaCollection )
+      {
+         restCliGetMedia = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/media";
+         restCliGetMedia.Location = restLocation;
+         restCliGetMedia.HttpMethod = "GET";
+         restCliGetMedia.RestExecute();
+         if ( restCliGetMedia.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliGetMedia.ErrorCode;
+            gxProperties.ErrorMessage = restCliGetMedia.ErrorMessage;
+            gxProperties.StatusCode = restCliGetMedia.StatusCode;
+            aP0_SDT_MediaCollection = new GXBaseCollection<SdtSDT_Media>();
+         }
+         else
+         {
+            aP0_SDT_MediaCollection = restCliGetMedia.GetBodySdtCollection<SdtSDT_Media>("SDT_MediaCollection");
+         }
+         /* GetMedia Constructor */
       }
 
       public void gxep_getpages( Guid aP0_locationId ,
@@ -552,6 +632,30 @@ namespace GeneXus.Programs {
             aP1_SDT_Page = restCliGetSinglePage.GetBodySdt<SdtSDT_Page>("SDT_Page");
          }
          /* GetSinglePage Constructor */
+      }
+
+      public void gxep_deletepage( Guid aP0_PageId )
+      {
+         restCliDeletePage = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/deletepage";
+         restCliDeletePage.Location = restLocation;
+         restCliDeletePage.HttpMethod = "GET";
+         restCliDeletePage.AddQueryVar("Pageid", (Guid)(aP0_PageId));
+         restCliDeletePage.RestExecute();
+         if ( restCliDeletePage.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliDeletePage.ErrorCode;
+            gxProperties.ErrorMessage = restCliDeletePage.ErrorMessage;
+            gxProperties.StatusCode = restCliDeletePage.StatusCode;
+         }
+         else
+         {
+         }
+         /* DeletePage Constructor */
       }
 
       public void gxep_listpages( Guid aP0_locationId ,
@@ -843,16 +947,21 @@ namespace GeneXus.Programs {
          aP1_SDT_Location = new SdtSDT_Location();
          restCliGetResidentNotificationHistory = new GXRestAPIClient();
          aP1_SDT_ResidentNotification = new GXBaseCollection<SdtSDT_ResidentNotification>();
+         restCliUpdateResidentAvatar = new GXRestAPIClient();
+         aP2_result = "";
          restCliRegisterDevice = new GXRestAPIClient();
          aP6_result = "";
          restCliSendNotification = new GXRestAPIClient();
-         aP2_result = "";
          restCliAgendaLocation = new GXRestAPIClient();
          aP3_SDT_AgendaLocation = new GXBaseCollection<SdtSDT_AgendaLocation>();
          restCliSendDynamicForm = new GXRestAPIClient();
          aP0_result = "";
          restCliUploadMedia = new GXRestAPIClient();
          aP5_BC_Trn_Media = new SdtTrn_Media();
+         restCliDeleteMedia = new GXRestAPIClient();
+         aP1_result = "";
+         restCliGetMedia = new GXRestAPIClient();
+         aP0_SDT_MediaCollection = new GXBaseCollection<SdtSDT_Media>();
          restCliGetPages = new GXRestAPIClient();
          aP2_SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>();
          restCliPagesAPI = new GXRestAPIClient();
@@ -865,10 +974,10 @@ namespace GeneXus.Programs {
          aP3_SDT_ContentPage = new SdtSDT_ContentPage();
          restCliGetSinglePage = new GXRestAPIClient();
          aP1_SDT_Page = new SdtSDT_Page();
+         restCliDeletePage = new GXRestAPIClient();
          restCliListPages = new GXRestAPIClient();
          aP2_SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>();
          restCliCreatePage = new GXRestAPIClient();
-         aP1_result = "";
          restCliCreateContentPage = new GXRestAPIClient();
          restCliSavePage = new GXRestAPIClient();
          aP5_result = "";
@@ -889,17 +998,21 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliGetOrganisationInformation ;
       protected GXRestAPIClient restCliGetLocationInformation ;
       protected GXRestAPIClient restCliGetResidentNotificationHistory ;
+      protected GXRestAPIClient restCliUpdateResidentAvatar ;
       protected GXRestAPIClient restCliRegisterDevice ;
       protected GXRestAPIClient restCliSendNotification ;
       protected GXRestAPIClient restCliAgendaLocation ;
       protected GXRestAPIClient restCliSendDynamicForm ;
       protected GXRestAPIClient restCliUploadMedia ;
+      protected GXRestAPIClient restCliDeleteMedia ;
+      protected GXRestAPIClient restCliGetMedia ;
       protected GXRestAPIClient restCliGetPages ;
       protected GXRestAPIClient restCliPagesAPI ;
       protected GXRestAPIClient restCliPageAPI ;
       protected GXRestAPIClient restCliContentPagesAPI ;
       protected GXRestAPIClient restCliContentPageAPI ;
       protected GXRestAPIClient restCliGetSinglePage ;
+      protected GXRestAPIClient restCliDeletePage ;
       protected GXRestAPIClient restCliListPages ;
       protected GXRestAPIClient restCliCreatePage ;
       protected GXRestAPIClient restCliCreateContentPage ;
@@ -919,11 +1032,13 @@ namespace GeneXus.Programs {
       protected SdtSDT_Organisation aP1_SDT_Organisation ;
       protected SdtSDT_Location aP1_SDT_Location ;
       protected GXBaseCollection<SdtSDT_ResidentNotification> aP1_SDT_ResidentNotification ;
-      protected string aP6_result ;
       protected string aP2_result ;
+      protected string aP6_result ;
       protected GXBaseCollection<SdtSDT_AgendaLocation> aP3_SDT_AgendaLocation ;
       protected string aP0_result ;
       protected SdtTrn_Media aP5_BC_Trn_Media ;
+      protected string aP1_result ;
+      protected GXBaseCollection<SdtSDT_Media> aP0_SDT_MediaCollection ;
       protected GXBaseCollection<SdtSDT_Page> aP2_SDT_PageCollection ;
       protected GXBaseCollection<SdtSDT_MobilePage> aP2_SDT_MobilePageCollection ;
       protected SdtSDT_MobilePage aP3_SDT_MobilePage ;
@@ -931,7 +1046,6 @@ namespace GeneXus.Programs {
       protected SdtSDT_ContentPage aP3_SDT_ContentPage ;
       protected SdtSDT_Page aP1_SDT_Page ;
       protected GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageStructureCollection ;
-      protected string aP1_result ;
       protected string aP5_result ;
       protected SdtSDT_Theme aP3_SDT_Theme ;
       protected SdtSDT_ProductService aP1_SDT_ProductService ;

@@ -71,6 +71,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Networkcompanyid_Z");
          state.Add("gxTpr_Networkcompanykvknumber_Z");
          state.Add("gxTpr_Networkcompanyname_Z");
+         state.Add("gxTpr_Networkcompanycontactname_Z");
          state.Add("gxTpr_Networkcompanyemail_Z");
          state.Add("gxTpr_Networkcompanyphone_Z");
          state.Add("gxTpr_Networkcompanyphonecode_Z");
@@ -90,6 +91,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_NetworkCompany_Networkcompanyid = sdt.gxTv_SdtTrn_NetworkCompany_Networkcompanyid ;
          gxTv_SdtTrn_NetworkCompany_Networkcompanykvknumber = sdt.gxTv_SdtTrn_NetworkCompany_Networkcompanykvknumber ;
          gxTv_SdtTrn_NetworkCompany_Networkcompanyname = sdt.gxTv_SdtTrn_NetworkCompany_Networkcompanyname ;
+         gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname = sdt.gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname ;
          gxTv_SdtTrn_NetworkCompany_Networkcompanyemail = sdt.gxTv_SdtTrn_NetworkCompany_Networkcompanyemail ;
          gxTv_SdtTrn_NetworkCompany_Networkcompanyphone = sdt.gxTv_SdtTrn_NetworkCompany_Networkcompanyphone ;
          gxTv_SdtTrn_NetworkCompany_Networkcompanyphonecode = sdt.gxTv_SdtTrn_NetworkCompany_Networkcompanyphonecode ;
@@ -104,6 +106,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_NetworkCompany_Networkcompanyid_Z = sdt.gxTv_SdtTrn_NetworkCompany_Networkcompanyid_Z ;
          gxTv_SdtTrn_NetworkCompany_Networkcompanykvknumber_Z = sdt.gxTv_SdtTrn_NetworkCompany_Networkcompanykvknumber_Z ;
          gxTv_SdtTrn_NetworkCompany_Networkcompanyname_Z = sdt.gxTv_SdtTrn_NetworkCompany_Networkcompanyname_Z ;
+         gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname_Z = sdt.gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname_Z ;
          gxTv_SdtTrn_NetworkCompany_Networkcompanyemail_Z = sdt.gxTv_SdtTrn_NetworkCompany_Networkcompanyemail_Z ;
          gxTv_SdtTrn_NetworkCompany_Networkcompanyphone_Z = sdt.gxTv_SdtTrn_NetworkCompany_Networkcompanyphone_Z ;
          gxTv_SdtTrn_NetworkCompany_Networkcompanyphonecode_Z = sdt.gxTv_SdtTrn_NetworkCompany_Networkcompanyphonecode_Z ;
@@ -134,6 +137,7 @@ namespace GeneXus.Programs {
          AddObjectProperty("NetworkCompanyId", gxTv_SdtTrn_NetworkCompany_Networkcompanyid, false, includeNonInitialized);
          AddObjectProperty("NetworkCompanyKvkNumber", gxTv_SdtTrn_NetworkCompany_Networkcompanykvknumber, false, includeNonInitialized);
          AddObjectProperty("NetworkCompanyName", gxTv_SdtTrn_NetworkCompany_Networkcompanyname, false, includeNonInitialized);
+         AddObjectProperty("NetworkCompanyContactName", gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname, false, includeNonInitialized);
          AddObjectProperty("NetworkCompanyEmail", gxTv_SdtTrn_NetworkCompany_Networkcompanyemail, false, includeNonInitialized);
          AddObjectProperty("NetworkCompanyPhone", gxTv_SdtTrn_NetworkCompany_Networkcompanyphone, false, includeNonInitialized);
          AddObjectProperty("NetworkCompanyPhoneCode", gxTv_SdtTrn_NetworkCompany_Networkcompanyphonecode, false, includeNonInitialized);
@@ -150,6 +154,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("NetworkCompanyId_Z", gxTv_SdtTrn_NetworkCompany_Networkcompanyid_Z, false, includeNonInitialized);
             AddObjectProperty("NetworkCompanyKvkNumber_Z", gxTv_SdtTrn_NetworkCompany_Networkcompanykvknumber_Z, false, includeNonInitialized);
             AddObjectProperty("NetworkCompanyName_Z", gxTv_SdtTrn_NetworkCompany_Networkcompanyname_Z, false, includeNonInitialized);
+            AddObjectProperty("NetworkCompanyContactName_Z", gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname_Z, false, includeNonInitialized);
             AddObjectProperty("NetworkCompanyEmail_Z", gxTv_SdtTrn_NetworkCompany_Networkcompanyemail_Z, false, includeNonInitialized);
             AddObjectProperty("NetworkCompanyPhone_Z", gxTv_SdtTrn_NetworkCompany_Networkcompanyphone_Z, false, includeNonInitialized);
             AddObjectProperty("NetworkCompanyPhoneCode_Z", gxTv_SdtTrn_NetworkCompany_Networkcompanyphonecode_Z, false, includeNonInitialized);
@@ -179,6 +184,11 @@ namespace GeneXus.Programs {
          {
             sdtIsNull = 0;
             gxTv_SdtTrn_NetworkCompany_Networkcompanyname = sdt.gxTv_SdtTrn_NetworkCompany_Networkcompanyname ;
+         }
+         if ( sdt.IsDirty("NetworkCompanyContactName") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname = sdt.gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname ;
          }
          if ( sdt.IsDirty("NetworkCompanyEmail") )
          {
@@ -244,6 +254,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_NetworkCompany_Networkcompanyid_Z_SetNull( );
                this.gxTv_SdtTrn_NetworkCompany_Networkcompanykvknumber_Z_SetNull( );
                this.gxTv_SdtTrn_NetworkCompany_Networkcompanyname_Z_SetNull( );
+               this.gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname_Z_SetNull( );
                this.gxTv_SdtTrn_NetworkCompany_Networkcompanyemail_Z_SetNull( );
                this.gxTv_SdtTrn_NetworkCompany_Networkcompanyphone_Z_SetNull( );
                this.gxTv_SdtTrn_NetworkCompany_Networkcompanyphonecode_Z_SetNull( );
@@ -288,6 +299,22 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_NetworkCompany_Networkcompanyname = value;
             SetDirty("Networkcompanyname");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "NetworkCompanyContactName" )]
+      [  XmlElement( ElementName = "NetworkCompanyContactName"   )]
+      public string gxTpr_Networkcompanycontactname
+      {
+         get {
+            return gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname = value;
+            SetDirty("Networkcompanycontactname");
          }
 
       }
@@ -576,6 +603,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "NetworkCompanyContactName_Z" )]
+      [  XmlElement( ElementName = "NetworkCompanyContactName_Z"   )]
+      public string gxTpr_Networkcompanycontactname_Z
+      {
+         get {
+            return gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname_Z = value;
+            SetDirty("Networkcompanycontactname_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname_Z_SetNull( )
+      {
+         gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname_Z = "";
+         SetDirty("Networkcompanycontactname_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "NetworkCompanyEmail_Z" )]
       [  XmlElement( ElementName = "NetworkCompanyEmail_Z"   )]
       public string gxTpr_Networkcompanyemail_Z
@@ -848,6 +903,7 @@ namespace GeneXus.Programs {
          sdtIsNull = 1;
          gxTv_SdtTrn_NetworkCompany_Networkcompanykvknumber = "";
          gxTv_SdtTrn_NetworkCompany_Networkcompanyname = "";
+         gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname = "";
          gxTv_SdtTrn_NetworkCompany_Networkcompanyemail = "";
          gxTv_SdtTrn_NetworkCompany_Networkcompanyphone = "";
          gxTv_SdtTrn_NetworkCompany_Networkcompanyphonecode = "";
@@ -861,6 +917,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_NetworkCompany_Networkcompanyid_Z = Guid.Empty;
          gxTv_SdtTrn_NetworkCompany_Networkcompanykvknumber_Z = "";
          gxTv_SdtTrn_NetworkCompany_Networkcompanyname_Z = "";
+         gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname_Z = "";
          gxTv_SdtTrn_NetworkCompany_Networkcompanyemail_Z = "";
          gxTv_SdtTrn_NetworkCompany_Networkcompanyphone_Z = "";
          gxTv_SdtTrn_NetworkCompany_Networkcompanyphonecode_Z = "";
@@ -891,6 +948,7 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_NetworkCompany_Networkcompanyphone_Z ;
       private string gxTv_SdtTrn_NetworkCompany_Networkcompanykvknumber ;
       private string gxTv_SdtTrn_NetworkCompany_Networkcompanyname ;
+      private string gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname ;
       private string gxTv_SdtTrn_NetworkCompany_Networkcompanyemail ;
       private string gxTv_SdtTrn_NetworkCompany_Networkcompanyphonecode ;
       private string gxTv_SdtTrn_NetworkCompany_Networkcompanyphonenumber ;
@@ -901,6 +959,7 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_NetworkCompany_Networkcompanyaddressline2 ;
       private string gxTv_SdtTrn_NetworkCompany_Networkcompanykvknumber_Z ;
       private string gxTv_SdtTrn_NetworkCompany_Networkcompanyname_Z ;
+      private string gxTv_SdtTrn_NetworkCompany_Networkcompanycontactname_Z ;
       private string gxTv_SdtTrn_NetworkCompany_Networkcompanyemail_Z ;
       private string gxTv_SdtTrn_NetworkCompany_Networkcompanyphonecode_Z ;
       private string gxTv_SdtTrn_NetworkCompany_Networkcompanyphonenumber_Z ;
@@ -967,7 +1026,21 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "NetworkCompanyEmail" , Order = 3 )]
+      [DataMember( Name = "NetworkCompanyContactName" , Order = 3 )]
+      [GxSeudo()]
+      public string gxTpr_Networkcompanycontactname
+      {
+         get {
+            return sdt.gxTpr_Networkcompanycontactname ;
+         }
+
+         set {
+            sdt.gxTpr_Networkcompanycontactname = value;
+         }
+
+      }
+
+      [DataMember( Name = "NetworkCompanyEmail" , Order = 4 )]
       [GxSeudo()]
       public string gxTpr_Networkcompanyemail
       {
@@ -981,7 +1054,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "NetworkCompanyPhone" , Order = 4 )]
+      [DataMember( Name = "NetworkCompanyPhone" , Order = 5 )]
       [GxSeudo()]
       public string gxTpr_Networkcompanyphone
       {
@@ -995,7 +1068,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "NetworkCompanyPhoneCode" , Order = 5 )]
+      [DataMember( Name = "NetworkCompanyPhoneCode" , Order = 6 )]
       [GxSeudo()]
       public string gxTpr_Networkcompanyphonecode
       {
@@ -1009,7 +1082,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "NetworkCompanyPhoneNumber" , Order = 6 )]
+      [DataMember( Name = "NetworkCompanyPhoneNumber" , Order = 7 )]
       [GxSeudo()]
       public string gxTpr_Networkcompanyphonenumber
       {
@@ -1023,7 +1096,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "NetworkCompanyCountry" , Order = 7 )]
+      [DataMember( Name = "NetworkCompanyCountry" , Order = 8 )]
       [GxSeudo()]
       public string gxTpr_Networkcompanycountry
       {
@@ -1037,7 +1110,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "NetworkCompanyCity" , Order = 8 )]
+      [DataMember( Name = "NetworkCompanyCity" , Order = 9 )]
       [GxSeudo()]
       public string gxTpr_Networkcompanycity
       {
@@ -1051,7 +1124,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "NetworkCompanyZipCode" , Order = 9 )]
+      [DataMember( Name = "NetworkCompanyZipCode" , Order = 10 )]
       [GxSeudo()]
       public string gxTpr_Networkcompanyzipcode
       {
@@ -1065,7 +1138,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "NetworkCompanyAddressLine1" , Order = 10 )]
+      [DataMember( Name = "NetworkCompanyAddressLine1" , Order = 11 )]
       [GxSeudo()]
       public string gxTpr_Networkcompanyaddressline1
       {
@@ -1079,7 +1152,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "NetworkCompanyAddressLine2" , Order = 11 )]
+      [DataMember( Name = "NetworkCompanyAddressLine2" , Order = 12 )]
       [GxSeudo()]
       public string gxTpr_Networkcompanyaddressline2
       {
@@ -1114,7 +1187,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 12 )]
+      [DataMember( Name = "gx_md5_hash", Order = 13 )]
       public string Hash
       {
          get {

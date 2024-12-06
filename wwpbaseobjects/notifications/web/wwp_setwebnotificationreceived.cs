@@ -28,6 +28,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -82,6 +84,10 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
 
       public override void initialize( )
       {
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.notifications.web.wwp_setwebnotificationreceived__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.notifications.web.wwp_setwebnotificationreceived__gam(),
             new Object[][] {
             }
@@ -97,13 +103,15 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
 
       private long AV8WebNotificationId ;
       private bool n162WWPWebNotificationReceived ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_setwebnotificationreceived__gam : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_setwebnotificationreceived__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -130,18 +138,17 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class wwp_setwebnotificationreceived__default : DataStoreHelperBase, IDataStoreHelper
+ public class wwp_setwebnotificationreceived__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new UpdateCursor(def[0])
      };
   }
 
@@ -150,12 +157,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
   {
      if ( def == null )
      {
-        Object[] prmP003J2;
-        prmP003J2 = new Object[] {
-        new ParDef("AV8WebNotificationId",GXType.Int64,10,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("P003J2", "UPDATE WWP_WebNotification SET WWPWebNotificationReceived=TRUE  WHERE WWPWebNotificationId = :AV8WebNotificationId", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP003J2)
         };
      }
   }
@@ -165,6 +167,44 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
                           Object[] buf )
   {
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_setwebnotificationreceived__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new UpdateCursor(def[0])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmP003J2;
+       prmP003J2 = new Object[] {
+       new ParDef("AV8WebNotificationId",GXType.Int64,10,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("P003J2", "UPDATE WWP_WebNotification SET WWPWebNotificationReceived=TRUE  WHERE WWPWebNotificationId = :AV8WebNotificationId", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP003J2)
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+ }
 
 }
 

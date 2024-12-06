@@ -53,17 +53,17 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         if ( StringUtil.StrCmp(AV8EntityName, context.GetMessage( "Trn_ProductService", "")) == 0 )
+         if ( StringUtil.StrCmp(AV8EntityName, "Trn_ProductService") == 0 )
          {
-            AV9EntityNameDescription = context.GetMessage( "the product/service", "");
+            AV9EntityNameDescription = "the product/service";
          }
-         else if ( StringUtil.StrCmp(AV8EntityName, context.GetMessage( "Trn_Receptionist", "")) == 0 )
+         else if ( StringUtil.StrCmp(AV8EntityName, "Trn_Receptionist") == 0 )
          {
-            AV9EntityNameDescription = context.GetMessage( "the receptionist", "");
+            AV9EntityNameDescription = "the receptionist";
          }
-         else if ( StringUtil.StrCmp(AV8EntityName, context.GetMessage( "Trn_Resident", "")) == 0 )
+         else if ( StringUtil.StrCmp(AV8EntityName, "Trn_Resident") == 0 )
          {
-            AV9EntityNameDescription = context.GetMessage( "the resident", "");
+            AV9EntityNameDescription = "the resident";
          }
          else
          {

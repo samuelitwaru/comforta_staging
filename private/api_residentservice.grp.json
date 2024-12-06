@@ -55,6 +55,16 @@
 "Verb":"GET"
 },
 {
+"PathRegexp":"resident/update-avatar",
+"Path":"resident/update-avatar",
+"Verb":"POST",
+"Name":"updateresidentavatar",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_updateresidentavatar",
+"Implementation":"Prc_UpdateResidentAvatar"
+},
+{
 "PathRegexp":"mobile/register-device",
 "Path":"mobile/register-device",
 "Verb":"POST",
@@ -103,6 +113,26 @@
 "VariableAlias": [],
 "ServiceMethod":"gxep_uploadmedia",
 "Implementation":"Prc_UploadMedia"
+},
+{
+"Verb":"GET",
+"PathRegexp":"media/delete",
+"Path":"media/delete",
+"Name":"deletemedia",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_deletemedia",
+"Implementation":"Prc_DeleteMedia"
+},
+{
+"PathRegexp":"toolbox/media",
+"Path":"toolbox/media",
+"Name":"getmedia",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_getmedia",
+"Implementation":"Prc_GetMedia",
+"Verb":"GET"
 },
 {
 "PathRegexp":"toolbox/pages/list2",
@@ -161,7 +191,17 @@
 "Bodystyle":"Wrapped",
 "VariableAlias": [],
 "ServiceMethod":"gxep_getsinglepage",
-"Implementation":"Prc_GetSinglePage",
+"Implementation":"Prc_GetSinglePageAPI",
+"Verb":"GET"
+},
+{
+"PathRegexp":"toolbox/deletepage",
+"Path":"toolbox/deletepage",
+"Name":"deletepage",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_deletepage",
+"Implementation":"Prc_DeletePageAPI",
 "Verb":"GET"
 },
 {

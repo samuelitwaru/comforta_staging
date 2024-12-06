@@ -322,7 +322,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          standaloneModal( ) ;
          if ( ! ( ( A186WWPMailStatus == 1 ) || ( A186WWPMailStatus == 2 ) || ( A186WWPMailStatus == 3 ) ) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Mail Status", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            GX_msglist.addItem("Field Mail Status is out of range", "OutOfRange", 1, "");
             AnyError = 1;
          }
          /* Using cursor BC000Q6 */
@@ -331,7 +331,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          {
             if ( ! ( (0==A127WWPNotificationId) ) )
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_Notification", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPNOTIFICATIONID");
+               GX_msglist.addItem("No matching 'WWP_Notification'.", "ForeignKeyNotFound", 1, "WWPNOTIFICATIONID");
                AnyError = 1;
             }
          }

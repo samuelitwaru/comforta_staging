@@ -82,7 +82,7 @@ namespace GeneXus.Programs {
             if ( AV12BC_Trn_Location.Success() )
             {
                context.CommitDataStores("prc_updatelocationtheme",pr_default);
-               new prc_logtofile(context ).execute(  context.GetMessage( "Saved", "")) ;
+               new prc_logtofile(context ).execute(  "Saved") ;
             }
             else
             {

@@ -316,18 +316,6 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
-         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
-         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
-         if ( ! context.isSpaRequest( ) )
-         {
-            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
-            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
-            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
-            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
-            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
-            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
-         }
-         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -372,7 +360,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "Resident Qr Code", "") ;
+         return "Resident Qr Code" ;
       }
 
       protected void WB6O0( )
@@ -406,7 +394,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, "", context.GetMessage( "QRCode Image", ""), "col-sm-3 QrCodeImageLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, "", "QRCode Image", "col-sm-3 QrCodeImageLabel", 0, true, "");
             /* Static Bitmap Variable */
             ClassString = "QrCodeImage" + " " + ((StringUtil.StrCmp(imgavQrcodeimage_gximage, "")==0) ? "" : "GX_Image_"+imgavQrcodeimage_gximage+"_Class");
             StyleString = "";
@@ -453,7 +441,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", context.GetMessage( "Resident Qr Code", ""), 0) ;
+         Form.Meta.addItem("description", "Resident Qr Code", 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -723,7 +711,7 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
-         lblInstruction_Caption = context.GetMessage( "Scan QR Code to Login", "");
+         lblInstruction_Caption = "Scan QR Code to Login";
          AssignProp("", false, lblInstruction_Internalname, "Caption", lblInstruction_Caption, true);
          GXt_char1 = AV7QRCodeImage;
          new prc_generateqrcodeimage(context ).execute(  AV12ResidentGUID, out  GXt_char1) ;
@@ -786,7 +774,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115453916", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412614595624", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -803,8 +791,8 @@ namespace GeneXus.Programs {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wp_residentqrcode.js", "?2024112115453916", false, true);
+            context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
+            context.AddJavascriptSource("wp_residentqrcode.js", "?202412614595624", false, true);
          }
          /* End function include_jscripts */
       }
@@ -839,7 +827,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = context.GetMessage( "Resident Qr Code", "");
+         Form.Caption = "Resident Qr Code";
          if ( context.isSpaRequest( ) )
          {
             enableJsOutput();

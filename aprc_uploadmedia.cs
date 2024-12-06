@@ -130,13 +130,13 @@ namespace GeneXus.Programs {
          AV14BC_Trn_Media.gxTpr_Medianame = AV12MediaName;
          AV14BC_Trn_Media.gxTpr_Mediasize = AV20MediaSize;
          AV14BC_Trn_Media.gxTpr_Mediatype = AV21MediaType;
-         AV23MediaUrl = StringUtil.StringReplace( AV8HttpRequest.BaseURL, context.GetMessage( "api/media/", ""), context.GetMessage( "media/", "")+AV12MediaName);
-         if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, context.GetMessage( "http://localhost", "")) )
+         AV23MediaUrl = StringUtil.StringReplace( AV8HttpRequest.BaseURL, "api/media/", "media/"+AV12MediaName);
+         if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, "http://localhost") )
          {
          }
          else
          {
-            AV23MediaUrl = StringUtil.StringReplace( AV23MediaUrl, context.GetMessage( "http://", ""), context.GetMessage( "https://", ""));
+            AV23MediaUrl = StringUtil.StringReplace( AV23MediaUrl, "http://", "https://");
          }
          new prc_logtofile(context ).execute(  ">>>>>>>>>>>>>>>>>>>>>>>>>"+AV23MediaUrl) ;
          AV14BC_Trn_Media.gxTpr_Mediaurl = AV23MediaUrl;
@@ -144,9 +144,9 @@ namespace GeneXus.Programs {
          if ( AV14BC_Trn_Media.Success() )
          {
             AV22Path = "";
-            if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, context.GetMessage( "http", "")) )
+            if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, "http") )
             {
-               AV22Path = context.GetMessage( "C:\\KBs\\Comforta_version2\\Data018\\Web\\media\\", "");
+               AV22Path = "C:\\KBs\\Comforta_version2\\Data018\\Web\\media\\";
             }
             new SdtEO_Base64Image(context).saveimage(AV18MediaImageData, AV22Path+AV12MediaName) ;
             new prc_logtofile(context ).execute(  AV22Path+AV12MediaName) ;
@@ -163,7 +163,7 @@ namespace GeneXus.Programs {
                new prc_logtofile(context ).execute(  AV17Message.gxTpr_Description) ;
                AV25GXV2 = (int)(AV25GXV2+1);
             }
-            AV10response = context.GetMessage( "Insert ERROR", "");
+            AV10response = "Insert ERROR";
             context.RollbackDataStores("prc_uploadmedia",pr_default);
          }
          cleanup();

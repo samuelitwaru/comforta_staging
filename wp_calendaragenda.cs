@@ -238,7 +238,7 @@ namespace GeneXus.Programs {
          }
          context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1918140), false, true);
-         context.AddJavascriptSource("calendar-"+StringUtil.Substring( context.GetLanguageProperty( "culture"), 1, 2)+".js", "?"+context.GetBuildNumber( 1918140), false, true);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("DVelop/Calendar/index.global.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Calendar/WWPCalendarRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/daterangepicker/locales.js", "", false, true);
@@ -423,18 +423,6 @@ namespace GeneXus.Programs {
          {
             WebComp_Wwpaux_wc.componentjscripts();
          }
-         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
-         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
-         if ( ! context.isSpaRequest( ) )
-         {
-            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
-            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
-            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
-            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
-            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
-            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
-         }
-         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -477,7 +465,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "Agenda", "") ;
+         return "Agenda" ;
       }
 
       protected void WB5F0( )
@@ -519,35 +507,35 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 13,'',false,'',0)\"";
             ClassString = "CreateEventButton";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtncreateevent_Internalname, "", context.GetMessage( "WWP_Calendar_CreateEvent", ""), bttBtncreateevent_Jsonclick, 5, context.GetMessage( "WWP_Calendar_CreateEvent", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOCREATEEVENT\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_CalendarAgenda.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtncreateevent_Internalname, "", "Create Event", bttBtncreateevent_Jsonclick, 5, "Create Event", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOCREATEEVENT\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_CalendarAgenda.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "CellMarginTop30 CalendarFlatDateCell", "start", "top", "", "align-self:center;", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavDate_Internalname, context.GetMessage( "Date", ""), "gx-form-item AttributeDateLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavDate_Internalname, "Date", "gx-form-item AttributeDateLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 16,'',false,'',0)\"";
             context.WriteHtmlText( "<div id=\""+edtavDate_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-            GxWebStd.gx_single_line_edit( context, edtavDate_Internalname, context.localUtil.Format(AV12Date, "99/99/99"), context.localUtil.Format( AV12Date, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,16);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavDate_Jsonclick, 0, "AttributeDate", "", "", "", "", 1, edtavDate_Enabled, 0, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WP_CalendarAgenda.htm");
+            GxWebStd.gx_single_line_edit( context, edtavDate_Internalname, context.localUtil.Format(AV12Date, "99/99/99"), context.localUtil.Format( AV12Date, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'DMY',0,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'DMY',0,24,'eng',false,0);"+";gx.evt.onblur(this,16);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavDate_Jsonclick, 0, "AttributeDate", "", "", "", "", 1, edtavDate_Enabled, 0, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WP_CalendarAgenda.htm");
             context.WriteHtmlTextNl( "</div>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "CellMarginTop30 hidden-xs", "start", "top", "", "flex-grow:1;", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblWwp_search_Internalname, context.GetMessage( "WWP_Search", ""), "", "", lblWwp_search_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockTitleWWP", 0, "", 1, 1, 0, 0, "HLP_WP_CalendarAgenda.htm");
+            GxWebStd.gx_label_ctrl( context, lblWwp_search_Internalname, "Search", "", "", lblWwp_search_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockTitleWWP", 0, "", 1, 1, 0, 0, "HLP_WP_CalendarAgenda.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "CellMarginTop10 DataContentCell hidden-xs", "start", "top", "", "flex-grow:1;", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTitlefilter_Internalname, context.GetMessage( "Title Filter", ""), "gx-form-item AttributeLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavTitlefilter_Internalname, "Title Filter", "gx-form-item AttributeLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 21,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTitlefilter_Internalname, AV36TitleFilter, StringUtil.RTrim( context.localUtil.Format( AV36TitleFilter, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,21);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", context.GetMessage( "WWP_Calendar_TitleEvent", ""), edtavTitlefilter_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavTitlefilter_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CalendarAgenda.htm");
+            GxWebStd.gx_single_line_edit( context, edtavTitlefilter_Internalname, AV36TitleFilter, StringUtil.RTrim( context.localUtil.Format( AV36TitleFilter, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,21);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "Title", edtavTitlefilter_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavTitlefilter_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CalendarAgenda.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -559,14 +547,14 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 MergeLabelCell", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblockdatetypefilter_Internalname, context.GetMessage( "WWP_Calendar_Date", ""), "", "", lblTextblockdatetypefilter_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_CalendarAgenda.htm");
+            GxWebStd.gx_label_ctrl( context, lblTextblockdatetypefilter_Internalname, "Date", "", "", lblTextblockdatetypefilter_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_CalendarAgenda.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, cmbavDatetypefilter_Internalname, context.GetMessage( "Date Type Filter", ""), "col-sm-3 AttributeLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, cmbavDatetypefilter_Internalname, "Date Type Filter", "col-sm-3 AttributeLabel", 0, true, "");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'',false,'',0)\"";
             /* ComboBox */
             GxWebStd.gx_combobox_ctrl1( context, cmbavDatetypefilter, cmbavDatetypefilter_Internalname, StringUtil.Trim( StringUtil.Str( (decimal)(AV20DateTypeFilter), 4, 0)), 1, cmbavDatetypefilter_Jsonclick, 7, "'"+""+"'"+",false,"+"'"+"e115f1_client"+"'", "int", "", 1, cmbavDatetypefilter.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,29);\"", "", true, 0, "HLP_WP_CalendarAgenda.htm");
@@ -582,7 +570,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavDaterangefilter_rangetext_Internalname, context.GetMessage( "Date Range Filter_Range Text", ""), "gx-form-item AttributeDateLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavDaterangefilter_rangetext_Internalname, "Date Range Filter_Range Text", "gx-form-item AttributeDateLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 32,'',false,'',0)\"";
             GxWebStd.gx_single_line_edit( context, edtavDaterangefilter_rangetext_Internalname, AV16DateRangeFilter_RangeText, StringUtil.RTrim( context.localUtil.Format( AV16DateRangeFilter_RangeText, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,32);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavDaterangefilter_rangetext_Jsonclick, 0, "AttributeDate", "", "", "", "", edtavDaterangefilter_rangetext_Visible, edtavDaterangefilter_rangetext_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CalendarAgenda.htm");
@@ -593,11 +581,11 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavDatefilter_Internalname, context.GetMessage( "Date Filter", ""), "gx-form-item AttributeDateLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavDatefilter_Internalname, "Date Filter", "gx-form-item AttributeDateLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 35,'',false,'',0)\"";
             context.WriteHtmlText( "<div id=\""+edtavDatefilter_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-            GxWebStd.gx_single_line_edit( context, edtavDatefilter_Internalname, context.localUtil.Format(AV14DateFilter, "99/99/99"), context.localUtil.Format( AV14DateFilter, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,35);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavDatefilter_Jsonclick, 0, "AttributeDate", "", "", "", "", edtavDatefilter_Visible, edtavDatefilter_Enabled, 0, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WP_CalendarAgenda.htm");
+            GxWebStd.gx_single_line_edit( context, edtavDatefilter_Internalname, context.localUtil.Format(AV14DateFilter, "99/99/99"), context.localUtil.Format( AV14DateFilter, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'DMY',0,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'DMY',0,24,'eng',false,0);"+";gx.evt.onblur(this,35);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavDatefilter_Jsonclick, 0, "AttributeDate", "", "", "", "", edtavDatefilter_Visible, edtavDatefilter_Enabled, 0, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WP_CalendarAgenda.htm");
             GxWebStd.gx_bitmap( context, edtavDatefilter_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((edtavDatefilter_Visible==0)||(edtavDatefilter_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WP_CalendarAgenda.htm");
             context.WriteHtmlTextNl( "</div>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -611,14 +599,14 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 39,'',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnuaclear_Internalname, "", context.GetMessage( "WWP_Calendar_Clear", ""), bttBtnuaclear_Jsonclick, 5, context.GetMessage( "WWP_Calendar_Clear", ""), "", StyleString, ClassString, bttBtnuaclear_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOUACLEAR\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_CalendarAgenda.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnuaclear_Internalname, "", "Clear", bttBtnuaclear_Jsonclick, 5, "Clear", "", StyleString, ClassString, bttBtnuaclear_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOUACLEAR\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_CalendarAgenda.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 41,'',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnuasearch_Internalname, "", context.GetMessage( "WWP_Calendar_Search", ""), bttBtnuasearch_Jsonclick, 5, context.GetMessage( "WWP_Calendar_Search", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOUASEARCH\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_CalendarAgenda.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnuasearch_Internalname, "", "Search", bttBtnuasearch_Jsonclick, 5, "Search", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOUASEARCH\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_CalendarAgenda.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -669,7 +657,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 46,'',false,'',0)\"";
             ClassString = "Invisible";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtndummydelete_Internalname, "", context.GetMessage( "Dummy Delete Event", ""), bttBtndummydelete_Jsonclick, 7, context.GetMessage( "Dummy Delete Event", ""), "", StyleString, ClassString, bttBtndummydelete_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"e125f1_client"+"'", TempTags, "", 2, "HLP_WP_CalendarAgenda.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtndummydelete_Internalname, "", "Dummy Delete Event", bttBtndummydelete_Jsonclick, 7, "Dummy Delete Event", "", StyleString, ClassString, bttBtndummydelete_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"e125f1_client"+"'", TempTags, "", 2, "HLP_WP_CalendarAgenda.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -688,7 +676,7 @@ namespace GeneXus.Programs {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 51,'',false,'',0)\"";
             context.WriteHtmlText( "<div id=\""+edtavDate_showingdatesfrom_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-            GxWebStd.gx_single_line_edit( context, edtavDate_showingdatesfrom_Internalname, context.localUtil.Format(AV13Date_ShowingDatesFrom, "99/99/99"), context.localUtil.Format( AV13Date_ShowingDatesFrom, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,51);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavDate_showingdatesfrom_Jsonclick, 0, "Attribute", "", "", "", "", edtavDate_showingdatesfrom_Visible, 1, 0, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WP_CalendarAgenda.htm");
+            GxWebStd.gx_single_line_edit( context, edtavDate_showingdatesfrom_Internalname, context.localUtil.Format(AV13Date_ShowingDatesFrom, "99/99/99"), context.localUtil.Format( AV13Date_ShowingDatesFrom, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'DMY',0,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'DMY',0,24,'eng',false,0);"+";gx.evt.onblur(this,51);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavDate_showingdatesfrom_Jsonclick, 0, "Attribute", "", "", "", "", edtavDate_showingdatesfrom_Visible, 1, 0, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WP_CalendarAgenda.htm");
             GxWebStd.gx_bitmap( context, edtavDate_showingdatesfrom_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((edtavDate_showingdatesfrom_Visible==0)||(1==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WP_CalendarAgenda.htm");
             context.WriteHtmlTextNl( "</div>") ;
             wb_table1_52_5F2( true) ;
@@ -763,7 +751,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", context.GetMessage( "Agenda", ""), 0) ;
+         Form.Meta.addItem("description", "Agenda", 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -1165,9 +1153,9 @@ namespace GeneXus.Programs {
             Calendaruc_Datetimeselected = cgiGet( "CALENDARUC_Datetimeselected");
             Calendaruc_Itemselected = cgiGet( "CALENDARUC_Itemselected");
             /* Read variables values. */
-            if ( context.localUtil.VCDate( cgiGet( edtavDate_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")))) == 0 )
+            if ( context.localUtil.VCDate( cgiGet( edtavDate_Internalname), 2) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {context.GetMessage( "Date", "")}), 1, "vDATE");
+               GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {"Date"}), 1, "vDATE");
                GX_FocusControl = edtavDate_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
@@ -1176,7 +1164,7 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV12Date = context.localUtil.CToD( cgiGet( edtavDate_Internalname), DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
+               AV12Date = context.localUtil.CToD( cgiGet( edtavDate_Internalname), 2);
                AssignAttri("", false, "AV12Date", context.localUtil.Format(AV12Date, "99/99/99"));
             }
             AV36TitleFilter = cgiGet( edtavTitlefilter_Internalname);
@@ -1186,9 +1174,9 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "AV20DateTypeFilter", StringUtil.LTrimStr( (decimal)(AV20DateTypeFilter), 4, 0));
             AV16DateRangeFilter_RangeText = cgiGet( edtavDaterangefilter_rangetext_Internalname);
             AssignAttri("", false, "AV16DateRangeFilter_RangeText", AV16DateRangeFilter_RangeText);
-            if ( context.localUtil.VCDate( cgiGet( edtavDatefilter_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")))) == 0 )
+            if ( context.localUtil.VCDate( cgiGet( edtavDatefilter_Internalname), 2) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {context.GetMessage( "Date Filter", "")}), 1, "vDATEFILTER");
+               GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {"Date Filter"}), 1, "vDATEFILTER");
                GX_FocusControl = edtavDatefilter_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
@@ -1197,12 +1185,12 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV14DateFilter = context.localUtil.CToD( cgiGet( edtavDatefilter_Internalname), DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
+               AV14DateFilter = context.localUtil.CToD( cgiGet( edtavDatefilter_Internalname), 2);
                AssignAttri("", false, "AV14DateFilter", context.localUtil.Format(AV14DateFilter, "99/99/99"));
             }
-            if ( context.localUtil.VCDate( cgiGet( edtavDate_showingdatesfrom_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")))) == 0 )
+            if ( context.localUtil.VCDate( cgiGet( edtavDate_showingdatesfrom_Internalname), 2) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {context.GetMessage( "Date_Showing Dates From", "")}), 1, "vDATE_SHOWINGDATESFROM");
+               GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {"Date_Showing Dates From"}), 1, "vDATE_SHOWINGDATESFROM");
                GX_FocusControl = edtavDate_showingdatesfrom_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
@@ -1211,7 +1199,7 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV13Date_ShowingDatesFrom = context.localUtil.CToD( cgiGet( edtavDate_showingdatesfrom_Internalname), DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
+               AV13Date_ShowingDatesFrom = context.localUtil.CToD( cgiGet( edtavDate_showingdatesfrom_Internalname), 2);
                AssignAttri("", false, "AV13Date_ShowingDatesFrom", context.localUtil.Format(AV13Date_ShowingDatesFrom, "99/99/99"));
             }
             /* Read subfile selected row values. */
@@ -1249,13 +1237,13 @@ namespace GeneXus.Programs {
       {
          /* Refresh Routine */
          returnInSub = false;
-         Calendaruc_Monthbuttontext = context.GetMessage( "Month", "");
+         Calendaruc_Monthbuttontext = "Month";
          ucCalendaruc.SendProperty(context, "", false, Calendaruc_Internalname, "MonthButtonText", Calendaruc_Monthbuttontext);
-         Calendaruc_Weekbuttontext = context.GetMessage( "Week", "");
+         Calendaruc_Weekbuttontext = "Week";
          ucCalendaruc.SendProperty(context, "", false, Calendaruc_Internalname, "WeekButtonText", Calendaruc_Weekbuttontext);
-         Calendaruc_Daybuttontext = context.GetMessage( "Day", "");
+         Calendaruc_Daybuttontext = "Day";
          ucCalendaruc.SendProperty(context, "", false, Calendaruc_Internalname, "DayButtonText", Calendaruc_Daybuttontext);
-         Calendaruc_Todaybuttontext = context.GetMessage( "Today", "");
+         Calendaruc_Todaybuttontext = "Today";
          ucCalendaruc.SendProperty(context, "", false, Calendaruc_Internalname, "TodayButtonText", Calendaruc_Todaybuttontext);
          AV38SelectedLanguage = context.GetLanguage( );
          if ( StringUtil.StrCmp(AV38SelectedLanguage, "Dutch") == 0 )
@@ -1369,7 +1357,7 @@ namespace GeneXus.Programs {
          {
             new GeneXus.Core.genexus.common.SdtLog(context).error("") ;
          }
-         this.executeUsercontrolMethod("", false, "CALENDARUCContainer", "MoveCalendarToDate", "", new Object[] {context.localUtil.DToC( Gx_date, (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt"))), "/")});
+         this.executeUsercontrolMethod("", false, "CALENDARUCContainer", "MoveCalendarToDate", "", new Object[] {context.localUtil.DToC( Gx_date, 2, "/")});
          AV29ForceLoadDots = true;
          AssignAttri("", false, "AV29ForceLoadDots", AV29ForceLoadDots);
          /* Execute user subroutine: 'LOADCALENDAR' */
@@ -1396,7 +1384,7 @@ namespace GeneXus.Programs {
          /* Execute user subroutine: 'LOADCALENDAR' */
          S132 ();
          if (returnInSub) return;
-         this.executeUsercontrolMethod("", false, "CALENDARUCContainer", "ChangeCalendarToView", "", new Object[] {context.GetMessage( "listYear", "")});
+         this.executeUsercontrolMethod("", false, "CALENDARUCContainer", "ChangeCalendarToView", "", new Object[] {(string)"listYear"});
          /*  Sending Event outputs  */
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV25Events", AV25Events);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV21DisabledDays", AV21DisabledDays);
@@ -1578,7 +1566,7 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.workwithplus.wwp_calendar_getevent(context ).execute(  AV7CalendarEventId, out  GXt_SdtWWP_Calendar_Events_Item2) ;
          AV8CalendarEvents = GXt_SdtWWP_Calendar_Events_Item2;
          AV28EventTitle = AV8CalendarEvents.gxTpr_Title;
-         Dvelop_confirmpanel_btndummydelete_Confirmationtext = StringUtil.Format( context.GetMessage( "WWP_Calendar_DeleteEventMessage", ""), AV28EventTitle, "", "", "", "", "", "", "", "");
+         Dvelop_confirmpanel_btndummydelete_Confirmationtext = StringUtil.Format( "¿Are you sure you want to delete this event?", AV28EventTitle, "", "", "", "", "", "", "", "");
          ucDvelop_confirmpanel_btndummydelete.SendProperty(context, "", false, Dvelop_confirmpanel_btndummydelete_Internalname, "ConfirmationText", Dvelop_confirmpanel_btndummydelete_Confirmationtext);
          this.executeUsercontrolMethod("", false, "DVELOP_CONFIRMPANEL_BTNDUMMYDELETEContainer", "Confirm", "", new Object[] {});
       }
@@ -1833,7 +1821,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411211545409", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241261614659", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1848,8 +1836,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_calendaragenda.js", "?202411211545409", false, true);
+         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wp_calendaragenda.js", "?20241261614659", false, true);
          context.AddJavascriptSource("DVelop/Calendar/index.global.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Calendar/WWPCalendarRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/daterangepicker/locales.js", "", false, true);
@@ -1871,11 +1859,11 @@ namespace GeneXus.Programs {
       {
          cmbavDatetypefilter.Name = "vDATETYPEFILTER";
          cmbavDatetypefilter.WebTags = "";
-         cmbavDatetypefilter.addItem("1", context.GetMessage( "WWP_Calendar_All", ""), 0);
-         cmbavDatetypefilter.addItem("2", context.GetMessage( "WWP_Calendar_Past", ""), 0);
-         cmbavDatetypefilter.addItem("3", context.GetMessage( "WWP_Calendar_Future", ""), 0);
-         cmbavDatetypefilter.addItem("4", context.GetMessage( "WWP_Calendar_FromDate", ""), 0);
-         cmbavDatetypefilter.addItem("5", context.GetMessage( "WWP_Calendar_Range", ""), 0);
+         cmbavDatetypefilter.addItem("1", "All", 0);
+         cmbavDatetypefilter.addItem("2", "Past", 0);
+         cmbavDatetypefilter.addItem("3", "Future", 0);
+         cmbavDatetypefilter.addItem("4", "From date", 0);
+         cmbavDatetypefilter.addItem("5", "Range", 0);
          if ( cmbavDatetypefilter.ItemCount > 0 )
          {
             AV20DateTypeFilter = (short)(Math.Round(NumberUtil.Val( cmbavDatetypefilter.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(AV20DateTypeFilter), 4, 0))), "."), 18, MidpointRounding.ToEven));
@@ -1944,7 +1932,7 @@ namespace GeneXus.Programs {
          edtavDate_Enabled = 1;
          Createevent_modal_Bodytype = "WebComponent";
          Createevent_modal_Confirmtype = "";
-         Createevent_modal_Title = context.GetMessage( "Event", "");
+         Createevent_modal_Title = "Event";
          Createevent_modal_Width = "600";
          Dvelop_confirmpanel_btndummydelete_Confirmtype = "1";
          Dvelop_confirmpanel_btndummydelete_Yesbuttonposition = "left";
@@ -1952,7 +1940,7 @@ namespace GeneXus.Programs {
          Dvelop_confirmpanel_btndummydelete_Nobuttoncaption = "WWP_ConfirmTextNo";
          Dvelop_confirmpanel_btndummydelete_Yesbuttoncaption = "WWP_ConfirmTextYes";
          Dvelop_confirmpanel_btndummydelete_Confirmationtext = "WWP_Calendar_DeleteEventMessage";
-         Dvelop_confirmpanel_btndummydelete_Title = context.GetMessage( "WWP_Calendar_DeleteEventTitle", "");
+         Dvelop_confirmpanel_btndummydelete_Title = "Delete event";
          Calendaruc_Daybuttontext = "Day";
          Calendaruc_Weekbuttontext = "Week";
          Calendaruc_Monthbuttontext = "Month";
@@ -1983,7 +1971,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = context.GetMessage( "Agenda", "");
+         Form.Caption = "Agenda";
          if ( context.isSpaRequest( ) )
          {
             enableJsOutput();

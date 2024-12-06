@@ -1,0 +1,698 @@
+{
+  "assets": [],
+  "styles": [
+    {
+      "selectors": [
+        "#i1vh"
+      ],
+      "style": {
+        "display": "flex",
+        "width": "100%"
+      }
+    },
+    {
+      "selectors": [
+        "#ibmj"
+      ],
+      "style": {
+        "flex": "1",
+        "padding": "0"
+      }
+    },
+    {
+      "selectors": [
+        "#iqop8"
+      ],
+      "style": {
+        "background-color": "#5068a8",
+        "border-color": "#5068a8"
+      }
+    },
+    {
+      "selectors": [
+        "#product-service-description"
+      ],
+      "style": {
+        "flex": "1",
+        "padding": "0",
+        "margin": "0",
+        "height": "auto",
+        "margin-bottom": "15px"
+      }
+    }
+  ],
+  "pages": [
+    {
+      "frames": [
+        {
+          "component": {
+            "type": "wrapper",
+            "stylable": [
+              "background",
+              "background-color",
+              "background-image",
+              "background-repeat",
+              "background-attachment",
+              "background-position",
+              "background-size"
+            ],
+            "attributes": {
+              "id": "i16l"
+            },
+            "_undoexc": [
+              "status",
+              "open"
+            ],
+            "components": [
+              {
+                "draggable": false,
+                "droppable": false,
+                "highlightable": false,
+                "selectable": false,
+                "hoverable": false,
+                "classes": [
+                  "content-frame-container"
+                ],
+                "attributes": {
+                  "id": "frame-container"
+                },
+                "_undoexc": [
+                  "status",
+                  "open"
+                ],
+                "components": [
+                  {
+                    "draggable": false,
+                    "droppable": false,
+                    "highlightable": false,
+                    "selectable": false,
+                    "hoverable": false,
+                    "classes": [
+                      "container-column"
+                    ],
+                    "_undoexc": [
+                      "status",
+                      "open"
+                    ],
+                    "components": [
+                      {
+                        "draggable": false,
+                        "droppable": false,
+                        "selectable": false,
+                        "classes": [
+                          "container-row"
+                        ],
+                        "_undoexc": [
+                          "status",
+                          "open"
+                        ],
+                        "components": [
+                          {
+                            "draggable": false,
+                            "droppable": false,
+                            "selectable": false,
+                            "classes": [
+                              "template-wrapper"
+                            ],
+                            "attributes": {
+                              "id": "i1vh"
+                            },
+                            "_undoexc": [
+                              "status",
+                              "open"
+                            ],
+                            "components": [
+                              {
+                                "draggable": false,
+                                "highlightable": false,
+                                "selectable": false,
+                                "hoverable": false,
+                                "attributes": {
+                                  "id": "ibmj"
+                                },
+                                "_undoexc": [
+                                  "status",
+                                  "open"
+                                ],
+                                "components": [
+                                  {
+                                    "type": "image",
+                                    "droppable": false,
+                                    "highlightable": false,
+                                    "resizable": {
+                                      "ratioDefault": 1
+                                    },
+                                    "editable": false,
+                                    "selectable": false,
+                                    "hoverable": false,
+                                    "classes": [
+                                      "content-page-block"
+                                    ],
+                                    "attributes": {
+                                      "src": "{{LocationImage}}",
+                                      "id": "product-service-image"
+                                    },
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ]
+                                  },
+                                  {
+                                    "tagName": "p",
+                                    "type": "text",
+                                    "highlightable": false,
+                                    "editable": false,
+                                    "selectable": false,
+                                    "hoverable": false,
+                                    "classes": [
+                                      "content-page-block"
+                                    ],
+                                    "attributes": {
+                                      "id": "product-service-description"
+                                    },
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ],
+                                    "components": [
+                                      {
+                                        "type": "textnode",
+                                        "content": "{{LocationDescription}}",
+                                        "_undoexc": [
+                                          "status",
+                                          "open"
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "draggable": false,
+                        "droppable": false,
+                        "highlightable": false,
+                        "selectable": false,
+                        "hoverable": false,
+                        "classes": [
+                          "cta-button-container"
+                        ],
+                        "_undoexc": [
+                          "status",
+                          "open"
+                        ],
+                        "components": [
+                          {
+                            "draggable": false,
+                            "droppable": false,
+                            "highlightable": false,
+                            "hoverable": false,
+                            "classes": [
+                              "cta-container-child",
+                              "cta-child"
+                            ],
+                            "attributes": {
+                              "id": "id-0141d6ba-678f-4e1a-b94d-63a0b5203083",
+                              "cta-button-id": "0141d6ba-678f-4e1a-b94d-63a0b5203083",
+                              "cta-button-label": "Call Us",
+                              "cta-button-type": "Phone",
+                              "cta-button-action": "+256781902617",
+                              "cta-background-color": "#5068a8"
+                            },
+                            "_undoexc": [
+                              "status",
+                              "open"
+                            ],
+                            "components": [
+                              {
+                                "draggable": false,
+                                "droppable": false,
+                                "highlightable": false,
+                                "selectable": false,
+                                "hoverable": false,
+                                "classes": [
+                                  "cta-button"
+                                ],
+                                "_undoexc": [
+                                  "status",
+                                  "open"
+                                ],
+                                "components": [
+                                  {
+                                    "tagName": "i",
+                                    "draggable": false,
+                                    "droppable": false,
+                                    "highlightable": false,
+                                    "selectable": false,
+                                    "hoverable": false,
+                                    "classes": [
+                                      "fas",
+                                      "fa-phone-alt"
+                                    ],
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ]
+                                  },
+                                  {
+                                    "draggable": false,
+                                    "droppable": false,
+                                    "highlightable": false,
+                                    "selectable": false,
+                                    "hoverable": false,
+                                    "classes": [
+                                      "cta-badge"
+                                    ],
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ],
+                                    "components": [
+                                      {
+                                        "tagName": "i",
+                                        "draggable": false,
+                                        "droppable": false,
+                                        "highlightable": false,
+                                        "selectable": false,
+                                        "hoverable": false,
+                                        "classes": [
+                                          "fa",
+                                          "fa-minus"
+                                        ],
+                                        "_undoexc": [
+                                          "status",
+                                          "open"
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "text",
+                                "draggable": false,
+                                "highlightable": false,
+                                "editable": false,
+                                "selectable": false,
+                                "hoverable": false,
+                                "classes": [
+                                  "cta-label"
+                                ],
+                                "_undoexc": [
+                                  "status",
+                                  "open"
+                                ],
+                                "components": [
+                                  {
+                                    "type": "textnode",
+                                    "content": "Call Us",
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "draggable": false,
+                            "droppable": false,
+                            "highlightable": false,
+                            "hoverable": false,
+                            "classes": [
+                              "cta-container-child",
+                              "cta-child"
+                            ],
+                            "attributes": {
+                              "id": "id-41cd07ab-bd5b-41f5-81b4-27ef66c4f3f6",
+                              "cta-button-id": "41cd07ab-bd5b-41f5-81b4-27ef66c4f3f6",
+                              "cta-button-label": "Email Us",
+                              "cta-button-type": "Email",
+                              "cta-button-action": "sam@sam.ug",
+                              "cta-background-color": "#5068a8"
+                            },
+                            "_undoexc": [
+                              "status",
+                              "open"
+                            ],
+                            "components": [
+                              {
+                                "draggable": false,
+                                "droppable": false,
+                                "highlightable": false,
+                                "selectable": false,
+                                "hoverable": false,
+                                "classes": [
+                                  "cta-button"
+                                ],
+                                "_undoexc": [
+                                  "status",
+                                  "open"
+                                ],
+                                "components": [
+                                  {
+                                    "tagName": "i",
+                                    "draggable": false,
+                                    "droppable": false,
+                                    "highlightable": false,
+                                    "selectable": false,
+                                    "hoverable": false,
+                                    "classes": [
+                                      "fas",
+                                      "fa-envelope"
+                                    ],
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ]
+                                  },
+                                  {
+                                    "draggable": false,
+                                    "droppable": false,
+                                    "highlightable": false,
+                                    "selectable": false,
+                                    "hoverable": false,
+                                    "classes": [
+                                      "cta-badge"
+                                    ],
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ],
+                                    "components": [
+                                      {
+                                        "tagName": "i",
+                                        "draggable": false,
+                                        "droppable": false,
+                                        "highlightable": false,
+                                        "selectable": false,
+                                        "hoverable": false,
+                                        "classes": [
+                                          "fa",
+                                          "fa-minus"
+                                        ],
+                                        "_undoexc": [
+                                          "status",
+                                          "open"
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "text",
+                                "draggable": false,
+                                "highlightable": false,
+                                "editable": false,
+                                "selectable": false,
+                                "hoverable": false,
+                                "classes": [
+                                  "cta-label"
+                                ],
+                                "_undoexc": [
+                                  "status",
+                                  "open"
+                                ],
+                                "components": [
+                                  {
+                                    "type": "textnode",
+                                    "content": "Email Us",
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "draggable": false,
+                            "droppable": false,
+                            "highlightable": false,
+                            "hoverable": false,
+                            "classes": [
+                              "cta-container-child",
+                              "cta-child"
+                            ],
+                            "attributes": {
+                              "id": "id-08b363b9-ee6d-4dc9-8350-ea11c81d8eb9",
+                              "cta-button-id": "08b363b9-ee6d-4dc9-8350-ea11c81d8eb9",
+                              "cta-button-label": "Visit Site",
+                              "cta-button-type": "SiteUrl",
+                              "cta-button-action": "https://amazon.com",
+                              "cta-background-color": "#5068a8"
+                            },
+                            "_undoexc": [
+                              "status",
+                              "open"
+                            ],
+                            "components": [
+                              {
+                                "draggable": false,
+                                "droppable": false,
+                                "highlightable": false,
+                                "selectable": false,
+                                "hoverable": false,
+                                "classes": [
+                                  "cta-button"
+                                ],
+                                "_undoexc": [
+                                  "status",
+                                  "open"
+                                ],
+                                "components": [
+                                  {
+                                    "tagName": "i",
+                                    "draggable": false,
+                                    "droppable": false,
+                                    "highlightable": false,
+                                    "selectable": false,
+                                    "hoverable": false,
+                                    "classes": [
+                                      "fas",
+                                      "fa-link"
+                                    ],
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ]
+                                  },
+                                  {
+                                    "draggable": false,
+                                    "droppable": false,
+                                    "highlightable": false,
+                                    "selectable": false,
+                                    "hoverable": false,
+                                    "classes": [
+                                      "cta-badge"
+                                    ],
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ],
+                                    "components": [
+                                      {
+                                        "tagName": "i",
+                                        "draggable": false,
+                                        "droppable": false,
+                                        "highlightable": false,
+                                        "selectable": false,
+                                        "hoverable": false,
+                                        "classes": [
+                                          "fa",
+                                          "fa-minus"
+                                        ],
+                                        "_undoexc": [
+                                          "status",
+                                          "open"
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "text",
+                                "draggable": false,
+                                "highlightable": false,
+                                "editable": false,
+                                "selectable": false,
+                                "hoverable": false,
+                                "classes": [
+                                  "cta-label"
+                                ],
+                                "_undoexc": [
+                                  "status",
+                                  "open"
+                                ],
+                                "components": [
+                                  {
+                                    "type": "textnode",
+                                    "content": "Visit Site",
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "draggable": false,
+                            "droppable": false,
+                            "highlightable": false,
+                            "hoverable": false,
+                            "classes": [
+                              "img-button-container"
+                            ],
+                            "attributes": {
+                              "id": "id-1d544aa9-6779-4772-bf74-31e096b3493e",
+                              "cta-button-id": "1d544aa9-6779-4772-bf74-31e096b3493e",
+                              "cta-button-label": "Example Form",
+                              "cta-button-type": "Form",
+                              "cta-button-action": "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL/wp_residentdynamicform.aspx?WWPFormReferenceName=FormExample&WWPFormInstanceId=0&WWPDynamicFormMode=INS",
+                              "cta-background-color": "#5068a8",
+                              "cta-full-width": "true",
+                              "is-full-width": true,
+                              "is-image-button": true
+                            },
+                            "_undoexc": [
+                              "status",
+                              "open"
+                            ],
+                            "components": [
+                              {
+                                "draggable": false,
+                                "droppable": false,
+                                "highlightable": false,
+                                "selectable": false,
+                                "hoverable": false,
+                                "classes": [
+                                  "img-button"
+                                ],
+                                "attributes": {
+                                  "id": "iqop8"
+                                },
+                                "_undoexc": [
+                                  "status",
+                                  "open"
+                                ],
+                                "components": [
+                                  {
+                                    "tagName": "i",
+                                    "draggable": false,
+                                    "droppable": false,
+                                    "highlightable": false,
+                                    "selectable": false,
+                                    "hoverable": false,
+                                    "classes": [
+                                      "fas",
+                                      "fa-file",
+                                      "img-button-icon"
+                                    ],
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ]
+                                  },
+                                  {
+                                    "draggable": false,
+                                    "droppable": false,
+                                    "highlightable": false,
+                                    "selectable": false,
+                                    "hoverable": false,
+                                    "classes": [
+                                      "cta-badge"
+                                    ],
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ],
+                                    "components": [
+                                      {
+                                        "tagName": "i",
+                                        "draggable": false,
+                                        "droppable": false,
+                                        "highlightable": false,
+                                        "selectable": false,
+                                        "hoverable": false,
+                                        "classes": [
+                                          "fa",
+                                          "fa-minus"
+                                        ],
+                                        "_undoexc": [
+                                          "status",
+                                          "open"
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "tagName": "span",
+                                    "type": "text",
+                                    "draggable": false,
+                                    "highlightable": false,
+                                    "editable": false,
+                                    "selectable": false,
+                                    "hoverable": false,
+                                    "classes": [
+                                      "img-button-label"
+                                    ],
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ],
+                                    "components": [
+                                      {
+                                        "type": "textnode",
+                                        "content": "Example Form",
+                                        "_undoexc": [
+                                          "status",
+                                          "open"
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "tagName": "i",
+                                    "draggable": false,
+                                    "droppable": false,
+                                    "highlightable": false,
+                                    "selectable": false,
+                                    "hoverable": false,
+                                    "classes": [
+                                      "fa",
+                                      "fa-angle-right",
+                                      "img-button-arrow"
+                                    ],
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "type": "main",
+      "id": "Kb4fvJb6aPSWAgSb"
+    }
+  ]
+}

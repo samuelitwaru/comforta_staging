@@ -182,7 +182,7 @@ namespace GeneXus.Programs {
          standaloneModal( ) ;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A290SupplierGenTypeName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier Gen Type Name", ""), "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Supplier Gen Type Name", "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
       }
@@ -462,7 +462,7 @@ namespace GeneXus.Programs {
             pr_default.execute(7, new Object[] {A282SupplierGenTypeId});
             if ( (pr_default.getStatus(7) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_SupplierGen", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_SupplierGen"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(7);

@@ -192,7 +192,7 @@ namespace GeneXus.Programs.workwithplus {
          standaloneModal( ) ;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A106WWPParameterKey)) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "WWP_ParameterKey_Attribute_Description", ""), "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Parameter Key", "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( StringUtil.Len( A107WWPParameterValue) <= 30 )

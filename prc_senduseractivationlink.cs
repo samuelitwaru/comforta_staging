@@ -30,6 +30,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -40,6 +41,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -145,6 +147,10 @@ namespace GeneXus.Programs {
          AV17SMTPSession = new GeneXus.Mail.GXSMTPSession(context.GetPhysicalPath());
          AV8MailRecipient = new GeneXus.Mail.GXMailRecipient();
          AV15MailMessage = new GeneXus.Mail.GXMailMessage();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_senduseractivationlink__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.prc_senduseractivationlink__gam(),
             new Object[][] {
             }
@@ -164,6 +170,7 @@ namespace GeneXus.Programs {
       private GeneXus.Mail.GXMailMessage AV15MailMessage ;
       private GeneXus.Mail.GXMailRecipient AV8MailRecipient ;
       private GeneXus.Mail.GXSMTPSession AV17SMTPSession ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private string aP1_baseUrl ;
@@ -172,10 +179,11 @@ namespace GeneXus.Programs {
       private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV11GAMErrors ;
       private IDataStoreProvider pr_default ;
       private bool aP2_isSuccessful ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class prc_senduseractivationlink__gam : DataStoreHelperBase, IDataStoreHelper
+   public class prc_senduseractivationlink__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -202,12 +210,12 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class prc_senduseractivationlink__default : DataStoreHelperBase, IDataStoreHelper
+ public class prc_senduseractivationlink__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
@@ -231,6 +239,38 @@ namespace GeneXus.Programs {
                           Object[] buf )
   {
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class prc_senduseractivationlink__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       def= new CursorDef[] {
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+ }
 
 }
 

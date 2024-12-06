@@ -52,6 +52,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -62,6 +63,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -499,6 +501,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string A209WWPFormTitle ;
       private string AV20Option ;
       private IGxSession AV26Session ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GxSimpleCollection<string> AV21Options ;

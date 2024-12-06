@@ -322,7 +322,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( context.GetMessage( "Discussions of a record", "")) ;
+            context.SendWebValue( "Discussions of a record") ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -347,7 +347,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          }
          context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1918140), false, true);
-         context.AddJavascriptSource("calendar-"+StringUtil.Substring( context.GetLanguageProperty( "culture"), 1, 2)+".js", "?"+context.GetBuildNumber( 1918140), false, true);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Suggest/SuggestRender.js", "", false, true);
          if ( StringUtil.Len( sPrefix) == 0 )
@@ -424,7 +424,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vPGMNAME", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV33Pgmname, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISFIRSTDISCUSSIONRECORD", AV14IsFirstDiscussionRecord);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISFIRSTDISCUSSIONRECORD", GetSecureSignedToken( sPrefix, AV14IsFirstDiscussionRecord, context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vWWPDISCUSSIONMESSAGEIDTOEXPAND", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV25WWPDiscussionMessageIdToExpand), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vWWPDISCUSSIONMESSAGEIDTOEXPAND", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV25WWPDiscussionMessageIdToExpand), 10, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWWPDISCUSSIONMESSAGEIDTOEXPAND", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV25WWPDiscussionMessageIdToExpand), "ZZZZZZZZZ9"), context));
          if ( context.isAjaxRequest( ) )
          {
@@ -449,21 +449,21 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, sPrefix+"nRC_GXsfl_16", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_16), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"nRC_GXsfl_16", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_16), 8, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV26WWPEntityName", wcpOAV26WWPEntityName);
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV24WWPDiscussionMessageEntityRecordId", wcpOAV24WWPDiscussionMessageEntityRecordId);
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV28WWPSubscriptionEntityRecordDescription", wcpOAV28WWPSubscriptionEntityRecordDescription);
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV27WWPNotificationLink", wcpOAV27WWPNotificationLink);
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPENTITYID", StringUtil.LTrim( StringUtil.NToC( (decimal)(A125WWPEntityId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vWWPENTITYID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV8WWPEntityId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPENTITYID", StringUtil.LTrim( StringUtil.NToC( (decimal)(A125WWPEntityId), 10, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vWWPENTITYID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV8WWPEntityId), 10, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"vWWPDISCUSSIONMESSAGEENTITYRECORDID", AV24WWPDiscussionMessageEntityRecordId);
-         GxWebStd.gx_hidden_field( context, sPrefix+"WWPDISCUSSIONMESSAGETHREADID", StringUtil.LTrim( StringUtil.NToC( (decimal)(A199WWPDiscussionMessageThreadId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"WWPDISCUSSIONMESSAGETHREADID", StringUtil.LTrim( StringUtil.NToC( (decimal)(A199WWPDiscussionMessageThreadId), 10, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"vPGMNAME", StringUtil.RTrim( AV33Pgmname));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vPGMNAME", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV33Pgmname, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISFIRSTDISCUSSIONRECORD", AV14IsFirstDiscussionRecord);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISFIRSTDISCUSSIONRECORD", GetSecureSignedToken( sPrefix, AV14IsFirstDiscussionRecord, context));
          GxWebStd.gx_hidden_field( context, sPrefix+"WWPUSEREXTENDEDPHOTO_GXI", A40000WWPUserExtendedPhoto_GXI);
-         GxWebStd.gx_hidden_field( context, sPrefix+"vWWPDISCUSSIONMESSAGEIDTOEXPAND", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV25WWPDiscussionMessageIdToExpand), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vWWPDISCUSSIONMESSAGEIDTOEXPAND", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV25WWPDiscussionMessageIdToExpand), 10, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWWPDISCUSSIONMESSAGEIDTOEXPAND", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV25WWPDiscussionMessageIdToExpand), "ZZZZZZZZZ9"), context));
          GxWebStd.gx_hidden_field( context, sPrefix+"vWWPSUBSCRIPTIONENTITYRECORDDESCRIPTION", AV28WWPSubscriptionEntityRecordDescription);
          GxWebStd.gx_hidden_field( context, sPrefix+"vWWPNOTIFICATIONLINK", AV27WWPNotificationLink);
@@ -477,8 +477,8 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vWWPDISCUSSIONMESSAGE", AV7WWPDiscussionMessage);
          }
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWWPDISCUSSIONMESSAGE", GetSecureSignedToken( sPrefix, AV7WWPDiscussionMessage, context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, context.GetLanguageProperty( "decimal_point"), "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"GRID_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nEOF), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"GRID_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nEOF), 1, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"UCMENTIONS_Gamoauthtoken", StringUtil.RTrim( Ucmentions_Gamoauthtoken));
          GxWebStd.gx_hidden_field( context, sPrefix+"UCMENTIONS_Datalistproc", StringUtil.RTrim( Ucmentions_Datalistproc));
@@ -529,18 +529,6 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             {
                WebComp_Discussionsonethreadcollapsedwc.componentjscripts();
             }
-            context.WriteHtmlText( "<script type=\"text/javascript\">") ;
-            context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
-            if ( ! context.isSpaRequest( ) )
-            {
-               context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
-               context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
-               context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
-               context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
-               context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
-               context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
-            }
-            context.WriteHtmlText( "</script>") ;
             context.WriteHtmlTextNl( "</body>") ;
             context.WriteHtmlTextNl( "</html>") ;
             if ( context.isSpaRequest( ) )
@@ -569,7 +557,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "Discussions of a record", "") ;
+         return "Discussions of a record" ;
       }
 
       protected void WB1S0( )
@@ -611,12 +599,12 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblDiscussionstitle_Internalname, context.GetMessage( "Discussions", ""), "", "", lblDiscussionstitle_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlockTitleWWP", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/Discussions/WWP_DiscussionsWC.htm");
+            GxWebStd.gx_label_ctrl( context, lblDiscussionstitle_Internalname, "Discussions", "", "", lblDiscussionstitle_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlockTitleWWP", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/Discussions/WWP_DiscussionsWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "align-self:flex-end;", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblNewthread_Internalname, context.GetMessage( "WWP_StartNewThread", ""), "", "", lblNewthread_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+"e111s1_client"+"'", "", "StartNewThreadTB", 7, "", lblNewthread_Visible, 1, 0, 0, "HLP_WWPBaseObjects/Discussions/WWP_DiscussionsWC.htm");
+            GxWebStd.gx_label_ctrl( context, lblNewthread_Internalname, "Start a new thread", "", "", lblNewthread_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+"e111s1_client"+"'", "", "StartNewThreadTB", 7, "", lblNewthread_Visible, 1, 0, 0, "HLP_WWPBaseObjects/Discussions/WWP_DiscussionsWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -672,20 +660,20 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavMessage_Internalname, context.GetMessage( "Message", ""), "gx-form-item AttributeLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavMessage_Internalname, "Message", "gx-form-item AttributeLabel", 0, true, "width: 25%;");
             /* Multiple line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 64,'" + sPrefix + "',false,'" + sGXsfl_16_idx + "',0)\"";
             ClassString = "Attribute";
             StyleString = "";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_html_textarea( context, edtavMessage_Internalname, AV15Message, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,64);\"", 0, 1, edtavMessage_Enabled, 0, 80, "chr", 5, "row", 0, StyleString, ClassString, "", "", "400", -1, 0, "", context.GetMessage( "Type a message to create a new thread...", ""), -1, true, "", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_WWPBaseObjects/Discussions/WWP_DiscussionsWC.htm");
+            GxWebStd.gx_html_textarea( context, edtavMessage_Internalname, AV15Message, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,64);\"", 0, 1, edtavMessage_Enabled, 0, 80, "chr", 5, "row", 0, StyleString, ClassString, "", "", "400", -1, 0, "", "Type a message to create a new thread...", -1, true, "", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_WWPBaseObjects/Discussions/WWP_DiscussionsWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "align-self:flex-end;", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblEnter_Internalname, context.GetMessage( "<i class=\"fas fa-paper-plane DiscussionsSendIcon\"></i>", ""), "", "", lblEnter_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", "", "TextBlock", 5, context.GetMessage( "GX_BtnEnter", ""), 1, 1, 0, 1, "HLP_WWPBaseObjects/Discussions/WWP_DiscussionsWC.htm");
+            GxWebStd.gx_label_ctrl( context, lblEnter_Internalname, "<i class=\"fas fa-paper-plane DiscussionsSendIcon\"></i>", "", "", lblEnter_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", "", "TextBlock", 5, "Confirm", 1, 1, 0, 1, "HLP_WWPBaseObjects/Discussions/WWP_DiscussionsWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -769,7 +757,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", context.GetMessage( "Discussions of a record", ""), 0) ;
+            Form.Meta.addItem("description", "Discussions of a record", 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -944,7 +932,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                               A204WWPDiscussionMessageMessage = cgiGet( edtWWPDiscussionMessageMessage_Internalname);
                               AV13IsDiscussionAnswersWCLoaded = StringUtil.StrToBool( cgiGet( chkavIsdiscussionanswerswcloaded_Internalname));
                               AssignAttri(sPrefix, false, chkavIsdiscussionanswerswcloaded_Internalname, AV13IsDiscussionAnswersWCLoaded);
-                              A200WWPDiscussionMessageId = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPDiscussionMessageId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+                              A200WWPDiscussionMessageId = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPDiscussionMessageId_Internalname), ".", ","), 18, MidpointRounding.ToEven));
                               sEvtType = StringUtil.Right( sEvt, 1);
                               if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
                               {
@@ -1381,7 +1369,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vPGMNAME", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV33Pgmname, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISFIRSTDISCUSSIONRECORD", AV14IsFirstDiscussionRecord);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISFIRSTDISCUSSIONRECORD", GetSecureSignedToken( sPrefix, AV14IsFirstDiscussionRecord, context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vWWPDISCUSSIONMESSAGEIDTOEXPAND", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV25WWPDiscussionMessageIdToExpand), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vWWPDISCUSSIONMESSAGEIDTOEXPAND", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV25WWPDiscussionMessageIdToExpand), 10, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWWPDISCUSSIONMESSAGEIDTOEXPAND", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV25WWPDiscussionMessageIdToExpand), "ZZZZZZZZZ9"), context));
          if ( context.isAjaxRequest( ) )
          {
@@ -1556,23 +1544,23 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          {
             /* Read saved SDTs. */
             /* Read saved values. */
-            nRC_GXsfl_16 = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_16"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            nRC_GXsfl_16 = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_16"), ".", ","), 18, MidpointRounding.ToEven));
             wcpOAV26WWPEntityName = cgiGet( sPrefix+"wcpOAV26WWPEntityName");
             wcpOAV24WWPDiscussionMessageEntityRecordId = cgiGet( sPrefix+"wcpOAV24WWPDiscussionMessageEntityRecordId");
             wcpOAV28WWPSubscriptionEntityRecordDescription = cgiGet( sPrefix+"wcpOAV28WWPSubscriptionEntityRecordDescription");
             wcpOAV27WWPNotificationLink = cgiGet( sPrefix+"wcpOAV27WWPNotificationLink");
-            GRID_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"GRID_nFirstRecordOnPage"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-            GRID_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"GRID_nEOF"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-            subGrid_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"GRID_Rows"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            GRID_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"GRID_nFirstRecordOnPage"), ".", ","), 18, MidpointRounding.ToEven));
+            GRID_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"GRID_nEOF"), ".", ","), 18, MidpointRounding.ToEven));
+            subGrid_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"GRID_Rows"), ".", ","), 18, MidpointRounding.ToEven));
             GxWebStd.gx_hidden_field( context, sPrefix+"GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
             Ucmentions_Gamoauthtoken = cgiGet( sPrefix+"UCMENTIONS_Gamoauthtoken");
             Ucmentions_Datalistproc = cgiGet( sPrefix+"UCMENTIONS_Datalistproc");
             Ucmentions_Itemhtmltemplate = cgiGet( sPrefix+"UCMENTIONS_Itemhtmltemplate");
-            subGrid_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"GRID_Rows"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            subGrid_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"GRID_Rows"), ".", ","), 18, MidpointRounding.ToEven));
             GxWebStd.gx_hidden_field( context, sPrefix+"GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
             Ucmentions_Selecteditemsjson = cgiGet( sPrefix+"UCMENTIONS_Selecteditemsjson");
-            divWcdiscussionsonethreadcell_Visible = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WCDISCUSSIONSONETHREADCELL_Visible"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-            divDiscussionsonethreadcollapsedwccell_Visible = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"DISCUSSIONSONETHREADCOLLAPSEDWCCELL_Visible"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            divWcdiscussionsonethreadcell_Visible = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WCDISCUSSIONSONETHREADCELL_Visible"), ".", ","), 18, MidpointRounding.ToEven));
+            divDiscussionsonethreadcollapsedwccell_Visible = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"DISCUSSIONSONETHREADCOLLAPSEDWCCELL_Visible"), ".", ","), 18, MidpointRounding.ToEven));
             /* Read variables values. */
             AV15Message = cgiGet( edtavMessage_Internalname);
             AssignAttri(sPrefix, false, "AV15Message", AV15Message);
@@ -1843,9 +1831,9 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             AssignAttri(sPrefix, false, "AV8WWPEntityId", StringUtil.LTrimStr( (decimal)(AV8WWPEntityId), 10, 0));
             if ( AV8WWPEntityId > 0 )
             {
-               if ( new GeneXus.Programs.wwpbaseobjects.discussions.wwp_createandnotifydiscussionmessage(context).executeUdp(  AV8WWPEntityId,  0,  AV24WWPDiscussionMessageEntityRecordId,  AV15Message,  Ucmentions_Selecteditemsjson,  StringUtil.Str( (decimal)(AV7WWPDiscussionMessage.gxTpr_Wwpdiscussionmessageid), 10, 0),  context.GetMessage( "WWP_Notifications_NewDiscussionThread", ""),  AV28WWPSubscriptionEntityRecordDescription,  AV27WWPNotificationLink) )
+               if ( new GeneXus.Programs.wwpbaseobjects.discussions.wwp_createandnotifydiscussionmessage(context).executeUdp(  AV8WWPEntityId,  0,  AV24WWPDiscussionMessageEntityRecordId,  AV15Message,  Ucmentions_Selecteditemsjson,  StringUtil.Str( (decimal)(AV7WWPDiscussionMessage.gxTpr_Wwpdiscussionmessageid), 10, 0),  "New discussion thread",  AV28WWPSubscriptionEntityRecordDescription,  AV27WWPNotificationLink) )
                {
-                  new prc_logtofile(context ).execute(  context.GetMessage( "Triggered from WWP_DiscussionWC: ", "")+AV28WWPSubscriptionEntityRecordDescription) ;
+                  new prc_logtofile(context ).execute(  "Triggered from WWP_DiscussionWC: "+AV28WWPSubscriptionEntityRecordDescription) ;
                   AV15Message = "";
                   AssignAttri(sPrefix, false, "AV15Message", AV15Message);
                   divNewthreadcell_Visible = 0;
@@ -2261,7 +2249,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024122454265", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412615573155", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2277,8 +2265,8 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionswc.js", "?2024122454268", false, true);
+         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionswc.js", "?202412615573158", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Suggest/SuggestRender.js", "", false, true);
          /* End function include_jscripts */
@@ -2386,7 +2374,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             /* Div Control */
             GridRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)" gx-attribute",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
             /* Attribute/Variable Label */
-            GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)"",context.GetMessage( "User Extended Photo", ""),(string)"gx-form-item AttributeDiscussionImageLabel",(short)0,(bool)true,(string)"width: 25%;"});
+            GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)"",(string)"User Extended Photo",(string)"gx-form-item AttributeDiscussionImageLabel",(short)0,(bool)true,(string)"width: 25%;"});
             /* Static Bitmap Variable */
             ClassString = "AttributeDiscussionImage" + " " + ((StringUtil.StrCmp(edtavUserextendedphoto_gximage, "")==0) ? "" : "GX_Image_"+edtavUserextendedphoto_gximage+"_Class");
             StyleString = "";
@@ -2410,7 +2398,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             /* Div Control */
             GridRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)" gx-attribute",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
             /* Attribute/Variable Label */
-            GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtWWPUserExtendedFullName_Internalname,context.GetMessage( "User Full Name", ""),(string)"gx-form-item AttributeDiscussionUserNameLabel",(short)0,(bool)true,(string)"width: 25%;"});
+            GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtWWPUserExtendedFullName_Internalname,(string)"User Full Name",(string)"gx-form-item AttributeDiscussionUserNameLabel",(short)0,(bool)true,(string)"width: 25%;"});
             /* Single line edit */
             ROClassString = "AttributeDiscussionUserName";
             GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPUserExtendedFullName_Internalname,(string)A113WWPUserExtendedFullName,(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPUserExtendedFullName_Jsonclick,(short)0,(string)"AttributeDiscussionUserName",(string)"",(string)ROClassString,(string)"",(string)"",(short)1,(short)0,(short)0,(string)"text",(string)"",(short)80,(string)"chr",(short)1,(string)"row",(short)100,(short)0,(short)0,(short)16,(short)0,(short)-1,(short)-1,(bool)true,(string)"WWPBaseObjects\\WWP_Description",(string)"start",(bool)true,(string)""});
@@ -2423,10 +2411,10 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             /* Div Control */
             GridRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)" gx-attribute",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
             /* Attribute/Variable Label */
-            GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtWWPDiscussionMessageDate_Internalname,context.GetMessage( "Message Date", ""),(string)"gx-form-item AttributeDiscussionDateLabel",(short)0,(bool)true,(string)"width: 25%;"});
+            GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtWWPDiscussionMessageDate_Internalname,(string)"Message Date",(string)"gx-form-item AttributeDiscussionDateLabel",(short)0,(bool)true,(string)"width: 25%;"});
             /* Single line edit */
             ROClassString = "AttributeDiscussionDate";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPDiscussionMessageDate_Internalname,context.localUtil.TToC( A203WWPDiscussionMessageDate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "),context.localUtil.Format( A203WWPDiscussionMessageDate, "99/99/99 99:99"),(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPDiscussionMessageDate_Jsonclick,(short)0,(string)"AttributeDiscussionDate",(string)"",(string)ROClassString,(string)"",(string)"",(short)1,(short)0,(short)0,(string)"text",(string)"",(short)17,(string)"chr",(short)1,(string)"row",(short)17,(short)0,(short)0,(short)16,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPDiscussionMessageDate_Internalname,context.localUtil.TToC( A203WWPDiscussionMessageDate, 10, 8, 0, 3, "/", ":", " "),context.localUtil.Format( A203WWPDiscussionMessageDate, "99/99/99 99:99"),(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPDiscussionMessageDate_Jsonclick,(short)0,(string)"AttributeDiscussionDate",(string)"",(string)ROClassString,(string)"",(string)"",(short)1,(short)0,(short)0,(string)"text",(string)"",(short)17,(string)"chr",(short)1,(string)"row",(short)17,(short)0,(short)0,(short)16,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
             GridRow.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
             if ( GridContainer.GetWrapped() == 1 )
             {
@@ -2450,7 +2438,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             /* Div Control */
             GridRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)" gx-attribute",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
             /* Attribute/Variable Label */
-            GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtWWPDiscussionMessageMessage_Internalname,context.GetMessage( "Message", ""),(string)"col-sm-3 AttributeDiscussionDescriptionLabel",(short)0,(bool)true,(string)""});
+            GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtWWPDiscussionMessageMessage_Internalname,(string)"Message",(string)"col-sm-3 AttributeDiscussionDescriptionLabel",(short)0,(bool)true,(string)""});
             /* Multiple line edit */
             ClassString = "AttributeDiscussionDescription";
             StyleString = "";
@@ -2567,7 +2555,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /* Div Control */
          GridRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)" gx-attribute",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
          /* Attribute/Variable Label */
-         GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)chkavIsdiscussionanswerswcloaded_Internalname,context.GetMessage( "Is Discussion Answers WCLoaded", ""),(string)"gx-form-item AttributeLabel",(short)0,(bool)true,(string)"width: 25%;"});
+         GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)chkavIsdiscussionanswerswcloaded_Internalname,(string)"Is Discussion Answers WCLoaded",(string)"gx-form-item AttributeLabel",(short)0,(bool)true,(string)"width: 25%;"});
          /* Check box */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 55,'" + sPrefix + "',false,'" + sGXsfl_16_idx + "',16)\"";
          ClassString = "Attribute";
@@ -2575,10 +2563,10 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          GXCCtl = "vISDISCUSSIONANSWERSWCLOADED_" + sGXsfl_16_idx;
          chkavIsdiscussionanswerswcloaded.Name = GXCCtl;
          chkavIsdiscussionanswerswcloaded.WebTags = "";
-         chkavIsdiscussionanswerswcloaded.Caption = context.GetMessage( "Is Discussion Answers WCLoaded", "");
+         chkavIsdiscussionanswerswcloaded.Caption = "Is Discussion Answers WCLoaded";
          AssignProp(sPrefix, false, chkavIsdiscussionanswerswcloaded_Internalname, "TitleCaption", chkavIsdiscussionanswerswcloaded.Caption, !bGXsfl_16_Refreshing);
          chkavIsdiscussionanswerswcloaded.CheckedValue = "false";
-         GridRow.AddColumnProperties("checkbox", 1, isAjaxCallMode( ), new Object[] {(string)chkavIsdiscussionanswerswcloaded_Internalname,StringUtil.BoolToStr( AV13IsDiscussionAnswersWCLoaded),(string)"",context.GetMessage( "Is Discussion Answers WCLoaded", ""),chkavIsdiscussionanswerswcloaded.Visible,(short)1,(string)"true",(string)"",(string)StyleString,(string)ClassString,(string)"",(string)"",TempTags+" onclick="+"\"gx.fn.checkboxClick(55, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,55);\""});
+         GridRow.AddColumnProperties("checkbox", 1, isAjaxCallMode( ), new Object[] {(string)chkavIsdiscussionanswerswcloaded_Internalname,StringUtil.BoolToStr( AV13IsDiscussionAnswersWCLoaded),(string)"",(string)"Is Discussion Answers WCLoaded",chkavIsdiscussionanswerswcloaded.Visible,(short)1,(string)"true",(string)"",(string)StyleString,(string)ClassString,(string)"",(string)"",TempTags+" onclick="+"\"gx.fn.checkboxClick(55, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,55);\""});
          GridRow.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
          if ( GridContainer.GetWrapped() == 1 )
          {
@@ -2588,10 +2576,10 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /* Div Control */
          GridRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)" gx-attribute",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
          /* Attribute/Variable Label */
-         GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtWWPDiscussionMessageId_Internalname,context.GetMessage( "Message Id", ""),(string)"gx-form-item AttributeLabel",(short)0,(bool)true,(string)"width: 25%;"});
+         GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtWWPDiscussionMessageId_Internalname,(string)"Message Id",(string)"gx-form-item AttributeLabel",(short)0,(bool)true,(string)"width: 25%;"});
          /* Single line edit */
          ROClassString = "Attribute";
-         GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPDiscussionMessageId_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(A200WWPDiscussionMessageId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")),StringUtil.LTrim( context.localUtil.Format( (decimal)(A200WWPDiscussionMessageId), "ZZZZZZZZZ9")),(string)" dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPDiscussionMessageId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtWWPDiscussionMessageId_Visible,(short)0,(short)0,(string)"text",(string)"1",(short)10,(string)"chr",(short)1,(string)"row",(short)10,(short)0,(short)0,(short)16,(short)0,(short)-1,(short)0,(bool)true,(string)"WWPBaseObjects\\WWP_Id",(string)"end",(bool)false,(string)""});
+         GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPDiscussionMessageId_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(A200WWPDiscussionMessageId), 10, 0, ".", "")),StringUtil.LTrim( context.localUtil.Format( (decimal)(A200WWPDiscussionMessageId), "ZZZZZZZZZ9")),(string)" dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPDiscussionMessageId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtWWPDiscussionMessageId_Visible,(short)0,(short)0,(string)"text",(string)"1",(short)10,(string)"chr",(short)1,(string)"row",(short)10,(short)0,(short)0,(short)16,(short)0,(short)-1,(short)0,(bool)true,(string)"WWPBaseObjects\\WWP_Id",(string)"end",(bool)false,(string)""});
          GridRow.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
          if ( GridContainer.GetWrapped() == 1 )
          {
@@ -2623,7 +2611,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          GXCCtl = "vISDISCUSSIONANSWERSWCLOADED_" + sGXsfl_16_idx;
          chkavIsdiscussionanswerswcloaded.Name = GXCCtl;
          chkavIsdiscussionanswerswcloaded.WebTags = "";
-         chkavIsdiscussionanswerswcloaded.Caption = context.GetMessage( "Is Discussion Answers WCLoaded", "");
+         chkavIsdiscussionanswerswcloaded.Caption = "Is Discussion Answers WCLoaded";
          AssignProp(sPrefix, false, chkavIsdiscussionanswerswcloaded_Internalname, "TitleCaption", chkavIsdiscussionanswerswcloaded.Caption, !bGXsfl_16_Refreshing);
          chkavIsdiscussionanswerswcloaded.CheckedValue = "false";
          /* End function init_web_controls */
@@ -2716,7 +2704,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( context.localUtil.TToC( A203WWPDiscussionMessageDate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " ")));
+            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( context.localUtil.TToC( A203WWPDiscussionMessageDate, 10, 8, 0, 3, "/", ":", " ")));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridContainer.AddColumnProperties(GridColumn);
@@ -2875,7 +2863,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          init_default_properties( ) ;
          subGrid_Allowcollapsing = 0;
          edtWWPDiscussionMessageId_Jsonclick = "";
-         chkavIsdiscussionanswerswcloaded.Caption = context.GetMessage( "Is Discussion Answers WCLoaded", "");
+         chkavIsdiscussionanswerswcloaded.Caption = "Is Discussion Answers WCLoaded";
          divDiscussionsonethreadcollapsedwccell_Visible = 1;
          divWcdiscussionsonethreadcell_Visible = 1;
          edtWWPDiscussionMessageDate_Jsonclick = "";

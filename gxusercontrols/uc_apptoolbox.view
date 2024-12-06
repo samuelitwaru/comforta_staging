@@ -2,9 +2,9 @@
    rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
    />
-<script src="/Resources/UCGrapes1/new-design/js/toolbox-utils.js"></script>
-<div id="toolbox-body">
-   <div class="toolbox-navbar">
+<script src="/Resources/UCGrapes1/new-design/js/tb-utils.js"></script>
+<div id="tb-body">
+   <div class="tb-navbar">
       <h3 id="navbar_title"></h3>
       <div class="navbar-buttons">
          <div class="edit-actions">
@@ -16,15 +16,15 @@
             </button>
          </div>
          <div class="custom-selection">
-            <select class="toolbox-form-control" name="theme" id="theme-select"></select>
+            <select class="tb-form-control" name="theme" id="theme-select"></select>
          </div>
-         <button id="open-mapping" class="toolbox-btn toolbox-btn-outline">
+         <button id="open-mapping" class="tb-btn tb-btn-outline">
             <svg xmlns="http://www.w3.org/2000/svg" width="18.818" height="16" viewBox="0 0 18.818 18">
                <path id="Path_993" data-name="Path 993" d="M19.545,5a3.283,3.283,0,0,0-3.273,3.273A3.228,3.228,0,0,0,16.784,10l-2.541,3.177H10.427a3.273,3.273,0,1,0,0,1.636h3.816L16.784,18a3.229,3.229,0,0,0-.511,1.732,3.273,3.273,0,1,0,3.273-3.273,3.207,3.207,0,0,0-1.563.419L15.685,14l2.3-2.873a3.207,3.207,0,0,0,1.563.419,3.273,3.273,0,0,0,0-6.545Zm0,1.636a1.636,1.636,0,1,1-1.636,1.636A1.623,1.623,0,0,1,19.545,6.636ZM7.273,12.364A1.636,1.636,0,1,1,5.636,14,1.623,1.623,0,0,1,7.273,12.364Zm12.273,5.727a1.636,1.636,0,1,1-1.636,1.636A1.623,1.623,0,0,1,19.545,18.091Z" transform="translate(-4 -5)"/>
             </svg>
             <span id="navbar_tree_label"></span>
          </button>
-         <button id="publish" class="toolbox-btn toolbox-btn-primary">
+         <button id="publish" class="tb-btn tb-btn-primary">
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="16" viewBox="0 0 13 18">
                <path id="Path_958" data-name="Path 958" d="M13.5,3.594l-.519.507L7.925,9.263l1.038,1.06,3.814-3.9V18.644h1.444V6.429l3.814,3.9,1.038-1.06L14.019,4.1ZM7,20.119v1.475H20V20.119Z" transform="translate(-7 -3.594)" fill="#fff"/>
             </svg>
@@ -32,7 +32,7 @@
          </button>
       </div>
    </div>
-   <div class="toolbox-container">
+   <div class="tb-container">
       <div class="main-content">
          <div class="navigator page-navigator-left" style="display:none">
             <svg id="scroll-left" xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46">
@@ -60,15 +60,15 @@
       </div>
       <div class="sidebar sidebar-right">
          <div id="tools-section">
-            <div class="toolbox-tabs">
-               <button id="pages-button" class="toolbox-tab-button active" data-tab="pages">
+            <div class="tb-tabs">
+               <button id="pages-button" class="tb-tab-button active" data-tab="pages">
                <span id="sidebar_tabs_pages_label"></span>
                </button>
-               <button id="templates-button" class="toolbox-tab-button" data-tab="templates">
+               <button id="templates-button" class="tb-tab-button" data-tab="templates">
                <span id="sidebar_tabs_templates_label"></span>
                </button>
             </div>
-            <div class="toolbox-tab-content active-tab" id="pages-content">
+            <div class="tb-tab-content active-tab" id="pages-content">
                <div class="sidebar-section theme-section">
                   <div class="color-palette" id="theme-color-palette">
                   </div>
@@ -86,7 +86,7 @@
                <div class="sidebar-section title-section">
                   <input
                      type="text"
-                     class="toolbox-form-control"
+                     class="tb-form-control"
                      id="tile-title"
                      placeholder="Enter title"
                      />
@@ -131,16 +131,16 @@
                   class="sidebar-section custom-select-container"
                   id="select-container"
                   >
-                  <div class="toolbox-dropdown">
-                     <div class="toolbox-dropdown-header" id="selectedOption">
+                  <div class="tb-dropdown">
+                     <div class="tb-dropdown-header" id="selectedOption">
                         <span id="sidebar_select_action_label"></span>
                         <i class="fa fa-angle-down"></i>
                      </div>
-                     <div class="toolbox-dropdown-menu" id="dropdownMenu"></div>
+                     <div class="tb-dropdown-menu" id="dropdownMenu"></div>
                   </div>
                </div>
                <div class="sidebar-section services-section">
-                  <select class="toolbox-form-control" name="theme" id="theme_icon_category">
+                  <select class="tb-form-control" name="theme" id="theme_icon_category">
                      <option value="Services">Services</option>
                      <option value="General" selected>General</option>
                      <option value="Health">Health</option>
@@ -197,8 +197,8 @@
 				  style="display:none;"
                   >
                   <div class="cta-button-layout-container">
-                     <button class="toolbox-btn cta-button-layout" id="plain-button-layout">Button</button>
-                     <button class="toolbox-btn cta-button-layout" id="img-button-layout">
+                     <button class="tb-btn cta-button-layout" id="plain-button-layout">Button</button>
+                     <button class="tb-btn cta-button-layout" id="img-button-layout">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40.999 28.865">
                            <path id="Path_1040" data-name="Path 1040" d="M21.924,11.025a3.459,3.459,0,0,0-3.287,3.608,3.459,3.459,0,0,0,3.287,3.608,3.459,3.459,0,0,0,3.287-3.608A3.459,3.459,0,0,0,21.924,11.025ZM36.716,21.849l-11.5,14.432-8.218-9.02L8.044,39.89h41Z" transform="translate(-8.044 -11.025)" fill="#4c5357"/>
                         </svg>
@@ -245,7 +245,7 @@
                   </div>
                </div>
             </div>
-            <div class="toolbox-tab-content" id="templates-content">
+            <div class="tb-tab-content" id="templates-content">
                <div class="sidebar-section" id="page-templates"></div>
             </div>
          </div>

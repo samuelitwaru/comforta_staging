@@ -72,6 +72,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Auditid_Z");
          state.Add("gxTpr_Auditdate_Z_Nullable");
          state.Add("gxTpr_Audittablename_Z");
+         state.Add("gxTpr_Audittablediaplayname_Z");
          state.Add("gxTpr_Auditshortdescription_Z");
          state.Add("gxTpr_Gamuserid_Z");
          state.Add("gxTpr_Auditusername_Z");
@@ -88,6 +89,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Audit_Auditid = sdt.gxTv_SdtTrn_Audit_Auditid ;
          gxTv_SdtTrn_Audit_Auditdate = sdt.gxTv_SdtTrn_Audit_Auditdate ;
          gxTv_SdtTrn_Audit_Audittablename = sdt.gxTv_SdtTrn_Audit_Audittablename ;
+         gxTv_SdtTrn_Audit_Audittablediaplayname = sdt.gxTv_SdtTrn_Audit_Audittablediaplayname ;
          gxTv_SdtTrn_Audit_Auditdescription = sdt.gxTv_SdtTrn_Audit_Auditdescription ;
          gxTv_SdtTrn_Audit_Auditshortdescription = sdt.gxTv_SdtTrn_Audit_Auditshortdescription ;
          gxTv_SdtTrn_Audit_Gamuserid = sdt.gxTv_SdtTrn_Audit_Gamuserid ;
@@ -100,6 +102,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Audit_Auditid_Z = sdt.gxTv_SdtTrn_Audit_Auditid_Z ;
          gxTv_SdtTrn_Audit_Auditdate_Z = sdt.gxTv_SdtTrn_Audit_Auditdate_Z ;
          gxTv_SdtTrn_Audit_Audittablename_Z = sdt.gxTv_SdtTrn_Audit_Audittablename_Z ;
+         gxTv_SdtTrn_Audit_Audittablediaplayname_Z = sdt.gxTv_SdtTrn_Audit_Audittablediaplayname_Z ;
          gxTv_SdtTrn_Audit_Auditshortdescription_Z = sdt.gxTv_SdtTrn_Audit_Auditshortdescription_Z ;
          gxTv_SdtTrn_Audit_Gamuserid_Z = sdt.gxTv_SdtTrn_Audit_Gamuserid_Z ;
          gxTv_SdtTrn_Audit_Auditusername_Z = sdt.gxTv_SdtTrn_Audit_Auditusername_Z ;
@@ -146,6 +149,7 @@ namespace GeneXus.Programs {
          sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
          AddObjectProperty("AuditDate", sDateCnv, false, includeNonInitialized);
          AddObjectProperty("AuditTableName", gxTv_SdtTrn_Audit_Audittablename, false, includeNonInitialized);
+         AddObjectProperty("AuditTableDiaplayName", gxTv_SdtTrn_Audit_Audittablediaplayname, false, includeNonInitialized);
          AddObjectProperty("AuditDescription", gxTv_SdtTrn_Audit_Auditdescription, false, includeNonInitialized);
          AddObjectProperty("AuditShortDescription", gxTv_SdtTrn_Audit_Auditshortdescription, false, includeNonInitialized);
          AddObjectProperty("GAMUserId", gxTv_SdtTrn_Audit_Gamuserid, false, includeNonInitialized);
@@ -179,6 +183,7 @@ namespace GeneXus.Programs {
             sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
             AddObjectProperty("AuditDate_Z", sDateCnv, false, includeNonInitialized);
             AddObjectProperty("AuditTableName_Z", gxTv_SdtTrn_Audit_Audittablename_Z, false, includeNonInitialized);
+            AddObjectProperty("AuditTableDiaplayName_Z", gxTv_SdtTrn_Audit_Audittablediaplayname_Z, false, includeNonInitialized);
             AddObjectProperty("AuditShortDescription_Z", gxTv_SdtTrn_Audit_Auditshortdescription_Z, false, includeNonInitialized);
             AddObjectProperty("GAMUserId_Z", gxTv_SdtTrn_Audit_Gamuserid_Z, false, includeNonInitialized);
             AddObjectProperty("AuditUserName_Z", gxTv_SdtTrn_Audit_Auditusername_Z, false, includeNonInitialized);
@@ -205,6 +210,11 @@ namespace GeneXus.Programs {
          {
             sdtIsNull = 0;
             gxTv_SdtTrn_Audit_Audittablename = sdt.gxTv_SdtTrn_Audit_Audittablename ;
+         }
+         if ( sdt.IsDirty("AuditTableDiaplayName") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Audit_Audittablediaplayname = sdt.gxTv_SdtTrn_Audit_Audittablediaplayname ;
          }
          if ( sdt.IsDirty("AuditDescription") )
          {
@@ -260,6 +270,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Audit_Auditid_Z_SetNull( );
                this.gxTv_SdtTrn_Audit_Auditdate_Z_SetNull( );
                this.gxTv_SdtTrn_Audit_Audittablename_Z_SetNull( );
+               this.gxTv_SdtTrn_Audit_Audittablediaplayname_Z_SetNull( );
                this.gxTv_SdtTrn_Audit_Auditshortdescription_Z_SetNull( );
                this.gxTv_SdtTrn_Audit_Gamuserid_Z_SetNull( );
                this.gxTv_SdtTrn_Audit_Auditusername_Z_SetNull( );
@@ -322,6 +333,34 @@ namespace GeneXus.Programs {
             SetDirty("Audittablename");
          }
 
+      }
+
+      [  SoapElement( ElementName = "AuditTableDiaplayName" )]
+      [  XmlElement( ElementName = "AuditTableDiaplayName"   )]
+      public string gxTpr_Audittablediaplayname
+      {
+         get {
+            return gxTv_SdtTrn_Audit_Audittablediaplayname ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Audit_Audittablediaplayname = value;
+            SetDirty("Audittablediaplayname");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Audit_Audittablediaplayname_SetNull( )
+      {
+         gxTv_SdtTrn_Audit_Audittablediaplayname = "";
+         SetDirty("Audittablediaplayname");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Audit_Audittablediaplayname_IsNull( )
+      {
+         return false ;
       }
 
       [  SoapElement( ElementName = "AuditDescription" )]
@@ -607,6 +646,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "AuditTableDiaplayName_Z" )]
+      [  XmlElement( ElementName = "AuditTableDiaplayName_Z"   )]
+      public string gxTpr_Audittablediaplayname_Z
+      {
+         get {
+            return gxTv_SdtTrn_Audit_Audittablediaplayname_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Audit_Audittablediaplayname_Z = value;
+            SetDirty("Audittablediaplayname_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Audit_Audittablediaplayname_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Audit_Audittablediaplayname_Z = "";
+         SetDirty("Audittablediaplayname_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Audit_Audittablediaplayname_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "AuditShortDescription_Z" )]
       [  XmlElement( ElementName = "AuditShortDescription_Z"   )]
       public string gxTpr_Auditshortdescription_Z
@@ -795,6 +862,7 @@ namespace GeneXus.Programs {
          sdtIsNull = 1;
          gxTv_SdtTrn_Audit_Auditdate = (DateTime)(DateTime.MinValue);
          gxTv_SdtTrn_Audit_Audittablename = "";
+         gxTv_SdtTrn_Audit_Audittablediaplayname = "";
          gxTv_SdtTrn_Audit_Auditdescription = "";
          gxTv_SdtTrn_Audit_Auditshortdescription = "";
          gxTv_SdtTrn_Audit_Gamuserid = "";
@@ -806,6 +874,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Audit_Auditid_Z = Guid.Empty;
          gxTv_SdtTrn_Audit_Auditdate_Z = (DateTime)(DateTime.MinValue);
          gxTv_SdtTrn_Audit_Audittablename_Z = "";
+         gxTv_SdtTrn_Audit_Audittablediaplayname_Z = "";
          gxTv_SdtTrn_Audit_Auditshortdescription_Z = "";
          gxTv_SdtTrn_Audit_Gamuserid_Z = "";
          gxTv_SdtTrn_Audit_Auditusername_Z = "";
@@ -841,11 +910,13 @@ namespace GeneXus.Programs {
       private DateTime datetime_STZ ;
       private string gxTv_SdtTrn_Audit_Auditdescription ;
       private string gxTv_SdtTrn_Audit_Audittablename ;
+      private string gxTv_SdtTrn_Audit_Audittablediaplayname ;
       private string gxTv_SdtTrn_Audit_Auditshortdescription ;
       private string gxTv_SdtTrn_Audit_Auditusername ;
       private string gxTv_SdtTrn_Audit_Auditaction ;
       private string gxTv_SdtTrn_Audit_Auditdisplaydescription ;
       private string gxTv_SdtTrn_Audit_Audittablename_Z ;
+      private string gxTv_SdtTrn_Audit_Audittablediaplayname_Z ;
       private string gxTv_SdtTrn_Audit_Auditshortdescription_Z ;
       private string gxTv_SdtTrn_Audit_Auditusername_Z ;
       private string gxTv_SdtTrn_Audit_Auditaction_Z ;
@@ -910,7 +981,21 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "AuditDescription" , Order = 3 )]
+      [DataMember( Name = "AuditTableDiaplayName" , Order = 3 )]
+      [GxSeudo()]
+      public string gxTpr_Audittablediaplayname
+      {
+         get {
+            return sdt.gxTpr_Audittablediaplayname ;
+         }
+
+         set {
+            sdt.gxTpr_Audittablediaplayname = value;
+         }
+
+      }
+
+      [DataMember( Name = "AuditDescription" , Order = 4 )]
       public string gxTpr_Auditdescription
       {
          get {
@@ -923,7 +1008,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "AuditShortDescription" , Order = 4 )]
+      [DataMember( Name = "AuditShortDescription" , Order = 5 )]
       [GxSeudo()]
       public string gxTpr_Auditshortdescription
       {
@@ -937,7 +1022,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "GAMUserId" , Order = 5 )]
+      [DataMember( Name = "GAMUserId" , Order = 6 )]
       [GxSeudo()]
       public string gxTpr_Gamuserid
       {
@@ -951,7 +1036,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "AuditUserName" , Order = 6 )]
+      [DataMember( Name = "AuditUserName" , Order = 7 )]
       [GxSeudo()]
       public string gxTpr_Auditusername
       {
@@ -965,7 +1050,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "AuditAction" , Order = 7 )]
+      [DataMember( Name = "AuditAction" , Order = 8 )]
       [GxSeudo()]
       public string gxTpr_Auditaction
       {
@@ -979,7 +1064,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "AuditDisplayDescription" , Order = 8 )]
+      [DataMember( Name = "AuditDisplayDescription" , Order = 9 )]
       [GxSeudo()]
       public string gxTpr_Auditdisplaydescription
       {
@@ -993,7 +1078,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "OrganisationId" , Order = 9 )]
+      [DataMember( Name = "OrganisationId" , Order = 10 )]
       [GxSeudo()]
       public Guid gxTpr_Organisationid
       {
@@ -1028,7 +1113,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 10 )]
+      [DataMember( Name = "gx_md5_hash", Order = 11 )]
       public string Hash
       {
          get {

@@ -26,6 +26,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -36,6 +37,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -798,7 +800,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241119836845", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412614431175", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -814,7 +816,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wwpbaseobjects/promptgeolocation.js", "?20241119836846", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/promptgeolocation.js", "?202412614431176", false, true);
          context.AddJavascriptSource("GXGoogleVisualizationLibrary/MAP/mapsproviders.js", "", false, true);
          context.AddJavascriptSource("https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js", "", false, true);
          context.AddJavascriptSource("GXGoogleVisualizationLibrary/MAP/Gxmap.js", "", false, true);
@@ -968,6 +970,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private string AV11Longitude ;
       private GXUserControl ucGooglemapcontrol1 ;
       private GXWebForm Form ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private string aP0_Geolocation ;

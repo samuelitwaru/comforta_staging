@@ -207,7 +207,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             enableOutput();
          }
          context.WriteHtmlText( "<title>") ;
-         context.SendWebValue( context.GetMessage( "WWP_AddressDisplayMap", "")) ;
+         context.SendWebValue( "Map") ;
          context.WriteHtmlTextNl( "</title>") ;
          if ( context.isSpaRequest( ) )
          {
@@ -309,18 +309,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
             enableOutput();
          }
          include_jscripts( ) ;
-         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
-         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
-         if ( ! context.isSpaRequest( ) )
-         {
-            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
-            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
-            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
-            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
-            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
-            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
-         }
-         context.WriteHtmlText( "</script>") ;
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -336,7 +324,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "WWP_AddressDisplayMap", "") ;
+         return "Map" ;
       }
 
       protected void WB180( )
@@ -379,7 +367,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", context.GetMessage( "WWP_AddressDisplayMap", ""), 0) ;
+         Form.Meta.addItem("description", "Map", 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -651,11 +639,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          returnInSub = false;
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV5Address)) )
          {
-            AV7LinkAddress = context.GetMessage( "https://maps.google.com?q=", "") + AV5Address + context.GetMessage( "&output=embed&iwloc=", "");
+            AV7LinkAddress = "https://maps.google.com?q=" + AV5Address + "&output=embed&iwloc=";
          }
          else
          {
-            AV7LinkAddress = context.GetMessage( "https://maps.google.com/?q=", "") + AV6Geolocation + context.GetMessage( "&output=embed&z=16&iwloc=", "");
+            AV7LinkAddress = "https://maps.google.com/?q=" + AV6Geolocation + "&output=embed&z=16&iwloc=";
          }
          epGooglemapsembpage_Source = AV7LinkAddress;
          AssignProp("", false, epGooglemapsembpage_Internalname, "Source", epGooglemapsembpage_Source, true);
@@ -777,7 +765,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115434816", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241261443844", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -794,8 +782,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wwpbaseobjects/addressdisplay.js", "?2024112115434816", false, true);
+            context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
+            context.AddJavascriptSource("wwpbaseobjects/addressdisplay.js", "?20241261443844", false, true);
          }
          /* End function include_jscripts */
       }

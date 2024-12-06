@@ -73,6 +73,7 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         AV10GXLvl3 = 0;
          /* Using cursor P009N2 */
          pr_default.execute(0, new Object[] {AV8ResidentGUID});
          while ( (pr_default.getStatus(0) != 101) )
@@ -81,12 +82,16 @@ namespace GeneXus.Programs {
             A62ResidentId = P009N2_A62ResidentId[0];
             A29LocationId = P009N2_A29LocationId[0];
             A11OrganisationId = P009N2_A11OrganisationId[0];
+            AV10GXLvl3 = 1;
             AV9ResidentId = A62ResidentId;
             /* Exit For each command. Update data (if necessary), close cursors & exit. */
             if (true) break;
             pr_default.readNext(0);
          }
          pr_default.close(0);
+         if ( AV10GXLvl3 == 0 )
+         {
+         }
          cleanup();
       }
 
@@ -121,6 +126,7 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
+      private short AV10GXLvl3 ;
       private string AV8ResidentGUID ;
       private string A71ResidentGUID ;
       private Guid AV9ResidentId ;
@@ -158,7 +164,7 @@ namespace GeneXus.Programs {
           new ParDef("AV8ResidentGUID",GXType.VarChar,100,60)
           };
           def= new CursorDef[] {
-              new CursorDef("P009N2", "SELECT ResidentGUID, ResidentId, LocationId, OrganisationId FROM Trn_Resident WHERE ResidentGUID = ( :AV8ResidentGUID) ORDER BY ResidentId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009N2,1, GxCacheFrequency.OFF ,false,true )
+              new CursorDef("P009N2", "SELECT ResidentGUID, ResidentId, LocationId, OrganisationId FROM Trn_Resident WHERE ResidentGUID = ( RTRIM(LTRIM(:AV8ResidentGUID))) ORDER BY ResidentId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009N2,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }

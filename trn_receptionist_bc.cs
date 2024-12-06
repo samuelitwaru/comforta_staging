@@ -124,6 +124,9 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
+         if ( StringUtil.StrCmp(Gx_mode, "DSP") == 0 )
+         {
+         }
          GXt_guid1 = AV21OrganisationId;
          new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
          AV21OrganisationId = GXt_guid1;
@@ -247,41 +250,41 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Location", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem("No matching 'Trn_Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
          if ( (Guid.Empty==A29LocationId) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Location Id", ""), "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Location Id", "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A90ReceptionistGivenName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Receptionist Given Name", ""), "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Receptionist Given Name", "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A91ReceptionistLastName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Receptionist Last Name", ""), "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Receptionist Last Name", "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A93ReceptionistEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Receptionist Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            GX_msglist.addItem("Field Receptionist Email does not match the specified pattern", "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A93ReceptionistEmail)) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Receptionist Email", ""), "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Receptionist Email", "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          GXt_char2 = A94ReceptionistPhone;
          new prc_concatenateintlphone(context ).execute(  A373ReceptionistPhoneCode,  A374ReceptionistPhoneNumber, out  GXt_char2) ;
          A94ReceptionistPhone = GXt_char2;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A374ReceptionistPhoneNumber)) && ! GxRegex.IsMatch(A374ReceptionistPhoneNumber,context.GetMessage( "\\b\\d{9}\\b", "")) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A374ReceptionistPhoneNumber)) && ! GxRegex.IsMatch(A374ReceptionistPhoneNumber,"\\b\\d{9}\\b") )
          {
-            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "");
+            GX_msglist.addItem("Phone contains 9 digits", 1, "");
             AnyError = 1;
          }
          GXt_boolean3 = AV37IsGAMActive;
@@ -505,7 +508,7 @@ namespace GeneXus.Programs {
                         /* Start of After( update) rules */
                         if ( IsUpd( )  )
                         {
-                           new prc_updategamuseraccount(context ).execute(  A95ReceptionistGAMGUID,  A90ReceptionistGivenName,  A91ReceptionistLastName,  "Receptionist", out  AV14GAMErrorResponse) ;
+                           new prc_updategamuseraccount(context ).execute(  A95ReceptionistGAMGUID,  A90ReceptionistGivenName,  A91ReceptionistLastName,  A373ReceptionistPhoneCode,  A374ReceptionistPhoneNumber,  A459ReceptionistImage,  "Receptionist", out  AV14GAMErrorResponse) ;
                         }
                         /* End of After( update) rules */
                         if ( AnyError == 0 )
@@ -701,7 +704,7 @@ namespace GeneXus.Programs {
       {
          /* Before Insert Rules */
          new prc_getnameinitials(context ).execute(  A90ReceptionistGivenName,  A91ReceptionistLastName, out  A92ReceptionistInitials) ;
-         if ( ( StringUtil.StrCmp(Gx_mode, context.GetMessage( "INS", "")) == 0 ) && String.IsNullOrEmpty(StringUtil.RTrim( A95ReceptionistGAMGUID)) )
+         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && String.IsNullOrEmpty(StringUtil.RTrim( A95ReceptionistGAMGUID)) )
          {
             new prc_creategamuseraccount(context ).execute(  A93ReceptionistEmail,  A90ReceptionistGivenName,  A91ReceptionistLastName,  "Receptionist", out  A95ReceptionistGAMGUID) ;
          }
@@ -912,7 +915,7 @@ namespace GeneXus.Programs {
             pr_default.execute(10, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(10) == 101) )
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Location", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem("No matching 'Trn_Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(10);
@@ -951,7 +954,7 @@ namespace GeneXus.Programs {
             pr_default.execute(10, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(10) == 101) )
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Location", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem("No matching 'Trn_Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(10);

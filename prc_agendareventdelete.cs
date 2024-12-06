@@ -28,6 +28,7 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -88,6 +90,10 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_agendareventdelete__datastore1(),
+            new Object[][] {
+            }
+         );
          pr_gam = new DataStoreProvider(context, new GeneXus.Programs.prc_agendareventdelete__gam(),
             new Object[][] {
             }
@@ -104,13 +110,15 @@ namespace GeneXus.Programs {
       }
 
       private Guid AV8AgendaCalendarId ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
+      private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
 
-   public class prc_agendareventdelete__gam : DataStoreHelperBase, IDataStoreHelper
+   public class prc_agendareventdelete__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
@@ -137,19 +145,17 @@ namespace GeneXus.Programs {
 
     public override string getDataStoreName( )
     {
-       return "GAM";
+       return "DATASTORE1";
     }
 
  }
 
- public class prc_agendareventdelete__default : DataStoreHelperBase, IDataStoreHelper
+ public class prc_agendareventdelete__gam : DataStoreHelperBase, IDataStoreHelper
  {
     public ICursor[] getCursors( )
     {
        cursorDefinitions();
        return new Cursor[] {
-        new UpdateCursor(def[0])
-       ,new UpdateCursor(def[1])
      };
   }
 
@@ -158,17 +164,7 @@ namespace GeneXus.Programs {
   {
      if ( def == null )
      {
-        Object[] prmP00962;
-        prmP00962 = new Object[] {
-        new ParDef("AV8AgendaCalendarId",GXType.UniqueIdentifier,36,0)
-        };
-        Object[] prmP00963;
-        prmP00963 = new Object[] {
-        new ParDef("AV8AgendaCalendarId",GXType.UniqueIdentifier,36,0)
-        };
         def= new CursorDef[] {
-            new CursorDef("P00962", "DELETE FROM Trn_AgendaEventGroup  WHERE AgendaCalendarId = :AV8AgendaCalendarId", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00962)
-           ,new CursorDef("P00963", "DELETE FROM Trn_AgendaCalendar  WHERE AgendaCalendarId = :AV8AgendaCalendarId", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00963)
         };
      }
   }
@@ -178,6 +174,50 @@ namespace GeneXus.Programs {
                           Object[] buf )
   {
   }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class prc_agendareventdelete__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new UpdateCursor(def[0])
+      ,new UpdateCursor(def[1])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmP00962;
+       prmP00962 = new Object[] {
+       new ParDef("AV8AgendaCalendarId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmP00963;
+       prmP00963 = new Object[] {
+       new ParDef("AV8AgendaCalendarId",GXType.UniqueIdentifier,36,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("P00962", "DELETE FROM Trn_AgendaEventGroup  WHERE AgendaCalendarId = :AV8AgendaCalendarId", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00962)
+          ,new CursorDef("P00963", "DELETE FROM Trn_AgendaCalendar  WHERE AgendaCalendarId = :AV8AgendaCalendarId", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00963)
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+ }
 
 }
 

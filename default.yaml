@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241202015611"
+  version: "20241206130537"
 servers:
-  - url: https://staging.comforta.yukon.software//rest
+  - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
   /Trn_AuditLoadDVCombo:
     post:
@@ -1048,7 +1048,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: https://staging.comforta.yukon.software//oauth/gam/v2.0/access_token
+          tokenUrl: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
   schemas:
@@ -1728,22 +1728,6 @@ components:
       properties:
         SearchTxt:
           type: "string"
-    GeneXusReporting.SDT_LocationTheme:
-      properties:
-        ThemeId:
-          description: "Theme Id"
-          type: "string"
-          format: "uuid"
-        ThemeName:
-          description: "Trn_Theme Name"
-          type: "string"
-        ThemeFontFamily:
-          description: "Trn_Theme Font Family"
-          type: "string"
-        ThemeFontSize:
-          description: "Trn_Theme Font Size"
-          type: "integer"
-          format: "int32"
     SDT_AgendaLocation:
       properties:
         AgendaCalendarId:
@@ -2003,6 +1987,28 @@ components:
         user_guid:
           description: "user_guid"
           type: "string"
+    SDT_Media:
+      properties:
+        MediaId:
+          description: "Media Id"
+          type: "string"
+          format: "uuid"
+        MediaName:
+          description: "Media Name"
+          type: "string"
+        MediaImage:
+          description: "Media Image"
+          type: "string"
+        MediaSize:
+          description: "Media Size"
+          type: "integer"
+          format: "int64"
+        MediaType:
+          description: "Media Type"
+          type: "string"
+        MediaUrl:
+          description: "Media Url"
+          type: "string"
     SDT_MobilePage:
       properties:
         PageId:
@@ -2136,10 +2142,20 @@ components:
           description: "Name"
           type: "string"
         Children:
-          description: "SDT_Page Children"
           type: array
           items:
-            $ref: "#/components/schemas/SDT_PageChildren"
+            description: ChildrenItem
+            $ref: "#/components/schemas/SDT_PageStructure.Children_ChildrenItem"
+    SDT_PageStructure.Children_ChildrenItem:
+      properties:
+        Id:
+          description: "Id"
+          type: "string"
+          format: "uuid"
+        Name:
+          description: "Name"
+          type: "string"
+      x-gx-level: "SDT_PageStructure"
     SDT_ProductService:
       properties:
         ProductServiceId:
@@ -2408,55 +2424,6 @@ components:
         MediaUrl:
           description: "Media Url"
           type: "string"
-    Trn_Theme:
-      properties:
-        Trn_ThemeId:
-          description: "Trn_Theme Id"
-          type: "string"
-          format: "uuid"
-        Trn_ThemeName:
-          description: "Trn_Theme Name"
-          type: "string"
-        Trn_ThemeFontFamily:
-          description: "Trn_Theme Font Family"
-          type: "string"
-        Trn_ThemeFontSize:
-          description: "Trn_Theme Font Size"
-          type: "integer"
-          format: "int32"
-        Icon:
-          $ref: "#/components/schemas/Trn_Theme.Icon"
-        Color:
-          $ref: "#/components/schemas/Trn_Theme.Color"
-    Trn_Theme.Icon:
-      properties:
-        IconId:
-          description: "Icon Id"
-          type: "string"
-          format: "uuid"
-        IconCategory:
-          description: "Icon Category"
-          type: "string"
-        IconName:
-          description: "Icon Name"
-          type: "string"
-        IconSVG:
-          description: "Icon SVG"
-          type: "string"
-      x-gx-level: "Trn_Theme"
-    Trn_Theme.Color:
-      properties:
-        ColorId:
-          description: "Color Id"
-          type: "string"
-          format: "uuid"
-        ColorName:
-          description: "Color Name"
-          type: "string"
-        ColorCode:
-          description: "Color Code"
-          type: "string"
-      x-gx-level: "Trn_Theme"
     WorkWithPlus.DynamicForms.WWP_FormInstance:
       properties:
         WWPFormInstanceId:

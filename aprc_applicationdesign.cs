@@ -112,7 +112,7 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_logtofile(context ).execute(  context.GetMessage( "Hello world", "")) ;
+         new prc_logtofile(context ).execute(  "Hello world") ;
          /* Using cursor P00712 */
          pr_default.execute(0);
          while ( (pr_default.getStatus(0) != 101) )

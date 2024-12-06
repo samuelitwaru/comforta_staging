@@ -269,7 +269,7 @@ namespace GeneXus.Programs {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( context.GetMessage( "WC_Color", "")) ;
+            context.SendWebValue( "WC_Color") ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -373,7 +373,7 @@ namespace GeneXus.Programs {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, sPrefix+"nRC_GXsfl_15", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_15), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"nRC_GXsfl_15", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_15), 8, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"vCOLORITEMCLASS", AV9ColorItemClass);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vCOLORITEMCLASS", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV9ColorItemClass, "")), context));
          if ( context.isAjaxRequest( ) )
@@ -384,7 +384,7 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vWWP_DESIGNSYSTEMSETTINGS", AV10WWP_DesignSystemSettings);
          }
-         GxWebStd.gx_hidden_field( context, sPrefix+"subFreestylegridcolor_Recordcount", StringUtil.LTrim( StringUtil.NToC( (decimal)(subFreestylegridcolor_Recordcount), 5, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"subFreestylegridcolor_Recordcount", StringUtil.LTrim( StringUtil.NToC( (decimal)(subFreestylegridcolor_Recordcount), 5, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"vCOLORNAME_Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtavColorname_Visible), 5, 0, ".", "")));
       }
 
@@ -445,7 +445,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "WC_Color", "") ;
+         return "WC_Color" ;
       }
 
       protected void WB6J0( )
@@ -588,7 +588,7 @@ namespace GeneXus.Programs {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", context.GetMessage( "WC_Color", ""), 0) ;
+            Form.Meta.addItem("description", "WC_Color", 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -1001,8 +1001,8 @@ namespace GeneXus.Programs {
          {
             /* Read saved SDTs. */
             /* Read saved values. */
-            nRC_GXsfl_15 = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_15"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-            subFreestylegridcolor_Recordcount = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"subFreestylegridcolor_Recordcount"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            nRC_GXsfl_15 = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_15"), ".", ","), 18, MidpointRounding.ToEven));
+            subFreestylegridcolor_Recordcount = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"subFreestylegridcolor_Recordcount"), ".", ","), 18, MidpointRounding.ToEven));
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
@@ -1430,7 +1430,7 @@ namespace GeneXus.Programs {
          AV10WWP_DesignSystemSettings = GXt_SdtWWP_DesignSystemSettings1;
          AV10WWP_DesignSystemSettings.gxTpr_Basecolor = AV7ColorName;
          this.executeExternalObjectMethod(sPrefix, false, "gx.core.ds", "setOption", new Object[] {(string)"base-color",AV10WWP_DesignSystemSettings.gxTpr_Basecolor}, false);
-         AV12WebSession.Set(context.GetMessage( "SelectedBaseColor", ""), AV7ColorName);
+         AV12WebSession.Set("SelectedBaseColor", AV7ColorName);
          gxgrFreestylegridcolor_refresh( AV9ColorItemClass, AV10WWP_DesignSystemSettings, AV7ColorName, sPrefix) ;
          this.executeExternalObjectMethod(sPrefix, false, "WWPActions", "EmpoweredGrids_Refresh", new Object[] {}, false);
          /*  Sending Event outputs  */
@@ -1622,7 +1622,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115374768", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412614564178", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1640,7 +1640,7 @@ namespace GeneXus.Programs {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wc_color.js", "?2024112115374768", false, true);
+            context.AddJavascriptSource("wc_color.js", "?202412614564178", false, true);
          }
          /* End function include_jscripts */
       }
@@ -1741,7 +1741,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          FreestylegridcolorRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)" gx-attribute",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
          /* Attribute/Variable Label */
-         FreestylegridcolorRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtavColorname_Internalname,context.GetMessage( "Color Name", ""),(string)"gx-form-item AttributeLabel",(short)0,(bool)true,(string)"width: 25%;"});
+         FreestylegridcolorRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtavColorname_Internalname,(string)"Color Name",(string)"gx-form-item AttributeLabel",(short)0,(bool)true,(string)"width: 25%;"});
          /* Single line edit */
          ROClassString = "Attribute";
          FreestylegridcolorRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavColorname_Internalname,(string)AV7ColorName,(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavColorname_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavColorname_Visible,(short)0,(short)0,(string)"text",(string)"",(short)40,(string)"chr",(short)1,(string)"row",(short)40,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});

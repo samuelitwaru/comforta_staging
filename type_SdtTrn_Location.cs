@@ -68,6 +68,7 @@ namespace GeneXus.Programs {
       public override GeneXus.Utils.GxStringCollection StateAttributes( )
       {
          GeneXus.Utils.GxStringCollection state = new GeneXus.Utils.GxStringCollection();
+         state.Add("gxTpr_Locationimage_gxi");
          state.Add("gxTpr_Mode");
          state.Add("gxTpr_Initialized");
          state.Add("gxTpr_Locationid_Z");
@@ -83,6 +84,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Locationphonenumber_Z");
          state.Add("gxTpr_Locationphone_Z");
          state.Add("gxTpr_Trn_themeid_Z");
+         state.Add("gxTpr_Locationimage_gxi_Z");
          state.Add("gxTpr_Trn_themeid_N");
          return state ;
       }
@@ -94,6 +96,8 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Location_Locationid = sdt.gxTv_SdtTrn_Location_Locationid ;
          gxTv_SdtTrn_Location_Organisationid = sdt.gxTv_SdtTrn_Location_Organisationid ;
          gxTv_SdtTrn_Location_Locationname = sdt.gxTv_SdtTrn_Location_Locationname ;
+         gxTv_SdtTrn_Location_Locationimage = sdt.gxTv_SdtTrn_Location_Locationimage ;
+         gxTv_SdtTrn_Location_Locationimage_gxi = sdt.gxTv_SdtTrn_Location_Locationimage_gxi ;
          gxTv_SdtTrn_Location_Locationcountry = sdt.gxTv_SdtTrn_Location_Locationcountry ;
          gxTv_SdtTrn_Location_Locationcity = sdt.gxTv_SdtTrn_Location_Locationcity ;
          gxTv_SdtTrn_Location_Locationzipcode = sdt.gxTv_SdtTrn_Location_Locationzipcode ;
@@ -120,6 +124,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Location_Locationphonenumber_Z = sdt.gxTv_SdtTrn_Location_Locationphonenumber_Z ;
          gxTv_SdtTrn_Location_Locationphone_Z = sdt.gxTv_SdtTrn_Location_Locationphone_Z ;
          gxTv_SdtTrn_Location_Trn_themeid_Z = sdt.gxTv_SdtTrn_Location_Trn_themeid_Z ;
+         gxTv_SdtTrn_Location_Locationimage_gxi_Z = sdt.gxTv_SdtTrn_Location_Locationimage_gxi_Z ;
          gxTv_SdtTrn_Location_Trn_themeid_N = sdt.gxTv_SdtTrn_Location_Trn_themeid_N ;
          return  ;
       }
@@ -142,6 +147,7 @@ namespace GeneXus.Programs {
          AddObjectProperty("LocationId", gxTv_SdtTrn_Location_Locationid, false, includeNonInitialized);
          AddObjectProperty("OrganisationId", gxTv_SdtTrn_Location_Organisationid, false, includeNonInitialized);
          AddObjectProperty("LocationName", gxTv_SdtTrn_Location_Locationname, false, includeNonInitialized);
+         AddObjectProperty("LocationImage", gxTv_SdtTrn_Location_Locationimage, false, includeNonInitialized);
          AddObjectProperty("LocationCountry", gxTv_SdtTrn_Location_Locationcountry, false, includeNonInitialized);
          AddObjectProperty("LocationCity", gxTv_SdtTrn_Location_Locationcity, false, includeNonInitialized);
          AddObjectProperty("LocationZipCode", gxTv_SdtTrn_Location_Locationzipcode, false, includeNonInitialized);
@@ -156,6 +162,7 @@ namespace GeneXus.Programs {
          AddObjectProperty("Trn_ThemeId_N", gxTv_SdtTrn_Location_Trn_themeid_N, false, includeNonInitialized);
          if ( includeState )
          {
+            AddObjectProperty("LocationImage_GXI", gxTv_SdtTrn_Location_Locationimage_gxi, false, includeNonInitialized);
             AddObjectProperty("Mode", gxTv_SdtTrn_Location_Mode, false, includeNonInitialized);
             AddObjectProperty("Initialized", gxTv_SdtTrn_Location_Initialized, false, includeNonInitialized);
             AddObjectProperty("LocationId_Z", gxTv_SdtTrn_Location_Locationid_Z, false, includeNonInitialized);
@@ -171,6 +178,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("LocationPhoneNumber_Z", gxTv_SdtTrn_Location_Locationphonenumber_Z, false, includeNonInitialized);
             AddObjectProperty("LocationPhone_Z", gxTv_SdtTrn_Location_Locationphone_Z, false, includeNonInitialized);
             AddObjectProperty("Trn_ThemeId_Z", gxTv_SdtTrn_Location_Trn_themeid_Z, false, includeNonInitialized);
+            AddObjectProperty("LocationImage_GXI_Z", gxTv_SdtTrn_Location_Locationimage_gxi_Z, false, includeNonInitialized);
             AddObjectProperty("Trn_ThemeId_N", gxTv_SdtTrn_Location_Trn_themeid_N, false, includeNonInitialized);
          }
          return  ;
@@ -192,6 +200,16 @@ namespace GeneXus.Programs {
          {
             sdtIsNull = 0;
             gxTv_SdtTrn_Location_Locationname = sdt.gxTv_SdtTrn_Location_Locationname ;
+         }
+         if ( sdt.IsDirty("LocationImage") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Location_Locationimage = sdt.gxTv_SdtTrn_Location_Locationimage ;
+         }
+         if ( sdt.IsDirty("LocationImage") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Location_Locationimage_gxi = sdt.gxTv_SdtTrn_Location_Locationimage_gxi ;
          }
          if ( sdt.IsDirty("LocationCountry") )
          {
@@ -278,6 +296,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Location_Locationphonenumber_Z_SetNull( );
                this.gxTv_SdtTrn_Location_Locationphone_Z_SetNull( );
                this.gxTv_SdtTrn_Location_Trn_themeid_Z_SetNull( );
+               this.gxTv_SdtTrn_Location_Locationimage_gxi_Z_SetNull( );
             }
             gxTv_SdtTrn_Location_Locationid = value;
             SetDirty("Locationid");
@@ -311,6 +330,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Location_Locationphonenumber_Z_SetNull( );
                this.gxTv_SdtTrn_Location_Locationphone_Z_SetNull( );
                this.gxTv_SdtTrn_Location_Trn_themeid_Z_SetNull( );
+               this.gxTv_SdtTrn_Location_Locationimage_gxi_Z_SetNull( );
             }
             gxTv_SdtTrn_Location_Organisationid = value;
             SetDirty("Organisationid");
@@ -330,6 +350,39 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Location_Locationname = value;
             SetDirty("Locationname");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "LocationImage" )]
+      [  XmlElement( ElementName = "LocationImage"   )]
+      [GxUpload()]
+      public string gxTpr_Locationimage
+      {
+         get {
+            return gxTv_SdtTrn_Location_Locationimage ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Location_Locationimage = value;
+            SetDirty("Locationimage");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "LocationImage_GXI" )]
+      [  XmlElement( ElementName = "LocationImage_GXI"   )]
+      public string gxTpr_Locationimage_gxi
+      {
+         get {
+            return gxTv_SdtTrn_Location_Locationimage_gxi ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Location_Locationimage_gxi = value;
+            SetDirty("Locationimage_gxi");
          }
 
       }
@@ -944,6 +997,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "LocationImage_GXI_Z" )]
+      [  XmlElement( ElementName = "LocationImage_GXI_Z"   )]
+      public string gxTpr_Locationimage_gxi_Z
+      {
+         get {
+            return gxTv_SdtTrn_Location_Locationimage_gxi_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Location_Locationimage_gxi_Z = value;
+            SetDirty("Locationimage_gxi_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Location_Locationimage_gxi_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Location_Locationimage_gxi_Z = "";
+         SetDirty("Locationimage_gxi_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Location_Locationimage_gxi_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "Trn_ThemeId_N" )]
       [  XmlElement( ElementName = "Trn_ThemeId_N"   )]
       public short gxTpr_Trn_themeid_N
@@ -992,6 +1073,8 @@ namespace GeneXus.Programs {
          sdtIsNull = 1;
          gxTv_SdtTrn_Location_Organisationid = Guid.Empty;
          gxTv_SdtTrn_Location_Locationname = "";
+         gxTv_SdtTrn_Location_Locationimage = "";
+         gxTv_SdtTrn_Location_Locationimage_gxi = "";
          gxTv_SdtTrn_Location_Locationcountry = "";
          gxTv_SdtTrn_Location_Locationcity = "";
          gxTv_SdtTrn_Location_Locationzipcode = "";
@@ -1017,6 +1100,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Location_Locationphonenumber_Z = "";
          gxTv_SdtTrn_Location_Locationphone_Z = "";
          gxTv_SdtTrn_Location_Trn_themeid_Z = Guid.Empty;
+         gxTv_SdtTrn_Location_Locationimage_gxi_Z = "";
          IGxSilentTrn obj;
          obj = (IGxSilentTrn)ClassLoader.FindInstance( "trn_location", "GeneXus.Programs.trn_location_bc", new Object[] {context}, constructorCallingAssembly);;
          obj.initialize();
@@ -1039,6 +1123,7 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_Location_Locationphone_Z ;
       private string gxTv_SdtTrn_Location_Locationdescription ;
       private string gxTv_SdtTrn_Location_Locationname ;
+      private string gxTv_SdtTrn_Location_Locationimage_gxi ;
       private string gxTv_SdtTrn_Location_Locationcountry ;
       private string gxTv_SdtTrn_Location_Locationcity ;
       private string gxTv_SdtTrn_Location_Locationzipcode ;
@@ -1056,6 +1141,8 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_Location_Locationemail_Z ;
       private string gxTv_SdtTrn_Location_Locationphonecode_Z ;
       private string gxTv_SdtTrn_Location_Locationphonenumber_Z ;
+      private string gxTv_SdtTrn_Location_Locationimage_gxi_Z ;
+      private string gxTv_SdtTrn_Location_Locationimage ;
       private Guid gxTv_SdtTrn_Location_Locationid ;
       private Guid gxTv_SdtTrn_Location_Organisationid ;
       private Guid gxTv_SdtTrn_Location_Trn_themeid ;
@@ -1118,7 +1205,21 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "LocationCountry" , Order = 3 )]
+      [DataMember( Name = "LocationImage" , Order = 3 )]
+      [GxUpload()]
+      public string gxTpr_Locationimage
+      {
+         get {
+            return (!String.IsNullOrEmpty(StringUtil.RTrim( sdt.gxTpr_Locationimage)) ? PathUtil.RelativeURL( sdt.gxTpr_Locationimage) : StringUtil.RTrim( sdt.gxTpr_Locationimage_gxi)) ;
+         }
+
+         set {
+            sdt.gxTpr_Locationimage = value;
+         }
+
+      }
+
+      [DataMember( Name = "LocationCountry" , Order = 4 )]
       [GxSeudo()]
       public string gxTpr_Locationcountry
       {
@@ -1132,7 +1233,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "LocationCity" , Order = 4 )]
+      [DataMember( Name = "LocationCity" , Order = 5 )]
       [GxSeudo()]
       public string gxTpr_Locationcity
       {
@@ -1146,7 +1247,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "LocationZipCode" , Order = 5 )]
+      [DataMember( Name = "LocationZipCode" , Order = 6 )]
       [GxSeudo()]
       public string gxTpr_Locationzipcode
       {
@@ -1160,7 +1261,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "LocationAddressLine1" , Order = 6 )]
+      [DataMember( Name = "LocationAddressLine1" , Order = 7 )]
       [GxSeudo()]
       public string gxTpr_Locationaddressline1
       {
@@ -1174,7 +1275,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "LocationAddressLine2" , Order = 7 )]
+      [DataMember( Name = "LocationAddressLine2" , Order = 8 )]
       [GxSeudo()]
       public string gxTpr_Locationaddressline2
       {
@@ -1188,7 +1289,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "LocationEmail" , Order = 8 )]
+      [DataMember( Name = "LocationEmail" , Order = 9 )]
       [GxSeudo()]
       public string gxTpr_Locationemail
       {
@@ -1202,7 +1303,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "LocationPhoneCode" , Order = 9 )]
+      [DataMember( Name = "LocationPhoneCode" , Order = 10 )]
       [GxSeudo()]
       public string gxTpr_Locationphonecode
       {
@@ -1216,7 +1317,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "LocationPhoneNumber" , Order = 10 )]
+      [DataMember( Name = "LocationPhoneNumber" , Order = 11 )]
       [GxSeudo()]
       public string gxTpr_Locationphonenumber
       {
@@ -1230,7 +1331,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "LocationPhone" , Order = 11 )]
+      [DataMember( Name = "LocationPhone" , Order = 12 )]
       [GxSeudo()]
       public string gxTpr_Locationphone
       {
@@ -1244,7 +1345,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "LocationDescription" , Order = 12 )]
+      [DataMember( Name = "LocationDescription" , Order = 13 )]
       public string gxTpr_Locationdescription
       {
          get {
@@ -1257,7 +1358,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "Trn_ThemeId" , Order = 13 )]
+      [DataMember( Name = "Trn_ThemeId" , Order = 14 )]
       [GxSeudo()]
       public Guid gxTpr_Trn_themeid
       {
@@ -1292,7 +1393,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 14 )]
+      [DataMember( Name = "gx_md5_hash", Order = 15 )]
       public string Hash
       {
          get {

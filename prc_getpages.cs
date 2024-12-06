@@ -78,8 +78,8 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_logtofile(context ).execute(  context.GetMessage( "Loc - ", "")+AV15LocationId.ToString()) ;
-         new prc_logtofile(context ).execute(  context.GetMessage( "Org - ", "")+AV16OrganisationId.ToString()) ;
+         new prc_logtofile(context ).execute(  "Loc - "+AV15LocationId.ToString()) ;
+         new prc_logtofile(context ).execute(  "Org - "+AV16OrganisationId.ToString()) ;
          /* Using cursor P008Y2 */
          pr_default.execute(0, new Object[] {AV15LocationId, AV16OrganisationId});
          while ( (pr_default.getStatus(0) != 101) )

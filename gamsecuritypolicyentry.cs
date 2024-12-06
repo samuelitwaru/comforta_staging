@@ -294,7 +294,7 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
-         GxWebStd.gx_hidden_field( context, "vID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV7Id), 12, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "vID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV7Id), 12, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "gxhash_vID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV7Id), "ZZZZZZZZZZZ9"), context));
          GxWebStd.gx_hidden_field( context, "vMODE", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "gxhash_vMODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")), context));
@@ -312,7 +312,7 @@ namespace GeneXus.Programs {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, "vID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV7Id), 12, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "vID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV7Id), 12, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "gxhash_vID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV7Id), "ZZZZZZZZZZZ9"), context));
          GxWebStd.gx_hidden_field( context, "vMODE", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "gxhash_vMODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")), context));
@@ -377,18 +377,6 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
-         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
-         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
-         if ( ! context.isSpaRequest( ) )
-         {
-            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
-            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
-            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
-            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
-            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
-            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
-         }
-         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -433,7 +421,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "WWP_GAM_SecurityPolicy", "") ;
+         return "Security policy" ;
       }
 
       protected void WB8T0( )
@@ -500,12 +488,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavSecuritypolicyid_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavSecuritypolicyid_Internalname, context.GetMessage( "WWP_GAM_Id", ""), " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavSecuritypolicyid_Internalname, "Id", " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 22,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyid_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV19SecurityPolicyId), 9, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtavSecuritypolicyid_Enabled!=0) ? context.localUtil.Format( (decimal)(AV19SecurityPolicyId), "ZZZZZZZZ9") : context.localUtil.Format( (decimal)(AV19SecurityPolicyId), "ZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,22);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyid_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyid_Enabled, 0, "text", "1", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, 0, true, "GeneXusSecurityCommon\\GAMKeyNumShort", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
+            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyid_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV19SecurityPolicyId), 9, 0, ".", "")), StringUtil.LTrim( ((edtavSecuritypolicyid_Enabled!=0) ? context.localUtil.Format( (decimal)(AV19SecurityPolicyId), "ZZZZZZZZ9") : context.localUtil.Format( (decimal)(AV19SecurityPolicyId), "ZZZZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,22);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyid_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyid_Enabled, 0, "text", "1", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, 0, true, "GeneXusSecurityCommon\\GAMKeyNumShort", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -514,7 +502,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavSecuritypolicyguid_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavSecuritypolicyguid_Internalname, context.GetMessage( "WWP_GAM_GUID", ""), " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavSecuritypolicyguid_Internalname, "GUID", " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -531,7 +519,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavSecuritypolicyname_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavSecuritypolicyname_Internalname, context.GetMessage( "WWP_GAM_Name", ""), " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavSecuritypolicyname_Internalname, "Name", " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -571,12 +559,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavSecuritypolicyperiodchangepassword_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavSecuritypolicyperiodchangepassword_Internalname, context.GetMessage( "WWP_GAM_Periodtochangeitdays", ""), " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavSecuritypolicyperiodchangepassword_Internalname, "Period to change it (days)", " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 41,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyperiodchangepassword_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV12SecurityPolicyPeriodChangePassword), 4, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV12SecurityPolicyPeriodChangePassword), "ZZZ9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,41);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyperiodchangepassword_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyperiodchangepassword_Enabled, 1, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
+            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyperiodchangepassword_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV12SecurityPolicyPeriodChangePassword), 4, 0, ".", "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV12SecurityPolicyPeriodChangePassword), "ZZZ9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,41);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyperiodchangepassword_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyperiodchangepassword_Enabled, 1, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -585,12 +573,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavSecuritypolicyminimumtimetochangepasswords_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavSecuritypolicyminimumtimetochangepasswords_Internalname, context.GetMessage( "WWP_GAM_Mintimetochangepasswordminutes", ""), " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavSecuritypolicyminimumtimetochangepasswords_Internalname, "Min. time to change password (minutes)", " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 45,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyminimumtimetochangepasswords_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV13SecurityPolicyMinimumTimeToChangePasswords), 4, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV13SecurityPolicyMinimumTimeToChangePasswords), "ZZZ9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,45);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyminimumtimetochangepasswords_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyminimumtimetochangepasswords_Enabled, 1, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
+            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyminimumtimetochangepasswords_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV13SecurityPolicyMinimumTimeToChangePasswords), 4, 0, ".", "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV13SecurityPolicyMinimumTimeToChangePasswords), "ZZZ9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,45);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyminimumtimetochangepasswords_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyminimumtimetochangepasswords_Enabled, 1, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -602,12 +590,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavSecuritypolicyminimumlengthpassword_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavSecuritypolicyminimumlengthpassword_Internalname, context.GetMessage( "WWP_GAM_Minpasswordlength", ""), " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavSecuritypolicyminimumlengthpassword_Internalname, "Min. password length", " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 50,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyminimumlengthpassword_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV14SecurityPolicyMinimumLengthPassword), 2, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV14SecurityPolicyMinimumLengthPassword), "Z9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,50);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyminimumlengthpassword_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyminimumlengthpassword_Enabled, 1, "text", "1", 2, "chr", 1, "row", 2, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
+            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyminimumlengthpassword_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV14SecurityPolicyMinimumLengthPassword), 2, 0, ".", "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV14SecurityPolicyMinimumLengthPassword), "Z9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,50);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyminimumlengthpassword_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyminimumlengthpassword_Enabled, 1, "text", "1", 2, "chr", 1, "row", 2, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -616,12 +604,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavSecuritypolicyminimumnumericcharacterspassword_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavSecuritypolicyminimumnumericcharacterspassword_Internalname, context.GetMessage( "WWP_GAM_Minnumericcharacters", ""), " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavSecuritypolicyminimumnumericcharacterspassword_Internalname, "Min. numeric characters", " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 54,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyminimumnumericcharacterspassword_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV15SecurityPolicyMinimumNumericCharactersPassword), 2, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV15SecurityPolicyMinimumNumericCharactersPassword), "Z9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,54);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyminimumnumericcharacterspassword_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyminimumnumericcharacterspassword_Enabled, 1, "text", "1", 2, "chr", 1, "row", 2, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
+            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyminimumnumericcharacterspassword_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV15SecurityPolicyMinimumNumericCharactersPassword), 2, 0, ".", "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV15SecurityPolicyMinimumNumericCharactersPassword), "Z9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,54);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyminimumnumericcharacterspassword_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyminimumnumericcharacterspassword_Enabled, 1, "text", "1", 2, "chr", 1, "row", 2, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -633,12 +621,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavSecuritypolicyminimumuppercasecharacterspassword_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavSecuritypolicyminimumuppercasecharacterspassword_Internalname, context.GetMessage( "WWP_GAM_Minuppercasecharacters", ""), " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavSecuritypolicyminimumuppercasecharacterspassword_Internalname, "Min. uppercase characters", " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 59,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyminimumuppercasecharacterspassword_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV16SecurityPolicyMinimumUpperCaseCharactersPassword), 2, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV16SecurityPolicyMinimumUpperCaseCharactersPassword), "Z9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,59);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyminimumuppercasecharacterspassword_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyminimumuppercasecharacterspassword_Enabled, 1, "text", "1", 2, "chr", 1, "row", 2, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
+            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyminimumuppercasecharacterspassword_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV16SecurityPolicyMinimumUpperCaseCharactersPassword), 2, 0, ".", "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV16SecurityPolicyMinimumUpperCaseCharactersPassword), "Z9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,59);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyminimumuppercasecharacterspassword_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyminimumuppercasecharacterspassword_Enabled, 1, "text", "1", 2, "chr", 1, "row", 2, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -647,12 +635,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavSecuritypolicyminimumspecialcharacterspassword_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavSecuritypolicyminimumspecialcharacterspassword_Internalname, context.GetMessage( "WWP_GAM_Minspecialcharacters", ""), " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavSecuritypolicyminimumspecialcharacterspassword_Internalname, "Min. special characters", " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 63,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyminimumspecialcharacterspassword_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV17SecurityPolicyMinimumSpecialCharactersPassword), 2, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV17SecurityPolicyMinimumSpecialCharactersPassword), "Z9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,63);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyminimumspecialcharacterspassword_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyminimumspecialcharacterspassword_Enabled, 1, "text", "1", 2, "chr", 1, "row", 2, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
+            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyminimumspecialcharacterspassword_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV17SecurityPolicyMinimumSpecialCharactersPassword), 2, 0, ".", "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV17SecurityPolicyMinimumSpecialCharactersPassword), "Z9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,63);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyminimumspecialcharacterspassword_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyminimumspecialcharacterspassword_Enabled, 1, "text", "1", 2, "chr", 1, "row", 2, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -664,12 +652,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavSecuritypolicymaximumpasswordhistoryentries_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavSecuritypolicymaximumpasswordhistoryentries_Internalname, context.GetMessage( "WWP_GAM_Maxpasswordhistoryentries", ""), " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavSecuritypolicymaximumpasswordhistoryentries_Internalname, "Max. password history entries", " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 68,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicymaximumpasswordhistoryentries_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV18SecurityPolicyMaximumPasswordHistoryEntries), 4, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV18SecurityPolicyMaximumPasswordHistoryEntries), "ZZZ9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,68);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicymaximumpasswordhistoryentries_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicymaximumpasswordhistoryentries_Enabled, 1, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
+            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicymaximumpasswordhistoryentries_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV18SecurityPolicyMaximumPasswordHistoryEntries), 4, 0, ".", "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV18SecurityPolicyMaximumPasswordHistoryEntries), "ZZZ9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,68);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicymaximumpasswordhistoryentries_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicymaximumpasswordhistoryentries_Enabled, 1, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -704,7 +692,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavSecuritypolicyallowmultipleconcurrentwebsessions_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, cmbavSecuritypolicyallowmultipleconcurrentwebsessions_Internalname, context.GetMessage( "WWP_GAM_AllowMultipleConcurrentWebsessions", ""), " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, cmbavSecuritypolicyallowmultipleconcurrentwebsessions_Internalname, "Allow multiple concurrent web sessions", " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 78,'',false,'',0)\"";
@@ -723,12 +711,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavSecuritypolicywebsessiontimeout_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavSecuritypolicywebsessiontimeout_Internalname, context.GetMessage( "WWP_GAM_Sessiontimeoutminutes", ""), " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavSecuritypolicywebsessiontimeout_Internalname, "Session timeout (minutes)", " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 83,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicywebsessiontimeout_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV11SecurityPolicyWebSessionTimeout), 4, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV11SecurityPolicyWebSessionTimeout), "ZZZ9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,83);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicywebsessiontimeout_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicywebsessiontimeout_Enabled, 1, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
+            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicywebsessiontimeout_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV11SecurityPolicyWebSessionTimeout), 4, 0, ".", "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV11SecurityPolicyWebSessionTimeout), "ZZZ9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,83);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicywebsessiontimeout_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicywebsessiontimeout_Enabled, 1, "text", "1", 4, "chr", 1, "row", 4, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -763,12 +751,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavSecuritypolicyoauthtokenexpire_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavSecuritypolicyoauthtokenexpire_Internalname, context.GetMessage( "WWP_GAM_Oauthtokenexpireminutes", ""), " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavSecuritypolicyoauthtokenexpire_Internalname, "Oauth token expire (minutes)", " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 93,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyoauthtokenexpire_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV9SecurityPolicyOauthTokenExpire), 6, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV9SecurityPolicyOauthTokenExpire), "ZZZZZ9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,93);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyoauthtokenexpire_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyoauthtokenexpire_Enabled, 1, "text", "1", 6, "chr", 1, "row", 6, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
+            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyoauthtokenexpire_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV9SecurityPolicyOauthTokenExpire), 6, 0, ".", "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV9SecurityPolicyOauthTokenExpire), "ZZZZZ9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,93);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyoauthtokenexpire_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyoauthtokenexpire_Enabled, 1, "text", "1", 6, "chr", 1, "row", 6, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -780,12 +768,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavSecuritypolicyoauthtokenmaximumrenovations_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavSecuritypolicyoauthtokenmaximumrenovations_Internalname, context.GetMessage( "WWP_GAM_Maxtokenrenovations", ""), " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavSecuritypolicyoauthtokenmaximumrenovations_Internalname, "Max. token renovations", " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 98,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyoauthtokenmaximumrenovations_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV22SecurityPolicyOauthTokenMaximumRenovations), 6, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV22SecurityPolicyOauthTokenMaximumRenovations), "ZZZZZ9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,98);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyoauthtokenmaximumrenovations_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyoauthtokenmaximumrenovations_Enabled, 1, "text", "1", 6, "chr", 1, "row", 6, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
+            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyoauthtokenmaximumrenovations_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV22SecurityPolicyOauthTokenMaximumRenovations), 6, 0, ".", "")), StringUtil.LTrim( context.localUtil.Format( (decimal)(AV22SecurityPolicyOauthTokenMaximumRenovations), "ZZZZZ9")), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,98);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyoauthtokenmaximumrenovations_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyoauthtokenmaximumrenovations_Enabled, 1, "text", "1", 6, "chr", 1, "row", 6, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -797,12 +785,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavSecuritypolicyoauthaccesscodeexpire_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavSecuritypolicyoauthaccesscodeexpire_Internalname, context.GetMessage( "WWP_GAM_OAuthAccessCodeExpire", ""), " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavSecuritypolicyoauthaccesscodeexpire_Internalname, "Access code expires", " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 103,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyoauthaccesscodeexpire_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV28SecurityPolicyOauthAccessCodeExpire), 6, 0, context.GetLanguageProperty( "decimal_point"), "")), StringUtil.LTrim( ((edtavSecuritypolicyoauthaccesscodeexpire_Enabled!=0) ? context.localUtil.Format( (decimal)(AV28SecurityPolicyOauthAccessCodeExpire), "ZZZZZ9") : context.localUtil.Format( (decimal)(AV28SecurityPolicyOauthAccessCodeExpire), "ZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,103);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyoauthaccesscodeexpire_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyoauthaccesscodeexpire_Enabled, 0, "text", "1", 6, "chr", 1, "row", 6, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
+            GxWebStd.gx_single_line_edit( context, edtavSecuritypolicyoauthaccesscodeexpire_Internalname, StringUtil.LTrim( StringUtil.NToC( (decimal)(AV28SecurityPolicyOauthAccessCodeExpire), 6, 0, ".", "")), StringUtil.LTrim( ((edtavSecuritypolicyoauthaccesscodeexpire_Enabled!=0) ? context.localUtil.Format( (decimal)(AV28SecurityPolicyOauthAccessCodeExpire), "ZZZZZ9") : context.localUtil.Format( (decimal)(AV28SecurityPolicyOauthAccessCodeExpire), "ZZZZZ9"))), " dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onblur(this,103);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSecuritypolicyoauthaccesscodeexpire_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSecuritypolicyoauthaccesscodeexpire_Enabled, 0, "text", "1", 6, "chr", 1, "row", 6, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_GAMSecurityPolicyEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -825,14 +813,14 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 108,'',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", bttBtnenter_Caption, bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtnenter_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMSecurityPolicyEntry.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", bttBtnenter_Caption, bttBtnenter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtnenter_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMSecurityPolicyEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 110,'',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtncancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMSecurityPolicyEntry.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", "Cancel", bttBtncancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMSecurityPolicyEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -858,7 +846,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", context.GetMessage( "WWP_GAM_SecurityPolicy", ""), 0) ;
+         Form.Meta.addItem("description", "Security policy", 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -1108,7 +1096,7 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_lvl_hashes8T2( )
       {
-         GxWebStd.gx_hidden_field( context, "vID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV7Id), 12, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "vID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV7Id), 12, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "gxhash_vID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV7Id), "ZZZZZZZZZZZ9"), context));
          GxWebStd.gx_hidden_field( context, "vMODE", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "gxhash_vMODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")), context));
@@ -1179,7 +1167,7 @@ namespace GeneXus.Programs {
             Dvpanel_onlysd_Iconposition = cgiGet( "DVPANEL_ONLYSD_Iconposition");
             Dvpanel_onlysd_Autoscroll = StringUtil.StrToBool( cgiGet( "DVPANEL_ONLYSD_Autoscroll"));
             /* Read variables values. */
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 999999999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyid_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyid_Internalname), ".", ",") > Convert.ToDecimal( 999999999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vSECURITYPOLICYID");
                GX_FocusControl = edtavSecuritypolicyid_Internalname;
@@ -1190,7 +1178,7 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV19SecurityPolicyId = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AV19SecurityPolicyId = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyid_Internalname), ".", ","), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "AV19SecurityPolicyId", StringUtil.LTrimStr( (decimal)(AV19SecurityPolicyId), 9, 0));
             }
             AV20SecurityPolicyGUID = cgiGet( edtavSecuritypolicyguid_Internalname);
@@ -1198,7 +1186,7 @@ namespace GeneXus.Programs {
             GxWebStd.gx_hidden_field( context, "gxhash_vSECURITYPOLICYGUID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV20SecurityPolicyGUID, "")), context));
             AV21SecurityPolicyName = cgiGet( edtavSecuritypolicyname_Internalname);
             AssignAttri("", false, "AV21SecurityPolicyName", AV21SecurityPolicyName);
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyperiodchangepassword_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyperiodchangepassword_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyperiodchangepassword_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyperiodchangepassword_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vSECURITYPOLICYPERIODCHANGEPASSWORD");
                GX_FocusControl = edtavSecuritypolicyperiodchangepassword_Internalname;
@@ -1209,10 +1197,10 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV12SecurityPolicyPeriodChangePassword = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyperiodchangepassword_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AV12SecurityPolicyPeriodChangePassword = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyperiodchangepassword_Internalname), ".", ","), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "AV12SecurityPolicyPeriodChangePassword", StringUtil.LTrimStr( (decimal)(AV12SecurityPolicyPeriodChangePassword), 4, 0));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumtimetochangepasswords_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumtimetochangepasswords_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumtimetochangepasswords_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumtimetochangepasswords_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vSECURITYPOLICYMINIMUMTIMETOCHANGEPASSWORDS");
                GX_FocusControl = edtavSecuritypolicyminimumtimetochangepasswords_Internalname;
@@ -1223,10 +1211,10 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV13SecurityPolicyMinimumTimeToChangePasswords = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumtimetochangepasswords_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AV13SecurityPolicyMinimumTimeToChangePasswords = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumtimetochangepasswords_Internalname), ".", ","), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "AV13SecurityPolicyMinimumTimeToChangePasswords", StringUtil.LTrimStr( (decimal)(AV13SecurityPolicyMinimumTimeToChangePasswords), 4, 0));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumlengthpassword_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumlengthpassword_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 99 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumlengthpassword_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumlengthpassword_Internalname), ".", ",") > Convert.ToDecimal( 99 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vSECURITYPOLICYMINIMUMLENGTHPASSWORD");
                GX_FocusControl = edtavSecuritypolicyminimumlengthpassword_Internalname;
@@ -1237,10 +1225,10 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV14SecurityPolicyMinimumLengthPassword = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumlengthpassword_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AV14SecurityPolicyMinimumLengthPassword = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumlengthpassword_Internalname), ".", ","), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "AV14SecurityPolicyMinimumLengthPassword", StringUtil.LTrimStr( (decimal)(AV14SecurityPolicyMinimumLengthPassword), 2, 0));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumnumericcharacterspassword_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumnumericcharacterspassword_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 99 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumnumericcharacterspassword_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumnumericcharacterspassword_Internalname), ".", ",") > Convert.ToDecimal( 99 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vSECURITYPOLICYMINIMUMNUMERICCHARACTERSPASSWORD");
                GX_FocusControl = edtavSecuritypolicyminimumnumericcharacterspassword_Internalname;
@@ -1251,10 +1239,10 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV15SecurityPolicyMinimumNumericCharactersPassword = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumnumericcharacterspassword_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AV15SecurityPolicyMinimumNumericCharactersPassword = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumnumericcharacterspassword_Internalname), ".", ","), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "AV15SecurityPolicyMinimumNumericCharactersPassword", StringUtil.LTrimStr( (decimal)(AV15SecurityPolicyMinimumNumericCharactersPassword), 2, 0));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumuppercasecharacterspassword_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumuppercasecharacterspassword_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 99 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumuppercasecharacterspassword_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumuppercasecharacterspassword_Internalname), ".", ",") > Convert.ToDecimal( 99 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vSECURITYPOLICYMINIMUMUPPERCASECHARACTERSPASSWORD");
                GX_FocusControl = edtavSecuritypolicyminimumuppercasecharacterspassword_Internalname;
@@ -1265,10 +1253,10 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV16SecurityPolicyMinimumUpperCaseCharactersPassword = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumuppercasecharacterspassword_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AV16SecurityPolicyMinimumUpperCaseCharactersPassword = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumuppercasecharacterspassword_Internalname), ".", ","), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "AV16SecurityPolicyMinimumUpperCaseCharactersPassword", StringUtil.LTrimStr( (decimal)(AV16SecurityPolicyMinimumUpperCaseCharactersPassword), 2, 0));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumspecialcharacterspassword_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumspecialcharacterspassword_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 99 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumspecialcharacterspassword_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumspecialcharacterspassword_Internalname), ".", ",") > Convert.ToDecimal( 99 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vSECURITYPOLICYMINIMUMSPECIALCHARACTERSPASSWORD");
                GX_FocusControl = edtavSecuritypolicyminimumspecialcharacterspassword_Internalname;
@@ -1279,10 +1267,10 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV17SecurityPolicyMinimumSpecialCharactersPassword = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumspecialcharacterspassword_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AV17SecurityPolicyMinimumSpecialCharactersPassword = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyminimumspecialcharacterspassword_Internalname), ".", ","), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "AV17SecurityPolicyMinimumSpecialCharactersPassword", StringUtil.LTrimStr( (decimal)(AV17SecurityPolicyMinimumSpecialCharactersPassword), 2, 0));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicymaximumpasswordhistoryentries_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicymaximumpasswordhistoryentries_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicymaximumpasswordhistoryentries_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicymaximumpasswordhistoryentries_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vSECURITYPOLICYMAXIMUMPASSWORDHISTORYENTRIES");
                GX_FocusControl = edtavSecuritypolicymaximumpasswordhistoryentries_Internalname;
@@ -1293,13 +1281,13 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV18SecurityPolicyMaximumPasswordHistoryEntries = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicymaximumpasswordhistoryentries_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AV18SecurityPolicyMaximumPasswordHistoryEntries = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicymaximumpasswordhistoryentries_Internalname), ".", ","), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "AV18SecurityPolicyMaximumPasswordHistoryEntries", StringUtil.LTrimStr( (decimal)(AV18SecurityPolicyMaximumPasswordHistoryEntries), 4, 0));
             }
             cmbavSecuritypolicyallowmultipleconcurrentwebsessions.CurrentValue = cgiGet( cmbavSecuritypolicyallowmultipleconcurrentwebsessions_Internalname);
             AV10SecurityPolicyAllowMultipleConcurrentWebSessions = (short)(Math.Round(NumberUtil.Val( cgiGet( cmbavSecuritypolicyallowmultipleconcurrentwebsessions_Internalname), "."), 18, MidpointRounding.ToEven));
             AssignAttri("", false, "AV10SecurityPolicyAllowMultipleConcurrentWebSessions", StringUtil.LTrimStr( (decimal)(AV10SecurityPolicyAllowMultipleConcurrentWebSessions), 4, 0));
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicywebsessiontimeout_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicywebsessiontimeout_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicywebsessiontimeout_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicywebsessiontimeout_Internalname), ".", ",") > Convert.ToDecimal( 9999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vSECURITYPOLICYWEBSESSIONTIMEOUT");
                GX_FocusControl = edtavSecuritypolicywebsessiontimeout_Internalname;
@@ -1310,10 +1298,10 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV11SecurityPolicyWebSessionTimeout = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicywebsessiontimeout_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AV11SecurityPolicyWebSessionTimeout = (short)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicywebsessiontimeout_Internalname), ".", ","), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "AV11SecurityPolicyWebSessionTimeout", StringUtil.LTrimStr( (decimal)(AV11SecurityPolicyWebSessionTimeout), 4, 0));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyoauthtokenexpire_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyoauthtokenexpire_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 999999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyoauthtokenexpire_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyoauthtokenexpire_Internalname), ".", ",") > Convert.ToDecimal( 999999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vSECURITYPOLICYOAUTHTOKENEXPIRE");
                GX_FocusControl = edtavSecuritypolicyoauthtokenexpire_Internalname;
@@ -1324,10 +1312,10 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV9SecurityPolicyOauthTokenExpire = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyoauthtokenexpire_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AV9SecurityPolicyOauthTokenExpire = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyoauthtokenexpire_Internalname), ".", ","), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "AV9SecurityPolicyOauthTokenExpire", StringUtil.LTrimStr( (decimal)(AV9SecurityPolicyOauthTokenExpire), 6, 0));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyoauthtokenmaximumrenovations_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyoauthtokenmaximumrenovations_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 999999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyoauthtokenmaximumrenovations_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyoauthtokenmaximumrenovations_Internalname), ".", ",") > Convert.ToDecimal( 999999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vSECURITYPOLICYOAUTHTOKENMAXIMUMRENOVATIONS");
                GX_FocusControl = edtavSecuritypolicyoauthtokenmaximumrenovations_Internalname;
@@ -1338,10 +1326,10 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV22SecurityPolicyOauthTokenMaximumRenovations = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyoauthtokenmaximumrenovations_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AV22SecurityPolicyOauthTokenMaximumRenovations = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyoauthtokenmaximumrenovations_Internalname), ".", ","), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "AV22SecurityPolicyOauthTokenMaximumRenovations", StringUtil.LTrimStr( (decimal)(AV22SecurityPolicyOauthTokenMaximumRenovations), 6, 0));
             }
-            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyoauthaccesscodeexpire_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyoauthaccesscodeexpire_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 999999 )) ) )
+            if ( ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyoauthaccesscodeexpire_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavSecuritypolicyoauthaccesscodeexpire_Internalname), ".", ",") > Convert.ToDecimal( 999999 )) ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vSECURITYPOLICYOAUTHACCESSCODEEXPIRE");
                GX_FocusControl = edtavSecuritypolicyoauthaccesscodeexpire_Internalname;
@@ -1352,7 +1340,7 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV28SecurityPolicyOauthAccessCodeExpire = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyoauthaccesscodeexpire_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AV28SecurityPolicyOauthAccessCodeExpire = (int)(Math.Round(context.localUtil.CToN( cgiGet( edtavSecuritypolicyoauthaccesscodeexpire_Internalname), ".", ","), 18, MidpointRounding.ToEven));
                AssignAttri("", false, "AV28SecurityPolicyOauthAccessCodeExpire", StringUtil.LTrimStr( (decimal)(AV28SecurityPolicyOauthAccessCodeExpire), 6, 0));
             }
             /* Read subfile selected row values. */
@@ -1460,7 +1448,7 @@ namespace GeneXus.Programs {
             AssignProp("", false, edtavSecuritypolicyminimumspecialcharacterspassword_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavSecuritypolicyminimumspecialcharacterspassword_Enabled), 5, 0), true);
             edtavSecuritypolicymaximumpasswordhistoryentries_Enabled = 0;
             AssignProp("", false, edtavSecuritypolicymaximumpasswordhistoryentries_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavSecuritypolicymaximumpasswordhistoryentries_Enabled), 5, 0), true);
-            bttBtnenter_Caption = context.GetMessage( "Delete", "");
+            bttBtnenter_Caption = "Delete";
             AssignProp("", false, bttBtnenter_Internalname, "Caption", bttBtnenter_Caption, true);
          }
          divLayoutmaintable_Class = divLayoutmaintable_Class+" "+"EditForm";
@@ -1581,7 +1569,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411211547484", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241261623279", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1596,8 +1584,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gamsecuritypolicyentry.js", "?202411211547485", false, true);
+         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("gamsecuritypolicyentry.js", "?20241261623279", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -1617,10 +1605,10 @@ namespace GeneXus.Programs {
       {
          cmbavSecuritypolicyallowmultipleconcurrentwebsessions.Name = "vSECURITYPOLICYALLOWMULTIPLECONCURRENTWEBSESSIONS";
          cmbavSecuritypolicyallowmultipleconcurrentwebsessions.WebTags = "";
-         cmbavSecuritypolicyallowmultipleconcurrentwebsessions.addItem("1", context.GetMessage( "WWP_GAM_DifferentIP", ""), 0);
-         cmbavSecuritypolicyallowmultipleconcurrentwebsessions.addItem("2", context.GetMessage( "WWP_GAM_SameIP", ""), 0);
-         cmbavSecuritypolicyallowmultipleconcurrentwebsessions.addItem("3", context.GetMessage( "WWP_GAM_Unique", ""), 0);
-         cmbavSecuritypolicyallowmultipleconcurrentwebsessions.addItem("4", context.GetMessage( "WWP_GAM_No", ""), 0);
+         cmbavSecuritypolicyallowmultipleconcurrentwebsessions.addItem("1", "Yes, from different IP address", 0);
+         cmbavSecuritypolicyallowmultipleconcurrentwebsessions.addItem("2", "Yes, from same IP address", 0);
+         cmbavSecuritypolicyallowmultipleconcurrentwebsessions.addItem("3", "Unique", 0);
+         cmbavSecuritypolicyallowmultipleconcurrentwebsessions.addItem("4", "No", 0);
          if ( cmbavSecuritypolicyallowmultipleconcurrentwebsessions.ItemCount > 0 )
          {
             AV10SecurityPolicyAllowMultipleConcurrentWebSessions = (short)(Math.Round(NumberUtil.Val( cmbavSecuritypolicyallowmultipleconcurrentwebsessions.getValidValue(StringUtil.Trim( StringUtil.Str( (decimal)(AV10SecurityPolicyAllowMultipleConcurrentWebSessions), 4, 0))), "."), 18, MidpointRounding.ToEven));
@@ -1670,7 +1658,7 @@ namespace GeneXus.Programs {
             disableJsOutput();
          }
          init_default_properties( ) ;
-         bttBtnenter_Caption = context.GetMessage( "GX_BtnEnter", "");
+         bttBtnenter_Caption = "Confirm";
          bttBtnenter_Visible = 1;
          edtavSecuritypolicyoauthaccesscodeexpire_Jsonclick = "";
          edtavSecuritypolicyoauthaccesscodeexpire_Enabled = 1;
@@ -1708,7 +1696,7 @@ namespace GeneXus.Programs {
          Dvpanel_onlysd_Showcollapseicon = Convert.ToBoolean( 0);
          Dvpanel_onlysd_Collapsed = Convert.ToBoolean( 0);
          Dvpanel_onlysd_Collapsible = Convert.ToBoolean( 0);
-         Dvpanel_onlysd_Title = context.GetMessage( "WWP_GAM_OnlyRESTOAUTH", "");
+         Dvpanel_onlysd_Title = "Only REST OAUTH (Mobile, GAMRemoteRest)";
          Dvpanel_onlysd_Cls = "PanelWithBorder Panel_BaseColor";
          Dvpanel_onlysd_Autoheight = Convert.ToBoolean( -1);
          Dvpanel_onlysd_Autowidth = Convert.ToBoolean( 0);
@@ -1718,7 +1706,7 @@ namespace GeneXus.Programs {
          Dvpanel_onlyweb_Showcollapseicon = Convert.ToBoolean( 0);
          Dvpanel_onlyweb_Collapsed = Convert.ToBoolean( 0);
          Dvpanel_onlyweb_Collapsible = Convert.ToBoolean( 0);
-         Dvpanel_onlyweb_Title = context.GetMessage( "WWP_GAM_OnlyWeb", "");
+         Dvpanel_onlyweb_Title = "Only Web";
          Dvpanel_onlyweb_Cls = "PanelWithBorder Panel_BaseColor";
          Dvpanel_onlyweb_Autoheight = Convert.ToBoolean( -1);
          Dvpanel_onlyweb_Autowidth = Convert.ToBoolean( 0);
@@ -1728,7 +1716,7 @@ namespace GeneXus.Programs {
          Dvpanel_unnamedtable1_Showcollapseicon = Convert.ToBoolean( 0);
          Dvpanel_unnamedtable1_Collapsed = Convert.ToBoolean( 0);
          Dvpanel_unnamedtable1_Collapsible = Convert.ToBoolean( -1);
-         Dvpanel_unnamedtable1_Title = context.GetMessage( "WWP_GAM_PasswordConfigurations", "");
+         Dvpanel_unnamedtable1_Title = "Password Configurations";
          Dvpanel_unnamedtable1_Cls = "PanelWithBorder Panel_BaseColor";
          Dvpanel_unnamedtable1_Autoheight = Convert.ToBoolean( -1);
          Dvpanel_unnamedtable1_Autowidth = Convert.ToBoolean( 0);
@@ -1738,7 +1726,7 @@ namespace GeneXus.Programs {
          Dvpanel_tableattributes_Showcollapseicon = Convert.ToBoolean( 0);
          Dvpanel_tableattributes_Collapsed = Convert.ToBoolean( 0);
          Dvpanel_tableattributes_Collapsible = Convert.ToBoolean( 0);
-         Dvpanel_tableattributes_Title = context.GetMessage( "WWP_GAM_SecurityPolicy", "");
+         Dvpanel_tableattributes_Title = "Security policy";
          Dvpanel_tableattributes_Cls = "PanelWithBorder Panel_BaseColor";
          Dvpanel_tableattributes_Autoheight = Convert.ToBoolean( -1);
          Dvpanel_tableattributes_Autowidth = Convert.ToBoolean( 0);
@@ -1747,7 +1735,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = context.GetMessage( "WWP_GAM_SecurityPolicy", "");
+         Form.Caption = "Security policy";
          context.GX_msglist.DisplayMode = 1;
          if ( context.isSpaRequest( ) )
          {

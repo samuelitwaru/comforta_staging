@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241202015611"
+  version: "20241206130537"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -12,6 +12,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.LoginWithQrCode"
       summary: "Login Resident Account (QR Code)"
+      security: 
+        - oAuthGXGAM: []
       requestBody:
         required: false
         content:
@@ -36,6 +38,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.GetResidentInformation"
       summary: "Get Resident Information"
+      security: 
+        - oAuthGXGAM: []
       parameters:
         - name: "Userid"
           in: "query"
@@ -61,6 +65,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.GetOrganisationInformation"
       summary: "Get Organisation Information"
+      security: 
+        - oAuthGXGAM: []
       parameters:
         - name: "Organisationid"
           in: "query"
@@ -86,6 +92,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.GetLocationInformation"
       summary: "Get Location Information"
+      security: 
+        - oAuthGXGAM: []
       parameters:
         - name: "Locationid"
           in: "query"
@@ -111,6 +119,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.GetResidentNotificationHistory"
       summary: "Get Resident Notifications"
+      security: 
+        - oAuthGXGAM: []
       parameters:
         - name: "Residentid"
           in: "query"
@@ -132,12 +142,41 @@ paths:
         404:
           description: "Not found"
 
+  /resident/update-avatar:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.UpdateResidentAvatar"
+      summary: "Update Resident Profile/Avatar"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateResidentAvatarInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "string"
+
+
+        404:
+          description: "Not found"
+
   /mobile/register-device:
     post:
       tags:
         - API_ResidentService  
       operationId: "API_ResidentService.RegisterDevice"
       summary: "Register Resident Device Information"
+      security: 
+        - oAuthGXGAM: []
       requestBody:
         required: false
         content:
@@ -163,6 +202,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.SendNotification"
       summary: "Send Push Notification"
+      security: 
+        - oAuthGXGAM: []
       requestBody:
         required: false
         content:
@@ -188,6 +229,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.AgendaLocation"
       summary: "Resident Agenda Events"
+      security: 
+        - oAuthGXGAM: []
       parameters:
         - name: "Residentid"
           in: "query"
@@ -227,6 +270,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.SendDynamicForm"
       summary: "Send Test Dynamic form"
+      security: 
+        - oAuthGXGAM: []
       
       responses:
         200:
@@ -246,6 +291,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.UploadMedia"
       summary: "UploadMedia"
+      security: 
+        - oAuthGXGAM: []
       requestBody:
         required: false
         content:
@@ -264,12 +311,64 @@ paths:
         404:
           description: "Not found"
 
+  /media/delete:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.DeleteMedia"
+      summary: "DeleteMedia"
+      security: 
+        - oAuthGXGAM: []
+      parameters:
+        - name: "Mediaid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "Result"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            
+      
+      responses:
+        200:
+          description: "Successful operation"
+        404:
+          description: "Not found"
+
+  /toolbox/media:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.GetMedia"
+      summary: "Get Pages"
+      security: 
+        - oAuthGXGAM: []
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SDT_Media"  
+
+        404:
+          description: "Not found"
+
   /toolbox/pages/list2:
     get:
       tags:
         - API_ResidentService  
       operationId: "API_ResidentService.GetPages"
       summary: "Get Pages"
+      security: 
+        - oAuthGXGAM: []
       parameters:
         - name: "Locationid"
           in: "query"
@@ -303,6 +402,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.PagesAPI"
       summary: "Pages API"
+      security: 
+        - oAuthGXGAM: []
       parameters:
         - name: "Locationid"
           in: "query"
@@ -336,6 +437,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.PageAPI"
       summary: "Pages API"
+      security: 
+        - oAuthGXGAM: []
       parameters:
         - name: "Pageid"
           in: "query"
@@ -373,6 +476,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.ContentPagesAPI"
       summary: "Content Pages API"
+      security: 
+        - oAuthGXGAM: []
       parameters:
         - name: "Locationid"
           in: "query"
@@ -406,6 +511,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.ContentPageAPI"
       summary: "Content Page API"
+      security: 
+        - oAuthGXGAM: []
       parameters:
         - name: "Pageid"
           in: "query"
@@ -443,6 +550,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.GetSinglePage"
       summary: "Get Single Page"
+      security: 
+        - oAuthGXGAM: []
       parameters:
         - name: "Pageid"
           in: "query"
@@ -462,12 +571,36 @@ paths:
         404:
           description: "Not found"
 
+  /toolbox/deletepage:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.DeletePage"
+      summary: "Delete Page"
+      security: 
+        - oAuthGXGAM: []
+      parameters:
+        - name: "Pageid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+        404:
+          description: "Not found"
+
   /toolbox/pages/list:
     get:
       tags:
         - API_ResidentService  
       operationId: "API_ResidentService.ListPages"
       summary: "Get Pages"
+      security: 
+        - oAuthGXGAM: []
       parameters:
         - name: "Locationid"
           in: "query"
@@ -501,6 +634,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.CreatePage"
       summary: "Create Page"
+      security: 
+        - oAuthGXGAM: []
       requestBody:
         required: false
         content:
@@ -526,6 +661,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.CreateContentPage"
       summary: "Create Page"
+      security: 
+        - oAuthGXGAM: []
       requestBody:
         required: false
         content:
@@ -551,6 +688,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.SavePage"
       summary: "Save Page"
+      security: 
+        - oAuthGXGAM: []
       requestBody:
         required: false
         content:
@@ -576,6 +715,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.UpdatePage"
       summary: "Update Page"
+      security: 
+        - oAuthGXGAM: []
       requestBody:
         required: false
         content:
@@ -601,6 +742,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.AddPageCildren"
       summary: "Add Page CHildren"
+      security: 
+        - oAuthGXGAM: []
       requestBody:
         required: false
         content:
@@ -626,6 +769,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.UpdateLocationTheme"
       summary: "Update Location Theme"
+      security: 
+        - oAuthGXGAM: []
       requestBody:
         required: false
         content:
@@ -650,6 +795,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.ProductSericeAPI"
       summary: "ProductService API"
+      security: 
+        - oAuthGXGAM: []
       parameters:
         - name: "Productserviceid"
           in: "query"
@@ -675,6 +822,8 @@ paths:
         - API_ResidentService  
       operationId: "API_ResidentService.GetLocationTheme"
       summary: "GET Location Theme"
+      security: 
+        - oAuthGXGAM: []
       parameters:
         - name: "Locationid"
           in: "query"
@@ -701,6 +850,16 @@ paths:
           description: "Not found"
 
 components:
+  securitySchemes:
+    oAuthGXGAM:
+      type: oauth2
+      description: GAM OAuth 2
+      flows:
+        password:          
+          tokenUrl: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/oauth/gam/v2.0/access_token
+          scopes: 
+            fullcontrol: Full access
+
   schemas:
     LoginWithQrCodeInput:  
       properties:
@@ -710,6 +869,13 @@ components:
 
 
 
+
+    UpdateResidentAvatarInput:  
+      properties:
+        Base64Image:
+          type: "string"
+        ResidentId:
+          type: "string"
 
     RegisterDeviceInput:  
       properties:
@@ -750,6 +916,9 @@ components:
           format: "int64"
         MediaType:
           type: "string"
+
+
+
 
 
 
@@ -1094,6 +1263,31 @@ components:
 
 
 
+    SDT_Media:
+      properties:
+        MediaId:
+          description: "Media Id"
+          type: "string"
+          format: "uuid"
+        MediaName:
+          description: "Media Name"
+          type: "string"
+        MediaImage:
+          description: "Media Image"
+          type: "string"
+        MediaSize:
+          description: "Media Size"
+          type: "integer"
+          format: "int64"
+        MediaType:
+          description: "Media Type"
+          type: "string"
+        MediaUrl:
+          description: "Media Url"
+          type: "string"
+
+
+
     SDT_Page:
       properties:
         PageId:
@@ -1237,13 +1431,26 @@ components:
         Name:
           description: "Name"
           type: "string"
+
         Children:
-          description: "SDT_Page Children"
           type: array
           items:
-            $ref: "#/components/schemas/SDT_PageChildren"
+            description: ChildrenItem
+            $ref: "#/components/schemas/SDT_PageStructure.Children_ChildrenItem"
 
 
+    SDT_PageStructure.Children_ChildrenItem:
+      properties:
+        Id:
+          description: "Id"
+          type: "string"
+          format: "uuid"
+        Name:
+          description: "Name"
+          type: "string"
+
+
+      x-gx-level: "SDT_PageStructure"
 
     SDT_Theme:
       properties:

@@ -55,7 +55,7 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_Resident_Medicalindicationname = "";
 
 			gxTv_SdtSDT_Resident_Residentimage = "";
-			gxTv_SdtSDT_Resident_Residentimage_gxi = "";
+
 		}
 
 		public SdtSDT_Resident(IGxContext context)
@@ -148,8 +148,6 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("ResidentImage", gxTpr_Residentimage, false);
-			AddObjectProperty("ResidentImage_GXI", gxTpr_Residentimage_gxi, false);
-
 
 			return;
 		}
@@ -458,8 +456,6 @@ namespace GeneXus.Programs
 
 		[SoapElement(ElementName="ResidentImage")]
 		[XmlElement(ElementName="ResidentImage")]
-		[GxUpload()]
-
 		public string gxTpr_Residentimage
 		{
 			get {
@@ -472,18 +468,7 @@ namespace GeneXus.Programs
 		}
 
 
-		[SoapElement(ElementName="ResidentImage_GXI" )]
-		[XmlElement(ElementName="ResidentImage_GXI" )]
-		public string gxTpr_Residentimage_gxi
-		{
-			get {
-				return gxTv_SdtSDT_Resident_Residentimage_gxi ;
-			}
-			set {
-				gxTv_SdtSDT_Resident_Residentimage_gxi = value;
-				SetDirty("Residentimage_gxi");
-			}
-		}
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -520,7 +505,7 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_Resident_Residenttypename = "";
 
 			gxTv_SdtSDT_Resident_Medicalindicationname = "";
-			gxTv_SdtSDT_Resident_Residentimage = "";gxTv_SdtSDT_Resident_Residentimage_gxi = "";
+			gxTv_SdtSDT_Resident_Residentimage = "";
 			sDateCnv = "";
 			sNumToPad = "";
 			return  ;
@@ -587,7 +572,7 @@ namespace GeneXus.Programs
 
 		protected string gxTv_SdtSDT_Resident_Medicalindicationname;
 		 
-		protected string gxTv_SdtSDT_Resident_Residentimage_gxi;
+
 		protected string gxTv_SdtSDT_Resident_Residentimage;
 		 
 
@@ -825,11 +810,10 @@ namespace GeneXus.Programs
 		}
 
 		[DataMember(Name="ResidentImage", Order=18)]
-		[GxUpload()]
 		public  string gxTpr_Residentimage
 		{
 			get { 
-				return (!String.IsNullOrEmpty(StringUtil.RTrim( sdt.gxTpr_Residentimage)) ? PathUtil.RelativePath( sdt.gxTpr_Residentimage) : StringUtil.RTrim( sdt.gxTpr_Residentimage_gxi));
+				return sdt.gxTpr_Residentimage;
 
 			}
 			set { 

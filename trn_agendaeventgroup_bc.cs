@@ -256,7 +256,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A303AgendaCalendarId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_AgendaCalendar", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "AGENDACALENDARID");
+            GX_msglist.addItem("No matching 'Trn_AgendaCalendar'.", "ForeignKeyNotFound", 1, "AGENDACALENDARID");
             AnyError = 1;
          }
          A29LocationId = BC001G4_A29LocationId[0];
@@ -266,7 +266,7 @@ namespace GeneXus.Programs {
          pr_default.execute(3, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(3) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Resident", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem("No matching 'Trn_Resident'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          A72ResidentSalutation = BC001G5_A72ResidentSalutation[0];
@@ -294,7 +294,7 @@ namespace GeneXus.Programs {
          pr_default.execute(4, new Object[] {A96ResidentTypeId});
          if ( (pr_default.getStatus(4) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Resident Type", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
+            GX_msglist.addItem("No matching 'Trn_Resident Type'.", "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
             AnyError = 1;
          }
          A97ResidentTypeName = BC001G6_A97ResidentTypeName[0];
@@ -305,7 +305,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A98MedicalIndicationId) ) )
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Medical Indication", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
+               GX_msglist.addItem("No matching 'Trn_Medical Indication'.", "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
                AnyError = 1;
             }
          }
@@ -1000,7 +1000,7 @@ namespace GeneXus.Programs {
             pr_default.execute(11, new Object[] {A303AgendaCalendarId});
             if ( (pr_default.getStatus(11) == 101) )
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_AgendaCalendar", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "AGENDACALENDARID");
+               GX_msglist.addItem("No matching 'Trn_AgendaCalendar'.", "ForeignKeyNotFound", 1, "AGENDACALENDARID");
                AnyError = 1;
             }
             A29LocationId = BC001G13_A29LocationId[0];
@@ -1010,7 +1010,7 @@ namespace GeneXus.Programs {
             pr_default.execute(12, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(12) == 101) )
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Resident", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem("No matching 'Trn_Resident'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             A72ResidentSalutation = BC001G14_A72ResidentSalutation[0];
@@ -1038,7 +1038,7 @@ namespace GeneXus.Programs {
             pr_default.execute(13, new Object[] {A96ResidentTypeId});
             if ( (pr_default.getStatus(13) == 101) )
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Resident Type", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
+               GX_msglist.addItem("No matching 'Trn_Resident Type'.", "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
                AnyError = 1;
             }
             A97ResidentTypeName = BC001G15_A97ResidentTypeName[0];
@@ -1049,7 +1049,7 @@ namespace GeneXus.Programs {
             {
                if ( ! ( (Guid.Empty==A98MedicalIndicationId) ) )
                {
-                  GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Medical Indication", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
+                  GX_msglist.addItem("No matching 'Trn_Medical Indication'.", "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
                   AnyError = 1;
                }
             }
@@ -1089,7 +1089,7 @@ namespace GeneXus.Programs {
             pr_default.execute(11, new Object[] {A303AgendaCalendarId});
             if ( (pr_default.getStatus(11) == 101) )
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_AgendaCalendar", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "AGENDACALENDARID");
+               GX_msglist.addItem("No matching 'Trn_AgendaCalendar'.", "ForeignKeyNotFound", 1, "AGENDACALENDARID");
                AnyError = 1;
             }
             A29LocationId = BC001G13_A29LocationId[0];
@@ -1099,7 +1099,7 @@ namespace GeneXus.Programs {
             pr_default.execute(12, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(12) == 101) )
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Resident", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem("No matching 'Trn_Resident'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             A72ResidentSalutation = BC001G14_A72ResidentSalutation[0];
@@ -1127,7 +1127,7 @@ namespace GeneXus.Programs {
             pr_default.execute(13, new Object[] {A96ResidentTypeId});
             if ( (pr_default.getStatus(13) == 101) )
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Resident Type", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
+               GX_msglist.addItem("No matching 'Trn_Resident Type'.", "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
                AnyError = 1;
             }
             A97ResidentTypeName = BC001G15_A97ResidentTypeName[0];
@@ -1138,7 +1138,7 @@ namespace GeneXus.Programs {
             {
                if ( ! ( (Guid.Empty==A98MedicalIndicationId) ) )
                {
-                  GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Medical Indication", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
+                  GX_msglist.addItem("No matching 'Trn_Medical Indication'.", "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
                   AnyError = 1;
                }
             }

@@ -436,6 +436,8 @@ namespace GeneXus.Programs {
             Z376ResidentPhoneNumber = A376ResidentPhoneNumber;
             Z445ResidentHomePhoneCode = A445ResidentHomePhoneCode;
             Z446ResidentHomePhoneNumber = A446ResidentHomePhoneNumber;
+            Z457ResidentImage = A457ResidentImage;
+            Z40000ResidentImage_GXI = A40000ResidentImage_GXI;
             Z29LocationId = A29LocationId;
             Z11OrganisationId = A11OrganisationId;
             Z96ResidentTypeId = A96ResidentTypeId;
@@ -496,9 +498,13 @@ namespace GeneXus.Programs {
             A376ResidentPhoneNumber = BC000913_A376ResidentPhoneNumber[0];
             A445ResidentHomePhoneCode = BC000913_A445ResidentHomePhoneCode[0];
             A446ResidentHomePhoneNumber = BC000913_A446ResidentHomePhoneNumber[0];
+            A40000ResidentImage_GXI = BC000913_A40000ResidentImage_GXI[0];
+            n40000ResidentImage_GXI = BC000913_n40000ResidentImage_GXI[0];
             A96ResidentTypeId = BC000913_A96ResidentTypeId[0];
             A98MedicalIndicationId = BC000913_A98MedicalIndicationId[0];
             n98MedicalIndicationId = BC000913_n98MedicalIndicationId[0];
+            A457ResidentImage = BC000913_A457ResidentImage[0];
+            n457ResidentImage = BC000913_n457ResidentImage[0];
             ZM0916( -32) ;
          }
          pr_default.close(11);
@@ -519,51 +525,51 @@ namespace GeneXus.Programs {
          pr_default.execute(8, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(8) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Location", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem("No matching 'Trn_Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(8);
          if ( ! ( ( StringUtil.StrCmp(A72ResidentSalutation, "Mr") == 0 ) || ( StringUtil.StrCmp(A72ResidentSalutation, "Mrs") == 0 ) || ( StringUtil.StrCmp(A72ResidentSalutation, "Dr") == 0 ) || ( StringUtil.StrCmp(A72ResidentSalutation, "Miss") == 0 ) ) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Resident Salutation", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            GX_msglist.addItem("Field Resident Salutation is out of range", "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( StringUtil.Len( A63ResidentBsnNumber) != 9 )
          {
-            GX_msglist.addItem(context.GetMessage( "BSN number contains 9 digits", ""), 1, "");
+            GX_msglist.addItem("BSN number contains 9 digits", 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A64ResidentGivenName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Resident Given Name", ""), "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Resident Given Name", "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          new prc_getnameinitials(context ).execute(  A64ResidentGivenName,  A65ResidentLastName, out  A66ResidentInitials) ;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A65ResidentLastName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Resident Last Name", ""), "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Resident Last Name", "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A67ResidentEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Resident Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            GX_msglist.addItem("Field Resident Email does not match the specified pattern", "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A67ResidentEmail)) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Resident Email", ""), "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Resident Email", "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( ! ( ( StringUtil.StrCmp(A68ResidentGender, "Male") == 0 ) || ( StringUtil.StrCmp(A68ResidentGender, "Female") == 0 ) || ( StringUtil.StrCmp(A68ResidentGender, "Other") == 0 ) ) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Resident Gender", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            GX_msglist.addItem("Field Resident Gender is out of range", "OutOfRange", 1, "");
             AnyError = 1;
          }
          /* Using cursor BC000911 */
          pr_default.execute(9, new Object[] {A96ResidentTypeId});
          if ( (pr_default.getStatus(9) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Resident Type", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
+            GX_msglist.addItem("No matching 'Trn_Resident Type'.", "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
             AnyError = 1;
          }
          A97ResidentTypeName = BC000911_A97ResidentTypeName[0];
@@ -574,7 +580,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A98MedicalIndicationId) ) )
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Medical Indication", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
+               GX_msglist.addItem("No matching 'Trn_Medical Indication'.", "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
                AnyError = 1;
             }
          }
@@ -583,14 +589,14 @@ namespace GeneXus.Programs {
          GXt_char2 = A70ResidentPhone;
          new prc_concatenateintlphone(context ).execute(  A375ResidentPhoneCode,  A376ResidentPhoneNumber, out  GXt_char2) ;
          A70ResidentPhone = GXt_char2;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A376ResidentPhoneNumber)) && ! GxRegex.IsMatch(A376ResidentPhoneNumber,context.GetMessage( "\\b\\d{9}\\b", "")) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A376ResidentPhoneNumber)) && ! GxRegex.IsMatch(A376ResidentPhoneNumber,"\\b\\d{9}\\b") )
          {
-            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "");
+            GX_msglist.addItem("Phone contains 9 digits", 1, "");
             AnyError = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A446ResidentHomePhoneNumber)) && ! GxRegex.IsMatch(A446ResidentHomePhoneNumber,context.GetMessage( "\\b\\d{9}\\b", "")) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A446ResidentHomePhoneNumber)) && ! GxRegex.IsMatch(A446ResidentHomePhoneNumber,"\\b\\d{9}\\b") )
          {
-            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "");
+            GX_msglist.addItem("Phone contains 9 digits", 1, "");
             AnyError = 1;
          }
       }
@@ -650,11 +656,15 @@ namespace GeneXus.Programs {
             A376ResidentPhoneNumber = BC00099_A376ResidentPhoneNumber[0];
             A445ResidentHomePhoneCode = BC00099_A445ResidentHomePhoneCode[0];
             A446ResidentHomePhoneNumber = BC00099_A446ResidentHomePhoneNumber[0];
+            A40000ResidentImage_GXI = BC00099_A40000ResidentImage_GXI[0];
+            n40000ResidentImage_GXI = BC00099_n40000ResidentImage_GXI[0];
             A29LocationId = BC00099_A29LocationId[0];
             A11OrganisationId = BC00099_A11OrganisationId[0];
             A96ResidentTypeId = BC00099_A96ResidentTypeId[0];
             A98MedicalIndicationId = BC00099_A98MedicalIndicationId[0];
             n98MedicalIndicationId = BC00099_n98MedicalIndicationId[0];
+            A457ResidentImage = BC00099_A457ResidentImage[0];
+            n457ResidentImage = BC00099_n457ResidentImage[0];
             Z62ResidentId = A62ResidentId;
             Z29LocationId = A29LocationId;
             Z11OrganisationId = A11OrganisationId;
@@ -768,7 +778,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC000915 */
-                     pr_default.execute(13, new Object[] {A62ResidentId, A71ResidentGUID, A66ResidentInitials, A70ResidentPhone, A72ResidentSalutation, A63ResidentBsnNumber, A64ResidentGivenName, A65ResidentLastName, A67ResidentEmail, A68ResidentGender, A354ResidentCountry, A355ResidentCity, A356ResidentZipCode, A357ResidentAddressLine1, A358ResidentAddressLine2, A444ResidentHomePhone, A73ResidentBirthDate, A375ResidentPhoneCode, A376ResidentPhoneNumber, A445ResidentHomePhoneCode, A446ResidentHomePhoneNumber, A29LocationId, A11OrganisationId, A96ResidentTypeId, n98MedicalIndicationId, A98MedicalIndicationId});
+                     pr_default.execute(13, new Object[] {A62ResidentId, A71ResidentGUID, A66ResidentInitials, A70ResidentPhone, A72ResidentSalutation, A63ResidentBsnNumber, A64ResidentGivenName, A65ResidentLastName, A67ResidentEmail, A68ResidentGender, A354ResidentCountry, A355ResidentCity, A356ResidentZipCode, A357ResidentAddressLine1, A358ResidentAddressLine2, A444ResidentHomePhone, A73ResidentBirthDate, A375ResidentPhoneCode, A376ResidentPhoneNumber, A445ResidentHomePhoneCode, A446ResidentHomePhoneNumber, n457ResidentImage, A457ResidentImage, n40000ResidentImage_GXI, A40000ResidentImage_GXI, A29LocationId, A11OrganisationId, A96ResidentTypeId, n98MedicalIndicationId, A98MedicalIndicationId});
                      pr_default.close(13);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Resident");
                      if ( (pr_default.getStatus(13) == 1) )
@@ -841,7 +851,8 @@ namespace GeneXus.Programs {
                         /* Start of After( update) rules */
                         if ( IsUpd( )  )
                         {
-                           new prc_updategamuseraccount(context ).execute(  A71ResidentGUID,  A64ResidentGivenName,  A65ResidentLastName,  "Resident", out  AV36GAMErrorResponse) ;
+                           GXt_char2 = "";
+                           new prc_updategamuseraccount(context ).execute(  A71ResidentGUID,  A64ResidentGivenName,  A65ResidentLastName,  "Resident",  AV36GAMErrorResponse,  "",  "", out  GXt_char2) ;
                         }
                         /* End of After( update) rules */
                         if ( AnyError == 0 )
@@ -870,6 +881,13 @@ namespace GeneXus.Programs {
 
       protected void DeferredUpdate0916( )
       {
+         if ( AnyError == 0 )
+         {
+            /* Using cursor BC000917 */
+            pr_default.execute(15, new Object[] {n457ResidentImage, A457ResidentImage, n40000ResidentImage_GXI, A40000ResidentImage_GXI, A62ResidentId, A29LocationId, A11OrganisationId});
+            pr_default.close(15);
+            pr_default.SmartCacheProvider.SetUpdated("Trn_Resident");
+         }
       }
 
       protected void delete( )
@@ -907,9 +925,9 @@ namespace GeneXus.Programs {
                   ScanKeyEnd0920( ) ;
                   if ( AnyError == 0 )
                   {
-                     /* Using cursor BC000917 */
-                     pr_default.execute(15, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId});
-                     pr_default.close(15);
+                     /* Using cursor BC000918 */
+                     pr_default.execute(16, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId});
+                     pr_default.close(16);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Resident");
                      if ( AnyError == 0 )
                      {
@@ -946,14 +964,14 @@ namespace GeneXus.Programs {
          if ( AnyError == 0 )
          {
             /* Delete mode formulas */
-            /* Using cursor BC000918 */
-            pr_default.execute(16, new Object[] {A96ResidentTypeId});
-            A97ResidentTypeName = BC000918_A97ResidentTypeName[0];
-            pr_default.close(16);
             /* Using cursor BC000919 */
-            pr_default.execute(17, new Object[] {n98MedicalIndicationId, A98MedicalIndicationId});
-            A99MedicalIndicationName = BC000919_A99MedicalIndicationName[0];
+            pr_default.execute(17, new Object[] {A96ResidentTypeId});
+            A97ResidentTypeName = BC000919_A97ResidentTypeName[0];
             pr_default.close(17);
+            /* Using cursor BC000920 */
+            pr_default.execute(18, new Object[] {n98MedicalIndicationId, A98MedicalIndicationId});
+            A99MedicalIndicationName = BC000920_A99MedicalIndicationName[0];
+            pr_default.close(18);
          }
       }
 
@@ -1166,40 +1184,44 @@ namespace GeneXus.Programs {
       public void ScanKeyStart0916( )
       {
          /* Scan By routine */
-         /* Using cursor BC000920 */
-         pr_default.execute(18, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId});
+         /* Using cursor BC000921 */
+         pr_default.execute(19, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId});
          RcdFound16 = 0;
-         if ( (pr_default.getStatus(18) != 101) )
+         if ( (pr_default.getStatus(19) != 101) )
          {
             RcdFound16 = 1;
-            A62ResidentId = BC000920_A62ResidentId[0];
-            A71ResidentGUID = BC000920_A71ResidentGUID[0];
-            A66ResidentInitials = BC000920_A66ResidentInitials[0];
-            A70ResidentPhone = BC000920_A70ResidentPhone[0];
-            A72ResidentSalutation = BC000920_A72ResidentSalutation[0];
-            A63ResidentBsnNumber = BC000920_A63ResidentBsnNumber[0];
-            A64ResidentGivenName = BC000920_A64ResidentGivenName[0];
-            A65ResidentLastName = BC000920_A65ResidentLastName[0];
-            A67ResidentEmail = BC000920_A67ResidentEmail[0];
-            A68ResidentGender = BC000920_A68ResidentGender[0];
-            A354ResidentCountry = BC000920_A354ResidentCountry[0];
-            A355ResidentCity = BC000920_A355ResidentCity[0];
-            A356ResidentZipCode = BC000920_A356ResidentZipCode[0];
-            A357ResidentAddressLine1 = BC000920_A357ResidentAddressLine1[0];
-            A358ResidentAddressLine2 = BC000920_A358ResidentAddressLine2[0];
-            A444ResidentHomePhone = BC000920_A444ResidentHomePhone[0];
-            A73ResidentBirthDate = BC000920_A73ResidentBirthDate[0];
-            A97ResidentTypeName = BC000920_A97ResidentTypeName[0];
-            A99MedicalIndicationName = BC000920_A99MedicalIndicationName[0];
-            A375ResidentPhoneCode = BC000920_A375ResidentPhoneCode[0];
-            A376ResidentPhoneNumber = BC000920_A376ResidentPhoneNumber[0];
-            A445ResidentHomePhoneCode = BC000920_A445ResidentHomePhoneCode[0];
-            A446ResidentHomePhoneNumber = BC000920_A446ResidentHomePhoneNumber[0];
-            A29LocationId = BC000920_A29LocationId[0];
-            A11OrganisationId = BC000920_A11OrganisationId[0];
-            A96ResidentTypeId = BC000920_A96ResidentTypeId[0];
-            A98MedicalIndicationId = BC000920_A98MedicalIndicationId[0];
-            n98MedicalIndicationId = BC000920_n98MedicalIndicationId[0];
+            A62ResidentId = BC000921_A62ResidentId[0];
+            A71ResidentGUID = BC000921_A71ResidentGUID[0];
+            A66ResidentInitials = BC000921_A66ResidentInitials[0];
+            A70ResidentPhone = BC000921_A70ResidentPhone[0];
+            A72ResidentSalutation = BC000921_A72ResidentSalutation[0];
+            A63ResidentBsnNumber = BC000921_A63ResidentBsnNumber[0];
+            A64ResidentGivenName = BC000921_A64ResidentGivenName[0];
+            A65ResidentLastName = BC000921_A65ResidentLastName[0];
+            A67ResidentEmail = BC000921_A67ResidentEmail[0];
+            A68ResidentGender = BC000921_A68ResidentGender[0];
+            A354ResidentCountry = BC000921_A354ResidentCountry[0];
+            A355ResidentCity = BC000921_A355ResidentCity[0];
+            A356ResidentZipCode = BC000921_A356ResidentZipCode[0];
+            A357ResidentAddressLine1 = BC000921_A357ResidentAddressLine1[0];
+            A358ResidentAddressLine2 = BC000921_A358ResidentAddressLine2[0];
+            A444ResidentHomePhone = BC000921_A444ResidentHomePhone[0];
+            A73ResidentBirthDate = BC000921_A73ResidentBirthDate[0];
+            A97ResidentTypeName = BC000921_A97ResidentTypeName[0];
+            A99MedicalIndicationName = BC000921_A99MedicalIndicationName[0];
+            A375ResidentPhoneCode = BC000921_A375ResidentPhoneCode[0];
+            A376ResidentPhoneNumber = BC000921_A376ResidentPhoneNumber[0];
+            A445ResidentHomePhoneCode = BC000921_A445ResidentHomePhoneCode[0];
+            A446ResidentHomePhoneNumber = BC000921_A446ResidentHomePhoneNumber[0];
+            A40000ResidentImage_GXI = BC000921_A40000ResidentImage_GXI[0];
+            n40000ResidentImage_GXI = BC000921_n40000ResidentImage_GXI[0];
+            A29LocationId = BC000921_A29LocationId[0];
+            A11OrganisationId = BC000921_A11OrganisationId[0];
+            A96ResidentTypeId = BC000921_A96ResidentTypeId[0];
+            A98MedicalIndicationId = BC000921_A98MedicalIndicationId[0];
+            n98MedicalIndicationId = BC000921_n98MedicalIndicationId[0];
+            A457ResidentImage = BC000921_A457ResidentImage[0];
+            n457ResidentImage = BC000921_n457ResidentImage[0];
          }
          /* Load Subordinate Levels */
       }
@@ -1207,7 +1229,7 @@ namespace GeneXus.Programs {
       protected void ScanKeyNext0916( )
       {
          /* Scan next routine */
-         pr_default.readNext(18);
+         pr_default.readNext(19);
          RcdFound16 = 0;
          ScanKeyLoad0916( ) ;
       }
@@ -1216,44 +1238,48 @@ namespace GeneXus.Programs {
       {
          sMode16 = Gx_mode;
          Gx_mode = "DSP";
-         if ( (pr_default.getStatus(18) != 101) )
+         if ( (pr_default.getStatus(19) != 101) )
          {
             RcdFound16 = 1;
-            A62ResidentId = BC000920_A62ResidentId[0];
-            A71ResidentGUID = BC000920_A71ResidentGUID[0];
-            A66ResidentInitials = BC000920_A66ResidentInitials[0];
-            A70ResidentPhone = BC000920_A70ResidentPhone[0];
-            A72ResidentSalutation = BC000920_A72ResidentSalutation[0];
-            A63ResidentBsnNumber = BC000920_A63ResidentBsnNumber[0];
-            A64ResidentGivenName = BC000920_A64ResidentGivenName[0];
-            A65ResidentLastName = BC000920_A65ResidentLastName[0];
-            A67ResidentEmail = BC000920_A67ResidentEmail[0];
-            A68ResidentGender = BC000920_A68ResidentGender[0];
-            A354ResidentCountry = BC000920_A354ResidentCountry[0];
-            A355ResidentCity = BC000920_A355ResidentCity[0];
-            A356ResidentZipCode = BC000920_A356ResidentZipCode[0];
-            A357ResidentAddressLine1 = BC000920_A357ResidentAddressLine1[0];
-            A358ResidentAddressLine2 = BC000920_A358ResidentAddressLine2[0];
-            A444ResidentHomePhone = BC000920_A444ResidentHomePhone[0];
-            A73ResidentBirthDate = BC000920_A73ResidentBirthDate[0];
-            A97ResidentTypeName = BC000920_A97ResidentTypeName[0];
-            A99MedicalIndicationName = BC000920_A99MedicalIndicationName[0];
-            A375ResidentPhoneCode = BC000920_A375ResidentPhoneCode[0];
-            A376ResidentPhoneNumber = BC000920_A376ResidentPhoneNumber[0];
-            A445ResidentHomePhoneCode = BC000920_A445ResidentHomePhoneCode[0];
-            A446ResidentHomePhoneNumber = BC000920_A446ResidentHomePhoneNumber[0];
-            A29LocationId = BC000920_A29LocationId[0];
-            A11OrganisationId = BC000920_A11OrganisationId[0];
-            A96ResidentTypeId = BC000920_A96ResidentTypeId[0];
-            A98MedicalIndicationId = BC000920_A98MedicalIndicationId[0];
-            n98MedicalIndicationId = BC000920_n98MedicalIndicationId[0];
+            A62ResidentId = BC000921_A62ResidentId[0];
+            A71ResidentGUID = BC000921_A71ResidentGUID[0];
+            A66ResidentInitials = BC000921_A66ResidentInitials[0];
+            A70ResidentPhone = BC000921_A70ResidentPhone[0];
+            A72ResidentSalutation = BC000921_A72ResidentSalutation[0];
+            A63ResidentBsnNumber = BC000921_A63ResidentBsnNumber[0];
+            A64ResidentGivenName = BC000921_A64ResidentGivenName[0];
+            A65ResidentLastName = BC000921_A65ResidentLastName[0];
+            A67ResidentEmail = BC000921_A67ResidentEmail[0];
+            A68ResidentGender = BC000921_A68ResidentGender[0];
+            A354ResidentCountry = BC000921_A354ResidentCountry[0];
+            A355ResidentCity = BC000921_A355ResidentCity[0];
+            A356ResidentZipCode = BC000921_A356ResidentZipCode[0];
+            A357ResidentAddressLine1 = BC000921_A357ResidentAddressLine1[0];
+            A358ResidentAddressLine2 = BC000921_A358ResidentAddressLine2[0];
+            A444ResidentHomePhone = BC000921_A444ResidentHomePhone[0];
+            A73ResidentBirthDate = BC000921_A73ResidentBirthDate[0];
+            A97ResidentTypeName = BC000921_A97ResidentTypeName[0];
+            A99MedicalIndicationName = BC000921_A99MedicalIndicationName[0];
+            A375ResidentPhoneCode = BC000921_A375ResidentPhoneCode[0];
+            A376ResidentPhoneNumber = BC000921_A376ResidentPhoneNumber[0];
+            A445ResidentHomePhoneCode = BC000921_A445ResidentHomePhoneCode[0];
+            A446ResidentHomePhoneNumber = BC000921_A446ResidentHomePhoneNumber[0];
+            A40000ResidentImage_GXI = BC000921_A40000ResidentImage_GXI[0];
+            n40000ResidentImage_GXI = BC000921_n40000ResidentImage_GXI[0];
+            A29LocationId = BC000921_A29LocationId[0];
+            A11OrganisationId = BC000921_A11OrganisationId[0];
+            A96ResidentTypeId = BC000921_A96ResidentTypeId[0];
+            A98MedicalIndicationId = BC000921_A98MedicalIndicationId[0];
+            n98MedicalIndicationId = BC000921_n98MedicalIndicationId[0];
+            A457ResidentImage = BC000921_A457ResidentImage[0];
+            n457ResidentImage = BC000921_n457ResidentImage[0];
          }
          Gx_mode = sMode16;
       }
 
       protected void ScanKeyEnd0916( )
       {
-         pr_default.close(18);
+         pr_default.close(19);
       }
 
       protected void AfterConfirm0916( )
@@ -1264,7 +1290,7 @@ namespace GeneXus.Programs {
       protected void BeforeInsert0916( )
       {
          /* Before Insert Rules */
-         if ( ( StringUtil.StrCmp(Gx_mode, context.GetMessage( "INS", "")) == 0 ) && String.IsNullOrEmpty(StringUtil.RTrim( A71ResidentGUID)) )
+         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && String.IsNullOrEmpty(StringUtil.RTrim( A71ResidentGUID)) )
          {
             new prc_creategamuseraccount(context ).execute(  A67ResidentEmail,  A64ResidentGivenName,  A65ResidentLastName,  "Resident", out  A71ResidentGUID) ;
          }
@@ -1357,27 +1383,27 @@ namespace GeneXus.Programs {
 
       protected void Load0923( )
       {
-         /* Using cursor BC000921 */
-         pr_default.execute(19, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId, A74NetworkIndividualId});
-         if ( (pr_default.getStatus(19) != 101) )
+         /* Using cursor BC000922 */
+         pr_default.execute(20, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId, A74NetworkIndividualId});
+         if ( (pr_default.getStatus(20) != 101) )
          {
             RcdFound23 = 1;
-            A75NetworkIndividualBsnNumber = BC000921_A75NetworkIndividualBsnNumber[0];
-            A76NetworkIndividualGivenName = BC000921_A76NetworkIndividualGivenName[0];
-            A77NetworkIndividualLastName = BC000921_A77NetworkIndividualLastName[0];
-            A78NetworkIndividualEmail = BC000921_A78NetworkIndividualEmail[0];
-            A79NetworkIndividualPhone = BC000921_A79NetworkIndividualPhone[0];
-            A388NetworkIndividualPhoneNumber = BC000921_A388NetworkIndividualPhoneNumber[0];
-            A387NetworkIndividualPhoneCode = BC000921_A387NetworkIndividualPhoneCode[0];
-            A81NetworkIndividualGender = BC000921_A81NetworkIndividualGender[0];
-            A344NetworkIndividualCountry = BC000921_A344NetworkIndividualCountry[0];
-            A345NetworkIndividualCity = BC000921_A345NetworkIndividualCity[0];
-            A346NetworkIndividualZipCode = BC000921_A346NetworkIndividualZipCode[0];
-            A347NetworkIndividualAddressLine1 = BC000921_A347NetworkIndividualAddressLine1[0];
-            A348NetworkIndividualAddressLine2 = BC000921_A348NetworkIndividualAddressLine2[0];
+            A75NetworkIndividualBsnNumber = BC000922_A75NetworkIndividualBsnNumber[0];
+            A76NetworkIndividualGivenName = BC000922_A76NetworkIndividualGivenName[0];
+            A77NetworkIndividualLastName = BC000922_A77NetworkIndividualLastName[0];
+            A78NetworkIndividualEmail = BC000922_A78NetworkIndividualEmail[0];
+            A79NetworkIndividualPhone = BC000922_A79NetworkIndividualPhone[0];
+            A388NetworkIndividualPhoneNumber = BC000922_A388NetworkIndividualPhoneNumber[0];
+            A387NetworkIndividualPhoneCode = BC000922_A387NetworkIndividualPhoneCode[0];
+            A81NetworkIndividualGender = BC000922_A81NetworkIndividualGender[0];
+            A344NetworkIndividualCountry = BC000922_A344NetworkIndividualCountry[0];
+            A345NetworkIndividualCity = BC000922_A345NetworkIndividualCity[0];
+            A346NetworkIndividualZipCode = BC000922_A346NetworkIndividualZipCode[0];
+            A347NetworkIndividualAddressLine1 = BC000922_A347NetworkIndividualAddressLine1[0];
+            A348NetworkIndividualAddressLine2 = BC000922_A348NetworkIndividualAddressLine2[0];
             ZM0923( -36) ;
          }
-         pr_default.close(19);
+         pr_default.close(20);
          OnLoadActions0923( ) ;
       }
 
@@ -1394,7 +1420,7 @@ namespace GeneXus.Programs {
          pr_default.execute(5, new Object[] {A74NetworkIndividualId});
          if ( (pr_default.getStatus(5) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_NetworkIndividual", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "NETWORKINDIVIDUALID");
+            GX_msglist.addItem("No matching 'Trn_NetworkIndividual'.", "ForeignKeyNotFound", 1, "NETWORKINDIVIDUALID");
             AnyError = 1;
          }
          A75NetworkIndividualBsnNumber = BC00097_A75NetworkIndividualBsnNumber[0];
@@ -1424,9 +1450,9 @@ namespace GeneXus.Programs {
 
       protected void GetKey0923( )
       {
-         /* Using cursor BC000922 */
-         pr_default.execute(20, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId, A74NetworkIndividualId});
-         if ( (pr_default.getStatus(20) != 101) )
+         /* Using cursor BC000923 */
+         pr_default.execute(21, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId, A74NetworkIndividualId});
+         if ( (pr_default.getStatus(21) != 101) )
          {
             RcdFound23 = 1;
          }
@@ -1434,7 +1460,7 @@ namespace GeneXus.Programs {
          {
             RcdFound23 = 0;
          }
-         pr_default.close(20);
+         pr_default.close(21);
       }
 
       protected void getByPrimaryKey0923( )
@@ -1513,11 +1539,11 @@ namespace GeneXus.Programs {
                   BeforeInsert0923( ) ;
                   if ( AnyError == 0 )
                   {
-                     /* Using cursor BC000923 */
-                     pr_default.execute(21, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId, A74NetworkIndividualId});
-                     pr_default.close(21);
+                     /* Using cursor BC000924 */
+                     pr_default.execute(22, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId, A74NetworkIndividualId});
+                     pr_default.close(22);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_ResidentNetworkIndividual");
-                     if ( (pr_default.getStatus(21) == 1) )
+                     if ( (pr_default.getStatus(22) == 1) )
                      {
                         GX_msglist.addItem(context.GetMessage( "GXM_noupdate", ""), "DuplicatePrimaryKey", 1, "");
                         AnyError = 1;
@@ -1612,9 +1638,9 @@ namespace GeneXus.Programs {
                if ( AnyError == 0 )
                {
                   /* No cascading delete specified. */
-                  /* Using cursor BC000924 */
-                  pr_default.execute(22, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId, A74NetworkIndividualId});
-                  pr_default.close(22);
+                  /* Using cursor BC000925 */
+                  pr_default.execute(23, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId, A74NetworkIndividualId});
+                  pr_default.close(23);
                   pr_default.SmartCacheProvider.SetUpdated("Trn_ResidentNetworkIndividual");
                   if ( AnyError == 0 )
                   {
@@ -1641,22 +1667,22 @@ namespace GeneXus.Programs {
          if ( AnyError == 0 )
          {
             /* Delete mode formulas */
-            /* Using cursor BC000925 */
-            pr_default.execute(23, new Object[] {A74NetworkIndividualId});
-            A75NetworkIndividualBsnNumber = BC000925_A75NetworkIndividualBsnNumber[0];
-            A76NetworkIndividualGivenName = BC000925_A76NetworkIndividualGivenName[0];
-            A77NetworkIndividualLastName = BC000925_A77NetworkIndividualLastName[0];
-            A78NetworkIndividualEmail = BC000925_A78NetworkIndividualEmail[0];
-            A79NetworkIndividualPhone = BC000925_A79NetworkIndividualPhone[0];
-            A388NetworkIndividualPhoneNumber = BC000925_A388NetworkIndividualPhoneNumber[0];
-            A387NetworkIndividualPhoneCode = BC000925_A387NetworkIndividualPhoneCode[0];
-            A81NetworkIndividualGender = BC000925_A81NetworkIndividualGender[0];
-            A344NetworkIndividualCountry = BC000925_A344NetworkIndividualCountry[0];
-            A345NetworkIndividualCity = BC000925_A345NetworkIndividualCity[0];
-            A346NetworkIndividualZipCode = BC000925_A346NetworkIndividualZipCode[0];
-            A347NetworkIndividualAddressLine1 = BC000925_A347NetworkIndividualAddressLine1[0];
-            A348NetworkIndividualAddressLine2 = BC000925_A348NetworkIndividualAddressLine2[0];
-            pr_default.close(23);
+            /* Using cursor BC000926 */
+            pr_default.execute(24, new Object[] {A74NetworkIndividualId});
+            A75NetworkIndividualBsnNumber = BC000926_A75NetworkIndividualBsnNumber[0];
+            A76NetworkIndividualGivenName = BC000926_A76NetworkIndividualGivenName[0];
+            A77NetworkIndividualLastName = BC000926_A77NetworkIndividualLastName[0];
+            A78NetworkIndividualEmail = BC000926_A78NetworkIndividualEmail[0];
+            A79NetworkIndividualPhone = BC000926_A79NetworkIndividualPhone[0];
+            A388NetworkIndividualPhoneNumber = BC000926_A388NetworkIndividualPhoneNumber[0];
+            A387NetworkIndividualPhoneCode = BC000926_A387NetworkIndividualPhoneCode[0];
+            A81NetworkIndividualGender = BC000926_A81NetworkIndividualGender[0];
+            A344NetworkIndividualCountry = BC000926_A344NetworkIndividualCountry[0];
+            A345NetworkIndividualCity = BC000926_A345NetworkIndividualCity[0];
+            A346NetworkIndividualZipCode = BC000926_A346NetworkIndividualZipCode[0];
+            A347NetworkIndividualAddressLine1 = BC000926_A347NetworkIndividualAddressLine1[0];
+            A348NetworkIndividualAddressLine2 = BC000926_A348NetworkIndividualAddressLine2[0];
+            pr_default.close(24);
          }
       }
 
@@ -1676,26 +1702,26 @@ namespace GeneXus.Programs {
       public void ScanKeyStart0923( )
       {
          /* Scan By routine */
-         /* Using cursor BC000926 */
-         pr_default.execute(24, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId});
+         /* Using cursor BC000927 */
+         pr_default.execute(25, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId});
          RcdFound23 = 0;
-         if ( (pr_default.getStatus(24) != 101) )
+         if ( (pr_default.getStatus(25) != 101) )
          {
             RcdFound23 = 1;
-            A75NetworkIndividualBsnNumber = BC000926_A75NetworkIndividualBsnNumber[0];
-            A76NetworkIndividualGivenName = BC000926_A76NetworkIndividualGivenName[0];
-            A77NetworkIndividualLastName = BC000926_A77NetworkIndividualLastName[0];
-            A78NetworkIndividualEmail = BC000926_A78NetworkIndividualEmail[0];
-            A79NetworkIndividualPhone = BC000926_A79NetworkIndividualPhone[0];
-            A388NetworkIndividualPhoneNumber = BC000926_A388NetworkIndividualPhoneNumber[0];
-            A387NetworkIndividualPhoneCode = BC000926_A387NetworkIndividualPhoneCode[0];
-            A81NetworkIndividualGender = BC000926_A81NetworkIndividualGender[0];
-            A344NetworkIndividualCountry = BC000926_A344NetworkIndividualCountry[0];
-            A345NetworkIndividualCity = BC000926_A345NetworkIndividualCity[0];
-            A346NetworkIndividualZipCode = BC000926_A346NetworkIndividualZipCode[0];
-            A347NetworkIndividualAddressLine1 = BC000926_A347NetworkIndividualAddressLine1[0];
-            A348NetworkIndividualAddressLine2 = BC000926_A348NetworkIndividualAddressLine2[0];
-            A74NetworkIndividualId = BC000926_A74NetworkIndividualId[0];
+            A75NetworkIndividualBsnNumber = BC000927_A75NetworkIndividualBsnNumber[0];
+            A76NetworkIndividualGivenName = BC000927_A76NetworkIndividualGivenName[0];
+            A77NetworkIndividualLastName = BC000927_A77NetworkIndividualLastName[0];
+            A78NetworkIndividualEmail = BC000927_A78NetworkIndividualEmail[0];
+            A79NetworkIndividualPhone = BC000927_A79NetworkIndividualPhone[0];
+            A388NetworkIndividualPhoneNumber = BC000927_A388NetworkIndividualPhoneNumber[0];
+            A387NetworkIndividualPhoneCode = BC000927_A387NetworkIndividualPhoneCode[0];
+            A81NetworkIndividualGender = BC000927_A81NetworkIndividualGender[0];
+            A344NetworkIndividualCountry = BC000927_A344NetworkIndividualCountry[0];
+            A345NetworkIndividualCity = BC000927_A345NetworkIndividualCity[0];
+            A346NetworkIndividualZipCode = BC000927_A346NetworkIndividualZipCode[0];
+            A347NetworkIndividualAddressLine1 = BC000927_A347NetworkIndividualAddressLine1[0];
+            A348NetworkIndividualAddressLine2 = BC000927_A348NetworkIndividualAddressLine2[0];
+            A74NetworkIndividualId = BC000927_A74NetworkIndividualId[0];
          }
          /* Load Subordinate Levels */
       }
@@ -1703,7 +1729,7 @@ namespace GeneXus.Programs {
       protected void ScanKeyNext0923( )
       {
          /* Scan next routine */
-         pr_default.readNext(24);
+         pr_default.readNext(25);
          RcdFound23 = 0;
          ScanKeyLoad0923( ) ;
       }
@@ -1712,30 +1738,30 @@ namespace GeneXus.Programs {
       {
          sMode23 = Gx_mode;
          Gx_mode = "DSP";
-         if ( (pr_default.getStatus(24) != 101) )
+         if ( (pr_default.getStatus(25) != 101) )
          {
             RcdFound23 = 1;
-            A75NetworkIndividualBsnNumber = BC000926_A75NetworkIndividualBsnNumber[0];
-            A76NetworkIndividualGivenName = BC000926_A76NetworkIndividualGivenName[0];
-            A77NetworkIndividualLastName = BC000926_A77NetworkIndividualLastName[0];
-            A78NetworkIndividualEmail = BC000926_A78NetworkIndividualEmail[0];
-            A79NetworkIndividualPhone = BC000926_A79NetworkIndividualPhone[0];
-            A388NetworkIndividualPhoneNumber = BC000926_A388NetworkIndividualPhoneNumber[0];
-            A387NetworkIndividualPhoneCode = BC000926_A387NetworkIndividualPhoneCode[0];
-            A81NetworkIndividualGender = BC000926_A81NetworkIndividualGender[0];
-            A344NetworkIndividualCountry = BC000926_A344NetworkIndividualCountry[0];
-            A345NetworkIndividualCity = BC000926_A345NetworkIndividualCity[0];
-            A346NetworkIndividualZipCode = BC000926_A346NetworkIndividualZipCode[0];
-            A347NetworkIndividualAddressLine1 = BC000926_A347NetworkIndividualAddressLine1[0];
-            A348NetworkIndividualAddressLine2 = BC000926_A348NetworkIndividualAddressLine2[0];
-            A74NetworkIndividualId = BC000926_A74NetworkIndividualId[0];
+            A75NetworkIndividualBsnNumber = BC000927_A75NetworkIndividualBsnNumber[0];
+            A76NetworkIndividualGivenName = BC000927_A76NetworkIndividualGivenName[0];
+            A77NetworkIndividualLastName = BC000927_A77NetworkIndividualLastName[0];
+            A78NetworkIndividualEmail = BC000927_A78NetworkIndividualEmail[0];
+            A79NetworkIndividualPhone = BC000927_A79NetworkIndividualPhone[0];
+            A388NetworkIndividualPhoneNumber = BC000927_A388NetworkIndividualPhoneNumber[0];
+            A387NetworkIndividualPhoneCode = BC000927_A387NetworkIndividualPhoneCode[0];
+            A81NetworkIndividualGender = BC000927_A81NetworkIndividualGender[0];
+            A344NetworkIndividualCountry = BC000927_A344NetworkIndividualCountry[0];
+            A345NetworkIndividualCity = BC000927_A345NetworkIndividualCity[0];
+            A346NetworkIndividualZipCode = BC000927_A346NetworkIndividualZipCode[0];
+            A347NetworkIndividualAddressLine1 = BC000927_A347NetworkIndividualAddressLine1[0];
+            A348NetworkIndividualAddressLine2 = BC000927_A348NetworkIndividualAddressLine2[0];
+            A74NetworkIndividualId = BC000927_A74NetworkIndividualId[0];
          }
          Gx_mode = sMode23;
       }
 
       protected void ScanKeyEnd0923( )
       {
-         pr_default.close(24);
+         pr_default.close(25);
       }
 
       protected void AfterConfirm0923( )
@@ -1794,6 +1820,7 @@ namespace GeneXus.Programs {
             Z351NetworkCompanyZipCode = A351NetworkCompanyZipCode;
             Z352NetworkCompanyAddressLine1 = A352NetworkCompanyAddressLine1;
             Z353NetworkCompanyAddressLine2 = A353NetworkCompanyAddressLine2;
+            Z505NetworkCompanyContactName = A505NetworkCompanyContactName;
          }
          if ( GX_JID == -38 )
          {
@@ -1812,6 +1839,7 @@ namespace GeneXus.Programs {
             Z351NetworkCompanyZipCode = A351NetworkCompanyZipCode;
             Z352NetworkCompanyAddressLine1 = A352NetworkCompanyAddressLine1;
             Z353NetworkCompanyAddressLine2 = A353NetworkCompanyAddressLine2;
+            Z505NetworkCompanyContactName = A505NetworkCompanyContactName;
          }
       }
 
@@ -1825,25 +1853,26 @@ namespace GeneXus.Programs {
 
       protected void Load0920( )
       {
-         /* Using cursor BC000927 */
-         pr_default.execute(25, new Object[] {A82NetworkCompanyId, A62ResidentId, A29LocationId, A11OrganisationId});
-         if ( (pr_default.getStatus(25) != 101) )
+         /* Using cursor BC000928 */
+         pr_default.execute(26, new Object[] {A82NetworkCompanyId, A62ResidentId, A29LocationId, A11OrganisationId});
+         if ( (pr_default.getStatus(26) != 101) )
          {
             RcdFound20 = 1;
-            A83NetworkCompanyKvkNumber = BC000927_A83NetworkCompanyKvkNumber[0];
-            A84NetworkCompanyName = BC000927_A84NetworkCompanyName[0];
-            A85NetworkCompanyEmail = BC000927_A85NetworkCompanyEmail[0];
-            A86NetworkCompanyPhone = BC000927_A86NetworkCompanyPhone[0];
-            A392NetworkCompanyPhoneNumber = BC000927_A392NetworkCompanyPhoneNumber[0];
-            A391NetworkCompanyPhoneCode = BC000927_A391NetworkCompanyPhoneCode[0];
-            A349NetworkCompanyCountry = BC000927_A349NetworkCompanyCountry[0];
-            A350NetworkCompanyCity = BC000927_A350NetworkCompanyCity[0];
-            A351NetworkCompanyZipCode = BC000927_A351NetworkCompanyZipCode[0];
-            A352NetworkCompanyAddressLine1 = BC000927_A352NetworkCompanyAddressLine1[0];
-            A353NetworkCompanyAddressLine2 = BC000927_A353NetworkCompanyAddressLine2[0];
+            A83NetworkCompanyKvkNumber = BC000928_A83NetworkCompanyKvkNumber[0];
+            A84NetworkCompanyName = BC000928_A84NetworkCompanyName[0];
+            A85NetworkCompanyEmail = BC000928_A85NetworkCompanyEmail[0];
+            A86NetworkCompanyPhone = BC000928_A86NetworkCompanyPhone[0];
+            A392NetworkCompanyPhoneNumber = BC000928_A392NetworkCompanyPhoneNumber[0];
+            A391NetworkCompanyPhoneCode = BC000928_A391NetworkCompanyPhoneCode[0];
+            A349NetworkCompanyCountry = BC000928_A349NetworkCompanyCountry[0];
+            A350NetworkCompanyCity = BC000928_A350NetworkCompanyCity[0];
+            A351NetworkCompanyZipCode = BC000928_A351NetworkCompanyZipCode[0];
+            A352NetworkCompanyAddressLine1 = BC000928_A352NetworkCompanyAddressLine1[0];
+            A353NetworkCompanyAddressLine2 = BC000928_A353NetworkCompanyAddressLine2[0];
+            A505NetworkCompanyContactName = BC000928_A505NetworkCompanyContactName[0];
             ZM0920( -38) ;
          }
-         pr_default.close(25);
+         pr_default.close(26);
          OnLoadActions0920( ) ;
       }
 
@@ -1860,7 +1889,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A82NetworkCompanyId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_NetworkCompany", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "NETWORKCOMPANYID");
+            GX_msglist.addItem("No matching 'Trn_NetworkCompany'.", "ForeignKeyNotFound", 1, "NETWORKCOMPANYID");
             AnyError = 1;
          }
          A83NetworkCompanyKvkNumber = BC00094_A83NetworkCompanyKvkNumber[0];
@@ -1874,6 +1903,7 @@ namespace GeneXus.Programs {
          A351NetworkCompanyZipCode = BC00094_A351NetworkCompanyZipCode[0];
          A352NetworkCompanyAddressLine1 = BC00094_A352NetworkCompanyAddressLine1[0];
          A353NetworkCompanyAddressLine2 = BC00094_A353NetworkCompanyAddressLine2[0];
+         A505NetworkCompanyContactName = BC00094_A505NetworkCompanyContactName[0];
          pr_default.close(2);
       }
 
@@ -1888,9 +1918,9 @@ namespace GeneXus.Programs {
 
       protected void GetKey0920( )
       {
-         /* Using cursor BC000928 */
-         pr_default.execute(26, new Object[] {A82NetworkCompanyId, A62ResidentId, A29LocationId, A11OrganisationId});
-         if ( (pr_default.getStatus(26) != 101) )
+         /* Using cursor BC000929 */
+         pr_default.execute(27, new Object[] {A82NetworkCompanyId, A62ResidentId, A29LocationId, A11OrganisationId});
+         if ( (pr_default.getStatus(27) != 101) )
          {
             RcdFound20 = 1;
          }
@@ -1898,7 +1928,7 @@ namespace GeneXus.Programs {
          {
             RcdFound20 = 0;
          }
-         pr_default.close(26);
+         pr_default.close(27);
       }
 
       protected void getByPrimaryKey0920( )
@@ -1977,11 +2007,11 @@ namespace GeneXus.Programs {
                   BeforeInsert0920( ) ;
                   if ( AnyError == 0 )
                   {
-                     /* Using cursor BC000929 */
-                     pr_default.execute(27, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId, A82NetworkCompanyId});
-                     pr_default.close(27);
+                     /* Using cursor BC000930 */
+                     pr_default.execute(28, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId, A82NetworkCompanyId});
+                     pr_default.close(28);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_ResidentNetworkCompany");
-                     if ( (pr_default.getStatus(27) == 1) )
+                     if ( (pr_default.getStatus(28) == 1) )
                      {
                         GX_msglist.addItem(context.GetMessage( "GXM_noupdate", ""), "DuplicatePrimaryKey", 1, "");
                         AnyError = 1;
@@ -2076,9 +2106,9 @@ namespace GeneXus.Programs {
                if ( AnyError == 0 )
                {
                   /* No cascading delete specified. */
-                  /* Using cursor BC000930 */
-                  pr_default.execute(28, new Object[] {A82NetworkCompanyId, A62ResidentId, A29LocationId, A11OrganisationId});
-                  pr_default.close(28);
+                  /* Using cursor BC000931 */
+                  pr_default.execute(29, new Object[] {A82NetworkCompanyId, A62ResidentId, A29LocationId, A11OrganisationId});
+                  pr_default.close(29);
                   pr_default.SmartCacheProvider.SetUpdated("Trn_ResidentNetworkCompany");
                   if ( AnyError == 0 )
                   {
@@ -2105,20 +2135,21 @@ namespace GeneXus.Programs {
          if ( AnyError == 0 )
          {
             /* Delete mode formulas */
-            /* Using cursor BC000931 */
-            pr_default.execute(29, new Object[] {A82NetworkCompanyId});
-            A83NetworkCompanyKvkNumber = BC000931_A83NetworkCompanyKvkNumber[0];
-            A84NetworkCompanyName = BC000931_A84NetworkCompanyName[0];
-            A85NetworkCompanyEmail = BC000931_A85NetworkCompanyEmail[0];
-            A86NetworkCompanyPhone = BC000931_A86NetworkCompanyPhone[0];
-            A392NetworkCompanyPhoneNumber = BC000931_A392NetworkCompanyPhoneNumber[0];
-            A391NetworkCompanyPhoneCode = BC000931_A391NetworkCompanyPhoneCode[0];
-            A349NetworkCompanyCountry = BC000931_A349NetworkCompanyCountry[0];
-            A350NetworkCompanyCity = BC000931_A350NetworkCompanyCity[0];
-            A351NetworkCompanyZipCode = BC000931_A351NetworkCompanyZipCode[0];
-            A352NetworkCompanyAddressLine1 = BC000931_A352NetworkCompanyAddressLine1[0];
-            A353NetworkCompanyAddressLine2 = BC000931_A353NetworkCompanyAddressLine2[0];
-            pr_default.close(29);
+            /* Using cursor BC000932 */
+            pr_default.execute(30, new Object[] {A82NetworkCompanyId});
+            A83NetworkCompanyKvkNumber = BC000932_A83NetworkCompanyKvkNumber[0];
+            A84NetworkCompanyName = BC000932_A84NetworkCompanyName[0];
+            A85NetworkCompanyEmail = BC000932_A85NetworkCompanyEmail[0];
+            A86NetworkCompanyPhone = BC000932_A86NetworkCompanyPhone[0];
+            A392NetworkCompanyPhoneNumber = BC000932_A392NetworkCompanyPhoneNumber[0];
+            A391NetworkCompanyPhoneCode = BC000932_A391NetworkCompanyPhoneCode[0];
+            A349NetworkCompanyCountry = BC000932_A349NetworkCompanyCountry[0];
+            A350NetworkCompanyCity = BC000932_A350NetworkCompanyCity[0];
+            A351NetworkCompanyZipCode = BC000932_A351NetworkCompanyZipCode[0];
+            A352NetworkCompanyAddressLine1 = BC000932_A352NetworkCompanyAddressLine1[0];
+            A353NetworkCompanyAddressLine2 = BC000932_A353NetworkCompanyAddressLine2[0];
+            A505NetworkCompanyContactName = BC000932_A505NetworkCompanyContactName[0];
+            pr_default.close(30);
          }
       }
 
@@ -2138,24 +2169,25 @@ namespace GeneXus.Programs {
       public void ScanKeyStart0920( )
       {
          /* Scan By routine */
-         /* Using cursor BC000932 */
-         pr_default.execute(30, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId});
+         /* Using cursor BC000933 */
+         pr_default.execute(31, new Object[] {A62ResidentId, A29LocationId, A11OrganisationId});
          RcdFound20 = 0;
-         if ( (pr_default.getStatus(30) != 101) )
+         if ( (pr_default.getStatus(31) != 101) )
          {
             RcdFound20 = 1;
-            A83NetworkCompanyKvkNumber = BC000932_A83NetworkCompanyKvkNumber[0];
-            A84NetworkCompanyName = BC000932_A84NetworkCompanyName[0];
-            A85NetworkCompanyEmail = BC000932_A85NetworkCompanyEmail[0];
-            A86NetworkCompanyPhone = BC000932_A86NetworkCompanyPhone[0];
-            A392NetworkCompanyPhoneNumber = BC000932_A392NetworkCompanyPhoneNumber[0];
-            A391NetworkCompanyPhoneCode = BC000932_A391NetworkCompanyPhoneCode[0];
-            A349NetworkCompanyCountry = BC000932_A349NetworkCompanyCountry[0];
-            A350NetworkCompanyCity = BC000932_A350NetworkCompanyCity[0];
-            A351NetworkCompanyZipCode = BC000932_A351NetworkCompanyZipCode[0];
-            A352NetworkCompanyAddressLine1 = BC000932_A352NetworkCompanyAddressLine1[0];
-            A353NetworkCompanyAddressLine2 = BC000932_A353NetworkCompanyAddressLine2[0];
-            A82NetworkCompanyId = BC000932_A82NetworkCompanyId[0];
+            A83NetworkCompanyKvkNumber = BC000933_A83NetworkCompanyKvkNumber[0];
+            A84NetworkCompanyName = BC000933_A84NetworkCompanyName[0];
+            A85NetworkCompanyEmail = BC000933_A85NetworkCompanyEmail[0];
+            A86NetworkCompanyPhone = BC000933_A86NetworkCompanyPhone[0];
+            A392NetworkCompanyPhoneNumber = BC000933_A392NetworkCompanyPhoneNumber[0];
+            A391NetworkCompanyPhoneCode = BC000933_A391NetworkCompanyPhoneCode[0];
+            A349NetworkCompanyCountry = BC000933_A349NetworkCompanyCountry[0];
+            A350NetworkCompanyCity = BC000933_A350NetworkCompanyCity[0];
+            A351NetworkCompanyZipCode = BC000933_A351NetworkCompanyZipCode[0];
+            A352NetworkCompanyAddressLine1 = BC000933_A352NetworkCompanyAddressLine1[0];
+            A353NetworkCompanyAddressLine2 = BC000933_A353NetworkCompanyAddressLine2[0];
+            A505NetworkCompanyContactName = BC000933_A505NetworkCompanyContactName[0];
+            A82NetworkCompanyId = BC000933_A82NetworkCompanyId[0];
          }
          /* Load Subordinate Levels */
       }
@@ -2163,7 +2195,7 @@ namespace GeneXus.Programs {
       protected void ScanKeyNext0920( )
       {
          /* Scan next routine */
-         pr_default.readNext(30);
+         pr_default.readNext(31);
          RcdFound20 = 0;
          ScanKeyLoad0920( ) ;
       }
@@ -2172,28 +2204,29 @@ namespace GeneXus.Programs {
       {
          sMode20 = Gx_mode;
          Gx_mode = "DSP";
-         if ( (pr_default.getStatus(30) != 101) )
+         if ( (pr_default.getStatus(31) != 101) )
          {
             RcdFound20 = 1;
-            A83NetworkCompanyKvkNumber = BC000932_A83NetworkCompanyKvkNumber[0];
-            A84NetworkCompanyName = BC000932_A84NetworkCompanyName[0];
-            A85NetworkCompanyEmail = BC000932_A85NetworkCompanyEmail[0];
-            A86NetworkCompanyPhone = BC000932_A86NetworkCompanyPhone[0];
-            A392NetworkCompanyPhoneNumber = BC000932_A392NetworkCompanyPhoneNumber[0];
-            A391NetworkCompanyPhoneCode = BC000932_A391NetworkCompanyPhoneCode[0];
-            A349NetworkCompanyCountry = BC000932_A349NetworkCompanyCountry[0];
-            A350NetworkCompanyCity = BC000932_A350NetworkCompanyCity[0];
-            A351NetworkCompanyZipCode = BC000932_A351NetworkCompanyZipCode[0];
-            A352NetworkCompanyAddressLine1 = BC000932_A352NetworkCompanyAddressLine1[0];
-            A353NetworkCompanyAddressLine2 = BC000932_A353NetworkCompanyAddressLine2[0];
-            A82NetworkCompanyId = BC000932_A82NetworkCompanyId[0];
+            A83NetworkCompanyKvkNumber = BC000933_A83NetworkCompanyKvkNumber[0];
+            A84NetworkCompanyName = BC000933_A84NetworkCompanyName[0];
+            A85NetworkCompanyEmail = BC000933_A85NetworkCompanyEmail[0];
+            A86NetworkCompanyPhone = BC000933_A86NetworkCompanyPhone[0];
+            A392NetworkCompanyPhoneNumber = BC000933_A392NetworkCompanyPhoneNumber[0];
+            A391NetworkCompanyPhoneCode = BC000933_A391NetworkCompanyPhoneCode[0];
+            A349NetworkCompanyCountry = BC000933_A349NetworkCompanyCountry[0];
+            A350NetworkCompanyCity = BC000933_A350NetworkCompanyCity[0];
+            A351NetworkCompanyZipCode = BC000933_A351NetworkCompanyZipCode[0];
+            A352NetworkCompanyAddressLine1 = BC000933_A352NetworkCompanyAddressLine1[0];
+            A353NetworkCompanyAddressLine2 = BC000933_A353NetworkCompanyAddressLine2[0];
+            A505NetworkCompanyContactName = BC000933_A505NetworkCompanyContactName[0];
+            A82NetworkCompanyId = BC000933_A82NetworkCompanyId[0];
          }
          Gx_mode = sMode20;
       }
 
       protected void ScanKeyEnd0920( )
       {
-         pr_default.close(30);
+         pr_default.close(31);
       }
 
       protected void AfterConfirm0920( )
@@ -2309,6 +2342,10 @@ namespace GeneXus.Programs {
          A376ResidentPhoneNumber = "";
          A445ResidentHomePhoneCode = "";
          A446ResidentHomePhoneNumber = "";
+         A457ResidentImage = "";
+         n457ResidentImage = false;
+         A40000ResidentImage_GXI = "";
+         n40000ResidentImage_GXI = false;
          Z71ResidentGUID = "";
          Z66ResidentInitials = "";
          Z70ResidentPhone = "";
@@ -2385,6 +2422,7 @@ namespace GeneXus.Programs {
          A351NetworkCompanyZipCode = "";
          A352NetworkCompanyAddressLine1 = "";
          A353NetworkCompanyAddressLine2 = "";
+         A505NetworkCompanyContactName = "";
       }
 
       protected void InitAll0920( )
@@ -2444,6 +2482,8 @@ namespace GeneXus.Programs {
          obj16.gxTpr_Residentphonenumber = A376ResidentPhoneNumber;
          obj16.gxTpr_Residenthomephonecode = A445ResidentHomePhoneCode;
          obj16.gxTpr_Residenthomephonenumber = A446ResidentHomePhoneNumber;
+         obj16.gxTpr_Residentimage = A457ResidentImage;
+         obj16.gxTpr_Residentimage_gxi = A40000ResidentImage_GXI;
          obj16.gxTpr_Residentid = A62ResidentId;
          obj16.gxTpr_Locationid = A29LocationId;
          obj16.gxTpr_Organisationid = A11OrganisationId;
@@ -2474,7 +2514,10 @@ namespace GeneXus.Programs {
          obj16.gxTpr_Residentphonenumber_Z = Z376ResidentPhoneNumber;
          obj16.gxTpr_Residenthomephonecode_Z = Z445ResidentHomePhoneCode;
          obj16.gxTpr_Residenthomephonenumber_Z = Z446ResidentHomePhoneNumber;
+         obj16.gxTpr_Residentimage_gxi_Z = Z40000ResidentImage_GXI;
          obj16.gxTpr_Medicalindicationid_N = (short)(Convert.ToInt16(n98MedicalIndicationId));
+         obj16.gxTpr_Residentimage_N = (short)(Convert.ToInt16(n457ResidentImage));
+         obj16.gxTpr_Residentimage_gxi_N = (short)(Convert.ToInt16(n40000ResidentImage_GXI));
          obj16.gxTpr_Mode = Gx_mode;
          return  ;
       }
@@ -2519,6 +2562,10 @@ namespace GeneXus.Programs {
          A376ResidentPhoneNumber = obj16.gxTpr_Residentphonenumber;
          A445ResidentHomePhoneCode = obj16.gxTpr_Residenthomephonecode;
          A446ResidentHomePhoneNumber = obj16.gxTpr_Residenthomephonenumber;
+         A457ResidentImage = obj16.gxTpr_Residentimage;
+         n457ResidentImage = false;
+         A40000ResidentImage_GXI = obj16.gxTpr_Residentimage_gxi;
+         n40000ResidentImage_GXI = false;
          A62ResidentId = obj16.gxTpr_Residentid;
          A29LocationId = obj16.gxTpr_Locationid;
          A11OrganisationId = obj16.gxTpr_Organisationid;
@@ -2549,7 +2596,10 @@ namespace GeneXus.Programs {
          Z376ResidentPhoneNumber = obj16.gxTpr_Residentphonenumber_Z;
          Z445ResidentHomePhoneCode = obj16.gxTpr_Residenthomephonecode_Z;
          Z446ResidentHomePhoneNumber = obj16.gxTpr_Residenthomephonenumber_Z;
+         Z40000ResidentImage_GXI = obj16.gxTpr_Residentimage_gxi_Z;
          n98MedicalIndicationId = (bool)(Convert.ToBoolean(obj16.gxTpr_Medicalindicationid_N));
+         n457ResidentImage = (bool)(Convert.ToBoolean(obj16.gxTpr_Residentimage_N));
+         n40000ResidentImage_GXI = (bool)(Convert.ToBoolean(obj16.gxTpr_Residentimage_gxi_N));
          Gx_mode = obj16.gxTpr_Mode;
          return  ;
       }
@@ -2645,6 +2695,7 @@ namespace GeneXus.Programs {
          obj20.gxTpr_Networkcompanyzipcode = A351NetworkCompanyZipCode;
          obj20.gxTpr_Networkcompanyaddressline1 = A352NetworkCompanyAddressLine1;
          obj20.gxTpr_Networkcompanyaddressline2 = A353NetworkCompanyAddressLine2;
+         obj20.gxTpr_Networkcompanycontactname = A505NetworkCompanyContactName;
          obj20.gxTpr_Networkcompanyid = A82NetworkCompanyId;
          obj20.gxTpr_Networkcompanyid_Z = Z82NetworkCompanyId;
          obj20.gxTpr_Networkcompanykvknumber_Z = Z83NetworkCompanyKvkNumber;
@@ -2658,6 +2709,7 @@ namespace GeneXus.Programs {
          obj20.gxTpr_Networkcompanyzipcode_Z = Z351NetworkCompanyZipCode;
          obj20.gxTpr_Networkcompanyaddressline1_Z = Z352NetworkCompanyAddressLine1;
          obj20.gxTpr_Networkcompanyaddressline2_Z = Z353NetworkCompanyAddressLine2;
+         obj20.gxTpr_Networkcompanycontactname_Z = Z505NetworkCompanyContactName;
          obj20.gxTpr_Modified = nIsMod_20;
          return  ;
       }
@@ -2683,6 +2735,7 @@ namespace GeneXus.Programs {
          A351NetworkCompanyZipCode = obj20.gxTpr_Networkcompanyzipcode;
          A352NetworkCompanyAddressLine1 = obj20.gxTpr_Networkcompanyaddressline1;
          A353NetworkCompanyAddressLine2 = obj20.gxTpr_Networkcompanyaddressline2;
+         A505NetworkCompanyContactName = obj20.gxTpr_Networkcompanycontactname;
          A82NetworkCompanyId = obj20.gxTpr_Networkcompanyid;
          Z82NetworkCompanyId = obj20.gxTpr_Networkcompanyid_Z;
          Z83NetworkCompanyKvkNumber = obj20.gxTpr_Networkcompanykvknumber_Z;
@@ -2696,6 +2749,7 @@ namespace GeneXus.Programs {
          Z351NetworkCompanyZipCode = obj20.gxTpr_Networkcompanyzipcode_Z;
          Z352NetworkCompanyAddressLine1 = obj20.gxTpr_Networkcompanyaddressline1_Z;
          Z353NetworkCompanyAddressLine2 = obj20.gxTpr_Networkcompanyaddressline2_Z;
+         Z505NetworkCompanyContactName = obj20.gxTpr_Networkcompanycontactname_Z;
          nIsMod_20 = obj20.gxTpr_Modified;
          return  ;
       }
@@ -2714,14 +2768,14 @@ namespace GeneXus.Programs {
          if ( RcdFound16 == 0 )
          {
             Gx_mode = "INS";
-            /* Using cursor BC000933 */
-            pr_default.execute(31, new Object[] {A29LocationId, A11OrganisationId});
-            if ( (pr_default.getStatus(31) == 101) )
+            /* Using cursor BC000934 */
+            pr_default.execute(32, new Object[] {A29LocationId, A11OrganisationId});
+            if ( (pr_default.getStatus(32) == 101) )
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Location", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem("No matching 'Trn_Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
-            pr_default.close(31);
+            pr_default.close(32);
          }
          else
          {
@@ -2795,14 +2849,14 @@ namespace GeneXus.Programs {
          if ( RcdFound16 == 0 )
          {
             Gx_mode = "INS";
-            /* Using cursor BC000933 */
-            pr_default.execute(31, new Object[] {A29LocationId, A11OrganisationId});
-            if ( (pr_default.getStatus(31) == 101) )
+            /* Using cursor BC000934 */
+            pr_default.execute(32, new Object[] {A29LocationId, A11OrganisationId});
+            if ( (pr_default.getStatus(32) == 101) )
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Location", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem("No matching 'Trn_Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
-            pr_default.close(31);
+            pr_default.close(32);
          }
          else
          {
@@ -3232,13 +3286,13 @@ namespace GeneXus.Programs {
       protected override void CloseCursors( )
       {
          pr_default.close(1);
-         pr_default.close(29);
+         pr_default.close(30);
          pr_default.close(4);
-         pr_default.close(23);
+         pr_default.close(24);
          pr_default.close(7);
-         pr_default.close(31);
-         pr_default.close(16);
+         pr_default.close(32);
          pr_default.close(17);
+         pr_default.close(18);
       }
 
       public override void initialize( )
@@ -3309,6 +3363,10 @@ namespace GeneXus.Programs {
          A97ResidentTypeName = "";
          Z99MedicalIndicationName = "";
          A99MedicalIndicationName = "";
+         Z457ResidentImage = "";
+         A457ResidentImage = "";
+         Z40000ResidentImage_GXI = "";
+         A40000ResidentImage_GXI = "";
          GXt_guid1 = Guid.Empty;
          BC000913_A62ResidentId = new Guid[] {Guid.Empty} ;
          BC000913_A71ResidentGUID = new string[] {""} ;
@@ -3333,15 +3391,18 @@ namespace GeneXus.Programs {
          BC000913_A376ResidentPhoneNumber = new string[] {""} ;
          BC000913_A445ResidentHomePhoneCode = new string[] {""} ;
          BC000913_A446ResidentHomePhoneNumber = new string[] {""} ;
+         BC000913_A40000ResidentImage_GXI = new string[] {""} ;
+         BC000913_n40000ResidentImage_GXI = new bool[] {false} ;
          BC000913_A29LocationId = new Guid[] {Guid.Empty} ;
          BC000913_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC000913_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
          BC000913_A98MedicalIndicationId = new Guid[] {Guid.Empty} ;
          BC000913_n98MedicalIndicationId = new bool[] {false} ;
+         BC000913_A457ResidentImage = new string[] {""} ;
+         BC000913_n457ResidentImage = new bool[] {false} ;
          BC000910_A29LocationId = new Guid[] {Guid.Empty} ;
          BC000911_A97ResidentTypeName = new string[] {""} ;
          BC000912_A99MedicalIndicationName = new string[] {""} ;
-         GXt_char2 = "";
          BC000914_A62ResidentId = new Guid[] {Guid.Empty} ;
          BC000914_A29LocationId = new Guid[] {Guid.Empty} ;
          BC000914_A11OrganisationId = new Guid[] {Guid.Empty} ;
@@ -3366,11 +3427,15 @@ namespace GeneXus.Programs {
          BC00099_A376ResidentPhoneNumber = new string[] {""} ;
          BC00099_A445ResidentHomePhoneCode = new string[] {""} ;
          BC00099_A446ResidentHomePhoneNumber = new string[] {""} ;
+         BC00099_A40000ResidentImage_GXI = new string[] {""} ;
+         BC00099_n40000ResidentImage_GXI = new bool[] {false} ;
          BC00099_A29LocationId = new Guid[] {Guid.Empty} ;
          BC00099_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC00099_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
          BC00099_A98MedicalIndicationId = new Guid[] {Guid.Empty} ;
          BC00099_n98MedicalIndicationId = new bool[] {false} ;
+         BC00099_A457ResidentImage = new string[] {""} ;
+         BC00099_n457ResidentImage = new bool[] {false} ;
          BC00098_A62ResidentId = new Guid[] {Guid.Empty} ;
          BC00098_A71ResidentGUID = new string[] {""} ;
          BC00098_A66ResidentInitials = new string[] {""} ;
@@ -3392,42 +3457,51 @@ namespace GeneXus.Programs {
          BC00098_A376ResidentPhoneNumber = new string[] {""} ;
          BC00098_A445ResidentHomePhoneCode = new string[] {""} ;
          BC00098_A446ResidentHomePhoneNumber = new string[] {""} ;
+         BC00098_A40000ResidentImage_GXI = new string[] {""} ;
+         BC00098_n40000ResidentImage_GXI = new bool[] {false} ;
          BC00098_A29LocationId = new Guid[] {Guid.Empty} ;
          BC00098_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC00098_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
          BC00098_A98MedicalIndicationId = new Guid[] {Guid.Empty} ;
          BC00098_n98MedicalIndicationId = new bool[] {false} ;
+         BC00098_A457ResidentImage = new string[] {""} ;
+         BC00098_n457ResidentImage = new bool[] {false} ;
          AV36GAMErrorResponse = "";
-         BC000918_A97ResidentTypeName = new string[] {""} ;
-         BC000919_A99MedicalIndicationName = new string[] {""} ;
-         BC000920_A62ResidentId = new Guid[] {Guid.Empty} ;
-         BC000920_A71ResidentGUID = new string[] {""} ;
-         BC000920_A66ResidentInitials = new string[] {""} ;
-         BC000920_A70ResidentPhone = new string[] {""} ;
-         BC000920_A72ResidentSalutation = new string[] {""} ;
-         BC000920_A63ResidentBsnNumber = new string[] {""} ;
-         BC000920_A64ResidentGivenName = new string[] {""} ;
-         BC000920_A65ResidentLastName = new string[] {""} ;
-         BC000920_A67ResidentEmail = new string[] {""} ;
-         BC000920_A68ResidentGender = new string[] {""} ;
-         BC000920_A354ResidentCountry = new string[] {""} ;
-         BC000920_A355ResidentCity = new string[] {""} ;
-         BC000920_A356ResidentZipCode = new string[] {""} ;
-         BC000920_A357ResidentAddressLine1 = new string[] {""} ;
-         BC000920_A358ResidentAddressLine2 = new string[] {""} ;
-         BC000920_A444ResidentHomePhone = new string[] {""} ;
-         BC000920_A73ResidentBirthDate = new DateTime[] {DateTime.MinValue} ;
-         BC000920_A97ResidentTypeName = new string[] {""} ;
+         GXt_char2 = "";
+         BC000919_A97ResidentTypeName = new string[] {""} ;
          BC000920_A99MedicalIndicationName = new string[] {""} ;
-         BC000920_A375ResidentPhoneCode = new string[] {""} ;
-         BC000920_A376ResidentPhoneNumber = new string[] {""} ;
-         BC000920_A445ResidentHomePhoneCode = new string[] {""} ;
-         BC000920_A446ResidentHomePhoneNumber = new string[] {""} ;
-         BC000920_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC000920_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         BC000920_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
-         BC000920_A98MedicalIndicationId = new Guid[] {Guid.Empty} ;
-         BC000920_n98MedicalIndicationId = new bool[] {false} ;
+         BC000921_A62ResidentId = new Guid[] {Guid.Empty} ;
+         BC000921_A71ResidentGUID = new string[] {""} ;
+         BC000921_A66ResidentInitials = new string[] {""} ;
+         BC000921_A70ResidentPhone = new string[] {""} ;
+         BC000921_A72ResidentSalutation = new string[] {""} ;
+         BC000921_A63ResidentBsnNumber = new string[] {""} ;
+         BC000921_A64ResidentGivenName = new string[] {""} ;
+         BC000921_A65ResidentLastName = new string[] {""} ;
+         BC000921_A67ResidentEmail = new string[] {""} ;
+         BC000921_A68ResidentGender = new string[] {""} ;
+         BC000921_A354ResidentCountry = new string[] {""} ;
+         BC000921_A355ResidentCity = new string[] {""} ;
+         BC000921_A356ResidentZipCode = new string[] {""} ;
+         BC000921_A357ResidentAddressLine1 = new string[] {""} ;
+         BC000921_A358ResidentAddressLine2 = new string[] {""} ;
+         BC000921_A444ResidentHomePhone = new string[] {""} ;
+         BC000921_A73ResidentBirthDate = new DateTime[] {DateTime.MinValue} ;
+         BC000921_A97ResidentTypeName = new string[] {""} ;
+         BC000921_A99MedicalIndicationName = new string[] {""} ;
+         BC000921_A375ResidentPhoneCode = new string[] {""} ;
+         BC000921_A376ResidentPhoneNumber = new string[] {""} ;
+         BC000921_A445ResidentHomePhoneCode = new string[] {""} ;
+         BC000921_A446ResidentHomePhoneNumber = new string[] {""} ;
+         BC000921_A40000ResidentImage_GXI = new string[] {""} ;
+         BC000921_n40000ResidentImage_GXI = new bool[] {false} ;
+         BC000921_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC000921_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC000921_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
+         BC000921_A98MedicalIndicationId = new Guid[] {Guid.Empty} ;
+         BC000921_n98MedicalIndicationId = new bool[] {false} ;
+         BC000921_A457ResidentImage = new string[] {""} ;
+         BC000921_n457ResidentImage = new bool[] {false} ;
          Z75NetworkIndividualBsnNumber = "";
          A75NetworkIndividualBsnNumber = "";
          Z76NetworkIndividualGivenName = "";
@@ -3456,23 +3530,23 @@ namespace GeneXus.Programs {
          A348NetworkIndividualAddressLine2 = "";
          Z74NetworkIndividualId = Guid.Empty;
          A74NetworkIndividualId = Guid.Empty;
-         BC000921_A62ResidentId = new Guid[] {Guid.Empty} ;
-         BC000921_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC000921_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         BC000921_A75NetworkIndividualBsnNumber = new string[] {""} ;
-         BC000921_A76NetworkIndividualGivenName = new string[] {""} ;
-         BC000921_A77NetworkIndividualLastName = new string[] {""} ;
-         BC000921_A78NetworkIndividualEmail = new string[] {""} ;
-         BC000921_A79NetworkIndividualPhone = new string[] {""} ;
-         BC000921_A388NetworkIndividualPhoneNumber = new string[] {""} ;
-         BC000921_A387NetworkIndividualPhoneCode = new string[] {""} ;
-         BC000921_A81NetworkIndividualGender = new string[] {""} ;
-         BC000921_A344NetworkIndividualCountry = new string[] {""} ;
-         BC000921_A345NetworkIndividualCity = new string[] {""} ;
-         BC000921_A346NetworkIndividualZipCode = new string[] {""} ;
-         BC000921_A347NetworkIndividualAddressLine1 = new string[] {""} ;
-         BC000921_A348NetworkIndividualAddressLine2 = new string[] {""} ;
-         BC000921_A74NetworkIndividualId = new Guid[] {Guid.Empty} ;
+         BC000922_A62ResidentId = new Guid[] {Guid.Empty} ;
+         BC000922_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC000922_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC000922_A75NetworkIndividualBsnNumber = new string[] {""} ;
+         BC000922_A76NetworkIndividualGivenName = new string[] {""} ;
+         BC000922_A77NetworkIndividualLastName = new string[] {""} ;
+         BC000922_A78NetworkIndividualEmail = new string[] {""} ;
+         BC000922_A79NetworkIndividualPhone = new string[] {""} ;
+         BC000922_A388NetworkIndividualPhoneNumber = new string[] {""} ;
+         BC000922_A387NetworkIndividualPhoneCode = new string[] {""} ;
+         BC000922_A81NetworkIndividualGender = new string[] {""} ;
+         BC000922_A344NetworkIndividualCountry = new string[] {""} ;
+         BC000922_A345NetworkIndividualCity = new string[] {""} ;
+         BC000922_A346NetworkIndividualZipCode = new string[] {""} ;
+         BC000922_A347NetworkIndividualAddressLine1 = new string[] {""} ;
+         BC000922_A348NetworkIndividualAddressLine2 = new string[] {""} ;
+         BC000922_A74NetworkIndividualId = new Guid[] {Guid.Empty} ;
          BC00097_A75NetworkIndividualBsnNumber = new string[] {""} ;
          BC00097_A76NetworkIndividualGivenName = new string[] {""} ;
          BC00097_A77NetworkIndividualLastName = new string[] {""} ;
@@ -3486,10 +3560,10 @@ namespace GeneXus.Programs {
          BC00097_A346NetworkIndividualZipCode = new string[] {""} ;
          BC00097_A347NetworkIndividualAddressLine1 = new string[] {""} ;
          BC00097_A348NetworkIndividualAddressLine2 = new string[] {""} ;
-         BC000922_A62ResidentId = new Guid[] {Guid.Empty} ;
-         BC000922_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC000922_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         BC000922_A74NetworkIndividualId = new Guid[] {Guid.Empty} ;
+         BC000923_A62ResidentId = new Guid[] {Guid.Empty} ;
+         BC000923_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC000923_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC000923_A74NetworkIndividualId = new Guid[] {Guid.Empty} ;
          BC00096_A62ResidentId = new Guid[] {Guid.Empty} ;
          BC00096_A29LocationId = new Guid[] {Guid.Empty} ;
          BC00096_A11OrganisationId = new Guid[] {Guid.Empty} ;
@@ -3499,22 +3573,6 @@ namespace GeneXus.Programs {
          BC00095_A29LocationId = new Guid[] {Guid.Empty} ;
          BC00095_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC00095_A74NetworkIndividualId = new Guid[] {Guid.Empty} ;
-         BC000925_A75NetworkIndividualBsnNumber = new string[] {""} ;
-         BC000925_A76NetworkIndividualGivenName = new string[] {""} ;
-         BC000925_A77NetworkIndividualLastName = new string[] {""} ;
-         BC000925_A78NetworkIndividualEmail = new string[] {""} ;
-         BC000925_A79NetworkIndividualPhone = new string[] {""} ;
-         BC000925_A388NetworkIndividualPhoneNumber = new string[] {""} ;
-         BC000925_A387NetworkIndividualPhoneCode = new string[] {""} ;
-         BC000925_A81NetworkIndividualGender = new string[] {""} ;
-         BC000925_A344NetworkIndividualCountry = new string[] {""} ;
-         BC000925_A345NetworkIndividualCity = new string[] {""} ;
-         BC000925_A346NetworkIndividualZipCode = new string[] {""} ;
-         BC000925_A347NetworkIndividualAddressLine1 = new string[] {""} ;
-         BC000925_A348NetworkIndividualAddressLine2 = new string[] {""} ;
-         BC000926_A62ResidentId = new Guid[] {Guid.Empty} ;
-         BC000926_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC000926_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC000926_A75NetworkIndividualBsnNumber = new string[] {""} ;
          BC000926_A76NetworkIndividualGivenName = new string[] {""} ;
          BC000926_A77NetworkIndividualLastName = new string[] {""} ;
@@ -3528,7 +3586,23 @@ namespace GeneXus.Programs {
          BC000926_A346NetworkIndividualZipCode = new string[] {""} ;
          BC000926_A347NetworkIndividualAddressLine1 = new string[] {""} ;
          BC000926_A348NetworkIndividualAddressLine2 = new string[] {""} ;
-         BC000926_A74NetworkIndividualId = new Guid[] {Guid.Empty} ;
+         BC000927_A62ResidentId = new Guid[] {Guid.Empty} ;
+         BC000927_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC000927_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC000927_A75NetworkIndividualBsnNumber = new string[] {""} ;
+         BC000927_A76NetworkIndividualGivenName = new string[] {""} ;
+         BC000927_A77NetworkIndividualLastName = new string[] {""} ;
+         BC000927_A78NetworkIndividualEmail = new string[] {""} ;
+         BC000927_A79NetworkIndividualPhone = new string[] {""} ;
+         BC000927_A388NetworkIndividualPhoneNumber = new string[] {""} ;
+         BC000927_A387NetworkIndividualPhoneCode = new string[] {""} ;
+         BC000927_A81NetworkIndividualGender = new string[] {""} ;
+         BC000927_A344NetworkIndividualCountry = new string[] {""} ;
+         BC000927_A345NetworkIndividualCity = new string[] {""} ;
+         BC000927_A346NetworkIndividualZipCode = new string[] {""} ;
+         BC000927_A347NetworkIndividualAddressLine1 = new string[] {""} ;
+         BC000927_A348NetworkIndividualAddressLine2 = new string[] {""} ;
+         BC000927_A74NetworkIndividualId = new Guid[] {Guid.Empty} ;
          Z83NetworkCompanyKvkNumber = "";
          A83NetworkCompanyKvkNumber = "";
          Z84NetworkCompanyName = "";
@@ -3551,23 +3625,26 @@ namespace GeneXus.Programs {
          A352NetworkCompanyAddressLine1 = "";
          Z353NetworkCompanyAddressLine2 = "";
          A353NetworkCompanyAddressLine2 = "";
+         Z505NetworkCompanyContactName = "";
+         A505NetworkCompanyContactName = "";
          Z82NetworkCompanyId = Guid.Empty;
          A82NetworkCompanyId = Guid.Empty;
-         BC000927_A62ResidentId = new Guid[] {Guid.Empty} ;
-         BC000927_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC000927_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         BC000927_A83NetworkCompanyKvkNumber = new string[] {""} ;
-         BC000927_A84NetworkCompanyName = new string[] {""} ;
-         BC000927_A85NetworkCompanyEmail = new string[] {""} ;
-         BC000927_A86NetworkCompanyPhone = new string[] {""} ;
-         BC000927_A392NetworkCompanyPhoneNumber = new string[] {""} ;
-         BC000927_A391NetworkCompanyPhoneCode = new string[] {""} ;
-         BC000927_A349NetworkCompanyCountry = new string[] {""} ;
-         BC000927_A350NetworkCompanyCity = new string[] {""} ;
-         BC000927_A351NetworkCompanyZipCode = new string[] {""} ;
-         BC000927_A352NetworkCompanyAddressLine1 = new string[] {""} ;
-         BC000927_A353NetworkCompanyAddressLine2 = new string[] {""} ;
-         BC000927_A82NetworkCompanyId = new Guid[] {Guid.Empty} ;
+         BC000928_A62ResidentId = new Guid[] {Guid.Empty} ;
+         BC000928_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC000928_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC000928_A83NetworkCompanyKvkNumber = new string[] {""} ;
+         BC000928_A84NetworkCompanyName = new string[] {""} ;
+         BC000928_A85NetworkCompanyEmail = new string[] {""} ;
+         BC000928_A86NetworkCompanyPhone = new string[] {""} ;
+         BC000928_A392NetworkCompanyPhoneNumber = new string[] {""} ;
+         BC000928_A391NetworkCompanyPhoneCode = new string[] {""} ;
+         BC000928_A349NetworkCompanyCountry = new string[] {""} ;
+         BC000928_A350NetworkCompanyCity = new string[] {""} ;
+         BC000928_A351NetworkCompanyZipCode = new string[] {""} ;
+         BC000928_A352NetworkCompanyAddressLine1 = new string[] {""} ;
+         BC000928_A353NetworkCompanyAddressLine2 = new string[] {""} ;
+         BC000928_A505NetworkCompanyContactName = new string[] {""} ;
+         BC000928_A82NetworkCompanyId = new Guid[] {Guid.Empty} ;
          BC00094_A83NetworkCompanyKvkNumber = new string[] {""} ;
          BC00094_A84NetworkCompanyName = new string[] {""} ;
          BC00094_A85NetworkCompanyEmail = new string[] {""} ;
@@ -3579,10 +3656,11 @@ namespace GeneXus.Programs {
          BC00094_A351NetworkCompanyZipCode = new string[] {""} ;
          BC00094_A352NetworkCompanyAddressLine1 = new string[] {""} ;
          BC00094_A353NetworkCompanyAddressLine2 = new string[] {""} ;
-         BC000928_A82NetworkCompanyId = new Guid[] {Guid.Empty} ;
-         BC000928_A62ResidentId = new Guid[] {Guid.Empty} ;
-         BC000928_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC000928_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC00094_A505NetworkCompanyContactName = new string[] {""} ;
+         BC000929_A82NetworkCompanyId = new Guid[] {Guid.Empty} ;
+         BC000929_A62ResidentId = new Guid[] {Guid.Empty} ;
+         BC000929_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC000929_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC00093_A62ResidentId = new Guid[] {Guid.Empty} ;
          BC00093_A29LocationId = new Guid[] {Guid.Empty} ;
          BC00093_A11OrganisationId = new Guid[] {Guid.Empty} ;
@@ -3592,20 +3670,6 @@ namespace GeneXus.Programs {
          BC00092_A29LocationId = new Guid[] {Guid.Empty} ;
          BC00092_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC00092_A82NetworkCompanyId = new Guid[] {Guid.Empty} ;
-         BC000931_A83NetworkCompanyKvkNumber = new string[] {""} ;
-         BC000931_A84NetworkCompanyName = new string[] {""} ;
-         BC000931_A85NetworkCompanyEmail = new string[] {""} ;
-         BC000931_A86NetworkCompanyPhone = new string[] {""} ;
-         BC000931_A392NetworkCompanyPhoneNumber = new string[] {""} ;
-         BC000931_A391NetworkCompanyPhoneCode = new string[] {""} ;
-         BC000931_A349NetworkCompanyCountry = new string[] {""} ;
-         BC000931_A350NetworkCompanyCity = new string[] {""} ;
-         BC000931_A351NetworkCompanyZipCode = new string[] {""} ;
-         BC000931_A352NetworkCompanyAddressLine1 = new string[] {""} ;
-         BC000931_A353NetworkCompanyAddressLine2 = new string[] {""} ;
-         BC000932_A62ResidentId = new Guid[] {Guid.Empty} ;
-         BC000932_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC000932_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC000932_A83NetworkCompanyKvkNumber = new string[] {""} ;
          BC000932_A84NetworkCompanyName = new string[] {""} ;
          BC000932_A85NetworkCompanyEmail = new string[] {""} ;
@@ -3617,10 +3681,26 @@ namespace GeneXus.Programs {
          BC000932_A351NetworkCompanyZipCode = new string[] {""} ;
          BC000932_A352NetworkCompanyAddressLine1 = new string[] {""} ;
          BC000932_A353NetworkCompanyAddressLine2 = new string[] {""} ;
-         BC000932_A82NetworkCompanyId = new Guid[] {Guid.Empty} ;
+         BC000932_A505NetworkCompanyContactName = new string[] {""} ;
+         BC000933_A62ResidentId = new Guid[] {Guid.Empty} ;
+         BC000933_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC000933_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC000933_A83NetworkCompanyKvkNumber = new string[] {""} ;
+         BC000933_A84NetworkCompanyName = new string[] {""} ;
+         BC000933_A85NetworkCompanyEmail = new string[] {""} ;
+         BC000933_A86NetworkCompanyPhone = new string[] {""} ;
+         BC000933_A392NetworkCompanyPhoneNumber = new string[] {""} ;
+         BC000933_A391NetworkCompanyPhoneCode = new string[] {""} ;
+         BC000933_A349NetworkCompanyCountry = new string[] {""} ;
+         BC000933_A350NetworkCompanyCity = new string[] {""} ;
+         BC000933_A351NetworkCompanyZipCode = new string[] {""} ;
+         BC000933_A352NetworkCompanyAddressLine1 = new string[] {""} ;
+         BC000933_A353NetworkCompanyAddressLine2 = new string[] {""} ;
+         BC000933_A505NetworkCompanyContactName = new string[] {""} ;
+         BC000933_A82NetworkCompanyId = new Guid[] {Guid.Empty} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
-         BC000933_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC000934_A29LocationId = new Guid[] {Guid.Empty} ;
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_resident_bc__datastore1(),
             new Object[][] {
             }
@@ -3639,7 +3719,7 @@ namespace GeneXus.Programs {
                }
                , new Object[] {
                BC00094_A83NetworkCompanyKvkNumber, BC00094_A84NetworkCompanyName, BC00094_A85NetworkCompanyEmail, BC00094_A86NetworkCompanyPhone, BC00094_A392NetworkCompanyPhoneNumber, BC00094_A391NetworkCompanyPhoneCode, BC00094_A349NetworkCompanyCountry, BC00094_A350NetworkCompanyCity, BC00094_A351NetworkCompanyZipCode, BC00094_A352NetworkCompanyAddressLine1,
-               BC00094_A353NetworkCompanyAddressLine2
+               BC00094_A353NetworkCompanyAddressLine2, BC00094_A505NetworkCompanyContactName
                }
                , new Object[] {
                BC00095_A62ResidentId, BC00095_A29LocationId, BC00095_A11OrganisationId, BC00095_A74NetworkIndividualId
@@ -3654,12 +3734,12 @@ namespace GeneXus.Programs {
                , new Object[] {
                BC00098_A62ResidentId, BC00098_A71ResidentGUID, BC00098_A66ResidentInitials, BC00098_A70ResidentPhone, BC00098_A72ResidentSalutation, BC00098_A63ResidentBsnNumber, BC00098_A64ResidentGivenName, BC00098_A65ResidentLastName, BC00098_A67ResidentEmail, BC00098_A68ResidentGender,
                BC00098_A354ResidentCountry, BC00098_A355ResidentCity, BC00098_A356ResidentZipCode, BC00098_A357ResidentAddressLine1, BC00098_A358ResidentAddressLine2, BC00098_A444ResidentHomePhone, BC00098_A73ResidentBirthDate, BC00098_A375ResidentPhoneCode, BC00098_A376ResidentPhoneNumber, BC00098_A445ResidentHomePhoneCode,
-               BC00098_A446ResidentHomePhoneNumber, BC00098_A29LocationId, BC00098_A11OrganisationId, BC00098_A96ResidentTypeId, BC00098_A98MedicalIndicationId, BC00098_n98MedicalIndicationId
+               BC00098_A446ResidentHomePhoneNumber, BC00098_A40000ResidentImage_GXI, BC00098_n40000ResidentImage_GXI, BC00098_A29LocationId, BC00098_A11OrganisationId, BC00098_A96ResidentTypeId, BC00098_A98MedicalIndicationId, BC00098_n98MedicalIndicationId, BC00098_A457ResidentImage, BC00098_n457ResidentImage
                }
                , new Object[] {
                BC00099_A62ResidentId, BC00099_A71ResidentGUID, BC00099_A66ResidentInitials, BC00099_A70ResidentPhone, BC00099_A72ResidentSalutation, BC00099_A63ResidentBsnNumber, BC00099_A64ResidentGivenName, BC00099_A65ResidentLastName, BC00099_A67ResidentEmail, BC00099_A68ResidentGender,
                BC00099_A354ResidentCountry, BC00099_A355ResidentCity, BC00099_A356ResidentZipCode, BC00099_A357ResidentAddressLine1, BC00099_A358ResidentAddressLine2, BC00099_A444ResidentHomePhone, BC00099_A73ResidentBirthDate, BC00099_A375ResidentPhoneCode, BC00099_A376ResidentPhoneNumber, BC00099_A445ResidentHomePhoneCode,
-               BC00099_A446ResidentHomePhoneNumber, BC00099_A29LocationId, BC00099_A11OrganisationId, BC00099_A96ResidentTypeId, BC00099_A98MedicalIndicationId, BC00099_n98MedicalIndicationId
+               BC00099_A446ResidentHomePhoneNumber, BC00099_A40000ResidentImage_GXI, BC00099_n40000ResidentImage_GXI, BC00099_A29LocationId, BC00099_A11OrganisationId, BC00099_A96ResidentTypeId, BC00099_A98MedicalIndicationId, BC00099_n98MedicalIndicationId, BC00099_A457ResidentImage, BC00099_n457ResidentImage
                }
                , new Object[] {
                BC000910_A29LocationId
@@ -3673,7 +3753,8 @@ namespace GeneXus.Programs {
                , new Object[] {
                BC000913_A62ResidentId, BC000913_A71ResidentGUID, BC000913_A66ResidentInitials, BC000913_A70ResidentPhone, BC000913_A72ResidentSalutation, BC000913_A63ResidentBsnNumber, BC000913_A64ResidentGivenName, BC000913_A65ResidentLastName, BC000913_A67ResidentEmail, BC000913_A68ResidentGender,
                BC000913_A354ResidentCountry, BC000913_A355ResidentCity, BC000913_A356ResidentZipCode, BC000913_A357ResidentAddressLine1, BC000913_A358ResidentAddressLine2, BC000913_A444ResidentHomePhone, BC000913_A73ResidentBirthDate, BC000913_A97ResidentTypeName, BC000913_A99MedicalIndicationName, BC000913_A375ResidentPhoneCode,
-               BC000913_A376ResidentPhoneNumber, BC000913_A445ResidentHomePhoneCode, BC000913_A446ResidentHomePhoneNumber, BC000913_A29LocationId, BC000913_A11OrganisationId, BC000913_A96ResidentTypeId, BC000913_A98MedicalIndicationId, BC000913_n98MedicalIndicationId
+               BC000913_A376ResidentPhoneNumber, BC000913_A445ResidentHomePhoneCode, BC000913_A446ResidentHomePhoneNumber, BC000913_A40000ResidentImage_GXI, BC000913_n40000ResidentImage_GXI, BC000913_A29LocationId, BC000913_A11OrganisationId, BC000913_A96ResidentTypeId, BC000913_A98MedicalIndicationId, BC000913_n98MedicalIndicationId,
+               BC000913_A457ResidentImage, BC000913_n457ResidentImage
                }
                , new Object[] {
                BC000914_A62ResidentId, BC000914_A29LocationId, BC000914_A11OrganisationId
@@ -3685,56 +3766,59 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               BC000918_A97ResidentTypeName
                }
                , new Object[] {
-               BC000919_A99MedicalIndicationName
+               BC000919_A97ResidentTypeName
                }
                , new Object[] {
-               BC000920_A62ResidentId, BC000920_A71ResidentGUID, BC000920_A66ResidentInitials, BC000920_A70ResidentPhone, BC000920_A72ResidentSalutation, BC000920_A63ResidentBsnNumber, BC000920_A64ResidentGivenName, BC000920_A65ResidentLastName, BC000920_A67ResidentEmail, BC000920_A68ResidentGender,
-               BC000920_A354ResidentCountry, BC000920_A355ResidentCity, BC000920_A356ResidentZipCode, BC000920_A357ResidentAddressLine1, BC000920_A358ResidentAddressLine2, BC000920_A444ResidentHomePhone, BC000920_A73ResidentBirthDate, BC000920_A97ResidentTypeName, BC000920_A99MedicalIndicationName, BC000920_A375ResidentPhoneCode,
-               BC000920_A376ResidentPhoneNumber, BC000920_A445ResidentHomePhoneCode, BC000920_A446ResidentHomePhoneNumber, BC000920_A29LocationId, BC000920_A11OrganisationId, BC000920_A96ResidentTypeId, BC000920_A98MedicalIndicationId, BC000920_n98MedicalIndicationId
+               BC000920_A99MedicalIndicationName
                }
                , new Object[] {
-               BC000921_A62ResidentId, BC000921_A29LocationId, BC000921_A11OrganisationId, BC000921_A75NetworkIndividualBsnNumber, BC000921_A76NetworkIndividualGivenName, BC000921_A77NetworkIndividualLastName, BC000921_A78NetworkIndividualEmail, BC000921_A79NetworkIndividualPhone, BC000921_A388NetworkIndividualPhoneNumber, BC000921_A387NetworkIndividualPhoneCode,
-               BC000921_A81NetworkIndividualGender, BC000921_A344NetworkIndividualCountry, BC000921_A345NetworkIndividualCity, BC000921_A346NetworkIndividualZipCode, BC000921_A347NetworkIndividualAddressLine1, BC000921_A348NetworkIndividualAddressLine2, BC000921_A74NetworkIndividualId
+               BC000921_A62ResidentId, BC000921_A71ResidentGUID, BC000921_A66ResidentInitials, BC000921_A70ResidentPhone, BC000921_A72ResidentSalutation, BC000921_A63ResidentBsnNumber, BC000921_A64ResidentGivenName, BC000921_A65ResidentLastName, BC000921_A67ResidentEmail, BC000921_A68ResidentGender,
+               BC000921_A354ResidentCountry, BC000921_A355ResidentCity, BC000921_A356ResidentZipCode, BC000921_A357ResidentAddressLine1, BC000921_A358ResidentAddressLine2, BC000921_A444ResidentHomePhone, BC000921_A73ResidentBirthDate, BC000921_A97ResidentTypeName, BC000921_A99MedicalIndicationName, BC000921_A375ResidentPhoneCode,
+               BC000921_A376ResidentPhoneNumber, BC000921_A445ResidentHomePhoneCode, BC000921_A446ResidentHomePhoneNumber, BC000921_A40000ResidentImage_GXI, BC000921_n40000ResidentImage_GXI, BC000921_A29LocationId, BC000921_A11OrganisationId, BC000921_A96ResidentTypeId, BC000921_A98MedicalIndicationId, BC000921_n98MedicalIndicationId,
+               BC000921_A457ResidentImage, BC000921_n457ResidentImage
                }
                , new Object[] {
-               BC000922_A62ResidentId, BC000922_A29LocationId, BC000922_A11OrganisationId, BC000922_A74NetworkIndividualId
+               BC000922_A62ResidentId, BC000922_A29LocationId, BC000922_A11OrganisationId, BC000922_A75NetworkIndividualBsnNumber, BC000922_A76NetworkIndividualGivenName, BC000922_A77NetworkIndividualLastName, BC000922_A78NetworkIndividualEmail, BC000922_A79NetworkIndividualPhone, BC000922_A388NetworkIndividualPhoneNumber, BC000922_A387NetworkIndividualPhoneCode,
+               BC000922_A81NetworkIndividualGender, BC000922_A344NetworkIndividualCountry, BC000922_A345NetworkIndividualCity, BC000922_A346NetworkIndividualZipCode, BC000922_A347NetworkIndividualAddressLine1, BC000922_A348NetworkIndividualAddressLine2, BC000922_A74NetworkIndividualId
                }
                , new Object[] {
-               }
-               , new Object[] {
-               }
-               , new Object[] {
-               BC000925_A75NetworkIndividualBsnNumber, BC000925_A76NetworkIndividualGivenName, BC000925_A77NetworkIndividualLastName, BC000925_A78NetworkIndividualEmail, BC000925_A79NetworkIndividualPhone, BC000925_A388NetworkIndividualPhoneNumber, BC000925_A387NetworkIndividualPhoneCode, BC000925_A81NetworkIndividualGender, BC000925_A344NetworkIndividualCountry, BC000925_A345NetworkIndividualCity,
-               BC000925_A346NetworkIndividualZipCode, BC000925_A347NetworkIndividualAddressLine1, BC000925_A348NetworkIndividualAddressLine2
-               }
-               , new Object[] {
-               BC000926_A62ResidentId, BC000926_A29LocationId, BC000926_A11OrganisationId, BC000926_A75NetworkIndividualBsnNumber, BC000926_A76NetworkIndividualGivenName, BC000926_A77NetworkIndividualLastName, BC000926_A78NetworkIndividualEmail, BC000926_A79NetworkIndividualPhone, BC000926_A388NetworkIndividualPhoneNumber, BC000926_A387NetworkIndividualPhoneCode,
-               BC000926_A81NetworkIndividualGender, BC000926_A344NetworkIndividualCountry, BC000926_A345NetworkIndividualCity, BC000926_A346NetworkIndividualZipCode, BC000926_A347NetworkIndividualAddressLine1, BC000926_A348NetworkIndividualAddressLine2, BC000926_A74NetworkIndividualId
-               }
-               , new Object[] {
-               BC000927_A62ResidentId, BC000927_A29LocationId, BC000927_A11OrganisationId, BC000927_A83NetworkCompanyKvkNumber, BC000927_A84NetworkCompanyName, BC000927_A85NetworkCompanyEmail, BC000927_A86NetworkCompanyPhone, BC000927_A392NetworkCompanyPhoneNumber, BC000927_A391NetworkCompanyPhoneCode, BC000927_A349NetworkCompanyCountry,
-               BC000927_A350NetworkCompanyCity, BC000927_A351NetworkCompanyZipCode, BC000927_A352NetworkCompanyAddressLine1, BC000927_A353NetworkCompanyAddressLine2, BC000927_A82NetworkCompanyId
-               }
-               , new Object[] {
-               BC000928_A82NetworkCompanyId, BC000928_A62ResidentId, BC000928_A29LocationId, BC000928_A11OrganisationId
+               BC000923_A62ResidentId, BC000923_A29LocationId, BC000923_A11OrganisationId, BC000923_A74NetworkIndividualId
                }
                , new Object[] {
                }
                , new Object[] {
                }
                , new Object[] {
-               BC000931_A83NetworkCompanyKvkNumber, BC000931_A84NetworkCompanyName, BC000931_A85NetworkCompanyEmail, BC000931_A86NetworkCompanyPhone, BC000931_A392NetworkCompanyPhoneNumber, BC000931_A391NetworkCompanyPhoneCode, BC000931_A349NetworkCompanyCountry, BC000931_A350NetworkCompanyCity, BC000931_A351NetworkCompanyZipCode, BC000931_A352NetworkCompanyAddressLine1,
-               BC000931_A353NetworkCompanyAddressLine2
+               BC000926_A75NetworkIndividualBsnNumber, BC000926_A76NetworkIndividualGivenName, BC000926_A77NetworkIndividualLastName, BC000926_A78NetworkIndividualEmail, BC000926_A79NetworkIndividualPhone, BC000926_A388NetworkIndividualPhoneNumber, BC000926_A387NetworkIndividualPhoneCode, BC000926_A81NetworkIndividualGender, BC000926_A344NetworkIndividualCountry, BC000926_A345NetworkIndividualCity,
+               BC000926_A346NetworkIndividualZipCode, BC000926_A347NetworkIndividualAddressLine1, BC000926_A348NetworkIndividualAddressLine2
                }
                , new Object[] {
-               BC000932_A62ResidentId, BC000932_A29LocationId, BC000932_A11OrganisationId, BC000932_A83NetworkCompanyKvkNumber, BC000932_A84NetworkCompanyName, BC000932_A85NetworkCompanyEmail, BC000932_A86NetworkCompanyPhone, BC000932_A392NetworkCompanyPhoneNumber, BC000932_A391NetworkCompanyPhoneCode, BC000932_A349NetworkCompanyCountry,
-               BC000932_A350NetworkCompanyCity, BC000932_A351NetworkCompanyZipCode, BC000932_A352NetworkCompanyAddressLine1, BC000932_A353NetworkCompanyAddressLine2, BC000932_A82NetworkCompanyId
+               BC000927_A62ResidentId, BC000927_A29LocationId, BC000927_A11OrganisationId, BC000927_A75NetworkIndividualBsnNumber, BC000927_A76NetworkIndividualGivenName, BC000927_A77NetworkIndividualLastName, BC000927_A78NetworkIndividualEmail, BC000927_A79NetworkIndividualPhone, BC000927_A388NetworkIndividualPhoneNumber, BC000927_A387NetworkIndividualPhoneCode,
+               BC000927_A81NetworkIndividualGender, BC000927_A344NetworkIndividualCountry, BC000927_A345NetworkIndividualCity, BC000927_A346NetworkIndividualZipCode, BC000927_A347NetworkIndividualAddressLine1, BC000927_A348NetworkIndividualAddressLine2, BC000927_A74NetworkIndividualId
                }
                , new Object[] {
-               BC000933_A29LocationId
+               BC000928_A62ResidentId, BC000928_A29LocationId, BC000928_A11OrganisationId, BC000928_A83NetworkCompanyKvkNumber, BC000928_A84NetworkCompanyName, BC000928_A85NetworkCompanyEmail, BC000928_A86NetworkCompanyPhone, BC000928_A392NetworkCompanyPhoneNumber, BC000928_A391NetworkCompanyPhoneCode, BC000928_A349NetworkCompanyCountry,
+               BC000928_A350NetworkCompanyCity, BC000928_A351NetworkCompanyZipCode, BC000928_A352NetworkCompanyAddressLine1, BC000928_A353NetworkCompanyAddressLine2, BC000928_A505NetworkCompanyContactName, BC000928_A82NetworkCompanyId
+               }
+               , new Object[] {
+               BC000929_A82NetworkCompanyId, BC000929_A62ResidentId, BC000929_A29LocationId, BC000929_A11OrganisationId
+               }
+               , new Object[] {
+               }
+               , new Object[] {
+               }
+               , new Object[] {
+               BC000932_A83NetworkCompanyKvkNumber, BC000932_A84NetworkCompanyName, BC000932_A85NetworkCompanyEmail, BC000932_A86NetworkCompanyPhone, BC000932_A392NetworkCompanyPhoneNumber, BC000932_A391NetworkCompanyPhoneCode, BC000932_A349NetworkCompanyCountry, BC000932_A350NetworkCompanyCity, BC000932_A351NetworkCompanyZipCode, BC000932_A352NetworkCompanyAddressLine1,
+               BC000932_A353NetworkCompanyAddressLine2, BC000932_A505NetworkCompanyContactName
+               }
+               , new Object[] {
+               BC000933_A62ResidentId, BC000933_A29LocationId, BC000933_A11OrganisationId, BC000933_A83NetworkCompanyKvkNumber, BC000933_A84NetworkCompanyName, BC000933_A85NetworkCompanyEmail, BC000933_A86NetworkCompanyPhone, BC000933_A392NetworkCompanyPhoneNumber, BC000933_A391NetworkCompanyPhoneCode, BC000933_A349NetworkCompanyCountry,
+               BC000933_A350NetworkCompanyCity, BC000933_A351NetworkCompanyZipCode, BC000933_A352NetworkCompanyAddressLine1, BC000933_A353NetworkCompanyAddressLine2, BC000933_A505NetworkCompanyContactName, BC000933_A82NetworkCompanyId
+               }
+               , new Object[] {
+               BC000934_A29LocationId
                }
             }
          );
@@ -3792,7 +3876,9 @@ namespace GeneXus.Programs {
       private DateTime Z73ResidentBirthDate ;
       private DateTime A73ResidentBirthDate ;
       private bool returnInSub ;
+      private bool n40000ResidentImage_GXI ;
       private bool n98MedicalIndicationId ;
+      private bool n457ResidentImage ;
       private bool Gx_longc ;
       private string AV36GAMErrorResponse ;
       private string Z71ResidentGUID ;
@@ -3829,6 +3915,8 @@ namespace GeneXus.Programs {
       private string A97ResidentTypeName ;
       private string Z99MedicalIndicationName ;
       private string A99MedicalIndicationName ;
+      private string Z40000ResidentImage_GXI ;
+      private string A40000ResidentImage_GXI ;
       private string Z75NetworkIndividualBsnNumber ;
       private string A75NetworkIndividualBsnNumber ;
       private string Z76NetworkIndividualGivenName ;
@@ -3873,6 +3961,10 @@ namespace GeneXus.Programs {
       private string A352NetworkCompanyAddressLine1 ;
       private string Z353NetworkCompanyAddressLine2 ;
       private string A353NetworkCompanyAddressLine2 ;
+      private string Z505NetworkCompanyContactName ;
+      private string A505NetworkCompanyContactName ;
+      private string Z457ResidentImage ;
+      private string A457ResidentImage ;
       private Guid Z62ResidentId ;
       private Guid A62ResidentId ;
       private Guid Z29LocationId ;
@@ -3923,11 +4015,15 @@ namespace GeneXus.Programs {
       private string[] BC000913_A376ResidentPhoneNumber ;
       private string[] BC000913_A445ResidentHomePhoneCode ;
       private string[] BC000913_A446ResidentHomePhoneNumber ;
+      private string[] BC000913_A40000ResidentImage_GXI ;
+      private bool[] BC000913_n40000ResidentImage_GXI ;
       private Guid[] BC000913_A29LocationId ;
       private Guid[] BC000913_A11OrganisationId ;
       private Guid[] BC000913_A96ResidentTypeId ;
       private Guid[] BC000913_A98MedicalIndicationId ;
       private bool[] BC000913_n98MedicalIndicationId ;
+      private string[] BC000913_A457ResidentImage ;
+      private bool[] BC000913_n457ResidentImage ;
       private Guid[] BC000910_A29LocationId ;
       private string[] BC000911_A97ResidentTypeName ;
       private string[] BC000912_A99MedicalIndicationName ;
@@ -3955,11 +4051,15 @@ namespace GeneXus.Programs {
       private string[] BC00099_A376ResidentPhoneNumber ;
       private string[] BC00099_A445ResidentHomePhoneCode ;
       private string[] BC00099_A446ResidentHomePhoneNumber ;
+      private string[] BC00099_A40000ResidentImage_GXI ;
+      private bool[] BC00099_n40000ResidentImage_GXI ;
       private Guid[] BC00099_A29LocationId ;
       private Guid[] BC00099_A11OrganisationId ;
       private Guid[] BC00099_A96ResidentTypeId ;
       private Guid[] BC00099_A98MedicalIndicationId ;
       private bool[] BC00099_n98MedicalIndicationId ;
+      private string[] BC00099_A457ResidentImage ;
+      private bool[] BC00099_n457ResidentImage ;
       private Guid[] BC00098_A62ResidentId ;
       private string[] BC00098_A71ResidentGUID ;
       private string[] BC00098_A66ResidentInitials ;
@@ -3981,58 +4081,66 @@ namespace GeneXus.Programs {
       private string[] BC00098_A376ResidentPhoneNumber ;
       private string[] BC00098_A445ResidentHomePhoneCode ;
       private string[] BC00098_A446ResidentHomePhoneNumber ;
+      private string[] BC00098_A40000ResidentImage_GXI ;
+      private bool[] BC00098_n40000ResidentImage_GXI ;
       private Guid[] BC00098_A29LocationId ;
       private Guid[] BC00098_A11OrganisationId ;
       private Guid[] BC00098_A96ResidentTypeId ;
       private Guid[] BC00098_A98MedicalIndicationId ;
       private bool[] BC00098_n98MedicalIndicationId ;
-      private string[] BC000918_A97ResidentTypeName ;
-      private string[] BC000919_A99MedicalIndicationName ;
-      private Guid[] BC000920_A62ResidentId ;
-      private string[] BC000920_A71ResidentGUID ;
-      private string[] BC000920_A66ResidentInitials ;
-      private string[] BC000920_A70ResidentPhone ;
-      private string[] BC000920_A72ResidentSalutation ;
-      private string[] BC000920_A63ResidentBsnNumber ;
-      private string[] BC000920_A64ResidentGivenName ;
-      private string[] BC000920_A65ResidentLastName ;
-      private string[] BC000920_A67ResidentEmail ;
-      private string[] BC000920_A68ResidentGender ;
-      private string[] BC000920_A354ResidentCountry ;
-      private string[] BC000920_A355ResidentCity ;
-      private string[] BC000920_A356ResidentZipCode ;
-      private string[] BC000920_A357ResidentAddressLine1 ;
-      private string[] BC000920_A358ResidentAddressLine2 ;
-      private string[] BC000920_A444ResidentHomePhone ;
-      private DateTime[] BC000920_A73ResidentBirthDate ;
-      private string[] BC000920_A97ResidentTypeName ;
+      private string[] BC00098_A457ResidentImage ;
+      private bool[] BC00098_n457ResidentImage ;
+      private string[] BC000919_A97ResidentTypeName ;
       private string[] BC000920_A99MedicalIndicationName ;
-      private string[] BC000920_A375ResidentPhoneCode ;
-      private string[] BC000920_A376ResidentPhoneNumber ;
-      private string[] BC000920_A445ResidentHomePhoneCode ;
-      private string[] BC000920_A446ResidentHomePhoneNumber ;
-      private Guid[] BC000920_A29LocationId ;
-      private Guid[] BC000920_A11OrganisationId ;
-      private Guid[] BC000920_A96ResidentTypeId ;
-      private Guid[] BC000920_A98MedicalIndicationId ;
-      private bool[] BC000920_n98MedicalIndicationId ;
       private Guid[] BC000921_A62ResidentId ;
+      private string[] BC000921_A71ResidentGUID ;
+      private string[] BC000921_A66ResidentInitials ;
+      private string[] BC000921_A70ResidentPhone ;
+      private string[] BC000921_A72ResidentSalutation ;
+      private string[] BC000921_A63ResidentBsnNumber ;
+      private string[] BC000921_A64ResidentGivenName ;
+      private string[] BC000921_A65ResidentLastName ;
+      private string[] BC000921_A67ResidentEmail ;
+      private string[] BC000921_A68ResidentGender ;
+      private string[] BC000921_A354ResidentCountry ;
+      private string[] BC000921_A355ResidentCity ;
+      private string[] BC000921_A356ResidentZipCode ;
+      private string[] BC000921_A357ResidentAddressLine1 ;
+      private string[] BC000921_A358ResidentAddressLine2 ;
+      private string[] BC000921_A444ResidentHomePhone ;
+      private DateTime[] BC000921_A73ResidentBirthDate ;
+      private string[] BC000921_A97ResidentTypeName ;
+      private string[] BC000921_A99MedicalIndicationName ;
+      private string[] BC000921_A375ResidentPhoneCode ;
+      private string[] BC000921_A376ResidentPhoneNumber ;
+      private string[] BC000921_A445ResidentHomePhoneCode ;
+      private string[] BC000921_A446ResidentHomePhoneNumber ;
+      private string[] BC000921_A40000ResidentImage_GXI ;
+      private bool[] BC000921_n40000ResidentImage_GXI ;
       private Guid[] BC000921_A29LocationId ;
       private Guid[] BC000921_A11OrganisationId ;
-      private string[] BC000921_A75NetworkIndividualBsnNumber ;
-      private string[] BC000921_A76NetworkIndividualGivenName ;
-      private string[] BC000921_A77NetworkIndividualLastName ;
-      private string[] BC000921_A78NetworkIndividualEmail ;
-      private string[] BC000921_A79NetworkIndividualPhone ;
-      private string[] BC000921_A388NetworkIndividualPhoneNumber ;
-      private string[] BC000921_A387NetworkIndividualPhoneCode ;
-      private string[] BC000921_A81NetworkIndividualGender ;
-      private string[] BC000921_A344NetworkIndividualCountry ;
-      private string[] BC000921_A345NetworkIndividualCity ;
-      private string[] BC000921_A346NetworkIndividualZipCode ;
-      private string[] BC000921_A347NetworkIndividualAddressLine1 ;
-      private string[] BC000921_A348NetworkIndividualAddressLine2 ;
-      private Guid[] BC000921_A74NetworkIndividualId ;
+      private Guid[] BC000921_A96ResidentTypeId ;
+      private Guid[] BC000921_A98MedicalIndicationId ;
+      private bool[] BC000921_n98MedicalIndicationId ;
+      private string[] BC000921_A457ResidentImage ;
+      private bool[] BC000921_n457ResidentImage ;
+      private Guid[] BC000922_A62ResidentId ;
+      private Guid[] BC000922_A29LocationId ;
+      private Guid[] BC000922_A11OrganisationId ;
+      private string[] BC000922_A75NetworkIndividualBsnNumber ;
+      private string[] BC000922_A76NetworkIndividualGivenName ;
+      private string[] BC000922_A77NetworkIndividualLastName ;
+      private string[] BC000922_A78NetworkIndividualEmail ;
+      private string[] BC000922_A79NetworkIndividualPhone ;
+      private string[] BC000922_A388NetworkIndividualPhoneNumber ;
+      private string[] BC000922_A387NetworkIndividualPhoneCode ;
+      private string[] BC000922_A81NetworkIndividualGender ;
+      private string[] BC000922_A344NetworkIndividualCountry ;
+      private string[] BC000922_A345NetworkIndividualCity ;
+      private string[] BC000922_A346NetworkIndividualZipCode ;
+      private string[] BC000922_A347NetworkIndividualAddressLine1 ;
+      private string[] BC000922_A348NetworkIndividualAddressLine2 ;
+      private Guid[] BC000922_A74NetworkIndividualId ;
       private string[] BC00097_A75NetworkIndividualBsnNumber ;
       private string[] BC00097_A76NetworkIndividualGivenName ;
       private string[] BC00097_A77NetworkIndividualLastName ;
@@ -4046,10 +4154,10 @@ namespace GeneXus.Programs {
       private string[] BC00097_A346NetworkIndividualZipCode ;
       private string[] BC00097_A347NetworkIndividualAddressLine1 ;
       private string[] BC00097_A348NetworkIndividualAddressLine2 ;
-      private Guid[] BC000922_A62ResidentId ;
-      private Guid[] BC000922_A29LocationId ;
-      private Guid[] BC000922_A11OrganisationId ;
-      private Guid[] BC000922_A74NetworkIndividualId ;
+      private Guid[] BC000923_A62ResidentId ;
+      private Guid[] BC000923_A29LocationId ;
+      private Guid[] BC000923_A11OrganisationId ;
+      private Guid[] BC000923_A74NetworkIndividualId ;
       private Guid[] BC00096_A62ResidentId ;
       private Guid[] BC00096_A29LocationId ;
       private Guid[] BC00096_A11OrganisationId ;
@@ -4058,22 +4166,6 @@ namespace GeneXus.Programs {
       private Guid[] BC00095_A29LocationId ;
       private Guid[] BC00095_A11OrganisationId ;
       private Guid[] BC00095_A74NetworkIndividualId ;
-      private string[] BC000925_A75NetworkIndividualBsnNumber ;
-      private string[] BC000925_A76NetworkIndividualGivenName ;
-      private string[] BC000925_A77NetworkIndividualLastName ;
-      private string[] BC000925_A78NetworkIndividualEmail ;
-      private string[] BC000925_A79NetworkIndividualPhone ;
-      private string[] BC000925_A388NetworkIndividualPhoneNumber ;
-      private string[] BC000925_A387NetworkIndividualPhoneCode ;
-      private string[] BC000925_A81NetworkIndividualGender ;
-      private string[] BC000925_A344NetworkIndividualCountry ;
-      private string[] BC000925_A345NetworkIndividualCity ;
-      private string[] BC000925_A346NetworkIndividualZipCode ;
-      private string[] BC000925_A347NetworkIndividualAddressLine1 ;
-      private string[] BC000925_A348NetworkIndividualAddressLine2 ;
-      private Guid[] BC000926_A62ResidentId ;
-      private Guid[] BC000926_A29LocationId ;
-      private Guid[] BC000926_A11OrganisationId ;
       private string[] BC000926_A75NetworkIndividualBsnNumber ;
       private string[] BC000926_A76NetworkIndividualGivenName ;
       private string[] BC000926_A77NetworkIndividualLastName ;
@@ -4087,22 +4179,39 @@ namespace GeneXus.Programs {
       private string[] BC000926_A346NetworkIndividualZipCode ;
       private string[] BC000926_A347NetworkIndividualAddressLine1 ;
       private string[] BC000926_A348NetworkIndividualAddressLine2 ;
-      private Guid[] BC000926_A74NetworkIndividualId ;
       private Guid[] BC000927_A62ResidentId ;
       private Guid[] BC000927_A29LocationId ;
       private Guid[] BC000927_A11OrganisationId ;
-      private string[] BC000927_A83NetworkCompanyKvkNumber ;
-      private string[] BC000927_A84NetworkCompanyName ;
-      private string[] BC000927_A85NetworkCompanyEmail ;
-      private string[] BC000927_A86NetworkCompanyPhone ;
-      private string[] BC000927_A392NetworkCompanyPhoneNumber ;
-      private string[] BC000927_A391NetworkCompanyPhoneCode ;
-      private string[] BC000927_A349NetworkCompanyCountry ;
-      private string[] BC000927_A350NetworkCompanyCity ;
-      private string[] BC000927_A351NetworkCompanyZipCode ;
-      private string[] BC000927_A352NetworkCompanyAddressLine1 ;
-      private string[] BC000927_A353NetworkCompanyAddressLine2 ;
-      private Guid[] BC000927_A82NetworkCompanyId ;
+      private string[] BC000927_A75NetworkIndividualBsnNumber ;
+      private string[] BC000927_A76NetworkIndividualGivenName ;
+      private string[] BC000927_A77NetworkIndividualLastName ;
+      private string[] BC000927_A78NetworkIndividualEmail ;
+      private string[] BC000927_A79NetworkIndividualPhone ;
+      private string[] BC000927_A388NetworkIndividualPhoneNumber ;
+      private string[] BC000927_A387NetworkIndividualPhoneCode ;
+      private string[] BC000927_A81NetworkIndividualGender ;
+      private string[] BC000927_A344NetworkIndividualCountry ;
+      private string[] BC000927_A345NetworkIndividualCity ;
+      private string[] BC000927_A346NetworkIndividualZipCode ;
+      private string[] BC000927_A347NetworkIndividualAddressLine1 ;
+      private string[] BC000927_A348NetworkIndividualAddressLine2 ;
+      private Guid[] BC000927_A74NetworkIndividualId ;
+      private Guid[] BC000928_A62ResidentId ;
+      private Guid[] BC000928_A29LocationId ;
+      private Guid[] BC000928_A11OrganisationId ;
+      private string[] BC000928_A83NetworkCompanyKvkNumber ;
+      private string[] BC000928_A84NetworkCompanyName ;
+      private string[] BC000928_A85NetworkCompanyEmail ;
+      private string[] BC000928_A86NetworkCompanyPhone ;
+      private string[] BC000928_A392NetworkCompanyPhoneNumber ;
+      private string[] BC000928_A391NetworkCompanyPhoneCode ;
+      private string[] BC000928_A349NetworkCompanyCountry ;
+      private string[] BC000928_A350NetworkCompanyCity ;
+      private string[] BC000928_A351NetworkCompanyZipCode ;
+      private string[] BC000928_A352NetworkCompanyAddressLine1 ;
+      private string[] BC000928_A353NetworkCompanyAddressLine2 ;
+      private string[] BC000928_A505NetworkCompanyContactName ;
+      private Guid[] BC000928_A82NetworkCompanyId ;
       private string[] BC00094_A83NetworkCompanyKvkNumber ;
       private string[] BC00094_A84NetworkCompanyName ;
       private string[] BC00094_A85NetworkCompanyEmail ;
@@ -4114,10 +4223,11 @@ namespace GeneXus.Programs {
       private string[] BC00094_A351NetworkCompanyZipCode ;
       private string[] BC00094_A352NetworkCompanyAddressLine1 ;
       private string[] BC00094_A353NetworkCompanyAddressLine2 ;
-      private Guid[] BC000928_A82NetworkCompanyId ;
-      private Guid[] BC000928_A62ResidentId ;
-      private Guid[] BC000928_A29LocationId ;
-      private Guid[] BC000928_A11OrganisationId ;
+      private string[] BC00094_A505NetworkCompanyContactName ;
+      private Guid[] BC000929_A82NetworkCompanyId ;
+      private Guid[] BC000929_A62ResidentId ;
+      private Guid[] BC000929_A29LocationId ;
+      private Guid[] BC000929_A11OrganisationId ;
       private Guid[] BC00093_A62ResidentId ;
       private Guid[] BC00093_A29LocationId ;
       private Guid[] BC00093_A11OrganisationId ;
@@ -4126,20 +4236,6 @@ namespace GeneXus.Programs {
       private Guid[] BC00092_A29LocationId ;
       private Guid[] BC00092_A11OrganisationId ;
       private Guid[] BC00092_A82NetworkCompanyId ;
-      private string[] BC000931_A83NetworkCompanyKvkNumber ;
-      private string[] BC000931_A84NetworkCompanyName ;
-      private string[] BC000931_A85NetworkCompanyEmail ;
-      private string[] BC000931_A86NetworkCompanyPhone ;
-      private string[] BC000931_A392NetworkCompanyPhoneNumber ;
-      private string[] BC000931_A391NetworkCompanyPhoneCode ;
-      private string[] BC000931_A349NetworkCompanyCountry ;
-      private string[] BC000931_A350NetworkCompanyCity ;
-      private string[] BC000931_A351NetworkCompanyZipCode ;
-      private string[] BC000931_A352NetworkCompanyAddressLine1 ;
-      private string[] BC000931_A353NetworkCompanyAddressLine2 ;
-      private Guid[] BC000932_A62ResidentId ;
-      private Guid[] BC000932_A29LocationId ;
-      private Guid[] BC000932_A11OrganisationId ;
       private string[] BC000932_A83NetworkCompanyKvkNumber ;
       private string[] BC000932_A84NetworkCompanyName ;
       private string[] BC000932_A85NetworkCompanyEmail ;
@@ -4151,10 +4247,26 @@ namespace GeneXus.Programs {
       private string[] BC000932_A351NetworkCompanyZipCode ;
       private string[] BC000932_A352NetworkCompanyAddressLine1 ;
       private string[] BC000932_A353NetworkCompanyAddressLine2 ;
-      private Guid[] BC000932_A82NetworkCompanyId ;
+      private string[] BC000932_A505NetworkCompanyContactName ;
+      private Guid[] BC000933_A62ResidentId ;
+      private Guid[] BC000933_A29LocationId ;
+      private Guid[] BC000933_A11OrganisationId ;
+      private string[] BC000933_A83NetworkCompanyKvkNumber ;
+      private string[] BC000933_A84NetworkCompanyName ;
+      private string[] BC000933_A85NetworkCompanyEmail ;
+      private string[] BC000933_A86NetworkCompanyPhone ;
+      private string[] BC000933_A392NetworkCompanyPhoneNumber ;
+      private string[] BC000933_A391NetworkCompanyPhoneCode ;
+      private string[] BC000933_A349NetworkCompanyCountry ;
+      private string[] BC000933_A350NetworkCompanyCity ;
+      private string[] BC000933_A351NetworkCompanyZipCode ;
+      private string[] BC000933_A352NetworkCompanyAddressLine1 ;
+      private string[] BC000933_A353NetworkCompanyAddressLine2 ;
+      private string[] BC000933_A505NetworkCompanyContactName ;
+      private Guid[] BC000933_A82NetworkCompanyId ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
-      private Guid[] BC000933_A29LocationId ;
+      private Guid[] BC000934_A29LocationId ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
@@ -4245,22 +4357,23 @@ public class trn_resident_bc__default : DataStoreHelperBase, IDataStoreHelper
       ,new UpdateCursor(def[13])
       ,new UpdateCursor(def[14])
       ,new UpdateCursor(def[15])
-      ,new ForEachCursor(def[16])
+      ,new UpdateCursor(def[16])
       ,new ForEachCursor(def[17])
       ,new ForEachCursor(def[18])
       ,new ForEachCursor(def[19])
       ,new ForEachCursor(def[20])
-      ,new UpdateCursor(def[21])
+      ,new ForEachCursor(def[21])
       ,new UpdateCursor(def[22])
-      ,new ForEachCursor(def[23])
+      ,new UpdateCursor(def[23])
       ,new ForEachCursor(def[24])
       ,new ForEachCursor(def[25])
       ,new ForEachCursor(def[26])
-      ,new UpdateCursor(def[27])
+      ,new ForEachCursor(def[27])
       ,new UpdateCursor(def[28])
-      ,new ForEachCursor(def[29])
+      ,new UpdateCursor(def[29])
       ,new ForEachCursor(def[30])
       ,new ForEachCursor(def[31])
+      ,new ForEachCursor(def[32])
     };
  }
 
@@ -4365,6 +4478,8 @@ public class trn_resident_bc__default : DataStoreHelperBase, IDataStoreHelper
        new ParDef("ResidentPhoneNumber",GXType.VarChar,9,0) ,
        new ParDef("ResidentHomePhoneCode",GXType.VarChar,40,0) ,
        new ParDef("ResidentHomePhoneNumber",GXType.VarChar,9,0) ,
+       new ParDef("ResidentImage",GXType.Byte,1024,0){Nullable=true,InDB=false} ,
+       new ParDef("ResidentImage_GXI",GXType.VarChar,2048,0){Nullable=true,AddAtt=true, ImgIdx=21, Tbl="Trn_Resident", Fld="ResidentImage"} ,
        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0) ,
@@ -4400,30 +4515,31 @@ public class trn_resident_bc__default : DataStoreHelperBase, IDataStoreHelper
        };
        Object[] prmBC000917;
        prmBC000917 = new Object[] {
+       new ParDef("ResidentImage",GXType.Byte,1024,0){Nullable=true,InDB=false} ,
+       new ParDef("ResidentImage_GXI",GXType.VarChar,2048,0){Nullable=true,AddAtt=true, ImgIdx=0, Tbl="Trn_Resident", Fld="ResidentImage"} ,
        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
        };
        Object[] prmBC000918;
        prmBC000918 = new Object[] {
-       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
-       };
-       Object[] prmBC000919;
-       prmBC000919 = new Object[] {
-       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0){Nullable=true}
-       };
-       Object[] prmBC000920;
-       prmBC000920 = new Object[] {
        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000919;
+       prmBC000919 = new Object[] {
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000920;
+       prmBC000920 = new Object[] {
+       new ParDef("MedicalIndicationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC000921;
        prmBC000921 = new Object[] {
        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0)
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
        };
        Object[] prmBC000922;
        prmBC000922 = new Object[] {
@@ -4448,17 +4564,17 @@ public class trn_resident_bc__default : DataStoreHelperBase, IDataStoreHelper
        };
        Object[] prmBC000925;
        prmBC000925 = new Object[] {
+       new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0)
        };
        Object[] prmBC000926;
        prmBC000926 = new Object[] {
-       new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("NetworkIndividualId",GXType.UniqueIdentifier,36,0)
        };
        Object[] prmBC000927;
        prmBC000927 = new Object[] {
-       new ParDef("NetworkCompanyId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
@@ -4472,66 +4588,74 @@ public class trn_resident_bc__default : DataStoreHelperBase, IDataStoreHelper
        };
        Object[] prmBC000929;
        prmBC000929 = new Object[] {
-       new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("NetworkCompanyId",GXType.UniqueIdentifier,36,0)
-       };
-       Object[] prmBC000930;
-       prmBC000930 = new Object[] {
        new ParDef("NetworkCompanyId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
        };
-       Object[] prmBC000931;
-       prmBC000931 = new Object[] {
+       Object[] prmBC000930;
+       prmBC000930 = new Object[] {
+       new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("NetworkCompanyId",GXType.UniqueIdentifier,36,0)
        };
-       Object[] prmBC000932;
-       prmBC000932 = new Object[] {
+       Object[] prmBC000931;
+       prmBC000931 = new Object[] {
+       new ParDef("NetworkCompanyId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
        };
+       Object[] prmBC000932;
+       prmBC000932 = new Object[] {
+       new ParDef("NetworkCompanyId",GXType.UniqueIdentifier,36,0)
+       };
        Object[] prmBC000933;
        prmBC000933 = new Object[] {
+       new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmBC000934;
+       prmBC000934 = new Object[] {
        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
        };
        def= new CursorDef[] {
            new CursorDef("BC00092", "SELECT ResidentId, LocationId, OrganisationId, NetworkCompanyId FROM Trn_ResidentNetworkCompany WHERE NetworkCompanyId = :NetworkCompanyId AND ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId  FOR UPDATE OF Trn_ResidentNetworkCompany",true, GxErrorMask.GX_NOMASK, false, this,prmBC00092,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC00093", "SELECT ResidentId, LocationId, OrganisationId, NetworkCompanyId FROM Trn_ResidentNetworkCompany WHERE NetworkCompanyId = :NetworkCompanyId AND ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00093,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC00094", "SELECT NetworkCompanyKvkNumber, NetworkCompanyName, NetworkCompanyEmail, NetworkCompanyPhone, NetworkCompanyPhoneNumber, NetworkCompanyPhoneCode, NetworkCompanyCountry, NetworkCompanyCity, NetworkCompanyZipCode, NetworkCompanyAddressLine1, NetworkCompanyAddressLine2 FROM Trn_NetworkCompany WHERE NetworkCompanyId = :NetworkCompanyId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00094,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00094", "SELECT NetworkCompanyKvkNumber, NetworkCompanyName, NetworkCompanyEmail, NetworkCompanyPhone, NetworkCompanyPhoneNumber, NetworkCompanyPhoneCode, NetworkCompanyCountry, NetworkCompanyCity, NetworkCompanyZipCode, NetworkCompanyAddressLine1, NetworkCompanyAddressLine2, NetworkCompanyContactName FROM Trn_NetworkCompany WHERE NetworkCompanyId = :NetworkCompanyId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00094,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC00095", "SELECT ResidentId, LocationId, OrganisationId, NetworkIndividualId FROM Trn_ResidentNetworkIndividual WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId AND NetworkIndividualId = :NetworkIndividualId  FOR UPDATE OF Trn_ResidentNetworkIndividual",true, GxErrorMask.GX_NOMASK, false, this,prmBC00095,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC00096", "SELECT ResidentId, LocationId, OrganisationId, NetworkIndividualId FROM Trn_ResidentNetworkIndividual WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId AND NetworkIndividualId = :NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00096,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC00097", "SELECT NetworkIndividualBsnNumber, NetworkIndividualGivenName, NetworkIndividualLastName, NetworkIndividualEmail, NetworkIndividualPhone, NetworkIndividualPhoneNumber, NetworkIndividualPhoneCode, NetworkIndividualGender, NetworkIndividualCountry, NetworkIndividualCity, NetworkIndividualZipCode, NetworkIndividualAddressLine1, NetworkIndividualAddressLine2 FROM Trn_NetworkIndividual WHERE NetworkIndividualId = :NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00097,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC00098", "SELECT ResidentId, ResidentGUID, ResidentInitials, ResidentPhone, ResidentSalutation, ResidentBsnNumber, ResidentGivenName, ResidentLastName, ResidentEmail, ResidentGender, ResidentCountry, ResidentCity, ResidentZipCode, ResidentAddressLine1, ResidentAddressLine2, ResidentHomePhone, ResidentBirthDate, ResidentPhoneCode, ResidentPhoneNumber, ResidentHomePhoneCode, ResidentHomePhoneNumber, LocationId, OrganisationId, ResidentTypeId, MedicalIndicationId FROM Trn_Resident WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId  FOR UPDATE OF Trn_Resident",true, GxErrorMask.GX_NOMASK, false, this,prmBC00098,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC00099", "SELECT ResidentId, ResidentGUID, ResidentInitials, ResidentPhone, ResidentSalutation, ResidentBsnNumber, ResidentGivenName, ResidentLastName, ResidentEmail, ResidentGender, ResidentCountry, ResidentCity, ResidentZipCode, ResidentAddressLine1, ResidentAddressLine2, ResidentHomePhone, ResidentBirthDate, ResidentPhoneCode, ResidentPhoneNumber, ResidentHomePhoneCode, ResidentHomePhoneNumber, LocationId, OrganisationId, ResidentTypeId, MedicalIndicationId FROM Trn_Resident WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00099,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00098", "SELECT ResidentId, ResidentGUID, ResidentInitials, ResidentPhone, ResidentSalutation, ResidentBsnNumber, ResidentGivenName, ResidentLastName, ResidentEmail, ResidentGender, ResidentCountry, ResidentCity, ResidentZipCode, ResidentAddressLine1, ResidentAddressLine2, ResidentHomePhone, ResidentBirthDate, ResidentPhoneCode, ResidentPhoneNumber, ResidentHomePhoneCode, ResidentHomePhoneNumber, ResidentImage_GXI, LocationId, OrganisationId, ResidentTypeId, MedicalIndicationId, ResidentImage FROM Trn_Resident WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId  FOR UPDATE OF Trn_Resident",true, GxErrorMask.GX_NOMASK, false, this,prmBC00098,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00099", "SELECT ResidentId, ResidentGUID, ResidentInitials, ResidentPhone, ResidentSalutation, ResidentBsnNumber, ResidentGivenName, ResidentLastName, ResidentEmail, ResidentGender, ResidentCountry, ResidentCity, ResidentZipCode, ResidentAddressLine1, ResidentAddressLine2, ResidentHomePhone, ResidentBirthDate, ResidentPhoneCode, ResidentPhoneNumber, ResidentHomePhoneCode, ResidentHomePhoneNumber, ResidentImage_GXI, LocationId, OrganisationId, ResidentTypeId, MedicalIndicationId, ResidentImage FROM Trn_Resident WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00099,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC000910", "SELECT LocationId FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000910,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC000911", "SELECT ResidentTypeName FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000911,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC000912", "SELECT MedicalIndicationName FROM Trn_MedicalIndication WHERE MedicalIndicationId = :MedicalIndicationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000912,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000913", "SELECT TM1.ResidentId, TM1.ResidentGUID, TM1.ResidentInitials, TM1.ResidentPhone, TM1.ResidentSalutation, TM1.ResidentBsnNumber, TM1.ResidentGivenName, TM1.ResidentLastName, TM1.ResidentEmail, TM1.ResidentGender, TM1.ResidentCountry, TM1.ResidentCity, TM1.ResidentZipCode, TM1.ResidentAddressLine1, TM1.ResidentAddressLine2, TM1.ResidentHomePhone, TM1.ResidentBirthDate, T2.ResidentTypeName, T3.MedicalIndicationName, TM1.ResidentPhoneCode, TM1.ResidentPhoneNumber, TM1.ResidentHomePhoneCode, TM1.ResidentHomePhoneNumber, TM1.LocationId, TM1.OrganisationId, TM1.ResidentTypeId, TM1.MedicalIndicationId FROM ((Trn_Resident TM1 INNER JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = TM1.ResidentTypeId) LEFT JOIN Trn_MedicalIndication T3 ON T3.MedicalIndicationId = TM1.MedicalIndicationId) WHERE TM1.ResidentId = :ResidentId and TM1.LocationId = :LocationId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.ResidentId, TM1.LocationId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000913,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000913", "SELECT TM1.ResidentId, TM1.ResidentGUID, TM1.ResidentInitials, TM1.ResidentPhone, TM1.ResidentSalutation, TM1.ResidentBsnNumber, TM1.ResidentGivenName, TM1.ResidentLastName, TM1.ResidentEmail, TM1.ResidentGender, TM1.ResidentCountry, TM1.ResidentCity, TM1.ResidentZipCode, TM1.ResidentAddressLine1, TM1.ResidentAddressLine2, TM1.ResidentHomePhone, TM1.ResidentBirthDate, T2.ResidentTypeName, T3.MedicalIndicationName, TM1.ResidentPhoneCode, TM1.ResidentPhoneNumber, TM1.ResidentHomePhoneCode, TM1.ResidentHomePhoneNumber, TM1.ResidentImage_GXI, TM1.LocationId, TM1.OrganisationId, TM1.ResidentTypeId, TM1.MedicalIndicationId, TM1.ResidentImage FROM ((Trn_Resident TM1 INNER JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = TM1.ResidentTypeId) LEFT JOIN Trn_MedicalIndication T3 ON T3.MedicalIndicationId = TM1.MedicalIndicationId) WHERE TM1.ResidentId = :ResidentId and TM1.LocationId = :LocationId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.ResidentId, TM1.LocationId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000913,100, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC000914", "SELECT ResidentId, LocationId, OrganisationId FROM Trn_Resident WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000914,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000915", "SAVEPOINT gxupdate;INSERT INTO Trn_Resident(ResidentId, ResidentGUID, ResidentInitials, ResidentPhone, ResidentSalutation, ResidentBsnNumber, ResidentGivenName, ResidentLastName, ResidentEmail, ResidentGender, ResidentCountry, ResidentCity, ResidentZipCode, ResidentAddressLine1, ResidentAddressLine2, ResidentHomePhone, ResidentBirthDate, ResidentPhoneCode, ResidentPhoneNumber, ResidentHomePhoneCode, ResidentHomePhoneNumber, LocationId, OrganisationId, ResidentTypeId, MedicalIndicationId) VALUES(:ResidentId, :ResidentGUID, :ResidentInitials, :ResidentPhone, :ResidentSalutation, :ResidentBsnNumber, :ResidentGivenName, :ResidentLastName, :ResidentEmail, :ResidentGender, :ResidentCountry, :ResidentCity, :ResidentZipCode, :ResidentAddressLine1, :ResidentAddressLine2, :ResidentHomePhone, :ResidentBirthDate, :ResidentPhoneCode, :ResidentPhoneNumber, :ResidentHomePhoneCode, :ResidentHomePhoneNumber, :LocationId, :OrganisationId, :ResidentTypeId, :MedicalIndicationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000915)
+          ,new CursorDef("BC000915", "SAVEPOINT gxupdate;INSERT INTO Trn_Resident(ResidentId, ResidentGUID, ResidentInitials, ResidentPhone, ResidentSalutation, ResidentBsnNumber, ResidentGivenName, ResidentLastName, ResidentEmail, ResidentGender, ResidentCountry, ResidentCity, ResidentZipCode, ResidentAddressLine1, ResidentAddressLine2, ResidentHomePhone, ResidentBirthDate, ResidentPhoneCode, ResidentPhoneNumber, ResidentHomePhoneCode, ResidentHomePhoneNumber, ResidentImage, ResidentImage_GXI, LocationId, OrganisationId, ResidentTypeId, MedicalIndicationId) VALUES(:ResidentId, :ResidentGUID, :ResidentInitials, :ResidentPhone, :ResidentSalutation, :ResidentBsnNumber, :ResidentGivenName, :ResidentLastName, :ResidentEmail, :ResidentGender, :ResidentCountry, :ResidentCity, :ResidentZipCode, :ResidentAddressLine1, :ResidentAddressLine2, :ResidentHomePhone, :ResidentBirthDate, :ResidentPhoneCode, :ResidentPhoneNumber, :ResidentHomePhoneCode, :ResidentHomePhoneNumber, :ResidentImage, :ResidentImage_GXI, :LocationId, :OrganisationId, :ResidentTypeId, :MedicalIndicationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000915)
           ,new CursorDef("BC000916", "SAVEPOINT gxupdate;UPDATE Trn_Resident SET ResidentGUID=:ResidentGUID, ResidentInitials=:ResidentInitials, ResidentPhone=:ResidentPhone, ResidentSalutation=:ResidentSalutation, ResidentBsnNumber=:ResidentBsnNumber, ResidentGivenName=:ResidentGivenName, ResidentLastName=:ResidentLastName, ResidentEmail=:ResidentEmail, ResidentGender=:ResidentGender, ResidentCountry=:ResidentCountry, ResidentCity=:ResidentCity, ResidentZipCode=:ResidentZipCode, ResidentAddressLine1=:ResidentAddressLine1, ResidentAddressLine2=:ResidentAddressLine2, ResidentHomePhone=:ResidentHomePhone, ResidentBirthDate=:ResidentBirthDate, ResidentPhoneCode=:ResidentPhoneCode, ResidentPhoneNumber=:ResidentPhoneNumber, ResidentHomePhoneCode=:ResidentHomePhoneCode, ResidentHomePhoneNumber=:ResidentHomePhoneNumber, ResidentTypeId=:ResidentTypeId, MedicalIndicationId=:MedicalIndicationId  WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000916)
-          ,new CursorDef("BC000917", "SAVEPOINT gxupdate;DELETE FROM Trn_Resident  WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000917)
-          ,new CursorDef("BC000918", "SELECT ResidentTypeName FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000918,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000919", "SELECT MedicalIndicationName FROM Trn_MedicalIndication WHERE MedicalIndicationId = :MedicalIndicationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000919,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000920", "SELECT TM1.ResidentId, TM1.ResidentGUID, TM1.ResidentInitials, TM1.ResidentPhone, TM1.ResidentSalutation, TM1.ResidentBsnNumber, TM1.ResidentGivenName, TM1.ResidentLastName, TM1.ResidentEmail, TM1.ResidentGender, TM1.ResidentCountry, TM1.ResidentCity, TM1.ResidentZipCode, TM1.ResidentAddressLine1, TM1.ResidentAddressLine2, TM1.ResidentHomePhone, TM1.ResidentBirthDate, T2.ResidentTypeName, T3.MedicalIndicationName, TM1.ResidentPhoneCode, TM1.ResidentPhoneNumber, TM1.ResidentHomePhoneCode, TM1.ResidentHomePhoneNumber, TM1.LocationId, TM1.OrganisationId, TM1.ResidentTypeId, TM1.MedicalIndicationId FROM ((Trn_Resident TM1 INNER JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = TM1.ResidentTypeId) LEFT JOIN Trn_MedicalIndication T3 ON T3.MedicalIndicationId = TM1.MedicalIndicationId) WHERE TM1.ResidentId = :ResidentId and TM1.LocationId = :LocationId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.ResidentId, TM1.LocationId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000920,100, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000921", "SELECT T1.ResidentId, T1.LocationId, T1.OrganisationId, T2.NetworkIndividualBsnNumber, T2.NetworkIndividualGivenName, T2.NetworkIndividualLastName, T2.NetworkIndividualEmail, T2.NetworkIndividualPhone, T2.NetworkIndividualPhoneNumber, T2.NetworkIndividualPhoneCode, T2.NetworkIndividualGender, T2.NetworkIndividualCountry, T2.NetworkIndividualCity, T2.NetworkIndividualZipCode, T2.NetworkIndividualAddressLine1, T2.NetworkIndividualAddressLine2, T1.NetworkIndividualId FROM (Trn_ResidentNetworkIndividual T1 INNER JOIN Trn_NetworkIndividual T2 ON T2.NetworkIndividualId = T1.NetworkIndividualId) WHERE T1.ResidentId = :ResidentId and T1.LocationId = :LocationId and T1.OrganisationId = :OrganisationId and T1.NetworkIndividualId = :NetworkIndividualId ORDER BY T1.ResidentId, T1.LocationId, T1.OrganisationId, T1.NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000921,11, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000922", "SELECT ResidentId, LocationId, OrganisationId, NetworkIndividualId FROM Trn_ResidentNetworkIndividual WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId AND NetworkIndividualId = :NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000922,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000923", "SAVEPOINT gxupdate;INSERT INTO Trn_ResidentNetworkIndividual(ResidentId, LocationId, OrganisationId, NetworkIndividualId) VALUES(:ResidentId, :LocationId, :OrganisationId, :NetworkIndividualId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000923)
-          ,new CursorDef("BC000924", "SAVEPOINT gxupdate;DELETE FROM Trn_ResidentNetworkIndividual  WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId AND NetworkIndividualId = :NetworkIndividualId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000924)
-          ,new CursorDef("BC000925", "SELECT NetworkIndividualBsnNumber, NetworkIndividualGivenName, NetworkIndividualLastName, NetworkIndividualEmail, NetworkIndividualPhone, NetworkIndividualPhoneNumber, NetworkIndividualPhoneCode, NetworkIndividualGender, NetworkIndividualCountry, NetworkIndividualCity, NetworkIndividualZipCode, NetworkIndividualAddressLine1, NetworkIndividualAddressLine2 FROM Trn_NetworkIndividual WHERE NetworkIndividualId = :NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000925,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000926", "SELECT T1.ResidentId, T1.LocationId, T1.OrganisationId, T2.NetworkIndividualBsnNumber, T2.NetworkIndividualGivenName, T2.NetworkIndividualLastName, T2.NetworkIndividualEmail, T2.NetworkIndividualPhone, T2.NetworkIndividualPhoneNumber, T2.NetworkIndividualPhoneCode, T2.NetworkIndividualGender, T2.NetworkIndividualCountry, T2.NetworkIndividualCity, T2.NetworkIndividualZipCode, T2.NetworkIndividualAddressLine1, T2.NetworkIndividualAddressLine2, T1.NetworkIndividualId FROM (Trn_ResidentNetworkIndividual T1 INNER JOIN Trn_NetworkIndividual T2 ON T2.NetworkIndividualId = T1.NetworkIndividualId) WHERE T1.ResidentId = :ResidentId and T1.LocationId = :LocationId and T1.OrganisationId = :OrganisationId ORDER BY T1.ResidentId, T1.LocationId, T1.OrganisationId, T1.NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000926,11, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000927", "SELECT T1.ResidentId, T1.LocationId, T1.OrganisationId, T2.NetworkCompanyKvkNumber, T2.NetworkCompanyName, T2.NetworkCompanyEmail, T2.NetworkCompanyPhone, T2.NetworkCompanyPhoneNumber, T2.NetworkCompanyPhoneCode, T2.NetworkCompanyCountry, T2.NetworkCompanyCity, T2.NetworkCompanyZipCode, T2.NetworkCompanyAddressLine1, T2.NetworkCompanyAddressLine2, T1.NetworkCompanyId FROM (Trn_ResidentNetworkCompany T1 INNER JOIN Trn_NetworkCompany T2 ON T2.NetworkCompanyId = T1.NetworkCompanyId) WHERE T1.NetworkCompanyId = :NetworkCompanyId and T1.ResidentId = :ResidentId and T1.LocationId = :LocationId and T1.OrganisationId = :OrganisationId ORDER BY T1.NetworkCompanyId, T1.ResidentId, T1.LocationId, T1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000927,11, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000928", "SELECT NetworkCompanyId, ResidentId, LocationId, OrganisationId FROM Trn_ResidentNetworkCompany WHERE NetworkCompanyId = :NetworkCompanyId AND ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000928,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000929", "SAVEPOINT gxupdate;INSERT INTO Trn_ResidentNetworkCompany(ResidentId, LocationId, OrganisationId, NetworkCompanyId) VALUES(:ResidentId, :LocationId, :OrganisationId, :NetworkCompanyId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000929)
-          ,new CursorDef("BC000930", "SAVEPOINT gxupdate;DELETE FROM Trn_ResidentNetworkCompany  WHERE NetworkCompanyId = :NetworkCompanyId AND ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000930)
-          ,new CursorDef("BC000931", "SELECT NetworkCompanyKvkNumber, NetworkCompanyName, NetworkCompanyEmail, NetworkCompanyPhone, NetworkCompanyPhoneNumber, NetworkCompanyPhoneCode, NetworkCompanyCountry, NetworkCompanyCity, NetworkCompanyZipCode, NetworkCompanyAddressLine1, NetworkCompanyAddressLine2 FROM Trn_NetworkCompany WHERE NetworkCompanyId = :NetworkCompanyId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000931,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000932", "SELECT T1.ResidentId, T1.LocationId, T1.OrganisationId, T2.NetworkCompanyKvkNumber, T2.NetworkCompanyName, T2.NetworkCompanyEmail, T2.NetworkCompanyPhone, T2.NetworkCompanyPhoneNumber, T2.NetworkCompanyPhoneCode, T2.NetworkCompanyCountry, T2.NetworkCompanyCity, T2.NetworkCompanyZipCode, T2.NetworkCompanyAddressLine1, T2.NetworkCompanyAddressLine2, T1.NetworkCompanyId FROM (Trn_ResidentNetworkCompany T1 INNER JOIN Trn_NetworkCompany T2 ON T2.NetworkCompanyId = T1.NetworkCompanyId) WHERE T1.ResidentId = :ResidentId and T1.LocationId = :LocationId and T1.OrganisationId = :OrganisationId ORDER BY T1.NetworkCompanyId, T1.ResidentId, T1.LocationId, T1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000932,11, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000933", "SELECT LocationId FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000933,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000917", "SAVEPOINT gxupdate;UPDATE Trn_Resident SET ResidentImage=:ResidentImage, ResidentImage_GXI=:ResidentImage_GXI  WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000917)
+          ,new CursorDef("BC000918", "SAVEPOINT gxupdate;DELETE FROM Trn_Resident  WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000918)
+          ,new CursorDef("BC000919", "SELECT ResidentTypeName FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000919,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000920", "SELECT MedicalIndicationName FROM Trn_MedicalIndication WHERE MedicalIndicationId = :MedicalIndicationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000920,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000921", "SELECT TM1.ResidentId, TM1.ResidentGUID, TM1.ResidentInitials, TM1.ResidentPhone, TM1.ResidentSalutation, TM1.ResidentBsnNumber, TM1.ResidentGivenName, TM1.ResidentLastName, TM1.ResidentEmail, TM1.ResidentGender, TM1.ResidentCountry, TM1.ResidentCity, TM1.ResidentZipCode, TM1.ResidentAddressLine1, TM1.ResidentAddressLine2, TM1.ResidentHomePhone, TM1.ResidentBirthDate, T2.ResidentTypeName, T3.MedicalIndicationName, TM1.ResidentPhoneCode, TM1.ResidentPhoneNumber, TM1.ResidentHomePhoneCode, TM1.ResidentHomePhoneNumber, TM1.ResidentImage_GXI, TM1.LocationId, TM1.OrganisationId, TM1.ResidentTypeId, TM1.MedicalIndicationId, TM1.ResidentImage FROM ((Trn_Resident TM1 INNER JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = TM1.ResidentTypeId) LEFT JOIN Trn_MedicalIndication T3 ON T3.MedicalIndicationId = TM1.MedicalIndicationId) WHERE TM1.ResidentId = :ResidentId and TM1.LocationId = :LocationId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.ResidentId, TM1.LocationId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000921,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000922", "SELECT T1.ResidentId, T1.LocationId, T1.OrganisationId, T2.NetworkIndividualBsnNumber, T2.NetworkIndividualGivenName, T2.NetworkIndividualLastName, T2.NetworkIndividualEmail, T2.NetworkIndividualPhone, T2.NetworkIndividualPhoneNumber, T2.NetworkIndividualPhoneCode, T2.NetworkIndividualGender, T2.NetworkIndividualCountry, T2.NetworkIndividualCity, T2.NetworkIndividualZipCode, T2.NetworkIndividualAddressLine1, T2.NetworkIndividualAddressLine2, T1.NetworkIndividualId FROM (Trn_ResidentNetworkIndividual T1 INNER JOIN Trn_NetworkIndividual T2 ON T2.NetworkIndividualId = T1.NetworkIndividualId) WHERE T1.ResidentId = :ResidentId and T1.LocationId = :LocationId and T1.OrganisationId = :OrganisationId and T1.NetworkIndividualId = :NetworkIndividualId ORDER BY T1.ResidentId, T1.LocationId, T1.OrganisationId, T1.NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000922,11, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000923", "SELECT ResidentId, LocationId, OrganisationId, NetworkIndividualId FROM Trn_ResidentNetworkIndividual WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId AND NetworkIndividualId = :NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000923,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000924", "SAVEPOINT gxupdate;INSERT INTO Trn_ResidentNetworkIndividual(ResidentId, LocationId, OrganisationId, NetworkIndividualId) VALUES(:ResidentId, :LocationId, :OrganisationId, :NetworkIndividualId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000924)
+          ,new CursorDef("BC000925", "SAVEPOINT gxupdate;DELETE FROM Trn_ResidentNetworkIndividual  WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId AND NetworkIndividualId = :NetworkIndividualId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000925)
+          ,new CursorDef("BC000926", "SELECT NetworkIndividualBsnNumber, NetworkIndividualGivenName, NetworkIndividualLastName, NetworkIndividualEmail, NetworkIndividualPhone, NetworkIndividualPhoneNumber, NetworkIndividualPhoneCode, NetworkIndividualGender, NetworkIndividualCountry, NetworkIndividualCity, NetworkIndividualZipCode, NetworkIndividualAddressLine1, NetworkIndividualAddressLine2 FROM Trn_NetworkIndividual WHERE NetworkIndividualId = :NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000926,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000927", "SELECT T1.ResidentId, T1.LocationId, T1.OrganisationId, T2.NetworkIndividualBsnNumber, T2.NetworkIndividualGivenName, T2.NetworkIndividualLastName, T2.NetworkIndividualEmail, T2.NetworkIndividualPhone, T2.NetworkIndividualPhoneNumber, T2.NetworkIndividualPhoneCode, T2.NetworkIndividualGender, T2.NetworkIndividualCountry, T2.NetworkIndividualCity, T2.NetworkIndividualZipCode, T2.NetworkIndividualAddressLine1, T2.NetworkIndividualAddressLine2, T1.NetworkIndividualId FROM (Trn_ResidentNetworkIndividual T1 INNER JOIN Trn_NetworkIndividual T2 ON T2.NetworkIndividualId = T1.NetworkIndividualId) WHERE T1.ResidentId = :ResidentId and T1.LocationId = :LocationId and T1.OrganisationId = :OrganisationId ORDER BY T1.ResidentId, T1.LocationId, T1.OrganisationId, T1.NetworkIndividualId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000927,11, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000928", "SELECT T1.ResidentId, T1.LocationId, T1.OrganisationId, T2.NetworkCompanyKvkNumber, T2.NetworkCompanyName, T2.NetworkCompanyEmail, T2.NetworkCompanyPhone, T2.NetworkCompanyPhoneNumber, T2.NetworkCompanyPhoneCode, T2.NetworkCompanyCountry, T2.NetworkCompanyCity, T2.NetworkCompanyZipCode, T2.NetworkCompanyAddressLine1, T2.NetworkCompanyAddressLine2, T2.NetworkCompanyContactName, T1.NetworkCompanyId FROM (Trn_ResidentNetworkCompany T1 INNER JOIN Trn_NetworkCompany T2 ON T2.NetworkCompanyId = T1.NetworkCompanyId) WHERE T1.NetworkCompanyId = :NetworkCompanyId and T1.ResidentId = :ResidentId and T1.LocationId = :LocationId and T1.OrganisationId = :OrganisationId ORDER BY T1.NetworkCompanyId, T1.ResidentId, T1.LocationId, T1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000928,11, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000929", "SELECT NetworkCompanyId, ResidentId, LocationId, OrganisationId FROM Trn_ResidentNetworkCompany WHERE NetworkCompanyId = :NetworkCompanyId AND ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000929,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000930", "SAVEPOINT gxupdate;INSERT INTO Trn_ResidentNetworkCompany(ResidentId, LocationId, OrganisationId, NetworkCompanyId) VALUES(:ResidentId, :LocationId, :OrganisationId, :NetworkCompanyId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000930)
+          ,new CursorDef("BC000931", "SAVEPOINT gxupdate;DELETE FROM Trn_ResidentNetworkCompany  WHERE NetworkCompanyId = :NetworkCompanyId AND ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000931)
+          ,new CursorDef("BC000932", "SELECT NetworkCompanyKvkNumber, NetworkCompanyName, NetworkCompanyEmail, NetworkCompanyPhone, NetworkCompanyPhoneNumber, NetworkCompanyPhoneCode, NetworkCompanyCountry, NetworkCompanyCity, NetworkCompanyZipCode, NetworkCompanyAddressLine1, NetworkCompanyAddressLine2, NetworkCompanyContactName FROM Trn_NetworkCompany WHERE NetworkCompanyId = :NetworkCompanyId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000932,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000933", "SELECT T1.ResidentId, T1.LocationId, T1.OrganisationId, T2.NetworkCompanyKvkNumber, T2.NetworkCompanyName, T2.NetworkCompanyEmail, T2.NetworkCompanyPhone, T2.NetworkCompanyPhoneNumber, T2.NetworkCompanyPhoneCode, T2.NetworkCompanyCountry, T2.NetworkCompanyCity, T2.NetworkCompanyZipCode, T2.NetworkCompanyAddressLine1, T2.NetworkCompanyAddressLine2, T2.NetworkCompanyContactName, T1.NetworkCompanyId FROM (Trn_ResidentNetworkCompany T1 INNER JOIN Trn_NetworkCompany T2 ON T2.NetworkCompanyId = T1.NetworkCompanyId) WHERE T1.ResidentId = :ResidentId and T1.LocationId = :LocationId and T1.OrganisationId = :OrganisationId ORDER BY T1.NetworkCompanyId, T1.ResidentId, T1.LocationId, T1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000933,11, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000934", "SELECT LocationId FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000934,1, GxCacheFrequency.OFF ,true,false )
        };
     }
  }
@@ -4566,6 +4690,7 @@ public class trn_resident_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((string[]) buf[8])[0] = rslt.getVarchar(9);
              ((string[]) buf[9])[0] = rslt.getVarchar(10);
              ((string[]) buf[10])[0] = rslt.getVarchar(11);
+             ((string[]) buf[11])[0] = rslt.getVarchar(12);
              return;
           case 3 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -4616,11 +4741,15 @@ public class trn_resident_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((string[]) buf[18])[0] = rslt.getVarchar(19);
              ((string[]) buf[19])[0] = rslt.getVarchar(20);
              ((string[]) buf[20])[0] = rslt.getVarchar(21);
-             ((Guid[]) buf[21])[0] = rslt.getGuid(22);
-             ((Guid[]) buf[22])[0] = rslt.getGuid(23);
-             ((Guid[]) buf[23])[0] = rslt.getGuid(24);
-             ((Guid[]) buf[24])[0] = rslt.getGuid(25);
-             ((bool[]) buf[25])[0] = rslt.wasNull(25);
+             ((string[]) buf[21])[0] = rslt.getMultimediaUri(22);
+             ((bool[]) buf[22])[0] = rslt.wasNull(22);
+             ((Guid[]) buf[23])[0] = rslt.getGuid(23);
+             ((Guid[]) buf[24])[0] = rslt.getGuid(24);
+             ((Guid[]) buf[25])[0] = rslt.getGuid(25);
+             ((Guid[]) buf[26])[0] = rslt.getGuid(26);
+             ((bool[]) buf[27])[0] = rslt.wasNull(26);
+             ((string[]) buf[28])[0] = rslt.getMultimediaFile(27, rslt.getVarchar(22));
+             ((bool[]) buf[29])[0] = rslt.wasNull(27);
              return;
           case 7 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -4644,11 +4773,15 @@ public class trn_resident_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((string[]) buf[18])[0] = rslt.getVarchar(19);
              ((string[]) buf[19])[0] = rslt.getVarchar(20);
              ((string[]) buf[20])[0] = rslt.getVarchar(21);
-             ((Guid[]) buf[21])[0] = rslt.getGuid(22);
-             ((Guid[]) buf[22])[0] = rslt.getGuid(23);
-             ((Guid[]) buf[23])[0] = rslt.getGuid(24);
-             ((Guid[]) buf[24])[0] = rslt.getGuid(25);
-             ((bool[]) buf[25])[0] = rslt.wasNull(25);
+             ((string[]) buf[21])[0] = rslt.getMultimediaUri(22);
+             ((bool[]) buf[22])[0] = rslt.wasNull(22);
+             ((Guid[]) buf[23])[0] = rslt.getGuid(23);
+             ((Guid[]) buf[24])[0] = rslt.getGuid(24);
+             ((Guid[]) buf[25])[0] = rslt.getGuid(25);
+             ((Guid[]) buf[26])[0] = rslt.getGuid(26);
+             ((bool[]) buf[27])[0] = rslt.wasNull(26);
+             ((string[]) buf[28])[0] = rslt.getMultimediaFile(27, rslt.getVarchar(22));
+             ((bool[]) buf[29])[0] = rslt.wasNull(27);
              return;
           case 8 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -4683,24 +4816,28 @@ public class trn_resident_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((string[]) buf[20])[0] = rslt.getVarchar(21);
              ((string[]) buf[21])[0] = rslt.getVarchar(22);
              ((string[]) buf[22])[0] = rslt.getVarchar(23);
-             ((Guid[]) buf[23])[0] = rslt.getGuid(24);
-             ((Guid[]) buf[24])[0] = rslt.getGuid(25);
-             ((Guid[]) buf[25])[0] = rslt.getGuid(26);
-             ((Guid[]) buf[26])[0] = rslt.getGuid(27);
-             ((bool[]) buf[27])[0] = rslt.wasNull(27);
+             ((string[]) buf[23])[0] = rslt.getMultimediaUri(24);
+             ((bool[]) buf[24])[0] = rslt.wasNull(24);
+             ((Guid[]) buf[25])[0] = rslt.getGuid(25);
+             ((Guid[]) buf[26])[0] = rslt.getGuid(26);
+             ((Guid[]) buf[27])[0] = rslt.getGuid(27);
+             ((Guid[]) buf[28])[0] = rslt.getGuid(28);
+             ((bool[]) buf[29])[0] = rslt.wasNull(28);
+             ((string[]) buf[30])[0] = rslt.getMultimediaFile(29, rslt.getVarchar(24));
+             ((bool[]) buf[31])[0] = rslt.wasNull(29);
              return;
           case 12 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
              return;
-          case 16 :
-             ((string[]) buf[0])[0] = rslt.getVarchar(1);
-             return;
           case 17 :
              ((string[]) buf[0])[0] = rslt.getVarchar(1);
              return;
           case 18 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             return;
+          case 19 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((string[]) buf[1])[0] = rslt.getVarchar(2);
              ((string[]) buf[2])[0] = rslt.getString(3, 20);
@@ -4724,13 +4861,17 @@ public class trn_resident_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((string[]) buf[20])[0] = rslt.getVarchar(21);
              ((string[]) buf[21])[0] = rslt.getVarchar(22);
              ((string[]) buf[22])[0] = rslt.getVarchar(23);
-             ((Guid[]) buf[23])[0] = rslt.getGuid(24);
-             ((Guid[]) buf[24])[0] = rslt.getGuid(25);
-             ((Guid[]) buf[25])[0] = rslt.getGuid(26);
-             ((Guid[]) buf[26])[0] = rslt.getGuid(27);
-             ((bool[]) buf[27])[0] = rslt.wasNull(27);
+             ((string[]) buf[23])[0] = rslt.getMultimediaUri(24);
+             ((bool[]) buf[24])[0] = rslt.wasNull(24);
+             ((Guid[]) buf[25])[0] = rslt.getGuid(25);
+             ((Guid[]) buf[26])[0] = rslt.getGuid(26);
+             ((Guid[]) buf[27])[0] = rslt.getGuid(27);
+             ((Guid[]) buf[28])[0] = rslt.getGuid(28);
+             ((bool[]) buf[29])[0] = rslt.wasNull(28);
+             ((string[]) buf[30])[0] = rslt.getMultimediaFile(29, rslt.getVarchar(24));
+             ((bool[]) buf[31])[0] = rslt.wasNull(29);
              return;
-          case 19 :
+          case 20 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
@@ -4749,13 +4890,13 @@ public class trn_resident_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((string[]) buf[15])[0] = rslt.getVarchar(16);
              ((Guid[]) buf[16])[0] = rslt.getGuid(17);
              return;
-          case 20 :
+          case 21 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
              ((Guid[]) buf[3])[0] = rslt.getGuid(4);
              return;
-          case 23 :
+          case 24 :
              ((string[]) buf[0])[0] = rslt.getVarchar(1);
              ((string[]) buf[1])[0] = rslt.getVarchar(2);
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
@@ -4770,7 +4911,7 @@ public class trn_resident_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((string[]) buf[11])[0] = rslt.getVarchar(12);
              ((string[]) buf[12])[0] = rslt.getVarchar(13);
              return;
-          case 24 :
+          case 25 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
@@ -4789,7 +4930,7 @@ public class trn_resident_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((string[]) buf[15])[0] = rslt.getVarchar(16);
              ((Guid[]) buf[16])[0] = rslt.getGuid(17);
              return;
-          case 25 :
+          case 26 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
@@ -4804,26 +4945,14 @@ public class trn_resident_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((string[]) buf[11])[0] = rslt.getVarchar(12);
              ((string[]) buf[12])[0] = rslt.getVarchar(13);
              ((string[]) buf[13])[0] = rslt.getVarchar(14);
-             ((Guid[]) buf[14])[0] = rslt.getGuid(15);
+             ((string[]) buf[14])[0] = rslt.getVarchar(15);
+             ((Guid[]) buf[15])[0] = rslt.getGuid(16);
              return;
-          case 26 :
+          case 27 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
              ((Guid[]) buf[3])[0] = rslt.getGuid(4);
-             return;
-          case 29 :
-             ((string[]) buf[0])[0] = rslt.getVarchar(1);
-             ((string[]) buf[1])[0] = rslt.getVarchar(2);
-             ((string[]) buf[2])[0] = rslt.getVarchar(3);
-             ((string[]) buf[3])[0] = rslt.getString(4, 20);
-             ((string[]) buf[4])[0] = rslt.getVarchar(5);
-             ((string[]) buf[5])[0] = rslt.getVarchar(6);
-             ((string[]) buf[6])[0] = rslt.getVarchar(7);
-             ((string[]) buf[7])[0] = rslt.getVarchar(8);
-             ((string[]) buf[8])[0] = rslt.getVarchar(9);
-             ((string[]) buf[9])[0] = rslt.getVarchar(10);
-             ((string[]) buf[10])[0] = rslt.getVarchar(11);
              return;
     }
     getresults30( cursor, rslt, buf) ;
@@ -4836,6 +4965,20 @@ public class trn_resident_bc__default : DataStoreHelperBase, IDataStoreHelper
     switch ( cursor )
     {
           case 30 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getString(4, 20);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
+             ((string[]) buf[7])[0] = rslt.getVarchar(8);
+             ((string[]) buf[8])[0] = rslt.getVarchar(9);
+             ((string[]) buf[9])[0] = rslt.getVarchar(10);
+             ((string[]) buf[10])[0] = rslt.getVarchar(11);
+             ((string[]) buf[11])[0] = rslt.getVarchar(12);
+             return;
+          case 31 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
@@ -4850,9 +4993,10 @@ public class trn_resident_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((string[]) buf[11])[0] = rslt.getVarchar(12);
              ((string[]) buf[12])[0] = rslt.getVarchar(13);
              ((string[]) buf[13])[0] = rslt.getVarchar(14);
-             ((Guid[]) buf[14])[0] = rslt.getGuid(15);
+             ((string[]) buf[14])[0] = rslt.getVarchar(15);
+             ((Guid[]) buf[15])[0] = rslt.getGuid(16);
              return;
-          case 31 :
+          case 32 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              return;
     }

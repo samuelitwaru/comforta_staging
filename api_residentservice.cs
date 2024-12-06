@@ -21,6 +21,140 @@ using System.Runtime.Serialization;
 namespace GeneXus.Programs {
    public class api_residentservice : GXProcedure
    {
+      protected override bool IntegratedSecurityEnabled
+      {
+         get {
+            return true ;
+         }
+
+      }
+
+      protected override GAMSecurityLevel ApiIntegratedSecurityLevel( string permissionMethod )
+      {
+         if ( StringUtil.StrCmp(permissionMethod, "gxep_loginwithqrcode") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getresidentinformation") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getorganisationinformation") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getlocationinformation") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getresidentnotificationhistory") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_updateresidentavatar") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_registerdevice") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_sendnotification") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_agendalocation") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_senddynamicform") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_uploadmedia") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_deletemedia") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getmedia") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getpages") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_pagesapi") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_pageapi") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_contentpagesapi") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_contentpageapi") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getsinglepage") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_deletepage") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_listpages") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_createpage") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_createcontentpage") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_savepage") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_updatepage") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_addpagecildren") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_updatelocationtheme") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_productsericeapi") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getlocationtheme") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         return GAMSecurityLevel.SecurityLow ;
+      }
+
+      protected override string ApiExecutePermissionPrefix( string permissionMethod )
+      {
+         return "" ;
+      }
+
       public api_residentservice( )
       {
          context = new GxContext(  );
@@ -208,6 +342,18 @@ namespace GeneXus.Programs {
          aP1_SDT_ResidentNotification=this.AV80SDT_ResidentNotification;
       }
 
+      public void gxep_updateresidentavatar( string aP0_Base64Image ,
+                                             string aP1_ResidentId ,
+                                             out string aP2_result )
+      {
+         this.AV86Base64Image = aP0_Base64Image;
+         this.AV74ResidentId = aP1_ResidentId;
+         initialize();
+         /* UpdateResidentAvatar Constructor */
+         new prc_updateresidentavatar(context ).execute(  AV86Base64Image,  AV74ResidentId, out  AV17result) ;
+         aP2_result=this.AV17result;
+      }
+
       public void gxep_registerdevice( string aP0_DeviceToken ,
                                        string aP1_DeviceID ,
                                        short aP2_DeviceType ,
@@ -288,6 +434,24 @@ namespace GeneXus.Programs {
          aP5_BC_Trn_Media=this.AV50BC_Trn_Media;
       }
 
+      public void gxep_deletemedia( Guid aP0_MediaId ,
+                                    string aP1_result )
+      {
+         this.AV46MediaId = aP0_MediaId;
+         this.AV17result = aP1_result;
+         initialize();
+         /* DeleteMedia Constructor */
+         new prc_deletemedia(context ).execute( ref  AV46MediaId, ref  AV17result) ;
+      }
+
+      public void gxep_getmedia( out GXBaseCollection<SdtSDT_Media> aP0_SDT_MediaCollection )
+      {
+         initialize();
+         /* GetMedia Constructor */
+         new prc_getmedia(context ).execute( out  AV85SDT_MediaCollection) ;
+         aP0_SDT_MediaCollection=this.AV85SDT_MediaCollection;
+      }
+
       public void gxep_getpages( Guid aP0_locationId ,
                                  Guid aP1_organisationId ,
                                  out GXBaseCollection<SdtSDT_Page> aP2_SDT_PageCollection )
@@ -358,8 +522,16 @@ namespace GeneXus.Programs {
          this.AV54PageId = aP0_PageId;
          initialize();
          /* GetSinglePage Constructor */
-         new prc_getsinglepage(context ).execute(  AV54PageId, out  AV55SDT_Page) ;
+         new prc_getsinglepageapi(context ).execute(  AV54PageId, out  AV55SDT_Page) ;
          aP1_SDT_Page=this.AV55SDT_Page;
+      }
+
+      public void gxep_deletepage( Guid aP0_PageId )
+      {
+         this.AV54PageId = aP0_PageId;
+         initialize();
+         /* DeletePage Constructor */
+         new prc_deletepageapi(context ).execute(  AV54PageId) ;
       }
 
       public void gxep_listpages( Guid aP0_locationId ,
@@ -487,7 +659,6 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV17result = "";
          AV20SDT_LoginResidentResponse = new SdtSDT_LoginResidentResponse(context);
          AV21loginResult = new SdtSDT_LoginResidentResponse(context);
          AV22SDT_Resident = new SdtSDT_Resident(context);
@@ -496,6 +667,7 @@ namespace GeneXus.Programs {
          AV59SDT_AgendaLocation = new GXBaseCollection<SdtSDT_AgendaLocation>( context, "SDT_AgendaLocation", "Comforta_version2");
          AV80SDT_ResidentNotification = new GXBaseCollection<SdtSDT_ResidentNotification>( context, "SDT_ResidentNotification", "Comforta_version2");
          AV50BC_Trn_Media = new SdtTrn_Media(context);
+         AV85SDT_MediaCollection = new GXBaseCollection<SdtSDT_Media>( context, "SDT_Media", "Comforta_version2");
          AV44SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>( context, "SDT_Page", "Comforta_version2");
          AV70SDT_MobilePageCollection = new GXBaseCollection<SdtSDT_MobilePage>( context, "SDT_MobilePage", "Comforta_version2");
          AV75SDT_MobilePage = new SdtSDT_MobilePage(context);
@@ -518,6 +690,7 @@ namespace GeneXus.Programs {
       protected bool AV65PageIsPublished ;
       protected string AV17result ;
       protected string AV7secretKey ;
+      protected string AV86Base64Image ;
       protected string AV49MediaImageData ;
       protected string AV58PageJsonContent ;
       protected string AV56PageGJSHtml ;
@@ -555,12 +728,14 @@ namespace GeneXus.Programs {
       protected SdtSDT_Organisation aP1_SDT_Organisation ;
       protected SdtSDT_Location aP1_SDT_Location ;
       protected GXBaseCollection<SdtSDT_ResidentNotification> aP1_SDT_ResidentNotification ;
-      protected string aP6_result ;
       protected string aP2_result ;
+      protected string aP6_result ;
       protected GXBaseCollection<SdtSDT_AgendaLocation> aP3_SDT_AgendaLocation ;
       protected string aP0_result ;
       protected SdtTrn_Media AV50BC_Trn_Media ;
       protected SdtTrn_Media aP5_BC_Trn_Media ;
+      protected GXBaseCollection<SdtSDT_Media> AV85SDT_MediaCollection ;
+      protected GXBaseCollection<SdtSDT_Media> aP0_SDT_MediaCollection ;
       protected GXBaseCollection<SdtSDT_Page> AV44SDT_PageCollection ;
       protected GXBaseCollection<SdtSDT_Page> aP2_SDT_PageCollection ;
       protected GXBaseCollection<SdtSDT_MobilePage> AV70SDT_MobilePageCollection ;

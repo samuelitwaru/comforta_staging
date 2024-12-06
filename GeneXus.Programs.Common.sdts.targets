@@ -15,6 +15,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtGxMap_Line_Point.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtGxMap_RoutePoint.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_AgendaLocation.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_AvatarUpload.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_CallToAction_SDT_CallToActionItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Col.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPage.cs" />
@@ -27,6 +28,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_LocationTheme.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_LoginResidentResponse.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Managers_SDT_ManagersItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_Media.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_MobilePage.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_NetworkCompany.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_NetworkIndividual.cs" />
@@ -36,6 +38,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Page.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_PageChildren.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_PageStructure.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_PageStructure_ChildrenItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ProductService.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ProductServiceSupplierGroup_SDT_ProductServiceSupplierGroupItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ReceivedNotification.cs" />
@@ -85,7 +88,6 @@
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\notifications\common\type_SdtWWP_SDTNotificationMetadata.cs" />
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\notifications\common\type_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem.cs" />
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\type_SdtProgramNames_ProgramName.cs" />
- 	<Compile Include="$(WebDirectory)\wwpbaseobjects\type_SdtSecGAMFunctionalitiesToLoad.cs" />
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\sms\type_SdtWWP_SendSMSResultSDT.cs" />
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\sms\type_SdtWWP_SMSParametersSDT.cs" />
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\type_SdtSplitScreenDetailInfo.cs" />

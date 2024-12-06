@@ -108,8 +108,8 @@ namespace GeneXus.Programs {
                CheckExtendedTable069( ) ;
                if ( AnyError == 0 )
                {
-                  ZM069( 23) ;
                   ZM069( 24) ;
+                  ZM069( 25) ;
                }
                CloseExtendedTableCursors069( ) ;
             }
@@ -161,7 +161,7 @@ namespace GeneXus.Programs {
 
       protected void ZM069( short GX_JID )
       {
-         if ( ( GX_JID == 22 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 23 ) || ( GX_JID == 0 ) )
          {
             Z48SupplierGenContactPhone = A48SupplierGenContactPhone;
             Z43SupplierGenKvkNumber = A43SupplierGenKvkNumber;
@@ -178,14 +178,14 @@ namespace GeneXus.Programs {
             Z282SupplierGenTypeId = A282SupplierGenTypeId;
             Z11OrganisationId = A11OrganisationId;
          }
-         if ( ( GX_JID == 23 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 24 ) || ( GX_JID == 0 ) )
          {
             Z290SupplierGenTypeName = A290SupplierGenTypeName;
          }
-         if ( ( GX_JID == 24 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 25 ) || ( GX_JID == 0 ) )
          {
          }
-         if ( GX_JID == -22 )
+         if ( GX_JID == -23 )
          {
             Z42SupplierGenId = A42SupplierGenId;
             Z48SupplierGenContactPhone = A48SupplierGenContactPhone;
@@ -251,7 +251,7 @@ namespace GeneXus.Programs {
             A282SupplierGenTypeId = BC00066_A282SupplierGenTypeId[0];
             A11OrganisationId = BC00066_A11OrganisationId[0];
             n11OrganisationId = BC00066_n11OrganisationId[0];
-            ZM069( -22) ;
+            ZM069( -23) ;
          }
          pr_default.close(4);
          OnLoadActions069( ) ;
@@ -269,56 +269,61 @@ namespace GeneXus.Programs {
          standaloneModal( ) ;
          if ( ! ( GxRegex.IsMatch(A43SupplierGenKvkNumber,"\\b\\d{8}\\b") ) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "KvK number should contain 8 digits", ""), context.GetMessage( "Supplier Gen KvK Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            GX_msglist.addItem("KvK number should contain 8 digits", "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A43SupplierGenKvkNumber)) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier Gen KvK Number", ""), "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Supplier Gen KvK Number", "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( StringUtil.Len( A43SupplierGenKvkNumber) != 8 )
          {
-            GX_msglist.addItem(context.GetMessage( "KvK number should contain 8 digits", ""), 1, "");
+            GX_msglist.addItem("KvK number should contain 8 digits", 1, "");
             AnyError = 1;
          }
          /* Using cursor BC00064 */
          pr_default.execute(2, new Object[] {A282SupplierGenTypeId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_SupplierGenType", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "SUPPLIERGENTYPEID");
+            GX_msglist.addItem("No matching 'Trn_SupplierGenType'.", "ForeignKeyNotFound", 1, "SUPPLIERGENTYPEID");
             AnyError = 1;
          }
          A290SupplierGenTypeName = BC00064_A290SupplierGenTypeName[0];
          pr_default.close(2);
          if ( (Guid.Empty==A282SupplierGenTypeId) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier Gen Type Id", ""), "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Supplier Gen Type Id", "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A44SupplierGenCompanyName)) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Company Name", ""), "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Company Name", "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A335SupplierGenAddressCountry)) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier Gen Address Country", ""), "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Supplier Gen Address Country", "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A295SupplierGenAddressCity)) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier Gen Address City", ""), "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Supplier Gen Address City", "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A294SupplierGenAddressZipCode)) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier Gen Address Zip Code", ""), "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Supplier Gen Address Zip Code", "", "", "", "", "", "", "", ""), 1, "");
+            AnyError = 1;
+         }
+         if ( ! GxRegex.IsMatch(A294SupplierGenAddressZipCode,"^\\d{4}\\s?[A-Z]{2}$") && ! String.IsNullOrEmpty(StringUtil.RTrim( A294SupplierGenAddressZipCode)) )
+         {
+            GX_msglist.addItem("Zip Code is incorrect", 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A336SupplierGenAddressLine1)) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier Gen Address Line1", ""), "", "", "", "", "", "", "", ""), 1, "");
+            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "Supplier Gen Address Line1", "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
          GXt_char2 = A48SupplierGenContactPhone;
@@ -326,12 +331,12 @@ namespace GeneXus.Programs {
          A48SupplierGenContactPhone = GXt_char2;
          if ( ! ( GxRegex.IsMatch(A382SupplierGenPhoneNumber,"\\b\\d{9}\\b") ) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Phone contains 9 digits", ""), context.GetMessage( "Supplier Gen Phone Number", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            GX_msglist.addItem("Phone contains 9 digits", "OutOfRange", 1, "");
             AnyError = 1;
          }
          if ( StringUtil.Len( A382SupplierGenPhoneNumber) != 9 )
          {
-            GX_msglist.addItem(context.GetMessage( "Phone should contain 9 digits", ""), 1, "");
+            GX_msglist.addItem("Phone should contain 9 digits", 1, "");
             AnyError = 1;
          }
          /* Using cursor BC00065 */
@@ -340,14 +345,14 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A11OrganisationId) ) )
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Organisation", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
          }
          pr_default.close(3);
-         if ( ! GxRegex.IsMatch(A441SupplierGenWebsite,context.GetMessage( "^(https?:\\/\\/)?(www\\.)?[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,})(\\/[^\\s]*)?$", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( A441SupplierGenWebsite)) )
+         if ( ! GxRegex.IsMatch(A441SupplierGenWebsite,"^(https?:\\/\\/)?(www\\.)?[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,})(\\/[^\\s]*)?$") && ! String.IsNullOrEmpty(StringUtil.RTrim( A441SupplierGenWebsite)) )
          {
-            GX_msglist.addItem(context.GetMessage( "Invalid website format", ""), 1, "");
+            GX_msglist.addItem("Invalid website format", 1, "");
             AnyError = 1;
          }
       }
@@ -383,7 +388,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {n42SupplierGenId, A42SupplierGenId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM069( 22) ;
+            ZM069( 23) ;
             RcdFound9 = 1;
             A42SupplierGenId = BC00063_A42SupplierGenId[0];
             n42SupplierGenId = BC00063_n42SupplierGenId[0];
@@ -661,7 +666,7 @@ namespace GeneXus.Programs {
             pr_default.execute(10, new Object[] {n42SupplierGenId, A42SupplierGenId});
             if ( (pr_default.getStatus(10) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_ProductService", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_ProductService"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(10);
@@ -992,7 +997,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z42SupplierGenId = A42SupplierGenId;
          }
-         ZM069( -22) ;
+         ZM069( -23) ;
          OnLoadActions069( ) ;
          AddRow069( ) ;
          ScanKeyEnd069( ) ;
@@ -1021,7 +1026,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z42SupplierGenId = A42SupplierGenId;
          }
-         ZM069( -22) ;
+         ZM069( -23) ;
          OnLoadActions069( ) ;
          AddRow069( ) ;
          ScanKeyEnd069( ) ;

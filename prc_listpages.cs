@@ -45,43 +45,43 @@ namespace GeneXus.Programs {
 
       public void execute( Guid aP0_LocationId ,
                            Guid aP1_OrganisationId ,
-                           out GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageCollection )
+                           out GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageStructureCollection )
       {
          this.AV2LocationId = aP0_LocationId;
          this.AV3OrganisationId = aP1_OrganisationId;
-         this.AV4SDT_PageCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2") ;
+         this.AV4SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2") ;
          initialize();
          ExecuteImpl();
-         aP2_SDT_PageCollection=this.AV4SDT_PageCollection;
+         aP2_SDT_PageStructureCollection=this.AV4SDT_PageStructureCollection;
       }
 
       public GXBaseCollection<SdtSDT_PageStructure> executeUdp( Guid aP0_LocationId ,
                                                                 Guid aP1_OrganisationId )
       {
-         execute(aP0_LocationId, aP1_OrganisationId, out aP2_SDT_PageCollection);
-         return AV4SDT_PageCollection ;
+         execute(aP0_LocationId, aP1_OrganisationId, out aP2_SDT_PageStructureCollection);
+         return AV4SDT_PageStructureCollection ;
       }
 
       public void executeSubmit( Guid aP0_LocationId ,
                                  Guid aP1_OrganisationId ,
-                                 out GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageCollection )
+                                 out GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageStructureCollection )
       {
          this.AV2LocationId = aP0_LocationId;
          this.AV3OrganisationId = aP1_OrganisationId;
-         this.AV4SDT_PageCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2") ;
+         this.AV4SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2") ;
          SubmitImpl();
-         aP2_SDT_PageCollection=this.AV4SDT_PageCollection;
+         aP2_SDT_PageStructureCollection=this.AV4SDT_PageStructureCollection;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         args = new Object[] {(Guid)AV2LocationId,(Guid)AV3OrganisationId,(GXBaseCollection<SdtSDT_PageStructure>)AV4SDT_PageCollection} ;
+         args = new Object[] {(Guid)AV2LocationId,(Guid)AV3OrganisationId,(GXBaseCollection<SdtSDT_PageStructure>)AV4SDT_PageStructureCollection} ;
          ClassLoader.Execute("aprc_listpages","GeneXus.Programs","aprc_listpages", new Object[] {context }, "execute", args);
          if ( ( args != null ) && ( args.Length == 3 ) )
          {
-            AV4SDT_PageCollection = (GXBaseCollection<SdtSDT_PageStructure>)(args[2]) ;
+            AV4SDT_PageStructureCollection = (GXBaseCollection<SdtSDT_PageStructure>)(args[2]) ;
          }
          cleanup();
       }
@@ -97,7 +97,7 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV4SDT_PageCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2");
+         AV4SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2");
          /* GeneXus formulas. */
       }
 
@@ -106,9 +106,9 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private GXBaseCollection<SdtSDT_PageStructure> AV4SDT_PageCollection ;
+      private GXBaseCollection<SdtSDT_PageStructure> AV4SDT_PageStructureCollection ;
       private Object[] args ;
-      private GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageCollection ;
+      private GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageStructureCollection ;
    }
 
 }

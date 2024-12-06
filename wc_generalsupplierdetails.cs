@@ -248,7 +248,7 @@ namespace GeneXus.Programs {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( context.GetMessage( "WC_General Supplier Details", "")) ;
+            context.SendWebValue( "WC_General Supplier Details") ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -431,7 +431,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "WC_General Supplier Details", "") ;
+         return "WC_General Supplier Details" ;
       }
 
       protected void WB770( )
@@ -489,7 +489,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergencompanyname_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergencompanyname_Internalname, context.GetMessage( "Name", ""), "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergencompanyname_Internalname, "Name", "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -506,7 +506,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergenkvknumber_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenkvknumber_Internalname, context.GetMessage( "KvK Number", ""), "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenkvknumber_Internalname, "KvK Number", "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -523,7 +523,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergentypename_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergentypename_Internalname, context.GetMessage( "Category", ""), "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergentypename_Internalname, "Category", "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -540,7 +540,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergencontactname_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergencontactname_Internalname, context.GetMessage( "Contact Person", ""), "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergencontactname_Internalname, "Contact Person", "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -557,7 +557,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergencontactphone_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergencontactphone_Internalname, context.GetMessage( "Phone", ""), "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergencontactphone_Internalname, "Phone", "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -580,7 +580,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergenaddressline1_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenaddressline1_Internalname, context.GetMessage( "Address Line 1", ""), "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenaddressline1_Internalname, "Address Line 1", "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -597,7 +597,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergenaddressline2_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenaddressline2_Internalname, context.GetMessage( "Address Line 2", ""), "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenaddressline2_Internalname, "Address Line 2", "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -614,7 +614,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergenaddresszipcode_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenaddresszipcode_Internalname, context.GetMessage( "Zip Code", ""), "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenaddresszipcode_Internalname, "Zip Code", "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -631,7 +631,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergenaddresscity_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenaddresscity_Internalname, context.GetMessage( "City", ""), "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenaddresscity_Internalname, "City", "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -648,7 +648,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergenaddresscountry_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenaddresscountry_Internalname, context.GetMessage( "Country", ""), "col-sm-6 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenaddresscountry_Internalname, "Country", "col-sm-6 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-6 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -706,7 +706,7 @@ namespace GeneXus.Programs {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", context.GetMessage( "WC_General Supplier Details", ""), 0) ;
+            Form.Meta.addItem("description", "WC_General Supplier Details", 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -1129,7 +1129,7 @@ namespace GeneXus.Programs {
          {
             if ( StringUtil.StrCmp(AV11TrnMode, "DLT") == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_confdelete", ""));
+               GX_msglist.addItem("Confirm deletion.");
             }
          }
          edtavTrn_suppliergen_suppliergenphonecode_Visible = 0;
@@ -1384,7 +1384,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112714165438", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412614362867", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1402,7 +1402,7 @@ namespace GeneXus.Programs {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wc_generalsupplierdetails.js", "?2024112714165439", false, true);
+            context.AddJavascriptSource("wc_generalsupplierdetails.js", "?202412614362867", false, true);
          }
          /* End function include_jscripts */
       }

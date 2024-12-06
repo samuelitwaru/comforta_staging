@@ -81,6 +81,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         new prc_logtofile(context ).execute(  "Notify discussion message..................") ;
          if ( StringUtil.StrCmp(AV24WWPEntityName, "WWP_DynamicForm") == 0 )
          {
             AV24WWPEntityName = "Discussion";
@@ -97,8 +98,8 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          {
             GXt_char1 = AV10WWPNotificationShortDescription;
             new prc_getentitynamedescription(context ).execute(  StringUtil.Trim( AV24WWPEntityName)) ;
-            AV10WWPNotificationShortDescription = StringUtil.Format( context.GetMessage( "WWP_Notifications_MentionShortMessage", ""), StringUtil.Trim( AV23WWPUserExtendedFullName), GXt_char1, AV19WWPSubscriptionEntityRecordDescription, "", "", "", "", "", "");
-            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendmentionnotification(context ).execute(  "Mention",  AV24WWPEntityName,  AV15WWPDiscussionMessageEntityRecordId,  "fas fa-at NotificationFontIconInfoLight",  context.GetMessage( "WWP_Notifications_NewMention", ""),  AV10WWPNotificationShortDescription,  AV10WWPNotificationShortDescription,  AV18WWPNotificationLink,  AV9WWPNotificationMetadataSDT.ToJSonString(false, true),  AV21MentionWWPUserExtendedIdCollectionJson) ;
+            AV10WWPNotificationShortDescription = StringUtil.Format( "You were mentioned by %1 in a comment on %2: %3", StringUtil.Trim( AV23WWPUserExtendedFullName), GXt_char1, AV19WWPSubscriptionEntityRecordDescription, "", "", "", "", "", "");
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendmentionnotification(context ).execute(  "Mention",  AV24WWPEntityName,  AV15WWPDiscussionMessageEntityRecordId,  "fas fa-at NotificationFontIconInfoLight",  "You were mentioned",  AV10WWPNotificationShortDescription,  AV10WWPNotificationShortDescription,  AV18WWPNotificationLink,  AV9WWPNotificationMetadataSDT.ToJSonString(false, true),  AV21MentionWWPUserExtendedIdCollectionJson) ;
             new GeneXus.Programs.wwpbaseobjects.discussions.wwp_subscribementioneduserstodiscussion(context ).execute(  "GeneralDiscussion",  AV24WWPEntityName,  AV15WWPDiscussionMessageEntityRecordId,  AV19WWPSubscriptionEntityRecordDescription,  AV21MentionWWPUserExtendedIdCollectionJson) ;
          }
          GXt_objcol_svchar2 = AV26ReceptionistsToNotify;
@@ -107,7 +108,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          new prc_getlocationreceptioniststonotify(context ).execute(  GXt_char1, out  GXt_objcol_svchar2) ;
          AV26ReceptionistsToNotify = GXt_objcol_svchar2;
          new prc_subscribereceptioniststodiscussion(context ).execute(  "GeneralDiscussion",  AV24WWPEntityName,  AV15WWPDiscussionMessageEntityRecordId,  AV19WWPSubscriptionEntityRecordDescription,  AV26ReceptionistsToNotify.ToJSonString(false)) ;
-         AV10WWPNotificationShortDescription = StringUtil.Format( context.GetMessage( "%1 added a comment on a discussion related to: %2", ""), StringUtil.Trim( AV23WWPUserExtendedFullName), AV19WWPSubscriptionEntityRecordDescription, "", "", "", "", "", "", "");
+         AV10WWPNotificationShortDescription = StringUtil.Format( "%1 added a comment on a discussion related to: %2", StringUtil.Trim( AV23WWPUserExtendedFullName), AV19WWPSubscriptionEntityRecordDescription, "", "", "", "", "", "", "");
          new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  AV25NotificationDefinitionName,  AV24WWPEntityName,  AV15WWPDiscussionMessageEntityRecordId,  "far fa-comment-dots NotificationFontIconInfo",  AV8NotificationTitle,  AV10WWPNotificationShortDescription,  AV10WWPNotificationShortDescription,  AV18WWPNotificationLink,  AV9WWPNotificationMetadataSDT.ToJSonString(false, true),  AV21MentionWWPUserExtendedIdCollectionJson,  true) ;
          new GeneXus.Programs.wwpbaseobjects.discussions.wwp_subscribeloggedusertodiscussion(context ).execute(  AV25NotificationDefinitionName,  AV24WWPEntityName,  AV15WWPDiscussionMessageEntityRecordId,  AV19WWPSubscriptionEntityRecordDescription) ;
          cleanup();

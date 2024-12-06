@@ -234,7 +234,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
          {
             if ( ! ( (0==A127WWPNotificationId) ) )
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_Notification", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPNOTIFICATIONID");
+               GX_msglist.addItem("No matching 'WWP_Notification'.", "ForeignKeyNotFound", 1, "WWPNOTIFICATIONID");
                AnyError = 1;
             }
          }
@@ -249,7 +249,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
          {
             if ( ! ( (0==A128WWPNotificationDefinitionId) ) )
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_NotificationDefinition", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPNOTIFICATIONDEFINITIONID");
+               GX_msglist.addItem("No matching 'WWP_NotificationDefinition'.", "ForeignKeyNotFound", 1, "WWPNOTIFICATIONDEFINITIONID");
                AnyError = 1;
             }
          }
@@ -257,7 +257,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
          pr_default.close(3);
          if ( ! ( ( A159WWPWebNotificationStatus == 1 ) || ( A159WWPWebNotificationStatus == 2 ) || ( A159WWPWebNotificationStatus == 3 ) ) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Web Notification Status", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            GX_msglist.addItem("Field Web Notification Status is out of range", "OutOfRange", 1, "");
             AnyError = 1;
          }
       }

@@ -221,7 +221,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( context.GetMessage( "WWP_Dynamic Form_Empty WC", "")) ;
+            context.SendWebValue( "WWP_Dynamic Form_Empty WC") ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -382,7 +382,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "WWP_Dynamic Form_Empty WC", "") ;
+         return "WWP_Dynamic Form_Empty WC" ;
       }
 
       protected void WB2S0( )
@@ -431,7 +431,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", context.GetMessage( "WWP_Dynamic Form_Empty WC", ""), 0) ;
+            Form.Meta.addItem("description", "WWP_Dynamic Form_Empty WC", 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -885,7 +885,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115374797", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412614333444", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -903,7 +903,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("workwithplus/dynamicforms/wwp_df_emptywc.js", "?2024112115374798", false, true);
+            context.AddJavascriptSource("workwithplus/dynamicforms/wwp_df_emptywc.js", "?202412614333444", false, true);
          }
          /* End function include_jscripts */
       }

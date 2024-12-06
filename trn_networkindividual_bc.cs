@@ -211,27 +211,27 @@ namespace GeneXus.Programs {
          standaloneModal( ) ;
          if ( StringUtil.Len( A75NetworkIndividualBsnNumber) != 9 )
          {
-            GX_msglist.addItem(context.GetMessage( "BSN number contains 9 digits", ""), 1, "");
+            GX_msglist.addItem("BSN number contains 9 digits", 1, "");
             AnyError = 1;
          }
          if ( ! ( GxRegex.IsMatch(A78NetworkIndividualEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Network Individual Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            GX_msglist.addItem("Field Network Individual Email does not match the specified pattern", "OutOfRange", 1, "");
             AnyError = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A388NetworkIndividualPhoneNumber)) && ! GxRegex.IsMatch(A388NetworkIndividualPhoneNumber,context.GetMessage( "\\b\\d{9}\\b", "")) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A388NetworkIndividualPhoneNumber)) && ! GxRegex.IsMatch(A388NetworkIndividualPhoneNumber,"\\b\\d{9}\\b") )
          {
-            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "");
+            GX_msglist.addItem("Phone contains 9 digits", 1, "");
             AnyError = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A449NetworkIndividualHomePhoneNumb)) && ! GxRegex.IsMatch(A449NetworkIndividualHomePhoneNumb,context.GetMessage( "\\b\\d{9}\\b", "")) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A449NetworkIndividualHomePhoneNumb)) && ! GxRegex.IsMatch(A449NetworkIndividualHomePhoneNumb,"\\b\\d{9}\\b") )
          {
-            GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "");
+            GX_msglist.addItem("Phone contains 9 digits", 1, "");
             AnyError = 1;
          }
          if ( ! ( ( StringUtil.StrCmp(A81NetworkIndividualGender, "Male") == 0 ) || ( StringUtil.StrCmp(A81NetworkIndividualGender, "Female") == 0 ) || ( StringUtil.StrCmp(A81NetworkIndividualGender, "Other") == 0 ) ) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Network Individual Gender", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            GX_msglist.addItem("Field Network Individual Gender is out of range", "OutOfRange", 1, "");
             AnyError = 1;
          }
       }
@@ -539,7 +539,7 @@ namespace GeneXus.Programs {
             pr_default.execute(7, new Object[] {A74NetworkIndividualId});
             if ( (pr_default.getStatus(7) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_ResidentNetworkIndividual", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_ResidentNetworkIndividual"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(7);

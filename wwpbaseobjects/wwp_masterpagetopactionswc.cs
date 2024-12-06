@@ -225,7 +225,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( context.GetMessage( "WWP_Master Page Top Actions WC", "")) ;
+            context.SendWebValue( "WWP_Master Page Top Actions WC") ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -248,6 +248,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             enableOutput();
          }
+         context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          if ( StringUtil.Len( sPrefix) == 0 )
@@ -321,6 +322,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void send_integrity_footer_hashes( )
       {
+         GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISAUTHORIZED_MYPROFILE", AV16IsAuthorized_MyProfile);
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_MYPROFILE", GetSecureSignedToken( sPrefix, AV16IsAuthorized_MyProfile, context));
          GXKey = Crypto.GetSiteKey( );
          forbiddenHiddens = new GXProperties();
          forbiddenHiddens.Add("hshsalt", sPrefix+"hsh"+"WWP_MasterPageTopActionsWC");
@@ -334,6 +337,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
+         GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISAUTHORIZED_MYPROFILE", AV16IsAuthorized_MyProfile);
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_MYPROFILE", GetSecureSignedToken( sPrefix, AV16IsAuthorized_MyProfile, context));
       }
 
       protected void RenderHtmlCloseForm3A2( )
@@ -393,7 +398,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "WWP_Master Page Top Actions WC", "") ;
+         return "WWP_Master Page Top Actions WC" ;
       }
 
       protected void WB3A0( )
@@ -412,6 +417,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             if ( StringUtil.Len( sPrefix) != 0 )
             {
                GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "wwpbaseobjects.wwp_masterpagetopactionswc.aspx");
+               context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
                context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
                context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
             }
@@ -441,7 +447,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavUsername_Internalname, context.GetMessage( "User Name", ""), "gx-form-item MasterPageTopActionsUserNameLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavUsername_Internalname, "User Name", "gx-form-item MasterPageTopActionsUserNameLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 14,'" + sPrefix + "',false,'',0)\"";
             GxWebStd.gx_single_line_edit( context, edtavUsername_Internalname, AV6UserName, StringUtil.RTrim( context.localUtil.Format( AV6UserName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,14);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavUsername_Jsonclick, 0, "MasterPageTopActionsUserName", "", "", "", "", 1, edtavUsername_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, false, "", "start", true, "", "HLP_WWPBaseObjects/WWP_MasterPageTopActionsWC.htm");
@@ -452,7 +458,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavRolesdescriptions_Internalname, context.GetMessage( "Roles Descriptions", ""), "gx-form-item MasterPageTopActionsRoleNameLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavRolesdescriptions_Internalname, "Roles Descriptions", "gx-form-item MasterPageTopActionsRoleNameLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 17,'" + sPrefix + "',false,'',0)\"";
             GxWebStd.gx_single_line_edit( context, edtavRolesdescriptions_Internalname, AV12RolesDescriptions, StringUtil.RTrim( context.localUtil.Format( AV12RolesDescriptions, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,17);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavRolesdescriptions_Jsonclick, 0, "MasterPageTopActionsRoleName", "", "", "", "", 1, edtavRolesdescriptions_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, false, "", "start", true, "", "HLP_WWPBaseObjects/WWP_MasterPageTopActionsWC.htm");
@@ -461,6 +467,18 @@ namespace GeneXus.Programs.wwpbaseobjects {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* User Defined Control */
+            ucBtnmyprofile.SetProperty("TooltipText", Btnmyprofile_Tooltiptext);
+            ucBtnmyprofile.SetProperty("BeforeIconClass", Btnmyprofile_Beforeiconclass);
+            ucBtnmyprofile.SetProperty("Caption", Btnmyprofile_Caption);
+            ucBtnmyprofile.SetProperty("Class", Btnmyprofile_Class);
+            ucBtnmyprofile.Render(context, "wwp_iconbutton", Btnmyprofile_Internalname, sPrefix+"BTNMYPROFILEContainer");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -514,7 +532,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", context.GetMessage( "WWP_Master Page Top Actions WC", ""), 0) ;
+            Form.Meta.addItem("description", "WWP_Master Page Top Actions WC", 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -600,6 +618,40 @@ namespace GeneXus.Programs.wwpbaseobjects {
                                  }
                               }
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "REFRESH") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP3A0( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    /* Execute user event: Refresh */
+                                    E123A2 ();
+                                 }
+                              }
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "'DOMYPROFILE'") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP3A0( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    /* Execute user event: 'DoMyProfile' */
+                                    E133A2 ();
+                                 }
+                              }
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "'DOACTIONCHANGEPASSWORD'") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
@@ -613,7 +665,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'DoActionChangePassword' */
-                                    E123A2 ();
+                                    E143A2 ();
                                  }
                               }
                            }
@@ -630,7 +682,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'DoLogout' */
-                                    E133A2 ();
+                                    E153A2 ();
                                  }
                               }
                            }
@@ -647,7 +699,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'DoActionChangeYourPassword' */
-                                    E143A2 ();
+                                    E163A2 ();
                                  }
                               }
                            }
@@ -664,7 +716,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: Load */
-                                    E153A2 ();
+                                    E173A2 ();
                                  }
                               }
                            }
@@ -816,19 +868,23 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          initialize_formulas( ) ;
          clear_multi_value_controls( ) ;
+         /* Execute user event: Refresh */
+         E123A2 ();
          gxdyncontrolsrefreshing = true;
          fix_multi_value_controls( ) ;
          gxdyncontrolsrefreshing = false;
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E153A2 ();
+            E173A2 ();
             WB3A0( ) ;
          }
       }
 
       protected void send_integrity_lvl_hashes3A2( )
       {
+         GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISAUTHORIZED_MYPROFILE", AV16IsAuthorized_MyProfile);
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_MYPROFILE", GetSecureSignedToken( sPrefix, AV16IsAuthorized_MyProfile, context));
       }
 
       protected void before_start_formulas( )
@@ -899,10 +955,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
          AV6UserName = (String.IsNullOrEmpty(StringUtil.RTrim( AV9GAMUser.gxTpr_Firstname)) ? AV9GAMUser.gxTpr_Name : StringUtil.Trim( AV9GAMUser.gxTpr_Firstname)+" "+StringUtil.Trim( AV9GAMUser.gxTpr_Lastname));
          AssignAttri(sPrefix, false, "AV6UserName", AV6UserName);
          AV10GAMRoleCollection = new GeneXus.Programs.genexussecurity.SdtGAMSession(context).getroles(out  AV7GAMErrorCollection);
-         AV16GXV1 = 1;
-         while ( AV16GXV1 <= AV10GAMRoleCollection.Count )
+         AV17GXV1 = 1;
+         while ( AV17GXV1 <= AV10GAMRoleCollection.Count )
          {
-            AV11GAMRole = ((GeneXus.Programs.genexussecurity.SdtGAMRole)AV10GAMRoleCollection.Item(AV16GXV1));
+            AV11GAMRole = ((GeneXus.Programs.genexussecurity.SdtGAMRole)AV10GAMRoleCollection.Item(AV17GXV1));
             if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV12RolesDescriptions)) )
             {
                AV12RolesDescriptions += ", ";
@@ -910,11 +966,38 @@ namespace GeneXus.Programs.wwpbaseobjects {
             }
             AV12RolesDescriptions += (String.IsNullOrEmpty(StringUtil.RTrim( AV11GAMRole.gxTpr_Description)) ? AV11GAMRole.gxTpr_Name : AV11GAMRole.gxTpr_Description);
             AssignAttri(sPrefix, false, "AV12RolesDescriptions", AV12RolesDescriptions);
-            AV16GXV1 = (int)(AV16GXV1+1);
+            AV17GXV1 = (int)(AV17GXV1+1);
          }
       }
 
       protected void E123A2( )
+      {
+         /* Refresh Routine */
+         returnInSub = false;
+         /* Execute user subroutine: 'CHECKSECURITYFORACTIONS' */
+         S112 ();
+         if (returnInSub) return;
+         /*  Sending Event outputs  */
+      }
+
+      protected void E133A2( )
+      {
+         /* 'DoMyProfile' Routine */
+         returnInSub = false;
+         this.executeExternalObjectMethod(sPrefix, false, "WWPActions", "DropDownComponent_Close", new Object[] {(string)divTablemain_Internalname}, false);
+         if ( AV16IsAuthorized_MyProfile )
+         {
+            CallWebObject(formatLink("wp_userprofile.aspx") );
+            context.wjLocDisableFrm = 1;
+         }
+         else
+         {
+            GX_msglist.addItem("Action no longer available");
+            context.DoAjaxRefreshCmp(sPrefix);
+         }
+      }
+
+      protected void E143A2( )
       {
          /* 'DoActionChangePassword' Routine */
          returnInSub = false;
@@ -923,7 +1006,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context.wjLocDisableFrm = 1;
       }
 
-      protected void E133A2( )
+      protected void E153A2( )
       {
          /* 'DoLogout' Routine */
          returnInSub = false;
@@ -933,7 +1016,23 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context.wjLocDisableFrm = 1;
       }
 
-      protected void E143A2( )
+      protected void S112( )
+      {
+         /* 'CHECKSECURITYFORACTIONS' Routine */
+         returnInSub = false;
+         GXt_boolean1 = AV16IsAuthorized_MyProfile;
+         new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "<Check_Is_Authenticated>", out  GXt_boolean1) ;
+         AV16IsAuthorized_MyProfile = GXt_boolean1;
+         AssignAttri(sPrefix, false, "AV16IsAuthorized_MyProfile", AV16IsAuthorized_MyProfile);
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_MYPROFILE", GetSecureSignedToken( sPrefix, AV16IsAuthorized_MyProfile, context));
+         if ( ! ( AV16IsAuthorized_MyProfile ) )
+         {
+            Btnmyprofile_Visible = false;
+            ucBtnmyprofile.SendProperty(context, sPrefix, false, Btnmyprofile_Internalname, "Visible", StringUtil.BoolToStr( Btnmyprofile_Visible));
+         }
+      }
+
+      protected void E163A2( )
       {
          /* 'DoActionChangeYourPassword' Routine */
          returnInSub = false;
@@ -946,7 +1045,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
       }
 
-      protected void E153A2( )
+      protected void E173A2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -1127,7 +1226,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202411253412233", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412615574016", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1145,7 +1244,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wwpbaseobjects/wwp_masterpagetopactionswc.js", "?202411253412236", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/wwp_masterpagetopactionswc.js", "?202412615574018", false, true);
+            context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
             context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
             context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          }
@@ -1163,6 +1263,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          edtavRolesdescriptions_Internalname = sPrefix+"vROLESDESCRIPTIONS";
          divUnnamedtable1_Internalname = sPrefix+"UNNAMEDTABLE1";
          divUserinformation_Internalname = sPrefix+"USERINFORMATION";
+         Btnmyprofile_Internalname = sPrefix+"BTNMYPROFILE";
          Btnactionchangepassword_Internalname = sPrefix+"BTNACTIONCHANGEPASSWORD";
          Btnlogout_Internalname = sPrefix+"BTNLOGOUT";
          divTablemain_Internalname = sPrefix+"TABLEMAIN";
@@ -1184,14 +1285,19 @@ namespace GeneXus.Programs.wwpbaseobjects {
             }
          }
          init_default_properties( ) ;
+         Btnmyprofile_Visible = Convert.ToBoolean( -1);
          Btnlogout_Class = "MasterPageTopActionsOption";
-         Btnlogout_Caption = context.GetMessage( "WWP_GAM_Logout", "");
+         Btnlogout_Caption = "Logout";
          Btnlogout_Beforeiconclass = "fas fa-sign-out-alt FontIconTopRightActions";
          Btnlogout_Tooltiptext = "";
          Btnactionchangepassword_Class = "MasterPageTopActionsOption";
-         Btnactionchangepassword_Caption = context.GetMessage( "WWP_GAM_ChangePassword", "");
+         Btnactionchangepassword_Caption = "Change Password";
          Btnactionchangepassword_Beforeiconclass = "fa fa-lock FontIconTopRightActions";
          Btnactionchangepassword_Tooltiptext = "";
+         Btnmyprofile_Class = "MasterPageTopActionsOption";
+         Btnmyprofile_Caption = "My Profile";
+         Btnmyprofile_Beforeiconclass = "fas fa-circle-user FontIconTopRightActions";
+         Btnmyprofile_Tooltiptext = "";
          edtavRolesdescriptions_Jsonclick = "";
          edtavRolesdescriptions_Enabled = 1;
          edtavUsername_Jsonclick = "";
@@ -1212,10 +1318,12 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV12RolesDescriptions","fld":"vROLESDESCRIPTIONS"}]}""");
-         setEventMetadata("'DOACTIONCHANGEPASSWORD'","""{"handler":"E123A2","iparms":[]}""");
-         setEventMetadata("'DOLOGOUT'","""{"handler":"E133A2","iparms":[]}""");
-         setEventMetadata("'DOACTIONCHANGEYOURPASSWORD'","""{"handler":"E143A2","iparms":[]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV16IsAuthorized_MyProfile","fld":"vISAUTHORIZED_MYPROFILE","hsh":true},{"av":"AV12RolesDescriptions","fld":"vROLESDESCRIPTIONS"}]""");
+         setEventMetadata("REFRESH",""","oparms":[{"av":"AV16IsAuthorized_MyProfile","fld":"vISAUTHORIZED_MYPROFILE","hsh":true},{"av":"Btnmyprofile_Visible","ctrl":"BTNMYPROFILE","prop":"Visible"}]}""");
+         setEventMetadata("'DOMYPROFILE'","""{"handler":"E133A2","iparms":[{"av":"AV16IsAuthorized_MyProfile","fld":"vISAUTHORIZED_MYPROFILE","hsh":true}]}""");
+         setEventMetadata("'DOACTIONCHANGEPASSWORD'","""{"handler":"E143A2","iparms":[]}""");
+         setEventMetadata("'DOLOGOUT'","""{"handler":"E153A2","iparms":[]}""");
+         setEventMetadata("'DOACTIONCHANGEYOURPASSWORD'","""{"handler":"E163A2","iparms":[]}""");
          return  ;
       }
 
@@ -1242,6 +1350,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          GX_FocusControl = "";
          TempTags = "";
          AV6UserName = "";
+         ucBtnmyprofile = new GXUserControl();
          ucBtnactionchangepassword = new GXUserControl();
          ucBtnlogout = new GXUserControl();
          Form = new GXWebForm();
@@ -1274,7 +1383,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private short nDonePA ;
       private int edtavUsername_Enabled ;
       private int edtavRolesdescriptions_Enabled ;
-      private int AV16GXV1 ;
+      private int AV17GXV1 ;
       private int idxLst ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
@@ -1295,6 +1404,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private string TempTags ;
       private string edtavUsername_Jsonclick ;
       private string edtavRolesdescriptions_Jsonclick ;
+      private string Btnmyprofile_Tooltiptext ;
+      private string Btnmyprofile_Beforeiconclass ;
+      private string Btnmyprofile_Caption ;
+      private string Btnmyprofile_Class ;
+      private string Btnmyprofile_Internalname ;
       private string Btnactionchangepassword_Tooltiptext ;
       private string Btnactionchangepassword_Beforeiconclass ;
       private string Btnactionchangepassword_Caption ;
@@ -1313,15 +1427,19 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private string hsh ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
+      private bool AV16IsAuthorized_MyProfile ;
       private bool wbLoad ;
       private bool Rfr0gs ;
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private bool AV8isOk ;
+      private bool GXt_boolean1 ;
+      private bool Btnmyprofile_Visible ;
       private string AV12RolesDescriptions ;
       private string AV6UserName ;
       private GXProperties forbiddenHiddens ;
+      private GXUserControl ucBtnmyprofile ;
       private GXUserControl ucBtnactionchangepassword ;
       private GXUserControl ucBtnlogout ;
       private GXWebForm Form ;

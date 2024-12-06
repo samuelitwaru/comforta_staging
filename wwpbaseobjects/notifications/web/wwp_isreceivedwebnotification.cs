@@ -28,6 +28,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -122,6 +124,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
       private bool AV9IsRecived ;
       private bool A162WWPWebNotificationReceived ;
       private bool n162WWPWebNotificationReceived ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;

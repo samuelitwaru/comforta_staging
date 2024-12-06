@@ -109,7 +109,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", context.GetMessage( "Extended User from GAMUser", ""), 0) ;
+         Form.Meta.addItem("description", "Extended User from GAMUser", 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -277,7 +277,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
          /* Text block */
-         GxWebStd.gx_label_ctrl( context, lblTitle_Internalname, context.GetMessage( "Extended User from GAMUser", ""), "", "", lblTitle_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "heading-01", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/WWP_UserExtended.htm");
+         GxWebStd.gx_label_ctrl( context, lblTitle_Internalname, "Extended User from GAMUser", "", "", lblTitle_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "heading-01", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/WWP_UserExtended.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
@@ -339,7 +339,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'',false,'',0)\"";
          ClassString = "Button button-secondary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_select_Internalname, "", context.GetMessage( "GX_BtnSelect", ""), bttBtn_select_Jsonclick, 5, context.GetMessage( "GX_BtnSelect", ""), "", StyleString, ClassString, bttBtn_select_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ESELECT."+"'", TempTags, "", 2, "HLP_WWPBaseObjects/WWP_UserExtended.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_select_Internalname, "", "Select", bttBtn_select_Jsonclick, 5, "Select", "", StyleString, ClassString, bttBtn_select_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ESELECT."+"'", TempTags, "", 2, "HLP_WWPBaseObjects/WWP_UserExtended.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -352,7 +352,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPUserExtendedId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPUserExtendedId_Internalname, context.GetMessage( "Id", ""), "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPUserExtendedId_Internalname, "Id", "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -369,7 +369,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+imgWWPUserExtendedPhoto_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, "", context.GetMessage( "Photo", ""), "col-sm-3 ImageAttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, "", "Photo", "col-sm-3 ImageAttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Static Bitmap Variable */
@@ -392,7 +392,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPUserExtendedName_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPUserExtendedName_Internalname, context.GetMessage( "Extended Name", ""), "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPUserExtendedName_Internalname, "Extended Name", "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -409,7 +409,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPUserExtendedFullName_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPUserExtendedFullName_Internalname, context.GetMessage( "Full Name", ""), "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPUserExtendedFullName_Internalname, "Full Name", "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -426,7 +426,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPUserExtendedPhone_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPUserExtendedPhone_Internalname, context.GetMessage( "Phone", ""), "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPUserExtendedPhone_Internalname, "Phone", "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -447,7 +447,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPUserExtendedEmail_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPUserExtendedEmail_Internalname, context.GetMessage( "Email", ""), "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPUserExtendedEmail_Internalname, "Email", "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -464,7 +464,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPUserExtendedEmaiNotif_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPUserExtendedEmaiNotif_Internalname, context.GetMessage( "Email Notifications", ""), "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPUserExtendedEmaiNotif_Internalname, "Email Notifications", "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
@@ -481,14 +481,14 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chkWWPUserExtendedSMSNotif_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, chkWWPUserExtendedSMSNotif_Internalname, context.GetMessage( "SMS Notifications", ""), "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, chkWWPUserExtendedSMSNotif_Internalname, "SMS Notifications", "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Check box */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 69,'',false,'',0)\"";
          ClassString = "Attribute";
          StyleString = "";
-         GxWebStd.gx_checkbox_ctrl( context, chkWWPUserExtendedSMSNotif_Internalname, StringUtil.BoolToStr( A117WWPUserExtendedSMSNotif), "", context.GetMessage( "SMS Notifications", ""), 1, chkWWPUserExtendedSMSNotif.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(69, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,69);\"");
+         GxWebStd.gx_checkbox_ctrl( context, chkWWPUserExtendedSMSNotif_Internalname, StringUtil.BoolToStr( A117WWPUserExtendedSMSNotif), "", "SMS Notifications", 1, chkWWPUserExtendedSMSNotif.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(69, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,69);\"");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -500,14 +500,14 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chkWWPUserExtendedMobileNotif_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, chkWWPUserExtendedMobileNotif_Internalname, context.GetMessage( "Mobile Notifications", ""), "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, chkWWPUserExtendedMobileNotif_Internalname, "Mobile Notifications", "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Check box */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 74,'',false,'',0)\"";
          ClassString = "Attribute";
          StyleString = "";
-         GxWebStd.gx_checkbox_ctrl( context, chkWWPUserExtendedMobileNotif_Internalname, StringUtil.BoolToStr( A118WWPUserExtendedMobileNotif), "", context.GetMessage( "Mobile Notifications", ""), 1, chkWWPUserExtendedMobileNotif.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(74, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,74);\"");
+         GxWebStd.gx_checkbox_ctrl( context, chkWWPUserExtendedMobileNotif_Internalname, StringUtil.BoolToStr( A118WWPUserExtendedMobileNotif), "", "Mobile Notifications", 1, chkWWPUserExtendedMobileNotif.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(74, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,74);\"");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -519,14 +519,14 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chkWWPUserExtendedDesktopNotif_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, chkWWPUserExtendedDesktopNotif_Internalname, context.GetMessage( "Destkop Notifications", ""), "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, chkWWPUserExtendedDesktopNotif_Internalname, "Destkop Notifications", "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Check box */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 79,'',false,'',0)\"";
          ClassString = "Attribute";
          StyleString = "";
-         GxWebStd.gx_checkbox_ctrl( context, chkWWPUserExtendedDesktopNotif_Internalname, StringUtil.BoolToStr( A119WWPUserExtendedDesktopNotif), "", context.GetMessage( "Destkop Notifications", ""), 1, chkWWPUserExtendedDesktopNotif.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(79, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,79);\"");
+         GxWebStd.gx_checkbox_ctrl( context, chkWWPUserExtendedDesktopNotif_Internalname, StringUtil.BoolToStr( A119WWPUserExtendedDesktopNotif), "", "Destkop Notifications", 1, chkWWPUserExtendedDesktopNotif.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(79, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,79);\"");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -538,14 +538,14 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chkWWPUserExtendedDeleted_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, chkWWPUserExtendedDeleted_Internalname, context.GetMessage( "Extended Deleted", ""), "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, chkWWPUserExtendedDeleted_Internalname, "Extended Deleted", "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Check box */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 84,'',false,'',0)\"";
          ClassString = "Attribute";
          StyleString = "";
-         GxWebStd.gx_checkbox_ctrl( context, chkWWPUserExtendedDeleted_Internalname, StringUtil.BoolToStr( A122WWPUserExtendedDeleted), "", context.GetMessage( "Extended Deleted", ""), 1, chkWWPUserExtendedDeleted.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(84, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,84);\"");
+         GxWebStd.gx_checkbox_ctrl( context, chkWWPUserExtendedDeleted_Internalname, StringUtil.BoolToStr( A122WWPUserExtendedDeleted), "", "Extended Deleted", 1, chkWWPUserExtendedDeleted.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(84, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,84);\"");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -557,13 +557,13 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtWWPUserExtendedDeletedIn_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtWWPUserExtendedDeletedIn_Internalname, context.GetMessage( "Deleted In", ""), "col-sm-3 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtWWPUserExtendedDeletedIn_Internalname, "Deleted In", "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 89,'',false,'',0)\"";
          context.WriteHtmlText( "<div id=\""+edtWWPUserExtendedDeletedIn_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-         GxWebStd.gx_single_line_edit( context, edtWWPUserExtendedDeletedIn_Internalname, context.localUtil.TToC( A123WWPUserExtendedDeletedIn, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( A123WWPUserExtendedDeletedIn, "99/99/99 99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,89);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPUserExtendedDeletedIn_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPUserExtendedDeletedIn_Enabled, 0, "text", "", 17, "chr", 1, "row", 17, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WWPBaseObjects/WWP_UserExtended.htm");
+         GxWebStd.gx_single_line_edit( context, edtWWPUserExtendedDeletedIn_Internalname, context.localUtil.TToC( A123WWPUserExtendedDeletedIn, 10, 8, 0, 3, "/", ":", " "), context.localUtil.Format( A123WWPUserExtendedDeletedIn, "99/99/99 99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'DMY',5,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'DMY',5,24,'eng',false,0);"+";gx.evt.onblur(this,89);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtWWPUserExtendedDeletedIn_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtWWPUserExtendedDeletedIn_Enabled, 0, "text", "", 17, "chr", 1, "row", 17, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WWPBaseObjects/WWP_UserExtended.htm");
          GxWebStd.gx_bitmap( context, edtWWPUserExtendedDeletedIn_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtWWPUserExtendedDeletedIn_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WWPBaseObjects/WWP_UserExtended.htm");
          context.WriteHtmlTextNl( "</div>") ;
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -584,21 +584,21 @@ namespace GeneXus.Programs.wwpbaseobjects {
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 94,'',false,'',0)\"";
          ClassString = "Button button-primary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtn_enter_Visible, bttBtn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/WWP_UserExtended.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_enter_Internalname, "", "Confirm", bttBtn_enter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtn_enter_Visible, bttBtn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/WWP_UserExtended.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 96,'',false,'',0)\"";
          ClassString = "Button button-tertiary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/WWP_UserExtended.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_cancel_Internalname, "", "Cancel", bttBtn_cancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, bttBtn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/WWP_UserExtended.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 98,'',false,'',0)\"";
          ClassString = "Button button-tertiary";
          StyleString = "";
-         GxWebStd.gx_button_ctrl( context, bttBtn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtn_delete_Visible, bttBtn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/WWP_UserExtended.htm");
+         GxWebStd.gx_button_ctrl( context, bttBtn_delete_Internalname, "", "Delete", bttBtn_delete_Jsonclick, 5, "Delete", "", StyleString, ClassString, bttBtn_delete_Visible, bttBtn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/WWP_UserExtended.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "end", "Middle", "div");
@@ -649,8 +649,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
             Z122WWPUserExtendedDeleted = StringUtil.StrToBool( cgiGet( "Z122WWPUserExtendedDeleted"));
             Z123WWPUserExtendedDeletedIn = context.localUtil.CToT( cgiGet( "Z123WWPUserExtendedDeletedIn"), 0);
             n123WWPUserExtendedDeletedIn = ((DateTime.MinValue==A123WWPUserExtendedDeletedIn) ? true : false);
-            IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-            IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), ".", ","), 18, MidpointRounding.ToEven));
+            IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), ".", ","), 18, MidpointRounding.ToEven));
             Gx_mode = cgiGet( "Mode");
             A40000WWPUserExtendedPhoto_GXI = cgiGet( "WWPUSEREXTENDEDPHOTO_GXI");
             /* Read variables values. */
@@ -677,22 +677,22 @@ namespace GeneXus.Programs.wwpbaseobjects {
             AssignAttri("", false, "A119WWPUserExtendedDesktopNotif", A119WWPUserExtendedDesktopNotif);
             A122WWPUserExtendedDeleted = StringUtil.StrToBool( cgiGet( chkWWPUserExtendedDeleted_Internalname));
             AssignAttri("", false, "A122WWPUserExtendedDeleted", A122WWPUserExtendedDeleted);
-            if ( context.localUtil.VCDateTime( cgiGet( edtWWPUserExtendedDeletedIn_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt"))), (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0))) == 0 )
+            if ( context.localUtil.VCDateTime( cgiGet( edtWWPUserExtendedDeletedIn_Internalname), 2, 0) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {context.GetMessage( "WWPUser Extended Deleted In", "")}), 1, "WWPUSEREXTENDEDDELETEDIN");
+               GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {"WWPUser Extended Deleted In"}), 1, "WWPUSEREXTENDEDDELETEDIN");
                AnyError = 1;
                GX_FocusControl = edtWWPUserExtendedDeletedIn_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
                A123WWPUserExtendedDeletedIn = (DateTime)(DateTime.MinValue);
                n123WWPUserExtendedDeletedIn = false;
-               AssignAttri("", false, "A123WWPUserExtendedDeletedIn", context.localUtil.TToC( A123WWPUserExtendedDeletedIn, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+               AssignAttri("", false, "A123WWPUserExtendedDeletedIn", context.localUtil.TToC( A123WWPUserExtendedDeletedIn, 8, 5, 0, 3, "/", ":", " "));
             }
             else
             {
                A123WWPUserExtendedDeletedIn = context.localUtil.CToT( cgiGet( edtWWPUserExtendedDeletedIn_Internalname));
                n123WWPUserExtendedDeletedIn = false;
-               AssignAttri("", false, "A123WWPUserExtendedDeletedIn", context.localUtil.TToC( A123WWPUserExtendedDeletedIn, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+               AssignAttri("", false, "A123WWPUserExtendedDeletedIn", context.localUtil.TToC( A123WWPUserExtendedDeletedIn, 8, 5, 0, 3, "/", ":", " "));
             }
             n123WWPUserExtendedDeletedIn = ((DateTime.MinValue==A123WWPUserExtendedDeletedIn) ? true : false);
             /* Read subfile selected row values. */
@@ -989,7 +989,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             AssignAttri("", false, "A122WWPUserExtendedDeleted", A122WWPUserExtendedDeleted);
             A123WWPUserExtendedDeletedIn = T000G4_A123WWPUserExtendedDeletedIn[0];
             n123WWPUserExtendedDeletedIn = T000G4_n123WWPUserExtendedDeletedIn[0];
-            AssignAttri("", false, "A123WWPUserExtendedDeletedIn", context.localUtil.TToC( A123WWPUserExtendedDeletedIn, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+            AssignAttri("", false, "A123WWPUserExtendedDeletedIn", context.localUtil.TToC( A123WWPUserExtendedDeletedIn, 8, 5, 0, 3, "/", ":", " "));
             A115WWPUserExtendedPhoto = T000G4_A115WWPUserExtendedPhoto[0];
             AssignAttri("", false, "A115WWPUserExtendedPhoto", A115WWPUserExtendedPhoto);
             AssignProp("", false, imgWWPUserExtendedPhoto_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A115WWPUserExtendedPhoto)) ? A40000WWPUserExtendedPhoto_GXI : context.convertURL( context.PathToRelativeUrl( A115WWPUserExtendedPhoto))), true);
@@ -1010,7 +1010,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          standaloneModal( ) ;
          if ( ! ( GxRegex.IsMatch(A114WWPUserExtendedEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "User Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "WWPUSEREXTENDEDEMAIL");
+            GX_msglist.addItem("Field User Email does not match the specified pattern", "OutOfRange", 1, "WWPUSEREXTENDEDEMAIL");
             AnyError = 1;
             GX_FocusControl = edtWWPUserExtendedEmail_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1074,7 +1074,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             AssignAttri("", false, "A122WWPUserExtendedDeleted", A122WWPUserExtendedDeleted);
             A123WWPUserExtendedDeletedIn = T000G3_A123WWPUserExtendedDeletedIn[0];
             n123WWPUserExtendedDeletedIn = T000G3_n123WWPUserExtendedDeletedIn[0];
-            AssignAttri("", false, "A123WWPUserExtendedDeletedIn", context.localUtil.TToC( A123WWPUserExtendedDeletedIn, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+            AssignAttri("", false, "A123WWPUserExtendedDeletedIn", context.localUtil.TToC( A123WWPUserExtendedDeletedIn, 8, 5, 0, 3, "/", ":", " "));
             A115WWPUserExtendedPhoto = T000G3_A115WWPUserExtendedPhoto[0];
             AssignAttri("", false, "A115WWPUserExtendedPhoto", A115WWPUserExtendedPhoto);
             AssignProp("", false, imgWWPUserExtendedPhoto_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A115WWPUserExtendedPhoto)) ? A40000WWPUserExtendedPhoto_GXI : context.convertURL( context.PathToRelativeUrl( A115WWPUserExtendedPhoto))), true);
@@ -1706,7 +1706,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(10, new Object[] {n112WWPUserExtendedId, A112WWPUserExtendedId});
             if ( (pr_default.getStatus(10) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_DiscussionMessageMention", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_DiscussionMessageMention"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(10);
@@ -1714,7 +1714,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(11, new Object[] {n112WWPUserExtendedId, A112WWPUserExtendedId});
             if ( (pr_default.getStatus(11) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWPForm Instance", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWPForm Instance"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(11);
@@ -1722,7 +1722,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(12, new Object[] {n112WWPUserExtendedId, A112WWPUserExtendedId});
             if ( (pr_default.getStatus(12) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_DiscussionMessage", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_DiscussionMessage"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(12);
@@ -1730,7 +1730,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(13, new Object[] {n112WWPUserExtendedId, A112WWPUserExtendedId});
             if ( (pr_default.getStatus(13) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_Notification", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_Notification"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(13);
@@ -1738,7 +1738,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(14, new Object[] {n112WWPUserExtendedId, A112WWPUserExtendedId});
             if ( (pr_default.getStatus(14) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_WebClient", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_WebClient"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(14);
@@ -1746,7 +1746,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(15, new Object[] {n112WWPUserExtendedId, A112WWPUserExtendedId});
             if ( (pr_default.getStatus(15) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_Subscription", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_Subscription"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(15);
@@ -1928,7 +1928,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1918140), false, true);
-         context.AddJavascriptSource("calendar-"+StringUtil.Substring( context.GetLanguageProperty( "culture"), 1, 2)+".js", "?"+context.GetBuildNumber( 1918140), false, true);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -1984,8 +1984,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          GxWebStd.gx_boolean_hidden_field( context, "Z119WWPUserExtendedDesktopNotif", Z119WWPUserExtendedDesktopNotif);
          GxWebStd.gx_boolean_hidden_field( context, "Z122WWPUserExtendedDeleted", Z122WWPUserExtendedDeleted);
          GxWebStd.gx_hidden_field( context, "Z123WWPUserExtendedDeletedIn", context.localUtil.TToC( Z123WWPUserExtendedDeletedIn, 10, 8, 0, 0, "/", ":", " "));
-         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
-         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "Mode", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "WWPUSEREXTENDEDPHOTO_GXI", A40000WWPUserExtendedPhoto_GXI);
          GXCCtlgxBlob = "WWPUSEREXTENDEDPHOTO" + "_gxBlob";
@@ -2011,18 +2011,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
             enableOutput();
          }
          include_jscripts( ) ;
-         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
-         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
-         if ( ! context.isSpaRequest( ) )
-         {
-            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
-            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
-            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
-            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
-            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
-            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
-         }
-         context.WriteHtmlText( "</script>") ;
       }
 
       public override short ExecuteStartEvent( )
@@ -2068,7 +2056,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "Extended User from GAMUser", "") ;
+         return "Extended User from GAMUser" ;
       }
 
       protected void InitializeNonKey0G26( )
@@ -2100,7 +2088,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          AssignAttri("", false, "A122WWPUserExtendedDeleted", A122WWPUserExtendedDeleted);
          A123WWPUserExtendedDeletedIn = (DateTime)(DateTime.MinValue);
          n123WWPUserExtendedDeletedIn = false;
-         AssignAttri("", false, "A123WWPUserExtendedDeletedIn", context.localUtil.TToC( A123WWPUserExtendedDeletedIn, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+         AssignAttri("", false, "A123WWPUserExtendedDeletedIn", context.localUtil.TToC( A123WWPUserExtendedDeletedIn, 8, 5, 0, 3, "/", ":", " "));
          n123WWPUserExtendedDeletedIn = ((DateTime.MinValue==A123WWPUserExtendedDeletedIn) ? true : false);
          Z121WWPUserExtendedName = "";
          Z113WWPUserExtendedFullName = "";
@@ -2138,7 +2126,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115415293", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241261511347", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2153,8 +2141,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wwpbaseobjects/wwp_userextended.js", "?2024112115415294", false, true);
+         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wwpbaseobjects/wwp_userextended.js", "?20241261511347", false, true);
          /* End function include_jscripts */
       }
 
@@ -2200,7 +2188,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = context.GetMessage( "Extended User from GAMUser", "");
+         Form.Caption = "Extended User from GAMUser";
          bttBtn_delete_Enabled = 1;
          bttBtn_delete_Visible = 1;
          bttBtn_cancel_Visible = 1;
@@ -2246,28 +2234,28 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          chkWWPUserExtendedSMSNotif.Name = "WWPUSEREXTENDEDSMSNOTIF";
          chkWWPUserExtendedSMSNotif.WebTags = "";
-         chkWWPUserExtendedSMSNotif.Caption = context.GetMessage( "SMS Notifications", "");
+         chkWWPUserExtendedSMSNotif.Caption = "SMS Notifications";
          AssignProp("", false, chkWWPUserExtendedSMSNotif_Internalname, "TitleCaption", chkWWPUserExtendedSMSNotif.Caption, true);
          chkWWPUserExtendedSMSNotif.CheckedValue = "false";
          A117WWPUserExtendedSMSNotif = StringUtil.StrToBool( StringUtil.BoolToStr( A117WWPUserExtendedSMSNotif));
          AssignAttri("", false, "A117WWPUserExtendedSMSNotif", A117WWPUserExtendedSMSNotif);
          chkWWPUserExtendedMobileNotif.Name = "WWPUSEREXTENDEDMOBILENOTIF";
          chkWWPUserExtendedMobileNotif.WebTags = "";
-         chkWWPUserExtendedMobileNotif.Caption = context.GetMessage( "Mobile Notifications", "");
+         chkWWPUserExtendedMobileNotif.Caption = "Mobile Notifications";
          AssignProp("", false, chkWWPUserExtendedMobileNotif_Internalname, "TitleCaption", chkWWPUserExtendedMobileNotif.Caption, true);
          chkWWPUserExtendedMobileNotif.CheckedValue = "false";
          A118WWPUserExtendedMobileNotif = StringUtil.StrToBool( StringUtil.BoolToStr( A118WWPUserExtendedMobileNotif));
          AssignAttri("", false, "A118WWPUserExtendedMobileNotif", A118WWPUserExtendedMobileNotif);
          chkWWPUserExtendedDesktopNotif.Name = "WWPUSEREXTENDEDDESKTOPNOTIF";
          chkWWPUserExtendedDesktopNotif.WebTags = "";
-         chkWWPUserExtendedDesktopNotif.Caption = context.GetMessage( "Destkop Notifications", "");
+         chkWWPUserExtendedDesktopNotif.Caption = "Destkop Notifications";
          AssignProp("", false, chkWWPUserExtendedDesktopNotif_Internalname, "TitleCaption", chkWWPUserExtendedDesktopNotif.Caption, true);
          chkWWPUserExtendedDesktopNotif.CheckedValue = "false";
          A119WWPUserExtendedDesktopNotif = StringUtil.StrToBool( StringUtil.BoolToStr( A119WWPUserExtendedDesktopNotif));
          AssignAttri("", false, "A119WWPUserExtendedDesktopNotif", A119WWPUserExtendedDesktopNotif);
          chkWWPUserExtendedDeleted.Name = "WWPUSEREXTENDEDDELETED";
          chkWWPUserExtendedDeleted.WebTags = "";
-         chkWWPUserExtendedDeleted.Caption = context.GetMessage( "Extended Deleted", "");
+         chkWWPUserExtendedDeleted.Caption = "Extended Deleted";
          AssignProp("", false, chkWWPUserExtendedDeleted_Internalname, "TitleCaption", chkWWPUserExtendedDeleted.Caption, true);
          chkWWPUserExtendedDeleted.CheckedValue = "false";
          A122WWPUserExtendedDeleted = StringUtil.StrToBool( StringUtil.BoolToStr( A122WWPUserExtendedDeleted));
@@ -2334,7 +2322,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          AssignAttri("", false, "A118WWPUserExtendedMobileNotif", A118WWPUserExtendedMobileNotif);
          AssignAttri("", false, "A119WWPUserExtendedDesktopNotif", A119WWPUserExtendedDesktopNotif);
          AssignAttri("", false, "A122WWPUserExtendedDeleted", A122WWPUserExtendedDeleted);
-         AssignAttri("", false, "A123WWPUserExtendedDeletedIn", context.localUtil.TToC( A123WWPUserExtendedDeletedIn, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+         AssignAttri("", false, "A123WWPUserExtendedDeletedIn", context.localUtil.TToC( A123WWPUserExtendedDeletedIn, 10, 8, 0, 3, "/", ":", " "));
          AssignAttri("", false, "Gx_mode", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "Z112WWPUserExtendedId", StringUtil.RTrim( Z112WWPUserExtendedId));
          GxWebStd.gx_hidden_field( context, "Z115WWPUserExtendedPhoto", context.PathToRelativeUrl( Z115WWPUserExtendedPhoto));
@@ -2348,7 +2336,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          GxWebStd.gx_hidden_field( context, "Z118WWPUserExtendedMobileNotif", StringUtil.BoolToStr( Z118WWPUserExtendedMobileNotif));
          GxWebStd.gx_hidden_field( context, "Z119WWPUserExtendedDesktopNotif", StringUtil.BoolToStr( Z119WWPUserExtendedDesktopNotif));
          GxWebStd.gx_hidden_field( context, "Z122WWPUserExtendedDeleted", StringUtil.BoolToStr( Z122WWPUserExtendedDeleted));
-         GxWebStd.gx_hidden_field( context, "Z123WWPUserExtendedDeletedIn", context.localUtil.TToC( Z123WWPUserExtendedDeletedIn, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+         GxWebStd.gx_hidden_field( context, "Z123WWPUserExtendedDeletedIn", context.localUtil.TToC( Z123WWPUserExtendedDeletedIn, 10, 8, 0, 3, "/", ":", " "));
          AssignProp("", false, bttBtn_delete_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(bttBtn_delete_Enabled), 5, 0), true);
          AssignProp("", false, bttBtn_enter_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(bttBtn_enter_Enabled), 5, 0), true);
          SendCloseFormHiddens( ) ;

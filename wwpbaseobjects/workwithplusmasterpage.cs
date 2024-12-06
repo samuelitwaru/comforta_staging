@@ -186,7 +186,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1918140), false, true);
-         context.AddJavascriptSource("calendar-"+StringUtil.Substring( context.GetLanguageProperty( "culture"), 1, 2)+".js", "?"+context.GetBuildNumber( 1918140), false, true);
+         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -215,7 +215,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context.AddJavascriptSource("DVelop/Shared/daterangepicker/daterangepicker.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DatePicker/DatePickerRender.js", "", false, true);
-         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?20241211193278", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?2024126160520", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -231,7 +231,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "Master Page", "") ;
+         return "Master Page" ;
       }
 
       protected void WB390( )
@@ -299,7 +299,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, "", context.GetMessage( "Header Image", ""), "gx-form-item LogoImageLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, "", "Header Image", "gx-form-item LogoImageLabel", 0, true, "width: 25%;");
             /* Static Bitmap Variable */
             ClassString = "LogoImage" + " " + ((StringUtil.StrCmp(imgavHeaderimage_gximage, "")==0) ? "" : "GX_Image_"+imgavHeaderimage_gximage+"_Class");
             StyleString = "";
@@ -311,7 +311,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblShowmenu_Internalname, context.GetMessage( "<i class=\"fa fa-bars ImageMenuIcon\"></i>", ""), "", "", lblShowmenu_Jsonclick, "'"+""+"'"+",true,"+"'"+"e11391_client"+"'", "", "TextBlock", 7, "", 1, 1, 0, 1, "HLP_WWPBaseObjects/WorkWithPlusMasterPage.htm");
+            GxWebStd.gx_label_ctrl( context, lblShowmenu_Internalname, "<i class=\"fa fa-bars ImageMenuIcon\"></i>", "", "", lblShowmenu_Jsonclick, "'"+""+"'"+",true,"+"'"+"e11391_client"+"'", "", "TextBlock", 7, "", 1, 1, 0, 1, "HLP_WWPBaseObjects/WorkWithPlusMasterPage.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -329,14 +329,14 @@ namespace GeneXus.Programs.wwpbaseobjects {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 22,'',true,'',0)\"";
             ClassString = "ButtonWizard HeaderButton";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnuexitorganisation_Internalname, "", context.GetMessage( "Exit Organisation", ""), bttBtnuexitorganisation_Jsonclick, 5, context.GetMessage( "Exit Organisation", ""), "", StyleString, ClassString, bttBtnuexitorganisation_Visible, 1, "standard", "'"+""+"'"+",true,"+"'"+"EDOUEXITORGANISATION_MPAGE."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/WorkWithPlusMasterPage.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnuexitorganisation_Internalname, "", "Exit Organisation", bttBtnuexitorganisation_Jsonclick, 5, "Exit Organisation", "", StyleString, ClassString, bttBtnuexitorganisation_Visible, 1, "standard", "'"+""+"'"+",true,"+"'"+"EDOUEXITORGANISATION_MPAGE."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/WorkWithPlusMasterPage.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 24,'',true,'',0)\"";
             ClassString = "ButtonWizard HeaderButton";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnuexitlocation_Internalname, "", context.GetMessage( "Exit Location", ""), bttBtnuexitlocation_Jsonclick, 5, context.GetMessage( "Exit Location", ""), "", StyleString, ClassString, bttBtnuexitlocation_Visible, 1, "standard", "'"+""+"'"+",true,"+"'"+"EDOUEXITLOCATION_MPAGE."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/WorkWithPlusMasterPage.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnuexitlocation_Internalname, "", "Exit Location", bttBtnuexitlocation_Jsonclick, 5, "Exit Location", "", StyleString, ClassString, bttBtnuexitlocation_Visible, 1, "standard", "'"+""+"'"+",true,"+"'"+"EDOUEXITLOCATION_MPAGE."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/WorkWithPlusMasterPage.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;", "div");
@@ -376,7 +376,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 CellContentHolde", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 CellContentHolder", "start", "top", "", "", "div");
             if ( context.isSpaRequest( ) )
             {
                enableOutput();
@@ -478,7 +478,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 55,'',true,'',0)\"";
             context.WriteHtmlText( "<div id=\""+edtavPickerdummyvariable_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-            GxWebStd.gx_single_line_edit( context, edtavPickerdummyvariable_Internalname, context.localUtil.Format(AV31PickerDummyVariable, "99/99/99"), context.localUtil.Format( AV31PickerDummyVariable, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,55);\"", "'"+""+"'"+",true,"+"'"+"E_MPAGE."+"'", "", "", "", "", edtavPickerdummyvariable_Jsonclick, 0, "Invisible", "", "", "", "", 1, 1, 0, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WWPBaseObjects/WorkWithPlusMasterPage.htm");
+            GxWebStd.gx_single_line_edit( context, edtavPickerdummyvariable_Internalname, context.localUtil.Format(AV31PickerDummyVariable, "99/99/99"), context.localUtil.Format( AV31PickerDummyVariable, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'DMY',0,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'DMY',0,24,'eng',false,0);"+";gx.evt.onblur(this,55);\"", "'"+""+"'"+",true,"+"'"+"E_MPAGE."+"'", "", "", "", "", edtavPickerdummyvariable_Jsonclick, 0, "Invisible", "", "", "", "", 1, 1, 0, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WWPBaseObjects/WorkWithPlusMasterPage.htm");
             GxWebStd.gx_bitmap( context, edtavPickerdummyvariable_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(1==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WWPBaseObjects/WorkWithPlusMasterPage.htm");
             context.WriteHtmlTextNl( "</div>") ;
             /* Div Control */
@@ -625,11 +625,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
                            /* Execute user event: Onmessage_gx1 */
                            E18392 ();
                         }
-                        else if ( StringUtil.StrCmp(sEvt, "DOUSERACTIONCHAT_MPAGE") == 0 )
+                        else if ( StringUtil.StrCmp(sEvt, "GLOBALEVENTS_MPAGE.REFRESHUSERPROFILE_MPAGE") == 0 )
                         {
                            context.wbHandled = 1;
                            dynload_actions( ) ;
-                           /* Execute user event: 'DoUserActionChat' */
                            E19392 ();
                         }
                         else if ( StringUtil.StrCmp(sEvt, "LOAD_MPAGE") == 0 )
@@ -838,16 +837,16 @@ namespace GeneXus.Programs.wwpbaseobjects {
             ajax_req_read_hidden_sdt(cgiGet( "vNOTIFICATIONINFO_MPAGE"), AV11NotificationInfo);
             /* Read saved values. */
             Ddc_changelanguage_Caption = cgiGet( "DDC_CHANGELANGUAGE_MPAGE_Caption");
-            Ddc_changelanguage_Componentwidth = (int)(Math.Round(context.localUtil.CToN( cgiGet( "DDC_CHANGELANGUAGE_MPAGE_Componentwidth"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            Ddc_changelanguage_Componentwidth = (int)(Math.Round(context.localUtil.CToN( cgiGet( "DDC_CHANGELANGUAGE_MPAGE_Componentwidth"), ".", ","), 18, MidpointRounding.ToEven));
             Ddc_notificationswc_Icontype = cgiGet( "DDC_NOTIFICATIONSWC_MPAGE_Icontype");
             Ddc_notificationswc_Icon = cgiGet( "DDC_NOTIFICATIONSWC_MPAGE_Icon");
             Ddc_notificationswc_Caption = cgiGet( "DDC_NOTIFICATIONSWC_MPAGE_Caption");
             Ddc_notificationswc_Cls = cgiGet( "DDC_NOTIFICATIONSWC_MPAGE_Cls");
             Ddc_adminag_Icon = cgiGet( "DDC_ADMINAG_MPAGE_Icon");
             Ddc_adminag_Cls = cgiGet( "DDC_ADMINAG_MPAGE_Cls");
-            Ddc_adminag_Componentwidth = (int)(Math.Round(context.localUtil.CToN( cgiGet( "DDC_ADMINAG_MPAGE_Componentwidth"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            Ddc_adminag_Componentwidth = (int)(Math.Round(context.localUtil.CToN( cgiGet( "DDC_ADMINAG_MPAGE_Componentwidth"), ".", ","), 18, MidpointRounding.ToEven));
             Ucmenu_Sidebarmainclass = cgiGet( "UCMENU_MPAGE_Sidebarmainclass");
-            Ucmenu_Scrollwidth = (int)(Math.Round(context.localUtil.CToN( cgiGet( "UCMENU_MPAGE_Scrollwidth"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            Ucmenu_Scrollwidth = (int)(Math.Round(context.localUtil.CToN( cgiGet( "UCMENU_MPAGE_Scrollwidth"), ".", ","), 18, MidpointRounding.ToEven));
             Ucmenu_Scrollalwaysvisible = StringUtil.StrToBool( cgiGet( "UCMENU_MPAGE_Scrollalwaysvisible"));
             Ucmenu_Hidescrollincompactmenu = StringUtil.StrToBool( cgiGet( "UCMENU_MPAGE_Hidescrollincompactmenu"));
             Ucmessage_Stoponerror = StringUtil.StrToBool( cgiGet( "UCMESSAGE_MPAGE_Stoponerror"));
@@ -861,14 +860,14 @@ namespace GeneXus.Programs.wwpbaseobjects {
             Wwputilities_Allowcolumnsrestore = StringUtil.StrToBool( cgiGet( "WWPUTILITIES_MPAGE_Allowcolumnsrestore"));
             Wwputilities_Pagbarincludegoto = StringUtil.StrToBool( cgiGet( "WWPUTILITIES_MPAGE_Pagbarincludegoto"));
             Wwputilities_Comboloadtype = cgiGet( "WWPUTILITIES_MPAGE_Comboloadtype");
-            Wwpdatepicker_Minyear = (int)(Math.Round(context.localUtil.CToN( cgiGet( "WWPDATEPICKER_MPAGE_Minyear"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-            Wwpdatepicker_Maxyear = (int)(Math.Round(context.localUtil.CToN( cgiGet( "WWPDATEPICKER_MPAGE_Maxyear"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            Wwpdatepicker_Minyear = (int)(Math.Round(context.localUtil.CToN( cgiGet( "WWPDATEPICKER_MPAGE_Minyear"), ".", ","), 18, MidpointRounding.ToEven));
+            Wwpdatepicker_Maxyear = (int)(Math.Round(context.localUtil.CToN( cgiGet( "WWPDATEPICKER_MPAGE_Maxyear"), ".", ","), 18, MidpointRounding.ToEven));
             Ddc_notificationswc_Icon = cgiGet( "DDC_NOTIFICATIONSWC_MPAGE_Icon");
             /* Read variables values. */
             AV33HeaderImage = cgiGet( imgavHeaderimage_Internalname);
-            if ( context.localUtil.VCDate( cgiGet( edtavPickerdummyvariable_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")))) == 0 )
+            if ( context.localUtil.VCDate( cgiGet( edtavPickerdummyvariable_Internalname), 2) == 0 )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {context.GetMessage( "Picker Dummy Variable", "")}), 1, "vPICKERDUMMYVARIABLE_MPAGE");
+               GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {"Picker Dummy Variable"}), 1, "vPICKERDUMMYVARIABLE_MPAGE");
                GX_FocusControl = edtavPickerdummyvariable_Internalname;
                AssignAttri("", true, "GX_FocusControl", GX_FocusControl);
                wbErr = true;
@@ -877,7 +876,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             }
             else
             {
-               AV31PickerDummyVariable = context.localUtil.CToD( cgiGet( edtavPickerdummyvariable_Internalname), DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
+               AV31PickerDummyVariable = context.localUtil.CToD( cgiGet( edtavPickerdummyvariable_Internalname), 2);
                AssignAttri("", true, "AV31PickerDummyVariable", context.localUtil.Format(AV31PickerDummyVariable, "99/99/99"));
             }
             /* Read subfile selected row values. */
@@ -901,6 +900,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          /* Start Routine */
          returnInSub = false;
+         if ( ! AV42WWPContext.gxTpr_Iscontextset )
+         {
+            new prc_loadwwpcontext(context ).execute( ref  AV42WWPContext) ;
+         }
+         new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV42WWPContext) ;
          GXt_SdtSDT_OrganisationSetting1 = AV34SDT_OrganisationSetting;
          new prc_organisationsetting(context ).execute( out  GXt_SdtSDT_OrganisationSetting1) ;
          AV34SDT_OrganisationSetting = GXt_SdtSDT_OrganisationSetting1;
@@ -942,8 +946,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
             AssignProp("", true, imgavHeaderimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV33HeaderImage)) ? AV44Headerimage_GXI : context.convertURL( context.PathToRelativeUrl( AV33HeaderImage))), true);
             AssignProp("", true, imgavHeaderimage_Internalname, "SrcSet", context.GetImageSrcSet( AV33HeaderImage), true);
          }
-         Ddc_adminag_Icon = context.convertURL( (string)(context.GetImagePath( "cd132e7c-3222-4be1-9123-4cad0b17f9cf", "", context.GetTheme( ))));
-         ucDdc_adminag.SendProperty(context, "", true, Ddc_adminag_Internalname, "Icon", Ddc_adminag_Icon);
          AV9GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context).get();
          AV23UserName = (String.IsNullOrEmpty(StringUtil.RTrim( AV9GAMUser.gxTpr_Firstname)) ? AV9GAMUser.gxTpr_Name : StringUtil.Trim( AV9GAMUser.gxTpr_Firstname)+" "+StringUtil.Trim( AV9GAMUser.gxTpr_Lastname));
          AV5GAMRoleCollection = new GeneXus.Programs.genexussecurity.SdtGAMSession(context).getroles(out  AV7GAMErrorCollection);
@@ -960,10 +962,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
             AssignAttri("", true, "AV24RolesDescriptions", AV24RolesDescriptions);
             AV46GXV1 = (int)(AV46GXV1+1);
          }
-         if ( StringUtil.StrCmp(AV25WebSession.Get(context.GetMessage( "ClientInformationSaved", "")), context.GetMessage( "Y", "")) != 0 )
+         if ( StringUtil.StrCmp(AV25WebSession.Get("ClientInformationSaved"), "Y") != 0 )
          {
             new GeneXus.Programs.wwpbaseobjects.notifications.web.wwp_registerwebclient(context ).execute(  new GeneXus.Core.genexus.client.SdtClientInformation(context).gxTpr_Id,  (short)(context.GetBrowserType( )),  context.GetBrowserVersion( ),  new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context).executeUdp( )) ;
-            AV25WebSession.Set(context.GetMessage( "ClientInformationSaved", ""), context.GetMessage( "Y", ""));
+            AV25WebSession.Set("ClientInformationSaved", "Y");
          }
          /* Execute user subroutine: 'LOADNOTIFICATIONS' */
          S112 ();
@@ -976,7 +978,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             this.executeExternalObjectMethod("", true, "gx.core.ds", "setOption", new Object[] {(string)"base-color",AV34SDT_OrganisationSetting.gxTpr_Organisationsettingbasecolor}, false);
             this.executeExternalObjectMethod("", true, "gx.core.ds", "setOption", new Object[] {(string)"background-color",AV15WWP_DesignSystemSettings.gxTpr_Backgroundstyle}, false);
             this.executeExternalObjectMethod("", true, "gx.core.ds", "setOption", new Object[] {(string)"menu-color",AV15WWP_DesignSystemSettings.gxTpr_Menucolor}, false);
-            this.executeExternalObjectMethod("", true, "gx.core.ds", "setOption", new Object[] {(string)"font-size",(string)"Medium"}, false);
+            this.executeExternalObjectMethod("", true, "gx.core.ds", "setOption", new Object[] {(string)"font-size",AV34SDT_OrganisationSetting.gxTpr_Organisationsettingfontsize}, false);
             this.executeExternalObjectMethod("", true, "WWPActions", "EmpoweredGrids_Refresh", new Object[] {}, false);
          }
          Ddc_changelanguage_Caption = context.GetLanguage( );
@@ -1024,77 +1026,15 @@ namespace GeneXus.Programs.wwpbaseobjects {
             bttBtnuexitorganisation_Visible = 0;
             AssignProp("", true, bttBtnuexitorganisation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitorganisation_Visible), 5, 0), true);
          }
-         if ( AV9GAMUser.checkrole("Root Admin") )
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV42WWPContext.gxTpr_Profileurl)) )
          {
-            new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV42WWPContext) ;
-            if ( ! AV42WWPContext.gxTpr_Iscontextset )
-            {
-               new prc_loadwwpcontext(context ).execute( ref  AV42WWPContext) ;
-            }
-            if ( ! (Guid.Empty==AV42WWPContext.gxTpr_Locationid) )
-            {
-               bttBtnuexitorganisation_Visible = 1;
-               AssignProp("", true, bttBtnuexitorganisation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitorganisation_Visible), 5, 0), true);
-               bttBtnuexitlocation_Visible = 1;
-               AssignProp("", true, bttBtnuexitlocation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitlocation_Visible), 5, 0), true);
-               lblOrglocationtextblock_Caption = AV42WWPContext.gxTpr_Organisationname+" - "+AV42WWPContext.gxTpr_Locationname;
-               AssignProp("", true, lblOrglocationtextblock_Internalname, "Caption", lblOrglocationtextblock_Caption, true);
-            }
-            else
-            {
-               bttBtnuexitlocation_Visible = 0;
-               AssignProp("", true, bttBtnuexitlocation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitlocation_Visible), 5, 0), true);
-               if ( ! (Guid.Empty==AV42WWPContext.gxTpr_Organisationid) )
-               {
-                  bttBtnuexitorganisation_Visible = 1;
-                  AssignProp("", true, bttBtnuexitorganisation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitorganisation_Visible), 5, 0), true);
-                  lblOrglocationtextblock_Caption = AV42WWPContext.gxTpr_Organisationname;
-                  AssignProp("", true, lblOrglocationtextblock_Internalname, "Caption", lblOrglocationtextblock_Caption, true);
-               }
-               else
-               {
-                  bttBtnuexitorganisation_Visible = 0;
-                  AssignProp("", true, bttBtnuexitorganisation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitorganisation_Visible), 5, 0), true);
-                  lblOrglocationtextblock_Caption = "";
-                  AssignProp("", true, lblOrglocationtextblock_Internalname, "Caption", lblOrglocationtextblock_Caption, true);
-               }
-            }
+            Ddc_adminag_Icon = context.convertURL( (string)(context.GetImagePath( "cd132e7c-3222-4be1-9123-4cad0b17f9cf", "", context.GetTheme( ))));
+            ucDdc_adminag.SendProperty(context, "", true, Ddc_adminag_Internalname, "Icon", Ddc_adminag_Icon);
          }
-         if ( AV9GAMUser.checkrole("Root Admin") )
+         else
          {
-            new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV42WWPContext) ;
-            if ( ! AV42WWPContext.gxTpr_Iscontextset )
-            {
-               new prc_loadwwpcontext(context ).execute( ref  AV42WWPContext) ;
-            }
-            if ( ! (Guid.Empty==AV42WWPContext.gxTpr_Locationid) )
-            {
-               bttBtnuexitorganisation_Visible = 1;
-               AssignProp("", true, bttBtnuexitorganisation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitorganisation_Visible), 5, 0), true);
-               bttBtnuexitlocation_Visible = 1;
-               AssignProp("", true, bttBtnuexitlocation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitlocation_Visible), 5, 0), true);
-               lblOrglocationtextblock_Caption = AV42WWPContext.gxTpr_Organisationname+" - "+AV42WWPContext.gxTpr_Locationname;
-               AssignProp("", true, lblOrglocationtextblock_Internalname, "Caption", lblOrglocationtextblock_Caption, true);
-            }
-            else
-            {
-               bttBtnuexitlocation_Visible = 0;
-               AssignProp("", true, bttBtnuexitlocation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitlocation_Visible), 5, 0), true);
-               if ( ! (Guid.Empty==AV42WWPContext.gxTpr_Organisationid) )
-               {
-                  bttBtnuexitorganisation_Visible = 1;
-                  AssignProp("", true, bttBtnuexitorganisation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitorganisation_Visible), 5, 0), true);
-                  lblOrglocationtextblock_Caption = AV42WWPContext.gxTpr_Organisationname;
-                  AssignProp("", true, lblOrglocationtextblock_Internalname, "Caption", lblOrglocationtextblock_Caption, true);
-               }
-               else
-               {
-                  bttBtnuexitorganisation_Visible = 0;
-                  AssignProp("", true, bttBtnuexitorganisation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitorganisation_Visible), 5, 0), true);
-                  lblOrglocationtextblock_Caption = "";
-                  AssignProp("", true, lblOrglocationtextblock_Internalname, "Caption", lblOrglocationtextblock_Caption, true);
-               }
-            }
+            Ddc_adminag_Icon = AV42WWPContext.gxTpr_Profileurl;
+            ucDdc_adminag.SendProperty(context, "", true, Ddc_adminag_Internalname, "Icon", Ddc_adminag_Icon);
          }
       }
 
@@ -1111,6 +1051,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          CallWebObject(formatLink("trn_organisationww.aspx") );
          context.wjLocDisableFrm = 1;
          /*  Sending Event outputs  */
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", true, "AV42WWPContext", AV42WWPContext);
       }
 
       protected void E17392( )
@@ -1125,6 +1066,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          CallWebObject(formatLink("trn_locationww.aspx") );
          context.wjLocDisableFrm = 1;
          /*  Sending Event outputs  */
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", true, "AV42WWPContext", AV42WWPContext);
       }
 
       protected void E12392( )
@@ -1246,12 +1188,13 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void E19392( )
       {
-         /* 'DoUserActionChat' Routine */
+         /* General\GlobalEvents_Refreshuserprofile Routine */
          returnInSub = false;
-         GXKey = Crypto.GetSiteKey( );
-         GXEncryptionTmp = "wwpbaseobjects.discussions.wwp_discussionswc.aspx"+UrlEncode(StringUtil.RTrim("sample")) + "," + UrlEncode(StringUtil.RTrim(context.GetMessage( "6a3d0419-a48d-4132-9138-6c043a1bc381", ""))) + "," + UrlEncode(StringUtil.RTrim(context.GetMessage( "Chat", ""))) + "," + UrlEncode(StringUtil.RTrim(formatLink("home.aspx") ));
-         CallWebObject(formatLink("wwpbaseobjects.discussions.wwp_discussionswc.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
-         context.wjLocDisableFrm = 1;
+         new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV42WWPContext) ;
+         Ddc_adminag_Icon = AV42WWPContext.gxTpr_Profileurl;
+         ucDdc_adminag.SendProperty(context, "", true, Ddc_adminag_Internalname, "Icon", Ddc_adminag_Icon);
+         /*  Sending Event outputs  */
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", true, "AV42WWPContext", AV42WWPContext);
       }
 
       protected void S112( )
@@ -1337,7 +1280,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?20241211194050", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?2024126161275", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1352,7 +1295,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?20241211194052", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?2024126161277", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -1455,7 +1398,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Ddc_notificationswc_Icon = "far fa-bell";
          Ddc_notificationswc_Icontype = "FontIcon";
          Ddc_changelanguage_Componentwidth = 160;
-         Ddc_changelanguage_Caption = context.GetMessage( "Change Language", "");
+         Ddc_changelanguage_Caption = "Change Language";
          Contentholder.setDataArea(getDataAreaObject());
          if ( context.isSpaRequest( ) )
          {
@@ -1472,9 +1415,9 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          setEventMetadata("REFRESH_MPAGE","""{"handler":"Refresh","iparms":[]}""");
          setEventMetadata("DOUEXITORGANISATION_MPAGE","""{"handler":"E16392","iparms":[]""");
-         setEventMetadata("DOUEXITORGANISATION_MPAGE",""","oparms":[{"av":"lblOrglocationtextblock_Caption","ctrl":"ORGLOCATIONTEXTBLOCK_MPAGE","prop":"Caption"}]}""");
+         setEventMetadata("DOUEXITORGANISATION_MPAGE",""","oparms":[{"av":"AV42WWPContext","fld":"vWWPCONTEXT_MPAGE"},{"av":"lblOrglocationtextblock_Caption","ctrl":"ORGLOCATIONTEXTBLOCK_MPAGE","prop":"Caption"}]}""");
          setEventMetadata("DOUEXITLOCATION_MPAGE","""{"handler":"E17392","iparms":[]""");
-         setEventMetadata("DOUEXITLOCATION_MPAGE",""","oparms":[{"av":"lblOrglocationtextblock_Caption","ctrl":"ORGLOCATIONTEXTBLOCK_MPAGE","prop":"Caption"}]}""");
+         setEventMetadata("DOUEXITLOCATION_MPAGE",""","oparms":[{"av":"AV42WWPContext","fld":"vWWPCONTEXT_MPAGE"},{"av":"lblOrglocationtextblock_Caption","ctrl":"ORGLOCATIONTEXTBLOCK_MPAGE","prop":"Caption"}]}""");
          setEventMetadata("DDC_CHANGELANGUAGE_MPAGE.ONLOADCOMPONENT_MPAGE","""{"handler":"E12392","iparms":[]""");
          setEventMetadata("DDC_CHANGELANGUAGE_MPAGE.ONLOADCOMPONENT_MPAGE",""","oparms":[{"ctrl":"WWPAUX_WC_MPAGE"}]}""");
          setEventMetadata("DDC_NOTIFICATIONSWC_MPAGE.ONLOADCOMPONENT_MPAGE","""{"handler":"E13392","iparms":[]""");
@@ -1482,7 +1425,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          setEventMetadata("DDC_ADMINAG_MPAGE.ONLOADCOMPONENT_MPAGE","""{"handler":"E14392","iparms":[]""");
          setEventMetadata("DDC_ADMINAG_MPAGE.ONLOADCOMPONENT_MPAGE",""","oparms":[{"ctrl":"WWPAUX_WC_MPAGE"}]}""");
          setEventMetadata("DOSHOWMENU_MPAGE","""{"handler":"E11391","iparms":[]}""");
-         setEventMetadata("DOUSERACTIONCHAT_MPAGE","""{"handler":"E19392","iparms":[]}""");
+         setEventMetadata("GLOBALEVENTS_MPAGE.REFRESHUSERPROFILE_MPAGE","""{"handler":"E19392","iparms":[]""");
+         setEventMetadata("GLOBALEVENTS_MPAGE.REFRESHUSERPROFILE_MPAGE",""","oparms":[{"av":"AV42WWPContext","fld":"vWWPCONTEXT_MPAGE"},{"av":"Ddc_adminag_Icon","ctrl":"DDC_ADMINAG_MPAGE","prop":"Icon"}]}""");
          setEventMetadata("ONMESSAGE_GX1_MPAGE","""{"handler":"E18392","iparms":[{"av":"AV11NotificationInfo","fld":"vNOTIFICATIONINFO_MPAGE"},{"av":"A112WWPUserExtendedId","fld":"WWPUSEREXTENDEDID_MPAGE"},{"av":"AV48Udparg1","fld":"vUDPARG1_MPAGE"},{"av":"A187WWPNotificationIsRead","fld":"WWPNOTIFICATIONISREAD_MPAGE"},{"av":"Ddc_notificationswc_Icon","ctrl":"DDC_NOTIFICATIONSWC_MPAGE","prop":"Icon"}]}""");
          return  ;
       }
@@ -1532,6 +1476,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          EvtRowId = "";
          sEvtType = "";
          GX_FocusControl = "";
+         AV42WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV34SDT_OrganisationSetting = new SdtSDT_OrganisationSetting(context);
          GXt_SdtSDT_OrganisationSetting1 = new SdtSDT_OrganisationSetting(context);
          GXt_objcol_SdtDVelop_Menu_Item2 = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item>( context, "Item", "Comforta_version2");
@@ -1551,7 +1496,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
          AV28Httprequest = new GxHttpRequest( context);
          AV15WWP_DesignSystemSettings = new GeneXus.Programs.wwpbaseobjects.SdtWWP_DesignSystemSettings(context);
          GXt_SdtWWP_DesignSystemSettings3 = new GeneXus.Programs.wwpbaseobjects.SdtWWP_DesignSystemSettings(context);
-         AV42WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV13WWP_WebNotification = new GeneXus.Programs.wwpbaseobjects.notifications.web.SdtWWP_WebNotification(context);
          AV14WWP_UserExtended = new GeneXus.Programs.wwpbaseobjects.SdtWWP_UserExtended(context);
          GXEncryptionTmp = "";
@@ -1699,6 +1643,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private GeneXus.Core.genexus.server.SdtNotificationInfo AV11NotificationInfo ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item> AV22DVelop_Menu ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_UserData AV10DVelop_Menu_UserData ;
+      private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV42WWPContext ;
       private SdtSDT_OrganisationSetting AV34SDT_OrganisationSetting ;
       private SdtSDT_OrganisationSetting GXt_SdtSDT_OrganisationSetting1 ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item> GXt_objcol_SdtDVelop_Menu_Item2 ;
@@ -1708,7 +1653,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private GeneXus.Programs.genexussecurity.SdtGAMRole AV6GAMRole ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWP_DesignSystemSettings AV15WWP_DesignSystemSettings ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWP_DesignSystemSettings GXt_SdtWWP_DesignSystemSettings3 ;
-      private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV42WWPContext ;
       private GeneXus.Programs.wwpbaseobjects.notifications.web.SdtWWP_WebNotification AV13WWP_WebNotification ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWP_UserExtended AV14WWP_UserExtended ;
       private IDataStoreProvider pr_default ;

@@ -95,7 +95,6 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_logtofile(context ).execute(  context.GetMessage( "&WWPUserExtendedId ***********", "")+StringUtil.RTrim( context.localUtil.Format( AV16WWPUserExtendedId, ""))) ;
          /* Using cursor P003L2 */
          pr_default.execute(0, new Object[] {AV16WWPUserExtendedId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -123,7 +122,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             GXEncryptionTmp = "wwpbaseobjects.notifications.common.wwp_visualizenotification.aspx"+GXUtil.UrlEncode(StringUtil.LTrimStr(AV18WWPNotificationID,10,0));
             AV30SmsAndMailUrl = formatLink("wwpbaseobjects.notifications.common.wwp_visualizenotification.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
             new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_cleannotificationurl(context ).execute( ref  AV30SmsAndMailUrl) ;
-            new GeneXus.Programs.wwpbaseobjects.wwp_getparameter(context ).gxep_text(  context.GetMessage( "Notification_BaseURL", ""), ref  AV26Notification_BaseUrl) ;
+            new GeneXus.Programs.wwpbaseobjects.wwp_getparameter(context ).gxep_text(  "Notification_BaseURL", ref  AV26Notification_BaseUrl) ;
             AV30SmsAndMailUrl = StringUtil.Format( "%1%2", AV26Notification_BaseUrl, AV30SmsAndMailUrl, "", "", "", "", "", "", "");
             if ( A116WWPUserExtendedEmaiNotif )
             {
@@ -217,7 +216,6 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       {
          /* 'CREATEDESKTOPNOTIFICATION' Routine */
          returnInSub = false;
-         new prc_logtofile(context ).execute(  context.GetMessage( "CREATE Desktop Notification ***********", "")) ;
          /* Using cursor P003L3 */
          pr_default.execute(1, new Object[] {AV16WWPUserExtendedId});
          while ( (pr_default.getStatus(1) != 101) )

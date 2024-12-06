@@ -191,7 +191,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          standaloneModal( ) ;
          if ( ! ( GxRegex.IsMatch(A114WWPUserExtendedEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "User Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            GX_msglist.addItem("Field User Email does not match the specified pattern", "OutOfRange", 1, "");
             AnyError = 1;
          }
       }
@@ -496,7 +496,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(8, new Object[] {n112WWPUserExtendedId, A112WWPUserExtendedId});
             if ( (pr_default.getStatus(8) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_DiscussionMessageMention", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_DiscussionMessageMention"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(8);
@@ -504,7 +504,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(9, new Object[] {n112WWPUserExtendedId, A112WWPUserExtendedId});
             if ( (pr_default.getStatus(9) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWPForm Instance", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWPForm Instance"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(9);
@@ -512,7 +512,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(10, new Object[] {n112WWPUserExtendedId, A112WWPUserExtendedId});
             if ( (pr_default.getStatus(10) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_DiscussionMessage", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_DiscussionMessage"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(10);
@@ -520,7 +520,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(11, new Object[] {n112WWPUserExtendedId, A112WWPUserExtendedId});
             if ( (pr_default.getStatus(11) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_Notification", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_Notification"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(11);
@@ -528,7 +528,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(12, new Object[] {n112WWPUserExtendedId, A112WWPUserExtendedId});
             if ( (pr_default.getStatus(12) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_WebClient", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_WebClient"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(12);
@@ -536,7 +536,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             pr_default.execute(13, new Object[] {n112WWPUserExtendedId, A112WWPUserExtendedId});
             if ( (pr_default.getStatus(13) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "WWP_Subscription", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"WWP_Subscription"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(13);

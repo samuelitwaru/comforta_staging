@@ -86,7 +86,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("home.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fa fa-home";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "Dashboard", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "Dashboard";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV7id = (short)(AV7id+1);
@@ -95,7 +95,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("wp_calendaragenda.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fa fa-calendar-days";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "Agenda", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "Agenda";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV7id = (short)(AV7id+1);
@@ -104,7 +104,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("trn_organisationww.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fas fa-sitemap";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "Organisations", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "Organisations";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV7id = (short)(AV7id+1);
@@ -113,7 +113,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("trn_managerww.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon far fa-address-card";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "Managers", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "Managers";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV7id = (short)(AV7id+1);
@@ -122,7 +122,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("trn_locationww.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fas fa-map-marker-alt";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "Locations", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "Locations";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV7id = (short)(AV7id+1);
@@ -131,7 +131,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("wp_locationreceptionists.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon far fa-address-card";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "Receptionists", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "Receptionists";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV7id = (short)(AV7id+1);
@@ -140,7 +140,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("wp_locationresidents.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fa fa-users";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "Residents", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "Residents";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV7id = (short)(AV7id+1);
@@ -149,7 +149,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("trn_supplieragbww.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fas fa-ambulance";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "AGB Suppliers", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "AGB Suppliers";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV7id = (short)(AV7id+1);
@@ -158,7 +158,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("wp_organisationagbsuppliers.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fas fa-ambulance";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "AGB Suppliers", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "AGB Suppliers";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV7id = (short)(AV7id+1);
@@ -167,7 +167,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("wp_organisationgeneralsuppliers.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fas fa-shipping-fast";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "General Suppliers", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "General Suppliers";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV7id = (short)(AV7id+1);
@@ -176,7 +176,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("trn_productserviceww.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fab fa-product-hunt";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "Products/Services", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "Services";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV7id = (short)(AV7id+1);
@@ -185,7 +185,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("wp_locationdynamicform.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fas fa-file";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "Location forms", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "Location forms";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV7id = (short)(AV7id+1);
@@ -194,7 +194,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("workwithplus.dynamicforms.wwp_formww.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fas fa-file-alt";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "General forms", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "General forms";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV7id = (short)(AV7id+1);
@@ -203,7 +203,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("trn_auditww.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fas fa-list-ul";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "Audit", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "Audit";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV7id = (short)(AV7id+1);
@@ -212,7 +212,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Link = "";
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fas fa-cog";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "Settings", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "Settings";
          Gxm3dvelop_menu_subitems = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm1dvelop_menu.gxTpr_Subitems.Add(Gxm3dvelop_menu_subitems, 0);
          AV7id = (short)(AV7id+1);
@@ -221,7 +221,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm3dvelop_menu_subitems.gxTpr_Link = formatLink("trn_organisationtypeww.aspx") ;
          Gxm3dvelop_menu_subitems.gxTpr_Linktarget = "";
          Gxm3dvelop_menu_subitems.gxTpr_Iconclass = "";
-         Gxm3dvelop_menu_subitems.gxTpr_Caption = context.GetMessage( "Organisation Types", "");
+         Gxm3dvelop_menu_subitems.gxTpr_Caption = "Organisation Types";
          Gxm3dvelop_menu_subitems = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm1dvelop_menu.gxTpr_Subitems.Add(Gxm3dvelop_menu_subitems, 0);
          AV7id = (short)(AV7id+1);
@@ -230,7 +230,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm3dvelop_menu_subitems.gxTpr_Link = formatLink("trn_medicalindicationww.aspx") ;
          Gxm3dvelop_menu_subitems.gxTpr_Linktarget = "";
          Gxm3dvelop_menu_subitems.gxTpr_Iconclass = "";
-         Gxm3dvelop_menu_subitems.gxTpr_Caption = context.GetMessage( "Medical Indications", "");
+         Gxm3dvelop_menu_subitems.gxTpr_Caption = "Medical Indications";
          Gxm3dvelop_menu_subitems = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm1dvelop_menu.gxTpr_Subitems.Add(Gxm3dvelop_menu_subitems, 0);
          AV7id = (short)(AV7id+1);
@@ -239,7 +239,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm3dvelop_menu_subitems.gxTpr_Link = formatLink("trn_residenttypeww.aspx") ;
          Gxm3dvelop_menu_subitems.gxTpr_Linktarget = "";
          Gxm3dvelop_menu_subitems.gxTpr_Iconclass = "";
-         Gxm3dvelop_menu_subitems.gxTpr_Caption = context.GetMessage( "Resident Types", "");
+         Gxm3dvelop_menu_subitems.gxTpr_Caption = "Resident Types";
          Gxm3dvelop_menu_subitems = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm1dvelop_menu.gxTpr_Subitems.Add(Gxm3dvelop_menu_subitems, 0);
          AV7id = (short)(AV7id+1);
@@ -248,7 +248,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm3dvelop_menu_subitems.gxTpr_Link = formatLink("trn_supplieragbtypeww.aspx") ;
          Gxm3dvelop_menu_subitems.gxTpr_Linktarget = "";
          Gxm3dvelop_menu_subitems.gxTpr_Iconclass = "";
-         Gxm3dvelop_menu_subitems.gxTpr_Caption = context.GetMessage( "AGB Supplier Types", "");
+         Gxm3dvelop_menu_subitems.gxTpr_Caption = "AGB Supplier Types";
          Gxm3dvelop_menu_subitems = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm1dvelop_menu.gxTpr_Subitems.Add(Gxm3dvelop_menu_subitems, 0);
          AV7id = (short)(AV7id+1);
@@ -257,7 +257,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm3dvelop_menu_subitems.gxTpr_Link = formatLink("trn_suppliergentypeww.aspx") ;
          Gxm3dvelop_menu_subitems.gxTpr_Linktarget = "";
          Gxm3dvelop_menu_subitems.gxTpr_Iconclass = "";
-         Gxm3dvelop_menu_subitems.gxTpr_Caption = context.GetMessage( "General Supplier Types", "");
+         Gxm3dvelop_menu_subitems.gxTpr_Caption = "General Supplier Types";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV7id = (short)(AV7id+1);
@@ -266,7 +266,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("trn_templateww.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fas fa-file";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "Page Templates", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "Page Templates";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV7id = (short)(AV7id+1);
@@ -275,7 +275,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("wp_applicationdesign.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fas fa-mobile-alt";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "Application Design", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "Application Design";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV7id = (short)(AV7id+1);
@@ -290,7 +290,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("trn_organisationsetting.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fas fa-eye-dropper";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "Customization", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "Customization";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV7id = (short)(AV7id+1);
@@ -299,7 +299,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Link = "";
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fas fa-comment-dots";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "Messages", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "Messages";
          Gxm3dvelop_menu_subitems = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm1dvelop_menu.gxTpr_Subitems.Add(Gxm3dvelop_menu_subitems, 0);
          AV7id = (short)(AV7id+1);
@@ -308,7 +308,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm3dvelop_menu_subitems.gxTpr_Link = formatLink("wp_discussion.aspx") ;
          Gxm3dvelop_menu_subitems.gxTpr_Linktarget = "";
          Gxm3dvelop_menu_subitems.gxTpr_Iconclass = "";
-         Gxm3dvelop_menu_subitems.gxTpr_Caption = context.GetMessage( "Chat", "");
+         Gxm3dvelop_menu_subitems.gxTpr_Caption = "Chat";
          Gxm3dvelop_menu_subitems = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm1dvelop_menu.gxTpr_Subitems.Add(Gxm3dvelop_menu_subitems, 0);
          AV7id = (short)(AV7id+1);
@@ -317,17 +317,17 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm3dvelop_menu_subitems.gxTpr_Link = formatLink("wp_notificationpanel.aspx") ;
          Gxm3dvelop_menu_subitems.gxTpr_Linktarget = "";
          Gxm3dvelop_menu_subitems.gxTpr_Iconclass = "";
-         Gxm3dvelop_menu_subitems.gxTpr_Caption = context.GetMessage( "Notifications", "");
+         Gxm3dvelop_menu_subitems.gxTpr_Caption = "Notifications";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
          AV7id = (short)(AV7id+1);
          Gxm1dvelop_menu.gxTpr_Id = StringUtil.Str( (decimal)(AV7id), 4, 0);
-         Gxm1dvelop_menu.gxTpr_Tooltip = context.GetMessage( "WWP_GAM_SecurityOfTheApplication", "");
-         Gxm1dvelop_menu.gxTpr_Link = formatLink(context.GetMessage( "gam_dashboard.aspx", "")) ;
+         Gxm1dvelop_menu.gxTpr_Tooltip = "Security of the application";
+         Gxm1dvelop_menu.gxTpr_Link = formatLink("gam_dashboard.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "_blank";
          Gxm1dvelop_menu.gxTpr_Iconclass = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fa fa-key";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "WWP_GAM_GAMSecurity", "");
+         Gxm1dvelop_menu.gxTpr_Caption = "GAM Security";
          Gxm1dvelop_menu.gxTpr_Authorizationkey = "is_gam_administrator";
          cleanup();
       }

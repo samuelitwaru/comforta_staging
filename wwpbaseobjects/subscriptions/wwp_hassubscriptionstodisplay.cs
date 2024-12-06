@@ -28,6 +28,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
          IsMain = true;
@@ -38,6 +39,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       {
          this.context = context;
          IsMain = false;
+         dsDataStore1 = context.GetDataStore("DataStore1");
          dsGAM = context.GetDataStore("GAM");
          dsDefault = context.GetDataStore("Default");
       }
@@ -151,6 +153,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       private bool GXt_boolean2 ;
       private string AV11WWPEntityName ;
       private string A172WWPNotificationDefinitionSecFu ;
+      private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;

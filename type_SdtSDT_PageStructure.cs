@@ -108,32 +108,15 @@ namespace GeneXus.Programs
 
 		[SoapElement(ElementName="Children" )]
 		[XmlArray(ElementName="Children"  )]
-		[XmlArrayItemAttribute(ElementName="Item" , IsNullable=false )]
-		public GXBaseCollection<GeneXus.Programs.SdtSDT_PageChildren> gxTpr_Children_GXBaseCollection
+		[XmlArrayItemAttribute(ElementName="ChildrenItem" , IsNullable=false )]
+		public GXBaseCollection<SdtSDT_PageStructure_ChildrenItem> gxTpr_Children
 		{
 			get {
 				if ( gxTv_SdtSDT_PageStructure_Children == null )
 				{
-					gxTv_SdtSDT_PageStructure_Children = new GXBaseCollection<GeneXus.Programs.SdtSDT_PageChildren>( context, "SDT_PageChildren", "");
+					gxTv_SdtSDT_PageStructure_Children = new GXBaseCollection<SdtSDT_PageStructure_ChildrenItem>( context, "SDT_PageStructure.ChildrenItem", "");
 				}
 				return gxTv_SdtSDT_PageStructure_Children;
-			}
-			set {
-				gxTv_SdtSDT_PageStructure_Children_N = false;
-				gxTv_SdtSDT_PageStructure_Children = value;
-			}
-		}
-
-		[XmlIgnore]
-		public GXBaseCollection<GeneXus.Programs.SdtSDT_PageChildren> gxTpr_Children
-		{
-			get {
-				if ( gxTv_SdtSDT_PageStructure_Children == null )
-				{
-					gxTv_SdtSDT_PageStructure_Children = new GXBaseCollection<GeneXus.Programs.SdtSDT_PageChildren>( context, "SDT_PageChildren", "");
-				}
-				gxTv_SdtSDT_PageStructure_Children_N = false;
-				return gxTv_SdtSDT_PageStructure_Children ;
 			}
 			set {
 				gxTv_SdtSDT_PageStructure_Children_N = false;
@@ -152,11 +135,12 @@ namespace GeneXus.Programs
 		{
 			return gxTv_SdtSDT_PageStructure_Children == null;
 		}
-		public bool ShouldSerializegxTpr_Children_GXBaseCollection_Json()
+		public bool ShouldSerializegxTpr_Children_GxSimpleCollection_Json()
 		{
 			return gxTv_SdtSDT_PageStructure_Children != null && gxTv_SdtSDT_PageStructure_Children.Count > 0;
 
 		}
+
 
 		public override bool ShouldSerializeSdtJson()
 		{
@@ -198,7 +182,8 @@ namespace GeneXus.Programs
 		protected string gxTv_SdtSDT_PageStructure_Name;
 		 
 		protected bool gxTv_SdtSDT_PageStructure_Children_N;
-		protected GXBaseCollection<GeneXus.Programs.SdtSDT_PageChildren> gxTv_SdtSDT_PageStructure_Children = null;  
+		protected GXBaseCollection<SdtSDT_PageStructure_ChildrenItem> gxTv_SdtSDT_PageStructure_Children = null; 
+
 
 
 		#endregion
@@ -242,16 +227,16 @@ namespace GeneXus.Programs
 		}
 
 		[DataMember(Name="Children", Order=2, EmitDefaultValue=false)]
-		public  GxGenericCollection<GeneXus.Programs.SdtSDT_PageChildren_RESTInterface> gxTpr_Children
+		public GxGenericCollection<SdtSDT_PageStructure_ChildrenItem_RESTInterface> gxTpr_Children
 		{
-			get { 
-				if (sdt.ShouldSerializegxTpr_Children_GXBaseCollection_Json())
-					return new GxGenericCollection<GeneXus.Programs.SdtSDT_PageChildren_RESTInterface>(sdt.gxTpr_Children);
+			get {
+				if (sdt.ShouldSerializegxTpr_Children_GxSimpleCollection_Json())
+					return new GxGenericCollection<SdtSDT_PageStructure_ChildrenItem_RESTInterface>(sdt.gxTpr_Children);
 				else
 					return null;
 
 			}
-			set { 
+			set {
 				value.LoadCollection(sdt.gxTpr_Children);
 			}
 		}

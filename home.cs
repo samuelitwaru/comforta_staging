@@ -334,7 +334,7 @@ namespace GeneXus.Programs {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_12", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_12), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_12", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_12), 8, 0, ".", "")));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vHOMEMODULESSDT", AV6HomeModulesSDT);
@@ -344,7 +344,7 @@ namespace GeneXus.Programs {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vHOMEMODULESSDT", AV6HomeModulesSDT);
          }
          GxWebStd.gx_hidden_field( context, "gxhash_vHOMEMODULESSDT", GetSecureSignedToken( "", AV6HomeModulesSDT, context));
-         GxWebStd.gx_hidden_field( context, "subGridhomemodulessdts_Recordcount", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridhomemodulessdts_Recordcount), 5, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "subGridhomemodulessdts_Recordcount", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridhomemodulessdts_Recordcount), 5, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "GRIDHOMEMODULESSDTS_Class", StringUtil.RTrim( subGridhomemodulessdts_Class));
          GxWebStd.gx_hidden_field( context, "GRIDHOMEMODULESSDTS_Flexwrap", StringUtil.RTrim( subGridhomemodulessdts_Flexwrap));
          GxWebStd.gx_hidden_field( context, "vOPTIONLINK_Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtavOptionlink_Visible), 5, 0, ".", "")));
@@ -381,18 +381,6 @@ namespace GeneXus.Programs {
          {
             WebComp_Layoutcustomwcwc.componentjscripts();
          }
-         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
-         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
-         if ( ! context.isSpaRequest( ) )
-         {
-            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
-            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
-            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
-            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
-            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
-            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
-         }
-         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -435,7 +423,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "WWP_HomeTitle", "") ;
+         return "Home" ;
       }
 
       protected void WB130( )
@@ -488,7 +476,7 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV13GXV1 = nGXsfl_12_idx;
+               AV14GXV1 = nGXsfl_12_idx;
                sStyleString = "";
                context.WriteHtmlText( "<div id=\""+"GridhomemodulessdtsContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Gridhomemodulessdts", GridhomemodulessdtsContainer, subGridhomemodulessdts_Internalname);
@@ -528,7 +516,7 @@ namespace GeneXus.Programs {
                }
                else
                {
-                  AV13GXV1 = nGXsfl_12_idx;
+                  AV14GXV1 = nGXsfl_12_idx;
                   sStyleString = "";
                   context.WriteHtmlText( "<div id=\""+"GridhomemodulessdtsContainer"+"Div\" "+sStyleString+">"+"</div>") ;
                   context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Gridhomemodulessdts", GridhomemodulessdtsContainer, subGridhomemodulessdts_Internalname);
@@ -562,7 +550,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", context.GetMessage( "WWP_HomeTitle", ""), 0) ;
+         Form.Meta.addItem("description", "Home", 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -983,8 +971,8 @@ namespace GeneXus.Programs {
          {
             /* Read saved SDTs. */
             /* Read saved values. */
-            nRC_GXsfl_12 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_12"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-            subGridhomemodulessdts_Recordcount = (int)(Math.Round(context.localUtil.CToN( cgiGet( "subGridhomemodulessdts_Recordcount"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            nRC_GXsfl_12 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_12"), ".", ","), 18, MidpointRounding.ToEven));
+            subGridhomemodulessdts_Recordcount = (int)(Math.Round(context.localUtil.CToN( cgiGet( "subGridhomemodulessdts_Recordcount"), ".", ","), 18, MidpointRounding.ToEven));
             subGridhomemodulessdts_Class = cgiGet( "GRIDHOMEMODULESSDTS_Class");
             subGridhomemodulessdts_Flexwrap = cgiGet( "GRIDHOMEMODULESSDTS_Flexwrap");
             /* Read variables values. */
@@ -1009,6 +997,7 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
+         new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV13WWPContext) ;
          edtavOptionlink_Visible = 0;
          AssignProp("", false, edtavOptionlink_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavOptionlink_Visible), 5, 0), !bGXsfl_12_Refreshing);
          edtavOptionlink_Visible = 0;
@@ -1020,10 +1009,7 @@ namespace GeneXus.Programs {
          GXt_objcol_SdtHomeModulesSDT_HomeModulesSDTItem1 = AV6HomeModulesSDT;
          new prc_getuserdashboarditems(context ).execute( out  GXt_objcol_SdtHomeModulesSDT_HomeModulesSDTItem1) ;
          AV6HomeModulesSDT = GXt_objcol_SdtHomeModulesSDT_HomeModulesSDTItem1;
-         GXt_SdtGAMUser2 = AV12GAMUser;
-         new prc_getloggedinuser(context ).execute( out  GXt_SdtGAMUser2) ;
-         AV12GAMUser = GXt_SdtGAMUser2;
-         if ( AV12GAMUser.checkrole("Receptionist") )
+         if ( AV13WWPContext.gxTpr_Isreceptionist )
          {
             CallWebObject(formatLink("wp_usernotificationsboard.aspx") );
             context.wjLocDisableFrm = 1;
@@ -1034,15 +1020,15 @@ namespace GeneXus.Programs {
       {
          /* Gridhomemodulessdts_Load Routine */
          returnInSub = false;
-         AV13GXV1 = 1;
-         while ( AV13GXV1 <= AV6HomeModulesSDT.Count )
+         AV14GXV1 = 1;
+         while ( AV14GXV1 <= AV6HomeModulesSDT.Count )
          {
-            AV6HomeModulesSDT.CurrentItem = ((GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem)AV6HomeModulesSDT.Item(AV13GXV1));
+            AV6HomeModulesSDT.CurrentItem = ((GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem)AV6HomeModulesSDT.Item(AV14GXV1));
             AV5OptionLink = ((GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem)(AV6HomeModulesSDT.CurrentItem)).gxTpr_Optionwclink;
             AssignAttri("", false, edtavOptionlink_Internalname, AV5OptionLink);
             if ( ((GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem)(AV6HomeModulesSDT.CurrentItem)).gxTpr_Optiontype == 1 )
             {
-               lblLayoutoptionandtitleoptionicon_Caption = StringUtil.Format( context.GetMessage( "<i class='CardsMenuIcon %1' style='font-size: 40px'></i>", ""), ((GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem)(AV6HomeModulesSDT.CurrentItem)).gxTpr_Optioniconthemeclass, "", "", "", "", "", "", "", "");
+               lblLayoutoptionandtitleoptionicon_Caption = StringUtil.Format( "<i class='CardsMenuIcon %1' style='font-size: 40px'></i>", ((GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem)(AV6HomeModulesSDT.CurrentItem)).gxTpr_Optioniconthemeclass, "", "", "", "", "", "", "", "");
                AV7OptionTitle = ((GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem)(AV6HomeModulesSDT.CurrentItem)).gxTpr_Optiontitle;
                AssignAttri("", false, edtavOptiontitle_Internalname, AV7OptionTitle);
             }
@@ -1120,7 +1106,7 @@ namespace GeneXus.Programs {
             {
                DoAjaxLoad(12, GridhomemodulessdtsRow);
             }
-            AV13GXV1 = (int)(AV13GXV1+1);
+            AV14GXV1 = (int)(AV14GXV1+1);
          }
          /*  Sending Event outputs  */
       }
@@ -1182,7 +1168,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112914295019", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241261601134", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1197,8 +1183,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("home.js", "?2024112914295020", false, true);
+         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("home.js", "?20241261601135", false, true);
          /* End function include_jscripts */
       }
 
@@ -1285,7 +1271,7 @@ namespace GeneXus.Programs {
          GridhomemodulessdtsColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
          GridhomemodulessdtsRow.AddRenderProperties(GridhomemodulessdtsColumn);
          /* Attribute/Variable Label */
-         GridhomemodulessdtsRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtavOptionlink_Internalname,context.GetMessage( "Option Link", ""),(string)"gx-form-item AttributeLabel",(short)0,(bool)true,(string)"width: 25%;"});
+         GridhomemodulessdtsRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtavOptionlink_Internalname,(string)"Option Link",(string)"gx-form-item AttributeLabel",(short)0,(bool)true,(string)"width: 25%;"});
          GridhomemodulessdtsColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
          GridhomemodulessdtsRow.AddRenderProperties(GridhomemodulessdtsColumn);
          /* Multiple line edit */
@@ -1354,7 +1340,7 @@ namespace GeneXus.Programs {
          GridhomemodulessdtsColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
          GridhomemodulessdtsRow.AddRenderProperties(GridhomemodulessdtsColumn);
          /* Attribute/Variable Label */
-         GridhomemodulessdtsRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtavOptiontitle_Internalname,context.GetMessage( "Option Title", ""),(string)"col-sm-3 AttributeCardsMenuTitleLabel",(short)0,(bool)true,(string)""});
+         GridhomemodulessdtsRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtavOptiontitle_Internalname,(string)"Option Title",(string)"col-sm-3 AttributeCardsMenuTitleLabel",(short)0,(bool)true,(string)""});
          GridhomemodulessdtsColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
          GridhomemodulessdtsRow.AddRenderProperties(GridhomemodulessdtsColumn);
          /* Single line edit */
@@ -1760,13 +1746,13 @@ namespace GeneXus.Programs {
          }
          init_default_properties( ) ;
          subGridhomemodulessdts_Allowcollapsing = 0;
-         lblLayoutoptionandtitleoptionicon_Caption = context.GetMessage( "<i class='CardsMenuIcon fa fa-home' style='font-size: 40px'></i>", "");
+         lblLayoutoptionandtitleoptionicon_Caption = "<i class='CardsMenuIcon fa fa-home' style='font-size: 40px'></i>";
          divLayoutcustomwctablecell_Visible = 1;
          divLayoutprogresscircletablecell_Visible = 1;
          divLayoutprogressbartablecell_Visible = 1;
          edtavOptiontitle_Jsonclick = "";
          edtavOptiontitle_Enabled = 0;
-         lblLayoutoptionandtitleoptionicon_Caption = context.GetMessage( "<i class='CardsMenuIcon fa fa-home' style='font-size: 40px'></i>", "");
+         lblLayoutoptionandtitleoptionicon_Caption = "<i class='CardsMenuIcon fa fa-home' style='font-size: 40px'></i>";
          divLayoutoptionandtitletablecell_Visible = 1;
          subGridhomemodulessdts_Backcolorstyle = 0;
          subGridhomemodulessdts_Flexwrap = "wrap";
@@ -1775,7 +1761,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = context.GetMessage( "WWP_HomeTitle", "");
+         Form.Caption = "Home";
          edtavOptionlink_Visible = 1;
          if ( context.isSpaRequest( ) )
          {
@@ -1833,9 +1819,8 @@ namespace GeneXus.Programs {
          OldLayoutcustomwcwc = "";
          WebComp_Layoutprogressbarwc_Component = "";
          WebComp_Layoutprogresscirclewc_Component = "";
+         AV13WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          GXt_objcol_SdtHomeModulesSDT_HomeModulesSDTItem1 = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem>( context, "HomeModulesSDTItem", "Comforta_version2");
-         AV12GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
-         GXt_SdtGAMUser2 = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          GridhomemodulessdtsRow = new GXWebRow();
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -1875,7 +1860,7 @@ namespace GeneXus.Programs {
       private int nRC_GXsfl_12 ;
       private int subGridhomemodulessdts_Recordcount ;
       private int nGXsfl_12_idx=1 ;
-      private int AV13GXV1 ;
+      private int AV14GXV1 ;
       private int nGXsfl_12_webc_idx=0 ;
       private int subGridhomemodulessdts_Islastpage ;
       private int edtavOptiontitle_Enabled ;
@@ -1967,9 +1952,8 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDefault ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem> AV6HomeModulesSDT ;
       private GXWebComponent WebComp_GX_Process ;
+      private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV13WWPContext ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem> GXt_objcol_SdtHomeModulesSDT_HomeModulesSDTItem1 ;
-      private GeneXus.Programs.genexussecurity.SdtGAMUser AV12GAMUser ;
-      private GeneXus.Programs.genexussecurity.SdtGAMUser GXt_SdtGAMUser2 ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

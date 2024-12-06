@@ -180,7 +180,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                   }
                   else
                   {
-                     AV9ConditionError = StringUtil.Format( context.GetMessage( "WWP_DF_InvalidReferencedControl", ""), StringUtil.Trim( AV16RegExMatch.Value), "", "", "", "", "", "", "", "");
+                     AV9ConditionError = StringUtil.Format( "Invalid referenced control: %1", StringUtil.Trim( AV16RegExMatch.Value), "", "", "", "", "", "", "", "");
                      if (true) break;
                   }
                }

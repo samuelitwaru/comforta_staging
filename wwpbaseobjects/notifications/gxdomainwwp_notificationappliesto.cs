@@ -34,7 +34,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications {
       {
          string value;
          value = (string)(domain[key]==null?"":domain[key]);
-         return ((context!=null) ? context.GetMessage( value, "") : value) ;
+         return value ;
       }
 
       public static GxSimpleCollection<short> getValues( )

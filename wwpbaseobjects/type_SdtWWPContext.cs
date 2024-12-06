@@ -40,6 +40,8 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 			gxTv_SdtWWPContext_Gamuseremail = "";
 
+			gxTv_SdtWWPContext_Gamuserphone = "";
+
 			gxTv_SdtWWPContext_Organisationname = "";
 
 			gxTv_SdtWWPContext_Locationname = "";
@@ -57,6 +59,8 @@ namespace GeneXus.Programs.wwpbaseobjects
 			gxTv_SdtWWPContext_Organisationsettingtrnmode = "";
 
 			gxTv_SdtWWPContext_Footertext = "";
+
+			gxTv_SdtWWPContext_Profileurl = "";
 
 		}
 
@@ -98,6 +102,9 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 
 			AddObjectProperty("GAMUserEmail", gxTpr_Gamuseremail, false);
+
+
+			AddObjectProperty("GAMUserPhone", gxTpr_Gamuserphone, false);
 
 
 			AddObjectProperty("isComfortaAdmin", gxTpr_Iscomfortaadmin, false);
@@ -182,6 +189,9 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 			AddObjectProperty("IsContextSet", gxTpr_Iscontextset, false);
 
+
+			AddObjectProperty("ProfileUrl", gxTpr_Profileurl, false);
+
 			return;
 		}
 		#endregion
@@ -262,6 +272,22 @@ namespace GeneXus.Programs.wwpbaseobjects
 			set {
 				gxTv_SdtWWPContext_Gamuseremail = value;
 				SetDirty("Gamuseremail");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="GAMUserPhone")]
+		[XmlElement(ElementName="GAMUserPhone")]
+		public string gxTpr_Gamuserphone
+		{
+			get {
+				return gxTv_SdtWWPContext_Gamuserphone; 
+			}
+			set {
+				gxTv_SdtWWPContext_Gamuserphone = value;
+				SetDirty("Gamuserphone");
 			}
 		}
 
@@ -746,6 +772,22 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 
 
+
+		[SoapElement(ElementName="ProfileUrl")]
+		[XmlElement(ElementName="ProfileUrl")]
+		public string gxTpr_Profileurl
+		{
+			get {
+				return gxTv_SdtWWPContext_Profileurl; 
+			}
+			set {
+				gxTv_SdtWWPContext_Profileurl = value;
+				SetDirty("Profileurl");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -772,6 +814,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			gxTv_SdtWWPContext_Gamuserfirstname = "";
 			gxTv_SdtWWPContext_Gamuserlastname = "";
 			gxTv_SdtWWPContext_Gamuseremail = "";
+			gxTv_SdtWWPContext_Gamuserphone = "";
 			gxTv_SdtWWPContext_Iscomfortaadmin = false;
 			gxTv_SdtWWPContext_Isorganisationmanager = false;
 			gxTv_SdtWWPContext_Isreceptionist = false;
@@ -800,6 +843,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 			gxTv_SdtWWPContext_Footertext = "";
 			gxTv_SdtWWPContext_Iscontextset = false;
+			gxTv_SdtWWPContext_Profileurl = "";
 			return  ;
 		}
 
@@ -822,6 +866,9 @@ namespace GeneXus.Programs.wwpbaseobjects
 		 
 
 		protected string gxTv_SdtWWPContext_Gamuseremail;
+		 
+
+		protected string gxTv_SdtWWPContext_Gamuserphone;
 		 
 
 		protected bool gxTv_SdtWWPContext_Iscomfortaadmin;
@@ -901,6 +948,9 @@ namespace GeneXus.Programs.wwpbaseobjects
 		protected bool gxTv_SdtWWPContext_Iscontextset;
 		 
 
+		protected string gxTv_SdtWWPContext_Profileurl;
+		 
+
 
 		#endregion
 	}
@@ -978,7 +1028,19 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="isComfortaAdmin", Order=5)]
+		[DataMember(Name="GAMUserPhone", Order=5)]
+		public  string gxTpr_Gamuserphone
+		{
+			get { 
+				return StringUtil.RTrim( sdt.gxTpr_Gamuserphone);
+
+			}
+			set { 
+				 sdt.gxTpr_Gamuserphone = value;
+			}
+		}
+
+		[DataMember(Name="isComfortaAdmin", Order=6)]
 		public bool gxTpr_Iscomfortaadmin
 		{
 			get { 
@@ -990,7 +1052,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="isOrganisationManager", Order=6)]
+		[DataMember(Name="isOrganisationManager", Order=7)]
 		public bool gxTpr_Isorganisationmanager
 		{
 			get { 
@@ -1002,7 +1064,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="isReceptionist", Order=7)]
+		[DataMember(Name="isReceptionist", Order=8)]
 		public bool gxTpr_Isreceptionist
 		{
 			get { 
@@ -1014,7 +1076,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="isResident", Order=8)]
+		[DataMember(Name="isResident", Order=9)]
 		public bool gxTpr_Isresident
 		{
 			get { 
@@ -1026,7 +1088,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="isRootAdmin", Order=9)]
+		[DataMember(Name="isRootAdmin", Order=10)]
 		public bool gxTpr_Isrootadmin
 		{
 			get { 
@@ -1038,7 +1100,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="OrganisationId", Order=10)]
+		[DataMember(Name="OrganisationId", Order=11)]
 		public Guid gxTpr_Organisationid
 		{
 			get { 
@@ -1050,7 +1112,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="OrganisationName", Order=11)]
+		[DataMember(Name="OrganisationName", Order=12)]
 		public  string gxTpr_Organisationname
 		{
 			get { 
@@ -1062,7 +1124,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="OrganisationTypeId", Order=12)]
+		[DataMember(Name="OrganisationTypeId", Order=13)]
 		public Guid gxTpr_Organisationtypeid
 		{
 			get { 
@@ -1074,7 +1136,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="LocationId", Order=13)]
+		[DataMember(Name="LocationId", Order=14)]
 		public Guid gxTpr_Locationid
 		{
 			get { 
@@ -1086,7 +1148,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="LocationName", Order=14)]
+		[DataMember(Name="LocationName", Order=15)]
 		public  string gxTpr_Locationname
 		{
 			get { 
@@ -1098,7 +1160,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="OrganisationSettingid", Order=15)]
+		[DataMember(Name="OrganisationSettingid", Order=16)]
 		public Guid gxTpr_Organisationsettingid
 		{
 			get { 
@@ -1110,7 +1172,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="OrganisationSettingLogo", Order=16)]
+		[DataMember(Name="OrganisationSettingLogo", Order=17)]
 		[GxUpload()]
 		public  string gxTpr_Organisationsettinglogo
 		{
@@ -1123,7 +1185,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="OrganisationSettingFavicon", Order=17)]
+		[DataMember(Name="OrganisationSettingFavicon", Order=18)]
 		[GxUpload()]
 		public  string gxTpr_Organisationsettingfavicon
 		{
@@ -1136,7 +1198,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="OrganisationSettingBaseColor", Order=18)]
+		[DataMember(Name="OrganisationSettingBaseColor", Order=19)]
 		public  string gxTpr_Organisationsettingbasecolor
 		{
 			get { 
@@ -1148,7 +1210,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="OrganisationSettingFontSize", Order=19)]
+		[DataMember(Name="OrganisationSettingFontSize", Order=20)]
 		public  string gxTpr_Organisationsettingfontsize
 		{
 			get { 
@@ -1160,7 +1222,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="OrganisationSettingLanguage", Order=20)]
+		[DataMember(Name="OrganisationSettingLanguage", Order=21)]
 		public  string gxTpr_Organisationsettinglanguage
 		{
 			get { 
@@ -1172,7 +1234,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="OrganisationSettingTrnMode", Order=21)]
+		[DataMember(Name="OrganisationSettingTrnMode", Order=22)]
 		public  string gxTpr_Organisationsettingtrnmode
 		{
 			get { 
@@ -1184,7 +1246,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="ManagerId", Order=22)]
+		[DataMember(Name="ManagerId", Order=23)]
 		public Guid gxTpr_Managerid
 		{
 			get { 
@@ -1196,7 +1258,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="ManagerIsMainManager", Order=23)]
+		[DataMember(Name="ManagerIsMainManager", Order=24)]
 		public bool gxTpr_Managerismainmanager
 		{
 			get { 
@@ -1208,7 +1270,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="ManagerIsActive", Order=24)]
+		[DataMember(Name="ManagerIsActive", Order=25)]
 		public bool gxTpr_Managerisactive
 		{
 			get { 
@@ -1220,7 +1282,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="ReceptionistId", Order=25)]
+		[DataMember(Name="ReceptionistId", Order=26)]
 		public Guid gxTpr_Receptionistid
 		{
 			get { 
@@ -1232,7 +1294,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="ReceptionistIsActive", Order=26)]
+		[DataMember(Name="ReceptionistIsActive", Order=27)]
 		public bool gxTpr_Receptionistisactive
 		{
 			get { 
@@ -1244,7 +1306,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="ResidentId", Order=27)]
+		[DataMember(Name="ResidentId", Order=28)]
 		public Guid gxTpr_Residentid
 		{
 			get { 
@@ -1256,7 +1318,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="FilteredDashboardItems", Order=28, EmitDefaultValue=false)]
+		[DataMember(Name="FilteredDashboardItems", Order=29, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem_RESTInterface> gxTpr_Filtereddashboarditems
 		{
 			get { 
@@ -1271,7 +1333,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="FooterText", Order=29)]
+		[DataMember(Name="FooterText", Order=30)]
 		public  string gxTpr_Footertext
 		{
 			get { 
@@ -1283,7 +1345,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="IsContextSet", Order=30)]
+		[DataMember(Name="IsContextSet", Order=31)]
 		public bool gxTpr_Iscontextset
 		{
 			get { 
@@ -1292,6 +1354,18 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 			set { 
 				sdt.gxTpr_Iscontextset = value;
+			}
+		}
+
+		[DataMember(Name="ProfileUrl", Order=32)]
+		public  string gxTpr_Profileurl
+		{
+			get { 
+				return sdt.gxTpr_Profileurl;
+
+			}
+			set { 
+				 sdt.gxTpr_Profileurl = value;
 			}
 		}
 

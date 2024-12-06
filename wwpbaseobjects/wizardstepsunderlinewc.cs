@@ -279,7 +279,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( context.GetMessage( "Wizard Steps Underline WC", "")) ;
+            context.SendWebValue( "Wizard Steps Underline WC") ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -384,13 +384,13 @@ namespace GeneXus.Programs.wwpbaseobjects {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vWIZARDSTEPSAUX", AV19WizardStepsAux);
          }
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWIZARDSTEPSAUX", GetSecureSignedToken( sPrefix, AV19WizardStepsAux, context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vSTEPREALNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV16StepRealNumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vSTEPREALNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV16StepRealNumber), 4, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vSTEPREALNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV16StepRealNumber), "ZZZ9"), context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vSTEPNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV15StepNumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vSTEPNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV15StepNumber), 4, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vSTEPNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV15StepNumber), "ZZZ9"), context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vSELECTEDSTEPNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV13SelectedStepNumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vSELECTEDSTEPNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV13SelectedStepNumber), 4, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vSELECTEDSTEPNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV13SelectedStepNumber), "ZZZ9"), context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vWIZARDSTEPSCOUNT", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV20WizardStepsCount), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vWIZARDSTEPSCOUNT", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV20WizardStepsCount), 4, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWIZARDSTEPSCOUNT", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV20WizardStepsCount), "ZZZ9"), context));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vFIRSTISDUMMY", AV7FirstIsDummy);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vFIRSTISDUMMY", GetSecureSignedToken( sPrefix, AV7FirstIsDummy, context));
@@ -406,7 +406,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, sPrefix+"nRC_GXsfl_9", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_9), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"nRC_GXsfl_9", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_9), 8, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV6CurrentStep", wcpOAV6CurrentStep);
          if ( context.isAjaxRequest( ) )
          {
@@ -417,13 +417,13 @@ namespace GeneXus.Programs.wwpbaseobjects {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vWIZARDSTEPSAUX", AV19WizardStepsAux);
          }
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWIZARDSTEPSAUX", GetSecureSignedToken( sPrefix, AV19WizardStepsAux, context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vSTEPREALNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV16StepRealNumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vSTEPREALNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV16StepRealNumber), 4, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vSTEPREALNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV16StepRealNumber), "ZZZ9"), context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vSTEPNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV15StepNumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vSTEPNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV15StepNumber), 4, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vSTEPNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV15StepNumber), "ZZZ9"), context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vSELECTEDSTEPNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV13SelectedStepNumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vSELECTEDSTEPNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV13SelectedStepNumber), 4, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vSELECTEDSTEPNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV13SelectedStepNumber), "ZZZ9"), context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vWIZARDSTEPSCOUNT", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV20WizardStepsCount), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vWIZARDSTEPSCOUNT", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV20WizardStepsCount), 4, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWIZARDSTEPSCOUNT", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV20WizardStepsCount), "ZZZ9"), context));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vFIRSTISDUMMY", AV7FirstIsDummy);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vFIRSTISDUMMY", GetSecureSignedToken( sPrefix, AV7FirstIsDummy, context));
@@ -440,7 +440,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vPENULTIMATEISDUMMY", AV11PenultimateIsDummy);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vPENULTIMATEISDUMMY", GetSecureSignedToken( sPrefix, AV11PenultimateIsDummy, context));
          GxWebStd.gx_hidden_field( context, sPrefix+"vCURRENTSTEP", AV6CurrentStep);
-         GxWebStd.gx_hidden_field( context, sPrefix+"subGridwizardsteps_Recordcount", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridwizardsteps_Recordcount), 5, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"subGridwizardsteps_Recordcount", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridwizardsteps_Recordcount), 5, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"GRIDWIZARDSTEPS_Class", StringUtil.RTrim( subGridwizardsteps_Class));
       }
 
@@ -501,7 +501,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "Wizard Steps Underline WC", "") ;
+         return "Wizard Steps Underline WC" ;
       }
 
       protected void WB1F0( )
@@ -635,7 +635,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", context.GetMessage( "Wizard Steps Underline WC", ""), 0) ;
+            Form.Meta.addItem("description", "Wizard Steps Underline WC", 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -1032,13 +1032,13 @@ namespace GeneXus.Programs.wwpbaseobjects {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vWIZARDSTEPSAUX", AV19WizardStepsAux);
          }
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWIZARDSTEPSAUX", GetSecureSignedToken( sPrefix, AV19WizardStepsAux, context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vSTEPREALNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV16StepRealNumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vSTEPREALNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV16StepRealNumber), 4, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vSTEPREALNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV16StepRealNumber), "ZZZ9"), context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vSTEPNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV15StepNumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vSTEPNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV15StepNumber), 4, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vSTEPNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV15StepNumber), "ZZZ9"), context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vSELECTEDSTEPNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV13SelectedStepNumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vSELECTEDSTEPNUMBER", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV13SelectedStepNumber), 4, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vSELECTEDSTEPNUMBER", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV13SelectedStepNumber), "ZZZ9"), context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vWIZARDSTEPSCOUNT", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV20WizardStepsCount), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vWIZARDSTEPSCOUNT", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV20WizardStepsCount), 4, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vWIZARDSTEPSCOUNT", GetSecureSignedToken( sPrefix, context.localUtil.Format( (decimal)(AV20WizardStepsCount), "ZZZ9"), context));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vFIRSTISDUMMY", AV7FirstIsDummy);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vFIRSTISDUMMY", GetSecureSignedToken( sPrefix, AV7FirstIsDummy, context));
@@ -1090,9 +1090,9 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             /* Read saved SDTs. */
             /* Read saved values. */
-            nRC_GXsfl_9 = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_9"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            nRC_GXsfl_9 = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_9"), ".", ","), 18, MidpointRounding.ToEven));
             wcpOAV6CurrentStep = cgiGet( sPrefix+"wcpOAV6CurrentStep");
-            subGridwizardsteps_Recordcount = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"subGridwizardsteps_Recordcount"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            subGridwizardsteps_Recordcount = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"subGridwizardsteps_Recordcount"), ".", ","), 18, MidpointRounding.ToEven));
             subGridwizardsteps_Class = cgiGet( sPrefix+"GRIDWIZARDSTEPS_Class");
             /* Read variables values. */
             /* Read subfile selected row values. */
@@ -1303,7 +1303,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                {
                   divTablestepitem_Visible = 0;
                   AssignProp(sPrefix, false, divTablestepitem_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divTablestepitem_Visible), 5, 0), !bGXsfl_9_Refreshing);
-                  divTblcontainerstep_Class = divTblcontainerstep_Class+context.GetMessage( " TableContainerUnderlineExtraBullet", "");
+                  divTblcontainerstep_Class = divTblcontainerstep_Class+" TableContainerUnderlineExtraBullet";
                   AssignProp(sPrefix, false, divTblcontainerstep_Internalname, "Class", divTblcontainerstep_Class, !bGXsfl_9_Refreshing);
                }
                else
@@ -1319,7 +1319,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             else
             {
                lblStepnumber_Caption = "...";
-               divTblcontainerstep_Class = divTblcontainerstep_Class+context.GetMessage( " TableContainerUnderlineExtraBullet hidden-sm hidden-lg hidden-md", "");
+               divTblcontainerstep_Class = divTblcontainerstep_Class+" TableContainerUnderlineExtraBullet hidden-sm hidden-lg hidden-md";
                AssignProp(sPrefix, false, divTblcontainerstep_Internalname, "Class", divTblcontainerstep_Class, !bGXsfl_9_Refreshing);
                if ( ( ( AV13SelectedStepNumber <= 3 ) && ( StringUtil.StrCmp(AV5WizardStep.gxTpr_Code, "FirstDummyXS") == 0 ) ) || ( ( AV13SelectedStepNumber >= AV20WizardStepsCount - 2 ) && ( StringUtil.StrCmp(AV5WizardStep.gxTpr_Code, "LastDummyXS") == 0 ) ) )
                {
@@ -1575,7 +1575,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115375169", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412614333977", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1593,7 +1593,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wwpbaseobjects/wizardstepsunderlinewc.js", "?2024112115375169", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/wizardstepsunderlinewc.js", "?202412614333977", false, true);
          }
          /* End function include_jscripts */
       }
@@ -1713,7 +1713,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          GridwizardstepsColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
          GridwizardstepsRow.AddRenderProperties(GridwizardstepsColumn);
          /* Attribute/Variable Label */
-         GridwizardstepsRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtavWizardsteptitle_Internalname,context.GetMessage( "Wizard Step Title", ""),(string)"gx-form-item AttributeStepUnderlineLabel",(short)0,(bool)true,(string)"width: 25%;"});
+         GridwizardstepsRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtavWizardsteptitle_Internalname,(string)"Wizard Step Title",(string)"gx-form-item AttributeStepUnderlineLabel",(short)0,(bool)true,(string)"width: 25%;"});
          GridwizardstepsColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
          GridwizardstepsRow.AddRenderProperties(GridwizardstepsColumn);
          /* Multiple line edit */
@@ -1875,7 +1875,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          divTablestepitem_Class = "TableStepUnderline";
          divTblcontainerstep_Class = "TableContainerStepUnderline";
          subGridwizardsteps_Backcolorstyle = 0;
-         lblWizardstepdescription_Caption = context.GetMessage( "Step Description", "");
+         lblWizardstepdescription_Caption = "Step Description";
          lblWizardstepdescription_Visible = 1;
          subGridwizardsteps_Class = "FreeStyleStepsUnderline";
          if ( StringUtil.Len( sPrefix) == 0 )

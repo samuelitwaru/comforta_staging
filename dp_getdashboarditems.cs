@@ -79,7 +79,7 @@ namespace GeneXus.Programs {
          /* Output device settings */
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Locations", "");
+         Gxm1homemodulessdt.gxTpr_Optiontitle = "Locations";
          Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "fas fa-map-marker-alt";
          Gxm1homemodulessdt.gxTpr_Optiontype = 1;
          Gxm1homemodulessdt.gxTpr_Optionsize = 2;
@@ -89,7 +89,7 @@ namespace GeneXus.Programs {
          Gxm1homemodulessdt.gxTpr_Optiondescription = "Organisation Locations.";
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Receptionists", "");
+         Gxm1homemodulessdt.gxTpr_Optiontitle = "Receptionists";
          Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "far fa-address-card";
          Gxm1homemodulessdt.gxTpr_Optiontype = 1;
          Gxm1homemodulessdt.gxTpr_Optionsize = 2;
@@ -99,7 +99,7 @@ namespace GeneXus.Programs {
          Gxm1homemodulessdt.gxTpr_Optiondescription = "Receptionisits/Location Managers";
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Organisations", "");
+         Gxm1homemodulessdt.gxTpr_Optiontitle = "Organisations";
          Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "fa fal fa-sitemap";
          Gxm1homemodulessdt.gxTpr_Optiontype = 1;
          Gxm1homemodulessdt.gxTpr_Optionsize = 2;
@@ -109,7 +109,7 @@ namespace GeneXus.Programs {
          Gxm1homemodulessdt.gxTpr_Optiondescription = "Organisations";
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Suppliers (AGB)", "");
+         Gxm1homemodulessdt.gxTpr_Optiontitle = "Suppliers (AGB)";
          Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "fas fa-ambulance";
          Gxm1homemodulessdt.gxTpr_Optiontype = 1;
          Gxm1homemodulessdt.gxTpr_Optionsize = 2;
@@ -119,7 +119,7 @@ namespace GeneXus.Programs {
          Gxm1homemodulessdt.gxTpr_Optiondescription = "Suppliers (AGB)";
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Suppliers (General)", "");
+         Gxm1homemodulessdt.gxTpr_Optiontitle = "Suppliers (General)";
          Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "fas fa-shipping-fast";
          Gxm1homemodulessdt.gxTpr_Optiontype = 1;
          Gxm1homemodulessdt.gxTpr_Optionsize = 2;
@@ -129,7 +129,7 @@ namespace GeneXus.Programs {
          Gxm1homemodulessdt.gxTpr_Optiondescription = "Suppliers (Generic)";
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Products & Services", "");
+         Gxm1homemodulessdt.gxTpr_Optiontitle = "Products & Services";
          Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "fab fa-product-hunt";
          Gxm1homemodulessdt.gxTpr_Optiontype = 1;
          Gxm1homemodulessdt.gxTpr_Optionsize = 2;
@@ -139,7 +139,7 @@ namespace GeneXus.Programs {
          Gxm1homemodulessdt.gxTpr_Optiondescription = "Products and Services";
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Residents", "");
+         Gxm1homemodulessdt.gxTpr_Optiontitle = "Residents";
          Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "fas fa-users";
          Gxm1homemodulessdt.gxTpr_Optiontype = 1;
          Gxm1homemodulessdt.gxTpr_Optionsize = 2;
@@ -149,7 +149,7 @@ namespace GeneXus.Programs {
          Gxm1homemodulessdt.gxTpr_Optiondescription = "Residents";
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Agenda", "");
+         Gxm1homemodulessdt.gxTpr_Optiontitle = "Agenda";
          Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "fas fa-calendar-days";
          Gxm1homemodulessdt.gxTpr_Optiontype = 1;
          Gxm1homemodulessdt.gxTpr_Optionsize = 2;
@@ -159,7 +159,7 @@ namespace GeneXus.Programs {
          Gxm1homemodulessdt.gxTpr_Optiondescription = "Agenda";
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Customization", "");
+         Gxm1homemodulessdt.gxTpr_Optiontitle = "Customization";
          Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "fas fa-eye-dropper";
          Gxm1homemodulessdt.gxTpr_Optiontype = 1;
          Gxm1homemodulessdt.gxTpr_Optionsize = 2;
@@ -175,7 +175,7 @@ namespace GeneXus.Programs {
          Gxm1homemodulessdt.gxTpr_Optiondescription = "Customization";
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Page Templates", "");
+         Gxm1homemodulessdt.gxTpr_Optiontitle = "Page Templates";
          Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "fas fa-file";
          Gxm1homemodulessdt.gxTpr_Optiontype = 1;
          Gxm1homemodulessdt.gxTpr_Optionsize = 2;
@@ -185,7 +185,7 @@ namespace GeneXus.Programs {
          Gxm1homemodulessdt.gxTpr_Optiondescription = "Page Templates";
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Application Design", "");
+         Gxm1homemodulessdt.gxTpr_Optiontitle = "Application Design";
          Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "fas fa-mobile-alt";
          Gxm1homemodulessdt.gxTpr_Optiontype = 1;
          Gxm1homemodulessdt.gxTpr_Optionsize = 2;
@@ -195,14 +195,14 @@ namespace GeneXus.Programs {
          Gxm1homemodulessdt.gxTpr_Optiondescription = "Application Design";
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Contacts", "");
+         Gxm1homemodulessdt.gxTpr_Optiontitle = "Contacts";
          Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "fas fa-phone-square";
          Gxm1homemodulessdt.gxTpr_Optiontype = 1;
          Gxm1homemodulessdt.gxTpr_Rolename = "All";
          Gxm1homemodulessdt.gxTpr_Optionsize = 2;
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Financial Partners", "");
+         Gxm1homemodulessdt.gxTpr_Optiontitle = "Financial Partners";
          Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "fas fa-file-invoice-dollar";
          Gxm1homemodulessdt.gxTpr_Optiondescription = "Financial Partners";
          Gxm1homemodulessdt.gxTpr_Rolename = "Organisation Manager";
@@ -210,19 +210,19 @@ namespace GeneXus.Programs {
          Gxm1homemodulessdt.gxTpr_Optionsize = 2;
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Payments", "");
+         Gxm1homemodulessdt.gxTpr_Optiontitle = "Payments";
          Gxm1homemodulessdt.gxTpr_Optiontype = 3;
          Gxm1homemodulessdt.gxTpr_Optionsize = 1;
          Gxm1homemodulessdt.gxTpr_Optionprogressvalue = 65;
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Feedback", "");
+         Gxm1homemodulessdt.gxTpr_Optiontitle = "Feedback";
          Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "fa fa-comments";
          Gxm1homemodulessdt.gxTpr_Optiontype = 1;
          Gxm1homemodulessdt.gxTpr_Optionsize = 2;
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Notifications", "");
+         Gxm1homemodulessdt.gxTpr_Optiontitle = "Notifications";
          Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "fa fa-bell";
          Gxm1homemodulessdt.gxTpr_Rolename = "Receptionist";
          Gxm1homemodulessdt.gxTpr_Optionwclink = formatLink("wp_usernotificationsboard.aspx") ;
@@ -230,13 +230,13 @@ namespace GeneXus.Programs {
          Gxm1homemodulessdt.gxTpr_Optionsize = 2;
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "Chat", "");
+         Gxm1homemodulessdt.gxTpr_Optiontitle = "Chat";
          Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "fab fa-whatsapp";
          Gxm1homemodulessdt.gxTpr_Optiontype = 1;
          Gxm1homemodulessdt.gxTpr_Optionsize = 2;
          Gxm1homemodulessdt = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
          Gxm2rootcol.Add(Gxm1homemodulessdt, 0);
-         Gxm1homemodulessdt.gxTpr_Optiontitle = context.GetMessage( "My Profile", "");
+         Gxm1homemodulessdt.gxTpr_Optiontitle = "My Profile";
          Gxm1homemodulessdt.gxTpr_Optioniconthemeclass = "far fa-user-circle";
          Gxm1homemodulessdt.gxTpr_Optiontype = 1;
          Gxm1homemodulessdt.gxTpr_Optionsize = 2;

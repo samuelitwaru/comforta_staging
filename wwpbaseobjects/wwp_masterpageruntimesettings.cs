@@ -271,7 +271,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( context.GetMessage( "WWP_Master Page Runtime Settings", "")) ;
+            context.SendWebValue( "WWP_Master Page Runtime Settings") ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -375,7 +375,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, sPrefix+"nRC_GXsfl_12", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_12), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"nRC_GXsfl_12", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_12), 8, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"vCOLORITEMCLASS", AV8ColorItemClass);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vCOLORITEMCLASS", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV8ColorItemClass, "")), context));
          if ( context.isAjaxRequest( ) )
@@ -387,7 +387,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vWWP_DESIGNSYSTEMSETTINGS", AV5WWP_DesignSystemSettings);
          }
          GxWebStd.gx_hidden_field( context, sPrefix+"vFONTSIZESELECTED", AV11FontSizeSelected);
-         GxWebStd.gx_hidden_field( context, sPrefix+"subFscolor_Recordcount", StringUtil.LTrim( StringUtil.NToC( (decimal)(subFscolor_Recordcount), 5, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"subFscolor_Recordcount", StringUtil.LTrim( StringUtil.NToC( (decimal)(subFscolor_Recordcount), 5, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"vCOLORNAME_Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtavColorname_Visible), 5, 0, ".", "")));
       }
 
@@ -448,7 +448,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "WWP_Master Page Runtime Settings", "") ;
+         return "WWP_Master Page Runtime Settings" ;
       }
 
       protected void WB3B0( )
@@ -484,7 +484,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblColortxt_Internalname, context.GetMessage( "WWP_Color_Dsc", ""), "", "", lblColortxt_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "RuntimeDesignSettingsTitle", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/WWP_MasterPageRuntimeSettings.htm");
+            GxWebStd.gx_label_ctrl( context, lblColortxt_Internalname, "Color", "", "", lblColortxt_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "RuntimeDesignSettingsTitle", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/WWP_MasterPageRuntimeSettings.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -530,7 +530,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 CellMarginTop", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblBackstyletxt_Internalname, context.GetMessage( "WWP_BackgroundStyle_Dsc", ""), "", "", lblBackstyletxt_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "RuntimeDesignSettingsTitle", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/WWP_MasterPageRuntimeSettings.htm");
+            GxWebStd.gx_label_ctrl( context, lblBackstyletxt_Internalname, "Background Style", "", "", lblBackstyletxt_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "RuntimeDesignSettingsTitle", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/WWP_MasterPageRuntimeSettings.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -555,7 +555,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 CellMarginTop", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblFontsizetxt_Internalname, context.GetMessage( "WWP_FontSize_Dsc", ""), "", "", lblFontsizetxt_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "RuntimeDesignSettingsTitle", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/WWP_MasterPageRuntimeSettings.htm");
+            GxWebStd.gx_label_ctrl( context, lblFontsizetxt_Internalname, "Font Size", "", "", lblFontsizetxt_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "RuntimeDesignSettingsTitle", 0, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/WWP_MasterPageRuntimeSettings.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -567,17 +567,17 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "align-self:center;", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblFontsizesmall_Internalname, context.GetMessage( "A", ""), "", "", lblFontsizesmall_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EFONTSIZESMALL.CLICK."+"'", "", lblFontsizesmall_Class, 5, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/WWP_MasterPageRuntimeSettings.htm");
+            GxWebStd.gx_label_ctrl( context, lblFontsizesmall_Internalname, "A", "", "", lblFontsizesmall_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EFONTSIZESMALL.CLICK."+"'", "", lblFontsizesmall_Class, 5, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/WWP_MasterPageRuntimeSettings.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "align-self:center;", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblFontsizemedium_Internalname, context.GetMessage( "A", ""), "", "", lblFontsizemedium_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EFONTSIZEMEDIUM.CLICK."+"'", "", lblFontsizemedium_Class, 5, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/WWP_MasterPageRuntimeSettings.htm");
+            GxWebStd.gx_label_ctrl( context, lblFontsizemedium_Internalname, "A", "", "", lblFontsizemedium_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EFONTSIZEMEDIUM.CLICK."+"'", "", lblFontsizemedium_Class, 5, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/WWP_MasterPageRuntimeSettings.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, divFontsizelargecell_Internalname, 1, 0, "px", 0, "px", "", "start", "top", "", "align-self:center;", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblFontsizelarge_Internalname, context.GetMessage( "A", ""), "", "", lblFontsizelarge_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EFONTSIZELARGE.CLICK."+"'", "", lblFontsizelarge_Class, 5, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/WWP_MasterPageRuntimeSettings.htm");
+            GxWebStd.gx_label_ctrl( context, lblFontsizelarge_Internalname, "A", "", "", lblFontsizelarge_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EFONTSIZELARGE.CLICK."+"'", "", lblFontsizelarge_Class, 5, "", 1, 1, 0, 0, "HLP_WWPBaseObjects/WWP_MasterPageRuntimeSettings.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -639,7 +639,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", context.GetMessage( "WWP_Master Page Runtime Settings", ""), 0) ;
+            Form.Meta.addItem("description", "WWP_Master Page Runtime Settings", 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -1150,8 +1150,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             /* Read saved SDTs. */
             /* Read saved values. */
-            nRC_GXsfl_12 = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_12"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-            subFscolor_Recordcount = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"subFscolor_Recordcount"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            nRC_GXsfl_12 = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_12"), ".", ","), 18, MidpointRounding.ToEven));
+            subFscolor_Recordcount = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"subFscolor_Recordcount"), ".", ","), 18, MidpointRounding.ToEven));
             /* Read variables values. */
             AV6BackStyle = cgiGet( radavBackstyle_Internalname);
             AssignAttri(sPrefix, false, "AV6BackStyle", AV6BackStyle);
@@ -1905,7 +1905,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024112115374852", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412614333594", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1923,7 +1923,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wwpbaseobjects/wwp_masterpageruntimesettings.js", "?2024112115374852", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/wwp_masterpageruntimesettings.js", "?202412614333594", false, true);
          }
          /* End function include_jscripts */
       }
@@ -2033,7 +2033,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Div Control */
          FscolorRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)" gx-attribute",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
          /* Attribute/Variable Label */
-         FscolorRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtavColorname_Internalname,context.GetMessage( "Color Name", ""),(string)"gx-form-item AttributeLabel",(short)0,(bool)true,(string)"width: 25%;"});
+         FscolorRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtavColorname_Internalname,(string)"Color Name",(string)"gx-form-item AttributeLabel",(short)0,(bool)true,(string)"width: 25%;"});
          /* Single line edit */
          ROClassString = "Attribute";
          FscolorRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavColorname_Internalname,(string)AV10ColorName,(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavColorname_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavColorname_Visible,(short)0,(short)0,(string)"text",(string)"",(short)40,(string)"chr",(short)1,(string)"row",(short)40,(short)0,(short)0,(short)12,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
@@ -2077,8 +2077,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          radavBackstyle.Name = "vBACKSTYLE";
          radavBackstyle.WebTags = "";
-         radavBackstyle.addItem("Light", context.GetMessage( "WWP_BackgroundStyle_Light", ""), 0);
-         radavBackstyle.addItem("Dark", context.GetMessage( "WWP_BackgroundStyle_Dark", ""), 0);
+         radavBackstyle.addItem("Light", "Light", 0);
+         radavBackstyle.addItem("Dark", "Dark", 0);
          /* End function init_web_controls */
       }
 

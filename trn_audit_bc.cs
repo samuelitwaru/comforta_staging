@@ -108,7 +108,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable1D84( ) ;
                if ( AnyError == 0 )
                {
-                  ZM1D84( 8) ;
+                  ZM1D84( 9) ;
                }
                CloseExtendedTableCursors1D84( ) ;
             }
@@ -147,7 +147,7 @@ namespace GeneXus.Programs {
 
       protected void ZM1D84( short GX_JID )
       {
-         if ( ( GX_JID == 7 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 8 ) || ( GX_JID == 0 ) )
          {
             Z416AuditDate = A416AuditDate;
             Z417AuditTableName = A417AuditTableName;
@@ -156,13 +156,15 @@ namespace GeneXus.Programs {
             Z421AuditUserName = A421AuditUserName;
             Z422AuditAction = A422AuditAction;
             Z11OrganisationId = A11OrganisationId;
+            Z503AuditTableDiaplayName = A503AuditTableDiaplayName;
             Z435AuditDisplayDescription = A435AuditDisplayDescription;
          }
-         if ( ( GX_JID == 8 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 9 ) || ( GX_JID == 0 ) )
          {
+            Z503AuditTableDiaplayName = A503AuditTableDiaplayName;
             Z435AuditDisplayDescription = A435AuditDisplayDescription;
          }
-         if ( GX_JID == -7 )
+         if ( GX_JID == -8 )
          {
             Z415AuditId = A415AuditId;
             Z416AuditDate = A416AuditDate;
@@ -207,7 +209,7 @@ namespace GeneXus.Programs {
             A421AuditUserName = BC001D5_A421AuditUserName[0];
             A422AuditAction = BC001D5_A422AuditAction[0];
             A11OrganisationId = BC001D5_A11OrganisationId[0];
-            ZM1D84( -7) ;
+            ZM1D84( -8) ;
          }
          pr_default.close(3);
          OnLoadActions1D84( ) ;
@@ -215,18 +217,20 @@ namespace GeneXus.Programs {
 
       protected void OnLoadActions1D84( )
       {
+         A503AuditTableDiaplayName = StringUtil.Substring( A417AuditTableName, 5, -1);
          A435AuditDisplayDescription = StringUtil.Substring( A419AuditShortDescription, 161, 240);
       }
 
       protected void CheckExtendedTable1D84( )
       {
          standaloneModal( ) ;
+         A503AuditTableDiaplayName = StringUtil.Substring( A417AuditTableName, 5, -1);
          A435AuditDisplayDescription = StringUtil.Substring( A419AuditShortDescription, 161, 240);
          /* Using cursor BC001D4 */
          pr_default.execute(2, new Object[] {A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Trn_Organisation", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
@@ -262,7 +266,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A415AuditId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM1D84( 7) ;
+            ZM1D84( 8) ;
             RcdFound84 = 1;
             A415AuditId = BC001D3_A415AuditId[0];
             A416AuditDate = BC001D3_A416AuditDate[0];
@@ -516,6 +520,7 @@ namespace GeneXus.Programs {
          if ( AnyError == 0 )
          {
             /* Delete mode formulas */
+            A503AuditTableDiaplayName = StringUtil.Substring( A417AuditTableName, 5, -1);
             A435AuditDisplayDescription = StringUtil.Substring( A419AuditShortDescription, 161, 240);
          }
       }
@@ -652,6 +657,7 @@ namespace GeneXus.Programs {
       protected void InitializeNonKey1D84( )
       {
          A435AuditDisplayDescription = "";
+         A503AuditTableDiaplayName = "";
          A416AuditDate = (DateTime)(DateTime.MinValue);
          A417AuditTableName = "";
          A418AuditDescription = "";
@@ -703,6 +709,7 @@ namespace GeneXus.Programs {
       {
          obj84.gxTpr_Mode = Gx_mode;
          obj84.gxTpr_Auditdisplaydescription = A435AuditDisplayDescription;
+         obj84.gxTpr_Audittablediaplayname = A503AuditTableDiaplayName;
          obj84.gxTpr_Auditdate = A416AuditDate;
          obj84.gxTpr_Audittablename = A417AuditTableName;
          obj84.gxTpr_Auditdescription = A418AuditDescription;
@@ -715,6 +722,7 @@ namespace GeneXus.Programs {
          obj84.gxTpr_Auditid_Z = Z415AuditId;
          obj84.gxTpr_Auditdate_Z = Z416AuditDate;
          obj84.gxTpr_Audittablename_Z = Z417AuditTableName;
+         obj84.gxTpr_Audittablediaplayname_Z = Z503AuditTableDiaplayName;
          obj84.gxTpr_Auditshortdescription_Z = Z419AuditShortDescription;
          obj84.gxTpr_Gamuserid_Z = Z420GAMUserId;
          obj84.gxTpr_Auditusername_Z = Z421AuditUserName;
@@ -736,6 +744,7 @@ namespace GeneXus.Programs {
       {
          Gx_mode = obj84.gxTpr_Mode;
          A435AuditDisplayDescription = obj84.gxTpr_Auditdisplaydescription;
+         A503AuditTableDiaplayName = obj84.gxTpr_Audittablediaplayname;
          A416AuditDate = obj84.gxTpr_Auditdate;
          A417AuditTableName = obj84.gxTpr_Audittablename;
          A418AuditDescription = obj84.gxTpr_Auditdescription;
@@ -748,6 +757,7 @@ namespace GeneXus.Programs {
          Z415AuditId = obj84.gxTpr_Auditid_Z;
          Z416AuditDate = obj84.gxTpr_Auditdate_Z;
          Z417AuditTableName = obj84.gxTpr_Audittablename_Z;
+         Z503AuditTableDiaplayName = obj84.gxTpr_Audittablediaplayname_Z;
          Z419AuditShortDescription = obj84.gxTpr_Auditshortdescription_Z;
          Z420GAMUserId = obj84.gxTpr_Gamuserid_Z;
          Z421AuditUserName = obj84.gxTpr_Auditusername_Z;
@@ -776,7 +786,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z415AuditId = A415AuditId;
          }
-         ZM1D84( -7) ;
+         ZM1D84( -8) ;
          OnLoadActions1D84( ) ;
          AddRow1D84( ) ;
          ScanKeyEnd1D84( ) ;
@@ -805,7 +815,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z415AuditId = A415AuditId;
          }
-         ZM1D84( -7) ;
+         ZM1D84( -8) ;
          OnLoadActions1D84( ) ;
          AddRow1D84( ) ;
          ScanKeyEnd1D84( ) ;
@@ -1209,6 +1219,8 @@ namespace GeneXus.Programs {
          A422AuditAction = "";
          Z11OrganisationId = Guid.Empty;
          A11OrganisationId = Guid.Empty;
+         Z503AuditTableDiaplayName = "";
+         A503AuditTableDiaplayName = "";
          Z435AuditDisplayDescription = "";
          A435AuditDisplayDescription = "";
          Z418AuditDescription = "";
@@ -1326,6 +1338,8 @@ namespace GeneXus.Programs {
       private string A421AuditUserName ;
       private string Z422AuditAction ;
       private string A422AuditAction ;
+      private string Z503AuditTableDiaplayName ;
+      private string A503AuditTableDiaplayName ;
       private string Z435AuditDisplayDescription ;
       private string A435AuditDisplayDescription ;
       private Guid Z415AuditId ;

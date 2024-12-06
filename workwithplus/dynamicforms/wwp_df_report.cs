@@ -948,7 +948,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                {
                   /* Print footers */
                   Gx_line = P_lines;
-                  AV96PagesFooter = StringUtil.Format( context.GetMessage( "WWP_DF_Report_Page", ""), StringUtil.LTrimStr( (decimal)(Gx_page), 6, 0), "", "", "", "", "", "", "", "");
+                  AV96PagesFooter = StringUtil.Format( "Page: %1", StringUtil.LTrimStr( (decimal)(Gx_page), 6, 0), "", "", "", "", "", "", "", "");
                   getPrinter().GxDrawLine(0, Gx_line+1, 552, Gx_line+1, 2, 0, 128, 128, 0) ;
                   getPrinter().GxAttris("Microsoft Sans Serif", 8, false, false, false, false, 0, 0, 0, 0, 0, 255, 255, 255) ;
                   getPrinter().GxDrawText(StringUtil.RTrim( context.localUtil.Format( AV96PagesFooter, "")), 0, Gx_line+7, 552, Gx_line+22, 2, 0, 0, 0) ;

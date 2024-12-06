@@ -47,41 +47,56 @@ namespace GeneXus.Programs {
       public void execute( string aP0_UserGAMGUID ,
                            string aP1_GivenName ,
                            string aP2_LastName ,
-                           string aP3_Role ,
-                           out string aP4_GAMErrorResponse )
+                           string aP3_PhoneCode ,
+                           string aP4_PhoneNumber ,
+                           string aP5_ProfileImage ,
+                           string aP6_Role ,
+                           out string aP7_GAMErrorResponse )
       {
          this.AV12UserGAMGUID = aP0_UserGAMGUID;
          this.AV10GivenName = aP1_GivenName;
          this.AV11LastName = aP2_LastName;
-         this.AV15Role = aP3_Role;
+         this.AV18PhoneCode = aP3_PhoneCode;
+         this.AV20PhoneNumber = aP4_PhoneNumber;
+         this.AV19ProfileImage = aP5_ProfileImage;
+         this.AV15Role = aP6_Role;
          this.AV8GAMErrorResponse = "" ;
          initialize();
          ExecuteImpl();
-         aP4_GAMErrorResponse=this.AV8GAMErrorResponse;
+         aP7_GAMErrorResponse=this.AV8GAMErrorResponse;
       }
 
       public string executeUdp( string aP0_UserGAMGUID ,
                                 string aP1_GivenName ,
                                 string aP2_LastName ,
-                                string aP3_Role )
+                                string aP3_PhoneCode ,
+                                string aP4_PhoneNumber ,
+                                string aP5_ProfileImage ,
+                                string aP6_Role )
       {
-         execute(aP0_UserGAMGUID, aP1_GivenName, aP2_LastName, aP3_Role, out aP4_GAMErrorResponse);
+         execute(aP0_UserGAMGUID, aP1_GivenName, aP2_LastName, aP3_PhoneCode, aP4_PhoneNumber, aP5_ProfileImage, aP6_Role, out aP7_GAMErrorResponse);
          return AV8GAMErrorResponse ;
       }
 
       public void executeSubmit( string aP0_UserGAMGUID ,
                                  string aP1_GivenName ,
                                  string aP2_LastName ,
-                                 string aP3_Role ,
-                                 out string aP4_GAMErrorResponse )
+                                 string aP3_PhoneCode ,
+                                 string aP4_PhoneNumber ,
+                                 string aP5_ProfileImage ,
+                                 string aP6_Role ,
+                                 out string aP7_GAMErrorResponse )
       {
          this.AV12UserGAMGUID = aP0_UserGAMGUID;
          this.AV10GivenName = aP1_GivenName;
          this.AV11LastName = aP2_LastName;
-         this.AV15Role = aP3_Role;
+         this.AV18PhoneCode = aP3_PhoneCode;
+         this.AV20PhoneNumber = aP4_PhoneNumber;
+         this.AV19ProfileImage = aP5_ProfileImage;
+         this.AV15Role = aP6_Role;
          this.AV8GAMErrorResponse = "" ;
          SubmitImpl();
-         aP4_GAMErrorResponse=this.AV8GAMErrorResponse;
+         aP7_GAMErrorResponse=this.AV8GAMErrorResponse;
       }
 
       protected override void ExecutePrivate( )
@@ -91,9 +106,17 @@ namespace GeneXus.Programs {
          AV9GAMUser.load( AV12UserGAMGUID);
          AV9GAMUser.gxTpr_Firstname = AV10GivenName;
          AV9GAMUser.gxTpr_Lastname = AV11LastName;
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV20PhoneNumber)) )
+         {
+            AV9GAMUser.gxTpr_Phone = AV18PhoneCode+"~"+AV20PhoneNumber;
+         }
+         if ( ! ( String.IsNullOrEmpty(StringUtil.RTrim( AV19ProfileImage)) && String.IsNullOrEmpty(StringUtil.RTrim( AV21Profileimage_GXI)) ) )
+         {
+            AV9GAMUser.gxTpr_Urlprofile = AV21Profileimage_GXI;
+         }
          if ( StringUtil.StrCmp(AV15Role, "Organisation Manager") == 0 )
          {
-            new prc_logtofile(context ).execute(  context.GetMessage( "Manager is role", "")) ;
+            new prc_logtofile(context ).execute(  "Manager is role") ;
             /* Using cursor P006B2 */
             pr_default.execute(0, new Object[] {AV9GAMUser.gxTpr_Email, AV9GAMUser.gxTpr_Guid});
             while ( (pr_default.getStatus(0) != 101) )
@@ -110,7 +133,7 @@ namespace GeneXus.Programs {
          }
          if ( StringUtil.StrCmp(AV15Role, "Receptionist") == 0 )
          {
-            new prc_logtofile(context ).execute(  context.GetMessage( "Receptionist is role", "")) ;
+            new prc_logtofile(context ).execute(  "Receptionist is role") ;
             /* Using cursor P006B3 */
             pr_default.execute(1, new Object[] {AV9GAMUser.gxTpr_Email, AV9GAMUser.gxTpr_Guid});
             while ( (pr_default.getStatus(1) != 101) )
@@ -128,7 +151,7 @@ namespace GeneXus.Programs {
          }
          if ( StringUtil.StrCmp(AV15Role, "Resident") == 0 )
          {
-            new prc_logtofile(context ).execute(  context.GetMessage( "Resident is role", "")) ;
+            new prc_logtofile(context ).execute(  "Resident is role") ;
             /* Using cursor P006B4 */
             pr_default.execute(2, new Object[] {AV9GAMUser.gxTpr_Email, AV9GAMUser.gxTpr_Guid});
             while ( (pr_default.getStatus(2) != 101) )
@@ -176,6 +199,7 @@ namespace GeneXus.Programs {
       {
          AV8GAMErrorResponse = "";
          AV9GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
+         AV21Profileimage_GXI = "";
          P006B2_A25ManagerEmail = new string[] {""} ;
          P006B2_A28ManagerGAMGUID = new string[] {""} ;
          P006B2_A394ManagerIsActive = new bool[] {false} ;
@@ -236,12 +260,16 @@ namespace GeneXus.Programs {
       private string AV12UserGAMGUID ;
       private string AV10GivenName ;
       private string AV11LastName ;
+      private string AV18PhoneCode ;
+      private string AV20PhoneNumber ;
+      private string AV21Profileimage_GXI ;
       private string A25ManagerEmail ;
       private string A28ManagerGAMGUID ;
       private string A93ReceptionistEmail ;
       private string A95ReceptionistGAMGUID ;
       private string A67ResidentEmail ;
       private string A71ResidentGUID ;
+      private string AV19ProfileImage ;
       private Guid A21ManagerId ;
       private Guid A11OrganisationId ;
       private Guid A89ReceptionistId ;
@@ -269,7 +297,7 @@ namespace GeneXus.Programs {
       private Guid[] P006B4_A29LocationId ;
       private Guid[] P006B4_A11OrganisationId ;
       private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV13GAMErrorCollection ;
-      private string aP4_GAMErrorResponse ;
+      private string aP7_GAMErrorResponse ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
