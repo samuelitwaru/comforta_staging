@@ -10,11 +10,10 @@ const predefinedPages1 = {
           "components": [
             {
               "type": "image",
-              "src": "https://via.placeholder.com/300",
+              "src": "https://staging.comforta.yukon.software/media/receptie-197@3x.png",
               "style": {
-                "width": "300px",
+                "width": "100%",
                 "height": "auto",
-                "margin": "10px auto",
                 "display": "block"
               },
               "attributes": {
@@ -104,9 +103,8 @@ const predefinedPages1 = {
               "type": "image",
               "src": "https://staging.comforta.yukon.software/media/calendar-page.png",
               "style": {
-                "width": "300px",
+                "width": "100%",
                 "height": "auto",
-                "margin": "10px auto",
                 "display": "block"
               },
               "attributes": {
@@ -138,9 +136,8 @@ const predefinedPages1 = {
               "type": "image",
               "src": "https://staging.comforta.yukon.software/media/mailbox.png",
               "style": {
-                "width": "300px",
+                "width": "100%",
                 "height": "auto",
-                "margin": "10px auto",
                 "display": "block"
               },
               "attributes": {
