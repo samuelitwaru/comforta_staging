@@ -1,4 +1,4 @@
-const predefinedPages = {
+const predefinedPages1 = {
   "Reception": {
     "assets": [],
     "pages": [
@@ -350,7 +350,7 @@ class ChildEditorManager {
       }else{
 
         editor.loadProjectData(
-          predefinedPages[page.PageName]
+          predefinedPages1[page.PageName]
         )
 
       }
