@@ -185,6 +185,7 @@ class ChildEditorManager {
         this.currentPageId = homePage.PageId;
       } else {
         alert("No Home Page Found");
+        this.toolsSection.displayAlertMessage("No Home Page Found", "danger")
         return;
       }
     });
