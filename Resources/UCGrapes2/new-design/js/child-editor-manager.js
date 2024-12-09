@@ -1,3 +1,166 @@
+const predefinedPages = {
+  "Reception": {
+    "assets": [],
+    "pages": [
+      {
+        "id": "page-id-1",
+        "name": "Page 1",
+        "component": {
+          "type": "wrapper",
+          "components": [
+            {
+              "type": "image",
+              "src": "https://via.placeholder.com/300",
+              "style": {
+                "width": "300px",
+                "height": "auto",
+                "margin": "10px auto",
+                "display": "block"
+              },
+              "attributes": {
+                "alt": "Sample Image"
+              },
+              "selectable": false
+            },
+            {
+              "type": "text",
+              "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              "style": {
+                "margin": "20px auto",
+                "width": "80%",
+                "text-align": "left",
+                "font-size": "16px",
+                "line-height": "1.5"
+              },
+              "selectable": true
+            }
+          ]
+        }
+      }
+    ],
+    "styles": "",
+    "css": "",
+    "html": "",
+    "components": "",
+    "stylesheets": [],
+    "scripts": []
+  },
+  "Location": {
+    "assets": [],
+    "pages": [
+      {
+        "id": "page-id-1",
+        "name": "Page 1",
+        "component": {
+          "type": "wrapper",
+          "components": [
+            {
+              "type": "image",
+              "src": "https://via.placeholder.com/300",
+              "style": {
+                "width": "300px",
+                "height": "auto",
+                "margin": "10px auto",
+                "display": "block"
+              },
+              "attributes": {
+                "alt": "Sample Image"
+              },
+              "selectable": false
+            },
+            {
+              "type": "text",
+              "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              "style": {
+                "margin": "20px auto",
+                "width": "80%",
+                "text-align": "left",
+                "font-size": "16px",
+                "line-height": "1.5"
+              },
+              "selectable": true
+            }
+          ]
+        }
+      }
+    ],
+    "styles": "",
+    "css": "",
+    "html": "",
+    "components": "",
+    "stylesheets": [],
+    "scripts": []
+  },
+  "Calendar": {
+    "assets": [],
+    "pages": [
+      {
+        "id": "page-id-1",
+        "name": "Page 1",
+        "component": {
+          "type": "wrapper",
+          "components": [
+            {
+              "type": "image",
+              "src": "https://staging.comforta.yukon.software/media/calendar-page.png",
+              "style": {
+                "width": "300px",
+                "height": "auto",
+                "margin": "10px auto",
+                "display": "block"
+              },
+              "attributes": {
+                "alt": "Sample Image"
+              },
+              "selectable": false
+            },
+          ]
+        }
+      }
+    ],
+    "styles": "",
+    "css": "",
+    "html": "",
+    "components": "",
+    "stylesheets": [],
+    "scripts": []
+  },
+  "Mailbox": {
+    "assets": [],
+    "pages": [
+      {
+        "id": "page-id-1",
+        "name": "Page 1",
+        "component": {
+          "type": "wrapper",
+          "components": [
+            {
+              "type": "image",
+              "src": "https://staging.comforta.yukon.software/media/mailbox.png",
+              "style": {
+                "width": "300px",
+                "height": "auto",
+                "margin": "10px auto",
+                "display": "block"
+              },
+              "attributes": {
+                "alt": "Sample Image"
+              },
+              "selectable": false
+            },
+          ]
+        }
+      }
+    ],
+    "styles": "",
+    "css": "",
+    "html": "",
+    "components": "",
+    "stylesheets": [],
+    "scripts": []
+  },
+}
+
 class ChildEditorManager {
   editors = {};
   pages = [];
@@ -186,58 +349,10 @@ class ChildEditorManager {
           });
       }else{
 
+        editor.loadProjectData(
+          predefinedPages[page.PageName]
+        )
 
-        if(page.PageName=="Reception") {
-          editor.loadProjectData(
-            {
-              "assets": [],
-              "pages": [
-                {
-                  "id": "page-id-1",
-                  "name": "Page 1",
-                  "component": {
-                    "type": "wrapper",
-                    "components": [
-                      {
-                        "type": "image",
-                        "src": "https://via.placeholder.com/300",
-                        "style": {
-                          "width": "300px",
-                          "height": "auto",
-                          "margin": "10px auto",
-                          "display": "block"
-                        },
-                        "attributes": {
-                          "alt": "Sample Image"
-                        },
-                        "selectable": false
-                      },
-                      {
-                        "type": "text",
-                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                        "style": {
-                          "margin": "20px auto",
-                          "width": "80%",
-                          "text-align": "center",
-                          "font-size": "16px",
-                          "line-height": "1.5"
-                        },
-                        "selectable": true
-                      }
-                    ]
-                  }
-                }
-              ],
-              "styles": "",
-              "css": "",
-              "html": "",
-              "components": "",
-              "stylesheets": [],
-              "scripts": []
-            }
-            
-          )
-        }
       }
     }
 
