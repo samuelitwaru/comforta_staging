@@ -165,24 +165,80 @@ class ChildEditorManager {
         editor.loadProjectData(JSON.parse(page.PageGJSJson));
       }
     } else {
-      this.dataManager
-        .getContentPageData(page.PageId)
-        .then((contentPageData) => {
-          if (contentPageData) {
-            const projectData =
-              this.initialContentPageTemplate(contentPageData);
-            editor.addComponents(projectData)[0];
+      if (page.PageIsContentPage) {
+        this.dataManager
+          .getContentPageData(page.PageId)
+          .then((contentPageData) => {
+            if (contentPageData) {
+              const projectData =
+                this.initialContentPageTemplate(contentPageData);
+              editor.addComponents(projectData)[0];
+  
+              // Ensure Call To Actions are applied
+              this.toolsSection.pageContentCtas(
+                contentPageData.CallToActions,
+                editor
+              );
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching content page data:", error);
+          });
+      }else{
 
-            // Ensure Call To Actions are applied
-            this.toolsSection.pageContentCtas(
-              contentPageData.CallToActions,
-              editor
-            );
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching content page data:", error);
-        });
+
+        if(page.PageName=="Reception") {
+          editor.loadProjectData(
+            {
+              "assets": [],
+              "pages": [
+                {
+                  "id": "page-id-1",
+                  "name": "Page 1",
+                  "component": {
+                    "type": "wrapper",
+                    "components": [
+                      {
+                        "type": "image",
+                        "src": "https://via.placeholder.com/300",
+                        "style": {
+                          "width": "300px",
+                          "height": "auto",
+                          "margin": "10px auto",
+                          "display": "block"
+                        },
+                        "attributes": {
+                          "alt": "Sample Image"
+                        },
+                        "selectable": false
+                      },
+                      {
+                        "type": "text",
+                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                        "style": {
+                          "margin": "20px auto",
+                          "width": "80%",
+                          "text-align": "center",
+                          "font-size": "16px",
+                          "line-height": "1.5"
+                        },
+                        "selectable": true
+                      }
+                    ]
+                  }
+                }
+              ],
+              "styles": "",
+              "css": "",
+              "html": "",
+              "components": "",
+              "stylesheets": [],
+              "scripts": []
+            }
+            
+          )
+        }
+      }
     }
 
     // Adjust Canvas for Content Pages
