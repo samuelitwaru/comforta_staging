@@ -1061,7 +1061,7 @@ namespace GeneXus.Programs {
                A40000ProductServiceImage_GXI = cgiGet( "PRODUCTSERVICEIMAGE_GXI");
                A44SupplierGenCompanyName = cgiGet( "SUPPLIERGENCOMPANYNAME");
                A51SupplierAgbName = cgiGet( "SUPPLIERAGBNAME");
-               AV62Pgmname = cgiGet( "vPGMNAME");
+               AV64Pgmname = cgiGet( "vPGMNAME");
                Combo_suppliergenid_Objectcall = cgiGet( "COMBO_SUPPLIERGENID_Objectcall");
                Combo_suppliergenid_Class = cgiGet( "COMBO_SUPPLIERGENID_Class");
                Combo_suppliergenid_Icontype = cgiGet( "COMBO_SUPPLIERGENID_Icontype");
@@ -1720,13 +1720,13 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          AV16TrnContext.FromXml(AV18WebSession.Get("TrnContext"), null, "", "");
-         if ( ( StringUtil.StrCmp(AV16TrnContext.gxTpr_Transactionname, AV62Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         if ( ( StringUtil.StrCmp(AV16TrnContext.gxTpr_Transactionname, AV64Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
          {
-            AV63GXV1 = 1;
-            AssignAttri("", false, "AV63GXV1", StringUtil.LTrimStr( (decimal)(AV63GXV1), 8, 0));
-            while ( AV63GXV1 <= AV16TrnContext.gxTpr_Attributes.Count )
+            AV65GXV1 = 1;
+            AssignAttri("", false, "AV65GXV1", StringUtil.LTrimStr( (decimal)(AV65GXV1), 8, 0));
+            while ( AV65GXV1 <= AV16TrnContext.gxTpr_Attributes.Count )
             {
-               AV17TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV16TrnContext.gxTpr_Attributes.Item(AV63GXV1));
+               AV17TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV16TrnContext.gxTpr_Attributes.Item(AV65GXV1));
                if ( StringUtil.StrCmp(AV17TrnContextAtt.gxTpr_Attributename, "SupplierGenId") == 0 )
                {
                   AV10Insert_SupplierGenId = StringUtil.StrToGuid( AV17TrnContextAtt.gxTpr_Attributevalue);
@@ -1771,8 +1771,8 @@ namespace GeneXus.Programs {
                      ucCombo_supplieragbid.SendProperty(context, "", false, Combo_supplieragbid_Internalname, "Enabled", StringUtil.BoolToStr( Combo_supplieragbid_Enabled));
                   }
                }
-               AV63GXV1 = (int)(AV63GXV1+1);
-               AssignAttri("", false, "AV63GXV1", StringUtil.LTrimStr( (decimal)(AV63GXV1), 8, 0));
+               AV65GXV1 = (int)(AV65GXV1+1);
+               AssignAttri("", false, "AV65GXV1", StringUtil.LTrimStr( (decimal)(AV65GXV1), 8, 0));
             }
          }
          edtProductServiceId_Visible = 0;
@@ -1802,8 +1802,16 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "AV59RoleName", AV59RoleName);
             GxWebStd.gx_hidden_field( context, "gxhash_vROLENAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV59RoleName, "")), context));
          }
+         AV53IsWeb = true;
          if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
          {
+            AV61SDT_NotificationMetadata = new SdtSDT_NotificationMetadata(context);
+            AV61SDT_NotificationMetadata.gxTpr_Isparentnotification = true;
+            AV61SDT_NotificationMetadata.gxTpr_Parentnotificationid = A58ProductServiceId.ToString();
+            AV61SDT_NotificationMetadata.gxTpr_Notificationtriggeredtimestamp = DateTimeUtil.Now( context);
+            AV61SDT_NotificationMetadata.gxTpr_Notificationorigin = "Product/Service";
+            AV62WWPNotificationMetadataSDT = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationMetadata(context);
+            AV62WWPNotificationMetadataSDT.gxTpr_Custommetadata = AV61SDT_NotificationMetadata;
             GXt_char3 = AV58NotificationDescription;
             GXt_char5 = AV58NotificationDescription;
             new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context ).execute( out  GXt_char5) ;
@@ -1811,9 +1819,20 @@ namespace GeneXus.Programs {
             AV58NotificationDescription = StringUtil.Format( "%1 added by %2 %3", A59ProductServiceName, AV59RoleName, GXt_char3, "", "", "", "", "", "");
             AssignAttri("", false, "AV58NotificationDescription", AV58NotificationDescription);
             GxWebStd.gx_hidden_field( context, "gxhash_vNOTIFICATIONDESCRIPTION", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV58NotificationDescription, "")), context));
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "trn_productserviceview.aspx"+UrlEncode(A58ProductServiceId.ToString()) + "," + UrlEncode(A29LocationId.ToString()) + "," + UrlEncode(A11OrganisationId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
+            AV55NotificationLink = formatLink("trn_productserviceview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "InsertRecord",  "Trn_ProductService",  "",  "fas fa-plus NotificationFontIconSuccess",  "New Product/Service",  AV58NotificationDescription,  AV58NotificationDescription,  AV55NotificationLink,  AV62WWPNotificationMetadataSDT.ToJSonString(false, true),  "",  AV53IsWeb) ;
          }
          if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
          {
+            AV61SDT_NotificationMetadata = new SdtSDT_NotificationMetadata(context);
+            AV61SDT_NotificationMetadata.gxTpr_Isparentnotification = false;
+            AV61SDT_NotificationMetadata.gxTpr_Parentnotificationid = A58ProductServiceId.ToString();
+            AV61SDT_NotificationMetadata.gxTpr_Notificationtriggeredtimestamp = DateTimeUtil.Now( context);
+            AV61SDT_NotificationMetadata.gxTpr_Notificationorigin = "Product/Service";
+            AV62WWPNotificationMetadataSDT = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationMetadata(context);
+            AV62WWPNotificationMetadataSDT.gxTpr_Custommetadata = AV61SDT_NotificationMetadata;
             GXt_char5 = AV58NotificationDescription;
             GXt_char3 = AV58NotificationDescription;
             new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context ).execute( out  GXt_char3) ;
@@ -1821,9 +1840,20 @@ namespace GeneXus.Programs {
             AV58NotificationDescription = StringUtil.Format( "%1 updated by %2 %3", A59ProductServiceName, AV59RoleName, GXt_char5, "", "", "", "", "", "");
             AssignAttri("", false, "AV58NotificationDescription", AV58NotificationDescription);
             GxWebStd.gx_hidden_field( context, "gxhash_vNOTIFICATIONDESCRIPTION", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV58NotificationDescription, "")), context));
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "trn_productserviceview.aspx"+UrlEncode(A58ProductServiceId.ToString()) + "," + UrlEncode(A29LocationId.ToString()) + "," + UrlEncode(A11OrganisationId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
+            AV55NotificationLink = formatLink("trn_productserviceview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "UpdateRecord",  "Trn_ProductService",  "",  "fas fa-pencil-alt NotificationFontIconWarning",  "Product/Service Updated",  AV58NotificationDescription,  AV58NotificationDescription,  AV55NotificationLink,  AV62WWPNotificationMetadataSDT.ToJSonString(false, true),  "",  AV53IsWeb) ;
          }
          if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
          {
+            AV61SDT_NotificationMetadata = new SdtSDT_NotificationMetadata(context);
+            AV61SDT_NotificationMetadata.gxTpr_Isparentnotification = false;
+            AV61SDT_NotificationMetadata.gxTpr_Parentnotificationid = A58ProductServiceId.ToString();
+            AV61SDT_NotificationMetadata.gxTpr_Notificationtriggeredtimestamp = DateTimeUtil.Now( context);
+            AV61SDT_NotificationMetadata.gxTpr_Notificationorigin = "Product/Service";
+            AV62WWPNotificationMetadataSDT = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationMetadata(context);
+            AV62WWPNotificationMetadataSDT.gxTpr_Custommetadata = AV61SDT_NotificationMetadata;
             GXt_char5 = AV58NotificationDescription;
             GXt_char3 = AV58NotificationDescription;
             new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context ).execute( out  GXt_char3) ;
@@ -1831,6 +1861,7 @@ namespace GeneXus.Programs {
             AV58NotificationDescription = StringUtil.Format( "%1 deleted by %2 %3", A59ProductServiceName, AV59RoleName, GXt_char5, "", "", "", "", "", "");
             AssignAttri("", false, "AV58NotificationDescription", AV58NotificationDescription);
             GxWebStd.gx_hidden_field( context, "gxhash_vNOTIFICATIONDESCRIPTION", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV58NotificationDescription, "")), context));
+            new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "DeleteRecord",  "Trn_ProductService",  "",  "far fa-trash-alt NotificationFontIconDanger",  "Product/Service Deleted",  AV58NotificationDescription,  AV58NotificationDescription,  "",  AV62WWPNotificationMetadataSDT.ToJSonString(false, true),  "",  AV53IsWeb) ;
          }
          AV53IsWeb = true;
          if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
@@ -2122,8 +2153,8 @@ namespace GeneXus.Programs {
                AssignProp("", false, cellListgen_cell_Internalname, "Class", cellListgen_cell_Class, true);
             }
          }
-         AV62Pgmname = "Trn_ProductService";
-         AssignAttri("", false, "AV62Pgmname", AV62Pgmname);
+         AV64Pgmname = "Trn_ProductService";
+         AssignAttri("", false, "AV64Pgmname", AV64Pgmname);
          Gx_BScreen = 0;
          AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
          bttBtntrn_delete_Enabled = 0;
@@ -3463,7 +3494,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "PRODUCTSERVICEIMAGE_GXI", A40000ProductServiceImage_GXI);
          GxWebStd.gx_hidden_field( context, "SUPPLIERGENCOMPANYNAME", A44SupplierGenCompanyName);
          GxWebStd.gx_hidden_field( context, "SUPPLIERAGBNAME", A51SupplierAgbName);
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV62Pgmname));
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV64Pgmname));
          GXCCtlgxBlob = "PRODUCTSERVICEIMAGE" + "_gxBlob";
          GxWebStd.gx_hidden_field( context, GXCCtlgxBlob, A61ProductServiceImage);
          GxWebStd.gx_hidden_field( context, "COMBO_SUPPLIERGENID_Objectcall", StringUtil.RTrim( Combo_suppliergenid_Objectcall));
@@ -3638,7 +3669,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412101950868", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121116491421", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3654,7 +3685,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_productservice.js", "?202412101950872", false, true);
+         context.AddJavascriptSource("trn_productservice.js", "?2024121116491424", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -4175,7 +4206,7 @@ namespace GeneXus.Programs {
          setEventMetadata("ENTER",""","oparms":[{"av":"dynProductServiceGroup"},{"av":"A366ProductServiceGroup","fld":"PRODUCTSERVICEGROUP"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"dynLocationId"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"AV43ListGen","fld":"vLISTGEN"},{"av":"AV51ListGenPre","fld":"vLISTGENPRE"},{"av":"AV42ListAgb","fld":"vLISTAGB"},{"av":"AV52ListAgbPre","fld":"vLISTAGBPRE"}]}""");
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV19WWPContext","fld":"vWWPCONTEXT","hsh":true},{"av":"AV59RoleName","fld":"vROLENAME","hsh":true},{"av":"AV58NotificationDescription","fld":"vNOTIFICATIONDESCRIPTION","hsh":true},{"av":"AV16TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"AV12ProductServiceId","fld":"vPRODUCTSERVICEID","hsh":true},{"av":"AV33LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV34OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"dynProductServiceGroup"},{"av":"A366ProductServiceGroup","fld":"PRODUCTSERVICEGROUP"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"dynLocationId"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"AV43ListGen","fld":"vLISTGEN"},{"av":"AV51ListGenPre","fld":"vLISTGENPRE"},{"av":"AV42ListAgb","fld":"vLISTAGB"},{"av":"AV52ListAgbPre","fld":"vLISTAGBPRE"}]""");
          setEventMetadata("REFRESH",""","oparms":[{"av":"dynProductServiceGroup"},{"av":"A366ProductServiceGroup","fld":"PRODUCTSERVICEGROUP"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"dynLocationId"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"AV43ListGen","fld":"vLISTGEN"},{"av":"AV51ListGenPre","fld":"vLISTGENPRE"},{"av":"AV42ListAgb","fld":"vLISTAGB"},{"av":"AV52ListAgbPre","fld":"vLISTAGBPRE"}]}""");
-         setEventMetadata("AFTER TRN","""{"handler":"E16082","iparms":[{"av":"AV19WWPContext","fld":"vWWPCONTEXT","hsh":true},{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"A59ProductServiceName","fld":"PRODUCTSERVICENAME"},{"av":"AV59RoleName","fld":"vROLENAME","hsh":true},{"av":"A58ProductServiceId","fld":"PRODUCTSERVICEID"},{"av":"AV58NotificationDescription","fld":"vNOTIFICATIONDESCRIPTION","hsh":true},{"av":"AV16TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"dynProductServiceGroup"},{"av":"A366ProductServiceGroup","fld":"PRODUCTSERVICEGROUP"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"dynLocationId"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"AV43ListGen","fld":"vLISTGEN"},{"av":"AV51ListGenPre","fld":"vLISTGENPRE"},{"av":"AV42ListAgb","fld":"vLISTAGB"},{"av":"AV52ListAgbPre","fld":"vLISTAGBPRE"}]""");
+         setEventMetadata("AFTER TRN","""{"handler":"E16082","iparms":[{"av":"AV19WWPContext","fld":"vWWPCONTEXT","hsh":true},{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"A58ProductServiceId","fld":"PRODUCTSERVICEID"},{"av":"A59ProductServiceName","fld":"PRODUCTSERVICENAME"},{"av":"AV59RoleName","fld":"vROLENAME","hsh":true},{"av":"AV58NotificationDescription","fld":"vNOTIFICATIONDESCRIPTION","hsh":true},{"av":"AV16TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"dynProductServiceGroup"},{"av":"A366ProductServiceGroup","fld":"PRODUCTSERVICEGROUP"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"dynLocationId"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"AV43ListGen","fld":"vLISTGEN"},{"av":"AV51ListGenPre","fld":"vLISTGENPRE"},{"av":"AV42ListAgb","fld":"vLISTAGB"},{"av":"AV52ListAgbPre","fld":"vLISTAGBPRE"}]""");
          setEventMetadata("AFTER TRN",""","oparms":[{"av":"AV59RoleName","fld":"vROLENAME","hsh":true},{"av":"AV58NotificationDescription","fld":"vNOTIFICATIONDESCRIPTION","hsh":true},{"av":"dynProductServiceGroup"},{"av":"A366ProductServiceGroup","fld":"PRODUCTSERVICEGROUP"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"dynLocationId"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"AV43ListGen","fld":"vLISTGEN"},{"av":"AV51ListGenPre","fld":"vLISTGENPRE"},{"av":"AV42ListAgb","fld":"vLISTAGB"},{"av":"AV52ListAgbPre","fld":"vLISTAGBPRE"}]}""");
          setEventMetadata("COMBO_SUPPLIERAGB_ID.ONOPTIONCLICKED","""{"handler":"E15082","iparms":[{"av":"Combo_supplieragb_id_Selectedvalue_get","ctrl":"COMBO_SUPPLIERAGB_ID","prop":"SelectedValue_get"},{"av":"dynProductServiceGroup"},{"av":"A366ProductServiceGroup","fld":"PRODUCTSERVICEGROUP"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"dynLocationId"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"AV43ListGen","fld":"vLISTGEN"},{"av":"AV51ListGenPre","fld":"vLISTGENPRE"},{"av":"AV42ListAgb","fld":"vLISTAGB"},{"av":"AV52ListAgbPre","fld":"vLISTAGBPRE"}]""");
          setEventMetadata("COMBO_SUPPLIERAGB_ID.ONOPTIONCLICKED",""","oparms":[{"av":"AV46SupplierAgb_Id","fld":"vSUPPLIERAGB_ID"},{"av":"dynProductServiceGroup"},{"av":"A366ProductServiceGroup","fld":"PRODUCTSERVICEGROUP"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"dynLocationId"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"AV43ListGen","fld":"vLISTGEN"},{"av":"AV51ListGenPre","fld":"vLISTGENPRE"},{"av":"AV42ListAgb","fld":"vLISTAGB"},{"av":"AV52ListAgbPre","fld":"vLISTAGBPRE"}]}""");
@@ -4307,7 +4338,7 @@ namespace GeneXus.Programs {
          AV9Insert_SupplierAgbId = Guid.Empty;
          A44SupplierGenCompanyName = "";
          A51SupplierAgbName = "";
-         AV62Pgmname = "";
+         AV64Pgmname = "";
          Combo_suppliergenid_Objectcall = "";
          Combo_suppliergenid_Class = "";
          Combo_suppliergenid_Icontype = "";
@@ -4437,10 +4468,12 @@ namespace GeneXus.Programs {
          AV56GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          GXt_SdtGAMUser4 = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          AV59RoleName = "";
+         AV61SDT_NotificationMetadata = new SdtSDT_NotificationMetadata(context);
+         AV62WWPNotificationMetadataSDT = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationMetadata(context);
          AV58NotificationDescription = "";
-         GXt_char3 = "";
          AV55NotificationLink = "";
          GXEncryptionTmp = "";
+         GXt_char3 = "";
          GXt_char5 = "";
          Z60ProductServiceDescription = "";
          Z61ProductServiceImage = "";
@@ -4626,7 +4659,7 @@ namespace GeneXus.Programs {
          n58ProductServiceId = false;
          A58ProductServiceId = Guid.NewGuid( );
          n58ProductServiceId = false;
-         AV62Pgmname = "Trn_ProductService";
+         AV64Pgmname = "Trn_ProductService";
          Z366ProductServiceGroup = "Location";
          A366ProductServiceGroup = "Location";
          i366ProductServiceGroup = "Location";
@@ -4682,7 +4715,7 @@ namespace GeneXus.Programs {
       private int Combo_supplieragbid_Gxcontroltype ;
       private int Combo_supplieragb_id_Datalistupdateminimumcharacters ;
       private int Combo_supplieragb_id_Gxcontroltype ;
-      private int AV63GXV1 ;
+      private int AV65GXV1 ;
       private int idxLst ;
       private int gxdynajaxindex ;
       private string sPrefix ;
@@ -4813,7 +4846,7 @@ namespace GeneXus.Programs {
       private string edtProductServiceId_Jsonclick ;
       private string edtOrganisationId_Internalname ;
       private string edtOrganisationId_Jsonclick ;
-      private string AV62Pgmname ;
+      private string AV64Pgmname ;
       private string Combo_suppliergenid_Objectcall ;
       private string Combo_suppliergenid_Class ;
       private string Combo_suppliergenid_Icontype ;
@@ -4926,8 +4959,8 @@ namespace GeneXus.Programs {
       private string sEvtType ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
-      private string GXt_char3 ;
       private string GXEncryptionTmp ;
+      private string GXt_char3 ;
       private string GXt_char5 ;
       private string sDynURL ;
       private string FormProcess ;
@@ -5069,6 +5102,8 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute AV17TrnContextAtt ;
       private GeneXus.Programs.genexussecurity.SdtGAMUser AV56GAMUser ;
       private GeneXus.Programs.genexussecurity.SdtGAMUser GXt_SdtGAMUser4 ;
+      private SdtSDT_NotificationMetadata AV61SDT_NotificationMetadata ;
+      private GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationMetadata AV62WWPNotificationMetadataSDT ;
       private IDataStoreProvider pr_default ;
       private string[] T00085_A44SupplierGenCompanyName ;
       private string[] T00086_A51SupplierAgbName ;

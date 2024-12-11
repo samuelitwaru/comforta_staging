@@ -81,12 +81,14 @@ namespace GeneXus.Programs {
          AV11TheNotification.gxTpr_Id = "record-id-to-link";
          AV11TheNotification.gxTpr_Title.gxTpr_Defaulttext = AV10title;
          AV11TheNotification.gxTpr_Text.gxTpr_Defaulttext = AV9message;
+         AV19Parameter = new GeneXus.Core.genexus.common.notifications.SdtEvent_Parameter(context);
+         AV19Parameter.gxTpr_Name = "Name";
+         AV19Parameter.gxTpr_Value = "Value";
+         AV23ParameterId = "my-id-to-link-data";
+         AV11TheNotification.gxTpr_Actions.gxTpr_Defaultaction.gxTpr_Event.gxTpr_Name = "PushAction";
+         AV11TheNotification.gxTpr_Actions.gxTpr_Defaultaction.gxTpr_Event.gxTpr_Parameters.FromJSonString(StringUtil.Format( "[{\"Name\":\"PushParameterId\",\"Value\":\"%1\"}]", StringUtil.Trim( AV23ParameterId), "", "", "", "", "", "", "", ""), null);
          AV15TheNotificationDelivery.gxTpr_Priority = "High";
          AV12TheNotificationConfiguration.gxTpr_Applicationid = "Comforta";
-         AV17ConfigurationProperty = new GeneXus.Core.genexus.common.notifications.SdtConfigurationProperty(context);
-         AV17ConfigurationProperty.gxTpr_Propertyname = "RecordId";
-         AV17ConfigurationProperty.gxTpr_Propertyvalue = "record-id-to-link";
-         AV12TheNotificationConfiguration.gxTpr_Properties.Add(AV17ConfigurationProperty, 0);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV10title)) || String.IsNullOrEmpty(StringUtil.RTrim( AV9message)) )
          {
             AV14IsSuccessful = false;
@@ -100,6 +102,7 @@ namespace GeneXus.Programs {
                A363DeviceToken = P007U2_A363DeviceToken[0];
                A361DeviceId = P007U2_A361DeviceId[0];
                new GeneXus.Core.genexus.common.notifications.sendnotification(context ).execute(  AV12TheNotificationConfiguration,  A363DeviceToken,  AV11TheNotification,  AV15TheNotificationDelivery, out  AV13OutMessages, out  AV14IsSuccessful) ;
+               new prc_sendonesignalnotification(context ).execute(  A363DeviceToken) ;
                pr_default.readNext(0);
             }
             pr_default.close(0);
@@ -130,9 +133,10 @@ namespace GeneXus.Programs {
       {
          AV8response = "";
          AV11TheNotification = new GeneXus.Core.genexus.common.notifications.SdtNotification(context);
+         AV19Parameter = new GeneXus.Core.genexus.common.notifications.SdtEvent_Parameter(context);
+         AV23ParameterId = "";
          AV15TheNotificationDelivery = new GeneXus.Core.genexus.common.notifications.SdtDelivery(context);
          AV12TheNotificationConfiguration = new GeneXus.Core.genexus.common.notifications.SdtConfiguration(context);
-         AV17ConfigurationProperty = new GeneXus.Core.genexus.common.notifications.SdtConfigurationProperty(context);
          P007U2_A363DeviceToken = new string[] {""} ;
          P007U2_A361DeviceId = new string[] {""} ;
          A363DeviceToken = "";
@@ -154,13 +158,14 @@ namespace GeneXus.Programs {
       private string AV8response ;
       private string AV10title ;
       private string AV9message ;
+      private string AV23ParameterId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Core.genexus.common.notifications.SdtNotification AV11TheNotification ;
+      private GeneXus.Core.genexus.common.notifications.SdtEvent_Parameter AV19Parameter ;
       private GeneXus.Core.genexus.common.notifications.SdtDelivery AV15TheNotificationDelivery ;
       private GeneXus.Core.genexus.common.notifications.SdtConfiguration AV12TheNotificationConfiguration ;
-      private GeneXus.Core.genexus.common.notifications.SdtConfigurationProperty AV17ConfigurationProperty ;
       private IDataStoreProvider pr_default ;
       private string[] P007U2_A363DeviceToken ;
       private string[] P007U2_A361DeviceId ;

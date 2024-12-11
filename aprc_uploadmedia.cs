@@ -126,10 +126,27 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         GXt_char1 = AV27UserName;
+         new prc_getloggedinusername(context ).execute( out  GXt_char1) ;
+         AV27UserName = GXt_char1;
+         /* Using cursor P00882 */
+         pr_default.execute(0, new Object[] {AV27UserName});
+         while ( (pr_default.getStatus(0) != 101) )
+         {
+            A93ReceptionistEmail = P00882_A93ReceptionistEmail[0];
+            A29LocationId = P00882_A29LocationId[0];
+            A11OrganisationId = P00882_A11OrganisationId[0];
+            A89ReceptionistId = P00882_A89ReceptionistId[0];
+            AV25LocationId = A29LocationId;
+            AV26OrganisationId = A11OrganisationId;
+            pr_default.readNext(0);
+         }
+         pr_default.close(0);
          AV14BC_Trn_Media = new SdtTrn_Media(context);
          AV14BC_Trn_Media.gxTpr_Medianame = AV12MediaName;
          AV14BC_Trn_Media.gxTpr_Mediasize = AV20MediaSize;
          AV14BC_Trn_Media.gxTpr_Mediatype = AV21MediaType;
+         AV14BC_Trn_Media.gxTpr_Locationid = AV25LocationId;
          AV23MediaUrl = StringUtil.StringReplace( AV8HttpRequest.BaseURL, "api/media/", "media/"+AV12MediaName);
          if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, "http://localhost") )
          {
@@ -154,13 +171,13 @@ namespace GeneXus.Programs {
          }
          else
          {
-            AV26GXV2 = 1;
-            AV25GXV1 = AV14BC_Trn_Media.GetMessages();
-            while ( AV26GXV2 <= AV25GXV1.Count )
+            AV30GXV2 = 1;
+            AV29GXV1 = AV14BC_Trn_Media.GetMessages();
+            while ( AV30GXV2 <= AV29GXV1.Count )
             {
-               AV17Message = ((GeneXus.Utils.SdtMessages_Message)AV25GXV1.Item(AV26GXV2));
+               AV17Message = ((GeneXus.Utils.SdtMessages_Message)AV29GXV1.Item(AV30GXV2));
                new prc_logtofile(context ).execute(  AV17Message.gxTpr_Description) ;
-               AV26GXV2 = (int)(AV26GXV2+1);
+               AV30GXV2 = (int)(AV30GXV2+1);
             }
             AV10response = "Insert ERROR";
             context.RollbackDataStores("prc_uploadmedia",pr_default);
@@ -181,11 +198,23 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV14BC_Trn_Media = new SdtTrn_Media(context);
+         AV27UserName = "";
+         GXt_char1 = "";
+         P00882_A93ReceptionistEmail = new string[] {""} ;
+         P00882_A29LocationId = new Guid[] {Guid.Empty} ;
+         P00882_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         P00882_A89ReceptionistId = new Guid[] {Guid.Empty} ;
+         A93ReceptionistEmail = "";
+         A29LocationId = Guid.Empty;
+         A11OrganisationId = Guid.Empty;
+         A89ReceptionistId = Guid.Empty;
+         AV25LocationId = Guid.Empty;
+         AV26OrganisationId = Guid.Empty;
          AV23MediaUrl = "";
          AV8HttpRequest = new GxHttpRequest( context);
          AV22Path = "";
          AV10response = "";
-         AV25GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV29GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV17Message = new GeneXus.Utils.SdtMessages_Message(context);
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.aprc_uploadmedia__datastore1(),
             new Object[][] {
@@ -197,27 +226,42 @@ namespace GeneXus.Programs {
          );
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.aprc_uploadmedia__default(),
             new Object[][] {
+                new Object[] {
+               P00882_A93ReceptionistEmail, P00882_A29LocationId, P00882_A11OrganisationId, P00882_A89ReceptionistId
+               }
             }
          );
          /* GeneXus formulas. */
       }
 
       private int AV20MediaSize ;
-      private int AV26GXV2 ;
+      private int AV30GXV2 ;
       private string AV21MediaType ;
+      private string GXt_char1 ;
       private string AV18MediaImageData ;
       private string AV10response ;
       private string AV12MediaName ;
+      private string AV27UserName ;
+      private string A93ReceptionistEmail ;
       private string AV23MediaUrl ;
       private string AV22Path ;
       private Guid AV11MediaId ;
+      private Guid A29LocationId ;
+      private Guid A11OrganisationId ;
+      private Guid A89ReceptionistId ;
+      private Guid AV25LocationId ;
+      private Guid AV26OrganisationId ;
       private GxHttpRequest AV8HttpRequest ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private SdtTrn_Media AV14BC_Trn_Media ;
       private IDataStoreProvider pr_default ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV25GXV1 ;
+      private string[] P00882_A93ReceptionistEmail ;
+      private Guid[] P00882_A29LocationId ;
+      private Guid[] P00882_A11OrganisationId ;
+      private Guid[] P00882_A89ReceptionistId ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV29GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV17Message ;
       private SdtTrn_Media aP5_BC_Trn_Media ;
       private IDataStoreProvider pr_datastore1 ;
@@ -294,6 +338,7 @@ public class aprc_uploadmedia__default : DataStoreHelperBase, IDataStoreHelper
    {
       cursorDefinitions();
       return new Cursor[] {
+       new ForEachCursor(def[0])
     };
  }
 
@@ -302,7 +347,12 @@ public class aprc_uploadmedia__default : DataStoreHelperBase, IDataStoreHelper
  {
     if ( def == null )
     {
+       Object[] prmP00882;
+       prmP00882 = new Object[] {
+       new ParDef("AV27UserName",GXType.VarChar,100,0)
+       };
        def= new CursorDef[] {
+           new CursorDef("P00882", "SELECT ReceptionistEmail, LocationId, OrganisationId, ReceptionistId FROM Trn_Receptionist WHERE ReceptionistEmail = ( RTRIM(LTRIM(:AV27UserName))) ORDER BY ReceptionistId, OrganisationId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00882,100, GxCacheFrequency.OFF ,false,false )
        };
     }
  }
@@ -311,6 +361,15 @@ public class aprc_uploadmedia__default : DataStoreHelperBase, IDataStoreHelper
                          IFieldGetter rslt ,
                          Object[] buf )
  {
+    switch ( cursor )
+    {
+          case 0 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             ((Guid[]) buf[3])[0] = rslt.getGuid(4);
+             return;
+    }
  }
 
 }

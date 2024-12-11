@@ -74,6 +74,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Mediasize_Z");
          state.Add("gxTpr_Mediatype_Z");
          state.Add("gxTpr_Mediaurl_Z");
+         state.Add("gxTpr_Locationid_Z");
          state.Add("gxTpr_Mediaimage_gxi_Z");
          state.Add("gxTpr_Mediaimage_N");
          state.Add("gxTpr_Mediaimage_gxi_N");
@@ -91,6 +92,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Media_Mediasize = sdt.gxTv_SdtTrn_Media_Mediasize ;
          gxTv_SdtTrn_Media_Mediatype = sdt.gxTv_SdtTrn_Media_Mediatype ;
          gxTv_SdtTrn_Media_Mediaurl = sdt.gxTv_SdtTrn_Media_Mediaurl ;
+         gxTv_SdtTrn_Media_Locationid = sdt.gxTv_SdtTrn_Media_Locationid ;
          gxTv_SdtTrn_Media_Mode = sdt.gxTv_SdtTrn_Media_Mode ;
          gxTv_SdtTrn_Media_Initialized = sdt.gxTv_SdtTrn_Media_Initialized ;
          gxTv_SdtTrn_Media_Mediaid_Z = sdt.gxTv_SdtTrn_Media_Mediaid_Z ;
@@ -98,6 +100,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Media_Mediasize_Z = sdt.gxTv_SdtTrn_Media_Mediasize_Z ;
          gxTv_SdtTrn_Media_Mediatype_Z = sdt.gxTv_SdtTrn_Media_Mediatype_Z ;
          gxTv_SdtTrn_Media_Mediaurl_Z = sdt.gxTv_SdtTrn_Media_Mediaurl_Z ;
+         gxTv_SdtTrn_Media_Locationid_Z = sdt.gxTv_SdtTrn_Media_Locationid_Z ;
          gxTv_SdtTrn_Media_Mediaimage_gxi_Z = sdt.gxTv_SdtTrn_Media_Mediaimage_gxi_Z ;
          gxTv_SdtTrn_Media_Mediaimage_N = sdt.gxTv_SdtTrn_Media_Mediaimage_N ;
          gxTv_SdtTrn_Media_Mediaimage_gxi_N = sdt.gxTv_SdtTrn_Media_Mediaimage_gxi_N ;
@@ -126,6 +129,7 @@ namespace GeneXus.Programs {
          AddObjectProperty("MediaSize", gxTv_SdtTrn_Media_Mediasize, false, includeNonInitialized);
          AddObjectProperty("MediaType", gxTv_SdtTrn_Media_Mediatype, false, includeNonInitialized);
          AddObjectProperty("MediaUrl", gxTv_SdtTrn_Media_Mediaurl, false, includeNonInitialized);
+         AddObjectProperty("LocationId", gxTv_SdtTrn_Media_Locationid, false, includeNonInitialized);
          if ( includeState )
          {
             AddObjectProperty("MediaImage_GXI", gxTv_SdtTrn_Media_Mediaimage_gxi, false, includeNonInitialized);
@@ -136,6 +140,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("MediaSize_Z", gxTv_SdtTrn_Media_Mediasize_Z, false, includeNonInitialized);
             AddObjectProperty("MediaType_Z", gxTv_SdtTrn_Media_Mediatype_Z, false, includeNonInitialized);
             AddObjectProperty("MediaUrl_Z", gxTv_SdtTrn_Media_Mediaurl_Z, false, includeNonInitialized);
+            AddObjectProperty("LocationId_Z", gxTv_SdtTrn_Media_Locationid_Z, false, includeNonInitialized);
             AddObjectProperty("MediaImage_GXI_Z", gxTv_SdtTrn_Media_Mediaimage_gxi_Z, false, includeNonInitialized);
             AddObjectProperty("MediaImage_N", gxTv_SdtTrn_Media_Mediaimage_N, false, includeNonInitialized);
             AddObjectProperty("MediaImage_GXI_N", gxTv_SdtTrn_Media_Mediaimage_gxi_N, false, includeNonInitialized);
@@ -182,6 +187,11 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Media_Mediaurl = sdt.gxTv_SdtTrn_Media_Mediaurl ;
          }
+         if ( sdt.IsDirty("LocationId") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Media_Locationid = sdt.gxTv_SdtTrn_Media_Locationid ;
+         }
          return  ;
       }
 
@@ -203,6 +213,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Media_Mediasize_Z_SetNull( );
                this.gxTv_SdtTrn_Media_Mediatype_Z_SetNull( );
                this.gxTv_SdtTrn_Media_Mediaurl_Z_SetNull( );
+               this.gxTv_SdtTrn_Media_Locationid_Z_SetNull( );
                this.gxTv_SdtTrn_Media_Mediaimage_gxi_Z_SetNull( );
             }
             gxTv_SdtTrn_Media_Mediaid = value;
@@ -332,6 +343,22 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Media_Mediaurl = value;
             SetDirty("Mediaurl");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "LocationId" )]
+      [  XmlElement( ElementName = "LocationId"   )]
+      public Guid gxTpr_Locationid
+      {
+         get {
+            return gxTv_SdtTrn_Media_Locationid ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Media_Locationid = value;
+            SetDirty("Locationid");
          }
 
       }
@@ -532,6 +559,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "LocationId_Z" )]
+      [  XmlElement( ElementName = "LocationId_Z"   )]
+      public Guid gxTpr_Locationid_Z
+      {
+         get {
+            return gxTv_SdtTrn_Media_Locationid_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Media_Locationid_Z = value;
+            SetDirty("Locationid_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Media_Locationid_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Media_Locationid_Z = Guid.Empty;
+         SetDirty("Locationid_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Media_Locationid_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "MediaImage_GXI_Z" )]
       [  XmlElement( ElementName = "MediaImage_GXI_Z"   )]
       public string gxTpr_Mediaimage_gxi_Z
@@ -639,11 +694,13 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Media_Mediaimage_gxi = "";
          gxTv_SdtTrn_Media_Mediatype = "";
          gxTv_SdtTrn_Media_Mediaurl = "";
+         gxTv_SdtTrn_Media_Locationid = Guid.Empty;
          gxTv_SdtTrn_Media_Mode = "";
          gxTv_SdtTrn_Media_Mediaid_Z = Guid.Empty;
          gxTv_SdtTrn_Media_Medianame_Z = "";
          gxTv_SdtTrn_Media_Mediatype_Z = "";
          gxTv_SdtTrn_Media_Mediaurl_Z = "";
+         gxTv_SdtTrn_Media_Locationid_Z = Guid.Empty;
          gxTv_SdtTrn_Media_Mediaimage_gxi_Z = "";
          IGxSilentTrn obj;
          obj = (IGxSilentTrn)ClassLoader.FindInstance( "trn_media", "GeneXus.Programs.trn_media_bc", new Object[] {context}, constructorCallingAssembly);;
@@ -676,7 +733,9 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_Media_Mediaimage_gxi_Z ;
       private string gxTv_SdtTrn_Media_Mediaimage ;
       private Guid gxTv_SdtTrn_Media_Mediaid ;
+      private Guid gxTv_SdtTrn_Media_Locationid ;
       private Guid gxTv_SdtTrn_Media_Mediaid_Z ;
+      private Guid gxTv_SdtTrn_Media_Locationid_Z ;
    }
 
    [DataContract(Name = @"Trn_Media", Namespace = "Comforta_version2")]
@@ -775,6 +834,20 @@ namespace GeneXus.Programs {
 
       }
 
+      [DataMember( Name = "LocationId" , Order = 6 )]
+      [GxSeudo()]
+      public Guid gxTpr_Locationid
+      {
+         get {
+            return sdt.gxTpr_Locationid ;
+         }
+
+         set {
+            sdt.gxTpr_Locationid = value;
+         }
+
+      }
+
       public SdtTrn_Media sdt
       {
          get {
@@ -796,7 +869,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 6 )]
+      [DataMember( Name = "gx_md5_hash", Order = 7 )]
       public string Hash
       {
          get {

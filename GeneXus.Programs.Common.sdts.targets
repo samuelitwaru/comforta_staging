@@ -32,6 +32,13 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_MobilePage.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_NetworkCompany.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_NetworkIndividual.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_NotificationGroup_SDT_NotificationGroupItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_NotificationMetadata.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomBody.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomBody_headings.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomBody_contents.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomBody_data.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomData_SDT_OneSignalCustomDataItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalRegistration.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Organisation.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_OrganisationSetting.cs" />

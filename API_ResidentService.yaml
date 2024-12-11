@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241211031237"
+  version: "20241211140628"
 servers:
-  - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/api
+  - url: https://staging.comforta.yukon.software/api
 paths:
   /auth/resident-login:
     post:
@@ -1260,6 +1260,10 @@ components:
         MediaUrl:
           description: "Media Url"
           type: "string"
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
 
 
 

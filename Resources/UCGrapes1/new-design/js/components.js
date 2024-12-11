@@ -277,6 +277,7 @@ class MappingComponent {
     this.dataManager = dataManager;
     this.editorManager = editorManager;
     this.toolBoxManager = toolBoxManager;
+    console.log(this.toolBoxManager)
     this.currentLanguage = currentLanguage;
     this.boundCreatePage = this.handleCreatePage.bind(this);
   }
@@ -333,7 +334,6 @@ class MappingComponent {
 
       // Create the page
       await this.dataManager.createNewPage(pageTitle);
-
       // Clear input
       pageInput.value = "";
 
@@ -347,6 +347,7 @@ class MappingComponent {
         });
         const newTree = this.createTree(treePages, true); // Set isRoot to true if it's the root
         this.treeContainer.appendChild(newTree);
+        console.log(this.toolBoxManager)
         this.toolBoxManager.actionList.init();
       });
 

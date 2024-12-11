@@ -127,7 +127,6 @@ namespace GeneXus.Programs {
             A35LocationPhone = P008E2_A35LocationPhone[0];
             A36LocationDescription = P008E2_A36LocationDescription[0];
             A247Trn_ThemeId = P008E2_A247Trn_ThemeId[0];
-            n247Trn_ThemeId = P008E2_n247Trn_ThemeId[0];
             AV11AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
             AV11AuditingObject.gxTpr_Mode = AV15ActualMode;
             AV12AuditingObjectRecordItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem(context);
@@ -260,7 +259,6 @@ namespace GeneXus.Programs {
             A35LocationPhone = P008E3_A35LocationPhone[0];
             A36LocationDescription = P008E3_A36LocationDescription[0];
             A247Trn_ThemeId = P008E3_A247Trn_ThemeId[0];
-            n247Trn_ThemeId = P008E3_n247Trn_ThemeId[0];
             if ( StringUtil.StrCmp(AV15ActualMode, "INS") == 0 )
             {
                AV11AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
@@ -470,7 +468,6 @@ namespace GeneXus.Programs {
          P008E2_A35LocationPhone = new string[] {""} ;
          P008E2_A36LocationDescription = new string[] {""} ;
          P008E2_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         P008E2_n247Trn_ThemeId = new bool[] {false} ;
          A11OrganisationId = Guid.Empty;
          A29LocationId = Guid.Empty;
          A31LocationName = "";
@@ -501,16 +498,15 @@ namespace GeneXus.Programs {
          P008E3_A35LocationPhone = new string[] {""} ;
          P008E3_A36LocationDescription = new string[] {""} ;
          P008E3_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         P008E3_n247Trn_ThemeId = new bool[] {false} ;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.loadaudittrn_location__default(),
             new Object[][] {
                 new Object[] {
                P008E2_A11OrganisationId, P008E2_A29LocationId, P008E2_A31LocationName, P008E2_A359LocationCountry, P008E2_A338LocationCity, P008E2_A339LocationZipCode, P008E2_A340LocationAddressLine1, P008E2_A341LocationAddressLine2, P008E2_A34LocationEmail, P008E2_A383LocationPhoneCode,
-               P008E2_A384LocationPhoneNumber, P008E2_A35LocationPhone, P008E2_A36LocationDescription, P008E2_A247Trn_ThemeId, P008E2_n247Trn_ThemeId
+               P008E2_A384LocationPhoneNumber, P008E2_A35LocationPhone, P008E2_A36LocationDescription, P008E2_A247Trn_ThemeId
                }
                , new Object[] {
                P008E3_A11OrganisationId, P008E3_A29LocationId, P008E3_A31LocationName, P008E3_A359LocationCountry, P008E3_A338LocationCity, P008E3_A339LocationZipCode, P008E3_A340LocationAddressLine1, P008E3_A341LocationAddressLine2, P008E3_A34LocationEmail, P008E3_A383LocationPhoneCode,
-               P008E3_A384LocationPhoneNumber, P008E3_A35LocationPhone, P008E3_A36LocationDescription, P008E3_A247Trn_ThemeId, P008E3_n247Trn_ThemeId
+               P008E3_A384LocationPhoneNumber, P008E3_A35LocationPhone, P008E3_A36LocationDescription, P008E3_A247Trn_ThemeId
                }
             }
          );
@@ -523,7 +519,6 @@ namespace GeneXus.Programs {
       private string AV15ActualMode ;
       private string A35LocationPhone ;
       private bool returnInSub ;
-      private bool n247Trn_ThemeId ;
       private string A36LocationDescription ;
       private string A31LocationName ;
       private string A359LocationCountry ;
@@ -559,7 +554,6 @@ namespace GeneXus.Programs {
       private string[] P008E2_A35LocationPhone ;
       private string[] P008E2_A36LocationDescription ;
       private Guid[] P008E2_A247Trn_ThemeId ;
-      private bool[] P008E2_n247Trn_ThemeId ;
       private GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem AV12AuditingObjectRecordItem ;
       private GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem AV13AuditingObjectRecordItemAttributeItem ;
       private Guid[] P008E3_A11OrganisationId ;
@@ -576,7 +570,6 @@ namespace GeneXus.Programs {
       private string[] P008E3_A35LocationPhone ;
       private string[] P008E3_A36LocationDescription ;
       private Guid[] P008E3_A247Trn_ThemeId ;
-      private bool[] P008E3_n247Trn_ThemeId ;
    }
 
    public class loadaudittrn_location__default : DataStoreHelperBase, IDataStoreHelper
@@ -633,7 +626,6 @@ namespace GeneXus.Programs {
                 ((string[]) buf[11])[0] = rslt.getString(12, 20);
                 ((string[]) buf[12])[0] = rslt.getLongVarchar(13);
                 ((Guid[]) buf[13])[0] = rslt.getGuid(14);
-                ((bool[]) buf[14])[0] = rslt.wasNull(14);
                 return;
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -650,7 +642,6 @@ namespace GeneXus.Programs {
                 ((string[]) buf[11])[0] = rslt.getString(12, 20);
                 ((string[]) buf[12])[0] = rslt.getLongVarchar(13);
                 ((Guid[]) buf[13])[0] = rslt.getGuid(14);
-                ((bool[]) buf[14])[0] = rslt.wasNull(14);
                 return;
        }
     }

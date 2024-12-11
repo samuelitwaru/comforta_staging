@@ -765,6 +765,7 @@ namespace GeneXus.Programs {
          GXt_guid2 = AV41LocationId;
          new prc_getuserlocationid(context ).execute( out  GXt_guid2) ;
          AV41LocationId = GXt_guid2;
+         AssignAttri("", false, "AV41LocationId", AV41LocationId.ToString());
          GXt_guid2 = AV42OrganisationId;
          new prc_getuserorganisationid(context ).execute( out  GXt_guid2) ;
          AV42OrganisationId = GXt_guid2;
@@ -805,9 +806,10 @@ namespace GeneXus.Programs {
          }
          pr_default.close(1);
          /* Using cursor H00474 */
-         pr_default.execute(2);
+         pr_default.execute(2, new Object[] {AV41LocationId});
          while ( (pr_default.getStatus(2) != 101) )
          {
+            A29LocationId = H00474_A29LocationId[0];
             A409MediaId = H00474_A409MediaId[0];
             AV20BC_Trn_Media = new SdtTrn_Media(context);
             AV20BC_Trn_Media.Load(A409MediaId);
@@ -899,7 +901,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412116122463", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121111244271", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -917,7 +919,7 @@ namespace GeneXus.Programs {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wp_applicationdesign.js", "?202412116122464", false, true);
+            context.AddJavascriptSource("wp_applicationdesign.js", "?2024121111244272", false, true);
             context.AddJavascriptSource("UserControls/UC_AppToolBoxRender.js", "", false, true);
          }
          /* End function include_jscripts */
@@ -1029,6 +1031,7 @@ namespace GeneXus.Programs {
          A59ProductServiceName = "";
          A61ProductServiceImage = "";
          AV36SDT_ProductService = new SdtSDT_ProductService(context);
+         H00474_A29LocationId = new Guid[] {Guid.Empty} ;
          H00474_A409MediaId = new Guid[] {Guid.Empty} ;
          A409MediaId = Guid.Empty;
          AV20BC_Trn_Media = new SdtTrn_Media(context);
@@ -1058,7 +1061,7 @@ namespace GeneXus.Programs {
                H00473_A11OrganisationId, H00473_A29LocationId, H00473_A40000ProductServiceImage_GXI, H00473_A58ProductServiceId, H00473_A59ProductServiceName, H00473_A61ProductServiceImage
                }
                , new Object[] {
-               H00474_A409MediaId
+               H00474_A29LocationId, H00474_A409MediaId
                }
                , new Object[] {
                H00475_A248Trn_ThemeName, H00475_A247Trn_ThemeId
@@ -1163,6 +1166,7 @@ namespace GeneXus.Programs {
       private string[] H00473_A59ProductServiceName ;
       private string[] H00473_A61ProductServiceImage ;
       private SdtSDT_ProductService AV36SDT_ProductService ;
+      private Guid[] H00474_A29LocationId ;
       private Guid[] H00474_A409MediaId ;
       private SdtTrn_Media AV20BC_Trn_Media ;
       private string[] H00475_A248Trn_ThemeName ;
@@ -1207,6 +1211,7 @@ namespace GeneXus.Programs {
           };
           Object[] prmH00474;
           prmH00474 = new Object[] {
+          new ParDef("AV41LocationId",GXType.UniqueIdentifier,36,0)
           };
           Object[] prmH00475;
           prmH00475 = new Object[] {
@@ -1217,7 +1222,7 @@ namespace GeneXus.Programs {
           def= new CursorDef[] {
               new CursorDef("H00472", "SELECT Trn_TemplateId FROM Trn_Template ORDER BY Trn_TemplateId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00472,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H00473", "SELECT OrganisationId, LocationId, ProductServiceImage_GXI, ProductServiceId, ProductServiceName, ProductServiceImage FROM Trn_ProductService WHERE LocationId = :AV46Udparg1 and OrganisationId = :AV47Udparg2 ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00473,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("H00474", "SELECT MediaId FROM Trn_Media ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00474,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("H00474", "SELECT LocationId, MediaId FROM Trn_Media WHERE LocationId = :AV41LocationId ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00474,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H00475", "SELECT Trn_ThemeName, Trn_ThemeId FROM Trn_Theme WHERE Not (char_length(trim(trailing ' ' from RTRIM(LTRIM(Trn_ThemeName))))=0) ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00475,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H00476", "SELECT LocationId, Trn_PageId, Trn_PageName, PageChildren FROM Trn_Page ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00476,100, GxCacheFrequency.OFF ,false,false )
           };
@@ -1243,6 +1248,7 @@ namespace GeneXus.Programs {
                 return;
              case 2 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 return;
              case 3 :
                 ((string[]) buf[0])[0] = rslt.getVarchar(1);

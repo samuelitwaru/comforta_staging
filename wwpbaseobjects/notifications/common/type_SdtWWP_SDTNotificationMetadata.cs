@@ -71,6 +71,10 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common
 
 			AddObjectProperty("SessionValue", gxTpr_Sessionvalue, false);
 
+			if (gxTv_SdtWWP_SDTNotificationMetadata_Custommetadata != null)
+			{
+				AddObjectProperty("CustomMetaData", gxTv_SdtWWP_SDTNotificationMetadata_Custommetadata, false);
+			}
 			return;
 		}
 		#endregion
@@ -124,6 +128,38 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common
 
 
 
+		[SoapElement(ElementName="CustomMetaData")]
+		[XmlElement(ElementName="CustomMetaData")]
+		public GeneXus.Programs.SdtSDT_NotificationMetadata gxTpr_Custommetadata
+		{
+			get {
+				if ( gxTv_SdtWWP_SDTNotificationMetadata_Custommetadata == null )
+				{
+					gxTv_SdtWWP_SDTNotificationMetadata_Custommetadata = new GeneXus.Programs.SdtSDT_NotificationMetadata(context);
+				}
+				return gxTv_SdtWWP_SDTNotificationMetadata_Custommetadata; 
+			}
+			set {
+				gxTv_SdtWWP_SDTNotificationMetadata_Custommetadata = value;
+				SetDirty("Custommetadata");
+			}
+		}
+		public void gxTv_SdtWWP_SDTNotificationMetadata_Custommetadata_SetNull()
+		{
+			gxTv_SdtWWP_SDTNotificationMetadata_Custommetadata_N = true;
+			gxTv_SdtWWP_SDTNotificationMetadata_Custommetadata = null;
+		}
+
+		public bool gxTv_SdtWWP_SDTNotificationMetadata_Custommetadata_IsNull()
+		{
+			return gxTv_SdtWWP_SDTNotificationMetadata_Custommetadata == null;
+		}
+		public bool ShouldSerializegxTpr_Custommetadata_Json()
+		{
+			return gxTv_SdtWWP_SDTNotificationMetadata_Custommetadata != null;
+
+		}
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -147,6 +183,9 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common
 		{
 			gxTv_SdtWWP_SDTNotificationMetadata_Sessionkey = "";
 			gxTv_SdtWWP_SDTNotificationMetadata_Sessionvalue = "";
+
+			gxTv_SdtWWP_SDTNotificationMetadata_Custommetadata_N = true;
+
 			return  ;
 		}
 
@@ -163,6 +202,10 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common
 		 
 
 		protected string gxTv_SdtWWP_SDTNotificationMetadata_Sessionvalue;
+		 
+
+		protected GeneXus.Programs.SdtSDT_NotificationMetadata gxTv_SdtWWP_SDTNotificationMetadata_Custommetadata = null;
+		protected bool gxTv_SdtWWP_SDTNotificationMetadata_Custommetadata_N;
 		 
 
 
@@ -215,6 +258,21 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common
 			}
 			set { 
 				 sdt.gxTpr_Sessionvalue = value;
+			}
+		}
+
+		[DataMember(Name="CustomMetaData", Order=3, EmitDefaultValue=false)]
+		public GeneXus.Programs.SdtSDT_NotificationMetadata_RESTInterface gxTpr_Custommetadata
+		{
+			get { 
+				if (sdt.ShouldSerializegxTpr_Custommetadata_Json())
+					return new GeneXus.Programs.SdtSDT_NotificationMetadata_RESTInterface(sdt.gxTpr_Custommetadata);
+				else
+					return null;
+
+			}
+			set { 
+				sdt.gxTpr_Custommetadata = value.sdt;
 			}
 		}
 

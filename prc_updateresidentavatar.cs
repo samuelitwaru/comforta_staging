@@ -80,16 +80,16 @@ namespace GeneXus.Programs {
          /* Output device settings */
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV8base64Image)) )
          {
-            AV12base64String = GxRegex.Split(AV8base64Image,",").GetString(2);
+            if ( StringUtil.Contains( AV8base64Image, ",") )
+            {
+               AV12base64String = GxRegex.Split(AV8base64Image,",").GetString(2);
+            }
+            else
+            {
+               AV12base64String = AV8base64Image;
+            }
          }
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV12base64String)) )
-         {
-            AV10Blob=context.FileFromBase64( AV8base64Image) ;
-         }
-         else
-         {
-            AV10Blob=context.FileFromBase64( AV12base64String) ;
-         }
+         AV10Blob=context.FileFromBase64( AV12base64String) ;
          /* Using cursor P00A22 */
          pr_default.execute(0, new Object[] {AV11ResidentGUID});
          while ( (pr_default.getStatus(0) != 101) )
@@ -114,6 +114,7 @@ namespace GeneXus.Programs {
             pr_default.readNext(0);
          }
          pr_default.close(0);
+         new prc_logtofile(context ).execute(  "Resident Found: "+AV13Trn_Resident.ToJSonString(true, true)) ;
          AV13Trn_Resident.gxTpr_Residentimage = AV10Blob;
          AV13Trn_Resident.gxTpr_Residentimage_gxi = GXDbFile.GetUriFromFile( "", "", AV10Blob);
          AV13Trn_Resident.Save();

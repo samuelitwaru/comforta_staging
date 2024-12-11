@@ -461,12 +461,6 @@ namespace GeneXus.Programs {
          {
             A62ResidentId = Guid.NewGuid( );
          }
-         GXt_guid1 = A29LocationId;
-         new prc_getuserlocationid(context ).execute( out  GXt_guid1) ;
-         A29LocationId = GXt_guid1;
-         GXt_guid1 = A11OrganisationId;
-         new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
-         A11OrganisationId = GXt_guid1;
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ( Gx_BScreen == 0 ) )
          {
          }
@@ -516,6 +510,18 @@ namespace GeneXus.Programs {
 
       protected void OnLoadActions0916( )
       {
+         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && (Guid.Empty==A29LocationId) )
+         {
+            GXt_guid1 = A29LocationId;
+            new prc_getuserlocationid(context ).execute( out  GXt_guid1) ;
+            A29LocationId = GXt_guid1;
+         }
+         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && (Guid.Empty==A11OrganisationId) )
+         {
+            GXt_guid1 = A11OrganisationId;
+            new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
+            A11OrganisationId = GXt_guid1;
+         }
          GXt_char2 = A70ResidentPhone;
          new prc_concatenateintlphone(context ).execute(  A375ResidentPhoneCode,  A376ResidentPhoneNumber, out  GXt_char2) ;
          A70ResidentPhone = GXt_char2;
@@ -524,6 +530,18 @@ namespace GeneXus.Programs {
       protected void CheckExtendedTable0916( )
       {
          standaloneModal( ) ;
+         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && (Guid.Empty==A29LocationId) )
+         {
+            GXt_guid1 = A29LocationId;
+            new prc_getuserlocationid(context ).execute( out  GXt_guid1) ;
+            A29LocationId = GXt_guid1;
+         }
+         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && (Guid.Empty==A11OrganisationId) )
+         {
+            GXt_guid1 = A11OrganisationId;
+            new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
+            A11OrganisationId = GXt_guid1;
+         }
          /* Using cursor BC000910 */
          pr_default.execute(8, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(8) == 101) )
@@ -3375,7 +3393,6 @@ namespace GeneXus.Programs {
          A457ResidentImage = "";
          Z40000ResidentImage_GXI = "";
          A40000ResidentImage_GXI = "";
-         GXt_guid1 = Guid.Empty;
          BC000913_A62ResidentId = new Guid[] {Guid.Empty} ;
          BC000913_A66ResidentInitials = new string[] {""} ;
          BC000913_A70ResidentPhone = new string[] {""} ;
@@ -3408,6 +3425,7 @@ namespace GeneXus.Programs {
          BC000913_n98MedicalIndicationId = new bool[] {false} ;
          BC000913_A457ResidentImage = new string[] {""} ;
          BC000913_n457ResidentImage = new bool[] {false} ;
+         GXt_guid1 = Guid.Empty;
          BC000910_A29LocationId = new Guid[] {Guid.Empty} ;
          BC000911_A97ResidentTypeName = new string[] {""} ;
          BC000912_A99MedicalIndicationName = new string[] {""} ;

@@ -1110,13 +1110,13 @@ namespace GeneXus.Programs {
       protected void gxgrGrid_refresh( int subGrid_Rows ,
                                        string AV58Pgmname ,
                                        string AV9FilterFullText ,
-                                       GxSimpleCollection<short> AV41NotificationDefinitionIdEmptyCollection ,
+                                       GxSimpleCollection<long> AV41NotificationDefinitionIdEmptyCollection ,
                                        GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem> AV10WWP_SDTNotificationsData ,
                                        string AV35NotificationTypes ,
-                                       GxSimpleCollection<short> AV48MentionDefinitions ,
-                                       GxSimpleCollection<short> AV47DiscussionDefinitions ,
-                                       GxSimpleCollection<short> AV46FormDefinitions ,
-                                       GxSimpleCollection<short> AV45AgendaDefinitions )
+                                       GxSimpleCollection<long> AV48MentionDefinitions ,
+                                       GxSimpleCollection<long> AV47DiscussionDefinitions ,
+                                       GxSimpleCollection<long> AV46FormDefinitions ,
+                                       GxSimpleCollection<long> AV45AgendaDefinitions )
       {
          initialize_formulas( ) ;
          GxWebStd.set_html_headers( context, 0, "", "");
@@ -2112,7 +2112,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241261642722", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412111649256", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2128,7 +2128,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_usernotificationsboard.js", "?20241261642722", false, true);
+         context.AddJavascriptSource("wp_usernotificationsboard.js", "?202412111649256", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DVPaginationBar/DVPaginationBarRender.js", "", false, true);
@@ -2608,13 +2608,13 @@ namespace GeneXus.Programs {
          gxfirstwebparm_bkp = "";
          AV58Pgmname = "";
          AV9FilterFullText = "";
-         AV41NotificationDefinitionIdEmptyCollection = new GxSimpleCollection<short>();
+         AV41NotificationDefinitionIdEmptyCollection = new GxSimpleCollection<long>();
          AV10WWP_SDTNotificationsData = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>( context, "WWP_SDTNotificationsDataItem", "Comforta_version2");
          AV35NotificationTypes = "";
-         AV48MentionDefinitions = new GxSimpleCollection<short>();
-         AV47DiscussionDefinitions = new GxSimpleCollection<short>();
-         AV46FormDefinitions = new GxSimpleCollection<short>();
-         AV45AgendaDefinitions = new GxSimpleCollection<short>();
+         AV48MentionDefinitions = new GxSimpleCollection<long>();
+         AV47DiscussionDefinitions = new GxSimpleCollection<long>();
+         AV46FormDefinitions = new GxSimpleCollection<long>();
+         AV45AgendaDefinitions = new GxSimpleCollection<long>();
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
@@ -2843,12 +2843,12 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDefault ;
       private GXRadio radavNotificationtypes ;
       private GXCombobox cmbavActiongroup ;
-      private GxSimpleCollection<short> AV41NotificationDefinitionIdEmptyCollection ;
+      private GxSimpleCollection<long> AV41NotificationDefinitionIdEmptyCollection ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem> AV10WWP_SDTNotificationsData ;
-      private GxSimpleCollection<short> AV48MentionDefinitions ;
-      private GxSimpleCollection<short> AV47DiscussionDefinitions ;
-      private GxSimpleCollection<short> AV46FormDefinitions ;
-      private GxSimpleCollection<short> AV45AgendaDefinitions ;
+      private GxSimpleCollection<long> AV48MentionDefinitions ;
+      private GxSimpleCollection<long> AV47DiscussionDefinitions ;
+      private GxSimpleCollection<long> AV46FormDefinitions ;
+      private GxSimpleCollection<long> AV45AgendaDefinitions ;
       private GeneXus.Core.genexus.server.SdtNotificationInfo AV42NotificationInfo ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV6WWPContext ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState AV23GridState ;

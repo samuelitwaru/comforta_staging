@@ -78,7 +78,6 @@ namespace GeneXus.Programs {
             A11OrganisationId = P006P2_A11OrganisationId[0];
             A40000OrganisationSettingFavicon_GXI = P006P2_A40000OrganisationSettingFavicon_GXI[0];
             A40001OrganisationSettingLogo_GXI = P006P2_A40001OrganisationSettingLogo_GXI[0];
-            A104OrganisationSettingFontSize = P006P2_A104OrganisationSettingFontSize[0];
             A105OrganisationSettingLanguage = P006P2_A105OrganisationSettingLanguage[0];
             A100OrganisationSettingid = P006P2_A100OrganisationSettingid[0];
             A102OrganisationSettingFavicon = P006P2_A102OrganisationSettingFavicon[0];
@@ -88,7 +87,7 @@ namespace GeneXus.Programs {
             AV8SDT_OrganisationSetting.gxTpr_Organisationsettingbasecolor = "Custom";
             AV8SDT_OrganisationSetting.gxTpr_Organisationsettingfavicon = A102OrganisationSettingFavicon;
             AV8SDT_OrganisationSetting.gxTpr_Organisationsettingfavicon_gxi = A40000OrganisationSettingFavicon_GXI;
-            AV8SDT_OrganisationSetting.gxTpr_Organisationsettingfontsize = A104OrganisationSettingFontSize;
+            AV8SDT_OrganisationSetting.gxTpr_Organisationsettingfontsize = "Medium";
             AV8SDT_OrganisationSetting.gxTpr_Organisationsettinglogo = A101OrganisationSettingLogo;
             AV8SDT_OrganisationSetting.gxTpr_Organisationsettinglogo_gxi = A40001OrganisationSettingLogo_GXI;
             AV8SDT_OrganisationSetting.gxTpr_Organisationsettinglanguage = A105OrganisationSettingLanguage;
@@ -120,7 +119,6 @@ namespace GeneXus.Programs {
          P006P2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P006P2_A40000OrganisationSettingFavicon_GXI = new string[] {""} ;
          P006P2_A40001OrganisationSettingLogo_GXI = new string[] {""} ;
-         P006P2_A104OrganisationSettingFontSize = new string[] {""} ;
          P006P2_A105OrganisationSettingLanguage = new string[] {""} ;
          P006P2_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
          P006P2_A102OrganisationSettingFavicon = new string[] {""} ;
@@ -128,7 +126,6 @@ namespace GeneXus.Programs {
          A11OrganisationId = Guid.Empty;
          A40000OrganisationSettingFavicon_GXI = "";
          A40001OrganisationSettingLogo_GXI = "";
-         A104OrganisationSettingFontSize = "";
          A105OrganisationSettingLanguage = "";
          A100OrganisationSettingid = Guid.Empty;
          A102OrganisationSettingFavicon = "";
@@ -136,7 +133,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_organisationsetting__default(),
             new Object[][] {
                 new Object[] {
-               P006P2_A11OrganisationId, P006P2_A40000OrganisationSettingFavicon_GXI, P006P2_A40001OrganisationSettingLogo_GXI, P006P2_A104OrganisationSettingFontSize, P006P2_A105OrganisationSettingLanguage, P006P2_A100OrganisationSettingid, P006P2_A102OrganisationSettingFavicon, P006P2_A101OrganisationSettingLogo
+               P006P2_A11OrganisationId, P006P2_A40000OrganisationSettingFavicon_GXI, P006P2_A40001OrganisationSettingLogo_GXI, P006P2_A105OrganisationSettingLanguage, P006P2_A100OrganisationSettingid, P006P2_A102OrganisationSettingFavicon, P006P2_A101OrganisationSettingLogo
                }
             }
          );
@@ -147,7 +144,6 @@ namespace GeneXus.Programs {
       private string A105OrganisationSettingLanguage ;
       private string A40000OrganisationSettingFavicon_GXI ;
       private string A40001OrganisationSettingLogo_GXI ;
-      private string A104OrganisationSettingFontSize ;
       private string A102OrganisationSettingFavicon ;
       private string A101OrganisationSettingLogo ;
       private Guid AV10Udparg1 ;
@@ -161,7 +157,6 @@ namespace GeneXus.Programs {
       private Guid[] P006P2_A11OrganisationId ;
       private string[] P006P2_A40000OrganisationSettingFavicon_GXI ;
       private string[] P006P2_A40001OrganisationSettingLogo_GXI ;
-      private string[] P006P2_A104OrganisationSettingFontSize ;
       private string[] P006P2_A105OrganisationSettingLanguage ;
       private Guid[] P006P2_A100OrganisationSettingid ;
       private string[] P006P2_A102OrganisationSettingFavicon ;
@@ -189,7 +184,7 @@ namespace GeneXus.Programs {
           new ParDef("AV10Udparg1",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P006P2", "SELECT OrganisationId, OrganisationSettingFavicon_GXI, OrganisationSettingLogo_GXI, OrganisationSettingFontSize, OrganisationSettingLanguage, OrganisationSettingid, OrganisationSettingFavicon, OrganisationSettingLogo FROM Trn_OrganisationSetting WHERE OrganisationId = :AV10Udparg1 ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP006P2,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P006P2", "SELECT OrganisationId, OrganisationSettingFavicon_GXI, OrganisationSettingLogo_GXI, OrganisationSettingLanguage, OrganisationSettingid, OrganisationSettingFavicon, OrganisationSettingLogo FROM Trn_OrganisationSetting WHERE OrganisationId = :AV10Udparg1 ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP006P2,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
@@ -204,11 +199,10 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getMultimediaUri(2);
                 ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
-                ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
-                ((Guid[]) buf[5])[0] = rslt.getGuid(6);
-                ((string[]) buf[6])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(2));
-                ((string[]) buf[7])[0] = rslt.getMultimediaFile(8, rslt.getVarchar(3));
+                ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+                ((Guid[]) buf[4])[0] = rslt.getGuid(5);
+                ((string[]) buf[5])[0] = rslt.getMultimediaFile(6, rslt.getVarchar(2));
+                ((string[]) buf[6])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
                 return;
        }
     }

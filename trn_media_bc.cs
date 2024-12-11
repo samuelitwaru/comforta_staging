@@ -133,16 +133,18 @@ namespace GeneXus.Programs {
 
       protected void ZM0X83( short GX_JID )
       {
-         if ( ( GX_JID == 4 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 6 ) || ( GX_JID == 0 ) )
          {
+            Z29LocationId = A29LocationId;
             Z410MediaName = A410MediaName;
             Z413MediaSize = A413MediaSize;
             Z414MediaType = A414MediaType;
             Z412MediaUrl = A412MediaUrl;
          }
-         if ( GX_JID == -4 )
+         if ( GX_JID == -6 )
          {
             Z409MediaId = A409MediaId;
+            Z29LocationId = A29LocationId;
             Z410MediaName = A410MediaName;
             Z411MediaImage = A411MediaImage;
             Z40000MediaImage_GXI = A40000MediaImage_GXI;
@@ -158,6 +160,10 @@ namespace GeneXus.Programs {
 
       protected void standaloneModal( )
       {
+         if ( IsIns( )  && (Guid.Empty==A29LocationId) )
+         {
+            A29LocationId = Guid.NewGuid( );
+         }
          if ( IsIns( )  && (Guid.Empty==A409MediaId) )
          {
             A409MediaId = Guid.NewGuid( );
@@ -174,6 +180,7 @@ namespace GeneXus.Programs {
          if ( (pr_default.getStatus(2) != 101) )
          {
             RcdFound83 = 1;
+            A29LocationId = BC000X4_A29LocationId[0];
             A410MediaName = BC000X4_A410MediaName[0];
             A40000MediaImage_GXI = BC000X4_A40000MediaImage_GXI[0];
             n40000MediaImage_GXI = BC000X4_n40000MediaImage_GXI[0];
@@ -182,7 +189,7 @@ namespace GeneXus.Programs {
             A412MediaUrl = BC000X4_A412MediaUrl[0];
             A411MediaImage = BC000X4_A411MediaImage[0];
             n411MediaImage = BC000X4_n411MediaImage[0];
-            ZM0X83( -4) ;
+            ZM0X83( -6) ;
          }
          pr_default.close(2);
          OnLoadActions0X83( ) ;
@@ -231,9 +238,10 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A409MediaId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0X83( 4) ;
+            ZM0X83( 6) ;
             RcdFound83 = 1;
             A409MediaId = BC000X3_A409MediaId[0];
+            A29LocationId = BC000X3_A29LocationId[0];
             A410MediaName = BC000X3_A410MediaName[0];
             A40000MediaImage_GXI = BC000X3_A40000MediaImage_GXI[0];
             n40000MediaImage_GXI = BC000X3_n40000MediaImage_GXI[0];
@@ -307,7 +315,7 @@ namespace GeneXus.Programs {
                AnyError = 1;
                return  ;
             }
-            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z410MediaName, BC000X2_A410MediaName[0]) != 0 ) || ( Z413MediaSize != BC000X2_A413MediaSize[0] ) || ( StringUtil.StrCmp(Z414MediaType, BC000X2_A414MediaType[0]) != 0 ) || ( StringUtil.StrCmp(Z412MediaUrl, BC000X2_A412MediaUrl[0]) != 0 ) )
+            if ( (pr_default.getStatus(0) == 101) || ( Z29LocationId != BC000X2_A29LocationId[0] ) || ( StringUtil.StrCmp(Z410MediaName, BC000X2_A410MediaName[0]) != 0 ) || ( Z413MediaSize != BC000X2_A413MediaSize[0] ) || ( StringUtil.StrCmp(Z414MediaType, BC000X2_A414MediaType[0]) != 0 ) || ( StringUtil.StrCmp(Z412MediaUrl, BC000X2_A412MediaUrl[0]) != 0 ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_waschg", new   object[]  {"Trn_Media"}), "RecordWasChanged", 1, "");
                AnyError = 1;
@@ -336,7 +344,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC000X6 */
-                     pr_default.execute(4, new Object[] {A409MediaId, A410MediaName, n411MediaImage, A411MediaImage, n40000MediaImage_GXI, A40000MediaImage_GXI, A413MediaSize, A414MediaType, A412MediaUrl});
+                     pr_default.execute(4, new Object[] {A409MediaId, A29LocationId, A410MediaName, n411MediaImage, A411MediaImage, n40000MediaImage_GXI, A40000MediaImage_GXI, A413MediaSize, A414MediaType, A412MediaUrl});
                      pr_default.close(4);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Media");
                      if ( (pr_default.getStatus(4) == 1) )
@@ -391,7 +399,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC000X7 */
-                     pr_default.execute(5, new Object[] {A410MediaName, A413MediaSize, A414MediaType, A412MediaUrl, A409MediaId});
+                     pr_default.execute(5, new Object[] {A29LocationId, A410MediaName, A413MediaSize, A414MediaType, A412MediaUrl, A409MediaId});
                      pr_default.close(5);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Media");
                      if ( (pr_default.getStatus(5) == 103) )
@@ -523,6 +531,7 @@ namespace GeneXus.Programs {
          {
             RcdFound83 = 1;
             A409MediaId = BC000X10_A409MediaId[0];
+            A29LocationId = BC000X10_A29LocationId[0];
             A410MediaName = BC000X10_A410MediaName[0];
             A40000MediaImage_GXI = BC000X10_A40000MediaImage_GXI[0];
             n40000MediaImage_GXI = BC000X10_n40000MediaImage_GXI[0];
@@ -551,6 +560,7 @@ namespace GeneXus.Programs {
          {
             RcdFound83 = 1;
             A409MediaId = BC000X10_A409MediaId[0];
+            A29LocationId = BC000X10_A29LocationId[0];
             A410MediaName = BC000X10_A410MediaName[0];
             A40000MediaImage_GXI = BC000X10_A40000MediaImage_GXI[0];
             n40000MediaImage_GXI = BC000X10_n40000MediaImage_GXI[0];
@@ -626,6 +636,8 @@ namespace GeneXus.Programs {
          A413MediaSize = 0;
          A414MediaType = "";
          A412MediaUrl = "";
+         A29LocationId = Guid.NewGuid( );
+         Z29LocationId = Guid.Empty;
          Z410MediaName = "";
          Z413MediaSize = 0;
          Z414MediaType = "";
@@ -640,6 +652,7 @@ namespace GeneXus.Programs {
 
       protected void StandaloneModalInsert( )
       {
+         A29LocationId = i29LocationId;
       }
 
       protected bool IsIns( )
@@ -671,12 +684,14 @@ namespace GeneXus.Programs {
          obj83.gxTpr_Mediasize = A413MediaSize;
          obj83.gxTpr_Mediatype = A414MediaType;
          obj83.gxTpr_Mediaurl = A412MediaUrl;
+         obj83.gxTpr_Locationid = A29LocationId;
          obj83.gxTpr_Mediaid = A409MediaId;
          obj83.gxTpr_Mediaid_Z = Z409MediaId;
          obj83.gxTpr_Medianame_Z = Z410MediaName;
          obj83.gxTpr_Mediasize_Z = Z413MediaSize;
          obj83.gxTpr_Mediatype_Z = Z414MediaType;
          obj83.gxTpr_Mediaurl_Z = Z412MediaUrl;
+         obj83.gxTpr_Locationid_Z = Z29LocationId;
          obj83.gxTpr_Mediaimage_gxi_Z = Z40000MediaImage_GXI;
          obj83.gxTpr_Mediaimage_N = (short)(Convert.ToInt16(n411MediaImage));
          obj83.gxTpr_Mediaimage_gxi_N = (short)(Convert.ToInt16(n40000MediaImage_GXI));
@@ -702,12 +717,14 @@ namespace GeneXus.Programs {
          A413MediaSize = obj83.gxTpr_Mediasize;
          A414MediaType = obj83.gxTpr_Mediatype;
          A412MediaUrl = obj83.gxTpr_Mediaurl;
+         A29LocationId = obj83.gxTpr_Locationid;
          A409MediaId = obj83.gxTpr_Mediaid;
          Z409MediaId = obj83.gxTpr_Mediaid_Z;
          Z410MediaName = obj83.gxTpr_Medianame_Z;
          Z413MediaSize = obj83.gxTpr_Mediasize_Z;
          Z414MediaType = obj83.gxTpr_Mediatype_Z;
          Z412MediaUrl = obj83.gxTpr_Mediaurl_Z;
+         Z29LocationId = obj83.gxTpr_Locationid_Z;
          Z40000MediaImage_GXI = obj83.gxTpr_Mediaimage_gxi_Z;
          n411MediaImage = (bool)(Convert.ToBoolean(obj83.gxTpr_Mediaimage_N));
          n40000MediaImage_GXI = (bool)(Convert.ToBoolean(obj83.gxTpr_Mediaimage_gxi_N));
@@ -733,7 +750,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z409MediaId = A409MediaId;
          }
-         ZM0X83( -4) ;
+         ZM0X83( -6) ;
          OnLoadActions0X83( ) ;
          AddRow0X83( ) ;
          ScanKeyEnd0X83( ) ;
@@ -762,7 +779,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z409MediaId = A409MediaId;
          }
-         ZM0X83( -4) ;
+         ZM0X83( -6) ;
          OnLoadActions0X83( ) ;
          AddRow0X83( ) ;
          ScanKeyEnd0X83( ) ;
@@ -1149,6 +1166,8 @@ namespace GeneXus.Programs {
          AV8WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV11TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV12WebSession = context.GetSession();
+         Z29LocationId = Guid.Empty;
+         A29LocationId = Guid.Empty;
          Z410MediaName = "";
          A410MediaName = "";
          Z414MediaType = "";
@@ -1160,6 +1179,7 @@ namespace GeneXus.Programs {
          Z40000MediaImage_GXI = "";
          A40000MediaImage_GXI = "";
          BC000X4_A409MediaId = new Guid[] {Guid.Empty} ;
+         BC000X4_A29LocationId = new Guid[] {Guid.Empty} ;
          BC000X4_A410MediaName = new string[] {""} ;
          BC000X4_A40000MediaImage_GXI = new string[] {""} ;
          BC000X4_n40000MediaImage_GXI = new bool[] {false} ;
@@ -1170,6 +1190,7 @@ namespace GeneXus.Programs {
          BC000X4_n411MediaImage = new bool[] {false} ;
          BC000X5_A409MediaId = new Guid[] {Guid.Empty} ;
          BC000X3_A409MediaId = new Guid[] {Guid.Empty} ;
+         BC000X3_A29LocationId = new Guid[] {Guid.Empty} ;
          BC000X3_A410MediaName = new string[] {""} ;
          BC000X3_A40000MediaImage_GXI = new string[] {""} ;
          BC000X3_n40000MediaImage_GXI = new bool[] {false} ;
@@ -1180,6 +1201,7 @@ namespace GeneXus.Programs {
          BC000X3_n411MediaImage = new bool[] {false} ;
          sMode83 = "";
          BC000X2_A409MediaId = new Guid[] {Guid.Empty} ;
+         BC000X2_A29LocationId = new Guid[] {Guid.Empty} ;
          BC000X2_A410MediaName = new string[] {""} ;
          BC000X2_A40000MediaImage_GXI = new string[] {""} ;
          BC000X2_n40000MediaImage_GXI = new bool[] {false} ;
@@ -1189,6 +1211,7 @@ namespace GeneXus.Programs {
          BC000X2_A411MediaImage = new string[] {""} ;
          BC000X2_n411MediaImage = new bool[] {false} ;
          BC000X10_A409MediaId = new Guid[] {Guid.Empty} ;
+         BC000X10_A29LocationId = new Guid[] {Guid.Empty} ;
          BC000X10_A410MediaName = new string[] {""} ;
          BC000X10_A40000MediaImage_GXI = new string[] {""} ;
          BC000X10_n40000MediaImage_GXI = new bool[] {false} ;
@@ -1197,6 +1220,7 @@ namespace GeneXus.Programs {
          BC000X10_A412MediaUrl = new string[] {""} ;
          BC000X10_A411MediaImage = new string[] {""} ;
          BC000X10_n411MediaImage = new bool[] {false} ;
+         i29LocationId = Guid.Empty;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_media_bc__datastore1(),
@@ -1210,13 +1234,13 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_media_bc__default(),
             new Object[][] {
                 new Object[] {
-               BC000X2_A409MediaId, BC000X2_A410MediaName, BC000X2_A40000MediaImage_GXI, BC000X2_n40000MediaImage_GXI, BC000X2_A413MediaSize, BC000X2_A414MediaType, BC000X2_A412MediaUrl, BC000X2_A411MediaImage, BC000X2_n411MediaImage
+               BC000X2_A409MediaId, BC000X2_A29LocationId, BC000X2_A410MediaName, BC000X2_A40000MediaImage_GXI, BC000X2_n40000MediaImage_GXI, BC000X2_A413MediaSize, BC000X2_A414MediaType, BC000X2_A412MediaUrl, BC000X2_A411MediaImage, BC000X2_n411MediaImage
                }
                , new Object[] {
-               BC000X3_A409MediaId, BC000X3_A410MediaName, BC000X3_A40000MediaImage_GXI, BC000X3_n40000MediaImage_GXI, BC000X3_A413MediaSize, BC000X3_A414MediaType, BC000X3_A412MediaUrl, BC000X3_A411MediaImage, BC000X3_n411MediaImage
+               BC000X3_A409MediaId, BC000X3_A29LocationId, BC000X3_A410MediaName, BC000X3_A40000MediaImage_GXI, BC000X3_n40000MediaImage_GXI, BC000X3_A413MediaSize, BC000X3_A414MediaType, BC000X3_A412MediaUrl, BC000X3_A411MediaImage, BC000X3_n411MediaImage
                }
                , new Object[] {
-               BC000X4_A409MediaId, BC000X4_A410MediaName, BC000X4_A40000MediaImage_GXI, BC000X4_n40000MediaImage_GXI, BC000X4_A413MediaSize, BC000X4_A414MediaType, BC000X4_A412MediaUrl, BC000X4_A411MediaImage, BC000X4_n411MediaImage
+               BC000X4_A409MediaId, BC000X4_A29LocationId, BC000X4_A410MediaName, BC000X4_A40000MediaImage_GXI, BC000X4_n40000MediaImage_GXI, BC000X4_A413MediaSize, BC000X4_A414MediaType, BC000X4_A412MediaUrl, BC000X4_A411MediaImage, BC000X4_n411MediaImage
                }
                , new Object[] {
                BC000X5_A409MediaId
@@ -1230,10 +1254,13 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               BC000X10_A409MediaId, BC000X10_A410MediaName, BC000X10_A40000MediaImage_GXI, BC000X10_n40000MediaImage_GXI, BC000X10_A413MediaSize, BC000X10_A414MediaType, BC000X10_A412MediaUrl, BC000X10_A411MediaImage, BC000X10_n411MediaImage
+               BC000X10_A409MediaId, BC000X10_A29LocationId, BC000X10_A410MediaName, BC000X10_A40000MediaImage_GXI, BC000X10_n40000MediaImage_GXI, BC000X10_A413MediaSize, BC000X10_A414MediaType, BC000X10_A412MediaUrl, BC000X10_A411MediaImage, BC000X10_n411MediaImage
                }
             }
          );
+         Z29LocationId = Guid.NewGuid( );
+         A29LocationId = Guid.NewGuid( );
+         i29LocationId = Guid.NewGuid( );
          Z409MediaId = Guid.NewGuid( );
          A409MediaId = Guid.NewGuid( );
          INITTRN();
@@ -1268,6 +1295,9 @@ namespace GeneXus.Programs {
       private string A411MediaImage ;
       private Guid Z409MediaId ;
       private Guid A409MediaId ;
+      private Guid Z29LocationId ;
+      private Guid A29LocationId ;
+      private Guid i29LocationId ;
       private IGxSession AV12WebSession ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
@@ -1276,6 +1306,7 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV11TrnContext ;
       private IDataStoreProvider pr_default ;
       private Guid[] BC000X4_A409MediaId ;
+      private Guid[] BC000X4_A29LocationId ;
       private string[] BC000X4_A410MediaName ;
       private string[] BC000X4_A40000MediaImage_GXI ;
       private bool[] BC000X4_n40000MediaImage_GXI ;
@@ -1286,6 +1317,7 @@ namespace GeneXus.Programs {
       private bool[] BC000X4_n411MediaImage ;
       private Guid[] BC000X5_A409MediaId ;
       private Guid[] BC000X3_A409MediaId ;
+      private Guid[] BC000X3_A29LocationId ;
       private string[] BC000X3_A410MediaName ;
       private string[] BC000X3_A40000MediaImage_GXI ;
       private bool[] BC000X3_n40000MediaImage_GXI ;
@@ -1295,6 +1327,7 @@ namespace GeneXus.Programs {
       private string[] BC000X3_A411MediaImage ;
       private bool[] BC000X3_n411MediaImage ;
       private Guid[] BC000X2_A409MediaId ;
+      private Guid[] BC000X2_A29LocationId ;
       private string[] BC000X2_A410MediaName ;
       private string[] BC000X2_A40000MediaImage_GXI ;
       private bool[] BC000X2_n40000MediaImage_GXI ;
@@ -1304,6 +1337,7 @@ namespace GeneXus.Programs {
       private string[] BC000X2_A411MediaImage ;
       private bool[] BC000X2_n411MediaImage ;
       private Guid[] BC000X10_A409MediaId ;
+      private Guid[] BC000X10_A29LocationId ;
       private string[] BC000X10_A410MediaName ;
       private string[] BC000X10_A40000MediaImage_GXI ;
       private bool[] BC000X10_n40000MediaImage_GXI ;
@@ -1425,15 +1459,17 @@ public class trn_media_bc__default : DataStoreHelperBase, IDataStoreHelper
        Object[] prmBC000X6;
        prmBC000X6 = new Object[] {
        new ParDef("MediaId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("MediaName",GXType.VarChar,100,0) ,
        new ParDef("MediaImage",GXType.Byte,1024,0){Nullable=true,InDB=false} ,
-       new ParDef("MediaImage_GXI",GXType.VarChar,2048,0){Nullable=true,AddAtt=true, ImgIdx=2, Tbl="Trn_Media", Fld="MediaImage"} ,
+       new ParDef("MediaImage_GXI",GXType.VarChar,2048,0){Nullable=true,AddAtt=true, ImgIdx=3, Tbl="Trn_Media", Fld="MediaImage"} ,
        new ParDef("MediaSize",GXType.Int32,8,0) ,
        new ParDef("MediaType",GXType.Char,20,0) ,
        new ParDef("MediaUrl",GXType.VarChar,1000,0)
        };
        Object[] prmBC000X7;
        prmBC000X7 = new Object[] {
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("MediaName",GXType.VarChar,100,0) ,
        new ParDef("MediaSize",GXType.Int32,8,0) ,
        new ParDef("MediaType",GXType.Char,20,0) ,
@@ -1455,15 +1491,15 @@ public class trn_media_bc__default : DataStoreHelperBase, IDataStoreHelper
        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
        };
        def= new CursorDef[] {
-           new CursorDef("BC000X2", "SELECT MediaId, MediaName, MediaImage_GXI, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE MediaId = :MediaId  FOR UPDATE OF Trn_Media",true, GxErrorMask.GX_NOMASK, false, this,prmBC000X2,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000X3", "SELECT MediaId, MediaName, MediaImage_GXI, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE MediaId = :MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000X3,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000X4", "SELECT TM1.MediaId, TM1.MediaName, TM1.MediaImage_GXI, TM1.MediaSize, TM1.MediaType, TM1.MediaUrl, TM1.MediaImage FROM Trn_Media TM1 WHERE TM1.MediaId = :MediaId ORDER BY TM1.MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000X4,100, GxCacheFrequency.OFF ,true,false )
+           new CursorDef("BC000X2", "SELECT MediaId, LocationId, MediaName, MediaImage_GXI, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE MediaId = :MediaId  FOR UPDATE OF Trn_Media",true, GxErrorMask.GX_NOMASK, false, this,prmBC000X2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000X3", "SELECT MediaId, LocationId, MediaName, MediaImage_GXI, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE MediaId = :MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000X3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000X4", "SELECT TM1.MediaId, TM1.LocationId, TM1.MediaName, TM1.MediaImage_GXI, TM1.MediaSize, TM1.MediaType, TM1.MediaUrl, TM1.MediaImage FROM Trn_Media TM1 WHERE TM1.MediaId = :MediaId ORDER BY TM1.MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000X4,100, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC000X5", "SELECT MediaId FROM Trn_Media WHERE MediaId = :MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000X5,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000X6", "SAVEPOINT gxupdate;INSERT INTO Trn_Media(MediaId, MediaName, MediaImage, MediaImage_GXI, MediaSize, MediaType, MediaUrl) VALUES(:MediaId, :MediaName, :MediaImage, :MediaImage_GXI, :MediaSize, :MediaType, :MediaUrl);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000X6)
-          ,new CursorDef("BC000X7", "SAVEPOINT gxupdate;UPDATE Trn_Media SET MediaName=:MediaName, MediaSize=:MediaSize, MediaType=:MediaType, MediaUrl=:MediaUrl  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000X7)
+          ,new CursorDef("BC000X6", "SAVEPOINT gxupdate;INSERT INTO Trn_Media(MediaId, LocationId, MediaName, MediaImage, MediaImage_GXI, MediaSize, MediaType, MediaUrl) VALUES(:MediaId, :LocationId, :MediaName, :MediaImage, :MediaImage_GXI, :MediaSize, :MediaType, :MediaUrl);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000X6)
+          ,new CursorDef("BC000X7", "SAVEPOINT gxupdate;UPDATE Trn_Media SET LocationId=:LocationId, MediaName=:MediaName, MediaSize=:MediaSize, MediaType=:MediaType, MediaUrl=:MediaUrl  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000X7)
           ,new CursorDef("BC000X8", "SAVEPOINT gxupdate;UPDATE Trn_Media SET MediaImage=:MediaImage, MediaImage_GXI=:MediaImage_GXI  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000X8)
           ,new CursorDef("BC000X9", "SAVEPOINT gxupdate;DELETE FROM Trn_Media  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000X9)
-          ,new CursorDef("BC000X10", "SELECT TM1.MediaId, TM1.MediaName, TM1.MediaImage_GXI, TM1.MediaSize, TM1.MediaType, TM1.MediaUrl, TM1.MediaImage FROM Trn_Media TM1 WHERE TM1.MediaId = :MediaId ORDER BY TM1.MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000X10,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000X10", "SELECT TM1.MediaId, TM1.LocationId, TM1.MediaName, TM1.MediaImage_GXI, TM1.MediaSize, TM1.MediaType, TM1.MediaUrl, TM1.MediaImage FROM Trn_Media TM1 WHERE TM1.MediaId = :MediaId ORDER BY TM1.MediaId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000X10,100, GxCacheFrequency.OFF ,true,false )
        };
     }
  }
@@ -1476,50 +1512,54 @@ public class trn_media_bc__default : DataStoreHelperBase, IDataStoreHelper
     {
           case 0 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((string[]) buf[1])[0] = rslt.getVarchar(2);
-             ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
-             ((bool[]) buf[3])[0] = rslt.wasNull(3);
-             ((int[]) buf[4])[0] = rslt.getInt(4);
-             ((string[]) buf[5])[0] = rslt.getString(5, 20);
-             ((string[]) buf[6])[0] = rslt.getVarchar(6);
-             ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
-             ((bool[]) buf[8])[0] = rslt.wasNull(7);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getMultimediaUri(4);
+             ((bool[]) buf[4])[0] = rslt.wasNull(4);
+             ((int[]) buf[5])[0] = rslt.getInt(5);
+             ((string[]) buf[6])[0] = rslt.getString(6, 20);
+             ((string[]) buf[7])[0] = rslt.getVarchar(7);
+             ((string[]) buf[8])[0] = rslt.getMultimediaFile(8, rslt.getVarchar(4));
+             ((bool[]) buf[9])[0] = rslt.wasNull(8);
              return;
           case 1 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((string[]) buf[1])[0] = rslt.getVarchar(2);
-             ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
-             ((bool[]) buf[3])[0] = rslt.wasNull(3);
-             ((int[]) buf[4])[0] = rslt.getInt(4);
-             ((string[]) buf[5])[0] = rslt.getString(5, 20);
-             ((string[]) buf[6])[0] = rslt.getVarchar(6);
-             ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
-             ((bool[]) buf[8])[0] = rslt.wasNull(7);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getMultimediaUri(4);
+             ((bool[]) buf[4])[0] = rslt.wasNull(4);
+             ((int[]) buf[5])[0] = rslt.getInt(5);
+             ((string[]) buf[6])[0] = rslt.getString(6, 20);
+             ((string[]) buf[7])[0] = rslt.getVarchar(7);
+             ((string[]) buf[8])[0] = rslt.getMultimediaFile(8, rslt.getVarchar(4));
+             ((bool[]) buf[9])[0] = rslt.wasNull(8);
              return;
           case 2 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((string[]) buf[1])[0] = rslt.getVarchar(2);
-             ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
-             ((bool[]) buf[3])[0] = rslt.wasNull(3);
-             ((int[]) buf[4])[0] = rslt.getInt(4);
-             ((string[]) buf[5])[0] = rslt.getString(5, 20);
-             ((string[]) buf[6])[0] = rslt.getVarchar(6);
-             ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
-             ((bool[]) buf[8])[0] = rslt.wasNull(7);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getMultimediaUri(4);
+             ((bool[]) buf[4])[0] = rslt.wasNull(4);
+             ((int[]) buf[5])[0] = rslt.getInt(5);
+             ((string[]) buf[6])[0] = rslt.getString(6, 20);
+             ((string[]) buf[7])[0] = rslt.getVarchar(7);
+             ((string[]) buf[8])[0] = rslt.getMultimediaFile(8, rslt.getVarchar(4));
+             ((bool[]) buf[9])[0] = rslt.wasNull(8);
              return;
           case 3 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              return;
           case 8 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((string[]) buf[1])[0] = rslt.getVarchar(2);
-             ((string[]) buf[2])[0] = rslt.getMultimediaUri(3);
-             ((bool[]) buf[3])[0] = rslt.wasNull(3);
-             ((int[]) buf[4])[0] = rslt.getInt(4);
-             ((string[]) buf[5])[0] = rslt.getString(5, 20);
-             ((string[]) buf[6])[0] = rslt.getVarchar(6);
-             ((string[]) buf[7])[0] = rslt.getMultimediaFile(7, rslt.getVarchar(3));
-             ((bool[]) buf[8])[0] = rslt.wasNull(7);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getMultimediaUri(4);
+             ((bool[]) buf[4])[0] = rslt.wasNull(4);
+             ((int[]) buf[5])[0] = rslt.getInt(5);
+             ((string[]) buf[6])[0] = rslt.getString(6, 20);
+             ((string[]) buf[7])[0] = rslt.getVarchar(7);
+             ((string[]) buf[8])[0] = rslt.getMultimediaFile(8, rslt.getVarchar(4));
+             ((bool[]) buf[9])[0] = rslt.wasNull(8);
              return;
     }
  }

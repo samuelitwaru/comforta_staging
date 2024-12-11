@@ -101,6 +101,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         new prc_logtofile(context ).execute(  "*********** Procedure Called to send Notification:"+AV17pWWPNotificationDefinitionTitle+" : Subscription ID"+StringUtil.RTrim( context.localUtil.Format( AV27WWPSubscriptionEntityRecordId, ""))) ;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11ExcludedWWPUserExtendedIdCollectionJson)) )
          {
             AV10ExcludedWWPUserExtendedIdCollection = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());

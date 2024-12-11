@@ -44,15 +44,15 @@ namespace GeneXus.Programs {
          dsDefault = context.GetDataStore("Default");
       }
 
-      public void execute( out GxSimpleCollection<short> aP0_AgendaNotificationDefinitionIdCollection ,
-                           out GxSimpleCollection<short> aP1_DynamicFormNotificationDefinitionIdCollection ,
-                           out GxSimpleCollection<short> aP2_DiscussionNotificationDefinitionIdCollection ,
-                           out GxSimpleCollection<short> aP3_MentionNotificationDefinitionIdCollection )
+      public void execute( out GxSimpleCollection<long> aP0_AgendaNotificationDefinitionIdCollection ,
+                           out GxSimpleCollection<long> aP1_DynamicFormNotificationDefinitionIdCollection ,
+                           out GxSimpleCollection<long> aP2_DiscussionNotificationDefinitionIdCollection ,
+                           out GxSimpleCollection<long> aP3_MentionNotificationDefinitionIdCollection )
       {
-         this.AV8AgendaNotificationDefinitionIdCollection = new GxSimpleCollection<short>() ;
-         this.AV10DynamicFormNotificationDefinitionIdCollection = new GxSimpleCollection<short>() ;
-         this.AV9DiscussionNotificationDefinitionIdCollection = new GxSimpleCollection<short>() ;
-         this.AV12MentionNotificationDefinitionIdCollection = new GxSimpleCollection<short>() ;
+         this.AV8AgendaNotificationDefinitionIdCollection = new GxSimpleCollection<long>() ;
+         this.AV10DynamicFormNotificationDefinitionIdCollection = new GxSimpleCollection<long>() ;
+         this.AV9DiscussionNotificationDefinitionIdCollection = new GxSimpleCollection<long>() ;
+         this.AV12MentionNotificationDefinitionIdCollection = new GxSimpleCollection<long>() ;
          initialize();
          ExecuteImpl();
          aP0_AgendaNotificationDefinitionIdCollection=this.AV8AgendaNotificationDefinitionIdCollection;
@@ -61,23 +61,23 @@ namespace GeneXus.Programs {
          aP3_MentionNotificationDefinitionIdCollection=this.AV12MentionNotificationDefinitionIdCollection;
       }
 
-      public GxSimpleCollection<short> executeUdp( out GxSimpleCollection<short> aP0_AgendaNotificationDefinitionIdCollection ,
-                                                   out GxSimpleCollection<short> aP1_DynamicFormNotificationDefinitionIdCollection ,
-                                                   out GxSimpleCollection<short> aP2_DiscussionNotificationDefinitionIdCollection )
+      public GxSimpleCollection<long> executeUdp( out GxSimpleCollection<long> aP0_AgendaNotificationDefinitionIdCollection ,
+                                                  out GxSimpleCollection<long> aP1_DynamicFormNotificationDefinitionIdCollection ,
+                                                  out GxSimpleCollection<long> aP2_DiscussionNotificationDefinitionIdCollection )
       {
          execute(out aP0_AgendaNotificationDefinitionIdCollection, out aP1_DynamicFormNotificationDefinitionIdCollection, out aP2_DiscussionNotificationDefinitionIdCollection, out aP3_MentionNotificationDefinitionIdCollection);
          return AV12MentionNotificationDefinitionIdCollection ;
       }
 
-      public void executeSubmit( out GxSimpleCollection<short> aP0_AgendaNotificationDefinitionIdCollection ,
-                                 out GxSimpleCollection<short> aP1_DynamicFormNotificationDefinitionIdCollection ,
-                                 out GxSimpleCollection<short> aP2_DiscussionNotificationDefinitionIdCollection ,
-                                 out GxSimpleCollection<short> aP3_MentionNotificationDefinitionIdCollection )
+      public void executeSubmit( out GxSimpleCollection<long> aP0_AgendaNotificationDefinitionIdCollection ,
+                                 out GxSimpleCollection<long> aP1_DynamicFormNotificationDefinitionIdCollection ,
+                                 out GxSimpleCollection<long> aP2_DiscussionNotificationDefinitionIdCollection ,
+                                 out GxSimpleCollection<long> aP3_MentionNotificationDefinitionIdCollection )
       {
-         this.AV8AgendaNotificationDefinitionIdCollection = new GxSimpleCollection<short>() ;
-         this.AV10DynamicFormNotificationDefinitionIdCollection = new GxSimpleCollection<short>() ;
-         this.AV9DiscussionNotificationDefinitionIdCollection = new GxSimpleCollection<short>() ;
-         this.AV12MentionNotificationDefinitionIdCollection = new GxSimpleCollection<short>() ;
+         this.AV8AgendaNotificationDefinitionIdCollection = new GxSimpleCollection<long>() ;
+         this.AV10DynamicFormNotificationDefinitionIdCollection = new GxSimpleCollection<long>() ;
+         this.AV9DiscussionNotificationDefinitionIdCollection = new GxSimpleCollection<long>() ;
+         this.AV12MentionNotificationDefinitionIdCollection = new GxSimpleCollection<long>() ;
          SubmitImpl();
          aP0_AgendaNotificationDefinitionIdCollection=this.AV8AgendaNotificationDefinitionIdCollection;
          aP1_DynamicFormNotificationDefinitionIdCollection=this.AV10DynamicFormNotificationDefinitionIdCollection;
@@ -89,7 +89,7 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV9DiscussionNotificationDefinitionIdCollection = (GxSimpleCollection<short>)(new GxSimpleCollection<short>());
+         AV9DiscussionNotificationDefinitionIdCollection = (GxSimpleCollection<long>)(new GxSimpleCollection<long>());
          /* Using cursor P009M2 */
          pr_default.execute(0);
          while ( (pr_default.getStatus(0) != 101) )
@@ -100,7 +100,7 @@ namespace GeneXus.Programs {
             pr_default.readNext(0);
          }
          pr_default.close(0);
-         AV12MentionNotificationDefinitionIdCollection = (GxSimpleCollection<short>)(new GxSimpleCollection<short>());
+         AV12MentionNotificationDefinitionIdCollection = (GxSimpleCollection<long>)(new GxSimpleCollection<long>());
          /* Using cursor P009M3 */
          pr_default.execute(1);
          while ( (pr_default.getStatus(1) != 101) )
@@ -111,7 +111,7 @@ namespace GeneXus.Programs {
             pr_default.readNext(1);
          }
          pr_default.close(1);
-         AV10DynamicFormNotificationDefinitionIdCollection = (GxSimpleCollection<short>)(new GxSimpleCollection<short>());
+         AV10DynamicFormNotificationDefinitionIdCollection = (GxSimpleCollection<long>)(new GxSimpleCollection<long>());
          /* Using cursor P009M4 */
          pr_default.execute(2);
          while ( (pr_default.getStatus(2) != 101) )
@@ -122,7 +122,7 @@ namespace GeneXus.Programs {
             pr_default.readNext(2);
          }
          pr_default.close(2);
-         AV8AgendaNotificationDefinitionIdCollection = (GxSimpleCollection<short>)(new GxSimpleCollection<short>());
+         AV8AgendaNotificationDefinitionIdCollection = (GxSimpleCollection<long>)(new GxSimpleCollection<long>());
          /* Using cursor P009M5 */
          pr_default.execute(3);
          while ( (pr_default.getStatus(3) != 101) )
@@ -133,7 +133,7 @@ namespace GeneXus.Programs {
             pr_default.readNext(3);
          }
          pr_default.close(3);
-         AV11InsertNotificationDefinitionIdCollection = (GxSimpleCollection<short>)(new GxSimpleCollection<short>());
+         AV11InsertNotificationDefinitionIdCollection = (GxSimpleCollection<long>)(new GxSimpleCollection<long>());
          /* Using cursor P009M6 */
          pr_default.execute(4);
          while ( (pr_default.getStatus(4) != 101) )
@@ -159,10 +159,10 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV8AgendaNotificationDefinitionIdCollection = new GxSimpleCollection<short>();
-         AV10DynamicFormNotificationDefinitionIdCollection = new GxSimpleCollection<short>();
-         AV9DiscussionNotificationDefinitionIdCollection = new GxSimpleCollection<short>();
-         AV12MentionNotificationDefinitionIdCollection = new GxSimpleCollection<short>();
+         AV8AgendaNotificationDefinitionIdCollection = new GxSimpleCollection<long>();
+         AV10DynamicFormNotificationDefinitionIdCollection = new GxSimpleCollection<long>();
+         AV9DiscussionNotificationDefinitionIdCollection = new GxSimpleCollection<long>();
+         AV12MentionNotificationDefinitionIdCollection = new GxSimpleCollection<long>();
          P009M2_A164WWPNotificationDefinitionName = new string[] {""} ;
          P009M2_A128WWPNotificationDefinitionId = new long[1] ;
          A164WWPNotificationDefinitionName = "";
@@ -172,7 +172,7 @@ namespace GeneXus.Programs {
          P009M4_A128WWPNotificationDefinitionId = new long[1] ;
          P009M5_A164WWPNotificationDefinitionName = new string[] {""} ;
          P009M5_A128WWPNotificationDefinitionId = new long[1] ;
-         AV11InsertNotificationDefinitionIdCollection = new GxSimpleCollection<short>();
+         AV11InsertNotificationDefinitionIdCollection = new GxSimpleCollection<long>();
          P009M6_A164WWPNotificationDefinitionName = new string[] {""} ;
          P009M6_A128WWPNotificationDefinitionId = new long[1] ;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_getallnotificationdefinitionids__default(),
@@ -202,10 +202,10 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private GxSimpleCollection<short> AV8AgendaNotificationDefinitionIdCollection ;
-      private GxSimpleCollection<short> AV10DynamicFormNotificationDefinitionIdCollection ;
-      private GxSimpleCollection<short> AV9DiscussionNotificationDefinitionIdCollection ;
-      private GxSimpleCollection<short> AV12MentionNotificationDefinitionIdCollection ;
+      private GxSimpleCollection<long> AV8AgendaNotificationDefinitionIdCollection ;
+      private GxSimpleCollection<long> AV10DynamicFormNotificationDefinitionIdCollection ;
+      private GxSimpleCollection<long> AV9DiscussionNotificationDefinitionIdCollection ;
+      private GxSimpleCollection<long> AV12MentionNotificationDefinitionIdCollection ;
       private IDataStoreProvider pr_default ;
       private string[] P009M2_A164WWPNotificationDefinitionName ;
       private long[] P009M2_A128WWPNotificationDefinitionId ;
@@ -215,13 +215,13 @@ namespace GeneXus.Programs {
       private long[] P009M4_A128WWPNotificationDefinitionId ;
       private string[] P009M5_A164WWPNotificationDefinitionName ;
       private long[] P009M5_A128WWPNotificationDefinitionId ;
-      private GxSimpleCollection<short> AV11InsertNotificationDefinitionIdCollection ;
+      private GxSimpleCollection<long> AV11InsertNotificationDefinitionIdCollection ;
       private string[] P009M6_A164WWPNotificationDefinitionName ;
       private long[] P009M6_A128WWPNotificationDefinitionId ;
-      private GxSimpleCollection<short> aP0_AgendaNotificationDefinitionIdCollection ;
-      private GxSimpleCollection<short> aP1_DynamicFormNotificationDefinitionIdCollection ;
-      private GxSimpleCollection<short> aP2_DiscussionNotificationDefinitionIdCollection ;
-      private GxSimpleCollection<short> aP3_MentionNotificationDefinitionIdCollection ;
+      private GxSimpleCollection<long> aP0_AgendaNotificationDefinitionIdCollection ;
+      private GxSimpleCollection<long> aP1_DynamicFormNotificationDefinitionIdCollection ;
+      private GxSimpleCollection<long> aP2_DiscussionNotificationDefinitionIdCollection ;
+      private GxSimpleCollection<long> aP3_MentionNotificationDefinitionIdCollection ;
    }
 
    public class prc_getallnotificationdefinitionids__default : DataStoreHelperBase, IDataStoreHelper

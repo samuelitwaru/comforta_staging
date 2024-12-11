@@ -476,7 +476,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, divTablemain_Internalname, 1, 0, "px", 0, "px", "TableMainTransactionPopUp", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, divTablemain_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
@@ -498,38 +498,291 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
             /* Control Group */
             GxWebStd.gx_group_start( context, grpUnnamedgroup1_Internalname, "Supplier Information", 1, 0, "px", 0, "px", "Group", "", "HLP_WP_CreateNewGeneralSupplier.htm");
-            wb_table1_16_8C2( true) ;
-         }
-         else
-         {
-            wb_table1_16_8C2( false) ;
-         }
-         return  ;
-      }
-
-      protected void wb_table1_16_8C2e( bool wbgen )
-      {
-         if ( wbgen )
-         {
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divSupplierinformation_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 RequiredDataContentCell", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergenkvknumber_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenkvknumber_Internalname, "KvK Number", "col-sm-4 AttributeLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+            /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 21,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenkvknumber_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenkvknumber, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenkvknumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,21);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenkvknumber_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenkvknumber_Enabled, 1, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 RequiredDataContentCell", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergencompanyname_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergencompanyname_Internalname, "Name", "col-sm-4 AttributeLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+            /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 26,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergencompanyname_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergencompanyname, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergencompanyname, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,26);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergencompanyname_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavTrn_suppliergen_suppliergencompanyname_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 RequiredDataContentCell ExtendedComboCell", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divTablesplittedtrn_suppliergen_suppliergentypeid_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-4 MergeLabelCell", "start", "top", "", "", "div");
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblTextblockcombo_trn_suppliergen_suppliergentypeid_Internalname, "Category", "", "", lblTextblockcombo_trn_suppliergen_suppliergentypeid_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_CreateNewGeneralSupplier.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-8", "start", "top", "", "", "div");
+            /* User Defined Control */
+            ucCombo_trn_suppliergen_suppliergentypeid.SetProperty("Caption", Combo_trn_suppliergen_suppliergentypeid_Caption);
+            ucCombo_trn_suppliergen_suppliergentypeid.SetProperty("Cls", Combo_trn_suppliergen_suppliergentypeid_Cls);
+            ucCombo_trn_suppliergen_suppliergentypeid.SetProperty("EmptyItem", Combo_trn_suppliergen_suppliergentypeid_Emptyitem);
+            ucCombo_trn_suppliergen_suppliergentypeid.SetProperty("DropDownOptionsData", AV8Trn_SupplierGen_SupplierGenTypeId_Data);
+            ucCombo_trn_suppliergen_suppliergentypeid.Render(context, "dvelop.gxbootstrap.ddoextendedcombo", Combo_trn_suppliergen_suppliergentypeid_Internalname, "COMBO_TRN_SUPPLIERGEN_SUPPLIERGENTYPEIDContainer");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergencontactname_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergencontactname_Internalname, "Contact Name", "col-sm-4 AttributeLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+            /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 39,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergencontactname_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergencontactname, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergencontactname, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,39);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergencontactname_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavTrn_suppliergen_suppliergencontactname_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divUnnamedtable4_Internalname, 1, 0, "px", 0, "px", "CellMarginBottom10", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-4 control-label", "start", "top", "", "", "div");
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblPhonelabelhome_Internalname, "Phone", "", "", lblPhonelabelhome_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock AttributeWeightBold", 0, "", 1, 1, 0, 0, "HLP_WP_CreateNewGeneralSupplier.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-8", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divUnnamedtable5_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-4", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divUnnamedtable6_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 PhoneLabel ExtendedComboCell", "start", "top", "", "", "div");
+            /* User Defined Control */
+            ucCombo_trn_suppliergen_suppliergenphonecode.SetProperty("Caption", Combo_trn_suppliergen_suppliergenphonecode_Caption);
+            ucCombo_trn_suppliergen_suppliergenphonecode.SetProperty("Cls", Combo_trn_suppliergen_suppliergenphonecode_Cls);
+            ucCombo_trn_suppliergen_suppliergenphonecode.SetProperty("EmptyItem", Combo_trn_suppliergen_suppliergenphonecode_Emptyitem);
+            ucCombo_trn_suppliergen_suppliergenphonecode.SetProperty("DropDownOptionsTitleSettingsIcons", AV12DDO_TitleSettingsIcons);
+            ucCombo_trn_suppliergen_suppliergenphonecode.SetProperty("DropDownOptionsData", AV11Trn_SupplierGen_SupplierGenPhoneCode_Data);
+            ucCombo_trn_suppliergen_suppliergenphonecode.Render(context, "dvelop.gxbootstrap.ddoextendedcombo", Combo_trn_suppliergen_suppliergenphonecode_Internalname, "COMBO_TRN_SUPPLIERGEN_SUPPLIERGENPHONECODEContainer");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-8", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divUnnamedtable7_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenphonenumber_Internalname, "Supplier Gen Phone Number", "col-sm-3 AttributeLabel", 0, true, "");
+            /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 59,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenphonenumber_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenphonenumber, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenphonenumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,59);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "229123456", edtavTrn_suppliergen_suppliergenphonenumber_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenphonenumber_Enabled, 1, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergenwebsite_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenwebsite_Internalname, "Website", "col-sm-4 AttributeLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+            /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 64,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenwebsite_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenwebsite, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenwebsite, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,64);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenwebsite_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenwebsite_Enabled, 1, "text", "", 50, "chr", 1, "row", 50, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+chkavIspreffered_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, chkavIspreffered_Internalname, "is Preffered", "col-sm-4 AttributeCheckBoxLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+            /* Check box */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 69,'',false,'',0)\"";
+            ClassString = "AttributeCheckBox";
+            StyleString = "";
+            GxWebStd.gx_checkbox_ctrl( context, chkavIspreffered_Internalname, StringUtil.BoolToStr( AV26isPreffered), "", "is Preffered", 1, chkavIspreffered.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(69, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,69);\"");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</fieldset>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
             /* Control Group */
             GxWebStd.gx_group_start( context, grpUnnamedgroup3_Internalname, "Address Information", 1, 0, "px", 0, "px", "Group", "", "HLP_WP_CreateNewGeneralSupplier.htm");
-            wb_table2_86_8C2( true) ;
-         }
-         else
-         {
-            wb_table2_86_8C2( false) ;
-         }
-         return  ;
-      }
-
-      protected void wb_table2_86_8C2e( bool wbgen )
-      {
-         if ( wbgen )
-         {
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divUnnamedtable2_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 RequiredDataContentCell", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergenaddressline1_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenaddressline1_Internalname, "Address Line 1", "col-sm-4 AttributeLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+            /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 77,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenaddressline1_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenaddressline1, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenaddressline1, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,77);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenaddressline1_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenaddressline1_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergenaddressline2_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenaddressline2_Internalname, "Address Line 2", "col-sm-4 AttributeLabel spacefieldsLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+            /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 82,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenaddressline2_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenaddressline2, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenaddressline2, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,82);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenaddressline2_Jsonclick, 0, "Attribute spacefields", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenaddressline2_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 RequiredDataContentCell", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergenaddresszipcode_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenaddresszipcode_Internalname, "Zip Code", "col-sm-4 AttributeLabel spacefieldsLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+            /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 87,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenaddresszipcode_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenaddresszipcode, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenaddresszipcode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,87);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenaddresszipcode_Jsonclick, 0, "Attribute spacefields", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenaddresszipcode_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 RequiredDataContentCell", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergenaddresscity_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenaddresscity_Internalname, "City", "col-sm-4 AttributeLabel spacefieldsLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+            /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 92,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenaddresscity_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenaddresscity, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenaddresscity, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,92);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenaddresscity_Jsonclick, 0, "Attribute spacefields", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenaddresscity_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 RequiredDataContentCell ExtendedComboCell", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divTablesplittedtrn_suppliergen_suppliergenaddresscountry_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-4 MergeLabelCell", "start", "top", "", "", "div");
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblTextblockcombo_trn_suppliergen_suppliergenaddresscountry_Internalname, "Country", "", "", lblTextblockcombo_trn_suppliergen_suppliergenaddresscountry_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_CreateNewGeneralSupplier.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-8", "start", "top", "", "", "div");
+            /* User Defined Control */
+            ucCombo_trn_suppliergen_suppliergenaddresscountry.SetProperty("Caption", Combo_trn_suppliergen_suppliergenaddresscountry_Caption);
+            ucCombo_trn_suppliergen_suppliergenaddresscountry.SetProperty("Cls", Combo_trn_suppliergen_suppliergenaddresscountry_Cls);
+            ucCombo_trn_suppliergen_suppliergenaddresscountry.SetProperty("EmptyItem", Combo_trn_suppliergen_suppliergenaddresscountry_Emptyitem);
+            ucCombo_trn_suppliergen_suppliergenaddresscountry.SetProperty("DropDownOptionsTitleSettingsIcons", AV12DDO_TitleSettingsIcons);
+            ucCombo_trn_suppliergen_suppliergenaddresscountry.SetProperty("DropDownOptionsData", AV23Trn_SupplierGen_SupplierGenAddressCountry_Data);
+            ucCombo_trn_suppliergen_suppliergenaddresscountry.Render(context, "dvelop.gxbootstrap.ddoextendedcombo", Combo_trn_suppliergen_suppliergenaddresscountry_Internalname, "COMBO_TRN_SUPPLIERGEN_SUPPLIERGENADDRESSCOUNTRYContainer");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</fieldset>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -544,14 +797,14 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group CellMarginTop10", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 135,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 105,'',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", "Confirm", bttBtnenter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtnenter_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_CreateNewGeneralSupplier.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 137,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 107,'',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", "Cancel", bttBtncancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_CreateNewGeneralSupplier.htm");
@@ -569,14 +822,14 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, divHtml_bottomauxiliarcontrols_Internalname, 1, 0, "px", 0, "px", "Section", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 141,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenid_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenid.ToString(), AV7Trn_SupplierGen.gxTpr_Suppliergenid.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,141);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenid_Jsonclick, 0, "Attribute", "", "", "", "", edtavTrn_suppliergen_suppliergenid_Visible, 1, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "", "", false, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 111,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenid_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenid.ToString(), AV7Trn_SupplierGen.gxTpr_Suppliergenid.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,111);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenid_Jsonclick, 0, "Attribute", "", "", "", "", edtavTrn_suppliergen_suppliergenid_Visible, 1, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "", "", false, "", "HLP_WP_CreateNewGeneralSupplier.htm");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 142,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergentypename_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergentypename, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergentypename, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,142);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergentypename_Jsonclick, 0, "Attribute", "", "", "", "", edtavTrn_suppliergen_suppliergentypename_Visible, 1, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 112,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergentypename_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergentypename, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergentypename, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,112);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergentypename_Jsonclick, 0, "Attribute", "", "", "", "", edtavTrn_suppliergen_suppliergentypename_Visible, 1, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 143,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergencontactphone_Internalname, StringUtil.RTrim( AV7Trn_SupplierGen.gxTpr_Suppliergencontactphone), StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergencontactphone, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,143);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergencontactphone_Jsonclick, 0, "Attribute", "", "", "", "", edtavTrn_suppliergen_suppliergencontactphone_Visible, 1, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, 0, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 113,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergencontactphone_Internalname, StringUtil.RTrim( AV7Trn_SupplierGen.gxTpr_Suppliergencontactphone), StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergencontactphone, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,113);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergencontactphone_Jsonclick, 0, "Attribute", "", "", "", "", edtavTrn_suppliergen_suppliergencontactphone_Visible, 1, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, 0, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -988,21 +1241,21 @@ namespace GeneXus.Programs {
                   ucCombo_trn_suppliergen_suppliergentypeid.SendProperty(context, "", false, Combo_trn_suppliergen_suppliergentypeid_Internalname, "Enabled", StringUtil.BoolToStr( Combo_trn_suppliergen_suppliergentypeid_Enabled));
                   edtavTrn_suppliergen_suppliergencontactname_Enabled = 0;
                   AssignProp("", false, edtavTrn_suppliergen_suppliergencontactname_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavTrn_suppliergen_suppliergencontactname_Enabled), 5, 0), true);
-                  Combo_trn_suppliergen_suppliergenphonecode_Enabled = false;
-                  ucCombo_trn_suppliergen_suppliergenphonecode.SendProperty(context, "", false, Combo_trn_suppliergen_suppliergenphonecode_Internalname, "Enabled", StringUtil.BoolToStr( Combo_trn_suppliergen_suppliergenphonecode_Enabled));
-                  edtavTrn_suppliergen_suppliergenphonenumber_Enabled = 0;
-                  AssignProp("", false, edtavTrn_suppliergen_suppliergenphonenumber_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavTrn_suppliergen_suppliergenphonenumber_Enabled), 5, 0), true);
                   edtavTrn_suppliergen_suppliergenwebsite_Enabled = 0;
                   AssignProp("", false, edtavTrn_suppliergen_suppliergenwebsite_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavTrn_suppliergen_suppliergenwebsite_Enabled), 5, 0), true);
                   chkavIspreffered.Enabled = 0;
                   AssignProp("", false, chkavIspreffered_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(chkavIspreffered.Enabled), 5, 0), true);
+                  edtavTrn_suppliergen_suppliergenphonenumber_Enabled = 0;
+                  AssignProp("", false, edtavTrn_suppliergen_suppliergenphonenumber_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavTrn_suppliergen_suppliergenphonenumber_Enabled), 5, 0), true);
+                  Combo_trn_suppliergen_suppliergenphonecode_Enabled = false;
+                  ucCombo_trn_suppliergen_suppliergenphonecode.SendProperty(context, "", false, Combo_trn_suppliergen_suppliergenphonecode_Internalname, "Enabled", StringUtil.BoolToStr( Combo_trn_suppliergen_suppliergenphonecode_Enabled));
                }
             }
          }
          else
          {
             AV17LoadSuccess = false;
-            CallWebObject(formatLink("wp_notauthorized.aspx") );
+            CallWebObject(formatLink("gamnotauthorized.aspx") );
             context.wjLocDisableFrm = 1;
          }
          if ( AV17LoadSuccess )
@@ -1307,394 +1560,6 @@ namespace GeneXus.Programs {
          returnInSub = false;
       }
 
-      protected void wb_table2_86_8C2( bool wbgen )
-      {
-         if ( wbgen )
-         {
-            /* Table start */
-            sStyleString = "";
-            GxWebStd.gx_table_start( context, tblUnnamedtable2_Internalname, tblUnnamedtable2_Internalname, "", "Table", 0, "", "", 1, 2, sStyleString, "", "", 0);
-            context.WriteHtmlText( "<tr>") ;
-            context.WriteHtmlText( "<td class='RequiredDataContentCell'>") ;
-            /* Div Control */
-            GxWebStd.gx_div_start( context, divUnnamedtabletrn_suppliergen_suppliergenaddressline1_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-5 MergeLabelCell", "start", "top", "", "", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblocktrn_suppliergen_suppliergenaddressline1_Internalname, "Address Line 1", "", "", lblTextblocktrn_suppliergen_suppliergenaddressline1_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-7", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
-            /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenaddressline1_Internalname, "Supplier Gen Address Line1", "col-sm-3 spacefieldsLabel", 0, true, "");
-            /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 95,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenaddressline1_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenaddressline1, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenaddressline1, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,95);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenaddressline1_Jsonclick, 0, "spacefields", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenaddressline1_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            context.WriteHtmlText( "</td>") ;
-            context.WriteHtmlText( "</tr>") ;
-            context.WriteHtmlText( "<tr>") ;
-            context.WriteHtmlText( "<td class='DataContentCell'>") ;
-            /* Div Control */
-            GxWebStd.gx_div_start( context, divUnnamedtabletrn_suppliergen_suppliergenaddressline2_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-5 MergeLabelCell", "start", "top", "", "", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblocktrn_suppliergen_suppliergenaddressline2_Internalname, "Address Line 2", "", "", lblTextblocktrn_suppliergen_suppliergenaddressline2_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-7", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
-            /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenaddressline2_Internalname, "Supplier Gen Address Line2", "col-sm-3 spacefieldsLabel", 0, true, "");
-            /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 104,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenaddressline2_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenaddressline2, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenaddressline2, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,104);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenaddressline2_Jsonclick, 0, "spacefields", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenaddressline2_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            context.WriteHtmlText( "</td>") ;
-            context.WriteHtmlText( "</tr>") ;
-            context.WriteHtmlText( "<tr>") ;
-            context.WriteHtmlText( "<td class='RequiredDataContentCell'>") ;
-            /* Div Control */
-            GxWebStd.gx_div_start( context, divUnnamedtabletrn_suppliergen_suppliergenaddresszipcode_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-5 MergeLabelCell", "start", "top", "", "", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblocktrn_suppliergen_suppliergenaddresszipcode_Internalname, "Zip Code", "", "", lblTextblocktrn_suppliergen_suppliergenaddresszipcode_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-7", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
-            /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenaddresszipcode_Internalname, "Supplier Gen Address Zip Code", "col-sm-3 spacefieldsLabel", 0, true, "");
-            /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 113,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenaddresszipcode_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenaddresszipcode, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenaddresszipcode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,113);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenaddresszipcode_Jsonclick, 0, "spacefields", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenaddresszipcode_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            context.WriteHtmlText( "</td>") ;
-            context.WriteHtmlText( "</tr>") ;
-            context.WriteHtmlText( "<tr>") ;
-            context.WriteHtmlText( "<td class='RequiredDataContentCell'>") ;
-            /* Div Control */
-            GxWebStd.gx_div_start( context, divUnnamedtabletrn_suppliergen_suppliergenaddresscity_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-5 MergeLabelCell", "start", "top", "", "", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblocktrn_suppliergen_suppliergenaddresscity_Internalname, "City", "", "", lblTextblocktrn_suppliergen_suppliergenaddresscity_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-7", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
-            /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenaddresscity_Internalname, "Supplier Gen Address City", "col-sm-3 spacefieldsLabel", 0, true, "");
-            /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 122,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenaddresscity_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenaddresscity, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenaddresscity, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,122);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenaddresscity_Jsonclick, 0, "spacefields", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenaddresscity_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            context.WriteHtmlText( "</td>") ;
-            context.WriteHtmlText( "</tr>") ;
-            context.WriteHtmlText( "<tr>") ;
-            context.WriteHtmlText( "<td class='RequiredDataContentCell ExtendedComboCell'>") ;
-            /* Div Control */
-            GxWebStd.gx_div_start( context, divTablesplittedtrn_suppliergen_suppliergenaddresscountry_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-5 MergeLabelCell", "start", "top", "", "", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblockcombo_trn_suppliergen_suppliergenaddresscountry_Internalname, "Country", "", "", lblTextblockcombo_trn_suppliergen_suppliergenaddresscountry_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-7", "start", "top", "", "", "div");
-            /* User Defined Control */
-            ucCombo_trn_suppliergen_suppliergenaddresscountry.SetProperty("Caption", Combo_trn_suppliergen_suppliergenaddresscountry_Caption);
-            ucCombo_trn_suppliergen_suppliergenaddresscountry.SetProperty("Cls", Combo_trn_suppliergen_suppliergenaddresscountry_Cls);
-            ucCombo_trn_suppliergen_suppliergenaddresscountry.SetProperty("EmptyItem", Combo_trn_suppliergen_suppliergenaddresscountry_Emptyitem);
-            ucCombo_trn_suppliergen_suppliergenaddresscountry.SetProperty("DropDownOptionsTitleSettingsIcons", AV12DDO_TitleSettingsIcons);
-            ucCombo_trn_suppliergen_suppliergenaddresscountry.SetProperty("DropDownOptionsData", AV23Trn_SupplierGen_SupplierGenAddressCountry_Data);
-            ucCombo_trn_suppliergen_suppliergenaddresscountry.Render(context, "dvelop.gxbootstrap.ddoextendedcombo", Combo_trn_suppliergen_suppliergenaddresscountry_Internalname, "COMBO_TRN_SUPPLIERGEN_SUPPLIERGENADDRESSCOUNTRYContainer");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            context.WriteHtmlText( "</td>") ;
-            context.WriteHtmlText( "</tr>") ;
-            /* End of table */
-            context.WriteHtmlText( "</table>") ;
-            wb_table2_86_8C2e( true) ;
-         }
-         else
-         {
-            wb_table2_86_8C2e( false) ;
-         }
-      }
-
-      protected void wb_table1_16_8C2( bool wbgen )
-      {
-         if ( wbgen )
-         {
-            /* Table start */
-            sStyleString = "";
-            GxWebStd.gx_table_start( context, tblSupplierinformation_Internalname, tblSupplierinformation_Internalname, "", "Table", 0, "", "", 1, 2, sStyleString, "", "", 0);
-            context.WriteHtmlText( "<tr>") ;
-            context.WriteHtmlText( "<td class='RequiredDataContentCell'>") ;
-            /* Div Control */
-            GxWebStd.gx_div_start( context, divUnnamedtabletrn_suppliergen_suppliergenkvknumber_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-5 MergeLabelCell", "start", "top", "", "", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblocktrn_suppliergen_suppliergenkvknumber_Internalname, "KvK Number", "", "", lblTextblocktrn_suppliergen_suppliergenkvknumber_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-7", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
-            /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenkvknumber_Internalname, "Supplier Gen KvK Number", "col-sm-3 spacefieldsLabel", 0, true, "");
-            /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 25,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenkvknumber_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenkvknumber, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenkvknumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,25);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenkvknumber_Jsonclick, 0, "spacefields", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenkvknumber_Enabled, 1, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            context.WriteHtmlText( "</td>") ;
-            context.WriteHtmlText( "</tr>") ;
-            context.WriteHtmlText( "<tr>") ;
-            context.WriteHtmlText( "<td class='RequiredDataContentCell'>") ;
-            /* Div Control */
-            GxWebStd.gx_div_start( context, divUnnamedtabletrn_suppliergen_suppliergencompanyname_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-5 MergeLabelCell", "start", "top", "", "", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblocktrn_suppliergen_suppliergencompanyname_Internalname, "Name", "", "", lblTextblocktrn_suppliergen_suppliergencompanyname_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-7", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
-            /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergencompanyname_Internalname, "Company Name", "col-sm-3 spacefieldsLabel", 0, true, "");
-            /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 34,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergencompanyname_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergencompanyname, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergencompanyname, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,34);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergencompanyname_Jsonclick, 0, "spacefields", "", "", "", "", 1, edtavTrn_suppliergen_suppliergencompanyname_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            context.WriteHtmlText( "</td>") ;
-            context.WriteHtmlText( "</tr>") ;
-            context.WriteHtmlText( "<tr>") ;
-            context.WriteHtmlText( "<td class='RequiredDataContentCell ExtendedComboCell'>") ;
-            /* Div Control */
-            GxWebStd.gx_div_start( context, divTablesplittedtrn_suppliergen_suppliergentypeid_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-5 MergeLabelCell", "start", "top", "", "", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblockcombo_trn_suppliergen_suppliergentypeid_Internalname, "Category", "", "", lblTextblockcombo_trn_suppliergen_suppliergentypeid_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-7", "start", "top", "", "", "div");
-            /* User Defined Control */
-            ucCombo_trn_suppliergen_suppliergentypeid.SetProperty("Caption", Combo_trn_suppliergen_suppliergentypeid_Caption);
-            ucCombo_trn_suppliergen_suppliergentypeid.SetProperty("Cls", Combo_trn_suppliergen_suppliergentypeid_Cls);
-            ucCombo_trn_suppliergen_suppliergentypeid.SetProperty("EmptyItem", Combo_trn_suppliergen_suppliergentypeid_Emptyitem);
-            ucCombo_trn_suppliergen_suppliergentypeid.SetProperty("DropDownOptionsData", AV8Trn_SupplierGen_SupplierGenTypeId_Data);
-            ucCombo_trn_suppliergen_suppliergentypeid.Render(context, "dvelop.gxbootstrap.ddoextendedcombo", Combo_trn_suppliergen_suppliergentypeid_Internalname, "COMBO_TRN_SUPPLIERGEN_SUPPLIERGENTYPEIDContainer");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            context.WriteHtmlText( "</td>") ;
-            context.WriteHtmlText( "</tr>") ;
-            context.WriteHtmlText( "<tr>") ;
-            context.WriteHtmlText( "<td class='DataContentCell'>") ;
-            /* Div Control */
-            GxWebStd.gx_div_start( context, divUnnamedtabletrn_suppliergen_suppliergencontactname_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-5 MergeLabelCell", "start", "top", "", "", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblocktrn_suppliergen_suppliergencontactname_Internalname, "Contact Name", "", "", lblTextblocktrn_suppliergen_suppliergencontactname_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-7", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
-            /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergencontactname_Internalname, "Supplier Gen Contact Name", "col-sm-3 spacefieldsLabel", 0, true, "");
-            /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 51,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergencontactname_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergencontactname, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergencontactname, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,51);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergencontactname_Jsonclick, 0, "spacefields", "", "", "", "", 1, edtavTrn_suppliergen_suppliergencontactname_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            context.WriteHtmlText( "</td>") ;
-            context.WriteHtmlText( "</tr>") ;
-            context.WriteHtmlText( "<tr>") ;
-            context.WriteHtmlText( "<td class='DataContentCell ExtendedComboCell'>") ;
-            /* Div Control */
-            GxWebStd.gx_div_start( context, divTablesplittedtrn_suppliergen_suppliergenphonecode_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-5 MergeLabelCell", "start", "top", "", "", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblockcombo_trn_suppliergen_suppliergenphonecode_Internalname, "Phone", "", "", lblTextblockcombo_trn_suppliergen_suppliergenphonecode_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-7", "start", "top", "", "", "div");
-            wb_table3_59_8C2( true) ;
-         }
-         else
-         {
-            wb_table3_59_8C2( false) ;
-         }
-         return  ;
-      }
-
-      protected void wb_table3_59_8C2e( bool wbgen )
-      {
-         if ( wbgen )
-         {
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            context.WriteHtmlText( "</td>") ;
-            context.WriteHtmlText( "</tr>") ;
-            context.WriteHtmlText( "<tr>") ;
-            context.WriteHtmlText( "<td class='DataContentCell'>") ;
-            /* Div Control */
-            GxWebStd.gx_div_start( context, divUnnamedtabletrn_suppliergen_suppliergenwebsite_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-5 MergeLabelCell", "start", "top", "", "", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblocktrn_suppliergen_suppliergenwebsite_Internalname, "Website", "", "", lblTextblocktrn_suppliergen_suppliergenwebsite_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-7", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
-            /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenwebsite_Internalname, "Supplier Gen Website", "col-sm-3 spacefieldsLabel", 0, true, "");
-            /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 74,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenwebsite_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenwebsite, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenwebsite, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,74);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenwebsite_Jsonclick, 0, "spacefields", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenwebsite_Enabled, 1, "text", "", 50, "chr", 1, "row", 50, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            context.WriteHtmlText( "</td>") ;
-            context.WriteHtmlText( "</tr>") ;
-            context.WriteHtmlText( "<tr>") ;
-            context.WriteHtmlText( "<td class='DataContentCell'>") ;
-            /* Div Control */
-            GxWebStd.gx_div_start( context, divUnnamedtableispreffered_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-5 MergeLabelCell", "start", "top", "", "", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblockispreffered_Internalname, "is Preffered", "", "", lblTextblockispreffered_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-7", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
-            /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavIspreffered_Internalname, "is Preffered", "col-sm-3 AttributeCheckBoxLabel", 0, true, "");
-            /* Check box */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 83,'',false,'',0)\"";
-            ClassString = "AttributeCheckBox";
-            StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavIspreffered_Internalname, StringUtil.BoolToStr( AV26isPreffered), "", "is Preffered", 1, chkavIspreffered.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(83, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,83);\"");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            context.WriteHtmlText( "</td>") ;
-            context.WriteHtmlText( "</tr>") ;
-            /* End of table */
-            context.WriteHtmlText( "</table>") ;
-            wb_table1_16_8C2e( true) ;
-         }
-         else
-         {
-            wb_table1_16_8C2e( false) ;
-         }
-      }
-
-      protected void wb_table3_59_8C2( bool wbgen )
-      {
-         if ( wbgen )
-         {
-            /* Table start */
-            sStyleString = "";
-            GxWebStd.gx_table_start( context, tblTablemergedtrn_suppliergen_suppliergenphonecode_Internalname, tblTablemergedtrn_suppliergen_suppliergenphonecode_Internalname, "", "TableMerged", 0, "", "", 0, 0, sStyleString, "", "", 0);
-            context.WriteHtmlText( "<tr>") ;
-            context.WriteHtmlText( "<td class='MergeDataCell'>") ;
-            /* User Defined Control */
-            ucCombo_trn_suppliergen_suppliergenphonecode.SetProperty("Caption", Combo_trn_suppliergen_suppliergenphonecode_Caption);
-            ucCombo_trn_suppliergen_suppliergenphonecode.SetProperty("Cls", Combo_trn_suppliergen_suppliergenphonecode_Cls);
-            ucCombo_trn_suppliergen_suppliergenphonecode.SetProperty("EmptyItem", Combo_trn_suppliergen_suppliergenphonecode_Emptyitem);
-            ucCombo_trn_suppliergen_suppliergenphonecode.SetProperty("DropDownOptionsTitleSettingsIcons", AV12DDO_TitleSettingsIcons);
-            ucCombo_trn_suppliergen_suppliergenphonecode.SetProperty("DropDownOptionsData", AV11Trn_SupplierGen_SupplierGenPhoneCode_Data);
-            ucCombo_trn_suppliergen_suppliergenphonecode.Render(context, "dvelop.gxbootstrap.ddoextendedcombo", Combo_trn_suppliergen_suppliergenphonecode_Internalname, "COMBO_TRN_SUPPLIERGEN_SUPPLIERGENPHONECODEContainer");
-            context.WriteHtmlText( "</td>") ;
-            context.WriteHtmlText( "<td class='DataContentCell'>") ;
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
-            /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenphonenumber_Internalname, "Supplier Gen Phone Number", "gx-form-item AttributePhoneNumberLabel", 0, true, "width: 25%;");
-            /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 65,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenphonenumber_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenphonenumber, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenphonenumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,65);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "229123456", edtavTrn_suppliergen_suppliergenphonenumber_Jsonclick, 0, "AttributePhoneNumber", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenphonenumber_Enabled, 1, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            context.WriteHtmlText( "</td>") ;
-            context.WriteHtmlText( "</tr>") ;
-            /* End of table */
-            context.WriteHtmlText( "</table>") ;
-            wb_table3_59_8C2e( true) ;
-         }
-         else
-         {
-            wb_table3_59_8C2e( false) ;
-         }
-      }
-
       public override void setparameters( Object[] obj )
       {
          createObjects();
@@ -1740,7 +1605,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121019522760", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121116493369", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1756,7 +1621,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_createnewgeneralsupplier.js", "?2024121019522760", false, true);
+         context.AddJavascriptSource("wp_createnewgeneralsupplier.js", "?2024121116493369", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -1783,47 +1648,31 @@ namespace GeneXus.Programs {
 
       protected void init_default_properties( )
       {
-         lblTextblocktrn_suppliergen_suppliergenkvknumber_Internalname = "TEXTBLOCKTRN_SUPPLIERGEN_SUPPLIERGENKVKNUMBER";
          edtavTrn_suppliergen_suppliergenkvknumber_Internalname = "TRN_SUPPLIERGEN_SUPPLIERGENKVKNUMBER";
-         divUnnamedtabletrn_suppliergen_suppliergenkvknumber_Internalname = "UNNAMEDTABLETRN_SUPPLIERGEN_SUPPLIERGENKVKNUMBER";
-         lblTextblocktrn_suppliergen_suppliergencompanyname_Internalname = "TEXTBLOCKTRN_SUPPLIERGEN_SUPPLIERGENCOMPANYNAME";
          edtavTrn_suppliergen_suppliergencompanyname_Internalname = "TRN_SUPPLIERGEN_SUPPLIERGENCOMPANYNAME";
-         divUnnamedtabletrn_suppliergen_suppliergencompanyname_Internalname = "UNNAMEDTABLETRN_SUPPLIERGEN_SUPPLIERGENCOMPANYNAME";
          lblTextblockcombo_trn_suppliergen_suppliergentypeid_Internalname = "TEXTBLOCKCOMBO_TRN_SUPPLIERGEN_SUPPLIERGENTYPEID";
          Combo_trn_suppliergen_suppliergentypeid_Internalname = "COMBO_TRN_SUPPLIERGEN_SUPPLIERGENTYPEID";
          divTablesplittedtrn_suppliergen_suppliergentypeid_Internalname = "TABLESPLITTEDTRN_SUPPLIERGEN_SUPPLIERGENTYPEID";
-         lblTextblocktrn_suppliergen_suppliergencontactname_Internalname = "TEXTBLOCKTRN_SUPPLIERGEN_SUPPLIERGENCONTACTNAME";
          edtavTrn_suppliergen_suppliergencontactname_Internalname = "TRN_SUPPLIERGEN_SUPPLIERGENCONTACTNAME";
-         divUnnamedtabletrn_suppliergen_suppliergencontactname_Internalname = "UNNAMEDTABLETRN_SUPPLIERGEN_SUPPLIERGENCONTACTNAME";
-         lblTextblockcombo_trn_suppliergen_suppliergenphonecode_Internalname = "TEXTBLOCKCOMBO_TRN_SUPPLIERGEN_SUPPLIERGENPHONECODE";
+         lblPhonelabelhome_Internalname = "PHONELABELHOME";
          Combo_trn_suppliergen_suppliergenphonecode_Internalname = "COMBO_TRN_SUPPLIERGEN_SUPPLIERGENPHONECODE";
+         divUnnamedtable6_Internalname = "UNNAMEDTABLE6";
          edtavTrn_suppliergen_suppliergenphonenumber_Internalname = "TRN_SUPPLIERGEN_SUPPLIERGENPHONENUMBER";
-         tblTablemergedtrn_suppliergen_suppliergenphonecode_Internalname = "TABLEMERGEDTRN_SUPPLIERGEN_SUPPLIERGENPHONECODE";
-         divTablesplittedtrn_suppliergen_suppliergenphonecode_Internalname = "TABLESPLITTEDTRN_SUPPLIERGEN_SUPPLIERGENPHONECODE";
-         lblTextblocktrn_suppliergen_suppliergenwebsite_Internalname = "TEXTBLOCKTRN_SUPPLIERGEN_SUPPLIERGENWEBSITE";
+         divUnnamedtable7_Internalname = "UNNAMEDTABLE7";
+         divUnnamedtable5_Internalname = "UNNAMEDTABLE5";
+         divUnnamedtable4_Internalname = "UNNAMEDTABLE4";
          edtavTrn_suppliergen_suppliergenwebsite_Internalname = "TRN_SUPPLIERGEN_SUPPLIERGENWEBSITE";
-         divUnnamedtabletrn_suppliergen_suppliergenwebsite_Internalname = "UNNAMEDTABLETRN_SUPPLIERGEN_SUPPLIERGENWEBSITE";
-         lblTextblockispreffered_Internalname = "TEXTBLOCKISPREFFERED";
          chkavIspreffered_Internalname = "vISPREFFERED";
-         divUnnamedtableispreffered_Internalname = "UNNAMEDTABLEISPREFFERED";
-         tblSupplierinformation_Internalname = "SUPPLIERINFORMATION";
+         divSupplierinformation_Internalname = "SUPPLIERINFORMATION";
          grpUnnamedgroup1_Internalname = "UNNAMEDGROUP1";
-         lblTextblocktrn_suppliergen_suppliergenaddressline1_Internalname = "TEXTBLOCKTRN_SUPPLIERGEN_SUPPLIERGENADDRESSLINE1";
          edtavTrn_suppliergen_suppliergenaddressline1_Internalname = "TRN_SUPPLIERGEN_SUPPLIERGENADDRESSLINE1";
-         divUnnamedtabletrn_suppliergen_suppliergenaddressline1_Internalname = "UNNAMEDTABLETRN_SUPPLIERGEN_SUPPLIERGENADDRESSLINE1";
-         lblTextblocktrn_suppliergen_suppliergenaddressline2_Internalname = "TEXTBLOCKTRN_SUPPLIERGEN_SUPPLIERGENADDRESSLINE2";
          edtavTrn_suppliergen_suppliergenaddressline2_Internalname = "TRN_SUPPLIERGEN_SUPPLIERGENADDRESSLINE2";
-         divUnnamedtabletrn_suppliergen_suppliergenaddressline2_Internalname = "UNNAMEDTABLETRN_SUPPLIERGEN_SUPPLIERGENADDRESSLINE2";
-         lblTextblocktrn_suppliergen_suppliergenaddresszipcode_Internalname = "TEXTBLOCKTRN_SUPPLIERGEN_SUPPLIERGENADDRESSZIPCODE";
          edtavTrn_suppliergen_suppliergenaddresszipcode_Internalname = "TRN_SUPPLIERGEN_SUPPLIERGENADDRESSZIPCODE";
-         divUnnamedtabletrn_suppliergen_suppliergenaddresszipcode_Internalname = "UNNAMEDTABLETRN_SUPPLIERGEN_SUPPLIERGENADDRESSZIPCODE";
-         lblTextblocktrn_suppliergen_suppliergenaddresscity_Internalname = "TEXTBLOCKTRN_SUPPLIERGEN_SUPPLIERGENADDRESSCITY";
          edtavTrn_suppliergen_suppliergenaddresscity_Internalname = "TRN_SUPPLIERGEN_SUPPLIERGENADDRESSCITY";
-         divUnnamedtabletrn_suppliergen_suppliergenaddresscity_Internalname = "UNNAMEDTABLETRN_SUPPLIERGEN_SUPPLIERGENADDRESSCITY";
          lblTextblockcombo_trn_suppliergen_suppliergenaddresscountry_Internalname = "TEXTBLOCKCOMBO_TRN_SUPPLIERGEN_SUPPLIERGENADDRESSCOUNTRY";
          Combo_trn_suppliergen_suppliergenaddresscountry_Internalname = "COMBO_TRN_SUPPLIERGEN_SUPPLIERGENADDRESSCOUNTRY";
          divTablesplittedtrn_suppliergen_suppliergenaddresscountry_Internalname = "TABLESPLITTEDTRN_SUPPLIERGEN_SUPPLIERGENADDRESSCOUNTRY";
-         tblUnnamedtable2_Internalname = "UNNAMEDTABLE2";
+         divUnnamedtable2_Internalname = "UNNAMEDTABLE2";
          grpUnnamedgroup3_Internalname = "UNNAMEDGROUP3";
          divTableattributes_Internalname = "TABLEATTRIBUTES";
          bttBtnenter_Internalname = "BTNENTER";
@@ -1846,29 +1695,8 @@ namespace GeneXus.Programs {
          }
          init_default_properties( ) ;
          chkavIspreffered.Caption = "is Preffered";
-         edtavTrn_suppliergen_suppliergenphonenumber_Jsonclick = "";
          edtavTrn_suppliergen_suppliergenphonenumber_Enabled = 1;
-         Combo_trn_suppliergen_suppliergenphonecode_Caption = "";
-         edtavTrn_suppliergen_suppliergenwebsite_Jsonclick = "";
          edtavTrn_suppliergen_suppliergenwebsite_Enabled = 1;
-         edtavTrn_suppliergen_suppliergencontactname_Jsonclick = "";
-         edtavTrn_suppliergen_suppliergencontactname_Enabled = 1;
-         edtavTrn_suppliergen_suppliergencompanyname_Jsonclick = "";
-         edtavTrn_suppliergen_suppliergencompanyname_Enabled = 1;
-         edtavTrn_suppliergen_suppliergenkvknumber_Jsonclick = "";
-         edtavTrn_suppliergen_suppliergenkvknumber_Enabled = 1;
-         Combo_trn_suppliergen_suppliergenaddresscountry_Caption = "";
-         edtavTrn_suppliergen_suppliergenaddresscity_Jsonclick = "";
-         edtavTrn_suppliergen_suppliergenaddresscity_Enabled = 1;
-         edtavTrn_suppliergen_suppliergenaddresszipcode_Jsonclick = "";
-         edtavTrn_suppliergen_suppliergenaddresszipcode_Enabled = 1;
-         edtavTrn_suppliergen_suppliergenaddressline2_Jsonclick = "";
-         edtavTrn_suppliergen_suppliergenaddressline2_Enabled = 1;
-         edtavTrn_suppliergen_suppliergenaddressline1_Jsonclick = "";
-         edtavTrn_suppliergen_suppliergenaddressline1_Enabled = 1;
-         chkavIspreffered.Enabled = 1;
-         edtavTrn_suppliergen_suppliergenwebsite_Enabled = 1;
-         edtavTrn_suppliergen_suppliergenphonenumber_Enabled = 1;
          edtavTrn_suppliergen_suppliergencontactname_Enabled = 1;
          edtavTrn_suppliergen_suppliergencompanyname_Enabled = 1;
          edtavTrn_suppliergen_suppliergenkvknumber_Enabled = 1;
@@ -1883,15 +1711,36 @@ namespace GeneXus.Programs {
          edtavTrn_suppliergen_suppliergenid_Jsonclick = "";
          edtavTrn_suppliergen_suppliergenid_Visible = 1;
          bttBtnenter_Visible = 1;
+         Combo_trn_suppliergen_suppliergenaddresscountry_Caption = "";
+         edtavTrn_suppliergen_suppliergenaddresscity_Jsonclick = "";
+         edtavTrn_suppliergen_suppliergenaddresscity_Enabled = 1;
+         edtavTrn_suppliergen_suppliergenaddresszipcode_Jsonclick = "";
+         edtavTrn_suppliergen_suppliergenaddresszipcode_Enabled = 1;
+         edtavTrn_suppliergen_suppliergenaddressline2_Jsonclick = "";
+         edtavTrn_suppliergen_suppliergenaddressline2_Enabled = 1;
+         edtavTrn_suppliergen_suppliergenaddressline1_Jsonclick = "";
+         edtavTrn_suppliergen_suppliergenaddressline1_Enabled = 1;
+         chkavIspreffered.Enabled = 1;
+         edtavTrn_suppliergen_suppliergenwebsite_Jsonclick = "";
+         edtavTrn_suppliergen_suppliergenwebsite_Enabled = 1;
+         edtavTrn_suppliergen_suppliergenphonenumber_Jsonclick = "";
+         edtavTrn_suppliergen_suppliergenphonenumber_Enabled = 1;
+         Combo_trn_suppliergen_suppliergenphonecode_Caption = "";
+         edtavTrn_suppliergen_suppliergencontactname_Jsonclick = "";
+         edtavTrn_suppliergen_suppliergencontactname_Enabled = 1;
+         edtavTrn_suppliergen_suppliergencompanyname_Jsonclick = "";
+         edtavTrn_suppliergen_suppliergencompanyname_Enabled = 1;
+         edtavTrn_suppliergen_suppliergenkvknumber_Jsonclick = "";
+         edtavTrn_suppliergen_suppliergenkvknumber_Enabled = 1;
          divLayoutmaintable_Class = "Table TableTransactionTemplate";
          Combo_trn_suppliergen_suppliergenaddresscountry_Htmltemplate = "";
          Combo_trn_suppliergen_suppliergenaddresscountry_Emptyitem = Convert.ToBoolean( 0);
          Combo_trn_suppliergen_suppliergenaddresscountry_Enabled = Convert.ToBoolean( -1);
-         Combo_trn_suppliergen_suppliergenaddresscountry_Cls = "ExtendedCombo ExtendedComboPopupAttribute ExtendedComboWithImage";
+         Combo_trn_suppliergen_suppliergenaddresscountry_Cls = "ExtendedCombo ExtendedComboPopupAttribute Attribute ExtendedComboWithImage";
          Combo_trn_suppliergen_suppliergenphonecode_Htmltemplate = "";
          Combo_trn_suppliergen_suppliergenphonecode_Emptyitem = Convert.ToBoolean( 0);
          Combo_trn_suppliergen_suppliergenphonecode_Enabled = Convert.ToBoolean( -1);
-         Combo_trn_suppliergen_suppliergenphonecode_Cls = "ExtendedCombo spacefields ExtendedComboWithImage";
+         Combo_trn_suppliergen_suppliergenphonecode_Cls = "ExtendedCombo DropDownComponent ExtendedComboWithImage";
          Combo_trn_suppliergen_suppliergentypeid_Emptyitem = Convert.ToBoolean( 0);
          Combo_trn_suppliergen_suppliergentypeid_Enabled = Convert.ToBoolean( -1);
          Combo_trn_suppliergen_suppliergentypeid_Cls = "ExtendedCombo ExtendedComboPopupAttribute";
@@ -1968,6 +1817,13 @@ namespace GeneXus.Programs {
          ClassString = "";
          StyleString = "";
          TempTags = "";
+         lblTextblockcombo_trn_suppliergen_suppliergentypeid_Jsonclick = "";
+         ucCombo_trn_suppliergen_suppliergentypeid = new GXUserControl();
+         Combo_trn_suppliergen_suppliergentypeid_Caption = "";
+         lblPhonelabelhome_Jsonclick = "";
+         ucCombo_trn_suppliergen_suppliergenphonecode = new GXUserControl();
+         lblTextblockcombo_trn_suppliergen_suppliergenaddresscountry_Jsonclick = "";
+         ucCombo_trn_suppliergen_suppliergenaddresscountry = new GXUserControl();
          bttBtnenter_Jsonclick = "";
          bttBtncancel_Jsonclick = "";
          sEvt = "";
@@ -1975,9 +1831,6 @@ namespace GeneXus.Programs {
          EvtRowId = "";
          sEvtType = "";
          GXDecQS = "";
-         ucCombo_trn_suppliergen_suppliergenaddresscountry = new GXUserControl();
-         ucCombo_trn_suppliergen_suppliergentypeid = new GXUserControl();
-         ucCombo_trn_suppliergen_suppliergenphonecode = new GXUserControl();
          AV21WebSession = context.GetSession();
          GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
          GXt_char2 = "";
@@ -1995,20 +1848,6 @@ namespace GeneXus.Programs {
          A282SupplierGenTypeId = Guid.Empty;
          A290SupplierGenTypeName = "";
          AV14Message = new GeneXus.Utils.SdtMessages_Message(context);
-         sStyleString = "";
-         lblTextblocktrn_suppliergen_suppliergenaddressline1_Jsonclick = "";
-         lblTextblocktrn_suppliergen_suppliergenaddressline2_Jsonclick = "";
-         lblTextblocktrn_suppliergen_suppliergenaddresszipcode_Jsonclick = "";
-         lblTextblocktrn_suppliergen_suppliergenaddresscity_Jsonclick = "";
-         lblTextblockcombo_trn_suppliergen_suppliergenaddresscountry_Jsonclick = "";
-         lblTextblocktrn_suppliergen_suppliergenkvknumber_Jsonclick = "";
-         lblTextblocktrn_suppliergen_suppliergencompanyname_Jsonclick = "";
-         lblTextblockcombo_trn_suppliergen_suppliergentypeid_Jsonclick = "";
-         Combo_trn_suppliergen_suppliergentypeid_Caption = "";
-         lblTextblocktrn_suppliergen_suppliergencontactname_Jsonclick = "";
-         lblTextblockcombo_trn_suppliergen_suppliergenphonecode_Jsonclick = "";
-         lblTextblocktrn_suppliergen_suppliergenwebsite_Jsonclick = "";
-         lblTextblockispreffered_Jsonclick = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wp_createnewgeneralsupplier__datastore1(),
@@ -2038,19 +1877,19 @@ namespace GeneXus.Programs {
       private short wbStart ;
       private short nDonePA ;
       private short nGXWrapped ;
-      private int bttBtnenter_Visible ;
-      private int edtavTrn_suppliergen_suppliergenid_Visible ;
-      private int edtavTrn_suppliergen_suppliergentypename_Visible ;
-      private int edtavTrn_suppliergen_suppliergencontactphone_Visible ;
-      private int edtavTrn_suppliergen_suppliergenaddressline1_Enabled ;
-      private int edtavTrn_suppliergen_suppliergenaddressline2_Enabled ;
-      private int edtavTrn_suppliergen_suppliergenaddresszipcode_Enabled ;
-      private int edtavTrn_suppliergen_suppliergenaddresscity_Enabled ;
       private int edtavTrn_suppliergen_suppliergenkvknumber_Enabled ;
       private int edtavTrn_suppliergen_suppliergencompanyname_Enabled ;
       private int edtavTrn_suppliergen_suppliergencontactname_Enabled ;
       private int edtavTrn_suppliergen_suppliergenphonenumber_Enabled ;
       private int edtavTrn_suppliergen_suppliergenwebsite_Enabled ;
+      private int edtavTrn_suppliergen_suppliergenaddressline1_Enabled ;
+      private int edtavTrn_suppliergen_suppliergenaddressline2_Enabled ;
+      private int edtavTrn_suppliergen_suppliergenaddresszipcode_Enabled ;
+      private int edtavTrn_suppliergen_suppliergenaddresscity_Enabled ;
+      private int bttBtnenter_Visible ;
+      private int edtavTrn_suppliergen_suppliergenid_Visible ;
+      private int edtavTrn_suppliergen_suppliergentypename_Visible ;
+      private int edtavTrn_suppliergen_suppliergencontactphone_Visible ;
       private int AV42GXV14 ;
       private int AV44GXV16 ;
       private int AV46GXV17 ;
@@ -2088,8 +1927,47 @@ namespace GeneXus.Programs {
       private string StyleString ;
       private string divTableattributes_Internalname ;
       private string grpUnnamedgroup1_Internalname ;
-      private string grpUnnamedgroup3_Internalname ;
+      private string divSupplierinformation_Internalname ;
+      private string edtavTrn_suppliergen_suppliergenkvknumber_Internalname ;
       private string TempTags ;
+      private string edtavTrn_suppliergen_suppliergenkvknumber_Jsonclick ;
+      private string edtavTrn_suppliergen_suppliergencompanyname_Internalname ;
+      private string edtavTrn_suppliergen_suppliergencompanyname_Jsonclick ;
+      private string divTablesplittedtrn_suppliergen_suppliergentypeid_Internalname ;
+      private string lblTextblockcombo_trn_suppliergen_suppliergentypeid_Internalname ;
+      private string lblTextblockcombo_trn_suppliergen_suppliergentypeid_Jsonclick ;
+      private string Combo_trn_suppliergen_suppliergentypeid_Caption ;
+      private string Combo_trn_suppliergen_suppliergentypeid_Internalname ;
+      private string edtavTrn_suppliergen_suppliergencontactname_Internalname ;
+      private string edtavTrn_suppliergen_suppliergencontactname_Jsonclick ;
+      private string divUnnamedtable4_Internalname ;
+      private string lblPhonelabelhome_Internalname ;
+      private string lblPhonelabelhome_Jsonclick ;
+      private string divUnnamedtable5_Internalname ;
+      private string divUnnamedtable6_Internalname ;
+      private string Combo_trn_suppliergen_suppliergenphonecode_Caption ;
+      private string Combo_trn_suppliergen_suppliergenphonecode_Internalname ;
+      private string divUnnamedtable7_Internalname ;
+      private string edtavTrn_suppliergen_suppliergenphonenumber_Internalname ;
+      private string edtavTrn_suppliergen_suppliergenphonenumber_Jsonclick ;
+      private string edtavTrn_suppliergen_suppliergenwebsite_Internalname ;
+      private string edtavTrn_suppliergen_suppliergenwebsite_Jsonclick ;
+      private string chkavIspreffered_Internalname ;
+      private string grpUnnamedgroup3_Internalname ;
+      private string divUnnamedtable2_Internalname ;
+      private string edtavTrn_suppliergen_suppliergenaddressline1_Internalname ;
+      private string edtavTrn_suppliergen_suppliergenaddressline1_Jsonclick ;
+      private string edtavTrn_suppliergen_suppliergenaddressline2_Internalname ;
+      private string edtavTrn_suppliergen_suppliergenaddressline2_Jsonclick ;
+      private string edtavTrn_suppliergen_suppliergenaddresszipcode_Internalname ;
+      private string edtavTrn_suppliergen_suppliergenaddresszipcode_Jsonclick ;
+      private string edtavTrn_suppliergen_suppliergenaddresscity_Internalname ;
+      private string edtavTrn_suppliergen_suppliergenaddresscity_Jsonclick ;
+      private string divTablesplittedtrn_suppliergen_suppliergenaddresscountry_Internalname ;
+      private string lblTextblockcombo_trn_suppliergen_suppliergenaddresscountry_Internalname ;
+      private string lblTextblockcombo_trn_suppliergen_suppliergenaddresscountry_Jsonclick ;
+      private string Combo_trn_suppliergen_suppliergenaddresscountry_Caption ;
+      private string Combo_trn_suppliergen_suppliergenaddresscountry_Internalname ;
       private string bttBtnenter_Internalname ;
       private string bttBtnenter_Jsonclick ;
       private string bttBtncancel_Internalname ;
@@ -2106,72 +1984,7 @@ namespace GeneXus.Programs {
       private string EvtRowId ;
       private string sEvtType ;
       private string GXDecQS ;
-      private string edtavTrn_suppliergen_suppliergenkvknumber_Internalname ;
-      private string edtavTrn_suppliergen_suppliergencompanyname_Internalname ;
-      private string edtavTrn_suppliergen_suppliergencontactname_Internalname ;
-      private string edtavTrn_suppliergen_suppliergenphonenumber_Internalname ;
-      private string edtavTrn_suppliergen_suppliergenwebsite_Internalname ;
-      private string chkavIspreffered_Internalname ;
-      private string edtavTrn_suppliergen_suppliergenaddressline1_Internalname ;
-      private string edtavTrn_suppliergen_suppliergenaddressline2_Internalname ;
-      private string edtavTrn_suppliergen_suppliergenaddresszipcode_Internalname ;
-      private string edtavTrn_suppliergen_suppliergenaddresscity_Internalname ;
-      private string Combo_trn_suppliergen_suppliergenaddresscountry_Internalname ;
-      private string Combo_trn_suppliergen_suppliergentypeid_Internalname ;
-      private string Combo_trn_suppliergen_suppliergenphonecode_Internalname ;
       private string GXt_char2 ;
-      private string sStyleString ;
-      private string tblUnnamedtable2_Internalname ;
-      private string divUnnamedtabletrn_suppliergen_suppliergenaddressline1_Internalname ;
-      private string lblTextblocktrn_suppliergen_suppliergenaddressline1_Internalname ;
-      private string lblTextblocktrn_suppliergen_suppliergenaddressline1_Jsonclick ;
-      private string edtavTrn_suppliergen_suppliergenaddressline1_Jsonclick ;
-      private string divUnnamedtabletrn_suppliergen_suppliergenaddressline2_Internalname ;
-      private string lblTextblocktrn_suppliergen_suppliergenaddressline2_Internalname ;
-      private string lblTextblocktrn_suppliergen_suppliergenaddressline2_Jsonclick ;
-      private string edtavTrn_suppliergen_suppliergenaddressline2_Jsonclick ;
-      private string divUnnamedtabletrn_suppliergen_suppliergenaddresszipcode_Internalname ;
-      private string lblTextblocktrn_suppliergen_suppliergenaddresszipcode_Internalname ;
-      private string lblTextblocktrn_suppliergen_suppliergenaddresszipcode_Jsonclick ;
-      private string edtavTrn_suppliergen_suppliergenaddresszipcode_Jsonclick ;
-      private string divUnnamedtabletrn_suppliergen_suppliergenaddresscity_Internalname ;
-      private string lblTextblocktrn_suppliergen_suppliergenaddresscity_Internalname ;
-      private string lblTextblocktrn_suppliergen_suppliergenaddresscity_Jsonclick ;
-      private string edtavTrn_suppliergen_suppliergenaddresscity_Jsonclick ;
-      private string divTablesplittedtrn_suppliergen_suppliergenaddresscountry_Internalname ;
-      private string lblTextblockcombo_trn_suppliergen_suppliergenaddresscountry_Internalname ;
-      private string lblTextblockcombo_trn_suppliergen_suppliergenaddresscountry_Jsonclick ;
-      private string Combo_trn_suppliergen_suppliergenaddresscountry_Caption ;
-      private string tblSupplierinformation_Internalname ;
-      private string divUnnamedtabletrn_suppliergen_suppliergenkvknumber_Internalname ;
-      private string lblTextblocktrn_suppliergen_suppliergenkvknumber_Internalname ;
-      private string lblTextblocktrn_suppliergen_suppliergenkvknumber_Jsonclick ;
-      private string edtavTrn_suppliergen_suppliergenkvknumber_Jsonclick ;
-      private string divUnnamedtabletrn_suppliergen_suppliergencompanyname_Internalname ;
-      private string lblTextblocktrn_suppliergen_suppliergencompanyname_Internalname ;
-      private string lblTextblocktrn_suppliergen_suppliergencompanyname_Jsonclick ;
-      private string edtavTrn_suppliergen_suppliergencompanyname_Jsonclick ;
-      private string divTablesplittedtrn_suppliergen_suppliergentypeid_Internalname ;
-      private string lblTextblockcombo_trn_suppliergen_suppliergentypeid_Internalname ;
-      private string lblTextblockcombo_trn_suppliergen_suppliergentypeid_Jsonclick ;
-      private string Combo_trn_suppliergen_suppliergentypeid_Caption ;
-      private string divUnnamedtabletrn_suppliergen_suppliergencontactname_Internalname ;
-      private string lblTextblocktrn_suppliergen_suppliergencontactname_Internalname ;
-      private string lblTextblocktrn_suppliergen_suppliergencontactname_Jsonclick ;
-      private string edtavTrn_suppliergen_suppliergencontactname_Jsonclick ;
-      private string divTablesplittedtrn_suppliergen_suppliergenphonecode_Internalname ;
-      private string lblTextblockcombo_trn_suppliergen_suppliergenphonecode_Internalname ;
-      private string lblTextblockcombo_trn_suppliergen_suppliergenphonecode_Jsonclick ;
-      private string divUnnamedtabletrn_suppliergen_suppliergenwebsite_Internalname ;
-      private string lblTextblocktrn_suppliergen_suppliergenwebsite_Internalname ;
-      private string lblTextblocktrn_suppliergen_suppliergenwebsite_Jsonclick ;
-      private string edtavTrn_suppliergen_suppliergenwebsite_Jsonclick ;
-      private string divUnnamedtableispreffered_Internalname ;
-      private string lblTextblockispreffered_Internalname ;
-      private string lblTextblockispreffered_Jsonclick ;
-      private string tblTablemergedtrn_suppliergen_suppliergenphonecode_Internalname ;
-      private string Combo_trn_suppliergen_suppliergenphonecode_Caption ;
-      private string edtavTrn_suppliergen_suppliergenphonenumber_Jsonclick ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool AV18CheckRequiredFieldsResult ;
@@ -2182,9 +1995,9 @@ namespace GeneXus.Programs {
       private bool Combo_trn_suppliergen_suppliergenaddresscountry_Enabled ;
       private bool Combo_trn_suppliergen_suppliergenaddresscountry_Emptyitem ;
       private bool wbLoad ;
+      private bool AV26isPreffered ;
       private bool Rfr0gs ;
       private bool wbErr ;
-      private bool AV26isPreffered ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private bool AV17LoadSuccess ;
@@ -2194,9 +2007,9 @@ namespace GeneXus.Programs {
       private Guid AV20SupplierGenId ;
       private Guid wcpOAV20SupplierGenId ;
       private Guid A282SupplierGenTypeId ;
-      private GXUserControl ucCombo_trn_suppliergen_suppliergenaddresscountry ;
       private GXUserControl ucCombo_trn_suppliergen_suppliergentypeid ;
       private GXUserControl ucCombo_trn_suppliergen_suppliergenphonecode ;
+      private GXUserControl ucCombo_trn_suppliergen_suppliergenaddresscountry ;
       private IGxSession AV21WebSession ;
       private GXWebForm Form ;
       private IGxDataStore dsDataStore1 ;

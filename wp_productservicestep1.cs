@@ -2637,7 +2637,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241261558479", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121116485329", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2653,7 +2653,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_productservicestep1.js", "?202412615584711", false, true);
+         context.AddJavascriptSource("wp_productservicestep1.js", "?2024121116485332", false, true);
          context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
@@ -2772,10 +2772,10 @@ namespace GeneXus.Programs {
          Usercontrol1_Autoupload = Convert.ToBoolean( -1);
          chkavNofilteragb.Enabled = 1;
          Combo_supplieragbid_Emptyitem = Convert.ToBoolean( 0);
-         Combo_supplieragbid_Cls = "ExtendedCombo Attribute";
+         Combo_supplieragbid_Cls = "ExtendedCombo ExtendedCombo";
          chkavNofiltergen.Enabled = 1;
          Combo_suppliergenid_Emptyitem = Convert.ToBoolean( 0);
-         Combo_suppliergenid_Cls = "ExtendedCombo Attribute";
+         Combo_suppliergenid_Cls = "ExtendedCombo ExtendedCombo";
          Combo_suppliergenid_Includeaddnewoption = Convert.ToBoolean( -1);
          Btnwizardfirstprevious_Visible = Convert.ToBoolean( -1);
          edtavProductserviceimagevar_Visible = 1;

@@ -1011,7 +1011,7 @@ namespace GeneXus.Programs {
          AV6HomeModulesSDT = GXt_objcol_SdtHomeModulesSDT_HomeModulesSDTItem1;
          if ( AV13WWPContext.gxTpr_Isreceptionist )
          {
-            CallWebObject(formatLink("wp_usernotificationsboard.aspx") );
+            CallWebObject(formatLink("wp_notificationdashboard.aspx") );
             context.wjLocDisableFrm = 1;
          }
       }
@@ -1168,7 +1168,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241261601134", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121116483513", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1184,7 +1184,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("home.js", "?20241261601135", false, true);
+         context.AddJavascriptSource("home.js", "?2024121116483514", false, true);
          /* End function include_jscripts */
       }
 

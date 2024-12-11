@@ -175,7 +175,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          Gxm1dvelop_menu.gxTpr_Tooltip = "";
          Gxm1dvelop_menu.gxTpr_Link = formatLink("trn_productserviceww.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
-         Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fab fa-product-hunt";
+         Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fas fa-box-open";
          Gxm1dvelop_menu.gxTpr_Caption = "Services";
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);

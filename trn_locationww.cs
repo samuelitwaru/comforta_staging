@@ -1339,7 +1339,9 @@ namespace GeneXus.Programs {
                                                  A34LocationEmail ,
                                                  A35LocationPhone ,
                                                  AV13OrderedBy ,
-                                                 AV14OrderedDsc } ,
+                                                 AV14OrderedDsc ,
+                                                 A11OrganisationId ,
+                                                 AV6WWPContext.gxTpr_Organisationid } ,
                                                  new int[]{
                                                  TypeConstants.SHORT, TypeConstants.BOOLEAN
                                                  }
@@ -1351,7 +1353,7 @@ namespace GeneXus.Programs {
             lV78Trn_locationwwds_4_tflocationemail = StringUtil.Concat( StringUtil.RTrim( AV78Trn_locationwwds_4_tflocationemail), "%", "");
             lV80Trn_locationwwds_6_tflocationphone = StringUtil.PadR( StringUtil.RTrim( AV80Trn_locationwwds_6_tflocationphone), 20, "%");
             /* Using cursor H004L2 */
-            pr_default.execute(0, new Object[] {lV75Trn_locationwwds_1_filterfulltext, lV75Trn_locationwwds_1_filterfulltext, lV75Trn_locationwwds_1_filterfulltext, lV76Trn_locationwwds_2_tflocationname, AV77Trn_locationwwds_3_tflocationname_sel, lV78Trn_locationwwds_4_tflocationemail, AV79Trn_locationwwds_5_tflocationemail_sel, lV80Trn_locationwwds_6_tflocationphone, AV81Trn_locationwwds_7_tflocationphone_sel, GXPagingFrom2, GXPagingTo2, GXPagingTo2});
+            pr_default.execute(0, new Object[] {AV6WWPContext.gxTpr_Organisationid, lV75Trn_locationwwds_1_filterfulltext, lV75Trn_locationwwds_1_filterfulltext, lV75Trn_locationwwds_1_filterfulltext, lV76Trn_locationwwds_2_tflocationname, AV77Trn_locationwwds_3_tflocationname_sel, lV78Trn_locationwwds_4_tflocationemail, AV79Trn_locationwwds_5_tflocationemail_sel, lV80Trn_locationwwds_6_tflocationphone, AV81Trn_locationwwds_7_tflocationphone_sel, GXPagingFrom2, GXPagingTo2, GXPagingTo2});
             nGXsfl_39_idx = 1;
             sGXsfl_39_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_39_idx), 4, 0), 4, "0");
             SubsflControlProps_392( ) ;
@@ -1440,7 +1442,9 @@ namespace GeneXus.Programs {
                                               A34LocationEmail ,
                                               A35LocationPhone ,
                                               AV13OrderedBy ,
-                                              AV14OrderedDsc } ,
+                                              AV14OrderedDsc ,
+                                              A11OrganisationId ,
+                                              AV6WWPContext.gxTpr_Organisationid } ,
                                               new int[]{
                                               TypeConstants.SHORT, TypeConstants.BOOLEAN
                                               }
@@ -1452,7 +1456,7 @@ namespace GeneXus.Programs {
          lV78Trn_locationwwds_4_tflocationemail = StringUtil.Concat( StringUtil.RTrim( AV78Trn_locationwwds_4_tflocationemail), "%", "");
          lV80Trn_locationwwds_6_tflocationphone = StringUtil.PadR( StringUtil.RTrim( AV80Trn_locationwwds_6_tflocationphone), 20, "%");
          /* Using cursor H004L3 */
-         pr_default.execute(1, new Object[] {lV75Trn_locationwwds_1_filterfulltext, lV75Trn_locationwwds_1_filterfulltext, lV75Trn_locationwwds_1_filterfulltext, lV76Trn_locationwwds_2_tflocationname, AV77Trn_locationwwds_3_tflocationname_sel, lV78Trn_locationwwds_4_tflocationemail, AV79Trn_locationwwds_5_tflocationemail_sel, lV80Trn_locationwwds_6_tflocationphone, AV81Trn_locationwwds_7_tflocationphone_sel});
+         pr_default.execute(1, new Object[] {AV6WWPContext.gxTpr_Organisationid, lV75Trn_locationwwds_1_filterfulltext, lV75Trn_locationwwds_1_filterfulltext, lV75Trn_locationwwds_1_filterfulltext, lV76Trn_locationwwds_2_tflocationname, AV77Trn_locationwwds_3_tflocationname_sel, lV78Trn_locationwwds_4_tflocationemail, AV79Trn_locationwwds_5_tflocationemail_sel, lV80Trn_locationwwds_6_tflocationphone, AV81Trn_locationwwds_7_tflocationphone_sel});
          GRID_nRecordCount = H004L3_AGRID_nRecordCount[0];
          pr_default.close(1);
          return (int)(GRID_nRecordCount) ;
@@ -2660,7 +2664,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412101951190", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121116493560", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2676,7 +2680,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_locationww.js", "?202412101951192", false, true);
+         context.AddJavascriptSource("trn_locationww.js", "?2024121116493563", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3836,6 +3840,7 @@ namespace GeneXus.Programs {
       private string A506LocationImage ;
       private Guid A29LocationId ;
       private Guid A11OrganisationId ;
+      private Guid AV6WWPContext_gxTpr_Organisationid ;
       private IGxSession AV16Session ;
       private GXWebComponent WebComp_Wwpaux_wc ;
       private GXWebGrid GridContainer ;
@@ -3902,11 +3907,13 @@ namespace GeneXus.Programs {
                                              string A34LocationEmail ,
                                              string A35LocationPhone ,
                                              short AV13OrderedBy ,
-                                             bool AV14OrderedDsc )
+                                             bool AV14OrderedDsc ,
+                                             Guid A11OrganisationId ,
+                                             Guid AV6WWPContext_gxTpr_Organisationid )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int7 = new short[12];
+         short[] GXv_int7 = new short[13];
          Object[] GXv_Object8 = new Object[2];
          string sSelectString;
          string sFromString;
@@ -3914,15 +3921,16 @@ namespace GeneXus.Programs {
          sSelectString = " T2.OrganisationAddressCountry, T1.LocationDescription, T1.LocationPhone, T1.LocationPhoneNumber, T1.LocationPhoneCode, T1.LocationEmail, T1.LocationAddressLine2, T1.LocationAddressLine1, T1.LocationZipCode, T1.LocationCity, T1.LocationCountry, T1.LocationImage_GXI, T1.LocationName, T1.OrganisationId, T1.LocationId, T1.LocationImage";
          sFromString = " FROM (Trn_Location T1 INNER JOIN Trn_Organisation T2 ON T2.OrganisationId = T1.OrganisationId)";
          sOrderString = "";
+         AddWhere(sWhereString, "(T1.OrganisationId = :AV6WWPContext__Organisationid)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV75Trn_locationwwds_1_filterfulltext)) )
          {
             AddWhere(sWhereString, "(( T1.LocationName like '%' || :lV75Trn_locationwwds_1_filterfulltext) or ( T1.LocationEmail like '%' || :lV75Trn_locationwwds_1_filterfulltext) or ( T1.LocationPhone like '%' || :lV75Trn_locationwwds_1_filterfulltext))");
          }
          else
          {
-            GXv_int7[0] = 1;
             GXv_int7[1] = 1;
             GXv_int7[2] = 1;
+            GXv_int7[3] = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV77Trn_locationwwds_3_tflocationname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_locationwwds_2_tflocationname)) ) )
          {
@@ -3930,7 +3938,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int7[3] = 1;
+            GXv_int7[4] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV77Trn_locationwwds_3_tflocationname_sel)) && ! ( StringUtil.StrCmp(AV77Trn_locationwwds_3_tflocationname_sel, "<#Empty#>") == 0 ) )
          {
@@ -3938,7 +3946,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int7[4] = 1;
+            GXv_int7[5] = 1;
          }
          if ( StringUtil.StrCmp(AV77Trn_locationwwds_3_tflocationname_sel, "<#Empty#>") == 0 )
          {
@@ -3950,7 +3958,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int7[5] = 1;
+            GXv_int7[6] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV79Trn_locationwwds_5_tflocationemail_sel)) && ! ( StringUtil.StrCmp(AV79Trn_locationwwds_5_tflocationemail_sel, "<#Empty#>") == 0 ) )
          {
@@ -3958,7 +3966,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int7[6] = 1;
+            GXv_int7[7] = 1;
          }
          if ( StringUtil.StrCmp(AV79Trn_locationwwds_5_tflocationemail_sel, "<#Empty#>") == 0 )
          {
@@ -3970,7 +3978,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int7[7] = 1;
+            GXv_int7[8] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV81Trn_locationwwds_7_tflocationphone_sel)) && ! ( StringUtil.StrCmp(AV81Trn_locationwwds_7_tflocationphone_sel, "<#Empty#>") == 0 ) )
          {
@@ -3978,7 +3986,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int7[8] = 1;
+            GXv_int7[9] = 1;
          }
          if ( StringUtil.StrCmp(AV81Trn_locationwwds_7_tflocationphone_sel, "<#Empty#>") == 0 )
          {
@@ -4030,22 +4038,25 @@ namespace GeneXus.Programs {
                                              string A34LocationEmail ,
                                              string A35LocationPhone ,
                                              short AV13OrderedBy ,
-                                             bool AV14OrderedDsc )
+                                             bool AV14OrderedDsc ,
+                                             Guid A11OrganisationId ,
+                                             Guid AV6WWPContext_gxTpr_Organisationid )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int9 = new short[9];
+         short[] GXv_int9 = new short[10];
          Object[] GXv_Object10 = new Object[2];
          scmdbuf = "SELECT COUNT(*) FROM (Trn_Location T1 INNER JOIN Trn_Organisation T2 ON T2.OrganisationId = T1.OrganisationId)";
+         AddWhere(sWhereString, "(T1.OrganisationId = :AV6WWPContext__Organisationid)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV75Trn_locationwwds_1_filterfulltext)) )
          {
             AddWhere(sWhereString, "(( T1.LocationName like '%' || :lV75Trn_locationwwds_1_filterfulltext) or ( T1.LocationEmail like '%' || :lV75Trn_locationwwds_1_filterfulltext) or ( T1.LocationPhone like '%' || :lV75Trn_locationwwds_1_filterfulltext))");
          }
          else
          {
-            GXv_int9[0] = 1;
             GXv_int9[1] = 1;
             GXv_int9[2] = 1;
+            GXv_int9[3] = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV77Trn_locationwwds_3_tflocationname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_locationwwds_2_tflocationname)) ) )
          {
@@ -4053,7 +4064,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int9[3] = 1;
+            GXv_int9[4] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV77Trn_locationwwds_3_tflocationname_sel)) && ! ( StringUtil.StrCmp(AV77Trn_locationwwds_3_tflocationname_sel, "<#Empty#>") == 0 ) )
          {
@@ -4061,7 +4072,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int9[4] = 1;
+            GXv_int9[5] = 1;
          }
          if ( StringUtil.StrCmp(AV77Trn_locationwwds_3_tflocationname_sel, "<#Empty#>") == 0 )
          {
@@ -4073,7 +4084,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int9[5] = 1;
+            GXv_int9[6] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV79Trn_locationwwds_5_tflocationemail_sel)) && ! ( StringUtil.StrCmp(AV79Trn_locationwwds_5_tflocationemail_sel, "<#Empty#>") == 0 ) )
          {
@@ -4081,7 +4092,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int9[6] = 1;
+            GXv_int9[7] = 1;
          }
          if ( StringUtil.StrCmp(AV79Trn_locationwwds_5_tflocationemail_sel, "<#Empty#>") == 0 )
          {
@@ -4093,7 +4104,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int9[7] = 1;
+            GXv_int9[8] = 1;
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV81Trn_locationwwds_7_tflocationphone_sel)) && ! ( StringUtil.StrCmp(AV81Trn_locationwwds_7_tflocationphone_sel, "<#Empty#>") == 0 ) )
          {
@@ -4101,7 +4112,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int9[8] = 1;
+            GXv_int9[9] = 1;
          }
          if ( StringUtil.StrCmp(AV81Trn_locationwwds_7_tflocationphone_sel, "<#Empty#>") == 0 )
          {
@@ -4148,9 +4159,9 @@ namespace GeneXus.Programs {
          switch ( cursor )
          {
                case 0 :
-                     return conditional_H004L2(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (short)dynConstraints[10] , (bool)dynConstraints[11] );
+                     return conditional_H004L2(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (short)dynConstraints[10] , (bool)dynConstraints[11] , (Guid)dynConstraints[12] , (Guid)dynConstraints[13] );
                case 1 :
-                     return conditional_H004L3(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (short)dynConstraints[10] , (bool)dynConstraints[11] );
+                     return conditional_H004L3(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (short)dynConstraints[10] , (bool)dynConstraints[11] , (Guid)dynConstraints[12] , (Guid)dynConstraints[13] );
          }
          return base.getDynamicStatement(cursor, context, dynConstraints);
       }
@@ -4171,6 +4182,7 @@ namespace GeneXus.Programs {
        {
           Object[] prmH004L2;
           prmH004L2 = new Object[] {
+          new ParDef("AV6WWPContext__Organisationid",GXType.UniqueIdentifier,36,0) ,
           new ParDef("lV75Trn_locationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV75Trn_locationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV75Trn_locationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
@@ -4186,6 +4198,7 @@ namespace GeneXus.Programs {
           };
           Object[] prmH004L3;
           prmH004L3 = new Object[] {
+          new ParDef("AV6WWPContext__Organisationid",GXType.UniqueIdentifier,36,0) ,
           new ParDef("lV75Trn_locationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV75Trn_locationwwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV75Trn_locationwwds_1_filterfulltext",GXType.VarChar,100,0) ,

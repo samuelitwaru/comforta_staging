@@ -45,6 +45,9 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+wc_childnotifications
+wc_notificationgrouping
+wc_notificationfilteredlist
 trn_productservicetrn_pagewc
 trn_supplieragbtrn_productservicewc
 trn_suppliergentrn_productservicewc

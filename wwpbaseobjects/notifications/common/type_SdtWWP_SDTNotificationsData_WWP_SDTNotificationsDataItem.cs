@@ -42,6 +42,8 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common
 
 			gxTv_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem_Notificationlink = "";
 
+			gxTv_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem_Notitifcationmetadata = "";
+
 		}
 
 		public SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem(IGxContext context)
@@ -105,6 +107,15 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common
 
 
 			AddObjectProperty("NotificationLink", gxTpr_Notificationlink, false);
+
+
+			AddObjectProperty("NotificationDefinitionId", gxTpr_Notificationdefinitionid, false);
+
+
+			AddObjectProperty("NotificationIsRead", gxTpr_Notificationisread, false);
+
+
+			AddObjectProperty("NotitifcationMetadata", gxTpr_Notitifcationmetadata, false);
 
 			return;
 		}
@@ -218,6 +229,54 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common
 
 
 
+
+		[SoapElement(ElementName="NotificationDefinitionId")]
+		[XmlElement(ElementName="NotificationDefinitionId")]
+		public long gxTpr_Notificationdefinitionid
+		{
+			get {
+				return gxTv_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem_Notificationdefinitionid; 
+			}
+			set {
+				gxTv_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem_Notificationdefinitionid = value;
+				SetDirty("Notificationdefinitionid");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="NotificationIsRead")]
+		[XmlElement(ElementName="NotificationIsRead")]
+		public bool gxTpr_Notificationisread
+		{
+			get {
+				return gxTv_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem_Notificationisread; 
+			}
+			set {
+				gxTv_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem_Notificationisread = value;
+				SetDirty("Notificationisread");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="NotitifcationMetadata")]
+		[XmlElement(ElementName="NotitifcationMetadata")]
+		public string gxTpr_Notitifcationmetadata
+		{
+			get {
+				return gxTv_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem_Notitifcationmetadata; 
+			}
+			set {
+				gxTv_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem_Notitifcationmetadata = value;
+				SetDirty("Notitifcationmetadata");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -244,6 +303,9 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common
 			gxTv_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem_Notificationdescription = "";
 			gxTv_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem_Notificationdatetime = (DateTime)(DateTime.MinValue);
 			gxTv_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem_Notificationlink = "";
+
+
+			gxTv_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem_Notitifcationmetadata = "";
 			datetime_STZ = (DateTime)(DateTime.MinValue);
 			sDateCnv = "";
 			sNumToPad = "";
@@ -276,6 +338,15 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common
 		 
 
 		protected string gxTv_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem_Notificationlink;
+		 
+
+		protected long gxTv_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem_Notificationdefinitionid;
+		 
+
+		protected bool gxTv_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem_Notificationisread;
+		 
+
+		protected string gxTv_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem_Notitifcationmetadata;
 		 
 
 
@@ -364,6 +435,42 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common
 			}
 			set { 
 				 sdt.gxTpr_Notificationlink = value;
+			}
+		}
+
+		[DataMember(Name="NotificationDefinitionId", Order=6)]
+		public  string gxTpr_Notificationdefinitionid
+		{
+			get { 
+				return StringUtil.LTrim( StringUtil.Str( (decimal) sdt.gxTpr_Notificationdefinitionid, 10, 0));
+
+			}
+			set { 
+				sdt.gxTpr_Notificationdefinitionid = (long) NumberUtil.Val( value, ".");
+			}
+		}
+
+		[DataMember(Name="NotificationIsRead", Order=7)]
+		public bool gxTpr_Notificationisread
+		{
+			get { 
+				return sdt.gxTpr_Notificationisread;
+
+			}
+			set { 
+				sdt.gxTpr_Notificationisread = value;
+			}
+		}
+
+		[DataMember(Name="NotitifcationMetadata", Order=8)]
+		public  string gxTpr_Notitifcationmetadata
+		{
+			get { 
+				return sdt.gxTpr_Notitifcationmetadata;
+
+			}
+			set { 
+				 sdt.gxTpr_Notitifcationmetadata = value;
 			}
 		}
 

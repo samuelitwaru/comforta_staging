@@ -94,6 +94,12 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          AV9WWPNotificationMetadataSDT = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationMetadata(context);
          AV9WWPNotificationMetadataSDT.gxTpr_Sessionkey = "DiscussionThreadIdToOpen";
          AV9WWPNotificationMetadataSDT.gxTpr_Sessionvalue = AV14SessionValue;
+         AV27SDT_NotificationMetadata = new SdtSDT_NotificationMetadata(context);
+         AV27SDT_NotificationMetadata.gxTpr_Isparentnotification = false;
+         AV27SDT_NotificationMetadata.gxTpr_Parentnotificationid = StringUtil.Trim( AV15WWPDiscussionMessageEntityRecordId);
+         AV27SDT_NotificationMetadata.gxTpr_Notificationtriggeredtimestamp = DateTimeUtil.Now( context);
+         AV27SDT_NotificationMetadata.gxTpr_Notificationorigin = "Discussions";
+         AV9WWPNotificationMetadataSDT.gxTpr_Custommetadata = AV27SDT_NotificationMetadata;
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV21MentionWWPUserExtendedIdCollectionJson)) )
          {
             GXt_char1 = AV10WWPNotificationShortDescription;
@@ -128,6 +134,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          AV25NotificationDefinitionName = "";
          AV9WWPNotificationMetadataSDT = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationMetadata(context);
+         AV27SDT_NotificationMetadata = new SdtSDT_NotificationMetadata(context);
          AV10WWPNotificationShortDescription = "";
          AV26ReceptionistsToNotify = new GxSimpleCollection<string>();
          GXt_objcol_svchar2 = new GxSimpleCollection<string>();
@@ -147,6 +154,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private string AV25NotificationDefinitionName ;
       private string AV10WWPNotificationShortDescription ;
       private GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationMetadata AV9WWPNotificationMetadataSDT ;
+      private SdtSDT_NotificationMetadata AV27SDT_NotificationMetadata ;
       private GxSimpleCollection<string> AV26ReceptionistsToNotify ;
       private GxSimpleCollection<string> GXt_objcol_svchar2 ;
    }

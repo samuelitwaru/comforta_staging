@@ -76,7 +76,6 @@ namespace GeneXus.Programs {
             AV8baseUrl = "https://staging.comforta.yukon.software";
          }
          AV14url = AV8baseUrl + "/oauth/access_token";
-         new prc_logtofile(context ).execute(  AV14url) ;
          new prc_decodeqrcode(context ).execute(  AV13secretKey, out  AV15username, out  AV12password) ;
          AV10httpclient.AddHeader("Content-Type", "application/x-www-form-urlencoded");
          AV10httpclient.AddVariable("client_id", AV9clientId);
@@ -89,11 +88,13 @@ namespace GeneXus.Programs {
          if ( AV10httpclient.StatusCode != 200 )
          {
             AV19ErrorResponse.gxTpr_Message = AV10httpclient.ErrDescription;
+            new prc_logtofile(context ).execute(  "Error: "+AV10httpclient.ErrDescription) ;
             AV19ErrorResponse.gxTpr_Code = StringUtil.Trim( StringUtil.Str( (decimal)(AV10httpclient.StatusCode), 10, 2));
             AV16response = AV19ErrorResponse.ToJSonString(false, true);
          }
          else
          {
+            new prc_logtofile(context ).execute(  "API Result: "+AV17result) ;
             AV18LoginResponse.FromJSonString(AV17result, null);
             AV16response = AV18LoginResponse.ToJSonString(false, true);
          }

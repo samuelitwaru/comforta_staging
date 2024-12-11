@@ -1,7 +1,7 @@
 @layer WWPBaseObjects.WorkWithPlusBaseDS{
 :root
 {
-	--colors_headerforecolor : white;
+	--colors_headerforecolor : #FFF;
 	--colors_pdf : #ea4c3a;
 	--colors_excelcolor : #08743b;
 	--colors_danger : #f56a67;
@@ -500,23 +500,23 @@
 
 }
 
-[gx-data-base-color="Brown"]
+[gx-data-base-color="Custom"]
 {
-	--colors_basecolor : #804000;
-	--colors_basecolorforecolor : #804000;
-	--colors_actionborder_and_focuscolor : #672700;
-	--colors_actionhover : #763600;
-	--colors_actionhoverborder : #6C2C00;
-	--colors_basecolorshadow : rgba(128, 64, 0, 0.7);
+	--colors_basecolor : #222f54;
+	--colors_basecolorforecolor : #222f54;
+	--colors_actionborder_and_focuscolor : rgba(9,22,59,255);
+	--colors_actionhover : rgba(24,37,74,255);
+	--colors_actionhoverborder : rgba(14,27,64,255);
+	--colors_basecolorshadow : rgba(34, 47, 84, 0.7);
 	--colors_baseforecolor80 : rgba(255,255,255,0.8);
-	--colors_basecolor30 : rgba(128, 64, 0, 0.3);
-	--colors_basecolor20 : rgba(128, 64, 0, 0.2);
-	--colors_basecolor10 : rgba(128, 64, 0, 0.1);
-	--colors_baseforecolor : #FFF;
-	--colors_sidebarmenu_itemhoverforecolor : #804000;
-	--colors_sidebarmenu_itemopenbackground : #804000;
-	--colors_sidebarmenu_submenuitemhoverforecolor : #804000;
-	--colors_sidebarmenu_selecteditembackground : #804000;
+	--colors_basecolor30 : rgba(34, 47, 84, 0.3);
+	--colors_basecolor20 : rgba(34, 47, 84, 0.2);
+	--colors_basecolor10 : rgba(34, 47, 84, 0.1);
+	--colors_baseforecolor : white;
+	--colors_sidebarmenu_itemhoverforecolor : #222f54;
+	--colors_sidebarmenu_itemopenbackground : #222f54;
+	--colors_sidebarmenu_submenuitemhoverforecolor : #222f54;
+	--colors_sidebarmenu_selecteditembackground : #222f54;
 
 }
 
