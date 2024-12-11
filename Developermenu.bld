@@ -45,6 +45,10 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+trn_productservicetrn_pagewc
+trn_supplieragbtrn_productservicewc
+trn_suppliergentrn_productservicewc
+trn_organisationtrn_managerwc
 wc_uploadavatar
 wp_userprofile
 trn_pageview

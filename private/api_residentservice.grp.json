@@ -277,10 +277,10 @@
 {
 "PathRegexp":"productservice",
 "Path":"productservice",
-"Name":"productsericeapi",
+"Name":"productserviceapi",
 "Bodystyle":"Wrapped",
 "VariableAlias": [],
-"ServiceMethod":"gxep_productsericeapi",
+"ServiceMethod":"gxep_productserviceapi",
 "Implementation":"Prc_ProductServiceAPI",
 "Verb":"GET"
 },

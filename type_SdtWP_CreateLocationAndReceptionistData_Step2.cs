@@ -32,11 +32,11 @@ namespace GeneXus.Programs
 			/* Constructor for serialization */
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistemail = "";
 
-			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphonecode = "";
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphone = "";
 
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphonenumber = "";
 
-			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphone = "";
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphonecode = "";
 
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistgivenname = "";
 
@@ -76,13 +76,13 @@ namespace GeneXus.Programs
 			AddObjectProperty("ReceptionistEmail", gxTpr_Receptionistemail, false);
 
 
-			AddObjectProperty("ReceptionistPhoneCode", gxTpr_Receptionistphonecode, false);
+			AddObjectProperty("ReceptionistPhone", gxTpr_Receptionistphone, false);
 
 
 			AddObjectProperty("ReceptionistPhoneNumber", gxTpr_Receptionistphonenumber, false);
 
 
-			AddObjectProperty("ReceptionistPhone", gxTpr_Receptionistphone, false);
+			AddObjectProperty("ReceptionistPhoneCode", gxTpr_Receptionistphonecode, false);
 
 
 			AddObjectProperty("ReceptionistId", gxTpr_Receptionistid, false);
@@ -125,16 +125,16 @@ namespace GeneXus.Programs
 
 
 
-		[SoapElement(ElementName="ReceptionistPhoneCode")]
-		[XmlElement(ElementName="ReceptionistPhoneCode")]
-		public string gxTpr_Receptionistphonecode
+		[SoapElement(ElementName="ReceptionistPhone")]
+		[XmlElement(ElementName="ReceptionistPhone")]
+		public string gxTpr_Receptionistphone
 		{
 			get {
-				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphonecode; 
+				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphone; 
 			}
 			set {
-				gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphonecode = value;
-				SetDirty("Receptionistphonecode");
+				gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphone = value;
+				SetDirty("Receptionistphone");
 			}
 		}
 
@@ -157,16 +157,16 @@ namespace GeneXus.Programs
 
 
 
-		[SoapElement(ElementName="ReceptionistPhone")]
-		[XmlElement(ElementName="ReceptionistPhone")]
-		public string gxTpr_Receptionistphone
+		[SoapElement(ElementName="ReceptionistPhoneCode")]
+		[XmlElement(ElementName="ReceptionistPhoneCode")]
+		public string gxTpr_Receptionistphonecode
 		{
 			get {
-				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphone; 
+				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphonecode; 
 			}
 			set {
-				gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphone = value;
-				SetDirty("Receptionistphone");
+				gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphonecode = value;
+				SetDirty("Receptionistphonecode");
 			}
 		}
 
@@ -327,9 +327,9 @@ namespace GeneXus.Programs
 		public void initialize( )
 		{
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistemail = "";
-			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphonecode = "";
-			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphonenumber = "";
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphone = "";
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphonenumber = "";
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphonecode = "";
 
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistgivenname = "";
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistlastname = "";
@@ -350,13 +350,13 @@ namespace GeneXus.Programs
 		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistemail;
 		 
 
-		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphonecode;
+		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphone;
 		 
 
 		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphonenumber;
 		 
 
-		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphone;
+		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistphonecode;
 		 
 
 		protected Guid gxTv_SdtWP_CreateLocationAndReceptionistData_Step2_Receptionistid;
@@ -405,15 +405,15 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ReceptionistPhoneCode", Order=1)]
-		public  string gxTpr_Receptionistphonecode
+		[DataMember(Name="ReceptionistPhone", Order=1)]
+		public  string gxTpr_Receptionistphone
 		{
 			get { 
-				return sdt.gxTpr_Receptionistphonecode;
+				return StringUtil.RTrim( sdt.gxTpr_Receptionistphone);
 
 			}
 			set { 
-				 sdt.gxTpr_Receptionistphonecode = value;
+				 sdt.gxTpr_Receptionistphone = value;
 			}
 		}
 
@@ -429,15 +429,15 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ReceptionistPhone", Order=3)]
-		public  string gxTpr_Receptionistphone
+		[DataMember(Name="ReceptionistPhoneCode", Order=3)]
+		public  string gxTpr_Receptionistphonecode
 		{
 			get { 
-				return StringUtil.RTrim( sdt.gxTpr_Receptionistphone);
+				return sdt.gxTpr_Receptionistphonecode;
 
 			}
 			set { 
-				 sdt.gxTpr_Receptionistphone = value;
+				 sdt.gxTpr_Receptionistphonecode = value;
 			}
 		}
 

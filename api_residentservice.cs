@@ -139,7 +139,7 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityNone ;
          }
-         else if ( StringUtil.StrCmp(permissionMethod, "gxep_productsericeapi") == 0 )
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_productserviceapi") == 0 )
          {
             return GAMSecurityLevel.SecurityNone ;
          }
@@ -441,7 +441,7 @@ namespace GeneXus.Programs {
          this.AV17result = aP1_result;
          initialize();
          /* DeleteMedia Constructor */
-         new prc_deletemedia(context ).execute( ref  AV46MediaId, ref  AV17result) ;
+         new prc_deletemedia(context ).execute(  AV46MediaId, out  AV17result) ;
       }
 
       public void gxep_getmedia( out GXBaseCollection<SdtSDT_Media> aP0_SDT_MediaCollection )
@@ -626,16 +626,16 @@ namespace GeneXus.Programs {
          this.AV16organisationId = aP2_organisationId;
          initialize();
          /* UpdateLocationTheme Constructor */
-         new prc_updatelocationtheme(context ).execute(  AV71ThemeId,  AV12locationId,  AV16organisationId,  AV72SDT_Theme) ;
+         new prc_updatelocationtheme(context ).execute(  AV71ThemeId,  AV12locationId,  AV16organisationId, out  AV72SDT_Theme) ;
          aP3_SDT_Theme=this.AV72SDT_Theme;
       }
 
-      public void gxep_productsericeapi( Guid aP0_ProductServiceId ,
-                                         out SdtSDT_ProductService aP1_SDT_ProductService )
+      public void gxep_productserviceapi( Guid aP0_ProductServiceId ,
+                                          out SdtSDT_ProductService aP1_SDT_ProductService )
       {
          this.AV66ProductServiceId = aP0_ProductServiceId;
          initialize();
-         /* ProductSericeAPI Constructor */
+         /* ProductServiceAPI Constructor */
          new prc_productserviceapi(context ).execute(  AV66ProductServiceId, ref  AV67SDT_ProductService) ;
          aP1_SDT_ProductService=this.AV67SDT_ProductService;
       }

@@ -57,12 +57,16 @@ class ActionListComponent {
 
   init() {
     this.dataManager
-      .getPagesService()
+      .getPages()
       .then((pages) => {
         console.log("ActionList", pages);
-        this.pageOptions = this.mapPageNamesToOptions(
-          pages.filter((page) => page.Name != "Home")
-        );
+        this.pageOptions = pages
+        .filter(page=>!page.PageIsContentPage && !page.PageIsPredefined)
+        .map(page=>{
+          return {id:page.PageId, name:page.PageName}
+        })
+
+        console.log('>>>>', this.pageOptions)
 
         this.categoryData.forEach((category) => {
           if (category.name === "Page") {

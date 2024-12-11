@@ -2172,25 +2172,21 @@ namespace GeneXus.Programs {
          }
          cmbavActiongroup.removeAllItems();
          cmbavActiongroup.addItem("0", ";fas fa-bars", 0);
+         cmbavActiongroup.addItem("1", StringUtil.Format( "%1;%2", "Display", "fas fa-magnifying-glass", "", "", "", "", "", "", ""), 0);
          if ( AV45IsAuthorized_Display )
          {
-            cmbavActiongroup.addItem("1", StringUtil.Format( "%1;%2", "Display", "fa fa-search", "", "", "", "", "", "", ""), 0);
+            if ( false )
+            {
+               cmbavActiongroup.addItem("2", StringUtil.Format( "%1;%2", "Display", "fa fa-search", "", "", "", "", "", "", ""), 0);
+            }
          }
          if ( AV47IsAuthorized_Update )
          {
-            cmbavActiongroup.addItem("2", StringUtil.Format( "%1;%2", "Update", "fa fa-pen", "", "", "", "", "", "", ""), 0);
+            cmbavActiongroup.addItem("3", StringUtil.Format( "%1;%2", "Update", "fa fa-pen", "", "", "", "", "", "", ""), 0);
          }
          if ( AV49IsAuthorized_Delete )
          {
-            cmbavActiongroup.addItem("3", StringUtil.Format( "%1;%2", "Delete", "fa fa-times", "", "", "", "", "", "", ""), 0);
-         }
-         if ( cmbavActiongroup.ItemCount == 1 )
-         {
-            cmbavActiongroup_Class = "Invisible";
-         }
-         else
-         {
-            cmbavActiongroup_Class = "ConvertToDDO";
+            cmbavActiongroup.addItem("4", StringUtil.Format( "%1;%2", "Delete", "fa fa-times", "", "", "", "", "", "", ""), 0);
          }
          if ( AV42IsAuthorized_SupplierGenCompanyName )
          {
@@ -2335,7 +2331,7 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( AV57ActionGroup == 1 )
          {
-            /* Execute user subroutine: 'DO DISPLAY' */
+            /* Execute user subroutine: 'DO UDISPLAY' */
             S202 ();
             if ( returnInSub )
             {
@@ -2345,7 +2341,7 @@ namespace GeneXus.Programs {
          }
          else if ( AV57ActionGroup == 2 )
          {
-            /* Execute user subroutine: 'DO UPDATE' */
+            /* Execute user subroutine: 'DO DISPLAY' */
             S212 ();
             if ( returnInSub )
             {
@@ -2355,8 +2351,18 @@ namespace GeneXus.Programs {
          }
          else if ( AV57ActionGroup == 3 )
          {
-            /* Execute user subroutine: 'DO DELETE' */
+            /* Execute user subroutine: 'DO UPDATE' */
             S222 ();
+            if ( returnInSub )
+            {
+               returnInSub = true;
+               if (true) return;
+            }
+         }
+         else if ( AV57ActionGroup == 4 )
+         {
+            /* Execute user subroutine: 'DO DELETE' */
+            S232 ();
             if ( returnInSub )
             {
                returnInSub = true;
@@ -2536,6 +2542,24 @@ namespace GeneXus.Programs {
 
       protected void S202( )
       {
+         /* 'DO UDISPLAY' Routine */
+         returnInSub = false;
+         if ( AV45IsAuthorized_Display )
+         {
+            GXKey = Crypto.GetSiteKey( );
+            GXEncryptionTmp = "trn_suppliergenview.aspx"+UrlEncode(A42SupplierGenId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
+            CallWebObject(formatLink("trn_suppliergenview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
+            context.wjLocDisableFrm = 1;
+         }
+         else
+         {
+            GX_msglist.addItem("Action no longer available");
+            context.DoAjaxRefresh();
+         }
+      }
+
+      protected void S212( )
+      {
          /* 'DO DISPLAY' Routine */
          returnInSub = false;
          if ( AV45IsAuthorized_Display )
@@ -2552,7 +2576,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void S212( )
+      protected void S222( )
       {
          /* 'DO UPDATE' Routine */
          returnInSub = false;
@@ -2570,7 +2594,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void S222( )
+      protected void S232( )
       {
          /* 'DO DELETE' Routine */
          returnInSub = false;
@@ -2822,7 +2846,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241261621995", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412101952228", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2838,7 +2862,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_organisationgeneralsuppliers.js", "?20241261621997", false, true);
+         context.AddJavascriptSource("wp_organisationgeneralsuppliers.js", "?2024121019522211", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3147,7 +3171,7 @@ namespace GeneXus.Programs {
                }
             }
             /* ComboBox */
-            GridRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbavActiongroup,(string)cmbavActiongroup_Internalname,StringUtil.Trim( StringUtil.Str( (decimal)(AV57ActionGroup), 4, 0)),(short)1,(string)cmbavActiongroup_Jsonclick,(short)5,"'"+""+"'"+",false,"+"'"+"EVACTIONGROUP.CLICK."+sGXsfl_39_idx+"'",(string)"int",(string)"",(short)-1,(short)1,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)cmbavActiongroup_Class,(string)"WWActionGroupColumn",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,58);\"",(string)"",(bool)true,(short)0});
+            GridRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbavActiongroup,(string)cmbavActiongroup_Internalname,StringUtil.Trim( StringUtil.Str( (decimal)(AV57ActionGroup), 4, 0)),(short)1,(string)cmbavActiongroup_Jsonclick,(short)5,"'"+""+"'"+",false,"+"'"+"EVACTIONGROUP.CLICK."+sGXsfl_39_idx+"'",(string)"int",(string)"",(short)-1,(short)1,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"ConvertToDDO",(string)"WWActionGroupColumn",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,58);\"",(string)"",(bool)true,(short)0});
             cmbavActiongroup.CurrentValue = StringUtil.Trim( StringUtil.Str( (decimal)(AV57ActionGroup), 4, 0));
             AssignProp("", false, cmbavActiongroup_Internalname, "Values", (string)(cmbavActiongroup.ToJavascriptSource()), !bGXsfl_39_Refreshing);
             send_integrity_lvl_hashes762( ) ;
@@ -3271,7 +3295,7 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+((edtavSupplieraddress_Visible==0) ? "display:none;" : "")+""+"\" "+">") ;
             context.SendWebValue( "Address") ;
             context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+"end"+"\" "+" nowrap=\"nowrap\" "+" class=\""+cmbavActiongroup_Class+"\" "+" style=\""+""+""+"\" "+">") ;
+            context.WriteHtmlText( "<th align=\""+"end"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"ConvertToDDO"+"\" "+" style=\""+""+""+"\" "+">") ;
             context.SendWebValue( "") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlTextNl( "</tr>") ;
@@ -3363,7 +3387,6 @@ namespace GeneXus.Programs {
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.LTrim( StringUtil.NToC( (decimal)(AV57ActionGroup), 4, 0, ".", ""))));
-            GridColumn.AddObjectProperty("Class", StringUtil.RTrim( cmbavActiongroup_Class));
             GridContainer.AddColumnProperties(GridColumn);
             GridContainer.AddObjectProperty("Selectedindex", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Selectedindex), 4, 0, ".", "")));
             GridContainer.AddObjectProperty("Allowselection", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Allowselection), 1, 0, ".", "")));
@@ -3433,7 +3456,6 @@ namespace GeneXus.Programs {
          subGrid_Allowselection = 1;
          subGrid_Header = "";
          cmbavActiongroup_Jsonclick = "";
-         cmbavActiongroup_Class = "ConvertToDDO";
          edtavSupplieraddress_Jsonclick = "";
          edtavSupplieraddress_Enabled = 1;
          edtSupplierGenPhoneNumber_Jsonclick = "";
@@ -3970,7 +3992,6 @@ namespace GeneXus.Programs {
       private string lV74Wp_organisationgeneralsuppliersds_10_tfsuppliergencontactphone ;
       private string AV75Wp_organisationgeneralsuppliersds_11_tfsuppliergencontactphone_sel ;
       private string AV74Wp_organisationgeneralsuppliersds_10_tfsuppliergencontactphone ;
-      private string cmbavActiongroup_Class ;
       private string edtavSuppliergencompanynamewithtags_Link ;
       private string GXEncryptionTmp ;
       private string edtSupplierGenTypeName_Link ;

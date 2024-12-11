@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241206130537"
+  version: "20241211031237"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -2097,6 +2097,12 @@ components:
         PageIsPublished:
           description: "Page Is Published"
           type: "boolean"
+        PageIsContentPage:
+          description: "Page Is Content Page"
+          type: "boolean"
+        PageIsPredefined:
+          description: "Page Is Predefined"
+          type: "boolean"
         PageGJSJson:
           description: "Page GJSJson"
           type: "string"
@@ -2106,9 +2112,6 @@ components:
         PageJsonContent:
           description: "Page Json Content"
           type: "string"
-        PageIsContentPage:
-          description: "Page Is Content Page"
-          type: "boolean"
         PageChildren:
           description: "SDT_Page Children"
           type: array

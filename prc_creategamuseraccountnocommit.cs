@@ -143,6 +143,20 @@ namespace GeneXus.Programs {
                   }
                }
             }
+            else
+            {
+               AV8GAMErrorItem = new GeneXus.Programs.genexussecurity.SdtGAMError(context);
+               AV8GAMErrorItem.gxTpr_Code = 306;
+               AV8GAMErrorItem.gxTpr_Message = "User Add Role Error - "+AV13ErrDescription;
+               AV14GAMErrorCollection.Add(AV8GAMErrorItem, 0);
+            }
+         }
+         else
+         {
+            AV8GAMErrorItem = new GeneXus.Programs.genexussecurity.SdtGAMError(context);
+            AV8GAMErrorItem.gxTpr_Code = 161;
+            AV8GAMErrorItem.gxTpr_Message = "Failed to save user - "+AV13ErrDescription;
+            AV14GAMErrorCollection.Add(AV8GAMErrorItem, 0);
          }
          cleanup();
       }

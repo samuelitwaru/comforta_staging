@@ -49,40 +49,47 @@ namespace GeneXus.Programs {
                            string aP1_GivenName ,
                            string aP2_LastName ,
                            string aP3_RoleName ,
-                           out string aP4_GAMUserGUID )
+                           ref string aP4_GAMUserGUID ,
+                           ref string aP5_GAMErrorResponse )
       {
          this.AV8Email = aP0_Email;
          this.AV10GivenName = aP1_GivenName;
          this.AV11LastName = aP2_LastName;
          this.AV12RoleName = aP3_RoleName;
-         this.AV9GAMUserGUID = "" ;
+         this.AV9GAMUserGUID = aP4_GAMUserGUID;
+         this.AV23GAMErrorResponse = aP5_GAMErrorResponse;
          initialize();
          ExecuteImpl();
          aP4_GAMUserGUID=this.AV9GAMUserGUID;
+         aP5_GAMErrorResponse=this.AV23GAMErrorResponse;
       }
 
       public string executeUdp( string aP0_Email ,
                                 string aP1_GivenName ,
                                 string aP2_LastName ,
-                                string aP3_RoleName )
+                                string aP3_RoleName ,
+                                ref string aP4_GAMUserGUID )
       {
-         execute(aP0_Email, aP1_GivenName, aP2_LastName, aP3_RoleName, out aP4_GAMUserGUID);
-         return AV9GAMUserGUID ;
+         execute(aP0_Email, aP1_GivenName, aP2_LastName, aP3_RoleName, ref aP4_GAMUserGUID, ref aP5_GAMErrorResponse);
+         return AV23GAMErrorResponse ;
       }
 
       public void executeSubmit( string aP0_Email ,
                                  string aP1_GivenName ,
                                  string aP2_LastName ,
                                  string aP3_RoleName ,
-                                 out string aP4_GAMUserGUID )
+                                 ref string aP4_GAMUserGUID ,
+                                 ref string aP5_GAMErrorResponse )
       {
          this.AV8Email = aP0_Email;
          this.AV10GivenName = aP1_GivenName;
          this.AV11LastName = aP2_LastName;
          this.AV12RoleName = aP3_RoleName;
-         this.AV9GAMUserGUID = "" ;
+         this.AV9GAMUserGUID = aP4_GAMUserGUID;
+         this.AV23GAMErrorResponse = aP5_GAMErrorResponse;
          SubmitImpl();
          aP4_GAMUserGUID=this.AV9GAMUserGUID;
+         aP5_GAMErrorResponse=this.AV23GAMErrorResponse;
       }
 
       protected override void ExecutePrivate( )
@@ -111,7 +118,7 @@ namespace GeneXus.Programs {
             if ( StringUtil.StrCmp(AV12RoleName, "Resident") != 0 )
             {
                GXt_char1 = AV19HttpRequest.BaseURL;
-               new prc_senduseractivationlink(context).executeSubmit(  AV13GAMUser.gxTpr_Guid, ref  GXt_char1, out  AV18isSuccessful) ;
+               new prc_senduseractivationlink(context).executeSubmit(  AV13GAMUser.gxTpr_Guid, ref  GXt_char1, ref  AV18isSuccessful, ref  AV22ErrDescription, ref  AV15GAMErrorCollection) ;
                if ( AV18isSuccessful )
                {
                   new prc_logtofile(context ).execute(  "Email Sent: "+AV12RoleName) ;
@@ -119,6 +126,7 @@ namespace GeneXus.Programs {
                }
                else
                {
+                  AV23GAMErrorResponse = AV22ErrDescription;
                   new prc_logtofile(context ).execute(  "No Email Sent : "+AV12RoleName) ;
                }
             }
@@ -130,6 +138,9 @@ namespace GeneXus.Programs {
          else
          {
             AV15GAMErrorCollection = AV13GAMUser.geterrors();
+            GXt_char1 = AV23GAMErrorResponse;
+            new prc_geterrorstringfromcollection(context ).execute(  AV15GAMErrorCollection, out  GXt_char1) ;
+            AV23GAMErrorResponse = GXt_char1;
          }
          cleanup();
       }
@@ -146,12 +157,12 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV9GAMUserGUID = "";
          AV13GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          AV16Role = new GeneXus.Programs.genexussecurity.SdtGAMRole(context);
          AV15GAMErrorCollection = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          AV14GAMRole = new GeneXus.Programs.genexussecurity.SdtGAMRole(context);
          AV19HttpRequest = new GxHttpRequest( context);
+         AV22ErrDescription = "";
          GXt_char1 = "";
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_creategamuseraccount__datastore1(),
             new Object[][] {
@@ -170,21 +181,24 @@ namespace GeneXus.Programs {
 
       private string GXt_char1 ;
       private bool AV18isSuccessful ;
+      private string AV23GAMErrorResponse ;
       private string AV8Email ;
       private string AV10GivenName ;
       private string AV11LastName ;
       private string AV12RoleName ;
       private string AV9GAMUserGUID ;
+      private string AV22ErrDescription ;
       private GxHttpRequest AV19HttpRequest ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
+      private string aP4_GAMUserGUID ;
+      private string aP5_GAMErrorResponse ;
       private GeneXus.Programs.genexussecurity.SdtGAMUser AV13GAMUser ;
       private IDataStoreProvider pr_default ;
       private GeneXus.Programs.genexussecurity.SdtGAMRole AV16Role ;
       private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV15GAMErrorCollection ;
       private GeneXus.Programs.genexussecurity.SdtGAMRole AV14GAMRole ;
-      private string aP4_GAMUserGUID ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }

@@ -151,6 +151,7 @@ namespace GeneXus.Programs {
                AV10LocationId = A29LocationId;
                AV18WWPContext.gxTpr_Receptionistid = A89ReceptionistId;
                AV18WWPContext.gxTpr_Profileurl = A40002ReceptionistImage_GXI;
+               new prc_logtofile(context ).execute(  "NEW URL: "+A40002ReceptionistImage_GXI) ;
                pr_default.readNext(2);
             }
             pr_default.close(2);
@@ -179,7 +180,7 @@ namespace GeneXus.Programs {
             pr_default.readNext(4);
          }
          pr_default.close(4);
-         AV24GXLvl78 = 0;
+         AV24GXLvl79 = 0;
          /* Using cursor P00937 */
          pr_default.execute(5, new Object[] {AV17OrganisationId});
          while ( (pr_default.getStatus(5) != 101) )
@@ -193,7 +194,7 @@ namespace GeneXus.Programs {
             A105OrganisationSettingLanguage = P00937_A105OrganisationSettingLanguage[0];
             A101OrganisationSettingLogo = P00937_A101OrganisationSettingLogo[0];
             A102OrganisationSettingFavicon = P00937_A102OrganisationSettingFavicon[0];
-            AV24GXLvl78 = 1;
+            AV24GXLvl79 = 1;
             AV18WWPContext.gxTpr_Organisationsettingid = A100OrganisationSettingid;
             AV18WWPContext.gxTpr_Organisationsettinglogo = A101OrganisationSettingLogo;
             AV18WWPContext.gxTpr_Organisationsettinglogo_gxi = A40003OrganisationSettingLogo_GXI;
@@ -206,7 +207,7 @@ namespace GeneXus.Programs {
             pr_default.readNext(5);
          }
          pr_default.close(5);
-         if ( AV24GXLvl78 == 0 )
+         if ( AV24GXLvl79 == 0 )
          {
             AV18WWPContext.gxTpr_Organisationsettingbasecolor = "Teal";
             AV18WWPContext.gxTpr_Organisationsettingfontsize = "Medium";
@@ -355,7 +356,7 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private short AV24GXLvl78 ;
+      private short AV24GXLvl79 ;
       private int AV25GXV1 ;
       private bool n40000ResidentImage_GXI ;
       private bool A360ManagerIsMainManager ;
@@ -484,7 +485,7 @@ namespace GeneXus.Programs {
           def= new CursorDef[] {
               new CursorDef("P00932", "SELECT ResidentGUID, OrganisationId, LocationId, ResidentId, ResidentImage_GXI FROM Trn_Resident WHERE ResidentGUID = ( :AV9GAMUser__Guid) ORDER BY ResidentId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00932,100, GxCacheFrequency.OFF ,false,false )
              ,new CursorDef("P00933", "SELECT ManagerEmail, ManagerGAMGUID, OrganisationId, ManagerId, ManagerIsMainManager, ManagerIsActive, ManagerImage_GXI FROM Trn_Manager WHERE (LOWER(ManagerEmail) = ( :AV9GAMUser__Email)) AND (ManagerGAMGUID = ( :AV9GAMUser__Guid)) ORDER BY ManagerId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00933,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P00934", "SELECT ReceptionistEmail, ReceptionistGAMGUID, OrganisationId, LocationId, ReceptionistId, ReceptionistImage_GXI FROM Trn_Receptionist WHERE (LOWER(ReceptionistEmail) = ( :AV9GAMUser__Email)) AND (ReceptionistGAMGUID = ( :AV9GAMUser__Guid)) ORDER BY ReceptionistId, OrganisationId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00934,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("P00934", "SELECT ReceptionistEmail, ReceptionistGAMGUID, OrganisationId, LocationId, ReceptionistId, ReceptionistImage_GXI FROM Trn_Receptionist WHERE (LOWER(ReceptionistEmail) = ( :AV9GAMUser__Email)) AND (ReceptionistGAMGUID = ( :AV9GAMUser__Guid)) ORDER BY ReceptionistId, OrganisationId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00934,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("P00935", "SELECT OrganisationId, OrganisationName FROM Trn_Organisation WHERE OrganisationId = :AV17OrganisationId ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00935,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P00936", "SELECT LocationId, LocationName, OrganisationId FROM Trn_Location WHERE LocationId = :AV10LocationId ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00936,100, GxCacheFrequency.OFF ,false,false )
              ,new CursorDef("P00937", "SELECT OrganisationId, OrganisationSettingLogo_GXI, OrganisationSettingFavicon_GXI, OrganisationSettingid, OrganisationSettingBaseColor, OrganisationSettingFontSize, OrganisationSettingLanguage, OrganisationSettingLogo, OrganisationSettingFavicon FROM Trn_OrganisationSetting WHERE OrganisationId = :AV17OrganisationId ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00937,100, GxCacheFrequency.OFF ,false,false )

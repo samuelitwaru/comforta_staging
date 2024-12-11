@@ -48,11 +48,11 @@ namespace GeneXus.Programs
 
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyemail = "";
 
-			gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphonecode = "";
+			gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphone = "";
 
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphonenumber = "";
 
-			gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphone = "";
+			gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphonecode = "";
 
 		}
 
@@ -111,13 +111,13 @@ namespace GeneXus.Programs
 			AddObjectProperty("NetworkCompanyEmail", gxTpr_Networkcompanyemail, false);
 
 
-			AddObjectProperty("NetworkCompanyPhoneCode", gxTpr_Networkcompanyphonecode, false);
+			AddObjectProperty("NetworkCompanyPhone", gxTpr_Networkcompanyphone, false);
 
 
 			AddObjectProperty("NetworkCompanyPhoneNumber", gxTpr_Networkcompanyphonenumber, false);
 
 
-			AddObjectProperty("NetworkCompanyPhone", gxTpr_Networkcompanyphone, false);
+			AddObjectProperty("NetworkCompanyPhoneCode", gxTpr_Networkcompanyphonecode, false);
 
 			if (gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Sdt_networkcompanys != null)
 			{
@@ -289,16 +289,16 @@ namespace GeneXus.Programs
 
 
 
-		[SoapElement(ElementName="NetworkCompanyPhoneCode")]
-		[XmlElement(ElementName="NetworkCompanyPhoneCode")]
-		public string gxTpr_Networkcompanyphonecode
+		[SoapElement(ElementName="NetworkCompanyPhone")]
+		[XmlElement(ElementName="NetworkCompanyPhone")]
+		public string gxTpr_Networkcompanyphone
 		{
 			get {
-				return gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphonecode; 
+				return gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphone; 
 			}
 			set {
-				gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphonecode = value;
-				SetDirty("Networkcompanyphonecode");
+				gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphone = value;
+				SetDirty("Networkcompanyphone");
 			}
 		}
 
@@ -321,16 +321,16 @@ namespace GeneXus.Programs
 
 
 
-		[SoapElement(ElementName="NetworkCompanyPhone")]
-		[XmlElement(ElementName="NetworkCompanyPhone")]
-		public string gxTpr_Networkcompanyphone
+		[SoapElement(ElementName="NetworkCompanyPhoneCode")]
+		[XmlElement(ElementName="NetworkCompanyPhoneCode")]
+		public string gxTpr_Networkcompanyphonecode
 		{
 			get {
-				return gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphone; 
+				return gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphonecode; 
 			}
 			set {
-				gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphone = value;
-				SetDirty("Networkcompanyphone");
+				gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphonecode = value;
+				SetDirty("Networkcompanyphonecode");
 			}
 		}
 
@@ -420,9 +420,9 @@ namespace GeneXus.Programs
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanykvknumber = "";
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanycontactname = "";
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyemail = "";
-			gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphonecode = "";
-			gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphonenumber = "";
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphone = "";
+			gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphonenumber = "";
+			gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphonecode = "";
 
 			gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Sdt_networkcompanys_N = true;
 
@@ -465,13 +465,13 @@ namespace GeneXus.Programs
 		protected string gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyemail;
 		 
 
-		protected string gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphonecode;
+		protected string gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphone;
 		 
 
 		protected string gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphonenumber;
 		 
 
-		protected string gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphone;
+		protected string gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Networkcompanyphonecode;
 		 
 		protected bool gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Sdt_networkcompanys_N;
 		protected GXBaseCollection<GeneXus.Programs.SdtSDT_NetworkCompany> gxTv_SdtWP_CreateResidentAndNetworkData_Step3_Sdt_networkcompanys = null;  
@@ -613,15 +613,15 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="NetworkCompanyPhoneCode", Order=10)]
-		public  string gxTpr_Networkcompanyphonecode
+		[DataMember(Name="NetworkCompanyPhone", Order=10)]
+		public  string gxTpr_Networkcompanyphone
 		{
 			get { 
-				return sdt.gxTpr_Networkcompanyphonecode;
+				return StringUtil.RTrim( sdt.gxTpr_Networkcompanyphone);
 
 			}
 			set { 
-				 sdt.gxTpr_Networkcompanyphonecode = value;
+				 sdt.gxTpr_Networkcompanyphone = value;
 			}
 		}
 
@@ -637,15 +637,15 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="NetworkCompanyPhone", Order=12)]
-		public  string gxTpr_Networkcompanyphone
+		[DataMember(Name="NetworkCompanyPhoneCode", Order=12)]
+		public  string gxTpr_Networkcompanyphonecode
 		{
 			get { 
-				return StringUtil.RTrim( sdt.gxTpr_Networkcompanyphone);
+				return sdt.gxTpr_Networkcompanyphonecode;
 
 			}
 			set { 
-				 sdt.gxTpr_Networkcompanyphone = value;
+				 sdt.gxTpr_Networkcompanyphonecode = value;
 			}
 		}
 

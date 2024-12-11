@@ -1740,7 +1740,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024126162268", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121019522760", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1756,7 +1756,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_createnewgeneralsupplier.js", "?2024126162268", false, true);
+         context.AddJavascriptSource("wp_createnewgeneralsupplier.js", "?2024121019522760", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -1921,7 +1921,6 @@ namespace GeneXus.Programs {
          setEventMetadata("ENTER","""{"handler":"E148C2","iparms":[{"av":"AV16TrnMode","fld":"vTRNMODE","hsh":true},{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV7Trn_SupplierGen","fld":"vTRN_SUPPLIERGEN"},{"av":"Combo_trn_suppliergen_suppliergentypeid_Ddointernalname","ctrl":"COMBO_TRN_SUPPLIERGEN_SUPPLIERGENTYPEID","prop":"DDOInternalName"},{"av":"Combo_trn_suppliergen_suppliergenaddresscountry_Ddointernalname","ctrl":"COMBO_TRN_SUPPLIERGEN_SUPPLIERGENADDRESSCOUNTRY","prop":"DDOInternalName"},{"av":"AV26isPreffered","fld":"vISPREFFERED"},{"av":"AV28Trn_PreferredGenSupplier","fld":"vTRN_PREFERREDGENSUPPLIER"},{"av":"AV15Messages","fld":"vMESSAGES"}]""");
          setEventMetadata("ENTER",""","oparms":[{"av":"AV7Trn_SupplierGen","fld":"vTRN_SUPPLIERGEN"},{"av":"AV15Messages","fld":"vMESSAGES"},{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV28Trn_PreferredGenSupplier","fld":"vTRN_PREFERREDGENSUPPLIER"}]}""");
          setEventMetadata("VALIDV_GXV1","""{"handler":"Validv_Gxv1","iparms":[]}""");
-         setEventMetadata("VALIDV_GXV4","""{"handler":"Validv_Gxv4","iparms":[]}""");
          setEventMetadata("VALIDV_GXV10","""{"handler":"Validv_Gxv10","iparms":[]}""");
          return  ;
       }

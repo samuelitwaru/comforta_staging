@@ -1,163 +1,3 @@
-const predefinedPages1 = {
-  "Reception": {
-    "assets": [],
-    "pages": [
-      {
-        "id": "page-id-1",
-        "name": "Page 1",
-        "component": {
-          "type": "wrapper",
-          "components": [
-            {
-              "type": "image",
-              "src": "https://staging.comforta.yukon.software/media/receptie-197@3x.png",
-              "style": {
-                "width": "100%",
-                "height": "auto",
-                "display": "block"
-              },
-              "attributes": {
-                "alt": "Sample Image"
-              },
-              "selectable": false
-            },
-            {
-              "type": "text",
-              "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-              "style": {
-                "margin": "20px auto",
-                "width": "80%",
-                "text-align": "left",
-                "font-size": "16px",
-                "line-height": "1.5"
-              },
-              "selectable": true
-            }
-          ]
-        }
-      }
-    ],
-    "styles": "",
-    "css": "",
-    "html": "",
-    "components": "",
-    "stylesheets": [],
-    "scripts": []
-  },
-  "Location": {
-    "assets": [],
-    "pages": [
-      {
-        "id": "page-id-1",
-        "name": "Page 1",
-        "component": {
-          "type": "wrapper",
-          "components": [
-            {
-              "type": "image",
-              "src": "https://via.placeholder.com/300",
-              "style": {
-                "width": "300px",
-                "height": "auto",
-                "margin": "10px auto",
-                "display": "block"
-              },
-              "attributes": {
-                "alt": "Sample Image"
-              },
-              "selectable": false
-            },
-            {
-              "type": "text",
-              "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-              "style": {
-                "margin": "20px auto",
-                "width": "80%",
-                "text-align": "left",
-                "font-size": "16px",
-                "line-height": "1.5"
-              },
-              "selectable": true
-            }
-          ]
-        }
-      }
-    ],
-    "styles": "",
-    "css": "",
-    "html": "",
-    "components": "",
-    "stylesheets": [],
-    "scripts": []
-  },
-  "Calendar": {
-    "assets": [],
-    "pages": [
-      {
-        "id": "page-id-1",
-        "name": "Page 1",
-        "component": {
-          "type": "wrapper",
-          "components": [
-            {
-              "type": "image",
-              "src": "https://staging.comforta.yukon.software/media/calendar-page.png",
-              "style": {
-                "width": "100%",
-                "height": "auto",
-                "display": "block"
-              },
-              "attributes": {
-                "alt": "Sample Image"
-              },
-              "selectable": false
-            },
-          ]
-        }
-      }
-    ],
-    "styles": "",
-    "css": "",
-    "html": "",
-    "components": "",
-    "stylesheets": [],
-    "scripts": []
-  },
-  "Mailbox": {
-    "assets": [],
-    "pages": [
-      {
-        "id": "page-id-1",
-        "name": "Page 1",
-        "component": {
-          "type": "wrapper",
-          "components": [
-            {
-              "type": "image",
-              "src": "https://staging.comforta.yukon.software/media/mailbox.png",
-              "style": {
-                "width": "100%",
-                "height": "auto",
-                "display": "block"
-              },
-              "attributes": {
-                "alt": "Sample Image"
-              },
-              "selectable": false
-            },
-          ]
-        }
-      }
-    ],
-    "styles": "",
-    "css": "",
-    "html": "",
-    "components": "",
-    "stylesheets": [],
-    "scripts": []
-  },
-}
-
 class ChildEditorManager {
   editors = {};
   pages = [];
@@ -182,7 +22,6 @@ class ChildEditorManager {
         this.currentPageId = homePage.PageId;
       } else {
         alert("No Home Page Found");
-        this.toolsSection.displayAlertMessage("No Home Page Found", "danger")
         return;
       }
     });
@@ -326,32 +165,24 @@ class ChildEditorManager {
         editor.loadProjectData(JSON.parse(page.PageGJSJson));
       }
     } else {
-      if (page.PageIsContentPage) {
-        this.dataManager
-          .getContentPageData(page.PageId)
-          .then((contentPageData) => {
-            if (contentPageData) {
-              const projectData =
-                this.initialContentPageTemplate(contentPageData);
-              editor.addComponents(projectData)[0];
-  
-              // Ensure Call To Actions are applied
-              this.toolsSection.pageContentCtas(
-                contentPageData.CallToActions,
-                editor
-              );
-            }
-          })
-          .catch((error) => {
-            console.error("Error fetching content page data:", error);
-          });
-      }else{
+      this.dataManager
+        .getContentPageData(page.PageId)
+        .then((contentPageData) => {
+          if (contentPageData) {
+            const projectData =
+              this.initialContentPageTemplate(contentPageData);
+            editor.addComponents(projectData)[0];
 
-        editor.loadProjectData(
-          predefinedPages1[page.PageName]
-        )
-
-      }
+            // Ensure Call To Actions are applied
+            this.toolsSection.pageContentCtas(
+              contentPageData.CallToActions,
+              editor
+            );
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching content page data:", error);
+        });
     }
 
     // Adjust Canvas for Content Pages

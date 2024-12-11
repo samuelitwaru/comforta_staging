@@ -34,11 +34,11 @@ namespace GeneXus.Programs
 
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerinitials = "";
 
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonecode = "";
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphone = "";
 
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonenumber = "";
 
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphone = "";
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonecode = "";
 
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managergamguid = "";
 
@@ -81,16 +81,16 @@ namespace GeneXus.Programs
 			AddObjectProperty("ManagerInitials", gxTpr_Managerinitials, false);
 
 
-			AddObjectProperty("ManagerPhoneCode", gxTpr_Managerphonecode, false);
+			AddObjectProperty("ManagerPhone", gxTpr_Managerphone, false);
+
+
+			AddObjectProperty("ManagerIsMainManager", gxTpr_Managerismainmanager, false);
 
 
 			AddObjectProperty("ManagerPhoneNumber", gxTpr_Managerphonenumber, false);
 
 
-			AddObjectProperty("ManagerPhone", gxTpr_Managerphone, false);
-
-
-			AddObjectProperty("ManagerIsMainManager", gxTpr_Managerismainmanager, false);
+			AddObjectProperty("ManagerPhoneCode", gxTpr_Managerphonecode, false);
 
 
 			AddObjectProperty("ManagerId", gxTpr_Managerid, false);
@@ -149,38 +149,6 @@ namespace GeneXus.Programs
 
 
 
-		[SoapElement(ElementName="ManagerPhoneCode")]
-		[XmlElement(ElementName="ManagerPhoneCode")]
-		public string gxTpr_Managerphonecode
-		{
-			get {
-				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonecode; 
-			}
-			set {
-				gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonecode = value;
-				SetDirty("Managerphonecode");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="ManagerPhoneNumber")]
-		[XmlElement(ElementName="ManagerPhoneNumber")]
-		public string gxTpr_Managerphonenumber
-		{
-			get {
-				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonenumber; 
-			}
-			set {
-				gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonenumber = value;
-				SetDirty("Managerphonenumber");
-			}
-		}
-
-
-
-
 		[SoapElement(ElementName="ManagerPhone")]
 		[XmlElement(ElementName="ManagerPhone")]
 		public string gxTpr_Managerphone
@@ -207,6 +175,38 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerismainmanager = value;
 				SetDirty("Managerismainmanager");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ManagerPhoneNumber")]
+		[XmlElement(ElementName="ManagerPhoneNumber")]
+		public string gxTpr_Managerphonenumber
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonenumber; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonenumber = value;
+				SetDirty("Managerphonenumber");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="ManagerPhoneCode")]
+		[XmlElement(ElementName="ManagerPhoneCode")]
+		public string gxTpr_Managerphonecode
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonecode; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonecode = value;
+				SetDirty("Managerphonecode");
 			}
 		}
 
@@ -368,10 +368,10 @@ namespace GeneXus.Programs
 		{
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Manageremail = "";
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerinitials = "";
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonecode = "";
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonenumber = "";
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphone = "";
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerismainmanager = false;
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonenumber = "";
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonecode = "";
 
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managergamguid = "";
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managergivenname = "";
@@ -395,16 +395,16 @@ namespace GeneXus.Programs
 		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerinitials;
 		 
 
-		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonecode;
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphone;
+		 
+
+		protected bool gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerismainmanager;
 		 
 
 		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonenumber;
 		 
 
-		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphone;
-		 
-
-		protected bool gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerismainmanager;
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerphonecode;
 		 
 
 		protected Guid gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_Managerid;
@@ -465,31 +465,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ManagerPhoneCode", Order=2)]
-		public  string gxTpr_Managerphonecode
-		{
-			get { 
-				return sdt.gxTpr_Managerphonecode;
-
-			}
-			set { 
-				 sdt.gxTpr_Managerphonecode = value;
-			}
-		}
-
-		[DataMember(Name="ManagerPhoneNumber", Order=3)]
-		public  string gxTpr_Managerphonenumber
-		{
-			get { 
-				return sdt.gxTpr_Managerphonenumber;
-
-			}
-			set { 
-				 sdt.gxTpr_Managerphonenumber = value;
-			}
-		}
-
-		[DataMember(Name="ManagerPhone", Order=4)]
+		[DataMember(Name="ManagerPhone", Order=2)]
 		public  string gxTpr_Managerphone
 		{
 			get { 
@@ -501,7 +477,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ManagerIsMainManager", Order=5)]
+		[DataMember(Name="ManagerIsMainManager", Order=3)]
 		public bool gxTpr_Managerismainmanager
 		{
 			get { 
@@ -510,6 +486,30 @@ namespace GeneXus.Programs
 			}
 			set { 
 				sdt.gxTpr_Managerismainmanager = value;
+			}
+		}
+
+		[DataMember(Name="ManagerPhoneNumber", Order=4)]
+		public  string gxTpr_Managerphonenumber
+		{
+			get { 
+				return sdt.gxTpr_Managerphonenumber;
+
+			}
+			set { 
+				 sdt.gxTpr_Managerphonenumber = value;
+			}
+		}
+
+		[DataMember(Name="ManagerPhoneCode", Order=5)]
+		public  string gxTpr_Managerphonecode
+		{
+			get { 
+				return sdt.gxTpr_Managerphonecode;
+
+			}
+			set { 
+				 sdt.gxTpr_Managerphonecode = value;
 			}
 		}
 

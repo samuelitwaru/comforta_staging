@@ -873,31 +873,31 @@ namespace GeneXus.Programs {
          /* UpdateLocationTheme Constructor */
       }
 
-      public void gxep_productsericeapi( Guid aP0_ProductServiceId ,
-                                         out SdtSDT_ProductService aP1_SDT_ProductService )
+      public void gxep_productserviceapi( Guid aP0_ProductServiceId ,
+                                          out SdtSDT_ProductService aP1_SDT_ProductService )
       {
-         restCliProductSericeAPI = new GXRestAPIClient();
+         restCliProductServiceAPI = new GXRestAPIClient();
          if ( restLocation == null )
          {
             InitLocation();
          }
          restLocation.ResourceName = "/productservice/";
-         restCliProductSericeAPI.Location = restLocation;
-         restCliProductSericeAPI.HttpMethod = "GET";
-         restCliProductSericeAPI.AddQueryVar("Productserviceid", (Guid)(aP0_ProductServiceId));
-         restCliProductSericeAPI.RestExecute();
-         if ( restCliProductSericeAPI.ErrorCode != 0 )
+         restCliProductServiceAPI.Location = restLocation;
+         restCliProductServiceAPI.HttpMethod = "GET";
+         restCliProductServiceAPI.AddQueryVar("Productserviceid", (Guid)(aP0_ProductServiceId));
+         restCliProductServiceAPI.RestExecute();
+         if ( restCliProductServiceAPI.ErrorCode != 0 )
          {
-            gxProperties.ErrorCode = restCliProductSericeAPI.ErrorCode;
-            gxProperties.ErrorMessage = restCliProductSericeAPI.ErrorMessage;
-            gxProperties.StatusCode = restCliProductSericeAPI.StatusCode;
+            gxProperties.ErrorCode = restCliProductServiceAPI.ErrorCode;
+            gxProperties.ErrorMessage = restCliProductServiceAPI.ErrorMessage;
+            gxProperties.StatusCode = restCliProductServiceAPI.StatusCode;
             aP1_SDT_ProductService = new SdtSDT_ProductService();
          }
          else
          {
-            aP1_SDT_ProductService = restCliProductSericeAPI.GetBodySdt<SdtSDT_ProductService>("SDT_ProductService");
+            aP1_SDT_ProductService = restCliProductServiceAPI.GetBodySdt<SdtSDT_ProductService>("SDT_ProductService");
          }
-         /* ProductSericeAPI Constructor */
+         /* ProductServiceAPI Constructor */
       }
 
       public void gxep_getlocationtheme( Guid aP0_locationId ,
@@ -985,7 +985,7 @@ namespace GeneXus.Programs {
          restCliAddPageCildren = new GXRestAPIClient();
          restCliUpdateLocationTheme = new GXRestAPIClient();
          aP3_SDT_Theme = new SdtSDT_Theme();
-         restCliProductSericeAPI = new GXRestAPIClient();
+         restCliProductServiceAPI = new GXRestAPIClient();
          aP1_SDT_ProductService = new SdtSDT_ProductService();
          restCliGetLocationTheme = new GXRestAPIClient();
          aP2_SDT_LocationTheme = new SdtSDT_LocationTheme();
@@ -1020,7 +1020,7 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliUpdatePage ;
       protected GXRestAPIClient restCliAddPageCildren ;
       protected GXRestAPIClient restCliUpdateLocationTheme ;
-      protected GXRestAPIClient restCliProductSericeAPI ;
+      protected GXRestAPIClient restCliProductServiceAPI ;
       protected GXRestAPIClient restCliGetLocationTheme ;
       protected GxLocation restLocation ;
       protected GxObjectProperties gxProperties ;

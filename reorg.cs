@@ -60,11 +60,17 @@ namespace GeneXus.Programs {
          /* Load data into tables. */
       }
 
-      public void ReorganizeTrn_Resident( )
+      public void ReorganizeTrn_NetworkIndividual( )
       {
          string cmdBuffer = "";
-         /* Indices for table Trn_Resident */
-         cmdBuffer=" ALTER TABLE Trn_Resident ADD ResidentImage BYTEA , ADD ResidentImage_GXI VARCHAR(2048)  "
+         /* Indices for table Trn_NetworkIndividual */
+         cmdBuffer=" ALTER TABLE Trn_NetworkIndividual ADD NetworkIndividualRelationship VARCHAR(400) NOT NULL DEFAULT '' "
+         ;
+         RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+         RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+         RGZ.ExecuteStmt() ;
+         RGZ.Drop();
+         cmdBuffer=" ALTER TABLE Trn_NetworkIndividual ALTER COLUMN NetworkIndividualRelationship DROP DEFAULT "
          ;
          RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
          RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
@@ -78,9 +84,9 @@ namespace GeneXus.Programs {
          {
             /* Using cursor P00012 */
             pr_default.execute(0);
-            Trn_ResidentCount = P00012_ATrn_ResidentCount[0];
+            Trn_NetworkIndividualCount = P00012_ATrn_NetworkIndividualCount[0];
             pr_default.close(0);
-            PrintRecordCount ( "Trn_Resident" ,  Trn_ResidentCount );
+            PrintRecordCount ( "Trn_NetworkIndividual" ,  Trn_NetworkIndividualCount );
          }
       }
 
@@ -91,14 +97,9 @@ namespace GeneXus.Programs {
             return true ;
          }
          sSchemaVar = GXUtil.UserId( "Server", context, pr_default);
-         if ( ColumnExist("Trn_Resident",sSchemaVar,"ResidentImage") )
+         if ( ColumnExist("Trn_NetworkIndividual",sSchemaVar,"NetworkIndividualRelationship") )
          {
-            SetCheckError ( GXResourceManager.GetMessage("GXM_column_exist", new   object[]  {"ResidentImage", "Trn_Resident"}) ) ;
-            return false ;
-         }
-         if ( ColumnExist("Trn_Resident",sSchemaVar,"ResidentImage_GXI") )
-         {
-            SetCheckError ( GXResourceManager.GetMessage("GXM_column_exist", new   object[]  {"ResidentImage_GXI", "Trn_Resident"}) ) ;
+            SetCheckError ( GXResourceManager.GetMessage("GXM_column_exist", new   object[]  {"NetworkIndividualRelationship", "Trn_NetworkIndividual"}) ) ;
             return false ;
          }
          return true ;
@@ -135,7 +136,7 @@ namespace GeneXus.Programs {
 
       private void ExecuteOnlyTablesReorganization( )
       {
-         ReorgExecute.RegisterBlockForSubmit( 1 ,  "ReorganizeTrn_Resident" , new Object[]{ });
+         ReorgExecute.RegisterBlockForSubmit( 1 ,  "ReorganizeTrn_NetworkIndividual" , new Object[]{ });
       }
 
       private void ExecuteOnlyRisReorganization( )
@@ -157,7 +158,7 @@ namespace GeneXus.Programs {
 
       private void SetPrecedencetables( )
       {
-         GXReorganization.SetMsg( 1 ,  GXResourceManager.GetMessage("GXM_fileupdate", new   object[]  {"Trn_Resident", ""}) );
+         GXReorganization.SetMsg( 1 ,  GXResourceManager.GetMessage("GXM_fileupdate", new   object[]  {"Trn_NetworkIndividual", ""}) );
       }
 
       private void SetPrecedenceris( )
@@ -190,7 +191,7 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         P00012_ATrn_ResidentCount = new int[1] ;
+         P00012_ATrn_NetworkIndividualCount = new int[1] ;
          sSchemaVar = "";
          sTableName = "";
          sMySchemaName = "";
@@ -222,7 +223,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.reorg__default(),
             new Object[][] {
                 new Object[] {
-               P00012_ATrn_ResidentCount
+               P00012_ATrn_NetworkIndividualCount
                }
                , new Object[] {
                P00023_Atablename, P00023_Aschemaname, P00023_Acolumnname, P00023_Aattrelid, P00023_Aoid, P00023_Arelname
@@ -233,7 +234,7 @@ namespace GeneXus.Programs {
       }
 
       protected short ErrCode ;
-      protected int Trn_ResidentCount ;
+      protected int Trn_NetworkIndividualCount ;
       protected string sSchemaVar ;
       protected string sTableName ;
       protected string sMySchemaName ;
@@ -255,7 +256,7 @@ namespace GeneXus.Programs {
       protected IGxDataStore dsDefault ;
       protected GxCommand RGZ ;
       protected IDataStoreProvider pr_default ;
-      protected int[] P00012_ATrn_ResidentCount ;
+      protected int[] P00012_ATrn_NetworkIndividualCount ;
       protected string[] P00023_Atablename ;
       protected bool[] P00023_ntablename ;
       protected string[] P00023_Aschemaname ;
@@ -296,7 +297,7 @@ namespace GeneXus.Programs {
           new ParDef("sMyColumnName",GXType.Char,255,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P00012", "SELECT COUNT(*) FROM Trn_Resident ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00012,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P00012", "SELECT COUNT(*) FROM Trn_NetworkIndividual ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00012,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("P00023", "SELECT T.TABLENAME, T.TABLEOWNER, T1.ATTNAME, T1.ATTRELID, T2.OID, T2.RELNAME FROM PG_TABLES T, PG_ATTRIBUTE T1, PG_CLASS T2 WHERE (UPPER(T.TABLENAME) = ( UPPER(:sTableName))) AND (UPPER(T.TABLEOWNER) = ( UPPER(:sMySchemaName))) AND (UPPER(T1.ATTNAME) = ( UPPER(:sMyColumnName))) AND (T2.OID = ( T1.ATTRELID)) AND (T2.RELNAME = ( T.TABLENAME)) ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00023,100, GxCacheFrequency.OFF ,true,false )
           };
        }

@@ -5,8 +5,6 @@ using GeneXus.Resources;
 using GeneXus.Application;
 using GeneXus.Metadata;
 using GeneXus.Cryptography;
-using System.Data;
-using GeneXus.Data;
 using com.genexus;
 using GeneXus.Data.ADO;
 using GeneXus.Data.NTier;
@@ -30,9 +28,6 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
-         dsDataStore1 = context.GetDataStore("DataStore1");
-         dsGAM = context.GetDataStore("GAM");
-         dsDefault = context.GetDataStore("Default");
          IsMain = true;
          context.SetDefaultTheme("WorkWithPlusDS", true);
       }
@@ -41,41 +36,52 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
-         dsDataStore1 = context.GetDataStore("DataStore1");
-         dsGAM = context.GetDataStore("GAM");
-         dsDefault = context.GetDataStore("Default");
       }
 
       public void execute( string aP0_UserGAMGUID ,
                            ref string aP1_baseUrl ,
-                           out bool aP2_isSuccessful )
+                           ref bool aP2_isSuccessful ,
+                           ref string aP3_ErrDescription ,
+                           ref GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> aP4_GAMErrors )
       {
          this.AV18UserGAMGUID = aP0_UserGAMGUID;
          this.AV23baseUrl = aP1_baseUrl;
-         this.AV14isSuccessful = false ;
+         this.AV14isSuccessful = aP2_isSuccessful;
+         this.AV26ErrDescription = aP3_ErrDescription;
+         this.AV11GAMErrors = aP4_GAMErrors;
          initialize();
          ExecuteImpl();
          aP1_baseUrl=this.AV23baseUrl;
          aP2_isSuccessful=this.AV14isSuccessful;
+         aP3_ErrDescription=this.AV26ErrDescription;
+         aP4_GAMErrors=this.AV11GAMErrors;
       }
 
-      public bool executeUdp( string aP0_UserGAMGUID ,
-                              ref string aP1_baseUrl )
+      public GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> executeUdp( string aP0_UserGAMGUID ,
+                                                                                            ref string aP1_baseUrl ,
+                                                                                            ref bool aP2_isSuccessful ,
+                                                                                            ref string aP3_ErrDescription )
       {
-         execute(aP0_UserGAMGUID, ref aP1_baseUrl, out aP2_isSuccessful);
-         return AV14isSuccessful ;
+         execute(aP0_UserGAMGUID, ref aP1_baseUrl, ref aP2_isSuccessful, ref aP3_ErrDescription, ref aP4_GAMErrors);
+         return AV11GAMErrors ;
       }
 
       public void executeSubmit( string aP0_UserGAMGUID ,
                                  ref string aP1_baseUrl ,
-                                 out bool aP2_isSuccessful )
+                                 ref bool aP2_isSuccessful ,
+                                 ref string aP3_ErrDescription ,
+                                 ref GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> aP4_GAMErrors )
       {
          this.AV18UserGAMGUID = aP0_UserGAMGUID;
          this.AV23baseUrl = aP1_baseUrl;
-         this.AV14isSuccessful = false ;
+         this.AV14isSuccessful = aP2_isSuccessful;
+         this.AV26ErrDescription = aP3_ErrDescription;
+         this.AV11GAMErrors = aP4_GAMErrors;
          SubmitImpl();
          aP1_baseUrl=this.AV23baseUrl;
          aP2_isSuccessful=this.AV14isSuccessful;
+         aP3_ErrDescription=this.AV26ErrDescription;
+         aP4_GAMErrors=this.AV11GAMErrors;
       }
 
       protected override void ExecutePrivate( )
@@ -90,39 +96,59 @@ namespace GeneXus.Programs {
             {
                AV19Username = AV12GAMUser.gxTpr_Firstname + " " + AV12GAMUser.gxTpr_Lastname;
                AV9ActivactionKey = AV12GAMUser.getnewactivationkey(out  AV11GAMErrors);
-               AV12GAMUser.save();
-               context.CommitDataStores("prc_senduseractivationlink",pr_default);
-               AV17SMTPSession.Host = "smtp.gmail.com";
-               AV17SMTPSession.Port = 587;
-               AV17SMTPSession.Authentication = 1;
-               AV17SMTPSession.AuthenticationMethod = "STARTTLS";
-               AV17SMTPSession.UserName = "markbrightbaraka22@gmail.com";
-               AV17SMTPSession.Password = "fpmizvkxpbhaclfl";
-               AV17SMTPSession.Secure = 1;
-               AV17SMTPSession.Sender.Address = "markbrightbaraka@gmail.com";
-               AV17SMTPSession.Sender.Name = "Comforta Software";
-               AV8MailRecipient.Address = AV12GAMUser.gxTpr_Email;
-               AV8MailRecipient.Name = AV19Username;
-               AV15MailMessage.Subject = "Welcome to Comforta";
-               AV15MailMessage.HTMLText = "<div style=\"max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; border: 1px solid #e0e0e0; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\">"+"<div style=\"background-color: #008080; color: #ffffff; text-align: center; padding: 20px 0;\"><h2>Comforta Software</h2></div><div style=\"padding: 20px; line-height: 1.5;\"><p>Dear "+AV19Username+",</p><p>Welcome to Comforta Software! We are thrilled to have you on board.</p><p>To get started, we need to verify your email address. Please click the button below to activate your account:</p>"+"</b></p><a href=\""+AV23baseUrl+"WP_UserActivation.aspx?ActivationKey="+AV9ActivactionKey+"&GamGuid="+AV12GAMUser.gxTpr_Guid+"\" style=\"display: block; padding: 10px 20px; width: 150px;  margin: 20px auto; background-color: #008080; text-align: center; border-radius: 8px; color: white; font-weight: bold; line-height: 30px; text-decoration: none;\">Verify Email</a>"+"<p>Please note that the link expires in 36 hours.</p>"+"<p>Once you have activated your account and set a password, you will gain access to the platform.</p>"+"<br><p>Healthy Living!</p><p>Comforta Software</p></div></div>";
-               AV15MailMessage.To.Add(AV8MailRecipient);
-               AV17SMTPSession.Login();
-               AV17SMTPSession.Send(AV15MailMessage);
-               if ( AV17SMTPSession.ErrCode == 0 )
+               if ( AV11GAMErrors.Count == 0 )
                {
-                  AV17SMTPSession.Logout();
-                  AV14isSuccessful = true;
+                  AV17SMTPSession.Host = "comforta.yukon.software";
+                  AV17SMTPSession.Port = 465;
+                  AV17SMTPSession.Secure = 1;
+                  AV17SMTPSession.Authentication = 0;
+                  AV17SMTPSession.AuthenticationMethod = "";
+                  AV17SMTPSession.UserName = "no-reply@comforta.yukon.software";
+                  AV17SMTPSession.Password = "2uSFuxkquz";
+                  AV17SMTPSession.Sender.Address = "no-reply@comforta.yukon.software";
+                  AV17SMTPSession.Sender.Name = "Comforta Software";
+                  AV8MailRecipient.Address = AV12GAMUser.gxTpr_Email;
+                  AV8MailRecipient.Name = AV19Username;
+                  AV15MailMessage.Subject = "Welcome to Comforta";
+                  AV15MailMessage.HTMLText = "<div style=\"max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; border: 1px solid #e0e0e0; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\">"+"<div style=\"background-color: #008080; color: #ffffff; text-align: center; padding: 20px 0;\"><h2>Comforta Software</h2></div><div style=\"padding: 20px; line-height: 1.5;\"><p>Dear "+AV19Username+",</p><p>Welcome to Comforta Software! We are thrilled to have you on board.</p><p>To get started, we need to verify your email address. Please click the button below to activate your account:</p>"+"</b></p><a href=\""+AV23baseUrl+"WP_UserActivation.aspx?ActivationKey="+AV9ActivactionKey+"&GamGuid="+AV12GAMUser.gxTpr_Guid+"\" style=\"display: block; padding: 10px 20px; width: 150px;  margin: 20px auto; background-color: #008080; text-align: center; border-radius: 8px; color: white; font-weight: bold; line-height: 30px; text-decoration: none;\">Verify Email</a>"+"<p>Please note that the link expires in 36 hours.</p>"+"<p>Once you have activated your account and set a password, you will gain access to the platform.</p>"+"<br><p>Healthy Living!</p><p>Comforta Software</p></div></div>";
+                  AV15MailMessage.To.Add(AV8MailRecipient);
+                  AV17SMTPSession.Login();
+                  AV17SMTPSession.Send(AV15MailMessage);
+                  if ( AV17SMTPSession.ErrCode == 0 )
+                  {
+                     AV17SMTPSession.Logout();
+                     AV14isSuccessful = true;
+                  }
+                  else
+                  {
+                     AV26ErrDescription = "Sending activation email failed - " + StringUtil.Str( (decimal)(AV17SMTPSession.ErrCode), 10, 2) + " " + AV17SMTPSession.ErrDescription;
+                     AV14isSuccessful = false;
+                     new prc_logtofile(context ).execute(  "Error Sending Mail: "+AV17SMTPSession.ErrDescription) ;
+                  }
                }
                else
                {
+                  AV26ErrDescription = "Sending activation email failed - ";
+                  AV27GXV1 = 1;
+                  while ( AV27GXV1 <= AV11GAMErrors.Count )
+                  {
+                     AV25GAMErrorItem = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV11GAMErrors.Item(AV27GXV1));
+                     AV26ErrDescription += AV25GAMErrorItem.gxTpr_Message + " ";
+                     AV27GXV1 = (int)(AV27GXV1+1);
+                  }
                   AV14isSuccessful = false;
-                  new prc_logtofile(context ).execute(  "Error Sending Mail: "+AV17SMTPSession.ErrDescription) ;
                }
             }
             else
             {
+               AV26ErrDescription = "Failed to load user";
                AV14isSuccessful = false;
             }
+         }
+         else
+         {
+            AV26ErrDescription = "Unknown user activation method - " + AV16Repository.gxTpr_Useractivationmethod + " - " + "U";
+            AV14isSuccessful = false;
          }
          cleanup();
       }
@@ -143,25 +169,15 @@ namespace GeneXus.Programs {
          AV12GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          AV19Username = "";
          AV9ActivactionKey = "";
-         AV11GAMErrors = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          AV17SMTPSession = new GeneXus.Mail.GXSMTPSession(context.GetPhysicalPath());
          AV8MailRecipient = new GeneXus.Mail.GXMailRecipient();
          AV15MailMessage = new GeneXus.Mail.GXMailMessage();
-         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_senduseractivationlink__datastore1(),
-            new Object[][] {
-            }
-         );
-         pr_gam = new DataStoreProvider(context, new GeneXus.Programs.prc_senduseractivationlink__gam(),
-            new Object[][] {
-            }
-         );
-         pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_senduseractivationlink__default(),
-            new Object[][] {
-            }
-         );
+         AV25GAMErrorItem = new GeneXus.Programs.genexussecurity.SdtGAMError(context);
          /* GeneXus formulas. */
       }
 
+      private int AV27GXV1 ;
+      private string AV26ErrDescription ;
       private string AV9ActivactionKey ;
       private bool AV14isSuccessful ;
       private string AV18UserGAMGUID ;
@@ -170,108 +186,14 @@ namespace GeneXus.Programs {
       private GeneXus.Mail.GXMailMessage AV15MailMessage ;
       private GeneXus.Mail.GXMailRecipient AV8MailRecipient ;
       private GeneXus.Mail.GXSMTPSession AV17SMTPSession ;
-      private IGxDataStore dsDataStore1 ;
-      private IGxDataStore dsGAM ;
-      private IGxDataStore dsDefault ;
       private string aP1_baseUrl ;
+      private bool aP2_isSuccessful ;
+      private string aP3_ErrDescription ;
+      private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV11GAMErrors ;
+      private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> aP4_GAMErrors ;
       private GeneXus.Programs.genexussecurity.SdtGAMRepository AV16Repository ;
       private GeneXus.Programs.genexussecurity.SdtGAMUser AV12GAMUser ;
-      private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV11GAMErrors ;
-      private IDataStoreProvider pr_default ;
-      private bool aP2_isSuccessful ;
-      private IDataStoreProvider pr_datastore1 ;
-      private IDataStoreProvider pr_gam ;
+      private GeneXus.Programs.genexussecurity.SdtGAMError AV25GAMErrorItem ;
    }
-
-   public class prc_senduseractivationlink__datastore1 : DataStoreHelperBase, IDataStoreHelper
-   {
-      public ICursor[] getCursors( )
-      {
-         cursorDefinitions();
-         return new Cursor[] {
-       };
-    }
-
-    private static CursorDef[] def;
-    private void cursorDefinitions( )
-    {
-       if ( def == null )
-       {
-          def= new CursorDef[] {
-          };
-       }
-    }
-
-    public void getResults( int cursor ,
-                            IFieldGetter rslt ,
-                            Object[] buf )
-    {
-    }
-
-    public override string getDataStoreName( )
-    {
-       return "DATASTORE1";
-    }
-
- }
-
- public class prc_senduseractivationlink__gam : DataStoreHelperBase, IDataStoreHelper
- {
-    public ICursor[] getCursors( )
-    {
-       cursorDefinitions();
-       return new Cursor[] {
-     };
-  }
-
-  private static CursorDef[] def;
-  private void cursorDefinitions( )
-  {
-     if ( def == null )
-     {
-        def= new CursorDef[] {
-        };
-     }
-  }
-
-  public void getResults( int cursor ,
-                          IFieldGetter rslt ,
-                          Object[] buf )
-  {
-  }
-
-  public override string getDataStoreName( )
-  {
-     return "GAM";
-  }
-
-}
-
-public class prc_senduseractivationlink__default : DataStoreHelperBase, IDataStoreHelper
-{
-   public ICursor[] getCursors( )
-   {
-      cursorDefinitions();
-      return new Cursor[] {
-    };
- }
-
- private static CursorDef[] def;
- private void cursorDefinitions( )
- {
-    if ( def == null )
-    {
-       def= new CursorDef[] {
-       };
-    }
- }
-
- public void getResults( int cursor ,
-                         IFieldGetter rslt ,
-                         Object[] buf )
- {
- }
-
-}
 
 }

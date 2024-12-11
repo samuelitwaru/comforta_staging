@@ -230,10 +230,10 @@ namespace GeneXus.Programs {
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
-         context.AddJavascriptSource("UserControls/UC_AvatarRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
+         context.AddJavascriptSource("UserControls/UC_AvatarRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -318,8 +318,7 @@ namespace GeneXus.Programs {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWWPCONTEXT", AV65WWPContext);
          }
          GxWebStd.gx_boolean_hidden_field( context, "vCHECKREQUIREDFIELDSRESULT", AV11CheckRequiredFieldsResult);
-         GxWebStd.gx_hidden_field( context, "vUSERPROFILEIMAGE", AV62UserProfileImage);
-         GxWebStd.gx_hidden_field( context, "vAVATARIMAGE_GXI", AV71Avatarimage_GXI);
+         GxWebStd.gx_hidden_field( context, "vBASE64STRING", AV66base64String);
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vTRN_MANAGER", AV52Trn_Manager);
@@ -336,7 +335,6 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vTRN_RECEPTIONIST", AV53Trn_Receptionist);
          }
-         GxWebStd.gx_hidden_field( context, "AVATARUC_Previewimagelink", StringUtil.RTrim( Avataruc_Previewimagelink));
          GxWebStd.gx_hidden_field( context, "DVPANEL_PROFILEEXTENDEDINFO1_TABLEMAININFO_Width", StringUtil.RTrim( Dvpanel_profileextendedinfo1_tablemaininfo_Width));
          GxWebStd.gx_hidden_field( context, "DVPANEL_PROFILEEXTENDEDINFO1_TABLEMAININFO_Autowidth", StringUtil.BoolToStr( Dvpanel_profileextendedinfo1_tablemaininfo_Autowidth));
          GxWebStd.gx_hidden_field( context, "DVPANEL_PROFILEEXTENDEDINFO1_TABLEMAININFO_Autoheight", StringUtil.BoolToStr( Dvpanel_profileextendedinfo1_tablemaininfo_Autoheight));
@@ -347,6 +345,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "DVPANEL_PROFILEEXTENDEDINFO1_TABLEMAININFO_Showcollapseicon", StringUtil.BoolToStr( Dvpanel_profileextendedinfo1_tablemaininfo_Showcollapseicon));
          GxWebStd.gx_hidden_field( context, "DVPANEL_PROFILEEXTENDEDINFO1_TABLEMAININFO_Iconposition", StringUtil.RTrim( Dvpanel_profileextendedinfo1_tablemaininfo_Iconposition));
          GxWebStd.gx_hidden_field( context, "DVPANEL_PROFILEEXTENDEDINFO1_TABLEMAININFO_Autoscroll", StringUtil.BoolToStr( Dvpanel_profileextendedinfo1_tablemaininfo_Autoscroll));
+         GxWebStd.gx_hidden_field( context, "AVATARUC_Previewimagelink", StringUtil.RTrim( Avataruc_Previewimagelink));
          GxWebStd.gx_hidden_field( context, "COMBO_PHONECODE_Cls", StringUtil.RTrim( Combo_phonecode_Cls));
          GxWebStd.gx_hidden_field( context, "COMBO_PHONECODE_Selectedvalue_set", StringUtil.RTrim( Combo_phonecode_Selectedvalue_set));
          GxWebStd.gx_hidden_field( context, "COMBO_PHONECODE_Selectedtext_set", StringUtil.RTrim( Combo_phonecode_Selectedtext_set));
@@ -498,10 +497,18 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, divProfileextendedinfo1_tablemaininfo_Internalname, 1, 0, "px", 0, "px", "Flex", "start", "top", " "+"data-gx-flex"+" ", "flex-direction:column;", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;", "div");
-            /* User Defined Control */
-            ucAvataruc.SetProperty("UploadedFile", AV21FileUploadedData);
-            ucAvataruc.Render(context, "uc_avatar", Avataruc_Internalname, "AVATARUCContainer");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "CellMarginTop", "start", "top", "", "flex-grow:1;align-self:center;", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, "", "profile Image", "gx-form-item CardProfileExtendedInfoImageLabel RoundedImageLabel", 0, true, "width: 25%;");
+            /* Static Bitmap Variable */
+            ClassString = "CardProfileExtendedInfoImage RoundedImage" + " " + ((StringUtil.StrCmp(imgavProfileimage_gximage, "")==0) ? "" : "GX_Image_"+imgavProfileimage_gximage+"_Class");
+            StyleString = "";
+            AV68profileImage_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage))&&String.IsNullOrEmpty(StringUtil.RTrim( AV73Profileimage_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage)));
+            sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage)) ? AV73Profileimage_GXI : context.PathToRelativeUrl( AV68profileImage));
+            GxWebStd.gx_bitmap( context, imgavProfileimage_Internalname, sImgUrl, "", "", "", context.GetTheme( ), 1, 0, "", "", 0, -1, 0, "", 0, "", 0, 0, 0, "", "", StyleString, ClassString, "", "", "", "", "", "", "", 1, AV68profileImage_IsBlob, false, context.GetImageSrcSet( sImgUrl), "HLP_WP_UserProfile.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "CellMarginTop10", "start", "top", "", "align-self:center;", "div");
@@ -510,8 +517,8 @@ namespace GeneXus.Programs {
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, edtavUser_Internalname, "user", "gx-form-item CardProfileExtendedInfoTitleLabel", 0, true, "width: 25%;");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 25,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavUser_Internalname, StringUtil.RTrim( AV56user), StringUtil.RTrim( context.localUtil.Format( AV56user, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,25);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavUser_Jsonclick, 0, "CardProfileExtendedInfoTitle", "", "", "", "", 1, edtavUser_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 26,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavUser_Internalname, StringUtil.RTrim( AV56user), StringUtil.RTrim( context.localUtil.Format( AV56user, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,26);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavUser_Jsonclick, 0, "CardProfileExtendedInfoTitle", "", "", "", "", 1, edtavUser_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -521,8 +528,8 @@ namespace GeneXus.Programs {
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, edtavRole_Internalname, "role", "gx-form-item CardProfileExtendedInfoSubtitleLabel", 0, true, "width: 25%;");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 28,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavRole_Internalname, StringUtil.RTrim( AV46role), StringUtil.RTrim( context.localUtil.Format( AV46role, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,28);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavRole_Jsonclick, 0, "CardProfileExtendedInfoSubtitle", "", "", "", "", 1, edtavRole_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavRole_Internalname, StringUtil.RTrim( AV46role), StringUtil.RTrim( context.localUtil.Format( AV46role, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,29);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavRole_Jsonclick, 0, "CardProfileExtendedInfoSubtitle", "", "", "", "", 1, edtavRole_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -531,7 +538,7 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group ActionGroup", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 32,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 33,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtnupdateprofile_Internalname, "", "Update Profile", bttBtnupdateprofile_Jsonclick, 5, "Update Profile", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOUPDATEPROFILE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_UserProfile.htm");
@@ -559,6 +566,32 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, divProfileextendedinfo1_tableabout_Internalname, 1, 0, "px", 0, "px", "Flex", "start", "top", " "+"data-gx-flex"+" ", "flex-direction:column;", "div");
             /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "CellMarginBottom15", "start", "top", "", "flex-grow:1;", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divUpdateavatartable_Internalname, divUpdateavatartable_Visible, 0, "px", 0, "px", "Flex", "start", "top", " "+"data-gx-flex"+" ", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divFieldavatartable_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-3 MergeLabelCell", "start", "top", "", "", "div");
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblAvatarlabel_Internalname, "Profile Image", "", "", lblAvatarlabel_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_UserProfile.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-9 DataContentCell", "start", "top", "", "", "div");
+            /* User Defined Control */
+            ucAvataruc.SetProperty("UploadedFile", AV21FileUploadedData);
+            ucAvataruc.Render(context, "uc_avatar", Avataruc_Internalname, "AVATARUCContainer");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, divProfileextendedinfo1_firstinfoabout_Internalname, divProfileextendedinfo1_firstinfoabout_Visible, 0, "px", 0, "px", "Flex", "start", "top", " "+"data-gx-flex"+" ", "", "div");
@@ -571,8 +604,8 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 42,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavFirstname_Internalname, AV23FirstName, StringUtil.RTrim( context.localUtil.Format( AV23FirstName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,42);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavFirstname_Jsonclick, 0, "ReadOnlyAttributeField", "", "", "", "", 1, edtavFirstname_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 52,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavFirstname_Internalname, AV23FirstName, StringUtil.RTrim( context.localUtil.Format( AV23FirstName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,52);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavFirstname_Jsonclick, 0, "ReadOnlyAttributeField", "", "", "", "", 1, edtavFirstname_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -587,12 +620,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group gx-default-form-group", "start", "top", ""+" data-gx-for=\""+edtavFirstnamevalue_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavFirstnamevalue_Internalname, "First Name", "gx-form-item ProfileCardExtendedInfoAboutInfoLabel", 1, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavFirstnamevalue_Internalname, "First Name", "gx-form-item AttributeLabel", 1, true, "width: 25%;");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 48,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavFirstnamevalue_Internalname, AV24FirstNameValue, StringUtil.RTrim( context.localUtil.Format( AV24FirstNameValue, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,48);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavFirstnamevalue_Jsonclick, 0, "ProfileCardExtendedInfoAboutInfo", "", "", "", "", 1, edtavFirstnamevalue_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 58,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavFirstnamevalue_Internalname, AV24FirstNameValue, StringUtil.RTrim( context.localUtil.Format( AV24FirstNameValue, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,58);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavFirstnamevalue_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavFirstnamevalue_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -611,8 +644,8 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 54,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavLastname_Internalname, AV29LastName, StringUtil.RTrim( context.localUtil.Format( AV29LastName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,54);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavLastname_Jsonclick, 0, "ReadOnlyAttributeField", "", "", "", "", 1, edtavLastname_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 64,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavLastname_Internalname, AV29LastName, StringUtil.RTrim( context.localUtil.Format( AV29LastName, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,64);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavLastname_Jsonclick, 0, "ReadOnlyAttributeField", "", "", "", "", 1, edtavLastname_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -627,12 +660,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group gx-default-form-group", "start", "top", ""+" data-gx-for=\""+edtavLastnamevalue_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavLastnamevalue_Internalname, "Last Name", "gx-form-item ProfileCardExtendedInfoAboutInfoLabel", 1, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavLastnamevalue_Internalname, "Last Name", "gx-form-item AttributeLabel", 1, true, "width: 25%;");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 60,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavLastnamevalue_Internalname, AV30LastNameValue, StringUtil.RTrim( context.localUtil.Format( AV30LastNameValue, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,60);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavLastnamevalue_Jsonclick, 0, "ProfileCardExtendedInfoAboutInfo", "", "", "", "", 1, edtavLastnamevalue_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 70,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavLastnamevalue_Internalname, AV30LastNameValue, StringUtil.RTrim( context.localUtil.Format( AV30LastNameValue, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,70);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavLastnamevalue_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavLastnamevalue_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -651,8 +684,8 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 66,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavEmail_Internalname, AV16Email, StringUtil.RTrim( context.localUtil.Format( AV16Email, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,66);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavEmail_Jsonclick, 0, "ReadOnlyAttributeField", "", "", "", "", 1, edtavEmail_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 76,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavEmail_Internalname, AV16Email, StringUtil.RTrim( context.localUtil.Format( AV16Email, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,76);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavEmail_Jsonclick, 0, "ReadOnlyAttributeField", "", "", "", "", 1, edtavEmail_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -667,12 +700,12 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group gx-default-form-group", "start", "top", ""+" data-gx-for=\""+edtavEmailvalue_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavEmailvalue_Internalname, "Email", "gx-form-item ProfileCardExtendedInfoAboutInfoLabel", 1, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavEmailvalue_Internalname, "Email", "gx-form-item AttributeLabel", 1, true, "width: 25%;");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 72,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavEmailvalue_Internalname, AV17EmailValue, StringUtil.RTrim( context.localUtil.Format( AV17EmailValue, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,72);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavEmailvalue_Jsonclick, 0, "ProfileCardExtendedInfoAboutInfo", "", "", "", "", 1, edtavEmailvalue_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 82,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavEmailvalue_Internalname, AV17EmailValue, StringUtil.RTrim( context.localUtil.Format( AV17EmailValue, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,82);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavEmailvalue_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavEmailvalue_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -691,8 +724,8 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 78,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavPhone_Internalname, AV33Phone, StringUtil.RTrim( context.localUtil.Format( AV33Phone, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,78);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPhone_Jsonclick, 0, "ReadOnlyAttributeField", "", "", "", "", 1, edtavPhone_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 88,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavPhone_Internalname, AV33Phone, StringUtil.RTrim( context.localUtil.Format( AV33Phone, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,88);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPhone_Jsonclick, 0, "ReadOnlyAttributeField", "", "", "", "", 1, edtavPhone_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -715,16 +748,16 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-9", "start", "top", "", "", "div");
-            wb_table1_87_9R2( true) ;
+            wb_table1_97_9R2( true) ;
          }
          else
          {
-            wb_table1_87_9R2( false) ;
+            wb_table1_97_9R2( false) ;
          }
          return  ;
       }
 
-      protected void wb_table1_87_9R2e( bool wbgen )
+      protected void wb_table1_97_9R2e( bool wbgen )
       {
          if ( wbgen )
          {
@@ -736,16 +769,16 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "CellMarginTop", "start", "top", "", "flex-grow:1;align-self:flex-end;", "div");
-            wb_table2_95_9R2( true) ;
+            wb_table2_105_9R2( true) ;
          }
          else
          {
-            wb_table2_95_9R2( false) ;
+            wb_table2_105_9R2( false) ;
          }
          return  ;
       }
 
-      protected void wb_table2_95_9R2e( bool wbgen )
+      protected void wb_table2_105_9R2e( bool wbgen )
       {
          if ( wbgen )
          {
@@ -770,15 +803,15 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, divHtml_bottomauxiliarcontrols_Internalname, 1, 0, "px", 0, "px", "Section", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 106,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavPhonecode_Internalname, AV34PhoneCode, StringUtil.RTrim( context.localUtil.Format( AV34PhoneCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,106);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPhonecode_Jsonclick, 0, "Attribute", "", "", "", "", edtavPhonecode_Visible, 1, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 116,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavPhonecode_Internalname, AV34PhoneCode, StringUtil.RTrim( context.localUtil.Format( AV34PhoneCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,116);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPhonecode_Jsonclick, 0, "Attribute", "", "", "", "", edtavPhonecode_Visible, 1, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             /* Single line edit */
             if ( context.isSmartDevice( ) )
             {
                gxphoneLink = "tel:" + StringUtil.RTrim( AV39PhoneNumberValue);
             }
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 107,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavPhonenumbervalue_Internalname, StringUtil.RTrim( AV39PhoneNumberValue), StringUtil.RTrim( context.localUtil.Format( AV39PhoneNumberValue, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,107);\"", "'"+""+"'"+",false,"+"'"+""+"'", gxphoneLink, "", "", "", edtavPhonenumbervalue_Jsonclick, 0, "Attribute", "", "", "", "", edtavPhonenumbervalue_Visible, 1, 0, "tel", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, 0, true, "GeneXus\\Phone", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 117,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavPhonenumbervalue_Internalname, StringUtil.RTrim( AV39PhoneNumberValue), StringUtil.RTrim( context.localUtil.Format( AV39PhoneNumberValue, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,117);\"", "'"+""+"'"+",false,"+"'"+""+"'", gxphoneLink, "", "", "", edtavPhonenumbervalue_Jsonclick, 0, "Attribute", "", "", "", "", edtavPhonenumbervalue_Visible, 1, 0, "tel", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, 0, true, "GeneXus\\Phone", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1056,7 +1089,6 @@ namespace GeneXus.Programs {
             ajax_req_read_hidden_sdt(cgiGet( "vPHONECODE_DATA"), AV35PhoneCode_Data);
             /* Read saved values. */
             AV6isUpdateMode = StringUtil.StrToBool( cgiGet( "vISUPDATEMODE"));
-            Avataruc_Previewimagelink = cgiGet( "AVATARUC_Previewimagelink");
             Dvpanel_profileextendedinfo1_tablemaininfo_Width = cgiGet( "DVPANEL_PROFILEEXTENDEDINFO1_TABLEMAININFO_Width");
             Dvpanel_profileextendedinfo1_tablemaininfo_Autowidth = StringUtil.StrToBool( cgiGet( "DVPANEL_PROFILEEXTENDEDINFO1_TABLEMAININFO_Autowidth"));
             Dvpanel_profileextendedinfo1_tablemaininfo_Autoheight = StringUtil.StrToBool( cgiGet( "DVPANEL_PROFILEEXTENDEDINFO1_TABLEMAININFO_Autoheight"));
@@ -1067,6 +1099,7 @@ namespace GeneXus.Programs {
             Dvpanel_profileextendedinfo1_tablemaininfo_Showcollapseicon = StringUtil.StrToBool( cgiGet( "DVPANEL_PROFILEEXTENDEDINFO1_TABLEMAININFO_Showcollapseicon"));
             Dvpanel_profileextendedinfo1_tablemaininfo_Iconposition = cgiGet( "DVPANEL_PROFILEEXTENDEDINFO1_TABLEMAININFO_Iconposition");
             Dvpanel_profileextendedinfo1_tablemaininfo_Autoscroll = StringUtil.StrToBool( cgiGet( "DVPANEL_PROFILEEXTENDEDINFO1_TABLEMAININFO_Autoscroll"));
+            Avataruc_Previewimagelink = cgiGet( "AVATARUC_Previewimagelink");
             Combo_phonecode_Cls = cgiGet( "COMBO_PHONECODE_Cls");
             Combo_phonecode_Selectedvalue_set = cgiGet( "COMBO_PHONECODE_Selectedvalue_set");
             Combo_phonecode_Selectedtext_set = cgiGet( "COMBO_PHONECODE_Selectedtext_set");
@@ -1083,6 +1116,7 @@ namespace GeneXus.Programs {
             Dvpanel_profileextendedinfo1_tableabout_Iconposition = cgiGet( "DVPANEL_PROFILEEXTENDEDINFO1_TABLEABOUT_Iconposition");
             Dvpanel_profileextendedinfo1_tableabout_Autoscroll = StringUtil.StrToBool( cgiGet( "DVPANEL_PROFILEEXTENDEDINFO1_TABLEABOUT_Autoscroll"));
             /* Read variables values. */
+            AV68profileImage = cgiGet( imgavProfileimage_Internalname);
             AV56user = cgiGet( edtavUser_Internalname);
             AssignAttri("", false, "AV56user", AV56user);
             AV46role = cgiGet( edtavRole_Internalname);
@@ -1172,19 +1206,18 @@ namespace GeneXus.Programs {
                AV5GAMUser.gxTpr_Phone = AV34PhoneCode+"~"+AV38PhoneNumber;
             }
             AV5GAMUser.gxTpr_Dateupdated = DateTimeUtil.Now( context);
-            AV67WWP_UserExtended.Load(AV65WWPContext.gxTpr_Gamuserguid);
-            AV67WWP_UserExtended.gxTpr_Wwpuserextendedphoto = AV62UserProfileImage;
-            AV67WWP_UserExtended.gxTpr_Wwpuserextendedphoto_gxi = GXDbFile.GetUriFromFile( "", "", AV62UserProfileImage);
-            AV67WWP_UserExtended.Save();
+            AV62UserProfileImage = "";
+            AV62UserProfileImage=context.FileFromBase64( AV66base64String) ;
             AV5GAMUser.save();
-            if ( AV5GAMUser.success() || AV67WWP_UserExtended.Success() )
+            if ( AV5GAMUser.success() )
             {
-               context.CommitDataStores("wp_userprofile",pr_default);
-               new prc_loadwwpcontext(context ).execute( ref  AV65WWPContext) ;
-               new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV65WWPContext) ;
-               /* Execute user subroutine: 'LOADUSERPROFILE' */
-               S132 ();
-               if (returnInSub) return;
+               AV67WWP_UserExtended.Load(AV65WWPContext.gxTpr_Gamuserguid);
+               if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62UserProfileImage)) )
+               {
+                  AV67WWP_UserExtended.gxTpr_Wwpuserextendedphoto = AV62UserProfileImage;
+                  AV67WWP_UserExtended.gxTpr_Wwpuserextendedphoto_gxi = GXDbFile.GetUriFromFile( "", "", AV62UserProfileImage);
+               }
+               AV67WWP_UserExtended.Save();
                /* Execute user subroutine: 'UPDATETRANSACTIONTABLE' */
                S152 ();
                if (returnInSub) return;
@@ -1197,24 +1230,19 @@ namespace GeneXus.Programs {
             else
             {
                AV26GAMErrorCollection = AV5GAMUser.geterrors();
-               AV68GXV1 = 1;
-               while ( AV68GXV1 <= AV26GAMErrorCollection.Count )
+               AV70GXV1 = 1;
+               while ( AV70GXV1 <= AV26GAMErrorCollection.Count )
                {
-                  AV25GAMError = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV26GAMErrorCollection.Item(AV68GXV1));
+                  AV25GAMError = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV26GAMErrorCollection.Item(AV70GXV1));
                   GX_msglist.addItem(StringUtil.StringReplace( AV25GAMError.gxTpr_Message, "Username", "Email/Username"));
-                  AV68GXV1 = (int)(AV68GXV1+1);
+                  AV70GXV1 = (int)(AV70GXV1+1);
                }
             }
          }
-         else
-         {
-            GX_msglist.addItem("Profile could not be updated.");
-         }
          /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV5GAMUser", AV5GAMUser);
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV65WWPContext", AV65WWPContext);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV53Trn_Receptionist", AV53Trn_Receptionist);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV52Trn_Manager", AV52Trn_Manager);
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV65WWPContext", AV65WWPContext);
       }
 
       protected void E149R2( )
@@ -1232,6 +1260,16 @@ namespace GeneXus.Programs {
          AssignAttri("", false, "AV30LastNameValue", AV30LastNameValue);
          AV17EmailValue = AV16Email;
          AssignAttri("", false, "AV17EmailValue", AV17EmailValue);
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV65WWPContext.gxTpr_Profileurl)) )
+         {
+            Avataruc_Previewimagelink = context.convertURL( (string)(context.GetImagePath( "cd132e7c-3222-4be1-9123-4cad0b17f9cf", "", context.GetTheme( ))));
+            ucAvataruc.SendProperty(context, "", false, Avataruc_Internalname, "PreviewImageLink", Avataruc_Previewimagelink);
+         }
+         else
+         {
+            Avataruc_Previewimagelink = AV65WWPContext.gxTpr_Profileurl;
+            ucAvataruc.SendProperty(context, "", false, Avataruc_Internalname, "PreviewImageLink", Avataruc_Previewimagelink);
+         }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV33Phone)) )
          {
             AV37PhoneInputStrings = GxRegex.Split(AV65WWPContext.gxTpr_Gamuserphone,"~");
@@ -1243,8 +1281,6 @@ namespace GeneXus.Programs {
             ucCombo_phonecode.SendProperty(context, "", false, Combo_phonecode_Internalname, "SelectedValue_set", Combo_phonecode_Selectedvalue_set);
             AV38PhoneNumber = AV37PhoneInputStrings.GetString(2);
             AssignAttri("", false, "AV38PhoneNumber", AV38PhoneNumber);
-            new prc_logtofile(context ).execute(  "Attributes: "+StringUtil.Str( (decimal)(AV5GAMUser.gxTpr_Attributes.Count), 9, 0)) ;
-            new prc_logtofile(context ).execute(  "Phone: "+AV37PhoneInputStrings.GetString(1)+" "+AV37PhoneInputStrings.GetString(2)) ;
          }
          else
          {
@@ -1288,6 +1324,8 @@ namespace GeneXus.Programs {
       {
          /* 'ATTRIBUTESSECURITYCODE' Routine */
          returnInSub = false;
+         divUpdateavatartable_Visible = (((AV6isUpdateMode)) ? 1 : 0);
+         AssignProp("", false, divUpdateavatartable_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divUpdateavatartable_Visible), 5, 0), true);
          divProfileextendedinfo1_firstinfoabout_Visible = ((!AV6isUpdateMode) ? 1 : 0);
          AssignProp("", false, divProfileextendedinfo1_firstinfoabout_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divProfileextendedinfo1_firstinfoabout_Visible), 5, 0), true);
          divUpdatemodefirstnametbl_Visible = (((AV6isUpdateMode)) ? 1 : 0);
@@ -1312,13 +1350,13 @@ namespace GeneXus.Programs {
       {
          /* 'LOADCOMBOPHONECODE' Routine */
          returnInSub = false;
-         AV70GXV3 = 1;
-         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV69GXV2;
+         AV72GXV3 = 1;
+         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV71GXV2;
          new dp_country(context ).execute( out  GXt_objcol_SdtSDT_Country_SDT_CountryItem3) ;
-         AV69GXV2 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
-         while ( AV70GXV3 <= AV69GXV2.Count )
+         AV71GXV2 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
+         while ( AV72GXV3 <= AV71GXV2.Count )
          {
-            AV36PhoneCode_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV69GXV2.Item(AV70GXV3));
+            AV36PhoneCode_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV71GXV2.Item(AV72GXV3));
             AV12Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
             AV12Combo_DataItem.gxTpr_Id = AV36PhoneCode_DPItem.gxTpr_Countrydialcode;
             AV13ComboTitles = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
@@ -1326,7 +1364,7 @@ namespace GeneXus.Programs {
             AV13ComboTitles.Add(AV36PhoneCode_DPItem.gxTpr_Countryflag, 0);
             AV12Combo_DataItem.gxTpr_Title = AV13ComboTitles.ToJSonString(false);
             AV35PhoneCode_Data.Add(AV12Combo_DataItem, 0);
-            AV70GXV3 = (int)(AV70GXV3+1);
+            AV72GXV3 = (int)(AV72GXV3+1);
          }
          AV35PhoneCode_Data.Sort("Title");
          Combo_phonecode_Selectedvalue_set = AV34PhoneCode;
@@ -1338,64 +1376,38 @@ namespace GeneXus.Programs {
          /* Avataruc_Onupload Routine */
          returnInSub = false;
          AV62UserProfileImage = "";
-         AssignAttri("", false, "AV62UserProfileImage", AV62UserProfileImage);
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV21FileUploadedData.gxTpr_Base64image)) )
          {
             AV66base64String = GxRegex.Split(AV21FileUploadedData.gxTpr_Base64image,",").GetString(2);
-            AV62UserProfileImage=context.FileFromBase64( AV66base64String) ;
-            if ( AV65WWPContext.gxTpr_Isreceptionist )
-            {
-               AV53Trn_Receptionist.Load(AV65WWPContext.gxTpr_Receptionistid, AV65WWPContext.gxTpr_Organisationid, AV65WWPContext.gxTpr_Locationid);
-               AV53Trn_Receptionist.gxTpr_Receptionistimage = AV62UserProfileImage;
-               AV53Trn_Receptionist.gxTpr_Receptionistimage_gxi = GXDbFile.GetUriFromFile( "", "", AV62UserProfileImage);
-               if ( AV53Trn_Receptionist.Update() )
-               {
-                  context.CommitDataStores("wp_userprofile",pr_default);
-               }
-            }
-            if ( AV65WWPContext.gxTpr_Isorganisationmanager )
-            {
-               AV52Trn_Manager.Load(AV65WWPContext.gxTpr_Managerid, AV65WWPContext.gxTpr_Organisationid);
-               AV52Trn_Manager.gxTpr_Managerimage = AV62UserProfileImage;
-               AV52Trn_Manager.gxTpr_Managerimage_gxi = GXDbFile.GetUriFromFile( "", "", AV62UserProfileImage);
-               if ( AV52Trn_Manager.Update() )
-               {
-                  context.CommitDataStores("wp_userprofile",pr_default);
-               }
-            }
-         }
-         if ( AV52Trn_Manager.Success() || AV53Trn_Receptionist.Success() )
-         {
-            GX_msglist.addItem("Profile Image updated");
-            new prc_loadwwpcontext(context ).execute( ref  AV65WWPContext) ;
-            /* Execute user subroutine: 'LOADUSERPROFILE' */
-            S132 ();
-            if (returnInSub) return;
-            this.executeExternalObjectMethod("", false, "GlobalEvents", "RefreshUserProfile", new Object[] {}, true);
+            AssignAttri("", false, "AV66base64String", AV66base64String);
          }
          /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV53Trn_Receptionist", AV53Trn_Receptionist);
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV52Trn_Manager", AV52Trn_Manager);
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV65WWPContext", AV65WWPContext);
       }
 
       protected void S132( )
       {
          /* 'LOADUSERPROFILE' Routine */
          returnInSub = false;
+         new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV65WWPContext) ;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV65WWPContext.gxTpr_Profileurl)) )
          {
-            imgAvatarimage_gximage = "avatar";
-            AssignProp("", false, imgAvatarimage_Internalname, "gximage", imgAvatarimage_gximage, true);
-            AV10avatarImage = context.GetImagePath( "b40c922e-75c6-44e6-9389-0332e13b7da1", "", context.GetTheme( ));
-            AV71Avatarimage_GXI = GXDbFile.PathToUrl( context.GetImagePath( "b40c922e-75c6-44e6-9389-0332e13b7da1", "", context.GetTheme( )), context);
-            Avataruc_Previewimagelink = AV71Avatarimage_GXI;
-            ucAvataruc.SendProperty(context, "", false, Avataruc_Internalname, "PreviewImageLink", Avataruc_Previewimagelink);
+            imgavProfileimage_gximage = "avatar";
+            AssignProp("", false, imgavProfileimage_Internalname, "gximage", imgavProfileimage_gximage, true);
+            AV68profileImage = context.GetImagePath( "b40c922e-75c6-44e6-9389-0332e13b7da1", "", context.GetTheme( ));
+            AssignProp("", false, imgavProfileimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage)) ? AV73Profileimage_GXI : context.convertURL( context.PathToRelativeUrl( AV68profileImage))), true);
+            AssignProp("", false, imgavProfileimage_Internalname, "SrcSet", context.GetImageSrcSet( AV68profileImage), true);
+            AV73Profileimage_GXI = GXDbFile.PathToUrl( context.GetImagePath( "b40c922e-75c6-44e6-9389-0332e13b7da1", "", context.GetTheme( )), context);
+            AssignProp("", false, imgavProfileimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage)) ? AV73Profileimage_GXI : context.convertURL( context.PathToRelativeUrl( AV68profileImage))), true);
+            AssignProp("", false, imgavProfileimage_Internalname, "SrcSet", context.GetImageSrcSet( AV68profileImage), true);
          }
          else
          {
-            Avataruc_Previewimagelink = AV65WWPContext.gxTpr_Profileurl;
-            ucAvataruc.SendProperty(context, "", false, Avataruc_Internalname, "PreviewImageLink", Avataruc_Previewimagelink);
+            AV68profileImage = AV65WWPContext.gxTpr_Profileurl;
+            AssignProp("", false, imgavProfileimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage)) ? AV73Profileimage_GXI : context.convertURL( context.PathToRelativeUrl( AV68profileImage))), true);
+            AssignProp("", false, imgavProfileimage_Internalname, "SrcSet", context.GetImageSrcSet( AV68profileImage), true);
+            AV73Profileimage_GXI = GXDbFile.PathToUrl( AV65WWPContext.gxTpr_Profileurl, context);
+            AssignProp("", false, imgavProfileimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage)) ? AV73Profileimage_GXI : context.convertURL( context.PathToRelativeUrl( AV68profileImage))), true);
+            AssignProp("", false, imgavProfileimage_Internalname, "SrcSet", context.GetImageSrcSet( AV68profileImage), true);
          }
          AV56user = AV65WWPContext.gxTpr_Gamuserfirstname + " " + AV65WWPContext.gxTpr_Gamuserlastname;
          AssignAttri("", false, "AV56user", AV56user);
@@ -1424,12 +1436,19 @@ namespace GeneXus.Programs {
       {
          /* 'UPDATETRANSACTIONTABLE' Routine */
          returnInSub = false;
+         AV62UserProfileImage = "";
+         AV62UserProfileImage=context.FileFromBase64( AV66base64String) ;
          if ( AV65WWPContext.gxTpr_Isreceptionist )
          {
             AV53Trn_Receptionist.Load(AV65WWPContext.gxTpr_Receptionistid, AV65WWPContext.gxTpr_Organisationid, AV65WWPContext.gxTpr_Locationid);
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66base64String)) )
+            {
+               AV53Trn_Receptionist.gxTpr_Receptionistimage = AV62UserProfileImage;
+               AV53Trn_Receptionist.gxTpr_Receptionistimage_gxi = GXDbFile.GetUriFromFile( "", "", AV62UserProfileImage);
+            }
+            AV53Trn_Receptionist.gxTpr_Receptionistemail = AV17EmailValue;
             AV53Trn_Receptionist.gxTpr_Receptionistgivenname = AV24FirstNameValue;
             AV53Trn_Receptionist.gxTpr_Receptionistlastname = AV30LastNameValue;
-            AV53Trn_Receptionist.gxTpr_Receptionistemail = AV17EmailValue;
             AV53Trn_Receptionist.gxTpr_Receptionistphonecode = AV34PhoneCode;
             AV53Trn_Receptionist.gxTpr_Receptionistphonenumber = AV38PhoneNumber;
             if ( AV53Trn_Receptionist.Update() )
@@ -1440,9 +1459,14 @@ namespace GeneXus.Programs {
          if ( AV65WWPContext.gxTpr_Isorganisationmanager )
          {
             AV52Trn_Manager.Load(AV65WWPContext.gxTpr_Managerid, AV65WWPContext.gxTpr_Organisationid);
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66base64String)) )
+            {
+               AV52Trn_Manager.gxTpr_Managerimage = AV62UserProfileImage;
+               AV52Trn_Manager.gxTpr_Managerimage_gxi = GXDbFile.GetUriFromFile( "", "", AV62UserProfileImage);
+            }
+            AV52Trn_Manager.gxTpr_Manageremail = AV17EmailValue;
             AV52Trn_Manager.gxTpr_Managergivenname = AV24FirstNameValue;
             AV52Trn_Manager.gxTpr_Managerlastname = AV30LastNameValue;
-            AV52Trn_Manager.gxTpr_Manageremail = AV17EmailValue;
             AV52Trn_Manager.gxTpr_Managerphonecode = AV34PhoneCode;
             AV52Trn_Manager.gxTpr_Managerphonenumber = AV38PhoneNumber;
             if ( AV52Trn_Manager.Update() )
@@ -1453,6 +1477,32 @@ namespace GeneXus.Programs {
          if ( AV52Trn_Manager.Success() || AV53Trn_Receptionist.Success() )
          {
             GX_msglist.addItem("Account Updated Successfully");
+            GXt_SdtWWPContext4 = AV65WWPContext;
+            new prc_loadwwpcontext(context ).execute( ref  GXt_SdtWWPContext4) ;
+            AV65WWPContext = GXt_SdtWWPContext4;
+            /* Execute user subroutine: 'LOADUSERPROFILE' */
+            S132 ();
+            if (returnInSub) return;
+            this.executeExternalObjectMethod("", false, "GlobalEvents", "RefreshUserProfile", new Object[] {}, true);
+         }
+         else
+         {
+            AV75GXV5 = 1;
+            AV74GXV4 = AV52Trn_Manager.GetMessages();
+            while ( AV75GXV5 <= AV74GXV4.Count )
+            {
+               AV69Message = ((GeneXus.Utils.SdtMessages_Message)AV74GXV4.Item(AV75GXV5));
+               GX_msglist.addItem(AV69Message.gxTpr_Description);
+               AV75GXV5 = (int)(AV75GXV5+1);
+            }
+            AV77GXV7 = 1;
+            AV76GXV6 = AV53Trn_Receptionist.GetMessages();
+            while ( AV77GXV7 <= AV76GXV6.Count )
+            {
+               AV69Message = ((GeneXus.Utils.SdtMessages_Message)AV76GXV6.Item(AV77GXV7));
+               GX_msglist.addItem(AV69Message.gxTpr_Description);
+               AV77GXV7 = (int)(AV77GXV7+1);
+            }
          }
       }
 
@@ -1466,7 +1516,7 @@ namespace GeneXus.Programs {
          returnInSub = false;
       }
 
-      protected void wb_table2_95_9R2( bool wbgen )
+      protected void wb_table2_105_9R2( bool wbgen )
       {
          if ( wbgen )
          {
@@ -1483,14 +1533,14 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group ActionGroup", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 100,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 110,'',false,'',0)\"";
             ClassString = "btn-default";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", "Cancel", bttBtncancel_Jsonclick, 7, "Cancel", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"e169r1_client"+"'", TempTags, "", 2, "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 102,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 112,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtnsaveupdate_Internalname, "", "Update", bttBtnsaveupdate_Jsonclick, 5, "Update", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOSAVEUPDATE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_UserProfile.htm");
@@ -1500,15 +1550,15 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
             context.WriteHtmlText( "</table>") ;
-            wb_table2_95_9R2e( true) ;
+            wb_table2_105_9R2e( true) ;
          }
          else
          {
-            wb_table2_95_9R2e( false) ;
+            wb_table2_105_9R2e( false) ;
          }
       }
 
-      protected void wb_table1_87_9R2( bool wbgen )
+      protected void wb_table1_97_9R2( bool wbgen )
       {
          if ( wbgen )
          {
@@ -1531,18 +1581,18 @@ namespace GeneXus.Programs {
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, edtavPhonenumber_Internalname, "Phone Number", "gx-form-item AttributePhoneNumberLabel", 0, true, "width: 25%;");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 93,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavPhonenumber_Internalname, AV38PhoneNumber, StringUtil.RTrim( context.localUtil.Format( AV38PhoneNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,93);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPhonenumber_Jsonclick, 0, "AttributePhoneNumber", "", "", "", "", 1, edtavPhonenumber_Enabled, 0, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 103,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavPhonenumber_Internalname, AV38PhoneNumber, StringUtil.RTrim( context.localUtil.Format( AV38PhoneNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,103);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPhonenumber_Jsonclick, 0, "AttributePhoneNumber", "", "", "", "", 1, edtavPhonenumber_Enabled, 0, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
             context.WriteHtmlText( "</table>") ;
-            wb_table1_87_9R2e( true) ;
+            wb_table1_97_9R2e( true) ;
          }
          else
          {
-            wb_table1_87_9R2e( false) ;
+            wb_table1_97_9R2e( false) ;
          }
       }
 
@@ -1585,7 +1635,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241261644465", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412101952170", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1601,14 +1651,14 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_userprofile.js", "?20241261644467", false, true);
+         context.AddJavascriptSource("wp_userprofile.js", "?202412101952173", false, true);
+         context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/UC_AvatarRender.js", "", false, true);
-         context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
-         context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
-         context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -1622,12 +1672,16 @@ namespace GeneXus.Programs {
 
       protected void init_default_properties( )
       {
-         Avataruc_Internalname = "AVATARUC";
+         imgavProfileimage_Internalname = "vPROFILEIMAGE";
          edtavUser_Internalname = "vUSER";
          edtavRole_Internalname = "vROLE";
          bttBtnupdateprofile_Internalname = "BTNUPDATEPROFILE";
          divProfileextendedinfo1_tablemaininfo_Internalname = "PROFILEEXTENDEDINFO1_TABLEMAININFO";
          Dvpanel_profileextendedinfo1_tablemaininfo_Internalname = "DVPANEL_PROFILEEXTENDEDINFO1_TABLEMAININFO";
+         lblAvatarlabel_Internalname = "AVATARLABEL";
+         Avataruc_Internalname = "AVATARUC";
+         divFieldavatartable_Internalname = "FIELDAVATARTABLE";
+         divUpdateavatartable_Internalname = "UPDATEAVATARTABLE";
          edtavFirstname_Internalname = "vFIRSTNAME";
          divProfileextendedinfo1_firstinfoabout_Internalname = "PROFILEEXTENDEDINFO1_FIRSTINFOABOUT";
          edtavFirstnamevalue_Internalname = "vFIRSTNAMEVALUE";
@@ -1701,10 +1755,12 @@ namespace GeneXus.Programs {
          edtavFirstname_Jsonclick = "";
          edtavFirstname_Enabled = 1;
          divProfileextendedinfo1_firstinfoabout_Visible = 1;
+         divUpdateavatartable_Visible = 1;
          edtavRole_Jsonclick = "";
          edtavRole_Enabled = 1;
          edtavUser_Jsonclick = "";
          edtavUser_Enabled = 1;
+         imgavProfileimage_gximage = "";
          Dvpanel_profileextendedinfo1_tableabout_Autoscroll = Convert.ToBoolean( 0);
          Dvpanel_profileextendedinfo1_tableabout_Iconposition = "Right";
          Dvpanel_profileextendedinfo1_tableabout_Showcollapseicon = Convert.ToBoolean( 0);
@@ -1718,6 +1774,7 @@ namespace GeneXus.Programs {
          Combo_phonecode_Htmltemplate = "";
          Combo_phonecode_Emptyitem = Convert.ToBoolean( 0);
          Combo_phonecode_Cls = "ExtendedCombo DropDownComponent ExtendedComboWithImage";
+         Avataruc_Previewimagelink = "";
          Dvpanel_profileextendedinfo1_tablemaininfo_Autoscroll = Convert.ToBoolean( 0);
          Dvpanel_profileextendedinfo1_tablemaininfo_Iconposition = "Right";
          Dvpanel_profileextendedinfo1_tablemaininfo_Showcollapseicon = Convert.ToBoolean( 0);
@@ -1728,7 +1785,6 @@ namespace GeneXus.Programs {
          Dvpanel_profileextendedinfo1_tablemaininfo_Autoheight = Convert.ToBoolean( -1);
          Dvpanel_profileextendedinfo1_tablemaininfo_Autowidth = Convert.ToBoolean( 0);
          Dvpanel_profileextendedinfo1_tablemaininfo_Width = "100%";
-         Avataruc_Previewimagelink = "";
          Form.Headerrawhtml = "";
          Form.Background = "";
          Form.Textcolor = 0;
@@ -1750,13 +1806,13 @@ namespace GeneXus.Programs {
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
          setEventMetadata("'DOCANCEL'","""{"handler":"E169R1","iparms":[{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"}]""");
-         setEventMetadata("'DOCANCEL'",""","oparms":[{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"},{"av":"divProfileextendedinfo1_firstinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_FIRSTINFOABOUT","prop":"Visible"},{"av":"divUpdatemodefirstnametbl_Visible","ctrl":"UPDATEMODEFIRSTNAMETBL","prop":"Visible"},{"av":"divProfileextendedinfo1_secondinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_SECONDINFOABOUT","prop":"Visible"},{"av":"divUpdatemodelastnaetbl_Visible","ctrl":"UPDATEMODELASTNAETBL","prop":"Visible"},{"av":"divProfileextendedinfo1_thirdinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_THIRDINFOABOUT","prop":"Visible"},{"av":"divUpdateemailtbl_Visible","ctrl":"UPDATEEMAILTBL","prop":"Visible"},{"av":"divProfileextendedinfo1_fourthinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_FOURTHINFOABOUT","prop":"Visible"},{"av":"divUpdatephonetbl_Visible","ctrl":"UPDATEPHONETBL","prop":"Visible"},{"av":"tblUpdateactionstable_Visible","ctrl":"UPDATEACTIONSTABLE","prop":"Visible"}]}""");
-         setEventMetadata("'DOSAVEUPDATE'","""{"handler":"E139R2","iparms":[{"av":"AV65WWPContext","fld":"vWWPCONTEXT"},{"av":"AV11CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV17EmailValue","fld":"vEMAILVALUE"},{"av":"AV24FirstNameValue","fld":"vFIRSTNAMEVALUE"},{"av":"AV30LastNameValue","fld":"vLASTNAMEVALUE"},{"av":"AV38PhoneNumber","fld":"vPHONENUMBER"},{"av":"AV34PhoneCode","fld":"vPHONECODE"},{"av":"AV62UserProfileImage","fld":"vUSERPROFILEIMAGE"},{"av":"AV71Avatarimage_GXI","fld":"vAVATARIMAGE_GXI"},{"av":"AV52Trn_Manager","fld":"vTRN_MANAGER"},{"av":"AV53Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"}]""");
-         setEventMetadata("'DOSAVEUPDATE'",""","oparms":[{"av":"AV65WWPContext","fld":"vWWPCONTEXT"},{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"},{"av":"AV11CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"Avataruc_Previewimagelink","ctrl":"AVATARUC","prop":"PreviewImageLink"},{"av":"AV56user","fld":"vUSER"},{"av":"AV16Email","fld":"vEMAIL"},{"av":"AV23FirstName","fld":"vFIRSTNAME"},{"av":"AV29LastName","fld":"vLASTNAME"},{"av":"AV33Phone","fld":"vPHONE"},{"av":"AV46role","fld":"vROLE"},{"av":"AV53Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV52Trn_Manager","fld":"vTRN_MANAGER"},{"av":"divProfileextendedinfo1_firstinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_FIRSTINFOABOUT","prop":"Visible"},{"av":"divUpdatemodefirstnametbl_Visible","ctrl":"UPDATEMODEFIRSTNAMETBL","prop":"Visible"},{"av":"divProfileextendedinfo1_secondinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_SECONDINFOABOUT","prop":"Visible"},{"av":"divUpdatemodelastnaetbl_Visible","ctrl":"UPDATEMODELASTNAETBL","prop":"Visible"},{"av":"divProfileextendedinfo1_thirdinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_THIRDINFOABOUT","prop":"Visible"},{"av":"divUpdateemailtbl_Visible","ctrl":"UPDATEEMAILTBL","prop":"Visible"},{"av":"divProfileextendedinfo1_fourthinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_FOURTHINFOABOUT","prop":"Visible"},{"av":"divUpdatephonetbl_Visible","ctrl":"UPDATEPHONETBL","prop":"Visible"},{"av":"tblUpdateactionstable_Visible","ctrl":"UPDATEACTIONSTABLE","prop":"Visible"}]}""");
-         setEventMetadata("'DOUPDATEPROFILE'","""{"handler":"E149R2","iparms":[{"av":"AV23FirstName","fld":"vFIRSTNAME"},{"av":"AV29LastName","fld":"vLASTNAME"},{"av":"AV16Email","fld":"vEMAIL"},{"av":"AV33Phone","fld":"vPHONE"},{"av":"AV65WWPContext","fld":"vWWPCONTEXT"},{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"}]""");
-         setEventMetadata("'DOUPDATEPROFILE'",""","oparms":[{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"},{"av":"AV24FirstNameValue","fld":"vFIRSTNAMEVALUE"},{"av":"AV30LastNameValue","fld":"vLASTNAMEVALUE"},{"av":"AV17EmailValue","fld":"vEMAILVALUE"},{"av":"AV38PhoneNumber","fld":"vPHONENUMBER"},{"av":"AV34PhoneCode","fld":"vPHONECODE"},{"av":"Combo_phonecode_Selectedtext_set","ctrl":"COMBO_PHONECODE","prop":"SelectedText_set"},{"av":"Combo_phonecode_Selectedvalue_set","ctrl":"COMBO_PHONECODE","prop":"SelectedValue_set"},{"av":"divProfileextendedinfo1_firstinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_FIRSTINFOABOUT","prop":"Visible"},{"av":"divUpdatemodefirstnametbl_Visible","ctrl":"UPDATEMODEFIRSTNAMETBL","prop":"Visible"},{"av":"divProfileextendedinfo1_secondinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_SECONDINFOABOUT","prop":"Visible"},{"av":"divUpdatemodelastnaetbl_Visible","ctrl":"UPDATEMODELASTNAETBL","prop":"Visible"},{"av":"divProfileextendedinfo1_thirdinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_THIRDINFOABOUT","prop":"Visible"},{"av":"divUpdateemailtbl_Visible","ctrl":"UPDATEEMAILTBL","prop":"Visible"},{"av":"divProfileextendedinfo1_fourthinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_FOURTHINFOABOUT","prop":"Visible"},{"av":"divUpdatephonetbl_Visible","ctrl":"UPDATEPHONETBL","prop":"Visible"},{"av":"tblUpdateactionstable_Visible","ctrl":"UPDATEACTIONSTABLE","prop":"Visible"}]}""");
-         setEventMetadata("AVATARUC.ONUPLOAD","""{"handler":"E119R2","iparms":[{"av":"AV21FileUploadedData","fld":"vFILEUPLOADEDDATA"},{"av":"AV65WWPContext","fld":"vWWPCONTEXT"},{"av":"AV52Trn_Manager","fld":"vTRN_MANAGER"},{"av":"AV53Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV71Avatarimage_GXI","fld":"vAVATARIMAGE_GXI"}]""");
-         setEventMetadata("AVATARUC.ONUPLOAD",""","oparms":[{"av":"AV62UserProfileImage","fld":"vUSERPROFILEIMAGE"},{"av":"AV53Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV52Trn_Manager","fld":"vTRN_MANAGER"},{"av":"AV65WWPContext","fld":"vWWPCONTEXT"},{"av":"Avataruc_Previewimagelink","ctrl":"AVATARUC","prop":"PreviewImageLink"},{"av":"AV56user","fld":"vUSER"},{"av":"AV16Email","fld":"vEMAIL"},{"av":"AV23FirstName","fld":"vFIRSTNAME"},{"av":"AV29LastName","fld":"vLASTNAME"},{"av":"AV33Phone","fld":"vPHONE"},{"av":"AV46role","fld":"vROLE"}]}""");
+         setEventMetadata("'DOCANCEL'",""","oparms":[{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"},{"av":"divUpdateavatartable_Visible","ctrl":"UPDATEAVATARTABLE","prop":"Visible"},{"av":"divProfileextendedinfo1_firstinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_FIRSTINFOABOUT","prop":"Visible"},{"av":"divUpdatemodefirstnametbl_Visible","ctrl":"UPDATEMODEFIRSTNAMETBL","prop":"Visible"},{"av":"divProfileextendedinfo1_secondinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_SECONDINFOABOUT","prop":"Visible"},{"av":"divUpdatemodelastnaetbl_Visible","ctrl":"UPDATEMODELASTNAETBL","prop":"Visible"},{"av":"divProfileextendedinfo1_thirdinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_THIRDINFOABOUT","prop":"Visible"},{"av":"divUpdateemailtbl_Visible","ctrl":"UPDATEEMAILTBL","prop":"Visible"},{"av":"divProfileextendedinfo1_fourthinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_FOURTHINFOABOUT","prop":"Visible"},{"av":"divUpdatephonetbl_Visible","ctrl":"UPDATEPHONETBL","prop":"Visible"},{"av":"tblUpdateactionstable_Visible","ctrl":"UPDATEACTIONSTABLE","prop":"Visible"}]}""");
+         setEventMetadata("'DOSAVEUPDATE'","""{"handler":"E139R2","iparms":[{"av":"AV65WWPContext","fld":"vWWPCONTEXT"},{"av":"AV11CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV17EmailValue","fld":"vEMAILVALUE"},{"av":"AV24FirstNameValue","fld":"vFIRSTNAMEVALUE"},{"av":"AV30LastNameValue","fld":"vLASTNAMEVALUE"},{"av":"AV38PhoneNumber","fld":"vPHONENUMBER"},{"av":"AV34PhoneCode","fld":"vPHONECODE"},{"av":"AV66base64String","fld":"vBASE64STRING"},{"av":"AV52Trn_Manager","fld":"vTRN_MANAGER"},{"av":"AV53Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"}]""");
+         setEventMetadata("'DOSAVEUPDATE'",""","oparms":[{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"},{"av":"AV11CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV53Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV52Trn_Manager","fld":"vTRN_MANAGER"},{"av":"AV65WWPContext","fld":"vWWPCONTEXT"},{"av":"divUpdateavatartable_Visible","ctrl":"UPDATEAVATARTABLE","prop":"Visible"},{"av":"divProfileextendedinfo1_firstinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_FIRSTINFOABOUT","prop":"Visible"},{"av":"divUpdatemodefirstnametbl_Visible","ctrl":"UPDATEMODEFIRSTNAMETBL","prop":"Visible"},{"av":"divProfileextendedinfo1_secondinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_SECONDINFOABOUT","prop":"Visible"},{"av":"divUpdatemodelastnaetbl_Visible","ctrl":"UPDATEMODELASTNAETBL","prop":"Visible"},{"av":"divProfileextendedinfo1_thirdinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_THIRDINFOABOUT","prop":"Visible"},{"av":"divUpdateemailtbl_Visible","ctrl":"UPDATEEMAILTBL","prop":"Visible"},{"av":"divProfileextendedinfo1_fourthinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_FOURTHINFOABOUT","prop":"Visible"},{"av":"divUpdatephonetbl_Visible","ctrl":"UPDATEPHONETBL","prop":"Visible"},{"av":"tblUpdateactionstable_Visible","ctrl":"UPDATEACTIONSTABLE","prop":"Visible"},{"av":"AV68profileImage","fld":"vPROFILEIMAGE"},{"av":"AV56user","fld":"vUSER"},{"av":"AV16Email","fld":"vEMAIL"},{"av":"AV23FirstName","fld":"vFIRSTNAME"},{"av":"AV29LastName","fld":"vLASTNAME"},{"av":"AV33Phone","fld":"vPHONE"},{"av":"AV46role","fld":"vROLE"}]}""");
+         setEventMetadata("'DOUPDATEPROFILE'","""{"handler":"E149R2","iparms":[{"av":"AV23FirstName","fld":"vFIRSTNAME"},{"av":"AV29LastName","fld":"vLASTNAME"},{"av":"AV16Email","fld":"vEMAIL"},{"av":"AV65WWPContext","fld":"vWWPCONTEXT"},{"av":"AV33Phone","fld":"vPHONE"},{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"}]""");
+         setEventMetadata("'DOUPDATEPROFILE'",""","oparms":[{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"},{"av":"AV24FirstNameValue","fld":"vFIRSTNAMEVALUE"},{"av":"AV30LastNameValue","fld":"vLASTNAMEVALUE"},{"av":"AV17EmailValue","fld":"vEMAILVALUE"},{"av":"Avataruc_Previewimagelink","ctrl":"AVATARUC","prop":"PreviewImageLink"},{"av":"AV38PhoneNumber","fld":"vPHONENUMBER"},{"av":"AV34PhoneCode","fld":"vPHONECODE"},{"av":"Combo_phonecode_Selectedtext_set","ctrl":"COMBO_PHONECODE","prop":"SelectedText_set"},{"av":"Combo_phonecode_Selectedvalue_set","ctrl":"COMBO_PHONECODE","prop":"SelectedValue_set"},{"av":"divUpdateavatartable_Visible","ctrl":"UPDATEAVATARTABLE","prop":"Visible"},{"av":"divProfileextendedinfo1_firstinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_FIRSTINFOABOUT","prop":"Visible"},{"av":"divUpdatemodefirstnametbl_Visible","ctrl":"UPDATEMODEFIRSTNAMETBL","prop":"Visible"},{"av":"divProfileextendedinfo1_secondinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_SECONDINFOABOUT","prop":"Visible"},{"av":"divUpdatemodelastnaetbl_Visible","ctrl":"UPDATEMODELASTNAETBL","prop":"Visible"},{"av":"divProfileextendedinfo1_thirdinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_THIRDINFOABOUT","prop":"Visible"},{"av":"divUpdateemailtbl_Visible","ctrl":"UPDATEEMAILTBL","prop":"Visible"},{"av":"divProfileextendedinfo1_fourthinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_FOURTHINFOABOUT","prop":"Visible"},{"av":"divUpdatephonetbl_Visible","ctrl":"UPDATEPHONETBL","prop":"Visible"},{"av":"tblUpdateactionstable_Visible","ctrl":"UPDATEACTIONSTABLE","prop":"Visible"}]}""");
+         setEventMetadata("AVATARUC.ONUPLOAD","""{"handler":"E119R2","iparms":[{"av":"AV21FileUploadedData","fld":"vFILEUPLOADEDDATA"}]""");
+         setEventMetadata("AVATARUC.ONUPLOAD",""","oparms":[{"av":"AV66base64String","fld":"vBASE64STRING"}]}""");
          return  ;
       }
 
@@ -1782,8 +1838,7 @@ namespace GeneXus.Programs {
          AV21FileUploadedData = new SdtSDT_AvatarUpload(context);
          AV14DDO_TitleSettingsIcons = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
          AV35PhoneCode_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
-         AV62UserProfileImage = "";
-         AV71Avatarimage_GXI = "";
+         AV66base64String = "";
          AV52Trn_Manager = new SdtTrn_Manager(context);
          AV53Trn_Receptionist = new SdtTrn_Receptionist(context);
          Combo_phonecode_Selectedvalue_set = "";
@@ -1794,12 +1849,16 @@ namespace GeneXus.Programs {
          ClassString = "";
          StyleString = "";
          ucDvpanel_profileextendedinfo1_tablemaininfo = new GXUserControl();
-         ucAvataruc = new GXUserControl();
+         AV68profileImage = "";
+         AV73Profileimage_GXI = "";
+         sImgUrl = "";
          TempTags = "";
          AV56user = "";
          AV46role = "";
          bttBtnupdateprofile_Jsonclick = "";
          ucDvpanel_profileextendedinfo1_tableabout = new GXUserControl();
+         lblAvatarlabel_Jsonclick = "";
+         ucAvataruc = new GXUserControl();
          AV23FirstName = "";
          AV24FirstNameValue = "";
          AV29LastName = "";
@@ -1820,20 +1879,21 @@ namespace GeneXus.Programs {
          GXt_char2 = "";
          ucCombo_phonecode = new GXUserControl();
          AV5GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
+         AV62UserProfileImage = "";
          AV67WWP_UserExtended = new GeneXus.Programs.wwpbaseobjects.SdtWWP_UserExtended(context);
          AV26GAMErrorCollection = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          AV25GAMError = new GeneXus.Programs.genexussecurity.SdtGAMError(context);
          AV37PhoneInputStrings = new GxSimpleCollection<string>();
-         AV69GXV2 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
+         AV71GXV2 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          AV36PhoneCode_DPItem = new SdtSDT_Country_SDT_CountryItem(context);
          AV12Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
          AV13ComboTitles = new GxSimpleCollection<string>();
-         AV66base64String = "";
-         AV10avatarImage = "";
-         imgAvatarimage_gximage = "";
-         imgAvatarimage_Internalname = "";
          AV60userOrganisation = "";
+         GXt_SdtWWPContext4 = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
+         AV74GXV4 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV69Message = new GeneXus.Utils.SdtMessages_Message(context);
+         AV76GXV6 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          sStyleString = "";
          bttBtncancel_Jsonclick = "";
          bttBtnsaveupdate_Jsonclick = "";
@@ -1869,6 +1929,7 @@ namespace GeneXus.Programs {
       private short nGXWrapped ;
       private int edtavUser_Enabled ;
       private int edtavRole_Enabled ;
+      private int divUpdateavatartable_Visible ;
       private int divProfileextendedinfo1_firstinfoabout_Visible ;
       private int edtavFirstname_Enabled ;
       private int divUpdatemodefirstnametbl_Visible ;
@@ -1886,9 +1947,11 @@ namespace GeneXus.Programs {
       private int divUpdatephonetbl_Visible ;
       private int edtavPhonecode_Visible ;
       private int edtavPhonenumbervalue_Visible ;
-      private int AV68GXV1 ;
+      private int AV70GXV1 ;
       private int tblUpdateactionstable_Visible ;
-      private int AV70GXV3 ;
+      private int AV72GXV3 ;
+      private int AV75GXV5 ;
+      private int AV77GXV7 ;
       private int edtavPhonenumber_Enabled ;
       private int idxLst ;
       private string Combo_phonecode_Selectedvalue_get ;
@@ -1898,11 +1961,11 @@ namespace GeneXus.Programs {
       private string FormProcess ;
       private string bodyStyle ;
       private string GXKey ;
-      private string Avataruc_Previewimagelink ;
       private string Dvpanel_profileextendedinfo1_tablemaininfo_Width ;
       private string Dvpanel_profileextendedinfo1_tablemaininfo_Cls ;
       private string Dvpanel_profileextendedinfo1_tablemaininfo_Title ;
       private string Dvpanel_profileextendedinfo1_tablemaininfo_Iconposition ;
+      private string Avataruc_Previewimagelink ;
       private string Combo_phonecode_Cls ;
       private string Combo_phonecode_Selectedvalue_set ;
       private string Combo_phonecode_Selectedtext_set ;
@@ -1921,7 +1984,9 @@ namespace GeneXus.Programs {
       private string divProfileextendedinfo1_maintable_Internalname ;
       private string Dvpanel_profileextendedinfo1_tablemaininfo_Internalname ;
       private string divProfileextendedinfo1_tablemaininfo_Internalname ;
-      private string Avataruc_Internalname ;
+      private string imgavProfileimage_gximage ;
+      private string sImgUrl ;
+      private string imgavProfileimage_Internalname ;
       private string edtavUser_Internalname ;
       private string TempTags ;
       private string AV56user ;
@@ -1933,6 +1998,11 @@ namespace GeneXus.Programs {
       private string bttBtnupdateprofile_Jsonclick ;
       private string Dvpanel_profileextendedinfo1_tableabout_Internalname ;
       private string divProfileextendedinfo1_tableabout_Internalname ;
+      private string divUpdateavatartable_Internalname ;
+      private string divFieldavatartable_Internalname ;
+      private string lblAvatarlabel_Internalname ;
+      private string lblAvatarlabel_Jsonclick ;
+      private string Avataruc_Internalname ;
       private string divProfileextendedinfo1_firstinfoabout_Internalname ;
       private string edtavFirstname_Internalname ;
       private string edtavFirstname_Jsonclick ;
@@ -1973,8 +2043,6 @@ namespace GeneXus.Programs {
       private string GXt_char2 ;
       private string Combo_phonecode_Internalname ;
       private string tblUpdateactionstable_Internalname ;
-      private string imgAvatarimage_gximage ;
-      private string imgAvatarimage_Internalname ;
       private string sStyleString ;
       private string bttBtncancel_Internalname ;
       private string bttBtncancel_Jsonclick ;
@@ -2001,12 +2069,13 @@ namespace GeneXus.Programs {
       private bool Dvpanel_profileextendedinfo1_tableabout_Showcollapseicon ;
       private bool Dvpanel_profileextendedinfo1_tableabout_Autoscroll ;
       private bool wbLoad ;
+      private bool AV68profileImage_IsBlob ;
       private bool Rfr0gs ;
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private string AV66base64String ;
-      private string AV71Avatarimage_GXI ;
+      private string AV73Profileimage_GXI ;
       private string AV23FirstName ;
       private string AV24FirstNameValue ;
       private string AV29LastName ;
@@ -2017,11 +2086,11 @@ namespace GeneXus.Programs {
       private string AV34PhoneCode ;
       private string AV38PhoneNumber ;
       private string AV60userOrganisation ;
-      private string AV10avatarImage ;
+      private string AV68profileImage ;
       private string AV62UserProfileImage ;
       private GXUserControl ucDvpanel_profileextendedinfo1_tablemaininfo ;
-      private GXUserControl ucAvataruc ;
       private GXUserControl ucDvpanel_profileextendedinfo1_tableabout ;
+      private GXUserControl ucAvataruc ;
       private GXUserControl ucCombo_phonecode ;
       private GXWebForm Form ;
       private IGxDataStore dsDataStore1 ;
@@ -2036,15 +2105,19 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 ;
       private GeneXus.Programs.genexussecurity.SdtGAMUser AV5GAMUser ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWP_UserExtended AV67WWP_UserExtended ;
-      private IDataStoreProvider pr_default ;
       private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV26GAMErrorCollection ;
       private GeneXus.Programs.genexussecurity.SdtGAMError AV25GAMError ;
       private GxSimpleCollection<string> AV37PhoneInputStrings ;
-      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV69GXV2 ;
+      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV71GXV2 ;
       private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> GXt_objcol_SdtSDT_Country_SDT_CountryItem3 ;
       private SdtSDT_Country_SDT_CountryItem AV36PhoneCode_DPItem ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item AV12Combo_DataItem ;
       private GxSimpleCollection<string> AV13ComboTitles ;
+      private IDataStoreProvider pr_default ;
+      private GeneXus.Programs.wwpbaseobjects.SdtWWPContext GXt_SdtWWPContext4 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV74GXV4 ;
+      private GeneXus.Utils.SdtMessages_Message AV69Message ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV76GXV6 ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
       private IDataStoreProvider pr_datastore1 ;

@@ -108,7 +108,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable0711( ) ;
                if ( AnyError == 0 )
                {
-                  ZM0711( 23) ;
+                  ZM0711( 22) ;
                }
                CloseExtendedTableCursors0711( ) ;
             }
@@ -122,6 +122,9 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
+         if ( StringUtil.StrCmp(Gx_mode, "DSP") == 0 )
+         {
+         }
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV8WWPContext) ;
          AV11TrnContext.FromXml(AV12WebSession.Get("TrnContext"), null, "", "");
          if ( ( StringUtil.StrCmp(AV11TrnContext.gxTpr_Transactionname, AV31Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
@@ -147,7 +150,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0711( short GX_JID )
       {
-         if ( ( GX_JID == 22 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 21 ) || ( GX_JID == 0 ) )
          {
             Z56SupplierAgbPhone = A56SupplierAgbPhone;
             Z50SupplierAgbNumber = A50SupplierAgbNumber;
@@ -165,11 +168,11 @@ namespace GeneXus.Programs {
             Z440SupplierAgbWebsite = A440SupplierAgbWebsite;
             Z283SupplierAgbTypeId = A283SupplierAgbTypeId;
          }
-         if ( ( GX_JID == 23 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 22 ) || ( GX_JID == 0 ) )
          {
             Z291SupplierAgbTypeName = A291SupplierAgbTypeName;
          }
-         if ( GX_JID == -22 )
+         if ( GX_JID == -21 )
          {
             Z49SupplierAgbId = A49SupplierAgbId;
             Z56SupplierAgbPhone = A56SupplierAgbPhone;
@@ -231,7 +234,7 @@ namespace GeneXus.Programs {
             A57SupplierAgbEmail = BC00075_A57SupplierAgbEmail[0];
             A440SupplierAgbWebsite = BC00075_A440SupplierAgbWebsite[0];
             A283SupplierAgbTypeId = BC00075_A283SupplierAgbTypeId[0];
-            ZM0711( -22) ;
+            ZM0711( -21) ;
          }
          pr_default.close(3);
          OnLoadActions0711( ) ;
@@ -314,12 +317,7 @@ namespace GeneXus.Programs {
          GXt_char1 = A56SupplierAgbPhone;
          new prc_concatenateintlphone(context ).execute(  A377SupplierAgbPhoneCode,  A378SupplierAgbPhoneNumber, out  GXt_char1) ;
          A56SupplierAgbPhone = GXt_char1;
-         if ( ! ( GxRegex.IsMatch(A378SupplierAgbPhoneNumber,"\\b\\d{9}\\b") ) )
-         {
-            GX_msglist.addItem("Phone contains 9 digits", "OutOfRange", 1, "");
-            AnyError = 1;
-         }
-         if ( StringUtil.Len( A378SupplierAgbPhoneNumber) != 9 )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A378SupplierAgbPhoneNumber)) && ! GxRegex.IsMatch(A378SupplierAgbPhoneNumber,"\\b\\d{9}\\b") )
          {
             GX_msglist.addItem("Phone should contain 9 digits", 1, "");
             AnyError = 1;
@@ -366,7 +364,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {n49SupplierAgbId, A49SupplierAgbId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0711( 22) ;
+            ZM0711( 21) ;
             RcdFound11 = 1;
             A49SupplierAgbId = BC00073_A49SupplierAgbId[0];
             n49SupplierAgbId = BC00073_n49SupplierAgbId[0];
@@ -974,7 +972,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z49SupplierAgbId = A49SupplierAgbId;
          }
-         ZM0711( -22) ;
+         ZM0711( -21) ;
          OnLoadActions0711( ) ;
          AddRow0711( ) ;
          ScanKeyEnd0711( ) ;
@@ -1003,7 +1001,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z49SupplierAgbId = A49SupplierAgbId;
          }
-         ZM0711( -22) ;
+         ZM0711( -21) ;
          OnLoadActions0711( ) ;
          AddRow0711( ) ;
          ScanKeyEnd0711( ) ;

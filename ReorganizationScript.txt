@@ -1,2 +1,3 @@
-ALTER TABLE Trn_Resident ADD ResidentImage BYTEA , ADD ResidentImage_GXI VARCHAR(2048);
+ALTER TABLE Trn_NetworkIndividual ADD NetworkIndividualRelationship VARCHAR(400) NOT NULL DEFAULT '';
+ALTER TABLE Trn_NetworkIndividual ALTER COLUMN NetworkIndividualRelationship DROP DEFAULT;
 

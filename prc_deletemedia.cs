@@ -44,30 +44,28 @@ namespace GeneXus.Programs {
          dsDefault = context.GetDataStore("Default");
       }
 
-      public void execute( ref Guid aP0_MediaId ,
-                           ref string aP1_response )
+      public void execute( Guid aP0_MediaId ,
+                           out string aP1_response )
       {
          this.AV8MediaId = aP0_MediaId;
-         this.AV10response = aP1_response;
+         this.AV10response = "" ;
          initialize();
          ExecuteImpl();
-         aP0_MediaId=this.AV8MediaId;
          aP1_response=this.AV10response;
       }
 
-      public string executeUdp( ref Guid aP0_MediaId )
+      public string executeUdp( Guid aP0_MediaId )
       {
-         execute(ref aP0_MediaId, ref aP1_response);
+         execute(aP0_MediaId, out aP1_response);
          return AV10response ;
       }
 
-      public void executeSubmit( ref Guid aP0_MediaId ,
-                                 ref string aP1_response )
+      public void executeSubmit( Guid aP0_MediaId ,
+                                 out string aP1_response )
       {
          this.AV8MediaId = aP0_MediaId;
-         this.AV10response = aP1_response;
+         this.AV10response = "" ;
          SubmitImpl();
-         aP0_MediaId=this.AV8MediaId;
          aP1_response=this.AV10response;
       }
 
@@ -91,6 +89,10 @@ namespace GeneXus.Programs {
                pr_default.SmartCacheProvider.SetUpdated("Trn_Media");
                AV9File.Delete();
                AV10response = "success";
+               /* Using cursor P009X4 */
+               pr_default.execute(2, new Object[] {A409MediaId});
+               pr_default.close(2);
+               pr_default.SmartCacheProvider.SetUpdated("Trn_Media");
                GXT9X2 = 1;
             }
             else
@@ -121,6 +123,7 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
+         AV10response = "";
          P009X2_A409MediaId = new Guid[] {Guid.Empty} ;
          P009X2_A410MediaName = new string[] {""} ;
          A409MediaId = Guid.Empty;
@@ -141,6 +144,8 @@ namespace GeneXus.Programs {
                }
                , new Object[] {
                }
+               , new Object[] {
+               }
             }
          );
          /* GeneXus formulas. */
@@ -155,11 +160,10 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private Guid aP0_MediaId ;
-      private string aP1_response ;
       private IDataStoreProvider pr_default ;
       private Guid[] P009X2_A409MediaId ;
       private string[] P009X2_A410MediaName ;
+      private string aP1_response ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
@@ -236,6 +240,7 @@ public class prc_deletemedia__default : DataStoreHelperBase, IDataStoreHelper
       return new Cursor[] {
        new ForEachCursor(def[0])
       ,new UpdateCursor(def[1])
+      ,new UpdateCursor(def[2])
     };
  }
 
@@ -252,9 +257,14 @@ public class prc_deletemedia__default : DataStoreHelperBase, IDataStoreHelper
        prmP009X3 = new Object[] {
        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
        };
+       Object[] prmP009X4;
+       prmP009X4 = new Object[] {
+       new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
+       };
        def= new CursorDef[] {
            new CursorDef("P009X2", "SELECT MediaId, MediaName FROM Trn_Media WHERE MediaId = :AV8MediaId ORDER BY MediaId  FOR UPDATE OF Trn_Media",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009X2,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("P009X3", "SAVEPOINT gxupdate;DELETE FROM Trn_Media  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP009X3)
+          ,new CursorDef("P009X4", "SAVEPOINT gxupdate;DELETE FROM Trn_Media  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP009X4)
        };
     }
  }

@@ -1187,9 +1187,9 @@ namespace GeneXus.Programs {
             A11OrganisationId = H00653_A11OrganisationId[0];
             A29LocationId = H00653_A29LocationId[0];
             A62ResidentId = H00653_A62ResidentId[0];
-            A64ResidentGivenName = H00653_A64ResidentGivenName[0];
+            A72ResidentSalutation = H00653_A72ResidentSalutation[0];
             AV19GXLvl9 = 1;
-            Form.Caption = A64ResidentGivenName;
+            Form.Caption = A72ResidentSalutation;
             AssignProp("", false, "FORM", "Caption", Form.Caption, true);
             AV9Exists = true;
             /* Exiting from a For First loop. */
@@ -1538,7 +1538,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241261614350", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121019511982", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1554,7 +1554,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_residentview.js", "?20241261614351", false, true);
+         context.AddJavascriptSource("trn_residentview.js", "?2024121019511982", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);
@@ -1720,8 +1720,8 @@ namespace GeneXus.Programs {
          H00653_A11OrganisationId = new Guid[] {Guid.Empty} ;
          H00653_A29LocationId = new Guid[] {Guid.Empty} ;
          H00653_A62ResidentId = new Guid[] {Guid.Empty} ;
-         H00653_A64ResidentGivenName = new string[] {""} ;
-         A64ResidentGivenName = "";
+         H00653_A72ResidentSalutation = new string[] {""} ;
+         A72ResidentSalutation = "";
          AV17Session = context.GetSession();
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -1731,7 +1731,7 @@ namespace GeneXus.Programs {
                H00652_A11OrganisationId, H00652_A29LocationId, H00652_A62ResidentId
                }
                , new Object[] {
-               H00653_A11OrganisationId, H00653_A29LocationId, H00653_A62ResidentId, H00653_A64ResidentGivenName
+               H00653_A11OrganisationId, H00653_A29LocationId, H00653_A62ResidentId, H00653_A72ResidentSalutation
                }
             }
          );
@@ -1817,6 +1817,7 @@ namespace GeneXus.Programs {
       private string EvtRowId ;
       private string sEvtType ;
       private string GXDecQS ;
+      private string A72ResidentSalutation ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool AV18IsAuthorized_Discussions ;
@@ -1842,7 +1843,6 @@ namespace GeneXus.Programs {
       private bool bDynCreated_Networkindividualwc ;
       private bool bDynCreated_Networkcompanywc ;
       private string AV16RecordDescription ;
-      private string A64ResidentGivenName ;
       private Guid AV10ResidentId ;
       private Guid AV11LocationId ;
       private Guid AV12OrganisationId ;
@@ -1873,7 +1873,7 @@ namespace GeneXus.Programs {
       private Guid[] H00653_A11OrganisationId ;
       private Guid[] H00653_A29LocationId ;
       private Guid[] H00653_A62ResidentId ;
-      private string[] H00653_A64ResidentGivenName ;
+      private string[] H00653_A72ResidentSalutation ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }
@@ -1908,7 +1908,7 @@ namespace GeneXus.Programs {
           };
           def= new CursorDef[] {
               new CursorDef("H00652", "SELECT OrganisationId, LocationId, ResidentId FROM Trn_Resident WHERE ResidentId = :AV10ResidentId and LocationId = :AV11LocationId and OrganisationId = :AV12OrganisationId ORDER BY ResidentId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00652,1, GxCacheFrequency.OFF ,true,true )
-             ,new CursorDef("H00653", "SELECT OrganisationId, LocationId, ResidentId, ResidentGivenName FROM Trn_Resident WHERE (ResidentId = :AV10ResidentId and LocationId = :AV11LocationId and OrganisationId = :AV12OrganisationId) AND (ResidentId = :AV10ResidentId and LocationId = :AV11LocationId and OrganisationId = :AV12OrganisationId) ORDER BY ResidentId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00653,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("H00653", "SELECT OrganisationId, LocationId, ResidentId, ResidentSalutation FROM Trn_Resident WHERE (ResidentId = :AV10ResidentId and LocationId = :AV11LocationId and OrganisationId = :AV12OrganisationId) AND (ResidentId = :AV10ResidentId and LocationId = :AV11LocationId and OrganisationId = :AV12OrganisationId) ORDER BY ResidentId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00653,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }
@@ -1928,7 +1928,7 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-                ((string[]) buf[3])[0] = rslt.getVarchar(4);
+                ((string[]) buf[3])[0] = rslt.getString(4, 20);
                 return;
        }
     }

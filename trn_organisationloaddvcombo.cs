@@ -146,9 +146,9 @@ namespace GeneXus.Programs {
                if (true) return;
             }
          }
-         else if ( StringUtil.StrCmp(AV17ComboName, "OrganisationPhoneCode") == 0 )
+         else if ( StringUtil.StrCmp(AV17ComboName, "OrganisationTypeId") == 0 )
          {
-            /* Execute user subroutine: 'LOADCOMBOITEMS_ORGANISATIONPHONECODE' */
+            /* Execute user subroutine: 'LOADCOMBOITEMS_ORGANISATIONTYPEID' */
             S121 ();
             if ( returnInSub )
             {
@@ -156,9 +156,9 @@ namespace GeneXus.Programs {
                if (true) return;
             }
          }
-         else if ( StringUtil.StrCmp(AV17ComboName, "OrganisationTypeId") == 0 )
+         else if ( StringUtil.StrCmp(AV17ComboName, "OrganisationPhoneCode") == 0 )
          {
-            /* Execute user subroutine: 'LOADCOMBOITEMS_ORGANISATIONTYPEID' */
+            /* Execute user subroutine: 'LOADCOMBOITEMS_ORGANISATIONPHONECODE' */
             S131 ();
             if ( returnInSub )
             {
@@ -225,79 +225,25 @@ namespace GeneXus.Programs {
 
       protected void S121( )
       {
-         /* 'LOADCOMBOITEMS_ORGANISATIONPHONECODE' Routine */
-         returnInSub = false;
-         AV38GXV5 = 1;
-         GXt_objcol_SdtSDT_Country_SDT_CountryItem1 = AV37GXV4;
-         new dp_country(context ).execute( out  GXt_objcol_SdtSDT_Country_SDT_CountryItem1) ;
-         AV37GXV4 = GXt_objcol_SdtSDT_Country_SDT_CountryItem1;
-         while ( AV38GXV5 <= AV37GXV4.Count )
-         {
-            AV32OrganisationPhoneCode_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV37GXV4.Item(AV38GXV5));
-            AV16Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
-            AV16Combo_DataItem.gxTpr_Id = AV32OrganisationPhoneCode_DPItem.gxTpr_Countrydialcode;
-            AV30ComboTitles = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
-            AV30ComboTitles.Add(AV32OrganisationPhoneCode_DPItem.gxTpr_Countrydialcode, 0);
-            AV30ComboTitles.Add(AV32OrganisationPhoneCode_DPItem.gxTpr_Countryflag, 0);
-            AV16Combo_DataItem.gxTpr_Title = AV30ComboTitles.ToJSonString(false);
-            AV15Combo_Data.Add(AV16Combo_DataItem, 0);
-            AV38GXV5 = (int)(AV38GXV5+1);
-         }
-         AV15Combo_Data.Sort("Title");
-         AV24Combo_DataJson = AV15Combo_Data.ToJSonString(false);
-         if ( StringUtil.StrCmp(AV18TrnMode, "INS") != 0 )
-         {
-            /* Using cursor P00643 */
-            pr_default.execute(1, new Object[] {AV20OrganisationId});
-            while ( (pr_default.getStatus(1) != 101) )
-            {
-               A11OrganisationId = P00643_A11OrganisationId[0];
-               A389OrganisationPhoneCode = P00643_A389OrganisationPhoneCode[0];
-               AV22SelectedValue = A389OrganisationPhoneCode;
-               /* Exiting from a For First loop. */
-               if (true) break;
-            }
-            pr_default.close(1);
-            if ( StringUtil.StrCmp(AV18TrnMode, "GET_DSC") == 0 )
-            {
-               AV40GXV6 = 1;
-               while ( AV40GXV6 <= AV15Combo_Data.Count )
-               {
-                  AV16Combo_DataItem = ((GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item)AV15Combo_Data.Item(AV40GXV6));
-                  if ( StringUtil.StrCmp(AV16Combo_DataItem.gxTpr_Id, AV22SelectedValue) == 0 )
-                  {
-                     AV30ComboTitles = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
-                     AV30ComboTitles.FromJSonString(AV16Combo_DataItem.gxTpr_Title, null);
-                     AV23SelectedText = ((string)AV30ComboTitles.Item(1));
-                     if (true) break;
-                  }
-                  AV40GXV6 = (int)(AV40GXV6+1);
-               }
-            }
-         }
-      }
-
-      protected void S131( )
-      {
          /* 'LOADCOMBOITEMS_ORGANISATIONTYPEID' Routine */
          returnInSub = false;
          if ( AV19IsDynamicCall )
          {
-            GXPagingFrom4 = AV12SkipItems;
-            GXPagingTo4 = AV11MaxItems;
-            pr_default.dynParam(2, new Object[]{ new Object[]{
+            GXPagingFrom3 = AV12SkipItems;
+            GXPagingTo3 = AV11MaxItems;
+            pr_default.dynParam(1, new Object[]{ new Object[]{
                                                  AV14SearchTxt ,
                                                  A20OrganisationTypeName } ,
                                                  new int[]{
                                                  }
             });
             lV14SearchTxt = StringUtil.Concat( StringUtil.RTrim( AV14SearchTxt), "%", "");
-            /* Using cursor P00644 */
-            pr_default.execute(2, new Object[] {lV14SearchTxt, GXPagingFrom4, GXPagingTo4, GXPagingTo4});
-            while ( (pr_default.getStatus(2) != 101) )
+            /* Using cursor P00643 */
+            pr_default.execute(1, new Object[] {lV14SearchTxt, GXPagingFrom3, GXPagingTo3, GXPagingTo3});
+            while ( (pr_default.getStatus(1) != 101) )
             {
-               A20OrganisationTypeName = P00644_A20OrganisationTypeName[0];
-               A19OrganisationTypeId = P00644_A19OrganisationTypeId[0];
+               A20OrganisationTypeName = P00643_A20OrganisationTypeName[0];
+               A19OrganisationTypeId = P00643_A19OrganisationTypeId[0];
                AV16Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
                AV16Combo_DataItem.gxTpr_Id = StringUtil.Trim( A19OrganisationTypeId.ToString());
                AV16Combo_DataItem.gxTpr_Title = A20OrganisationTypeName;
@@ -307,9 +253,9 @@ namespace GeneXus.Programs {
                   /* Exit For each command. Update data (if necessary), close cursors & exit. */
                   if (true) break;
                }
-               pr_default.readNext(2);
+               pr_default.readNext(1);
             }
-            pr_default.close(2);
+            pr_default.close(1);
             AV24Combo_DataJson = AV15Combo_Data.ToJSonString(false);
          }
          else
@@ -318,37 +264,91 @@ namespace GeneXus.Programs {
             {
                if ( StringUtil.StrCmp(AV18TrnMode, "GET") != 0 )
                {
-                  /* Using cursor P00645 */
-                  pr_default.execute(3, new Object[] {AV20OrganisationId});
-                  while ( (pr_default.getStatus(3) != 101) )
+                  /* Using cursor P00644 */
+                  pr_default.execute(2, new Object[] {AV20OrganisationId});
+                  while ( (pr_default.getStatus(2) != 101) )
                   {
-                     A11OrganisationId = P00645_A11OrganisationId[0];
-                     A19OrganisationTypeId = P00645_A19OrganisationTypeId[0];
-                     A20OrganisationTypeName = P00645_A20OrganisationTypeName[0];
-                     A20OrganisationTypeName = P00645_A20OrganisationTypeName[0];
+                     A11OrganisationId = P00644_A11OrganisationId[0];
+                     A19OrganisationTypeId = P00644_A19OrganisationTypeId[0];
+                     A20OrganisationTypeName = P00644_A20OrganisationTypeName[0];
+                     A20OrganisationTypeName = P00644_A20OrganisationTypeName[0];
                      AV22SelectedValue = ((Guid.Empty==A19OrganisationTypeId) ? "" : StringUtil.Trim( A19OrganisationTypeId.ToString()));
                      AV23SelectedText = A20OrganisationTypeName;
                      /* Exiting from a For First loop. */
                      if (true) break;
                   }
-                  pr_default.close(3);
+                  pr_default.close(2);
                }
                else
                {
                   AV28OrganisationTypeId = StringUtil.StrToGuid( AV14SearchTxt);
-                  /* Using cursor P00646 */
-                  pr_default.execute(4, new Object[] {AV28OrganisationTypeId});
-                  while ( (pr_default.getStatus(4) != 101) )
+                  /* Using cursor P00645 */
+                  pr_default.execute(3, new Object[] {AV28OrganisationTypeId});
+                  while ( (pr_default.getStatus(3) != 101) )
                   {
-                     A19OrganisationTypeId = P00646_A19OrganisationTypeId[0];
-                     A20OrganisationTypeName = P00646_A20OrganisationTypeName[0];
+                     A19OrganisationTypeId = P00645_A19OrganisationTypeId[0];
+                     A20OrganisationTypeName = P00645_A20OrganisationTypeName[0];
                      AV23SelectedText = A20OrganisationTypeName;
                      /* Exit For each command. Update data (if necessary), close cursors & exit. */
                      if (true) break;
                      /* Exiting from a For First loop. */
                      if (true) break;
                   }
-                  pr_default.close(4);
+                  pr_default.close(3);
+               }
+            }
+         }
+      }
+
+      protected void S131( )
+      {
+         /* 'LOADCOMBOITEMS_ORGANISATIONPHONECODE' Routine */
+         returnInSub = false;
+         AV41GXV5 = 1;
+         GXt_objcol_SdtSDT_Country_SDT_CountryItem1 = AV40GXV4;
+         new dp_country(context ).execute( out  GXt_objcol_SdtSDT_Country_SDT_CountryItem1) ;
+         AV40GXV4 = GXt_objcol_SdtSDT_Country_SDT_CountryItem1;
+         while ( AV41GXV5 <= AV40GXV4.Count )
+         {
+            AV32OrganisationPhoneCode_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV40GXV4.Item(AV41GXV5));
+            AV16Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
+            AV16Combo_DataItem.gxTpr_Id = AV32OrganisationPhoneCode_DPItem.gxTpr_Countrydialcode;
+            AV30ComboTitles = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
+            AV30ComboTitles.Add(AV32OrganisationPhoneCode_DPItem.gxTpr_Countrydialcode, 0);
+            AV30ComboTitles.Add(AV32OrganisationPhoneCode_DPItem.gxTpr_Countryflag, 0);
+            AV16Combo_DataItem.gxTpr_Title = AV30ComboTitles.ToJSonString(false);
+            AV15Combo_Data.Add(AV16Combo_DataItem, 0);
+            AV41GXV5 = (int)(AV41GXV5+1);
+         }
+         AV15Combo_Data.Sort("Title");
+         AV24Combo_DataJson = AV15Combo_Data.ToJSonString(false);
+         if ( StringUtil.StrCmp(AV18TrnMode, "INS") != 0 )
+         {
+            /* Using cursor P00646 */
+            pr_default.execute(4, new Object[] {AV20OrganisationId});
+            while ( (pr_default.getStatus(4) != 101) )
+            {
+               A11OrganisationId = P00646_A11OrganisationId[0];
+               A389OrganisationPhoneCode = P00646_A389OrganisationPhoneCode[0];
+               AV22SelectedValue = A389OrganisationPhoneCode;
+               /* Exiting from a For First loop. */
+               if (true) break;
+            }
+            pr_default.close(4);
+            if ( StringUtil.StrCmp(AV18TrnMode, "GET_DSC") == 0 )
+            {
+               AV43GXV6 = 1;
+               while ( AV43GXV6 <= AV15Combo_Data.Count )
+               {
+                  AV16Combo_DataItem = ((GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item)AV15Combo_Data.Item(AV43GXV6));
+                  if ( StringUtil.StrCmp(AV16Combo_DataItem.gxTpr_Id, AV22SelectedValue) == 0 )
+                  {
+                     AV30ComboTitles = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
+                     AV30ComboTitles.FromJSonString(AV16Combo_DataItem.gxTpr_Title, null);
+                     AV23SelectedText = ((string)AV30ComboTitles.Item(1));
+                     if (true) break;
+                  }
+                  AV43GXV6 = (int)(AV43GXV6+1);
                }
             }
          }
@@ -380,39 +380,39 @@ namespace GeneXus.Programs {
          P00642_A331OrganisationAddressCountry = new string[] {""} ;
          A11OrganisationId = Guid.Empty;
          A331OrganisationAddressCountry = "";
-         AV37GXV4 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
-         GXt_objcol_SdtSDT_Country_SDT_CountryItem1 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
-         AV32OrganisationPhoneCode_DPItem = new SdtSDT_Country_SDT_CountryItem(context);
-         P00643_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P00643_A389OrganisationPhoneCode = new string[] {""} ;
-         A389OrganisationPhoneCode = "";
          lV14SearchTxt = "";
          A20OrganisationTypeName = "";
-         P00644_A20OrganisationTypeName = new string[] {""} ;
-         P00644_A19OrganisationTypeId = new Guid[] {Guid.Empty} ;
+         P00643_A20OrganisationTypeName = new string[] {""} ;
+         P00643_A19OrganisationTypeId = new Guid[] {Guid.Empty} ;
          A19OrganisationTypeId = Guid.Empty;
-         P00645_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         P00644_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         P00644_A19OrganisationTypeId = new Guid[] {Guid.Empty} ;
+         P00644_A20OrganisationTypeName = new string[] {""} ;
+         AV28OrganisationTypeId = Guid.Empty;
          P00645_A19OrganisationTypeId = new Guid[] {Guid.Empty} ;
          P00645_A20OrganisationTypeName = new string[] {""} ;
-         AV28OrganisationTypeId = Guid.Empty;
-         P00646_A19OrganisationTypeId = new Guid[] {Guid.Empty} ;
-         P00646_A20OrganisationTypeName = new string[] {""} ;
+         AV40GXV4 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
+         GXt_objcol_SdtSDT_Country_SDT_CountryItem1 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
+         AV32OrganisationPhoneCode_DPItem = new SdtSDT_Country_SDT_CountryItem(context);
+         P00646_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         P00646_A389OrganisationPhoneCode = new string[] {""} ;
+         A389OrganisationPhoneCode = "";
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_organisationloaddvcombo__default(),
             new Object[][] {
                 new Object[] {
                P00642_A11OrganisationId, P00642_A331OrganisationAddressCountry
                }
                , new Object[] {
-               P00643_A11OrganisationId, P00643_A389OrganisationPhoneCode
+               P00643_A20OrganisationTypeName, P00643_A19OrganisationTypeId
                }
                , new Object[] {
-               P00644_A20OrganisationTypeName, P00644_A19OrganisationTypeId
+               P00644_A11OrganisationId, P00644_A19OrganisationTypeId, P00644_A20OrganisationTypeName
                }
                , new Object[] {
-               P00645_A11OrganisationId, P00645_A19OrganisationTypeId, P00645_A20OrganisationTypeName
+               P00645_A19OrganisationTypeId, P00645_A20OrganisationTypeName
                }
                , new Object[] {
-               P00646_A19OrganisationTypeId, P00646_A20OrganisationTypeName
+               P00646_A11OrganisationId, P00646_A389OrganisationPhoneCode
                }
             }
          );
@@ -424,10 +424,10 @@ namespace GeneXus.Programs {
       private int AV11MaxItems ;
       private int AV34GXV2 ;
       private int AV36GXV3 ;
-      private int AV38GXV5 ;
-      private int AV40GXV6 ;
-      private int GXPagingFrom4 ;
-      private int GXPagingTo4 ;
+      private int GXPagingFrom3 ;
+      private int GXPagingTo3 ;
+      private int AV41GXV5 ;
+      private int AV43GXV6 ;
       private string AV18TrnMode ;
       private bool AV19IsDynamicCall ;
       private bool returnInSub ;
@@ -438,9 +438,9 @@ namespace GeneXus.Programs {
       private string AV23SelectedText ;
       private string AV14SearchTxt ;
       private string A331OrganisationAddressCountry ;
-      private string A389OrganisationPhoneCode ;
       private string lV14SearchTxt ;
       private string A20OrganisationTypeName ;
+      private string A389OrganisationPhoneCode ;
       private Guid AV20OrganisationId ;
       private Guid A11OrganisationId ;
       private Guid A19OrganisationTypeId ;
@@ -457,18 +457,18 @@ namespace GeneXus.Programs {
       private IDataStoreProvider pr_default ;
       private Guid[] P00642_A11OrganisationId ;
       private string[] P00642_A331OrganisationAddressCountry ;
-      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV37GXV4 ;
-      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> GXt_objcol_SdtSDT_Country_SDT_CountryItem1 ;
-      private SdtSDT_Country_SDT_CountryItem AV32OrganisationPhoneCode_DPItem ;
-      private Guid[] P00643_A11OrganisationId ;
-      private string[] P00643_A389OrganisationPhoneCode ;
-      private string[] P00644_A20OrganisationTypeName ;
+      private string[] P00643_A20OrganisationTypeName ;
+      private Guid[] P00643_A19OrganisationTypeId ;
+      private Guid[] P00644_A11OrganisationId ;
       private Guid[] P00644_A19OrganisationTypeId ;
-      private Guid[] P00645_A11OrganisationId ;
+      private string[] P00644_A20OrganisationTypeName ;
       private Guid[] P00645_A19OrganisationTypeId ;
       private string[] P00645_A20OrganisationTypeName ;
-      private Guid[] P00646_A19OrganisationTypeId ;
-      private string[] P00646_A20OrganisationTypeName ;
+      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV40GXV4 ;
+      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> GXt_objcol_SdtSDT_Country_SDT_CountryItem1 ;
+      private SdtSDT_Country_SDT_CountryItem AV32OrganisationPhoneCode_DPItem ;
+      private Guid[] P00646_A11OrganisationId ;
+      private string[] P00646_A389OrganisationPhoneCode ;
       private string aP5_SelectedValue ;
       private string aP6_SelectedText ;
       private string aP7_Combo_DataJson ;
@@ -476,7 +476,7 @@ namespace GeneXus.Programs {
 
    public class trn_organisationloaddvcombo__default : DataStoreHelperBase, IDataStoreHelper
    {
-      protected Object[] conditional_P00644( IGxContext context ,
+      protected Object[] conditional_P00643( IGxContext context ,
                                              string AV14SearchTxt ,
                                              string A20OrganisationTypeName )
       {
@@ -499,7 +499,7 @@ namespace GeneXus.Programs {
             GXv_int2[0] = 1;
          }
          sOrderString += " ORDER BY OrganisationTypeName, OrganisationTypeId";
-         scmdbuf = "SELECT " + sSelectString + sFromString + sWhereString + sOrderString + "" + " OFFSET " + ":GXPagingFrom4" + " LIMIT CASE WHEN " + ":GXPagingTo4" + " > 0 THEN " + ":GXPagingTo4" + " ELSE 1e9 END";
+         scmdbuf = "SELECT " + sSelectString + sFromString + sWhereString + sOrderString + "" + " OFFSET " + ":GXPagingFrom3" + " LIMIT CASE WHEN " + ":GXPagingTo3" + " > 0 THEN " + ":GXPagingTo3" + " ELSE 1e9 END";
          GXv_Object3[0] = scmdbuf;
          GXv_Object3[1] = GXv_int2;
          return GXv_Object3 ;
@@ -511,8 +511,8 @@ namespace GeneXus.Programs {
       {
          switch ( cursor )
          {
-               case 2 :
-                     return conditional_P00644(context, (string)dynConstraints[0] , (string)dynConstraints[1] );
+               case 1 :
+                     return conditional_P00643(context, (string)dynConstraints[0] , (string)dynConstraints[1] );
          }
          return base.getDynamicStatement(cursor, context, dynConstraints);
       }
@@ -538,31 +538,31 @@ namespace GeneXus.Programs {
           prmP00642 = new Object[] {
           new ParDef("AV20OrganisationId",GXType.UniqueIdentifier,36,0)
           };
-          Object[] prmP00643;
-          prmP00643 = new Object[] {
+          Object[] prmP00644;
+          prmP00644 = new Object[] {
           new ParDef("AV20OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           Object[] prmP00645;
           prmP00645 = new Object[] {
-          new ParDef("AV20OrganisationId",GXType.UniqueIdentifier,36,0)
+          new ParDef("AV28OrganisationTypeId",GXType.UniqueIdentifier,36,0)
           };
           Object[] prmP00646;
           prmP00646 = new Object[] {
-          new ParDef("AV28OrganisationTypeId",GXType.UniqueIdentifier,36,0)
+          new ParDef("AV20OrganisationId",GXType.UniqueIdentifier,36,0)
           };
-          Object[] prmP00644;
-          prmP00644 = new Object[] {
+          Object[] prmP00643;
+          prmP00643 = new Object[] {
           new ParDef("lV14SearchTxt",GXType.VarChar,40,0) ,
-          new ParDef("GXPagingFrom4",GXType.Int32,9,0) ,
-          new ParDef("GXPagingTo4",GXType.Int32,9,0) ,
-          new ParDef("GXPagingTo4",GXType.Int32,9,0)
+          new ParDef("GXPagingFrom3",GXType.Int32,9,0) ,
+          new ParDef("GXPagingTo3",GXType.Int32,9,0) ,
+          new ParDef("GXPagingTo3",GXType.Int32,9,0)
           };
           def= new CursorDef[] {
               new CursorDef("P00642", "SELECT OrganisationId, OrganisationAddressCountry FROM Trn_Organisation WHERE OrganisationId = :AV20OrganisationId ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00642,1, GxCacheFrequency.OFF ,false,true )
-             ,new CursorDef("P00643", "SELECT OrganisationId, OrganisationPhoneCode FROM Trn_Organisation WHERE OrganisationId = :AV20OrganisationId ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00643,1, GxCacheFrequency.OFF ,false,true )
-             ,new CursorDef("P00644", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00644,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P00645", "SELECT T1.OrganisationId, T1.OrganisationTypeId, T2.OrganisationTypeName FROM (Trn_Organisation T1 INNER JOIN Trn_OrganisationType T2 ON T2.OrganisationTypeId = T1.OrganisationTypeId) WHERE T1.OrganisationId = :AV20OrganisationId ORDER BY T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00645,1, GxCacheFrequency.OFF ,false,true )
-             ,new CursorDef("P00646", "SELECT OrganisationTypeId, OrganisationTypeName FROM Trn_OrganisationType WHERE OrganisationTypeId = :AV28OrganisationTypeId ORDER BY OrganisationTypeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00646,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("P00643", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00643,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("P00644", "SELECT T1.OrganisationId, T1.OrganisationTypeId, T2.OrganisationTypeName FROM (Trn_Organisation T1 INNER JOIN Trn_OrganisationType T2 ON T2.OrganisationTypeId = T1.OrganisationTypeId) WHERE T1.OrganisationId = :AV20OrganisationId ORDER BY T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00644,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("P00645", "SELECT OrganisationTypeId, OrganisationTypeName FROM Trn_OrganisationType WHERE OrganisationTypeId = :AV28OrganisationTypeId ORDER BY OrganisationTypeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00645,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("P00646", "SELECT OrganisationId, OrganisationPhoneCode FROM Trn_Organisation WHERE OrganisationId = :AV20OrganisationId ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00646,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }
@@ -578,17 +578,17 @@ namespace GeneXus.Programs {
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
                 return;
              case 1 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                return;
-             case 2 :
                 ((string[]) buf[0])[0] = rslt.getVarchar(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 return;
-             case 3 :
+             case 2 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((string[]) buf[2])[0] = rslt.getVarchar(3);
+                return;
+             case 3 :
+                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((string[]) buf[1])[0] = rslt.getVarchar(2);
                 return;
              case 4 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);

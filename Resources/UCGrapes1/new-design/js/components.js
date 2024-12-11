@@ -32,24 +32,7 @@ class ActionListComponent {
       {
         name: "Predefined Page",
         label: this.currentLanguage.getTranslation("category_predefined_page"),
-        options: [
-          {
-            PageId: "1e5d1be0-d9ef-4ff7-869d-1b1f3092155c",
-            PageName: "Reception",
-          },
-          {
-            PageId: "5e200c35-16fe-4401-93c6-b106d14c89cc",
-            PageName: "Calendar",
-          },
-          {
-            PageId: "e22b29bc-1982-414a-87cf-71a839806a75",
-            PageName: "Mail Box",
-          },
-          {
-            PageId: "784c2d18-622f-43f3-bde1-7b00035d6a07",
-            PageName: "Location Information",
-          },
-        ],
+        options: [],
       },
     ];
     this.init();
@@ -57,16 +40,27 @@ class ActionListComponent {
 
   init() {
     this.dataManager
-      .getPagesService()
+      .getPages()
       .then((pages) => {
         console.log("ActionList", pages);
-        this.pageOptions = this.mapPageNamesToOptions(
-          pages.filter((page) => page.Name != "Home")
-        );
-
+        this.pageOptions = pages.filter(
+          page => !page.PageIsContentPage && !page.PageIsPredefined
+        )
+        this.predefinedPageOptions = pages.filter(
+          page => page.PageIsPredefined && page.PageName != "Home"
+        )
+        this.servicePageOptions = pages.filter(
+          page => page.PageIsContentPage
+        )
         this.categoryData.forEach((category) => {
           if (category.name === "Page") {
             category.options = this.pageOptions;
+          }
+          else if (category.name == "Service/Product Page") {
+            category.options = this.servicePageOptions;
+          }
+          else if (category.name == "Predefined Page") {
+            category.options = this.predefinedPageOptions;
           }
         });
 

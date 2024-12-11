@@ -46,15 +46,15 @@ namespace GeneXus.Programs
 
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationemail = "";
 
-			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonecode = "";
-
-			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonenumber = "";
-
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphone = "";
 
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationdescription = "";
 
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Filename = "";
+
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonenumber = "";
+
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonecode = "";
 
 		}
 
@@ -110,12 +110,6 @@ namespace GeneXus.Programs
 			AddObjectProperty("LocationEmail", gxTpr_Locationemail, false);
 
 
-			AddObjectProperty("LocationPhoneCode", gxTpr_Locationphonecode, false);
-
-
-			AddObjectProperty("LocationPhoneNumber", gxTpr_Locationphonenumber, false);
-
-
 			AddObjectProperty("LocationPhone", gxTpr_Locationphone, false);
 
 
@@ -123,6 +117,12 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("FileName", gxTpr_Filename, false);
+
+
+			AddObjectProperty("LocationPhoneNumber", gxTpr_Locationphonenumber, false);
+
+
+			AddObjectProperty("LocationPhoneCode", gxTpr_Locationphonecode, false);
 
 			return;
 		}
@@ -274,38 +274,6 @@ namespace GeneXus.Programs
 
 
 
-		[SoapElement(ElementName="LocationPhoneCode")]
-		[XmlElement(ElementName="LocationPhoneCode")]
-		public string gxTpr_Locationphonecode
-		{
-			get {
-				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonecode; 
-			}
-			set {
-				gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonecode = value;
-				SetDirty("Locationphonecode");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="LocationPhoneNumber")]
-		[XmlElement(ElementName="LocationPhoneNumber")]
-		public string gxTpr_Locationphonenumber
-		{
-			get {
-				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonenumber; 
-			}
-			set {
-				gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonenumber = value;
-				SetDirty("Locationphonenumber");
-			}
-		}
-
-
-
-
 		[SoapElement(ElementName="LocationPhone")]
 		[XmlElement(ElementName="LocationPhone")]
 		public string gxTpr_Locationphone
@@ -353,6 +321,38 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="LocationPhoneNumber")]
+		[XmlElement(ElementName="LocationPhoneNumber")]
+		public string gxTpr_Locationphonenumber
+		{
+			get {
+				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonenumber; 
+			}
+			set {
+				gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonenumber = value;
+				SetDirty("Locationphonenumber");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="LocationPhoneCode")]
+		[XmlElement(ElementName="LocationPhoneCode")]
+		public string gxTpr_Locationphonecode
+		{
+			get {
+				return gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonecode; 
+			}
+			set {
+				gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonecode = value;
+				SetDirty("Locationphonecode");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -383,11 +383,11 @@ namespace GeneXus.Programs
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationname = "";
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationimagevar = "";
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationemail = "";
-			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonecode = "";
-			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonenumber = "";
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphone = "";
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationdescription = "";
 			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Filename = "";
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonenumber = "";
+			gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonecode = "";
 			return  ;
 		}
 
@@ -424,12 +424,6 @@ namespace GeneXus.Programs
 		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationemail;
 		 
 
-		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonecode;
-		 
-
-		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonenumber;
-		 
-
 		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphone;
 		 
 
@@ -437,6 +431,12 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Filename;
+		 
+
+		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonenumber;
+		 
+
+		protected string gxTv_SdtWP_CreateLocationAndReceptionistData_Step1_Locationphonecode;
 		 
 
 
@@ -564,31 +564,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="LocationPhoneCode", Order=9)]
-		public  string gxTpr_Locationphonecode
-		{
-			get { 
-				return sdt.gxTpr_Locationphonecode;
-
-			}
-			set { 
-				 sdt.gxTpr_Locationphonecode = value;
-			}
-		}
-
-		[DataMember(Name="LocationPhoneNumber", Order=10)]
-		public  string gxTpr_Locationphonenumber
-		{
-			get { 
-				return sdt.gxTpr_Locationphonenumber;
-
-			}
-			set { 
-				 sdt.gxTpr_Locationphonenumber = value;
-			}
-		}
-
-		[DataMember(Name="LocationPhone", Order=11)]
+		[DataMember(Name="LocationPhone", Order=9)]
 		public  string gxTpr_Locationphone
 		{
 			get { 
@@ -600,7 +576,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="LocationDescription", Order=12)]
+		[DataMember(Name="LocationDescription", Order=10)]
 		public  string gxTpr_Locationdescription
 		{
 			get { 
@@ -612,7 +588,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="FileName", Order=13)]
+		[DataMember(Name="FileName", Order=11)]
 		public  string gxTpr_Filename
 		{
 			get { 
@@ -621,6 +597,30 @@ namespace GeneXus.Programs
 			}
 			set { 
 				 sdt.gxTpr_Filename = value;
+			}
+		}
+
+		[DataMember(Name="LocationPhoneNumber", Order=12)]
+		public  string gxTpr_Locationphonenumber
+		{
+			get { 
+				return sdt.gxTpr_Locationphonenumber;
+
+			}
+			set { 
+				 sdt.gxTpr_Locationphonenumber = value;
+			}
+		}
+
+		[DataMember(Name="LocationPhoneCode", Order=13)]
+		public  string gxTpr_Locationphonecode
+		{
+			get { 
+				return sdt.gxTpr_Locationphonecode;
+
+			}
+			set { 
+				 sdt.gxTpr_Locationphonecode = value;
 			}
 		}
 

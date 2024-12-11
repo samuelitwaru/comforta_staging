@@ -92,7 +92,6 @@ namespace GeneXus.Programs {
             AV15GAMUser.load( AV23UserGAMGUID);
             if ( AV15GAMUser.success() )
             {
-               AV11ErrDescription = "Post load";
                AV24Username = AV15GAMUser.gxTpr_Firstname + " " + AV15GAMUser.gxTpr_Lastname;
                AV9ActivactionKey = AV15GAMUser.getnewactivationkey(out  AV14GAMErrors);
                if ( AV14GAMErrors.Count == 0 )

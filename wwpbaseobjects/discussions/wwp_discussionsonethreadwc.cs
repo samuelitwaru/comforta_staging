@@ -1427,6 +1427,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          }
          else
          {
+            edtavUserextendedphoto_Class = "AttributeDiscussionThreadImage gx-disabled";
             AV34Userextendedphoto_GXI = A40000WWPUserExtendedPhoto_GXI;
             AV13UserExtendedPhoto = "";
             AssignAttri(sPrefix, false, edtavUserextendedphoto_Internalname, AV13UserExtendedPhoto);
@@ -1467,7 +1468,6 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             {
                if ( new GeneXus.Programs.wwpbaseobjects.discussions.wwp_createandnotifydiscussionmessage(context).executeUdp(  AV20WWPDiscussionMessageThread.gxTpr_Wwpentityid,  AV15WWPDiscussionMessageThreadId,  AV20WWPDiscussionMessageThread.gxTpr_Wwpdiscussionmessageentityrecordid,  AV16Message,  Ucmentions_Selecteditemsjson,  StringUtil.Str( (decimal)(AV15WWPDiscussionMessageThreadId), 10, 0),  "New discussion message",  AV21WWPSubscriptionEntityRecordDescription,  AV22WWPNotificationLink) )
                {
-                  new prc_logtofile(context ).execute(  "Sent from DiscussionOneThreadWC: "+AV21WWPSubscriptionEntityRecordDescription) ;
                   AV24NotificationInfo = new GeneXus.Core.genexus.server.SdtNotificationInfo(context);
                   AV24NotificationInfo.gxTpr_Id = "1";
                   AV24NotificationInfo.gxTpr_Message = AV16Message;
@@ -1777,7 +1777,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412615573267", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121019483935", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1793,7 +1793,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionsonethreadwc.js", "?202412615573270", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionsonethreadwc.js", "?2024121019483938", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Suggest/SuggestRender.js", "", false, true);
          /* End function include_jscripts */
@@ -1917,7 +1917,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             /* Attribute/Variable Label */
             GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)"",(string)"User Extended Photo",(string)"gx-form-item AttributeDiscussionThreadImageLabel",(short)0,(bool)true,(string)"width: 25%;"});
             /* Static Bitmap Variable */
-            ClassString = "AttributeDiscussionThreadImage" + " " + ((StringUtil.StrCmp(edtavUserextendedphoto_gximage, "")==0) ? "" : "GX_Image_"+edtavUserextendedphoto_gximage+"_Class");
+            ClassString = edtavUserextendedphoto_Class + " " + ((StringUtil.StrCmp(edtavUserextendedphoto_gximage, "")==0) ? "" : "GX_Image_"+edtavUserextendedphoto_gximage+"_Class");
             StyleString = "";
             AV13UserExtendedPhoto_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV13UserExtendedPhoto))&&String.IsNullOrEmpty(StringUtil.RTrim( AV34Userextendedphoto_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV13UserExtendedPhoto)));
             sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV13UserExtendedPhoto)) ? AV34Userextendedphoto_GXI : context.PathToRelativeUrl( AV13UserExtendedPhoto));
@@ -2073,6 +2073,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridColumn.AddObjectProperty("Value", context.convertURL( AV13UserExtendedPhoto));
+            GridColumn.AddObjectProperty("Class", StringUtil.RTrim( edtavUserextendedphoto_Class));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridContainer.AddColumnProperties(GridColumn);
@@ -2190,6 +2191,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          edtWWPDiscussionMessageDate_Jsonclick = "";
          edtWWPUserExtendedFullName_Jsonclick = "";
          edtavUserextendedphoto_gximage = "";
+         edtavUserextendedphoto_Class = "AttributeDiscussionThreadImage";
          edtWWPDiscussionMessageId_Jsonclick = "";
          subGrid_Class = "FreeStyleGrid";
          edtWWPDiscussionMessageThreadId_Enabled = 0;
@@ -2225,7 +2227,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"AV15WWPDiscussionMessageThreadId","fld":"vWWPDISCUSSIONMESSAGETHREADID","pic":"ZZZZZZZZZ9"},{"av":"edtWWPDiscussionMessageId_Visible","ctrl":"WWPDISCUSSIONMESSAGEID","prop":"Visible"},{"av":"sPrefix"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV35Pgmname","fld":"vPGMNAME","hsh":true}]}""");
          setEventMetadata("GRID.LOAD","""{"handler":"E141U2","iparms":[{"av":"A40000WWPUserExtendedPhoto_GXI","fld":"WWPUSEREXTENDEDPHOTO_GXI"}]""");
-         setEventMetadata("GRID.LOAD",""","oparms":[{"av":"subGrid_Visible","ctrl":"GRID","prop":"Visible"},{"av":"AV13UserExtendedPhoto","fld":"vUSEREXTENDEDPHOTO"}]}""");
+         setEventMetadata("GRID.LOAD",""","oparms":[{"av":"subGrid_Visible","ctrl":"GRID","prop":"Visible"},{"av":"edtavUserextendedphoto_Class","ctrl":"vUSEREXTENDEDPHOTO","prop":"Class"},{"av":"AV13UserExtendedPhoto","fld":"vUSEREXTENDEDPHOTO"}]}""");
          setEventMetadata("ENTER","""{"handler":"E111U2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV15WWPDiscussionMessageThreadId","fld":"vWWPDISCUSSIONMESSAGETHREADID","pic":"ZZZZZZZZZ9"},{"av":"AV35Pgmname","fld":"vPGMNAME","hsh":true},{"av":"edtWWPDiscussionMessageId_Visible","ctrl":"WWPDISCUSSIONMESSAGEID","prop":"Visible"},{"av":"sPrefix"},{"av":"AV16Message","fld":"vMESSAGE"},{"av":"AV22WWPNotificationLink","fld":"vWWPNOTIFICATIONLINK"},{"av":"AV21WWPSubscriptionEntityRecordDescription","fld":"vWWPSUBSCRIPTIONENTITYRECORDDESCRIPTION"},{"av":"Ucmentions_Selecteditemsjson","ctrl":"UCMENTIONS","prop":"SelectedItemsJson"}]""");
          setEventMetadata("ENTER",""","oparms":[{"av":"AV24NotificationInfo","fld":"vNOTIFICATIONINFO"},{"av":"AV16Message","fld":"vMESSAGE"}]}""");
          setEventMetadata("GRID_FIRSTPAGE","""{"handler":"subgrid_firstpage","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"AV15WWPDiscussionMessageThreadId","fld":"vWWPDISCUSSIONMESSAGETHREADID","pic":"ZZZZZZZZZ9"},{"av":"edtWWPDiscussionMessageId_Visible","ctrl":"WWPDISCUSSIONMESSAGEID","prop":"Visible"},{"av":"sPrefix"},{"av":"AV35Pgmname","fld":"vPGMNAME","hsh":true},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"}]}""");
@@ -2420,6 +2422,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private string A112WWPUserExtendedId ;
       private string GXt_char1 ;
       private string edtavUserextendedphoto_gximage ;
+      private string edtavUserextendedphoto_Class ;
       private string sCtrlAV15WWPDiscussionMessageThreadId ;
       private string sCtrlAV21WWPSubscriptionEntityRecordDescription ;
       private string sCtrlAV22WWPNotificationLink ;

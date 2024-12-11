@@ -1,19 +1,22 @@
 </form><style>
 .profile-user-img{
-  width: 128px;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+  	width: 128px;
+	height: 128px;
+	object-fit: cover;
+	box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
 }
 
-.avatar-upload {
-    position: relative;   
+.avatar-upload { 
+    position: relative;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
-  
+    justify-content: flex-start;
+    padding-left: 10px;
+ 
     .avatar-edit {
         position: absolute;
-        right: 30%;
+        left: 20%;
         z-index: 9;
         top: 70%;
         display: inline-block;
@@ -36,9 +39,9 @@
                     border-color: #d6d6d6;
                 }
                 &:after {
-                    content: "📷";
-                    font-family: 'FontAwesome';
-                    color: #337AB7;
+                    content: "✎";
+				font-size: large;
+                    color: #222f54;
                     position: absolute;
                     left: 0;
                     right: 0;

@@ -110,7 +110,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable0C74( ) ;
                if ( AnyError == 0 )
                {
-                  ZM0C74( 24) ;
+                  ZM0C74( 25) ;
                }
                CloseExtendedTableCursors0C74( ) ;
             }
@@ -156,25 +156,8 @@ namespace GeneXus.Programs {
 
       protected void ZM0C74( short GX_JID )
       {
-         if ( ( GX_JID == 23 ) || ( GX_JID == 0 ) )
-         {
-            Z95ReceptionistGAMGUID = A95ReceptionistGAMGUID;
-            Z92ReceptionistInitials = A92ReceptionistInitials;
-            Z94ReceptionistPhone = A94ReceptionistPhone;
-            Z90ReceptionistGivenName = A90ReceptionistGivenName;
-            Z91ReceptionistLastName = A91ReceptionistLastName;
-            Z93ReceptionistEmail = A93ReceptionistEmail;
-            Z373ReceptionistPhoneCode = A373ReceptionistPhoneCode;
-            Z374ReceptionistPhoneNumber = A374ReceptionistPhoneNumber;
-            Z398ReceptionistIsActive = A398ReceptionistIsActive;
-         }
          if ( ( GX_JID == 24 ) || ( GX_JID == 0 ) )
          {
-         }
-         if ( GX_JID == -23 )
-         {
-            Z89ReceptionistId = A89ReceptionistId;
-            Z95ReceptionistGAMGUID = A95ReceptionistGAMGUID;
             Z92ReceptionistInitials = A92ReceptionistInitials;
             Z94ReceptionistPhone = A94ReceptionistPhone;
             Z90ReceptionistGivenName = A90ReceptionistGivenName;
@@ -182,6 +165,23 @@ namespace GeneXus.Programs {
             Z93ReceptionistEmail = A93ReceptionistEmail;
             Z373ReceptionistPhoneCode = A373ReceptionistPhoneCode;
             Z374ReceptionistPhoneNumber = A374ReceptionistPhoneNumber;
+            Z95ReceptionistGAMGUID = A95ReceptionistGAMGUID;
+            Z398ReceptionistIsActive = A398ReceptionistIsActive;
+         }
+         if ( ( GX_JID == 25 ) || ( GX_JID == 0 ) )
+         {
+         }
+         if ( GX_JID == -24 )
+         {
+            Z89ReceptionistId = A89ReceptionistId;
+            Z92ReceptionistInitials = A92ReceptionistInitials;
+            Z94ReceptionistPhone = A94ReceptionistPhone;
+            Z90ReceptionistGivenName = A90ReceptionistGivenName;
+            Z91ReceptionistLastName = A91ReceptionistLastName;
+            Z93ReceptionistEmail = A93ReceptionistEmail;
+            Z373ReceptionistPhoneCode = A373ReceptionistPhoneCode;
+            Z374ReceptionistPhoneNumber = A374ReceptionistPhoneNumber;
+            Z95ReceptionistGAMGUID = A95ReceptionistGAMGUID;
             Z398ReceptionistIsActive = A398ReceptionistIsActive;
             Z459ReceptionistImage = A459ReceptionistImage;
             Z40000ReceptionistImage_GXI = A40000ReceptionistImage_GXI;
@@ -216,7 +216,6 @@ namespace GeneXus.Programs {
          if ( (pr_default.getStatus(3) != 101) )
          {
             RcdFound74 = 1;
-            A95ReceptionistGAMGUID = BC000C5_A95ReceptionistGAMGUID[0];
             A92ReceptionistInitials = BC000C5_A92ReceptionistInitials[0];
             A94ReceptionistPhone = BC000C5_A94ReceptionistPhone[0];
             A90ReceptionistGivenName = BC000C5_A90ReceptionistGivenName[0];
@@ -224,10 +223,11 @@ namespace GeneXus.Programs {
             A93ReceptionistEmail = BC000C5_A93ReceptionistEmail[0];
             A373ReceptionistPhoneCode = BC000C5_A373ReceptionistPhoneCode[0];
             A374ReceptionistPhoneNumber = BC000C5_A374ReceptionistPhoneNumber[0];
+            A95ReceptionistGAMGUID = BC000C5_A95ReceptionistGAMGUID[0];
             A398ReceptionistIsActive = BC000C5_A398ReceptionistIsActive[0];
             A40000ReceptionistImage_GXI = BC000C5_A40000ReceptionistImage_GXI[0];
             A459ReceptionistImage = BC000C5_A459ReceptionistImage[0];
-            ZM0C74( -23) ;
+            ZM0C74( -24) ;
          }
          pr_default.close(3);
          OnLoadActions0C74( ) ;
@@ -322,10 +322,9 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A89ReceptionistId, A11OrganisationId, A29LocationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0C74( 23) ;
+            ZM0C74( 24) ;
             RcdFound74 = 1;
             A89ReceptionistId = BC000C3_A89ReceptionistId[0];
-            A95ReceptionistGAMGUID = BC000C3_A95ReceptionistGAMGUID[0];
             A92ReceptionistInitials = BC000C3_A92ReceptionistInitials[0];
             A94ReceptionistPhone = BC000C3_A94ReceptionistPhone[0];
             A90ReceptionistGivenName = BC000C3_A90ReceptionistGivenName[0];
@@ -333,6 +332,7 @@ namespace GeneXus.Programs {
             A93ReceptionistEmail = BC000C3_A93ReceptionistEmail[0];
             A373ReceptionistPhoneCode = BC000C3_A373ReceptionistPhoneCode[0];
             A374ReceptionistPhoneNumber = BC000C3_A374ReceptionistPhoneNumber[0];
+            A95ReceptionistGAMGUID = BC000C3_A95ReceptionistGAMGUID[0];
             A398ReceptionistIsActive = BC000C3_A398ReceptionistIsActive[0];
             A40000ReceptionistImage_GXI = BC000C3_A40000ReceptionistImage_GXI[0];
             A11OrganisationId = BC000C3_A11OrganisationId[0];
@@ -406,11 +406,11 @@ namespace GeneXus.Programs {
                return  ;
             }
             Gx_longc = false;
-            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z95ReceptionistGAMGUID, BC000C2_A95ReceptionistGAMGUID[0]) != 0 ) || ( StringUtil.StrCmp(Z92ReceptionistInitials, BC000C2_A92ReceptionistInitials[0]) != 0 ) || ( StringUtil.StrCmp(Z94ReceptionistPhone, BC000C2_A94ReceptionistPhone[0]) != 0 ) || ( StringUtil.StrCmp(Z90ReceptionistGivenName, BC000C2_A90ReceptionistGivenName[0]) != 0 ) || ( StringUtil.StrCmp(Z91ReceptionistLastName, BC000C2_A91ReceptionistLastName[0]) != 0 ) )
+            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z92ReceptionistInitials, BC000C2_A92ReceptionistInitials[0]) != 0 ) || ( StringUtil.StrCmp(Z94ReceptionistPhone, BC000C2_A94ReceptionistPhone[0]) != 0 ) || ( StringUtil.StrCmp(Z90ReceptionistGivenName, BC000C2_A90ReceptionistGivenName[0]) != 0 ) || ( StringUtil.StrCmp(Z91ReceptionistLastName, BC000C2_A91ReceptionistLastName[0]) != 0 ) || ( StringUtil.StrCmp(Z93ReceptionistEmail, BC000C2_A93ReceptionistEmail[0]) != 0 ) )
             {
                Gx_longc = true;
             }
-            if ( Gx_longc || ( StringUtil.StrCmp(Z93ReceptionistEmail, BC000C2_A93ReceptionistEmail[0]) != 0 ) || ( StringUtil.StrCmp(Z373ReceptionistPhoneCode, BC000C2_A373ReceptionistPhoneCode[0]) != 0 ) || ( StringUtil.StrCmp(Z374ReceptionistPhoneNumber, BC000C2_A374ReceptionistPhoneNumber[0]) != 0 ) || ( Z398ReceptionistIsActive != BC000C2_A398ReceptionistIsActive[0] ) )
+            if ( Gx_longc || ( StringUtil.StrCmp(Z373ReceptionistPhoneCode, BC000C2_A373ReceptionistPhoneCode[0]) != 0 ) || ( StringUtil.StrCmp(Z374ReceptionistPhoneNumber, BC000C2_A374ReceptionistPhoneNumber[0]) != 0 ) || ( StringUtil.StrCmp(Z95ReceptionistGAMGUID, BC000C2_A95ReceptionistGAMGUID[0]) != 0 ) || ( Z398ReceptionistIsActive != BC000C2_A398ReceptionistIsActive[0] ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_waschg", new   object[]  {"Trn_Receptionist"}), "RecordWasChanged", 1, "");
                AnyError = 1;
@@ -439,7 +439,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC000C7 */
-                     pr_default.execute(5, new Object[] {A89ReceptionistId, A95ReceptionistGAMGUID, A92ReceptionistInitials, A94ReceptionistPhone, A90ReceptionistGivenName, A91ReceptionistLastName, A93ReceptionistEmail, A373ReceptionistPhoneCode, A374ReceptionistPhoneNumber, A398ReceptionistIsActive, A459ReceptionistImage, A40000ReceptionistImage_GXI, A11OrganisationId, A29LocationId});
+                     pr_default.execute(5, new Object[] {A89ReceptionistId, A92ReceptionistInitials, A94ReceptionistPhone, A90ReceptionistGivenName, A91ReceptionistLastName, A93ReceptionistEmail, A373ReceptionistPhoneCode, A374ReceptionistPhoneNumber, A95ReceptionistGAMGUID, A398ReceptionistIsActive, A459ReceptionistImage, A40000ReceptionistImage_GXI, A11OrganisationId, A29LocationId});
                      pr_default.close(5);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Receptionist");
                      if ( (pr_default.getStatus(5) == 1) )
@@ -494,7 +494,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC000C8 */
-                     pr_default.execute(6, new Object[] {A95ReceptionistGAMGUID, A92ReceptionistInitials, A94ReceptionistPhone, A90ReceptionistGivenName, A91ReceptionistLastName, A93ReceptionistEmail, A373ReceptionistPhoneCode, A374ReceptionistPhoneNumber, A398ReceptionistIsActive, A89ReceptionistId, A11OrganisationId, A29LocationId});
+                     pr_default.execute(6, new Object[] {A92ReceptionistInitials, A94ReceptionistPhone, A90ReceptionistGivenName, A91ReceptionistLastName, A93ReceptionistEmail, A373ReceptionistPhoneCode, A374ReceptionistPhoneNumber, A95ReceptionistGAMGUID, A398ReceptionistIsActive, A89ReceptionistId, A11OrganisationId, A29LocationId});
                      pr_default.close(6);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Receptionist");
                      if ( (pr_default.getStatus(6) == 103) )
@@ -640,7 +640,6 @@ namespace GeneXus.Programs {
          {
             RcdFound74 = 1;
             A89ReceptionistId = BC000C11_A89ReceptionistId[0];
-            A95ReceptionistGAMGUID = BC000C11_A95ReceptionistGAMGUID[0];
             A92ReceptionistInitials = BC000C11_A92ReceptionistInitials[0];
             A94ReceptionistPhone = BC000C11_A94ReceptionistPhone[0];
             A90ReceptionistGivenName = BC000C11_A90ReceptionistGivenName[0];
@@ -648,6 +647,7 @@ namespace GeneXus.Programs {
             A93ReceptionistEmail = BC000C11_A93ReceptionistEmail[0];
             A373ReceptionistPhoneCode = BC000C11_A373ReceptionistPhoneCode[0];
             A374ReceptionistPhoneNumber = BC000C11_A374ReceptionistPhoneNumber[0];
+            A95ReceptionistGAMGUID = BC000C11_A95ReceptionistGAMGUID[0];
             A398ReceptionistIsActive = BC000C11_A398ReceptionistIsActive[0];
             A40000ReceptionistImage_GXI = BC000C11_A40000ReceptionistImage_GXI[0];
             A11OrganisationId = BC000C11_A11OrganisationId[0];
@@ -673,7 +673,6 @@ namespace GeneXus.Programs {
          {
             RcdFound74 = 1;
             A89ReceptionistId = BC000C11_A89ReceptionistId[0];
-            A95ReceptionistGAMGUID = BC000C11_A95ReceptionistGAMGUID[0];
             A92ReceptionistInitials = BC000C11_A92ReceptionistInitials[0];
             A94ReceptionistPhone = BC000C11_A94ReceptionistPhone[0];
             A90ReceptionistGivenName = BC000C11_A90ReceptionistGivenName[0];
@@ -681,6 +680,7 @@ namespace GeneXus.Programs {
             A93ReceptionistEmail = BC000C11_A93ReceptionistEmail[0];
             A373ReceptionistPhoneCode = BC000C11_A373ReceptionistPhoneCode[0];
             A374ReceptionistPhoneNumber = BC000C11_A374ReceptionistPhoneNumber[0];
+            A95ReceptionistGAMGUID = BC000C11_A95ReceptionistGAMGUID[0];
             A398ReceptionistIsActive = BC000C11_A398ReceptionistIsActive[0];
             A40000ReceptionistImage_GXI = BC000C11_A40000ReceptionistImage_GXI[0];
             A11OrganisationId = BC000C11_A11OrganisationId[0];
@@ -706,7 +706,12 @@ namespace GeneXus.Programs {
          new prc_getnameinitials(context ).execute(  A90ReceptionistGivenName,  A91ReceptionistLastName, out  A92ReceptionistInitials) ;
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && String.IsNullOrEmpty(StringUtil.RTrim( A95ReceptionistGAMGUID)) )
          {
-            new prc_creategamuseraccount(context ).execute(  A93ReceptionistEmail,  A90ReceptionistGivenName,  A91ReceptionistLastName,  "Receptionist", out  A95ReceptionistGAMGUID) ;
+            new prc_creategamuseraccount(context ).execute(  A93ReceptionistEmail,  A90ReceptionistGivenName,  A91ReceptionistLastName,  "Receptionist", ref  A95ReceptionistGAMGUID, ref  AV14GAMErrorResponse) ;
+         }
+         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ! String.IsNullOrEmpty(StringUtil.RTrim( AV14GAMErrorResponse)) )
+         {
+            GX_msglist.addItem(AV14GAMErrorResponse, 1, "");
+            AnyError = 1;
          }
       }
 
@@ -761,9 +766,8 @@ namespace GeneXus.Programs {
       protected void InitializeNonKey0C74( )
       {
          AV36AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
-         A95ReceptionistGAMGUID = "";
-         A92ReceptionistInitials = "";
          AV14GAMErrorResponse = "";
+         A92ReceptionistInitials = "";
          A94ReceptionistPhone = "";
          AV37IsGAMActive = false;
          A90ReceptionistGivenName = "";
@@ -771,10 +775,10 @@ namespace GeneXus.Programs {
          A93ReceptionistEmail = "";
          A373ReceptionistPhoneCode = "";
          A374ReceptionistPhoneNumber = "";
+         A95ReceptionistGAMGUID = "";
          A398ReceptionistIsActive = false;
          A459ReceptionistImage = "";
          A40000ReceptionistImage_GXI = "";
-         Z95ReceptionistGAMGUID = "";
          Z92ReceptionistInitials = "";
          Z94ReceptionistPhone = "";
          Z90ReceptionistGivenName = "";
@@ -782,6 +786,7 @@ namespace GeneXus.Programs {
          Z93ReceptionistEmail = "";
          Z373ReceptionistPhoneCode = "";
          Z374ReceptionistPhoneNumber = "";
+         Z95ReceptionistGAMGUID = "";
          Z398ReceptionistIsActive = false;
       }
 
@@ -820,7 +825,6 @@ namespace GeneXus.Programs {
       public void VarsToRow74( SdtTrn_Receptionist obj74 )
       {
          obj74.gxTpr_Mode = Gx_mode;
-         obj74.gxTpr_Receptionistgamguid = A95ReceptionistGAMGUID;
          obj74.gxTpr_Receptionistinitials = A92ReceptionistInitials;
          obj74.gxTpr_Receptionistphone = A94ReceptionistPhone;
          obj74.gxTpr_Receptionistgivenname = A90ReceptionistGivenName;
@@ -828,6 +832,7 @@ namespace GeneXus.Programs {
          obj74.gxTpr_Receptionistemail = A93ReceptionistEmail;
          obj74.gxTpr_Receptionistphonecode = A373ReceptionistPhoneCode;
          obj74.gxTpr_Receptionistphonenumber = A374ReceptionistPhoneNumber;
+         obj74.gxTpr_Receptionistgamguid = A95ReceptionistGAMGUID;
          obj74.gxTpr_Receptionistisactive = A398ReceptionistIsActive;
          obj74.gxTpr_Receptionistimage = A459ReceptionistImage;
          obj74.gxTpr_Receptionistimage_gxi = A40000ReceptionistImage_GXI;
@@ -863,7 +868,6 @@ namespace GeneXus.Programs {
                                int forceLoad )
       {
          Gx_mode = obj74.gxTpr_Mode;
-         A95ReceptionistGAMGUID = obj74.gxTpr_Receptionistgamguid;
          A92ReceptionistInitials = obj74.gxTpr_Receptionistinitials;
          A94ReceptionistPhone = obj74.gxTpr_Receptionistphone;
          A90ReceptionistGivenName = obj74.gxTpr_Receptionistgivenname;
@@ -874,6 +878,7 @@ namespace GeneXus.Programs {
          }
          A373ReceptionistPhoneCode = obj74.gxTpr_Receptionistphonecode;
          A374ReceptionistPhoneNumber = obj74.gxTpr_Receptionistphonenumber;
+         A95ReceptionistGAMGUID = obj74.gxTpr_Receptionistgamguid;
          A398ReceptionistIsActive = obj74.gxTpr_Receptionistisactive;
          A459ReceptionistImage = obj74.gxTpr_Receptionistimage;
          A40000ReceptionistImage_GXI = obj74.gxTpr_Receptionistimage_gxi;
@@ -927,7 +932,7 @@ namespace GeneXus.Programs {
             Z11OrganisationId = A11OrganisationId;
             Z29LocationId = A29LocationId;
          }
-         ZM0C74( -23) ;
+         ZM0C74( -24) ;
          OnLoadActions0C74( ) ;
          AddRow0C74( ) ;
          ScanKeyEnd0C74( ) ;
@@ -966,7 +971,7 @@ namespace GeneXus.Programs {
             Z11OrganisationId = A11OrganisationId;
             Z29LocationId = A29LocationId;
          }
-         ZM0C74( -23) ;
+         ZM0C74( -24) ;
          OnLoadActions0C74( ) ;
          AddRow0C74( ) ;
          ScanKeyEnd0C74( ) ;
@@ -1365,8 +1370,6 @@ namespace GeneXus.Programs {
          AV28WebSession = context.GetSession();
          AV36AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
          AV38Pgmname = "";
-         Z95ReceptionistGAMGUID = "";
-         A95ReceptionistGAMGUID = "";
          Z92ReceptionistInitials = "";
          A92ReceptionistInitials = "";
          Z94ReceptionistPhone = "";
@@ -1381,13 +1384,14 @@ namespace GeneXus.Programs {
          A373ReceptionistPhoneCode = "";
          Z374ReceptionistPhoneNumber = "";
          A374ReceptionistPhoneNumber = "";
+         Z95ReceptionistGAMGUID = "";
+         A95ReceptionistGAMGUID = "";
          Z459ReceptionistImage = "";
          A459ReceptionistImage = "";
          Z40000ReceptionistImage_GXI = "";
          A40000ReceptionistImage_GXI = "";
          GXt_guid1 = Guid.Empty;
          BC000C5_A89ReceptionistId = new Guid[] {Guid.Empty} ;
-         BC000C5_A95ReceptionistGAMGUID = new string[] {""} ;
          BC000C5_A92ReceptionistInitials = new string[] {""} ;
          BC000C5_A94ReceptionistPhone = new string[] {""} ;
          BC000C5_A90ReceptionistGivenName = new string[] {""} ;
@@ -1395,6 +1399,7 @@ namespace GeneXus.Programs {
          BC000C5_A93ReceptionistEmail = new string[] {""} ;
          BC000C5_A373ReceptionistPhoneCode = new string[] {""} ;
          BC000C5_A374ReceptionistPhoneNumber = new string[] {""} ;
+         BC000C5_A95ReceptionistGAMGUID = new string[] {""} ;
          BC000C5_A398ReceptionistIsActive = new bool[] {false} ;
          BC000C5_A40000ReceptionistImage_GXI = new string[] {""} ;
          BC000C5_A11OrganisationId = new Guid[] {Guid.Empty} ;
@@ -1406,7 +1411,6 @@ namespace GeneXus.Programs {
          BC000C6_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC000C6_A29LocationId = new Guid[] {Guid.Empty} ;
          BC000C3_A89ReceptionistId = new Guid[] {Guid.Empty} ;
-         BC000C3_A95ReceptionistGAMGUID = new string[] {""} ;
          BC000C3_A92ReceptionistInitials = new string[] {""} ;
          BC000C3_A94ReceptionistPhone = new string[] {""} ;
          BC000C3_A90ReceptionistGivenName = new string[] {""} ;
@@ -1414,6 +1418,7 @@ namespace GeneXus.Programs {
          BC000C3_A93ReceptionistEmail = new string[] {""} ;
          BC000C3_A373ReceptionistPhoneCode = new string[] {""} ;
          BC000C3_A374ReceptionistPhoneNumber = new string[] {""} ;
+         BC000C3_A95ReceptionistGAMGUID = new string[] {""} ;
          BC000C3_A398ReceptionistIsActive = new bool[] {false} ;
          BC000C3_A40000ReceptionistImage_GXI = new string[] {""} ;
          BC000C3_A11OrganisationId = new Guid[] {Guid.Empty} ;
@@ -1421,7 +1426,6 @@ namespace GeneXus.Programs {
          BC000C3_A459ReceptionistImage = new string[] {""} ;
          sMode74 = "";
          BC000C2_A89ReceptionistId = new Guid[] {Guid.Empty} ;
-         BC000C2_A95ReceptionistGAMGUID = new string[] {""} ;
          BC000C2_A92ReceptionistInitials = new string[] {""} ;
          BC000C2_A94ReceptionistPhone = new string[] {""} ;
          BC000C2_A90ReceptionistGivenName = new string[] {""} ;
@@ -1429,6 +1433,7 @@ namespace GeneXus.Programs {
          BC000C2_A93ReceptionistEmail = new string[] {""} ;
          BC000C2_A373ReceptionistPhoneCode = new string[] {""} ;
          BC000C2_A374ReceptionistPhoneNumber = new string[] {""} ;
+         BC000C2_A95ReceptionistGAMGUID = new string[] {""} ;
          BC000C2_A398ReceptionistIsActive = new bool[] {false} ;
          BC000C2_A40000ReceptionistImage_GXI = new string[] {""} ;
          BC000C2_A11OrganisationId = new Guid[] {Guid.Empty} ;
@@ -1436,7 +1441,6 @@ namespace GeneXus.Programs {
          BC000C2_A459ReceptionistImage = new string[] {""} ;
          AV14GAMErrorResponse = "";
          BC000C11_A89ReceptionistId = new Guid[] {Guid.Empty} ;
-         BC000C11_A95ReceptionistGAMGUID = new string[] {""} ;
          BC000C11_A92ReceptionistInitials = new string[] {""} ;
          BC000C11_A94ReceptionistPhone = new string[] {""} ;
          BC000C11_A90ReceptionistGivenName = new string[] {""} ;
@@ -1444,6 +1448,7 @@ namespace GeneXus.Programs {
          BC000C11_A93ReceptionistEmail = new string[] {""} ;
          BC000C11_A373ReceptionistPhoneCode = new string[] {""} ;
          BC000C11_A374ReceptionistPhoneNumber = new string[] {""} ;
+         BC000C11_A95ReceptionistGAMGUID = new string[] {""} ;
          BC000C11_A398ReceptionistIsActive = new bool[] {false} ;
          BC000C11_A40000ReceptionistImage_GXI = new string[] {""} ;
          BC000C11_A11OrganisationId = new Guid[] {Guid.Empty} ;
@@ -1463,18 +1468,18 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_receptionist_bc__default(),
             new Object[][] {
                 new Object[] {
-               BC000C2_A89ReceptionistId, BC000C2_A95ReceptionistGAMGUID, BC000C2_A92ReceptionistInitials, BC000C2_A94ReceptionistPhone, BC000C2_A90ReceptionistGivenName, BC000C2_A91ReceptionistLastName, BC000C2_A93ReceptionistEmail, BC000C2_A373ReceptionistPhoneCode, BC000C2_A374ReceptionistPhoneNumber, BC000C2_A398ReceptionistIsActive,
+               BC000C2_A89ReceptionistId, BC000C2_A92ReceptionistInitials, BC000C2_A94ReceptionistPhone, BC000C2_A90ReceptionistGivenName, BC000C2_A91ReceptionistLastName, BC000C2_A93ReceptionistEmail, BC000C2_A373ReceptionistPhoneCode, BC000C2_A374ReceptionistPhoneNumber, BC000C2_A95ReceptionistGAMGUID, BC000C2_A398ReceptionistIsActive,
                BC000C2_A40000ReceptionistImage_GXI, BC000C2_A11OrganisationId, BC000C2_A29LocationId, BC000C2_A459ReceptionistImage
                }
                , new Object[] {
-               BC000C3_A89ReceptionistId, BC000C3_A95ReceptionistGAMGUID, BC000C3_A92ReceptionistInitials, BC000C3_A94ReceptionistPhone, BC000C3_A90ReceptionistGivenName, BC000C3_A91ReceptionistLastName, BC000C3_A93ReceptionistEmail, BC000C3_A373ReceptionistPhoneCode, BC000C3_A374ReceptionistPhoneNumber, BC000C3_A398ReceptionistIsActive,
+               BC000C3_A89ReceptionistId, BC000C3_A92ReceptionistInitials, BC000C3_A94ReceptionistPhone, BC000C3_A90ReceptionistGivenName, BC000C3_A91ReceptionistLastName, BC000C3_A93ReceptionistEmail, BC000C3_A373ReceptionistPhoneCode, BC000C3_A374ReceptionistPhoneNumber, BC000C3_A95ReceptionistGAMGUID, BC000C3_A398ReceptionistIsActive,
                BC000C3_A40000ReceptionistImage_GXI, BC000C3_A11OrganisationId, BC000C3_A29LocationId, BC000C3_A459ReceptionistImage
                }
                , new Object[] {
                BC000C4_A29LocationId
                }
                , new Object[] {
-               BC000C5_A89ReceptionistId, BC000C5_A95ReceptionistGAMGUID, BC000C5_A92ReceptionistInitials, BC000C5_A94ReceptionistPhone, BC000C5_A90ReceptionistGivenName, BC000C5_A91ReceptionistLastName, BC000C5_A93ReceptionistEmail, BC000C5_A373ReceptionistPhoneCode, BC000C5_A374ReceptionistPhoneNumber, BC000C5_A398ReceptionistIsActive,
+               BC000C5_A89ReceptionistId, BC000C5_A92ReceptionistInitials, BC000C5_A94ReceptionistPhone, BC000C5_A90ReceptionistGivenName, BC000C5_A91ReceptionistLastName, BC000C5_A93ReceptionistEmail, BC000C5_A373ReceptionistPhoneCode, BC000C5_A374ReceptionistPhoneNumber, BC000C5_A95ReceptionistGAMGUID, BC000C5_A398ReceptionistIsActive,
                BC000C5_A40000ReceptionistImage_GXI, BC000C5_A11OrganisationId, BC000C5_A29LocationId, BC000C5_A459ReceptionistImage
                }
                , new Object[] {
@@ -1489,7 +1494,7 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               BC000C11_A89ReceptionistId, BC000C11_A95ReceptionistGAMGUID, BC000C11_A92ReceptionistInitials, BC000C11_A94ReceptionistPhone, BC000C11_A90ReceptionistGivenName, BC000C11_A91ReceptionistLastName, BC000C11_A93ReceptionistEmail, BC000C11_A373ReceptionistPhoneCode, BC000C11_A374ReceptionistPhoneNumber, BC000C11_A398ReceptionistIsActive,
+               BC000C11_A89ReceptionistId, BC000C11_A92ReceptionistInitials, BC000C11_A94ReceptionistPhone, BC000C11_A90ReceptionistGivenName, BC000C11_A91ReceptionistLastName, BC000C11_A93ReceptionistEmail, BC000C11_A373ReceptionistPhoneCode, BC000C11_A374ReceptionistPhoneNumber, BC000C11_A95ReceptionistGAMGUID, BC000C11_A398ReceptionistIsActive,
                BC000C11_A40000ReceptionistImage_GXI, BC000C11_A11OrganisationId, BC000C11_A29LocationId, BC000C11_A459ReceptionistImage
                }
                , new Object[] {
@@ -1528,8 +1533,6 @@ namespace GeneXus.Programs {
       private bool Gx_longc ;
       private bool GXt_boolean3 ;
       private string AV14GAMErrorResponse ;
-      private string Z95ReceptionistGAMGUID ;
-      private string A95ReceptionistGAMGUID ;
       private string Z90ReceptionistGivenName ;
       private string A90ReceptionistGivenName ;
       private string Z91ReceptionistLastName ;
@@ -1540,6 +1543,8 @@ namespace GeneXus.Programs {
       private string A373ReceptionistPhoneCode ;
       private string Z374ReceptionistPhoneNumber ;
       private string A374ReceptionistPhoneNumber ;
+      private string Z95ReceptionistGAMGUID ;
+      private string A95ReceptionistGAMGUID ;
       private string Z40000ReceptionistImage_GXI ;
       private string A40000ReceptionistImage_GXI ;
       private string Z459ReceptionistImage ;
@@ -1561,7 +1566,6 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtAuditingObject AV36AuditingObject ;
       private IDataStoreProvider pr_default ;
       private Guid[] BC000C5_A89ReceptionistId ;
-      private string[] BC000C5_A95ReceptionistGAMGUID ;
       private string[] BC000C5_A92ReceptionistInitials ;
       private string[] BC000C5_A94ReceptionistPhone ;
       private string[] BC000C5_A90ReceptionistGivenName ;
@@ -1569,6 +1573,7 @@ namespace GeneXus.Programs {
       private string[] BC000C5_A93ReceptionistEmail ;
       private string[] BC000C5_A373ReceptionistPhoneCode ;
       private string[] BC000C5_A374ReceptionistPhoneNumber ;
+      private string[] BC000C5_A95ReceptionistGAMGUID ;
       private bool[] BC000C5_A398ReceptionistIsActive ;
       private string[] BC000C5_A40000ReceptionistImage_GXI ;
       private Guid[] BC000C5_A11OrganisationId ;
@@ -1579,7 +1584,6 @@ namespace GeneXus.Programs {
       private Guid[] BC000C6_A11OrganisationId ;
       private Guid[] BC000C6_A29LocationId ;
       private Guid[] BC000C3_A89ReceptionistId ;
-      private string[] BC000C3_A95ReceptionistGAMGUID ;
       private string[] BC000C3_A92ReceptionistInitials ;
       private string[] BC000C3_A94ReceptionistPhone ;
       private string[] BC000C3_A90ReceptionistGivenName ;
@@ -1587,13 +1591,13 @@ namespace GeneXus.Programs {
       private string[] BC000C3_A93ReceptionistEmail ;
       private string[] BC000C3_A373ReceptionistPhoneCode ;
       private string[] BC000C3_A374ReceptionistPhoneNumber ;
+      private string[] BC000C3_A95ReceptionistGAMGUID ;
       private bool[] BC000C3_A398ReceptionistIsActive ;
       private string[] BC000C3_A40000ReceptionistImage_GXI ;
       private Guid[] BC000C3_A11OrganisationId ;
       private Guid[] BC000C3_A29LocationId ;
       private string[] BC000C3_A459ReceptionistImage ;
       private Guid[] BC000C2_A89ReceptionistId ;
-      private string[] BC000C2_A95ReceptionistGAMGUID ;
       private string[] BC000C2_A92ReceptionistInitials ;
       private string[] BC000C2_A94ReceptionistPhone ;
       private string[] BC000C2_A90ReceptionistGivenName ;
@@ -1601,13 +1605,13 @@ namespace GeneXus.Programs {
       private string[] BC000C2_A93ReceptionistEmail ;
       private string[] BC000C2_A373ReceptionistPhoneCode ;
       private string[] BC000C2_A374ReceptionistPhoneNumber ;
+      private string[] BC000C2_A95ReceptionistGAMGUID ;
       private bool[] BC000C2_A398ReceptionistIsActive ;
       private string[] BC000C2_A40000ReceptionistImage_GXI ;
       private Guid[] BC000C2_A11OrganisationId ;
       private Guid[] BC000C2_A29LocationId ;
       private string[] BC000C2_A459ReceptionistImage ;
       private Guid[] BC000C11_A89ReceptionistId ;
-      private string[] BC000C11_A95ReceptionistGAMGUID ;
       private string[] BC000C11_A92ReceptionistInitials ;
       private string[] BC000C11_A94ReceptionistPhone ;
       private string[] BC000C11_A90ReceptionistGivenName ;
@@ -1615,6 +1619,7 @@ namespace GeneXus.Programs {
       private string[] BC000C11_A93ReceptionistEmail ;
       private string[] BC000C11_A373ReceptionistPhoneCode ;
       private string[] BC000C11_A374ReceptionistPhoneNumber ;
+      private string[] BC000C11_A95ReceptionistGAMGUID ;
       private bool[] BC000C11_A398ReceptionistIsActive ;
       private string[] BC000C11_A40000ReceptionistImage_GXI ;
       private Guid[] BC000C11_A11OrganisationId ;
@@ -1749,7 +1754,6 @@ public class trn_receptionist_bc__default : DataStoreHelperBase, IDataStoreHelpe
        Object[] prmBC000C7;
        prmBC000C7 = new Object[] {
        new ParDef("ReceptionistId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("ReceptionistGAMGUID",GXType.VarChar,100,60) ,
        new ParDef("ReceptionistInitials",GXType.Char,20,0) ,
        new ParDef("ReceptionistPhone",GXType.Char,20,0) ,
        new ParDef("ReceptionistGivenName",GXType.VarChar,100,0) ,
@@ -1757,6 +1761,7 @@ public class trn_receptionist_bc__default : DataStoreHelperBase, IDataStoreHelpe
        new ParDef("ReceptionistEmail",GXType.VarChar,100,0) ,
        new ParDef("ReceptionistPhoneCode",GXType.VarChar,40,0) ,
        new ParDef("ReceptionistPhoneNumber",GXType.VarChar,9,0) ,
+       new ParDef("ReceptionistGAMGUID",GXType.VarChar,100,60) ,
        new ParDef("ReceptionistIsActive",GXType.Boolean,4,0) ,
        new ParDef("ReceptionistImage",GXType.Byte,1024,0){InDB=false} ,
        new ParDef("ReceptionistImage_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=10, Tbl="Trn_Receptionist", Fld="ReceptionistImage"} ,
@@ -1765,7 +1770,6 @@ public class trn_receptionist_bc__default : DataStoreHelperBase, IDataStoreHelpe
        };
        Object[] prmBC000C8;
        prmBC000C8 = new Object[] {
-       new ParDef("ReceptionistGAMGUID",GXType.VarChar,100,60) ,
        new ParDef("ReceptionistInitials",GXType.Char,20,0) ,
        new ParDef("ReceptionistPhone",GXType.Char,20,0) ,
        new ParDef("ReceptionistGivenName",GXType.VarChar,100,0) ,
@@ -1773,6 +1777,7 @@ public class trn_receptionist_bc__default : DataStoreHelperBase, IDataStoreHelpe
        new ParDef("ReceptionistEmail",GXType.VarChar,100,0) ,
        new ParDef("ReceptionistPhoneCode",GXType.VarChar,40,0) ,
        new ParDef("ReceptionistPhoneNumber",GXType.VarChar,9,0) ,
+       new ParDef("ReceptionistGAMGUID",GXType.VarChar,100,60) ,
        new ParDef("ReceptionistIsActive",GXType.Boolean,4,0) ,
        new ParDef("ReceptionistId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
@@ -1804,16 +1809,16 @@ public class trn_receptionist_bc__default : DataStoreHelperBase, IDataStoreHelpe
        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
        };
        def= new CursorDef[] {
-           new CursorDef("BC000C2", "SELECT ReceptionistId, ReceptionistGAMGUID, ReceptionistInitials, ReceptionistPhone, ReceptionistGivenName, ReceptionistLastName, ReceptionistEmail, ReceptionistPhoneCode, ReceptionistPhoneNumber, ReceptionistIsActive, ReceptionistImage_GXI, OrganisationId, LocationId, ReceptionistImage FROM Trn_Receptionist WHERE ReceptionistId = :ReceptionistId AND OrganisationId = :OrganisationId AND LocationId = :LocationId  FOR UPDATE OF Trn_Receptionist",true, GxErrorMask.GX_NOMASK, false, this,prmBC000C2,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000C3", "SELECT ReceptionistId, ReceptionistGAMGUID, ReceptionistInitials, ReceptionistPhone, ReceptionistGivenName, ReceptionistLastName, ReceptionistEmail, ReceptionistPhoneCode, ReceptionistPhoneNumber, ReceptionistIsActive, ReceptionistImage_GXI, OrganisationId, LocationId, ReceptionistImage FROM Trn_Receptionist WHERE ReceptionistId = :ReceptionistId AND OrganisationId = :OrganisationId AND LocationId = :LocationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000C3,1, GxCacheFrequency.OFF ,true,false )
+           new CursorDef("BC000C2", "SELECT ReceptionistId, ReceptionistInitials, ReceptionistPhone, ReceptionistGivenName, ReceptionistLastName, ReceptionistEmail, ReceptionistPhoneCode, ReceptionistPhoneNumber, ReceptionistGAMGUID, ReceptionistIsActive, ReceptionistImage_GXI, OrganisationId, LocationId, ReceptionistImage FROM Trn_Receptionist WHERE ReceptionistId = :ReceptionistId AND OrganisationId = :OrganisationId AND LocationId = :LocationId  FOR UPDATE OF Trn_Receptionist",true, GxErrorMask.GX_NOMASK, false, this,prmBC000C2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000C3", "SELECT ReceptionistId, ReceptionistInitials, ReceptionistPhone, ReceptionistGivenName, ReceptionistLastName, ReceptionistEmail, ReceptionistPhoneCode, ReceptionistPhoneNumber, ReceptionistGAMGUID, ReceptionistIsActive, ReceptionistImage_GXI, OrganisationId, LocationId, ReceptionistImage FROM Trn_Receptionist WHERE ReceptionistId = :ReceptionistId AND OrganisationId = :OrganisationId AND LocationId = :LocationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000C3,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC000C4", "SELECT LocationId FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000C4,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000C5", "SELECT TM1.ReceptionistId, TM1.ReceptionistGAMGUID, TM1.ReceptionistInitials, TM1.ReceptionistPhone, TM1.ReceptionistGivenName, TM1.ReceptionistLastName, TM1.ReceptionistEmail, TM1.ReceptionistPhoneCode, TM1.ReceptionistPhoneNumber, TM1.ReceptionistIsActive, TM1.ReceptionistImage_GXI, TM1.OrganisationId, TM1.LocationId, TM1.ReceptionistImage FROM Trn_Receptionist TM1 WHERE TM1.ReceptionistId = :ReceptionistId and TM1.OrganisationId = :OrganisationId and TM1.LocationId = :LocationId ORDER BY TM1.ReceptionistId, TM1.OrganisationId, TM1.LocationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000C5,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000C5", "SELECT TM1.ReceptionistId, TM1.ReceptionistInitials, TM1.ReceptionistPhone, TM1.ReceptionistGivenName, TM1.ReceptionistLastName, TM1.ReceptionistEmail, TM1.ReceptionistPhoneCode, TM1.ReceptionistPhoneNumber, TM1.ReceptionistGAMGUID, TM1.ReceptionistIsActive, TM1.ReceptionistImage_GXI, TM1.OrganisationId, TM1.LocationId, TM1.ReceptionistImage FROM Trn_Receptionist TM1 WHERE TM1.ReceptionistId = :ReceptionistId and TM1.OrganisationId = :OrganisationId and TM1.LocationId = :LocationId ORDER BY TM1.ReceptionistId, TM1.OrganisationId, TM1.LocationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000C5,100, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC000C6", "SELECT ReceptionistId, OrganisationId, LocationId FROM Trn_Receptionist WHERE ReceptionistId = :ReceptionistId AND OrganisationId = :OrganisationId AND LocationId = :LocationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000C6,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000C7", "SAVEPOINT gxupdate;INSERT INTO Trn_Receptionist(ReceptionistId, ReceptionistGAMGUID, ReceptionistInitials, ReceptionistPhone, ReceptionistGivenName, ReceptionistLastName, ReceptionistEmail, ReceptionistPhoneCode, ReceptionistPhoneNumber, ReceptionistIsActive, ReceptionistImage, ReceptionistImage_GXI, OrganisationId, LocationId) VALUES(:ReceptionistId, :ReceptionistGAMGUID, :ReceptionistInitials, :ReceptionistPhone, :ReceptionistGivenName, :ReceptionistLastName, :ReceptionistEmail, :ReceptionistPhoneCode, :ReceptionistPhoneNumber, :ReceptionistIsActive, :ReceptionistImage, :ReceptionistImage_GXI, :OrganisationId, :LocationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000C7)
-          ,new CursorDef("BC000C8", "SAVEPOINT gxupdate;UPDATE Trn_Receptionist SET ReceptionistGAMGUID=:ReceptionistGAMGUID, ReceptionistInitials=:ReceptionistInitials, ReceptionistPhone=:ReceptionistPhone, ReceptionistGivenName=:ReceptionistGivenName, ReceptionistLastName=:ReceptionistLastName, ReceptionistEmail=:ReceptionistEmail, ReceptionistPhoneCode=:ReceptionistPhoneCode, ReceptionistPhoneNumber=:ReceptionistPhoneNumber, ReceptionistIsActive=:ReceptionistIsActive  WHERE ReceptionistId = :ReceptionistId AND OrganisationId = :OrganisationId AND LocationId = :LocationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000C8)
+          ,new CursorDef("BC000C7", "SAVEPOINT gxupdate;INSERT INTO Trn_Receptionist(ReceptionistId, ReceptionistInitials, ReceptionistPhone, ReceptionistGivenName, ReceptionistLastName, ReceptionistEmail, ReceptionistPhoneCode, ReceptionistPhoneNumber, ReceptionistGAMGUID, ReceptionistIsActive, ReceptionistImage, ReceptionistImage_GXI, OrganisationId, LocationId) VALUES(:ReceptionistId, :ReceptionistInitials, :ReceptionistPhone, :ReceptionistGivenName, :ReceptionistLastName, :ReceptionistEmail, :ReceptionistPhoneCode, :ReceptionistPhoneNumber, :ReceptionistGAMGUID, :ReceptionistIsActive, :ReceptionistImage, :ReceptionistImage_GXI, :OrganisationId, :LocationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000C7)
+          ,new CursorDef("BC000C8", "SAVEPOINT gxupdate;UPDATE Trn_Receptionist SET ReceptionistInitials=:ReceptionistInitials, ReceptionistPhone=:ReceptionistPhone, ReceptionistGivenName=:ReceptionistGivenName, ReceptionistLastName=:ReceptionistLastName, ReceptionistEmail=:ReceptionistEmail, ReceptionistPhoneCode=:ReceptionistPhoneCode, ReceptionistPhoneNumber=:ReceptionistPhoneNumber, ReceptionistGAMGUID=:ReceptionistGAMGUID, ReceptionistIsActive=:ReceptionistIsActive  WHERE ReceptionistId = :ReceptionistId AND OrganisationId = :OrganisationId AND LocationId = :LocationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000C8)
           ,new CursorDef("BC000C9", "SAVEPOINT gxupdate;UPDATE Trn_Receptionist SET ReceptionistImage=:ReceptionistImage, ReceptionistImage_GXI=:ReceptionistImage_GXI  WHERE ReceptionistId = :ReceptionistId AND OrganisationId = :OrganisationId AND LocationId = :LocationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000C9)
           ,new CursorDef("BC000C10", "SAVEPOINT gxupdate;DELETE FROM Trn_Receptionist  WHERE ReceptionistId = :ReceptionistId AND OrganisationId = :OrganisationId AND LocationId = :LocationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000C10)
-          ,new CursorDef("BC000C11", "SELECT TM1.ReceptionistId, TM1.ReceptionistGAMGUID, TM1.ReceptionistInitials, TM1.ReceptionistPhone, TM1.ReceptionistGivenName, TM1.ReceptionistLastName, TM1.ReceptionistEmail, TM1.ReceptionistPhoneCode, TM1.ReceptionistPhoneNumber, TM1.ReceptionistIsActive, TM1.ReceptionistImage_GXI, TM1.OrganisationId, TM1.LocationId, TM1.ReceptionistImage FROM Trn_Receptionist TM1 WHERE TM1.ReceptionistId = :ReceptionistId and TM1.OrganisationId = :OrganisationId and TM1.LocationId = :LocationId ORDER BY TM1.ReceptionistId, TM1.OrganisationId, TM1.LocationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000C11,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000C11", "SELECT TM1.ReceptionistId, TM1.ReceptionistInitials, TM1.ReceptionistPhone, TM1.ReceptionistGivenName, TM1.ReceptionistLastName, TM1.ReceptionistEmail, TM1.ReceptionistPhoneCode, TM1.ReceptionistPhoneNumber, TM1.ReceptionistGAMGUID, TM1.ReceptionistIsActive, TM1.ReceptionistImage_GXI, TM1.OrganisationId, TM1.LocationId, TM1.ReceptionistImage FROM Trn_Receptionist TM1 WHERE TM1.ReceptionistId = :ReceptionistId and TM1.OrganisationId = :OrganisationId and TM1.LocationId = :LocationId ORDER BY TM1.ReceptionistId, TM1.OrganisationId, TM1.LocationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000C11,100, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC000C12", "SELECT LocationId FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000C12,1, GxCacheFrequency.OFF ,true,false )
        };
     }
@@ -1827,9 +1832,9 @@ public class trn_receptionist_bc__default : DataStoreHelperBase, IDataStoreHelpe
     {
           case 0 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[1])[0] = rslt.getString(2, 20);
              ((string[]) buf[2])[0] = rslt.getString(3, 20);
-             ((string[]) buf[3])[0] = rslt.getString(4, 20);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
              ((string[]) buf[4])[0] = rslt.getVarchar(5);
              ((string[]) buf[5])[0] = rslt.getVarchar(6);
              ((string[]) buf[6])[0] = rslt.getVarchar(7);
@@ -1843,9 +1848,9 @@ public class trn_receptionist_bc__default : DataStoreHelperBase, IDataStoreHelpe
              return;
           case 1 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[1])[0] = rslt.getString(2, 20);
              ((string[]) buf[2])[0] = rslt.getString(3, 20);
-             ((string[]) buf[3])[0] = rslt.getString(4, 20);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
              ((string[]) buf[4])[0] = rslt.getVarchar(5);
              ((string[]) buf[5])[0] = rslt.getVarchar(6);
              ((string[]) buf[6])[0] = rslt.getVarchar(7);
@@ -1862,9 +1867,9 @@ public class trn_receptionist_bc__default : DataStoreHelperBase, IDataStoreHelpe
              return;
           case 3 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[1])[0] = rslt.getString(2, 20);
              ((string[]) buf[2])[0] = rslt.getString(3, 20);
-             ((string[]) buf[3])[0] = rslt.getString(4, 20);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
              ((string[]) buf[4])[0] = rslt.getVarchar(5);
              ((string[]) buf[5])[0] = rslt.getVarchar(6);
              ((string[]) buf[6])[0] = rslt.getVarchar(7);
@@ -1883,9 +1888,9 @@ public class trn_receptionist_bc__default : DataStoreHelperBase, IDataStoreHelpe
              return;
           case 9 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[1])[0] = rslt.getString(2, 20);
              ((string[]) buf[2])[0] = rslt.getString(3, 20);
-             ((string[]) buf[3])[0] = rslt.getString(4, 20);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
              ((string[]) buf[4])[0] = rslt.getVarchar(5);
              ((string[]) buf[5])[0] = rslt.getVarchar(6);
              ((string[]) buf[6])[0] = rslt.getVarchar(7);

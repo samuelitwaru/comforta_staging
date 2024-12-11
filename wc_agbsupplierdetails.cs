@@ -1427,7 +1427,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412614365150", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412101949461", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1445,7 +1445,7 @@ namespace GeneXus.Programs {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wc_agbsupplierdetails.js", "?202412614365151", false, true);
+            context.AddJavascriptSource("wc_agbsupplierdetails.js", "?202412101949461", false, true);
          }
          /* End function include_jscripts */
       }
@@ -1563,7 +1563,6 @@ namespace GeneXus.Programs {
          setEventMetadata("VALIDV_GXV6","""{"handler":"Validv_Gxv6","iparms":[]}""");
          setEventMetadata("VALIDV_GXV13","""{"handler":"Validv_Gxv13","iparms":[]}""");
          setEventMetadata("VALIDV_GXV14","""{"handler":"Validv_Gxv14","iparms":[]}""");
-         setEventMetadata("VALIDV_GXV16","""{"handler":"Validv_Gxv16","iparms":[]}""");
          return  ;
       }
 

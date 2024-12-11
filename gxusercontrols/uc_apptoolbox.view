@@ -1,8 +1,8 @@
-<link
+<!--<link
    rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-   />
-<script src="/Resources/UCGrapes2/new-design/js/tb-utils.js"></script>
+   />-->
+<script src="/Resources/UCGrapes1/new-design/js/toolbox-utils.js"></script>
 <div id="tb-body">
    <div class="tb-navbar">
       <h3 id="navbar_title"></h3>
@@ -268,8 +268,8 @@
                   Add
                   </button>
                </div>
-               <h5 style="display: none;" id="current-page-title">Home</h5>
-               <div id="tree-container" class="tree">
+               <h5 id="current-page-title">HOME</h5>
+               <div id="tree-container" class="tb-list-container">
                </div>
             </div>
          </div>
@@ -282,11 +282,11 @@
          l>
       </div>
    </div>
-   <script src="/Resources/UCGrapes2/new-design/js/component-types.js"></script>
-   <script src="/Resources/UCGrapes2/new-design/locale/locale.js"></script>
-   <script src="/Resources/UCGrapes2/new-design/js/data.js"></script>
-   <script src="/Resources/UCGrapes2/new-design/js/components.js"></script>
-   <script src="/Resources/UCGrapes2/new-design/js/editor-manager.js"></script>
-   <script src="/Resources/UCGrapes2/new-design/js/toolbox.js"></script>
-   <script src="/Resources/UCGrapes2/new-design/js/child-editor-manager.js"></script>
+   <script src="/Resources/UCGrapes1/new-design/js/component-types.js"></script>
+   <script src="/Resources/UCGrapes1/new-design/locale/locale.js"></script>
+   <script src="/Resources/UCGrapes1/new-design/js/data.js"></script>
+   <script src="/Resources/UCGrapes1/new-design/js/components.js"></script>
+   <script src="/Resources/UCGrapes1/new-design/js/editor-manager.js"></script>
+   <script src="/Resources/UCGrapes1/new-design/js/toolbox.js"></script>
+   <script src="/Resources/UCGrapes1/new-design/js/child-editor-manager.js"></script>
 </div>

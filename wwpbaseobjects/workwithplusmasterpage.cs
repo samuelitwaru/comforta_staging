@@ -215,7 +215,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context.AddJavascriptSource("DVelop/Shared/daterangepicker/daterangepicker.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DatePicker/DatePickerRender.js", "", false, true);
-         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?2024126160520", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?202412101951344", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -900,10 +900,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          /* Start Routine */
          returnInSub = false;
-         if ( ! AV42WWPContext.gxTpr_Iscontextset )
-         {
-            new prc_loadwwpcontext(context ).execute( ref  AV42WWPContext) ;
-         }
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV42WWPContext) ;
          GXt_SdtSDT_OrganisationSetting1 = AV34SDT_OrganisationSetting;
          new prc_organisationsetting(context ).execute( out  GXt_SdtSDT_OrganisationSetting1) ;
@@ -1051,7 +1047,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
          CallWebObject(formatLink("trn_organisationww.aspx") );
          context.wjLocDisableFrm = 1;
          /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", true, "AV42WWPContext", AV42WWPContext);
       }
 
       protected void E17392( )
@@ -1066,7 +1061,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
          CallWebObject(formatLink("trn_locationww.aspx") );
          context.wjLocDisableFrm = 1;
          /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", true, "AV42WWPContext", AV42WWPContext);
       }
 
       protected void E12392( )
@@ -1190,11 +1184,10 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          /* General\GlobalEvents_Refreshuserprofile Routine */
          returnInSub = false;
-         new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV42WWPContext) ;
-         Ddc_adminag_Icon = AV42WWPContext.gxTpr_Profileurl;
-         ucDdc_adminag.SendProperty(context, "", true, Ddc_adminag_Internalname, "Icon", Ddc_adminag_Icon);
-         /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", true, "AV42WWPContext", AV42WWPContext);
+         GXt_SdtWWPContext4 = AV42WWPContext;
+         new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  GXt_SdtWWPContext4) ;
+         AV42WWPContext = GXt_SdtWWPContext4;
+         this.executeUsercontrolMethod("", true, "DDC_ADMINAG_MPAGEContainer", "Update", "", new Object[] {(string)"",AV42WWPContext.gxTpr_Profileurl});
       }
 
       protected void S112( )
@@ -1280,7 +1273,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?2024126161275", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202412101951189", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1295,7 +1288,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?2024126161277", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?2024121019511813", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -1415,9 +1408,9 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          setEventMetadata("REFRESH_MPAGE","""{"handler":"Refresh","iparms":[]}""");
          setEventMetadata("DOUEXITORGANISATION_MPAGE","""{"handler":"E16392","iparms":[]""");
-         setEventMetadata("DOUEXITORGANISATION_MPAGE",""","oparms":[{"av":"AV42WWPContext","fld":"vWWPCONTEXT_MPAGE"},{"av":"lblOrglocationtextblock_Caption","ctrl":"ORGLOCATIONTEXTBLOCK_MPAGE","prop":"Caption"}]}""");
+         setEventMetadata("DOUEXITORGANISATION_MPAGE",""","oparms":[{"av":"lblOrglocationtextblock_Caption","ctrl":"ORGLOCATIONTEXTBLOCK_MPAGE","prop":"Caption"}]}""");
          setEventMetadata("DOUEXITLOCATION_MPAGE","""{"handler":"E17392","iparms":[]""");
-         setEventMetadata("DOUEXITLOCATION_MPAGE",""","oparms":[{"av":"AV42WWPContext","fld":"vWWPCONTEXT_MPAGE"},{"av":"lblOrglocationtextblock_Caption","ctrl":"ORGLOCATIONTEXTBLOCK_MPAGE","prop":"Caption"}]}""");
+         setEventMetadata("DOUEXITLOCATION_MPAGE",""","oparms":[{"av":"lblOrglocationtextblock_Caption","ctrl":"ORGLOCATIONTEXTBLOCK_MPAGE","prop":"Caption"}]}""");
          setEventMetadata("DDC_CHANGELANGUAGE_MPAGE.ONLOADCOMPONENT_MPAGE","""{"handler":"E12392","iparms":[]""");
          setEventMetadata("DDC_CHANGELANGUAGE_MPAGE.ONLOADCOMPONENT_MPAGE",""","oparms":[{"ctrl":"WWPAUX_WC_MPAGE"}]}""");
          setEventMetadata("DDC_NOTIFICATIONSWC_MPAGE.ONLOADCOMPONENT_MPAGE","""{"handler":"E13392","iparms":[]""");
@@ -1425,8 +1418,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          setEventMetadata("DDC_ADMINAG_MPAGE.ONLOADCOMPONENT_MPAGE","""{"handler":"E14392","iparms":[]""");
          setEventMetadata("DDC_ADMINAG_MPAGE.ONLOADCOMPONENT_MPAGE",""","oparms":[{"ctrl":"WWPAUX_WC_MPAGE"}]}""");
          setEventMetadata("DOSHOWMENU_MPAGE","""{"handler":"E11391","iparms":[]}""");
-         setEventMetadata("GLOBALEVENTS_MPAGE.REFRESHUSERPROFILE_MPAGE","""{"handler":"E19392","iparms":[]""");
-         setEventMetadata("GLOBALEVENTS_MPAGE.REFRESHUSERPROFILE_MPAGE",""","oparms":[{"av":"AV42WWPContext","fld":"vWWPCONTEXT_MPAGE"},{"av":"Ddc_adminag_Icon","ctrl":"DDC_ADMINAG_MPAGE","prop":"Icon"}]}""");
+         setEventMetadata("GLOBALEVENTS_MPAGE.REFRESHUSERPROFILE_MPAGE","""{"handler":"E19392","iparms":[]}""");
          setEventMetadata("ONMESSAGE_GX1_MPAGE","""{"handler":"E18392","iparms":[{"av":"AV11NotificationInfo","fld":"vNOTIFICATIONINFO_MPAGE"},{"av":"A112WWPUserExtendedId","fld":"WWPUSEREXTENDEDID_MPAGE"},{"av":"AV48Udparg1","fld":"vUDPARG1_MPAGE"},{"av":"A187WWPNotificationIsRead","fld":"WWPNOTIFICATIONISREAD_MPAGE"},{"av":"Ddc_notificationswc_Icon","ctrl":"DDC_NOTIFICATIONSWC_MPAGE","prop":"Icon"}]}""");
          return  ;
       }
@@ -1499,6 +1491,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          AV13WWP_WebNotification = new GeneXus.Programs.wwpbaseobjects.notifications.web.SdtWWP_WebNotification(context);
          AV14WWP_UserExtended = new GeneXus.Programs.wwpbaseobjects.SdtWWP_UserExtended(context);
          GXEncryptionTmp = "";
+         GXt_SdtWWPContext4 = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          H00392_AV12NotificationsCount = new short[1] ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -1655,6 +1648,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private GeneXus.Programs.wwpbaseobjects.SdtWWP_DesignSystemSettings GXt_SdtWWP_DesignSystemSettings3 ;
       private GeneXus.Programs.wwpbaseobjects.notifications.web.SdtWWP_WebNotification AV13WWP_WebNotification ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWP_UserExtended AV14WWP_UserExtended ;
+      private GeneXus.Programs.wwpbaseobjects.SdtWWPContext GXt_SdtWWPContext4 ;
       private IDataStoreProvider pr_default ;
       private short[] H00392_AV12NotificationsCount ;
       private msglist BackMsgLst ;

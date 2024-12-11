@@ -62,20 +62,22 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A22ManagerGivenName", A22ManagerGivenName);
             A23ManagerLastName = GetPar( "ManagerLastName");
             AssignAttri("", false, "A23ManagerLastName", A23ManagerLastName);
-            Gx_mode = GetPar( "Mode");
-            AssignAttri("", false, "Gx_mode", Gx_mode);
             A28ManagerGAMGUID = GetPar( "ManagerGAMGUID");
             AssignAttri("", false, "A28ManagerGAMGUID", A28ManagerGAMGUID);
+            AV24GAMErrorResponse = GetPar( "GAMErrorResponse");
+            AssignAttri("", false, "AV24GAMErrorResponse", AV24GAMErrorResponse);
+            Gx_mode = GetPar( "Mode");
+            AssignAttri("", false, "Gx_mode", Gx_mode);
             setAjaxCallMode();
             if ( ! IsValidAjaxCall( true) )
             {
                GxWebError = 1;
                return  ;
             }
-            XC_26_035( A25ManagerEmail, A22ManagerGivenName, A23ManagerLastName, Gx_mode, A28ManagerGAMGUID) ;
+            XC_26_035( A25ManagerEmail, A22ManagerGivenName, A23ManagerLastName, A28ManagerGAMGUID, AV24GAMErrorResponse, Gx_mode) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxJX_Action27") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxJX_Action28") == 0 )
          {
             A22ManagerGivenName = GetPar( "ManagerGivenName");
             AssignAttri("", false, "A22ManagerGivenName", A22ManagerGivenName);
@@ -87,10 +89,10 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            XC_27_035( A22ManagerGivenName, A23ManagerLastName) ;
+            XC_28_035( A22ManagerGivenName, A23ManagerLastName) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxJX_Action29") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxJX_Action30") == 0 )
          {
             Gx_mode = GetPar( "Mode");
             AssignAttri("", false, "Gx_mode", Gx_mode);
@@ -112,10 +114,10 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            XC_29_035( Gx_mode, A28ManagerGAMGUID, A22ManagerGivenName, A23ManagerLastName, A385ManagerPhoneCode, A386ManagerPhoneNumber, A458ManagerImage) ;
+            XC_30_035( Gx_mode, A28ManagerGAMGUID, A22ManagerGivenName, A23ManagerLastName, A385ManagerPhoneCode, A386ManagerPhoneNumber, A458ManagerImage) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxJX_Action31") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxJX_Action32") == 0 )
          {
             Gx_mode = GetPar( "Mode");
             AssignAttri("", false, "Gx_mode", Gx_mode);
@@ -127,7 +129,7 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            XC_31_035( Gx_mode, A28ManagerGAMGUID) ;
+            XC_32_035( Gx_mode, A28ManagerGAMGUID) ;
             return  ;
          }
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxAggSel9"+"_"+"") == 0 )
@@ -161,7 +163,7 @@ namespace GeneXus.Programs {
             GX13ASAISGAMACTIVE035( A28ManagerGAMGUID) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_34") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_35") == 0 )
          {
             A11OrganisationId = StringUtil.StrToGuid( GetPar( "OrganisationId"));
             AssignAttri("", false, "A11OrganisationId", A11OrganisationId.ToString());
@@ -171,7 +173,7 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            gxLoad_34( A11OrganisationId) ;
+            gxLoad_35( A11OrganisationId) ;
             return  ;
          }
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxEvt") == 0 )
@@ -511,6 +513,25 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
          /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbManagerGender_Internalname+"\"", "", "div");
+         /* Attribute/Variable Label */
+         GxWebStd.gx_label_element( context, cmbManagerGender_Internalname, "Gender", "col-sm-4 AttributeLabel", 1, true, "");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 31,'',false,'',0)\"";
+         /* ComboBox */
+         GxWebStd.gx_combobox_ctrl1( context, cmbManagerGender, cmbManagerGender_Internalname, StringUtil.RTrim( A27ManagerGender), 1, cmbManagerGender_Jsonclick, 0, "'"+""+"'"+",false,"+"'"+""+"'", "svchar", "", 1, cmbManagerGender.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,31);\"", "", true, 0, "HLP_Trn_Manager.htm");
+         cmbManagerGender.CurrentValue = StringUtil.RTrim( A27ManagerGender);
+         AssignProp("", false, cmbManagerGender_Internalname, "Values", (string)(cmbManagerGender.ToJavascriptSource()), true);
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+         /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 RequiredDataContentCell", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtManagerEmail_Internalname+"\"", "", "div");
@@ -519,8 +540,8 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 31,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtManagerEmail_Internalname, A25ManagerEmail, StringUtil.RTrim( context.localUtil.Format( A25ManagerEmail, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,31);\"", "'"+""+"'"+",false,"+"'"+""+"'", "mailto:"+A25ManagerEmail, "", "", "", edtManagerEmail_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtManagerEmail_Enabled, 1, "email", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, 0, true, "GeneXus\\Email", "start", true, "", "HLP_Trn_Manager.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 36,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtManagerEmail_Internalname, A25ManagerEmail, StringUtil.RTrim( context.localUtil.Format( A25ManagerEmail, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,36);\"", "'"+""+"'"+",false,"+"'"+""+"'", "mailto:"+A25ManagerEmail, "", "", "", edtManagerEmail_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtManagerEmail_Enabled, 1, "email", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, 0, true, "GeneXus\\Email", "start", true, "", "HLP_Trn_Manager.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -528,23 +549,36 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell ExtendedComboCell", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, divTablesplittedmanagerphonecode_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, divUnnamedtable2_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-4 MergeLabelCell", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-4 control-label", "start", "top", "", "", "div");
          /* Text block */
-         GxWebStd.gx_label_ctrl( context, lblTextblockmanagerphonecode_Internalname, "Phone", "", "", lblTextblockmanagerphonecode_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_Trn_Manager.htm");
+         GxWebStd.gx_label_ctrl( context, lblPhone_Internalname, "Phone", "", "", lblPhone_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock AttributeWeightBold", 0, "", 1, 1, 0, 0, "HLP_Trn_Manager.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-8", "start", "top", "", "", "div");
-         /* Table start */
-         sStyleString = "";
-         GxWebStd.gx_table_start( context, tblTablemergedmanagerphonecode_Internalname, tblTablemergedmanagerphonecode_Internalname, "", "TableMerged", 0, "", "", 0, 0, sStyleString, "", "", 0);
-         context.WriteHtmlText( "<tr>") ;
-         context.WriteHtmlText( "<td class='MergeDataCell'>") ;
+         /* Div Control */
+         GxWebStd.gx_div_start( context, divUnnamedtable3_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-4", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, divUnnamedtable4_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 PhoneLabel ExtendedComboCell", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, divUnnamedtablemanagerphonecode_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
          /* User Defined Control */
          ucCombo_managerphonecode.SetProperty("Caption", Combo_managerphonecode_Caption);
          ucCombo_managerphonecode.SetProperty("Cls", Combo_managerphonecode_Cls);
@@ -552,50 +586,41 @@ namespace GeneXus.Programs {
          ucCombo_managerphonecode.SetProperty("DropDownOptionsTitleSettingsIcons", AV15DDO_TitleSettingsIcons);
          ucCombo_managerphonecode.SetProperty("DropDownOptionsData", AV27ManagerPhoneCode_Data);
          ucCombo_managerphonecode.Render(context, "dvelop.gxbootstrap.ddoextendedcombo", Combo_managerphonecode_Internalname, "COMBO_MANAGERPHONECODEContainer");
-         context.WriteHtmlText( "</td>") ;
-         context.WriteHtmlText( "<td class='Invisible'>") ;
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row Invisible", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtManagerPhoneCode_Internalname, "Manager Phone Code", "gx-form-item AttributeLabel", 0, true, "width: 25%;");
+         GxWebStd.gx_label_element( context, edtManagerPhoneCode_Internalname, "Manager Phone Code", "col-sm-3 AttributeLabel", 0, true, "");
          /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 45,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtManagerPhoneCode_Internalname, A385ManagerPhoneCode, StringUtil.RTrim( context.localUtil.Format( A385ManagerPhoneCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,45);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtManagerPhoneCode_Jsonclick, 0, "Attribute", "", "", "", "", edtManagerPhoneCode_Visible, edtManagerPhoneCode_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Manager.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 57,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtManagerPhoneCode_Internalname, A385ManagerPhoneCode, StringUtil.RTrim( context.localUtil.Format( A385ManagerPhoneCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,57);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtManagerPhoneCode_Jsonclick, 0, "Attribute", "", "", "", "", edtManagerPhoneCode_Visible, edtManagerPhoneCode_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Manager.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
-         context.WriteHtmlText( "</td>") ;
-         context.WriteHtmlText( "<td class='DataContentCell'>") ;
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-8 DataContentCell", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtManagerPhoneNumber_Internalname, "Manager Phone Number", "gx-form-item AttributePhoneNumberLabel", 0, true, "width: 25%;");
+         GxWebStd.gx_label_element( context, edtManagerPhoneNumber_Internalname, "Manager Phone Number", "col-sm-3 AttributeLabel", 0, true, "");
          /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 48,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtManagerPhoneNumber_Internalname, A386ManagerPhoneNumber, StringUtil.RTrim( context.localUtil.Format( A386ManagerPhoneNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,48);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtManagerPhoneNumber_Jsonclick, 0, "AttributePhoneNumber", "", "", "", "", 1, edtManagerPhoneNumber_Enabled, 0, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Manager.htm");
-         GxWebStd.gx_div_end( context, "start", "top", "div");
-         context.WriteHtmlText( "</td>") ;
-         context.WriteHtmlText( "</tr>") ;
-         /* End of table */
-         context.WriteHtmlText( "</table>") ;
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 60,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtManagerPhoneNumber_Internalname, A386ManagerPhoneNumber, StringUtil.RTrim( context.localUtil.Format( A386ManagerPhoneNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,60);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtManagerPhoneNumber_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtManagerPhoneNumber_Enabled, 0, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Manager.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
-         /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-         /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6 DataContentCell", "start", "top", "", "", "div");
-         /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbManagerGender_Internalname+"\"", "", "div");
-         /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, cmbManagerGender_Internalname, "Gender", "col-sm-4 AttributeLabel", 1, true, "");
-         /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 53,'',false,'',0)\"";
-         /* ComboBox */
-         GxWebStd.gx_combobox_ctrl1( context, cmbManagerGender, cmbManagerGender_Internalname, StringUtil.RTrim( A27ManagerGender), 1, cmbManagerGender_Jsonclick, 0, "'"+""+"'"+",false,"+"'"+""+"'", "svchar", "", 1, cmbManagerGender.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,53);\"", "", true, 0, "HLP_Trn_Manager.htm");
-         cmbManagerGender.CurrentValue = StringUtil.RTrim( A27ManagerGender);
-         AssignProp("", false, cmbManagerGender_Internalname, "Values", (string)(cmbManagerGender.ToJavascriptSource()), true);
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -611,10 +636,10 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Check box */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 58,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 65,'',false,'',0)\"";
          ClassString = "AttributeCheckBox";
          StyleString = "";
-         GxWebStd.gx_checkbox_ctrl( context, chkManagerIsMainManager_Internalname, StringUtil.BoolToStr( A360ManagerIsMainManager), "", "Is Main Manager?", 1, chkManagerIsMainManager.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(58, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,58);\"");
+         GxWebStd.gx_checkbox_ctrl( context, chkManagerIsMainManager_Internalname, StringUtil.BoolToStr( A360ManagerIsMainManager), "", "Is Main Manager?", 1, chkManagerIsMainManager.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(65, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,65);\"");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -630,10 +655,10 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Check box */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 63,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 70,'',false,'',0)\"";
          ClassString = "AttributeCheckBox";
          StyleString = "";
-         GxWebStd.gx_checkbox_ctrl( context, chkManagerIsActive_Internalname, StringUtil.BoolToStr( A394ManagerIsActive), "", "Is Active", chkManagerIsActive.Visible, chkManagerIsActive.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(63, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,63);\"");
+         GxWebStd.gx_checkbox_ctrl( context, chkManagerIsActive_Internalname, StringUtil.BoolToStr( A394ManagerIsActive), "", "Is Active", chkManagerIsActive.Visible, chkManagerIsActive.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(70, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,70);\"");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -653,21 +678,21 @@ namespace GeneXus.Programs {
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group CellMarginTop10", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 68,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 75,'',false,'',0)\"";
          ClassString = "ButtonMaterial";
          StyleString = "";
          GxWebStd.gx_button_ctrl( context, bttBtntrn_enter_Internalname, "", "Confirm", bttBtntrn_enter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtntrn_enter_Visible, bttBtntrn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Manager.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 70,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 77,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
          GxWebStd.gx_button_ctrl( context, bttBtntrn_cancel_Internalname, "", "Cancel", bttBtntrn_cancel_Jsonclick, 1, "Cancel", "", StyleString, ClassString, bttBtntrn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Manager.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 72,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 79,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
          GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", "Delete", bttBtntrn_delete_Jsonclick, 5, "Delete", "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Manager.htm");
@@ -687,28 +712,28 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, divSectionattribute_managerphonecode_Internalname, 1, 0, "px", 0, "px", "Section", "start", "top", "", "", "div");
          /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 77,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtavCombomanagerphonecode_Internalname, AV25ComboManagerPhoneCode, StringUtil.RTrim( context.localUtil.Format( AV25ComboManagerPhoneCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,77);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCombomanagerphonecode_Jsonclick, 0, "Attribute", "", "", "", "", edtavCombomanagerphonecode_Visible, edtavCombomanagerphonecode_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Manager.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 84,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtavCombomanagerphonecode_Internalname, AV25ComboManagerPhoneCode, StringUtil.RTrim( context.localUtil.Format( AV25ComboManagerPhoneCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,84);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCombomanagerphonecode_Jsonclick, 0, "Attribute", "", "", "", "", edtavCombomanagerphonecode_Visible, edtavCombomanagerphonecode_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Manager.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 78,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtManagerId_Internalname, A21ManagerId.ToString(), A21ManagerId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,78);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtManagerId_Jsonclick, 0, "Attribute", "", "", "", "", edtManagerId_Visible, edtManagerId_Enabled, 1, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_Manager.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 85,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtManagerId_Internalname, A21ManagerId.ToString(), A21ManagerId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,85);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtManagerId_Jsonclick, 0, "Attribute", "", "", "", "", edtManagerId_Visible, edtManagerId_Enabled, 1, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_Manager.htm");
          /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 79,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtOrganisationId_Internalname, A11OrganisationId.ToString(), A11OrganisationId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,79);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtOrganisationId_Jsonclick, 0, "Attribute", "", "", "", "", edtOrganisationId_Visible, edtOrganisationId_Enabled, 1, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_Manager.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 86,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtOrganisationId_Internalname, A11OrganisationId.ToString(), A11OrganisationId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,86);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtOrganisationId_Jsonclick, 0, "Attribute", "", "", "", "", edtOrganisationId_Visible, edtOrganisationId_Enabled, 1, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_Manager.htm");
          /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 80,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtManagerInitials_Internalname, StringUtil.RTrim( A24ManagerInitials), StringUtil.RTrim( context.localUtil.Format( A24ManagerInitials, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,80);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtManagerInitials_Jsonclick, 0, "Attribute", "", "", "", "", edtManagerInitials_Visible, edtManagerInitials_Enabled, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Manager.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 87,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtManagerInitials_Internalname, StringUtil.RTrim( A24ManagerInitials), StringUtil.RTrim( context.localUtil.Format( A24ManagerInitials, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,87);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtManagerInitials_Jsonclick, 0, "Attribute", "", "", "", "", edtManagerInitials_Visible, edtManagerInitials_Enabled, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Manager.htm");
          /* Single line edit */
          if ( context.isSmartDevice( ) )
          {
             gxphoneLink = "tel:" + StringUtil.RTrim( A26ManagerPhone);
          }
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 81,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtManagerPhone_Internalname, StringUtil.RTrim( A26ManagerPhone), StringUtil.RTrim( context.localUtil.Format( A26ManagerPhone, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,81);\"", "'"+""+"'"+",false,"+"'"+""+"'", gxphoneLink, "", "", "", edtManagerPhone_Jsonclick, 0, "Attribute", "", "", "", "", edtManagerPhone_Visible, edtManagerPhone_Enabled, 0, "tel", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, 0, true, "GeneXus\\Phone", "start", true, "", "HLP_Trn_Manager.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 88,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtManagerPhone_Internalname, StringUtil.RTrim( A26ManagerPhone), StringUtil.RTrim( context.localUtil.Format( A26ManagerPhone, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,88);\"", "'"+""+"'"+",false,"+"'"+""+"'", gxphoneLink, "", "", "", edtManagerPhone_Jsonclick, 0, "Attribute", "", "", "", "", edtManagerPhone_Visible, edtManagerPhone_Enabled, 0, "tel", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, 0, true, "GeneXus\\Phone", "start", true, "", "HLP_Trn_Manager.htm");
          /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 82,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtManagerGAMGUID_Internalname, A28ManagerGAMGUID, StringUtil.RTrim( context.localUtil.Format( A28ManagerGAMGUID, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,82);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtManagerGAMGUID_Jsonclick, 0, "Attribute", "", "", "", "", edtManagerGAMGUID_Visible, edtManagerGAMGUID_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, 0, 0, true, "GeneXusSecurityCommon\\GAMUserIdentification", "start", true, "", "HLP_Trn_Manager.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 89,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtManagerGAMGUID_Internalname, A28ManagerGAMGUID, StringUtil.RTrim( context.localUtil.Format( A28ManagerGAMGUID, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,89);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtManagerGAMGUID_Jsonclick, 0, "Attribute", "", "", "", "", edtManagerGAMGUID_Visible, edtManagerGAMGUID_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, 0, 0, true, "GeneXusSecurityCommon\\GAMUserIdentification", "start", true, "", "HLP_Trn_Manager.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -757,7 +782,6 @@ namespace GeneXus.Programs {
                Z21ManagerId = StringUtil.StrToGuid( cgiGet( "Z21ManagerId"));
                Z11OrganisationId = StringUtil.StrToGuid( cgiGet( "Z11OrganisationId"));
                Z385ManagerPhoneCode = cgiGet( "Z385ManagerPhoneCode");
-               Z28ManagerGAMGUID = cgiGet( "Z28ManagerGAMGUID");
                Z24ManagerInitials = cgiGet( "Z24ManagerInitials");
                Z26ManagerPhone = cgiGet( "Z26ManagerPhone");
                Z22ManagerGivenName = cgiGet( "Z22ManagerGivenName");
@@ -765,6 +789,7 @@ namespace GeneXus.Programs {
                Z25ManagerEmail = cgiGet( "Z25ManagerEmail");
                Z386ManagerPhoneNumber = cgiGet( "Z386ManagerPhoneNumber");
                Z27ManagerGender = cgiGet( "Z27ManagerGender");
+               Z28ManagerGAMGUID = cgiGet( "Z28ManagerGAMGUID");
                Z360ManagerIsMainManager = StringUtil.StrToBool( cgiGet( "Z360ManagerIsMainManager"));
                Z394ManagerIsActive = StringUtil.StrToBool( cgiGet( "Z394ManagerIsActive"));
                IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), ".", ","), 18, MidpointRounding.ToEven));
@@ -775,10 +800,11 @@ namespace GeneXus.Programs {
                AV8OrganisationId = StringUtil.StrToGuid( cgiGet( "vORGANISATIONID"));
                AV31IsGAMActive = StringUtil.StrToBool( cgiGet( "vISGAMACTIVE"));
                ajax_req_read_hidden_sdt(cgiGet( "vAUDITINGOBJECT"), AV29AuditingObject);
-               A458ManagerImage = cgiGet( "MANAGERIMAGE");
                AV24GAMErrorResponse = cgiGet( "vGAMERRORRESPONSE");
+               Gx_mode = cgiGet( "vMODE");
+               A458ManagerImage = cgiGet( "MANAGERIMAGE");
                A40000ManagerImage_GXI = cgiGet( "MANAGERIMAGE_GXI");
-               AV32Pgmname = cgiGet( "vPGMNAME");
+               AV34Pgmname = cgiGet( "vPGMNAME");
                Combo_managerphonecode_Objectcall = cgiGet( "COMBO_MANAGERPHONECODE_Objectcall");
                Combo_managerphonecode_Class = cgiGet( "COMBO_MANAGERPHONECODE_Class");
                Combo_managerphonecode_Icontype = cgiGet( "COMBO_MANAGERPHONECODE_Icontype");
@@ -825,15 +851,15 @@ namespace GeneXus.Programs {
                AssignAttri("", false, "A22ManagerGivenName", A22ManagerGivenName);
                A23ManagerLastName = cgiGet( edtManagerLastName_Internalname);
                AssignAttri("", false, "A23ManagerLastName", A23ManagerLastName);
+               cmbManagerGender.CurrentValue = cgiGet( cmbManagerGender_Internalname);
+               A27ManagerGender = cgiGet( cmbManagerGender_Internalname);
+               AssignAttri("", false, "A27ManagerGender", A27ManagerGender);
                A25ManagerEmail = cgiGet( edtManagerEmail_Internalname);
                AssignAttri("", false, "A25ManagerEmail", A25ManagerEmail);
                A385ManagerPhoneCode = cgiGet( edtManagerPhoneCode_Internalname);
                AssignAttri("", false, "A385ManagerPhoneCode", A385ManagerPhoneCode);
                A386ManagerPhoneNumber = cgiGet( edtManagerPhoneNumber_Internalname);
                AssignAttri("", false, "A386ManagerPhoneNumber", A386ManagerPhoneNumber);
-               cmbManagerGender.CurrentValue = cgiGet( cmbManagerGender_Internalname);
-               A27ManagerGender = cgiGet( cmbManagerGender_Internalname);
-               AssignAttri("", false, "A27ManagerGender", A27ManagerGender);
                A360ManagerIsMainManager = StringUtil.StrToBool( cgiGet( chkManagerIsMainManager_Internalname));
                AssignAttri("", false, "A360ManagerIsMainManager", A360ManagerIsMainManager);
                A394ManagerIsActive = StringUtil.StrToBool( cgiGet( chkManagerIsActive_Internalname));
@@ -894,7 +920,7 @@ namespace GeneXus.Programs {
                forbiddenHiddens = new GXProperties();
                forbiddenHiddens.Add("hshsalt", "hsh"+"Trn_Manager");
                forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
-               forbiddenHiddens.Add("Pgmname", StringUtil.RTrim( context.localUtil.Format( AV32Pgmname, "")));
+               forbiddenHiddens.Add("Pgmname", StringUtil.RTrim( context.localUtil.Format( AV34Pgmname, "")));
                hsh = cgiGet( "hsh");
                if ( ( ! ( ( A21ManagerId != Z21ManagerId ) || ( A11OrganisationId != Z11OrganisationId ) ) || ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) ) && ! GXUtil.CheckEncryptedHash( forbiddenHiddens.ToString(), hsh, GXKey) )
                {
@@ -1197,7 +1223,7 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
-         new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV29AuditingObject,  AV32Pgmname) ;
+         new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV29AuditingObject,  AV34Pgmname) ;
          if ( ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 ) && ! AV12TrnContext.gxTpr_Callerondelete )
          {
             CallWebObject(formatLink("trn_managerww.aspx") );
@@ -1241,12 +1267,11 @@ namespace GeneXus.Programs {
 
       protected void ZM035( short GX_JID )
       {
-         if ( ( GX_JID == 33 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 34 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
                Z385ManagerPhoneCode = T00033_A385ManagerPhoneCode[0];
-               Z28ManagerGAMGUID = T00033_A28ManagerGAMGUID[0];
                Z24ManagerInitials = T00033_A24ManagerInitials[0];
                Z26ManagerPhone = T00033_A26ManagerPhone[0];
                Z22ManagerGivenName = T00033_A22ManagerGivenName[0];
@@ -1254,13 +1279,13 @@ namespace GeneXus.Programs {
                Z25ManagerEmail = T00033_A25ManagerEmail[0];
                Z386ManagerPhoneNumber = T00033_A386ManagerPhoneNumber[0];
                Z27ManagerGender = T00033_A27ManagerGender[0];
+               Z28ManagerGAMGUID = T00033_A28ManagerGAMGUID[0];
                Z360ManagerIsMainManager = T00033_A360ManagerIsMainManager[0];
                Z394ManagerIsActive = T00033_A394ManagerIsActive[0];
             }
             else
             {
                Z385ManagerPhoneCode = A385ManagerPhoneCode;
-               Z28ManagerGAMGUID = A28ManagerGAMGUID;
                Z24ManagerInitials = A24ManagerInitials;
                Z26ManagerPhone = A26ManagerPhone;
                Z22ManagerGivenName = A22ManagerGivenName;
@@ -1268,15 +1293,15 @@ namespace GeneXus.Programs {
                Z25ManagerEmail = A25ManagerEmail;
                Z386ManagerPhoneNumber = A386ManagerPhoneNumber;
                Z27ManagerGender = A27ManagerGender;
+               Z28ManagerGAMGUID = A28ManagerGAMGUID;
                Z360ManagerIsMainManager = A360ManagerIsMainManager;
                Z394ManagerIsActive = A394ManagerIsActive;
             }
          }
-         if ( GX_JID == -33 )
+         if ( GX_JID == -34 )
          {
             Z21ManagerId = A21ManagerId;
             Z385ManagerPhoneCode = A385ManagerPhoneCode;
-            Z28ManagerGAMGUID = A28ManagerGAMGUID;
             Z24ManagerInitials = A24ManagerInitials;
             Z26ManagerPhone = A26ManagerPhone;
             Z22ManagerGivenName = A22ManagerGivenName;
@@ -1284,6 +1309,7 @@ namespace GeneXus.Programs {
             Z25ManagerEmail = A25ManagerEmail;
             Z386ManagerPhoneNumber = A386ManagerPhoneNumber;
             Z27ManagerGender = A27ManagerGender;
+            Z28ManagerGAMGUID = A28ManagerGAMGUID;
             Z360ManagerIsMainManager = A360ManagerIsMainManager;
             Z394ManagerIsActive = A394ManagerIsActive;
             Z458ManagerImage = A458ManagerImage;
@@ -1296,8 +1322,8 @@ namespace GeneXus.Programs {
       {
          Gx_BScreen = 0;
          AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
-         AV32Pgmname = "Trn_Manager";
-         AssignAttri("", false, "AV32Pgmname", AV32Pgmname);
+         AV34Pgmname = "Trn_Manager";
+         AssignAttri("", false, "AV34Pgmname", AV34Pgmname);
          bttBtntrn_delete_Enabled = 0;
          AssignProp("", false, bttBtntrn_delete_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(bttBtntrn_delete_Enabled), 5, 0), true);
          if ( ! (Guid.Empty==AV7ManagerId) )
@@ -1398,8 +1424,6 @@ namespace GeneXus.Programs {
             RcdFound5 = 1;
             A385ManagerPhoneCode = T00035_A385ManagerPhoneCode[0];
             AssignAttri("", false, "A385ManagerPhoneCode", A385ManagerPhoneCode);
-            A28ManagerGAMGUID = T00035_A28ManagerGAMGUID[0];
-            AssignAttri("", false, "A28ManagerGAMGUID", A28ManagerGAMGUID);
             A24ManagerInitials = T00035_A24ManagerInitials[0];
             AssignAttri("", false, "A24ManagerInitials", A24ManagerInitials);
             A26ManagerPhone = T00035_A26ManagerPhone[0];
@@ -1414,13 +1438,15 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A386ManagerPhoneNumber", A386ManagerPhoneNumber);
             A27ManagerGender = T00035_A27ManagerGender[0];
             AssignAttri("", false, "A27ManagerGender", A27ManagerGender);
+            A28ManagerGAMGUID = T00035_A28ManagerGAMGUID[0];
+            AssignAttri("", false, "A28ManagerGAMGUID", A28ManagerGAMGUID);
             A360ManagerIsMainManager = T00035_A360ManagerIsMainManager[0];
             AssignAttri("", false, "A360ManagerIsMainManager", A360ManagerIsMainManager);
             A394ManagerIsActive = T00035_A394ManagerIsActive[0];
             AssignAttri("", false, "A394ManagerIsActive", A394ManagerIsActive);
             A40000ManagerImage_GXI = T00035_A40000ManagerImage_GXI[0];
             A458ManagerImage = T00035_A458ManagerImage[0];
-            ZM035( -33) ;
+            ZM035( -34) ;
          }
          pr_default.close(3);
          OnLoadActions035( ) ;
@@ -1580,7 +1606,7 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void gxLoad_34( Guid A11OrganisationId )
+      protected void gxLoad_35( Guid A11OrganisationId )
       {
          /* Using cursor T00036 */
          pr_default.execute(4, new Object[] {A11OrganisationId});
@@ -1624,14 +1650,12 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A21ManagerId, A11OrganisationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM035( 33) ;
+            ZM035( 34) ;
             RcdFound5 = 1;
             A21ManagerId = T00033_A21ManagerId[0];
             AssignAttri("", false, "A21ManagerId", A21ManagerId.ToString());
             A385ManagerPhoneCode = T00033_A385ManagerPhoneCode[0];
             AssignAttri("", false, "A385ManagerPhoneCode", A385ManagerPhoneCode);
-            A28ManagerGAMGUID = T00033_A28ManagerGAMGUID[0];
-            AssignAttri("", false, "A28ManagerGAMGUID", A28ManagerGAMGUID);
             A24ManagerInitials = T00033_A24ManagerInitials[0];
             AssignAttri("", false, "A24ManagerInitials", A24ManagerInitials);
             A26ManagerPhone = T00033_A26ManagerPhone[0];
@@ -1646,6 +1670,8 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A386ManagerPhoneNumber", A386ManagerPhoneNumber);
             A27ManagerGender = T00033_A27ManagerGender[0];
             AssignAttri("", false, "A27ManagerGender", A27ManagerGender);
+            A28ManagerGAMGUID = T00033_A28ManagerGAMGUID[0];
+            AssignAttri("", false, "A28ManagerGAMGUID", A28ManagerGAMGUID);
             A360ManagerIsMainManager = T00033_A360ManagerIsMainManager[0];
             AssignAttri("", false, "A360ManagerIsMainManager", A360ManagerIsMainManager);
             A394ManagerIsActive = T00033_A394ManagerIsActive[0];
@@ -1872,11 +1898,11 @@ namespace GeneXus.Programs {
                return  ;
             }
             Gx_longc = false;
-            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z385ManagerPhoneCode, T00032_A385ManagerPhoneCode[0]) != 0 ) || ( StringUtil.StrCmp(Z28ManagerGAMGUID, T00032_A28ManagerGAMGUID[0]) != 0 ) || ( StringUtil.StrCmp(Z24ManagerInitials, T00032_A24ManagerInitials[0]) != 0 ) || ( StringUtil.StrCmp(Z26ManagerPhone, T00032_A26ManagerPhone[0]) != 0 ) || ( StringUtil.StrCmp(Z22ManagerGivenName, T00032_A22ManagerGivenName[0]) != 0 ) )
+            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z385ManagerPhoneCode, T00032_A385ManagerPhoneCode[0]) != 0 ) || ( StringUtil.StrCmp(Z24ManagerInitials, T00032_A24ManagerInitials[0]) != 0 ) || ( StringUtil.StrCmp(Z26ManagerPhone, T00032_A26ManagerPhone[0]) != 0 ) || ( StringUtil.StrCmp(Z22ManagerGivenName, T00032_A22ManagerGivenName[0]) != 0 ) || ( StringUtil.StrCmp(Z23ManagerLastName, T00032_A23ManagerLastName[0]) != 0 ) )
             {
                Gx_longc = true;
             }
-            if ( Gx_longc || ( StringUtil.StrCmp(Z23ManagerLastName, T00032_A23ManagerLastName[0]) != 0 ) || ( StringUtil.StrCmp(Z25ManagerEmail, T00032_A25ManagerEmail[0]) != 0 ) || ( StringUtil.StrCmp(Z386ManagerPhoneNumber, T00032_A386ManagerPhoneNumber[0]) != 0 ) || ( StringUtil.StrCmp(Z27ManagerGender, T00032_A27ManagerGender[0]) != 0 ) || ( Z360ManagerIsMainManager != T00032_A360ManagerIsMainManager[0] ) )
+            if ( Gx_longc || ( StringUtil.StrCmp(Z25ManagerEmail, T00032_A25ManagerEmail[0]) != 0 ) || ( StringUtil.StrCmp(Z386ManagerPhoneNumber, T00032_A386ManagerPhoneNumber[0]) != 0 ) || ( StringUtil.StrCmp(Z27ManagerGender, T00032_A27ManagerGender[0]) != 0 ) || ( StringUtil.StrCmp(Z28ManagerGAMGUID, T00032_A28ManagerGAMGUID[0]) != 0 ) || ( Z360ManagerIsMainManager != T00032_A360ManagerIsMainManager[0] ) )
             {
                Gx_longc = true;
             }
@@ -1887,12 +1913,6 @@ namespace GeneXus.Programs {
                   GXUtil.WriteLog("trn_manager:[seudo value changed for attri]"+"ManagerPhoneCode");
                   GXUtil.WriteLogRaw("Old: ",Z385ManagerPhoneCode);
                   GXUtil.WriteLogRaw("Current: ",T00032_A385ManagerPhoneCode[0]);
-               }
-               if ( StringUtil.StrCmp(Z28ManagerGAMGUID, T00032_A28ManagerGAMGUID[0]) != 0 )
-               {
-                  GXUtil.WriteLog("trn_manager:[seudo value changed for attri]"+"ManagerGAMGUID");
-                  GXUtil.WriteLogRaw("Old: ",Z28ManagerGAMGUID);
-                  GXUtil.WriteLogRaw("Current: ",T00032_A28ManagerGAMGUID[0]);
                }
                if ( StringUtil.StrCmp(Z24ManagerInitials, T00032_A24ManagerInitials[0]) != 0 )
                {
@@ -1935,6 +1955,12 @@ namespace GeneXus.Programs {
                   GXUtil.WriteLog("trn_manager:[seudo value changed for attri]"+"ManagerGender");
                   GXUtil.WriteLogRaw("Old: ",Z27ManagerGender);
                   GXUtil.WriteLogRaw("Current: ",T00032_A27ManagerGender[0]);
+               }
+               if ( StringUtil.StrCmp(Z28ManagerGAMGUID, T00032_A28ManagerGAMGUID[0]) != 0 )
+               {
+                  GXUtil.WriteLog("trn_manager:[seudo value changed for attri]"+"ManagerGAMGUID");
+                  GXUtil.WriteLogRaw("Old: ",Z28ManagerGAMGUID);
+                  GXUtil.WriteLogRaw("Current: ",T00032_A28ManagerGAMGUID[0]);
                }
                if ( Z360ManagerIsMainManager != T00032_A360ManagerIsMainManager[0] )
                {
@@ -1981,7 +2007,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor T000310 */
-                     pr_default.execute(8, new Object[] {A21ManagerId, A385ManagerPhoneCode, A28ManagerGAMGUID, A24ManagerInitials, A26ManagerPhone, A22ManagerGivenName, A23ManagerLastName, A25ManagerEmail, A386ManagerPhoneNumber, A27ManagerGender, A360ManagerIsMainManager, A394ManagerIsActive, A458ManagerImage, A40000ManagerImage_GXI, A11OrganisationId});
+                     pr_default.execute(8, new Object[] {A21ManagerId, A385ManagerPhoneCode, A24ManagerInitials, A26ManagerPhone, A22ManagerGivenName, A23ManagerLastName, A25ManagerEmail, A386ManagerPhoneNumber, A27ManagerGender, A28ManagerGAMGUID, A360ManagerIsMainManager, A394ManagerIsActive, A458ManagerImage, A40000ManagerImage_GXI, A11OrganisationId});
                      pr_default.close(8);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Manager");
                      if ( (pr_default.getStatus(8) == 1) )
@@ -2043,7 +2069,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor T000311 */
-                     pr_default.execute(9, new Object[] {A385ManagerPhoneCode, A28ManagerGAMGUID, A24ManagerInitials, A26ManagerPhone, A22ManagerGivenName, A23ManagerLastName, A25ManagerEmail, A386ManagerPhoneNumber, A27ManagerGender, A360ManagerIsMainManager, A394ManagerIsActive, A21ManagerId, A11OrganisationId});
+                     pr_default.execute(9, new Object[] {A385ManagerPhoneCode, A24ManagerInitials, A26ManagerPhone, A22ManagerGivenName, A23ManagerLastName, A25ManagerEmail, A386ManagerPhoneNumber, A27ManagerGender, A28ManagerGAMGUID, A360ManagerIsMainManager, A394ManagerIsActive, A21ManagerId, A11OrganisationId});
                      pr_default.close(9);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Manager");
                      if ( (pr_default.getStatus(9) == 103) )
@@ -2291,8 +2317,14 @@ namespace GeneXus.Programs {
          /* Before Insert Rules */
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && String.IsNullOrEmpty(StringUtil.RTrim( A28ManagerGAMGUID)) )
          {
-            new prc_creategamuseraccount(context ).execute(  A25ManagerEmail,  A22ManagerGivenName,  A23ManagerLastName,  "Organisation Manager", out  A28ManagerGAMGUID) ;
+            new prc_creategamuseraccount(context ).execute(  A25ManagerEmail,  A22ManagerGivenName,  A23ManagerLastName,  "Organisation Manager", ref  A28ManagerGAMGUID, ref  AV24GAMErrorResponse) ;
             AssignAttri("", false, "A28ManagerGAMGUID", A28ManagerGAMGUID);
+            AssignAttri("", false, "AV24GAMErrorResponse", AV24GAMErrorResponse);
+         }
+         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ! String.IsNullOrEmpty(StringUtil.RTrim( AV24GAMErrorResponse)) )
+         {
+            GX_msglist.addItem(AV24GAMErrorResponse, 1, "");
+            AnyError = 1;
          }
       }
 
@@ -2332,14 +2364,14 @@ namespace GeneXus.Programs {
          AssignProp("", false, edtManagerGivenName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtManagerGivenName_Enabled), 5, 0), true);
          edtManagerLastName_Enabled = 0;
          AssignProp("", false, edtManagerLastName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtManagerLastName_Enabled), 5, 0), true);
+         cmbManagerGender.Enabled = 0;
+         AssignProp("", false, cmbManagerGender_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbManagerGender.Enabled), 5, 0), true);
          edtManagerEmail_Enabled = 0;
          AssignProp("", false, edtManagerEmail_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtManagerEmail_Enabled), 5, 0), true);
          edtManagerPhoneCode_Enabled = 0;
          AssignProp("", false, edtManagerPhoneCode_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtManagerPhoneCode_Enabled), 5, 0), true);
          edtManagerPhoneNumber_Enabled = 0;
          AssignProp("", false, edtManagerPhoneNumber_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtManagerPhoneNumber_Enabled), 5, 0), true);
-         cmbManagerGender.Enabled = 0;
-         AssignProp("", false, cmbManagerGender_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbManagerGender.Enabled), 5, 0), true);
          chkManagerIsMainManager.Enabled = 0;
          AssignProp("", false, chkManagerIsMainManager_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(chkManagerIsMainManager.Enabled), 5, 0), true);
          chkManagerIsActive.Enabled = 0;
@@ -2451,7 +2483,7 @@ namespace GeneXus.Programs {
          forbiddenHiddens = new GXProperties();
          forbiddenHiddens.Add("hshsalt", "hsh"+"Trn_Manager");
          forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
-         forbiddenHiddens.Add("Pgmname", StringUtil.RTrim( context.localUtil.Format( AV32Pgmname, "")));
+         forbiddenHiddens.Add("Pgmname", StringUtil.RTrim( context.localUtil.Format( AV34Pgmname, "")));
          GxWebStd.gx_hidden_field( context, "hsh", GetEncryptedHash( forbiddenHiddens.ToString(), GXKey));
          GXUtil.WriteLogInfo("trn_manager:[ SendSecurityCheck value for]"+forbiddenHiddens.ToJSonString());
       }
@@ -2464,7 +2496,6 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "Z21ManagerId", Z21ManagerId.ToString());
          GxWebStd.gx_hidden_field( context, "Z11OrganisationId", Z11OrganisationId.ToString());
          GxWebStd.gx_hidden_field( context, "Z385ManagerPhoneCode", Z385ManagerPhoneCode);
-         GxWebStd.gx_hidden_field( context, "Z28ManagerGAMGUID", Z28ManagerGAMGUID);
          GxWebStd.gx_hidden_field( context, "Z24ManagerInitials", StringUtil.RTrim( Z24ManagerInitials));
          GxWebStd.gx_hidden_field( context, "Z26ManagerPhone", StringUtil.RTrim( Z26ManagerPhone));
          GxWebStd.gx_hidden_field( context, "Z22ManagerGivenName", Z22ManagerGivenName);
@@ -2472,6 +2503,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "Z25ManagerEmail", Z25ManagerEmail);
          GxWebStd.gx_hidden_field( context, "Z386ManagerPhoneNumber", Z386ManagerPhoneNumber);
          GxWebStd.gx_hidden_field( context, "Z27ManagerGender", Z27ManagerGender);
+         GxWebStd.gx_hidden_field( context, "Z28ManagerGAMGUID", Z28ManagerGAMGUID);
          GxWebStd.gx_boolean_hidden_field( context, "Z360ManagerIsMainManager", Z360ManagerIsMainManager);
          GxWebStd.gx_boolean_hidden_field( context, "Z394ManagerIsActive", Z394ManagerIsActive);
          GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, ".", "")));
@@ -2494,8 +2526,6 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vMANAGERPHONECODE_DATA", AV27ManagerPhoneCode_Data);
          }
-         GxWebStd.gx_hidden_field( context, "vMODE", StringUtil.RTrim( Gx_mode));
-         GxWebStd.gx_hidden_field( context, "gxhash_vMODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")), context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vTRNCONTEXT", AV12TrnContext);
@@ -2519,10 +2549,12 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vAUDITINGOBJECT", AV29AuditingObject);
          }
-         GxWebStd.gx_hidden_field( context, "MANAGERIMAGE", A458ManagerImage);
          GxWebStd.gx_hidden_field( context, "vGAMERRORRESPONSE", AV24GAMErrorResponse);
+         GxWebStd.gx_hidden_field( context, "vMODE", StringUtil.RTrim( Gx_mode));
+         GxWebStd.gx_hidden_field( context, "gxhash_vMODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")), context));
+         GxWebStd.gx_hidden_field( context, "MANAGERIMAGE", A458ManagerImage);
          GxWebStd.gx_hidden_field( context, "MANAGERIMAGE_GXI", A40000ManagerImage_GXI);
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV32Pgmname));
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV34Pgmname));
          GxWebStd.gx_hidden_field( context, "COMBO_MANAGERPHONECODE_Objectcall", StringUtil.RTrim( Combo_managerphonecode_Objectcall));
          GxWebStd.gx_hidden_field( context, "COMBO_MANAGERPHONECODE_Cls", StringUtil.RTrim( Combo_managerphonecode_Cls));
          GxWebStd.gx_hidden_field( context, "COMBO_MANAGERPHONECODE_Selectedvalue_set", StringUtil.RTrim( Combo_managerphonecode_Selectedvalue_set));
@@ -2606,12 +2638,10 @@ namespace GeneXus.Programs {
          A385ManagerPhoneCode = "";
          AssignAttri("", false, "A385ManagerPhoneCode", A385ManagerPhoneCode);
          AV29AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
-         A28ManagerGAMGUID = "";
-         AssignAttri("", false, "A28ManagerGAMGUID", A28ManagerGAMGUID);
-         A24ManagerInitials = "";
-         AssignAttri("", false, "A24ManagerInitials", A24ManagerInitials);
          AV24GAMErrorResponse = "";
          AssignAttri("", false, "AV24GAMErrorResponse", AV24GAMErrorResponse);
+         A24ManagerInitials = "";
+         AssignAttri("", false, "A24ManagerInitials", A24ManagerInitials);
          A26ManagerPhone = "";
          AssignAttri("", false, "A26ManagerPhone", A26ManagerPhone);
          AV31IsGAMActive = false;
@@ -2626,6 +2656,8 @@ namespace GeneXus.Programs {
          AssignAttri("", false, "A386ManagerPhoneNumber", A386ManagerPhoneNumber);
          A27ManagerGender = "";
          AssignAttri("", false, "A27ManagerGender", A27ManagerGender);
+         A28ManagerGAMGUID = "";
+         AssignAttri("", false, "A28ManagerGAMGUID", A28ManagerGAMGUID);
          A394ManagerIsActive = false;
          AssignAttri("", false, "A394ManagerIsActive", A394ManagerIsActive);
          A458ManagerImage = "";
@@ -2635,7 +2667,6 @@ namespace GeneXus.Programs {
          A360ManagerIsMainManager = false;
          AssignAttri("", false, "A360ManagerIsMainManager", A360ManagerIsMainManager);
          Z385ManagerPhoneCode = "";
-         Z28ManagerGAMGUID = "";
          Z24ManagerInitials = "";
          Z26ManagerPhone = "";
          Z22ManagerGivenName = "";
@@ -2643,6 +2674,7 @@ namespace GeneXus.Programs {
          Z25ManagerEmail = "";
          Z386ManagerPhoneNumber = "";
          Z27ManagerGender = "";
+         Z28ManagerGAMGUID = "";
          Z360ManagerIsMainManager = false;
          Z394ManagerIsActive = false;
       }
@@ -2673,7 +2705,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241261558924", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121019493314", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2689,7 +2721,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_manager.js", "?20241261558927", false, true);
+         context.AddJavascriptSource("trn_manager.js", "?2024121019493317", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2700,14 +2732,16 @@ namespace GeneXus.Programs {
       {
          edtManagerGivenName_Internalname = "MANAGERGIVENNAME";
          edtManagerLastName_Internalname = "MANAGERLASTNAME";
+         cmbManagerGender_Internalname = "MANAGERGENDER";
          edtManagerEmail_Internalname = "MANAGEREMAIL";
-         lblTextblockmanagerphonecode_Internalname = "TEXTBLOCKMANAGERPHONECODE";
+         lblPhone_Internalname = "PHONE";
          Combo_managerphonecode_Internalname = "COMBO_MANAGERPHONECODE";
          edtManagerPhoneCode_Internalname = "MANAGERPHONECODE";
+         divUnnamedtablemanagerphonecode_Internalname = "UNNAMEDTABLEMANAGERPHONECODE";
+         divUnnamedtable4_Internalname = "UNNAMEDTABLE4";
          edtManagerPhoneNumber_Internalname = "MANAGERPHONENUMBER";
-         tblTablemergedmanagerphonecode_Internalname = "TABLEMERGEDMANAGERPHONECODE";
-         divTablesplittedmanagerphonecode_Internalname = "TABLESPLITTEDMANAGERPHONECODE";
-         cmbManagerGender_Internalname = "MANAGERGENDER";
+         divUnnamedtable3_Internalname = "UNNAMEDTABLE3";
+         divUnnamedtable2_Internalname = "UNNAMEDTABLE2";
          chkManagerIsMainManager_Internalname = "MANAGERISMAINMANAGER";
          chkManagerIsActive_Internalname = "MANAGERISACTIVE";
          divManagerisactive_cell_Internalname = "MANAGERISACTIVE_CELL";
@@ -2771,8 +2805,6 @@ namespace GeneXus.Programs {
          chkManagerIsActive.Visible = 1;
          divManagerisactive_cell_Class = "col-xs-12 col-sm-6";
          chkManagerIsMainManager.Enabled = 1;
-         cmbManagerGender_Jsonclick = "";
-         cmbManagerGender.Enabled = 1;
          edtManagerPhoneNumber_Jsonclick = "";
          edtManagerPhoneNumber_Enabled = 1;
          edtManagerPhoneCode_Jsonclick = "";
@@ -2782,8 +2814,11 @@ namespace GeneXus.Programs {
          Combo_managerphonecode_Cls = "ExtendedCombo DropDownComponent ExtendedComboWithImage";
          Combo_managerphonecode_Caption = "";
          Combo_managerphonecode_Enabled = Convert.ToBoolean( -1);
+         lblPhone_Jsonclick = "";
          edtManagerEmail_Jsonclick = "";
          edtManagerEmail_Enabled = 1;
+         cmbManagerGender_Jsonclick = "";
+         cmbManagerGender.Enabled = 1;
          edtManagerLastName_Jsonclick = "";
          edtManagerLastName_Enabled = 1;
          edtManagerGivenName_Jsonclick = "";
@@ -2919,17 +2954,19 @@ namespace GeneXus.Programs {
       protected void XC_26_035( string A25ManagerEmail ,
                                 string A22ManagerGivenName ,
                                 string A23ManagerLastName ,
-                                string Gx_mode ,
-                                string A28ManagerGAMGUID )
+                                string A28ManagerGAMGUID ,
+                                string AV24GAMErrorResponse ,
+                                string Gx_mode )
       {
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && String.IsNullOrEmpty(StringUtil.RTrim( A28ManagerGAMGUID)) )
          {
-            new prc_creategamuseraccount(context ).execute(  A25ManagerEmail,  A22ManagerGivenName,  A23ManagerLastName,  "Organisation Manager", out  A28ManagerGAMGUID) ;
+            new prc_creategamuseraccount(context ).execute(  A25ManagerEmail,  A22ManagerGivenName,  A23ManagerLastName,  "Organisation Manager", ref  A28ManagerGAMGUID, ref  AV24GAMErrorResponse) ;
             AssignAttri("", false, "A28ManagerGAMGUID", A28ManagerGAMGUID);
+            AssignAttri("", false, "AV24GAMErrorResponse", AV24GAMErrorResponse);
          }
          GxWebStd.set_html_headers( context, 0, "", "");
          AddString( "[[") ;
-         AddString( "\""+GXUtil.EncodeJSConstant( A28ManagerGAMGUID)+"\"") ;
+         AddString( "\""+GXUtil.EncodeJSConstant( A28ManagerGAMGUID)+"\""+","+"\""+GXUtil.EncodeJSConstant( AV24GAMErrorResponse)+"\"") ;
          AddString( "]") ;
          if ( true )
          {
@@ -2939,7 +2976,7 @@ namespace GeneXus.Programs {
          AddString( "]") ;
       }
 
-      protected void XC_27_035( string A22ManagerGivenName ,
+      protected void XC_28_035( string A22ManagerGivenName ,
                                 string A23ManagerLastName )
       {
          new prc_getnameinitials(context ).execute(  A22ManagerGivenName,  A23ManagerLastName, out  A24ManagerInitials) ;
@@ -2956,7 +2993,7 @@ namespace GeneXus.Programs {
          AddString( "]") ;
       }
 
-      protected void XC_29_035( string Gx_mode ,
+      protected void XC_30_035( string Gx_mode ,
                                 string A28ManagerGAMGUID ,
                                 string A22ManagerGivenName ,
                                 string A23ManagerLastName ,
@@ -2981,7 +3018,7 @@ namespace GeneXus.Programs {
          AddString( "]") ;
       }
 
-      protected void XC_31_035( string Gx_mode ,
+      protected void XC_32_035( string Gx_mode ,
                                 string A28ManagerGAMGUID )
       {
          if ( IsDlt( )  )
@@ -3153,22 +3190,22 @@ namespace GeneXus.Programs {
       {
          setEventMetadata("ENTER","""{"handler":"UserMainFullajax","iparms":[{"postForm":true},{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV7ManagerId","fld":"vMANAGERID","hsh":true},{"av":"AV8OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
          setEventMetadata("ENTER",""","oparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV12TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"AV7ManagerId","fld":"vMANAGERID","hsh":true},{"av":"AV8OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV32Pgmname","fld":"vPGMNAME"},{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV12TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"AV7ManagerId","fld":"vMANAGERID","hsh":true},{"av":"AV8OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV34Pgmname","fld":"vPGMNAME"},{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
          setEventMetadata("REFRESH",""","oparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
-         setEventMetadata("AFTER TRN","""{"handler":"E12032","iparms":[{"av":"AV29AuditingObject","fld":"vAUDITINGOBJECT"},{"av":"AV32Pgmname","fld":"vPGMNAME"},{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV12TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
+         setEventMetadata("AFTER TRN","""{"handler":"E12032","iparms":[{"av":"AV29AuditingObject","fld":"vAUDITINGOBJECT"},{"av":"AV34Pgmname","fld":"vPGMNAME"},{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV12TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
          setEventMetadata("AFTER TRN",""","oparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
          setEventMetadata("VALID_MANAGERGIVENNAME","""{"handler":"Valid_Managergivenname","iparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
          setEventMetadata("VALID_MANAGERGIVENNAME",""","oparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
          setEventMetadata("VALID_MANAGERLASTNAME","""{"handler":"Valid_Managerlastname","iparms":[{"av":"A23ManagerLastName","fld":"MANAGERLASTNAME"},{"av":"A22ManagerGivenName","fld":"MANAGERGIVENNAME"},{"av":"A24ManagerInitials","fld":"MANAGERINITIALS"},{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
          setEventMetadata("VALID_MANAGERLASTNAME",""","oparms":[{"av":"A24ManagerInitials","fld":"MANAGERINITIALS"},{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
+         setEventMetadata("VALID_MANAGERGENDER","""{"handler":"Valid_Managergender","iparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
+         setEventMetadata("VALID_MANAGERGENDER",""","oparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
          setEventMetadata("VALID_MANAGEREMAIL","""{"handler":"Valid_Manageremail","iparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
          setEventMetadata("VALID_MANAGEREMAIL",""","oparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
          setEventMetadata("VALID_MANAGERPHONECODE","""{"handler":"Valid_Managerphonecode","iparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
          setEventMetadata("VALID_MANAGERPHONECODE",""","oparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
          setEventMetadata("VALID_MANAGERPHONENUMBER","""{"handler":"Valid_Managerphonenumber","iparms":[{"av":"A385ManagerPhoneCode","fld":"MANAGERPHONECODE"},{"av":"A386ManagerPhoneNumber","fld":"MANAGERPHONENUMBER"},{"av":"A26ManagerPhone","fld":"MANAGERPHONE"},{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
          setEventMetadata("VALID_MANAGERPHONENUMBER",""","oparms":[{"av":"A26ManagerPhone","fld":"MANAGERPHONE"},{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
-         setEventMetadata("VALID_MANAGERGENDER","""{"handler":"Valid_Managergender","iparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
-         setEventMetadata("VALID_MANAGERGENDER",""","oparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
          setEventMetadata("VALIDV_COMBOMANAGERPHONECODE","""{"handler":"Validv_Combomanagerphonecode","iparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
          setEventMetadata("VALIDV_COMBOMANAGERPHONECODE",""","oparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
          setEventMetadata("VALID_MANAGERID","""{"handler":"Valid_Managerid","iparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
@@ -3204,7 +3241,6 @@ namespace GeneXus.Programs {
          Z21ManagerId = Guid.Empty;
          Z11OrganisationId = Guid.Empty;
          Z385ManagerPhoneCode = "";
-         Z28ManagerGAMGUID = "";
          Z24ManagerInitials = "";
          Z26ManagerPhone = "";
          Z22ManagerGivenName = "";
@@ -3212,6 +3248,7 @@ namespace GeneXus.Programs {
          Z25ManagerEmail = "";
          Z386ManagerPhoneNumber = "";
          Z27ManagerGender = "";
+         Z28ManagerGAMGUID = "";
          Combo_managerphonecode_Selectedvalue_get = "";
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
@@ -3219,6 +3256,7 @@ namespace GeneXus.Programs {
          A22ManagerGivenName = "";
          A23ManagerLastName = "";
          A28ManagerGAMGUID = "";
+         AV24GAMErrorResponse = "";
          A385ManagerPhoneCode = "";
          A386ManagerPhoneNumber = "";
          A458ManagerImage = "";
@@ -3233,8 +3271,6 @@ namespace GeneXus.Programs {
          ClassString = "";
          StyleString = "";
          TempTags = "";
-         lblTextblockmanagerphonecode_Jsonclick = "";
-         sStyleString = "";
          ucCombo_managerphonecode = new GXUserControl();
          AV15DDO_TitleSettingsIcons = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
          AV27ManagerPhoneCode_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
@@ -3247,9 +3283,8 @@ namespace GeneXus.Programs {
          gxphoneLink = "";
          A26ManagerPhone = "";
          AV29AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
-         AV24GAMErrorResponse = "";
          A40000ManagerImage_GXI = "";
-         AV32Pgmname = "";
+         AV34Pgmname = "";
          Combo_managerphonecode_Objectcall = "";
          Combo_managerphonecode_Class = "";
          Combo_managerphonecode_Icontype = "";
@@ -3297,7 +3332,6 @@ namespace GeneXus.Programs {
          Z40000ManagerImage_GXI = "";
          T00035_A21ManagerId = new Guid[] {Guid.Empty} ;
          T00035_A385ManagerPhoneCode = new string[] {""} ;
-         T00035_A28ManagerGAMGUID = new string[] {""} ;
          T00035_A24ManagerInitials = new string[] {""} ;
          T00035_A26ManagerPhone = new string[] {""} ;
          T00035_A22ManagerGivenName = new string[] {""} ;
@@ -3305,6 +3339,7 @@ namespace GeneXus.Programs {
          T00035_A25ManagerEmail = new string[] {""} ;
          T00035_A386ManagerPhoneNumber = new string[] {""} ;
          T00035_A27ManagerGender = new string[] {""} ;
+         T00035_A28ManagerGAMGUID = new string[] {""} ;
          T00035_A360ManagerIsMainManager = new bool[] {false} ;
          T00035_A394ManagerIsActive = new bool[] {false} ;
          T00035_A40000ManagerImage_GXI = new string[] {""} ;
@@ -3316,7 +3351,6 @@ namespace GeneXus.Programs {
          T00037_A11OrganisationId = new Guid[] {Guid.Empty} ;
          T00033_A21ManagerId = new Guid[] {Guid.Empty} ;
          T00033_A385ManagerPhoneCode = new string[] {""} ;
-         T00033_A28ManagerGAMGUID = new string[] {""} ;
          T00033_A24ManagerInitials = new string[] {""} ;
          T00033_A26ManagerPhone = new string[] {""} ;
          T00033_A22ManagerGivenName = new string[] {""} ;
@@ -3324,6 +3358,7 @@ namespace GeneXus.Programs {
          T00033_A25ManagerEmail = new string[] {""} ;
          T00033_A386ManagerPhoneNumber = new string[] {""} ;
          T00033_A27ManagerGender = new string[] {""} ;
+         T00033_A28ManagerGAMGUID = new string[] {""} ;
          T00033_A360ManagerIsMainManager = new bool[] {false} ;
          T00033_A394ManagerIsActive = new bool[] {false} ;
          T00033_A40000ManagerImage_GXI = new string[] {""} ;
@@ -3335,7 +3370,6 @@ namespace GeneXus.Programs {
          T00039_A11OrganisationId = new Guid[] {Guid.Empty} ;
          T00032_A21ManagerId = new Guid[] {Guid.Empty} ;
          T00032_A385ManagerPhoneCode = new string[] {""} ;
-         T00032_A28ManagerGAMGUID = new string[] {""} ;
          T00032_A24ManagerInitials = new string[] {""} ;
          T00032_A26ManagerPhone = new string[] {""} ;
          T00032_A22ManagerGivenName = new string[] {""} ;
@@ -3343,6 +3377,7 @@ namespace GeneXus.Programs {
          T00032_A25ManagerEmail = new string[] {""} ;
          T00032_A386ManagerPhoneNumber = new string[] {""} ;
          T00032_A27ManagerGender = new string[] {""} ;
+         T00032_A28ManagerGAMGUID = new string[] {""} ;
          T00032_A360ManagerIsMainManager = new bool[] {false} ;
          T00032_A394ManagerIsActive = new bool[] {false} ;
          T00032_A40000ManagerImage_GXI = new string[] {""} ;
@@ -3367,18 +3402,18 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_manager__default(),
             new Object[][] {
                 new Object[] {
-               T00032_A21ManagerId, T00032_A385ManagerPhoneCode, T00032_A28ManagerGAMGUID, T00032_A24ManagerInitials, T00032_A26ManagerPhone, T00032_A22ManagerGivenName, T00032_A23ManagerLastName, T00032_A25ManagerEmail, T00032_A386ManagerPhoneNumber, T00032_A27ManagerGender,
+               T00032_A21ManagerId, T00032_A385ManagerPhoneCode, T00032_A24ManagerInitials, T00032_A26ManagerPhone, T00032_A22ManagerGivenName, T00032_A23ManagerLastName, T00032_A25ManagerEmail, T00032_A386ManagerPhoneNumber, T00032_A27ManagerGender, T00032_A28ManagerGAMGUID,
                T00032_A360ManagerIsMainManager, T00032_A394ManagerIsActive, T00032_A40000ManagerImage_GXI, T00032_A11OrganisationId, T00032_A458ManagerImage
                }
                , new Object[] {
-               T00033_A21ManagerId, T00033_A385ManagerPhoneCode, T00033_A28ManagerGAMGUID, T00033_A24ManagerInitials, T00033_A26ManagerPhone, T00033_A22ManagerGivenName, T00033_A23ManagerLastName, T00033_A25ManagerEmail, T00033_A386ManagerPhoneNumber, T00033_A27ManagerGender,
+               T00033_A21ManagerId, T00033_A385ManagerPhoneCode, T00033_A24ManagerInitials, T00033_A26ManagerPhone, T00033_A22ManagerGivenName, T00033_A23ManagerLastName, T00033_A25ManagerEmail, T00033_A386ManagerPhoneNumber, T00033_A27ManagerGender, T00033_A28ManagerGAMGUID,
                T00033_A360ManagerIsMainManager, T00033_A394ManagerIsActive, T00033_A40000ManagerImage_GXI, T00033_A11OrganisationId, T00033_A458ManagerImage
                }
                , new Object[] {
                T00034_A11OrganisationId
                }
                , new Object[] {
-               T00035_A21ManagerId, T00035_A385ManagerPhoneCode, T00035_A28ManagerGAMGUID, T00035_A24ManagerInitials, T00035_A26ManagerPhone, T00035_A22ManagerGivenName, T00035_A23ManagerLastName, T00035_A25ManagerEmail, T00035_A386ManagerPhoneNumber, T00035_A27ManagerGender,
+               T00035_A21ManagerId, T00035_A385ManagerPhoneCode, T00035_A24ManagerInitials, T00035_A26ManagerPhone, T00035_A22ManagerGivenName, T00035_A23ManagerLastName, T00035_A25ManagerEmail, T00035_A386ManagerPhoneNumber, T00035_A27ManagerGender, T00035_A28ManagerGAMGUID,
                T00035_A360ManagerIsMainManager, T00035_A394ManagerIsActive, T00035_A40000ManagerImage_GXI, T00035_A11OrganisationId, T00035_A458ManagerImage
                }
                , new Object[] {
@@ -3414,7 +3449,7 @@ namespace GeneXus.Programs {
          i360ManagerIsMainManager = false;
          Z21ManagerId = Guid.NewGuid( );
          A21ManagerId = Guid.NewGuid( );
-         AV32Pgmname = "Trn_Manager";
+         AV34Pgmname = "Trn_Manager";
       }
 
       private short GxWebError ;
@@ -3479,13 +3514,15 @@ namespace GeneXus.Programs {
       private string edtManagerGivenName_Jsonclick ;
       private string edtManagerLastName_Internalname ;
       private string edtManagerLastName_Jsonclick ;
+      private string cmbManagerGender_Jsonclick ;
       private string edtManagerEmail_Internalname ;
       private string edtManagerEmail_Jsonclick ;
-      private string divTablesplittedmanagerphonecode_Internalname ;
-      private string lblTextblockmanagerphonecode_Internalname ;
-      private string lblTextblockmanagerphonecode_Jsonclick ;
-      private string sStyleString ;
-      private string tblTablemergedmanagerphonecode_Internalname ;
+      private string divUnnamedtable2_Internalname ;
+      private string lblPhone_Internalname ;
+      private string lblPhone_Jsonclick ;
+      private string divUnnamedtable3_Internalname ;
+      private string divUnnamedtable4_Internalname ;
+      private string divUnnamedtablemanagerphonecode_Internalname ;
       private string Combo_managerphonecode_Caption ;
       private string Combo_managerphonecode_Cls ;
       private string Combo_managerphonecode_Internalname ;
@@ -3493,7 +3530,6 @@ namespace GeneXus.Programs {
       private string edtManagerPhoneCode_Jsonclick ;
       private string edtManagerPhoneNumber_Internalname ;
       private string edtManagerPhoneNumber_Jsonclick ;
-      private string cmbManagerGender_Jsonclick ;
       private string chkManagerIsMainManager_Internalname ;
       private string divManagerisactive_cell_Internalname ;
       private string divManagerisactive_cell_Class ;
@@ -3521,7 +3557,7 @@ namespace GeneXus.Programs {
       private string edtManagerPhone_Jsonclick ;
       private string edtManagerGAMGUID_Internalname ;
       private string edtManagerGAMGUID_Jsonclick ;
-      private string AV32Pgmname ;
+      private string AV34Pgmname ;
       private string Combo_managerphonecode_Objectcall ;
       private string Combo_managerphonecode_Class ;
       private string Combo_managerphonecode_Icontype ;
@@ -3586,12 +3622,12 @@ namespace GeneXus.Programs {
       private bool ZV31IsGAMActive ;
       private string AV24GAMErrorResponse ;
       private string Z385ManagerPhoneCode ;
-      private string Z28ManagerGAMGUID ;
       private string Z22ManagerGivenName ;
       private string Z23ManagerLastName ;
       private string Z25ManagerEmail ;
       private string Z386ManagerPhoneNumber ;
       private string Z27ManagerGender ;
+      private string Z28ManagerGAMGUID ;
       private string A25ManagerEmail ;
       private string A22ManagerGivenName ;
       private string A23ManagerLastName ;
@@ -3635,7 +3671,6 @@ namespace GeneXus.Programs {
       private IDataStoreProvider pr_default ;
       private Guid[] T00035_A21ManagerId ;
       private string[] T00035_A385ManagerPhoneCode ;
-      private string[] T00035_A28ManagerGAMGUID ;
       private string[] T00035_A24ManagerInitials ;
       private string[] T00035_A26ManagerPhone ;
       private string[] T00035_A22ManagerGivenName ;
@@ -3643,6 +3678,7 @@ namespace GeneXus.Programs {
       private string[] T00035_A25ManagerEmail ;
       private string[] T00035_A386ManagerPhoneNumber ;
       private string[] T00035_A27ManagerGender ;
+      private string[] T00035_A28ManagerGAMGUID ;
       private bool[] T00035_A360ManagerIsMainManager ;
       private bool[] T00035_A394ManagerIsActive ;
       private string[] T00035_A40000ManagerImage_GXI ;
@@ -3654,7 +3690,6 @@ namespace GeneXus.Programs {
       private Guid[] T00037_A11OrganisationId ;
       private Guid[] T00033_A21ManagerId ;
       private string[] T00033_A385ManagerPhoneCode ;
-      private string[] T00033_A28ManagerGAMGUID ;
       private string[] T00033_A24ManagerInitials ;
       private string[] T00033_A26ManagerPhone ;
       private string[] T00033_A22ManagerGivenName ;
@@ -3662,6 +3697,7 @@ namespace GeneXus.Programs {
       private string[] T00033_A25ManagerEmail ;
       private string[] T00033_A386ManagerPhoneNumber ;
       private string[] T00033_A27ManagerGender ;
+      private string[] T00033_A28ManagerGAMGUID ;
       private bool[] T00033_A360ManagerIsMainManager ;
       private bool[] T00033_A394ManagerIsActive ;
       private string[] T00033_A40000ManagerImage_GXI ;
@@ -3673,7 +3709,6 @@ namespace GeneXus.Programs {
       private Guid[] T00039_A11OrganisationId ;
       private Guid[] T00032_A21ManagerId ;
       private string[] T00032_A385ManagerPhoneCode ;
-      private string[] T00032_A28ManagerGAMGUID ;
       private string[] T00032_A24ManagerInitials ;
       private string[] T00032_A26ManagerPhone ;
       private string[] T00032_A22ManagerGivenName ;
@@ -3681,6 +3716,7 @@ namespace GeneXus.Programs {
       private string[] T00032_A25ManagerEmail ;
       private string[] T00032_A386ManagerPhoneNumber ;
       private string[] T00032_A27ManagerGender ;
+      private string[] T00032_A28ManagerGAMGUID ;
       private bool[] T00032_A360ManagerIsMainManager ;
       private bool[] T00032_A394ManagerIsActive ;
       private string[] T00032_A40000ManagerImage_GXI ;
@@ -3827,7 +3863,6 @@ public class trn_manager__default : DataStoreHelperBase, IDataStoreHelper
        prmT000310 = new Object[] {
        new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("ManagerPhoneCode",GXType.VarChar,40,0) ,
-       new ParDef("ManagerGAMGUID",GXType.VarChar,100,60) ,
        new ParDef("ManagerInitials",GXType.Char,20,0) ,
        new ParDef("ManagerPhone",GXType.Char,20,0) ,
        new ParDef("ManagerGivenName",GXType.VarChar,100,0) ,
@@ -3835,6 +3870,7 @@ public class trn_manager__default : DataStoreHelperBase, IDataStoreHelper
        new ParDef("ManagerEmail",GXType.VarChar,100,0) ,
        new ParDef("ManagerPhoneNumber",GXType.VarChar,9,0) ,
        new ParDef("ManagerGender",GXType.VarChar,40,0) ,
+       new ParDef("ManagerGAMGUID",GXType.VarChar,100,60) ,
        new ParDef("ManagerIsMainManager",GXType.Boolean,4,0) ,
        new ParDef("ManagerIsActive",GXType.Boolean,4,0) ,
        new ParDef("ManagerImage",GXType.Byte,1024,0){InDB=false} ,
@@ -3844,7 +3880,6 @@ public class trn_manager__default : DataStoreHelperBase, IDataStoreHelper
        Object[] prmT000311;
        prmT000311 = new Object[] {
        new ParDef("ManagerPhoneCode",GXType.VarChar,40,0) ,
-       new ParDef("ManagerGAMGUID",GXType.VarChar,100,60) ,
        new ParDef("ManagerInitials",GXType.Char,20,0) ,
        new ParDef("ManagerPhone",GXType.Char,20,0) ,
        new ParDef("ManagerGivenName",GXType.VarChar,100,0) ,
@@ -3852,6 +3887,7 @@ public class trn_manager__default : DataStoreHelperBase, IDataStoreHelper
        new ParDef("ManagerEmail",GXType.VarChar,100,0) ,
        new ParDef("ManagerPhoneNumber",GXType.VarChar,9,0) ,
        new ParDef("ManagerGender",GXType.VarChar,40,0) ,
+       new ParDef("ManagerGAMGUID",GXType.VarChar,100,60) ,
        new ParDef("ManagerIsMainManager",GXType.Boolean,4,0) ,
        new ParDef("ManagerIsActive",GXType.Boolean,4,0) ,
        new ParDef("ManagerId",GXType.UniqueIdentifier,36,0) ,
@@ -3877,16 +3913,16 @@ public class trn_manager__default : DataStoreHelperBase, IDataStoreHelper
        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
        };
        def= new CursorDef[] {
-           new CursorDef("T00032", "SELECT ManagerId, ManagerPhoneCode, ManagerGAMGUID, ManagerInitials, ManagerPhone, ManagerGivenName, ManagerLastName, ManagerEmail, ManagerPhoneNumber, ManagerGender, ManagerIsMainManager, ManagerIsActive, ManagerImage_GXI, OrganisationId, ManagerImage FROM Trn_Manager WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId  FOR UPDATE OF Trn_Manager NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT00032,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T00033", "SELECT ManagerId, ManagerPhoneCode, ManagerGAMGUID, ManagerInitials, ManagerPhone, ManagerGivenName, ManagerLastName, ManagerEmail, ManagerPhoneNumber, ManagerGender, ManagerIsMainManager, ManagerIsActive, ManagerImage_GXI, OrganisationId, ManagerImage FROM Trn_Manager WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00033,1, GxCacheFrequency.OFF ,true,false )
+           new CursorDef("T00032", "SELECT ManagerId, ManagerPhoneCode, ManagerInitials, ManagerPhone, ManagerGivenName, ManagerLastName, ManagerEmail, ManagerPhoneNumber, ManagerGender, ManagerGAMGUID, ManagerIsMainManager, ManagerIsActive, ManagerImage_GXI, OrganisationId, ManagerImage FROM Trn_Manager WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId  FOR UPDATE OF Trn_Manager NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT00032,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T00033", "SELECT ManagerId, ManagerPhoneCode, ManagerInitials, ManagerPhone, ManagerGivenName, ManagerLastName, ManagerEmail, ManagerPhoneNumber, ManagerGender, ManagerGAMGUID, ManagerIsMainManager, ManagerIsActive, ManagerImage_GXI, OrganisationId, ManagerImage FROM Trn_Manager WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00033,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T00034", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00034,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T00035", "SELECT TM1.ManagerId, TM1.ManagerPhoneCode, TM1.ManagerGAMGUID, TM1.ManagerInitials, TM1.ManagerPhone, TM1.ManagerGivenName, TM1.ManagerLastName, TM1.ManagerEmail, TM1.ManagerPhoneNumber, TM1.ManagerGender, TM1.ManagerIsMainManager, TM1.ManagerIsActive, TM1.ManagerImage_GXI, TM1.OrganisationId, TM1.ManagerImage FROM Trn_Manager TM1 WHERE TM1.ManagerId = :ManagerId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.ManagerId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00035,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T00035", "SELECT TM1.ManagerId, TM1.ManagerPhoneCode, TM1.ManagerInitials, TM1.ManagerPhone, TM1.ManagerGivenName, TM1.ManagerLastName, TM1.ManagerEmail, TM1.ManagerPhoneNumber, TM1.ManagerGender, TM1.ManagerGAMGUID, TM1.ManagerIsMainManager, TM1.ManagerIsActive, TM1.ManagerImage_GXI, TM1.OrganisationId, TM1.ManagerImage FROM Trn_Manager TM1 WHERE TM1.ManagerId = :ManagerId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.ManagerId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00035,100, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T00036", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00036,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T00037", "SELECT ManagerId, OrganisationId FROM Trn_Manager WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00037,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T00038", "SELECT ManagerId, OrganisationId FROM Trn_Manager WHERE ( ManagerId > :ManagerId or ManagerId = :ManagerId and OrganisationId > :OrganisationId) ORDER BY ManagerId, OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT00038,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("T00039", "SELECT ManagerId, OrganisationId FROM Trn_Manager WHERE ( ManagerId < :ManagerId or ManagerId = :ManagerId and OrganisationId < :OrganisationId) ORDER BY ManagerId DESC, OrganisationId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT00039,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("T000310", "SAVEPOINT gxupdate;INSERT INTO Trn_Manager(ManagerId, ManagerPhoneCode, ManagerGAMGUID, ManagerInitials, ManagerPhone, ManagerGivenName, ManagerLastName, ManagerEmail, ManagerPhoneNumber, ManagerGender, ManagerIsMainManager, ManagerIsActive, ManagerImage, ManagerImage_GXI, OrganisationId) VALUES(:ManagerId, :ManagerPhoneCode, :ManagerGAMGUID, :ManagerInitials, :ManagerPhone, :ManagerGivenName, :ManagerLastName, :ManagerEmail, :ManagerPhoneNumber, :ManagerGender, :ManagerIsMainManager, :ManagerIsActive, :ManagerImage, :ManagerImage_GXI, :OrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000310)
-          ,new CursorDef("T000311", "SAVEPOINT gxupdate;UPDATE Trn_Manager SET ManagerPhoneCode=:ManagerPhoneCode, ManagerGAMGUID=:ManagerGAMGUID, ManagerInitials=:ManagerInitials, ManagerPhone=:ManagerPhone, ManagerGivenName=:ManagerGivenName, ManagerLastName=:ManagerLastName, ManagerEmail=:ManagerEmail, ManagerPhoneNumber=:ManagerPhoneNumber, ManagerGender=:ManagerGender, ManagerIsMainManager=:ManagerIsMainManager, ManagerIsActive=:ManagerIsActive  WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000311)
+          ,new CursorDef("T000310", "SAVEPOINT gxupdate;INSERT INTO Trn_Manager(ManagerId, ManagerPhoneCode, ManagerInitials, ManagerPhone, ManagerGivenName, ManagerLastName, ManagerEmail, ManagerPhoneNumber, ManagerGender, ManagerGAMGUID, ManagerIsMainManager, ManagerIsActive, ManagerImage, ManagerImage_GXI, OrganisationId) VALUES(:ManagerId, :ManagerPhoneCode, :ManagerInitials, :ManagerPhone, :ManagerGivenName, :ManagerLastName, :ManagerEmail, :ManagerPhoneNumber, :ManagerGender, :ManagerGAMGUID, :ManagerIsMainManager, :ManagerIsActive, :ManagerImage, :ManagerImage_GXI, :OrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000310)
+          ,new CursorDef("T000311", "SAVEPOINT gxupdate;UPDATE Trn_Manager SET ManagerPhoneCode=:ManagerPhoneCode, ManagerInitials=:ManagerInitials, ManagerPhone=:ManagerPhone, ManagerGivenName=:ManagerGivenName, ManagerLastName=:ManagerLastName, ManagerEmail=:ManagerEmail, ManagerPhoneNumber=:ManagerPhoneNumber, ManagerGender=:ManagerGender, ManagerGAMGUID=:ManagerGAMGUID, ManagerIsMainManager=:ManagerIsMainManager, ManagerIsActive=:ManagerIsActive  WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000311)
           ,new CursorDef("T000312", "SAVEPOINT gxupdate;UPDATE Trn_Manager SET ManagerImage=:ManagerImage, ManagerImage_GXI=:ManagerImage_GXI  WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000312)
           ,new CursorDef("T000313", "SAVEPOINT gxupdate;DELETE FROM Trn_Manager  WHERE ManagerId = :ManagerId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000313)
           ,new CursorDef("T000314", "SELECT ManagerId, OrganisationId FROM Trn_Manager ORDER BY ManagerId, OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000314,100, GxCacheFrequency.OFF ,true,false )
@@ -3904,9 +3940,9 @@ public class trn_manager__default : DataStoreHelperBase, IDataStoreHelper
           case 0 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[2])[0] = rslt.getString(3, 20);
              ((string[]) buf[3])[0] = rslt.getString(4, 20);
-             ((string[]) buf[4])[0] = rslt.getString(5, 20);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
              ((string[]) buf[5])[0] = rslt.getVarchar(6);
              ((string[]) buf[6])[0] = rslt.getVarchar(7);
              ((string[]) buf[7])[0] = rslt.getVarchar(8);
@@ -3921,9 +3957,9 @@ public class trn_manager__default : DataStoreHelperBase, IDataStoreHelper
           case 1 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[2])[0] = rslt.getString(3, 20);
              ((string[]) buf[3])[0] = rslt.getString(4, 20);
-             ((string[]) buf[4])[0] = rslt.getString(5, 20);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
              ((string[]) buf[5])[0] = rslt.getVarchar(6);
              ((string[]) buf[6])[0] = rslt.getVarchar(7);
              ((string[]) buf[7])[0] = rslt.getVarchar(8);
@@ -3941,9 +3977,9 @@ public class trn_manager__default : DataStoreHelperBase, IDataStoreHelper
           case 3 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((string[]) buf[1])[0] = rslt.getVarchar(2);
-             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[2])[0] = rslt.getString(3, 20);
              ((string[]) buf[3])[0] = rslt.getString(4, 20);
-             ((string[]) buf[4])[0] = rslt.getString(5, 20);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
              ((string[]) buf[5])[0] = rslt.getVarchar(6);
              ((string[]) buf[6])[0] = rslt.getVarchar(7);
              ((string[]) buf[7])[0] = rslt.getVarchar(8);
