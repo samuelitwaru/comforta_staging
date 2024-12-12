@@ -194,27 +194,30 @@ namespace GeneXus.Programs.workwithplus {
                pr_default.readNext(0);
             }
             pr_default.close(0);
-            AV38GXV1 = 1;
-            while ( AV38GXV1 <= AV30AddressGroup.Count )
+            AV39GXV1 = 1;
+            while ( AV39GXV1 <= AV30AddressGroup.Count )
             {
-               AV32ResidentId = ((Guid)AV30AddressGroup.Item(AV38GXV1));
+               AV32ResidentId = ((Guid)AV30AddressGroup.Item(AV39GXV1));
                AV31Trn_AgendaEventGroup = new SdtTrn_AgendaEventGroup(context);
                AV31Trn_AgendaEventGroup.gxTpr_Residentid = AV32ResidentId;
                AV31Trn_AgendaEventGroup.gxTpr_Agendacalendarid = AV22Trn_AgendCalendar.gxTpr_Agendacalendarid;
                AV31Trn_AgendaEventGroup.InsertOrUpdate();
-               AV38GXV1 = (int)(AV38GXV1+1);
+               AV39GXV1 = (int)(AV39GXV1+1);
             }
             context.CommitDataStores("workwithplus.wwp_calendar_editevent",pr_default);
             AV14EventCreated = true;
             AV24EventDescription = AV20Title + " - " + context.localUtil.Format( AV17EventStartDate, "99/99/99 99:99") + " to " + context.localUtil.Format( AV15EventEndDate, "99/99/99 99:99");
+            AV36Metadata = new SdtSDT_OneSignalCustomData(context);
+            AV36Metadata.gxTpr_Isagendaevent = true;
+            AV36Metadata.gxTpr_Agendadetails.gxTpr_Agendaeventid = AV22Trn_AgendCalendar.gxTpr_Agendacalendarid;
             if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
             {
-               new prc_sendresidentnotification(context ).execute(  "New Calendar Event",  AV24EventDescription,  "AGENDA",  AV30AddressGroup) ;
+               new prc_sendresidentnotification(context ).execute(  "New Calendar Event",  AV24EventDescription,  "AGENDA",  AV36Metadata,  AV30AddressGroup) ;
                new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "AgendaNotification",  "AgendaEvents",  "",  "",  "New Agenda Created",  AV24EventDescription,  AV24EventDescription,  formatLink("wp_calendaragenda.aspx") ,  "",  "",  true) ;
             }
             else if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
             {
-               new prc_sendresidentnotification(context ).execute(  "Calendar Event Updated",  AV24EventDescription,  "AGENDA",  AV30AddressGroup) ;
+               new prc_sendresidentnotification(context ).execute(  "Calendar Event Updated",  AV24EventDescription,  "AGENDA",  AV36Metadata,  AV30AddressGroup) ;
                new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "AgendaNotification",  "AgendaEvents",  "",  "",  "Agenda Event Updated",  AV24EventDescription,  AV24EventDescription,  formatLink("wp_calendaragenda.aspx") ,  "",  "",  true) ;
             }
          }
@@ -252,6 +255,7 @@ namespace GeneXus.Programs.workwithplus {
          AV31Trn_AgendaEventGroup = new SdtTrn_AgendaEventGroup(context);
          AV32ResidentId = Guid.Empty;
          AV24EventDescription = "";
+         AV36Metadata = new SdtSDT_OneSignalCustomData(context);
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.workwithplus.wwp_calendar_editevent__datastore1(),
             new Object[][] {
             }
@@ -270,7 +274,7 @@ namespace GeneXus.Programs.workwithplus {
          /* GeneXus formulas. */
       }
 
-      private int AV38GXV1 ;
+      private int AV39GXV1 ;
       private string Gx_mode ;
       private DateTime AV18FromTime ;
       private DateTime AV21ToTime ;
@@ -303,6 +307,7 @@ namespace GeneXus.Programs.workwithplus {
       private Guid[] P006T2_A303AgendaCalendarId ;
       private Guid[] P006T2_A62ResidentId ;
       private SdtTrn_AgendaEventGroup AV31Trn_AgendaEventGroup ;
+      private SdtSDT_OneSignalCustomData AV36Metadata ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP13_ErrorMessages ;
       private bool aP14_EventCreated ;
       private IDataStoreProvider pr_datastore1 ;

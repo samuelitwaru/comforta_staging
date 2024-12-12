@@ -525,7 +525,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-8", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, divUnnamedtable6_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, divUnnamedtable6_Internalname, 1, 0, "px", 0, "px", "AttributePhoneNumberDisplay", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
@@ -535,28 +535,28 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 PhoneLabel", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavSuppliergenphonecode_description_Internalname, "Supplier Gen Phone Code_Description", "col-sm-3 DropDownComponentLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtavSuppliergenphonecode_description_Internalname, "Supplier Gen Phone Code_Description", "col-sm-3 ", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 48,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavSuppliergenphonecode_description_Internalname, AV19SupplierGenPhoneCode_Description, StringUtil.RTrim( context.localUtil.Format( AV19SupplierGenPhoneCode_Description, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,48);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSuppliergenphonecode_description_Jsonclick, 0, "DropDownComponent", "", "", "", "", 1, edtavSuppliergenphonecode_description_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_SupplierGenGeneral.htm");
+            GxWebStd.gx_single_line_edit( context, edtavSuppliergenphonecode_description_Internalname, AV19SupplierGenPhoneCode_Description, StringUtil.RTrim( context.localUtil.Format( AV19SupplierGenPhoneCode_Description, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,48);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavSuppliergenphonecode_description_Jsonclick, 0, "", "", "", "", "", 1, edtavSuppliergenphonecode_description_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_SupplierGenGeneral.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-8 DataContentCell", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-8", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtSupplierGenPhoneNumber_Internalname, "Supplier Gen Phone Number", "col-sm-3 AttributeLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtSupplierGenPhoneNumber_Internalname, "Supplier Gen Phone Number", "col-sm-3 PhoneNumberDisplayLabel", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 51,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtSupplierGenPhoneNumber_Internalname, A382SupplierGenPhoneNumber, StringUtil.RTrim( context.localUtil.Format( A382SupplierGenPhoneNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,51);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtSupplierGenPhoneNumber_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtSupplierGenPhoneNumber_Enabled, 0, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_SupplierGenGeneral.htm");
+            GxWebStd.gx_single_line_edit( context, edtSupplierGenPhoneNumber_Internalname, A382SupplierGenPhoneNumber, StringUtil.RTrim( context.localUtil.Format( A382SupplierGenPhoneNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,51);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtSupplierGenPhoneNumber_Jsonclick, 0, "PhoneNumberDisplay", "", "", "", "", 1, edtSupplierGenPhoneNumber_Enabled, 0, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_SupplierGenGeneral.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1548,7 +1548,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241211185349", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121214303078", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1564,7 +1564,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_suppliergengeneral.js", "?20241211185349", false, true);
+         context.AddJavascriptSource("trn_suppliergengeneral.js", "?2024121214303078", false, true);
          /* End function include_jscripts */
       }
 
@@ -1643,6 +1643,7 @@ namespace GeneXus.Programs {
          edtSupplierGenPhoneNumber_Jsonclick = "";
          edtSupplierGenPhoneNumber_Enabled = 0;
          edtavSuppliergenphonecode_description_Jsonclick = "";
+         edtavSuppliergenphonecode_description_Backcolor = (int)(0xFFFFFF);
          edtavSuppliergenphonecode_description_Enabled = 1;
          edtSupplierGenContactName_Jsonclick = "";
          edtSupplierGenContactName_Enabled = 0;
@@ -1793,6 +1794,7 @@ namespace GeneXus.Programs {
       private int edtSupplierGenId_Enabled ;
       private int edtSupplierGenContactPhone_Enabled ;
       private int idxLst ;
+      private int edtavSuppliergenphonecode_description_Backcolor ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
       private string sPrefix ;

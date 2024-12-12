@@ -98,12 +98,16 @@ namespace GeneXus.Programs {
                A498AppNotificationId = P009O3_A498AppNotificationId[0];
                A499AppNotificationTitle = P009O3_A499AppNotificationTitle[0];
                A502AppNotificationTopic = P009O3_A502AppNotificationTopic[0];
+               A510AppNotificationMetadata = P009O3_A510AppNotificationMetadata[0];
+               n510AppNotificationMetadata = P009O3_n510AppNotificationMetadata[0];
                A500AppNotificationDescription = P009O3_A500AppNotificationDescription[0];
                A62ResidentId = P009O3_A62ResidentId[0];
                A497ResidentNotificationId = P009O3_A497ResidentNotificationId[0];
                A501AppNotificationDate = P009O3_A501AppNotificationDate[0];
                A499AppNotificationTitle = P009O3_A499AppNotificationTitle[0];
                A502AppNotificationTopic = P009O3_A502AppNotificationTopic[0];
+               A510AppNotificationMetadata = P009O3_A510AppNotificationMetadata[0];
+               n510AppNotificationMetadata = P009O3_n510AppNotificationMetadata[0];
                A500AppNotificationDescription = P009O3_A500AppNotificationDescription[0];
                /* Using cursor P009O4 */
                pr_default.execute(2, new Object[] {A498AppNotificationId});
@@ -114,6 +118,10 @@ namespace GeneXus.Programs {
                   AV10ResidentNotificationItem.gxTpr_Notificationid = A498AppNotificationId;
                   AV10ResidentNotificationItem.gxTpr_Notificationtitle = A499AppNotificationTitle;
                   AV10ResidentNotificationItem.gxTpr_Notificationtopic = A502AppNotificationTopic;
+                  if ( AV14SDT_OneSignalCustomData.FromJSonString(A510AppNotificationMetadata, null) )
+                  {
+                     AV10ResidentNotificationItem.gxTpr_Notificationmetadata = AV14SDT_OneSignalCustomData;
+                  }
                   AV10ResidentNotificationItem.gxTpr_Notificationdescription = A500AppNotificationDescription;
                   AV12SDT_ResidentNotification.Add(AV10ResidentNotificationItem, 0);
                   /* Exiting from a For First loop. */
@@ -155,6 +163,8 @@ namespace GeneXus.Programs {
          P009O3_A498AppNotificationId = new Guid[] {Guid.Empty} ;
          P009O3_A499AppNotificationTitle = new string[] {""} ;
          P009O3_A502AppNotificationTopic = new string[] {""} ;
+         P009O3_A510AppNotificationMetadata = new string[] {""} ;
+         P009O3_n510AppNotificationMetadata = new bool[] {false} ;
          P009O3_A500AppNotificationDescription = new string[] {""} ;
          P009O3_A62ResidentId = new Guid[] {Guid.Empty} ;
          P009O3_A497ResidentNotificationId = new Guid[] {Guid.Empty} ;
@@ -162,17 +172,19 @@ namespace GeneXus.Programs {
          A498AppNotificationId = Guid.Empty;
          A499AppNotificationTitle = "";
          A502AppNotificationTopic = "";
+         A510AppNotificationMetadata = "";
          A500AppNotificationDescription = "";
          A497ResidentNotificationId = Guid.Empty;
          P009O4_A498AppNotificationId = new Guid[] {Guid.Empty} ;
          AV10ResidentNotificationItem = new SdtSDT_ResidentNotification(context);
+         AV14SDT_OneSignalCustomData = new SdtSDT_OneSignalCustomData(context);
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_getresidentnotificationhistory__default(),
             new Object[][] {
                 new Object[] {
                P009O2_A71ResidentGUID, P009O2_A11OrganisationId, P009O2_A29LocationId, P009O2_A62ResidentId
                }
                , new Object[] {
-               P009O3_A501AppNotificationDate, P009O3_A498AppNotificationId, P009O3_A499AppNotificationTitle, P009O3_A502AppNotificationTopic, P009O3_A500AppNotificationDescription, P009O3_A62ResidentId, P009O3_A497ResidentNotificationId
+               P009O3_A501AppNotificationDate, P009O3_A498AppNotificationId, P009O3_A499AppNotificationTitle, P009O3_A502AppNotificationTopic, P009O3_A510AppNotificationMetadata, P009O3_n510AppNotificationMetadata, P009O3_A500AppNotificationDescription, P009O3_A62ResidentId, P009O3_A497ResidentNotificationId
                }
                , new Object[] {
                P009O4_A498AppNotificationId
@@ -183,7 +195,9 @@ namespace GeneXus.Programs {
       }
 
       private DateTime A501AppNotificationDate ;
+      private bool n510AppNotificationMetadata ;
       private string AV11result ;
+      private string A510AppNotificationMetadata ;
       private string AV8ResidentGUID ;
       private string A71ResidentGUID ;
       private string A499AppNotificationTitle ;
@@ -208,11 +222,14 @@ namespace GeneXus.Programs {
       private Guid[] P009O3_A498AppNotificationId ;
       private string[] P009O3_A499AppNotificationTitle ;
       private string[] P009O3_A502AppNotificationTopic ;
+      private string[] P009O3_A510AppNotificationMetadata ;
+      private bool[] P009O3_n510AppNotificationMetadata ;
       private string[] P009O3_A500AppNotificationDescription ;
       private Guid[] P009O3_A62ResidentId ;
       private Guid[] P009O3_A497ResidentNotificationId ;
       private Guid[] P009O4_A498AppNotificationId ;
       private SdtSDT_ResidentNotification AV10ResidentNotificationItem ;
+      private SdtSDT_OneSignalCustomData AV14SDT_OneSignalCustomData ;
       private string aP1_result ;
    }
 
@@ -247,7 +264,7 @@ namespace GeneXus.Programs {
           };
           def= new CursorDef[] {
               new CursorDef("P009O2", "SELECT ResidentGUID, OrganisationId, LocationId, ResidentId FROM Trn_Resident WHERE ResidentGUID = ( RTRIM(LTRIM(:AV8ResidentGUID))) ORDER BY ResidentId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009O2,1, GxCacheFrequency.OFF ,true,true )
-             ,new CursorDef("P009O3", "SELECT T2.AppNotificationDate, T1.AppNotificationId, T2.AppNotificationTitle, T2.AppNotificationTopic, T2.AppNotificationDescription, T1.ResidentId, T1.ResidentNotificationId FROM (Trn_ResidentNotification T1 INNER JOIN Trn_AppNotification T2 ON T2.AppNotificationId = T1.AppNotificationId) WHERE T1.ResidentId = :AV13Trn_Resident__Residentid ORDER BY T1.ResidentNotificationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009O3,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("P009O3", "SELECT T2.AppNotificationDate, T1.AppNotificationId, T2.AppNotificationTitle, T2.AppNotificationTopic, T2.AppNotificationMetadata, T2.AppNotificationDescription, T1.ResidentId, T1.ResidentNotificationId FROM (Trn_ResidentNotification T1 INNER JOIN Trn_AppNotification T2 ON T2.AppNotificationId = T1.AppNotificationId) WHERE T1.ResidentId = :AV13Trn_Resident__Residentid ORDER BY T1.ResidentNotificationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009O3,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("P009O4", "SELECT AppNotificationId FROM Trn_AppNotification WHERE AppNotificationId = :AppNotificationId ORDER BY AppNotificationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009O4,1, GxCacheFrequency.OFF ,false,true )
           };
        }
@@ -270,9 +287,11 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((string[]) buf[2])[0] = rslt.getVarchar(3);
                 ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
-                ((Guid[]) buf[5])[0] = rslt.getGuid(6);
-                ((Guid[]) buf[6])[0] = rslt.getGuid(7);
+                ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
+                ((bool[]) buf[5])[0] = rslt.wasNull(5);
+                ((string[]) buf[6])[0] = rslt.getVarchar(6);
+                ((Guid[]) buf[7])[0] = rslt.getGuid(7);
+                ((Guid[]) buf[8])[0] = rslt.getGuid(8);
                 return;
              case 2 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);

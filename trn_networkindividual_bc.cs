@@ -117,7 +117,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0A17( short GX_JID )
       {
-         if ( ( GX_JID == 8 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 9 ) || ( GX_JID == 0 ) )
          {
             Z75NetworkIndividualBsnNumber = A75NetworkIndividualBsnNumber;
             Z76NetworkIndividualGivenName = A76NetworkIndividualGivenName;
@@ -137,7 +137,7 @@ namespace GeneXus.Programs {
             Z347NetworkIndividualAddressLine1 = A347NetworkIndividualAddressLine1;
             Z348NetworkIndividualAddressLine2 = A348NetworkIndividualAddressLine2;
          }
-         if ( GX_JID == -8 )
+         if ( GX_JID == -9 )
          {
             Z74NetworkIndividualId = A74NetworkIndividualId;
             Z75NetworkIndividualBsnNumber = A75NetworkIndividualBsnNumber;
@@ -199,7 +199,7 @@ namespace GeneXus.Programs {
             A346NetworkIndividualZipCode = BC000A4_A346NetworkIndividualZipCode[0];
             A347NetworkIndividualAddressLine1 = BC000A4_A347NetworkIndividualAddressLine1[0];
             A348NetworkIndividualAddressLine2 = BC000A4_A348NetworkIndividualAddressLine2[0];
-            ZM0A17( -8) ;
+            ZM0A17( -9) ;
          }
          pr_default.close(2);
          OnLoadActions0A17( ) ;
@@ -237,6 +237,11 @@ namespace GeneXus.Programs {
             GX_msglist.addItem("Field Network Individual Gender is out of range", "OutOfRange", 1, "");
             AnyError = 1;
          }
+         if ( ! GxRegex.IsMatch(A346NetworkIndividualZipCode,"^\\d{4}\\s?[A-Z]{2}$") && ! String.IsNullOrEmpty(StringUtil.RTrim( A346NetworkIndividualZipCode)) )
+         {
+            GX_msglist.addItem("Zip Code is incorrect", 1, "");
+            AnyError = 1;
+         }
       }
 
       protected void CloseExtendedTableCursors0A17( )
@@ -268,7 +273,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A74NetworkIndividualId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0A17( 8) ;
+            ZM0A17( 9) ;
             RcdFound17 = 1;
             A74NetworkIndividualId = BC000A3_A74NetworkIndividualId[0];
             A75NetworkIndividualBsnNumber = BC000A3_A75NetworkIndividualBsnNumber[0];
@@ -875,7 +880,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z74NetworkIndividualId = A74NetworkIndividualId;
          }
-         ZM0A17( -8) ;
+         ZM0A17( -9) ;
          OnLoadActions0A17( ) ;
          AddRow0A17( ) ;
          ScanKeyEnd0A17( ) ;
@@ -904,7 +909,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z74NetworkIndividualId = A74NetworkIndividualId;
          }
-         ZM0A17( -8) ;
+         ZM0A17( -9) ;
          OnLoadActions0A17( ) ;
          AddRow0A17( ) ;
          ScanKeyEnd0A17( ) ;

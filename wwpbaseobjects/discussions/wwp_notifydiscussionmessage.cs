@@ -81,7 +81,6 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_logtofile(context ).execute(  "Notify discussion message..................") ;
          if ( StringUtil.StrCmp(AV24WWPEntityName, "WWP_DynamicForm") == 0 )
          {
             AV24WWPEntityName = "Discussion";

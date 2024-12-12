@@ -778,7 +778,9 @@ namespace GeneXus.Programs {
          if (returnInSub) return;
          if ( AV10CheckRequiredFieldsResult )
          {
-            new prc_sendresidentnotification(context ).execute(  AV7Title,  AV8Message,  "GENERAL",  AV12ResidentIdCollectionEmpty) ;
+            AV13Metadata = new SdtSDT_OneSignalCustomData(context);
+            AV13Metadata.gxTpr_Isgeneralcommunication = true;
+            new prc_sendresidentnotification(context ).execute(  AV7Title,  AV8Message,  "GENERAL",  AV13Metadata,  AV12ResidentIdCollectionEmpty) ;
             GX_msglist.addItem("Message sent");
             AV7Title = "";
             AssignAttri("", false, "AV7Title", AV7Title);
@@ -857,7 +859,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121118194925", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412121432215", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -873,7 +875,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_notificationpanel.js", "?2024121118194925", false, true);
+         context.AddJavascriptSource("wp_notificationpanel.js", "?202412121432215", false, true);
          /* End function include_jscripts */
       }
 
@@ -974,6 +976,7 @@ namespace GeneXus.Programs {
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
+         AV13Metadata = new SdtSDT_OneSignalCustomData(context);
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          /* GeneXus formulas. */
@@ -1034,6 +1037,7 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDefault ;
       private GXCheckbox chkavIstoallusers ;
       private GxSimpleCollection<Guid> AV12ResidentIdCollectionEmpty ;
+      private SdtSDT_OneSignalCustomData AV13Metadata ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
    }

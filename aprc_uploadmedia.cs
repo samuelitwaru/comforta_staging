@@ -129,6 +129,7 @@ namespace GeneXus.Programs {
          GXt_char1 = AV27UserName;
          new prc_getloggedinusername(context ).execute( out  GXt_char1) ;
          AV27UserName = GXt_char1;
+         new prc_logtofile(context ).execute(  "UserName: "+AV27UserName) ;
          /* Using cursor P00882 */
          pr_default.execute(0, new Object[] {AV27UserName});
          while ( (pr_default.getStatus(0) != 101) )
@@ -142,6 +143,11 @@ namespace GeneXus.Programs {
             pr_default.readNext(0);
          }
          pr_default.close(0);
+         new prc_logtofile(context ).execute(  "LocationId: "+AV25LocationId.ToString()) ;
+         new prc_logtofile(context ).execute(  "OrganisationId: "+AV26OrganisationId.ToString()) ;
+         new prc_logtofile(context ).execute(  "MediaName: "+AV12MediaName) ;
+         new prc_logtofile(context ).execute(  "MediaSize: "+StringUtil.Str( (decimal)(AV20MediaSize), 8, 0)) ;
+         new prc_logtofile(context ).execute(  "MediaType: "+AV21MediaType) ;
          AV14BC_Trn_Media = new SdtTrn_Media(context);
          AV14BC_Trn_Media.gxTpr_Medianame = AV12MediaName;
          AV14BC_Trn_Media.gxTpr_Mediasize = AV20MediaSize;
@@ -157,12 +163,14 @@ namespace GeneXus.Programs {
          }
          AV14BC_Trn_Media.gxTpr_Mediaurl = AV23MediaUrl;
          AV14BC_Trn_Media.Save();
+         new prc_logtofile(context ).execute(  AV14BC_Trn_Media.ToJSonString(true, true)) ;
+         new prc_logtofile(context ).execute(  StringUtil.BoolToStr( AV14BC_Trn_Media.Success())) ;
          if ( AV14BC_Trn_Media.Success() )
          {
             AV22Path = "";
             if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, "http") )
             {
-               AV22Path = "D:\\KBs\\ComfortaKB\\NETSQLServer043\\Web\\media\\";
+               AV22Path = "C:\\KBs\\Comforta_version2\\Data018\\Web\\media\\";
             }
             new SdtEO_Base64Image(context).saveimage(AV18MediaImageData, AV22Path+AV12MediaName) ;
             new prc_logtofile(context ).execute(  AV22Path+AV12MediaName) ;

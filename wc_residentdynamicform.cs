@@ -1289,7 +1289,7 @@ namespace GeneXus.Programs {
                         context.CommitDataStores("wc_residentdynamicform",pr_default);
                         GX_msglist.addItem("Form Submitted successfully");
                         AV33FormInstanceIdString = StringUtil.Trim( StringUtil.Str( (decimal)(AV9WWPFormInstanceId), 6, 0));
-                        AV41Formlink = formatLink("workwithplus.dynamicforms.wwp_dynamicform.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV14WWPFormReferenceName)),UrlEncode(StringUtil.LTrimStr(AV7WWPFormInstance.gxTpr_Wwpforminstanceid,6,0)),UrlEncode(StringUtil.RTrim("DSP")),UrlEncode(StringUtil.BoolToStr(false))}, new string[] {"WWPFormReferenceName","WWPFormInstanceId","WWPDynamicFormMode","isLinkingDiscussion"}) ;
+                        AV42Formlink = formatLink("workwithplus.dynamicforms.wwp_dynamicform.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV14WWPFormReferenceName)),UrlEncode(StringUtil.LTrimStr(AV7WWPFormInstance.gxTpr_Wwpforminstanceid,6,0)),UrlEncode(StringUtil.RTrim("DSP")),UrlEncode(StringUtil.BoolToStr(false))}, new string[] {"WWPFormReferenceName","WWPFormInstanceId","WWPDynamicFormMode","isLinkingDiscussion"}) ;
                         if ( StringUtil.StrCmp(AV8WWPDynamicFormMode, "INS") == 0 )
                         {
                            AV31NotificationDescription = AV32FormName + " - " + AV30ResidentName;
@@ -1302,10 +1302,15 @@ namespace GeneXus.Programs {
                            AV37WWPNotificationMetadataSDT = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationMetadata(context);
                            AV37WWPNotificationMetadataSDT.gxTpr_Custommetadata = AV36SDT_NotificationMetadata;
                            AV6WebSession.Set("FormFilledMessage", "Form submitted successfully");
-                           new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "DynamicFormNotification",  "DynamicForms",  "",  "fas fa-file-alt NotificationFontIconSuccess",  "New Form Response",  AV31NotificationDescription,  AV31NotificationDescription,  AV41Formlink,  AV37WWPNotificationMetadataSDT.ToJSonString(false, true),  "",  true) ;
+                           new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "DynamicFormNotification",  "DynamicForms",  "",  "fas fa-file-alt NotificationFontIconSuccess",  "New Form Response",  AV31NotificationDescription,  AV31NotificationDescription,  AV42Formlink,  AV37WWPNotificationMetadataSDT.ToJSonString(false, true),  "",  true) ;
                            AV34ResidentIdCollection.Clear();
                            AV34ResidentIdCollection.Add(new prc_getresidentidfromguid(context).executeUdp(  AV27ResidentGUID), 0);
-                           new prc_sendresidentnotification(context ).execute(  "New Filled Form",  "You have filled out a form ("+AV32FormName+")",  "FORM",  AV34ResidentIdCollection) ;
+                           AV38Metadata = new SdtSDT_OneSignalCustomData(context);
+                           AV38Metadata.gxTpr_Isdynamicform = true;
+                           AV38Metadata.gxTpr_Formdetails.gxTpr_Forminstanceid = (short)(AV7WWPFormInstance.gxTpr_Wwpforminstanceid);
+                           AV38Metadata.gxTpr_Formdetails.gxTpr_Formmode = "DSP";
+                           AV38Metadata.gxTpr_Formdetails.gxTpr_Formreferencename = AV14WWPFormReferenceName;
+                           new prc_sendresidentnotification(context ).execute(  "New Filled Form",  "You have filled out a form ("+AV32FormName+")",  "FORM",  AV38Metadata,  AV34ResidentIdCollection) ;
                            new prc_subscriberesidenttodiscussion(context ).execute(  "GeneralDiscussion",  "Discussion",  StringUtil.Trim( StringUtil.Str( (decimal)(AV7WWPFormInstance.gxTpr_Wwpforminstanceid), 6, 0)),  AV31NotificationDescription,  AV27ResidentGUID) ;
                         }
                         else if ( StringUtil.StrCmp(AV8WWPDynamicFormMode, "UPD") == 0 )
@@ -1320,7 +1325,7 @@ namespace GeneXus.Programs {
                            AV37WWPNotificationMetadataSDT = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationMetadata(context);
                            AV37WWPNotificationMetadataSDT.gxTpr_Custommetadata = AV36SDT_NotificationMetadata;
                            AV6WebSession.Set("FormFilledMessage", "Form updated successfully");
-                           new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "DynamicFormNotification",  "DynamicForms",  "",  "fas fa-pencil-alt NotificationFontIconWarning",  "Form Response Updated",  AV31NotificationDescription,  AV31NotificationDescription,  AV41Formlink,  AV37WWPNotificationMetadataSDT.ToJSonString(false, true),  "",  true) ;
+                           new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "DynamicFormNotification",  "DynamicForms",  "",  "fas fa-pencil-alt NotificationFontIconWarning",  "Form Response Updated",  AV31NotificationDescription,  AV31NotificationDescription,  AV42Formlink,  AV37WWPNotificationMetadataSDT.ToJSonString(false, true),  "",  true) ;
                         }
                         else if ( StringUtil.StrCmp(AV8WWPDynamicFormMode, "DLT") == 0 )
                         {
@@ -1334,7 +1339,7 @@ namespace GeneXus.Programs {
                            AV37WWPNotificationMetadataSDT = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationMetadata(context);
                            AV37WWPNotificationMetadataSDT.gxTpr_Custommetadata = AV36SDT_NotificationMetadata;
                            AV6WebSession.Set("FormFilledMessage", "Form deleted successfully");
-                           new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "DynamicFormNotification",  "DynamicForms",  "",  "fas fa-trash-alt NotificationFontIconDanger",  "Form Response Deleted",  AV31NotificationDescription,  AV31NotificationDescription,  AV41Formlink,  AV37WWPNotificationMetadataSDT.ToJSonString(false, true),  "",  true) ;
+                           new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "DynamicFormNotification",  "DynamicForms",  "",  "fas fa-trash-alt NotificationFontIconDanger",  "Form Response Deleted",  AV31NotificationDescription,  AV31NotificationDescription,  AV42Formlink,  AV37WWPNotificationMetadataSDT.ToJSonString(false, true),  "",  true) ;
                         }
                         CallWebObject(formatLink("wp_residentfilledforms.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV28AccessToken))}, new string[] {"AccessToken"}) );
                         context.wjLocDisableFrm = 1;
@@ -1353,12 +1358,12 @@ namespace GeneXus.Programs {
                      }
                      else
                      {
-                        AV42GXV1 = 1;
-                        while ( AV42GXV1 <= AV21Messages.Count )
+                        AV43GXV1 = 1;
+                        while ( AV43GXV1 <= AV21Messages.Count )
                         {
-                           AV19Message = ((GeneXus.Utils.SdtMessages_Message)AV21Messages.Item(AV42GXV1));
+                           AV19Message = ((GeneXus.Utils.SdtMessages_Message)AV21Messages.Item(AV43GXV1));
                            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  AV19Message.gxTpr_Description,  "error",  "",  "true",  ""));
-                           AV42GXV1 = (int)(AV42GXV1+1);
+                           AV43GXV1 = (int)(AV43GXV1+1);
                         }
                      }
                   }
@@ -1808,7 +1813,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121117363648", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121214304312", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1824,7 +1829,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_residentdynamicform.js", "?2024121117363651", false, true);
+         context.AddJavascriptSource("wc_residentdynamicform.js", "?2024121214304313", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/ConfirmPanel/BootstrapConfirmPanelRender.js", "", false, true);
@@ -1976,11 +1981,12 @@ namespace GeneXus.Programs {
          AV13ErrorIds = "";
          AV21Messages = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV33FormInstanceIdString = "";
-         AV41Formlink = "";
+         AV42Formlink = "";
          AV31NotificationDescription = "";
          AV36SDT_NotificationMetadata = new SdtSDT_NotificationMetadata(context);
          AV37WWPNotificationMetadataSDT = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationMetadata(context);
          AV34ResidentIdCollection = new GxSimpleCollection<Guid>();
+         AV38Metadata = new SdtSDT_OneSignalCustomData(context);
          AV19Message = new GeneXus.Utils.SdtMessages_Message(context);
          AV12WWPForm = new GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form(context);
          H007W4_A207WWPFormVersionNumber = new short[1] ;
@@ -2050,7 +2056,7 @@ namespace GeneXus.Programs {
       private int bttBtncancel_Visible ;
       private int bttBtnuaresume_Visible ;
       private int edtavSessionid_Visible ;
-      private int AV42GXV1 ;
+      private int AV43GXV1 ;
       private int idxLst ;
       private string AV8WWPDynamicFormMode ;
       private string wcpOAV8WWPDynamicFormMode ;
@@ -2102,7 +2108,7 @@ namespace GeneXus.Programs {
       private string Dvelop_confirmpanel_uaresume_Internalname ;
       private string GXt_char1 ;
       private string AV33FormInstanceIdString ;
-      private string AV41Formlink ;
+      private string AV42Formlink ;
       private string sStyleString ;
       private string tblTabledvelop_confirmpanel_uaresume_Internalname ;
       private string sCtrlAV14WWPFormReferenceName ;
@@ -2163,6 +2169,7 @@ namespace GeneXus.Programs {
       private SdtSDT_NotificationMetadata AV36SDT_NotificationMetadata ;
       private GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationMetadata AV37WWPNotificationMetadataSDT ;
       private GxSimpleCollection<Guid> AV34ResidentIdCollection ;
+      private SdtSDT_OneSignalCustomData AV38Metadata ;
       private GeneXus.Utils.SdtMessages_Message AV19Message ;
       private GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form AV12WWPForm ;
       private short[] H007W4_A207WWPFormVersionNumber ;

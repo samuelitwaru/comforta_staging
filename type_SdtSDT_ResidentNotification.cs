@@ -99,6 +99,10 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("NotificationTopic", gxTpr_Notificationtopic, false);
 
+			if (gxTv_SdtSDT_ResidentNotification_Notificationmetadata != null)
+			{
+				AddObjectProperty("NotificationMetadata", gxTv_SdtSDT_ResidentNotification_Notificationmetadata, false);
+			}
 			return;
 		}
 		#endregion
@@ -195,6 +199,38 @@ namespace GeneXus.Programs
 
 
 
+		[SoapElement(ElementName="NotificationMetadata")]
+		[XmlElement(ElementName="NotificationMetadata")]
+		public GeneXus.Programs.SdtSDT_OneSignalCustomData gxTpr_Notificationmetadata
+		{
+			get {
+				if ( gxTv_SdtSDT_ResidentNotification_Notificationmetadata == null )
+				{
+					gxTv_SdtSDT_ResidentNotification_Notificationmetadata = new GeneXus.Programs.SdtSDT_OneSignalCustomData(context);
+				}
+				return gxTv_SdtSDT_ResidentNotification_Notificationmetadata; 
+			}
+			set {
+				gxTv_SdtSDT_ResidentNotification_Notificationmetadata = value;
+				SetDirty("Notificationmetadata");
+			}
+		}
+		public void gxTv_SdtSDT_ResidentNotification_Notificationmetadata_SetNull()
+		{
+			gxTv_SdtSDT_ResidentNotification_Notificationmetadata_N = true;
+			gxTv_SdtSDT_ResidentNotification_Notificationmetadata = null;
+		}
+
+		public bool gxTv_SdtSDT_ResidentNotification_Notificationmetadata_IsNull()
+		{
+			return gxTv_SdtSDT_ResidentNotification_Notificationmetadata == null;
+		}
+		public bool ShouldSerializegxTpr_Notificationmetadata_Json()
+		{
+			return gxTv_SdtSDT_ResidentNotification_Notificationmetadata != null;
+
+		}
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -220,6 +256,9 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_ResidentNotification_Notificationdescription = "";
 			gxTv_SdtSDT_ResidentNotification_Notificationdate = (DateTime)(DateTime.MinValue);
 			gxTv_SdtSDT_ResidentNotification_Notificationtopic = "";
+
+			gxTv_SdtSDT_ResidentNotification_Notificationmetadata_N = true;
+
 			datetime_STZ = (DateTime)(DateTime.MinValue);
 			sDateCnv = "";
 			sNumToPad = "";
@@ -249,6 +288,10 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_ResidentNotification_Notificationtopic;
+		 
+
+		protected GeneXus.Programs.SdtSDT_OneSignalCustomData gxTv_SdtSDT_ResidentNotification_Notificationmetadata = null;
+		protected bool gxTv_SdtSDT_ResidentNotification_Notificationmetadata_N;
 		 
 
 
@@ -325,6 +368,21 @@ namespace GeneXus.Programs
 			}
 			set { 
 				 sdt.gxTpr_Notificationtopic = value;
+			}
+		}
+
+		[DataMember(Name="NotificationMetadata", Order=5, EmitDefaultValue=false)]
+		public GeneXus.Programs.SdtSDT_OneSignalCustomData_RESTInterface gxTpr_Notificationmetadata
+		{
+			get { 
+				if (sdt.ShouldSerializegxTpr_Notificationmetadata_Json())
+					return new GeneXus.Programs.SdtSDT_OneSignalCustomData_RESTInterface(sdt.gxTpr_Notificationmetadata);
+				else
+					return null;
+
+			}
+			set { 
+				sdt.gxTpr_Notificationmetadata = value.sdt;
 			}
 		}
 

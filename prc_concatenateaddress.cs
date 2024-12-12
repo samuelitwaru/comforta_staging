@@ -96,7 +96,7 @@ namespace GeneXus.Programs {
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13ZipCode)) )
          {
-            AV8Address += AV13ZipCode + ", ";
+            AV8Address += AV13ZipCode + " ";
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV11City)) )
          {

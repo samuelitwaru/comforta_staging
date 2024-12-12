@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241211153206"
+  version: "20241212113319"
 servers:
-  - url: http://staging.comforta.yukon.software/api
+  - url: https:/staging.comforta.yukon.software/api
 paths:
   /auth/resident-login:
     post:
@@ -1192,6 +1192,9 @@ components:
         NotificationTopic:
           description: "App Notification Topic"
           type: "string"
+        NotificationMetadata:
+          description: "SDT_One Signal Custom Data"
+          $ref: "#/components/schemas/SDT_OneSignalCustomData"
 
 
 
@@ -1699,6 +1702,68 @@ components:
           $ref: "#/components/schemas/SDT_Tile"
 
 
+
+    SDT_OneSignalCustomData:
+      properties:
+        isDiscussion:
+          description: "is Discussion"
+          type: "boolean"
+        isDynamicForm:
+          description: "is Dynamic Form"
+          type: "boolean"
+        isAgendaEvent:
+          description: "is Agenda Event"
+          type: "boolean"
+        isGeneralCommunication:
+          description: "is General Communication"
+          type: "boolean"
+
+        formDetails:
+          $ref: "#/components/schemas/SDT_OneSignalCustomData.formDetails"
+
+        discussionDetails:
+          $ref: "#/components/schemas/SDT_OneSignalCustomData.discussionDetails"
+
+        agendaDetails:
+          $ref: "#/components/schemas/SDT_OneSignalCustomData.agendaDetails"
+
+
+    SDT_OneSignalCustomData.formDetails:
+      properties:
+        formMode:
+          description: "form Mode"
+          type: "string"
+        formInstanceId:
+          description: "form Instance Id"
+          type: "integer"
+          format: "int32"
+        formReferenceName:
+          description: "form Reference Name"
+          type: "string"
+
+
+      x-gx-level: "SDT_OneSignalCustomData"
+
+
+    SDT_OneSignalCustomData.discussionDetails:
+      properties:
+        discussionId:
+          description: "discussion Id"
+          type: "string"
+
+
+      x-gx-level: "SDT_OneSignalCustomData"
+
+
+    SDT_OneSignalCustomData.agendaDetails:
+      properties:
+        agendaEventId:
+          description: "Agenda Calendar Id"
+          type: "string"
+          format: "uuid"
+
+
+      x-gx-level: "SDT_OneSignalCustomData"
 
     SDT_PageChildren:
       properties:

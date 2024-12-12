@@ -879,7 +879,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0B19( short GX_JID )
       {
-         if ( ( GX_JID == 6 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 7 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
@@ -912,7 +912,7 @@ namespace GeneXus.Programs {
                Z353NetworkCompanyAddressLine2 = A353NetworkCompanyAddressLine2;
             }
          }
-         if ( GX_JID == -6 )
+         if ( GX_JID == -7 )
          {
             Z82NetworkCompanyId = A82NetworkCompanyId;
             Z83NetworkCompanyKvkNumber = A83NetworkCompanyKvkNumber;
@@ -999,7 +999,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A352NetworkCompanyAddressLine1", A352NetworkCompanyAddressLine1);
             A353NetworkCompanyAddressLine2 = T000B4_A353NetworkCompanyAddressLine2[0];
             AssignAttri("", false, "A353NetworkCompanyAddressLine2", A353NetworkCompanyAddressLine2);
-            ZM0B19( -6) ;
+            ZM0B19( -7) ;
          }
          pr_default.close(2);
          OnLoadActions0B19( ) ;
@@ -1035,6 +1035,13 @@ namespace GeneXus.Programs {
             GX_FocusControl = edtNetworkCompanyPhoneNumber_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
+         if ( ! GxRegex.IsMatch(A351NetworkCompanyZipCode,"^\\d{4}\\s?[A-Z]{2}$") && ! String.IsNullOrEmpty(StringUtil.RTrim( A351NetworkCompanyZipCode)) )
+         {
+            GX_msglist.addItem("Zip Code is incorrect", 1, "NETWORKCOMPANYZIPCODE");
+            AnyError = 1;
+            GX_FocusControl = edtNetworkCompanyZipCode_Internalname;
+            AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
+         }
       }
 
       protected void CloseExtendedTableCursors0B19( )
@@ -1066,7 +1073,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A82NetworkCompanyId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0B19( 6) ;
+            ZM0B19( 7) ;
             RcdFound19 = 1;
             A82NetworkCompanyId = T000B3_A82NetworkCompanyId[0];
             AssignAttri("", false, "A82NetworkCompanyId", A82NetworkCompanyId.ToString());
@@ -2098,7 +2105,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412111883691", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121214305726", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2114,7 +2121,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_networkcompany.js", "?202412111883691", false, true);
+         context.AddJavascriptSource("trn_networkcompany.js", "?2024121214305726", false, true);
          /* End function include_jscripts */
       }
 
@@ -2300,6 +2307,7 @@ namespace GeneXus.Programs {
          setEventMetadata("VALID_NETWORKCOMPANYKVKNUMBER","""{"handler":"Valid_Networkcompanykvknumber","iparms":[]}""");
          setEventMetadata("VALID_NETWORKCOMPANYEMAIL","""{"handler":"Valid_Networkcompanyemail","iparms":[]}""");
          setEventMetadata("VALID_NETWORKCOMPANYPHONENUMBER","""{"handler":"Valid_Networkcompanyphonenumber","iparms":[]}""");
+         setEventMetadata("VALID_NETWORKCOMPANYZIPCODE","""{"handler":"Valid_Networkcompanyzipcode","iparms":[]}""");
          return  ;
       }
 

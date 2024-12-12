@@ -1011,7 +1011,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0A17( short GX_JID )
       {
-         if ( ( GX_JID == 8 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 9 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
@@ -1054,7 +1054,7 @@ namespace GeneXus.Programs {
                Z348NetworkIndividualAddressLine2 = A348NetworkIndividualAddressLine2;
             }
          }
-         if ( GX_JID == -8 )
+         if ( GX_JID == -9 )
          {
             Z74NetworkIndividualId = A74NetworkIndividualId;
             Z75NetworkIndividualBsnNumber = A75NetworkIndividualBsnNumber;
@@ -1156,7 +1156,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A347NetworkIndividualAddressLine1", A347NetworkIndividualAddressLine1);
             A348NetworkIndividualAddressLine2 = T000A4_A348NetworkIndividualAddressLine2[0];
             AssignAttri("", false, "A348NetworkIndividualAddressLine2", A348NetworkIndividualAddressLine2);
-            ZM0A17( -8) ;
+            ZM0A17( -9) ;
          }
          pr_default.close(2);
          OnLoadActions0A17( ) ;
@@ -1206,6 +1206,13 @@ namespace GeneXus.Programs {
             GX_FocusControl = cmbNetworkIndividualGender_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
+         if ( ! GxRegex.IsMatch(A346NetworkIndividualZipCode,"^\\d{4}\\s?[A-Z]{2}$") && ! String.IsNullOrEmpty(StringUtil.RTrim( A346NetworkIndividualZipCode)) )
+         {
+            GX_msglist.addItem("Zip Code is incorrect", 1, "NETWORKINDIVIDUALZIPCODE");
+            AnyError = 1;
+            GX_FocusControl = edtNetworkIndividualZipCode_Internalname;
+            AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
+         }
       }
 
       protected void CloseExtendedTableCursors0A17( )
@@ -1237,7 +1244,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A74NetworkIndividualId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0A17( 8) ;
+            ZM0A17( 9) ;
             RcdFound17 = 1;
             A74NetworkIndividualId = T000A3_A74NetworkIndividualId[0];
             AssignAttri("", false, "A74NetworkIndividualId", A74NetworkIndividualId.ToString());
@@ -2343,7 +2350,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412111883784", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412121431159", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2359,7 +2366,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_networkindividual.js", "?202412111883785", false, true);
+         context.AddJavascriptSource("trn_networkindividual.js", "?202412121431160", false, true);
          /* End function include_jscripts */
       }
 
@@ -2626,6 +2633,7 @@ namespace GeneXus.Programs {
          setEventMetadata("VALID_NETWORKINDIVIDUALPHONENUMBER","""{"handler":"Valid_Networkindividualphonenumber","iparms":[]}""");
          setEventMetadata("VALID_NETWORKINDIVIDUALHOMEPHONENUMB","""{"handler":"Valid_Networkindividualhomephonenumb","iparms":[]}""");
          setEventMetadata("VALID_NETWORKINDIVIDUALGENDER","""{"handler":"Valid_Networkindividualgender","iparms":[]}""");
+         setEventMetadata("VALID_NETWORKINDIVIDUALZIPCODE","""{"handler":"Valid_Networkindividualzipcode","iparms":[]}""");
          return  ;
       }
 

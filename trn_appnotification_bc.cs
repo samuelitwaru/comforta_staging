@@ -131,6 +131,7 @@ namespace GeneXus.Programs {
             Z500AppNotificationDescription = A500AppNotificationDescription;
             Z501AppNotificationDate = A501AppNotificationDate;
             Z502AppNotificationTopic = A502AppNotificationTopic;
+            Z510AppNotificationMetadata = A510AppNotificationMetadata;
          }
       }
 
@@ -160,6 +161,8 @@ namespace GeneXus.Programs {
             A500AppNotificationDescription = BC001I4_A500AppNotificationDescription[0];
             A501AppNotificationDate = BC001I4_A501AppNotificationDate[0];
             A502AppNotificationTopic = BC001I4_A502AppNotificationTopic[0];
+            A510AppNotificationMetadata = BC001I4_A510AppNotificationMetadata[0];
+            n510AppNotificationMetadata = BC001I4_n510AppNotificationMetadata[0];
             ZM1I95( -3) ;
          }
          pr_default.close(2);
@@ -211,6 +214,8 @@ namespace GeneXus.Programs {
             A500AppNotificationDescription = BC001I3_A500AppNotificationDescription[0];
             A501AppNotificationDate = BC001I3_A501AppNotificationDate[0];
             A502AppNotificationTopic = BC001I3_A502AppNotificationTopic[0];
+            A510AppNotificationMetadata = BC001I3_A510AppNotificationMetadata[0];
+            n510AppNotificationMetadata = BC001I3_n510AppNotificationMetadata[0];
             Z498AppNotificationId = A498AppNotificationId;
             sMode95 = Gx_mode;
             Gx_mode = "DSP";
@@ -305,7 +310,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC001I6 */
-                     pr_default.execute(4, new Object[] {A498AppNotificationId, A499AppNotificationTitle, A500AppNotificationDescription, A501AppNotificationDate, A502AppNotificationTopic});
+                     pr_default.execute(4, new Object[] {A498AppNotificationId, A499AppNotificationTitle, A500AppNotificationDescription, A501AppNotificationDate, A502AppNotificationTopic, n510AppNotificationMetadata, A510AppNotificationMetadata});
                      pr_default.close(4);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_AppNotification");
                      if ( (pr_default.getStatus(4) == 1) )
@@ -360,7 +365,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC001I7 */
-                     pr_default.execute(5, new Object[] {A499AppNotificationTitle, A500AppNotificationDescription, A501AppNotificationDate, A502AppNotificationTopic, A498AppNotificationId});
+                     pr_default.execute(5, new Object[] {A499AppNotificationTitle, A500AppNotificationDescription, A501AppNotificationDate, A502AppNotificationTopic, n510AppNotificationMetadata, A510AppNotificationMetadata, A498AppNotificationId});
                      pr_default.close(5);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_AppNotification");
                      if ( (pr_default.getStatus(5) == 103) )
@@ -499,6 +504,8 @@ namespace GeneXus.Programs {
             A500AppNotificationDescription = BC001I10_A500AppNotificationDescription[0];
             A501AppNotificationDate = BC001I10_A501AppNotificationDate[0];
             A502AppNotificationTopic = BC001I10_A502AppNotificationTopic[0];
+            A510AppNotificationMetadata = BC001I10_A510AppNotificationMetadata[0];
+            n510AppNotificationMetadata = BC001I10_n510AppNotificationMetadata[0];
          }
          /* Load Subordinate Levels */
       }
@@ -523,6 +530,8 @@ namespace GeneXus.Programs {
             A500AppNotificationDescription = BC001I10_A500AppNotificationDescription[0];
             A501AppNotificationDate = BC001I10_A501AppNotificationDate[0];
             A502AppNotificationTopic = BC001I10_A502AppNotificationTopic[0];
+            A510AppNotificationMetadata = BC001I10_A510AppNotificationMetadata[0];
+            n510AppNotificationMetadata = BC001I10_n510AppNotificationMetadata[0];
          }
          Gx_mode = sMode95;
       }
@@ -586,6 +595,8 @@ namespace GeneXus.Programs {
          A500AppNotificationDescription = "";
          A501AppNotificationDate = (DateTime)(DateTime.MinValue);
          A502AppNotificationTopic = "";
+         A510AppNotificationMetadata = "";
+         n510AppNotificationMetadata = false;
          Z499AppNotificationTitle = "";
          Z500AppNotificationDescription = "";
          Z501AppNotificationDate = (DateTime)(DateTime.MinValue);
@@ -629,12 +640,14 @@ namespace GeneXus.Programs {
          obj95.gxTpr_Appnotificationdescription = A500AppNotificationDescription;
          obj95.gxTpr_Appnotificationdate = A501AppNotificationDate;
          obj95.gxTpr_Appnotificationtopic = A502AppNotificationTopic;
+         obj95.gxTpr_Appnotificationmetadata = A510AppNotificationMetadata;
          obj95.gxTpr_Appnotificationid = A498AppNotificationId;
          obj95.gxTpr_Appnotificationid_Z = Z498AppNotificationId;
          obj95.gxTpr_Appnotificationtitle_Z = Z499AppNotificationTitle;
          obj95.gxTpr_Appnotificationdescription_Z = Z500AppNotificationDescription;
          obj95.gxTpr_Appnotificationdate_Z = Z501AppNotificationDate;
          obj95.gxTpr_Appnotificationtopic_Z = Z502AppNotificationTopic;
+         obj95.gxTpr_Appnotificationmetadata_N = (short)(Convert.ToInt16(n510AppNotificationMetadata));
          obj95.gxTpr_Mode = Gx_mode;
          return  ;
       }
@@ -653,12 +666,15 @@ namespace GeneXus.Programs {
          A500AppNotificationDescription = obj95.gxTpr_Appnotificationdescription;
          A501AppNotificationDate = obj95.gxTpr_Appnotificationdate;
          A502AppNotificationTopic = obj95.gxTpr_Appnotificationtopic;
+         A510AppNotificationMetadata = obj95.gxTpr_Appnotificationmetadata;
+         n510AppNotificationMetadata = false;
          A498AppNotificationId = obj95.gxTpr_Appnotificationid;
          Z498AppNotificationId = obj95.gxTpr_Appnotificationid_Z;
          Z499AppNotificationTitle = obj95.gxTpr_Appnotificationtitle_Z;
          Z500AppNotificationDescription = obj95.gxTpr_Appnotificationdescription_Z;
          Z501AppNotificationDate = obj95.gxTpr_Appnotificationdate_Z;
          Z502AppNotificationTopic = obj95.gxTpr_Appnotificationtopic_Z;
+         n510AppNotificationMetadata = (bool)(Convert.ToBoolean(obj95.gxTpr_Appnotificationmetadata_N));
          Gx_mode = obj95.gxTpr_Mode;
          return  ;
       }
@@ -1102,29 +1118,39 @@ namespace GeneXus.Programs {
          A501AppNotificationDate = (DateTime)(DateTime.MinValue);
          Z502AppNotificationTopic = "";
          A502AppNotificationTopic = "";
+         Z510AppNotificationMetadata = "";
+         A510AppNotificationMetadata = "";
          BC001I4_A498AppNotificationId = new Guid[] {Guid.Empty} ;
          BC001I4_A499AppNotificationTitle = new string[] {""} ;
          BC001I4_A500AppNotificationDescription = new string[] {""} ;
          BC001I4_A501AppNotificationDate = new DateTime[] {DateTime.MinValue} ;
          BC001I4_A502AppNotificationTopic = new string[] {""} ;
+         BC001I4_A510AppNotificationMetadata = new string[] {""} ;
+         BC001I4_n510AppNotificationMetadata = new bool[] {false} ;
          BC001I5_A498AppNotificationId = new Guid[] {Guid.Empty} ;
          BC001I3_A498AppNotificationId = new Guid[] {Guid.Empty} ;
          BC001I3_A499AppNotificationTitle = new string[] {""} ;
          BC001I3_A500AppNotificationDescription = new string[] {""} ;
          BC001I3_A501AppNotificationDate = new DateTime[] {DateTime.MinValue} ;
          BC001I3_A502AppNotificationTopic = new string[] {""} ;
+         BC001I3_A510AppNotificationMetadata = new string[] {""} ;
+         BC001I3_n510AppNotificationMetadata = new bool[] {false} ;
          sMode95 = "";
          BC001I2_A498AppNotificationId = new Guid[] {Guid.Empty} ;
          BC001I2_A499AppNotificationTitle = new string[] {""} ;
          BC001I2_A500AppNotificationDescription = new string[] {""} ;
          BC001I2_A501AppNotificationDate = new DateTime[] {DateTime.MinValue} ;
          BC001I2_A502AppNotificationTopic = new string[] {""} ;
+         BC001I2_A510AppNotificationMetadata = new string[] {""} ;
+         BC001I2_n510AppNotificationMetadata = new bool[] {false} ;
          BC001I9_A497ResidentNotificationId = new Guid[] {Guid.Empty} ;
          BC001I10_A498AppNotificationId = new Guid[] {Guid.Empty} ;
          BC001I10_A499AppNotificationTitle = new string[] {""} ;
          BC001I10_A500AppNotificationDescription = new string[] {""} ;
          BC001I10_A501AppNotificationDate = new DateTime[] {DateTime.MinValue} ;
          BC001I10_A502AppNotificationTopic = new string[] {""} ;
+         BC001I10_A510AppNotificationMetadata = new string[] {""} ;
+         BC001I10_n510AppNotificationMetadata = new bool[] {false} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_appnotification_bc__datastore1(),
@@ -1138,13 +1164,13 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_appnotification_bc__default(),
             new Object[][] {
                 new Object[] {
-               BC001I2_A498AppNotificationId, BC001I2_A499AppNotificationTitle, BC001I2_A500AppNotificationDescription, BC001I2_A501AppNotificationDate, BC001I2_A502AppNotificationTopic
+               BC001I2_A498AppNotificationId, BC001I2_A499AppNotificationTitle, BC001I2_A500AppNotificationDescription, BC001I2_A501AppNotificationDate, BC001I2_A502AppNotificationTopic, BC001I2_A510AppNotificationMetadata, BC001I2_n510AppNotificationMetadata
                }
                , new Object[] {
-               BC001I3_A498AppNotificationId, BC001I3_A499AppNotificationTitle, BC001I3_A500AppNotificationDescription, BC001I3_A501AppNotificationDate, BC001I3_A502AppNotificationTopic
+               BC001I3_A498AppNotificationId, BC001I3_A499AppNotificationTitle, BC001I3_A500AppNotificationDescription, BC001I3_A501AppNotificationDate, BC001I3_A502AppNotificationTopic, BC001I3_A510AppNotificationMetadata, BC001I3_n510AppNotificationMetadata
                }
                , new Object[] {
-               BC001I4_A498AppNotificationId, BC001I4_A499AppNotificationTitle, BC001I4_A500AppNotificationDescription, BC001I4_A501AppNotificationDate, BC001I4_A502AppNotificationTopic
+               BC001I4_A498AppNotificationId, BC001I4_A499AppNotificationTitle, BC001I4_A500AppNotificationDescription, BC001I4_A501AppNotificationDate, BC001I4_A502AppNotificationTopic, BC001I4_A510AppNotificationMetadata, BC001I4_n510AppNotificationMetadata
                }
                , new Object[] {
                BC001I5_A498AppNotificationId
@@ -1159,7 +1185,7 @@ namespace GeneXus.Programs {
                BC001I9_A497ResidentNotificationId
                }
                , new Object[] {
-               BC001I10_A498AppNotificationId, BC001I10_A499AppNotificationTitle, BC001I10_A500AppNotificationDescription, BC001I10_A501AppNotificationDate, BC001I10_A502AppNotificationTopic
+               BC001I10_A498AppNotificationId, BC001I10_A499AppNotificationTitle, BC001I10_A500AppNotificationDescription, BC001I10_A501AppNotificationDate, BC001I10_A502AppNotificationTopic, BC001I10_A510AppNotificationMetadata, BC001I10_n510AppNotificationMetadata
                }
             }
          );
@@ -1180,6 +1206,9 @@ namespace GeneXus.Programs {
       private string sMode95 ;
       private DateTime Z501AppNotificationDate ;
       private DateTime A501AppNotificationDate ;
+      private bool n510AppNotificationMetadata ;
+      private string Z510AppNotificationMetadata ;
+      private string A510AppNotificationMetadata ;
       private string Z499AppNotificationTitle ;
       private string A499AppNotificationTitle ;
       private string Z500AppNotificationDescription ;
@@ -1197,23 +1226,31 @@ namespace GeneXus.Programs {
       private string[] BC001I4_A500AppNotificationDescription ;
       private DateTime[] BC001I4_A501AppNotificationDate ;
       private string[] BC001I4_A502AppNotificationTopic ;
+      private string[] BC001I4_A510AppNotificationMetadata ;
+      private bool[] BC001I4_n510AppNotificationMetadata ;
       private Guid[] BC001I5_A498AppNotificationId ;
       private Guid[] BC001I3_A498AppNotificationId ;
       private string[] BC001I3_A499AppNotificationTitle ;
       private string[] BC001I3_A500AppNotificationDescription ;
       private DateTime[] BC001I3_A501AppNotificationDate ;
       private string[] BC001I3_A502AppNotificationTopic ;
+      private string[] BC001I3_A510AppNotificationMetadata ;
+      private bool[] BC001I3_n510AppNotificationMetadata ;
       private Guid[] BC001I2_A498AppNotificationId ;
       private string[] BC001I2_A499AppNotificationTitle ;
       private string[] BC001I2_A500AppNotificationDescription ;
       private DateTime[] BC001I2_A501AppNotificationDate ;
       private string[] BC001I2_A502AppNotificationTopic ;
+      private string[] BC001I2_A510AppNotificationMetadata ;
+      private bool[] BC001I2_n510AppNotificationMetadata ;
       private Guid[] BC001I9_A497ResidentNotificationId ;
       private Guid[] BC001I10_A498AppNotificationId ;
       private string[] BC001I10_A499AppNotificationTitle ;
       private string[] BC001I10_A500AppNotificationDescription ;
       private DateTime[] BC001I10_A501AppNotificationDate ;
       private string[] BC001I10_A502AppNotificationTopic ;
+      private string[] BC001I10_A510AppNotificationMetadata ;
+      private bool[] BC001I10_n510AppNotificationMetadata ;
       private SdtTrn_AppNotification bcTrn_AppNotification ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
@@ -1330,7 +1367,8 @@ public class trn_appnotification_bc__default : DataStoreHelperBase, IDataStoreHe
        new ParDef("AppNotificationTitle",GXType.VarChar,100,0) ,
        new ParDef("AppNotificationDescription",GXType.VarChar,200,0) ,
        new ParDef("AppNotificationDate",GXType.DateTime,10,5) ,
-       new ParDef("AppNotificationTopic",GXType.VarChar,100,0)
+       new ParDef("AppNotificationTopic",GXType.VarChar,100,0) ,
+       new ParDef("AppNotificationMetadata",GXType.LongVarChar,2097152,0){Nullable=true}
        };
        Object[] prmBC001I7;
        prmBC001I7 = new Object[] {
@@ -1338,6 +1376,7 @@ public class trn_appnotification_bc__default : DataStoreHelperBase, IDataStoreHe
        new ParDef("AppNotificationDescription",GXType.VarChar,200,0) ,
        new ParDef("AppNotificationDate",GXType.DateTime,10,5) ,
        new ParDef("AppNotificationTopic",GXType.VarChar,100,0) ,
+       new ParDef("AppNotificationMetadata",GXType.LongVarChar,2097152,0){Nullable=true} ,
        new ParDef("AppNotificationId",GXType.UniqueIdentifier,36,0)
        };
        Object[] prmBC001I8;
@@ -1353,15 +1392,15 @@ public class trn_appnotification_bc__default : DataStoreHelperBase, IDataStoreHe
        new ParDef("AppNotificationId",GXType.UniqueIdentifier,36,0)
        };
        def= new CursorDef[] {
-           new CursorDef("BC001I2", "SELECT AppNotificationId, AppNotificationTitle, AppNotificationDescription, AppNotificationDate, AppNotificationTopic FROM Trn_AppNotification WHERE AppNotificationId = :AppNotificationId  FOR UPDATE OF Trn_AppNotification",true, GxErrorMask.GX_NOMASK, false, this,prmBC001I2,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC001I3", "SELECT AppNotificationId, AppNotificationTitle, AppNotificationDescription, AppNotificationDate, AppNotificationTopic FROM Trn_AppNotification WHERE AppNotificationId = :AppNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001I3,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC001I4", "SELECT TM1.AppNotificationId, TM1.AppNotificationTitle, TM1.AppNotificationDescription, TM1.AppNotificationDate, TM1.AppNotificationTopic FROM Trn_AppNotification TM1 WHERE TM1.AppNotificationId = :AppNotificationId ORDER BY TM1.AppNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001I4,100, GxCacheFrequency.OFF ,true,false )
+           new CursorDef("BC001I2", "SELECT AppNotificationId, AppNotificationTitle, AppNotificationDescription, AppNotificationDate, AppNotificationTopic, AppNotificationMetadata FROM Trn_AppNotification WHERE AppNotificationId = :AppNotificationId  FOR UPDATE OF Trn_AppNotification",true, GxErrorMask.GX_NOMASK, false, this,prmBC001I2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001I3", "SELECT AppNotificationId, AppNotificationTitle, AppNotificationDescription, AppNotificationDate, AppNotificationTopic, AppNotificationMetadata FROM Trn_AppNotification WHERE AppNotificationId = :AppNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001I3,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001I4", "SELECT TM1.AppNotificationId, TM1.AppNotificationTitle, TM1.AppNotificationDescription, TM1.AppNotificationDate, TM1.AppNotificationTopic, TM1.AppNotificationMetadata FROM Trn_AppNotification TM1 WHERE TM1.AppNotificationId = :AppNotificationId ORDER BY TM1.AppNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001I4,100, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC001I5", "SELECT AppNotificationId FROM Trn_AppNotification WHERE AppNotificationId = :AppNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001I5,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC001I6", "SAVEPOINT gxupdate;INSERT INTO Trn_AppNotification(AppNotificationId, AppNotificationTitle, AppNotificationDescription, AppNotificationDate, AppNotificationTopic) VALUES(:AppNotificationId, :AppNotificationTitle, :AppNotificationDescription, :AppNotificationDate, :AppNotificationTopic);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC001I6)
-          ,new CursorDef("BC001I7", "SAVEPOINT gxupdate;UPDATE Trn_AppNotification SET AppNotificationTitle=:AppNotificationTitle, AppNotificationDescription=:AppNotificationDescription, AppNotificationDate=:AppNotificationDate, AppNotificationTopic=:AppNotificationTopic  WHERE AppNotificationId = :AppNotificationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001I7)
+          ,new CursorDef("BC001I6", "SAVEPOINT gxupdate;INSERT INTO Trn_AppNotification(AppNotificationId, AppNotificationTitle, AppNotificationDescription, AppNotificationDate, AppNotificationTopic, AppNotificationMetadata) VALUES(:AppNotificationId, :AppNotificationTitle, :AppNotificationDescription, :AppNotificationDate, :AppNotificationTopic, :AppNotificationMetadata);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC001I6)
+          ,new CursorDef("BC001I7", "SAVEPOINT gxupdate;UPDATE Trn_AppNotification SET AppNotificationTitle=:AppNotificationTitle, AppNotificationDescription=:AppNotificationDescription, AppNotificationDate=:AppNotificationDate, AppNotificationTopic=:AppNotificationTopic, AppNotificationMetadata=:AppNotificationMetadata  WHERE AppNotificationId = :AppNotificationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001I7)
           ,new CursorDef("BC001I8", "SAVEPOINT gxupdate;DELETE FROM Trn_AppNotification  WHERE AppNotificationId = :AppNotificationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001I8)
           ,new CursorDef("BC001I9", "SELECT ResidentNotificationId FROM Trn_ResidentNotification WHERE AppNotificationId = :AppNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001I9,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC001I10", "SELECT TM1.AppNotificationId, TM1.AppNotificationTitle, TM1.AppNotificationDescription, TM1.AppNotificationDate, TM1.AppNotificationTopic FROM Trn_AppNotification TM1 WHERE TM1.AppNotificationId = :AppNotificationId ORDER BY TM1.AppNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001I10,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001I10", "SELECT TM1.AppNotificationId, TM1.AppNotificationTitle, TM1.AppNotificationDescription, TM1.AppNotificationDate, TM1.AppNotificationTopic, TM1.AppNotificationMetadata FROM Trn_AppNotification TM1 WHERE TM1.AppNotificationId = :AppNotificationId ORDER BY TM1.AppNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001I10,100, GxCacheFrequency.OFF ,true,false )
        };
     }
  }
@@ -1378,6 +1417,8 @@ public class trn_appnotification_bc__default : DataStoreHelperBase, IDataStoreHe
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
              ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
              ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+             ((bool[]) buf[6])[0] = rslt.wasNull(6);
              return;
           case 1 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -1385,6 +1426,8 @@ public class trn_appnotification_bc__default : DataStoreHelperBase, IDataStoreHe
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
              ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
              ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+             ((bool[]) buf[6])[0] = rslt.wasNull(6);
              return;
           case 2 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -1392,6 +1435,8 @@ public class trn_appnotification_bc__default : DataStoreHelperBase, IDataStoreHe
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
              ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
              ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+             ((bool[]) buf[6])[0] = rslt.wasNull(6);
              return;
           case 3 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -1405,6 +1450,8 @@ public class trn_appnotification_bc__default : DataStoreHelperBase, IDataStoreHe
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
              ((DateTime[]) buf[3])[0] = rslt.getGXDateTime(4);
              ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+             ((bool[]) buf[6])[0] = rslt.wasNull(6);
              return;
     }
  }

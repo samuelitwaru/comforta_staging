@@ -68,7 +68,7 @@ namespace GeneXus.Programs {
             GX13ASAORGANISATIONPHONE013( A389OrganisationPhoneCode, A390OrganisationPhoneNumber) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_22") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_23") == 0 )
          {
             A19OrganisationTypeId = StringUtil.StrToGuid( GetPar( "OrganisationTypeId"));
             AssignAttri("", false, "A19OrganisationTypeId", A19OrganisationTypeId.ToString());
@@ -78,7 +78,7 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            gxLoad_22( A19OrganisationTypeId) ;
+            gxLoad_23( A19OrganisationTypeId) ;
             return  ;
          }
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxEvt") == 0 )
@@ -1448,7 +1448,7 @@ namespace GeneXus.Programs {
 
       protected void ZM013( short GX_JID )
       {
-         if ( ( GX_JID == 21 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 22 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
@@ -1483,7 +1483,7 @@ namespace GeneXus.Programs {
                Z19OrganisationTypeId = A19OrganisationTypeId;
             }
          }
-         if ( GX_JID == -21 )
+         if ( GX_JID == -22 )
          {
             Z11OrganisationId = A11OrganisationId;
             Z331OrganisationAddressCountry = A331OrganisationAddressCountry;
@@ -1613,7 +1613,7 @@ namespace GeneXus.Programs {
             A20OrganisationTypeName = T00015_A20OrganisationTypeName[0];
             A19OrganisationTypeId = T00015_A19OrganisationTypeId[0];
             AssignAttri("", false, "A19OrganisationTypeId", A19OrganisationTypeId.ToString());
-            ZM013( -21) ;
+            ZM013( -22) ;
          }
          pr_default.close(3);
          OnLoadActions013( ) ;
@@ -1670,6 +1670,13 @@ namespace GeneXus.Programs {
             GX_FocusControl = edtOrganisationVATNumber_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
+         if ( ! GxRegex.IsMatch(A288OrganisationAddressZipCode,"^\\d{4}\\s?[A-Z]{2}$") && ! String.IsNullOrEmpty(StringUtil.RTrim( A288OrganisationAddressZipCode)) )
+         {
+            GX_msglist.addItem("Zip Code is incorrect", 1, "ORGANISATIONADDRESSZIPCODE");
+            AnyError = 1;
+            GX_FocusControl = edtOrganisationAddressZipCode_Internalname;
+            AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
+         }
          /* Using cursor T00014 */
          pr_default.execute(2, new Object[] {A19OrganisationTypeId});
          if ( (pr_default.getStatus(2) == 101) )
@@ -1699,7 +1706,7 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void gxLoad_22( Guid A19OrganisationTypeId )
+      protected void gxLoad_23( Guid A19OrganisationTypeId )
       {
          /* Using cursor T00016 */
          pr_default.execute(4, new Object[] {A19OrganisationTypeId});
@@ -1745,7 +1752,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {n11OrganisationId, A11OrganisationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM013( 21) ;
+            ZM013( 22) ;
             RcdFound3 = 1;
             A11OrganisationId = T00013_A11OrganisationId[0];
             n11OrganisationId = T00013_n11OrganisationId[0];
@@ -2800,7 +2807,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412111854279", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412121431281", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2816,7 +2823,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_organisation.js", "?202412111854284", false, true);
+         context.AddJavascriptSource("trn_organisation.js", "?202412121431282", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3065,6 +3072,7 @@ namespace GeneXus.Programs {
          setEventMetadata("VALID_ORGANISATIONPHONECODE","""{"handler":"Valid_Organisationphonecode","iparms":[]}""");
          setEventMetadata("VALID_ORGANISATIONPHONENUMBER","""{"handler":"Valid_Organisationphonenumber","iparms":[{"av":"A389OrganisationPhoneCode","fld":"ORGANISATIONPHONECODE"},{"av":"A390OrganisationPhoneNumber","fld":"ORGANISATIONPHONENUMBER"},{"av":"A17OrganisationPhone","fld":"ORGANISATIONPHONE"}]""");
          setEventMetadata("VALID_ORGANISATIONPHONENUMBER",""","oparms":[{"av":"A17OrganisationPhone","fld":"ORGANISATIONPHONE"}]}""");
+         setEventMetadata("VALID_ORGANISATIONADDRESSZIPCODE","""{"handler":"Valid_Organisationaddresszipcode","iparms":[]}""");
          setEventMetadata("VALIDV_COMBOORGANISATIONTYPEID","""{"handler":"Validv_Comboorganisationtypeid","iparms":[]}""");
          setEventMetadata("VALIDV_COMBOORGANISATIONPHONECODE","""{"handler":"Validv_Comboorganisationphonecode","iparms":[]}""");
          setEventMetadata("VALIDV_COMBOORGANISATIONADDRESSCOUNTRY","""{"handler":"Validv_Comboorganisationaddresscountry","iparms":[]}""");

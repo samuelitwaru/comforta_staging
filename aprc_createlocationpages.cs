@@ -129,7 +129,7 @@ namespace GeneXus.Programs {
             AV18Key = ((string)AV11PredefinedPagesDictionary.gxTpr_Keys.Item(AV17GXV1));
             AV12Value = AV11PredefinedPagesDictionary.get(AV18Key);
             AV10File = new GxFile(context.GetPhysicalPath());
-            AV10File.Source = "Default"+AV12Value+".txt";
+            AV10File.Source = "PredefinedPages/Default"+AV12Value+".txt";
             AV13PageGJSJson = AV10File.ReadAllText("");
             /*
                INSERT RECORD ON TABLE Trn_Page

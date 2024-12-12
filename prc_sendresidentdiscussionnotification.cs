@@ -46,22 +46,26 @@ namespace GeneXus.Programs {
 
       public void execute( string aP0_title ,
                            string aP1_message ,
-                           string aP2_ResidentGUID )
+                           string aP2_ResidentGUID ,
+                           SdtSDT_OneSignalCustomData aP3_Metadata )
       {
          this.AV10title = aP0_title;
          this.AV9message = aP1_message;
          this.AV18ResidentGUID = aP2_ResidentGUID;
+         this.AV28Metadata = aP3_Metadata;
          initialize();
          ExecuteImpl();
       }
 
       public void executeSubmit( string aP0_title ,
                                  string aP1_message ,
-                                 string aP2_ResidentGUID )
+                                 string aP2_ResidentGUID ,
+                                 SdtSDT_OneSignalCustomData aP3_Metadata )
       {
          this.AV10title = aP0_title;
          this.AV9message = aP1_message;
          this.AV18ResidentGUID = aP2_ResidentGUID;
+         this.AV28Metadata = aP3_Metadata;
          SubmitImpl();
       }
 
@@ -69,12 +73,6 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV25MyGUID = Guid.NewGuid( );
-         AV11TheNotification.gxTpr_Id = AV25MyGUID.ToString();
-         AV11TheNotification.gxTpr_Title.gxTpr_Defaulttext = AV10title;
-         AV11TheNotification.gxTpr_Text.gxTpr_Defaulttext = AV9message;
-         AV15TheNotificationDelivery.gxTpr_Priority = "High";
-         AV12TheNotificationConfiguration.gxTpr_Applicationid = "Comforta";
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV10title)) || String.IsNullOrEmpty(StringUtil.RTrim( AV9message)) )
          {
             AV14IsSuccessful = false;
@@ -88,13 +86,18 @@ namespace GeneXus.Programs {
                A365DeviceUserId = P00A12_A365DeviceUserId[0];
                A363DeviceToken = P00A12_A363DeviceToken[0];
                A361DeviceId = P00A12_A361DeviceId[0];
-               AV17DeviceToken = A363DeviceToken;
+               AV27Token = "";
+               if ( AV26SDT_OneSignalRegistration.FromJSonString(A363DeviceToken, null) )
+               {
+                  AV27Token = AV26SDT_OneSignalRegistration.gxTpr_Notificationplatformid;
+                  AV20DeviceTokenCollection.Add(AV27Token, 0);
+               }
                /* Exit For each command. Update data (if necessary), close cursors & exit. */
                if (true) break;
                pr_default.readNext(0);
             }
             pr_default.close(0);
-            new GeneXus.Core.genexus.common.notifications.sendnotification(context ).execute(  AV12TheNotificationConfiguration,  AV17DeviceToken,  AV11TheNotification,  AV15TheNotificationDelivery, out  AV13OutMessages, out  AV14IsSuccessful) ;
+            new prc_sendonesignalnotification(context ).execute(  AV20DeviceTokenCollection,  AV10title,  AV9message,  AV28Metadata, out  AV13OutMessages, out  AV14IsSuccessful) ;
          }
          cleanup();
       }
@@ -111,18 +114,16 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV25MyGUID = Guid.Empty;
-         AV11TheNotification = new GeneXus.Core.genexus.common.notifications.SdtNotification(context);
-         AV15TheNotificationDelivery = new GeneXus.Core.genexus.common.notifications.SdtDelivery(context);
-         AV12TheNotificationConfiguration = new GeneXus.Core.genexus.common.notifications.SdtConfiguration(context);
          P00A12_A365DeviceUserId = new string[] {""} ;
          P00A12_A363DeviceToken = new string[] {""} ;
          P00A12_A361DeviceId = new string[] {""} ;
          A365DeviceUserId = "";
          A363DeviceToken = "";
          A361DeviceId = "";
-         AV17DeviceToken = "";
-         AV13OutMessages = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV27Token = "";
+         AV26SDT_OneSignalRegistration = new SdtSDT_OneSignalRegistration(context);
+         AV20DeviceTokenCollection = new GxSimpleCollection<string>();
+         AV13OutMessages = "";
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_sendresidentdiscussionnotification__default(),
             new Object[][] {
                 new Object[] {
@@ -135,24 +136,23 @@ namespace GeneXus.Programs {
 
       private string A363DeviceToken ;
       private string A361DeviceId ;
-      private string AV17DeviceToken ;
+      private string AV27Token ;
       private bool AV14IsSuccessful ;
+      private string AV13OutMessages ;
       private string AV10title ;
       private string AV9message ;
       private string AV18ResidentGUID ;
       private string A365DeviceUserId ;
-      private Guid AV25MyGUID ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private GeneXus.Core.genexus.common.notifications.SdtNotification AV11TheNotification ;
-      private GeneXus.Core.genexus.common.notifications.SdtDelivery AV15TheNotificationDelivery ;
-      private GeneXus.Core.genexus.common.notifications.SdtConfiguration AV12TheNotificationConfiguration ;
+      private SdtSDT_OneSignalCustomData AV28Metadata ;
       private IDataStoreProvider pr_default ;
       private string[] P00A12_A365DeviceUserId ;
       private string[] P00A12_A363DeviceToken ;
       private string[] P00A12_A361DeviceId ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV13OutMessages ;
+      private SdtSDT_OneSignalRegistration AV26SDT_OneSignalRegistration ;
+      private GxSimpleCollection<string> AV20DeviceTokenCollection ;
    }
 
    public class prc_sendresidentdiscussionnotification__default : DataStoreHelperBase, IDataStoreHelper

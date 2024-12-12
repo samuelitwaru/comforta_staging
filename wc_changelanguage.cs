@@ -950,10 +950,7 @@ namespace GeneXus.Programs {
       {
          /* Load Routine */
          returnInSub = false;
-         GXt_SdtSDT_OrganisationSetting1 = AV9SDT_OrganisationSetting;
-         new prc_organisationsetting(context ).execute( out  GXt_SdtSDT_OrganisationSetting1) ;
-         AV9SDT_OrganisationSetting = GXt_SdtSDT_OrganisationSetting1;
-         AV8OrganisationLanguagesList.FromJSonString(AV9SDT_OrganisationSetting.gxTpr_Organisationsettinglanguage, null);
+         AV8OrganisationLanguagesList.FromJSonString("[\"English\",\"Dutch\"]", null);
          AV10GXV1 = 1;
          while ( AV10GXV1 <= AV8OrganisationLanguagesList.Count )
          {
@@ -1156,7 +1153,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121117354236", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121214302854", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1172,7 +1169,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_changelanguage.js", "?2024121117354236", false, true);
+         context.AddJavascriptSource("wc_changelanguage.js", "?2024121214302854", false, true);
          /* End function include_jscripts */
       }
 
@@ -1419,8 +1416,6 @@ namespace GeneXus.Programs {
          EvtRowId = "";
          sEvtType = "";
          AV5LanguageCode = "";
-         AV9SDT_OrganisationSetting = new SdtSDT_OrganisationSetting(context);
-         GXt_SdtSDT_OrganisationSetting1 = new SdtSDT_OrganisationSetting(context);
          AV8OrganisationLanguagesList = new GxSimpleCollection<string>();
          AV6LanguageItem = "";
          Grid2Row = new GXWebRow();
@@ -1513,8 +1508,6 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private SdtSDT_OrganisationSetting AV9SDT_OrganisationSetting ;
-      private SdtSDT_OrganisationSetting GXt_SdtSDT_OrganisationSetting1 ;
       private GxSimpleCollection<string> AV8OrganisationLanguagesList ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;

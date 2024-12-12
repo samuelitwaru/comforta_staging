@@ -36,17 +36,51 @@ namespace GeneXus.Programs {
          IsMain = false;
       }
 
-      public void execute( string aP0_DeviceToken )
+      public void execute( GxSimpleCollection<string> aP0_DeviceTokenCollection ,
+                           string aP1_title ,
+                           string aP2_message ,
+                           SdtSDT_OneSignalCustomData aP3_NotificationMetadata ,
+                           out string aP4_OutMessage ,
+                           out bool aP5_IsSuccessful )
       {
-         this.AV9DeviceToken = aP0_DeviceToken;
+         this.AV10DeviceTokenCollection = aP0_DeviceTokenCollection;
+         this.AV26title = aP1_title;
+         this.AV23message = aP2_message;
+         this.AV24NotificationMetadata = aP3_NotificationMetadata;
+         this.AV25OutMessage = "" ;
+         this.AV22IsSuccessful = false ;
          initialize();
          ExecuteImpl();
+         aP4_OutMessage=this.AV25OutMessage;
+         aP5_IsSuccessful=this.AV22IsSuccessful;
       }
 
-      public void executeSubmit( string aP0_DeviceToken )
+      public bool executeUdp( GxSimpleCollection<string> aP0_DeviceTokenCollection ,
+                              string aP1_title ,
+                              string aP2_message ,
+                              SdtSDT_OneSignalCustomData aP3_NotificationMetadata ,
+                              out string aP4_OutMessage )
       {
-         this.AV9DeviceToken = aP0_DeviceToken;
+         execute(aP0_DeviceTokenCollection, aP1_title, aP2_message, aP3_NotificationMetadata, out aP4_OutMessage, out aP5_IsSuccessful);
+         return AV22IsSuccessful ;
+      }
+
+      public void executeSubmit( GxSimpleCollection<string> aP0_DeviceTokenCollection ,
+                                 string aP1_title ,
+                                 string aP2_message ,
+                                 SdtSDT_OneSignalCustomData aP3_NotificationMetadata ,
+                                 out string aP4_OutMessage ,
+                                 out bool aP5_IsSuccessful )
+      {
+         this.AV10DeviceTokenCollection = aP0_DeviceTokenCollection;
+         this.AV26title = aP1_title;
+         this.AV23message = aP2_message;
+         this.AV24NotificationMetadata = aP3_NotificationMetadata;
+         this.AV25OutMessage = "" ;
+         this.AV22IsSuccessful = false ;
          SubmitImpl();
+         aP4_OutMessage=this.AV25OutMessage;
+         aP5_IsSuccessful=this.AV22IsSuccessful;
       }
 
       protected override void ExecutePrivate( )
@@ -58,44 +92,30 @@ namespace GeneXus.Programs {
          AV11HttpClient.Secure = 1;
          AV11HttpClient.AddHeader("Authorization", "Basic MzcxMmQwYzYtNjUyYi00OTk2LWFjZmQtY2Y1MDIyNjU4NWQ1");
          AV11HttpClient.AddHeader("Content-Type", "application/json");
-         if ( AV16SDT_OneSignalRegistration.FromJSonString(AV9DeviceToken, null) )
-         {
-            AV18Token = AV16SDT_OneSignalRegistration.gxTpr_Notificationplatformid;
-         }
          AV15SDT_OneSignalCustomBody = new SdtSDT_OneSignalCustomBody(context);
          AV15SDT_OneSignalCustomBody.gxTpr_App_id = "04453574-cfee-45bc-adef-888ecdaa0707";
-         AV15SDT_OneSignalCustomBody.gxTpr_Include_player_ids.Add(AV18Token, 0);
-         AV15SDT_OneSignalCustomBody.gxTpr_Headings.gxTpr_En = "Custom Notification Sending";
-         AV15SDT_OneSignalCustomBody.gxTpr_Contents.gxTpr_En = "This is a custom notification to test extra data.";
-         AV19DataItem = new SdtSDT_OneSignalCustomData_SDT_OneSignalCustomDataItem(context);
-         AV19DataItem.gxTpr_Key = "Id";
-         AV19DataItem.gxTpr_Value = "4587547-cgfr-4532-de4r-3449483434";
-         AV20SDT_OneSignalCustomData.Add(AV19DataItem, 0);
-         AV19DataItem = new SdtSDT_OneSignalCustomData_SDT_OneSignalCustomDataItem(context);
-         AV19DataItem.gxTpr_Key = "DynamicForm";
-         AV19DataItem.gxTpr_Value = "Resident Dynamic Form Id";
-         AV20SDT_OneSignalCustomData.Add(AV19DataItem, 0);
-         AV19DataItem = new SdtSDT_OneSignalCustomData_SDT_OneSignalCustomDataItem(context);
-         AV19DataItem.gxTpr_Key = "Discussion";
-         AV19DataItem.gxTpr_Value = "Resident Discussion Id";
-         AV20SDT_OneSignalCustomData.Add(AV19DataItem, 0);
-         AV19DataItem = new SdtSDT_OneSignalCustomData_SDT_OneSignalCustomDataItem(context);
-         AV19DataItem.gxTpr_Key = "Agenda";
-         AV19DataItem.gxTpr_Value = "Agenda Event Id";
-         AV20SDT_OneSignalCustomData.Add(AV19DataItem, 0);
-         AV15SDT_OneSignalCustomBody.gxTpr_Data.gxTpr_Items = AV20SDT_OneSignalCustomData;
+         AV27GXV1 = 1;
+         while ( AV27GXV1 <= AV10DeviceTokenCollection.Count )
+         {
+            AV9DeviceToken = AV10DeviceTokenCollection.GetString(AV27GXV1);
+            AV15SDT_OneSignalCustomBody.gxTpr_Include_player_ids.Add(AV9DeviceToken, 0);
+            AV27GXV1 = (int)(AV27GXV1+1);
+         }
+         AV15SDT_OneSignalCustomBody.gxTpr_Headings.gxTpr_En = AV26title;
+         AV15SDT_OneSignalCustomBody.gxTpr_Contents.gxTpr_En = AV23message;
+         AV15SDT_OneSignalCustomBody.gxTpr_Data = AV24NotificationMetadata;
          AV8body = AV15SDT_OneSignalCustomBody.ToJSonString(false, true);
          AV11HttpClient.AddString(AV8body);
          AV11HttpClient.Execute("POST", "notifications");
          if ( AV11HttpClient.StatusCode == 200 )
          {
-            new prc_logtofile(context ).execute(  "Notification Sent:") ;
+            AV22IsSuccessful = true;
+            AV25OutMessage = "Notification Sent Successfully";
          }
          else
          {
-            new prc_logtofile(context ).execute(  "Notification Error:"+AV11HttpClient.ErrDescription) ;
-            new prc_logtofile(context ).execute(  "Notification Body:"+AV11HttpClient.ToString()) ;
-            new prc_logtofile(context ).execute(  "Title:"+AV8body) ;
+            AV22IsSuccessful = false;
+            AV25OutMessage = AV11HttpClient.ToString();
          }
          cleanup();
       }
@@ -112,24 +132,27 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
+         AV25OutMessage = "";
          AV11HttpClient = new GxHttpClient( context);
-         AV16SDT_OneSignalRegistration = new SdtSDT_OneSignalRegistration(context);
-         AV18Token = "";
          AV15SDT_OneSignalCustomBody = new SdtSDT_OneSignalCustomBody(context);
-         AV19DataItem = new SdtSDT_OneSignalCustomData_SDT_OneSignalCustomDataItem(context);
-         AV20SDT_OneSignalCustomData = new GXBaseCollection<SdtSDT_OneSignalCustomData_SDT_OneSignalCustomDataItem>( context, "SDT_OneSignalCustomDataItem", "Comforta_version2");
+         AV9DeviceToken = "";
          AV8body = "";
          /* GeneXus formulas. */
       }
 
+      private int AV27GXV1 ;
       private string AV9DeviceToken ;
+      private bool AV22IsSuccessful ;
+      private string AV25OutMessage ;
       private string AV8body ;
-      private string AV18Token ;
+      private string AV26title ;
+      private string AV23message ;
       private GxHttpClient AV11HttpClient ;
-      private SdtSDT_OneSignalRegistration AV16SDT_OneSignalRegistration ;
+      private GxSimpleCollection<string> AV10DeviceTokenCollection ;
+      private SdtSDT_OneSignalCustomData AV24NotificationMetadata ;
       private SdtSDT_OneSignalCustomBody AV15SDT_OneSignalCustomBody ;
-      private SdtSDT_OneSignalCustomData_SDT_OneSignalCustomDataItem AV19DataItem ;
-      private GXBaseCollection<SdtSDT_OneSignalCustomData_SDT_OneSignalCustomDataItem> AV20SDT_OneSignalCustomData ;
+      private string aP4_OutMessage ;
+      private bool aP5_IsSuccessful ;
    }
 
 }

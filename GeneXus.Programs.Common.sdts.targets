@@ -37,8 +37,10 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomBody.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomBody_headings.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomBody_contents.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomBody_data.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomData_SDT_OneSignalCustomDataItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomData.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomData_formDetails.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomData_discussionDetails.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomData_agendaDetails.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalRegistration.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Organisation.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_OrganisationSetting.cs" />

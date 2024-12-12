@@ -108,7 +108,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable013( ) ;
                if ( AnyError == 0 )
                {
-                  ZM013( 14) ;
+                  ZM013( 15) ;
                }
                CloseExtendedTableCursors013( ) ;
             }
@@ -147,7 +147,7 @@ namespace GeneXus.Programs {
 
       protected void ZM013( short GX_JID )
       {
-         if ( ( GX_JID == 13 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 14 ) || ( GX_JID == 0 ) )
          {
             Z17OrganisationPhone = A17OrganisationPhone;
             Z13OrganisationName = A13OrganisationName;
@@ -163,11 +163,11 @@ namespace GeneXus.Programs {
             Z343OrganisationAddressLine2 = A343OrganisationAddressLine2;
             Z19OrganisationTypeId = A19OrganisationTypeId;
          }
-         if ( ( GX_JID == 14 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 15 ) || ( GX_JID == 0 ) )
          {
             Z20OrganisationTypeName = A20OrganisationTypeName;
          }
-         if ( GX_JID == -13 )
+         if ( GX_JID == -14 )
          {
             Z11OrganisationId = A11OrganisationId;
             Z17OrganisationPhone = A17OrganisationPhone;
@@ -218,7 +218,7 @@ namespace GeneXus.Programs {
             A343OrganisationAddressLine2 = BC00015_A343OrganisationAddressLine2[0];
             A20OrganisationTypeName = BC00015_A20OrganisationTypeName[0];
             A19OrganisationTypeId = BC00015_A19OrganisationTypeId[0];
-            ZM013( -13) ;
+            ZM013( -14) ;
          }
          pr_default.close(3);
          OnLoadActions013( ) ;
@@ -260,6 +260,11 @@ namespace GeneXus.Programs {
          if ( StringUtil.Len( A18OrganisationVATNumber) != 14 )
          {
             GX_msglist.addItem("VAT number must contain 14 characters", 1, "");
+            AnyError = 1;
+         }
+         if ( ! GxRegex.IsMatch(A288OrganisationAddressZipCode,"^\\d{4}\\s?[A-Z]{2}$") && ! String.IsNullOrEmpty(StringUtil.RTrim( A288OrganisationAddressZipCode)) )
+         {
+            GX_msglist.addItem("Zip Code is incorrect", 1, "");
             AnyError = 1;
          }
          /* Using cursor BC00014 */
@@ -308,7 +313,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {n11OrganisationId, A11OrganisationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM013( 13) ;
+            ZM013( 14) ;
             RcdFound3 = 1;
             A11OrganisationId = BC00013_A11OrganisationId[0];
             n11OrganisationId = BC00013_n11OrganisationId[0];
@@ -930,7 +935,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM013( -13) ;
+         ZM013( -14) ;
          OnLoadActions013( ) ;
          AddRow013( ) ;
          ScanKeyEnd013( ) ;
@@ -959,7 +964,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM013( -13) ;
+         ZM013( -14) ;
          OnLoadActions013( ) ;
          AddRow013( ) ;
          ScanKeyEnd013( ) ;

@@ -225,26 +225,22 @@ namespace GeneXus.Programs
 		}
 
 
-		[SoapElement(ElementName="data" )]
-		[XmlElement(ElementName="data" )]
-		public SdtSDT_OneSignalCustomBody_data gxTpr_Data
+		[SoapElement(ElementName="data")]
+		[XmlElement(ElementName="data")]
+		public GeneXus.Programs.SdtSDT_OneSignalCustomData gxTpr_Data
 		{
 			get {
 				if ( gxTv_SdtSDT_OneSignalCustomBody_Data == null )
 				{
-					gxTv_SdtSDT_OneSignalCustomBody_Data = new SdtSDT_OneSignalCustomBody_data(context);
+					gxTv_SdtSDT_OneSignalCustomBody_Data = new GeneXus.Programs.SdtSDT_OneSignalCustomData(context);
 				}
-				gxTv_SdtSDT_OneSignalCustomBody_Data_N = false;
-				return gxTv_SdtSDT_OneSignalCustomBody_Data;
+				return gxTv_SdtSDT_OneSignalCustomBody_Data; 
 			}
 			set {
-				gxTv_SdtSDT_OneSignalCustomBody_Data_N = false;
 				gxTv_SdtSDT_OneSignalCustomBody_Data = value;
 				SetDirty("Data");
 			}
-
 		}
-
 		public void gxTv_SdtSDT_OneSignalCustomBody_Data_SetNull()
 		{
 			gxTv_SdtSDT_OneSignalCustomBody_Data_N = true;
@@ -257,10 +253,9 @@ namespace GeneXus.Programs
 		}
 		public bool ShouldSerializegxTpr_Data_Json()
 		{
-				return (gxTv_SdtSDT_OneSignalCustomBody_Data != null && gxTv_SdtSDT_OneSignalCustomBody_Data.ShouldSerializeSdtJson());
+			return gxTv_SdtSDT_OneSignalCustomBody_Data != null;
 
 		}
-
 
 		public override bool ShouldSerializeSdtJson()
 		{
@@ -315,9 +310,10 @@ namespace GeneXus.Programs
 		protected bool gxTv_SdtSDT_OneSignalCustomBody_Contents_N;
 		protected SdtSDT_OneSignalCustomBody_contents gxTv_SdtSDT_OneSignalCustomBody_Contents = null; 
 
-		protected bool gxTv_SdtSDT_OneSignalCustomBody_Data_N;
-		protected SdtSDT_OneSignalCustomBody_data gxTv_SdtSDT_OneSignalCustomBody_Data = null; 
 
+		protected GeneXus.Programs.SdtSDT_OneSignalCustomData gxTv_SdtSDT_OneSignalCustomBody_Data = null;
+		protected bool gxTv_SdtSDT_OneSignalCustomBody_Data_N;
+		 
 
 
 		#endregion
@@ -398,20 +394,18 @@ namespace GeneXus.Programs
 		}
 
 		[DataMember(Name="data", Order=4, EmitDefaultValue=false)]
-		public SdtSDT_OneSignalCustomBody_data_RESTInterface gxTpr_Data
+		public GeneXus.Programs.SdtSDT_OneSignalCustomData_RESTInterface gxTpr_Data
 		{
-			get {
+			get { 
 				if (sdt.ShouldSerializegxTpr_Data_Json())
-					return new SdtSDT_OneSignalCustomBody_data_RESTInterface(sdt.gxTpr_Data);
+					return new GeneXus.Programs.SdtSDT_OneSignalCustomData_RESTInterface(sdt.gxTpr_Data);
 				else
 					return null;
 
 			}
-
-			set {
+			set { 
 				sdt.gxTpr_Data = value.sdt;
 			}
-
 		}
 
 

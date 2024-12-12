@@ -47,12 +47,14 @@ namespace GeneXus.Programs {
       public void execute( string aP0_title ,
                            string aP1_message ,
                            string aP2_topic ,
-                           GxSimpleCollection<Guid> aP3_ResidentIdCollection )
+                           SdtSDT_OneSignalCustomData aP3_Metadata ,
+                           GxSimpleCollection<Guid> aP4_ResidentIdCollection )
       {
          this.AV10title = aP0_title;
          this.AV9message = aP1_message;
          this.AV23topic = aP2_topic;
-         this.AV16ResidentIdCollection = aP3_ResidentIdCollection;
+         this.AV28Metadata = aP3_Metadata;
+         this.AV16ResidentIdCollection = aP4_ResidentIdCollection;
          initialize();
          ExecuteImpl();
       }
@@ -60,12 +62,14 @@ namespace GeneXus.Programs {
       public void executeSubmit( string aP0_title ,
                                  string aP1_message ,
                                  string aP2_topic ,
-                                 GxSimpleCollection<Guid> aP3_ResidentIdCollection )
+                                 SdtSDT_OneSignalCustomData aP3_Metadata ,
+                                 GxSimpleCollection<Guid> aP4_ResidentIdCollection )
       {
          this.AV10title = aP0_title;
          this.AV9message = aP1_message;
          this.AV23topic = aP2_topic;
-         this.AV16ResidentIdCollection = aP3_ResidentIdCollection;
+         this.AV28Metadata = aP3_Metadata;
+         this.AV16ResidentIdCollection = aP4_ResidentIdCollection;
          SubmitImpl();
       }
 
@@ -73,12 +77,6 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV26MyGUID = Guid.NewGuid( );
-         AV11TheNotification.gxTpr_Id = AV26MyGUID.ToString();
-         AV11TheNotification.gxTpr_Title.gxTpr_Defaulttext = AV10title;
-         AV11TheNotification.gxTpr_Text.gxTpr_Defaulttext = AV9message;
-         AV15TheNotificationDelivery.gxTpr_Priority = "High";
-         AV12TheNotificationConfiguration.gxTpr_Applicationid = "Comforta";
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV10title)) || String.IsNullOrEmpty(StringUtil.RTrim( AV9message)) )
          {
             AV14IsSuccessful = false;
@@ -86,14 +84,16 @@ namespace GeneXus.Programs {
          else
          {
             AV22Trn_AppNotification = new SdtTrn_AppNotification(context);
-            AV22Trn_AppNotification.gxTpr_Appnotificationid = AV26MyGUID;
+            AV22Trn_AppNotification.gxTpr_Appnotificationid = Guid.NewGuid( );
             AV22Trn_AppNotification.gxTpr_Appnotificationdate = DateTimeUtil.Now( context);
             AV22Trn_AppNotification.gxTpr_Appnotificationtitle = AV10title;
             AV22Trn_AppNotification.gxTpr_Appnotificationdescription = AV9message;
             AV22Trn_AppNotification.gxTpr_Appnotificationtopic = AV23topic;
+            AV22Trn_AppNotification.gxTpr_Appnotificationmetadata = AV28Metadata.ToJSonString(false, true);
             AV22Trn_AppNotification.Save();
             if ( AV16ResidentIdCollection.Count > 0 )
             {
+               new prc_logtofile(context ).execute(  "Resident Count Found"+AV16ResidentIdCollection.ToJSonString(false)) ;
                pr_default.dynParam(0, new Object[]{ new Object[]{
                                                     A62ResidentId ,
                                                     AV16ResidentIdCollection } ,
@@ -115,9 +115,10 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV29Udparg1 = new prc_getuserlocationid(context).executeUdp( );
+               new prc_logtofile(context ).execute(  "Resident Count Not Found"+AV16ResidentIdCollection.ToJSonString(false)) ;
+               AV32Udparg1 = new prc_getuserlocationid(context).executeUdp( );
                /* Using cursor P009F3 */
-               pr_default.execute(1, new Object[] {AV29Udparg1});
+               pr_default.execute(1, new Object[] {AV32Udparg1});
                while ( (pr_default.getStatus(1) != 101) )
                {
                   A29LocationId = P009F3_A29LocationId[0];
@@ -131,19 +132,20 @@ namespace GeneXus.Programs {
             }
             if ( AV19ResidentGUIDCollection.Count > 0 )
             {
+               new prc_logtofile(context ).execute(  "Resident GUID Not Found"+AV19ResidentGUIDCollection.ToJSonString(false)) ;
                if ( AV22Trn_AppNotification.Success() )
                {
-                  AV30GXV1 = 1;
-                  while ( AV30GXV1 <= AV19ResidentGUIDCollection.Count )
+                  AV33GXV1 = 1;
+                  while ( AV33GXV1 <= AV19ResidentGUIDCollection.Count )
                   {
-                     AV25ResidentGUIDItem = ((string)AV19ResidentGUIDCollection.Item(AV30GXV1));
+                     AV25ResidentGUIDItem = ((string)AV19ResidentGUIDCollection.Item(AV33GXV1));
                      AV24Trn_ResidentNotification.gxTpr_Appnotificationid = AV22Trn_AppNotification.gxTpr_Appnotificationid;
                      GXt_guid1 = Guid.Empty;
                      new prc_getresidentidfromguid(context ).execute(  AV25ResidentGUIDItem, out  GXt_guid1) ;
                      AV24Trn_ResidentNotification.gxTpr_Residentid = GXt_guid1;
                      AV24Trn_ResidentNotification.gxTpr_Residentnotificationid = Guid.NewGuid( );
                      AV24Trn_ResidentNotification.Insert();
-                     AV30GXV1 = (int)(AV30GXV1+1);
+                     AV33GXV1 = (int)(AV33GXV1+1);
                   }
                }
                context.CommitDataStores("prc_sendresidentnotification",pr_default);
@@ -160,17 +162,19 @@ namespace GeneXus.Programs {
                   A365DeviceUserId = P009F4_A365DeviceUserId[0];
                   A363DeviceToken = P009F4_A363DeviceToken[0];
                   A361DeviceId = P009F4_A361DeviceId[0];
-                  AV21DeviceTokenCollection.Add(A363DeviceToken, 0);
+                  AV27Token = "";
+                  if ( AV29SDT_OneSignalRegistration.FromJSonString(A363DeviceToken, null) )
+                  {
+                     AV27Token = AV29SDT_OneSignalRegistration.gxTpr_Notificationplatformid;
+                     AV21DeviceTokenCollection.Add(AV27Token, 0);
+                  }
                   pr_default.readNext(2);
                }
                pr_default.close(2);
-            }
-            AV32GXV2 = 1;
-            while ( AV32GXV2 <= AV21DeviceTokenCollection.Count )
-            {
-               AV17DeviceToken = AV21DeviceTokenCollection.GetString(AV32GXV2);
-               new GeneXus.Core.genexus.common.notifications.sendnotification(context ).execute(  AV12TheNotificationConfiguration,  AV17DeviceToken,  AV11TheNotification,  AV15TheNotificationDelivery, out  AV13OutMessages, out  AV14IsSuccessful) ;
-               AV32GXV2 = (int)(AV32GXV2+1);
+               if ( AV21DeviceTokenCollection.Count > 0 )
+               {
+                  new prc_sendonesignalnotification(context ).execute(  AV21DeviceTokenCollection,  AV10title,  AV9message,  AV28Metadata, out  AV13OutMessages, out  AV14IsSuccessful) ;
+               }
             }
          }
          cleanup();
@@ -188,10 +192,6 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV26MyGUID = Guid.Empty;
-         AV11TheNotification = new GeneXus.Core.genexus.common.notifications.SdtNotification(context);
-         AV15TheNotificationDelivery = new GeneXus.Core.genexus.common.notifications.SdtDelivery(context);
-         AV12TheNotificationConfiguration = new GeneXus.Core.genexus.common.notifications.SdtConfiguration(context);
          AV22Trn_AppNotification = new SdtTrn_AppNotification(context);
          A62ResidentId = Guid.Empty;
          P009F2_A62ResidentId = new Guid[] {Guid.Empty} ;
@@ -202,7 +202,7 @@ namespace GeneXus.Programs {
          A29LocationId = Guid.Empty;
          A11OrganisationId = Guid.Empty;
          AV19ResidentGUIDCollection = new GxSimpleCollection<string>();
-         AV29Udparg1 = Guid.Empty;
+         AV32Udparg1 = Guid.Empty;
          P009F3_A29LocationId = new Guid[] {Guid.Empty} ;
          P009F3_A71ResidentGUID = new string[] {""} ;
          P009F3_A62ResidentId = new Guid[] {Guid.Empty} ;
@@ -216,9 +216,10 @@ namespace GeneXus.Programs {
          P009F4_A361DeviceId = new string[] {""} ;
          A363DeviceToken = "";
          A361DeviceId = "";
+         AV27Token = "";
+         AV29SDT_OneSignalRegistration = new SdtSDT_OneSignalRegistration(context);
          AV21DeviceTokenCollection = new GxSimpleCollection<string>();
-         AV17DeviceToken = "";
-         AV13OutMessages = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV13OutMessages = "";
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_sendresidentnotification__datastore1(),
             new Object[][] {
             }
@@ -243,31 +244,28 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV30GXV1 ;
-      private int AV32GXV2 ;
+      private int AV33GXV1 ;
       private string A363DeviceToken ;
       private string A361DeviceId ;
-      private string AV17DeviceToken ;
+      private string AV27Token ;
       private bool AV14IsSuccessful ;
+      private string AV13OutMessages ;
       private string AV10title ;
       private string AV9message ;
       private string AV23topic ;
       private string A71ResidentGUID ;
       private string AV25ResidentGUIDItem ;
       private string A365DeviceUserId ;
-      private Guid AV26MyGUID ;
       private Guid A62ResidentId ;
       private Guid A29LocationId ;
       private Guid A11OrganisationId ;
-      private Guid AV29Udparg1 ;
+      private Guid AV32Udparg1 ;
       private Guid GXt_guid1 ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
+      private SdtSDT_OneSignalCustomData AV28Metadata ;
       private GxSimpleCollection<Guid> AV16ResidentIdCollection ;
-      private GeneXus.Core.genexus.common.notifications.SdtNotification AV11TheNotification ;
-      private GeneXus.Core.genexus.common.notifications.SdtDelivery AV15TheNotificationDelivery ;
-      private GeneXus.Core.genexus.common.notifications.SdtConfiguration AV12TheNotificationConfiguration ;
       private SdtTrn_AppNotification AV22Trn_AppNotification ;
       private IDataStoreProvider pr_default ;
       private Guid[] P009F2_A62ResidentId ;
@@ -283,8 +281,8 @@ namespace GeneXus.Programs {
       private string[] P009F4_A365DeviceUserId ;
       private string[] P009F4_A363DeviceToken ;
       private string[] P009F4_A361DeviceId ;
+      private SdtSDT_OneSignalRegistration AV29SDT_OneSignalRegistration ;
       private GxSimpleCollection<string> AV21DeviceTokenCollection ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV13OutMessages ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
@@ -416,7 +414,7 @@ public class prc_sendresidentnotification__default : DataStoreHelperBase, IDataS
     {
        Object[] prmP009F3;
        prmP009F3 = new Object[] {
-       new ParDef("AV29Udparg1",GXType.UniqueIdentifier,36,0)
+       new ParDef("AV32Udparg1",GXType.UniqueIdentifier,36,0)
        };
        Object[] prmP009F2;
        prmP009F2 = new Object[] {
@@ -426,7 +424,7 @@ public class prc_sendresidentnotification__default : DataStoreHelperBase, IDataS
        };
        def= new CursorDef[] {
            new CursorDef("P009F2", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009F2,100, GxCacheFrequency.OFF ,false,false )
-          ,new CursorDef("P009F3", "SELECT LocationId, ResidentGUID, ResidentId, OrganisationId FROM Trn_Resident WHERE LocationId = :AV29Udparg1 ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009F3,100, GxCacheFrequency.OFF ,false,false )
+          ,new CursorDef("P009F3", "SELECT LocationId, ResidentGUID, ResidentId, OrganisationId FROM Trn_Resident WHERE LocationId = :AV32Udparg1 ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009F3,100, GxCacheFrequency.OFF ,false,false )
           ,new CursorDef("P009F4", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009F4,100, GxCacheFrequency.OFF ,false,false )
        };
     }

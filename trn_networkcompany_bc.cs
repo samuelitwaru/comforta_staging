@@ -117,7 +117,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0B19( short GX_JID )
       {
-         if ( ( GX_JID == 6 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 7 ) || ( GX_JID == 0 ) )
          {
             Z83NetworkCompanyKvkNumber = A83NetworkCompanyKvkNumber;
             Z84NetworkCompanyName = A84NetworkCompanyName;
@@ -132,7 +132,7 @@ namespace GeneXus.Programs {
             Z352NetworkCompanyAddressLine1 = A352NetworkCompanyAddressLine1;
             Z353NetworkCompanyAddressLine2 = A353NetworkCompanyAddressLine2;
          }
-         if ( GX_JID == -6 )
+         if ( GX_JID == -7 )
          {
             Z82NetworkCompanyId = A82NetworkCompanyId;
             Z83NetworkCompanyKvkNumber = A83NetworkCompanyKvkNumber;
@@ -184,7 +184,7 @@ namespace GeneXus.Programs {
             A351NetworkCompanyZipCode = BC000B4_A351NetworkCompanyZipCode[0];
             A352NetworkCompanyAddressLine1 = BC000B4_A352NetworkCompanyAddressLine1[0];
             A353NetworkCompanyAddressLine2 = BC000B4_A353NetworkCompanyAddressLine2[0];
-            ZM0B19( -6) ;
+            ZM0B19( -7) ;
          }
          pr_default.close(2);
          OnLoadActions0B19( ) ;
@@ -210,6 +210,11 @@ namespace GeneXus.Programs {
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A392NetworkCompanyPhoneNumber)) && ! GxRegex.IsMatch(A392NetworkCompanyPhoneNumber,"\\b\\d{9}\\b") )
          {
             GX_msglist.addItem("Phone contains 9 digits", 1, "");
+            AnyError = 1;
+         }
+         if ( ! GxRegex.IsMatch(A351NetworkCompanyZipCode,"^\\d{4}\\s?[A-Z]{2}$") && ! String.IsNullOrEmpty(StringUtil.RTrim( A351NetworkCompanyZipCode)) )
+         {
+            GX_msglist.addItem("Zip Code is incorrect", 1, "");
             AnyError = 1;
          }
       }
@@ -243,7 +248,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A82NetworkCompanyId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0B19( 6) ;
+            ZM0B19( 7) ;
             RcdFound19 = 1;
             A82NetworkCompanyId = BC000B3_A82NetworkCompanyId[0];
             A83NetworkCompanyKvkNumber = BC000B3_A83NetworkCompanyKvkNumber[0];
@@ -801,7 +806,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z82NetworkCompanyId = A82NetworkCompanyId;
          }
-         ZM0B19( -6) ;
+         ZM0B19( -7) ;
          OnLoadActions0B19( ) ;
          AddRow0B19( ) ;
          ScanKeyEnd0B19( ) ;
@@ -830,7 +835,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z82NetworkCompanyId = A82NetworkCompanyId;
          }
-         ZM0B19( -6) ;
+         ZM0B19( -7) ;
          OnLoadActions0B19( ) ;
          AddRow0B19( ) ;
          ScanKeyEnd0B19( ) ;

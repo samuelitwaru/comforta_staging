@@ -73,6 +73,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Appnotificationdescription_Z");
          state.Add("gxTpr_Appnotificationdate_Z_Nullable");
          state.Add("gxTpr_Appnotificationtopic_Z");
+         state.Add("gxTpr_Appnotificationmetadata_N");
          return state ;
       }
 
@@ -85,6 +86,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_AppNotification_Appnotificationdescription = sdt.gxTv_SdtTrn_AppNotification_Appnotificationdescription ;
          gxTv_SdtTrn_AppNotification_Appnotificationdate = sdt.gxTv_SdtTrn_AppNotification_Appnotificationdate ;
          gxTv_SdtTrn_AppNotification_Appnotificationtopic = sdt.gxTv_SdtTrn_AppNotification_Appnotificationtopic ;
+         gxTv_SdtTrn_AppNotification_Appnotificationmetadata = sdt.gxTv_SdtTrn_AppNotification_Appnotificationmetadata ;
          gxTv_SdtTrn_AppNotification_Mode = sdt.gxTv_SdtTrn_AppNotification_Mode ;
          gxTv_SdtTrn_AppNotification_Initialized = sdt.gxTv_SdtTrn_AppNotification_Initialized ;
          gxTv_SdtTrn_AppNotification_Appnotificationid_Z = sdt.gxTv_SdtTrn_AppNotification_Appnotificationid_Z ;
@@ -92,6 +94,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_AppNotification_Appnotificationdescription_Z = sdt.gxTv_SdtTrn_AppNotification_Appnotificationdescription_Z ;
          gxTv_SdtTrn_AppNotification_Appnotificationdate_Z = sdt.gxTv_SdtTrn_AppNotification_Appnotificationdate_Z ;
          gxTv_SdtTrn_AppNotification_Appnotificationtopic_Z = sdt.gxTv_SdtTrn_AppNotification_Appnotificationtopic_Z ;
+         gxTv_SdtTrn_AppNotification_Appnotificationmetadata_N = sdt.gxTv_SdtTrn_AppNotification_Appnotificationmetadata_N ;
          return  ;
       }
 
@@ -134,6 +137,8 @@ namespace GeneXus.Programs {
          sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
          AddObjectProperty("AppNotificationDate", sDateCnv, false, includeNonInitialized);
          AddObjectProperty("AppNotificationTopic", gxTv_SdtTrn_AppNotification_Appnotificationtopic, false, includeNonInitialized);
+         AddObjectProperty("AppNotificationMetadata", gxTv_SdtTrn_AppNotification_Appnotificationmetadata, false, includeNonInitialized);
+         AddObjectProperty("AppNotificationMetadata_N", gxTv_SdtTrn_AppNotification_Appnotificationmetadata_N, false, includeNonInitialized);
          if ( includeState )
          {
             AddObjectProperty("Mode", gxTv_SdtTrn_AppNotification_Mode, false, includeNonInitialized);
@@ -162,6 +167,7 @@ namespace GeneXus.Programs {
             sDateCnv += StringUtil.Substring( "00", 1, 2-StringUtil.Len( sNumToPad)) + sNumToPad;
             AddObjectProperty("AppNotificationDate_Z", sDateCnv, false, includeNonInitialized);
             AddObjectProperty("AppNotificationTopic_Z", gxTv_SdtTrn_AppNotification_Appnotificationtopic_Z, false, includeNonInitialized);
+            AddObjectProperty("AppNotificationMetadata_N", gxTv_SdtTrn_AppNotification_Appnotificationmetadata_N, false, includeNonInitialized);
          }
          return  ;
       }
@@ -192,6 +198,12 @@ namespace GeneXus.Programs {
          {
             sdtIsNull = 0;
             gxTv_SdtTrn_AppNotification_Appnotificationtopic = sdt.gxTv_SdtTrn_AppNotification_Appnotificationtopic ;
+         }
+         if ( sdt.IsDirty("AppNotificationMetadata") )
+         {
+            gxTv_SdtTrn_AppNotification_Appnotificationmetadata_N = (short)(sdt.gxTv_SdtTrn_AppNotification_Appnotificationmetadata_N);
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AppNotification_Appnotificationmetadata = sdt.gxTv_SdtTrn_AppNotification_Appnotificationmetadata ;
          }
          return  ;
       }
@@ -302,6 +314,36 @@ namespace GeneXus.Programs {
             SetDirty("Appnotificationtopic");
          }
 
+      }
+
+      [  SoapElement( ElementName = "AppNotificationMetadata" )]
+      [  XmlElement( ElementName = "AppNotificationMetadata"   )]
+      public string gxTpr_Appnotificationmetadata
+      {
+         get {
+            return gxTv_SdtTrn_AppNotification_Appnotificationmetadata ;
+         }
+
+         set {
+            gxTv_SdtTrn_AppNotification_Appnotificationmetadata_N = 0;
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AppNotification_Appnotificationmetadata = value;
+            SetDirty("Appnotificationmetadata");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_AppNotification_Appnotificationmetadata_SetNull( )
+      {
+         gxTv_SdtTrn_AppNotification_Appnotificationmetadata_N = 1;
+         gxTv_SdtTrn_AppNotification_Appnotificationmetadata = "";
+         SetDirty("Appnotificationmetadata");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_AppNotification_Appnotificationmetadata_IsNull( )
+      {
+         return (gxTv_SdtTrn_AppNotification_Appnotificationmetadata_N==1) ;
       }
 
       [  SoapElement( ElementName = "Mode" )]
@@ -519,6 +561,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "AppNotificationMetadata_N" )]
+      [  XmlElement( ElementName = "AppNotificationMetadata_N"   )]
+      public short gxTpr_Appnotificationmetadata_N
+      {
+         get {
+            return gxTv_SdtTrn_AppNotification_Appnotificationmetadata_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AppNotification_Appnotificationmetadata_N = value;
+            SetDirty("Appnotificationmetadata_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_AppNotification_Appnotificationmetadata_N_SetNull( )
+      {
+         gxTv_SdtTrn_AppNotification_Appnotificationmetadata_N = 0;
+         SetDirty("Appnotificationmetadata_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_AppNotification_Appnotificationmetadata_N_IsNull( )
+      {
+         return false ;
+      }
+
       [XmlIgnore]
       private static GXTypeInfo _typeProps;
       protected override GXTypeInfo TypeInfo
@@ -541,6 +611,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_AppNotification_Appnotificationdescription = "";
          gxTv_SdtTrn_AppNotification_Appnotificationdate = (DateTime)(DateTime.MinValue);
          gxTv_SdtTrn_AppNotification_Appnotificationtopic = "";
+         gxTv_SdtTrn_AppNotification_Appnotificationmetadata = "";
          gxTv_SdtTrn_AppNotification_Mode = "";
          gxTv_SdtTrn_AppNotification_Appnotificationid_Z = Guid.Empty;
          gxTv_SdtTrn_AppNotification_Appnotificationtitle_Z = "";
@@ -566,12 +637,14 @@ namespace GeneXus.Programs {
 
       private short sdtIsNull ;
       private short gxTv_SdtTrn_AppNotification_Initialized ;
+      private short gxTv_SdtTrn_AppNotification_Appnotificationmetadata_N ;
       private string gxTv_SdtTrn_AppNotification_Mode ;
       private string sDateCnv ;
       private string sNumToPad ;
       private DateTime gxTv_SdtTrn_AppNotification_Appnotificationdate ;
       private DateTime gxTv_SdtTrn_AppNotification_Appnotificationdate_Z ;
       private DateTime datetime_STZ ;
+      private string gxTv_SdtTrn_AppNotification_Appnotificationmetadata ;
       private string gxTv_SdtTrn_AppNotification_Appnotificationtitle ;
       private string gxTv_SdtTrn_AppNotification_Appnotificationdescription ;
       private string gxTv_SdtTrn_AppNotification_Appnotificationtopic ;
@@ -664,6 +737,19 @@ namespace GeneXus.Programs {
 
       }
 
+      [DataMember( Name = "AppNotificationMetadata" , Order = 5 )]
+      public string gxTpr_Appnotificationmetadata
+      {
+         get {
+            return sdt.gxTpr_Appnotificationmetadata ;
+         }
+
+         set {
+            sdt.gxTpr_Appnotificationmetadata = value;
+         }
+
+      }
+
       public SdtTrn_AppNotification sdt
       {
          get {
@@ -685,7 +771,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 5 )]
+      [DataMember( Name = "gx_md5_hash", Order = 6 )]
       public string Hash
       {
          get {
