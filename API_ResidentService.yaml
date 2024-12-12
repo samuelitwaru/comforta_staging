@@ -4,7 +4,7 @@ info:
   description: "API Services"
   version: "20241212113319"
 servers:
-  - url: https:/staging.comforta.yukon.software/api
+  - url: https://staging.comforta.yukon.software/api
 paths:
   /auth/resident-login:
     post:
