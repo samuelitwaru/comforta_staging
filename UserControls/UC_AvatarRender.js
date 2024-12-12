@@ -1,1 +1,121 @@
-function UC_Avatar(n){var t,r,u,f,e,i;this.setUploadedFile=function(n){this.UploadedFile=n};this.getUploadedFile=function(){return this.UploadedFile};t='<\/form><style>.profile-user-img{  \twidth: 128px;\theight: 128px;\tobject-fit: cover;\tbox-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);}.avatar-upload {     position: relative;    margin-bottom: 20px;    display: flex;    align-items: center;    justify-content: flex-start;    padding-left: 10px;     .avatar-edit {        position: absolute;        left: 20%;        z-index: 9;        top: 70%;        display: inline-block;        input {            display: none;            + label {                display: inline-block;                width: 34px;                height: 34px;                margin-bottom: 0;                border-radius: 100%;                background: #FFFFFF;                border: 1px solid #d2d6de;                box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);                cursor: pointer;                           font-weight: normal;                transition: all .2s ease-in-out;                &:hover {                    background: #f1f1f1;                    border-color: #d6d6d6;                }                &:after {                    content: "✎";\t\t\t\tfont-size: large;                    color: #222f54;                    position: absolute;                    left: 0;                    right: 0;                    text-align: center;                    line-height: 34px;                    margin: auto;                }            }        }    }}<\/style><div class="avatar-upload"> <div class="avatar-edit">   <form action="" method="post" id="form-image">     <input type=\'file\' id="imageUpload" accept=".png, .jpg, .jpeg" />     <label for="imageUpload"><\/label>   <\/form> <\/div> <div class="avatar-preview">   <img class="profile-user-img img-responsive img-circle" id="imagePreview" src="{{PreviewImageLink}}" alt="User profile picture"> <\/div><\/div> <form id=\'gx-remain\'>';r={};Mustache.parse(t);u=0;f=0;this.show=function(){e=n(this.getContainerControl());u=0;f=0;this.setHtml(Mustache.render(t,this,r));this.renderChildContainers();n(this.getContainerControl()).find("[data-event='OnUpload']").on("upload",this.onOnUploadHandler.closure(this)).each(function(n){this.setAttribute("data-items-index",n+1)});n(this.getContainerControl()).find("[data-event='OnFailedUpload']").on("failedupload",this.onOnFailedUploadHandler.closure(this)).each(function(n){this.setAttribute("data-items-index",n+1)});this.Start()};this.Scripts=[];this.Start=function(){const t=this;n(document).ready(function(){n("#imageUpload").change(function(i){var u=i.target.files[0],r;if(u.size>2097152){t.OnFailedUpload();return}r=new FileReader;r.readAsDataURL(u);r.onload=function(i){t.UploadedFile.Base64Image=i.target.result;t.OnUpload();n("#imagePreview").attr("src",i.target.result);n("#imagePreview").hide();n("#imagePreview").fadeIn(650)}})})};this.onOnUploadHandler=function(t){if(t){var i=t.currentTarget;t.preventDefault();this.UploadedFileCurrentIndex=parseInt(n(i).attr("data-items-index"),10)||1}this.OnUpload&&this.OnUpload()};this.onOnFailedUploadHandler=function(t){if(t){var i=t.currentTarget;t.preventDefault();this.UploadedFileCurrentIndex=parseInt(n(i).attr("data-items-index"),10)||1}this.OnFailedUpload&&this.OnFailedUpload()};this.autoToggleVisibility=!0;i={};this.renderChildContainers=function(){e.find("[data-slot][data-parent='"+this.ContainerName+"']").each(function(t,r){var e=n(r),f=e.attr("data-slot"),u;u=i[f];u||(u=this.getChildContainer(f),i[f]=u,u.parentNode.removeChild(u));e.append(u);n(u).show()}.closure(this))}}
+function UC_Avatar($) {
+	 this.setUploadedFile = function(value) {
+			this.UploadedFile = value;
+		}
+
+		this.getUploadedFile = function() {
+			return this.UploadedFile;
+		} 
+	  
+
+	var template = '</form><style>.profile-user-img{  	width: 128px;	height: 128px;	object-fit: cover;	box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);}.avatar-upload {     position: relative;    margin-bottom: 20px;    display: flex;    align-items: center;    justify-content: flex-start;    padding-left: 10px;     .avatar-edit {        position: absolute;        left: 20%;        z-index: 9;        top: 70%;        display: inline-block;        input {            display: none;            + label {                display: inline-block;                width: 34px;                height: 34px;                margin-bottom: 0;                border-radius: 100%;                background: #FFFFFF;                border: 1px solid #d2d6de;                box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);                cursor: pointer;                           font-weight: normal;                transition: all .2s ease-in-out;                &:hover {                    background: #f1f1f1;                    border-color: #d6d6d6;                }                &:after {                    content: \"✎\";				font-size: large;                    color: #222f54;                    position: absolute;                    left: 0;                    right: 0;                    text-align: center;                    line-height: 34px;                    margin: auto;                }            }        }    }}</style><div class=\"avatar-upload\"> <div class=\"avatar-edit\">   <form action=\"\" method=\"post\" id=\"form-image\">     <input type=\'file\' id=\"imageUpload\" accept=\".png, .jpg, .jpeg\" />     <label for=\"imageUpload\"></label>   </form> </div> <div class=\"avatar-preview\">   <img class=\"profile-user-img img-responsive img-circle\" id=\"imagePreview\" src=\"{{PreviewImageLink}}\" alt=\"User profile picture\"> </div></div> <form id=\'gx-remain\'>';
+	var partials = {  }; 
+	Mustache.parse(template);
+	var _iOnOnUpload = 0; 
+	var _iOnOnFailedUpload = 0; 
+	var $container;
+	this.show = function() {
+			$container = $(this.getContainerControl());
+
+			// Raise before show scripts
+
+			_iOnOnUpload = 0; 
+			_iOnOnFailedUpload = 0; 
+
+			//if (this.IsPostBack)
+				this.setHtml(Mustache.render(template, this, partials));
+			this.renderChildContainers();
+
+			$(this.getContainerControl())
+				.find("[data-event='OnUpload']")
+				.on('upload', this.onOnUploadHandler.closure(this))
+				.each(function (i) {
+					this.setAttribute("data-items-index", i + 1);
+				}); 
+			$(this.getContainerControl())
+				.find("[data-event='OnFailedUpload']")
+				.on('failedupload', this.onOnFailedUploadHandler.closure(this))
+				.each(function (i) {
+					this.setAttribute("data-items-index", i + 1);
+				}); 
+
+			// Raise after show scripts
+			this.Start(); 
+	}
+
+	this.Scripts = [];
+
+		this.Start = function() {
+
+				const UC = this;
+				$(document).ready(function(){
+					$("#imageUpload").change(function(data){
+						var imageFile = data.target.files[0];
+						if (imageFile.size > 2097152) {
+							UC.OnFailedUpload();
+							return;
+						}
+						var reader = new FileReader();
+						reader.readAsDataURL(imageFile);
+						reader.onload = function(evt){
+							UC.UploadedFile.Base64Image = evt.target.result;
+							UC.OnUpload();
+							$('#imagePreview').attr('src', evt.target.result);
+							$('#imagePreview').hide();
+							$('#imagePreview').fadeIn(650);
+						}
+					});
+				});
+
+		}
+
+
+		this.onOnUploadHandler = function (e) {
+			if (e) {
+				var target = e.currentTarget;
+				e.preventDefault();
+				 this.UploadedFileCurrentIndex = (parseInt($(target).attr('data-items-index'), 10) || 1);  
+				 
+			}
+
+			if (this.OnUpload) {
+				this.OnUpload();
+			}
+		} 
+
+		this.onOnFailedUploadHandler = function (e) {
+			if (e) {
+				var target = e.currentTarget;
+				e.preventDefault();
+				 this.UploadedFileCurrentIndex = (parseInt($(target).attr('data-items-index'), 10) || 1);  
+				 
+			}
+
+			if (this.OnFailedUpload) {
+				this.OnFailedUpload();
+			}
+		} 
+
+	this.autoToggleVisibility = true;
+
+	var childContainers = {};
+	this.renderChildContainers = function () {
+		$container
+			.find("[data-slot][data-parent='" + this.ContainerName + "']")
+			.each((function (i, slot) {
+				var $slot = $(slot),
+					slotName = $slot.attr('data-slot'),
+					slotContentEl;
+
+				slotContentEl = childContainers[slotName];
+				if (!slotContentEl) {				
+					slotContentEl = this.getChildContainer(slotName)
+					childContainers[slotName] = slotContentEl;
+					slotContentEl.parentNode.removeChild(slotContentEl);
+				}
+				$slot.append(slotContentEl);
+				$(slotContentEl).show();
+			}).closure(this));
+	};
+
+}

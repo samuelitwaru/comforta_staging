@@ -108,7 +108,7 @@
               </Property>
             </Properties>
           </Field>
-          <Field name="Rolename" description="Rolename">
+          <Field name="RoleName" description="Role Name">
             <Properties>
               <Property>
                 <Name>Type</Name>
@@ -116,7 +116,7 @@
               </Property>
               <Property>
                 <Name>Length</Name>
-                <Value>100</Value>
+                <Value>40</Value>
               </Property>
             </Properties>
           </Field>

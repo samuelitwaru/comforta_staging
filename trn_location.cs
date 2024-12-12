@@ -53,6 +53,19 @@ namespace GeneXus.Programs {
             dyncall( GetNextPar( )) ;
             return  ;
          }
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxJX_Action22") == 0 )
+         {
+            A29LocationId = StringUtil.StrToGuid( GetPar( "LocationId"));
+            AssignAttri("", false, "A29LocationId", A29LocationId.ToString());
+            setAjaxCallMode();
+            if ( ! IsValidAjaxCall( true) )
+            {
+               GxWebError = 1;
+               return  ;
+            }
+            XC_22_046( A29LocationId) ;
+            return  ;
+         }
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxAggSel7"+"_"+"ORGANISATIONID") == 0 )
          {
             AV8OrganisationId = StringUtil.StrToGuid( GetPar( "OrganisationId"));
@@ -97,7 +110,7 @@ namespace GeneXus.Programs {
             GX12ASALOCATIONPHONE046( A383LocationPhoneCode, A384LocationPhoneNumber) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_23") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_24") == 0 )
          {
             A11OrganisationId = StringUtil.StrToGuid( GetPar( "OrganisationId"));
             AssignAttri("", false, "A11OrganisationId", A11OrganisationId.ToString());
@@ -107,10 +120,10 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            gxLoad_23( A11OrganisationId) ;
+            gxLoad_24( A11OrganisationId) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_24") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_25") == 0 )
          {
             A247Trn_ThemeId = StringUtil.StrToGuid( GetPar( "Trn_ThemeId"));
             AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
@@ -120,7 +133,7 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            gxLoad_24( A247Trn_ThemeId) ;
+            gxLoad_25( A247Trn_ThemeId) ;
             return  ;
          }
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxEvt") == 0 )
@@ -1402,7 +1415,7 @@ namespace GeneXus.Programs {
 
       protected void ZM046( short GX_JID )
       {
-         if ( ( GX_JID == 22 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 23 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
@@ -1433,7 +1446,7 @@ namespace GeneXus.Programs {
                Z247Trn_ThemeId = A247Trn_ThemeId;
             }
          }
-         if ( GX_JID == -22 )
+         if ( GX_JID == -23 )
          {
             Z29LocationId = A29LocationId;
             Z359LocationCountry = A359LocationCountry;
@@ -1595,7 +1608,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A506LocationImage", A506LocationImage);
             AssignProp("", false, imgLocationImage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( A506LocationImage)) ? A40000LocationImage_GXI : context.convertURL( context.PathToRelativeUrl( A506LocationImage))), true);
             AssignProp("", false, imgLocationImage_Internalname, "SrcSet", context.GetImageSrcSet( A506LocationImage), true);
-            ZM046( -22) ;
+            ZM046( -23) ;
          }
          pr_default.close(4);
          OnLoadActions046( ) ;
@@ -1662,7 +1675,7 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void gxLoad_23( Guid A11OrganisationId )
+      protected void gxLoad_24( Guid A11OrganisationId )
       {
          /* Using cursor T00047 */
          pr_default.execute(5, new Object[] {A11OrganisationId});
@@ -1685,7 +1698,7 @@ namespace GeneXus.Programs {
          pr_default.close(5);
       }
 
-      protected void gxLoad_24( Guid A247Trn_ThemeId )
+      protected void gxLoad_25( Guid A247Trn_ThemeId )
       {
          /* Using cursor T00048 */
          pr_default.execute(6, new Object[] {A247Trn_ThemeId});
@@ -1727,7 +1740,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM046( 22) ;
+            ZM046( 23) ;
             RcdFound6 = 1;
             A29LocationId = T00043_A29LocationId[0];
             AssignAttri("", false, "A29LocationId", A29LocationId.ToString());
@@ -2399,6 +2412,7 @@ namespace GeneXus.Programs {
       protected void BeforeDelete046( )
       {
          /* Before Delete Rules */
+         new trn_deletelocationpages(context ).execute(  A29LocationId) ;
          new loadaudittrn_location(context ).execute(  "Y", ref  AV24AuditingObject,  A29LocationId,  A11OrganisationId,  Gx_mode) ;
       }
 
@@ -2791,7 +2805,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412111753329", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412127323692", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2807,7 +2821,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_location.js", "?202412111753331", false, true);
+         context.AddJavascriptSource("trn_location.js", "?202412127323693", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3096,6 +3110,20 @@ namespace GeneXus.Programs {
          AddString( "]") ;
       }
 
+      protected void XC_22_046( Guid A29LocationId )
+      {
+         new trn_deletelocationpages(context ).execute(  A29LocationId) ;
+         GxWebStd.set_html_headers( context, 0, "", "");
+         AddString( "[[") ;
+         AddString( "]") ;
+         if ( true )
+         {
+            AddString( ",") ;
+            AddString( "101") ;
+         }
+         AddString( "]") ;
+      }
+
       protected void init_web_controls( )
       {
          /* End function init_web_controls */
@@ -3212,6 +3240,7 @@ namespace GeneXus.Programs {
          Combo_locationphonecode_Selectedvalue_get = "";
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
+         A29LocationId = Guid.Empty;
          AV25Insert_Trn_ThemeId = Guid.Empty;
          A383LocationPhoneCode = "";
          A384LocationPhoneNumber = "";
@@ -3248,7 +3277,6 @@ namespace GeneXus.Programs {
          bttBtntrn_delete_Jsonclick = "";
          AV16ComboLocationPhoneCode = "";
          AV23ComboLocationCountry = "";
-         A29LocationId = Guid.Empty;
          gxphoneLink = "";
          A35LocationPhone = "";
          AV24AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
@@ -3744,12 +3772,12 @@ namespace GeneXus.Programs {
       private Guid Z11OrganisationId ;
       private Guid Z247Trn_ThemeId ;
       private Guid N247Trn_ThemeId ;
+      private Guid A29LocationId ;
       private Guid AV8OrganisationId ;
       private Guid AV25Insert_Trn_ThemeId ;
       private Guid A11OrganisationId ;
       private Guid A247Trn_ThemeId ;
       private Guid AV7LocationId ;
-      private Guid A29LocationId ;
       private Guid i247Trn_ThemeId ;
       private Guid GXt_guid1 ;
       private IGxSession AV13WebSession ;

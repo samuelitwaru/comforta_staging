@@ -109,8 +109,8 @@ namespace GeneXus.Programs {
                CheckExtendedTable046( ) ;
                if ( AnyError == 0 )
                {
-                  ZM046( 17) ;
                   ZM046( 18) ;
+                  ZM046( 19) ;
                }
                CloseExtendedTableCursors046( ) ;
             }
@@ -154,7 +154,7 @@ namespace GeneXus.Programs {
 
       protected void ZM046( short GX_JID )
       {
-         if ( ( GX_JID == 16 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 17 ) || ( GX_JID == 0 ) )
          {
             Z35LocationPhone = A35LocationPhone;
             Z31LocationName = A31LocationName;
@@ -168,13 +168,13 @@ namespace GeneXus.Programs {
             Z384LocationPhoneNumber = A384LocationPhoneNumber;
             Z247Trn_ThemeId = A247Trn_ThemeId;
          }
-         if ( ( GX_JID == 17 ) || ( GX_JID == 0 ) )
-         {
-         }
          if ( ( GX_JID == 18 ) || ( GX_JID == 0 ) )
          {
          }
-         if ( GX_JID == -16 )
+         if ( ( GX_JID == 19 ) || ( GX_JID == 0 ) )
+         {
+         }
+         if ( GX_JID == -17 )
          {
             Z29LocationId = A29LocationId;
             Z35LocationPhone = A35LocationPhone;
@@ -245,7 +245,7 @@ namespace GeneXus.Programs {
             A36LocationDescription = BC00046_A36LocationDescription[0];
             A247Trn_ThemeId = BC00046_A247Trn_ThemeId[0];
             A506LocationImage = BC00046_A506LocationImage[0];
-            ZM046( -16) ;
+            ZM046( -17) ;
          }
          pr_default.close(4);
          OnLoadActions046( ) ;
@@ -323,7 +323,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM046( 16) ;
+            ZM046( 17) ;
             RcdFound6 = 1;
             A29LocationId = BC00043_A29LocationId[0];
             A35LocationPhone = BC00043_A35LocationPhone[0];
@@ -753,6 +753,7 @@ namespace GeneXus.Programs {
       protected void BeforeDelete046( )
       {
          /* Before Delete Rules */
+         new trn_deletelocationpages(context ).execute(  A29LocationId) ;
          new loadaudittrn_location(context ).execute(  "Y", ref  AV24AuditingObject,  A29LocationId,  A11OrganisationId,  Gx_mode) ;
       }
 
@@ -964,7 +965,7 @@ namespace GeneXus.Programs {
             Z29LocationId = A29LocationId;
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM046( -16) ;
+         ZM046( -17) ;
          OnLoadActions046( ) ;
          AddRow046( ) ;
          ScanKeyEnd046( ) ;
@@ -1002,7 +1003,7 @@ namespace GeneXus.Programs {
             Z29LocationId = A29LocationId;
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM046( -16) ;
+         ZM046( -17) ;
          OnLoadActions046( ) ;
          AddRow046( ) ;
          ScanKeyEnd046( ) ;

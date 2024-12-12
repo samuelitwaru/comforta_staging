@@ -9010,11 +9010,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\KBs\\Comforta_version2\\Data018\\web\\GxDeps.csproj",
+      "projectUniqueName": "C:\\KBs\\Comforta_version2\\Data018\\Web\\GxDeps.csproj",
       "projectName": "GxDeps",
-      "projectPath": "C:\\KBs\\Comforta_version2\\Data018\\web\\GxDeps.csproj",
+      "projectPath": "C:\\KBs\\Comforta_version2\\Data018\\Web\\GxDeps.csproj",
       "packagesPath": "C:\\Users\\samuelitwaru\\.nuget\\packages\\",
-      "outputPath": "C:\\KBs\\Comforta_version2\\Data018\\web\\obj\\",
+      "outputPath": "C:\\KBs\\Comforta_version2\\Data018\\Web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\KBs\\Comforta_version2\\Data018\\NuGet.Config",

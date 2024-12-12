@@ -1,1 +1,203 @@
-function UC_AppToolBox(n){var t,r,u,f,i;this.setSDT_Page=function(n){this.SDT_Page=n};this.getSDT_Page=function(){return this.SDT_Page};this.setSDT_Pages=function(n){this.SDT_Pages=n};this.getSDT_Pages=function(){return this.SDT_Pages};this.setSDT_ProductServiceCollection=function(n){this.SDT_ProductServiceCollection=n};this.getSDT_ProductServiceCollection=function(){return this.SDT_ProductServiceCollection};this.setBC_Trn_TemplateCollection=function(n){this.BC_Trn_TemplateCollection=n};this.getBC_Trn_TemplateCollection=function(){return this.BC_Trn_TemplateCollection};this.setBC_Trn_ThemeCollection=function(n){this.BC_Trn_ThemeCollection=n};this.getBC_Trn_ThemeCollection=function(){return this.BC_Trn_ThemeCollection};this.setBC_Trn_MediaCollection=function(n){this.BC_Trn_MediaCollection=n};this.getBC_Trn_MediaCollection=function(){return this.BC_Trn_MediaCollection};t='<!--<link   rel="stylesheet"   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"   />--><script src="/Resources/UCGrapes1/new-design/js/toolbox-utils.js"><\/script><div id="tb-body">   <div class="tb-navbar">      <h3 id="navbar_title"><\/h3>      <div class="navbar-buttons">         <div class="edit-actions">            <button class="btn-transparent" id="undo" title="Undo">            <span class="fa fa-undo"><\/span>            <\/button>            <button class="btn-transparent" id="redo" title="Redo">            <span class="fa fa-redo"><\/span>            <\/button>         <\/div>         <div class="custom-selection">            <select class="tb-form-control" name="theme" id="theme-select"><\/select>         <\/div>         <button id="open-mapping" class="tb-btn tb-btn-outline">            <svg xmlns="http://www.w3.org/2000/svg" width="18.818" height="16" viewBox="0 0 18.818 18">               <path id="Path_993" data-name="Path 993" d="M19.545,5a3.283,3.283,0,0,0-3.273,3.273A3.228,3.228,0,0,0,16.784,10l-2.541,3.177H10.427a3.273,3.273,0,1,0,0,1.636h3.816L16.784,18a3.229,3.229,0,0,0-.511,1.732,3.273,3.273,0,1,0,3.273-3.273,3.207,3.207,0,0,0-1.563.419L15.685,14l2.3-2.873a3.207,3.207,0,0,0,1.563.419,3.273,3.273,0,0,0,0-6.545Zm0,1.636a1.636,1.636,0,1,1-1.636,1.636A1.623,1.623,0,0,1,19.545,6.636ZM7.273,12.364A1.636,1.636,0,1,1,5.636,14,1.623,1.623,0,0,1,7.273,12.364Zm12.273,5.727a1.636,1.636,0,1,1-1.636,1.636A1.623,1.623,0,0,1,19.545,18.091Z" transform="translate(-4 -5)"/>            <\/svg>            <span id="navbar_tree_label"><\/span>         <\/button>         <button id="publish" class="tb-btn tb-btn-primary">            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="16" viewBox="0 0 13 18">               <path id="Path_958" data-name="Path 958" d="M13.5,3.594l-.519.507L7.925,9.263l1.038,1.06,3.814-3.9V18.644h1.444V6.429l3.814,3.9,1.038-1.06L14.019,4.1ZM7,20.119v1.475H20V20.119Z" transform="translate(-7 -3.594)" fill="#fff"/>            <\/svg>            <span id="navbar_publish_label"><\/span>         <\/button>      <\/div>   <\/div>   <div class="tb-container">      <div class="main-content">         <div class="navigator page-navigator-left" style="display:none">            <svg id="scroll-left" xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46">               <g id="Group_710" data-name="Group 710" transform="translate(-428 -497)">                  <g id="Ellipse_109" data-name="Ellipse 109" transform="translate(474 543) rotate(180)" fill="#fff" stroke="#707070" stroke-width="1">                     <circle cx="23" cy="23" r="23" stroke="none"/>                     <circle cx="23" cy="23" r="22.5" fill="none"/>                  <\/g>                  <path id="Path_1222" data-name="Path 1222" d="M28.906,15.969a1.165,1.165,0,0,0-.125.031.994.994,0,0,0-.781.7,1,1,0,0,0,.281,1.016L34.563,24H12.906A1,1,0,1,0,13,26H34.563l-6.281,6.281a1.016,1.016,0,0,0,1.438,1.438l7.844-7.875a.961.961,0,0,0,.156-.125c.023-.031.043-.062.063-.094a.479.479,0,0,0,.063-.062.843.843,0,0,0,.094-.187.48.48,0,0,0,.031-.062v-.031A.881.881,0,0,0,38,25.188a1.049,1.049,0,0,0,0-.312v-.094a.461.461,0,0,0-.031-.062v-.031a.48.48,0,0,0-.031-.062v-.031a.461.461,0,0,0-.031-.062l-.031-.031a.467.467,0,0,0-.031-.062.956.956,0,0,0-.125-.156h-.031a.467.467,0,0,0-.062-.062l-7.906-7.937A1,1,0,0,0,28.906,15.969Z" transform="translate(475.951 544.965) rotate(180)" fill="#6a747f"/>               <\/g>            <\/svg>         <\/div>         <div class="frame-list" id="child-container">         <\/div>\t\t          <div class="navigator page-navigator-right" style="display:none">            <svg id="scroll-right" xmlns="http://www.w3.org/2000/svg" id="Component_42_4" data-name="Component 42 – 4" width="46" height="46" viewBox="0 0 46 46">               <g id="Ellipse_109" data-name="Ellipse 109" fill="#fff" stroke="#707070" stroke-width="1">                  <circle cx="23" cy="23" r="23" stroke="none"/>                  <circle cx="23" cy="23" r="22.5" fill="none"/>               <\/g>               <path id="Path_1222" data-name="Path 1222" d="M28.906,15.969a1.165,1.165,0,0,0-.125.031.994.994,0,0,0-.781.7,1,1,0,0,0,.281,1.016L34.563,24H12.906A1,1,0,1,0,13,26H34.563l-6.281,6.281a1.016,1.016,0,0,0,1.438,1.438l7.844-7.875a.961.961,0,0,0,.156-.125c.023-.031.043-.062.063-.094a.479.479,0,0,0,.063-.062.843.843,0,0,0,.094-.187.48.48,0,0,0,.031-.062v-.031A.881.881,0,0,0,38,25.188a1.049,1.049,0,0,0,0-.312v-.094a.461.461,0,0,0-.031-.062v-.031a.48.48,0,0,0-.031-.062v-.031a.461.461,0,0,0-.031-.062l-.031-.031a.467.467,0,0,0-.031-.062.956.956,0,0,0-.125-.156h-.031a.467.467,0,0,0-.062-.062l-7.906-7.937A1,1,0,0,0,28.906,15.969Z" transform="translate(-1.951 -1.965)" fill="#6a747f"/>            <\/svg>         <\/div>      <\/div>      <div class="sidebar sidebar-right">         <div id="tools-section">            <div class="tb-tabs">               <button id="pages-button" class="tb-tab-button active" data-tab="pages">               <span id="sidebar_tabs_pages_label"><\/span>               <\/button>               <button id="templates-button" class="tb-tab-button" data-tab="templates">               <span id="sidebar_tabs_templates_label"><\/span>               <\/button>            <\/div>            <div class="tb-tab-content active-tab" id="pages-content">               <div class="sidebar-section theme-section">                  <div class="color-palette" id="theme-color-palette">                  <\/div>                  <div class="bg-section">                     <button class="add-image" id="image-bg">                     <span class="plus"><i class="fa fa-plus"><\/i><\/span>                     <span class="icon"><i class="fa fa-image"><\/i><\/span>                     <\/button>                     <div class="percentage-wrapper">                        <input type="number" id="bg-opacity" class="percentage-input" value="100" min="0" max="100">                        <span class="percentage-sign">%<\/span>                     <\/div>                  <\/div>               <\/div>               <div class="sidebar-section title-section">                  <input                     type="text"                     class="tb-form-control"                     id="tile-title"                     placeholder="Enter title"                     />                  <div class="title-style">                     <div class="text-color-palette text-colors" id="text-color-palette">                     <\/div>                     <div class="text-alignment">                        <div class="align-item">                           <input                              type="radio"                              id="text-align-left"                              name="alignment"                              value="left"                              />                           <label for="text-align-left" class="fas fa-align-left"><\/label>                        <\/div>                        <div class="align-item">                           <input                              type="radio"                              id="text-align-center"                              name="alignment"                              value="center"                              />                           <label                              for="text-align-center"                              class="fas fa-align-center"                              ><\/label>                        <\/div>                        <div class="align-item">                           <input                              type="radio"                              id="text-align-right"                              name="alignment"                              value="right"                              />                           <label for="text-align-right" class="fas fa-align-right"><\/label>                        <\/div>                     <\/div>                  <\/div>               <\/div>               <div                  class="sidebar-section custom-select-container"                  id="select-container"                  >                  <div class="tb-dropdown">                     <div class="tb-dropdown-header" id="selectedOption">                        <span id="sidebar_select_action_label"><\/span>                        <i class="fa fa-angle-down"><\/i>                     <\/div>                     <div class="tb-dropdown-menu" id="dropdownMenu"><\/div>                  <\/div>               <\/div>               <div class="sidebar-section services-section">                  <select class="tb-form-control" name="theme" id="theme_icon_category">                     <option value="Services">Services<\/option>                     <option value="General" selected>General<\/option>                     <option value="Health">Health<\/option>                     <option value="Living">Living<\/option>                  <\/select>                  <div id="icons-list" class="icons-list">                  <\/div>                  <div class="title-style">                     <div class="text-color-palette icon-colors" id="icon-color-palette">                     <\/div>                     <div class="text-alignment">                        <div class="align-item">                           <input                              type="radio"                              id="icon-align-left"                              name="icon-alignment"                              value="left"                              />                           <label                              for="icon-align-left"                              class="fas fa-align-left"                              ><\/label>                        <\/div>                        <div class="align-item">                           <input                              type="radio"                              id="icon-align-center"                              name="icon-alignment"                              value="center"                              />                           <label                              for="icon-align-center"                              class="fas fa-align-center"                              ><\/label>                        <\/div>                        <div class="align-item">                           <input                              type="radio"                              id="icon-align-right"                              name="icon-alignment"                              value="right"                              />                           <label                              for="icon-align-right"                              class="fas fa-align-right"                              ><\/label>                        <\/div>                     <\/div>                  <\/div>               <\/div>               <div                  class="sidebar-section content-page-section"                  id="content-page-section"\t\t\t\t  style="display:none;"                  >                  <div class="cta-button-layout-container">                     <button class="tb-btn cta-button-layout" id="plain-button-layout">Button<\/button>                     <button class="tb-btn cta-button-layout" id="img-button-layout">                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40.999 28.865">                           <path id="Path_1040" data-name="Path 1040" d="M21.924,11.025a3.459,3.459,0,0,0-3.287,3.608,3.459,3.459,0,0,0,3.287,3.608,3.459,3.459,0,0,0,3.287-3.608A3.459,3.459,0,0,0,21.924,11.025ZM36.716,21.849l-11.5,14.432-8.218-9.02L8.044,39.89h41Z" transform="translate(-8.044 -11.025)" fill="#4c5357"/>                        <\/svg>                        Button                     <\/button>                  <\/div>                  <div id="call-to-actions">                  <\/div>                  <div class="cta-style">                     <div class="text-color-palette text-colors" id="cta-color-palette">                     <\/div>                     <div class="text-alignment">                        <div class="align-item">                           <input                              type="radio"                              id="cta-align-left"                              name="alignment"                              value="left"                              />                           <label for="cta-align-left" class="fas fa-align-left"><\/label>                        <\/div>                        <div class="align-item">                           <input                              type="radio"                              id="cta-align-center"                              name="alignment"                              value="center"                              />                           <label                              for="cta-align-center"                              class="fas fa-align-center"                              ><\/label>                        <\/div>                        <div class="align-item">                           <input                              type="radio"                              id="cta-align-right"                              name="alignment"                              value="right"                              />                           <label for="cta-align-right" class="fas fa-align-right"><\/label>                        <\/div>                     <\/div>                  <\/div>               <\/div>            <\/div>            <div class="tb-tab-content" id="templates-content">               <div class="sidebar-section" id="page-templates"><\/div>            <\/div>         <\/div>         <div id="mapping-section" style="display: none;">            <div class="mapping-header">               <h3><span id="sidebar_mapping_title"><\/span><\/h3>            <\/div>            <div class="sidebar-section">               <div class="page-form" id="page-form">                  <input                     type="text"                     class="add-page-input"                     id="page-title"                     placeholder="Page name..."                     />                  <button                     class="submit-button add-page-button"                     id="page-submit"                     >                  Add                  <\/button>               <\/div>               <h5 id="current-page-title">HOME<\/h5>               <div id="tree-container" class="tb-list-container">               <\/div>            <\/div>         <\/div>      <\/div>      <div class="alerts-container" id="alerts-container"><\/div>      <div class="context-menu" id="contextMenu">         <ul>         <li data-card-id="1" id="delete-bg-image">Delete image<\/li>         <\/u         l>      <\/div>   <\/div>   <script src="/Resources/UCGrapes1/new-design/js/component-types.js"><\/script>   <script src="/Resources/UCGrapes1/new-design/locale/locale.js"><\/script>   <script src="/Resources/UCGrapes1/new-design/js/data.js"><\/script>   <script src="/Resources/UCGrapes1/new-design/js/components.js"><\/script>   <script src="/Resources/UCGrapes1/new-design/js/editor-manager.js"><\/script>   <script src="/Resources/UCGrapes1/new-design/js/toolbox.js"><\/script>   <script src="/Resources/UCGrapes1/new-design/js/child-editor-manager.js"><\/script><\/div>';r={};Mustache.parse(t);u=0;this.show=function(){f=n(this.getContainerControl());u=0;this.setHtml(Mustache.render(t,this,r));this.renderChildContainers();n(this.getContainerControl()).find("[data-event='OnSave']").on("save",this.onOnSaveHandler.closure(this)).each(function(n){this.setAttribute("data-items-index",n+1)});this.Start()};this.Scripts=[];this.Start=function(){const u=this.SDT_Pages;console.log("LocationId",this.LocationId);console.log("OrgId",this.OrganisationId);console.log("SDTServices",this.SDT_ProductServiceCollection);console.log("Pages",this.SDT_Pages);console.log("Current Theme",this.Current_Theme);const f=this.BC_Trn_TemplateCollection.map(n=>({id:n.Trn_TemplateId,label:n.Trn_TemplateName,media:n.Trn_TemplateMedia,content:n.Trn_TemplateContent.split(",").map(n=>parseInt(n))})),e=this.BC_Trn_ThemeCollection.map(n=>{let t={id:n.Trn_ThemeId,name:n.Trn_ThemeName,fontFamily:n.Trn_ThemeFontFamily,colors:{},icons:n.Icon};return n.Color.forEach(n=>{t.colors[n.ColorName]=n.ColorCode}),t}),o=this.Current_Language.toLowerCase(),r=new Locale(o);r.setLanguage();const n=new DataManager(this.SDT_ProductServiceCollection,this.BC_Trn_MediaCollection);n.LocationId=this.LocationId;n.OrganisationId=this.OrganisationId;const t=new ChildEditorManager(n),i=new ToolBoxManager(t,n,e,iconsData,f,u,this.BC_Trn_MediaCollection,r);t.setToolsSection(i);i.init();t.childEditorManager=childEditorManager;i.childEditorManager=childEditorManager;alert()};this.onOnSaveHandler=function(t){if(t){var i=t.currentTarget;t.preventDefault();this.SDT_PageCurrentIndex=parseInt(n(i).attr("data-items-index"),10)||1;this.SDT_PagesCurrentIndex=parseInt(n(i).attr("data-items-index"),10)||1;this.SDT_ProductServiceCollectionCurrentIndex=parseInt(n(i).attr("data-items-index"),10)||1;this.BC_Trn_TemplateCollectionCurrentIndex=parseInt(n(i).attr("data-items-index"),10)||1;this.BC_Trn_ThemeCollectionCurrentIndex=parseInt(n(i).attr("data-items-index"),10)||1;this.BC_Trn_MediaCollectionCurrentIndex=parseInt(n(i).attr("data-items-index"),10)||1}this.OnSave&&this.OnSave()};this.autoToggleVisibility=!0;i={};this.renderChildContainers=function(){f.find("[data-slot][data-parent='"+this.ContainerName+"']").each(function(t,r){var e=n(r),f=e.attr("data-slot"),u;u=i[f];u||(u=this.getChildContainer(f),i[f]=u,u.parentNode.removeChild(u));e.append(u);n(u).show()}.closure(this))}}
+function UC_AppToolBox($) {
+	  
+	 this.setSDT_Page = function(value) {
+			this.SDT_Page = value;
+		}
+
+		this.getSDT_Page = function() {
+			return this.SDT_Page;
+		} 
+	 this.setSDT_Pages = function(value) {
+			this.SDT_Pages = value;
+		}
+
+		this.getSDT_Pages = function() {
+			return this.SDT_Pages;
+		} 
+	  
+	  
+	 this.setSDT_ProductServiceCollection = function(value) {
+			this.SDT_ProductServiceCollection = value;
+		}
+
+		this.getSDT_ProductServiceCollection = function() {
+			return this.SDT_ProductServiceCollection;
+		} 
+	 this.setBC_Trn_TemplateCollection = function(value) {
+			this.BC_Trn_TemplateCollection = value;
+		}
+
+		this.getBC_Trn_TemplateCollection = function() {
+			return this.BC_Trn_TemplateCollection;
+		} 
+	 this.setBC_Trn_ThemeCollection = function(value) {
+			this.BC_Trn_ThemeCollection = value;
+		}
+
+		this.getBC_Trn_ThemeCollection = function() {
+			return this.BC_Trn_ThemeCollection;
+		} 
+	 this.setBC_Trn_MediaCollection = function(value) {
+			this.BC_Trn_MediaCollection = value;
+		}
+
+		this.getBC_Trn_MediaCollection = function() {
+			return this.BC_Trn_MediaCollection;
+		} 
+	  
+	  
+
+	var template = '<!--<link   rel=\"stylesheet\"   href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css\"   />--><script src=\"/Resources/UCGrapes1/new-design/js/toolbox-utils.js\"></script><div id=\"tb-body\">   <div class=\"tb-navbar\">      <h3 id=\"navbar_title\"></h3>      <div class=\"navbar-buttons\">         <div class=\"edit-actions\">            <button class=\"btn-transparent\" id=\"undo\" title=\"Undo\">            <span class=\"fa fa-undo\"></span>            </button>            <button class=\"btn-transparent\" id=\"redo\" title=\"Redo\">            <span class=\"fa fa-redo\"></span>            </button>         </div>         <div class=\"custom-selection\">            <select class=\"tb-form-control\" name=\"theme\" id=\"theme-select\"></select>         </div>         <button id=\"open-mapping\" class=\"tb-btn tb-btn-outline\">            <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"18.818\" height=\"16\" viewBox=\"0 0 18.818 18\">               <path id=\"Path_993\" data-name=\"Path 993\" d=\"M19.545,5a3.283,3.283,0,0,0-3.273,3.273A3.228,3.228,0,0,0,16.784,10l-2.541,3.177H10.427a3.273,3.273,0,1,0,0,1.636h3.816L16.784,18a3.229,3.229,0,0,0-.511,1.732,3.273,3.273,0,1,0,3.273-3.273,3.207,3.207,0,0,0-1.563.419L15.685,14l2.3-2.873a3.207,3.207,0,0,0,1.563.419,3.273,3.273,0,0,0,0-6.545Zm0,1.636a1.636,1.636,0,1,1-1.636,1.636A1.623,1.623,0,0,1,19.545,6.636ZM7.273,12.364A1.636,1.636,0,1,1,5.636,14,1.623,1.623,0,0,1,7.273,12.364Zm12.273,5.727a1.636,1.636,0,1,1-1.636,1.636A1.623,1.623,0,0,1,19.545,18.091Z\" transform=\"translate(-4 -5)\"/>            </svg>            <span id=\"navbar_tree_label\"></span>         </button>         <button id=\"publish\" class=\"tb-btn tb-btn-primary\">            <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"13\" height=\"16\" viewBox=\"0 0 13 18\">               <path id=\"Path_958\" data-name=\"Path 958\" d=\"M13.5,3.594l-.519.507L7.925,9.263l1.038,1.06,3.814-3.9V18.644h1.444V6.429l3.814,3.9,1.038-1.06L14.019,4.1ZM7,20.119v1.475H20V20.119Z\" transform=\"translate(-7 -3.594)\" fill=\"#fff\"/>            </svg>            <span id=\"navbar_publish_label\"></span>         </button>      </div>   </div>   <div class=\"tb-container\">      <div class=\"main-content\">         <div class=\"navigator page-navigator-left\" style=\"display:none\">            <svg id=\"scroll-left\" xmlns=\"http://www.w3.org/2000/svg\" width=\"46\" height=\"46\" viewBox=\"0 0 46 46\">               <g id=\"Group_710\" data-name=\"Group 710\" transform=\"translate(-428 -497)\">                  <g id=\"Ellipse_109\" data-name=\"Ellipse 109\" transform=\"translate(474 543) rotate(180)\" fill=\"#fff\" stroke=\"#707070\" stroke-width=\"1\">                     <circle cx=\"23\" cy=\"23\" r=\"23\" stroke=\"none\"/>                     <circle cx=\"23\" cy=\"23\" r=\"22.5\" fill=\"none\"/>                  </g>                  <path id=\"Path_1222\" data-name=\"Path 1222\" d=\"M28.906,15.969a1.165,1.165,0,0,0-.125.031.994.994,0,0,0-.781.7,1,1,0,0,0,.281,1.016L34.563,24H12.906A1,1,0,1,0,13,26H34.563l-6.281,6.281a1.016,1.016,0,0,0,1.438,1.438l7.844-7.875a.961.961,0,0,0,.156-.125c.023-.031.043-.062.063-.094a.479.479,0,0,0,.063-.062.843.843,0,0,0,.094-.187.48.48,0,0,0,.031-.062v-.031A.881.881,0,0,0,38,25.188a1.049,1.049,0,0,0,0-.312v-.094a.461.461,0,0,0-.031-.062v-.031a.48.48,0,0,0-.031-.062v-.031a.461.461,0,0,0-.031-.062l-.031-.031a.467.467,0,0,0-.031-.062.956.956,0,0,0-.125-.156h-.031a.467.467,0,0,0-.062-.062l-7.906-7.937A1,1,0,0,0,28.906,15.969Z\" transform=\"translate(475.951 544.965) rotate(180)\" fill=\"#6a747f\"/>               </g>            </svg>         </div>         <div class=\"frame-list\" id=\"child-container\">         </div>		          <div class=\"navigator page-navigator-right\" style=\"display:none\">            <svg id=\"scroll-right\" xmlns=\"http://www.w3.org/2000/svg\" id=\"Component_42_4\" data-name=\"Component 42 – 4\" width=\"46\" height=\"46\" viewBox=\"0 0 46 46\">               <g id=\"Ellipse_109\" data-name=\"Ellipse 109\" fill=\"#fff\" stroke=\"#707070\" stroke-width=\"1\">                  <circle cx=\"23\" cy=\"23\" r=\"23\" stroke=\"none\"/>                  <circle cx=\"23\" cy=\"23\" r=\"22.5\" fill=\"none\"/>               </g>               <path id=\"Path_1222\" data-name=\"Path 1222\" d=\"M28.906,15.969a1.165,1.165,0,0,0-.125.031.994.994,0,0,0-.781.7,1,1,0,0,0,.281,1.016L34.563,24H12.906A1,1,0,1,0,13,26H34.563l-6.281,6.281a1.016,1.016,0,0,0,1.438,1.438l7.844-7.875a.961.961,0,0,0,.156-.125c.023-.031.043-.062.063-.094a.479.479,0,0,0,.063-.062.843.843,0,0,0,.094-.187.48.48,0,0,0,.031-.062v-.031A.881.881,0,0,0,38,25.188a1.049,1.049,0,0,0,0-.312v-.094a.461.461,0,0,0-.031-.062v-.031a.48.48,0,0,0-.031-.062v-.031a.461.461,0,0,0-.031-.062l-.031-.031a.467.467,0,0,0-.031-.062.956.956,0,0,0-.125-.156h-.031a.467.467,0,0,0-.062-.062l-7.906-7.937A1,1,0,0,0,28.906,15.969Z\" transform=\"translate(-1.951 -1.965)\" fill=\"#6a747f\"/>            </svg>         </div>      </div>      <div class=\"sidebar sidebar-right\">         <div id=\"tools-section\">            <div class=\"tb-tabs\">               <button id=\"pages-button\" class=\"tb-tab-button active\" data-tab=\"pages\">               <span id=\"sidebar_tabs_pages_label\"></span>               </button>               <button id=\"templates-button\" class=\"tb-tab-button\" data-tab=\"templates\">               <span id=\"sidebar_tabs_templates_label\"></span>               </button>            </div>            <div class=\"tb-tab-content active-tab\" id=\"pages-content\">               <div class=\"sidebar-section theme-section\">                  <div class=\"color-palette\" id=\"theme-color-palette\">                  </div>                  <div class=\"bg-section\">                     <button class=\"add-image\" id=\"image-bg\">                     <span class=\"plus\"><i class=\"fa fa-plus\"></i></span>                     <span class=\"icon\"><i class=\"fa fa-image\"></i></span>                     </button>                     <div class=\"percentage-wrapper\">                        <input type=\"number\" id=\"bg-opacity\" class=\"percentage-input\" value=\"100\" min=\"0\" max=\"100\">                        <span class=\"percentage-sign\">%</span>                     </div>                  </div>               </div>               <div class=\"sidebar-section title-section\">                  <input                     type=\"text\"                     class=\"tb-form-control\"                     id=\"tile-title\"                     placeholder=\"Enter title\"                     />                  <div class=\"title-style\">                     <div class=\"text-color-palette text-colors\" id=\"text-color-palette\">                     </div>                     <div class=\"text-alignment\">                        <div class=\"align-item\">                           <input                              type=\"radio\"                              id=\"text-align-left\"                              name=\"alignment\"                              value=\"left\"                              />                           <label for=\"text-align-left\" class=\"fas fa-align-left\"></label>                        </div>                        <div class=\"align-item\">                           <input                              type=\"radio\"                              id=\"text-align-center\"                              name=\"alignment\"                              value=\"center\"                              />                           <label                              for=\"text-align-center\"                              class=\"fas fa-align-center\"                              ></label>                        </div>                        <div class=\"align-item\">                           <input                              type=\"radio\"                              id=\"text-align-right\"                              name=\"alignment\"                              value=\"right\"                              />                           <label for=\"text-align-right\" class=\"fas fa-align-right\"></label>                        </div>                     </div>                  </div>               </div>               <div                  class=\"sidebar-section custom-select-container\"                  id=\"select-container\"                  >                  <div class=\"tb-dropdown\">                     <div class=\"tb-dropdown-header\" id=\"selectedOption\">                        <span id=\"sidebar_select_action_label\"></span>                        <i class=\"fa fa-angle-down\"></i>                     </div>                     <div class=\"tb-dropdown-menu\" id=\"dropdownMenu\"></div>                  </div>               </div>               <div class=\"sidebar-section services-section\">                  <select class=\"tb-form-control\" name=\"theme\" id=\"theme_icon_category\">                     <option value=\"Services\">Services</option>                     <option value=\"General\" selected>General</option>                     <option value=\"Health\">Health</option>                     <option value=\"Living\">Living</option>                  </select>                  <div id=\"icons-list\" class=\"icons-list\">                  </div>                  <div class=\"title-style\">                     <div class=\"text-color-palette icon-colors\" id=\"icon-color-palette\">                     </div>                     <div class=\"text-alignment\">                        <div class=\"align-item\">                           <input                              type=\"radio\"                              id=\"icon-align-left\"                              name=\"icon-alignment\"                              value=\"left\"                              />                           <label                              for=\"icon-align-left\"                              class=\"fas fa-align-left\"                              ></label>                        </div>                        <div class=\"align-item\">                           <input                              type=\"radio\"                              id=\"icon-align-center\"                              name=\"icon-alignment\"                              value=\"center\"                              />                           <label                              for=\"icon-align-center\"                              class=\"fas fa-align-center\"                              ></label>                        </div>                        <div class=\"align-item\">                           <input                              type=\"radio\"                              id=\"icon-align-right\"                              name=\"icon-alignment\"                              value=\"right\"                              />                           <label                              for=\"icon-align-right\"                              class=\"fas fa-align-right\"                              ></label>                        </div>                     </div>                  </div>               </div>               <div                  class=\"sidebar-section content-page-section\"                  id=\"content-page-section\"				  style=\"display:none;\"                  >                  <div class=\"cta-button-layout-container\">                     <button class=\"tb-btn cta-button-layout\" id=\"plain-button-layout\">Button</button>                     <button class=\"tb-btn cta-button-layout\" id=\"img-button-layout\">                        <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 40.999 28.865\">                           <path id=\"Path_1040\" data-name=\"Path 1040\" d=\"M21.924,11.025a3.459,3.459,0,0,0-3.287,3.608,3.459,3.459,0,0,0,3.287,3.608,3.459,3.459,0,0,0,3.287-3.608A3.459,3.459,0,0,0,21.924,11.025ZM36.716,21.849l-11.5,14.432-8.218-9.02L8.044,39.89h41Z\" transform=\"translate(-8.044 -11.025)\" fill=\"#4c5357\"/>                        </svg>                        Button                     </button>                  </div>                  <div id=\"call-to-actions\">                  </div>                  <div class=\"cta-style\">                     <div class=\"text-color-palette text-colors\" id=\"cta-color-palette\">                     </div>                     <div class=\"text-alignment\">                        <div class=\"align-item\">                           <input                              type=\"radio\"                              id=\"cta-align-left\"                              name=\"alignment\"                              value=\"left\"                              />                           <label for=\"cta-align-left\" class=\"fas fa-align-left\"></label>                        </div>                        <div class=\"align-item\">                           <input                              type=\"radio\"                              id=\"cta-align-center\"                              name=\"alignment\"                              value=\"center\"                              />                           <label                              for=\"cta-align-center\"                              class=\"fas fa-align-center\"                              ></label>                        </div>                        <div class=\"align-item\">                           <input                              type=\"radio\"                              id=\"cta-align-right\"                              name=\"alignment\"                              value=\"right\"                              />                           <label for=\"cta-align-right\" class=\"fas fa-align-right\"></label>                        </div>                     </div>                  </div>               </div>            </div>            <div class=\"tb-tab-content\" id=\"templates-content\">               <div class=\"sidebar-section\" id=\"page-templates\"></div>            </div>         </div>         <div id=\"mapping-section\" style=\"display: none;\">            <div class=\"mapping-header\">               <h3><span id=\"sidebar_mapping_title\"></span></h3>            </div>            <div class=\"sidebar-section\">               <div class=\"page-form\" id=\"page-form\">                  <input                     type=\"text\"                     class=\"add-page-input\"                     id=\"page-title\"                     placeholder=\"Page name...\"                     />                  <button                     class=\"submit-button add-page-button\"                     id=\"page-submit\"                     >                  Add                  </button>               </div>               <h5 id=\"current-page-title\">HOME</h5>               <div id=\"tree-container\" class=\"tb-list-container\">               </div>            </div>         </div>      </div>      <div class=\"alerts-container\" id=\"alerts-container\"></div>      <div class=\"context-menu\" id=\"contextMenu\">         <ul>         <li data-card-id=\"1\" id=\"delete-bg-image\">Delete image</li>         </u         l>      </div>   </div>   <script src=\"/Resources/UCGrapes1/new-design/js/component-types.js\"></script>   <script src=\"/Resources/UCGrapes1/new-design/locale/locale.js\"></script>   <script src=\"/Resources/UCGrapes1/new-design/js/data.js\"></script>   <script src=\"/Resources/UCGrapes1/new-design/js/components.js\"></script>   <script src=\"/Resources/UCGrapes1/new-design/js/editor-manager.js\"></script>   <script src=\"/Resources/UCGrapes1/new-design/js/toolbox.js\"></script>   <script src=\"/Resources/UCGrapes1/new-design/js/child-editor-manager.js\"></script></div>';
+	var partials = {  }; 
+	Mustache.parse(template);
+	var _iOnOnSave = 0; 
+	var $container;
+	this.show = function() {
+			$container = $(this.getContainerControl());
+
+			// Raise before show scripts
+
+			_iOnOnSave = 0; 
+
+			//if (this.IsPostBack)
+				this.setHtml(Mustache.render(template, this, partials));
+			this.renderChildContainers();
+
+			$(this.getContainerControl())
+				.find("[data-event='OnSave']")
+				.on('save', this.onOnSaveHandler.closure(this))
+				.each(function (i) {
+					this.setAttribute("data-items-index", i + 1);
+				}); 
+
+			// Raise after show scripts
+			this.Start(); 
+	}
+
+	this.Scripts = [];
+
+		this.Start = function() {
+
+			      const mapping = this.SDT_Pages
+			      console.log('LocationId', this.LocationId)
+			      console.log('OrgId', this.OrganisationId)
+			      console.log("SDTServices", this.SDT_ProductServiceCollection)
+			      console.log("Pages", this.SDT_Pages);
+				console.log("Current Theme", this.Current_Theme);
+			      const templates = this.BC_Trn_TemplateCollection.map(temp => {
+			      	let res = {
+			      		id: temp.Trn_TemplateId,
+			      		label: temp.Trn_TemplateName, 
+			      		media: temp.Trn_TemplateMedia,
+			      		content: temp.Trn_TemplateContent.split(',').map(i=>parseInt(i))
+			      	}
+			      	return res
+			      })
+			      
+			      const themes = this.BC_Trn_ThemeCollection.map(theme => {
+			      	let res = {
+			      		id: theme.Trn_ThemeId,
+			      		name: theme.Trn_ThemeName, 
+			      		fontFamily: theme.Trn_ThemeFontFamily,
+			      		colors: {},
+			      		icons: theme.Icon
+			      	}
+			      	theme.Color.forEach(color => {
+			      		res.colors[color.ColorName] = color.ColorCode	
+			      	})
+			      	return res
+			      })
+			      
+			      
+			      //const templates = []
+			      
+			      const projectId = 1;
+
+			//	  new Clock();
+			      const currentLanguage = this.Current_Language.toLowerCase();
+			      const locale = new Locale(currentLanguage);
+			      locale.setLanguage();
+			      
+				  
+			      //const editorManager = new EditorManager(editor, locale);
+			      //editorManager.init();
+				  
+				  const dataManager = new DataManager(this.SDT_ProductServiceCollection, this.BC_Trn_MediaCollection);
+			      dataManager.LocationId = this.LocationId
+			      dataManager.OrganisationId = this.OrganisationId
+				  
+				  const editorManager = new ChildEditorManager(dataManager)
+
+				  const toolBox = new ToolBoxManager(
+			      	editorManager, 
+			      	dataManager, 
+			      	themes, 
+			      	iconsData, 
+			      	templates, 
+			      	mapping, 
+			      	this.BC_Trn_MediaCollection, 
+			      	locale
+			      );
+				  
+				  
+				  
+
+			      editorManager.setToolsSection(toolBox);	
+			      //editorManager.setDataManager(dataManager);
+			      toolBox.init();
+				  
+				  
+				
+				editorManager.childEditorManager = childEditorManager
+				toolBox.childEditorManager = childEditorManager
+				alert()
+			            
+			   
+		}
+
+
+		this.onOnSaveHandler = function (e) {
+			if (e) {
+				var target = e.currentTarget;
+				e.preventDefault();
+				 
+				 this.SDT_PageCurrentIndex = (parseInt($(target).attr('data-items-index'), 10) || 1);  
+				 this.SDT_PagesCurrentIndex = (parseInt($(target).attr('data-items-index'), 10) || 1);  
+				 
+				 
+				 this.SDT_ProductServiceCollectionCurrentIndex = (parseInt($(target).attr('data-items-index'), 10) || 1);  
+				 this.BC_Trn_TemplateCollectionCurrentIndex = (parseInt($(target).attr('data-items-index'), 10) || 1);  
+				 this.BC_Trn_ThemeCollectionCurrentIndex = (parseInt($(target).attr('data-items-index'), 10) || 1);  
+				 this.BC_Trn_MediaCollectionCurrentIndex = (parseInt($(target).attr('data-items-index'), 10) || 1);  
+				 
+				 
+			}
+
+			if (this.OnSave) {
+				this.OnSave();
+			}
+		} 
+
+	this.autoToggleVisibility = true;
+
+	var childContainers = {};
+	this.renderChildContainers = function () {
+		$container
+			.find("[data-slot][data-parent='" + this.ContainerName + "']")
+			.each((function (i, slot) {
+				var $slot = $(slot),
+					slotName = $slot.attr('data-slot'),
+					slotContentEl;
+
+				slotContentEl = childContainers[slotName];
+				if (!slotContentEl) {				
+					slotContentEl = this.getChildContainer(slotName)
+					childContainers[slotName] = slotContentEl;
+					slotContentEl.parentNode.removeChild(slotContentEl);
+				}
+				$slot.append(slotContentEl);
+				$(slotContentEl).show();
+			}).closure(this));
+	};
+
+}
