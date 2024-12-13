@@ -1,3 +1,4 @@
+const log = console.log;
 class ActionListComponent {
   editorManager = null;
   dataManager = null;
@@ -12,6 +13,7 @@ class ActionListComponent {
     this.currentLanguage = currentLanguage;
     this.toolBoxManager = toolBoxManager;
     console.log("Data is: ", dataManager);
+
     this.categoryData = [
       {
         name: "Page",
@@ -21,7 +23,12 @@ class ActionListComponent {
       {
         name: "Service/Product Page",
         label: this.currentLanguage.getTranslation("category_services_or_page"),
-        options: [],
+        options: this.dataManager.services.map((service) => {
+          return {
+            PageId: service.ProductServiceId,
+            PageName: service.ProductServiceName,
+          };
+        }),
       },
       {
         name: "Predefined Page",
@@ -38,25 +45,20 @@ class ActionListComponent {
       .then((pages) => {
         console.log("ActionList", pages);
         this.pageOptions = pages.filter(
-          page => !page.PageIsContentPage && !page.PageIsPredefined
-        )
+          (page) => !page.PageIsContentPage && !page.PageIsPredefined
+        );
         this.predefinedPageOptions = pages.filter(
-          page => page.PageIsPredefined && page.PageName != "Home"
-        )
-        this.servicePageOptions = this.dataManager.services.map((service) => {
-          return {
-            PageId: service.ProductServiceId,
-            PageName: service.ProductServiceName,
-          };
-        })
+          (page) => page.PageIsPredefined && page.PageName != "Home"
+        );
+        this.servicePageOptions = pages.filter(
+          (page) => page.PageIsContentPage
+        );
         this.categoryData.forEach((category) => {
           if (category.name === "Page") {
             category.options = this.pageOptions;
-          }
-          else if (category.name == "Service/Product Page") {
+          } else if (category.name == "Service/Product Page") {
             category.options = this.servicePageOptions;
-          }
-          else if (category.name == "Predefined Page") {
+          } else if (category.name == "Predefined Page") {
             category.options = this.predefinedPageOptions;
           }
         });
@@ -274,7 +276,7 @@ class MappingComponent {
     this.dataManager = dataManager;
     this.editorManager = editorManager;
     this.toolBoxManager = toolBoxManager;
-    console.log(this.toolBoxManager)
+    console.log(this.toolBoxManager);
     this.currentLanguage = currentLanguage;
     this.boundCreatePage = this.handleCreatePage.bind(this);
   }
@@ -344,7 +346,7 @@ class MappingComponent {
         });
         const newTree = this.createTree(treePages, true); // Set isRoot to true if it's the root
         this.treeContainer.appendChild(newTree);
-        console.log(this.toolBoxManager)
+        console.log(this.toolBoxManager);
         this.toolBoxManager.actionList.init();
       });
 
@@ -369,154 +371,143 @@ class MappingComponent {
     const buildListItem = (item) => {
       const listItem = document.createElement("li");
       listItem.classList.add("tb-custom-list-item");
-
+  
       const menuItem = document.createElement("div");
       menuItem.classList.add("tb-custom-menu-item");
-
+  
       const toggle = document.createElement("span");
       toggle.classList.add("tb-dropdown-toggle");
       toggle.setAttribute("role", "button");
       toggle.setAttribute("aria-expanded", "false");
       toggle.innerHTML = `<i class="fa fa-caret-right tree-icon"></i><span>${item.Name}</span>`;
-
+  
       const deleteIcon = document.createElement("i");
       deleteIcon.classList.add("fa-regular", "fa-trash-can", "tb-delete-icon");
       deleteIcon.setAttribute("data-id", item.Id);
-
-      // Add delete functionality to deleteIcon
-      deleteIcon.addEventListener("click", (event) => {
-        event.stopPropagation();
-        const itemId = event.target.getAttribute("data-id");
-        const title = "Delete Page";
-        const message = "Are you sure you want to delete this page?";
-        const popup = this.popupModal(title, message);
-        document.body.appendChild(popup);
-        popup.style.display = "flex";
-        // const deletePage = this.dataManager.deletePage(itemId);
-        // Remove the dropdown item from the DOM (optional)
-        if (deletePage) {
-          listItem.remove();
-        }
-      });
-
+  
+      deleteIcon.addEventListener("click", (event) => handleDelete(event, item.Id, listItem));
+  
       menuItem.appendChild(toggle);
       if (item.Name !== "Home") {
         menuItem.appendChild(deleteIcon);
       }
       listItem.appendChild(menuItem);
-
-      listItem.onclick = (e) => {
-        e.stopPropagation();
-        this.handlePageSelection(item);
-      };
-
+  
       if (item.Children) {
         const dropdownMenu = document.createElement("ul");
-        dropdownMenu.classList.add("tb-dropdown-menu");
+        dropdownMenu.classList.add("tb-tree-dropdown-menu");
+  
         item.Children.forEach((child) => {
-          const dropdownItem = document.createElement("li");
-          dropdownItem.classList.add("tb-dropdown-item");
-          dropdownItem.innerHTML = `<span><i style="margin-right: 10px;" class="fa-regular fa-file tree-icon"></i>${child.Name}</span><i data-id="${child.Id}" class="fa-regular fa-trash-can tb-delete-icon"></i>`;
-
-          // Add delete functionality for child items
-          const childDeleteIcon = dropdownItem.querySelector(".tb-delete-icon");
-          childDeleteIcon.addEventListener("click", (event) => {
-            event.stopPropagation();
-            const childItemId = event.target.getAttribute("data-id");
-            const title = "Delete Page";
-            const message = "Are you sure you want to delete this page?";
-            const popup = this.popupModal(title, message);
-            document.body.appendChild(popup);
-            popup.style.display = "flex";
-            // const deletePage = this.dataManager.deletePage(childItemId);
-            // // Remove the dropdown item from the DOM (optional)
-            // if (deletePage) {
-            //   dropdownItem.remove();
-            // }
-          });
-
+          const dropdownItem = buildDropdownItem(child, item);
           dropdownMenu.appendChild(dropdownItem);
         });
+  
         listItem.appendChild(dropdownMenu);
         listItem.classList.add("tb-dropdown");
-
-        // Add click listener for dropdown toggle
-        listItem.onclick = (e) => {
-          e.stopPropagation();
-
-          // Handle page selection
-          this.handlePageSelection(item);
-
-          // Toggle dropdown logic
-          const isActive = listItem.classList.contains("active");
-
-          // Close other active dropdowns
-          const activeDropdowns = document.querySelectorAll(
-            ".tb-dropdown.active"
-          );
-          activeDropdowns.forEach((dropdown) => {
-            if (dropdown !== listItem) {
-              dropdown.classList.remove("active");
-              dropdown
-                .querySelector(".tb-dropdown-toggle")
-                .setAttribute("aria-expanded", "false");
-              dropdown
-                .querySelector(".tb-custom-menu-item")
-                .classList.remove("active-tree-item");
-            }
-          });
-
-          // Toggle current dropdown
-          if (!isActive) {
-            listItem.classList.add("active");
-            toggle.setAttribute("aria-expanded", "true");
-            menuItem.classList.add("active-tree-item");
-          } else {
-            listItem.classList.remove("active");
-            toggle.setAttribute("aria-expanded", "false");
-            menuItem.classList.remove("active-tree-item");
-          }
-        };
+  
+        listItem.addEventListener("click", (e) => toggleDropdown(e, listItem, menuItem));
       }
 
+      listItem.addEventListener("click", (e) => {
+        e.stopPropagation();
+        this.handlePageSelection(item);
+
+        // Close all dropdowns if this item has no children
+        if (!item.Children) {
+          document.querySelectorAll(".tb-dropdown.active").forEach((dropdown) => {
+            dropdown.classList.remove("active");
+            dropdown.querySelector(".tb-dropdown-toggle").setAttribute("aria-expanded", "false");
+            dropdown.querySelector(".tb-custom-menu-item").classList.remove("active-tree-item");
+          });
+        }
+      });
+  
       return listItem;
     };
-
-    // Create the main container ul
+  
+    const buildDropdownItem = (child, parent) => {
+      const dropdownItem = document.createElement("li");
+      dropdownItem.classList.add("tb-dropdown-item");
+      dropdownItem.innerHTML = `<span><i style="margin-right: 10px;" class="fa-regular fa-file tree-icon"></i>${child.Name}</span><i data-id="${child.Id}" class="fa-regular fa-trash-can tb-delete-icon"></i>`;
+  
+      const childDeleteIcon = dropdownItem.querySelector(".tb-delete-icon");
+      childDeleteIcon.addEventListener("click", (event) => handleDelete(event, child.Id, dropdownItem));
+  
+      dropdownItem.addEventListener("click", (e) => {
+        e.stopPropagation();
+        this.handlePageSelection(child, true, parent);
+      });
+  
+      return dropdownItem;
+    };
+  
+    const handleDelete = (event, id, elementToRemove) => {
+      event.stopPropagation();
+      const title = "Delete Page";
+      const message = "Are you sure you want to delete this page?";
+      const popup = this.popupModal(title, message);
+      document.body.appendChild(popup);
+      popup.style.display = "flex";
+  
+      const deleteButton = popup.querySelector("#yes_delete");
+      const closeButton = popup.querySelector("#close_popup");
+  
+      deleteButton.addEventListener("click", () => {
+        if (this.dataManager.deletePage(id)) {
+          elementToRemove.remove();
+        }
+        popup.remove();
+      });
+  
+      closeButton.addEventListener("click", () => {
+        popup.remove();
+      });
+    };
+  
+    const toggleDropdown = (event, listItem, menuItem) => {
+      event.stopPropagation();
+  
+      const isActive = listItem.classList.contains("active");
+  
+      document.querySelectorAll(".tb-dropdown.active").forEach((dropdown) => {
+        dropdown.classList.remove("active");
+        dropdown.querySelector(".tb-dropdown-toggle").setAttribute("aria-expanded", "false");
+        dropdown.querySelector(".tb-custom-menu-item").classList.remove("active-tree-item");
+      });
+  
+      if (!isActive) {
+        listItem.classList.add("active");
+        menuItem.classList.add("active-tree-item");
+        listItem.querySelector(".tb-dropdown-toggle").setAttribute("aria-expanded", "true");
+      } else {
+        menuItem.classList.remove("active-tree-item");
+        listItem.querySelector(".tb-dropdown-toggle").setAttribute("aria-expanded", "false");
+      }
+    };
+  
     const container = document.createElement("ul");
     container.classList.add("tb-custom-list");
-
+  
     const sortedData = JSON.parse(JSON.stringify(data)).sort((a, b) =>
       a.Name === "Home" ? -1 : b.Name === "Home" ? 1 : 0
     );
-    // Build the list from data
+  
     sortedData.forEach((item) => {
       const listItem = buildListItem(item);
       container.appendChild(listItem);
     });
-
-    // Add global click listener to close dropdowns
-    document.addEventListener("click", () => {
-      document.querySelectorAll(".tb-dropdown.active").forEach((dropdown) => {
-        dropdown.classList.remove("active");
-        dropdown
-          .querySelector(".tb-dropdown-toggle")
-          .setAttribute("aria-expanded", "false");
-        dropdown
-          .querySelector(".tb-custom-menu-item")
-          .classList.remove("active-tree-item");
-      });
-    });
-
-    // Prevent dropdown menu from closing when clicked
-    container.querySelectorAll(".tb-dropdown-menu").forEach((menu) => {
-      menu.addEventListener("click", (event) => {
-        event.stopPropagation();
-      });
-    });
-
+  
+    // document.addEventListener("click", () => {
+    //   document.querySelectorAll(".tb-dropdown.active").forEach((dropdown) => {
+    //     dropdown.classList.remove("active");
+    //     dropdown.querySelector(".tb-dropdown-toggle").setAttribute("aria-expanded", "false");
+    //     dropdown.querySelector(".tb-custom-menu-item").classList.remove("active-tree-item");
+    //   });
+    // });
+  
     return container;
   }
+  
 
   popupModal(title, message) {
     const popup = document.createElement("div");
@@ -549,48 +540,51 @@ class MappingComponent {
     return popup;
   }
 
-  async handlePageSelection(item, span) {
+  async handlePageSelection(item, isChild = false, parent = null) {
     if (this.isLoading) return;
-    console.log("Item is: " + item + " and span is: " + span);
+
     try {
-      this.isLoading = true;
+        this.isLoading = true;
 
-      // this.editorManager.setCurrentPageName(item.Name);
-      // this.editorManager.setCurrentPageId(item.Id);
+        // Locate the page data
+        const page = this.dataManager.pages.find((page) => page.PageId === item.Id);
+        if (!page) throw new Error(`Page with ID ${item.Id} not found`);
 
-      const page = this.dataManager.pages.find(
-        (page) => page.PageId === item.Id
-      );
-      // this.editorManager.setCurrentPage(page);
+        const editors = Object.values(this.editorManager.editors);
+        const mainEditor = editors[0];
 
-      // const editor = globalEditor;
-      // editor.DomComponents.clear();
-      this.editorManager.editors = null;
-      this.editorManager.createChildEditor(page);
-      editor.trigger("load");
+        if (mainEditor) {
+            const editor = mainEditor.editor;
+            const editorId = editor.getConfig().container;
+            const editorContainerId = `${editorId}-frame`;
 
-      // Update UI
-      // document.querySelectorAll(".selected-page").forEach((el) => {
-      //   el.classList.remove("selected-page");
-      // });
-
-      // span.closest("li").classList.add("selected-page");
-
-      // const mainPage = document.getElementById("current-page-title");
-      // mainPage.textContent = this.updateActivePageName();
-
-      this.displayMessage(`${item.Name} Page loaded successfully`, "success");
+            if (isChild) {
+                if (parent?.Id) {
+                  const parentEditorId = editors[1].editor.getConfig().container
+                  console.log("parent editor Id: ", parentEditorId)
+                  document.querySelector(`${parentEditorId}-frame`).nextElementSibling?.remove();
+                  this.editorManager.createChildEditor(page);
+                }
+            } else {                
+                // Remove extra frames
+                $(editorContainerId).nextAll().remove();
+                this.editorManager.createChildEditor(page);
+            }
+        }
     } catch (error) {
-      console.error("Error selecting page:", error);
-      this.displayMessage("Error loading page", "error");
+        console.error("Error selecting page:", error);
+        this.displayMessage("Error loading page", "error");
     } finally {
-      this.isLoading = false;
+        this.isLoading = false;
     }
-  }
+}
+
 
   checkActivePage(id) {
     return localStorage.getItem("pageId") === id;
   }
+
+  setActivePageOnTre(pageId) {}
 
   updateActivePageName() {
     return this.editorManager.getCurrentPageName();
@@ -618,7 +612,8 @@ class MediaComponent {
   formatFileSize(bytes) {
     if (bytes < 1024) return `${bytes} B`;
     if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
-    if (bytes < 1024 * 1024 * 1024) return `${Math.round(bytes / 1024 / 1024)} MB`;
+    if (bytes < 1024 * 1024 * 1024)
+      return `${Math.round(bytes / 1024 / 1024)} MB`;
     return `${Math.round(bytes / 1024 / 1024 / 1024)} GB`;
   }
 
@@ -663,7 +658,7 @@ class MediaComponent {
   openFileUploadModal() {
     const modal = document.createElement("div");
     modal.className = "tb-modal";
-    
+
     const modalContent = document.createElement("div");
     modalContent.className = "tb-modal-content";
 
@@ -673,13 +668,13 @@ class MediaComponent {
     // Append elements to modal content
     modalContent.appendChild(this.createModalHeader());
     modalContent.appendChild(this.createUploadArea());
-    
+
     const fileListContainer = document.createElement("div");
     fileListContainer.className = "file-list";
     fileListContainer.id = "fileList";
     fileListContainer.innerHTML = fileListHtml;
     modalContent.appendChild(fileListContainer);
-    
+
     modalContent.appendChild(this.createModalActions());
 
     modal.appendChild(modalContent);
@@ -687,21 +682,31 @@ class MediaComponent {
   }
 
   createExistingFileListHTML() {
-    const removeBeforeFirstHyphen = (str) => str.split('-').slice(1).join('-');
-    return this.dataManager.media.map(file => `
+    const removeBeforeFirstHyphen = (str) => str.split("-").slice(1).join("-");
+    return this.dataManager.media
+      .map(
+        (file) => `
       <div class="file-item valid" 
            data-MediaId="${file.MediaId}" 
            data-MediaUrl="${file.MediaUrl}" 
            data-MediaName="${file.MediaName}">
-        <img src="${file.MediaUrl}" alt="${file.MediaName}" class="preview-image">
+        <img src="${file.MediaUrl}" alt="${
+          file.MediaName
+        }" class="preview-image">
         <div class="file-info">
-          <div class="file-name">${removeBeforeFirstHyphen(file.MediaName)}</div>
+          <div class="file-name">${removeBeforeFirstHyphen(
+            file.MediaName
+          )}</div>
           <div class="file-size">${this.formatFileSize(file.MediaSize)}</div>
         </div>
         <span class="status-icon" style="color: green;"></span>
-        <span title="Delete file" class="delete-media fa-regular fa-trash-can" data-mediaid="${file.MediaId}"></span>
+        <span title="Delete file" class="delete-media fa-regular fa-trash-can" data-mediaid="${
+          file.MediaId
+        }"></span>
       </div>
-    `).join('');
+    `
+      )
+      .join("");
   }
 
   setupFileManager() {
@@ -729,17 +734,20 @@ class MediaComponent {
 
   handleModalOpen(modal, fileInputField, allUploadedFiles) {
     if (!this.editorManager.selectedComponent) {
-      this.toolBoxManager.displayAlertMessage("Please select a tile to continue", "error");
+      this.toolBoxManager.displayAlertMessage(
+        "Please select a tile to continue",
+        "error"
+      );
       return;
     }
 
-          $(".delete-media").on("click", (e) => {
-            e.stopPropagation()
-            const mediaId = e.target.dataset.mediaid
-            if (mediaId) {
-              this.deleteMedia(mediaId)
-            }
-          })
+    $(".delete-media").on("click", (e) => {
+      e.stopPropagation();
+      const mediaId = e.target.dataset.mediaid;
+      if (mediaId) {
+        this.deleteMedia(mediaId);
+      }
+    });
     document.body.appendChild(modal);
     document.body.appendChild(fileInputField);
 
@@ -767,16 +775,21 @@ class MediaComponent {
   }
 
   addDeleteMediaListeners(modal) {
-    $(modal).find(".delete-media").on("click", (e) => {
-      const mediaId = e.target.dataset.mediaid;
-      if (mediaId) {
-        const popup = this.popupModal("Delete media", "Are you sure you want to delete this media file?");
-        document.body.appendChild(popup);
-        popup.style.display = "flex";
+    $(modal)
+      .find(".delete-media")
+      .on("click", (e) => {
+        const mediaId = e.target.dataset.mediaid;
+        if (mediaId) {
+          const popup = this.popupModal(
+            "Delete media",
+            "Are you sure you want to delete this media file?"
+          );
+          document.body.appendChild(popup);
+          popup.style.display = "flex";
 
-        this.setupPopupButtonListeners(popup, mediaId);
-      }
-    });
+          this.setupPopupButtonListeners(popup, mediaId);
+        }
+      });
   }
 
   setupPopupButtonListeners(popup, mediaId) {
@@ -849,10 +862,12 @@ class MediaComponent {
 
   displayMediaFile(fileList, file) {
     const fileItem = document.createElement("div");
-    fileItem.className = `file-item ${this.validateFile(file) ? 'valid' : 'invalid'}`;
+    fileItem.className = `file-item ${
+      this.validateFile(file) ? "valid" : "invalid"
+    }`;
     fileItem.setAttribute("data-mediaid", file.MediaId);
 
-    const removeBeforeFirstHyphen = (str) => str.split('-').slice(1).join('-');
+    const removeBeforeFirstHyphen = (str) => str.split("-").slice(1).join("-");
 
     const isValid = this.validateFile(file);
     fileItem.innerHTML = `
@@ -861,10 +876,12 @@ class MediaComponent {
         <div class="file-name">${removeBeforeFirstHyphen(file.MediaName)}</div>
         <div class="file-size">${this.formatFileSize(file.MediaSize)}</div>
       </div>
-      <span class="status-icon" style="color: ${isValid ? 'green' : 'red'}">
-        ${isValid ? '' : '⚠'}
+      <span class="status-icon" style="color: ${isValid ? "green" : "red"}">
+        ${isValid ? "" : "⚠"}
       </span>
-      <span class="delete-media fa-regular fa-trash-can" data-mediaid="${file.MediaId}"></span>
+      <span class="delete-media fa-regular fa-trash-can" data-mediaid="${
+        file.MediaId
+      }"></span>
     `;
 
     fileItem.onclick = () => {
@@ -873,23 +890,30 @@ class MediaComponent {
       }
     };
 
-    $(fileItem).find(".delete-media").on("click", (e) => {
-      const mediaId = e.target.dataset.mediaid;
-      if (mediaId) {
-        const popup = this.popupModal("Delete media", "Are you sure you want to delete this media file?");
-        document.body.appendChild(popup);
-        popup.style.display = "flex";
+    $(fileItem)
+      .find(".delete-media")
+      .on("click", (e) => {
+        const mediaId = e.target.dataset.mediaid;
+        if (mediaId) {
+          const popup = this.popupModal(
+            "Delete media",
+            "Are you sure you want to delete this media file?"
+          );
+          document.body.appendChild(popup);
+          popup.style.display = "flex";
 
-        this.setupPopupButtonListeners(popup, mediaId);
-      }
-    });
+          this.setupPopupButtonListeners(popup, mediaId);
+        }
+      });
 
     fileList.appendChild(fileItem);
   }
 
   validateFile(file) {
     const isValidSize = file.MediaSize <= 2 * 1024 * 1024;
-    const isValidType = ["image/jpeg", "image/jpg", "image/png"].includes(file.MediaType);
+    const isValidType = ["image/jpeg", "image/jpg", "image/png"].includes(
+      file.MediaType
+    );
     return isValidSize && isValidType;
   }
 
@@ -953,7 +977,9 @@ class MediaComponent {
       .then((res) => {
         if (res.success === true) {
           // Remove the media item from the DOM
-          const mediaItem = document.querySelector(`[data-mediaid="${mediaId}"]`);
+          const mediaItem = document.querySelector(
+            `[data-mediaid="${mediaId}"]`
+          );
           if (mediaItem) {
             mediaItem.remove();
           }

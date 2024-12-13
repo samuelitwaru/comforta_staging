@@ -1,3 +1,5 @@
+let currentIndex = 0;
+
 class ChildEditorManager {
   // child editor manager
   editors = {};
@@ -22,7 +24,7 @@ class ChildEditorManager {
         this.createChildEditor(homePage);
         this.currentPageId = homePage.PageId;
       } else {
-        this.toolsSection.displayAlertMessage("No Home Page Found", "danger")
+        alert("No Home Page Found");
         return;
       }
     });
@@ -51,6 +53,7 @@ class ChildEditorManager {
   }
 
   createChildEditor(page) {
+    console.log("Page is: ", page)
     const pageId = page.PageId;
     const count = this.container.children.length;
     const editorContainer = document.createElement("div");
@@ -125,11 +128,9 @@ class ChildEditorManager {
 
     // Add Event Listeners
     this.addEditorEventListners(editor);
-
     // Load or Initialize Editor Content
     if (page.PageGJSJson) {
       editor.loadProjectData(JSON.parse(page.PageGJSJson));
-      
 
       if (page.PageIsContentPage) {
         this.dataManager
@@ -166,31 +167,33 @@ class ChildEditorManager {
       } else {
         if (page.PageName == "Location") {
           const pageData = JSON.parse(page.PageGJSJson)
-          pageData.pages[0].component.components[0].src = this.dataManager.Location.LocationImage
-          pageData.pages[0].component.components[1].content = this.dataManager.Location.LocationDescription
+          console.log(this.dataManager.Location)
+          pageData.pages[0].component.components[0].src = this.dataManager.Location.LocationImage_GXI
+          pageData.pages[0].component.components[1].content = this.dataManager.Location.LocationDescription 
           editor.DomComponents.clear()
           editor.loadProjectData(pageData);
         }
       }
+
     } else {
       this.dataManager
-          .getContentPageData(page.PageId)
-          .then((contentPageData) => {
-            if (contentPageData) {
-              const projectData =
-                this.initialContentPageTemplate(contentPageData);
-              editor.addComponents(projectData)[0];
-  
-              // Ensure Call To Actions are applied
-              this.toolsSection.pageContentCtas(
-                contentPageData.CallToActions,
-                editor
-              );
-            }
-          })
-          .catch((error) => {
-            console.error("Error fetching content page data:", error);
-          });
+        .getContentPageData(page.PageId)
+        .then((contentPageData) => {
+          if (contentPageData) {
+            const projectData =
+              this.initialContentPageTemplate(contentPageData);
+            editor.addComponents(projectData)[0];
+
+            // Ensure Call To Actions are applied
+            this.toolsSection.pageContentCtas(
+              contentPageData.CallToActions,
+              editor
+            );
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching content page data:", error);
+        });
     }
 
     // Adjust Canvas for Content Pages
@@ -218,7 +221,8 @@ class ChildEditorManager {
       hoverable: false,
     });
 
-    this.activateNavigators();
+    const navigator = this.activateNavigators();
+    navigator.updateButtonVisibility();
     new Clock(`current-time-${pageId}`);
   }
 
@@ -232,6 +236,10 @@ class ChildEditorManager {
       backButton.addEventListener("click", (e) => {
         e.preventDefault();
         $("#" + editorContainerId).remove();
+        // currentIndex = currentIndex - 1;
+        const navigator = this.activateNavigators();
+        navigator.updateScroll();
+        navigator.updateButtonsVisibility();
       });
     }
   }
@@ -264,27 +272,27 @@ class ChildEditorManager {
 
   addEditorEventListners(editor) {
     editor.on("load", (model) => {
-      // Apply Theme and Activate Navigators
-      // this.toolsSection.applyThemeIconsAndColor(this.theme.ThemeName);
-
       this.dataManager.getLocationTheme().then((theme) => {
         this.toolsSection.setTheme(theme.ThemeName);
       });
       const wrapper = editor.getWrapper();
       wrapper.view.el.addEventListener("click", (e) => {
         const editorId = editor.getConfig().container;
-        this.setCurrentEditor(editorId);
         const editorContainerId = editorId + "-frame";
+
+        this.setCurrentEditor(editorId);
         this.currentPageId = $(editorContainerId).data().pageid;
+
         if (e.target.attributes["tile-action-object-id"]) {
           console.log(this.dataManager.pages);
           const page = this.getPage(
             e.target.attributes["tile-action-object-id"].value
           );
-          console.log(page);
           if (page) {
             $(editorContainerId).nextAll().remove();
+
             this.createChildEditor(page);
+
             $("#content-page-section").hide();
             if (page.PageIsContentPage) {
               $("#content-page-section").show();
@@ -300,8 +308,6 @@ class ChildEditorManager {
         if (!button) return;
         const templateWrapper = button.closest(".template-wrapper");
         if (!templateWrapper) return;
-
-        console.log(templateWrapper);
 
         this.templateComponent = editor.Components.getById(templateWrapper.id);
         if (!this.templateComponent) return;
@@ -321,7 +327,7 @@ class ChildEditorManager {
     });
 
     editor.on("component:selected", (component) => {
-      this.toolsSection.resetPropertySection();
+      // this.toolsSection.resetPropertySection();
       this.selectedTemplateWrapper = component.getEl();
 
       this.selectedComponent = component;
@@ -356,7 +362,18 @@ class ChildEditorManager {
       this.hideContextMenu();
 
       this.toolsSection.unDoReDo(this.currentEditor.editor);
+      this.updateUIState();
     });
+  }
+
+  updateUIState() {
+    document.querySelector("#templates-button").classList.remove("active");
+    document.querySelector("#pages-button").classList.remove("active");
+    document.querySelector("#pages-button").classList.add("active");
+    document.querySelector("#mapping-section").style.display = "none";
+    document.querySelector("#tools-section").style.display = "block";
+    document.querySelector("#templates-content").style.display = "none";
+    document.querySelector("#pages-content").style.display = "block";
   }
 
   deleteTemplate(templateComponent) {
@@ -471,18 +488,130 @@ class ChildEditorManager {
     }
   }
 
+  // activateNavigators() {
+  //   const wrapper = document.getElementById("child-container");
+  //   const prevButton = document.getElementById("scroll-left");
+  //   const nextButton = document.getElementById("scroll-right");
+
+  //   if (!wrapper || !prevButton || !nextButton) {
+  //     console.error("Essential elements are missing from the DOM");
+  //     return;
+  //   }
+
+  //   const items = document.querySelectorAll(".mobile-frame");
+  //   const itemWidth = 250; // Item width + gap
+  //   const totalItems = items.length;
+
+  //   if (totalItems > 1) {
+  //     wrapper.style.justifyContent = "flex-start";
+  //   } else {
+  //     wrapper.style.justifyContent = "center";
+  //   }
+
+  //   const moveSlide = (direction) => {
+  //     const itemsToScroll = 1; // Number of items to scroll at a time
+
+  //     // Calculate the new index
+  //     const newIndex = currentIndex + (direction * itemsToScroll);
+
+  //     // Prevent scrolling out of bounds
+  //     currentIndex = Math.max(0, Math.min(newIndex, totalItems - 1));
+
+  //     // Scroll by translating the wrapper
+  //     const translateX = currentIndex * itemWidth;
+  //     wrapper.style.transform = `translateX(-${translateX}px)`;
+
+  //     // Update button visibility
+  //     updateButtonsVisibility();
+  //   }
+
+  //   const updateButtonsVisibility = () => {
+  //     prevButton.style.visibility = currentIndex === 0 ? "hidden" : "visible";
+  //     nextButton.style.visibility =
+  //       currentIndex === totalItems - 1 ? "hidden" : "visible";
+  //   }
+
+  //   prevButton.addEventListener("click", () => moveSlide(-1));
+  //   nextButton.addEventListener("click", () => moveSlide(1));
+
+  //   const updateScroll = () => {
+  //     // Remove the specific item
+  //     const items = document.querySelectorAll(".mobile-frame");
+  //     const totalItems = items.length;
+
+  //     // Adjust current index if it's now out of bounds
+  //     currentIndex = Math.min(currentIndex, totalItems - 1);
+
+  //     // Reposition the view
+  //     const translateX = currentIndex * itemWidth;
+  //     wrapper.style.transform = `translateX(-${translateX}px)`;
+
+  //     // Update button visibility
+  //     updateButtonsVisibility();
+  //   }
+
+  //   const scrollToFrame = () => {
+  //     const items = document.querySelectorAll(".mobile-frame");
+  //     const totalItems = items.length;
+
+  //     currentIndex = totalItems - 1;
+
+  //     // Calculate the translation value
+  //     const translateX = currentIndex * itemWidth;
+
+  //     // Apply the transformation to scroll
+  //     wrapper.style.transform = `translateX(-${translateX}px)`;
+  //     // Update button visibility
+  //     updateButtonsVisibility();
+  //   };
+
+  //   // Initialize button visibility
+  //   updateButtonsVisibility();
+
+  //   // Return the utility functions
+  //   return {
+  //     updateScroll,
+  //     scrollToFrame,
+  //     updateButtonsVisibility,
+  //   };
+  // }
   activateNavigators() {
-    const leftNavigator = document.querySelector(".page-navigator-left");
-    const rightNavigator = document.querySelector(".page-navigator-right");
+    const scrollContainer = document.getElementById("child-container");
+    const prevButton = document.getElementById("scroll-left");
+    const nextButton = document.getElementById("scroll-right");
 
-    if (leftNavigator && rightNavigator) {
-      // Display the navigators
-      leftNavigator.style.display = "block";
-      rightNavigator.style.display = "block";
+    const frames = document.querySelectorAll(".mobile-frame");
 
-      // Add event listeners for scrolling
-      const scrollLeftButton = document.getElementById("scroll-left");
-      const scrollRightButton = document.getElementById("scroll-right");
+    // Adjust the alignment based on the number of frames
+    const alignment = frames.length > 1 ? "flex-start" : "center";
+    scrollContainer.style.setProperty("justify-content", alignment);
+
+    // Smooth scroll functionality for buttons
+    const scrollBy = (offset) => {
+      scrollContainer.scrollTo({
+        left: scrollContainer.scrollLeft + offset,
+        behavior: "smooth",
+      });
+    };
+
+    prevButton.addEventListener("click", () => scrollBy(-200));
+    nextButton.addEventListener("click", () => scrollBy(200));
+
+    // Update button visibility based on scroll position
+    const updateButtonVisibility = () => {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
+
+      prevButton.style.display = scrollLeft > 0 ? "block" : "none";
+      nextButton.style.display =
+        scrollLeft + clientWidth < scrollWidth ? "block" : "none";
+    };
+
+    // Ensure visibility is updated initially and on scroll
+    updateButtonVisibility();
+    scrollContainer.addEventListener("scroll", updateButtonVisibility);
+
+    return {
+      updateButtonVisibility,
     }
   }
 

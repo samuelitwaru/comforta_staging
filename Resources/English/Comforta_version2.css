@@ -1,1 +1,17 @@
-@import"GeneXusUnanimo.UnanimoWeb.css";@import"Comforta_version2_Tokens.css";@layer Comforta_version2{}
+@import "GeneXusUnanimo.UnanimoWeb.css";
+@import "Comforta_version2_Tokens.css";
+
+
+@layer Comforta_version2 {
+/* [gx-css-import ignore - start] */
+ 
+/* [gx-css-import ignore - end] */
+/* [gx-css-user-controls - start] */
+/* [gx-css-user-controls - end] */
+.content-holder 
+{
+	padding : 0px !important;
+	margin : 0px !important;
+}
+
+}

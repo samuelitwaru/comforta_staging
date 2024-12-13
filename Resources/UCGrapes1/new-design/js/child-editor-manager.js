@@ -212,6 +212,8 @@ class ChildEditorManager {
       this.setCurrentEditor(`#${editorId}`);
     }
 
+    console.log("Editor Instances are:", this.editors);
+
     // Wrapper Settings
     const wrapper = editor.getWrapper();
     wrapper.set({
