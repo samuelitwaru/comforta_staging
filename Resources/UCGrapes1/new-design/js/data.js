@@ -947,11 +947,6 @@ class DataManager {
   }
 
   uploadFile(fileData, fileName, fileSize, fileType) {
-    console.log({MediaId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      MediaName: fileName,
-      MediaImageData: fileData,
-      MediaSize: fileSize,
-      MediaType: fileType})
     return new Promise((resolve, reject) => {
       if (fileData) {
         $.ajax({
@@ -1310,7 +1305,7 @@ const predefinedPages1 = {
                 "alt": "Sample Image"
               },
               "selectable": false
-            }
+            },
           ]
         }
       }

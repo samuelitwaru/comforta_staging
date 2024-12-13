@@ -1,4 +1,5 @@
 class ChildEditorManager {
+  // child editor manager
   editors = {};
   pages = [];
   theme = [];
@@ -21,7 +22,7 @@ class ChildEditorManager {
         this.createChildEditor(homePage);
         this.currentPageId = homePage.PageId;
       } else {
-        alert("No Home Page Found");
+        this.toolsSection.displayAlertMessage("No Home Page Found", "danger")
         return;
       }
     });
@@ -57,7 +58,7 @@ class ChildEditorManager {
     let appBar = "";
 
     // AppBar HTML
-    if (page.PageIsContentPage) {
+    if (page.PageIsContentPage || (page.PageIsPredefined && page.PageName!="Home")) {
       appBar = `
             <div class="app-bar">
                 <button id="content-back-button" class="back-button">
@@ -105,10 +106,10 @@ class ChildEditorManager {
           "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css",
           "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css",
           "https://fonts.googleapis.com/css2?family=Lora&family=Merriweather&family=Poppins:wght@400;500&family=Roboto:wght@400;500&display=swap",
-          "/Resources/UCGrapes2/new-design/css/toolbox.css",
-          "/Resources/UCGrapes2/new-design/css/child-editor.css",
+          "/Resources/UCGrapes1/new-design/css/toolbox.css",
+          "/Resources/UCGrapes1/new-design/css/child-editor.css",
         ],
-        scripts: ["/Resources/UCGrapes2/new-design/js/child-editor.js"],
+        scripts: ["/Resources/UCGrapes1/new-design/js/child-editor.js"],
       },
       baseCss: " ",
       dragMode: "normal",
@@ -128,6 +129,7 @@ class ChildEditorManager {
     // Load or Initialize Editor Content
     if (page.PageGJSJson) {
       editor.loadProjectData(JSON.parse(page.PageGJSJson));
+      
 
       if (page.PageIsContentPage) {
         this.dataManager
@@ -162,31 +164,37 @@ class ChildEditorManager {
             console.error("Error loading content page data:", error);
           });
       } else {
-        editor.loadProjectData(JSON.parse(page.PageGJSJson));
+        if (page.PageName == "Location") {
+          const pageData = JSON.parse(page.PageGJSJson)
+          pageData.pages[0].component.components[0].src = this.dataManager.Location.LocationImage
+          pageData.pages[0].component.components[1].content = this.dataManager.Location.LocationDescription
+          editor.DomComponents.clear()
+          editor.loadProjectData(pageData);
+        }
       }
     } else {
       this.dataManager
-        .getContentPageData(page.PageId)
-        .then((contentPageData) => {
-          if (contentPageData) {
-            const projectData =
-              this.initialContentPageTemplate(contentPageData);
-            editor.addComponents(projectData)[0];
-
-            // Ensure Call To Actions are applied
-            this.toolsSection.pageContentCtas(
-              contentPageData.CallToActions,
-              editor
-            );
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching content page data:", error);
-        });
+          .getContentPageData(page.PageId)
+          .then((contentPageData) => {
+            if (contentPageData) {
+              const projectData =
+                this.initialContentPageTemplate(contentPageData);
+              editor.addComponents(projectData)[0];
+  
+              // Ensure Call To Actions are applied
+              this.toolsSection.pageContentCtas(
+                contentPageData.CallToActions,
+                editor
+              );
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching content page data:", error);
+          });
     }
 
     // Adjust Canvas for Content Pages
-    if (page.PageIsContentPage) {
+    if (page.PageIsContentPage || (page.PageIsPredefined && page.PageName!="Home")) {
       const canvas = editor.Canvas.getElement();
       if (canvas) {
         canvas.style.setProperty("height", "calc(100% - 100px)", "important");

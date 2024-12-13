@@ -9,7 +9,11 @@
           "components": [
             {
               "type": "image",
+              "id": "location-image",
               "src": "https://staging.comforta.yukon.software/media/LocationInfo.png",
+              "attributes": {
+                "id": "location-image"
+              },
               "style": {
                 "width": "100%",
                 "height": "auto",
@@ -22,7 +26,11 @@
             },
             {
               "type": "text",
+              "id": "location-description",
               "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              "attributes": {
+                "id": "location-description"
+              },
               "style": {
                 "margin": "20px auto",
                 "width": "80%",
