@@ -167,7 +167,8 @@ class ChildEditorManager {
       } else {
         if (page.PageName == "Location") {
           const pageData = JSON.parse(page.PageGJSJson)
-          pageData.pages[0].component.components[0].src = this.dataManager.Location.LocationImage
+          console.log(this.dataManager.Location)
+          pageData.pages[0].component.components[0].src = this.dataManager.Location.LocationImage_GXI
           pageData.pages[0].component.components[1].content = this.dataManager.Location.LocationDescription 
           editor.DomComponents.clear()
           editor.loadProjectData(pageData);
