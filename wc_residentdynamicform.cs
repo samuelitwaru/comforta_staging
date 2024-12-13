@@ -1306,7 +1306,7 @@ namespace GeneXus.Programs {
                            AV34ResidentIdCollection.Clear();
                            AV34ResidentIdCollection.Add(new prc_getresidentidfromguid(context).executeUdp(  AV27ResidentGUID), 0);
                            AV38Metadata = new SdtSDT_OneSignalCustomData(context);
-                           AV38Metadata.gxTpr_Isdynamicform = true;
+                           AV38Metadata.gxTpr_Notificationcategory = "Form";
                            AV38Metadata.gxTpr_Formdetails.gxTpr_Forminstanceid = (short)(AV7WWPFormInstance.gxTpr_Wwpforminstanceid);
                            AV38Metadata.gxTpr_Formdetails.gxTpr_Formmode = "DSP";
                            AV38Metadata.gxTpr_Formdetails.gxTpr_Formreferencename = AV14WWPFormReferenceName;
@@ -1813,7 +1813,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121214304312", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412138171123", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1829,7 +1829,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_residentdynamicform.js", "?2024121214304313", false, true);
+         context.AddJavascriptSource("wc_residentdynamicform.js", "?202412138171125", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/ConfirmPanel/BootstrapConfirmPanelRender.js", "", false, true);

@@ -30,6 +30,8 @@ namespace GeneXus.Programs
 		public SdtSDT_OneSignalCustomData( )
 		{
 			/* Constructor for serialization */
+			gxTv_SdtSDT_OneSignalCustomData_Notificationcategory = "";
+
 		}
 
 		public SdtSDT_OneSignalCustomData(IGxContext context)
@@ -57,16 +59,7 @@ namespace GeneXus.Programs
 
 		public override void ToJSON(bool includeState)
 		{
-			AddObjectProperty("isDiscussion", gxTpr_Isdiscussion, false);
-
-
-			AddObjectProperty("isDynamicForm", gxTpr_Isdynamicform, false);
-
-
-			AddObjectProperty("isAgendaEvent", gxTpr_Isagendaevent, false);
-
-
-			AddObjectProperty("isGeneralCommunication", gxTpr_Isgeneralcommunication, false);
+			AddObjectProperty("notificationCategory", gxTpr_Notificationcategory, false);
 
 			if (gxTv_SdtSDT_OneSignalCustomData_Formdetails != null)
 			{
@@ -80,70 +73,26 @@ namespace GeneXus.Programs
 			{
 				AddObjectProperty("agendaDetails", gxTv_SdtSDT_OneSignalCustomData_Agendadetails, false);
 			}
+			if (gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails != null)
+			{
+				AddObjectProperty("toolboxDetails", gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails, false);
+			}
 			return;
 		}
 		#endregion
 
 		#region Properties
 
-		[SoapElement(ElementName="isDiscussion")]
-		[XmlElement(ElementName="isDiscussion")]
-		public bool gxTpr_Isdiscussion
+		[SoapElement(ElementName="notificationCategory")]
+		[XmlElement(ElementName="notificationCategory")]
+		public string gxTpr_Notificationcategory
 		{
 			get {
-				return gxTv_SdtSDT_OneSignalCustomData_Isdiscussion; 
+				return gxTv_SdtSDT_OneSignalCustomData_Notificationcategory; 
 			}
 			set {
-				gxTv_SdtSDT_OneSignalCustomData_Isdiscussion = value;
-				SetDirty("Isdiscussion");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="isDynamicForm")]
-		[XmlElement(ElementName="isDynamicForm")]
-		public bool gxTpr_Isdynamicform
-		{
-			get {
-				return gxTv_SdtSDT_OneSignalCustomData_Isdynamicform; 
-			}
-			set {
-				gxTv_SdtSDT_OneSignalCustomData_Isdynamicform = value;
-				SetDirty("Isdynamicform");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="isAgendaEvent")]
-		[XmlElement(ElementName="isAgendaEvent")]
-		public bool gxTpr_Isagendaevent
-		{
-			get {
-				return gxTv_SdtSDT_OneSignalCustomData_Isagendaevent; 
-			}
-			set {
-				gxTv_SdtSDT_OneSignalCustomData_Isagendaevent = value;
-				SetDirty("Isagendaevent");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="isGeneralCommunication")]
-		[XmlElement(ElementName="isGeneralCommunication")]
-		public bool gxTpr_Isgeneralcommunication
-		{
-			get {
-				return gxTv_SdtSDT_OneSignalCustomData_Isgeneralcommunication; 
-			}
-			set {
-				gxTv_SdtSDT_OneSignalCustomData_Isgeneralcommunication = value;
-				SetDirty("Isgeneralcommunication");
+				gxTv_SdtSDT_OneSignalCustomData_Notificationcategory = value;
+				SetDirty("Notificationcategory");
 			}
 		}
 
@@ -260,6 +209,43 @@ namespace GeneXus.Programs
 		}
 
 
+		[SoapElement(ElementName="toolboxDetails" )]
+		[XmlElement(ElementName="toolboxDetails" )]
+		public SdtSDT_OneSignalCustomData_toolboxDetails gxTpr_Toolboxdetails
+		{
+			get {
+				if ( gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails == null )
+				{
+					gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails = new SdtSDT_OneSignalCustomData_toolboxDetails(context);
+				}
+				gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails_N = false;
+				return gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails;
+			}
+			set {
+				gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails_N = false;
+				gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails = value;
+				SetDirty("Toolboxdetails");
+			}
+
+		}
+
+		public void gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails_SetNull()
+		{
+			gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails_N = true;
+			gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails = null;
+		}
+
+		public bool gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails_IsNull()
+		{
+			return gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails == null;
+		}
+		public bool ShouldSerializegxTpr_Toolboxdetails_Json()
+		{
+				return (gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails != null && gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails.ShouldSerializeSdtJson());
+
+		}
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -281,6 +267,8 @@ namespace GeneXus.Programs
 
 		public void initialize( )
 		{
+			gxTv_SdtSDT_OneSignalCustomData_Notificationcategory = "";
+
 			gxTv_SdtSDT_OneSignalCustomData_Formdetails_N = true;
 
 
@@ -288,6 +276,9 @@ namespace GeneXus.Programs
 
 
 			gxTv_SdtSDT_OneSignalCustomData_Agendadetails_N = true;
+
+
+			gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails_N = true;
 
 			return  ;
 		}
@@ -298,16 +289,7 @@ namespace GeneXus.Programs
 
 		#region Declaration
 
-		protected bool gxTv_SdtSDT_OneSignalCustomData_Isdiscussion;
-		 
-
-		protected bool gxTv_SdtSDT_OneSignalCustomData_Isdynamicform;
-		 
-
-		protected bool gxTv_SdtSDT_OneSignalCustomData_Isagendaevent;
-		 
-
-		protected bool gxTv_SdtSDT_OneSignalCustomData_Isgeneralcommunication;
+		protected string gxTv_SdtSDT_OneSignalCustomData_Notificationcategory;
 		 
 		protected bool gxTv_SdtSDT_OneSignalCustomData_Formdetails_N;
 		protected SdtSDT_OneSignalCustomData_formDetails gxTv_SdtSDT_OneSignalCustomData_Formdetails = null; 
@@ -317,6 +299,9 @@ namespace GeneXus.Programs
 
 		protected bool gxTv_SdtSDT_OneSignalCustomData_Agendadetails_N;
 		protected SdtSDT_OneSignalCustomData_agendaDetails gxTv_SdtSDT_OneSignalCustomData_Agendadetails = null; 
+
+		protected bool gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails_N;
+		protected SdtSDT_OneSignalCustomData_toolboxDetails gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails = null; 
 
 
 
@@ -336,55 +321,19 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
-		[DataMember(Name="isDiscussion", Order=0)]
-		public bool gxTpr_Isdiscussion
+		[DataMember(Name="notificationCategory", Order=0)]
+		public  string gxTpr_Notificationcategory
 		{
 			get { 
-				return sdt.gxTpr_Isdiscussion;
+				return sdt.gxTpr_Notificationcategory;
 
 			}
 			set { 
-				sdt.gxTpr_Isdiscussion = value;
+				 sdt.gxTpr_Notificationcategory = value;
 			}
 		}
 
-		[DataMember(Name="isDynamicForm", Order=1)]
-		public bool gxTpr_Isdynamicform
-		{
-			get { 
-				return sdt.gxTpr_Isdynamicform;
-
-			}
-			set { 
-				sdt.gxTpr_Isdynamicform = value;
-			}
-		}
-
-		[DataMember(Name="isAgendaEvent", Order=2)]
-		public bool gxTpr_Isagendaevent
-		{
-			get { 
-				return sdt.gxTpr_Isagendaevent;
-
-			}
-			set { 
-				sdt.gxTpr_Isagendaevent = value;
-			}
-		}
-
-		[DataMember(Name="isGeneralCommunication", Order=3)]
-		public bool gxTpr_Isgeneralcommunication
-		{
-			get { 
-				return sdt.gxTpr_Isgeneralcommunication;
-
-			}
-			set { 
-				sdt.gxTpr_Isgeneralcommunication = value;
-			}
-		}
-
-		[DataMember(Name="formDetails", Order=4, EmitDefaultValue=false)]
+		[DataMember(Name="formDetails", Order=1, EmitDefaultValue=false)]
 		public SdtSDT_OneSignalCustomData_formDetails_RESTInterface gxTpr_Formdetails
 		{
 			get {
@@ -401,7 +350,7 @@ namespace GeneXus.Programs
 
 		}
 
-		[DataMember(Name="discussionDetails", Order=5, EmitDefaultValue=false)]
+		[DataMember(Name="discussionDetails", Order=2, EmitDefaultValue=false)]
 		public SdtSDT_OneSignalCustomData_discussionDetails_RESTInterface gxTpr_Discussiondetails
 		{
 			get {
@@ -418,7 +367,7 @@ namespace GeneXus.Programs
 
 		}
 
-		[DataMember(Name="agendaDetails", Order=6, EmitDefaultValue=false)]
+		[DataMember(Name="agendaDetails", Order=3, EmitDefaultValue=false)]
 		public SdtSDT_OneSignalCustomData_agendaDetails_RESTInterface gxTpr_Agendadetails
 		{
 			get {
@@ -431,6 +380,23 @@ namespace GeneXus.Programs
 
 			set {
 				sdt.gxTpr_Agendadetails = value.sdt;
+			}
+
+		}
+
+		[DataMember(Name="toolboxDetails", Order=4, EmitDefaultValue=false)]
+		public SdtSDT_OneSignalCustomData_toolboxDetails_RESTInterface gxTpr_Toolboxdetails
+		{
+			get {
+				if (sdt.ShouldSerializegxTpr_Toolboxdetails_Json())
+					return new SdtSDT_OneSignalCustomData_toolboxDetails_RESTInterface(sdt.gxTpr_Toolboxdetails);
+				else
+					return null;
+
+			}
+
+			set {
+				sdt.gxTpr_Toolboxdetails = value.sdt;
 			}
 
 		}

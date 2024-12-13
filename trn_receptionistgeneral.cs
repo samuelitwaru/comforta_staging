@@ -542,7 +542,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-8", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, divUnnamedtable2_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, divUnnamedtable2_Internalname, 1, 0, "px", 0, "px", "AttributePhoneNumberDisplay", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
@@ -556,10 +556,10 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavReceptionistphonecode_description_Internalname, "Receptionist Phone Code_Description", "col-sm-3 DropDownComponentLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtavReceptionistphonecode_description_Internalname, "Receptionist Phone Code_Description", "col-sm-3 ", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 44,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavReceptionistphonecode_description_Internalname, AV20ReceptionistPhoneCode_Description, StringUtil.RTrim( context.localUtil.Format( AV20ReceptionistPhoneCode_Description, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,44);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavReceptionistphonecode_description_Jsonclick, 0, "DropDownComponent", "", "", "", "", 1, edtavReceptionistphonecode_description_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_ReceptionistGeneral.htm");
+            GxWebStd.gx_single_line_edit( context, edtavReceptionistphonecode_description_Internalname, AV20ReceptionistPhoneCode_Description, StringUtil.RTrim( context.localUtil.Format( AV20ReceptionistPhoneCode_Description, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,44);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavReceptionistphonecode_description_Jsonclick, 0, "", "", "", "", "", 1, edtavReceptionistphonecode_description_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_ReceptionistGeneral.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -570,10 +570,10 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtReceptionistPhoneNumber_Internalname, "Receptionist Phone Number", "col-sm-3 AttributeLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtReceptionistPhoneNumber_Internalname, "Receptionist Phone Number", "col-sm-3 PhoneNumberDisplayLabel", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 47,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtReceptionistPhoneNumber_Internalname, A374ReceptionistPhoneNumber, StringUtil.RTrim( context.localUtil.Format( A374ReceptionistPhoneNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,47);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtReceptionistPhoneNumber_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtReceptionistPhoneNumber_Enabled, 0, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_ReceptionistGeneral.htm");
+            GxWebStd.gx_single_line_edit( context, edtReceptionistPhoneNumber_Internalname, A374ReceptionistPhoneNumber, StringUtil.RTrim( context.localUtil.Format( A374ReceptionistPhoneNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,47);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtReceptionistPhoneNumber_Jsonclick, 0, "PhoneNumberDisplay", "", "", "", "", 1, edtReceptionistPhoneNumber_Enabled, 0, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_ReceptionistGeneral.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1588,7 +1588,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412111891476", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241213816582", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1604,7 +1604,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_receptionistgeneral.js", "?202412111891477", false, true);
+         context.AddJavascriptSource("trn_receptionistgeneral.js", "?20241213816582", false, true);
          /* End function include_jscripts */
       }
 
@@ -1686,6 +1686,7 @@ namespace GeneXus.Programs {
          edtReceptionistPhoneNumber_Jsonclick = "";
          edtReceptionistPhoneNumber_Enabled = 0;
          edtavReceptionistphonecode_description_Jsonclick = "";
+         edtavReceptionistphonecode_description_Backcolor = (int)(0xFFFFFF);
          edtavReceptionistphonecode_description_Enabled = 1;
          edtReceptionistEmail_Jsonclick = "";
          edtReceptionistEmail_Enabled = 0;
@@ -1844,6 +1845,7 @@ namespace GeneXus.Programs {
       private int edtReceptionistGAMGUID_Enabled ;
       private int edtReceptionistPhone_Enabled ;
       private int idxLst ;
+      private int edtavReceptionistphonecode_description_Backcolor ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
       private string sPrefix ;

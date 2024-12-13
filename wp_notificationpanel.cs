@@ -779,7 +779,7 @@ namespace GeneXus.Programs {
          if ( AV10CheckRequiredFieldsResult )
          {
             AV13Metadata = new SdtSDT_OneSignalCustomData(context);
-            AV13Metadata.gxTpr_Isgeneralcommunication = true;
+            AV13Metadata.gxTpr_Notificationcategory = "General";
             new prc_sendresidentnotification(context ).execute(  AV7Title,  AV8Message,  "GENERAL",  AV13Metadata,  AV12ResidentIdCollectionEmpty) ;
             GX_msglist.addItem("Message sent");
             AV7Title = "";
@@ -859,7 +859,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412121432215", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241213817719", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -875,7 +875,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_notificationpanel.js", "?202412121432215", false, true);
+         context.AddJavascriptSource("wp_notificationpanel.js", "?20241213817719", false, true);
          /* End function include_jscripts */
       }
 

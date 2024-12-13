@@ -102,15 +102,7 @@ namespace GeneXus.Programs {
             if ( AV24DeviceTokenCollection.Count > 0 )
             {
                AV27Metadata = new SdtSDT_OneSignalCustomData(context);
-               AV27Metadata.gxTpr_Isagendaevent = false;
-               AV27Metadata.gxTpr_Isdiscussion = false;
-               AV27Metadata.gxTpr_Isdynamicform = false;
-               AV27Metadata.gxTpr_Isgeneralcommunication = true;
-               AV27Metadata.gxTpr_Agendadetails.gxTpr_Agendaeventid = Guid.NewGuid( );
-               AV27Metadata.gxTpr_Discussiondetails.gxTpr_Discussionid = "9";
-               AV27Metadata.gxTpr_Formdetails.gxTpr_Forminstanceid = 10;
-               AV27Metadata.gxTpr_Formdetails.gxTpr_Formmode = "DSP";
-               AV27Metadata.gxTpr_Formdetails.gxTpr_Formreferencename = "ComplaintForm";
+               AV27Metadata.gxTpr_Notificationcategory = "General";
                new prc_sendonesignalnotification(context ).execute(  AV24DeviceTokenCollection,  AV10title,  AV9message,  AV27Metadata, out  AV13OutMessages, out  AV14IsSuccessful) ;
             }
             if ( AV14IsSuccessful )

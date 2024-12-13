@@ -208,7 +208,7 @@ namespace GeneXus.Programs.workwithplus {
             AV14EventCreated = true;
             AV24EventDescription = AV20Title + " - " + context.localUtil.Format( AV17EventStartDate, "99/99/99 99:99") + " to " + context.localUtil.Format( AV15EventEndDate, "99/99/99 99:99");
             AV36Metadata = new SdtSDT_OneSignalCustomData(context);
-            AV36Metadata.gxTpr_Isagendaevent = true;
+            AV36Metadata.gxTpr_Notificationcategory = "Agenda";
             AV36Metadata.gxTpr_Agendadetails.gxTpr_Agendaeventid = AV22Trn_AgendCalendar.gxTpr_Agendacalendarid;
             if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
             {

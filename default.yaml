@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241212113318"
+  version: "20241213051737"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -2038,24 +2038,17 @@ components:
             $ref: "#/components/schemas/SDT_Row"
     SDT_OneSignalCustomData:
       properties:
-        isDiscussion:
-          description: "is Discussion"
-          type: "boolean"
-        isDynamicForm:
-          description: "is Dynamic Form"
-          type: "boolean"
-        isAgendaEvent:
-          description: "is Agenda Event"
-          type: "boolean"
-        isGeneralCommunication:
-          description: "is General Communication"
-          type: "boolean"
+        notificationCategory:
+          description: "notification Category"
+          type: "string"
         formDetails:
           $ref: "#/components/schemas/SDT_OneSignalCustomData.formDetails"
         discussionDetails:
           $ref: "#/components/schemas/SDT_OneSignalCustomData.discussionDetails"
         agendaDetails:
           $ref: "#/components/schemas/SDT_OneSignalCustomData.agendaDetails"
+        toolboxDetails:
+          $ref: "#/components/schemas/SDT_OneSignalCustomData.toolboxDetails"
     SDT_OneSignalCustomData.formDetails:
       properties:
         formMode:
@@ -2079,6 +2072,16 @@ components:
       properties:
         agendaEventId:
           description: "Agenda Calendar Id"
+          type: "string"
+          format: "uuid"
+      x-gx-level: "SDT_OneSignalCustomData"
+    SDT_OneSignalCustomData.toolboxDetails:
+      properties:
+        pageName:
+          description: "page Name"
+          type: "string"
+        pageId:
+          description: "page Id"
           type: "string"
           format: "uuid"
       x-gx-level: "SDT_OneSignalCustomData"

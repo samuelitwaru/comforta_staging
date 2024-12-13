@@ -1382,9 +1382,7 @@ namespace GeneXus.Programs {
                                                  A90ReceptionistGivenName ,
                                                  A91ReceptionistLastName ,
                                                  A93ReceptionistEmail ,
-                                                 A373ReceptionistPhoneCode ,
                                                  A94ReceptionistPhone ,
-                                                 A374ReceptionistPhoneNumber ,
                                                  AV15OrderedBy ,
                                                  AV16OrderedDsc ,
                                                  A29LocationId ,
@@ -1399,10 +1397,8 @@ namespace GeneXus.Programs {
             lV17FilterFullText = StringUtil.Concat( StringUtil.RTrim( AV17FilterFullText), "%", "");
             lV17FilterFullText = StringUtil.Concat( StringUtil.RTrim( AV17FilterFullText), "%", "");
             lV17FilterFullText = StringUtil.Concat( StringUtil.RTrim( AV17FilterFullText), "%", "");
-            lV17FilterFullText = StringUtil.Concat( StringUtil.RTrim( AV17FilterFullText), "%", "");
-            lV17FilterFullText = StringUtil.Concat( StringUtil.RTrim( AV17FilterFullText), "%", "");
             /* Using cursor H006M2 */
-            pr_default.execute(0, new Object[] {AV8LocationId, AV9OrganisationId, lV17FilterFullText, lV17FilterFullText, lV17FilterFullText, lV17FilterFullText, lV17FilterFullText, lV17FilterFullText, GXPagingFrom2, GXPagingTo2, GXPagingTo2});
+            pr_default.execute(0, new Object[] {AV8LocationId, AV9OrganisationId, lV17FilterFullText, lV17FilterFullText, lV17FilterFullText, lV17FilterFullText, GXPagingFrom2, GXPagingTo2, GXPagingTo2});
             nGXsfl_35_idx = 1;
             sGXsfl_35_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_35_idx), 4, 0), 4, "0");
             SubsflControlProps_352( ) ;
@@ -1469,9 +1465,7 @@ namespace GeneXus.Programs {
                                               A90ReceptionistGivenName ,
                                               A91ReceptionistLastName ,
                                               A93ReceptionistEmail ,
-                                              A373ReceptionistPhoneCode ,
                                               A94ReceptionistPhone ,
-                                              A374ReceptionistPhoneNumber ,
                                               AV15OrderedBy ,
                                               AV16OrderedDsc ,
                                               A29LocationId ,
@@ -1486,10 +1480,8 @@ namespace GeneXus.Programs {
          lV17FilterFullText = StringUtil.Concat( StringUtil.RTrim( AV17FilterFullText), "%", "");
          lV17FilterFullText = StringUtil.Concat( StringUtil.RTrim( AV17FilterFullText), "%", "");
          lV17FilterFullText = StringUtil.Concat( StringUtil.RTrim( AV17FilterFullText), "%", "");
-         lV17FilterFullText = StringUtil.Concat( StringUtil.RTrim( AV17FilterFullText), "%", "");
-         lV17FilterFullText = StringUtil.Concat( StringUtil.RTrim( AV17FilterFullText), "%", "");
          /* Using cursor H006M3 */
-         pr_default.execute(1, new Object[] {AV8LocationId, AV9OrganisationId, lV17FilterFullText, lV17FilterFullText, lV17FilterFullText, lV17FilterFullText, lV17FilterFullText, lV17FilterFullText});
+         pr_default.execute(1, new Object[] {AV8LocationId, AV9OrganisationId, lV17FilterFullText, lV17FilterFullText, lV17FilterFullText, lV17FilterFullText});
          GRID_nRecordCount = H006M3_AGRID_nRecordCount[0];
          pr_default.close(1);
          return (int)(GRID_nRecordCount) ;
@@ -2472,7 +2464,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412111891584", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241213817062", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2488,7 +2480,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_locationtrn_receptionistwc.js", "?202412111891584", false, true);
+         context.AddJavascriptSource("trn_locationtrn_receptionistwc.js", "?20241213817063", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2644,11 +2636,11 @@ namespace GeneXus.Programs {
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+"display:none;"+"\">") ;
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtReceptionistPhoneCode_Internalname,(string)A373ReceptionistPhoneCode,(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtReceptionistPhoneCode_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)40,(short)0,(short)0,(short)35,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtReceptionistPhoneCode_Internalname,(string)A373ReceptionistPhoneCode,(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtReceptionistPhoneCode_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)0,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)40,(short)0,(short)0,(short)35,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
@@ -2664,11 +2656,11 @@ namespace GeneXus.Programs {
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
-               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+"display:none;"+"\">") ;
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtReceptionistPhoneNumber_Internalname,(string)A374ReceptionistPhoneNumber,(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtReceptionistPhoneNumber_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)9,(short)0,(short)0,(short)35,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtReceptionistPhoneNumber_Internalname,(string)A374ReceptionistPhoneNumber,(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtReceptionistPhoneNumber_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)0,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)9,(short)0,(short)0,(short)35,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
@@ -2791,13 +2783,13 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
             context.SendWebValue( "Email") ;
             context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
+            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
             context.SendWebValue( "Phone Code") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
             context.SendWebValue( "Phone") ;
             context.WriteHtmlTextNl( "</th>") ;
-            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
+            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
             context.SendWebValue( "Phone Number") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
@@ -2997,8 +2989,8 @@ namespace GeneXus.Programs {
          bttBtninsert_Visible = 1;
          Grid_empowerer_Hastitlesettings = Convert.ToBoolean( -1);
          Ddo_grid_Includesortasc = "T";
-         Ddo_grid_Columnssortvalues = "1|2|3|4|5|6|7";
-         Ddo_grid_Columnids = "1:ReceptionistGivenName|2:ReceptionistLastName|4:ReceptionistEmail|5:ReceptionistPhoneCode|6:ReceptionistPhone|7:ReceptionistPhoneNumber|9:ReceptionistIsActive";
+         Ddo_grid_Columnssortvalues = "1|2|3|4|5";
+         Ddo_grid_Columnids = "1:ReceptionistGivenName|2:ReceptionistLastName|4:ReceptionistEmail|6:ReceptionistPhone|9:ReceptionistIsActive";
          Ddo_grid_Gridinternalname = "";
          Gridpaginationbar_Rowsperpagecaption = "WWP_PagingRowsPerPage";
          Gridpaginationbar_Emptygridcaption = "WWP_PagingEmptyGridCaption";
@@ -3449,9 +3441,7 @@ namespace GeneXus.Programs {
                                              string A90ReceptionistGivenName ,
                                              string A91ReceptionistLastName ,
                                              string A93ReceptionistEmail ,
-                                             string A373ReceptionistPhoneCode ,
                                              string A94ReceptionistPhone ,
-                                             string A374ReceptionistPhoneNumber ,
                                              short AV15OrderedBy ,
                                              bool AV16OrderedDsc ,
                                              Guid A29LocationId ,
@@ -3461,7 +3451,7 @@ namespace GeneXus.Programs {
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int5 = new short[11];
+         short[] GXv_int5 = new short[9];
          Object[] GXv_Object6 = new Object[2];
          string sSelectString;
          string sFromString;
@@ -3473,7 +3463,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(OrganisationId = :AV9OrganisationId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV17FilterFullText)) )
          {
-            AddWhere(sWhereString, "(( ReceptionistGivenName like '%' || :lV17FilterFullText) or ( ReceptionistLastName like '%' || :lV17FilterFullText) or ( ReceptionistEmail like '%' || :lV17FilterFullText) or ( ReceptionistPhoneCode like '%' || :lV17FilterFullText) or ( ReceptionistPhone like '%' || :lV17FilterFullText) or ( ReceptionistPhoneNumber like '%' || :lV17FilterFullText))");
+            AddWhere(sWhereString, "(( ReceptionistGivenName like '%' || :lV17FilterFullText) or ( ReceptionistLastName like '%' || :lV17FilterFullText) or ( ReceptionistEmail like '%' || :lV17FilterFullText) or ( ReceptionistPhone like '%' || :lV17FilterFullText))");
          }
          else
          {
@@ -3481,8 +3471,6 @@ namespace GeneXus.Programs {
             GXv_int5[3] = 1;
             GXv_int5[4] = 1;
             GXv_int5[5] = 1;
-            GXv_int5[6] = 1;
-            GXv_int5[7] = 1;
          }
          if ( ( AV15OrderedBy == 1 ) && ! AV16OrderedDsc )
          {
@@ -3510,33 +3498,17 @@ namespace GeneXus.Programs {
          }
          else if ( ( AV15OrderedBy == 4 ) && ! AV16OrderedDsc )
          {
-            sOrderString += " ORDER BY LocationId, OrganisationId, ReceptionistPhoneCode, ReceptionistId";
+            sOrderString += " ORDER BY LocationId, OrganisationId, ReceptionistPhone, ReceptionistId";
          }
          else if ( ( AV15OrderedBy == 4 ) && ( AV16OrderedDsc ) )
          {
-            sOrderString += " ORDER BY LocationId DESC, OrganisationId DESC, ReceptionistPhoneCode DESC, ReceptionistId";
+            sOrderString += " ORDER BY LocationId DESC, OrganisationId DESC, ReceptionistPhone DESC, ReceptionistId";
          }
          else if ( ( AV15OrderedBy == 5 ) && ! AV16OrderedDsc )
          {
-            sOrderString += " ORDER BY LocationId, OrganisationId, ReceptionistPhone, ReceptionistId";
-         }
-         else if ( ( AV15OrderedBy == 5 ) && ( AV16OrderedDsc ) )
-         {
-            sOrderString += " ORDER BY LocationId DESC, OrganisationId DESC, ReceptionistPhone DESC, ReceptionistId";
-         }
-         else if ( ( AV15OrderedBy == 6 ) && ! AV16OrderedDsc )
-         {
-            sOrderString += " ORDER BY LocationId, OrganisationId, ReceptionistPhoneNumber, ReceptionistId";
-         }
-         else if ( ( AV15OrderedBy == 6 ) && ( AV16OrderedDsc ) )
-         {
-            sOrderString += " ORDER BY LocationId DESC, OrganisationId DESC, ReceptionistPhoneNumber DESC, ReceptionistId";
-         }
-         else if ( ( AV15OrderedBy == 7 ) && ! AV16OrderedDsc )
-         {
             sOrderString += " ORDER BY LocationId, OrganisationId, ReceptionistIsActive, ReceptionistId";
          }
-         else if ( ( AV15OrderedBy == 7 ) && ( AV16OrderedDsc ) )
+         else if ( ( AV15OrderedBy == 5 ) && ( AV16OrderedDsc ) )
          {
             sOrderString += " ORDER BY LocationId DESC, OrganisationId DESC, ReceptionistIsActive DESC, ReceptionistId";
          }
@@ -3555,9 +3527,7 @@ namespace GeneXus.Programs {
                                              string A90ReceptionistGivenName ,
                                              string A91ReceptionistLastName ,
                                              string A93ReceptionistEmail ,
-                                             string A373ReceptionistPhoneCode ,
                                              string A94ReceptionistPhone ,
-                                             string A374ReceptionistPhoneNumber ,
                                              short AV15OrderedBy ,
                                              bool AV16OrderedDsc ,
                                              Guid A29LocationId ,
@@ -3567,14 +3537,14 @@ namespace GeneXus.Programs {
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int7 = new short[8];
+         short[] GXv_int7 = new short[6];
          Object[] GXv_Object8 = new Object[2];
          scmdbuf = "SELECT COUNT(*) FROM Trn_Receptionist";
          AddWhere(sWhereString, "(LocationId = :AV8LocationId)");
          AddWhere(sWhereString, "(OrganisationId = :AV9OrganisationId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV17FilterFullText)) )
          {
-            AddWhere(sWhereString, "(( ReceptionistGivenName like '%' || :lV17FilterFullText) or ( ReceptionistLastName like '%' || :lV17FilterFullText) or ( ReceptionistEmail like '%' || :lV17FilterFullText) or ( ReceptionistPhoneCode like '%' || :lV17FilterFullText) or ( ReceptionistPhone like '%' || :lV17FilterFullText) or ( ReceptionistPhoneNumber like '%' || :lV17FilterFullText))");
+            AddWhere(sWhereString, "(( ReceptionistGivenName like '%' || :lV17FilterFullText) or ( ReceptionistLastName like '%' || :lV17FilterFullText) or ( ReceptionistEmail like '%' || :lV17FilterFullText) or ( ReceptionistPhone like '%' || :lV17FilterFullText))");
          }
          else
          {
@@ -3582,8 +3552,6 @@ namespace GeneXus.Programs {
             GXv_int7[3] = 1;
             GXv_int7[4] = 1;
             GXv_int7[5] = 1;
-            GXv_int7[6] = 1;
-            GXv_int7[7] = 1;
          }
          scmdbuf += sWhereString;
          if ( ( AV15OrderedBy == 1 ) && ! AV16OrderedDsc )
@@ -3626,22 +3594,6 @@ namespace GeneXus.Programs {
          {
             scmdbuf += "";
          }
-         else if ( ( AV15OrderedBy == 6 ) && ! AV16OrderedDsc )
-         {
-            scmdbuf += "";
-         }
-         else if ( ( AV15OrderedBy == 6 ) && ( AV16OrderedDsc ) )
-         {
-            scmdbuf += "";
-         }
-         else if ( ( AV15OrderedBy == 7 ) && ! AV16OrderedDsc )
-         {
-            scmdbuf += "";
-         }
-         else if ( ( AV15OrderedBy == 7 ) && ( AV16OrderedDsc ) )
-         {
-            scmdbuf += "";
-         }
          else if ( true )
          {
             scmdbuf += "";
@@ -3658,9 +3610,9 @@ namespace GeneXus.Programs {
          switch ( cursor )
          {
                case 0 :
-                     return conditional_H006M2(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (short)dynConstraints[7] , (bool)dynConstraints[8] , (Guid)dynConstraints[9] , (Guid)dynConstraints[10] , (Guid)dynConstraints[11] , (Guid)dynConstraints[12] );
+                     return conditional_H006M2(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (short)dynConstraints[5] , (bool)dynConstraints[6] , (Guid)dynConstraints[7] , (Guid)dynConstraints[8] , (Guid)dynConstraints[9] , (Guid)dynConstraints[10] );
                case 1 :
-                     return conditional_H006M3(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (short)dynConstraints[7] , (bool)dynConstraints[8] , (Guid)dynConstraints[9] , (Guid)dynConstraints[10] , (Guid)dynConstraints[11] , (Guid)dynConstraints[12] );
+                     return conditional_H006M3(context, (string)dynConstraints[0] , (string)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (short)dynConstraints[5] , (bool)dynConstraints[6] , (Guid)dynConstraints[7] , (Guid)dynConstraints[8] , (Guid)dynConstraints[9] , (Guid)dynConstraints[10] );
          }
          return base.getDynamicStatement(cursor, context, dynConstraints);
       }
@@ -3687,8 +3639,6 @@ namespace GeneXus.Programs {
           new ParDef("lV17FilterFullText",GXType.VarChar,100,0) ,
           new ParDef("lV17FilterFullText",GXType.VarChar,100,0) ,
           new ParDef("lV17FilterFullText",GXType.VarChar,100,0) ,
-          new ParDef("lV17FilterFullText",GXType.VarChar,100,0) ,
-          new ParDef("lV17FilterFullText",GXType.VarChar,100,0) ,
           new ParDef("GXPagingFrom2",GXType.Int32,9,0) ,
           new ParDef("GXPagingTo2",GXType.Int32,9,0) ,
           new ParDef("GXPagingTo2",GXType.Int32,9,0)
@@ -3697,8 +3647,6 @@ namespace GeneXus.Programs {
           prmH006M3 = new Object[] {
           new ParDef("AV8LocationId",GXType.UniqueIdentifier,36,0) ,
           new ParDef("AV9OrganisationId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("lV17FilterFullText",GXType.VarChar,100,0) ,
-          new ParDef("lV17FilterFullText",GXType.VarChar,100,0) ,
           new ParDef("lV17FilterFullText",GXType.VarChar,100,0) ,
           new ParDef("lV17FilterFullText",GXType.VarChar,100,0) ,
           new ParDef("lV17FilterFullText",GXType.VarChar,100,0) ,

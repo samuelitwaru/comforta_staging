@@ -230,10 +230,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
                   if ( ! (Guid.Empty==AV33ResidentId) )
                   {
                      AV37SDT_OneSignalCustomData = new SdtSDT_OneSignalCustomData(context);
-                     AV37SDT_OneSignalCustomData.gxTpr_Isagendaevent = false;
-                     AV37SDT_OneSignalCustomData.gxTpr_Isdiscussion = true;
-                     AV37SDT_OneSignalCustomData.gxTpr_Isdynamicform = false;
-                     AV37SDT_OneSignalCustomData.gxTpr_Isgeneralcommunication = false;
+                     AV37SDT_OneSignalCustomData.gxTpr_Notificationcategory = "Discussion";
                      AV37SDT_OneSignalCustomData.gxTpr_Discussiondetails.gxTpr_Discussionid = AV27WWPSubscriptionEntityRecordId;
                      new prc_sendresidentdiscussionnotification(context ).execute(  AV25WWPNotificationDefinitionTitle,  AV24WWPNotificationDefinitionShortDescription,  A112WWPUserExtendedId,  AV37SDT_OneSignalCustomData) ;
                   }
