@@ -80,8 +80,18 @@ namespace GeneXus.Programs {
             AV11Key = ((string)AV9PredefinedPagesDictionary.gxTpr_Keys.Item(AV20GXV1));
             AV16Value = AV9PredefinedPagesDictionary.get(AV11Key);
             AV15File = new GxFile(context.GetPhysicalPath());
-            AV15File.Source = "Default"+AV16Value+".txt";
+            AV15File.Source = "PredefinedPages/Default"+AV16Value+".txt";
             AV13PageGJSJson = AV15File.ReadAllText("");
+            if ( StringUtil.StrCmp(AV16Value, "Location") == 0 )
+            {
+               AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, "{{LocationImage}}", "https://staging.comforta.yukon.software/media/LocationInfo.png");
+               AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, "{{LocationDescription}}", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+            }
+            if ( StringUtil.StrCmp(AV16Value, "Reception") == 0 )
+            {
+               AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, "{{LocationImage}}", "https://staging.comforta.yukon.software/media/receptie-197@3x.png");
+               AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, "{{LocationDescription}}", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+            }
             AV18BC_Trn_Page = new SdtTrn_Page(context);
             AV18BC_Trn_Page.gxTpr_Trn_pageid = StringUtil.StrToGuid( AV11Key);
             AV18BC_Trn_Page.gxTpr_Trn_pagename = AV16Value;

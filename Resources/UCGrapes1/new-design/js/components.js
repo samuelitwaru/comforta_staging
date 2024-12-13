@@ -12,7 +12,6 @@ class ActionListComponent {
     this.currentLanguage = currentLanguage;
     this.toolBoxManager = toolBoxManager;
     console.log("Data is: ", dataManager);
-
     this.categoryData = [
       {
         name: "Page",
@@ -22,12 +21,7 @@ class ActionListComponent {
       {
         name: "Service/Product Page",
         label: this.currentLanguage.getTranslation("category_services_or_page"),
-        options: this.dataManager.services.map((service) => {
-          return {
-            PageId: service.ProductServiceId,
-            PageName: service.ProductServiceName,
-          };
-        }),
+        options: [],
       },
       {
         name: "Predefined Page",
@@ -49,9 +43,12 @@ class ActionListComponent {
         this.predefinedPageOptions = pages.filter(
           page => page.PageIsPredefined && page.PageName != "Home"
         )
-        this.servicePageOptions = pages.filter(
-          page => page.PageIsContentPage
-        )
+        this.servicePageOptions = this.dataManager.services.map((service) => {
+          return {
+            PageId: service.ProductServiceId,
+            PageName: service.ProductServiceName,
+          };
+        })
         this.categoryData.forEach((category) => {
           if (category.name === "Page") {
             category.options = this.pageOptions;

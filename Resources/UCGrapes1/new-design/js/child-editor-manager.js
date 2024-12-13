@@ -57,7 +57,7 @@ class ChildEditorManager {
     let appBar = "";
 
     // AppBar HTML
-    if (page.PageIsContentPage) {
+    if (page.PageIsContentPage || (page.PageIsPredefined && page.PageName!="Home")) {
       appBar = `
             <div class="app-bar">
                 <button id="content-back-button" class="back-button">
@@ -194,7 +194,7 @@ class ChildEditorManager {
     }
 
     // Adjust Canvas for Content Pages
-    if (page.PageIsContentPage) {
+    if (page.PageIsContentPage || (page.PageIsPredefined && page.PageName!="Home")) {
       const canvas = editor.Canvas.getElement();
       if (canvas) {
         canvas.style.setProperty("height", "calc(100% - 100px)", "important");

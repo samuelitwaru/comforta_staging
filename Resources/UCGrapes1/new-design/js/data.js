@@ -1310,7 +1310,7 @@ const predefinedPages1 = {
                 "alt": "Sample Image"
               },
               "selectable": false
-            },
+            }
           ]
         }
       }
