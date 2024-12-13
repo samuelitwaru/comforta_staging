@@ -82,6 +82,12 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         new prc_authenticatereceptionist(context ).execute( out  AV12UserName, ref  AV8LocationId, ref  AV9OrganisationId) ;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV12UserName))) )
+         {
+            cleanup();
+            if (true) return;
+         }
          /* Using cursor P009G2 */
          pr_default.execute(0, new Object[] {AV8LocationId, AV9OrganisationId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -89,6 +95,7 @@ namespace GeneXus.Programs {
             A11OrganisationId = P009G2_A11OrganisationId[0];
             A29LocationId = P009G2_A29LocationId[0];
             A247Trn_ThemeId = P009G2_A247Trn_ThemeId[0];
+            n247Trn_ThemeId = P009G2_n247Trn_ThemeId[0];
             A248Trn_ThemeName = P009G2_A248Trn_ThemeName[0];
             A260Trn_ThemeFontFamily = P009G2_A260Trn_ThemeFontFamily[0];
             A399Trn_ThemeFontSize = P009G2_A399Trn_ThemeFontSize[0];
@@ -120,9 +127,11 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV11SDT_LocationTheme = new SdtSDT_LocationTheme(context);
+         AV12UserName = "";
          P009G2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P009G2_A29LocationId = new Guid[] {Guid.Empty} ;
          P009G2_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         P009G2_n247Trn_ThemeId = new bool[] {false} ;
          P009G2_A248Trn_ThemeName = new string[] {""} ;
          P009G2_A260Trn_ThemeFontFamily = new string[] {""} ;
          P009G2_A399Trn_ThemeFontSize = new short[1] ;
@@ -134,7 +143,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_getlocationtheme__default(),
             new Object[][] {
                 new Object[] {
-               P009G2_A11OrganisationId, P009G2_A29LocationId, P009G2_A247Trn_ThemeId, P009G2_A248Trn_ThemeName, P009G2_A260Trn_ThemeFontFamily, P009G2_A399Trn_ThemeFontSize
+               P009G2_A11OrganisationId, P009G2_A29LocationId, P009G2_A247Trn_ThemeId, P009G2_n247Trn_ThemeId, P009G2_A248Trn_ThemeName, P009G2_A260Trn_ThemeFontFamily, P009G2_A399Trn_ThemeFontSize
                }
             }
          );
@@ -142,6 +151,8 @@ namespace GeneXus.Programs {
       }
 
       private short A399Trn_ThemeFontSize ;
+      private bool n247Trn_ThemeId ;
+      private string AV12UserName ;
       private string A248Trn_ThemeName ;
       private string A260Trn_ThemeFontFamily ;
       private Guid AV8LocationId ;
@@ -159,6 +170,7 @@ namespace GeneXus.Programs {
       private Guid[] P009G2_A11OrganisationId ;
       private Guid[] P009G2_A29LocationId ;
       private Guid[] P009G2_A247Trn_ThemeId ;
+      private bool[] P009G2_n247Trn_ThemeId ;
       private string[] P009G2_A248Trn_ThemeName ;
       private string[] P009G2_A260Trn_ThemeFontFamily ;
       private short[] P009G2_A399Trn_ThemeFontSize ;
@@ -186,7 +198,7 @@ namespace GeneXus.Programs {
           new ParDef("AV9OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P009G2", "SELECT T1.OrganisationId, T1.LocationId, T1.Trn_ThemeId, T2.Trn_ThemeName, T2.Trn_ThemeFontFamily, T2.Trn_ThemeFontSize FROM (Trn_Location T1 INNER JOIN Trn_Theme T2 ON T2.Trn_ThemeId = T1.Trn_ThemeId) WHERE T1.LocationId = :AV8LocationId and T1.OrganisationId = :AV9OrganisationId ORDER BY T1.LocationId, T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009G2,1, GxCacheFrequency.OFF ,false,true )
+              new CursorDef("P009G2", "SELECT T1.OrganisationId, T1.LocationId, T1.Trn_ThemeId, T2.Trn_ThemeName, T2.Trn_ThemeFontFamily, T2.Trn_ThemeFontSize FROM (Trn_Location T1 LEFT JOIN Trn_Theme T2 ON T2.Trn_ThemeId = T1.Trn_ThemeId) WHERE T1.LocationId = :AV8LocationId and T1.OrganisationId = :AV9OrganisationId ORDER BY T1.LocationId, T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009G2,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }
@@ -201,9 +213,10 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-                ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
-                ((short[]) buf[5])[0] = rslt.getShort(6);
+                ((bool[]) buf[3])[0] = rslt.wasNull(3);
+                ((string[]) buf[4])[0] = rslt.getVarchar(4);
+                ((string[]) buf[5])[0] = rslt.getVarchar(5);
+                ((short[]) buf[6])[0] = rslt.getShort(6);
                 return;
        }
     }

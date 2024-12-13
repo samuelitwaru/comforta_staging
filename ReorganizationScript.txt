@@ -1,2 +1,21 @@
-ALTER TABLE Trn_AppNotification ADD AppNotificationMetadata TEXT;
+ALTER TABLE Trn_Location DROP CONSTRAINT ITRN_LOCATION2;
+ALTER TABLE Trn_Location ALTER COLUMN Trn_ThemeId DROP NOT NULL;
+
+ALTER TABLE Trn_AgendaCalendar ADD CONSTRAINT ITRN_AGENDACALENDAR1 FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId);
+
+ALTER TABLE Trn_LocationDynamicForm ADD CONSTRAINT ITRN_LOCATIONDYNAMICFORM2 FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId);
+ALTER TABLE Trn_LocationDynamicForm ADD CONSTRAINT ITRN_LOCATIONDYNAMICFORM1 FOREIGN KEY (WWPFormId, WWPFormVersionNumber) REFERENCES WWP_Form (WWPFormId, WWPFormVersionNumber);
+
+ALTER TABLE Trn_ProductService ADD CONSTRAINT ITRN_PRODUCTSERVICE3 FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId);
+ALTER TABLE Trn_ProductService ADD CONSTRAINT ITRN_PRODUCTSERVICE2 FOREIGN KEY (SupplierGenId) REFERENCES Trn_SupplierGen (SupplierGenId);
+ALTER TABLE Trn_ProductService ADD CONSTRAINT ITRN_PRODUCTSERVICE1 FOREIGN KEY (SupplierAgbId) REFERENCES Trn_SupplierAGB (SupplierAgbId);
+
+ALTER TABLE Trn_Receptionist ADD CONSTRAINT ITRN_RECEPTIONIST1 FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId);
+
+ALTER TABLE Trn_Resident ADD CONSTRAINT ITRN_RESIDENT3 FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId);
+ALTER TABLE Trn_Resident ADD CONSTRAINT ITRN_RESIDENT2 FOREIGN KEY (ResidentTypeId) REFERENCES Trn_ResidentType (ResidentTypeId);
+ALTER TABLE Trn_Resident ADD CONSTRAINT ITRN_RESIDENT1 FOREIGN KEY (MedicalIndicationId) REFERENCES Trn_MedicalIndication (MedicalIndicationId);
+
+ALTER TABLE Trn_Location ADD CONSTRAINT ITRN_LOCATION1 FOREIGN KEY (OrganisationId) REFERENCES Trn_Organisation (OrganisationId);
+ALTER TABLE Trn_Location ADD CONSTRAINT ITRN_LOCATION2 FOREIGN KEY (Trn_ThemeId) REFERENCES Trn_Theme (Trn_ThemeId);
 

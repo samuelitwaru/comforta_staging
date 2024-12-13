@@ -69,36 +69,26 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         GXt_char1 = AV10UserName;
-         new prc_getloggedinusername(context ).execute( out  GXt_char1) ;
-         AV10UserName = GXt_char1;
+         new prc_authenticatereceptionist(context ).execute( out  AV10UserName, ref  AV11LocationId, ref  AV12OrganisationId) ;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV10UserName))) )
+         {
+            cleanup();
+            if (true) return;
+         }
          /* Using cursor P009Y2 */
-         pr_default.execute(0, new Object[] {AV10UserName});
+         pr_default.execute(0, new Object[] {AV11LocationId});
          while ( (pr_default.getStatus(0) != 101) )
          {
-            A93ReceptionistEmail = P009Y2_A93ReceptionistEmail[0];
             A29LocationId = P009Y2_A29LocationId[0];
-            A11OrganisationId = P009Y2_A11OrganisationId[0];
-            A89ReceptionistId = P009Y2_A89ReceptionistId[0];
-            AV11LocationId = A29LocationId;
-            AV12OrganisationId = A11OrganisationId;
-            pr_default.readNext(0);
-         }
-         pr_default.close(0);
-         /* Using cursor P009Y3 */
-         pr_default.execute(1, new Object[] {AV11LocationId});
-         while ( (pr_default.getStatus(1) != 101) )
-         {
-            A29LocationId = P009Y3_A29LocationId[0];
-            A40000MediaImage_GXI = P009Y3_A40000MediaImage_GXI[0];
-            n40000MediaImage_GXI = P009Y3_n40000MediaImage_GXI[0];
-            A409MediaId = P009Y3_A409MediaId[0];
-            A410MediaName = P009Y3_A410MediaName[0];
-            A413MediaSize = P009Y3_A413MediaSize[0];
-            A414MediaType = P009Y3_A414MediaType[0];
-            A412MediaUrl = P009Y3_A412MediaUrl[0];
-            A411MediaImage = P009Y3_A411MediaImage[0];
-            n411MediaImage = P009Y3_n411MediaImage[0];
+            A40000MediaImage_GXI = P009Y2_A40000MediaImage_GXI[0];
+            n40000MediaImage_GXI = P009Y2_n40000MediaImage_GXI[0];
+            A409MediaId = P009Y2_A409MediaId[0];
+            A410MediaName = P009Y2_A410MediaName[0];
+            A413MediaSize = P009Y2_A413MediaSize[0];
+            A414MediaType = P009Y2_A414MediaType[0];
+            A412MediaUrl = P009Y2_A412MediaUrl[0];
+            A411MediaImage = P009Y2_A411MediaImage[0];
+            n411MediaImage = P009Y2_n411MediaImage[0];
             AV8SDT_Media = new SdtSDT_Media(context);
             AV8SDT_Media.gxTpr_Mediaid = A409MediaId;
             AV8SDT_Media.gxTpr_Medianame = A410MediaName;
@@ -108,9 +98,9 @@ namespace GeneXus.Programs {
             AV8SDT_Media.gxTpr_Mediatype = A414MediaType;
             AV8SDT_Media.gxTpr_Mediaurl = A412MediaUrl;
             AV9SDT_MediaCollection.Add(AV8SDT_Media, 0);
-            pr_default.readNext(1);
+            pr_default.readNext(0);
          }
-         pr_default.close(1);
+         pr_default.close(0);
          cleanup();
       }
 
@@ -128,27 +118,19 @@ namespace GeneXus.Programs {
       {
          AV9SDT_MediaCollection = new GXBaseCollection<SdtSDT_Media>( context, "SDT_Media", "Comforta_version2");
          AV10UserName = "";
-         GXt_char1 = "";
-         P009Y2_A93ReceptionistEmail = new string[] {""} ;
-         P009Y2_A29LocationId = new Guid[] {Guid.Empty} ;
-         P009Y2_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P009Y2_A89ReceptionistId = new Guid[] {Guid.Empty} ;
-         A93ReceptionistEmail = "";
-         A29LocationId = Guid.Empty;
-         A11OrganisationId = Guid.Empty;
-         A89ReceptionistId = Guid.Empty;
          AV11LocationId = Guid.Empty;
          AV12OrganisationId = Guid.Empty;
-         P009Y3_A29LocationId = new Guid[] {Guid.Empty} ;
-         P009Y3_A40000MediaImage_GXI = new string[] {""} ;
-         P009Y3_n40000MediaImage_GXI = new bool[] {false} ;
-         P009Y3_A409MediaId = new Guid[] {Guid.Empty} ;
-         P009Y3_A410MediaName = new string[] {""} ;
-         P009Y3_A413MediaSize = new int[1] ;
-         P009Y3_A414MediaType = new string[] {""} ;
-         P009Y3_A412MediaUrl = new string[] {""} ;
-         P009Y3_A411MediaImage = new string[] {""} ;
-         P009Y3_n411MediaImage = new bool[] {false} ;
+         P009Y2_A29LocationId = new Guid[] {Guid.Empty} ;
+         P009Y2_A40000MediaImage_GXI = new string[] {""} ;
+         P009Y2_n40000MediaImage_GXI = new bool[] {false} ;
+         P009Y2_A409MediaId = new Guid[] {Guid.Empty} ;
+         P009Y2_A410MediaName = new string[] {""} ;
+         P009Y2_A413MediaSize = new int[1] ;
+         P009Y2_A414MediaType = new string[] {""} ;
+         P009Y2_A412MediaUrl = new string[] {""} ;
+         P009Y2_A411MediaImage = new string[] {""} ;
+         P009Y2_n411MediaImage = new bool[] {false} ;
+         A29LocationId = Guid.Empty;
          A40000MediaImage_GXI = "";
          A409MediaId = Guid.Empty;
          A410MediaName = "";
@@ -159,10 +141,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_getmedia__default(),
             new Object[][] {
                 new Object[] {
-               P009Y2_A93ReceptionistEmail, P009Y2_A29LocationId, P009Y2_A11OrganisationId, P009Y2_A89ReceptionistId
-               }
-               , new Object[] {
-               P009Y3_A29LocationId, P009Y3_A40000MediaImage_GXI, P009Y3_n40000MediaImage_GXI, P009Y3_A409MediaId, P009Y3_A410MediaName, P009Y3_A413MediaSize, P009Y3_A414MediaType, P009Y3_A412MediaUrl, P009Y3_A411MediaImage, P009Y3_n411MediaImage
+               P009Y2_A29LocationId, P009Y2_A40000MediaImage_GXI, P009Y2_n40000MediaImage_GXI, P009Y2_A409MediaId, P009Y2_A410MediaName, P009Y2_A413MediaSize, P009Y2_A414MediaType, P009Y2_A412MediaUrl, P009Y2_A411MediaImage, P009Y2_n411MediaImage
                }
             }
          );
@@ -170,41 +149,33 @@ namespace GeneXus.Programs {
       }
 
       private int A413MediaSize ;
-      private string GXt_char1 ;
       private string A414MediaType ;
       private bool n40000MediaImage_GXI ;
       private bool n411MediaImage ;
       private string AV10UserName ;
-      private string A93ReceptionistEmail ;
       private string A40000MediaImage_GXI ;
       private string A410MediaName ;
       private string A412MediaUrl ;
       private string A411MediaImage ;
-      private Guid A29LocationId ;
-      private Guid A11OrganisationId ;
-      private Guid A89ReceptionistId ;
       private Guid AV11LocationId ;
       private Guid AV12OrganisationId ;
+      private Guid A29LocationId ;
       private Guid A409MediaId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GXBaseCollection<SdtSDT_Media> AV9SDT_MediaCollection ;
       private IDataStoreProvider pr_default ;
-      private string[] P009Y2_A93ReceptionistEmail ;
       private Guid[] P009Y2_A29LocationId ;
-      private Guid[] P009Y2_A11OrganisationId ;
-      private Guid[] P009Y2_A89ReceptionistId ;
-      private Guid[] P009Y3_A29LocationId ;
-      private string[] P009Y3_A40000MediaImage_GXI ;
-      private bool[] P009Y3_n40000MediaImage_GXI ;
-      private Guid[] P009Y3_A409MediaId ;
-      private string[] P009Y3_A410MediaName ;
-      private int[] P009Y3_A413MediaSize ;
-      private string[] P009Y3_A414MediaType ;
-      private string[] P009Y3_A412MediaUrl ;
-      private string[] P009Y3_A411MediaImage ;
-      private bool[] P009Y3_n411MediaImage ;
+      private string[] P009Y2_A40000MediaImage_GXI ;
+      private bool[] P009Y2_n40000MediaImage_GXI ;
+      private Guid[] P009Y2_A409MediaId ;
+      private string[] P009Y2_A410MediaName ;
+      private int[] P009Y2_A413MediaSize ;
+      private string[] P009Y2_A414MediaType ;
+      private string[] P009Y2_A412MediaUrl ;
+      private string[] P009Y2_A411MediaImage ;
+      private bool[] P009Y2_n411MediaImage ;
       private SdtSDT_Media AV8SDT_Media ;
       private GXBaseCollection<SdtSDT_Media> aP0_SDT_MediaCollection ;
    }
@@ -216,7 +187,6 @@ namespace GeneXus.Programs {
          cursorDefinitions();
          return new Cursor[] {
           new ForEachCursor(def[0])
-         ,new ForEachCursor(def[1])
        };
     }
 
@@ -227,15 +197,10 @@ namespace GeneXus.Programs {
        {
           Object[] prmP009Y2;
           prmP009Y2 = new Object[] {
-          new ParDef("AV10UserName",GXType.VarChar,100,0)
-          };
-          Object[] prmP009Y3;
-          prmP009Y3 = new Object[] {
           new ParDef("AV11LocationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P009Y2", "SELECT ReceptionistEmail, LocationId, OrganisationId, ReceptionistId FROM Trn_Receptionist WHERE ReceptionistEmail = ( RTRIM(LTRIM(:AV10UserName))) ORDER BY ReceptionistId, OrganisationId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Y2,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P009Y3", "SELECT LocationId, MediaImage_GXI, MediaId, MediaName, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE LocationId = :AV11LocationId ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Y3,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P009Y2", "SELECT LocationId, MediaImage_GXI, MediaId, MediaName, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE LocationId = :AV11LocationId ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Y2,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
@@ -247,12 +212,6 @@ namespace GeneXus.Programs {
        switch ( cursor )
        {
              case 0 :
-                ((string[]) buf[0])[0] = rslt.getVarchar(1);
-                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-                ((Guid[]) buf[3])[0] = rslt.getGuid(4);
-                return;
-             case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getMultimediaUri(2);
                 ((bool[]) buf[2])[0] = rslt.wasNull(2);

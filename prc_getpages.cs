@@ -78,8 +78,12 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_logtofile(context ).execute(  "Loc - "+AV15LocationId.ToString()) ;
-         new prc_logtofile(context ).execute(  "Org - "+AV16OrganisationId.ToString()) ;
+         new prc_authenticatereceptionist(context ).execute( out  AV17UserName, ref  AV15LocationId, ref  AV16OrganisationId) ;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV17UserName))) )
+         {
+            cleanup();
+            if (true) return;
+         }
          /* Using cursor P008Y2 */
          pr_default.execute(0, new Object[] {AV15LocationId, AV16OrganisationId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -103,7 +107,6 @@ namespace GeneXus.Programs {
             n437PageChildren = P008Y2_n437PageChildren[0];
             AV8SDT_Page = new SdtSDT_Page(context);
             AV8SDT_Page.gxTpr_Pageid = A310Trn_PageId;
-            new prc_logtofile(context ).execute(  ">>>>>"+A318Trn_PageName) ;
             AV8SDT_Page.gxTpr_Pagename = A318Trn_PageName;
             AV8SDT_Page.gxTpr_Pagejsoncontent = A431PageJsonContent;
             AV8SDT_Page.gxTpr_Pagegjshtml = A432PageGJSHtml;
@@ -132,6 +135,7 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV9SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>( context, "SDT_Page", "Comforta_version2");
+         AV17UserName = "";
          P008Y2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P008Y2_A29LocationId = new Guid[] {Guid.Empty} ;
          P008Y2_A310Trn_PageId = new Guid[] {Guid.Empty} ;
@@ -182,6 +186,7 @@ namespace GeneXus.Programs {
       private string A432PageGJSHtml ;
       private string A433PageGJSJson ;
       private string A437PageChildren ;
+      private string AV17UserName ;
       private string A318Trn_PageName ;
       private Guid AV15LocationId ;
       private Guid AV16OrganisationId ;
@@ -235,7 +240,7 @@ namespace GeneXus.Programs {
           new ParDef("AV16OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P008Y2", "SELECT OrganisationId, LocationId, Trn_PageId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsContentPage, PageIsPublished, PageIsPredefined, PageChildren FROM Trn_Page WHERE (LocationId = :AV15LocationId) AND (OrganisationId = :AV16OrganisationId) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008Y2,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P008Y2", "SELECT OrganisationId, LocationId, Trn_PageId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsContentPage, PageIsPublished, PageIsPredefined, PageChildren FROM Trn_Page WHERE (LocationId = :AV15LocationId) AND (OrganisationId = :AV16OrganisationId) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008Y2,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }

@@ -137,6 +137,12 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         new prc_authenticatereceptionist(context ).execute( out  AV26UserName, ref  AV27LocationId, ref  AV28OrganisationId) ;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV26UserName))) )
+         {
+            cleanup();
+            if (true) return;
+         }
          AV24Trn_Page.Load(AV18ParentPageId, A318Trn_PageName, A29LocationId);
          /* Using cursor P008X2 */
          pr_default.execute(0, new Object[] {AV18ParentPageId});
@@ -148,17 +154,17 @@ namespace GeneXus.Programs {
             A29LocationId = P008X2_A29LocationId[0];
             A318Trn_PageName = P008X2_A318Trn_PageName[0];
             AV23SDT_PageChildrenCollection.FromJSonString(A437PageChildren, null);
-            AV27GXV1 = 1;
-            while ( AV27GXV1 <= AV23SDT_PageChildrenCollection.Count )
+            AV30GXV1 = 1;
+            while ( AV30GXV1 <= AV23SDT_PageChildrenCollection.Count )
             {
-               AV22SDT_PageChildren = ((SdtSDT_PageChildren)AV23SDT_PageChildrenCollection.Item(AV27GXV1));
+               AV22SDT_PageChildren = ((SdtSDT_PageChildren)AV23SDT_PageChildrenCollection.Item(AV30GXV1));
                if ( AV22SDT_PageChildren.gxTpr_Id == AV19ChildPageId )
                {
                   pr_default.close(0);
                   cleanup();
                   if (true) return;
                }
-               AV27GXV1 = (int)(AV27GXV1+1);
+               AV30GXV1 = (int)(AV30GXV1+1);
             }
             AV22SDT_PageChildren = new SdtSDT_PageChildren(context);
             AV22SDT_PageChildren.gxTpr_Id = AV19ChildPageId;
@@ -187,6 +193,9 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV14response = "";
+         AV26UserName = "";
+         AV27LocationId = Guid.Empty;
+         AV28OrganisationId = Guid.Empty;
          AV24Trn_Page = new SdtTrn_Page(context);
          A318Trn_PageName = "";
          A29LocationId = Guid.Empty;
@@ -218,13 +227,16 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV27GXV1 ;
+      private int AV30GXV1 ;
       private bool n437PageChildren ;
       private string AV14response ;
       private string A437PageChildren ;
+      private string AV26UserName ;
       private string A318Trn_PageName ;
       private Guid AV18ParentPageId ;
       private Guid AV19ChildPageId ;
+      private Guid AV27LocationId ;
+      private Guid AV28OrganisationId ;
       private Guid A29LocationId ;
       private Guid A310Trn_PageId ;
       private IGxDataStore dsDataStore1 ;

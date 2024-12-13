@@ -85,6 +85,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Locationphone_Z");
          state.Add("gxTpr_Trn_themeid_Z");
          state.Add("gxTpr_Locationimage_gxi_Z");
+         state.Add("gxTpr_Trn_themeid_N");
          return state ;
       }
 
@@ -124,6 +125,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Location_Locationphone_Z = sdt.gxTv_SdtTrn_Location_Locationphone_Z ;
          gxTv_SdtTrn_Location_Trn_themeid_Z = sdt.gxTv_SdtTrn_Location_Trn_themeid_Z ;
          gxTv_SdtTrn_Location_Locationimage_gxi_Z = sdt.gxTv_SdtTrn_Location_Locationimage_gxi_Z ;
+         gxTv_SdtTrn_Location_Trn_themeid_N = sdt.gxTv_SdtTrn_Location_Trn_themeid_N ;
          return  ;
       }
 
@@ -157,6 +159,7 @@ namespace GeneXus.Programs {
          AddObjectProperty("LocationPhone", gxTv_SdtTrn_Location_Locationphone, false, includeNonInitialized);
          AddObjectProperty("LocationDescription", gxTv_SdtTrn_Location_Locationdescription, false, includeNonInitialized);
          AddObjectProperty("Trn_ThemeId", gxTv_SdtTrn_Location_Trn_themeid, false, includeNonInitialized);
+         AddObjectProperty("Trn_ThemeId_N", gxTv_SdtTrn_Location_Trn_themeid_N, false, includeNonInitialized);
          if ( includeState )
          {
             AddObjectProperty("LocationImage_GXI", gxTv_SdtTrn_Location_Locationimage_gxi, false, includeNonInitialized);
@@ -176,6 +179,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("LocationPhone_Z", gxTv_SdtTrn_Location_Locationphone_Z, false, includeNonInitialized);
             AddObjectProperty("Trn_ThemeId_Z", gxTv_SdtTrn_Location_Trn_themeid_Z, false, includeNonInitialized);
             AddObjectProperty("LocationImage_GXI_Z", gxTv_SdtTrn_Location_Locationimage_gxi_Z, false, includeNonInitialized);
+            AddObjectProperty("Trn_ThemeId_N", gxTv_SdtTrn_Location_Trn_themeid_N, false, includeNonInitialized);
          }
          return  ;
       }
@@ -259,6 +263,7 @@ namespace GeneXus.Programs {
          }
          if ( sdt.IsDirty("Trn_ThemeId") )
          {
+            gxTv_SdtTrn_Location_Trn_themeid_N = (short)(sdt.gxTv_SdtTrn_Location_Trn_themeid_N);
             sdtIsNull = 0;
             gxTv_SdtTrn_Location_Trn_themeid = sdt.gxTv_SdtTrn_Location_Trn_themeid ;
          }
@@ -551,11 +556,25 @@ namespace GeneXus.Programs {
          }
 
          set {
+            gxTv_SdtTrn_Location_Trn_themeid_N = 0;
             sdtIsNull = 0;
             gxTv_SdtTrn_Location_Trn_themeid = value;
             SetDirty("Trn_themeid");
          }
 
+      }
+
+      public void gxTv_SdtTrn_Location_Trn_themeid_SetNull( )
+      {
+         gxTv_SdtTrn_Location_Trn_themeid_N = 1;
+         gxTv_SdtTrn_Location_Trn_themeid = Guid.Empty;
+         SetDirty("Trn_themeid");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Location_Trn_themeid_IsNull( )
+      {
+         return (gxTv_SdtTrn_Location_Trn_themeid_N==1) ;
       }
 
       [  SoapElement( ElementName = "Mode" )]
@@ -1006,6 +1025,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "Trn_ThemeId_N" )]
+      [  XmlElement( ElementName = "Trn_ThemeId_N"   )]
+      public short gxTpr_Trn_themeid_N
+      {
+         get {
+            return gxTv_SdtTrn_Location_Trn_themeid_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Location_Trn_themeid_N = value;
+            SetDirty("Trn_themeid_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Location_Trn_themeid_N_SetNull( )
+      {
+         gxTv_SdtTrn_Location_Trn_themeid_N = 0;
+         SetDirty("Trn_themeid_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Location_Trn_themeid_N_IsNull( )
+      {
+         return false ;
+      }
+
       [XmlIgnore]
       private static GXTypeInfo _typeProps;
       protected override GXTypeInfo TypeInfo
@@ -1070,6 +1117,7 @@ namespace GeneXus.Programs {
 
       private short sdtIsNull ;
       private short gxTv_SdtTrn_Location_Initialized ;
+      private short gxTv_SdtTrn_Location_Trn_themeid_N ;
       private string gxTv_SdtTrn_Location_Locationphone ;
       private string gxTv_SdtTrn_Location_Mode ;
       private string gxTv_SdtTrn_Location_Locationphone_Z ;

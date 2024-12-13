@@ -73,6 +73,12 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         new prc_authenticatereceptionist(context ).execute( out  AV11UserName, ref  AV12LocationId, ref  AV13OrganisationId) ;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV11UserName))) )
+         {
+            cleanup();
+            if (true) return;
+         }
          /* Using cursor P009X2 */
          pr_default.execute(0, new Object[] {AV8MediaId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -124,6 +130,9 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV10response = "";
+         AV11UserName = "";
+         AV12LocationId = Guid.Empty;
+         AV13OrganisationId = Guid.Empty;
          P009X2_A409MediaId = new Guid[] {Guid.Empty} ;
          P009X2_A410MediaName = new string[] {""} ;
          A409MediaId = Guid.Empty;
@@ -153,8 +162,11 @@ namespace GeneXus.Programs {
 
       private short GXT9X2 ;
       private string AV10response ;
+      private string AV11UserName ;
       private string A410MediaName ;
       private Guid AV8MediaId ;
+      private Guid AV12LocationId ;
+      private Guid AV13OrganisationId ;
       private Guid A409MediaId ;
       private GxFile AV9File ;
       private IGxDataStore dsDataStore1 ;

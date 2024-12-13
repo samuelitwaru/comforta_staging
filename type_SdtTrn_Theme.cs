@@ -73,6 +73,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Trn_themename_Z");
          state.Add("gxTpr_Trn_themefontfamily_Z");
          state.Add("gxTpr_Trn_themefontsize_Z");
+         state.Add("gxTpr_Trn_themeid_N");
          return state ;
       }
 
@@ -92,6 +93,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Theme_Trn_themename_Z = sdt.gxTv_SdtTrn_Theme_Trn_themename_Z ;
          gxTv_SdtTrn_Theme_Trn_themefontfamily_Z = sdt.gxTv_SdtTrn_Theme_Trn_themefontfamily_Z ;
          gxTv_SdtTrn_Theme_Trn_themefontsize_Z = sdt.gxTv_SdtTrn_Theme_Trn_themefontsize_Z ;
+         gxTv_SdtTrn_Theme_Trn_themeid_N = sdt.gxTv_SdtTrn_Theme_Trn_themeid_N ;
          return  ;
       }
 
@@ -111,6 +113,7 @@ namespace GeneXus.Programs {
                                    bool includeNonInitialized )
       {
          AddObjectProperty("Trn_ThemeId", gxTv_SdtTrn_Theme_Trn_themeid, false, includeNonInitialized);
+         AddObjectProperty("Trn_ThemeId_N", gxTv_SdtTrn_Theme_Trn_themeid_N, false, includeNonInitialized);
          AddObjectProperty("Trn_ThemeName", gxTv_SdtTrn_Theme_Trn_themename, false, includeNonInitialized);
          AddObjectProperty("Trn_ThemeFontFamily", gxTv_SdtTrn_Theme_Trn_themefontfamily, false, includeNonInitialized);
          AddObjectProperty("Trn_ThemeFontSize", gxTv_SdtTrn_Theme_Trn_themefontsize, false, includeNonInitialized);
@@ -130,6 +133,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("Trn_ThemeName_Z", gxTv_SdtTrn_Theme_Trn_themename_Z, false, includeNonInitialized);
             AddObjectProperty("Trn_ThemeFontFamily_Z", gxTv_SdtTrn_Theme_Trn_themefontfamily_Z, false, includeNonInitialized);
             AddObjectProperty("Trn_ThemeFontSize_Z", gxTv_SdtTrn_Theme_Trn_themefontsize_Z, false, includeNonInitialized);
+            AddObjectProperty("Trn_ThemeId_N", gxTv_SdtTrn_Theme_Trn_themeid_N, false, includeNonInitialized);
          }
          return  ;
       }
@@ -597,6 +601,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "Trn_ThemeId_N" )]
+      [  XmlElement( ElementName = "Trn_ThemeId_N"   )]
+      public short gxTpr_Trn_themeid_N
+      {
+         get {
+            return gxTv_SdtTrn_Theme_Trn_themeid_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Theme_Trn_themeid_N = value;
+            SetDirty("Trn_themeid_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Theme_Trn_themeid_N_SetNull( )
+      {
+         gxTv_SdtTrn_Theme_Trn_themeid_N = 0;
+         SetDirty("Trn_themeid_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Theme_Trn_themeid_N_IsNull( )
+      {
+         return false ;
+      }
+
       [XmlIgnore]
       private static GXTypeInfo _typeProps;
       protected override GXTypeInfo TypeInfo
@@ -639,6 +671,7 @@ namespace GeneXus.Programs {
       private short gxTv_SdtTrn_Theme_Trn_themefontsize ;
       private short gxTv_SdtTrn_Theme_Initialized ;
       private short gxTv_SdtTrn_Theme_Trn_themefontsize_Z ;
+      private short gxTv_SdtTrn_Theme_Trn_themeid_N ;
       private string gxTv_SdtTrn_Theme_Mode ;
       private string gxTv_SdtTrn_Theme_Trn_themename ;
       private string gxTv_SdtTrn_Theme_Trn_themefontfamily ;

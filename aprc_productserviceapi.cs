@@ -105,12 +105,12 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         GXt_guid1 = AV17LocationId;
-         new prc_getuserlocationid(context ).execute( out  GXt_guid1) ;
-         AV17LocationId = GXt_guid1;
-         GXt_guid1 = AV16OrganisationId;
-         new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
-         AV16OrganisationId = GXt_guid1;
+         new prc_authenticatereceptionist(context ).execute( out  AV18UserName, ref  AV17LocationId, ref  AV16OrganisationId) ;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV18UserName))) )
+         {
+            cleanup();
+            if (true) return;
+         }
          /* Using cursor P00912 */
          pr_default.execute(0, new Object[] {AV8ProductServiceId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -161,9 +161,9 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
+         AV18UserName = "";
          AV17LocationId = Guid.Empty;
          AV16OrganisationId = Guid.Empty;
-         GXt_guid1 = Guid.Empty;
          P00912_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P00912_A29LocationId = new Guid[] {Guid.Empty} ;
          P00912_A58ProductServiceId = new Guid[] {Guid.Empty} ;
@@ -202,6 +202,7 @@ namespace GeneXus.Programs {
       }
 
       private string A370CallToActionPhone ;
+      private string AV18UserName ;
       private string A397CallToActionName ;
       private string A369CallToActionEmail ;
       private string A368CallToActionType ;
@@ -209,7 +210,6 @@ namespace GeneXus.Programs {
       private Guid AV8ProductServiceId ;
       private Guid AV17LocationId ;
       private Guid AV16OrganisationId ;
-      private Guid GXt_guid1 ;
       private Guid A11OrganisationId ;
       private Guid A29LocationId ;
       private Guid A58ProductServiceId ;

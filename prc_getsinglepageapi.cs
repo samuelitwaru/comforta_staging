@@ -73,6 +73,12 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         new prc_authenticatereceptionist(context ).execute( out  AV16UserName, ref  AV17LocationId, ref  AV18OrganisationId) ;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV16UserName))) )
+         {
+            cleanup();
+            if (true) return;
+         }
          /* Using cursor P009D2 */
          pr_default.execute(0, new Object[] {AV15pageId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -121,6 +127,9 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV8SDT_Page = new SdtSDT_Page(context);
+         AV16UserName = "";
+         AV17LocationId = Guid.Empty;
+         AV18OrganisationId = Guid.Empty;
          P009D2_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          P009D2_A318Trn_PageName = new string[] {""} ;
          P009D2_A431PageJsonContent = new string[] {""} ;
@@ -166,8 +175,11 @@ namespace GeneXus.Programs {
       private string A432PageGJSHtml ;
       private string A433PageGJSJson ;
       private string A437PageChildren ;
+      private string AV16UserName ;
       private string A318Trn_PageName ;
       private Guid AV15pageId ;
+      private Guid AV17LocationId ;
+      private Guid AV18OrganisationId ;
       private Guid A310Trn_PageId ;
       private Guid A29LocationId ;
       private IGxDataStore dsDataStore1 ;

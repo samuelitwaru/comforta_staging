@@ -110,6 +110,12 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         new prc_authenticatereceptionist(context ).execute( out  AV30UserName, ref  AV26LocationId, ref  AV27OrganisationId) ;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV30UserName))) )
+         {
+            cleanup();
+            if (true) return;
+         }
          /* Using cursor P008W2 */
          pr_default.execute(0, new Object[] {AV26LocationId, AV27OrganisationId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -122,14 +128,14 @@ namespace GeneXus.Programs {
             A310Trn_PageId = P008W2_A310Trn_PageId[0];
             AV8SDT_Page = new SdtSDT_Page(context);
             AV8SDT_Page.FromJSonString(A431PageJsonContent, null);
-            AV31GXV1 = 1;
-            while ( AV31GXV1 <= AV8SDT_Page.gxTpr_Row.Count )
+            AV32GXV1 = 1;
+            while ( AV32GXV1 <= AV8SDT_Page.gxTpr_Row.Count )
             {
-               AV10SDT_Row = ((SdtSDT_Row)AV8SDT_Page.gxTpr_Row.Item(AV31GXV1));
-               AV32GXV2 = 1;
-               while ( AV32GXV2 <= AV10SDT_Row.gxTpr_Col.Count )
+               AV10SDT_Row = ((SdtSDT_Row)AV8SDT_Page.gxTpr_Row.Item(AV32GXV1));
+               AV33GXV2 = 1;
+               while ( AV33GXV2 <= AV10SDT_Row.gxTpr_Col.Count )
                {
-                  AV11SDT_Col = ((SdtSDT_Col)AV10SDT_Row.gxTpr_Col.Item(AV32GXV2));
+                  AV11SDT_Col = ((SdtSDT_Col)AV10SDT_Row.gxTpr_Col.Item(AV33GXV2));
                   if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objecttype))) )
                   {
                      AV25BC_Trn_Page = new SdtTrn_Page(context);
@@ -143,14 +149,14 @@ namespace GeneXus.Programs {
                         {
                            AV8SDT_Page = new SdtSDT_Page(context);
                            AV8SDT_Page.FromJSonString(AV25BC_Trn_Page.gxTpr_Pagejsoncontent, null);
-                           AV33GXV3 = 1;
-                           while ( AV33GXV3 <= AV8SDT_Page.gxTpr_Row.Count )
+                           AV34GXV3 = 1;
+                           while ( AV34GXV3 <= AV8SDT_Page.gxTpr_Row.Count )
                            {
-                              AV10SDT_Row = ((SdtSDT_Row)AV8SDT_Page.gxTpr_Row.Item(AV33GXV3));
-                              AV34GXV4 = 1;
-                              while ( AV34GXV4 <= AV10SDT_Row.gxTpr_Col.Count )
+                              AV10SDT_Row = ((SdtSDT_Row)AV8SDT_Page.gxTpr_Row.Item(AV34GXV3));
+                              AV35GXV4 = 1;
+                              while ( AV35GXV4 <= AV10SDT_Row.gxTpr_Col.Count )
                               {
-                                 AV11SDT_Col = ((SdtSDT_Col)AV10SDT_Row.gxTpr_Col.Item(AV34GXV4));
+                                 AV11SDT_Col = ((SdtSDT_Col)AV10SDT_Row.gxTpr_Col.Item(AV35GXV4));
                                  if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objecttype))) )
                                  {
                                     AV25BC_Trn_Page = new SdtTrn_Page(context);
@@ -163,17 +169,17 @@ namespace GeneXus.Programs {
                                        AV15SDT_PageStructure.gxTpr_Children.Add(AV19SDT_PageChild, 0);
                                     }
                                  }
-                                 AV34GXV4 = (int)(AV34GXV4+1);
+                                 AV35GXV4 = (int)(AV35GXV4+1);
                               }
-                              AV33GXV3 = (int)(AV33GXV3+1);
+                              AV34GXV3 = (int)(AV34GXV3+1);
                            }
                         }
                         AV29SDT_PageStructureCollection.Add(AV15SDT_PageStructure, 0);
                      }
                   }
-                  AV32GXV2 = (int)(AV32GXV2+1);
+                  AV33GXV2 = (int)(AV33GXV2+1);
                }
-               AV31GXV1 = (int)(AV31GXV1+1);
+               AV32GXV1 = (int)(AV32GXV1+1);
             }
             /* Exiting from a For First loop. */
             if (true) break;
@@ -195,6 +201,7 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV29SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2");
+         AV30UserName = "";
          P008W2_A318Trn_PageName = new string[] {""} ;
          P008W2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P008W2_A29LocationId = new Guid[] {Guid.Empty} ;
@@ -222,12 +229,13 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV31GXV1 ;
-      private int AV32GXV2 ;
-      private int AV33GXV3 ;
-      private int AV34GXV4 ;
+      private int AV32GXV1 ;
+      private int AV33GXV2 ;
+      private int AV34GXV3 ;
+      private int AV35GXV4 ;
       private bool n431PageJsonContent ;
       private string A431PageJsonContent ;
+      private string AV30UserName ;
       private string A318Trn_PageName ;
       private Guid AV26LocationId ;
       private Guid AV27OrganisationId ;

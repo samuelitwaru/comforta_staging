@@ -125,6 +125,12 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         new prc_authenticatereceptionist(context ).execute( out  AV22UserName, ref  AV23LocationId, ref  AV24OrganisationId) ;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV22UserName))) )
+         {
+            cleanup();
+            if (true) return;
+         }
          /*
             INSERT RECORD ON TABLE Trn_Page
 
@@ -175,6 +181,9 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
+         AV22UserName = "";
+         AV23LocationId = Guid.Empty;
+         AV24OrganisationId = Guid.Empty;
          A310Trn_PageId = Guid.Empty;
          A318Trn_PageName = "";
          A431PageJsonContent = "";
@@ -208,8 +217,11 @@ namespace GeneXus.Programs {
       private string A431PageJsonContent ;
       private string A432PageGJSHtml ;
       private string A433PageGJSJson ;
+      private string AV22UserName ;
       private string A318Trn_PageName ;
       private Guid AV18PageId ;
+      private Guid AV23LocationId ;
+      private Guid AV24OrganisationId ;
       private Guid A310Trn_PageId ;
       private Guid A29LocationId ;
       private IGxDataStore dsDataStore1 ;

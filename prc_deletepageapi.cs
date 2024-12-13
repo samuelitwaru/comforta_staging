@@ -61,6 +61,12 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         new prc_authenticatereceptionist(context ).execute( out  AV18UserName, ref  AV17LocationId, ref  AV19OrganisationId) ;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV18UserName))) )
+         {
+            cleanup();
+            if (true) return;
+         }
          /* Optimized DELETE. */
          /* Using cursor P009Z2 */
          pr_default.execute(0, new Object[] {AV13Trn_PageId});
@@ -83,6 +89,9 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
+         AV18UserName = "";
+         AV17LocationId = Guid.Empty;
+         AV19OrganisationId = Guid.Empty;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_deletepageapi__default(),
             new Object[][] {
                 new Object[] {
@@ -92,7 +101,10 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
+      private string AV18UserName ;
       private Guid AV13Trn_PageId ;
+      private Guid AV17LocationId ;
+      private Guid AV19OrganisationId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;

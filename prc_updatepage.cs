@@ -110,23 +110,13 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         GXt_char1 = AV19UserName;
-         new prc_getloggedinusername(context ).execute( out  GXt_char1) ;
-         AV19UserName = GXt_char1;
-         /* Using cursor P008R2 */
-         pr_default.execute(0, new Object[] {AV19UserName});
-         while ( (pr_default.getStatus(0) != 101) )
+         new prc_authenticatereceptionist(context ).execute( out  AV19UserName, ref  AV20LocationId, ref  AV21OrganisationId) ;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV19UserName))) )
          {
-            A93ReceptionistEmail = P008R2_A93ReceptionistEmail[0];
-            A29LocationId = P008R2_A29LocationId[0];
-            A89ReceptionistId = P008R2_A89ReceptionistId[0];
-            A11OrganisationId = P008R2_A11OrganisationId[0];
-            AV20LocationId = A29LocationId;
-            pr_default.readNext(0);
+            cleanup();
+            if (true) return;
          }
-         pr_default.close(0);
          AV9BC_Trn_Page.Load(AV8PageId, AV18PageName, AV20LocationId);
-         new prc_logtofile(context ).execute(  ">>>>>>"+AV12PageJsonContent) ;
          if ( ! (Guid.Empty==AV9BC_Trn_Page.gxTpr_Trn_pageid) )
          {
             AV9BC_Trn_Page.gxTpr_Pagegjsjson = AV11PageGJSJson;
@@ -175,16 +165,8 @@ namespace GeneXus.Programs {
       {
          AV10Response = "";
          AV19UserName = "";
-         GXt_char1 = "";
-         P008R2_A93ReceptionistEmail = new string[] {""} ;
-         P008R2_A29LocationId = new Guid[] {Guid.Empty} ;
-         P008R2_A89ReceptionistId = new Guid[] {Guid.Empty} ;
-         P008R2_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         A93ReceptionistEmail = "";
-         A29LocationId = Guid.Empty;
-         A89ReceptionistId = Guid.Empty;
-         A11OrganisationId = Guid.Empty;
          AV20LocationId = Guid.Empty;
+         AV21OrganisationId = Guid.Empty;
          AV9BC_Trn_Page = new SdtTrn_Page(context);
          AV22GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV14Message = new GeneXus.Utils.SdtMessages_Message(context);
@@ -198,16 +180,12 @@ namespace GeneXus.Programs {
          );
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_updatepage__default(),
             new Object[][] {
-                new Object[] {
-               P008R2_A93ReceptionistEmail, P008R2_A29LocationId, P008R2_A89ReceptionistId, P008R2_A11OrganisationId
-               }
             }
          );
          /* GeneXus formulas. */
       }
 
       private int AV23GXV2 ;
-      private string GXt_char1 ;
       private bool AV17PageIsPublished ;
       private string AV12PageJsonContent ;
       private string AV13PageGJSHtml ;
@@ -215,12 +193,9 @@ namespace GeneXus.Programs {
       private string AV10Response ;
       private string AV18PageName ;
       private string AV19UserName ;
-      private string A93ReceptionistEmail ;
       private Guid AV8PageId ;
-      private Guid A29LocationId ;
-      private Guid A89ReceptionistId ;
-      private Guid A11OrganisationId ;
       private Guid AV20LocationId ;
+      private Guid AV21OrganisationId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
@@ -230,12 +205,8 @@ namespace GeneXus.Programs {
       private string aP3_PageGJSHtml ;
       private string aP4_PageGJSJson ;
       private bool aP5_PageIsPublished ;
-      private IDataStoreProvider pr_default ;
-      private string[] P008R2_A93ReceptionistEmail ;
-      private Guid[] P008R2_A29LocationId ;
-      private Guid[] P008R2_A89ReceptionistId ;
-      private Guid[] P008R2_A11OrganisationId ;
       private SdtTrn_Page AV9BC_Trn_Page ;
+      private IDataStoreProvider pr_default ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV22GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV14Message ;
       private string aP6_Response ;
@@ -313,7 +284,6 @@ public class prc_updatepage__default : DataStoreHelperBase, IDataStoreHelper
    {
       cursorDefinitions();
       return new Cursor[] {
-       new ForEachCursor(def[0])
     };
  }
 
@@ -322,12 +292,7 @@ public class prc_updatepage__default : DataStoreHelperBase, IDataStoreHelper
  {
     if ( def == null )
     {
-       Object[] prmP008R2;
-       prmP008R2 = new Object[] {
-       new ParDef("AV19UserName",GXType.VarChar,100,0)
-       };
        def= new CursorDef[] {
-           new CursorDef("P008R2", "SELECT ReceptionistEmail, LocationId, ReceptionistId, OrganisationId FROM Trn_Receptionist WHERE ReceptionistEmail = ( RTRIM(LTRIM(:AV19UserName))) ORDER BY ReceptionistId, OrganisationId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008R2,100, GxCacheFrequency.OFF ,false,false )
        };
     }
  }
@@ -336,15 +301,6 @@ public class prc_updatepage__default : DataStoreHelperBase, IDataStoreHelper
                          IFieldGetter rslt ,
                          Object[] buf )
  {
-    switch ( cursor )
-    {
-          case 0 :
-             ((string[]) buf[0])[0] = rslt.getVarchar(1);
-             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-             ((Guid[]) buf[3])[0] = rslt.getGuid(4);
-             return;
-    }
  }
 
 }

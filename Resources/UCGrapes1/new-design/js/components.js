@@ -191,17 +191,25 @@ class ActionListComponent {
           // add apage to a selected tile
           const currentPageId = localStorage.getItem("pageId");
 
+          // const categorySelected = this.closest(".category").dataset.category
+          // if (categorySelected == "Predefined Page") {
+          //   categorySelected = this.innerHTML
+          // }
+
           if (currentPageId !== undefined) {
             self.toolBoxManager.setAttributeToSelected(
               "tile-action-object-id",
               this.id
             );
+
             self.toolBoxManager.setAttributeToSelected(
               "tile-action-object",
               `${this.closest(".category").dataset.category}, ${
                 this.textContent
               }`
             );
+
+            
             if (self.selectedObject == "Service/Product Page") {
               self.createContentPage(this.id);
             }
