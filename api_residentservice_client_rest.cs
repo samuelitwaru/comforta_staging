@@ -408,7 +408,7 @@ namespace GeneXus.Programs {
       }
 
       public void gxep_deletemedia( Guid aP0_MediaId ,
-                                    string aP1_result )
+                                    out string aP1_result )
       {
          restCliDeleteMedia = new GXRestAPIClient();
          if ( restLocation == null )
@@ -419,16 +419,17 @@ namespace GeneXus.Programs {
          restCliDeleteMedia.Location = restLocation;
          restCliDeleteMedia.HttpMethod = "GET";
          restCliDeleteMedia.AddQueryVar("Mediaid", (Guid)(aP0_MediaId));
-         restCliDeleteMedia.AddQueryVar("Result", aP1_result);
          restCliDeleteMedia.RestExecute();
          if ( restCliDeleteMedia.ErrorCode != 0 )
          {
             gxProperties.ErrorCode = restCliDeleteMedia.ErrorCode;
             gxProperties.ErrorMessage = restCliDeleteMedia.ErrorMessage;
             gxProperties.StatusCode = restCliDeleteMedia.StatusCode;
+            aP1_result = "";
          }
          else
          {
+            aP1_result = restCliDeleteMedia.GetBodyString("result");
          }
          /* DeleteMedia Constructor */
       }

@@ -994,6 +994,7 @@ class MediaComponent {
     this.dataManager
       .deleteMedia(mediaId)
       .then((res) => {
+        console.log(res)
         if (res.success === true) {
           // Remove the media item from the DOM
           const mediaItem = document.querySelector(

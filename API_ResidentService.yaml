@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241213121327"
+  version: "20241214030820"
 servers:
-  - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/api
+  - url: https://staging.comforta.yukon.software/api
 paths:
   /auth/resident-login:
     post:
@@ -326,16 +326,16 @@ paths:
           schema:
             type: "string"
             format: "uuid"
-        - name: "Result"
-          in: "query"
-          required: false
-          schema:
-            type: "string"
-            
       
       responses:
         200:
           description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "string"
+
+
         404:
           description: "Not found"
 

@@ -435,13 +435,13 @@ namespace GeneXus.Programs {
       }
 
       public void gxep_deletemedia( Guid aP0_MediaId ,
-                                    string aP1_result )
+                                    out string aP1_result )
       {
          this.AV46MediaId = aP0_MediaId;
-         this.AV17result = aP1_result;
          initialize();
          /* DeleteMedia Constructor */
          new prc_deletemedia(context ).execute(  AV46MediaId, out  AV17result) ;
+         aP1_result=this.AV17result;
       }
 
       public void gxep_getmedia( out GXBaseCollection<SdtSDT_Media> aP0_SDT_MediaCollection )
@@ -659,6 +659,7 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
+         AV17result = "";
          AV20SDT_LoginResidentResponse = new SdtSDT_LoginResidentResponse(context);
          AV21loginResult = new SdtSDT_LoginResidentResponse(context);
          AV22SDT_Resident = new SdtSDT_Resident(context);
@@ -734,6 +735,7 @@ namespace GeneXus.Programs {
       protected string aP0_result ;
       protected SdtTrn_Media AV50BC_Trn_Media ;
       protected SdtTrn_Media aP5_BC_Trn_Media ;
+      protected string aP1_result ;
       protected GXBaseCollection<SdtSDT_Media> AV85SDT_MediaCollection ;
       protected GXBaseCollection<SdtSDT_Media> aP0_SDT_MediaCollection ;
       protected GXBaseCollection<SdtSDT_Page> AV44SDT_PageCollection ;
@@ -750,7 +752,6 @@ namespace GeneXus.Programs {
       protected SdtSDT_Page aP1_SDT_Page ;
       protected GXBaseCollection<SdtSDT_PageStructure> AV64SDT_PageStructureCollection ;
       protected GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageStructureCollection ;
-      protected string aP1_result ;
       protected string aP5_result ;
       protected SdtSDT_Theme AV72SDT_Theme ;
       protected SdtSDT_Theme aP3_SDT_Theme ;
