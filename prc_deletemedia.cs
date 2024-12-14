@@ -79,6 +79,7 @@ namespace GeneXus.Programs {
             cleanup();
             if (true) return;
          }
+         AV10response = "failure";
          /* Using cursor P009X2 */
          pr_default.execute(0, new Object[] {AV8MediaId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -87,23 +88,15 @@ namespace GeneXus.Programs {
             A409MediaId = P009X2_A409MediaId[0];
             A410MediaName = P009X2_A410MediaName[0];
             AV9File.Source = "media/"+A410MediaName;
+            /* Using cursor P009X3 */
+            pr_default.execute(1, new Object[] {A409MediaId});
+            pr_default.close(1);
+            pr_default.SmartCacheProvider.SetUpdated("Trn_Media");
+            GXT9X2 = 1;
+            AV10response = "success";
             if ( AV9File.Exists() )
             {
-               /* Using cursor P009X3 */
-               pr_default.execute(1, new Object[] {A409MediaId});
-               pr_default.close(1);
-               pr_default.SmartCacheProvider.SetUpdated("Trn_Media");
                AV9File.Delete();
-               AV10response = "success";
-               /* Using cursor P009X4 */
-               pr_default.execute(2, new Object[] {A409MediaId});
-               pr_default.close(2);
-               pr_default.SmartCacheProvider.SetUpdated("Trn_Media");
-               GXT9X2 = 1;
-            }
-            else
-            {
-               AV10response = "failure";
             }
             if ( GXT9X2 == 1 )
             {
@@ -150,8 +143,6 @@ namespace GeneXus.Programs {
             new Object[][] {
                 new Object[] {
                P009X2_A409MediaId, P009X2_A410MediaName
-               }
-               , new Object[] {
                }
                , new Object[] {
                }
@@ -252,7 +243,6 @@ public class prc_deletemedia__default : DataStoreHelperBase, IDataStoreHelper
       return new Cursor[] {
        new ForEachCursor(def[0])
       ,new UpdateCursor(def[1])
-      ,new UpdateCursor(def[2])
     };
  }
 
@@ -269,14 +259,9 @@ public class prc_deletemedia__default : DataStoreHelperBase, IDataStoreHelper
        prmP009X3 = new Object[] {
        new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
        };
-       Object[] prmP009X4;
-       prmP009X4 = new Object[] {
-       new ParDef("MediaId",GXType.UniqueIdentifier,36,0)
-       };
        def= new CursorDef[] {
            new CursorDef("P009X2", "SELECT MediaId, MediaName FROM Trn_Media WHERE MediaId = :AV8MediaId ORDER BY MediaId  FOR UPDATE OF Trn_Media",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009X2,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("P009X3", "SAVEPOINT gxupdate;DELETE FROM Trn_Media  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP009X3)
-          ,new CursorDef("P009X4", "SAVEPOINT gxupdate;DELETE FROM Trn_Media  WHERE MediaId = :MediaId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP009X4)
        };
     }
  }
