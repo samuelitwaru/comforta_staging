@@ -154,8 +154,8 @@ namespace GeneXus.Programs {
          new prc_logtofile(context ).execute(  StringUtil.BoolToStr( AV14BC_Trn_Media.Success())) ;
          if ( AV14BC_Trn_Media.Success() )
          {
-            AV22Path = "";
-            if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, "http") )
+            AV22Path = "media/";
+            if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, "http://localhost") )
             {
                AV22Path = "C:\\KBs\\Comforta_version2\\Data018\\Web\\media\\";
             }
