@@ -1340,8 +1340,6 @@ h5#current-page-title {
   /* justify-items: center; */
   justify-content: center;
 }
-<<<<<<< HEAD
-=======
 
 /* Toast message */
 #toast {
@@ -1370,4 +1368,3 @@ h5#current-page-title {
   opacity: 0;
   transform: translateX(-50%) translateY(20px);
 }
->>>>>>> cb652838e45f282d231a3a3716384bc51b1b05e9
