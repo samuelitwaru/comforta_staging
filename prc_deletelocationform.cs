@@ -5,8 +5,6 @@ using GeneXus.Resources;
 using GeneXus.Application;
 using GeneXus.Metadata;
 using GeneXus.Cryptography;
-using System.Data;
-using GeneXus.Data;
 using com.genexus;
 using GeneXus.Data.ADO;
 using GeneXus.Data.NTier;
@@ -28,9 +26,6 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
-         dsDataStore1 = context.GetDataStore("DataStore1");
-         dsGAM = context.GetDataStore("GAM");
-         dsDefault = context.GetDataStore("Default");
          IsMain = true;
          context.SetDefaultTheme("WorkWithPlusDS", true);
       }
@@ -39,41 +34,72 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
-         dsDataStore1 = context.GetDataStore("DataStore1");
-         dsGAM = context.GetDataStore("GAM");
-         dsDefault = context.GetDataStore("Default");
       }
 
-      public void execute( short aP0_WWPFormId )
+      public void execute( short aP0_WWPFormId ,
+                           short aP1_WWPFormVersionNumber ,
+                           Guid aP2_LocationDynamicFormId ,
+                           Guid aP3_OrganisationId ,
+                           Guid aP4_LocationId ,
+                           out GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP5_OutMessage )
       {
          this.A206WWPFormId = aP0_WWPFormId;
+         this.A207WWPFormVersionNumber = aP1_WWPFormVersionNumber;
+         this.A395LocationDynamicFormId = aP2_LocationDynamicFormId;
+         this.A11OrganisationId = aP3_OrganisationId;
+         this.A29LocationId = aP4_LocationId;
+         this.AV9OutMessage = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus") ;
          initialize();
          ExecuteImpl();
+         aP5_OutMessage=this.AV9OutMessage;
       }
 
-      public void executeSubmit( short aP0_WWPFormId )
+      public GXBaseCollection<GeneXus.Utils.SdtMessages_Message> executeUdp( short aP0_WWPFormId ,
+                                                                             short aP1_WWPFormVersionNumber ,
+                                                                             Guid aP2_LocationDynamicFormId ,
+                                                                             Guid aP3_OrganisationId ,
+                                                                             Guid aP4_LocationId )
+      {
+         execute(aP0_WWPFormId, aP1_WWPFormVersionNumber, aP2_LocationDynamicFormId, aP3_OrganisationId, aP4_LocationId, out aP5_OutMessage);
+         return AV9OutMessage ;
+      }
+
+      public void executeSubmit( short aP0_WWPFormId ,
+                                 short aP1_WWPFormVersionNumber ,
+                                 Guid aP2_LocationDynamicFormId ,
+                                 Guid aP3_OrganisationId ,
+                                 Guid aP4_LocationId ,
+                                 out GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP5_OutMessage )
       {
          this.A206WWPFormId = aP0_WWPFormId;
+         this.A207WWPFormVersionNumber = aP1_WWPFormVersionNumber;
+         this.A395LocationDynamicFormId = aP2_LocationDynamicFormId;
+         this.A11OrganisationId = aP3_OrganisationId;
+         this.A29LocationId = aP4_LocationId;
+         this.AV9OutMessage = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus") ;
          SubmitImpl();
+         aP5_OutMessage=this.AV9OutMessage;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         /* Optimized DELETE. */
-         /* Using cursor P00802 */
-         pr_default.execute(0, new Object[] {A206WWPFormId});
-         pr_default.close(0);
-         pr_default.SmartCacheProvider.SetUpdated("Trn_LocationDynamicForm");
-         /* End optimized DELETE. */
-         new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_deleteform(context ).execute(  A206WWPFormId) ;
+         AV8Trn_LocationDynamicForm.Load(A395LocationDynamicFormId, A11OrganisationId, A29LocationId);
+         AV8Trn_LocationDynamicForm.Delete();
+         if ( AV8Trn_LocationDynamicForm.Success() )
+         {
+            new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_deleteform(context ).execute(  A206WWPFormId,  A207WWPFormVersionNumber, out  AV9OutMessage) ;
+         }
+         else
+         {
+            AV9OutMessage = AV8Trn_LocationDynamicForm.GetMessages();
+         }
          cleanup();
       }
 
       public override void cleanup( )
       {
-         context.CommitDataStores("prc_deletelocationform",pr_default);
          CloseCursors();
          if ( IsMain )
          {
@@ -84,53 +110,19 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_deletelocationform__default(),
-            new Object[][] {
-                new Object[] {
-               }
-            }
-         );
+         AV9OutMessage = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV8Trn_LocationDynamicForm = new SdtTrn_LocationDynamicForm(context);
          /* GeneXus formulas. */
       }
 
       private short A206WWPFormId ;
-      private IGxDataStore dsDataStore1 ;
-      private IGxDataStore dsGAM ;
-      private IGxDataStore dsDefault ;
-      private IDataStoreProvider pr_default ;
+      private short A207WWPFormVersionNumber ;
+      private Guid A395LocationDynamicFormId ;
+      private Guid A11OrganisationId ;
+      private Guid A29LocationId ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV9OutMessage ;
+      private SdtTrn_LocationDynamicForm AV8Trn_LocationDynamicForm ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP5_OutMessage ;
    }
-
-   public class prc_deletelocationform__default : DataStoreHelperBase, IDataStoreHelper
-   {
-      public ICursor[] getCursors( )
-      {
-         cursorDefinitions();
-         return new Cursor[] {
-          new UpdateCursor(def[0])
-       };
-    }
-
-    private static CursorDef[] def;
-    private void cursorDefinitions( )
-    {
-       if ( def == null )
-       {
-          Object[] prmP00802;
-          prmP00802 = new Object[] {
-          new ParDef("WWPFormId",GXType.Int16,4,0)
-          };
-          def= new CursorDef[] {
-              new CursorDef("P00802", "DELETE FROM Trn_LocationDynamicForm  WHERE WWPFormId = :WWPFormId", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00802)
-          };
-       }
-    }
-
-    public void getResults( int cursor ,
-                            IFieldGetter rslt ,
-                            Object[] buf )
-    {
-    }
-
- }
 
 }

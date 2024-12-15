@@ -1450,7 +1450,7 @@ namespace GeneXus.Programs {
          while ( AV34GXV8 <= AV22SDT_NotificationGroupCollection.Count )
          {
             AV24SDT_NotificationGroupItem = ((SdtSDT_NotificationGroup_SDT_NotificationGroupItem)AV22SDT_NotificationGroupCollection.Item(AV34GXV8));
-            if ( StringUtil.Contains( AV24SDT_NotificationGroupItem.gxTpr_Parentlinkid, AV15ParentId) )
+            if ( StringUtil.StrCmp(StringUtil.Trim( AV24SDT_NotificationGroupItem.gxTpr_Parentlinkid), StringUtil.Trim( AV15ParentId)) == 0 )
             {
                AV25WWP_SDTNotificationsDataItem = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem(context);
                AV25WWP_SDTNotificationsDataItem.gxTpr_Notificationid = AV24SDT_NotificationGroupItem.gxTpr_Notificationid;
@@ -1751,7 +1751,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121117354089", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241215812622", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1769,7 +1769,7 @@ namespace GeneXus.Programs {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wc_childnotifications.js", "?2024121117354090", false, true);
+            context.AddJavascriptSource("wc_childnotifications.js", "?20241215812622", false, true);
             context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
             context.AddJavascriptSource("DVelop/GridEmpowerer/GridEmpowererRender.js", "", false, true);
          }

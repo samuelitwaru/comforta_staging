@@ -44,17 +44,34 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          dsDefault = context.GetDataStore("Default");
       }
 
-      public void execute( short aP0_WWPFormId )
+      public void execute( short aP0_WWPFormId ,
+                           short aP1_WWPFormVersionNumber ,
+                           out GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP2_Messages )
       {
          this.A206WWPFormId = aP0_WWPFormId;
+         this.A207WWPFormVersionNumber = aP1_WWPFormVersionNumber;
+         this.AV9Messages = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus") ;
          initialize();
          ExecuteImpl();
+         aP2_Messages=this.AV9Messages;
       }
 
-      public void executeSubmit( short aP0_WWPFormId )
+      public GXBaseCollection<GeneXus.Utils.SdtMessages_Message> executeUdp( short aP0_WWPFormId ,
+                                                                             short aP1_WWPFormVersionNumber )
+      {
+         execute(aP0_WWPFormId, aP1_WWPFormVersionNumber, out aP2_Messages);
+         return AV9Messages ;
+      }
+
+      public void executeSubmit( short aP0_WWPFormId ,
+                                 short aP1_WWPFormVersionNumber ,
+                                 out GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP2_Messages )
       {
          this.A206WWPFormId = aP0_WWPFormId;
+         this.A207WWPFormVersionNumber = aP1_WWPFormVersionNumber;
+         this.AV9Messages = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus") ;
          SubmitImpl();
+         aP2_Messages=this.AV9Messages;
       }
 
       protected override void ExecutePrivate( )
@@ -63,22 +80,26 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          /* Output device settings */
          /* Optimized DELETE. */
          /* Using cursor P004L2 */
-         pr_default.execute(0, new Object[] {A206WWPFormId});
+         pr_default.execute(0, new Object[] {A206WWPFormId, A207WWPFormVersionNumber});
          pr_default.close(0);
          pr_default.SmartCacheProvider.SetUpdated("WWP_FormElement");
          /* End optimized DELETE. */
-         /* Optimized DELETE. */
-         /* Using cursor P004L3 */
-         pr_default.execute(1, new Object[] {A206WWPFormId});
-         pr_default.close(1);
-         pr_default.SmartCacheProvider.SetUpdated("WWP_Form");
-         /* End optimized DELETE. */
+         AV8WWP_Form.Load(A206WWPFormId, A207WWPFormVersionNumber);
+         AV8WWP_Form.Delete();
+         if ( AV8WWP_Form.Success() )
+         {
+            context.CommitDataStores("workwithplus.dynamicforms.wwp_df_deleteform",pr_default);
+         }
+         else
+         {
+            context.RollbackDataStores("workwithplus.dynamicforms.wwp_df_deleteform",pr_default);
+            AV9Messages = AV8WWP_Form.GetMessages();
+         }
          cleanup();
       }
 
       public override void cleanup( )
       {
-         context.CommitDataStores("workwithplus.dynamicforms.wwp_df_deleteform",pr_default);
          CloseCursors();
          if ( IsMain )
          {
@@ -89,11 +110,19 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       public override void initialize( )
       {
+         AV9Messages = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV8WWP_Form = new GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form(context);
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_deleteform__datastore1(),
+            new Object[][] {
+            }
+         );
+         pr_gam = new DataStoreProvider(context, new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_deleteform__gam(),
+            new Object[][] {
+            }
+         );
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_deleteform__default(),
             new Object[][] {
                 new Object[] {
-               }
-               , new Object[] {
                }
             }
          );
@@ -101,20 +130,24 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       }
 
       private short A206WWPFormId ;
+      private short A207WWPFormVersionNumber ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV9Messages ;
       private IDataStoreProvider pr_default ;
+      private GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form AV8WWP_Form ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> aP2_Messages ;
+      private IDataStoreProvider pr_datastore1 ;
+      private IDataStoreProvider pr_gam ;
    }
 
-   public class wwp_df_deleteform__default : DataStoreHelperBase, IDataStoreHelper
+   public class wwp_df_deleteform__datastore1 : DataStoreHelperBase, IDataStoreHelper
    {
       public ICursor[] getCursors( )
       {
          cursorDefinitions();
          return new Cursor[] {
-          new UpdateCursor(def[0])
-         ,new UpdateCursor(def[1])
        };
     }
 
@@ -123,17 +156,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
     {
        if ( def == null )
        {
-          Object[] prmP004L2;
-          prmP004L2 = new Object[] {
-          new ParDef("WWPFormId",GXType.Int16,4,0)
-          };
-          Object[] prmP004L3;
-          prmP004L3 = new Object[] {
-          new ParDef("WWPFormId",GXType.Int16,4,0)
-          };
           def= new CursorDef[] {
-              new CursorDef("P004L2", "DELETE FROM WWP_FormElement  WHERE WWPFormId = :WWPFormId", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP004L2)
-             ,new CursorDef("P004L3", "DELETE FROM WWP_Form  WHERE WWPFormId = :WWPFormId", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP004L3)
           };
        }
     }
@@ -144,6 +167,77 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
     {
     }
 
+    public override string getDataStoreName( )
+    {
+       return "DATASTORE1";
+    }
+
  }
+
+ public class wwp_df_deleteform__gam : DataStoreHelperBase, IDataStoreHelper
+ {
+    public ICursor[] getCursors( )
+    {
+       cursorDefinitions();
+       return new Cursor[] {
+     };
+  }
+
+  private static CursorDef[] def;
+  private void cursorDefinitions( )
+  {
+     if ( def == null )
+     {
+        def= new CursorDef[] {
+        };
+     }
+  }
+
+  public void getResults( int cursor ,
+                          IFieldGetter rslt ,
+                          Object[] buf )
+  {
+  }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wwp_df_deleteform__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+       new UpdateCursor(def[0])
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       Object[] prmP004L2;
+       prmP004L2 = new Object[] {
+       new ParDef("WWPFormId",GXType.Int16,4,0) ,
+       new ParDef("WWPFormVersionNumber",GXType.Int16,4,0)
+       };
+       def= new CursorDef[] {
+           new CursorDef("P004L2", "DELETE FROM WWP_FormElement  WHERE WWPFormId = :WWPFormId and WWPFormVersionNumber = :WWPFormVersionNumber", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP004L2)
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+ }
+
+}
 
 }

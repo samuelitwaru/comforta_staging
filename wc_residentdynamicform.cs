@@ -1295,7 +1295,7 @@ namespace GeneXus.Programs {
                            AV31NotificationDescription = AV32FormName + " - " + AV30ResidentName;
                            AV36SDT_NotificationMetadata = new SdtSDT_NotificationMetadata(context);
                            AV36SDT_NotificationMetadata.gxTpr_Isparentnotification = true;
-                           AV36SDT_NotificationMetadata.gxTpr_Parentnotificationid = StringUtil.Str( (decimal)(AV7WWPFormInstance.gxTpr_Wwpforminstanceid), 6, 0);
+                           AV36SDT_NotificationMetadata.gxTpr_Parentnotificationid = StringUtil.Trim( StringUtil.Str( (decimal)(AV7WWPFormInstance.gxTpr_Wwpforminstanceid), 6, 0));
                            AV36SDT_NotificationMetadata.gxTpr_Formreferencename = AV14WWPFormReferenceName;
                            AV36SDT_NotificationMetadata.gxTpr_Notificationtriggeredtimestamp = DateTimeUtil.Now( context);
                            AV36SDT_NotificationMetadata.gxTpr_Notificationorigin = "DynamicForms";
@@ -1813,7 +1813,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412138171123", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121581352", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1829,7 +1829,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_residentdynamicform.js", "?202412138171125", false, true);
+         context.AddJavascriptSource("wc_residentdynamicform.js", "?2024121581353", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/ConfirmPanel/BootstrapConfirmPanelRender.js", "", false, true);

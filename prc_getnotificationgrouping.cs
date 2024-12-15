@@ -115,7 +115,7 @@ namespace GeneXus.Programs {
             if ( AV13SDT_NotificationGroupItem.gxTpr_Isparent )
             {
                AV9NotificationParentId = "";
-               AV9NotificationParentId = AV13SDT_NotificationGroupItem.gxTpr_Parentlinkid;
+               AV9NotificationParentId = StringUtil.Trim( AV13SDT_NotificationGroupItem.gxTpr_Parentlinkid);
                /* Execute user subroutine: 'CHECKNUMBEROFCHILDNOTIFICATIONS' */
                S111 ();
                if ( returnInSub )
@@ -124,7 +124,6 @@ namespace GeneXus.Programs {
                   if (true) return;
                }
                AV13SDT_NotificationGroupItem.gxTpr_Numberofchildnotifications = AV8CountOfChildNotifications;
-               new prc_logtofile(context ).execute(  "Notification Parent: "+AV13SDT_NotificationGroupItem.ToJSonString(false, true)) ;
                AV15SDT_NotificationGroupParentCollection.Add(AV13SDT_NotificationGroupItem, 0);
             }
             AV20GXV1 = (int)(AV20GXV1+1);
@@ -141,7 +140,7 @@ namespace GeneXus.Programs {
          while ( AV21GXV2 <= AV12SDT_NotificationGroupCollection.Count )
          {
             AV14SDT_NotificationGroupItem2 = ((SdtSDT_NotificationGroup_SDT_NotificationGroupItem)AV12SDT_NotificationGroupCollection.Item(AV21GXV2));
-            if ( ! AV14SDT_NotificationGroupItem2.gxTpr_Isparent && StringUtil.Contains( AV14SDT_NotificationGroupItem2.gxTpr_Parentlinkid, AV9NotificationParentId) )
+            if ( ! AV14SDT_NotificationGroupItem2.gxTpr_Isparent && ( StringUtil.StrCmp(StringUtil.Trim( AV14SDT_NotificationGroupItem2.gxTpr_Parentlinkid), StringUtil.Trim( AV9NotificationParentId)) == 0 ) )
             {
                AV8CountOfChildNotifications = (short)(AV8CountOfChildNotifications+1);
             }

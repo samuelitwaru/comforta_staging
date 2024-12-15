@@ -54,13 +54,13 @@ type_SdtTrn_Theme_Icon.cs
 type_SdtTrn_Page.cs
 type_SdtTrn_Organisation.cs
 type_SdtTrn_Location.cs
-type_SdtTrn_ProductService.cs
 type_SdtTrn_LocationDynamicForm.cs
 type_SdtTrn_Receptionist.cs
 type_SdtTrn_Resident.cs
 type_SdtTrn_Resident_NetworkCompany.cs
 type_SdtTrn_Resident_NetworkIndividual.cs
 type_SdtTrn_AgendaCalendar.cs
+type_SdtTrn_ProductService.cs
 type_SdtQRCodeLibrary.cs
 type_SdtEO_Base64Image.cs
 gxdomainsalutation.cs

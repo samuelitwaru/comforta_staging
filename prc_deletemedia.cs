@@ -87,13 +87,13 @@ namespace GeneXus.Programs {
             GXT9X2 = 0;
             A409MediaId = P009X2_A409MediaId[0];
             A410MediaName = P009X2_A410MediaName[0];
-            AV9File.Source = "media/"+A410MediaName;
             /* Using cursor P009X3 */
             pr_default.execute(1, new Object[] {A409MediaId});
             pr_default.close(1);
             pr_default.SmartCacheProvider.SetUpdated("Trn_Media");
             GXT9X2 = 1;
             AV10response = "success";
+            AV9File.Source = "media/"+A410MediaName;
             if ( AV9File.Exists() )
             {
                AV9File.Delete();

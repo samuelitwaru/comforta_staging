@@ -119,11 +119,13 @@ namespace GeneXus.Programs {
                A362DeviceType = P007T2_A362DeviceType[0];
                A363DeviceToken = P007T2_A363DeviceToken[0];
                A364DeviceName = P007T2_A364DeviceName[0];
+               A365DeviceUserId = P007T2_A365DeviceUserId[0];
                AV17GXLvl13 = 1;
                A363DeviceToken = AV16SDT_OneSignalRegistration.ToJSonString(false, true);
                A364DeviceName = AV8DeviceId;
+               A365DeviceUserId = AV14UserId;
                /* Using cursor P007T3 */
-               pr_default.execute(1, new Object[] {A363DeviceToken, A364DeviceName, A361DeviceId});
+               pr_default.execute(1, new Object[] {A363DeviceToken, A364DeviceName, A365DeviceUserId, A361DeviceId});
                pr_default.close(1);
                pr_default.SmartCacheProvider.SetUpdated("Trn_Device");
                /* Exiting from a For First loop. */
@@ -181,6 +183,7 @@ namespace GeneXus.Programs {
          P007T2_A362DeviceType = new short[1] ;
          P007T2_A363DeviceToken = new string[] {""} ;
          P007T2_A364DeviceName = new string[] {""} ;
+         P007T2_A365DeviceUserId = new string[] {""} ;
          A361DeviceId = "";
          A363DeviceToken = "";
          A364DeviceName = "";
@@ -189,7 +192,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_registermobiledevice__default(),
             new Object[][] {
                 new Object[] {
-               P007T2_A361DeviceId, P007T2_A362DeviceType, P007T2_A363DeviceToken, P007T2_A364DeviceName
+               P007T2_A361DeviceId, P007T2_A362DeviceType, P007T2_A363DeviceToken, P007T2_A364DeviceName, P007T2_A365DeviceUserId
                }
                , new Object[] {
                }
@@ -224,6 +227,7 @@ namespace GeneXus.Programs {
       private short[] P007T2_A362DeviceType ;
       private string[] P007T2_A363DeviceToken ;
       private string[] P007T2_A364DeviceName ;
+      private string[] P007T2_A365DeviceUserId ;
       private string aP6_Message ;
    }
 
@@ -253,6 +257,7 @@ namespace GeneXus.Programs {
           prmP007T3 = new Object[] {
           new ParDef("DeviceToken",GXType.Char,1000,0) ,
           new ParDef("DeviceName",GXType.Char,128,0) ,
+          new ParDef("DeviceUserId",GXType.VarChar,100,60) ,
           new ParDef("DeviceId",GXType.Char,128,0)
           };
           Object[] prmP007T4;
@@ -264,8 +269,8 @@ namespace GeneXus.Programs {
           new ParDef("DeviceUserId",GXType.VarChar,100,60)
           };
           def= new CursorDef[] {
-              new CursorDef("P007T2", "SELECT DeviceId, DeviceType, DeviceToken, DeviceName FROM Trn_Device WHERE (DeviceId = ( :AV8DeviceId)) AND (DeviceType = :AV10DeviceType) ORDER BY DeviceId  FOR UPDATE OF Trn_Device",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007T2,1, GxCacheFrequency.OFF ,true,true )
-             ,new CursorDef("P007T3", "SAVEPOINT gxupdate;UPDATE Trn_Device SET DeviceToken=:DeviceToken, DeviceName=:DeviceName  WHERE DeviceId = :DeviceId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP007T3)
+              new CursorDef("P007T2", "SELECT DeviceId, DeviceType, DeviceToken, DeviceName, DeviceUserId FROM Trn_Device WHERE (DeviceId = ( :AV8DeviceId)) AND (DeviceType = :AV10DeviceType) ORDER BY DeviceId  FOR UPDATE OF Trn_Device",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007T2,1, GxCacheFrequency.OFF ,true,true )
+             ,new CursorDef("P007T3", "SAVEPOINT gxupdate;UPDATE Trn_Device SET DeviceToken=:DeviceToken, DeviceName=:DeviceName, DeviceUserId=:DeviceUserId  WHERE DeviceId = :DeviceId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP007T3)
              ,new CursorDef("P007T4", "SAVEPOINT gxupdate;INSERT INTO Trn_Device(DeviceId, DeviceType, DeviceToken, DeviceName, DeviceUserId) VALUES(:DeviceId, :DeviceType, :DeviceToken, :DeviceName, :DeviceUserId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_MASKLOOPLOCK,prmP007T4)
           };
        }
@@ -282,6 +287,7 @@ namespace GeneXus.Programs {
                 ((short[]) buf[1])[0] = rslt.getShort(2);
                 ((string[]) buf[2])[0] = rslt.getString(3, 1000);
                 ((string[]) buf[3])[0] = rslt.getString(4, 128);
+                ((string[]) buf[4])[0] = rslt.getVarchar(5);
                 return;
        }
     }
