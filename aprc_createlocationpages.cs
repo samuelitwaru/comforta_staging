@@ -123,19 +123,24 @@ namespace GeneXus.Programs {
          }
          pr_default.close(0);
          AV15BC_Trn_Location.Load(AV8LocationId, AV9OrganisationId);
-         AV17GXV1 = 1;
-         while ( AV17GXV1 <= AV11PredefinedPagesDictionary.gxTpr_Keys.Count )
+         AV18GXV1 = 1;
+         while ( AV18GXV1 <= AV11PredefinedPagesDictionary.gxTpr_Keys.Count )
          {
-            AV18Key = ((string)AV11PredefinedPagesDictionary.gxTpr_Keys.Item(AV17GXV1));
-            AV12Value = AV11PredefinedPagesDictionary.get(AV18Key);
+            AV19Key = ((string)AV11PredefinedPagesDictionary.gxTpr_Keys.Item(AV18GXV1));
+            AV12Value = AV11PredefinedPagesDictionary.get(AV19Key);
             AV10File = new GxFile(context.GetPhysicalPath());
             AV10File.Source = "PredefinedPages/Default"+AV12Value+".txt";
             AV13PageGJSJson = AV10File.ReadAllText("");
+            AV16PageIsContentPage = false;
+            if ( ( StringUtil.StrCmp(AV12Value, "Reception") == 0 ) || ( StringUtil.StrCmp(AV12Value, "Location") == 0 ) )
+            {
+               AV16PageIsContentPage = true;
+            }
             /*
                INSERT RECORD ON TABLE Trn_Page
 
             */
-            A310Trn_PageId = StringUtil.StrToGuid( AV18Key);
+            A310Trn_PageId = StringUtil.StrToGuid( AV19Key);
             A318Trn_PageName = AV12Value;
             A439PageIsContentPage = false;
             n439PageIsContentPage = false;
@@ -161,7 +166,7 @@ namespace GeneXus.Programs {
                Gx_emsg = "";
             }
             /* End Insert */
-            AV17GXV1 = (int)(AV17GXV1+1);
+            AV18GXV1 = (int)(AV18GXV1+1);
          }
          cleanup();
       }
@@ -190,10 +195,11 @@ namespace GeneXus.Programs {
          A21ManagerId = Guid.Empty;
          AV9OrganisationId = Guid.Empty;
          AV15BC_Trn_Location = new SdtTrn_Location(context);
-         AV18Key = "";
+         AV19Key = "";
          AV12Value = "";
          AV10File = new GxFile(context.GetPhysicalPath());
          AV13PageGJSJson = "";
+         AV16PageIsContentPage = false;
          A310Trn_PageId = Guid.Empty;
          A318Trn_PageName = "";
          A29LocationId = Guid.Empty;
@@ -211,10 +217,11 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV17GXV1 ;
+      private int AV18GXV1 ;
       private int GX_INS98 ;
       private string GXt_char1 ;
       private string Gx_emsg ;
+      private bool AV16PageIsContentPage ;
       private bool A439PageIsContentPage ;
       private bool n439PageIsContentPage ;
       private bool A504PageIsPredefined ;
@@ -225,7 +232,7 @@ namespace GeneXus.Programs {
       private string A433PageGJSJson ;
       private string AV14UserName ;
       private string A25ManagerEmail ;
-      private string AV18Key ;
+      private string AV19Key ;
       private string AV12Value ;
       private string A318Trn_PageName ;
       private Guid AV8LocationId ;

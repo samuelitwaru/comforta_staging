@@ -74,28 +74,32 @@ namespace GeneXus.Programs {
          new prc_logtofile(context ).execute(  AV12OrganisationId.ToString()) ;
          AV14BC_Trn_Location.Load(AV8LocationId, AV12OrganisationId);
          new prc_logtofile(context ).execute(  AV14BC_Trn_Location.ToJSonString(true, true)) ;
-         AV20GXV1 = 1;
-         while ( AV20GXV1 <= AV9PredefinedPagesDictionary.gxTpr_Keys.Count )
+         AV21GXV1 = 1;
+         while ( AV21GXV1 <= AV9PredefinedPagesDictionary.gxTpr_Keys.Count )
          {
-            AV11Key = ((string)AV9PredefinedPagesDictionary.gxTpr_Keys.Item(AV20GXV1));
+            AV11Key = ((string)AV9PredefinedPagesDictionary.gxTpr_Keys.Item(AV21GXV1));
             AV16Value = AV9PredefinedPagesDictionary.get(AV11Key);
             AV15File = new GxFile(context.GetPhysicalPath());
             AV15File.Source = "PredefinedPages/Default"+AV16Value+".txt";
             AV13PageGJSJson = AV15File.ReadAllText("");
+            AV20PageIsContentPage = false;
             if ( StringUtil.StrCmp(AV16Value, "Location") == 0 )
             {
                AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, "{{LocationImage}}", "https://staging.comforta.yukon.software/media/LocationInfo.png");
                AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, "{{LocationDescription}}", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+               AV20PageIsContentPage = true;
             }
             if ( StringUtil.StrCmp(AV16Value, "Reception") == 0 )
             {
                AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, "{{LocationImage}}", "https://staging.comforta.yukon.software/media/receptie-197@3x.png");
                AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, "{{LocationDescription}}", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+               AV20PageIsContentPage = true;
             }
             AV18BC_Trn_Page = new SdtTrn_Page(context);
             AV18BC_Trn_Page.gxTpr_Trn_pageid = StringUtil.StrToGuid( AV11Key);
             AV18BC_Trn_Page.gxTpr_Trn_pagename = AV16Value;
-            AV18BC_Trn_Page.gxTpr_Pageiscontentpage = false;
+            AV18BC_Trn_Page.gxTpr_Pageiscontentpage = AV20PageIsContentPage;
+            new prc_logtofile(context ).execute(  AV16Value+" : "+StringUtil.BoolToStr( AV20PageIsContentPage)) ;
             AV18BC_Trn_Page.gxTpr_Pageispredefined = true;
             AV18BC_Trn_Page.gxTpr_Locationid = AV14BC_Trn_Location.gxTpr_Locationid;
             AV18BC_Trn_Page.gxTpr_Organisationid = AV14BC_Trn_Location.gxTpr_Organisationid;
@@ -107,16 +111,16 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV22GXV3 = 1;
-               AV21GXV2 = AV18BC_Trn_Page.GetMessages();
-               while ( AV22GXV3 <= AV21GXV2.Count )
+               AV23GXV3 = 1;
+               AV22GXV2 = AV18BC_Trn_Page.GetMessages();
+               while ( AV23GXV3 <= AV22GXV2.Count )
                {
-                  AV19Message = ((GeneXus.Utils.SdtMessages_Message)AV21GXV2.Item(AV22GXV3));
+                  AV19Message = ((GeneXus.Utils.SdtMessages_Message)AV22GXV2.Item(AV23GXV3));
                   new prc_logtofile(context ).execute(  AV19Message.gxTpr_Description) ;
-                  AV22GXV3 = (int)(AV22GXV3+1);
+                  AV23GXV3 = (int)(AV23GXV3+1);
                }
             }
-            AV20GXV1 = (int)(AV20GXV1+1);
+            AV21GXV1 = (int)(AV21GXV1+1);
          }
          cleanup();
       }
@@ -139,8 +143,9 @@ namespace GeneXus.Programs {
          AV16Value = "";
          AV15File = new GxFile(context.GetPhysicalPath());
          AV13PageGJSJson = "";
+         AV20PageIsContentPage = false;
          AV18BC_Trn_Page = new SdtTrn_Page(context);
-         AV21GXV2 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV22GXV2 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV19Message = new GeneXus.Utils.SdtMessages_Message(context);
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_initlocationpages__datastore1(),
             new Object[][] {
@@ -157,8 +162,9 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV20GXV1 ;
-      private int AV22GXV3 ;
+      private int AV21GXV1 ;
+      private int AV23GXV3 ;
+      private bool AV20PageIsContentPage ;
       private string AV13PageGJSJson ;
       private string AV11Key ;
       private string AV16Value ;
@@ -172,7 +178,7 @@ namespace GeneXus.Programs {
       private SdtTrn_Location AV14BC_Trn_Location ;
       private SdtTrn_Page AV18BC_Trn_Page ;
       private IDataStoreProvider pr_default ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV21GXV2 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV22GXV2 ;
       private GeneXus.Utils.SdtMessages_Message AV19Message ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;

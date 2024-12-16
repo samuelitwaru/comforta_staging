@@ -24,7 +24,10 @@ class ChildEditorManager {
         this.createChildEditor(homePage);
         this.currentPageId = homePage.PageId;
       } else {
-        alert("No Home Page Found");
+        this.toolsSection.displayAlertMessage(
+          "No home page found.",
+          "danger"
+        );
         return;
       }
     });
@@ -132,6 +135,19 @@ class ChildEditorManager {
     if (page.PageGJSJson) {
       editor.loadProjectData(JSON.parse(page.PageGJSJson));
 
+      if (page.PageIsPredefined) {
+        if (page.PageName == "Location") {
+          const pageData = JSON.parse(page.PageGJSJson)
+          pageData.pages[0].frames[0].component.components[0].components[0].components[0].components[0].components[0].components[0].attributes.src = this.dataManager.Location.LocationImage_GXI
+          pageData.pages[0].frames[0].component.components[0].components[0].components[0].components[0].components[0].components[1].components[0].content = this.dataManager.Location.LocationDescription
+          // pageData.pages[0].frames[0].component.components[0].components[0].components[0].components[0].components[0].components[1] = this.dataManager.Location.LocationImage_GXI
+          // pageData.pages[0].component.components[0].src = this.dataManager.Location.LocationImage_GXI
+          // pageData.pages[0].component.components[1].content = this.dataManager.Location.LocationDescription 
+          editor.DomComponents.clear()
+          editor.loadProjectData(pageData);
+        }
+      }
+
       if (page.PageIsContentPage) {
         this.dataManager
           .getContentPageData(page.PageId)
@@ -164,15 +180,6 @@ class ChildEditorManager {
           .catch((error) => {
             console.error("Error loading content page data:", error);
           });
-      } else {
-        if (page.PageName == "Location") {
-          const pageData = JSON.parse(page.PageGJSJson)
-          console.log(this.dataManager.Location)
-          pageData.pages[0].component.components[0].src = this.dataManager.Location.LocationImage_GXI
-          pageData.pages[0].component.components[1].content = this.dataManager.Location.LocationDescription 
-          editor.DomComponents.clear()
-          editor.loadProjectData(pageData);
-        }
       }
 
     } else {

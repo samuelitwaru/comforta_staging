@@ -1,53 +1,213 @@
 {
-    "assets": [],
-    "pages": [
-      {
-        "id": "page-id-1",
-        "name": "Page 1",
-        "component": {
-          "type": "wrapper",
-          "components": [
-            {
-              "type": "image",
-              "id": "location-image",
-              "src": "https://staging.comforta.yukon.software/media/LocationInfo.png",
-              "attributes": {
-                "id": "location-image"
-              },
-              "style": {
-                "width": "100%",
-                "height": "auto",
-                "display": "block"
-              },
-              "attributes": {
-                "alt": "Sample Image"
-              },
-              "selectable": false
-            },
-            {
-              "type": "text",
-              "id": "location-description",
-              "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-              "attributes": {
-                "id": "location-description"
-              },
-              "style": {
-                "margin": "20px auto",
-                "width": "80%",
-                "text-align": "left",
-                "font-size": "16px",
-                "line-height": "1.5"
-              },
-              "selectable": true
-            }
-          ]
-        }
+  "assets": [],
+  "styles": [
+    {
+      "selectors": [
+        "#iekl"
+      ],
+      "style": {
+        "display": "flex",
+        "width": "100%"
       }
-    ],
-    "styles": "",
-    "css": "",
-    "html": "",
-    "components": "",
-    "stylesheets": [],
-    "scripts": []
-  }
+    },
+    {
+      "selectors": [
+        "#i9nw"
+      ],
+      "style": {
+        "flex": "1",
+        "padding": "0"
+      }
+    },
+    {
+      "selectors": [
+        "#product-service-description"
+      ],
+      "style": {
+        "flex": "1",
+        "padding": "0",
+        "margin": "0",
+        "height": "auto",
+        "margin-bottom": "15px"
+      }
+    }
+  ],
+  "pages": [
+    {
+      "frames": [
+        {
+          "component": {
+            "type": "wrapper",
+            "droppable": false,
+            "stylable": [
+              "background",
+              "background-color",
+              "background-image",
+              "background-repeat",
+              "background-attachment",
+              "background-position",
+              "background-size"
+            ],
+            "selectable": false,
+            "hoverable": false,
+            "_undoexc": [
+              "status",
+              "open"
+            ],
+            "components": [
+              {
+                "draggable": false,
+                "droppable": false,
+                "highlightable": false,
+                "selectable": false,
+                "hoverable": false,
+                "classes": [
+                  "content-frame-container",
+                  "test"
+                ],
+                "attributes": {
+                  "id": "frame-container"
+                },
+                "_undoexc": [
+                  "status",
+                  "open"
+                ],
+                "components": [
+                  {
+                    "draggable": false,
+                    "droppable": false,
+                    "highlightable": false,
+                    "selectable": false,
+                    "hoverable": false,
+                    "classes": [
+                      "container-column"
+                    ],
+                    "_undoexc": [
+                      "status",
+                      "open"
+                    ],
+                    "components": [
+                      {
+                        "draggable": false,
+                        "droppable": false,
+                        "selectable": false,
+                        "classes": [
+                          "container-row"
+                        ],
+                        "_undoexc": [
+                          "status",
+                          "open"
+                        ],
+                        "components": [
+                          {
+                            "draggable": false,
+                            "droppable": false,
+                            "selectable": false,
+                            "classes": [
+                              "template-wrapper"
+                            ],
+                            "attributes": {
+                              "id": "iekl"
+                            },
+                            "_undoexc": [
+                              "status",
+                              "open"
+                            ],
+                            "components": [
+                              {
+                                "draggable": false,
+                                "highlightable": false,
+                                "selectable": false,
+                                "hoverable": false,
+                                "attributes": {
+                                  "id": "i9nw"
+                                },
+                                "_undoexc": [
+                                  "status",
+                                  "open"
+                                ],
+                                "components": [
+                                  {
+                                    "type": "image",
+                                    "droppable": false,
+                                    "highlightable": false,
+                                    "resizable": {
+                                      "ratioDefault": 1
+                                    },
+                                    "editable": false,
+                                    "selectable": false,
+                                    "hoverable": false,
+                                    "classes": [
+                                      "content-page-block"
+                                    ],
+                                    "attributes": {
+                                      "id": "product-service-image",
+                                      "src": "PublicTempStorage/multimedia/7550dec9-7789-4c0f-abf5-6c6643bbeae0_9648dca466184acfbb2efbe9e253571d.tmp",
+                                      "alt": "Full-width Image"
+                                    },
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ]
+                                  },
+                                  {
+                                    "tagName": "p",
+                                    "type": "text",
+                                    "highlightable": false,
+                                    "editable": false,
+                                    "selectable": false,
+                                    "hoverable": false,
+                                    "classes": [
+                                      "content-page-block"
+                                    ],
+                                    "attributes": {
+                                      "id": "product-service-description"
+                                    },
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ],
+                                    "components": [
+                                      {
+                                        "type": "textnode",
+                                        "content": "\n                    Taxi\n                    ",
+                                        "_undoexc": [
+                                          "status",
+                                          "open"
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "draggable": false,
+                        "droppable": false,
+                        "highlightable": false,
+                        "selectable": false,
+                        "hoverable": false,
+                        "classes": [
+                          "cta-button-container"
+                        ],
+                        "_undoexc": [
+                          "status",
+                          "open"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "type": "main",
+      "id": "6YZ55qbePVt6UNgy"
+    }
+  ]
+}
