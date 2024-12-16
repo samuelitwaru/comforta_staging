@@ -56,7 +56,6 @@ class ChildEditorManager {
   }
 
   createChildEditor(page) {
-    console.log("Page is: ", page)
     const pageId = page.PageId;
     const count = this.container.children.length;
     const editorContainer = document.createElement("div");
@@ -129,8 +128,10 @@ class ChildEditorManager {
       selectable: false,
     });
 
+    console.log("Editor Initialized", editor)
     // Add Event Listeners
     this.addEditorEventListners(editor);
+    this.toolsSection.unDoReDo(editor);
     // Load or Initialize Editor Content
     if (page.PageGJSJson) {
       editor.loadProjectData(JSON.parse(page.PageGJSJson));
@@ -140,9 +141,6 @@ class ChildEditorManager {
           const pageData = JSON.parse(page.PageGJSJson)
           pageData.pages[0].frames[0].component.components[0].components[0].components[0].components[0].components[0].components[0].attributes.src = this.dataManager.Location.LocationImage_GXI
           pageData.pages[0].frames[0].component.components[0].components[0].components[0].components[0].components[0].components[1].components[0].content = this.dataManager.Location.LocationDescription
-          // pageData.pages[0].frames[0].component.components[0].components[0].components[0].components[0].components[0].components[1] = this.dataManager.Location.LocationImage_GXI
-          // pageData.pages[0].component.components[0].src = this.dataManager.Location.LocationImage_GXI
-          // pageData.pages[0].component.components[1].content = this.dataManager.Location.LocationDescription 
           editor.DomComponents.clear()
           editor.loadProjectData(pageData);
         }
@@ -232,6 +230,7 @@ class ChildEditorManager {
 
     const navigator = this.activateNavigators();
     navigator.updateButtonVisibility();
+    navigator.scrollBy(200);
     new Clock(`current-time-${pageId}`);
   }
 
@@ -291,6 +290,8 @@ class ChildEditorManager {
 
         this.setCurrentEditor(editorId);
         this.currentPageId = $(editorContainerId).data().pageid;
+
+        this.toolsSection.unDoReDo(editor);
 
         if (e.target.attributes["tile-action-object-id"]) {
           console.log(this.dataManager.pages);
@@ -370,7 +371,6 @@ class ChildEditorManager {
       );
       this.hideContextMenu();
 
-      this.toolsSection.unDoReDo(this.currentEditor.editor);
       this.updateUIState();
     });
   }
@@ -621,6 +621,7 @@ class ChildEditorManager {
 
     return {
       updateButtonVisibility,
+      scrollBy,
     }
   }
 
@@ -1128,4 +1129,5 @@ class ChildEditorManager {
       });
     });
   }
+
 }

@@ -23,7 +23,12 @@ class ActionListComponent {
       {
         name: "Service/Product Page",
         label: this.currentLanguage.getTranslation("category_services_or_page"),
-        options: [],
+        options: this.dataManager.services.map((service) => {
+          return {
+            PageId: service.ProductServiceId,
+            PageName: service.ProductServiceName,
+          };
+        }),
       },
       {
         name: "Predefined Page",
@@ -45,12 +50,9 @@ class ActionListComponent {
         this.predefinedPageOptions = pages.filter(
           (page) => page.PageIsPredefined && page.PageName != "Home"
         );
-        this.servicePageOptions = this.dataManager.services.map((service) => {
-          return {
-            PageId: service.ProductServiceId,
-            PageName: service.ProductServiceName,
-          };
-        })
+        this.servicePageOptions = pages.filter(
+          (page) => page.PageIsContentPage
+        );
         this.categoryData.forEach((category) => {
           if (category.name === "Page") {
             category.options = this.pageOptions;
@@ -189,25 +191,17 @@ class ActionListComponent {
           // add apage to a selected tile
           const currentPageId = localStorage.getItem("pageId");
 
-          // const categorySelected = this.closest(".category").dataset.category
-          // if (categorySelected == "Predefined Page") {
-          //   categorySelected = this.innerHTML
-          // }
-
           if (currentPageId !== undefined) {
             self.toolBoxManager.setAttributeToSelected(
               "tile-action-object-id",
               this.id
             );
-
             self.toolBoxManager.setAttributeToSelected(
               "tile-action-object",
               `${this.closest(".category").dataset.category}, ${
                 this.textContent
               }`
             );
-
-            
             if (self.selectedObject == "Service/Product Page") {
               self.createContentPage(this.id);
             }
@@ -992,7 +986,6 @@ class MediaComponent {
     this.dataManager
       .deleteMedia(mediaId)
       .then((res) => {
-        console.log(res)
         if (res.success === true) {
           // Remove the media item from the DOM
           const mediaItem = document.querySelector(

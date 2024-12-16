@@ -34,7 +34,7 @@
    </div>
    <div class="tb-container">
       <div class="main-content">
-         <div class="navigator page-navigator-left" style="display:none">
+         <div class="navigator page-navigator-left" style="display:block">
             <svg id="scroll-left" xmlns="http://www.w3.org/2000/svg" width="46" height="46" viewBox="0 0 46 46">
                <g id="Group_710" data-name="Group 710" transform="translate(-428 -497)">
                   <g id="Ellipse_109" data-name="Ellipse 109" transform="translate(474 543) rotate(180)" fill="#fff" stroke="#707070" stroke-width="1">
@@ -48,7 +48,7 @@
          <div class="frame-list" id="child-container">
          </div>
 		 
-         <div class="navigator page-navigator-right" style="display:none">
+         <div class="navigator page-navigator-right" style="display:block">
             <svg id="scroll-right" xmlns="http://www.w3.org/2000/svg" id="Component_42_4" data-name="Component 42 – 4" width="46" height="46" viewBox="0 0 46 46">
                <g id="Ellipse_109" data-name="Ellipse 109" fill="#fff" stroke="#707070" stroke-width="1">
                   <circle cx="23" cy="23" r="23" stroke="none"/>
