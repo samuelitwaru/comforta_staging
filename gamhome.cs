@@ -17,10 +17,11 @@ using GeneXus.XML;
 using GeneXus.Search;
 using GeneXus.Encryption;
 using GeneXus.Http.Client;
+using GeneXus.Http.Server;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
 namespace GeneXus.Programs {
-   public class gamhome : GXDataArea
+   public class gamhome : GXHttpHandler
    {
       public gamhome( )
       {
@@ -155,10 +156,17 @@ namespace GeneXus.Programs {
          INITWEB( ) ;
          if ( ! isAjaxCallMode( ) )
          {
-            MasterPageObj = (GXMasterPage) ClassLoader.GetInstance("wwpbaseobjects.workwithplusmasterpage", "GeneXus.Programs.wwpbaseobjects.workwithplusmasterpage", new Object[] {context});
-            MasterPageObj.setDataArea(this,true);
             ValidateSpaRequest();
-            MasterPageObj.webExecute();
+            PA0R2( ) ;
+            if ( ( GxWebError == 0 ) && ! isAjaxCallMode( ) )
+            {
+               /* GeneXus formulas. */
+               WS0R2( ) ;
+               if ( ! isAjaxCallMode( ) )
+               {
+                  WE0R2( ) ;
+               }
+            }
             if ( ( GxWebError == 0 ) && context.isAjaxRequest( ) )
             {
                enableOutput();
@@ -185,30 +193,19 @@ namespace GeneXus.Programs {
          cleanup();
       }
 
-      public override short ExecuteStartEvent( )
-      {
-         PA0R2( ) ;
-         gxajaxcallmode = (short)((isAjaxCallMode( ) ? 1 : 0));
-         if ( ( gxajaxcallmode == 0 ) && ( GxWebError == 0 ) )
-         {
-            START0R2( ) ;
-         }
-         return gxajaxcallmode ;
-      }
-
-      public override void RenderHtmlHeaders( )
+      protected void RenderHtmlHeaders( )
       {
          GxWebStd.gx_html_headers( context, 0, "", "", Form.Meta, Form.Metaequiv, true);
       }
 
-      public override void RenderHtmlOpenForm( )
+      protected void RenderHtmlOpenForm( )
       {
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
          }
          context.WriteHtmlText( "<title>") ;
-         context.SendWebValue( Form.Caption) ;
+         context.SendWebValue( "Home") ;
          context.WriteHtmlTextNl( "</title>") ;
          if ( context.isSpaRequest( ) )
          {
@@ -219,10 +216,6 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "<BASE href=\""+sDynURL+"\" />") ;
          }
          define_styles( ) ;
-         if ( nGXWrapped != 1 )
-         {
-            MasterPageObj.master_styles();
-         }
          CloseStyles();
          if ( ( ( context.GetBrowserType( ) == 1 ) || ( context.GetBrowserType( ) == 5 ) ) && ( StringUtil.StrCmp(context.GetBrowserVersion( ), "7.0") == 0 ) )
          {
@@ -235,7 +228,6 @@ namespace GeneXus.Programs {
          {
             enableOutput();
          }
-         context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
          {
@@ -247,14 +239,10 @@ namespace GeneXus.Programs {
          {
             context.WriteHtmlText( " dir=\"rtl\" ") ;
          }
-         bodyStyle = "" + "background-color:" + context.BuildHTMLColor( Form.Backcolor) + ";color:" + context.BuildHTMLColor( Form.Textcolor) + ";";
+         bodyStyle = "";
          if ( nGXWrapped == 0 )
          {
             bodyStyle += "-moz-opacity:0;opacity:0;";
-         }
-         if ( ! ( String.IsNullOrEmpty(StringUtil.RTrim( Form.Background)) ) )
-         {
-            bodyStyle += " background-image:url(" + context.convertURL( Form.Background) + ")";
          }
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
@@ -277,6 +265,12 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
+         GxWebStd.gx_hidden_field( context, "vID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV52Id), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "gxhash_vID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV52Id), "ZZZ9"), context));
+         GxWebStd.gx_hidden_field( context, "vAPPLICATIONHOMEOBJECT", StringUtil.RTrim( AV46ApplicationHomeObject));
+         GxWebStd.gx_hidden_field( context, "gxhash_vAPPLICATIONHOMEOBJECT", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV46ApplicationHomeObject, "")), context));
+         GxWebStd.gx_boolean_hidden_field( context, "vISJAVAENVIRONMENT", AV49isJavaEnvironment);
+         GxWebStd.gx_hidden_field( context, "gxhash_vISJAVAENVIRONMENT", GetSecureSignedToken( "", AV49isJavaEnvironment, context));
          GXKey = Crypto.GetSiteKey( );
       }
 
@@ -285,9 +279,16 @@ namespace GeneXus.Programs {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
+         GxWebStd.gx_hidden_field( context, "vID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV52Id), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "gxhash_vID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV52Id), "ZZZ9"), context));
+         GxWebStd.gx_hidden_field( context, "vAPPLICATIONHOMEOBJECT", StringUtil.RTrim( AV46ApplicationHomeObject));
+         GxWebStd.gx_hidden_field( context, "gxhash_vAPPLICATIONHOMEOBJECT", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV46ApplicationHomeObject, "")), context));
+         GxWebStd.gx_boolean_hidden_field( context, "vISJAVAENVIRONMENT", AV49isJavaEnvironment);
+         GxWebStd.gx_hidden_field( context, "gxhash_vISJAVAENVIRONMENT", GetSecureSignedToken( "", AV49isJavaEnvironment, context));
+         GxWebStd.gx_hidden_field( context, "vHTTPREQUEST_Baseurl", StringUtil.RTrim( AV50HttpRequest.BaseURL));
       }
 
-      public override void RenderHtmlCloseForm( )
+      protected void RenderHtmlCloseForm0R2( )
       {
          SendCloseFormHiddens( ) ;
          GxWebStd.gx_hidden_field( context, "GX_FocusControl", GX_FocusControl);
@@ -309,39 +310,12 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
-      }
-
-      public override void RenderHtmlContent( )
-      {
-         gxajaxcallmode = (short)((isAjaxCallMode( ) ? 1 : 0));
-         if ( ( gxajaxcallmode == 0 ) && ( GxWebError == 0 ) )
+         context.WriteHtmlTextNl( "</body>") ;
+         context.WriteHtmlTextNl( "</html>") ;
+         if ( context.isSpaRequest( ) )
          {
-            context.WriteHtmlText( "<div") ;
-            GxWebStd.ClassAttribute( context, "gx-ct-body"+" "+(String.IsNullOrEmpty(StringUtil.RTrim( Form.Class)) ? "form-horizontal Form" : Form.Class)+"-fx");
-            context.WriteHtmlText( ">") ;
-            WE0R2( ) ;
-            context.WriteHtmlText( "</div>") ;
+            enableOutput();
          }
-      }
-
-      public override void DispatchEvents( )
-      {
-         EVT0R2( ) ;
-      }
-
-      public override bool HasEnterEvent( )
-      {
-         return false ;
-      }
-
-      public override GXWebForm GetForm( )
-      {
-         return Form ;
-      }
-
-      public override string GetSelfLink( )
-      {
-         return formatLink("gamhome.aspx")  ;
       }
 
       public override string GetPgmname( )
@@ -362,11 +336,8 @@ namespace GeneXus.Programs {
          }
          if ( ! wbLoad )
          {
-            if ( nGXWrapped == 1 )
-            {
-               RenderHtmlHeaders( ) ;
-               RenderHtmlOpenForm( ) ;
-            }
+            RenderHtmlHeaders( ) ;
+            RenderHtmlOpenForm( ) ;
             GxWebStd.gx_msg_list( context, "", context.GX_msglist.DisplayMode, "", "", "", "false");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "Section", "start", "top", " "+"data-gx-base-lib=\"bootstrapv3\""+" "+"data-abstract-form"+" ", "", "div");
@@ -430,59 +401,84 @@ namespace GeneXus.Programs {
                {
                   sEvtType = StringUtil.Left( sEvt, 1);
                   sEvt = StringUtil.Right( sEvt, (short)(StringUtil.Len( sEvt)-1));
-                  if ( StringUtil.StrCmp(sEvtType, "M") != 0 )
+                  if ( StringUtil.StrCmp(sEvtType, "E") == 0 )
                   {
-                     if ( StringUtil.StrCmp(sEvtType, "E") == 0 )
+                     sEvtType = StringUtil.Right( sEvt, 1);
+                     if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
                      {
-                        sEvtType = StringUtil.Right( sEvt, 1);
-                        if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
+                        sEvt = StringUtil.Left( sEvt, (short)(StringUtil.Len( sEvt)-1));
+                        if ( StringUtil.StrCmp(sEvt, "RFR") == 0 )
                         {
-                           sEvt = StringUtil.Left( sEvt, (short)(StringUtil.Len( sEvt)-1));
-                           if ( StringUtil.StrCmp(sEvt, "RFR") == 0 )
-                           {
-                              context.wbHandled = 1;
-                              dynload_actions( ) ;
-                           }
-                           else if ( StringUtil.StrCmp(sEvt, "START") == 0 )
-                           {
-                              context.wbHandled = 1;
-                              dynload_actions( ) ;
-                              /* Execute user event: Start */
-                              E110R2 ();
-                           }
-                           else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
-                           {
-                              context.wbHandled = 1;
-                              dynload_actions( ) ;
-                              /* Execute user event: Load */
-                              E120R2 ();
-                           }
-                           else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
-                           {
-                              context.wbHandled = 1;
-                              if ( ! wbErr )
-                              {
-                                 Rfr0gs = false;
-                                 if ( ! Rfr0gs )
-                                 {
-                                 }
-                                 dynload_actions( ) ;
-                              }
-                              /* No code required for Cancel button. It is implemented as the Reset button. */
-                           }
-                           else if ( StringUtil.StrCmp(sEvt, "LSCR") == 0 )
-                           {
-                              context.wbHandled = 1;
-                              dynload_actions( ) ;
-                              dynload_actions( ) ;
-                           }
+                           context.wbHandled = 1;
+                           dynload_actions( ) ;
                         }
-                        else
+                        else if ( StringUtil.StrCmp(sEvt, "START") == 0 )
                         {
+                           context.wbHandled = 1;
+                           dynload_actions( ) ;
+                           /* Execute user event: Start */
+                           E110R2 ();
+                        }
+                        else if ( StringUtil.StrCmp(sEvt, "'CONFIRM'") == 0 )
+                        {
+                           context.wbHandled = 1;
+                           dynload_actions( ) ;
+                           /* Execute user event: 'Confirm' */
+                           E120R2 ();
+                        }
+                        else if ( StringUtil.StrCmp(sEvt, "'GODEVMENU'") == 0 )
+                        {
+                           context.wbHandled = 1;
+                           dynload_actions( ) ;
+                           /* Execute user event: 'GoDevMenu' */
+                           E130R2 ();
+                        }
+                        else if ( StringUtil.StrCmp(sEvt, "'GOBACKEND'") == 0 )
+                        {
+                           context.wbHandled = 1;
+                           dynload_actions( ) ;
+                           /* Execute user event: 'GoBackend' */
+                           E140R2 ();
+                        }
+                        else if ( StringUtil.StrCmp(sEvt, "'GODOC'") == 0 )
+                        {
+                           context.wbHandled = 1;
+                           dynload_actions( ) ;
+                           /* Execute user event: 'GoDoc' */
+                           E150R2 ();
+                        }
+                        else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
+                        {
+                           context.wbHandled = 1;
+                           dynload_actions( ) ;
+                           /* Execute user event: Load */
+                           E160R2 ();
+                        }
+                        else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
+                        {
+                           context.wbHandled = 1;
+                           if ( ! wbErr )
+                           {
+                              Rfr0gs = false;
+                              if ( ! Rfr0gs )
+                              {
+                              }
+                              dynload_actions( ) ;
+                           }
+                           /* No code required for Cancel button. It is implemented as the Reset button. */
+                        }
+                        else if ( StringUtil.StrCmp(sEvt, "LSCR") == 0 )
+                        {
+                           context.wbHandled = 1;
+                           dynload_actions( ) ;
+                           dynload_actions( ) ;
                         }
                      }
-                     context.wbHandled = 1;
+                     else
+                     {
+                     }
                   }
+                  context.wbHandled = 1;
                }
             }
          }
@@ -496,10 +492,7 @@ namespace GeneXus.Programs {
             Refresh( ) ;
             if ( ! GxWebStd.gx_redirect( context) )
             {
-               if ( nGXWrapped == 1 )
-               {
-                  RenderHtmlCloseForm( ) ;
-               }
+               RenderHtmlCloseForm0R2( ) ;
             }
          }
       }
@@ -576,13 +569,19 @@ namespace GeneXus.Programs {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E120R2 ();
+            E160R2 ();
             WB0R0( ) ;
          }
       }
 
       protected void send_integrity_lvl_hashes0R2( )
       {
+         GxWebStd.gx_hidden_field( context, "vID", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV52Id), 4, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "gxhash_vID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV52Id), "ZZZ9"), context));
+         GxWebStd.gx_hidden_field( context, "vAPPLICATIONHOMEOBJECT", StringUtil.RTrim( AV46ApplicationHomeObject));
+         GxWebStd.gx_hidden_field( context, "gxhash_vAPPLICATIONHOMEOBJECT", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV46ApplicationHomeObject, "")), context));
+         GxWebStd.gx_boolean_hidden_field( context, "vISJAVAENVIRONMENT", AV49isJavaEnvironment);
+         GxWebStd.gx_hidden_field( context, "gxhash_vISJAVAENVIRONMENT", GetSecureSignedToken( "", AV49isJavaEnvironment, context));
       }
 
       protected void before_start_formulas( )
@@ -626,13 +625,88 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
+         if ( new GeneXus.Programs.genexussecurity.SdtGAMSession(context).isvalid(out  AV47GAMSEssion, out  AV48GAMError) && ! AV47GAMSEssion.gxTpr_Isanonymous )
+         {
+            AV45GAMApplication = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context).get();
+            AV52Id = (short)(AV45GAMApplication.gxTpr_Id);
+            AssignAttri("", false, "AV52Id", StringUtil.LTrimStr( (decimal)(AV52Id), 4, 0));
+            GxWebStd.gx_hidden_field( context, "gxhash_vID", GetSecureSignedToken( "", context.localUtil.Format( (decimal)(AV52Id), "ZZZ9"), context));
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45GAMApplication.gxTpr_Homeobject)) && ( StringUtil.StrCmp(StringUtil.Lower( AV45GAMApplication.gxTpr_Homeobject), "gamhome") != 0 ) )
+            {
+               new GeneXus.Programs.genexussecurity.SdtGAMApplication(context).gohome() ;
+            }
+         }
+         else
+         {
+            CallWebObject(formatLink("ulogin.aspx") );
+            context.wjLocDisableFrm = 1;
+         }
+      }
+
+      protected void E120R2( )
+      {
+         /* 'Confirm' Routine */
+         returnInSub = false;
+         AV45GAMApplication.load( AV52Id);
+         AV45GAMApplication.gxTpr_Homeobject = AV46ApplicationHomeObject;
+         AV45GAMApplication.save();
+         if ( AV45GAMApplication.success() )
+         {
+            context.CommitDataStores("gamhome",pr_default);
+         }
+         else
+         {
+            context.RollbackDataStores("gamhome",pr_default);
+         }
+         new GeneXus.Programs.genexussecurity.SdtGAMApplication(context).gohome() ;
+      }
+
+      protected void E130R2( )
+      {
+         /* 'GoDevMenu' Routine */
+         returnInSub = false;
+         if ( AV49isJavaEnvironment )
+         {
+            AV51Url = GxRegex.Replace(AV50HttpRequest.BaseURL,"/servlet/","") + "/static/developermenu.html";
+            CallWebObject(formatLink(AV51Url) );
+            context.wjLocDisableFrm = 0;
+         }
+         else
+         {
+            CallWebObject(formatLink("developermenu.html") );
+            context.wjLocDisableFrm = 0;
+         }
+      }
+
+      protected void E140R2( )
+      {
+         /* 'GoBackend' Routine */
+         returnInSub = false;
+         if ( AV49isJavaEnvironment )
+         {
+            CallWebObject(formatLink("genexus.security.backend.gam_dashboard") );
+            context.wjLocDisableFrm = 0;
+         }
+         else
+         {
+            CallWebObject(formatLink("gam_dashboard.aspx") );
+            context.wjLocDisableFrm = 0;
+         }
+      }
+
+      protected void E150R2( )
+      {
+         /* 'GoDoc' Routine */
+         returnInSub = false;
+         CallWebObject(formatLink("https://wiki.genexus.com/commwiki/servlet/wiki?15935,Category%3AGAM+Web+Backoffice,") );
+         context.wjLocDisableFrm = 0;
       }
 
       protected void nextLoad( )
       {
       }
 
-      protected void E120R2( )
+      protected void E160R2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -677,7 +751,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241211181444", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713261922", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -695,7 +769,7 @@ namespace GeneXus.Programs {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("gamhome.js", "?20241211181444", false, true);
+            context.AddJavascriptSource("gamhome.js", "?2024121713261924", false, true);
          }
          /* End function include_jscripts */
       }
@@ -720,11 +794,6 @@ namespace GeneXus.Programs {
             disableJsOutput();
          }
          init_default_properties( ) ;
-         Form.Headerrawhtml = "";
-         Form.Background = "";
-         Form.Textcolor = 0;
-         Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Home";
          if ( context.isSpaRequest( ) )
          {
             enableJsOutput();
@@ -738,7 +807,11 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV52Id","fld":"vID","pic":"ZZZ9","hsh":true},{"av":"AV46ApplicationHomeObject","fld":"vAPPLICATIONHOMEOBJECT","hsh":true},{"av":"AV49isJavaEnvironment","fld":"vISJAVAENVIRONMENT","hsh":true}]}""");
+         setEventMetadata("'CONFIRM'","""{"handler":"E120R2","iparms":[{"av":"AV52Id","fld":"vID","pic":"ZZZ9","hsh":true},{"av":"AV46ApplicationHomeObject","fld":"vAPPLICATIONHOMEOBJECT","hsh":true}]}""");
+         setEventMetadata("'GODEVMENU'","""{"handler":"E130R2","iparms":[{"av":"AV49isJavaEnvironment","fld":"vISJAVAENVIRONMENT","hsh":true},{"av":"AV50HttpRequest.BaseURL","ctrl":"vHTTPREQUEST","prop":"Baseurl"}]}""");
+         setEventMetadata("'GOBACKEND'","""{"handler":"E140R2","iparms":[{"av":"AV49isJavaEnvironment","fld":"vISJAVAENVIRONMENT","hsh":true}]}""");
+         setEventMetadata("'GODOC'","""{"handler":"E150R2","iparms":[]}""");
          return  ;
       }
 
@@ -753,28 +826,46 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
+         AV50HttpRequest = new GxHttpRequest( context);
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
+         AV46ApplicationHomeObject = "";
          GXKey = "";
          GX_FocusControl = "";
-         Form = new GXWebForm();
          sPrefix = "";
+         Form = new GXWebForm();
          sEvt = "";
          EvtGridId = "";
          EvtRowId = "";
          sEvtType = "";
+         AV47GAMSEssion = new GeneXus.Programs.genexussecurity.SdtGAMSession(context);
+         AV48GAMError = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
+         AV45GAMApplication = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context);
+         AV51Url = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.gamhome__datastore1(),
+            new Object[][] {
+            }
+         );
+         pr_gam = new DataStoreProvider(context, new GeneXus.Programs.gamhome__gam(),
+            new Object[][] {
+            }
+         );
+         pr_default = new DataStoreProvider(context, new GeneXus.Programs.gamhome__default(),
+            new Object[][] {
+            }
+         );
          /* GeneXus formulas. */
       }
 
       private short nGotPars ;
       private short GxWebError ;
-      private short gxajaxcallmode ;
       private short nGXWrapped ;
+      private short AV52Id ;
       private short wbEnd ;
       private short wbStart ;
       private short nDonePA ;
@@ -784,6 +875,7 @@ namespace GeneXus.Programs {
       private string sDynURL ;
       private string FormProcess ;
       private string bodyStyle ;
+      private string AV46ApplicationHomeObject ;
       private string GXKey ;
       private string GX_FocusControl ;
       private string sPrefix ;
@@ -795,17 +887,117 @@ namespace GeneXus.Programs {
       private string sEvtType ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
+      private bool AV49isJavaEnvironment ;
       private bool wbLoad ;
       private bool Rfr0gs ;
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
+      private string AV51Url ;
       private GXWebForm Form ;
+      private GxHttpRequest AV50HttpRequest ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
+      private GeneXus.Programs.genexussecurity.SdtGAMSession AV47GAMSEssion ;
+      private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV48GAMError ;
+      private GeneXus.Programs.genexussecurity.SdtGAMApplication AV45GAMApplication ;
+      private IDataStoreProvider pr_default ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
+      private IDataStoreProvider pr_gam ;
    }
+
+   public class gamhome__datastore1 : DataStoreHelperBase, IDataStoreHelper
+   {
+      public ICursor[] getCursors( )
+      {
+         cursorDefinitions();
+         return new Cursor[] {
+       };
+    }
+
+    private static CursorDef[] def;
+    private void cursorDefinitions( )
+    {
+       if ( def == null )
+       {
+          def= new CursorDef[] {
+          };
+       }
+    }
+
+    public void getResults( int cursor ,
+                            IFieldGetter rslt ,
+                            Object[] buf )
+    {
+    }
+
+    public override string getDataStoreName( )
+    {
+       return "DATASTORE1";
+    }
+
+ }
+
+ public class gamhome__gam : DataStoreHelperBase, IDataStoreHelper
+ {
+    public ICursor[] getCursors( )
+    {
+       cursorDefinitions();
+       return new Cursor[] {
+     };
+  }
+
+  private static CursorDef[] def;
+  private void cursorDefinitions( )
+  {
+     if ( def == null )
+     {
+        def= new CursorDef[] {
+        };
+     }
+  }
+
+  public void getResults( int cursor ,
+                          IFieldGetter rslt ,
+                          Object[] buf )
+  {
+  }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class gamhome__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       def= new CursorDef[] {
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+ }
+
+}
 
 }

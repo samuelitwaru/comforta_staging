@@ -74,11 +74,26 @@ namespace GeneXus.Programs {
          /* GeneXus formulas */
          /* Output device settings */
          AV9GAMUser.load( AV10UserGAMGUID);
-         if ( AV9GAMUser.physicaldelete(out  AV8GAMErrorCollection) )
+         if ( AV9GAMUser.success() )
          {
-            context.CommitDataStores("prc_deletegamuseraccount",pr_default);
+            if ( AV9GAMUser.physicaldelete(out  AV8GAMErrorCollection) )
+            {
+               context.CommitDataStores("prc_deletegamuseraccount",pr_default);
+            }
+            else
+            {
+               GXt_char1 = AV11GAMErrorResponse;
+               new prc_geterrorstringfromcollection(context ).execute(  AV8GAMErrorCollection, out  GXt_char1) ;
+               AV11GAMErrorResponse = GXt_char1;
+            }
          }
-         AV11GAMErrorResponse = AV8GAMErrorCollection.ToJSonString(false);
+         else
+         {
+            AV8GAMErrorCollection = AV9GAMUser.geterrors();
+            GXt_char1 = AV11GAMErrorResponse;
+            new prc_geterrorstringfromcollection(context ).execute(  AV8GAMErrorCollection, out  GXt_char1) ;
+            AV11GAMErrorResponse = GXt_char1;
+         }
          cleanup();
       }
 
@@ -97,6 +112,7 @@ namespace GeneXus.Programs {
          AV11GAMErrorResponse = "";
          AV9GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          AV8GAMErrorCollection = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
+         GXt_char1 = "";
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_deletegamuseraccount__datastore1(),
             new Object[][] {
             }
@@ -112,6 +128,7 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
+      private string GXt_char1 ;
       private string AV11GAMErrorResponse ;
       private string AV10UserGAMGUID ;
       private IGxDataStore dsDataStore1 ;

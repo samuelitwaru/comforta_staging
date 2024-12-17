@@ -190,7 +190,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/slimscroll/jquery.slimscroll.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/SidebarMenu/BootstrapSidebarMenuRender.js", "", false, true);
-         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpagetoolbox.js", "?2024121118195277", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpagetoolbox.js", "?202412171330656", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -782,7 +782,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          divLayoutmaintable_Class = "MainContainerWithFooter";
          AssignProp("", true, divLayoutmaintable_Internalname, "Class", divLayoutmaintable_Class, true);
          GXt_objcol_SdtDVelop_Menu_Item1 = AV22DVelop_Menu;
-         new GeneXus.Programs.wwpbaseobjects.menuoptionsdata(context ).execute( out  GXt_objcol_SdtDVelop_Menu_Item1) ;
+         new umenuoptionsdata(context ).execute( out  GXt_objcol_SdtDVelop_Menu_Item1) ;
          AV22DVelop_Menu = GXt_objcol_SdtDVelop_Menu_Item1;
          new GeneXus.Programs.wwpbaseobjects.getmenuauthorizedoptions(context ).execute( ref  AV22DVelop_Menu) ;
          Ddc_adminag_Icon = context.convertURL( (string)(context.GetImagePath( "2db99ee9-468b-4715-8783-c7416d3381de", "", context.GetTheme( ))));
@@ -1020,7 +1020,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202412111820850", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202412171330155", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1035,7 +1035,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpagetoolbox.js", "?202412111820855", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpagetoolbox.js", "?202412171330159", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

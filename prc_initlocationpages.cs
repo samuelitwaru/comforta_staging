@@ -70,18 +70,18 @@ namespace GeneXus.Programs {
          AV9PredefinedPagesDictionary.set( "784c2d18-622f-43f3-bde1-7b00035d6a07",  "Location");
          AV9PredefinedPagesDictionary.set( "5e200c35-16fe-4401-93c6-b106d14c89cc",  "Calendar");
          AV9PredefinedPagesDictionary.set( "e22b29bc-1982-414a-87cf-71a839806a75",  "Mailbox");
-         new prc_logtofile(context ).execute(  AV8LocationId.ToString()) ;
-         new prc_logtofile(context ).execute(  AV12OrganisationId.ToString()) ;
          AV14BC_Trn_Location.Load(AV8LocationId, AV12OrganisationId);
-         new prc_logtofile(context ).execute(  AV14BC_Trn_Location.ToJSonString(true, true)) ;
-         AV21GXV1 = 1;
-         while ( AV21GXV1 <= AV9PredefinedPagesDictionary.gxTpr_Keys.Count )
+         AV23GXV1 = 1;
+         while ( AV23GXV1 <= AV9PredefinedPagesDictionary.gxTpr_Keys.Count )
          {
-            AV11Key = ((string)AV9PredefinedPagesDictionary.gxTpr_Keys.Item(AV21GXV1));
+            AV11Key = ((string)AV9PredefinedPagesDictionary.gxTpr_Keys.Item(AV23GXV1));
             AV16Value = AV9PredefinedPagesDictionary.get(AV11Key);
             AV15File = new GxFile(context.GetPhysicalPath());
-            AV15File.Source = "PredefinedPages/Default"+AV16Value+".txt";
+            AV15File.Source = "PredefinedPages/Default"+AV16Value+".json";
             AV13PageGJSJson = AV15File.ReadAllText("");
+            AV15File = new GxFile(context.GetPhysicalPath());
+            AV15File.Source = "PredefinedPages/Published"+AV16Value+".json";
+            AV22PageJsonContent = AV15File.ReadAllText("");
             AV20PageIsContentPage = false;
             if ( StringUtil.StrCmp(AV16Value, "Location") == 0 )
             {
@@ -104,6 +104,8 @@ namespace GeneXus.Programs {
             AV18BC_Trn_Page.gxTpr_Locationid = AV14BC_Trn_Location.gxTpr_Locationid;
             AV18BC_Trn_Page.gxTpr_Organisationid = AV14BC_Trn_Location.gxTpr_Organisationid;
             AV18BC_Trn_Page.gxTpr_Pagegjsjson = AV13PageGJSJson;
+            AV18BC_Trn_Page.gxTpr_Pagejsoncontent = AV22PageJsonContent;
+            AV18BC_Trn_Page.gxTpr_Pageispublished = true;
             AV18BC_Trn_Page.Save();
             if ( AV18BC_Trn_Page.Success() )
             {
@@ -111,16 +113,16 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV23GXV3 = 1;
-               AV22GXV2 = AV18BC_Trn_Page.GetMessages();
-               while ( AV23GXV3 <= AV22GXV2.Count )
+               AV25GXV3 = 1;
+               AV24GXV2 = AV18BC_Trn_Page.GetMessages();
+               while ( AV25GXV3 <= AV24GXV2.Count )
                {
-                  AV19Message = ((GeneXus.Utils.SdtMessages_Message)AV22GXV2.Item(AV23GXV3));
+                  AV19Message = ((GeneXus.Utils.SdtMessages_Message)AV24GXV2.Item(AV25GXV3));
                   new prc_logtofile(context ).execute(  AV19Message.gxTpr_Description) ;
-                  AV23GXV3 = (int)(AV23GXV3+1);
+                  AV25GXV3 = (int)(AV25GXV3+1);
                }
             }
-            AV21GXV1 = (int)(AV21GXV1+1);
+            AV23GXV1 = (int)(AV23GXV1+1);
          }
          cleanup();
       }
@@ -143,9 +145,10 @@ namespace GeneXus.Programs {
          AV16Value = "";
          AV15File = new GxFile(context.GetPhysicalPath());
          AV13PageGJSJson = "";
+         AV22PageJsonContent = "";
          AV20PageIsContentPage = false;
          AV18BC_Trn_Page = new SdtTrn_Page(context);
-         AV22GXV2 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV24GXV2 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV19Message = new GeneXus.Utils.SdtMessages_Message(context);
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_initlocationpages__datastore1(),
             new Object[][] {
@@ -162,10 +165,11 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV21GXV1 ;
-      private int AV23GXV3 ;
+      private int AV23GXV1 ;
+      private int AV25GXV3 ;
       private bool AV20PageIsContentPage ;
       private string AV13PageGJSJson ;
+      private string AV22PageJsonContent ;
       private string AV11Key ;
       private string AV16Value ;
       private Guid AV8LocationId ;
@@ -178,7 +182,7 @@ namespace GeneXus.Programs {
       private SdtTrn_Location AV14BC_Trn_Location ;
       private SdtTrn_Page AV18BC_Trn_Page ;
       private IDataStoreProvider pr_default ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV22GXV2 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV24GXV2 ;
       private GeneXus.Utils.SdtMessages_Message AV19Message ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;

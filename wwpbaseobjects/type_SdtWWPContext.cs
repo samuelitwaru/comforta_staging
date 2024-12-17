@@ -690,13 +690,13 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 		[SoapElement(ElementName="FilteredDashboardItems" )]
 		[XmlArray(ElementName="FilteredDashboardItems"  )]
-		[XmlArrayItemAttribute(ElementName="HomeModulesSDTItem" , IsNullable=false )]
-		public GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem> gxTpr_Filtereddashboarditems_GXBaseCollection
+		[XmlArrayItemAttribute(ElementName="UHomeModulesSDTItem" , IsNullable=false )]
+		public GXBaseCollection<GeneXus.Programs.SdtUHomeModulesSDT_UHomeModulesSDTItem> gxTpr_Filtereddashboarditems_GXBaseCollection
 		{
 			get {
 				if ( gxTv_SdtWWPContext_Filtereddashboarditems == null )
 				{
-					gxTv_SdtWWPContext_Filtereddashboarditems = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem>( context, "HomeModulesSDT", "");
+					gxTv_SdtWWPContext_Filtereddashboarditems = new GXBaseCollection<GeneXus.Programs.SdtUHomeModulesSDT_UHomeModulesSDTItem>( context, "UHomeModulesSDT", "");
 				}
 				return gxTv_SdtWWPContext_Filtereddashboarditems;
 			}
@@ -707,12 +707,12 @@ namespace GeneXus.Programs.wwpbaseobjects
 		}
 
 		[XmlIgnore]
-		public GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem> gxTpr_Filtereddashboarditems
+		public GXBaseCollection<GeneXus.Programs.SdtUHomeModulesSDT_UHomeModulesSDTItem> gxTpr_Filtereddashboarditems
 		{
 			get {
 				if ( gxTv_SdtWWPContext_Filtereddashboarditems == null )
 				{
-					gxTv_SdtWWPContext_Filtereddashboarditems = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem>( context, "HomeModulesSDT", "");
+					gxTv_SdtWWPContext_Filtereddashboarditems = new GXBaseCollection<GeneXus.Programs.SdtUHomeModulesSDT_UHomeModulesSDTItem>( context, "UHomeModulesSDT", "");
 				}
 				gxTv_SdtWWPContext_Filtereddashboarditems_N = false;
 				return gxTv_SdtWWPContext_Filtereddashboarditems ;
@@ -940,7 +940,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 		protected Guid gxTv_SdtWWPContext_Residentid;
 		 
 		protected bool gxTv_SdtWWPContext_Filtereddashboarditems_N;
-		protected GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem> gxTv_SdtWWPContext_Filtereddashboarditems = null;  
+		protected GXBaseCollection<GeneXus.Programs.SdtUHomeModulesSDT_UHomeModulesSDTItem> gxTv_SdtWWPContext_Filtereddashboarditems = null;  
 
 		protected string gxTv_SdtWWPContext_Footertext;
 		 
@@ -1319,11 +1319,11 @@ namespace GeneXus.Programs.wwpbaseobjects
 		}
 
 		[DataMember(Name="FilteredDashboardItems", Order=29, EmitDefaultValue=false)]
-		public  GxGenericCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem_RESTInterface> gxTpr_Filtereddashboarditems
+		public  GxGenericCollection<GeneXus.Programs.SdtUHomeModulesSDT_UHomeModulesSDTItem_RESTInterface> gxTpr_Filtereddashboarditems
 		{
 			get { 
 				if (sdt.ShouldSerializegxTpr_Filtereddashboarditems_GXBaseCollection_Json())
-					return new GxGenericCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem_RESTInterface>(sdt.gxTpr_Filtereddashboarditems);
+					return new GxGenericCollection<GeneXus.Programs.SdtUHomeModulesSDT_UHomeModulesSDTItem_RESTInterface>(sdt.gxTpr_Filtereddashboarditems);
 				else
 					return null;
 

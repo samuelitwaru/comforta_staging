@@ -870,6 +870,8 @@ namespace GeneXus.Programs {
                               A77NetworkIndividualLastName = cgiGet( edtNetworkIndividualLastName_Internalname);
                               A78NetworkIndividualEmail = cgiGet( edtNetworkIndividualEmail_Internalname);
                               A79NetworkIndividualPhone = cgiGet( edtNetworkIndividualPhone_Internalname);
+                              A388NetworkIndividualPhoneNumber = cgiGet( edtNetworkIndividualPhoneNumber_Internalname);
+                              A387NetworkIndividualPhoneCode = cgiGet( edtNetworkIndividualPhoneCode_Internalname);
                               cmbNetworkIndividualGender.Name = cmbNetworkIndividualGender_Internalname;
                               cmbNetworkIndividualGender.CurrentValue = cgiGet( cmbNetworkIndividualGender_Internalname);
                               A81NetworkIndividualGender = cgiGet( cmbNetworkIndividualGender_Internalname);
@@ -1206,6 +1208,8 @@ namespace GeneXus.Programs {
                A345NetworkIndividualCity = H00682_A345NetworkIndividualCity[0];
                A344NetworkIndividualCountry = H00682_A344NetworkIndividualCountry[0];
                A81NetworkIndividualGender = H00682_A81NetworkIndividualGender[0];
+               A387NetworkIndividualPhoneCode = H00682_A387NetworkIndividualPhoneCode[0];
+               A388NetworkIndividualPhoneNumber = H00682_A388NetworkIndividualPhoneNumber[0];
                A79NetworkIndividualPhone = H00682_A79NetworkIndividualPhone[0];
                A78NetworkIndividualEmail = H00682_A78NetworkIndividualEmail[0];
                A77NetworkIndividualLastName = H00682_A77NetworkIndividualLastName[0];
@@ -1218,6 +1222,8 @@ namespace GeneXus.Programs {
                A345NetworkIndividualCity = H00682_A345NetworkIndividualCity[0];
                A344NetworkIndividualCountry = H00682_A344NetworkIndividualCountry[0];
                A81NetworkIndividualGender = H00682_A81NetworkIndividualGender[0];
+               A387NetworkIndividualPhoneCode = H00682_A387NetworkIndividualPhoneCode[0];
+               A388NetworkIndividualPhoneNumber = H00682_A388NetworkIndividualPhoneNumber[0];
                A79NetworkIndividualPhone = H00682_A79NetworkIndividualPhone[0];
                A78NetworkIndividualEmail = H00682_A78NetworkIndividualEmail[0];
                A77NetworkIndividualLastName = H00682_A77NetworkIndividualLastName[0];
@@ -1398,6 +1404,8 @@ namespace GeneXus.Programs {
          edtNetworkIndividualLastName_Enabled = 0;
          edtNetworkIndividualEmail_Enabled = 0;
          edtNetworkIndividualPhone_Enabled = 0;
+         edtNetworkIndividualPhoneNumber_Enabled = 0;
+         edtNetworkIndividualPhoneCode_Enabled = 0;
          cmbNetworkIndividualGender.Enabled = 0;
          edtNetworkIndividualCountry_Enabled = 0;
          edtNetworkIndividualCity_Enabled = 0;
@@ -1973,7 +1981,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241211187500", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412171324428", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1989,7 +1997,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_residentnetworkindividualwc.js", "?20241211187501", false, true);
+         context.AddJavascriptSource("trn_residentnetworkindividualwc.js", "?202412171324429", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DVPaginationBar/DVPaginationBarRender.js", "", false, true);
@@ -2009,6 +2017,8 @@ namespace GeneXus.Programs {
          edtNetworkIndividualLastName_Internalname = sPrefix+"NETWORKINDIVIDUALLASTNAME_"+sGXsfl_15_idx;
          edtNetworkIndividualEmail_Internalname = sPrefix+"NETWORKINDIVIDUALEMAIL_"+sGXsfl_15_idx;
          edtNetworkIndividualPhone_Internalname = sPrefix+"NETWORKINDIVIDUALPHONE_"+sGXsfl_15_idx;
+         edtNetworkIndividualPhoneNumber_Internalname = sPrefix+"NETWORKINDIVIDUALPHONENUMBER_"+sGXsfl_15_idx;
+         edtNetworkIndividualPhoneCode_Internalname = sPrefix+"NETWORKINDIVIDUALPHONECODE_"+sGXsfl_15_idx;
          cmbNetworkIndividualGender_Internalname = sPrefix+"NETWORKINDIVIDUALGENDER_"+sGXsfl_15_idx;
          edtNetworkIndividualCountry_Internalname = sPrefix+"NETWORKINDIVIDUALCOUNTRY_"+sGXsfl_15_idx;
          edtNetworkIndividualCity_Internalname = sPrefix+"NETWORKINDIVIDUALCITY_"+sGXsfl_15_idx;
@@ -2025,6 +2035,8 @@ namespace GeneXus.Programs {
          edtNetworkIndividualLastName_Internalname = sPrefix+"NETWORKINDIVIDUALLASTNAME_"+sGXsfl_15_fel_idx;
          edtNetworkIndividualEmail_Internalname = sPrefix+"NETWORKINDIVIDUALEMAIL_"+sGXsfl_15_fel_idx;
          edtNetworkIndividualPhone_Internalname = sPrefix+"NETWORKINDIVIDUALPHONE_"+sGXsfl_15_fel_idx;
+         edtNetworkIndividualPhoneNumber_Internalname = sPrefix+"NETWORKINDIVIDUALPHONENUMBER_"+sGXsfl_15_fel_idx;
+         edtNetworkIndividualPhoneCode_Internalname = sPrefix+"NETWORKINDIVIDUALPHONECODE_"+sGXsfl_15_fel_idx;
          cmbNetworkIndividualGender_Internalname = sPrefix+"NETWORKINDIVIDUALGENDER_"+sGXsfl_15_fel_idx;
          edtNetworkIndividualCountry_Internalname = sPrefix+"NETWORKINDIVIDUALCOUNTRY_"+sGXsfl_15_fel_idx;
          edtNetworkIndividualCity_Internalname = sPrefix+"NETWORKINDIVIDUALCITY_"+sGXsfl_15_fel_idx;
@@ -2149,6 +2161,22 @@ namespace GeneXus.Programs {
             }
             ROClassString = "Attribute";
             GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtNetworkIndividualPhone_Internalname,StringUtil.RTrim( A79NetworkIndividualPhone),(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)gxphoneLink,(string)"",(string)"",(string)"",(string)edtNetworkIndividualPhone_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)-1,(short)0,(short)0,(string)"tel",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)0,(bool)true,(string)"GeneXus\\Phone",(string)"start",(bool)true,(string)""});
+            /* Subfile cell */
+            if ( GridContainer.GetWrapped() == 1 )
+            {
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+"display:none;"+"\">") ;
+            }
+            /* Single line edit */
+            ROClassString = "Attribute";
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtNetworkIndividualPhoneNumber_Internalname,(string)A388NetworkIndividualPhoneNumber,(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtNetworkIndividualPhoneNumber_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)0,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)9,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            /* Subfile cell */
+            if ( GridContainer.GetWrapped() == 1 )
+            {
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+"display:none;"+"\">") ;
+            }
+            /* Single line edit */
+            ROClassString = "Attribute";
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtNetworkIndividualPhoneCode_Internalname,(string)A387NetworkIndividualPhoneCode,(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtNetworkIndividualPhoneCode_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)0,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)40,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
@@ -2286,23 +2314,29 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
             context.SendWebValue( "Phone") ;
             context.WriteHtmlTextNl( "</th>") ;
+            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
+            context.SendWebValue( "Network Individual Phone Number") ;
+            context.WriteHtmlTextNl( "</th>") ;
+            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
+            context.SendWebValue( "Network Individual Phone Code") ;
+            context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
             context.SendWebValue( "Gender") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Country") ;
+            context.SendWebValue( "Network Individual Country") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "City") ;
+            context.SendWebValue( "Network Individual City") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Zip Code") ;
+            context.SendWebValue( "Network Individual Zip Code") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Address Line 1") ;
+            context.SendWebValue( "Network Individual Address Line1") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Address Line 2") ;
+            context.SendWebValue( "Network Individual Address Line2") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlTextNl( "</tr>") ;
             GridContainer.AddObjectProperty("GridName", "Grid");
@@ -2346,6 +2380,12 @@ namespace GeneXus.Programs {
             GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.RTrim( A79NetworkIndividualPhone)));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
+            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A388NetworkIndividualPhoneNumber));
+            GridContainer.AddColumnProperties(GridColumn);
+            GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
+            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A387NetworkIndividualPhoneCode));
+            GridContainer.AddColumnProperties(GridColumn);
+            GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A81NetworkIndividualGender));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
@@ -2381,6 +2421,8 @@ namespace GeneXus.Programs {
          edtNetworkIndividualLastName_Internalname = sPrefix+"NETWORKINDIVIDUALLASTNAME";
          edtNetworkIndividualEmail_Internalname = sPrefix+"NETWORKINDIVIDUALEMAIL";
          edtNetworkIndividualPhone_Internalname = sPrefix+"NETWORKINDIVIDUALPHONE";
+         edtNetworkIndividualPhoneNumber_Internalname = sPrefix+"NETWORKINDIVIDUALPHONENUMBER";
+         edtNetworkIndividualPhoneCode_Internalname = sPrefix+"NETWORKINDIVIDUALPHONECODE";
          cmbNetworkIndividualGender_Internalname = sPrefix+"NETWORKINDIVIDUALGENDER";
          edtNetworkIndividualCountry_Internalname = sPrefix+"NETWORKINDIVIDUALCOUNTRY";
          edtNetworkIndividualCity_Internalname = sPrefix+"NETWORKINDIVIDUALCITY";
@@ -2424,6 +2466,8 @@ namespace GeneXus.Programs {
          edtNetworkIndividualCity_Jsonclick = "";
          edtNetworkIndividualCountry_Jsonclick = "";
          cmbNetworkIndividualGender_Jsonclick = "";
+         edtNetworkIndividualPhoneCode_Jsonclick = "";
+         edtNetworkIndividualPhoneNumber_Jsonclick = "";
          edtNetworkIndividualPhone_Jsonclick = "";
          edtNetworkIndividualEmail_Jsonclick = "";
          edtNetworkIndividualLastName_Jsonclick = "";
@@ -2441,6 +2485,8 @@ namespace GeneXus.Programs {
          edtNetworkIndividualCity_Enabled = 0;
          edtNetworkIndividualCountry_Enabled = 0;
          cmbNetworkIndividualGender.Enabled = 0;
+         edtNetworkIndividualPhoneCode_Enabled = 0;
+         edtNetworkIndividualPhoneNumber_Enabled = 0;
          edtNetworkIndividualPhone_Enabled = 0;
          edtNetworkIndividualEmail_Enabled = 0;
          edtNetworkIndividualLastName_Enabled = 0;
@@ -2457,7 +2503,7 @@ namespace GeneXus.Programs {
          Grid_empowerer_Hastitlesettings = Convert.ToBoolean( -1);
          Ddo_grid_Includesortasc = "T";
          Ddo_grid_Columnssortvalues = "1|2|3|4|5|6";
-         Ddo_grid_Columnids = "1:NetworkIndividualBsnNumber|2:NetworkIndividualGivenName|3:NetworkIndividualLastName|4:NetworkIndividualEmail|5:NetworkIndividualPhone|6:NetworkIndividualGender";
+         Ddo_grid_Columnids = "1:NetworkIndividualBsnNumber|2:NetworkIndividualGivenName|3:NetworkIndividualLastName|4:NetworkIndividualEmail|5:NetworkIndividualPhone|8:NetworkIndividualGender";
          Ddo_grid_Gridinternalname = "";
          Gridpaginationbar_Rowsperpagecaption = "WWP_PagingRowsPerPage";
          Gridpaginationbar_Emptygridcaption = "WWP_PagingEmptyGridCaption";
@@ -2561,6 +2607,8 @@ namespace GeneXus.Programs {
          A77NetworkIndividualLastName = "";
          A78NetworkIndividualEmail = "";
          A79NetworkIndividualPhone = "";
+         A388NetworkIndividualPhoneNumber = "";
+         A387NetworkIndividualPhoneCode = "";
          A81NetworkIndividualGender = "";
          A344NetworkIndividualCountry = "";
          A345NetworkIndividualCity = "";
@@ -2577,6 +2625,8 @@ namespace GeneXus.Programs {
          H00682_A345NetworkIndividualCity = new string[] {""} ;
          H00682_A344NetworkIndividualCountry = new string[] {""} ;
          H00682_A81NetworkIndividualGender = new string[] {""} ;
+         H00682_A387NetworkIndividualPhoneCode = new string[] {""} ;
+         H00682_A388NetworkIndividualPhoneNumber = new string[] {""} ;
          H00682_A79NetworkIndividualPhone = new string[] {""} ;
          H00682_A78NetworkIndividualEmail = new string[] {""} ;
          H00682_A77NetworkIndividualLastName = new string[] {""} ;
@@ -2606,8 +2656,8 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_residentnetworkindividualwc__default(),
             new Object[][] {
                 new Object[] {
-               H00682_A62ResidentId, H00682_A29LocationId, H00682_A11OrganisationId, H00682_A348NetworkIndividualAddressLine2, H00682_A347NetworkIndividualAddressLine1, H00682_A346NetworkIndividualZipCode, H00682_A345NetworkIndividualCity, H00682_A344NetworkIndividualCountry, H00682_A81NetworkIndividualGender, H00682_A79NetworkIndividualPhone,
-               H00682_A78NetworkIndividualEmail, H00682_A77NetworkIndividualLastName, H00682_A76NetworkIndividualGivenName, H00682_A75NetworkIndividualBsnNumber, H00682_A74NetworkIndividualId
+               H00682_A62ResidentId, H00682_A29LocationId, H00682_A11OrganisationId, H00682_A348NetworkIndividualAddressLine2, H00682_A347NetworkIndividualAddressLine1, H00682_A346NetworkIndividualZipCode, H00682_A345NetworkIndividualCity, H00682_A344NetworkIndividualCountry, H00682_A81NetworkIndividualGender, H00682_A387NetworkIndividualPhoneCode,
+               H00682_A388NetworkIndividualPhoneNumber, H00682_A79NetworkIndividualPhone, H00682_A78NetworkIndividualEmail, H00682_A77NetworkIndividualLastName, H00682_A76NetworkIndividualGivenName, H00682_A75NetworkIndividualBsnNumber, H00682_A74NetworkIndividualId
                }
                , new Object[] {
                H00683_AGRID_nRecordCount
@@ -2655,6 +2705,8 @@ namespace GeneXus.Programs {
       private int edtNetworkIndividualLastName_Enabled ;
       private int edtNetworkIndividualEmail_Enabled ;
       private int edtNetworkIndividualPhone_Enabled ;
+      private int edtNetworkIndividualPhoneNumber_Enabled ;
+      private int edtNetworkIndividualPhoneCode_Enabled ;
       private int edtNetworkIndividualCountry_Enabled ;
       private int edtNetworkIndividualCity_Enabled ;
       private int edtNetworkIndividualZipCode_Enabled ;
@@ -2738,6 +2790,8 @@ namespace GeneXus.Programs {
       private string edtNetworkIndividualEmail_Internalname ;
       private string A79NetworkIndividualPhone ;
       private string edtNetworkIndividualPhone_Internalname ;
+      private string edtNetworkIndividualPhoneNumber_Internalname ;
+      private string edtNetworkIndividualPhoneCode_Internalname ;
       private string cmbNetworkIndividualGender_Internalname ;
       private string edtNetworkIndividualCountry_Internalname ;
       private string edtNetworkIndividualCity_Internalname ;
@@ -2760,6 +2814,8 @@ namespace GeneXus.Programs {
       private string edtNetworkIndividualEmail_Jsonclick ;
       private string gxphoneLink ;
       private string edtNetworkIndividualPhone_Jsonclick ;
+      private string edtNetworkIndividualPhoneNumber_Jsonclick ;
+      private string edtNetworkIndividualPhoneCode_Jsonclick ;
       private string GXCCtl ;
       private string cmbNetworkIndividualGender_Jsonclick ;
       private string edtNetworkIndividualCountry_Jsonclick ;
@@ -2789,6 +2845,8 @@ namespace GeneXus.Programs {
       private string A76NetworkIndividualGivenName ;
       private string A77NetworkIndividualLastName ;
       private string A78NetworkIndividualEmail ;
+      private string A388NetworkIndividualPhoneNumber ;
+      private string A387NetworkIndividualPhoneCode ;
       private string A81NetworkIndividualGender ;
       private string A344NetworkIndividualCountry ;
       private string A345NetworkIndividualCity ;
@@ -2829,6 +2887,8 @@ namespace GeneXus.Programs {
       private string[] H00682_A345NetworkIndividualCity ;
       private string[] H00682_A344NetworkIndividualCountry ;
       private string[] H00682_A81NetworkIndividualGender ;
+      private string[] H00682_A387NetworkIndividualPhoneCode ;
+      private string[] H00682_A388NetworkIndividualPhoneNumber ;
       private string[] H00682_A79NetworkIndividualPhone ;
       private string[] H00682_A78NetworkIndividualEmail ;
       private string[] H00682_A77NetworkIndividualLastName ;
@@ -2864,7 +2924,7 @@ namespace GeneXus.Programs {
          string sSelectString;
          string sFromString;
          string sOrderString;
-         sSelectString = " T1.ResidentId, T1.LocationId, T1.OrganisationId, T2.NetworkIndividualAddressLine2, T2.NetworkIndividualAddressLine1, T2.NetworkIndividualZipCode, T2.NetworkIndividualCity, T2.NetworkIndividualCountry, T2.NetworkIndividualGender, T2.NetworkIndividualPhone, T2.NetworkIndividualEmail, T2.NetworkIndividualLastName, T2.NetworkIndividualGivenName, T2.NetworkIndividualBsnNumber, T1.NetworkIndividualId";
+         sSelectString = " T1.ResidentId, T1.LocationId, T1.OrganisationId, T2.NetworkIndividualAddressLine2, T2.NetworkIndividualAddressLine1, T2.NetworkIndividualZipCode, T2.NetworkIndividualCity, T2.NetworkIndividualCountry, T2.NetworkIndividualGender, T2.NetworkIndividualPhoneCode, T2.NetworkIndividualPhoneNumber, T2.NetworkIndividualPhone, T2.NetworkIndividualEmail, T2.NetworkIndividualLastName, T2.NetworkIndividualGivenName, T2.NetworkIndividualBsnNumber, T1.NetworkIndividualId";
          sFromString = " FROM (Trn_ResidentNetworkIndividual T1 INNER JOIN Trn_NetworkIndividual T2 ON T2.NetworkIndividualId = T1.NetworkIndividualId)";
          sOrderString = "";
          AddWhere(sWhereString, "(T1.ResidentId = :AV8ResidentId and T1.LocationId = :AV9LocationId and T1.OrganisationId = :AV10OrganisationId)");
@@ -3066,12 +3126,14 @@ namespace GeneXus.Programs {
                 ((string[]) buf[6])[0] = rslt.getVarchar(7);
                 ((string[]) buf[7])[0] = rslt.getVarchar(8);
                 ((string[]) buf[8])[0] = rslt.getVarchar(9);
-                ((string[]) buf[9])[0] = rslt.getString(10, 20);
+                ((string[]) buf[9])[0] = rslt.getVarchar(10);
                 ((string[]) buf[10])[0] = rslt.getVarchar(11);
-                ((string[]) buf[11])[0] = rslt.getVarchar(12);
+                ((string[]) buf[11])[0] = rslt.getString(12, 20);
                 ((string[]) buf[12])[0] = rslt.getVarchar(13);
                 ((string[]) buf[13])[0] = rslt.getVarchar(14);
-                ((Guid[]) buf[14])[0] = rslt.getGuid(15);
+                ((string[]) buf[14])[0] = rslt.getVarchar(15);
+                ((string[]) buf[15])[0] = rslt.getVarchar(16);
+                ((Guid[]) buf[16])[0] = rslt.getGuid(17);
                 return;
              case 1 :
                 ((long[]) buf[0])[0] = rslt.getLong(1);

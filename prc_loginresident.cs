@@ -69,7 +69,7 @@ namespace GeneXus.Programs {
          AV9clientId = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context).getclientid();
          if ( StringUtil.StrCmp(AV11HttpRequest.ServerHost, "localhost") == 0 )
          {
-            AV8baseUrl = "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL";
+            AV8baseUrl = "http://localhost:8082/CV2_2Developmentfountain";
          }
          else
          {

@@ -116,7 +116,7 @@ namespace GeneXus.Programs {
             XC_30_0C74( Gx_mode, A95ReceptionistGAMGUID, A90ReceptionistGivenName, A91ReceptionistLastName, A373ReceptionistPhoneCode, A374ReceptionistPhoneNumber, A459ReceptionistImage) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxJX_Action31") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxJX_Action32") == 0 )
          {
             Gx_mode = GetPar( "Mode");
             AssignAttri("", false, "Gx_mode", Gx_mode);
@@ -128,7 +128,7 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            XC_31_0C74( Gx_mode, A95ReceptionistGAMGUID) ;
+            XC_32_0C74( Gx_mode, A95ReceptionistGAMGUID) ;
             return  ;
          }
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxCallCrl"+"_"+"LOCATIONID") == 0 )
@@ -187,7 +187,7 @@ namespace GeneXus.Programs {
             GX13ASAISGAMACTIVE0C74( A95ReceptionistGAMGUID) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_35") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_37") == 0 )
          {
             A29LocationId = StringUtil.StrToGuid( GetPar( "LocationId"));
             AssignAttri("", false, "A29LocationId", A29LocationId.ToString());
@@ -199,7 +199,7 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            gxLoad_35( A29LocationId, A11OrganisationId) ;
+            gxLoad_37( A29LocationId, A11OrganisationId) ;
             return  ;
          }
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxEvt") == 0 )
@@ -1290,7 +1290,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0C74( short GX_JID )
       {
-         if ( ( GX_JID == 34 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 36 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
@@ -1317,7 +1317,7 @@ namespace GeneXus.Programs {
                Z398ReceptionistIsActive = A398ReceptionistIsActive;
             }
          }
-         if ( GX_JID == -34 )
+         if ( GX_JID == -36 )
          {
             Z89ReceptionistId = A89ReceptionistId;
             Z373ReceptionistPhoneCode = A373ReceptionistPhoneCode;
@@ -1468,7 +1468,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A398ReceptionistIsActive", A398ReceptionistIsActive);
             A40000ReceptionistImage_GXI = T000C5_A40000ReceptionistImage_GXI[0];
             A459ReceptionistImage = T000C5_A459ReceptionistImage[0];
-            ZM0C74( -34) ;
+            ZM0C74( -36) ;
          }
          pr_default.close(3);
          OnLoadActions0C74( ) ;
@@ -1592,7 +1592,7 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void gxLoad_35( Guid A29LocationId ,
+      protected void gxLoad_37( Guid A29LocationId ,
                                 Guid A11OrganisationId )
       {
          /* Using cursor T000C6 */
@@ -1637,7 +1637,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A89ReceptionistId, A11OrganisationId, A29LocationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0C74( 34) ;
+            ZM0C74( 36) ;
             RcdFound74 = 1;
             A89ReceptionistId = T000C3_A89ReceptionistId[0];
             AssignAttri("", false, "A89ReceptionistId", A89ReceptionistId.ToString());
@@ -2059,11 +2059,6 @@ namespace GeneXus.Programs {
                      if ( AnyError == 0 )
                      {
                         /* Start of After( update) rules */
-                        if ( IsUpd( )  )
-                        {
-                           new prc_updategamuseraccount(context ).execute(  A95ReceptionistGAMGUID,  A90ReceptionistGivenName,  A91ReceptionistLastName,  A373ReceptionistPhoneCode,  A374ReceptionistPhoneNumber,  A459ReceptionistImage,  "Receptionist", out  AV14GAMErrorResponse) ;
-                           AssignAttri("", false, "AV14GAMErrorResponse", AV14GAMErrorResponse);
-                        }
                         /* End of After( update) rules */
                         if ( AnyError == 0 )
                         {
@@ -2130,11 +2125,6 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Start of After( delete) rules */
-                     if ( IsDlt( )  )
-                     {
-                        new prc_deletegamuseraccount(context ).execute(  A95ReceptionistGAMGUID, out  AV14GAMErrorResponse) ;
-                        AssignAttri("", false, "AV14GAMErrorResponse", AV14GAMErrorResponse);
-                     }
                      /* End of After( delete) rules */
                      if ( AnyError == 0 )
                      {
@@ -2292,12 +2282,32 @@ namespace GeneXus.Programs {
       {
          /* Before Update Rules */
          new loadaudittrn_receptionist(context ).execute(  "Y", ref  AV36AuditingObject,  A89ReceptionistId,  A11OrganisationId,  A29LocationId,  Gx_mode) ;
+         if ( IsUpd( )  )
+         {
+            new prc_updategamuseraccount(context ).execute(  A95ReceptionistGAMGUID,  A90ReceptionistGivenName,  A91ReceptionistLastName,  A373ReceptionistPhoneCode,  A374ReceptionistPhoneNumber,  A459ReceptionistImage,  "Receptionist", out  AV14GAMErrorResponse) ;
+            AssignAttri("", false, "AV14GAMErrorResponse", AV14GAMErrorResponse);
+         }
+         if ( IsUpd( )  && ! String.IsNullOrEmpty(StringUtil.RTrim( AV14GAMErrorResponse)) )
+         {
+            GX_msglist.addItem(AV14GAMErrorResponse, 1, "");
+            AnyError = 1;
+         }
       }
 
       protected void BeforeDelete0C74( )
       {
          /* Before Delete Rules */
          new loadaudittrn_receptionist(context ).execute(  "Y", ref  AV36AuditingObject,  A89ReceptionistId,  A11OrganisationId,  A29LocationId,  Gx_mode) ;
+         if ( IsDlt( )  )
+         {
+            new prc_deletegamuseraccount(context ).execute(  A95ReceptionistGAMGUID, out  AV14GAMErrorResponse) ;
+            AssignAttri("", false, "AV14GAMErrorResponse", AV14GAMErrorResponse);
+         }
+         if ( IsDlt( )  && ! String.IsNullOrEmpty(StringUtil.RTrim( AV14GAMErrorResponse)) )
+         {
+            GX_msglist.addItem(AV14GAMErrorResponse, 1, "");
+            AnyError = 1;
+         }
       }
 
       protected void BeforeComplete0C74( )
@@ -2658,7 +2668,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412111885021", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713245525", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2674,7 +2684,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_receptionist.js", "?202412111885026", false, true);
+         context.AddJavascriptSource("trn_receptionist.js", "?2024121713245528", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3055,7 +3065,7 @@ namespace GeneXus.Programs {
          AddString( "]") ;
       }
 
-      protected void XC_31_0C74( string Gx_mode ,
+      protected void XC_32_0C74( string Gx_mode ,
                                  string A95ReceptionistGAMGUID )
       {
          if ( IsDlt( )  )

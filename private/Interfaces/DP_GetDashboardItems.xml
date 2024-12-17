@@ -2,7 +2,7 @@
 <CallableObject guid="b32eb14e-e376-4c1b-b668-b129ce56fcc6" name="DP_GetDashboardItems" description="DP_Get Dashboard Items" namespace="GeneXus.Programs">
   <Signature name="parm">
     <Parameter name="ReturnValue" accessor="out">
-      <Field name="HomeModulesSDT" description="Home Modules SDT" collection="true">
+      <Field name="UHomeModulesSDT" description="UHome Modules SDT" collection="true">
         <Fields>
           <Field name="OptionTitle" description="Option Title">
             <Properties>

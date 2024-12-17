@@ -2224,6 +2224,9 @@ namespace GeneXus.Programs {
          GXt_guid3 = Guid.Empty;
          new prc_getuserlocationid(context ).execute( out  GXt_guid3) ;
          AV29Trn_Resident.gxTpr_Locationid = GXt_guid3;
+         GXt_guid3 = Guid.Empty;
+         new prc_getuserorganisationid(context ).execute( out  GXt_guid3) ;
+         AV29Trn_Resident.gxTpr_Organisationid = GXt_guid3;
          AV29Trn_Resident.gxTpr_Medicalindicationid = AV11WizardData.gxTpr_Step1.gxTpr_Medicalindicationid;
          AV29Trn_Resident.gxTpr_Residentcountry = AV11WizardData.gxTpr_Step1.gxTpr_Residentcountry;
          AV29Trn_Resident.gxTpr_Residentcity = AV11WizardData.gxTpr_Step1.gxTpr_Residentcity;
@@ -2791,7 +2794,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241211189074", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713243853", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2807,7 +2810,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createresidentandnetworkstep3.js", "?20241211189076", false, true);
+         context.AddJavascriptSource("wp_createresidentandnetworkstep3.js", "?2024121713243854", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

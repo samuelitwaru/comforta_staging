@@ -1,0 +1,234 @@
+{
+  "PageId": "34f798f2-7b6c-4a8f-bdea-d14273b5a678",
+  "PageName": "Home",
+  "Row": [
+    {
+      "RowId": "f0a94e0e-598b-4dcd-9e78-ee3065d2d933",
+      "RowName": "7cb5c8ee-ee26-4645-a7fe-47d3d06123f7",
+      "Col": [
+        {
+          "ColId": "86828709-b680-40eb-a39e-a894b5e053c6",
+          "ColName": "d9dc78ea-20cd-4789-ad30-e6249dad6020",
+          "Tile": {
+            "TileId": "d3146746-d7e3-49c5-8c73-7d3d94e6711b",
+            "TileName": "Reception",
+            "TileText": "Reception",
+            "TileTextColor": "#ffffff",
+            "TileTextAlignment": "center",
+            "TileIcon": "Curtain",
+            "TileIconColor": "#ffffff",
+            "TileIconAlignment": "center",
+            "TileBGColor": "#bcdff0",
+            "TileBGImageUrl": "https://staging.comforta.yukon.software/media/receptie-197@3x.png",
+            "TileBGImageOpacity": "",
+            "ProductServiceId": "00000000-0000-0000-0000-000000000000",
+            "ProductServiceName": "",
+            "ProductServiceDescription": "",
+            "ProductServiceImage": "",
+            "TileAction": {
+              "ObjectType": "Predefined Page, Reception",
+              "ObjectId": "1e5d1be0-d9ef-4ff7-869d-1b1f3092155c"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "RowId": "e98ace4a-937c-4688-8ce2-d53050794fe3",
+      "RowName": "caa5d66d-e942-4053-936d-f993fc4206f7",
+      "Col": [
+        {
+          "ColId": "0b3e66f2-6a92-45c2-a801-679b5601c51d",
+          "ColName": "7b87069c-f5cc-44f6-918e-0ee776117e9c",
+          "Tile": {
+            "TileId": "64599c8f-93f2-4d19-a9b5-49e71c50ea04",
+            "TileName": "Calendar",
+            "TileText": "Calendar",
+            "TileTextColor": "#ffffff",
+            "TileTextAlignment": "center",
+            "TileIcon": "",
+            "TileIconColor": "",
+            "TileIconAlignment": "center",
+            "TileBGColor": "#f7f2e7",
+            "TileBGImageUrl": "https://staging.comforta.yukon.software/media/Calendar.png",
+            "TileBGImageOpacity": "",
+            "ProductServiceId": "00000000-0000-0000-0000-000000000000",
+            "ProductServiceName": "",
+            "ProductServiceDescription": "",
+            "ProductServiceImage": "",
+            "TileAction": {
+              "ObjectType": "Predefined Page, Calendar",
+              "ObjectId": "5e200c35-16fe-4401-93c6-b106d14c89cc"
+            }
+          }
+        },
+        {
+          "ColId": "8ff52033-75d4-44bc-a390-509614bd497e",
+          "ColName": "0e6e7060-1d39-4f9f-9954-0933f5ae1e29",
+          "Tile": {
+            "TileId": "6af2be11-1cc6-4a5b-930f-d3cb6397dd14",
+            "TileName": "Mailbox",
+            "TileText": "Mailbox",
+            "TileTextAlignment": "center",
+            "TileIcon": "Monitor",
+            "TileIconColor": "#333333",
+            "TileIconAlignment": "center",
+            "TileBGColor": "#89c2d9",
+            "TileBGImageUrl": "",
+            "TileBGImageOpacity": "",
+            "ProductServiceId": "00000000-0000-0000-0000-000000000000",
+            "ProductServiceName": "",
+            "ProductServiceDescription": "",
+            "ProductServiceImage": "",
+            "TileAction": {
+              "ObjectType": "Predefined Page, Mailbox",
+              "ObjectId": "e22b29bc-1982-414a-87cf-71a839806a75"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "RowId": "006d40d5-6cd0-4068-8c89-e366153204a0",
+      "RowName": "e6895e91-90fc-4898-b58b-1675f535c62c",
+      "Col": [
+        {
+          "ColId": "bb884b9e-1ffe-4dd6-ad97-9a6af711e1d0",
+          "ColName": "566efa55-6fbc-434a-ab37-a175b35ec35e",
+          "Tile": {
+            "TileId": "86efe27e-38c8-48f8-b262-154ec4deb59f",
+            "TileName": "Location",
+            "TileText": "Location",
+            "TileTextColor": "#ffffff",
+            "TileTextAlignment": "left",
+            "TileIcon": "",
+            "TileIconColor": "#000000",
+            "TileIconAlignment": "left",
+            "TileBGColor": "#d4a373",
+            "TileBGImageUrl": "https://staging.comforta.yukon.software/media/LocationInfo.png",
+            "TileBGImageOpacity": "100",
+            "ProductServiceId": "00000000-0000-0000-0000-000000000000",
+            "ProductServiceName": "",
+            "ProductServiceDescription": "",
+            "ProductServiceImage": "",
+            "TileAction": {
+              "ObjectType": "Predefined Page, Location",
+              "ObjectId": "784c2d18-622f-43f3-bde1-7b00035d6a07"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "RowId": "0eb1b2c2-5c67-4910-8d7d-6d4d7241ea61",
+      "RowName": "5ceada62-d19e-4bcc-871c-fb73cd49ae47",
+      "Col": [
+        {
+          "ColId": "46c34f4e-e557-44fb-9d1c-828a1df46686",
+          "ColName": "1bfb0536-a0b3-469a-a0e1-5373f8fa16be",
+          "Tile": {
+            "TileId": "2332de5f-808a-4d36-aef6-ab3a282ed502",
+            "TileName": "MIJN ZORG",
+            "TileText": "MIJN ZORG",
+            "TileTextColor": "#000000",
+            "TileTextAlignment": "center",
+            "TileIcon": "",
+            "TileIconColor": "#000000",
+            "TileIconAlignment": "left",
+            "TileBGColor": "#ffffff",
+            "TileBGImageUrl": "",
+            "TileBGImageOpacity": "100",
+            "ProductServiceId": "00000000-0000-0000-0000-000000000000",
+            "ProductServiceName": "",
+            "ProductServiceDescription": "",
+            "ProductServiceImage": "",
+            "TileAction": {
+              "ObjectType": "Page",
+              "ObjectId": "00000000-0000-0000-0000-000000000000"
+            }
+          }
+        },
+        {
+          "ColId": "c39b3974-0cd4-48cd-8f2e-5a3dbee30832",
+          "ColName": "a146d828-2113-4f6b-b437-04bb1360eaaa",
+          "Tile": {
+            "TileId": "20f03236-4836-438d-b12e-a22ed4a74da7",
+            "TileName": "MIJN WONEN",
+            "TileText": "MIJN WONEN",
+            "TileTextColor": "#000000",
+            "TileTextAlignment": "center",
+            "TileIcon": "",
+            "TileIconColor": "#000000",
+            "TileIconAlignment": "left",
+            "TileBGColor": "#f0f4f8",
+            "TileBGImageUrl": "",
+            "TileBGImageOpacity": "100",
+            "ProductServiceId": "00000000-0000-0000-0000-000000000000",
+            "ProductServiceName": "",
+            "ProductServiceDescription": "",
+            "ProductServiceImage": "",
+            "TileAction": {
+              "ObjectType": "Page",
+              "ObjectId": "00000000-0000-0000-0000-000000000000"
+            }
+          }
+        },
+        {
+          "ColId": "7929666f-9c78-4baa-8d0a-855cdd320ddf",
+          "ColName": "1fc33968-6593-4daf-8acc-38260aafb826",
+          "Tile": {
+            "TileId": "d9ca5aab-8e57-4595-b1b8-d9be55ece6a3",
+            "TileName": "MIJN DIENSTEN",
+            "TileText": "MIJN DIENSTEN",
+            "TileTextColor": "#000000",
+            "TileTextAlignment": "center",
+            "TileIcon": "",
+            "TileIconColor": "#000000",
+            "TileIconAlignment": "left",
+            "TileBGColor": "#f6d365",
+            "TileBGImageUrl": "",
+            "TileBGImageOpacity": "100",
+            "ProductServiceId": "00000000-0000-0000-0000-000000000000",
+            "ProductServiceName": "",
+            "ProductServiceDescription": "",
+            "ProductServiceImage": "",
+            "TileAction": {
+              "ObjectType": "Page",
+              "ObjectId": "00000000-0000-0000-0000-000000000000"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "RowId": "4ae1d054-d95d-45ff-bf1b-179e99a875a3",
+      "RowName": "13cdb381-cd76-4412-9382-670bc542b4d7",
+      "Col": []
+    },
+    {
+      "RowId": "ecda42df-6b5d-4ab2-afe6-a6b53afdd2ed",
+      "RowName": "05fe94a6-a8ea-4a23-b101-9ff89317a88f",
+      "Col": []
+    },
+    {
+      "RowId": "d4b61686-e233-4ead-98ef-30c4518b79b7",
+      "RowName": "d54933c3-5d46-4a7e-acf4-ecd4da8fe05e",
+      "Col": []
+    },
+    {
+      "RowId": "5a7fd6c0-d429-4baa-a6a0-c47c71070a3e",
+      "RowName": "c52e6bb6-65c8-4bab-a0c3-94d8976c0753",
+      "Col": []
+    },
+    {
+      "RowId": "2fd2c690-55ac-4454-bf30-cc091ff31523",
+      "RowName": "bbc10f50-3414-453d-8e1d-504600aa9b71",
+      "Col": []
+    },
+    {
+      "RowId": "7d902508-cc11-4855-99cf-a3a43e4f67a2",
+      "RowName": "24075f59-d7b2-432a-af5b-2f9dfbab8705",
+      "Col": []
+    }
+  ]
+}

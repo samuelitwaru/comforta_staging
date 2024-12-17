@@ -844,9 +844,7 @@ namespace GeneXus.Programs {
       }
 
       public void gxep_updatelocationtheme( Guid aP0_ThemeId ,
-                                            Guid aP1_locationId ,
-                                            Guid aP2_organisationId ,
-                                            out SdtSDT_Theme aP3_SDT_Theme )
+                                            out SdtSDT_Theme aP1_SDT_Theme )
       {
          restCliUpdateLocationTheme = new GXRestAPIClient();
          if ( restLocation == null )
@@ -857,19 +855,17 @@ namespace GeneXus.Programs {
          restCliUpdateLocationTheme.Location = restLocation;
          restCliUpdateLocationTheme.HttpMethod = "POST";
          restCliUpdateLocationTheme.AddBodyVar("ThemeId", (Guid)(aP0_ThemeId));
-         restCliUpdateLocationTheme.AddBodyVar("locationId", (Guid)(aP1_locationId));
-         restCliUpdateLocationTheme.AddBodyVar("organisationId", (Guid)(aP2_organisationId));
          restCliUpdateLocationTheme.RestExecute();
          if ( restCliUpdateLocationTheme.ErrorCode != 0 )
          {
             gxProperties.ErrorCode = restCliUpdateLocationTheme.ErrorCode;
             gxProperties.ErrorMessage = restCliUpdateLocationTheme.ErrorMessage;
             gxProperties.StatusCode = restCliUpdateLocationTheme.StatusCode;
-            aP3_SDT_Theme = new SdtSDT_Theme();
+            aP1_SDT_Theme = new SdtSDT_Theme();
          }
          else
          {
-            aP3_SDT_Theme = restCliUpdateLocationTheme.GetBodySdt<SdtSDT_Theme>("SDT_Theme");
+            aP1_SDT_Theme = restCliUpdateLocationTheme.GetBodySdt<SdtSDT_Theme>("SDT_Theme");
          }
          /* UpdateLocationTheme Constructor */
       }
@@ -985,7 +981,7 @@ namespace GeneXus.Programs {
          restCliUpdatePage = new GXRestAPIClient();
          restCliAddPageCildren = new GXRestAPIClient();
          restCliUpdateLocationTheme = new GXRestAPIClient();
-         aP3_SDT_Theme = new SdtSDT_Theme();
+         aP1_SDT_Theme = new SdtSDT_Theme();
          restCliProductServiceAPI = new GXRestAPIClient();
          aP1_SDT_ProductService = new SdtSDT_ProductService();
          restCliGetLocationTheme = new GXRestAPIClient();
@@ -1048,7 +1044,7 @@ namespace GeneXus.Programs {
       protected SdtSDT_Page aP1_SDT_Page ;
       protected GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageStructureCollection ;
       protected string aP5_result ;
-      protected SdtSDT_Theme aP3_SDT_Theme ;
+      protected SdtSDT_Theme aP1_SDT_Theme ;
       protected SdtSDT_ProductService aP1_SDT_ProductService ;
       protected SdtSDT_LocationTheme aP2_SDT_LocationTheme ;
    }

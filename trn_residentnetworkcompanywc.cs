@@ -868,11 +868,14 @@ namespace GeneXus.Programs {
                               A84NetworkCompanyName = cgiGet( edtNetworkCompanyName_Internalname);
                               A85NetworkCompanyEmail = cgiGet( edtNetworkCompanyEmail_Internalname);
                               A86NetworkCompanyPhone = cgiGet( edtNetworkCompanyPhone_Internalname);
+                              A392NetworkCompanyPhoneNumber = cgiGet( edtNetworkCompanyPhoneNumber_Internalname);
+                              A391NetworkCompanyPhoneCode = cgiGet( edtNetworkCompanyPhoneCode_Internalname);
                               A349NetworkCompanyCountry = cgiGet( edtNetworkCompanyCountry_Internalname);
                               A350NetworkCompanyCity = cgiGet( edtNetworkCompanyCity_Internalname);
                               A351NetworkCompanyZipCode = cgiGet( edtNetworkCompanyZipCode_Internalname);
                               A352NetworkCompanyAddressLine1 = cgiGet( edtNetworkCompanyAddressLine1_Internalname);
                               A353NetworkCompanyAddressLine2 = cgiGet( edtNetworkCompanyAddressLine2_Internalname);
+                              A505NetworkCompanyContactName = cgiGet( edtNetworkCompanyContactName_Internalname);
                               sEvtType = StringUtil.Right( sEvt, 1);
                               if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
                               {
@@ -1195,21 +1198,27 @@ namespace GeneXus.Programs {
                AssignAttri(sPrefix, false, "A29LocationId", A29LocationId.ToString());
                A11OrganisationId = H00692_A11OrganisationId[0];
                AssignAttri(sPrefix, false, "A11OrganisationId", A11OrganisationId.ToString());
+               A505NetworkCompanyContactName = H00692_A505NetworkCompanyContactName[0];
                A353NetworkCompanyAddressLine2 = H00692_A353NetworkCompanyAddressLine2[0];
                A352NetworkCompanyAddressLine1 = H00692_A352NetworkCompanyAddressLine1[0];
                A351NetworkCompanyZipCode = H00692_A351NetworkCompanyZipCode[0];
                A350NetworkCompanyCity = H00692_A350NetworkCompanyCity[0];
                A349NetworkCompanyCountry = H00692_A349NetworkCompanyCountry[0];
+               A391NetworkCompanyPhoneCode = H00692_A391NetworkCompanyPhoneCode[0];
+               A392NetworkCompanyPhoneNumber = H00692_A392NetworkCompanyPhoneNumber[0];
                A86NetworkCompanyPhone = H00692_A86NetworkCompanyPhone[0];
                A85NetworkCompanyEmail = H00692_A85NetworkCompanyEmail[0];
                A84NetworkCompanyName = H00692_A84NetworkCompanyName[0];
                A83NetworkCompanyKvkNumber = H00692_A83NetworkCompanyKvkNumber[0];
                A82NetworkCompanyId = H00692_A82NetworkCompanyId[0];
+               A505NetworkCompanyContactName = H00692_A505NetworkCompanyContactName[0];
                A353NetworkCompanyAddressLine2 = H00692_A353NetworkCompanyAddressLine2[0];
                A352NetworkCompanyAddressLine1 = H00692_A352NetworkCompanyAddressLine1[0];
                A351NetworkCompanyZipCode = H00692_A351NetworkCompanyZipCode[0];
                A350NetworkCompanyCity = H00692_A350NetworkCompanyCity[0];
                A349NetworkCompanyCountry = H00692_A349NetworkCompanyCountry[0];
+               A391NetworkCompanyPhoneCode = H00692_A391NetworkCompanyPhoneCode[0];
+               A392NetworkCompanyPhoneNumber = H00692_A392NetworkCompanyPhoneNumber[0];
                A86NetworkCompanyPhone = H00692_A86NetworkCompanyPhone[0];
                A85NetworkCompanyEmail = H00692_A85NetworkCompanyEmail[0];
                A84NetworkCompanyName = H00692_A84NetworkCompanyName[0];
@@ -1388,11 +1397,14 @@ namespace GeneXus.Programs {
          edtNetworkCompanyName_Enabled = 0;
          edtNetworkCompanyEmail_Enabled = 0;
          edtNetworkCompanyPhone_Enabled = 0;
+         edtNetworkCompanyPhoneNumber_Enabled = 0;
+         edtNetworkCompanyPhoneCode_Enabled = 0;
          edtNetworkCompanyCountry_Enabled = 0;
          edtNetworkCompanyCity_Enabled = 0;
          edtNetworkCompanyZipCode_Enabled = 0;
          edtNetworkCompanyAddressLine1_Enabled = 0;
          edtNetworkCompanyAddressLine2_Enabled = 0;
+         edtNetworkCompanyContactName_Enabled = 0;
          edtResidentId_Enabled = 0;
          AssignProp(sPrefix, false, edtResidentId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtResidentId_Enabled), 5, 0), true);
          edtLocationId_Enabled = 0;
@@ -1962,7 +1974,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412111874347", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713243772", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1978,7 +1990,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_residentnetworkcompanywc.js", "?202412111874348", false, true);
+         context.AddJavascriptSource("trn_residentnetworkcompanywc.js", "?2024121713243773", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DVPaginationBar/DVPaginationBarRender.js", "", false, true);
@@ -1997,11 +2009,14 @@ namespace GeneXus.Programs {
          edtNetworkCompanyName_Internalname = sPrefix+"NETWORKCOMPANYNAME_"+sGXsfl_15_idx;
          edtNetworkCompanyEmail_Internalname = sPrefix+"NETWORKCOMPANYEMAIL_"+sGXsfl_15_idx;
          edtNetworkCompanyPhone_Internalname = sPrefix+"NETWORKCOMPANYPHONE_"+sGXsfl_15_idx;
+         edtNetworkCompanyPhoneNumber_Internalname = sPrefix+"NETWORKCOMPANYPHONENUMBER_"+sGXsfl_15_idx;
+         edtNetworkCompanyPhoneCode_Internalname = sPrefix+"NETWORKCOMPANYPHONECODE_"+sGXsfl_15_idx;
          edtNetworkCompanyCountry_Internalname = sPrefix+"NETWORKCOMPANYCOUNTRY_"+sGXsfl_15_idx;
          edtNetworkCompanyCity_Internalname = sPrefix+"NETWORKCOMPANYCITY_"+sGXsfl_15_idx;
          edtNetworkCompanyZipCode_Internalname = sPrefix+"NETWORKCOMPANYZIPCODE_"+sGXsfl_15_idx;
          edtNetworkCompanyAddressLine1_Internalname = sPrefix+"NETWORKCOMPANYADDRESSLINE1_"+sGXsfl_15_idx;
          edtNetworkCompanyAddressLine2_Internalname = sPrefix+"NETWORKCOMPANYADDRESSLINE2_"+sGXsfl_15_idx;
+         edtNetworkCompanyContactName_Internalname = sPrefix+"NETWORKCOMPANYCONTACTNAME_"+sGXsfl_15_idx;
       }
 
       protected void SubsflControlProps_fel_152( )
@@ -2011,11 +2026,14 @@ namespace GeneXus.Programs {
          edtNetworkCompanyName_Internalname = sPrefix+"NETWORKCOMPANYNAME_"+sGXsfl_15_fel_idx;
          edtNetworkCompanyEmail_Internalname = sPrefix+"NETWORKCOMPANYEMAIL_"+sGXsfl_15_fel_idx;
          edtNetworkCompanyPhone_Internalname = sPrefix+"NETWORKCOMPANYPHONE_"+sGXsfl_15_fel_idx;
+         edtNetworkCompanyPhoneNumber_Internalname = sPrefix+"NETWORKCOMPANYPHONENUMBER_"+sGXsfl_15_fel_idx;
+         edtNetworkCompanyPhoneCode_Internalname = sPrefix+"NETWORKCOMPANYPHONECODE_"+sGXsfl_15_fel_idx;
          edtNetworkCompanyCountry_Internalname = sPrefix+"NETWORKCOMPANYCOUNTRY_"+sGXsfl_15_fel_idx;
          edtNetworkCompanyCity_Internalname = sPrefix+"NETWORKCOMPANYCITY_"+sGXsfl_15_fel_idx;
          edtNetworkCompanyZipCode_Internalname = sPrefix+"NETWORKCOMPANYZIPCODE_"+sGXsfl_15_fel_idx;
          edtNetworkCompanyAddressLine1_Internalname = sPrefix+"NETWORKCOMPANYADDRESSLINE1_"+sGXsfl_15_fel_idx;
          edtNetworkCompanyAddressLine2_Internalname = sPrefix+"NETWORKCOMPANYADDRESSLINE2_"+sGXsfl_15_fel_idx;
+         edtNetworkCompanyContactName_Internalname = sPrefix+"NETWORKCOMPANYCONTACTNAME_"+sGXsfl_15_fel_idx;
       }
 
       protected void sendrow_152( )
@@ -2133,6 +2151,22 @@ namespace GeneXus.Programs {
             }
             /* Single line edit */
             ROClassString = "Attribute";
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtNetworkCompanyPhoneNumber_Internalname,(string)A392NetworkCompanyPhoneNumber,(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtNetworkCompanyPhoneNumber_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)0,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)9,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            /* Subfile cell */
+            if ( GridContainer.GetWrapped() == 1 )
+            {
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+"display:none;"+"\">") ;
+            }
+            /* Single line edit */
+            ROClassString = "Attribute";
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtNetworkCompanyPhoneCode_Internalname,(string)A391NetworkCompanyPhoneCode,(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtNetworkCompanyPhoneCode_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)0,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)40,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            /* Subfile cell */
+            if ( GridContainer.GetWrapped() == 1 )
+            {
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+"display:none;"+"\">") ;
+            }
+            /* Single line edit */
+            ROClassString = "Attribute";
             GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtNetworkCompanyCountry_Internalname,(string)A349NetworkCompanyCountry,(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtNetworkCompanyCountry_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)0,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
@@ -2166,6 +2200,14 @@ namespace GeneXus.Programs {
             /* Single line edit */
             ROClassString = "Attribute";
             GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtNetworkCompanyAddressLine2_Internalname,(string)A353NetworkCompanyAddressLine2,(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtNetworkCompanyAddressLine2_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)0,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            /* Subfile cell */
+            if ( GridContainer.GetWrapped() == 1 )
+            {
+               context.WriteHtmlText( "<td valign=\"middle\" align=\""+"start"+"\""+" style=\""+""+"\">") ;
+            }
+            /* Single line edit */
+            ROClassString = "Attribute";
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtNetworkCompanyContactName_Internalname,(string)A505NetworkCompanyContactName,(string)"",(string)"",(string)"'"+sPrefix+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtNetworkCompanyContactName_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn hidden-xs",(string)"",(short)-1,(short)0,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)-1,(bool)true,(string)"Name",(string)"start",(bool)true,(string)""});
             send_integrity_lvl_hashes692( ) ;
             GridContainer.AddRow(GridRow);
             nGXsfl_15_idx = ((subGrid_Islastpage==1)&&(nGXsfl_15_idx+1>subGrid_fnc_Recordsperpage( )) ? 1 : nGXsfl_15_idx+1);
@@ -2224,7 +2266,7 @@ namespace GeneXus.Programs {
             context.SendWebValue( "KVK Number") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "Company Name") ;
+            context.SendWebValue( "Name") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
             context.SendWebValue( "Email") ;
@@ -2233,19 +2275,28 @@ namespace GeneXus.Programs {
             context.SendWebValue( "Phone") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Country") ;
+            context.SendWebValue( "Network Company Phone Number") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "City") ;
+            context.SendWebValue( "Network Company Phone Code") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Zip Code") ;
+            context.SendWebValue( "Network Company Country") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Address Line 1") ;
+            context.SendWebValue( "Network Company City") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
-            context.SendWebValue( "Address Line 2") ;
+            context.SendWebValue( "Network Company Zip Code") ;
+            context.WriteHtmlTextNl( "</th>") ;
+            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
+            context.SendWebValue( "Network Company Address Line1") ;
+            context.WriteHtmlTextNl( "</th>") ;
+            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
+            context.SendWebValue( "Network Company Address Line2") ;
+            context.WriteHtmlTextNl( "</th>") ;
+            context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
+            context.SendWebValue( "Contact Name") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlTextNl( "</tr>") ;
             GridContainer.AddObjectProperty("GridName", "Grid");
@@ -2286,6 +2337,12 @@ namespace GeneXus.Programs {
             GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( StringUtil.RTrim( A86NetworkCompanyPhone)));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
+            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A392NetworkCompanyPhoneNumber));
+            GridContainer.AddColumnProperties(GridColumn);
+            GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
+            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A391NetworkCompanyPhoneCode));
+            GridContainer.AddColumnProperties(GridColumn);
+            GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A349NetworkCompanyCountry));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
@@ -2299,6 +2356,9 @@ namespace GeneXus.Programs {
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A353NetworkCompanyAddressLine2));
+            GridContainer.AddColumnProperties(GridColumn);
+            GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
+            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A505NetworkCompanyContactName));
             GridContainer.AddColumnProperties(GridColumn);
             GridContainer.AddObjectProperty("Selectedindex", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Selectedindex), 4, 0, ".", "")));
             GridContainer.AddObjectProperty("Allowselection", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Allowselection), 1, 0, ".", "")));
@@ -2317,11 +2377,14 @@ namespace GeneXus.Programs {
          edtNetworkCompanyName_Internalname = sPrefix+"NETWORKCOMPANYNAME";
          edtNetworkCompanyEmail_Internalname = sPrefix+"NETWORKCOMPANYEMAIL";
          edtNetworkCompanyPhone_Internalname = sPrefix+"NETWORKCOMPANYPHONE";
+         edtNetworkCompanyPhoneNumber_Internalname = sPrefix+"NETWORKCOMPANYPHONENUMBER";
+         edtNetworkCompanyPhoneCode_Internalname = sPrefix+"NETWORKCOMPANYPHONECODE";
          edtNetworkCompanyCountry_Internalname = sPrefix+"NETWORKCOMPANYCOUNTRY";
          edtNetworkCompanyCity_Internalname = sPrefix+"NETWORKCOMPANYCITY";
          edtNetworkCompanyZipCode_Internalname = sPrefix+"NETWORKCOMPANYZIPCODE";
          edtNetworkCompanyAddressLine1_Internalname = sPrefix+"NETWORKCOMPANYADDRESSLINE1";
          edtNetworkCompanyAddressLine2_Internalname = sPrefix+"NETWORKCOMPANYADDRESSLINE2";
+         edtNetworkCompanyContactName_Internalname = sPrefix+"NETWORKCOMPANYCONTACTNAME";
          Gridpaginationbar_Internalname = sPrefix+"GRIDPAGINATIONBAR";
          divGridtablewithpaginationbar_Internalname = sPrefix+"GRIDTABLEWITHPAGINATIONBAR";
          divTablegridheader_Internalname = sPrefix+"TABLEGRIDHEADER";
@@ -2353,11 +2416,14 @@ namespace GeneXus.Programs {
          subGrid_Allowcollapsing = 0;
          subGrid_Allowselection = 0;
          subGrid_Header = "";
+         edtNetworkCompanyContactName_Jsonclick = "";
          edtNetworkCompanyAddressLine2_Jsonclick = "";
          edtNetworkCompanyAddressLine1_Jsonclick = "";
          edtNetworkCompanyZipCode_Jsonclick = "";
          edtNetworkCompanyCity_Jsonclick = "";
          edtNetworkCompanyCountry_Jsonclick = "";
+         edtNetworkCompanyPhoneCode_Jsonclick = "";
+         edtNetworkCompanyPhoneNumber_Jsonclick = "";
          edtNetworkCompanyPhone_Jsonclick = "";
          edtNetworkCompanyEmail_Jsonclick = "";
          edtNetworkCompanyName_Jsonclick = "";
@@ -2368,11 +2434,14 @@ namespace GeneXus.Programs {
          edtOrganisationId_Enabled = 0;
          edtLocationId_Enabled = 0;
          edtResidentId_Enabled = 0;
+         edtNetworkCompanyContactName_Enabled = 0;
          edtNetworkCompanyAddressLine2_Enabled = 0;
          edtNetworkCompanyAddressLine1_Enabled = 0;
          edtNetworkCompanyZipCode_Enabled = 0;
          edtNetworkCompanyCity_Enabled = 0;
          edtNetworkCompanyCountry_Enabled = 0;
+         edtNetworkCompanyPhoneCode_Enabled = 0;
+         edtNetworkCompanyPhoneNumber_Enabled = 0;
          edtNetworkCompanyPhone_Enabled = 0;
          edtNetworkCompanyEmail_Enabled = 0;
          edtNetworkCompanyName_Enabled = 0;
@@ -2387,8 +2456,8 @@ namespace GeneXus.Programs {
          edtResidentId_Visible = 1;
          Grid_empowerer_Hastitlesettings = Convert.ToBoolean( -1);
          Ddo_grid_Includesortasc = "T";
-         Ddo_grid_Columnssortvalues = "1|2|3|4";
-         Ddo_grid_Columnids = "1:NetworkCompanyKvkNumber|2:NetworkCompanyName|3:NetworkCompanyEmail|4:NetworkCompanyPhone";
+         Ddo_grid_Columnssortvalues = "1|2|3|4|5";
+         Ddo_grid_Columnids = "1:NetworkCompanyKvkNumber|2:NetworkCompanyName|3:NetworkCompanyEmail|4:NetworkCompanyPhone|12:NetworkCompanyContactName";
          Ddo_grid_Gridinternalname = "";
          Gridpaginationbar_Rowsperpagecaption = "WWP_PagingRowsPerPage";
          Gridpaginationbar_Emptygridcaption = "WWP_PagingEmptyGridCaption";
@@ -2434,7 +2503,7 @@ namespace GeneXus.Programs {
          setEventMetadata("DDO_GRID.ONOPTIONCLICKED",""","oparms":[{"av":"AV16OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV17OrderedDsc","fld":"vORDEREDDSC"},{"av":"Ddo_grid_Sortedstatus","ctrl":"DDO_GRID","prop":"SortedStatus"}]}""");
          setEventMetadata("GRID.LOAD","""{"handler":"E16692","iparms":[]}""");
          setEventMetadata("VALID_NETWORKCOMPANYID","""{"handler":"Valid_Networkcompanyid","iparms":[]}""");
-         setEventMetadata("NULL","""{"handler":"Valid_Networkcompanyaddressline2","iparms":[]}""");
+         setEventMetadata("NULL","""{"handler":"Valid_Networkcompanycontactname","iparms":[]}""");
          return  ;
       }
 
@@ -2491,20 +2560,26 @@ namespace GeneXus.Programs {
          A84NetworkCompanyName = "";
          A85NetworkCompanyEmail = "";
          A86NetworkCompanyPhone = "";
+         A392NetworkCompanyPhoneNumber = "";
+         A391NetworkCompanyPhoneCode = "";
          A349NetworkCompanyCountry = "";
          A350NetworkCompanyCity = "";
          A351NetworkCompanyZipCode = "";
          A352NetworkCompanyAddressLine1 = "";
          A353NetworkCompanyAddressLine2 = "";
+         A505NetworkCompanyContactName = "";
          GXDecQS = "";
          H00692_A62ResidentId = new Guid[] {Guid.Empty} ;
          H00692_A29LocationId = new Guid[] {Guid.Empty} ;
          H00692_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         H00692_A505NetworkCompanyContactName = new string[] {""} ;
          H00692_A353NetworkCompanyAddressLine2 = new string[] {""} ;
          H00692_A352NetworkCompanyAddressLine1 = new string[] {""} ;
          H00692_A351NetworkCompanyZipCode = new string[] {""} ;
          H00692_A350NetworkCompanyCity = new string[] {""} ;
          H00692_A349NetworkCompanyCountry = new string[] {""} ;
+         H00692_A391NetworkCompanyPhoneCode = new string[] {""} ;
+         H00692_A392NetworkCompanyPhoneNumber = new string[] {""} ;
          H00692_A86NetworkCompanyPhone = new string[] {""} ;
          H00692_A85NetworkCompanyEmail = new string[] {""} ;
          H00692_A84NetworkCompanyName = new string[] {""} ;
@@ -2532,8 +2607,8 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_residentnetworkcompanywc__default(),
             new Object[][] {
                 new Object[] {
-               H00692_A62ResidentId, H00692_A29LocationId, H00692_A11OrganisationId, H00692_A353NetworkCompanyAddressLine2, H00692_A352NetworkCompanyAddressLine1, H00692_A351NetworkCompanyZipCode, H00692_A350NetworkCompanyCity, H00692_A349NetworkCompanyCountry, H00692_A86NetworkCompanyPhone, H00692_A85NetworkCompanyEmail,
-               H00692_A84NetworkCompanyName, H00692_A83NetworkCompanyKvkNumber, H00692_A82NetworkCompanyId
+               H00692_A62ResidentId, H00692_A29LocationId, H00692_A11OrganisationId, H00692_A505NetworkCompanyContactName, H00692_A353NetworkCompanyAddressLine2, H00692_A352NetworkCompanyAddressLine1, H00692_A351NetworkCompanyZipCode, H00692_A350NetworkCompanyCity, H00692_A349NetworkCompanyCountry, H00692_A391NetworkCompanyPhoneCode,
+               H00692_A392NetworkCompanyPhoneNumber, H00692_A86NetworkCompanyPhone, H00692_A85NetworkCompanyEmail, H00692_A84NetworkCompanyName, H00692_A83NetworkCompanyKvkNumber, H00692_A82NetworkCompanyId
                }
                , new Object[] {
                H00693_AGRID_nRecordCount
@@ -2580,11 +2655,14 @@ namespace GeneXus.Programs {
       private int edtNetworkCompanyName_Enabled ;
       private int edtNetworkCompanyEmail_Enabled ;
       private int edtNetworkCompanyPhone_Enabled ;
+      private int edtNetworkCompanyPhoneNumber_Enabled ;
+      private int edtNetworkCompanyPhoneCode_Enabled ;
       private int edtNetworkCompanyCountry_Enabled ;
       private int edtNetworkCompanyCity_Enabled ;
       private int edtNetworkCompanyZipCode_Enabled ;
       private int edtNetworkCompanyAddressLine1_Enabled ;
       private int edtNetworkCompanyAddressLine2_Enabled ;
+      private int edtNetworkCompanyContactName_Enabled ;
       private int edtResidentId_Enabled ;
       private int edtLocationId_Enabled ;
       private int edtOrganisationId_Enabled ;
@@ -2662,11 +2740,14 @@ namespace GeneXus.Programs {
       private string edtNetworkCompanyEmail_Internalname ;
       private string A86NetworkCompanyPhone ;
       private string edtNetworkCompanyPhone_Internalname ;
+      private string edtNetworkCompanyPhoneNumber_Internalname ;
+      private string edtNetworkCompanyPhoneCode_Internalname ;
       private string edtNetworkCompanyCountry_Internalname ;
       private string edtNetworkCompanyCity_Internalname ;
       private string edtNetworkCompanyZipCode_Internalname ;
       private string edtNetworkCompanyAddressLine1_Internalname ;
       private string edtNetworkCompanyAddressLine2_Internalname ;
+      private string edtNetworkCompanyContactName_Internalname ;
       private string GXDecQS ;
       private string GXt_char2 ;
       private string sCtrlAV8ResidentId ;
@@ -2682,11 +2763,14 @@ namespace GeneXus.Programs {
       private string edtNetworkCompanyEmail_Jsonclick ;
       private string gxphoneLink ;
       private string edtNetworkCompanyPhone_Jsonclick ;
+      private string edtNetworkCompanyPhoneNumber_Jsonclick ;
+      private string edtNetworkCompanyPhoneCode_Jsonclick ;
       private string edtNetworkCompanyCountry_Jsonclick ;
       private string edtNetworkCompanyCity_Jsonclick ;
       private string edtNetworkCompanyZipCode_Jsonclick ;
       private string edtNetworkCompanyAddressLine1_Jsonclick ;
       private string edtNetworkCompanyAddressLine2_Jsonclick ;
+      private string edtNetworkCompanyContactName_Jsonclick ;
       private string subGrid_Header ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
@@ -2708,11 +2792,14 @@ namespace GeneXus.Programs {
       private string A83NetworkCompanyKvkNumber ;
       private string A84NetworkCompanyName ;
       private string A85NetworkCompanyEmail ;
+      private string A392NetworkCompanyPhoneNumber ;
+      private string A391NetworkCompanyPhoneCode ;
       private string A349NetworkCompanyCountry ;
       private string A350NetworkCompanyCity ;
       private string A351NetworkCompanyZipCode ;
       private string A352NetworkCompanyAddressLine1 ;
       private string A353NetworkCompanyAddressLine2 ;
+      private string A505NetworkCompanyContactName ;
       private Guid AV8ResidentId ;
       private Guid AV9LocationId ;
       private Guid AV10OrganisationId ;
@@ -2740,11 +2827,14 @@ namespace GeneXus.Programs {
       private Guid[] H00692_A62ResidentId ;
       private Guid[] H00692_A29LocationId ;
       private Guid[] H00692_A11OrganisationId ;
+      private string[] H00692_A505NetworkCompanyContactName ;
       private string[] H00692_A353NetworkCompanyAddressLine2 ;
       private string[] H00692_A352NetworkCompanyAddressLine1 ;
       private string[] H00692_A351NetworkCompanyZipCode ;
       private string[] H00692_A350NetworkCompanyCity ;
       private string[] H00692_A349NetworkCompanyCountry ;
+      private string[] H00692_A391NetworkCompanyPhoneCode ;
+      private string[] H00692_A392NetworkCompanyPhoneNumber ;
       private string[] H00692_A86NetworkCompanyPhone ;
       private string[] H00692_A85NetworkCompanyEmail ;
       private string[] H00692_A84NetworkCompanyName ;
@@ -2779,7 +2869,7 @@ namespace GeneXus.Programs {
          string sSelectString;
          string sFromString;
          string sOrderString;
-         sSelectString = " T1.ResidentId, T1.LocationId, T1.OrganisationId, T2.NetworkCompanyAddressLine2, T2.NetworkCompanyAddressLine1, T2.NetworkCompanyZipCode, T2.NetworkCompanyCity, T2.NetworkCompanyCountry, T2.NetworkCompanyPhone, T2.NetworkCompanyEmail, T2.NetworkCompanyName, T2.NetworkCompanyKvkNumber, T1.NetworkCompanyId";
+         sSelectString = " T1.ResidentId, T1.LocationId, T1.OrganisationId, T2.NetworkCompanyContactName, T2.NetworkCompanyAddressLine2, T2.NetworkCompanyAddressLine1, T2.NetworkCompanyZipCode, T2.NetworkCompanyCity, T2.NetworkCompanyCountry, T2.NetworkCompanyPhoneCode, T2.NetworkCompanyPhoneNumber, T2.NetworkCompanyPhone, T2.NetworkCompanyEmail, T2.NetworkCompanyName, T2.NetworkCompanyKvkNumber, T1.NetworkCompanyId";
          sFromString = " FROM (Trn_ResidentNetworkCompany T1 INNER JOIN Trn_NetworkCompany T2 ON T2.NetworkCompanyId = T1.NetworkCompanyId)";
          sOrderString = "";
          AddWhere(sWhereString, "(T1.ResidentId = :AV8ResidentId)");
@@ -2816,6 +2906,14 @@ namespace GeneXus.Programs {
          else if ( ( AV16OrderedBy == 4 ) && ( AV17OrderedDsc ) )
          {
             sOrderString += " ORDER BY T1.ResidentId DESC, T1.LocationId DESC, T1.OrganisationId DESC, T2.NetworkCompanyPhone DESC, T1.NetworkCompanyId";
+         }
+         else if ( ( AV16OrderedBy == 5 ) && ! AV17OrderedDsc )
+         {
+            sOrderString += " ORDER BY T1.ResidentId, T1.LocationId, T1.OrganisationId, T2.NetworkCompanyContactName, T1.NetworkCompanyId";
+         }
+         else if ( ( AV16OrderedBy == 5 ) && ( AV17OrderedDsc ) )
+         {
+            sOrderString += " ORDER BY T1.ResidentId DESC, T1.LocationId DESC, T1.OrganisationId DESC, T2.NetworkCompanyContactName DESC, T1.NetworkCompanyId";
          }
          else if ( true )
          {
@@ -2875,6 +2973,14 @@ namespace GeneXus.Programs {
             scmdbuf += "";
          }
          else if ( ( AV16OrderedBy == 4 ) && ( AV17OrderedDsc ) )
+         {
+            scmdbuf += "";
+         }
+         else if ( ( AV16OrderedBy == 5 ) && ! AV17OrderedDsc )
+         {
+            scmdbuf += "";
+         }
+         else if ( ( AV16OrderedBy == 5 ) && ( AV17OrderedDsc ) )
          {
             scmdbuf += "";
          }
@@ -2952,11 +3058,14 @@ namespace GeneXus.Programs {
                 ((string[]) buf[5])[0] = rslt.getVarchar(6);
                 ((string[]) buf[6])[0] = rslt.getVarchar(7);
                 ((string[]) buf[7])[0] = rslt.getVarchar(8);
-                ((string[]) buf[8])[0] = rslt.getString(9, 20);
+                ((string[]) buf[8])[0] = rslt.getVarchar(9);
                 ((string[]) buf[9])[0] = rslt.getVarchar(10);
                 ((string[]) buf[10])[0] = rslt.getVarchar(11);
-                ((string[]) buf[11])[0] = rslt.getVarchar(12);
-                ((Guid[]) buf[12])[0] = rslt.getGuid(13);
+                ((string[]) buf[11])[0] = rslt.getString(12, 20);
+                ((string[]) buf[12])[0] = rslt.getVarchar(13);
+                ((string[]) buf[13])[0] = rslt.getVarchar(14);
+                ((string[]) buf[14])[0] = rslt.getVarchar(15);
+                ((Guid[]) buf[15])[0] = rslt.getGuid(16);
                 return;
              case 1 :
                 ((long[]) buf[0])[0] = rslt.getLong(1);

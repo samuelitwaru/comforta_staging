@@ -82,12 +82,6 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_authenticatereceptionist(context ).execute( out  AV12UserName, ref  AV8LocationId, ref  AV9OrganisationId) ;
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV12UserName))) )
-         {
-            cleanup();
-            if (true) return;
-         }
          /* Using cursor P009G2 */
          pr_default.execute(0, new Object[] {AV8LocationId, AV9OrganisationId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -127,7 +121,6 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV11SDT_LocationTheme = new SdtSDT_LocationTheme(context);
-         AV12UserName = "";
          P009G2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P009G2_A29LocationId = new Guid[] {Guid.Empty} ;
          P009G2_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
@@ -152,7 +145,6 @@ namespace GeneXus.Programs {
 
       private short A399Trn_ThemeFontSize ;
       private bool n247Trn_ThemeId ;
-      private string AV12UserName ;
       private string A248Trn_ThemeName ;
       private string A260Trn_ThemeFontFamily ;
       private Guid AV8LocationId ;

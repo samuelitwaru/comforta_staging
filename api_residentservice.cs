@@ -617,17 +617,13 @@ namespace GeneXus.Programs {
       }
 
       public void gxep_updatelocationtheme( Guid aP0_ThemeId ,
-                                            Guid aP1_locationId ,
-                                            Guid aP2_organisationId ,
-                                            out SdtSDT_Theme aP3_SDT_Theme )
+                                            out SdtSDT_Theme aP1_SDT_Theme )
       {
          this.AV71ThemeId = aP0_ThemeId;
-         this.AV12locationId = aP1_locationId;
-         this.AV16organisationId = aP2_organisationId;
          initialize();
          /* UpdateLocationTheme Constructor */
-         new prc_updatelocationtheme(context ).execute(  AV71ThemeId,  AV12locationId,  AV16organisationId, out  AV72SDT_Theme) ;
-         aP3_SDT_Theme=this.AV72SDT_Theme;
+         new prc_updatelocationtheme(context ).execute(  AV71ThemeId, out  AV72SDT_Theme) ;
+         aP1_SDT_Theme=this.AV72SDT_Theme;
       }
 
       public void gxep_productserviceapi( Guid aP0_ProductServiceId ,
@@ -754,7 +750,7 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageStructureCollection ;
       protected string aP5_result ;
       protected SdtSDT_Theme AV72SDT_Theme ;
-      protected SdtSDT_Theme aP3_SDT_Theme ;
+      protected SdtSDT_Theme aP1_SDT_Theme ;
       protected SdtSDT_ProductService AV67SDT_ProductService ;
       protected SdtSDT_ProductService aP1_SDT_ProductService ;
       protected SdtSDT_LocationTheme AV83SDT_LocationTheme ;

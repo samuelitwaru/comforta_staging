@@ -63,4 +63,7 @@
   <Object name="DP_GetUserNotifications" id="27" type="DataProvider" IntegratedSecurityLevel="SecurityLow" xmlns="qv">
     <DefaultOutput type="OutputTypePivotTable" xmlns="qv" />
   </Object>
+  <Object name="UMenuOptionsData" id="28" type="DataProvider" IntegratedSecurityLevel="SecurityHigh" PermissionPrefix="MenuOptionsData" xmlns="qv">
+    <DefaultOutput type="OutputTypePivotTable" xmlns="qv" />
+  </Object>
 </Objects>

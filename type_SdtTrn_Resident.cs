@@ -58,7 +58,7 @@ namespace GeneXus.Programs {
          metadata.Set("Name", "Trn_Resident");
          metadata.Set("BT", "Trn_Resident");
          metadata.Set("PK", "[ \"ResidentId\",\"LocationId\",\"OrganisationId\" ]");
-         metadata.Set("PKAssigned", "[ \"LocationId\",\"OrganisationId\",\"ResidentId\" ]");
+         metadata.Set("PKAssigned", "[ \"ResidentId\" ]");
          metadata.Set("Levels", "[ \"NetworkCompany\",\"NetworkIndividual\" ]");
          metadata.Set("FKList", "[ { \"FK\":[ \"LocationId\",\"OrganisationId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"MedicalIndicationId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"OrganisationId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"ResidentTypeId\" ],\"FKMap\":[  ] } ]");
          metadata.Set("AllowInsert", "True");

@@ -90,50 +90,66 @@ namespace GeneXus.Programs {
             }
          }
          AV10Blob=context.FileFromBase64( AV12base64String) ;
-         /* Using cursor P00A22 */
-         pr_default.execute(0, new Object[] {AV11ResidentGUID});
-         while ( (pr_default.getStatus(0) != 101) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV10Blob)) )
          {
-            A71ResidentGUID = P00A22_A71ResidentGUID[0];
-            A40000ResidentImage_GXI = P00A22_A40000ResidentImage_GXI[0];
-            n40000ResidentImage_GXI = P00A22_n40000ResidentImage_GXI[0];
-            A11OrganisationId = P00A22_A11OrganisationId[0];
-            A29LocationId = P00A22_A29LocationId[0];
-            A62ResidentId = P00A22_A62ResidentId[0];
-            A457ResidentImage = P00A22_A457ResidentImage[0];
-            n457ResidentImage = P00A22_n457ResidentImage[0];
-            A457ResidentImage = AV10Blob;
-            n457ResidentImage = false;
-            A40000ResidentImage_GXI = GXDbFile.GetUriFromFile( "", "", AV10Blob);
-            n40000ResidentImage_GXI = false;
-            AV13Trn_Resident.Load(A62ResidentId, A29LocationId, A11OrganisationId);
-            /* Using cursor P00A23 */
-            pr_default.execute(1, new Object[] {n457ResidentImage, A457ResidentImage, n40000ResidentImage_GXI, A40000ResidentImage_GXI, A62ResidentId, A29LocationId, A11OrganisationId});
-            pr_default.close(1);
-            pr_default.SmartCacheProvider.SetUpdated("Trn_Resident");
-            pr_default.readNext(0);
-         }
-         pr_default.close(0);
-         new prc_logtofile(context ).execute(  "Resident Found: "+AV13Trn_Resident.ToJSonString(true, true)) ;
-         AV13Trn_Resident.gxTpr_Residentimage = AV10Blob;
-         AV13Trn_Resident.gxTpr_Residentimage_gxi = GXDbFile.GetUriFromFile( "", "", AV10Blob);
-         AV13Trn_Resident.Save();
-         if ( AV13Trn_Resident.Success() )
-         {
-            context.CommitDataStores("prc_updateresidentavatar",pr_default);
-            AV15WWP_UserExtended.Load(AV11ResidentGUID);
-            AV15WWP_UserExtended.gxTpr_Wwpuserextendedphoto = AV10Blob;
-            AV15WWP_UserExtended.gxTpr_Wwpuserextendedphoto_gxi = GXDbFile.GetUriFromFile( "", "", AV10Blob);
-            AV15WWP_UserExtended.Save();
-            if ( AV15WWP_UserExtended.Success() )
+            AV17GXLvl13 = 0;
+            /* Using cursor P00A22 */
+            pr_default.execute(0, new Object[] {AV11ResidentGUID});
+            while ( (pr_default.getStatus(0) != 101) )
+            {
+               A71ResidentGUID = P00A22_A71ResidentGUID[0];
+               A40000ResidentImage_GXI = P00A22_A40000ResidentImage_GXI[0];
+               n40000ResidentImage_GXI = P00A22_n40000ResidentImage_GXI[0];
+               A62ResidentId = P00A22_A62ResidentId[0];
+               A29LocationId = P00A22_A29LocationId[0];
+               A11OrganisationId = P00A22_A11OrganisationId[0];
+               A457ResidentImage = P00A22_A457ResidentImage[0];
+               n457ResidentImage = P00A22_n457ResidentImage[0];
+               AV17GXLvl13 = 1;
+               A457ResidentImage = AV10Blob;
+               n457ResidentImage = false;
+               A40000ResidentImage_GXI = GXDbFile.GetUriFromFile( "", "", AV10Blob);
+               n40000ResidentImage_GXI = false;
+               AV16isSuccessful = true;
+               /* Exit For each command. Update data (if necessary), close cursors & exit. */
+               /* Using cursor P00A23 */
+               pr_default.execute(1, new Object[] {n457ResidentImage, A457ResidentImage, n40000ResidentImage_GXI, A40000ResidentImage_GXI, A62ResidentId, A29LocationId, A11OrganisationId});
+               pr_default.close(1);
+               pr_default.SmartCacheProvider.SetUpdated("Trn_Resident");
+               if (true) break;
+               /* Using cursor P00A24 */
+               pr_default.execute(2, new Object[] {n457ResidentImage, A457ResidentImage, n40000ResidentImage_GXI, A40000ResidentImage_GXI, A62ResidentId, A29LocationId, A11OrganisationId});
+               pr_default.close(2);
+               pr_default.SmartCacheProvider.SetUpdated("Trn_Resident");
+               pr_default.readNext(0);
+            }
+            pr_default.close(0);
+            if ( AV17GXLvl13 == 0 )
+            {
+               AV16isSuccessful = false;
+            }
+            if ( AV16isSuccessful )
             {
                context.CommitDataStores("prc_updateresidentavatar",pr_default);
-               AV14response = "Profile updated sucessfully";
+               AV15WWP_UserExtended.Load(AV11ResidentGUID);
+               AV15WWP_UserExtended.gxTpr_Wwpuserextendedphoto = AV10Blob;
+               AV15WWP_UserExtended.gxTpr_Wwpuserextendedphoto_gxi = GXDbFile.GetUriFromFile( "", "", AV10Blob);
+               AV15WWP_UserExtended.Save();
+               if ( AV15WWP_UserExtended.Success() )
+               {
+                  context.CommitDataStores("prc_updateresidentavatar",pr_default);
+                  AV14response = "Profile updated sucessfully";
+               }
+            }
+            else
+            {
+               context.RollbackDataStores("prc_updateresidentavatar",pr_default);
+               AV14response = "User profile could not be updated. Try again ";
             }
          }
          else
          {
-            AV14response = "Profile could not be updated: Error: " + ((GeneXus.Utils.SdtMessages_Message)AV13Trn_Resident.GetMessages().Item(1)).gxTpr_Description;
+            AV14response = "Uploaded image could not be processed, try another";
          }
          cleanup();
       }
@@ -157,18 +173,17 @@ namespace GeneXus.Programs {
          P00A22_A71ResidentGUID = new string[] {""} ;
          P00A22_A40000ResidentImage_GXI = new string[] {""} ;
          P00A22_n40000ResidentImage_GXI = new bool[] {false} ;
-         P00A22_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P00A22_A29LocationId = new Guid[] {Guid.Empty} ;
          P00A22_A62ResidentId = new Guid[] {Guid.Empty} ;
+         P00A22_A29LocationId = new Guid[] {Guid.Empty} ;
+         P00A22_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P00A22_A457ResidentImage = new string[] {""} ;
          P00A22_n457ResidentImage = new bool[] {false} ;
          A71ResidentGUID = "";
          A40000ResidentImage_GXI = "";
-         A11OrganisationId = Guid.Empty;
-         A29LocationId = Guid.Empty;
          A62ResidentId = Guid.Empty;
+         A29LocationId = Guid.Empty;
+         A11OrganisationId = Guid.Empty;
          A457ResidentImage = "";
-         AV13Trn_Resident = new SdtTrn_Resident(context);
          AV15WWP_UserExtended = new GeneXus.Programs.wwpbaseobjects.SdtWWP_UserExtended(context);
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_updateresidentavatar__datastore1(),
             new Object[][] {
@@ -181,7 +196,9 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_updateresidentavatar__default(),
             new Object[][] {
                 new Object[] {
-               P00A22_A71ResidentGUID, P00A22_A40000ResidentImage_GXI, P00A22_n40000ResidentImage_GXI, P00A22_A11OrganisationId, P00A22_A29LocationId, P00A22_A62ResidentId, P00A22_A457ResidentImage, P00A22_n457ResidentImage
+               P00A22_A71ResidentGUID, P00A22_A40000ResidentImage_GXI, P00A22_n40000ResidentImage_GXI, P00A22_A62ResidentId, P00A22_A29LocationId, P00A22_A11OrganisationId, P00A22_A457ResidentImage, P00A22_n457ResidentImage
+               }
+               , new Object[] {
                }
                , new Object[] {
                }
@@ -190,8 +207,10 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
+      private short AV17GXLvl13 ;
       private bool n40000ResidentImage_GXI ;
       private bool n457ResidentImage ;
+      private bool AV16isSuccessful ;
       private string AV8base64Image ;
       private string AV12base64String ;
       private string AV11ResidentGUID ;
@@ -199,9 +218,9 @@ namespace GeneXus.Programs {
       private string A71ResidentGUID ;
       private string A40000ResidentImage_GXI ;
       private string A457ResidentImage ;
-      private Guid A11OrganisationId ;
-      private Guid A29LocationId ;
       private Guid A62ResidentId ;
+      private Guid A29LocationId ;
+      private Guid A11OrganisationId ;
       private string AV10Blob ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
@@ -210,12 +229,11 @@ namespace GeneXus.Programs {
       private string[] P00A22_A71ResidentGUID ;
       private string[] P00A22_A40000ResidentImage_GXI ;
       private bool[] P00A22_n40000ResidentImage_GXI ;
-      private Guid[] P00A22_A11OrganisationId ;
-      private Guid[] P00A22_A29LocationId ;
       private Guid[] P00A22_A62ResidentId ;
+      private Guid[] P00A22_A29LocationId ;
+      private Guid[] P00A22_A11OrganisationId ;
       private string[] P00A22_A457ResidentImage ;
       private bool[] P00A22_n457ResidentImage ;
-      private SdtTrn_Resident AV13Trn_Resident ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWP_UserExtended AV15WWP_UserExtended ;
       private string aP2_response ;
       private IDataStoreProvider pr_datastore1 ;
@@ -294,6 +312,7 @@ public class prc_updateresidentavatar__default : DataStoreHelperBase, IDataStore
       return new Cursor[] {
        new ForEachCursor(def[0])
       ,new UpdateCursor(def[1])
+      ,new UpdateCursor(def[2])
     };
  }
 
@@ -314,9 +333,18 @@ public class prc_updateresidentavatar__default : DataStoreHelperBase, IDataStore
        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
        };
+       Object[] prmP00A24;
+       prmP00A24 = new Object[] {
+       new ParDef("ResidentImage",GXType.Byte,1024,0){Nullable=true,InDB=false} ,
+       new ParDef("ResidentImage_GXI",GXType.VarChar,2048,0){Nullable=true,AddAtt=true, ImgIdx=0, Tbl="Trn_Resident", Fld="ResidentImage"} ,
+       new ParDef("ResidentId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
        def= new CursorDef[] {
-           new CursorDef("P00A22", "SELECT ResidentGUID, ResidentImage_GXI, OrganisationId, LocationId, ResidentId, ResidentImage FROM Trn_Resident WHERE ResidentGUID = ( :AV11ResidentGUID) ORDER BY ResidentId, LocationId, OrganisationId  FOR UPDATE OF Trn_Resident",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A22,1, GxCacheFrequency.OFF ,true,false )
+           new CursorDef("P00A22", "SELECT ResidentGUID, ResidentImage_GXI, ResidentId, LocationId, OrganisationId, ResidentImage FROM Trn_Resident WHERE ResidentGUID = ( :AV11ResidentGUID) ORDER BY ResidentId, LocationId, OrganisationId  FOR UPDATE OF Trn_Resident",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A22,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("P00A23", "SAVEPOINT gxupdate;UPDATE Trn_Resident SET ResidentImage=:ResidentImage, ResidentImage_GXI=:ResidentImage_GXI  WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00A23)
+          ,new CursorDef("P00A24", "SAVEPOINT gxupdate;UPDATE Trn_Resident SET ResidentImage=:ResidentImage, ResidentImage_GXI=:ResidentImage_GXI  WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP00A24)
        };
     }
  }

@@ -119,7 +119,7 @@ class ToolBoxManager {
         </div>
         <hr>
         <div class="popup-body" id="confirmation_modal_message">
-          Are you sure you want to publish? Once published, all pages will be finalized and visible to residents. This action cannot be undone.
+          Are you sure you want to publish? Once published, all currently visible pages will be finalized and visible to residents. This action cannot be undone.
         </div>
         <div class="popup-footer">
           <button id="yes_publish" class="tb-btn tb-btn-primary">

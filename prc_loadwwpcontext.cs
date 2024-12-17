@@ -212,13 +212,13 @@ namespace GeneXus.Programs {
             AV18WWPContext.gxTpr_Organisationsettingfontsize = "Medium";
             AV18WWPContext.gxTpr_Organisationsettingtrnmode = "INS";
          }
-         GXt_objcol_SdtHomeModulesSDT_HomeModulesSDTItem1 = AV13DashboardItems;
-         new dp_getdashboarditems(context ).execute( out  GXt_objcol_SdtHomeModulesSDT_HomeModulesSDTItem1) ;
-         AV13DashboardItems = GXt_objcol_SdtHomeModulesSDT_HomeModulesSDTItem1;
+         GXt_objcol_SdtUHomeModulesSDT_UHomeModulesSDTItem1 = AV13DashboardItems;
+         new dp_getdashboarditems(context ).execute( out  GXt_objcol_SdtUHomeModulesSDT_UHomeModulesSDTItem1) ;
+         AV13DashboardItems = GXt_objcol_SdtUHomeModulesSDT_UHomeModulesSDTItem1;
          AV25GXV1 = 1;
          while ( AV25GXV1 <= AV13DashboardItems.Count )
          {
-            AV12DashboardItem = ((GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem)AV13DashboardItems.Item(AV25GXV1));
+            AV12DashboardItem = ((SdtUHomeModulesSDT_UHomeModulesSDTItem)AV13DashboardItems.Item(AV25GXV1));
             if ( StringUtil.StrCmp(AV11UserRoleName, AV12DashboardItem.gxTpr_Rolename) == 0 )
             {
                AV14FilteredDashboardItems.Add(AV12DashboardItem, 0);
@@ -325,10 +325,10 @@ namespace GeneXus.Programs {
          A105OrganisationSettingLanguage = "";
          A101OrganisationSettingLogo = "";
          A102OrganisationSettingFavicon = "";
-         AV13DashboardItems = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem>( context, "HomeModulesSDTItem", "Comforta_version2");
-         GXt_objcol_SdtHomeModulesSDT_HomeModulesSDTItem1 = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem>( context, "HomeModulesSDTItem", "Comforta_version2");
-         AV12DashboardItem = new GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem(context);
-         AV14FilteredDashboardItems = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem>( context, "HomeModulesSDTItem", "Comforta_version2");
+         AV13DashboardItems = new GXBaseCollection<SdtUHomeModulesSDT_UHomeModulesSDTItem>( context, "UHomeModulesSDTItem", "Comforta_version2");
+         GXt_objcol_SdtUHomeModulesSDT_UHomeModulesSDTItem1 = new GXBaseCollection<SdtUHomeModulesSDT_UHomeModulesSDTItem>( context, "UHomeModulesSDTItem", "Comforta_version2");
+         AV12DashboardItem = new SdtUHomeModulesSDT_UHomeModulesSDTItem(context);
+         AV14FilteredDashboardItems = new GXBaseCollection<SdtUHomeModulesSDT_UHomeModulesSDTItem>( context, "UHomeModulesSDTItem", "Comforta_version2");
          AV15FooterText = "";
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_loadwwpcontext__default(),
             new Object[][] {
@@ -429,10 +429,10 @@ namespace GeneXus.Programs {
       private string[] P00937_A105OrganisationSettingLanguage ;
       private string[] P00937_A101OrganisationSettingLogo ;
       private string[] P00937_A102OrganisationSettingFavicon ;
-      private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem> AV13DashboardItems ;
-      private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem> GXt_objcol_SdtHomeModulesSDT_HomeModulesSDTItem1 ;
-      private GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem AV12DashboardItem ;
-      private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtHomeModulesSDT_HomeModulesSDTItem> AV14FilteredDashboardItems ;
+      private GXBaseCollection<SdtUHomeModulesSDT_UHomeModulesSDTItem> AV13DashboardItems ;
+      private GXBaseCollection<SdtUHomeModulesSDT_UHomeModulesSDTItem> GXt_objcol_SdtUHomeModulesSDT_UHomeModulesSDTItem1 ;
+      private SdtUHomeModulesSDT_UHomeModulesSDTItem AV12DashboardItem ;
+      private GXBaseCollection<SdtUHomeModulesSDT_UHomeModulesSDTItem> AV14FilteredDashboardItems ;
    }
 
    public class prc_loadwwpcontext__default : DataStoreHelperBase, IDataStoreHelper

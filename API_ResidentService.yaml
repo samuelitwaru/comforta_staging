@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241215050320"
+  version: "20241217110651"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -981,12 +981,6 @@ components:
     UpdateLocationThemeInput:  
       properties:
         ThemeId:
-          type: "string"
-          format: "uuid"
-        locationId:
-          type: "string"
-          format: "uuid"
-        organisationId:
           type: "string"
           format: "uuid"
 

@@ -1,3 +1,4 @@
+uform
 trn_residentnotification
 trn_appnotification
 trn_gamsession
@@ -45,6 +46,12 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+ucreatedynamicform
+uhome
+uhome
+ulogin
+ulogin
+uformww
 wc_childnotifications
 wc_notificationgrouping
 wc_notificationfilteredlist
@@ -335,10 +342,11 @@ gx0040
 gx0030
 general\ui\masterprompt
 general\ui\masterunanimosidebar
+uformwwgetfilterdata
+uformloaddvcombo
 aprc_getlocationreceptioniststonotify
 aprc_createpermissions
 trn_pageloaddvcombo
-aprc_createlocationpages
 aprc_contentpageapi
 aprc_productserviceapi
 aprc_contentpagesapi

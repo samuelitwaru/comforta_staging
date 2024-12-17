@@ -65,6 +65,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Theme_ColorsItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Tile.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_TileAction.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtUHomeModulesSDT_UHomeModulesSDTItem.cs" />
  	<Compile Include="$(WebDirectory)\workwithplus\type_SdtWWPConfFormattingVariable.cs" />
  	<Compile Include="$(WebDirectory)\workwithplus\type_SdtWWP_Calendar_Events_Item.cs" />
  	<Compile Include="$(WebDirectory)\workwithplus\type_SdtWWP_Calendar_Events_Item_ActionsItem.cs" />

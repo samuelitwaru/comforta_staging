@@ -104,80 +104,96 @@ namespace GeneXus.Programs {
          /* GeneXus formulas */
          /* Output device settings */
          AV9GAMUser.load( AV12UserGAMGUID);
-         AV9GAMUser.gxTpr_Firstname = AV10GivenName;
-         AV9GAMUser.gxTpr_Lastname = AV11LastName;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV20PhoneNumber)) )
-         {
-            AV9GAMUser.gxTpr_Phone = AV18PhoneCode+"~"+AV20PhoneNumber;
-         }
-         if ( ! ( String.IsNullOrEmpty(StringUtil.RTrim( AV19ProfileImage)) && String.IsNullOrEmpty(StringUtil.RTrim( AV21Profileimage_GXI)) ) )
-         {
-            AV9GAMUser.gxTpr_Urlprofile = AV21Profileimage_GXI;
-         }
-         if ( StringUtil.StrCmp(AV15Role, "Organisation Manager") == 0 )
-         {
-            /* Using cursor P006B2 */
-            pr_default.execute(0, new Object[] {AV9GAMUser.gxTpr_Email, AV9GAMUser.gxTpr_Guid});
-            while ( (pr_default.getStatus(0) != 101) )
-            {
-               A25ManagerEmail = P006B2_A25ManagerEmail[0];
-               A28ManagerGAMGUID = P006B2_A28ManagerGAMGUID[0];
-               A394ManagerIsActive = P006B2_A394ManagerIsActive[0];
-               A21ManagerId = P006B2_A21ManagerId[0];
-               A11OrganisationId = P006B2_A11OrganisationId[0];
-               AV14IsActive = A394ManagerIsActive;
-               pr_default.readNext(0);
-            }
-            pr_default.close(0);
-         }
-         if ( StringUtil.StrCmp(AV15Role, "Receptionist") == 0 )
-         {
-            /* Using cursor P006B3 */
-            pr_default.execute(1, new Object[] {AV9GAMUser.gxTpr_Email, AV9GAMUser.gxTpr_Guid});
-            while ( (pr_default.getStatus(1) != 101) )
-            {
-               A93ReceptionistEmail = P006B3_A93ReceptionistEmail[0];
-               A95ReceptionistGAMGUID = P006B3_A95ReceptionistGAMGUID[0];
-               A398ReceptionistIsActive = P006B3_A398ReceptionistIsActive[0];
-               A89ReceptionistId = P006B3_A89ReceptionistId[0];
-               A11OrganisationId = P006B3_A11OrganisationId[0];
-               A29LocationId = P006B3_A29LocationId[0];
-               AV14IsActive = A398ReceptionistIsActive;
-               pr_default.readNext(1);
-            }
-            pr_default.close(1);
-         }
-         if ( StringUtil.StrCmp(AV15Role, "Resident") == 0 )
-         {
-            /* Using cursor P006B4 */
-            pr_default.execute(2, new Object[] {AV9GAMUser.gxTpr_Email, AV9GAMUser.gxTpr_Guid});
-            while ( (pr_default.getStatus(2) != 101) )
-            {
-               A67ResidentEmail = P006B4_A67ResidentEmail[0];
-               A71ResidentGUID = P006B4_A71ResidentGUID[0];
-               A62ResidentId = P006B4_A62ResidentId[0];
-               A29LocationId = P006B4_A29LocationId[0];
-               A11OrganisationId = P006B4_A11OrganisationId[0];
-               pr_default.readNext(2);
-            }
-            pr_default.close(2);
-         }
-         if ( ( AV14IsActive ) && ( AV9GAMUser.gxTpr_Isblocked ) )
-         {
-            AV9GAMUser.unblockaccess(out  AV13GAMErrorCollection);
-         }
-         if ( ! AV14IsActive && ! AV9GAMUser.gxTpr_Isblocked )
-         {
-            AV9GAMUser.blockaccess( false,  false, out  AV13GAMErrorCollection);
-         }
-         AV9GAMUser.save();
          if ( AV9GAMUser.success() )
          {
-            context.CommitDataStores("prc_updategamuseraccount",pr_default);
+            AV9GAMUser.gxTpr_Firstname = AV10GivenName;
+            AV9GAMUser.gxTpr_Lastname = AV11LastName;
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV20PhoneNumber)) )
+            {
+               AV9GAMUser.gxTpr_Phone = AV18PhoneCode+"~"+AV20PhoneNumber;
+            }
+            if ( ! ( String.IsNullOrEmpty(StringUtil.RTrim( AV19ProfileImage)) && String.IsNullOrEmpty(StringUtil.RTrim( AV21Profileimage_GXI)) ) )
+            {
+               AV9GAMUser.gxTpr_Urlprofile = AV21Profileimage_GXI;
+            }
+            if ( StringUtil.StrCmp(AV15Role, "Organisation Manager") == 0 )
+            {
+               new prc_logtofile(context ).execute(  "Manager is role") ;
+               /* Using cursor P006B2 */
+               pr_default.execute(0, new Object[] {AV9GAMUser.gxTpr_Email, AV9GAMUser.gxTpr_Guid});
+               while ( (pr_default.getStatus(0) != 101) )
+               {
+                  A25ManagerEmail = P006B2_A25ManagerEmail[0];
+                  A28ManagerGAMGUID = P006B2_A28ManagerGAMGUID[0];
+                  A394ManagerIsActive = P006B2_A394ManagerIsActive[0];
+                  A21ManagerId = P006B2_A21ManagerId[0];
+                  A11OrganisationId = P006B2_A11OrganisationId[0];
+                  AV14IsActive = A394ManagerIsActive;
+                  pr_default.readNext(0);
+               }
+               pr_default.close(0);
+            }
+            if ( StringUtil.StrCmp(AV15Role, "Receptionist") == 0 )
+            {
+               new prc_logtofile(context ).execute(  "Receptionist is role") ;
+               /* Using cursor P006B3 */
+               pr_default.execute(1, new Object[] {AV9GAMUser.gxTpr_Email, AV9GAMUser.gxTpr_Guid});
+               while ( (pr_default.getStatus(1) != 101) )
+               {
+                  A93ReceptionistEmail = P006B3_A93ReceptionistEmail[0];
+                  A95ReceptionistGAMGUID = P006B3_A95ReceptionistGAMGUID[0];
+                  A398ReceptionistIsActive = P006B3_A398ReceptionistIsActive[0];
+                  A89ReceptionistId = P006B3_A89ReceptionistId[0];
+                  A11OrganisationId = P006B3_A11OrganisationId[0];
+                  A29LocationId = P006B3_A29LocationId[0];
+                  AV14IsActive = A398ReceptionistIsActive;
+                  pr_default.readNext(1);
+               }
+               pr_default.close(1);
+            }
+            if ( StringUtil.StrCmp(AV15Role, "Resident") == 0 )
+            {
+               new prc_logtofile(context ).execute(  "Resident is role") ;
+               /* Using cursor P006B4 */
+               pr_default.execute(2, new Object[] {AV9GAMUser.gxTpr_Email, AV9GAMUser.gxTpr_Guid});
+               while ( (pr_default.getStatus(2) != 101) )
+               {
+                  A67ResidentEmail = P006B4_A67ResidentEmail[0];
+                  A71ResidentGUID = P006B4_A71ResidentGUID[0];
+                  A62ResidentId = P006B4_A62ResidentId[0];
+                  A29LocationId = P006B4_A29LocationId[0];
+                  A11OrganisationId = P006B4_A11OrganisationId[0];
+                  pr_default.readNext(2);
+               }
+               pr_default.close(2);
+            }
+            if ( ( AV14IsActive ) && ( AV9GAMUser.gxTpr_Isblocked ) )
+            {
+               AV9GAMUser.unblockaccess(out  AV13GAMErrorCollection);
+            }
+            if ( ! AV14IsActive && ! AV9GAMUser.gxTpr_Isblocked )
+            {
+               AV9GAMUser.blockaccess( false,  false, out  AV13GAMErrorCollection);
+            }
+            AV9GAMUser.save();
+            if ( AV9GAMUser.success() )
+            {
+               context.CommitDataStores("prc_updategamuseraccount",pr_default);
+            }
+            else
+            {
+               AV13GAMErrorCollection = AV9GAMUser.geterrors();
+               GXt_char1 = AV8GAMErrorResponse;
+               new prc_geterrorstringfromcollection(context ).execute(  AV13GAMErrorCollection, out  GXt_char1) ;
+               AV8GAMErrorResponse = GXt_char1;
+            }
          }
          else
          {
-            AV8GAMErrorResponse = AV9GAMUser.geterrors().ToJSonString(false);
+            AV13GAMErrorCollection = AV9GAMUser.geterrors();
+            GXt_char1 = AV8GAMErrorResponse;
+            new prc_geterrorstringfromcollection(context ).execute(  AV13GAMErrorCollection, out  GXt_char1) ;
+            AV8GAMErrorResponse = GXt_char1;
          }
          cleanup();
       }
@@ -225,6 +241,7 @@ namespace GeneXus.Programs {
          A71ResidentGUID = "";
          A62ResidentId = Guid.Empty;
          AV13GAMErrorCollection = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
+         GXt_char1 = "";
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_updategamuseraccount__datastore1(),
             new Object[][] {
             }
@@ -250,6 +267,7 @@ namespace GeneXus.Programs {
       }
 
       private string AV15Role ;
+      private string GXt_char1 ;
       private bool A394ManagerIsActive ;
       private bool AV14IsActive ;
       private bool A398ReceptionistIsActive ;

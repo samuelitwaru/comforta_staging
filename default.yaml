@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20241215050320"
+  version: "20241217110650"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -649,6 +649,52 @@ paths:
                 $ref: "#/components/schemas/Trn_ThemeWWGetFilterDataOutput"
         404:
           description: "Not found"
+  /UFormLoadDVCombo:
+    post:
+      tags:
+        - UFormLoadDVCombo
+      operationId: "UFormLoadDVCombo"
+      summary: "UForm Load DVCombo"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UFormLoadDVComboInput"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UFormLoadDVComboOutput"
+        404:
+          description: "Not found"
+  /UFormWWGetFilterData:
+    post:
+      tags:
+        - UFormWWGetFilterData
+      operationId: "UFormWWGetFilterData"
+      summary: "UForm WWGet Filter Data"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UFormWWGetFilterDataInput"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UFormWWGetFilterDataOutput"
+        404:
+          description: "Not found"
   /WorkWithPlus/DynamicForms/WWP_DF_DynamicComboBox_WCLoadDVCombo:
     post:
       tags:
@@ -1283,6 +1329,22 @@ components:
           type: "string"
         OptionIndexesJson:
           type: "string"
+    UFormLoadDVComboOutput:
+      properties:
+        SelectedValue:
+          type: "string"
+        SelectedText:
+          type: "string"
+        Combo_DataJson:
+          type: "string"
+    UFormWWGetFilterDataOutput:
+      properties:
+        OptionsJson:
+          type: "string"
+        OptionsDescJson:
+          type: "string"
+        OptionIndexesJson:
+          type: "string"
     WorkWithPlus.DynamicForms.WWP_DF_DynamicComboBox_WCLoadDVComboOutput:
       properties:
         Combo_DataJson:
@@ -1625,6 +1687,36 @@ components:
         SearchTxtTo:
           type: "string"
     Trn_ThemeWWGetFilterDataInput:  
+      properties:
+        DDOName:
+          type: "string"
+        SearchTxtParms:
+          type: "string"
+        SearchTxtTo:
+          type: "string"
+    UFormLoadDVComboInput:  
+      properties:
+        ComboName:
+          type: "string"
+        TrnMode:
+          type: "string"
+        IsDynamicCall:
+          type: "boolean"
+        WWPFormId:
+          type: "integer"
+          format: "int32"
+        WWPFormVersionNumber:
+          type: "integer"
+          format: "int32"
+        Cond_WWPFormId:
+          type: "integer"
+          format: "int32"
+        Cond_WWPFormVersionNumber:
+          type: "integer"
+          format: "int32"
+        SearchTxtParms:
+          type: "string"
+    UFormWWGetFilterDataInput:  
       properties:
         DDOName:
           type: "string"
