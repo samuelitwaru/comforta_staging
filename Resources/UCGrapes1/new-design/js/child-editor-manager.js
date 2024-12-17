@@ -151,14 +151,13 @@ class ChildEditorManager {
           .getContentPageData(page.PageId)
           .then((contentPageData) => {
             // Then check and update elements
-            const wrapper = editor.getWrapper();
-            if (wrapper) {
-              const img = wrapper.components().find("#product-service-image");
-              const p = wrapper
-                .components()
-                .find("#product-service-description");
+            const wrapper = editor.DomComponents.getWrapper();
 
-              if (img && p) {
+            if (wrapper) {
+              const img = wrapper.find("#product-service-image");
+              const p = wrapper.find("#product-service-description");
+              console.log(img, p)
+              if (img.length && p.length) {
                 img[0].setAttributes({
                   src: contentPageData.ProductServiceImage,
                 });
