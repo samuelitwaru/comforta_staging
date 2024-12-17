@@ -99,6 +99,7 @@ namespace GeneXus.Programs {
             n439PageIsContentPage = P009C2_n439PageIsContentPage[0];
             AV8SDT_MobilePage = new SdtSDT_MobilePage(context);
             AV8SDT_MobilePage.FromJSonString(A431PageJsonContent, null);
+            new prc_logtofile(context ).execute(  A431PageJsonContent) ;
             if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( A431PageJsonContent))) )
             {
                AV8SDT_MobilePage.gxTpr_Pageid = A310Trn_PageId;
@@ -204,7 +205,7 @@ namespace GeneXus.Programs {
           new ParDef("AV9OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P009C2", "SELECT OrganisationId, LocationId, Trn_PageId, PageJsonContent, Trn_PageName, PageIsPublished, PageIsContentPage FROM Trn_Page WHERE (Trn_PageId = :AV11PageId) AND (LocationId = :AV10LocationId) AND (OrganisationId = :AV9OrganisationId) ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009C2,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P009C2", "SELECT OrganisationId, LocationId, Trn_PageId, PageJsonContent, Trn_PageName, PageIsPublished, PageIsContentPage FROM Trn_Page WHERE (Trn_PageId = :AV11PageId) AND (LocationId = :AV10LocationId) AND (OrganisationId = :AV9OrganisationId) ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009C2,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }
