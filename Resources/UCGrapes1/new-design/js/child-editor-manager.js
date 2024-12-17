@@ -138,6 +138,17 @@ class ChildEditorManager {
 
       if (page.PageIsPredefined) {
         if (page.PageName == "Location") {
+          // globalVar = editor
+          // console.log(globalVar)
+          // console.log(editor.getProjectData())
+          // console.log(editor.DomComponents.getWrapper().find('#product-service-image'))
+          // const wrapper = editor.DomComponents.getWrapper();
+          // if (wrapper) {
+          //   const img = wrapper.find("#product-service-image");
+          //   const p = wrapper.find("#product-service-description");
+          //   console.log(img, p)
+          // }
+
           const pageData = JSON.parse(page.PageGJSJson)
           pageData.pages[0].frames[0].component.components[0].components[0].components[0].components[0].components[0].components[0].attributes.src = this.dataManager.Location.LocationImage_GXI
           pageData.pages[0].frames[0].component.components[0].components[0].components[0].components[0].components[0].components[1].components[0].content = this.dataManager.Location.LocationDescription
@@ -146,7 +157,7 @@ class ChildEditorManager {
         }
       }
 
-      if (page.PageIsContentPage) {
+      else if (page.PageIsContentPage) {
         this.dataManager
           .getContentPageData(page.PageId)
           .then((contentPageData) => {
