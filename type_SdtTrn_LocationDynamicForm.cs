@@ -1593,7 +1593,21 @@ namespace GeneXus.Programs {
       {
       }
 
-      [DataMember( Name = "uri", Order = 0 )]
+      [DataMember( Name = "WWPFormTitle" , Order = 0 )]
+      [GxSeudo()]
+      public string gxTpr_Wwpformtitle
+      {
+         get {
+            return sdt.gxTpr_Wwpformtitle ;
+         }
+
+         set {
+            sdt.gxTpr_Wwpformtitle = value;
+         }
+
+      }
+
+      [DataMember( Name = "uri", Order = 1 )]
       public string Uri
       {
          get {

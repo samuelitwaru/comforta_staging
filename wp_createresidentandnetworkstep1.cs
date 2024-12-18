@@ -185,6 +185,7 @@ namespace GeneXus.Programs {
             if ( ( GxWebError == 0 ) && ! isAjaxCallMode( ) )
             {
                /* GeneXus formulas. */
+               Gx_date = DateTimeUtil.Today( context);
                WS6Q2( ) ;
                if ( ! isAjaxCallMode( ) )
                {
@@ -349,6 +350,8 @@ namespace GeneXus.Programs {
       {
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vHASVALIDATIONERRORS", AV10HasValidationErrors);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vHASVALIDATIONERRORS", GetSecureSignedToken( sPrefix, AV10HasValidationErrors, context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vTODAY", context.localUtil.DToC( Gx_date, 0, "/"));
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vTODAY", GetSecureSignedToken( sPrefix, Gx_date, context));
          GXKey = Crypto.GetSiteKey( );
       }
 
@@ -417,6 +420,8 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, sPrefix+"MEDICALINDICATIONID", A98MedicalIndicationId.ToString());
          GxWebStd.gx_hidden_field( context, sPrefix+"RESIDENTTYPENAME", A97ResidentTypeName);
          GxWebStd.gx_hidden_field( context, sPrefix+"RESIDENTTYPEID", A96ResidentTypeId.ToString());
+         GxWebStd.gx_hidden_field( context, sPrefix+"vTODAY", context.localUtil.DToC( Gx_date, 0, "/"));
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vTODAY", GetSecureSignedToken( sPrefix, Gx_date, context));
          GxWebStd.gx_hidden_field( context, sPrefix+"vPREVIOUSSTEP", AV8PreviousStep);
          GxWebStd.gx_hidden_field( context, sPrefix+"COMBO_RESIDENTTYPEID_Ddointernalname", StringUtil.RTrim( Combo_residenttypeid_Ddointernalname));
          GxWebStd.gx_hidden_field( context, sPrefix+"COMBO_RESIDENTCOUNTRY_Ddointernalname", StringUtil.RTrim( Combo_residentcountry_Ddointernalname));
@@ -1287,7 +1292,7 @@ namespace GeneXus.Programs {
                                  }
                               }
                            }
-                           else if ( StringUtil.StrCmp(sEvt, "VRESIDENTZIPCODE.CONTROLVALUECHANGED") == 0 )
+                           else if ( StringUtil.StrCmp(sEvt, "VRESIDENTBIRTHDATE.CONTROLVALUECHANGED") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
@@ -1303,7 +1308,7 @@ namespace GeneXus.Programs {
                                  }
                               }
                            }
-                           else if ( StringUtil.StrCmp(sEvt, "VRESIDENTPHONENUMBER.CONTROLVALUECHANGED") == 0 )
+                           else if ( StringUtil.StrCmp(sEvt, "VRESIDENTZIPCODE.CONTROLVALUECHANGED") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
@@ -1319,7 +1324,7 @@ namespace GeneXus.Programs {
                                  }
                               }
                            }
-                           else if ( StringUtil.StrCmp(sEvt, "VRESIDENTHOMEPHONENUMBER.CONTROLVALUECHANGED") == 0 )
+                           else if ( StringUtil.StrCmp(sEvt, "VRESIDENTPHONENUMBER.CONTROLVALUECHANGED") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
@@ -1332,6 +1337,22 @@ namespace GeneXus.Programs {
                                  {
                                     dynload_actions( ) ;
                                     E216Q2 ();
+                                 }
+                              }
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "VRESIDENTHOMEPHONENUMBER.CONTROLVALUECHANGED") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP6Q0( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    E226Q2 ();
                                  }
                               }
                            }
@@ -1348,7 +1369,7 @@ namespace GeneXus.Programs {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: Load */
-                                    E226Q2 ();
+                                    E236Q2 ();
                                  }
                               }
                               /* No code required for Cancel button. It is implemented as the Reset button. */
@@ -1531,6 +1552,7 @@ namespace GeneXus.Programs {
       protected void initialize_formulas( )
       {
          /* GeneXus formulas. */
+         Gx_date = DateTimeUtil.Today( context);
       }
 
       protected void RF6Q2( )
@@ -1545,7 +1567,7 @@ namespace GeneXus.Programs {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E226Q2 ();
+            E236Q2 ();
             WB6Q0( ) ;
          }
       }
@@ -1554,10 +1576,13 @@ namespace GeneXus.Programs {
       {
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vHASVALIDATIONERRORS", AV10HasValidationErrors);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vHASVALIDATIONERRORS", GetSecureSignedToken( sPrefix, AV10HasValidationErrors, context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vTODAY", context.localUtil.DToC( Gx_date, 0, "/"));
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vTODAY", GetSecureSignedToken( sPrefix, Gx_date, context));
       }
 
       protected void before_start_formulas( )
       {
+         Gx_date = DateTimeUtil.Today( context);
          fix_multi_value_controls( ) ;
       }
 
@@ -2260,6 +2285,19 @@ namespace GeneXus.Programs {
 
       protected void E196Q2( )
       {
+         /* Residentbirthdate_Controlvaluechanged Routine */
+         returnInSub = false;
+         if ( ! (DateTime.MinValue==AV17ResidentBirthDate) && ( DateTimeUtil.ResetTime ( AV17ResidentBirthDate ) >= DateTimeUtil.ResetTime ( Gx_date ) ) )
+         {
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  "Invalid Date Of Birth",  "error",  edtavResidentbirthdate_Internalname,  "true",  ""));
+            AV31CheckRequiredFieldsResult = false;
+            AssignAttri(sPrefix, false, "AV31CheckRequiredFieldsResult", AV31CheckRequiredFieldsResult);
+         }
+         /*  Sending Event outputs  */
+      }
+
+      protected void E206Q2( )
+      {
          /* Residentzipcode_Controlvaluechanged Routine */
          returnInSub = false;
          if ( ! GxRegex.IsMatch(AV28ResidentZipCode,"^\\d{4}\\s?[A-Z]{2}$") && ! String.IsNullOrEmpty(StringUtil.RTrim( AV28ResidentZipCode)) )
@@ -2271,7 +2309,7 @@ namespace GeneXus.Programs {
          /*  Sending Event outputs  */
       }
 
-      protected void E206Q2( )
+      protected void E216Q2( )
       {
          /* Residentphonenumber_Controlvaluechanged Routine */
          returnInSub = false;
@@ -2284,7 +2322,7 @@ namespace GeneXus.Programs {
          /*  Sending Event outputs  */
       }
 
-      protected void E216Q2( )
+      protected void E226Q2( )
       {
          /* Residenthomephonenumber_Controlvaluechanged Routine */
          returnInSub = false;
@@ -2301,7 +2339,7 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void E226Q2( )
+      protected void E236Q2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -2553,7 +2591,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121117355042", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412188452584", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2569,7 +2607,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createresidentandnetworkstep1.js", "?2024121117355043", false, true);
+         context.AddJavascriptSource("wp_createresidentandnetworkstep1.js", "?202412188452584", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2772,7 +2810,7 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV7GoingBack","fld":"vGOINGBACK"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV7GoingBack","fld":"vGOINGBACK"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"Gx_date","fld":"vTODAY","hsh":true}]""");
          setEventMetadata("REFRESH",""","oparms":[{"av":"AV7GoingBack","fld":"vGOINGBACK"},{"av":"Btnwizardfirstprevious_Visible","ctrl":"BTNWIZARDFIRSTPREVIOUS","prop":"Visible"}]}""");
          setEventMetadata("ENTER","""{"handler":"E156Q2","iparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV14ResidentGivenName","fld":"vRESIDENTGIVENNAME"},{"av":"AV15ResidentLastName","fld":"vRESIDENTLASTNAME"},{"av":"cmbavResidentgender"},{"av":"AV16ResidentGender","fld":"vRESIDENTGENDER"},{"av":"AV18ResidentEmail","fld":"vRESIDENTEMAIL"},{"av":"AV12ResidentBsnNumber","fld":"vRESIDENTBSNNUMBER"},{"av":"AV23ResidentTypeId","fld":"vRESIDENTTYPEID"},{"av":"Combo_residenttypeid_Ddointernalname","ctrl":"COMBO_RESIDENTTYPEID","prop":"DDOInternalName"},{"av":"AV29ResidentAddressLine1","fld":"vRESIDENTADDRESSLINE1"},{"av":"AV28ResidentZipCode","fld":"vRESIDENTZIPCODE"},{"av":"AV27ResidentCity","fld":"vRESIDENTCITY"},{"av":"AV26ResidentCountry","fld":"vRESIDENTCOUNTRY"},{"av":"Combo_residentcountry_Ddointernalname","ctrl":"COMBO_RESIDENTCOUNTRY","prop":"DDOInternalName"},{"av":"AV39ResidentPhoneCode","fld":"vRESIDENTPHONECODE"},{"av":"AV40ResidentPhoneNumber","fld":"vRESIDENTPHONENUMBER"},{"av":"AV44ResidentHomePhoneCode","fld":"vRESIDENTHOMEPHONECODE"},{"av":"AV45ResidentHomePhoneNumber","fld":"vRESIDENTHOMEPHONENUMBER"},{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV30ResidentAddressLine2","fld":"vRESIDENTADDRESSLINE2"},{"av":"AV21ResidentId","fld":"vRESIDENTID"},{"av":"cmbavResidentsalutation"},{"av":"AV13ResidentSalutation","fld":"vRESIDENTSALUTATION"},{"av":"AV17ResidentBirthDate","fld":"vRESIDENTBIRTHDATE"},{"av":"AV25MedicalIndicationId","fld":"vMEDICALINDICATIONID"},{"av":"AV24ResidentTypeName","fld":"vRESIDENTTYPENAME"}]""");
          setEventMetadata("ENTER",""","oparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV19ResidentPhone","fld":"vRESIDENTPHONE"},{"av":"AV46ResidentHomePhone","fld":"vRESIDENTHOMEPHONE"}]}""");
@@ -2785,11 +2823,13 @@ namespace GeneXus.Programs {
          setEventMetadata("VRESIDENTEMAIL.CONTROLVALUECHANGED",""","oparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
          setEventMetadata("VRESIDENTBSNNUMBER.CONTROLVALUECHANGED","""{"handler":"E186Q2","iparms":[{"av":"AV12ResidentBsnNumber","fld":"vRESIDENTBSNNUMBER"}]""");
          setEventMetadata("VRESIDENTBSNNUMBER.CONTROLVALUECHANGED",""","oparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
-         setEventMetadata("VRESIDENTZIPCODE.CONTROLVALUECHANGED","""{"handler":"E196Q2","iparms":[{"av":"AV28ResidentZipCode","fld":"vRESIDENTZIPCODE"}]""");
+         setEventMetadata("VRESIDENTBIRTHDATE.CONTROLVALUECHANGED","""{"handler":"E196Q2","iparms":[{"av":"AV17ResidentBirthDate","fld":"vRESIDENTBIRTHDATE"},{"av":"Gx_date","fld":"vTODAY","hsh":true}]""");
+         setEventMetadata("VRESIDENTBIRTHDATE.CONTROLVALUECHANGED",""","oparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
+         setEventMetadata("VRESIDENTZIPCODE.CONTROLVALUECHANGED","""{"handler":"E206Q2","iparms":[{"av":"AV28ResidentZipCode","fld":"vRESIDENTZIPCODE"}]""");
          setEventMetadata("VRESIDENTZIPCODE.CONTROLVALUECHANGED",""","oparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
-         setEventMetadata("VRESIDENTPHONENUMBER.CONTROLVALUECHANGED","""{"handler":"E206Q2","iparms":[{"av":"AV40ResidentPhoneNumber","fld":"vRESIDENTPHONENUMBER"}]""");
+         setEventMetadata("VRESIDENTPHONENUMBER.CONTROLVALUECHANGED","""{"handler":"E216Q2","iparms":[{"av":"AV40ResidentPhoneNumber","fld":"vRESIDENTPHONENUMBER"}]""");
          setEventMetadata("VRESIDENTPHONENUMBER.CONTROLVALUECHANGED",""","oparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
-         setEventMetadata("VRESIDENTHOMEPHONENUMBER.CONTROLVALUECHANGED","""{"handler":"E216Q2","iparms":[{"av":"AV45ResidentHomePhoneNumber","fld":"vRESIDENTHOMEPHONENUMBER"}]""");
+         setEventMetadata("VRESIDENTHOMEPHONENUMBER.CONTROLVALUECHANGED","""{"handler":"E226Q2","iparms":[{"av":"AV45ResidentHomePhoneNumber","fld":"vRESIDENTHOMEPHONENUMBER"}]""");
          setEventMetadata("VRESIDENTHOMEPHONENUMBER.CONTROLVALUECHANGED",""","oparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
          setEventMetadata("VALIDV_RESIDENTSALUTATION","""{"handler":"Validv_Residentsalutation","iparms":[]}""");
          setEventMetadata("VALIDV_RESIDENTGENDER","""{"handler":"Validv_Residentgender","iparms":[]}""");
@@ -2825,6 +2865,7 @@ namespace GeneXus.Programs {
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          sPrefix = "";
+         Gx_date = DateTime.MinValue;
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
@@ -2933,7 +2974,9 @@ namespace GeneXus.Programs {
                }
             }
          );
+         Gx_date = DateTimeUtil.Today( context);
          /* GeneXus formulas. */
+         Gx_date = DateTimeUtil.Today( context);
       }
 
       private short nRcdExists_4 ;
@@ -3118,6 +3161,7 @@ namespace GeneXus.Programs {
       private string sCtrlAV6WebSessionKey ;
       private string sCtrlAV8PreviousStep ;
       private string sCtrlAV7GoingBack ;
+      private DateTime Gx_date ;
       private DateTime AV17ResidentBirthDate ;
       private bool AV7GoingBack ;
       private bool wcpOAV7GoingBack ;

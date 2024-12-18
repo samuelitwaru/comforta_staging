@@ -577,7 +577,7 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-md-6", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, divUnnamedtable2_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
          /* Div Control */
@@ -590,13 +590,13 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-8", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, divUnnamedtable3_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, divTable_Internalname, 1, 0, "px", 0, "px", divTable_Class, "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-4", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, divUnnamedtable4_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+         GxWebStd.gx_div_start( context, divUnnamedtable3_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
          /* Div Control */
@@ -1183,8 +1183,10 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( StringUtil.StrCmp(Gx_mode, "DSP") == 0 )
          {
-            edtReceptionistPhoneNumber_Class = "AttributePhoneNumberDisplay";
+            edtReceptionistPhoneNumber_Class = "PhoneNumberDisplay1";
             AssignProp("", false, edtReceptionistPhoneNumber_Internalname, "Class", edtReceptionistPhoneNumber_Class, true);
+            divTable_Class = "AttributePhoneNumberDisplay";
+            AssignProp("", false, divTable_Internalname, "Class", divTable_Class, true);
          }
          GXt_guid1 = AV21OrganisationId;
          new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
@@ -2668,7 +2670,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713245525", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121810572578", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2684,7 +2686,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_receptionist.js", "?2024121713245528", false, true);
+         context.AddJavascriptSource("trn_receptionist.js", "?2024121810572580", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2701,9 +2703,9 @@ namespace GeneXus.Programs {
          Combo_receptionistphonecode_Internalname = "COMBO_RECEPTIONISTPHONECODE";
          edtReceptionistPhoneCode_Internalname = "RECEPTIONISTPHONECODE";
          divUnnamedtablereceptionistphonecode_Internalname = "UNNAMEDTABLERECEPTIONISTPHONECODE";
-         divUnnamedtable4_Internalname = "UNNAMEDTABLE4";
-         edtReceptionistPhoneNumber_Internalname = "RECEPTIONISTPHONENUMBER";
          divUnnamedtable3_Internalname = "UNNAMEDTABLE3";
+         edtReceptionistPhoneNumber_Internalname = "RECEPTIONISTPHONENUMBER";
+         divTable_Internalname = "TABLE";
          divUnnamedtable2_Internalname = "UNNAMEDTABLE2";
          chkReceptionistIsActive_Internalname = "RECEPTIONISTISACTIVE";
          divReceptionistisactive_cell_Internalname = "RECEPTIONISTISACTIVE_CELL";
@@ -2776,6 +2778,7 @@ namespace GeneXus.Programs {
          Combo_receptionistphonecode_Cls = "ExtendedCombo DropDownComponent ExtendedComboWithImage";
          Combo_receptionistphonecode_Caption = "";
          Combo_receptionistphonecode_Enabled = Convert.ToBoolean( -1);
+         divTable_Class = "Table";
          lblPhone_Jsonclick = "";
          edtReceptionistEmail_Jsonclick = "";
          edtReceptionistEmail_Enabled = 1;
@@ -3550,8 +3553,9 @@ namespace GeneXus.Programs {
       private string divUnnamedtable2_Internalname ;
       private string lblPhone_Internalname ;
       private string lblPhone_Jsonclick ;
+      private string divTable_Internalname ;
+      private string divTable_Class ;
       private string divUnnamedtable3_Internalname ;
-      private string divUnnamedtable4_Internalname ;
       private string divUnnamedtablereceptionistphonecode_Internalname ;
       private string Combo_receptionistphonecode_Caption ;
       private string Combo_receptionistphonecode_Cls ;

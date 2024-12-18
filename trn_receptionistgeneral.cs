@@ -529,7 +529,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-md-6", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, divUnnamedtable1_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
@@ -542,13 +542,13 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-8", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, divUnnamedtable2_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, divTransactiondetail_table_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-4", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, divUnnamedtable3_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, divUnnamedtable2_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
@@ -1588,7 +1588,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713244090", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412181057121", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1604,7 +1604,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_receptionistgeneral.js", "?2024121713244091", false, true);
+         context.AddJavascriptSource("trn_receptionistgeneral.js", "?202412181057121", false, true);
          /* End function include_jscripts */
       }
 
@@ -1628,9 +1628,9 @@ namespace GeneXus.Programs {
          edtReceptionistEmail_Internalname = sPrefix+"RECEPTIONISTEMAIL";
          lblTransactiondetail_phone_Internalname = sPrefix+"TRANSACTIONDETAIL_PHONE";
          edtavReceptionistphonecode_description_Internalname = sPrefix+"vRECEPTIONISTPHONECODE_DESCRIPTION";
-         divUnnamedtable3_Internalname = sPrefix+"UNNAMEDTABLE3";
-         edtReceptionistPhoneNumber_Internalname = sPrefix+"RECEPTIONISTPHONENUMBER";
          divUnnamedtable2_Internalname = sPrefix+"UNNAMEDTABLE2";
+         edtReceptionistPhoneNumber_Internalname = sPrefix+"RECEPTIONISTPHONENUMBER";
+         divTransactiondetail_table_Internalname = sPrefix+"TRANSACTIONDETAIL_TABLE";
          divUnnamedtable1_Internalname = sPrefix+"UNNAMEDTABLE1";
          chkReceptionistIsActive_Internalname = sPrefix+"RECEPTIONISTISACTIVE";
          divReceptionistisactive_cell_Internalname = sPrefix+"RECEPTIONISTISACTIVE_CELL";
@@ -1872,8 +1872,8 @@ namespace GeneXus.Programs {
       private string divUnnamedtable1_Internalname ;
       private string lblTransactiondetail_phone_Internalname ;
       private string lblTransactiondetail_phone_Jsonclick ;
+      private string divTransactiondetail_table_Internalname ;
       private string divUnnamedtable2_Internalname ;
-      private string divUnnamedtable3_Internalname ;
       private string edtavReceptionistphonecode_description_Jsonclick ;
       private string edtReceptionistPhoneNumber_Internalname ;
       private string edtReceptionistPhoneNumber_Jsonclick ;

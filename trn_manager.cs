@@ -1217,6 +1217,8 @@ namespace GeneXus.Programs {
          ucCombo_managerphonecode.SendProperty(context, "", false, Combo_managerphonecode_Internalname, "SelectedText_set", Combo_managerphonecode_Selectedtext_set);
          Combo_managerphonecode_Selectedvalue_set = AV26defaultCountryPhoneCode;
          ucCombo_managerphonecode.SendProperty(context, "", false, Combo_managerphonecode_Internalname, "SelectedValue_set", Combo_managerphonecode_Selectedvalue_set);
+         AV25ComboManagerPhoneCode = AV26defaultCountryPhoneCode;
+         AssignAttri("", false, "AV25ComboManagerPhoneCode", AV25ComboManagerPhoneCode);
       }
 
       protected void E12032( )
@@ -2219,7 +2221,7 @@ namespace GeneXus.Programs {
             }
             if ( IsDlt( )  && ( StringUtil.StrCmp(A28ManagerGAMGUID, new prc_getloggedinuserid(context).executeUdp( )) == 0 ) )
             {
-               GX_msglist.addItem("Invalid Delete Action: You cannot delete you're own account.", 1, "MANAGERGAMGUID");
+               GX_msglist.addItem("Invalid Delete Action: You cannot delete your own account.", 1, "MANAGERGAMGUID");
                AnyError = 1;
                GX_FocusControl = edtManagerGAMGUID_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -2715,7 +2717,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713232519", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412188502046", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2731,7 +2733,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_manager.js", "?2024121713232522", false, true);
+         context.AddJavascriptSource("trn_manager.js", "?202412188502049", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3179,7 +3181,7 @@ namespace GeneXus.Programs {
          }
          if ( IsDlt( )  && ( StringUtil.StrCmp(A28ManagerGAMGUID, new prc_getloggedinuserid(context).executeUdp( )) == 0 ) )
          {
-            GX_msglist.addItem("Invalid Delete Action: You cannot delete you're own account.", 1, "MANAGERGAMGUID");
+            GX_msglist.addItem("Invalid Delete Action: You cannot delete your own account.", 1, "MANAGERGAMGUID");
             AnyError = 1;
             GX_FocusControl = edtManagerGAMGUID_Internalname;
          }

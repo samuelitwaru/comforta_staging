@@ -64,51 +64,36 @@ namespace GeneXus.Programs {
          AV8GAMUser.load( AV14UserGUID);
          if ( AV8GAMUser.checkrole("Organisation Manager") )
          {
+            new prc_logtofile(context ).execute(  "Manager is role") ;
+            /* Optimized UPDATE. */
             /* Using cursor P007Z2 */
             pr_default.execute(0, new Object[] {AV8GAMUser.gxTpr_Email, AV8GAMUser.gxTpr_Guid});
-            while ( (pr_default.getStatus(0) != 101) )
-            {
-               A25ManagerEmail = P007Z2_A25ManagerEmail[0];
-               A28ManagerGAMGUID = P007Z2_A28ManagerGAMGUID[0];
-               A11OrganisationId = P007Z2_A11OrganisationId[0];
-               A21ManagerId = P007Z2_A21ManagerId[0];
-               AV13Trn_Manager.Load(A21ManagerId, A11OrganisationId);
-               pr_default.readNext(0);
-            }
             pr_default.close(0);
-            AV13Trn_Manager.gxTpr_Managerisactive = true;
-            AV13Trn_Manager.Save();
+            pr_default.SmartCacheProvider.SetUpdated("Trn_Manager");
+            /* End optimized UPDATE. */
          }
          else
          {
             if ( AV8GAMUser.checkrole("Receptionist") )
             {
+               new prc_logtofile(context ).execute(  "Receptionist is role") ;
+               /* Optimized UPDATE. */
                /* Using cursor P007Z3 */
                pr_default.execute(1, new Object[] {AV8GAMUser.gxTpr_Email, AV8GAMUser.gxTpr_Guid});
-               while ( (pr_default.getStatus(1) != 101) )
-               {
-                  A93ReceptionistEmail = P007Z3_A93ReceptionistEmail[0];
-                  A95ReceptionistGAMGUID = P007Z3_A95ReceptionistGAMGUID[0];
-                  A29LocationId = P007Z3_A29LocationId[0];
-                  A11OrganisationId = P007Z3_A11OrganisationId[0];
-                  A89ReceptionistId = P007Z3_A89ReceptionistId[0];
-                  AV9Trn_Receptionist.Load(A89ReceptionistId, A11OrganisationId, A29LocationId);
-                  pr_default.readNext(1);
-               }
                pr_default.close(1);
-               AV9Trn_Receptionist.gxTpr_Receptionistisactive = true;
-               AV9Trn_Receptionist.Save();
+               pr_default.SmartCacheProvider.SetUpdated("Trn_Receptionist");
+               /* End optimized UPDATE. */
             }
          }
-         if ( AV13Trn_Manager.Success() || AV9Trn_Receptionist.Success() )
-         {
-            context.CommitDataStores("prc_updateuseraccountstatus",pr_default);
-         }
+         new prc_logtofile(context ).execute(  "Commit is done. Account is activted") ;
+         AV8GAMUser.unblockaccess(out  AV16GAMErrorCollection);
+         context.CommitDataStores("prc_updateuseraccountstatus",pr_default);
          cleanup();
       }
 
       public override void cleanup( )
       {
+         context.CommitDataStores("prc_updateuseraccountstatus",pr_default);
          CloseCursors();
          if ( IsMain )
          {
@@ -120,25 +105,7 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV8GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
-         P007Z2_A25ManagerEmail = new string[] {""} ;
-         P007Z2_A28ManagerGAMGUID = new string[] {""} ;
-         P007Z2_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P007Z2_A21ManagerId = new Guid[] {Guid.Empty} ;
-         A25ManagerEmail = "";
-         A28ManagerGAMGUID = "";
-         A11OrganisationId = Guid.Empty;
-         A21ManagerId = Guid.Empty;
-         AV13Trn_Manager = new SdtTrn_Manager(context);
-         P007Z3_A93ReceptionistEmail = new string[] {""} ;
-         P007Z3_A95ReceptionistGAMGUID = new string[] {""} ;
-         P007Z3_A29LocationId = new Guid[] {Guid.Empty} ;
-         P007Z3_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P007Z3_A89ReceptionistId = new Guid[] {Guid.Empty} ;
-         A93ReceptionistEmail = "";
-         A95ReceptionistGAMGUID = "";
-         A29LocationId = Guid.Empty;
-         A89ReceptionistId = Guid.Empty;
-         AV9Trn_Receptionist = new SdtTrn_Receptionist(context);
+         AV16GAMErrorCollection = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_updateuseraccountstatus__datastore1(),
             new Object[][] {
             }
@@ -150,10 +117,8 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_updateuseraccountstatus__default(),
             new Object[][] {
                 new Object[] {
-               P007Z2_A25ManagerEmail, P007Z2_A28ManagerGAMGUID, P007Z2_A11OrganisationId, P007Z2_A21ManagerId
                }
                , new Object[] {
-               P007Z3_A93ReceptionistEmail, P007Z3_A95ReceptionistGAMGUID, P007Z3_A29LocationId, P007Z3_A11OrganisationId, P007Z3_A89ReceptionistId
                }
             }
          );
@@ -161,30 +126,12 @@ namespace GeneXus.Programs {
       }
 
       private string AV14UserGUID ;
-      private string A25ManagerEmail ;
-      private string A28ManagerGAMGUID ;
-      private string A93ReceptionistEmail ;
-      private string A95ReceptionistGAMGUID ;
-      private Guid A11OrganisationId ;
-      private Guid A21ManagerId ;
-      private Guid A29LocationId ;
-      private Guid A89ReceptionistId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GeneXus.Programs.genexussecurity.SdtGAMUser AV8GAMUser ;
       private IDataStoreProvider pr_default ;
-      private string[] P007Z2_A25ManagerEmail ;
-      private string[] P007Z2_A28ManagerGAMGUID ;
-      private Guid[] P007Z2_A11OrganisationId ;
-      private Guid[] P007Z2_A21ManagerId ;
-      private SdtTrn_Manager AV13Trn_Manager ;
-      private string[] P007Z3_A93ReceptionistEmail ;
-      private string[] P007Z3_A95ReceptionistGAMGUID ;
-      private Guid[] P007Z3_A29LocationId ;
-      private Guid[] P007Z3_A11OrganisationId ;
-      private Guid[] P007Z3_A89ReceptionistId ;
-      private SdtTrn_Receptionist AV9Trn_Receptionist ;
+      private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV16GAMErrorCollection ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
@@ -259,8 +206,8 @@ public class prc_updateuseraccountstatus__default : DataStoreHelperBase, IDataSt
    {
       cursorDefinitions();
       return new Cursor[] {
-       new ForEachCursor(def[0])
-      ,new ForEachCursor(def[1])
+       new UpdateCursor(def[0])
+      ,new UpdateCursor(def[1])
     };
  }
 
@@ -280,8 +227,8 @@ public class prc_updateuseraccountstatus__default : DataStoreHelperBase, IDataSt
        new ParDef("AV8GAMUser__Guid",GXType.Char,40,0)
        };
        def= new CursorDef[] {
-           new CursorDef("P007Z2", "SELECT ManagerEmail, ManagerGAMGUID, OrganisationId, ManagerId FROM Trn_Manager WHERE (LOWER(ManagerEmail) = ( :AV8GAMUser__Email)) AND (ManagerGAMGUID = ( :AV8GAMUser__Guid)) ORDER BY ManagerId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007Z2,100, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("P007Z3", "SELECT ReceptionistEmail, ReceptionistGAMGUID, LocationId, OrganisationId, ReceptionistId FROM Trn_Receptionist WHERE (LOWER(ReceptionistEmail) = ( :AV8GAMUser__Email)) AND (ReceptionistGAMGUID = ( :AV8GAMUser__Guid)) ORDER BY ReceptionistId, OrganisationId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007Z3,100, GxCacheFrequency.OFF ,true,false )
+           new CursorDef("P007Z2", "UPDATE Trn_Manager SET ManagerIsActive=TRUE  WHERE (LOWER(ManagerEmail) = ( :AV8GAMUser__Email)) AND (ManagerGAMGUID = ( :AV8GAMUser__Guid))", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP007Z2)
+          ,new CursorDef("P007Z3", "UPDATE Trn_Receptionist SET ReceptionistIsActive=TRUE  WHERE (LOWER(ReceptionistEmail) = ( :AV8GAMUser__Email)) AND (ReceptionistGAMGUID = ( :AV8GAMUser__Guid))", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP007Z3)
        };
     }
  }
@@ -290,22 +237,6 @@ public class prc_updateuseraccountstatus__default : DataStoreHelperBase, IDataSt
                          IFieldGetter rslt ,
                          Object[] buf )
  {
-    switch ( cursor )
-    {
-          case 0 :
-             ((string[]) buf[0])[0] = rslt.getVarchar(1);
-             ((string[]) buf[1])[0] = rslt.getVarchar(2);
-             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-             ((Guid[]) buf[3])[0] = rslt.getGuid(4);
-             return;
-          case 1 :
-             ((string[]) buf[0])[0] = rslt.getVarchar(1);
-             ((string[]) buf[1])[0] = rslt.getVarchar(2);
-             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-             ((Guid[]) buf[3])[0] = rslt.getGuid(4);
-             ((Guid[]) buf[4])[0] = rslt.getGuid(5);
-             return;
-    }
  }
 
 }

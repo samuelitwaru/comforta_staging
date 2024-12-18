@@ -783,7 +783,8 @@ namespace GeneXus.Programs {
                                    string aP3_PageGJSHtml ,
                                    string aP4_PageGJSJson ,
                                    bool aP5_PageIsPublished ,
-                                   out string aP6_result )
+                                   bool aP6_IsNotifyResidents ,
+                                   out string aP7_result )
       {
          restCliUpdatePage = new GXRestAPIClient();
          if ( restLocation == null )
@@ -799,17 +800,18 @@ namespace GeneXus.Programs {
          restCliUpdatePage.AddBodyVar("PageGJSHtml", (string)(aP3_PageGJSHtml));
          restCliUpdatePage.AddBodyVar("PageGJSJson", (string)(aP4_PageGJSJson));
          restCliUpdatePage.AddBodyVar("PageIsPublished", aP5_PageIsPublished);
+         restCliUpdatePage.AddBodyVar("IsNotifyResidents", aP6_IsNotifyResidents);
          restCliUpdatePage.RestExecute();
          if ( restCliUpdatePage.ErrorCode != 0 )
          {
             gxProperties.ErrorCode = restCliUpdatePage.ErrorCode;
             gxProperties.ErrorMessage = restCliUpdatePage.ErrorMessage;
             gxProperties.StatusCode = restCliUpdatePage.StatusCode;
-            aP6_result = "";
+            aP7_result = "";
          }
          else
          {
-            aP6_result = restCliUpdatePage.GetBodyString("result");
+            aP7_result = restCliUpdatePage.GetBodyString("result");
          }
          /* UpdatePage Constructor */
       }
@@ -979,6 +981,7 @@ namespace GeneXus.Programs {
          restCliSavePage = new GXRestAPIClient();
          aP5_result = "";
          restCliUpdatePage = new GXRestAPIClient();
+         aP7_result = "";
          restCliAddPageCildren = new GXRestAPIClient();
          restCliUpdateLocationTheme = new GXRestAPIClient();
          aP1_SDT_Theme = new SdtSDT_Theme();
@@ -1044,6 +1047,7 @@ namespace GeneXus.Programs {
       protected SdtSDT_Page aP1_SDT_Page ;
       protected GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageStructureCollection ;
       protected string aP5_result ;
+      protected string aP7_result ;
       protected SdtSDT_Theme aP1_SDT_Theme ;
       protected SdtSDT_ProductService aP1_SDT_ProductService ;
       protected SdtSDT_LocationTheme aP2_SDT_LocationTheme ;

@@ -50,7 +50,8 @@ namespace GeneXus.Programs {
                            ref string aP3_PageGJSHtml ,
                            ref string aP4_PageGJSJson ,
                            ref bool aP5_PageIsPublished ,
-                           out string aP6_Response )
+                           ref bool aP6_IsNotifyResidents ,
+                           out string aP7_Response )
       {
          this.AV8PageId = aP0_PageId;
          this.AV18PageName = aP1_PageName;
@@ -58,6 +59,7 @@ namespace GeneXus.Programs {
          this.AV13PageGJSHtml = aP3_PageGJSHtml;
          this.AV11PageGJSJson = aP4_PageGJSJson;
          this.AV17PageIsPublished = aP5_PageIsPublished;
+         this.AV22IsNotifyResidents = aP6_IsNotifyResidents;
          this.AV10Response = "" ;
          initialize();
          ExecuteImpl();
@@ -67,7 +69,8 @@ namespace GeneXus.Programs {
          aP3_PageGJSHtml=this.AV13PageGJSHtml;
          aP4_PageGJSJson=this.AV11PageGJSJson;
          aP5_PageIsPublished=this.AV17PageIsPublished;
-         aP6_Response=this.AV10Response;
+         aP6_IsNotifyResidents=this.AV22IsNotifyResidents;
+         aP7_Response=this.AV10Response;
       }
 
       public string executeUdp( ref Guid aP0_PageId ,
@@ -75,9 +78,10 @@ namespace GeneXus.Programs {
                                 ref string aP2_PageJsonContent ,
                                 ref string aP3_PageGJSHtml ,
                                 ref string aP4_PageGJSJson ,
-                                ref bool aP5_PageIsPublished )
+                                ref bool aP5_PageIsPublished ,
+                                ref bool aP6_IsNotifyResidents )
       {
-         execute(ref aP0_PageId, ref aP1_PageName, ref aP2_PageJsonContent, ref aP3_PageGJSHtml, ref aP4_PageGJSJson, ref aP5_PageIsPublished, out aP6_Response);
+         execute(ref aP0_PageId, ref aP1_PageName, ref aP2_PageJsonContent, ref aP3_PageGJSHtml, ref aP4_PageGJSJson, ref aP5_PageIsPublished, ref aP6_IsNotifyResidents, out aP7_Response);
          return AV10Response ;
       }
 
@@ -87,7 +91,8 @@ namespace GeneXus.Programs {
                                  ref string aP3_PageGJSHtml ,
                                  ref string aP4_PageGJSJson ,
                                  ref bool aP5_PageIsPublished ,
-                                 out string aP6_Response )
+                                 ref bool aP6_IsNotifyResidents ,
+                                 out string aP7_Response )
       {
          this.AV8PageId = aP0_PageId;
          this.AV18PageName = aP1_PageName;
@@ -95,6 +100,7 @@ namespace GeneXus.Programs {
          this.AV13PageGJSHtml = aP3_PageGJSHtml;
          this.AV11PageGJSJson = aP4_PageGJSJson;
          this.AV17PageIsPublished = aP5_PageIsPublished;
+         this.AV22IsNotifyResidents = aP6_IsNotifyResidents;
          this.AV10Response = "" ;
          SubmitImpl();
          aP0_PageId=this.AV8PageId;
@@ -103,7 +109,8 @@ namespace GeneXus.Programs {
          aP3_PageGJSHtml=this.AV13PageGJSHtml;
          aP4_PageGJSJson=this.AV11PageGJSJson;
          aP5_PageIsPublished=this.AV17PageIsPublished;
-         aP6_Response=this.AV10Response;
+         aP6_IsNotifyResidents=this.AV22IsNotifyResidents;
+         aP7_Response=this.AV10Response;
       }
 
       protected override void ExecutePrivate( )
@@ -131,16 +138,24 @@ namespace GeneXus.Programs {
             {
                AV10Response = "Page Save Successfully";
                context.CommitDataStores("prc_updatepage",pr_default);
+               if ( AV22IsNotifyResidents )
+               {
+                  AV24Title = "New Updates Available";
+                  AV25NotificationMessage = "The latest updates have been published and are now live! Open the app to explore the changes";
+                  AV23Metadata = new SdtSDT_OneSignalCustomData(context);
+                  AV23Metadata.gxTpr_Notificationcategory = "Toolbox";
+                  new prc_sendresidentnotification(context ).execute(  AV24Title,  AV25NotificationMessage,  "Toolbox",  AV23Metadata,  AV26ResidentIdCollectionEmpty) ;
+               }
             }
             else
             {
-               AV23GXV2 = 1;
-               AV22GXV1 = AV9BC_Trn_Page.GetMessages();
-               while ( AV23GXV2 <= AV22GXV1.Count )
+               AV28GXV2 = 1;
+               AV27GXV1 = AV9BC_Trn_Page.GetMessages();
+               while ( AV28GXV2 <= AV27GXV1.Count )
                {
-                  AV14Message = ((GeneXus.Utils.SdtMessages_Message)AV22GXV1.Item(AV23GXV2));
+                  AV14Message = ((GeneXus.Utils.SdtMessages_Message)AV27GXV1.Item(AV28GXV2));
                   new prc_logtofile(context ).execute(  AV14Message.gxTpr_Description) ;
-                  AV23GXV2 = (int)(AV23GXV2+1);
+                  AV28GXV2 = (int)(AV28GXV2+1);
                }
             }
          }
@@ -168,7 +183,11 @@ namespace GeneXus.Programs {
          AV20LocationId = Guid.Empty;
          AV21OrganisationId = Guid.Empty;
          AV9BC_Trn_Page = new SdtTrn_Page(context);
-         AV22GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV24Title = "";
+         AV25NotificationMessage = "";
+         AV23Metadata = new SdtSDT_OneSignalCustomData(context);
+         AV26ResidentIdCollectionEmpty = new GxSimpleCollection<Guid>();
+         AV27GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV14Message = new GeneXus.Utils.SdtMessages_Message(context);
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_updatepage__datastore1(),
             new Object[][] {
@@ -185,14 +204,17 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV23GXV2 ;
+      private int AV28GXV2 ;
       private bool AV17PageIsPublished ;
+      private bool AV22IsNotifyResidents ;
       private string AV12PageJsonContent ;
       private string AV13PageGJSHtml ;
       private string AV11PageGJSJson ;
       private string AV10Response ;
       private string AV18PageName ;
       private string AV19UserName ;
+      private string AV24Title ;
+      private string AV25NotificationMessage ;
       private Guid AV8PageId ;
       private Guid AV20LocationId ;
       private Guid AV21OrganisationId ;
@@ -205,11 +227,14 @@ namespace GeneXus.Programs {
       private string aP3_PageGJSHtml ;
       private string aP4_PageGJSJson ;
       private bool aP5_PageIsPublished ;
+      private bool aP6_IsNotifyResidents ;
       private SdtTrn_Page AV9BC_Trn_Page ;
       private IDataStoreProvider pr_default ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV22GXV1 ;
+      private SdtSDT_OneSignalCustomData AV23Metadata ;
+      private GxSimpleCollection<Guid> AV26ResidentIdCollectionEmpty ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV27GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV14Message ;
-      private string aP6_Response ;
+      private string aP7_Response ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }

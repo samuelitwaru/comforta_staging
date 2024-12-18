@@ -590,7 +590,8 @@ namespace GeneXus.Programs {
                                    string aP3_PageGJSHtml ,
                                    string aP4_PageGJSJson ,
                                    bool aP5_PageIsPublished ,
-                                   out string aP6_result )
+                                   bool aP6_IsNotifyResidents ,
+                                   out string aP7_result )
       {
          this.AV54PageId = aP0_PageId;
          this.AV60PageName = aP1_PageName;
@@ -598,10 +599,11 @@ namespace GeneXus.Programs {
          this.AV56PageGJSHtml = aP3_PageGJSHtml;
          this.AV57PageGJSJson = aP4_PageGJSJson;
          this.AV65PageIsPublished = aP5_PageIsPublished;
+         this.AV88IsNotifyResidents = aP6_IsNotifyResidents;
          initialize();
          /* UpdatePage Constructor */
-         new prc_updatepage(context ).execute( ref  AV54PageId, ref  AV60PageName, ref  AV58PageJsonContent, ref  AV56PageGJSHtml, ref  AV57PageGJSJson, ref  AV65PageIsPublished, out  AV17result) ;
-         aP6_result=this.AV17result;
+         new prc_updatepage(context ).execute( ref  AV54PageId, ref  AV60PageName, ref  AV58PageJsonContent, ref  AV56PageGJSHtml, ref  AV57PageGJSJson, ref  AV65PageIsPublished, ref  AV88IsNotifyResidents, out  AV17result) ;
+         aP7_result=this.AV17result;
       }
 
       public void gxep_addpagecildren( Guid aP0_ParentPageId ,
@@ -685,6 +687,7 @@ namespace GeneXus.Programs {
       protected string AV52MediaType ;
       protected bool returnInSub ;
       protected bool AV65PageIsPublished ;
+      protected bool AV88IsNotifyResidents ;
       protected string AV17result ;
       protected string AV7secretKey ;
       protected string AV86Base64Image ;
@@ -749,6 +752,7 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_PageStructure> AV64SDT_PageStructureCollection ;
       protected GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageStructureCollection ;
       protected string aP5_result ;
+      protected string aP7_result ;
       protected SdtSDT_Theme AV72SDT_Theme ;
       protected SdtSDT_Theme aP1_SDT_Theme ;
       protected SdtSDT_ProductService AV67SDT_ProductService ;

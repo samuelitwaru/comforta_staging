@@ -112,23 +112,13 @@ namespace GeneXus.Programs {
             AV16Role = AV14GAMRole.getbyname(AV12RoleName, out  AV15GAMErrorCollection);
             if ( AV13GAMUser.addrole(AV16Role, out  AV15GAMErrorCollection) )
             {
+               AV25ActivactionKey = AV13GAMUser.getnewactivationkey(out  AV24GAMErrors);
                AV13GAMUser.save();
                context.CommitDataStores("prc_creategamuseraccount",pr_default);
             }
             if ( StringUtil.StrCmp(AV12RoleName, "Resident") != 0 )
             {
-               GXt_char1 = AV19HttpRequest.BaseURL;
-               new prc_senduseractivationlink(context).executeSubmit(  AV13GAMUser.gxTpr_Guid, ref  GXt_char1, ref  AV18isSuccessful, ref  AV22ErrDescription, ref  AV15GAMErrorCollection) ;
-               if ( AV18isSuccessful )
-               {
-                  new prc_logtofile(context ).execute(  "Email Sent: "+AV12RoleName) ;
-                  context.CommitDataStores("prc_creategamuseraccount",pr_default);
-               }
-               else
-               {
-                  AV23GAMErrorResponse = AV22ErrDescription;
-                  new prc_logtofile(context ).execute(  "No Email Sent : "+AV12RoleName) ;
-               }
+               new prc_senduseractivationlink(context).executeSubmit(  AV13GAMUser.gxTpr_Guid,  AV25ActivactionKey,  AV19HttpRequest.BaseURL, ref  AV18isSuccessful, ref  AV22ErrDescription, ref  AV15GAMErrorCollection) ;
             }
             else
             {
@@ -161,6 +151,8 @@ namespace GeneXus.Programs {
          AV16Role = new GeneXus.Programs.genexussecurity.SdtGAMRole(context);
          AV15GAMErrorCollection = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          AV14GAMRole = new GeneXus.Programs.genexussecurity.SdtGAMRole(context);
+         AV25ActivactionKey = "";
+         AV24GAMErrors = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          AV19HttpRequest = new GxHttpRequest( context);
          AV22ErrDescription = "";
          GXt_char1 = "";
@@ -179,6 +171,7 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
+      private string AV25ActivactionKey ;
       private string GXt_char1 ;
       private bool AV18isSuccessful ;
       private string AV23GAMErrorResponse ;
@@ -199,6 +192,7 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.genexussecurity.SdtGAMRole AV16Role ;
       private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV15GAMErrorCollection ;
       private GeneXus.Programs.genexussecurity.SdtGAMRole AV14GAMRole ;
+      private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV24GAMErrors ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }

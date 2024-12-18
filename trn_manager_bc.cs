@@ -601,7 +601,7 @@ namespace GeneXus.Programs {
             AV31IsGAMActive = GXt_boolean2;
             if ( IsDlt( )  && ( StringUtil.StrCmp(A28ManagerGAMGUID, new prc_getloggedinuserid(context).executeUdp( )) == 0 ) )
             {
-               GX_msglist.addItem("Invalid Delete Action: You cannot delete you're own account.", 1, "");
+               GX_msglist.addItem("Invalid Delete Action: You cannot delete your own account.", 1, "");
                AnyError = 1;
             }
          }

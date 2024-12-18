@@ -186,7 +186,7 @@ namespace GeneXus.Programs {
       protected override string ExecutePermissionPrefix
       {
          get {
-            return "home_Execute" ;
+            return "uhome_Execute" ;
          }
 
       }
@@ -1009,11 +1009,6 @@ namespace GeneXus.Programs {
          GXt_objcol_SdtUHomeModulesSDT_UHomeModulesSDTItem1 = AV6HomeModulesSDT;
          new prc_getuserdashboarditems(context ).execute( out  GXt_objcol_SdtUHomeModulesSDT_UHomeModulesSDTItem1) ;
          AV6HomeModulesSDT = GXt_objcol_SdtUHomeModulesSDT_UHomeModulesSDTItem1;
-         if ( AV13WWPContext.gxTpr_Isreceptionist )
-         {
-            CallWebObject(formatLink("wp_usernotificationsboard.aspx") );
-            context.wjLocDisableFrm = 1;
-         }
       }
 
       private void E12A22( )
@@ -1168,7 +1163,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713331386", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412188514154", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1184,7 +1179,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("uhome.js", "?2024121713331388", false, true);
+         context.AddJavascriptSource("uhome.js", "?202412188514155", false, true);
          /* End function include_jscripts */
       }
 

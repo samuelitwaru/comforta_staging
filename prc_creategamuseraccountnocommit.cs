@@ -107,12 +107,13 @@ namespace GeneXus.Programs {
          AV16GAMUser.save();
          if ( AV16GAMUser.success() )
          {
+            AV24ActivationKey = AV16GAMUser.getnewactivationkey(out  AV25GAMErrors);
             AV23Role = AV15GAMRole.getbyname(AV11RoleName, out  AV14GAMErrorCollection);
             if ( AV16GAMUser.addrole(AV23Role, out  AV14GAMErrorCollection) )
             {
                if ( StringUtil.StrCmp(AV11RoleName, "Resident") != 0 )
                {
-                  new prc_senduseractivationlinknocommit(context ).execute(  AV9GAMUserGUID,  AV10HttpRequest.BaseURL, ref  AV19isSuccessful, ref  AV13ErrDescription, ref  AV14GAMErrorCollection) ;
+                  new prc_senduseractivationlinknocommit(context ).execute(  AV9GAMUserGUID,  AV24ActivationKey,  AV10HttpRequest.BaseURL, ref  AV19isSuccessful, ref  AV13ErrDescription, ref  AV14GAMErrorCollection) ;
                   if ( AV19isSuccessful )
                   {
                      AV9GAMUserGUID = AV16GAMUser.gxTpr_Guid;
@@ -174,6 +175,8 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV16GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
+         AV24ActivationKey = "";
+         AV25GAMErrors = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          AV23Role = new GeneXus.Programs.genexussecurity.SdtGAMRole(context);
          AV15GAMRole = new GeneXus.Programs.genexussecurity.SdtGAMRole(context);
          AV10HttpRequest = new GxHttpRequest( context);
@@ -182,6 +185,7 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
+      private string AV24ActivationKey ;
       private string AV13ErrDescription ;
       private bool AV19isSuccessful ;
       private string AV12Email ;
@@ -195,6 +199,7 @@ namespace GeneXus.Programs {
       private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> aP5_GAMErrorCollection ;
       private bool aP6_isSuccessful ;
       private GeneXus.Programs.genexussecurity.SdtGAMUser AV16GAMUser ;
+      private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV25GAMErrors ;
       private GeneXus.Programs.genexussecurity.SdtGAMRole AV23Role ;
       private GeneXus.Programs.genexussecurity.SdtGAMRole AV15GAMRole ;
       private GeneXus.Programs.genexussecurity.SdtGAMError AV8GAMErrorItem ;

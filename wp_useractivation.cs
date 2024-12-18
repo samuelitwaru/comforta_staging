@@ -774,8 +774,16 @@ namespace GeneXus.Programs {
                   AV17isLoggedIn = new GeneXus.Programs.genexussecurity.SdtGAMRepository(context).login(AV11GAMUser.gxTpr_Email, AV7UserPassword, AV16AdditionalParameter, out  AV13GAMErrors);
                   if ( AV17isLoggedIn )
                   {
-                     CallWebObject(formatLink("uhome.aspx") );
-                     context.wjLocDisableFrm = 1;
+                     if ( AV11GAMUser.checkrole("Receptionist") )
+                     {
+                        CallWebObject(formatLink("wp_notificationdashboard.aspx") );
+                        context.wjLocDisableFrm = 1;
+                     }
+                     else
+                     {
+                        CallWebObject(formatLink("uhome.aspx") );
+                        context.wjLocDisableFrm = 1;
+                     }
                   }
                   else
                   {
@@ -915,7 +923,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412171328924", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412188514270", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -931,7 +939,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_useractivation.js", "?202412171328927", false, true);
+         context.AddJavascriptSource("wp_useractivation.js", "?202412188514272", false, true);
          /* End function include_jscripts */
       }
 

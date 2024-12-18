@@ -92,6 +92,15 @@ namespace GeneXus.Programs {
          AV5id = (short)(AV5id+1);
          Gxm1dvelop_menu.gxTpr_Id = StringUtil.Str( (decimal)(AV5id), 4, 0);
          Gxm1dvelop_menu.gxTpr_Tooltip = "";
+         Gxm1dvelop_menu.gxTpr_Link = formatLink("wp_notificationdashboard.aspx") ;
+         Gxm1dvelop_menu.gxTpr_Linktarget = "";
+         Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fa fa-home";
+         Gxm1dvelop_menu.gxTpr_Caption = "Dashboard";
+         Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
+         Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
+         AV5id = (short)(AV5id+1);
+         Gxm1dvelop_menu.gxTpr_Id = StringUtil.Str( (decimal)(AV5id), 4, 0);
+         Gxm1dvelop_menu.gxTpr_Tooltip = "";
          Gxm1dvelop_menu.gxTpr_Link = formatLink("wp_calendaragenda.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fa fa-calendar-days";

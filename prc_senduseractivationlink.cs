@@ -39,49 +39,52 @@ namespace GeneXus.Programs {
       }
 
       public void execute( string aP0_UserGAMGUID ,
-                           ref string aP1_baseUrl ,
-                           ref bool aP2_isSuccessful ,
-                           ref string aP3_ErrDescription ,
-                           ref GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> aP4_GAMErrors )
+                           string aP1_ActivactionKey ,
+                           string aP2_baseUrl ,
+                           ref bool aP3_isSuccessful ,
+                           ref string aP4_ErrDescription ,
+                           ref GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> aP5_GAMErrors )
       {
          this.AV18UserGAMGUID = aP0_UserGAMGUID;
-         this.AV23baseUrl = aP1_baseUrl;
-         this.AV14isSuccessful = aP2_isSuccessful;
-         this.AV26ErrDescription = aP3_ErrDescription;
-         this.AV11GAMErrors = aP4_GAMErrors;
+         this.AV9ActivactionKey = aP1_ActivactionKey;
+         this.AV23baseUrl = aP2_baseUrl;
+         this.AV14isSuccessful = aP3_isSuccessful;
+         this.AV26ErrDescription = aP4_ErrDescription;
+         this.AV11GAMErrors = aP5_GAMErrors;
          initialize();
          ExecuteImpl();
-         aP1_baseUrl=this.AV23baseUrl;
-         aP2_isSuccessful=this.AV14isSuccessful;
-         aP3_ErrDescription=this.AV26ErrDescription;
-         aP4_GAMErrors=this.AV11GAMErrors;
+         aP3_isSuccessful=this.AV14isSuccessful;
+         aP4_ErrDescription=this.AV26ErrDescription;
+         aP5_GAMErrors=this.AV11GAMErrors;
       }
 
       public GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> executeUdp( string aP0_UserGAMGUID ,
-                                                                                            ref string aP1_baseUrl ,
-                                                                                            ref bool aP2_isSuccessful ,
-                                                                                            ref string aP3_ErrDescription )
+                                                                                            string aP1_ActivactionKey ,
+                                                                                            string aP2_baseUrl ,
+                                                                                            ref bool aP3_isSuccessful ,
+                                                                                            ref string aP4_ErrDescription )
       {
-         execute(aP0_UserGAMGUID, ref aP1_baseUrl, ref aP2_isSuccessful, ref aP3_ErrDescription, ref aP4_GAMErrors);
+         execute(aP0_UserGAMGUID, aP1_ActivactionKey, aP2_baseUrl, ref aP3_isSuccessful, ref aP4_ErrDescription, ref aP5_GAMErrors);
          return AV11GAMErrors ;
       }
 
       public void executeSubmit( string aP0_UserGAMGUID ,
-                                 ref string aP1_baseUrl ,
-                                 ref bool aP2_isSuccessful ,
-                                 ref string aP3_ErrDescription ,
-                                 ref GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> aP4_GAMErrors )
+                                 string aP1_ActivactionKey ,
+                                 string aP2_baseUrl ,
+                                 ref bool aP3_isSuccessful ,
+                                 ref string aP4_ErrDescription ,
+                                 ref GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> aP5_GAMErrors )
       {
          this.AV18UserGAMGUID = aP0_UserGAMGUID;
-         this.AV23baseUrl = aP1_baseUrl;
-         this.AV14isSuccessful = aP2_isSuccessful;
-         this.AV26ErrDescription = aP3_ErrDescription;
-         this.AV11GAMErrors = aP4_GAMErrors;
+         this.AV9ActivactionKey = aP1_ActivactionKey;
+         this.AV23baseUrl = aP2_baseUrl;
+         this.AV14isSuccessful = aP3_isSuccessful;
+         this.AV26ErrDescription = aP4_ErrDescription;
+         this.AV11GAMErrors = aP5_GAMErrors;
          SubmitImpl();
-         aP1_baseUrl=this.AV23baseUrl;
-         aP2_isSuccessful=this.AV14isSuccessful;
-         aP3_ErrDescription=this.AV26ErrDescription;
-         aP4_GAMErrors=this.AV11GAMErrors;
+         aP3_isSuccessful=this.AV14isSuccessful;
+         aP4_ErrDescription=this.AV26ErrDescription;
+         aP5_GAMErrors=this.AV11GAMErrors;
       }
 
       protected override void ExecutePrivate( )
@@ -95,7 +98,6 @@ namespace GeneXus.Programs {
             if ( AV12GAMUser.success() )
             {
                AV19Username = AV12GAMUser.gxTpr_Firstname + " " + AV12GAMUser.gxTpr_Lastname;
-               AV9ActivactionKey = AV12GAMUser.getnewactivationkey(out  AV11GAMErrors);
                if ( AV11GAMErrors.Count == 0 )
                {
                   AV17SMTPSession.Host = "comforta.yukon.software";
@@ -114,7 +116,7 @@ namespace GeneXus.Programs {
                   AV15MailMessage.To.Add(AV8MailRecipient);
                   AV17SMTPSession.Login();
                   AV17SMTPSession.Send(AV15MailMessage);
-                  if ( AV17SMTPSession.ErrCode == 0 )
+                  if ( ( AV17SMTPSession.ErrCode < 1 ) || ( StringUtil.StrCmp(StringUtil.Trim( AV17SMTPSession.ErrDescription), "OK") == 0 ) )
                   {
                      AV17SMTPSession.Logout();
                      AV14isSuccessful = true;
@@ -123,7 +125,6 @@ namespace GeneXus.Programs {
                   {
                      AV26ErrDescription = "Sending activation email failed - " + StringUtil.Str( (decimal)(AV17SMTPSession.ErrCode), 10, 2) + " " + AV17SMTPSession.ErrDescription;
                      AV14isSuccessful = false;
-                     new prc_logtofile(context ).execute(  "Error Sending Mail: "+AV17SMTPSession.ErrDescription) ;
                   }
                }
                else
@@ -168,7 +169,6 @@ namespace GeneXus.Programs {
          AV16Repository = new GeneXus.Programs.genexussecurity.SdtGAMRepository(context);
          AV12GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          AV19Username = "";
-         AV9ActivactionKey = "";
          AV17SMTPSession = new GeneXus.Mail.GXSMTPSession(context.GetPhysicalPath());
          AV8MailRecipient = new GeneXus.Mail.GXMailRecipient();
          AV15MailMessage = new GeneXus.Mail.GXMailMessage();
@@ -177,8 +177,8 @@ namespace GeneXus.Programs {
       }
 
       private int AV27GXV1 ;
-      private string AV26ErrDescription ;
       private string AV9ActivactionKey ;
+      private string AV26ErrDescription ;
       private bool AV14isSuccessful ;
       private string AV18UserGAMGUID ;
       private string AV23baseUrl ;
@@ -186,11 +186,10 @@ namespace GeneXus.Programs {
       private GeneXus.Mail.GXMailMessage AV15MailMessage ;
       private GeneXus.Mail.GXMailRecipient AV8MailRecipient ;
       private GeneXus.Mail.GXSMTPSession AV17SMTPSession ;
-      private string aP1_baseUrl ;
-      private bool aP2_isSuccessful ;
-      private string aP3_ErrDescription ;
+      private bool aP3_isSuccessful ;
+      private string aP4_ErrDescription ;
       private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV11GAMErrors ;
-      private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> aP4_GAMErrors ;
+      private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> aP5_GAMErrors ;
       private GeneXus.Programs.genexussecurity.SdtGAMRepository AV16Repository ;
       private GeneXus.Programs.genexussecurity.SdtGAMUser AV12GAMUser ;
       private GeneXus.Programs.genexussecurity.SdtGAMError AV25GAMErrorItem ;

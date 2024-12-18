@@ -1275,8 +1275,16 @@ namespace GeneXus.Programs {
             }
             else
             {
-               CallWebObject(formatLink("uhome.aspx") );
-               context.wjLocDisableFrm = 1;
+               if ( AV42GAMUser.checkrole("Receptionist") )
+               {
+                  CallWebObject(formatLink("wp_notificationdashboard.aspx") );
+                  context.wjLocDisableFrm = 1;
+               }
+               else
+               {
+                  CallWebObject(formatLink("uhome.aspx") );
+                  context.wjLocDisableFrm = 1;
+               }
             }
          }
          else
@@ -1699,7 +1707,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412171334146", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412188522894", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1715,7 +1723,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("ulogin.js", "?2024121713341410", false, true);
+         context.AddJavascriptSource("ulogin.js", "?202412188522898", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Mask/jquery.mask.js", "", false, true);
          context.AddJavascriptSource("DVelop/WorkWithPlusUtilities/BootstrapSelect.js", "", false, true);

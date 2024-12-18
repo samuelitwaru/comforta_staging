@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241217110651"
+  version: "20241218081446"
 servers:
-  - url: https://staging.comforta.yukon.software/api
+  - url: https//:staging.comforta.yukon.software/api
 paths:
   /auth/resident-login:
     post:
@@ -968,6 +968,8 @@ components:
           type: "string"
         PageIsPublished:
           type: "boolean"
+        IsNotifyResidents:
+          type: "boolean"
 
     AddPageCildrenInput:  
       properties:
@@ -1345,9 +1347,6 @@ components:
         PageName:
           description: "Page Name"
           type: "string"
-        Theme:
-          description: "SDT_Theme"
-          $ref: "#/components/schemas/SDT_Theme"
         PageIsPublished:
           description: "Page Is Published"
           type: "boolean"
