@@ -880,8 +880,6 @@ class DataManager {
 
   updateLocationTheme() {
     let themeId = this.selectedTheme.id;
-    alert(themeId)
-
     return new Promise((resolve, reject) => {
       $.ajax({
         url: `${baseURL}/api/toolbox/update-location-theme`, // Replace with the actual API endpoint
