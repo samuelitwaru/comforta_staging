@@ -2846,7 +2846,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713295546", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412191582763", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2862,7 +2862,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_organisationgeneralsuppliers.js", "?2024121713295549", false, true);
+         context.AddJavascriptSource("wp_organisationgeneralsuppliers.js", "?202412191582766", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -4257,7 +4257,7 @@ public class wp_organisationgeneralsuppliers__default : DataStoreHelperBase, IDa
       AddWhere(sWhereString, "(T1.OrganisationId = :AV63Udparg1)");
       if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Wp_organisationgeneralsuppliersds_2_filterfulltext)) )
       {
-         AddWhere(sWhereString, "(( T1.SupplierGenCompanyName like '%' || :lV66Wp_organisationgeneralsuppliersds_2_filterfulltext) or ( T2.SupplierGenTypeName like '%' || :lV66Wp_organisationgeneralsuppliersds_2_filterfulltext) or ( T1.SupplierGenContactName like '%' || :lV66Wp_organisationgeneralsuppliersds_2_filterfulltext) or ( T1.SupplierGenContactPhone like '%' || :lV66Wp_organisationgeneralsuppliersds_2_filterfulltext))");
+         AddWhere(sWhereString, "(( LOWER(T1.SupplierGenCompanyName) like '%' || LOWER(:lV66Wp_organisationgeneralsuppliersds_2_filterfulltext)) or ( LOWER(T2.SupplierGenTypeName) like '%' || LOWER(:lV66Wp_organisationgeneralsuppliersds_2_filterfulltext)) or ( LOWER(T1.SupplierGenContactName) like '%' || LOWER(:lV66Wp_organisationgeneralsuppliersds_2_filterfulltext)) or ( LOWER(T1.SupplierGenContactPhone) like '%' || LOWER(:lV66Wp_organisationgeneralsuppliersds_2_filterfulltext)))");
       }
       else
       {
@@ -4425,7 +4425,7 @@ public class wp_organisationgeneralsuppliers__default : DataStoreHelperBase, IDa
       AddWhere(sWhereString, "(T1.OrganisationId = :AV63Udparg1)");
       if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66Wp_organisationgeneralsuppliersds_2_filterfulltext)) )
       {
-         AddWhere(sWhereString, "(( T1.SupplierGenCompanyName like '%' || :lV66Wp_organisationgeneralsuppliersds_2_filterfulltext) or ( T2.SupplierGenTypeName like '%' || :lV66Wp_organisationgeneralsuppliersds_2_filterfulltext) or ( T1.SupplierGenContactName like '%' || :lV66Wp_organisationgeneralsuppliersds_2_filterfulltext) or ( T1.SupplierGenContactPhone like '%' || :lV66Wp_organisationgeneralsuppliersds_2_filterfulltext))");
+         AddWhere(sWhereString, "(( LOWER(T1.SupplierGenCompanyName) like '%' || LOWER(:lV66Wp_organisationgeneralsuppliersds_2_filterfulltext)) or ( LOWER(T2.SupplierGenTypeName) like '%' || LOWER(:lV66Wp_organisationgeneralsuppliersds_2_filterfulltext)) or ( LOWER(T1.SupplierGenContactName) like '%' || LOWER(:lV66Wp_organisationgeneralsuppliersds_2_filterfulltext)) or ( LOWER(T1.SupplierGenContactPhone) like '%' || LOWER(:lV66Wp_organisationgeneralsuppliersds_2_filterfulltext)))");
       }
       else
       {

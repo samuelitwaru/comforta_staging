@@ -2657,7 +2657,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412188454432", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412191531148", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2673,7 +2673,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_organisationtrn_managerwc.js", "?202412188454432", false, true);
+         context.AddJavascriptSource("trn_organisationtrn_managerwc.js", "?202412191531148", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3766,7 +3766,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(OrganisationId = :AV8OrganisationId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV16FilterFullText)) )
          {
-            AddWhere(sWhereString, "(( ManagerGivenName like '%' || :lV16FilterFullText) or ( ManagerLastName like '%' || :lV16FilterFullText) or ( ManagerEmail like '%' || :lV16FilterFullText) or ( ManagerPhone like '%' || :lV16FilterFullText) or ( 'male' like '%' || LOWER(:lV16FilterFullText) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV16FilterFullText) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV16FilterFullText) and ManagerGender = ( 'Other')))");
+            AddWhere(sWhereString, "(( LOWER(ManagerGivenName) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(ManagerLastName) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(ManagerEmail) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(ManagerPhone) like '%' || LOWER(:lV16FilterFullText)) or ( 'male' like '%' || LOWER(:lV16FilterFullText) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV16FilterFullText) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV16FilterFullText) and ManagerGender = ( 'Other')))");
          }
          else
          {
@@ -3848,7 +3848,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(OrganisationId = :AV8OrganisationId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV16FilterFullText)) )
          {
-            AddWhere(sWhereString, "(( ManagerGivenName like '%' || :lV16FilterFullText) or ( ManagerLastName like '%' || :lV16FilterFullText) or ( ManagerEmail like '%' || :lV16FilterFullText) or ( ManagerPhone like '%' || :lV16FilterFullText) or ( 'male' like '%' || LOWER(:lV16FilterFullText) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV16FilterFullText) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV16FilterFullText) and ManagerGender = ( 'Other')))");
+            AddWhere(sWhereString, "(( LOWER(ManagerGivenName) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(ManagerLastName) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(ManagerEmail) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(ManagerPhone) like '%' || LOWER(:lV16FilterFullText)) or ( 'male' like '%' || LOWER(:lV16FilterFullText) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV16FilterFullText) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV16FilterFullText) and ManagerGender = ( 'Other')))");
          }
          else
          {

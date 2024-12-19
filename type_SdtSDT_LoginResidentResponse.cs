@@ -84,6 +84,10 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("user_guid", gxTpr_User_guid, false);
 
+			if (gxTv_SdtSDT_LoginResidentResponse_Error != null)
+			{
+				AddObjectProperty("error", gxTv_SdtSDT_LoginResidentResponse_Error, false);
+			}
 			return;
 		}
 		#endregion
@@ -194,6 +198,38 @@ namespace GeneXus.Programs
 
 
 
+		[SoapElement(ElementName="error")]
+		[XmlElement(ElementName="error")]
+		public GeneXus.Programs.SdtSDT_ErrorResponse gxTpr_Error
+		{
+			get {
+				if ( gxTv_SdtSDT_LoginResidentResponse_Error == null )
+				{
+					gxTv_SdtSDT_LoginResidentResponse_Error = new GeneXus.Programs.SdtSDT_ErrorResponse(context);
+				}
+				return gxTv_SdtSDT_LoginResidentResponse_Error; 
+			}
+			set {
+				gxTv_SdtSDT_LoginResidentResponse_Error = value;
+				SetDirty("Error");
+			}
+		}
+		public void gxTv_SdtSDT_LoginResidentResponse_Error_SetNull()
+		{
+			gxTv_SdtSDT_LoginResidentResponse_Error_N = true;
+			gxTv_SdtSDT_LoginResidentResponse_Error = null;
+		}
+
+		public bool gxTv_SdtSDT_LoginResidentResponse_Error_IsNull()
+		{
+			return gxTv_SdtSDT_LoginResidentResponse_Error == null;
+		}
+		public bool ShouldSerializegxTpr_Error_Json()
+		{
+			return gxTv_SdtSDT_LoginResidentResponse_Error != null;
+
+		}
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -221,6 +257,9 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_LoginResidentResponse_Refresh_token = "";
 			gxTv_SdtSDT_LoginResidentResponse_Scope = "";
 			gxTv_SdtSDT_LoginResidentResponse_User_guid = "";
+
+			gxTv_SdtSDT_LoginResidentResponse_Error_N = true;
+
 			return  ;
 		}
 
@@ -246,6 +285,10 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_LoginResidentResponse_User_guid;
+		 
+
+		protected GeneXus.Programs.SdtSDT_ErrorResponse gxTv_SdtSDT_LoginResidentResponse_Error = null;
+		protected bool gxTv_SdtSDT_LoginResidentResponse_Error_N;
 		 
 
 
@@ -334,6 +377,21 @@ namespace GeneXus.Programs
 			}
 			set { 
 				 sdt.gxTpr_User_guid = value;
+			}
+		}
+
+		[DataMember(Name="error", Order=6, EmitDefaultValue=false)]
+		public GeneXus.Programs.SdtSDT_ErrorResponse_RESTInterface gxTpr_Error
+		{
+			get { 
+				if (sdt.ShouldSerializegxTpr_Error_Json())
+					return new GeneXus.Programs.SdtSDT_ErrorResponse_RESTInterface(sdt.gxTpr_Error);
+				else
+					return null;
+
+			}
+			set { 
+				sdt.gxTpr_Error = value.sdt;
 			}
 		}
 

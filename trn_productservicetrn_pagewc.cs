@@ -2507,7 +2507,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713254463", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241219155516", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2523,7 +2523,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_productservicetrn_pagewc.js", "?2024121713254464", false, true);
+         context.AddJavascriptSource("trn_productservicetrn_pagewc.js", "?20241219155516", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3543,7 +3543,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(OrganisationId = :AV10OrganisationId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV18FilterFullText)) )
          {
-            AddWhere(sWhereString, "(( Trn_PageName like '%' || :lV18FilterFullText) or ( PageJsonContent like '%' || :lV18FilterFullText) or ( PageGJSHtml like '%' || :lV18FilterFullText) or ( PageGJSJson like '%' || :lV18FilterFullText) or ( 'true' like '%' || LOWER(:lV18FilterFullText) and PageIsContentPage = TRUE) or ( 'false' like '%' || LOWER(:lV18FilterFullText) and PageIsContentPage = FALSE) or ( PageChildren like '%' || :lV18FilterFullText))");
+            AddWhere(sWhereString, "(( LOWER(Trn_PageName) like '%' || LOWER(:lV18FilterFullText)) or ( LOWER(PageJsonContent) like '%' || LOWER(:lV18FilterFullText)) or ( LOWER(PageGJSHtml) like '%' || LOWER(:lV18FilterFullText)) or ( LOWER(PageGJSJson) like '%' || LOWER(:lV18FilterFullText)) or ( 'true' like '%' || LOWER(:lV18FilterFullText) and PageIsContentPage = TRUE) or ( 'false' like '%' || LOWER(:lV18FilterFullText) and PageIsContentPage = FALSE) or ( LOWER(PageChildren) like '%' || LOWER(:lV18FilterFullText)))");
          }
          else
          {
@@ -3664,7 +3664,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(OrganisationId = :AV10OrganisationId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV18FilterFullText)) )
          {
-            AddWhere(sWhereString, "(( Trn_PageName like '%' || :lV18FilterFullText) or ( PageJsonContent like '%' || :lV18FilterFullText) or ( PageGJSHtml like '%' || :lV18FilterFullText) or ( PageGJSJson like '%' || :lV18FilterFullText) or ( 'true' like '%' || LOWER(:lV18FilterFullText) and PageIsContentPage = TRUE) or ( 'false' like '%' || LOWER(:lV18FilterFullText) and PageIsContentPage = FALSE) or ( PageChildren like '%' || :lV18FilterFullText))");
+            AddWhere(sWhereString, "(( LOWER(Trn_PageName) like '%' || LOWER(:lV18FilterFullText)) or ( LOWER(PageJsonContent) like '%' || LOWER(:lV18FilterFullText)) or ( LOWER(PageGJSHtml) like '%' || LOWER(:lV18FilterFullText)) or ( LOWER(PageGJSJson) like '%' || LOWER(:lV18FilterFullText)) or ( 'true' like '%' || LOWER(:lV18FilterFullText) and PageIsContentPage = TRUE) or ( 'false' like '%' || LOWER(:lV18FilterFullText) and PageIsContentPage = FALSE) or ( LOWER(PageChildren) like '%' || LOWER(:lV18FilterFullText)))");
          }
          else
          {

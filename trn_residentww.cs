@@ -2814,7 +2814,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713292779", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412191574795", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2830,7 +2830,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_residentww.js", "?2024121713292782", false, true);
+         context.AddJavascriptSource("trn_residentww.js", "?202412191574797", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -4336,7 +4336,7 @@ namespace GeneXus.Programs {
          sOrderString = "";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV75Trn_residentwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( 'mr' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentSalutation = ( 'Mr')) or ( 'mrs' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentSalutation = ( 'Mrs')) or ( 'dr' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentSalutation = ( 'Dr')) or ( 'miss' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentSalutation = ( 'Miss')) or ( T1.ResidentGivenName like '%' || :lV75Trn_residentwwds_1_filterfulltext) or ( T1.ResidentLastName like '%' || :lV75Trn_residentwwds_1_filterfulltext) or ( 'male' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentGender = ( 'Other')) or ( T1.ResidentEmail like '%' || :lV75Trn_residentwwds_1_filterfulltext) or ( T1.ResidentPhone like '%' || :lV75Trn_residentwwds_1_filterfulltext) or ( T3.ResidentTypeName like '%' || :lV75Trn_residentwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( 'mr' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentSalutation = ( 'Mr')) or ( 'mrs' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentSalutation = ( 'Mrs')) or ( 'dr' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentSalutation = ( 'Dr')) or ( 'miss' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentSalutation = ( 'Miss')) or ( LOWER(T1.ResidentGivenName) like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext)) or ( LOWER(T1.ResidentLastName) like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext)) or ( 'male' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentGender = ( 'Other')) or ( LOWER(T1.ResidentEmail) like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext)) or ( LOWER(T1.ResidentPhone) like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext)) or ( LOWER(T3.ResidentTypeName) like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext)))");
          }
          else
          {
@@ -4560,7 +4560,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT COUNT(*) FROM ((Trn_Resident T1 LEFT JOIN Trn_MedicalIndication T3 ON T3.MedicalIndicationId = T1.MedicalIndicationId) INNER JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = T1.ResidentTypeId)";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV75Trn_residentwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( 'mr' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentSalutation = ( 'Mr')) or ( 'mrs' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentSalutation = ( 'Mrs')) or ( 'dr' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentSalutation = ( 'Dr')) or ( 'miss' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentSalutation = ( 'Miss')) or ( T1.ResidentGivenName like '%' || :lV75Trn_residentwwds_1_filterfulltext) or ( T1.ResidentLastName like '%' || :lV75Trn_residentwwds_1_filterfulltext) or ( 'male' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentGender = ( 'Other')) or ( T1.ResidentEmail like '%' || :lV75Trn_residentwwds_1_filterfulltext) or ( T1.ResidentPhone like '%' || :lV75Trn_residentwwds_1_filterfulltext) or ( T2.ResidentTypeName like '%' || :lV75Trn_residentwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( 'mr' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentSalutation = ( 'Mr')) or ( 'mrs' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentSalutation = ( 'Mrs')) or ( 'dr' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentSalutation = ( 'Dr')) or ( 'miss' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentSalutation = ( 'Miss')) or ( LOWER(T1.ResidentGivenName) like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext)) or ( LOWER(T1.ResidentLastName) like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext)) or ( 'male' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext) and T1.ResidentGender = ( 'Other')) or ( LOWER(T1.ResidentEmail) like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext)) or ( LOWER(T1.ResidentPhone) like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext)) or ( LOWER(T2.ResidentTypeName) like '%' || LOWER(:lV75Trn_residentwwds_1_filterfulltext)))");
          }
          else
          {

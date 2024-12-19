@@ -300,10 +300,10 @@ namespace GeneXus.Programs {
             BRK5L2 = false;
             A11OrganisationId = P005L2_A11OrganisationId[0];
             A22ManagerGivenName = P005L2_A22ManagerGivenName[0];
-            A27ManagerGender = P005L2_A27ManagerGender[0];
             A26ManagerPhone = P005L2_A26ManagerPhone[0];
             A25ManagerEmail = P005L2_A25ManagerEmail[0];
             A23ManagerLastName = P005L2_A23ManagerLastName[0];
+            A27ManagerGender = P005L2_A27ManagerGender[0];
             A21ManagerId = P005L2_A21ManagerId[0];
             AV35count = 0;
             while ( (pr_default.getStatus(0) != 101) && ( StringUtil.StrCmp(P005L2_A22ManagerGivenName[0], A22ManagerGivenName) == 0 ) )
@@ -396,10 +396,10 @@ namespace GeneXus.Programs {
             BRK5L4 = false;
             A11OrganisationId = P005L3_A11OrganisationId[0];
             A23ManagerLastName = P005L3_A23ManagerLastName[0];
-            A27ManagerGender = P005L3_A27ManagerGender[0];
             A26ManagerPhone = P005L3_A26ManagerPhone[0];
             A25ManagerEmail = P005L3_A25ManagerEmail[0];
             A22ManagerGivenName = P005L3_A22ManagerGivenName[0];
+            A27ManagerGender = P005L3_A27ManagerGender[0];
             A21ManagerId = P005L3_A21ManagerId[0];
             AV35count = 0;
             while ( (pr_default.getStatus(1) != 101) && ( StringUtil.StrCmp(P005L3_A23ManagerLastName[0], A23ManagerLastName) == 0 ) )
@@ -492,10 +492,10 @@ namespace GeneXus.Programs {
             BRK5L6 = false;
             A11OrganisationId = P005L4_A11OrganisationId[0];
             A25ManagerEmail = P005L4_A25ManagerEmail[0];
-            A27ManagerGender = P005L4_A27ManagerGender[0];
             A26ManagerPhone = P005L4_A26ManagerPhone[0];
             A23ManagerLastName = P005L4_A23ManagerLastName[0];
             A22ManagerGivenName = P005L4_A22ManagerGivenName[0];
+            A27ManagerGender = P005L4_A27ManagerGender[0];
             A21ManagerId = P005L4_A21ManagerId[0];
             AV35count = 0;
             while ( (pr_default.getStatus(2) != 101) && ( StringUtil.StrCmp(P005L4_A25ManagerEmail[0], A25ManagerEmail) == 0 ) )
@@ -588,10 +588,10 @@ namespace GeneXus.Programs {
             BRK5L8 = false;
             A11OrganisationId = P005L5_A11OrganisationId[0];
             A26ManagerPhone = P005L5_A26ManagerPhone[0];
-            A27ManagerGender = P005L5_A27ManagerGender[0];
             A25ManagerEmail = P005L5_A25ManagerEmail[0];
             A23ManagerLastName = P005L5_A23ManagerLastName[0];
             A22ManagerGivenName = P005L5_A22ManagerGivenName[0];
+            A27ManagerGender = P005L5_A27ManagerGender[0];
             A21ManagerId = P005L5_A21ManagerId[0];
             AV35count = 0;
             while ( (pr_default.getStatus(3) != 101) && ( StringUtil.StrCmp(P005L5_A26ManagerPhone[0], A26ManagerPhone) == 0 ) )
@@ -685,47 +685,47 @@ namespace GeneXus.Programs {
          AV53OrganisationId = Guid.Empty;
          P005L2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P005L2_A22ManagerGivenName = new string[] {""} ;
-         P005L2_A27ManagerGender = new string[] {""} ;
          P005L2_A26ManagerPhone = new string[] {""} ;
          P005L2_A25ManagerEmail = new string[] {""} ;
          P005L2_A23ManagerLastName = new string[] {""} ;
+         P005L2_A27ManagerGender = new string[] {""} ;
          P005L2_A21ManagerId = new Guid[] {Guid.Empty} ;
          A21ManagerId = Guid.Empty;
          AV30Option = "";
          P005L3_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P005L3_A23ManagerLastName = new string[] {""} ;
-         P005L3_A27ManagerGender = new string[] {""} ;
          P005L3_A26ManagerPhone = new string[] {""} ;
          P005L3_A25ManagerEmail = new string[] {""} ;
          P005L3_A22ManagerGivenName = new string[] {""} ;
+         P005L3_A27ManagerGender = new string[] {""} ;
          P005L3_A21ManagerId = new Guid[] {Guid.Empty} ;
          P005L4_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P005L4_A25ManagerEmail = new string[] {""} ;
-         P005L4_A27ManagerGender = new string[] {""} ;
          P005L4_A26ManagerPhone = new string[] {""} ;
          P005L4_A23ManagerLastName = new string[] {""} ;
          P005L4_A22ManagerGivenName = new string[] {""} ;
+         P005L4_A27ManagerGender = new string[] {""} ;
          P005L4_A21ManagerId = new Guid[] {Guid.Empty} ;
          P005L5_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P005L5_A26ManagerPhone = new string[] {""} ;
-         P005L5_A27ManagerGender = new string[] {""} ;
          P005L5_A25ManagerEmail = new string[] {""} ;
          P005L5_A23ManagerLastName = new string[] {""} ;
          P005L5_A22ManagerGivenName = new string[] {""} ;
+         P005L5_A27ManagerGender = new string[] {""} ;
          P005L5_A21ManagerId = new Guid[] {Guid.Empty} ;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_managerwwgetfilterdata__default(),
             new Object[][] {
                 new Object[] {
-               P005L2_A11OrganisationId, P005L2_A22ManagerGivenName, P005L2_A27ManagerGender, P005L2_A26ManagerPhone, P005L2_A25ManagerEmail, P005L2_A23ManagerLastName, P005L2_A21ManagerId
+               P005L2_A11OrganisationId, P005L2_A22ManagerGivenName, P005L2_A26ManagerPhone, P005L2_A25ManagerEmail, P005L2_A23ManagerLastName, P005L2_A27ManagerGender, P005L2_A21ManagerId
                }
                , new Object[] {
-               P005L3_A11OrganisationId, P005L3_A23ManagerLastName, P005L3_A27ManagerGender, P005L3_A26ManagerPhone, P005L3_A25ManagerEmail, P005L3_A22ManagerGivenName, P005L3_A21ManagerId
+               P005L3_A11OrganisationId, P005L3_A23ManagerLastName, P005L3_A26ManagerPhone, P005L3_A25ManagerEmail, P005L3_A22ManagerGivenName, P005L3_A27ManagerGender, P005L3_A21ManagerId
                }
                , new Object[] {
-               P005L4_A11OrganisationId, P005L4_A25ManagerEmail, P005L4_A27ManagerGender, P005L4_A26ManagerPhone, P005L4_A23ManagerLastName, P005L4_A22ManagerGivenName, P005L4_A21ManagerId
+               P005L4_A11OrganisationId, P005L4_A25ManagerEmail, P005L4_A26ManagerPhone, P005L4_A23ManagerLastName, P005L4_A22ManagerGivenName, P005L4_A27ManagerGender, P005L4_A21ManagerId
                }
                , new Object[] {
-               P005L5_A11OrganisationId, P005L5_A26ManagerPhone, P005L5_A27ManagerGender, P005L5_A25ManagerEmail, P005L5_A23ManagerLastName, P005L5_A22ManagerGivenName, P005L5_A21ManagerId
+               P005L5_A11OrganisationId, P005L5_A26ManagerPhone, P005L5_A25ManagerEmail, P005L5_A23ManagerLastName, P005L5_A22ManagerGivenName, P005L5_A27ManagerGender, P005L5_A21ManagerId
                }
             }
          );
@@ -798,31 +798,31 @@ namespace GeneXus.Programs {
       private IDataStoreProvider pr_default ;
       private Guid[] P005L2_A11OrganisationId ;
       private string[] P005L2_A22ManagerGivenName ;
-      private string[] P005L2_A27ManagerGender ;
       private string[] P005L2_A26ManagerPhone ;
       private string[] P005L2_A25ManagerEmail ;
       private string[] P005L2_A23ManagerLastName ;
+      private string[] P005L2_A27ManagerGender ;
       private Guid[] P005L2_A21ManagerId ;
       private Guid[] P005L3_A11OrganisationId ;
       private string[] P005L3_A23ManagerLastName ;
-      private string[] P005L3_A27ManagerGender ;
       private string[] P005L3_A26ManagerPhone ;
       private string[] P005L3_A25ManagerEmail ;
       private string[] P005L3_A22ManagerGivenName ;
+      private string[] P005L3_A27ManagerGender ;
       private Guid[] P005L3_A21ManagerId ;
       private Guid[] P005L4_A11OrganisationId ;
       private string[] P005L4_A25ManagerEmail ;
-      private string[] P005L4_A27ManagerGender ;
       private string[] P005L4_A26ManagerPhone ;
       private string[] P005L4_A23ManagerLastName ;
       private string[] P005L4_A22ManagerGivenName ;
+      private string[] P005L4_A27ManagerGender ;
       private Guid[] P005L4_A21ManagerId ;
       private Guid[] P005L5_A11OrganisationId ;
       private string[] P005L5_A26ManagerPhone ;
-      private string[] P005L5_A27ManagerGender ;
       private string[] P005L5_A25ManagerEmail ;
       private string[] P005L5_A23ManagerLastName ;
       private string[] P005L5_A22ManagerGivenName ;
+      private string[] P005L5_A27ManagerGender ;
       private Guid[] P005L5_A21ManagerId ;
       private string aP3_OptionsJson ;
       private string aP4_OptionsDescJson ;
@@ -855,11 +855,11 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int1 = new short[16];
          Object[] GXv_Object2 = new Object[2];
-         scmdbuf = "SELECT OrganisationId, ManagerGivenName, ManagerGender, ManagerPhone, ManagerEmail, ManagerLastName, ManagerId FROM Trn_Manager";
+         scmdbuf = "SELECT OrganisationId, ManagerGivenName, ManagerPhone, ManagerEmail, ManagerLastName, ManagerGender, ManagerId FROM Trn_Manager";
          AddWhere(sWhereString, "(OrganisationId = :AV53OrganisationId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( ManagerGivenName like '%' || :lV57Trn_managerwwds_1_filterfulltext) or ( ManagerLastName like '%' || :lV57Trn_managerwwds_1_filterfulltext) or ( ManagerEmail like '%' || :lV57Trn_managerwwds_1_filterfulltext) or ( ManagerPhone like '%' || :lV57Trn_managerwwds_1_filterfulltext) or ( 'male' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Other')))");
+            AddWhere(sWhereString, "(( LOWER(ManagerGivenName) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerLastName) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerEmail) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerPhone) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( 'male' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Other')))");
          }
          else
          {
@@ -986,11 +986,11 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int3 = new short[16];
          Object[] GXv_Object4 = new Object[2];
-         scmdbuf = "SELECT OrganisationId, ManagerLastName, ManagerGender, ManagerPhone, ManagerEmail, ManagerGivenName, ManagerId FROM Trn_Manager";
+         scmdbuf = "SELECT OrganisationId, ManagerLastName, ManagerPhone, ManagerEmail, ManagerGivenName, ManagerGender, ManagerId FROM Trn_Manager";
          AddWhere(sWhereString, "(OrganisationId = :AV53OrganisationId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( ManagerGivenName like '%' || :lV57Trn_managerwwds_1_filterfulltext) or ( ManagerLastName like '%' || :lV57Trn_managerwwds_1_filterfulltext) or ( ManagerEmail like '%' || :lV57Trn_managerwwds_1_filterfulltext) or ( ManagerPhone like '%' || :lV57Trn_managerwwds_1_filterfulltext) or ( 'male' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Other')))");
+            AddWhere(sWhereString, "(( LOWER(ManagerGivenName) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerLastName) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerEmail) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerPhone) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( 'male' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Other')))");
          }
          else
          {
@@ -1117,11 +1117,11 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int5 = new short[16];
          Object[] GXv_Object6 = new Object[2];
-         scmdbuf = "SELECT OrganisationId, ManagerEmail, ManagerGender, ManagerPhone, ManagerLastName, ManagerGivenName, ManagerId FROM Trn_Manager";
+         scmdbuf = "SELECT OrganisationId, ManagerEmail, ManagerPhone, ManagerLastName, ManagerGivenName, ManagerGender, ManagerId FROM Trn_Manager";
          AddWhere(sWhereString, "(OrganisationId = :AV53OrganisationId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( ManagerGivenName like '%' || :lV57Trn_managerwwds_1_filterfulltext) or ( ManagerLastName like '%' || :lV57Trn_managerwwds_1_filterfulltext) or ( ManagerEmail like '%' || :lV57Trn_managerwwds_1_filterfulltext) or ( ManagerPhone like '%' || :lV57Trn_managerwwds_1_filterfulltext) or ( 'male' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Other')))");
+            AddWhere(sWhereString, "(( LOWER(ManagerGivenName) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerLastName) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerEmail) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerPhone) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( 'male' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Other')))");
          }
          else
          {
@@ -1248,11 +1248,11 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int7 = new short[16];
          Object[] GXv_Object8 = new Object[2];
-         scmdbuf = "SELECT OrganisationId, ManagerPhone, ManagerGender, ManagerEmail, ManagerLastName, ManagerGivenName, ManagerId FROM Trn_Manager";
+         scmdbuf = "SELECT OrganisationId, ManagerPhone, ManagerEmail, ManagerLastName, ManagerGivenName, ManagerGender, ManagerId FROM Trn_Manager";
          AddWhere(sWhereString, "(OrganisationId = :AV53OrganisationId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( ManagerGivenName like '%' || :lV57Trn_managerwwds_1_filterfulltext) or ( ManagerLastName like '%' || :lV57Trn_managerwwds_1_filterfulltext) or ( ManagerEmail like '%' || :lV57Trn_managerwwds_1_filterfulltext) or ( ManagerPhone like '%' || :lV57Trn_managerwwds_1_filterfulltext) or ( 'male' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Other')))");
+            AddWhere(sWhereString, "(( LOWER(ManagerGivenName) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerLastName) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerEmail) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerPhone) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( 'male' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Other')))");
          }
          else
          {
@@ -1483,8 +1483,8 @@ namespace GeneXus.Programs {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((string[]) buf[2])[0] = rslt.getVarchar(3);
-                ((string[]) buf[3])[0] = rslt.getString(4, 20);
+                ((string[]) buf[2])[0] = rslt.getString(3, 20);
+                ((string[]) buf[3])[0] = rslt.getVarchar(4);
                 ((string[]) buf[4])[0] = rslt.getVarchar(5);
                 ((string[]) buf[5])[0] = rslt.getVarchar(6);
                 ((Guid[]) buf[6])[0] = rslt.getGuid(7);
@@ -1492,8 +1492,8 @@ namespace GeneXus.Programs {
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((string[]) buf[2])[0] = rslt.getVarchar(3);
-                ((string[]) buf[3])[0] = rslt.getString(4, 20);
+                ((string[]) buf[2])[0] = rslt.getString(3, 20);
+                ((string[]) buf[3])[0] = rslt.getVarchar(4);
                 ((string[]) buf[4])[0] = rslt.getVarchar(5);
                 ((string[]) buf[5])[0] = rslt.getVarchar(6);
                 ((Guid[]) buf[6])[0] = rslt.getGuid(7);
@@ -1501,8 +1501,8 @@ namespace GeneXus.Programs {
              case 2 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((string[]) buf[2])[0] = rslt.getVarchar(3);
-                ((string[]) buf[3])[0] = rslt.getString(4, 20);
+                ((string[]) buf[2])[0] = rslt.getString(3, 20);
+                ((string[]) buf[3])[0] = rslt.getVarchar(4);
                 ((string[]) buf[4])[0] = rslt.getVarchar(5);
                 ((string[]) buf[5])[0] = rslt.getVarchar(6);
                 ((Guid[]) buf[6])[0] = rslt.getGuid(7);

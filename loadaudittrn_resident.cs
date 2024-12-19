@@ -260,7 +260,7 @@ namespace GeneXus.Programs {
             AV12AuditingObjectRecordItem.gxTpr_Attribute.Add(AV13AuditingObjectRecordItemAttributeItem, 0);
             AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name = "ResidentPhone";
-            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = "Phone";
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = "Mobile Phone";
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = false;
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Isdescriptionattribute = false;
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Oldvalue = A70ResidentPhone;
@@ -772,7 +772,7 @@ namespace GeneXus.Programs {
                AV12AuditingObjectRecordItem.gxTpr_Attribute.Add(AV13AuditingObjectRecordItemAttributeItem, 0);
                AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name = "ResidentPhone";
-               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = "Phone";
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = "Mobile Phone";
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = false;
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Isdescriptionattribute = false;
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue = A70ResidentPhone;

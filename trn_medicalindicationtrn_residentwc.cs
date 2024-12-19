@@ -2435,7 +2435,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412188503070", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241219154720", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2451,7 +2451,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_medicalindicationtrn_residentwc.js", "?202412188503070", false, true);
+         context.AddJavascriptSource("trn_medicalindicationtrn_residentwc.js", "?20241219154720", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3563,7 +3563,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(T1.MedicalIndicationId = :AV8MedicalIndicationId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV16FilterFullText)) )
          {
-            AddWhere(sWhereString, "(( 'mr' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentSalutation = ( 'Mr')) or ( 'mrs' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentSalutation = ( 'Mrs')) or ( 'dr' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentSalutation = ( 'Dr')) or ( 'miss' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentSalutation = ( 'Miss')) or ( T1.ResidentBsnNumber like '%' || :lV16FilterFullText) or ( T1.ResidentGivenName like '%' || :lV16FilterFullText) or ( T1.ResidentLastName like '%' || :lV16FilterFullText) or ( T1.ResidentInitials like '%' || :lV16FilterFullText) or ( T1.ResidentEmail like '%' || :lV16FilterFullText) or ( 'male' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentGender = ( 'Other')) or ( T1.ResidentPhone like '%' || :lV16FilterFullText) or ( T1.ResidentGUID like '%' || :lV16FilterFullText) or ( T2.ResidentTypeName like '%' || :lV16FilterFullText))");
+            AddWhere(sWhereString, "(( 'mr' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentSalutation = ( 'Mr')) or ( 'mrs' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentSalutation = ( 'Mrs')) or ( 'dr' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentSalutation = ( 'Dr')) or ( 'miss' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentSalutation = ( 'Miss')) or ( LOWER(T1.ResidentBsnNumber) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(T1.ResidentGivenName) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(T1.ResidentLastName) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(T1.ResidentInitials) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(T1.ResidentEmail) like '%' || LOWER(:lV16FilterFullText)) or ( 'male' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentGender = ( 'Other')) or ( LOWER(T1.ResidentPhone) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(T1.ResidentGUID) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(T2.ResidentTypeName) like '%' || LOWER(:lV16FilterFullText)))");
          }
          else
          {
@@ -3730,7 +3730,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(T1.MedicalIndicationId = :AV8MedicalIndicationId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV16FilterFullText)) )
          {
-            AddWhere(sWhereString, "(( 'mr' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentSalutation = ( 'Mr')) or ( 'mrs' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentSalutation = ( 'Mrs')) or ( 'dr' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentSalutation = ( 'Dr')) or ( 'miss' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentSalutation = ( 'Miss')) or ( T1.ResidentBsnNumber like '%' || :lV16FilterFullText) or ( T1.ResidentGivenName like '%' || :lV16FilterFullText) or ( T1.ResidentLastName like '%' || :lV16FilterFullText) or ( T1.ResidentInitials like '%' || :lV16FilterFullText) or ( T1.ResidentEmail like '%' || :lV16FilterFullText) or ( 'male' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentGender = ( 'Other')) or ( T1.ResidentPhone like '%' || :lV16FilterFullText) or ( T1.ResidentGUID like '%' || :lV16FilterFullText) or ( T2.ResidentTypeName like '%' || :lV16FilterFullText))");
+            AddWhere(sWhereString, "(( 'mr' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentSalutation = ( 'Mr')) or ( 'mrs' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentSalutation = ( 'Mrs')) or ( 'dr' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentSalutation = ( 'Dr')) or ( 'miss' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentSalutation = ( 'Miss')) or ( LOWER(T1.ResidentBsnNumber) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(T1.ResidentGivenName) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(T1.ResidentLastName) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(T1.ResidentInitials) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(T1.ResidentEmail) like '%' || LOWER(:lV16FilterFullText)) or ( 'male' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV16FilterFullText) and T1.ResidentGender = ( 'Other')) or ( LOWER(T1.ResidentPhone) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(T1.ResidentGUID) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(T2.ResidentTypeName) like '%' || LOWER(:lV16FilterFullText)))");
          }
          else
          {

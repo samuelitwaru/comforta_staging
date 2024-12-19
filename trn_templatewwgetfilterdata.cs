@@ -607,7 +607,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT Trn_TemplateName, Trn_TemplateContent, Trn_TemplateMedia, Trn_TemplateId FROM Trn_Template";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_templatewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( Trn_TemplateName like '%' || :lV42Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateMedia like '%' || :lV42Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateContent like '%' || :lV42Trn_templatewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(Trn_TemplateName) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateMedia) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateContent) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)))");
          }
          else
          {
@@ -701,7 +701,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT Trn_TemplateMedia, Trn_TemplateContent, Trn_TemplateName, Trn_TemplateId FROM Trn_Template";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_templatewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( Trn_TemplateName like '%' || :lV42Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateMedia like '%' || :lV42Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateContent like '%' || :lV42Trn_templatewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(Trn_TemplateName) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateMedia) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateContent) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)))");
          }
          else
          {
@@ -795,7 +795,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT Trn_TemplateContent, Trn_TemplateMedia, Trn_TemplateName, Trn_TemplateId FROM Trn_Template";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_templatewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( Trn_TemplateName like '%' || :lV42Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateMedia like '%' || :lV42Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateContent like '%' || :lV42Trn_templatewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(Trn_TemplateName) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateMedia) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateContent) like '%' || LOWER(:lV42Trn_templatewwds_1_filterfulltext)))");
          }
          else
          {

@@ -347,7 +347,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT SupplierGenTypeName, SupplierGenTypeId FROM Trn_SupplierGenType";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV38Trn_suppliergentypewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( SupplierGenTypeName like '%' || :lV38Trn_suppliergentypewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(SupplierGenTypeName) like '%' || LOWER(:lV38Trn_suppliergentypewwds_1_filterfulltext)))");
          }
          else
          {

@@ -2726,7 +2726,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713291960", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412191572981", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2742,7 +2742,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_pageww.js", "?2024121713291962", false, true);
+         context.AddJavascriptSource("trn_pageww.js", "?202412191572983", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3895,7 +3895,7 @@ namespace GeneXus.Programs {
          sOrderString = "";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_pagewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( Trn_PageName like '%' || :lV60Trn_pagewwds_1_filterfulltext) or ( PageJsonContent like '%' || :lV60Trn_pagewwds_1_filterfulltext) or ( PageGJSHtml like '%' || :lV60Trn_pagewwds_1_filterfulltext) or ( PageGJSJson like '%' || :lV60Trn_pagewwds_1_filterfulltext) or ( 'true' like '%' || LOWER(:lV60Trn_pagewwds_1_filterfulltext) and PageIsContentPage = TRUE) or ( 'false' like '%' || LOWER(:lV60Trn_pagewwds_1_filterfulltext) and PageIsContentPage = FALSE) or ( PageChildren like '%' || :lV60Trn_pagewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(Trn_PageName) like '%' || LOWER(:lV60Trn_pagewwds_1_filterfulltext)) or ( LOWER(PageJsonContent) like '%' || LOWER(:lV60Trn_pagewwds_1_filterfulltext)) or ( LOWER(PageGJSHtml) like '%' || LOWER(:lV60Trn_pagewwds_1_filterfulltext)) or ( LOWER(PageGJSJson) like '%' || LOWER(:lV60Trn_pagewwds_1_filterfulltext)) or ( 'true' like '%' || LOWER(:lV60Trn_pagewwds_1_filterfulltext) and PageIsContentPage = TRUE) or ( 'false' like '%' || LOWER(:lV60Trn_pagewwds_1_filterfulltext) and PageIsContentPage = FALSE) or ( LOWER(PageChildren) like '%' || LOWER(:lV60Trn_pagewwds_1_filterfulltext)))");
          }
          else
          {
@@ -4152,7 +4152,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT COUNT(*) FROM Trn_Page";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_pagewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( Trn_PageName like '%' || :lV60Trn_pagewwds_1_filterfulltext) or ( PageJsonContent like '%' || :lV60Trn_pagewwds_1_filterfulltext) or ( PageGJSHtml like '%' || :lV60Trn_pagewwds_1_filterfulltext) or ( PageGJSJson like '%' || :lV60Trn_pagewwds_1_filterfulltext) or ( 'true' like '%' || LOWER(:lV60Trn_pagewwds_1_filterfulltext) and PageIsContentPage = TRUE) or ( 'false' like '%' || LOWER(:lV60Trn_pagewwds_1_filterfulltext) and PageIsContentPage = FALSE) or ( PageChildren like '%' || :lV60Trn_pagewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(Trn_PageName) like '%' || LOWER(:lV60Trn_pagewwds_1_filterfulltext)) or ( LOWER(PageJsonContent) like '%' || LOWER(:lV60Trn_pagewwds_1_filterfulltext)) or ( LOWER(PageGJSHtml) like '%' || LOWER(:lV60Trn_pagewwds_1_filterfulltext)) or ( LOWER(PageGJSJson) like '%' || LOWER(:lV60Trn_pagewwds_1_filterfulltext)) or ( 'true' like '%' || LOWER(:lV60Trn_pagewwds_1_filterfulltext) and PageIsContentPage = TRUE) or ( 'false' like '%' || LOWER(:lV60Trn_pagewwds_1_filterfulltext) and PageIsContentPage = FALSE) or ( LOWER(PageChildren) like '%' || LOWER(:lV60Trn_pagewwds_1_filterfulltext)))");
          }
          else
          {

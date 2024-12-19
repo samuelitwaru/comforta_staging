@@ -607,7 +607,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT OrganisationSettingBaseColor, OrganisationSettingLanguage, OrganisationSettingFontSize, OrganisationSettingid FROM Trn_OrganisationSetting";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_organisationsettingwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( OrganisationSettingBaseColor like '%' || :lV42Trn_organisationsettingwwds_1_filterfulltext) or ( OrganisationSettingFontSize like '%' || :lV42Trn_organisationsettingwwds_1_filterfulltext) or ( OrganisationSettingLanguage like '%' || :lV42Trn_organisationsettingwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(OrganisationSettingBaseColor) like '%' || LOWER(:lV42Trn_organisationsettingwwds_1_filterfulltext)) or ( LOWER(OrganisationSettingFontSize) like '%' || LOWER(:lV42Trn_organisationsettingwwds_1_filterfulltext)) or ( LOWER(OrganisationSettingLanguage) like '%' || LOWER(:lV42Trn_organisationsettingwwds_1_filterfulltext)))");
          }
          else
          {
@@ -701,7 +701,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT OrganisationSettingFontSize, OrganisationSettingLanguage, OrganisationSettingBaseColor, OrganisationSettingid FROM Trn_OrganisationSetting";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_organisationsettingwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( OrganisationSettingBaseColor like '%' || :lV42Trn_organisationsettingwwds_1_filterfulltext) or ( OrganisationSettingFontSize like '%' || :lV42Trn_organisationsettingwwds_1_filterfulltext) or ( OrganisationSettingLanguage like '%' || :lV42Trn_organisationsettingwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(OrganisationSettingBaseColor) like '%' || LOWER(:lV42Trn_organisationsettingwwds_1_filterfulltext)) or ( LOWER(OrganisationSettingFontSize) like '%' || LOWER(:lV42Trn_organisationsettingwwds_1_filterfulltext)) or ( LOWER(OrganisationSettingLanguage) like '%' || LOWER(:lV42Trn_organisationsettingwwds_1_filterfulltext)))");
          }
          else
          {
@@ -795,7 +795,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT OrganisationSettingLanguage, OrganisationSettingFontSize, OrganisationSettingBaseColor, OrganisationSettingid FROM Trn_OrganisationSetting";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_organisationsettingwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( OrganisationSettingBaseColor like '%' || :lV42Trn_organisationsettingwwds_1_filterfulltext) or ( OrganisationSettingFontSize like '%' || :lV42Trn_organisationsettingwwds_1_filterfulltext) or ( OrganisationSettingLanguage like '%' || :lV42Trn_organisationsettingwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(OrganisationSettingBaseColor) like '%' || LOWER(:lV42Trn_organisationsettingwwds_1_filterfulltext)) or ( LOWER(OrganisationSettingFontSize) like '%' || LOWER(:lV42Trn_organisationsettingwwds_1_filterfulltext)) or ( LOWER(OrganisationSettingLanguage) like '%' || LOWER(:lV42Trn_organisationsettingwwds_1_filterfulltext)))");
          }
          else
          {

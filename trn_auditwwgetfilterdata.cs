@@ -309,9 +309,9 @@ namespace GeneXus.Programs {
             BRK8I2 = false;
             A11OrganisationId = P008I2_A11OrganisationId[0];
             A422AuditAction = P008I2_A422AuditAction[0];
-            A416AuditDate = P008I2_A416AuditDate[0];
             A419AuditShortDescription = P008I2_A419AuditShortDescription[0];
             A421AuditUserName = P008I2_A421AuditUserName[0];
+            A416AuditDate = P008I2_A416AuditDate[0];
             A417AuditTableName = P008I2_A417AuditTableName[0];
             A415AuditId = P008I2_A415AuditId[0];
             A503AuditTableDiaplayName = StringUtil.Substring( A417AuditTableName, 5, -1);
@@ -414,9 +414,9 @@ namespace GeneXus.Programs {
             BRK8I4 = false;
             A11OrganisationId = P008I3_A11OrganisationId[0];
             A421AuditUserName = P008I3_A421AuditUserName[0];
-            A416AuditDate = P008I3_A416AuditDate[0];
             A419AuditShortDescription = P008I3_A419AuditShortDescription[0];
             A422AuditAction = P008I3_A422AuditAction[0];
+            A416AuditDate = P008I3_A416AuditDate[0];
             A417AuditTableName = P008I3_A417AuditTableName[0];
             A415AuditId = P008I3_A415AuditId[0];
             A503AuditTableDiaplayName = StringUtil.Substring( A417AuditTableName, 5, -1);
@@ -517,10 +517,10 @@ namespace GeneXus.Programs {
          while ( (pr_default.getStatus(2) != 101) )
          {
             A11OrganisationId = P008I4_A11OrganisationId[0];
-            A416AuditDate = P008I4_A416AuditDate[0];
             A419AuditShortDescription = P008I4_A419AuditShortDescription[0];
             A421AuditUserName = P008I4_A421AuditUserName[0];
             A422AuditAction = P008I4_A422AuditAction[0];
+            A416AuditDate = P008I4_A416AuditDate[0];
             A417AuditTableName = P008I4_A417AuditTableName[0];
             A415AuditId = P008I4_A415AuditId[0];
             A503AuditTableDiaplayName = StringUtil.Substring( A417AuditTableName, 5, -1);
@@ -624,9 +624,9 @@ namespace GeneXus.Programs {
             BRK8I7 = false;
             A11OrganisationId = P008I5_A11OrganisationId[0];
             A419AuditShortDescription = P008I5_A419AuditShortDescription[0];
-            A416AuditDate = P008I5_A416AuditDate[0];
             A421AuditUserName = P008I5_A421AuditUserName[0];
             A422AuditAction = P008I5_A422AuditAction[0];
+            A416AuditDate = P008I5_A416AuditDate[0];
             A417AuditTableName = P008I5_A417AuditTableName[0];
             A415AuditId = P008I5_A415AuditId[0];
             A503AuditTableDiaplayName = StringUtil.Substring( A417AuditTableName, 5, -1);
@@ -722,9 +722,9 @@ namespace GeneXus.Programs {
          A11OrganisationId = Guid.Empty;
          P008I2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P008I2_A422AuditAction = new string[] {""} ;
-         P008I2_A416AuditDate = new DateTime[] {DateTime.MinValue} ;
          P008I2_A419AuditShortDescription = new string[] {""} ;
          P008I2_A421AuditUserName = new string[] {""} ;
+         P008I2_A416AuditDate = new DateTime[] {DateTime.MinValue} ;
          P008I2_A417AuditTableName = new string[] {""} ;
          P008I2_A415AuditId = new Guid[] {Guid.Empty} ;
          A415AuditId = Guid.Empty;
@@ -732,38 +732,38 @@ namespace GeneXus.Programs {
          AV30Option = "";
          P008I3_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P008I3_A421AuditUserName = new string[] {""} ;
-         P008I3_A416AuditDate = new DateTime[] {DateTime.MinValue} ;
          P008I3_A419AuditShortDescription = new string[] {""} ;
          P008I3_A422AuditAction = new string[] {""} ;
+         P008I3_A416AuditDate = new DateTime[] {DateTime.MinValue} ;
          P008I3_A417AuditTableName = new string[] {""} ;
          P008I3_A415AuditId = new Guid[] {Guid.Empty} ;
          P008I4_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         P008I4_A416AuditDate = new DateTime[] {DateTime.MinValue} ;
          P008I4_A419AuditShortDescription = new string[] {""} ;
          P008I4_A421AuditUserName = new string[] {""} ;
          P008I4_A422AuditAction = new string[] {""} ;
+         P008I4_A416AuditDate = new DateTime[] {DateTime.MinValue} ;
          P008I4_A417AuditTableName = new string[] {""} ;
          P008I4_A415AuditId = new Guid[] {Guid.Empty} ;
          P008I5_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P008I5_A419AuditShortDescription = new string[] {""} ;
-         P008I5_A416AuditDate = new DateTime[] {DateTime.MinValue} ;
          P008I5_A421AuditUserName = new string[] {""} ;
          P008I5_A422AuditAction = new string[] {""} ;
+         P008I5_A416AuditDate = new DateTime[] {DateTime.MinValue} ;
          P008I5_A417AuditTableName = new string[] {""} ;
          P008I5_A415AuditId = new Guid[] {Guid.Empty} ;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_auditwwgetfilterdata__default(),
             new Object[][] {
                 new Object[] {
-               P008I2_A11OrganisationId, P008I2_A422AuditAction, P008I2_A416AuditDate, P008I2_A419AuditShortDescription, P008I2_A421AuditUserName, P008I2_A417AuditTableName, P008I2_A415AuditId
+               P008I2_A11OrganisationId, P008I2_A422AuditAction, P008I2_A419AuditShortDescription, P008I2_A421AuditUserName, P008I2_A416AuditDate, P008I2_A417AuditTableName, P008I2_A415AuditId
                }
                , new Object[] {
-               P008I3_A11OrganisationId, P008I3_A421AuditUserName, P008I3_A416AuditDate, P008I3_A419AuditShortDescription, P008I3_A422AuditAction, P008I3_A417AuditTableName, P008I3_A415AuditId
+               P008I3_A11OrganisationId, P008I3_A421AuditUserName, P008I3_A419AuditShortDescription, P008I3_A422AuditAction, P008I3_A416AuditDate, P008I3_A417AuditTableName, P008I3_A415AuditId
                }
                , new Object[] {
-               P008I4_A11OrganisationId, P008I4_A416AuditDate, P008I4_A419AuditShortDescription, P008I4_A421AuditUserName, P008I4_A422AuditAction, P008I4_A417AuditTableName, P008I4_A415AuditId
+               P008I4_A11OrganisationId, P008I4_A419AuditShortDescription, P008I4_A421AuditUserName, P008I4_A422AuditAction, P008I4_A416AuditDate, P008I4_A417AuditTableName, P008I4_A415AuditId
                }
                , new Object[] {
-               P008I5_A11OrganisationId, P008I5_A419AuditShortDescription, P008I5_A416AuditDate, P008I5_A421AuditUserName, P008I5_A422AuditAction, P008I5_A417AuditTableName, P008I5_A415AuditId
+               P008I5_A11OrganisationId, P008I5_A419AuditShortDescription, P008I5_A421AuditUserName, P008I5_A422AuditAction, P008I5_A416AuditDate, P008I5_A417AuditTableName, P008I5_A415AuditId
                }
             }
          );
@@ -837,30 +837,30 @@ namespace GeneXus.Programs {
       private IDataStoreProvider pr_default ;
       private Guid[] P008I2_A11OrganisationId ;
       private string[] P008I2_A422AuditAction ;
-      private DateTime[] P008I2_A416AuditDate ;
       private string[] P008I2_A419AuditShortDescription ;
       private string[] P008I2_A421AuditUserName ;
+      private DateTime[] P008I2_A416AuditDate ;
       private string[] P008I2_A417AuditTableName ;
       private Guid[] P008I2_A415AuditId ;
       private Guid[] P008I3_A11OrganisationId ;
       private string[] P008I3_A421AuditUserName ;
-      private DateTime[] P008I3_A416AuditDate ;
       private string[] P008I3_A419AuditShortDescription ;
       private string[] P008I3_A422AuditAction ;
+      private DateTime[] P008I3_A416AuditDate ;
       private string[] P008I3_A417AuditTableName ;
       private Guid[] P008I3_A415AuditId ;
       private Guid[] P008I4_A11OrganisationId ;
-      private DateTime[] P008I4_A416AuditDate ;
       private string[] P008I4_A419AuditShortDescription ;
       private string[] P008I4_A421AuditUserName ;
       private string[] P008I4_A422AuditAction ;
+      private DateTime[] P008I4_A416AuditDate ;
       private string[] P008I4_A417AuditTableName ;
       private Guid[] P008I4_A415AuditId ;
       private Guid[] P008I5_A11OrganisationId ;
       private string[] P008I5_A419AuditShortDescription ;
-      private DateTime[] P008I5_A416AuditDate ;
       private string[] P008I5_A421AuditUserName ;
       private string[] P008I5_A422AuditAction ;
+      private DateTime[] P008I5_A416AuditDate ;
       private string[] P008I5_A417AuditTableName ;
       private Guid[] P008I5_A415AuditId ;
       private string aP3_OptionsJson ;
@@ -894,11 +894,11 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int1 = new short[15];
          Object[] GXv_Object2 = new Object[2];
-         scmdbuf = "SELECT OrganisationId, AuditAction, AuditDate, AuditShortDescription, AuditUserName, AuditTableName, AuditId FROM Trn_Audit";
+         scmdbuf = "SELECT OrganisationId, AuditAction, AuditShortDescription, AuditUserName, AuditDate, AuditTableName, AuditId FROM Trn_Audit";
          AddWhere(sWhereString, "(OrganisationId = :AV65Udparg12)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_auditwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( AuditAction like '%' || :lV54Trn_auditwwds_1_filterfulltext) or ( AuditUserName like '%' || :lV54Trn_auditwwds_1_filterfulltext) or ( SUBSTR(AuditTableName, 5) like '%' || :lV54Trn_auditwwds_1_filterfulltext) or ( AuditShortDescription like '%' || :lV54Trn_auditwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(AuditAction) like '%' || LOWER(:lV54Trn_auditwwds_1_filterfulltext)) or ( LOWER(AuditUserName) like '%' || LOWER(:lV54Trn_auditwwds_1_filterfulltext)) or ( LOWER(SUBSTR(AuditTableName, 5)) like '%' || LOWER(:lV54Trn_auditwwds_1_filterfulltext)) or ( LOWER(AuditShortDescription) like '%' || LOWER(:lV54Trn_auditwwds_1_filterfulltext)))");
          }
          else
          {
@@ -1034,11 +1034,11 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int3 = new short[15];
          Object[] GXv_Object4 = new Object[2];
-         scmdbuf = "SELECT OrganisationId, AuditUserName, AuditDate, AuditShortDescription, AuditAction, AuditTableName, AuditId FROM Trn_Audit";
+         scmdbuf = "SELECT OrganisationId, AuditUserName, AuditShortDescription, AuditAction, AuditDate, AuditTableName, AuditId FROM Trn_Audit";
          AddWhere(sWhereString, "(OrganisationId = :AV65Udparg12)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_auditwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( AuditAction like '%' || :lV54Trn_auditwwds_1_filterfulltext) or ( AuditUserName like '%' || :lV54Trn_auditwwds_1_filterfulltext) or ( SUBSTR(AuditTableName, 5) like '%' || :lV54Trn_auditwwds_1_filterfulltext) or ( AuditShortDescription like '%' || :lV54Trn_auditwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(AuditAction) like '%' || LOWER(:lV54Trn_auditwwds_1_filterfulltext)) or ( LOWER(AuditUserName) like '%' || LOWER(:lV54Trn_auditwwds_1_filterfulltext)) or ( LOWER(SUBSTR(AuditTableName, 5)) like '%' || LOWER(:lV54Trn_auditwwds_1_filterfulltext)) or ( LOWER(AuditShortDescription) like '%' || LOWER(:lV54Trn_auditwwds_1_filterfulltext)))");
          }
          else
          {
@@ -1174,11 +1174,11 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int5 = new short[15];
          Object[] GXv_Object6 = new Object[2];
-         scmdbuf = "SELECT OrganisationId, AuditDate, AuditShortDescription, AuditUserName, AuditAction, AuditTableName, AuditId FROM Trn_Audit";
+         scmdbuf = "SELECT OrganisationId, AuditShortDescription, AuditUserName, AuditAction, AuditDate, AuditTableName, AuditId FROM Trn_Audit";
          AddWhere(sWhereString, "(OrganisationId = :AV65Udparg12)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_auditwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( AuditAction like '%' || :lV54Trn_auditwwds_1_filterfulltext) or ( AuditUserName like '%' || :lV54Trn_auditwwds_1_filterfulltext) or ( SUBSTR(AuditTableName, 5) like '%' || :lV54Trn_auditwwds_1_filterfulltext) or ( AuditShortDescription like '%' || :lV54Trn_auditwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(AuditAction) like '%' || LOWER(:lV54Trn_auditwwds_1_filterfulltext)) or ( LOWER(AuditUserName) like '%' || LOWER(:lV54Trn_auditwwds_1_filterfulltext)) or ( LOWER(SUBSTR(AuditTableName, 5)) like '%' || LOWER(:lV54Trn_auditwwds_1_filterfulltext)) or ( LOWER(AuditShortDescription) like '%' || LOWER(:lV54Trn_auditwwds_1_filterfulltext)))");
          }
          else
          {
@@ -1314,11 +1314,11 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int7 = new short[15];
          Object[] GXv_Object8 = new Object[2];
-         scmdbuf = "SELECT OrganisationId, AuditShortDescription, AuditDate, AuditUserName, AuditAction, AuditTableName, AuditId FROM Trn_Audit";
+         scmdbuf = "SELECT OrganisationId, AuditShortDescription, AuditUserName, AuditAction, AuditDate, AuditTableName, AuditId FROM Trn_Audit";
          AddWhere(sWhereString, "(OrganisationId = :AV65Udparg12)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV54Trn_auditwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( AuditAction like '%' || :lV54Trn_auditwwds_1_filterfulltext) or ( AuditUserName like '%' || :lV54Trn_auditwwds_1_filterfulltext) or ( SUBSTR(AuditTableName, 5) like '%' || :lV54Trn_auditwwds_1_filterfulltext) or ( AuditShortDescription like '%' || :lV54Trn_auditwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(AuditAction) like '%' || LOWER(:lV54Trn_auditwwds_1_filterfulltext)) or ( LOWER(AuditUserName) like '%' || LOWER(:lV54Trn_auditwwds_1_filterfulltext)) or ( LOWER(SUBSTR(AuditTableName, 5)) like '%' || LOWER(:lV54Trn_auditwwds_1_filterfulltext)) or ( LOWER(AuditShortDescription) like '%' || LOWER(:lV54Trn_auditwwds_1_filterfulltext)))");
          }
          else
          {
@@ -1554,36 +1554,36 @@ namespace GeneXus.Programs {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
+                ((string[]) buf[2])[0] = rslt.getVarchar(3);
                 ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
+                ((DateTime[]) buf[4])[0] = rslt.getGXDateTime(5);
                 ((string[]) buf[5])[0] = rslt.getVarchar(6);
                 ((Guid[]) buf[6])[0] = rslt.getGuid(7);
                 return;
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
+                ((string[]) buf[2])[0] = rslt.getVarchar(3);
                 ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
+                ((DateTime[]) buf[4])[0] = rslt.getGXDateTime(5);
                 ((string[]) buf[5])[0] = rslt.getVarchar(6);
                 ((Guid[]) buf[6])[0] = rslt.getGuid(7);
                 return;
              case 2 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
+                ((string[]) buf[1])[0] = rslt.getVarchar(2);
                 ((string[]) buf[2])[0] = rslt.getVarchar(3);
                 ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
+                ((DateTime[]) buf[4])[0] = rslt.getGXDateTime(5);
                 ((string[]) buf[5])[0] = rslt.getVarchar(6);
                 ((Guid[]) buf[6])[0] = rslt.getGuid(7);
                 return;
              case 3 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((DateTime[]) buf[2])[0] = rslt.getGXDateTime(3);
+                ((string[]) buf[2])[0] = rslt.getVarchar(3);
                 ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
+                ((DateTime[]) buf[4])[0] = rslt.getGXDateTime(5);
                 ((string[]) buf[5])[0] = rslt.getVarchar(6);
                 ((Guid[]) buf[6])[0] = rslt.getGuid(7);
                 return;

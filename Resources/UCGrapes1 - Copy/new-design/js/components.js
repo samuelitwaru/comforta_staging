@@ -23,12 +23,7 @@ class ActionListComponent {
       {
         name: "Service/Product Page",
         label: this.currentLanguage.getTranslation("category_services_or_page"),
-        options: this.dataManager.services.map((service) => {
-          return {
-            PageId: service.ProductServiceId,
-            PageName: service.ProductServiceName,
-          };
-        }),
+        options: [],
       },
       {
         name: "Predefined Page",
@@ -50,9 +45,12 @@ class ActionListComponent {
         this.predefinedPageOptions = pages.filter(
           (page) => page.PageIsPredefined && page.PageName != "Home"
         );
-        this.servicePageOptions = pages.filter(
-          (page) => page.PageIsContentPage
-        );
+        this.servicePageOptions = this.dataManager.services.map((service) => {
+          return {
+            PageId: service.ProductServiceId,
+            PageName: service.ProductServiceName,
+          };
+        });
         this.categoryData.forEach((category) => {
           if (category.name === "Page") {
             category.options = this.pageOptions;
@@ -451,6 +449,8 @@ class MappingComponent {
   
       const deleteButton = popup.querySelector("#yes_delete");
       const closeButton = popup.querySelector("#close_popup");
+      const closePopup = popup.querySelector(".close");
+
   
       deleteButton.addEventListener("click", () => {
         if (this.dataManager.deletePage(id)) {
@@ -460,6 +460,10 @@ class MappingComponent {
       });
   
       closeButton.addEventListener("click", () => {
+        popup.remove();
+      });
+
+      closePopup.addEventListener("click", () => {
         popup.remove();
       });
     };
@@ -803,6 +807,11 @@ class MediaComponent {
     cancelButton.onclick = () => {
       popup.style.display = "none";
     };
+
+    const closePopup = popup.querySelector(".close");
+    closePopup.addEventListener("click", () => {
+      popup.remove();
+    });
   }
 
   setupModalInteractions(modal, fileInputField, allUploadedFiles) {

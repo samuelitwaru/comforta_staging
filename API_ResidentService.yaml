@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20241218081446"
+  version: "20241219120908"
 servers:
-  - url: https//:staging.comforta.yukon.software/api
+  - url: https://staging.comforta.yukon.software/api
 paths:
   /auth/resident-login:
     post:
@@ -1009,6 +1009,9 @@ components:
         user_guid:
           description: "user_guid"
           type: "string"
+        error:
+          description: "SDT_Error Response"
+          $ref: "#/components/schemas/SDT_ErrorResponse"
 
 
 
@@ -1693,6 +1696,17 @@ components:
         Tile:
           description: "SDT_Tile"
           $ref: "#/components/schemas/SDT_Tile"
+
+
+
+    SDT_ErrorResponse:
+      properties:
+        code:
+          description: "code"
+          type: "string"
+        message:
+          description: "message"
+          type: "string"
 
 
 

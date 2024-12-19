@@ -2661,7 +2661,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412171328514", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241219156573", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2677,7 +2677,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_locationww.js", "?202412171328517", false, true);
+         context.AddJavascriptSource("trn_locationww.js", "?20241219156576", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3916,7 +3916,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(OrganisationId = :AV6WWPContext__Organisationid)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV75Trn_locationwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LocationName like '%' || :lV75Trn_locationwwds_1_filterfulltext) or ( LocationEmail like '%' || :lV75Trn_locationwwds_1_filterfulltext) or ( LocationPhone like '%' || :lV75Trn_locationwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(LocationName) like '%' || LOWER(:lV75Trn_locationwwds_1_filterfulltext)) or ( LOWER(LocationEmail) like '%' || LOWER(:lV75Trn_locationwwds_1_filterfulltext)) or ( LOWER(LocationPhone) like '%' || LOWER(:lV75Trn_locationwwds_1_filterfulltext)))");
          }
          else
          {
@@ -4042,7 +4042,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(OrganisationId = :AV6WWPContext__Organisationid)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV75Trn_locationwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LocationName like '%' || :lV75Trn_locationwwds_1_filterfulltext) or ( LocationEmail like '%' || :lV75Trn_locationwwds_1_filterfulltext) or ( LocationPhone like '%' || :lV75Trn_locationwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(LocationName) like '%' || LOWER(:lV75Trn_locationwwds_1_filterfulltext)) or ( LOWER(LocationEmail) like '%' || LOWER(:lV75Trn_locationwwds_1_filterfulltext)) or ( LOWER(LocationPhone) like '%' || LOWER(:lV75Trn_locationwwds_1_filterfulltext)))");
          }
          else
          {

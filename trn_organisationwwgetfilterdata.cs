@@ -790,7 +790,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT T1.OrganisationTypeId, T1.OrganisationName, T1.OrganisationPhone, T1.OrganisationEmail, T2.OrganisationTypeName, T1.OrganisationId FROM (Trn_Organisation T1 INNER JOIN Trn_OrganisationType T2 ON T2.OrganisationTypeId = T1.OrganisationTypeId)";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( T1.OrganisationName like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T2.OrganisationTypeName like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationEmail like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationPhone like '%' || :lV70Trn_organisationwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(T1.OrganisationName) like '%' || LOWER(:lV70Trn_organisationwwds_1_filterfulltext)) or ( LOWER(T2.OrganisationTypeName) like '%' || LOWER(:lV70Trn_organisationwwds_1_filterfulltext)) or ( LOWER(T1.OrganisationEmail) like '%' || LOWER(:lV70Trn_organisationwwds_1_filterfulltext)) or ( LOWER(T1.OrganisationPhone) like '%' || LOWER(:lV70Trn_organisationwwds_1_filterfulltext)))");
          }
          else
          {
@@ -908,7 +908,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT T1.OrganisationTypeId, T1.OrganisationPhone, T1.OrganisationEmail, T2.OrganisationTypeName, T1.OrganisationName, T1.OrganisationId FROM (Trn_Organisation T1 INNER JOIN Trn_OrganisationType T2 ON T2.OrganisationTypeId = T1.OrganisationTypeId)";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( T1.OrganisationName like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T2.OrganisationTypeName like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationEmail like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationPhone like '%' || :lV70Trn_organisationwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(T1.OrganisationName) like '%' || LOWER(:lV70Trn_organisationwwds_1_filterfulltext)) or ( LOWER(T2.OrganisationTypeName) like '%' || LOWER(:lV70Trn_organisationwwds_1_filterfulltext)) or ( LOWER(T1.OrganisationEmail) like '%' || LOWER(:lV70Trn_organisationwwds_1_filterfulltext)) or ( LOWER(T1.OrganisationPhone) like '%' || LOWER(:lV70Trn_organisationwwds_1_filterfulltext)))");
          }
          else
          {
@@ -1026,7 +1026,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT T1.OrganisationTypeId, T1.OrganisationEmail, T1.OrganisationPhone, T2.OrganisationTypeName, T1.OrganisationName, T1.OrganisationId FROM (Trn_Organisation T1 INNER JOIN Trn_OrganisationType T2 ON T2.OrganisationTypeId = T1.OrganisationTypeId)";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( T1.OrganisationName like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T2.OrganisationTypeName like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationEmail like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationPhone like '%' || :lV70Trn_organisationwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(T1.OrganisationName) like '%' || LOWER(:lV70Trn_organisationwwds_1_filterfulltext)) or ( LOWER(T2.OrganisationTypeName) like '%' || LOWER(:lV70Trn_organisationwwds_1_filterfulltext)) or ( LOWER(T1.OrganisationEmail) like '%' || LOWER(:lV70Trn_organisationwwds_1_filterfulltext)) or ( LOWER(T1.OrganisationPhone) like '%' || LOWER(:lV70Trn_organisationwwds_1_filterfulltext)))");
          }
          else
          {
@@ -1144,7 +1144,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT T1.OrganisationTypeId, T1.OrganisationPhone, T1.OrganisationEmail, T2.OrganisationTypeName, T1.OrganisationName, T1.OrganisationId FROM (Trn_Organisation T1 INNER JOIN Trn_OrganisationType T2 ON T2.OrganisationTypeId = T1.OrganisationTypeId)";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV70Trn_organisationwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( T1.OrganisationName like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T2.OrganisationTypeName like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationEmail like '%' || :lV70Trn_organisationwwds_1_filterfulltext) or ( T1.OrganisationPhone like '%' || :lV70Trn_organisationwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(T1.OrganisationName) like '%' || LOWER(:lV70Trn_organisationwwds_1_filterfulltext)) or ( LOWER(T2.OrganisationTypeName) like '%' || LOWER(:lV70Trn_organisationwwds_1_filterfulltext)) or ( LOWER(T1.OrganisationEmail) like '%' || LOWER(:lV70Trn_organisationwwds_1_filterfulltext)) or ( LOWER(T1.OrganisationPhone) like '%' || LOWER(:lV70Trn_organisationwwds_1_filterfulltext)))");
          }
          else
          {

@@ -2366,7 +2366,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713234626", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412191535935", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2382,7 +2382,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_supplieragbtypetrn_supplieragbwc.js", "?2024121713234626", false, true);
+         context.AddJavascriptSource("trn_supplieragbtypetrn_supplieragbwc.js", "?202412191535935", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3248,7 +3248,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(SupplierAgbTypeId = :AV8SupplierAgbTypeId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV16FilterFullText)) )
          {
-            AddWhere(sWhereString, "(( SupplierAgbNumber like '%' || :lV16FilterFullText) or ( SupplierAgbName like '%' || :lV16FilterFullText) or ( SupplierAgbKvkNumber like '%' || :lV16FilterFullText) or ( SupplierAgbContactName like '%' || :lV16FilterFullText) or ( SupplierAgbPhone like '%' || :lV16FilterFullText) or ( SupplierAgbEmail like '%' || :lV16FilterFullText))");
+            AddWhere(sWhereString, "(( LOWER(SupplierAgbNumber) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(SupplierAgbName) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(SupplierAgbKvkNumber) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(SupplierAgbContactName) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(SupplierAgbPhone) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(SupplierAgbEmail) like '%' || LOWER(:lV16FilterFullText)))");
          }
          else
          {
@@ -3346,7 +3346,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(SupplierAgbTypeId = :AV8SupplierAgbTypeId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV16FilterFullText)) )
          {
-            AddWhere(sWhereString, "(( SupplierAgbNumber like '%' || :lV16FilterFullText) or ( SupplierAgbName like '%' || :lV16FilterFullText) or ( SupplierAgbKvkNumber like '%' || :lV16FilterFullText) or ( SupplierAgbContactName like '%' || :lV16FilterFullText) or ( SupplierAgbPhone like '%' || :lV16FilterFullText) or ( SupplierAgbEmail like '%' || :lV16FilterFullText))");
+            AddWhere(sWhereString, "(( LOWER(SupplierAgbNumber) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(SupplierAgbName) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(SupplierAgbKvkNumber) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(SupplierAgbContactName) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(SupplierAgbPhone) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(SupplierAgbEmail) like '%' || LOWER(:lV16FilterFullText)))");
          }
          else
          {

@@ -347,7 +347,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT OrganisationTypeName, OrganisationTypeId FROM Trn_OrganisationType";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV38Trn_organisationtypewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( OrganisationTypeName like '%' || :lV38Trn_organisationtypewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(OrganisationTypeName) like '%' || LOWER(:lV38Trn_organisationtypewwds_1_filterfulltext)))");
          }
          else
          {

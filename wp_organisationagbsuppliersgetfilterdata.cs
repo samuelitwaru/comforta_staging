@@ -1004,7 +1004,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT T1.SupplierAgbTypeId, T1.SupplierAgbName, T1.SupplierAgbEmail, T1.SupplierAgbPhone, T1.SupplierAgbContactName, T2.SupplierAgbTypeName, T1.SupplierAgbId FROM (Trn_SupplierAGB T1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = T1.SupplierAgbTypeId)";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Wp_organisationagbsuppliersds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( T1.SupplierAgbName like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T2.SupplierAgbTypeName like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T1.SupplierAgbContactName like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T1.SupplierAgbPhone like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T1.SupplierAgbEmail like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(T1.SupplierAgbName) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T2.SupplierAgbTypeName) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbContactName) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbPhone) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbEmail) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)))");
          }
          else
          {
@@ -1156,7 +1156,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT T1.SupplierAgbTypeId, T1.SupplierAgbEmail, T1.SupplierAgbPhone, T1.SupplierAgbContactName, T2.SupplierAgbTypeName, T1.SupplierAgbName, T1.SupplierAgbId FROM (Trn_SupplierAGB T1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = T1.SupplierAgbTypeId)";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Wp_organisationagbsuppliersds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( T1.SupplierAgbName like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T2.SupplierAgbTypeName like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T1.SupplierAgbContactName like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T1.SupplierAgbPhone like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T1.SupplierAgbEmail like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(T1.SupplierAgbName) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T2.SupplierAgbTypeName) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbContactName) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbPhone) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbEmail) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)))");
          }
          else
          {
@@ -1308,7 +1308,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT T1.SupplierAgbTypeId, T1.SupplierAgbContactName, T1.SupplierAgbEmail, T1.SupplierAgbPhone, T2.SupplierAgbTypeName, T1.SupplierAgbName, T1.SupplierAgbId FROM (Trn_SupplierAGB T1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = T1.SupplierAgbTypeId)";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Wp_organisationagbsuppliersds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( T1.SupplierAgbName like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T2.SupplierAgbTypeName like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T1.SupplierAgbContactName like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T1.SupplierAgbPhone like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T1.SupplierAgbEmail like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(T1.SupplierAgbName) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T2.SupplierAgbTypeName) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbContactName) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbPhone) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbEmail) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)))");
          }
          else
          {
@@ -1460,7 +1460,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT T1.SupplierAgbTypeId, T1.SupplierAgbPhone, T1.SupplierAgbEmail, T1.SupplierAgbContactName, T2.SupplierAgbTypeName, T1.SupplierAgbName, T1.SupplierAgbId FROM (Trn_SupplierAGB T1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = T1.SupplierAgbTypeId)";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Wp_organisationagbsuppliersds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( T1.SupplierAgbName like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T2.SupplierAgbTypeName like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T1.SupplierAgbContactName like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T1.SupplierAgbPhone like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T1.SupplierAgbEmail like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(T1.SupplierAgbName) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T2.SupplierAgbTypeName) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbContactName) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbPhone) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbEmail) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)))");
          }
          else
          {
@@ -1612,7 +1612,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT T1.SupplierAgbTypeId, T1.SupplierAgbEmail, T1.SupplierAgbPhone, T1.SupplierAgbContactName, T2.SupplierAgbTypeName, T1.SupplierAgbName, T1.SupplierAgbId FROM (Trn_SupplierAGB T1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = T1.SupplierAgbTypeId)";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV52Wp_organisationagbsuppliersds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( T1.SupplierAgbName like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T2.SupplierAgbTypeName like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T1.SupplierAgbContactName like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T1.SupplierAgbPhone like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext) or ( T1.SupplierAgbEmail like '%' || :lV52Wp_organisationagbsuppliersds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(T1.SupplierAgbName) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T2.SupplierAgbTypeName) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbContactName) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbPhone) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbEmail) like '%' || LOWER(:lV52Wp_organisationagbsuppliersds_1_filterfulltext)))");
          }
          else
          {

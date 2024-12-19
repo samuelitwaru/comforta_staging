@@ -347,7 +347,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT SupplierAgbTypeName, SupplierAgbTypeId FROM Trn_SupplierAgbType";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV38Trn_supplieragbtypewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( SupplierAgbTypeName like '%' || :lV38Trn_supplieragbtypewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(SupplierAgbTypeName) like '%' || LOWER(:lV38Trn_supplieragbtypewwds_1_filterfulltext)))");
          }
          else
          {

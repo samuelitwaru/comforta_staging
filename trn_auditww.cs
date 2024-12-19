@@ -2304,7 +2304,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412171329390", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412191575947", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2320,7 +2320,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_auditww.js", "?202412171329393", false, true);
+         context.AddJavascriptSource("trn_auditww.js", "?202412191575950", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3323,7 +3323,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(OrganisationId = :AV62Udparg1)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_auditwwds_2_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( AuditAction like '%' || :lV64Trn_auditwwds_2_filterfulltext) or ( AuditUserName like '%' || :lV64Trn_auditwwds_2_filterfulltext) or ( SUBSTR(AuditTableName, 5) like '%' || :lV64Trn_auditwwds_2_filterfulltext) or ( AuditShortDescription like '%' || :lV64Trn_auditwwds_2_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(AuditAction) like '%' || LOWER(:lV64Trn_auditwwds_2_filterfulltext)) or ( LOWER(AuditUserName) like '%' || LOWER(:lV64Trn_auditwwds_2_filterfulltext)) or ( LOWER(SUBSTR(AuditTableName, 5)) like '%' || LOWER(:lV64Trn_auditwwds_2_filterfulltext)) or ( LOWER(AuditShortDescription) like '%' || LOWER(:lV64Trn_auditwwds_2_filterfulltext)))");
          }
          else
          {
@@ -3510,7 +3510,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(OrganisationId = :AV62Udparg1)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV64Trn_auditwwds_2_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( AuditAction like '%' || :lV64Trn_auditwwds_2_filterfulltext) or ( AuditUserName like '%' || :lV64Trn_auditwwds_2_filterfulltext) or ( SUBSTR(AuditTableName, 5) like '%' || :lV64Trn_auditwwds_2_filterfulltext) or ( AuditShortDescription like '%' || :lV64Trn_auditwwds_2_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(AuditAction) like '%' || LOWER(:lV64Trn_auditwwds_2_filterfulltext)) or ( LOWER(AuditUserName) like '%' || LOWER(:lV64Trn_auditwwds_2_filterfulltext)) or ( LOWER(SUBSTR(AuditTableName, 5)) like '%' || LOWER(:lV64Trn_auditwwds_2_filterfulltext)) or ( LOWER(AuditShortDescription) like '%' || LOWER(:lV64Trn_auditwwds_2_filterfulltext)))");
          }
          else
          {

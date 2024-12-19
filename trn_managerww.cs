@@ -2830,7 +2830,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412188513434", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412191565315", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2846,7 +2846,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_managerww.js", "?202412188513437", false, true);
+         context.AddJavascriptSource("trn_managerww.js", "?202412191565319", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -4187,7 +4187,7 @@ public class trn_managerww__default : DataStoreHelperBase, IDataStoreHelper
       AddWhere(sWhereString, "(OrganisationId = :AV61OrganisationId)");
       if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV91Trn_managerwwds_1_filterfulltext)) )
       {
-         AddWhere(sWhereString, "(( ManagerGivenName like '%' || :lV91Trn_managerwwds_1_filterfulltext) or ( ManagerLastName like '%' || :lV91Trn_managerwwds_1_filterfulltext) or ( ManagerEmail like '%' || :lV91Trn_managerwwds_1_filterfulltext) or ( ManagerPhone like '%' || :lV91Trn_managerwwds_1_filterfulltext) or ( 'male' like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Other')))");
+         AddWhere(sWhereString, "(( LOWER(ManagerGivenName) like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerLastName) like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerEmail) like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerPhone) like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext)) or ( 'male' like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Other')))");
       }
       else
       {
@@ -4363,7 +4363,7 @@ public class trn_managerww__default : DataStoreHelperBase, IDataStoreHelper
       AddWhere(sWhereString, "(OrganisationId = :AV61OrganisationId)");
       if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV91Trn_managerwwds_1_filterfulltext)) )
       {
-         AddWhere(sWhereString, "(( ManagerGivenName like '%' || :lV91Trn_managerwwds_1_filterfulltext) or ( ManagerLastName like '%' || :lV91Trn_managerwwds_1_filterfulltext) or ( ManagerEmail like '%' || :lV91Trn_managerwwds_1_filterfulltext) or ( ManagerPhone like '%' || :lV91Trn_managerwwds_1_filterfulltext) or ( 'male' like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Other')))");
+         AddWhere(sWhereString, "(( LOWER(ManagerGivenName) like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerLastName) like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerEmail) like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerPhone) like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext)) or ( 'male' like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV91Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Other')))");
       }
       else
       {

@@ -2482,7 +2482,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713282983", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241219156368", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2498,7 +2498,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_templateww.js", "?2024121713282986", false, true);
+         context.AddJavascriptSource("trn_templateww.js", "?202412191563610", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3350,7 +3350,7 @@ namespace GeneXus.Programs {
          sOrderString = "";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_templatewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( Trn_TemplateName like '%' || :lV48Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateMedia like '%' || :lV48Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateContent like '%' || :lV48Trn_templatewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(Trn_TemplateName) like '%' || LOWER(:lV48Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateMedia) like '%' || LOWER(:lV48Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateContent) like '%' || LOWER(:lV48Trn_templatewwds_1_filterfulltext)))");
          }
          else
          {
@@ -3473,7 +3473,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT COUNT(*) FROM Trn_Template";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV48Trn_templatewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( Trn_TemplateName like '%' || :lV48Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateMedia like '%' || :lV48Trn_templatewwds_1_filterfulltext) or ( Trn_TemplateContent like '%' || :lV48Trn_templatewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(Trn_TemplateName) like '%' || LOWER(:lV48Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateMedia) like '%' || LOWER(:lV48Trn_templatewwds_1_filterfulltext)) or ( LOWER(Trn_TemplateContent) like '%' || LOWER(:lV48Trn_templatewwds_1_filterfulltext)))");
          }
          else
          {

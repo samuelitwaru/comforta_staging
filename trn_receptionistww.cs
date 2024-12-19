@@ -2627,7 +2627,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412188512915", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241219157227", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2643,7 +2643,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_receptionistww.js", "?202412188512917", false, true);
+         context.AddJavascriptSource("trn_receptionistww.js", "?20241219157229", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3755,7 +3755,7 @@ namespace GeneXus.Programs {
          sOrderString = "";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_receptionistwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( ReceptionistGivenName like '%' || :lV61Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistLastName like '%' || :lV61Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistEmail like '%' || :lV61Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistPhone like '%' || :lV61Trn_receptionistwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(ReceptionistGivenName) like '%' || LOWER(:lV61Trn_receptionistwwds_1_filterfulltext)) or ( LOWER(ReceptionistLastName) like '%' || LOWER(:lV61Trn_receptionistwwds_1_filterfulltext)) or ( LOWER(ReceptionistEmail) like '%' || LOWER(:lV61Trn_receptionistwwds_1_filterfulltext)) or ( LOWER(ReceptionistPhone) like '%' || LOWER(:lV61Trn_receptionistwwds_1_filterfulltext)))");
          }
          else
          {
@@ -3928,7 +3928,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT COUNT(*) FROM Trn_Receptionist";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_receptionistwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( ReceptionistGivenName like '%' || :lV61Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistLastName like '%' || :lV61Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistEmail like '%' || :lV61Trn_receptionistwwds_1_filterfulltext) or ( ReceptionistPhone like '%' || :lV61Trn_receptionistwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(ReceptionistGivenName) like '%' || LOWER(:lV61Trn_receptionistwwds_1_filterfulltext)) or ( LOWER(ReceptionistLastName) like '%' || LOWER(:lV61Trn_receptionistwwds_1_filterfulltext)) or ( LOWER(ReceptionistEmail) like '%' || LOWER(:lV61Trn_receptionistwwds_1_filterfulltext)) or ( LOWER(ReceptionistPhone) like '%' || LOWER(:lV61Trn_receptionistwwds_1_filterfulltext)))");
          }
          else
          {

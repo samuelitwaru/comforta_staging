@@ -563,7 +563,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          AddWhere(sWhereString, "(T1.WWPFormType = :AV38WWPFormType)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV37FilterFullText)) )
          {
-            AddWhere(sWhereString, "(( T1.WWPFormReferenceName like '%' || :lV37FilterFullText) or ( T1.WWPFormTitle like '%' || :lV37FilterFullText))");
+            AddWhere(sWhereString, "(( LOWER(T1.WWPFormReferenceName) like '%' || LOWER(:lV37FilterFullText)) or ( LOWER(T1.WWPFormTitle) like '%' || LOWER(:lV37FilterFullText)))");
          }
          else
          {
@@ -668,7 +668,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          AddWhere(sWhereString, "(T1.WWPFormType = :AV38WWPFormType)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV37FilterFullText)) )
          {
-            AddWhere(sWhereString, "(( T1.WWPFormReferenceName like '%' || :lV37FilterFullText) or ( T1.WWPFormTitle like '%' || :lV37FilterFullText))");
+            AddWhere(sWhereString, "(( LOWER(T1.WWPFormReferenceName) like '%' || LOWER(:lV37FilterFullText)) or ( LOWER(T1.WWPFormTitle) like '%' || LOWER(:lV37FilterFullText)))");
          }
          else
          {

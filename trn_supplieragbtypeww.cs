@@ -2303,7 +2303,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713285474", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412191565313", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2319,7 +2319,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_supplieragbtypeww.js", "?2024121713285477", false, true);
+         context.AddJavascriptSource("trn_supplieragbtypeww.js", "?202412191565316", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3077,7 +3077,7 @@ namespace GeneXus.Programs {
          sOrderString = "";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_supplieragbtypewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( SupplierAgbTypeName like '%' || :lV43Trn_supplieragbtypewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(SupplierAgbTypeName) like '%' || LOWER(:lV43Trn_supplieragbtypewwds_1_filterfulltext)))");
          }
          else
          {
@@ -3135,7 +3135,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT COUNT(*) FROM Trn_SupplierAgbType";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV43Trn_supplieragbtypewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( SupplierAgbTypeName like '%' || :lV43Trn_supplieragbtypewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(SupplierAgbTypeName) like '%' || LOWER(:lV43Trn_supplieragbtypewwds_1_filterfulltext)))");
          }
          else
          {

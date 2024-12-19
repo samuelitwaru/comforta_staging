@@ -860,7 +860,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(T1.OrganisationId = :AV56Udparg11)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Wp_organisationgeneralsuppliersds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( T1.SupplierGenCompanyName like '%' || :lV45Wp_organisationgeneralsuppliersds_1_filterfulltext) or ( T2.SupplierGenTypeName like '%' || :lV45Wp_organisationgeneralsuppliersds_1_filterfulltext) or ( T1.SupplierGenContactName like '%' || :lV45Wp_organisationgeneralsuppliersds_1_filterfulltext) or ( T1.SupplierGenContactPhone like '%' || :lV45Wp_organisationgeneralsuppliersds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(T1.SupplierGenCompanyName) like '%' || LOWER(:lV45Wp_organisationgeneralsuppliersds_1_filterfulltext)) or ( LOWER(T2.SupplierGenTypeName) like '%' || LOWER(:lV45Wp_organisationgeneralsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierGenContactName) like '%' || LOWER(:lV45Wp_organisationgeneralsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierGenContactPhone) like '%' || LOWER(:lV45Wp_organisationgeneralsuppliersds_1_filterfulltext)))");
          }
          else
          {
@@ -991,7 +991,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(T1.OrganisationId = :AV56Udparg11)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Wp_organisationgeneralsuppliersds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( T1.SupplierGenCompanyName like '%' || :lV45Wp_organisationgeneralsuppliersds_1_filterfulltext) or ( T2.SupplierGenTypeName like '%' || :lV45Wp_organisationgeneralsuppliersds_1_filterfulltext) or ( T1.SupplierGenContactName like '%' || :lV45Wp_organisationgeneralsuppliersds_1_filterfulltext) or ( T1.SupplierGenContactPhone like '%' || :lV45Wp_organisationgeneralsuppliersds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(T1.SupplierGenCompanyName) like '%' || LOWER(:lV45Wp_organisationgeneralsuppliersds_1_filterfulltext)) or ( LOWER(T2.SupplierGenTypeName) like '%' || LOWER(:lV45Wp_organisationgeneralsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierGenContactName) like '%' || LOWER(:lV45Wp_organisationgeneralsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierGenContactPhone) like '%' || LOWER(:lV45Wp_organisationgeneralsuppliersds_1_filterfulltext)))");
          }
          else
          {
@@ -1122,7 +1122,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(T1.OrganisationId = :AV56Udparg11)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Wp_organisationgeneralsuppliersds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( T1.SupplierGenCompanyName like '%' || :lV45Wp_organisationgeneralsuppliersds_1_filterfulltext) or ( T2.SupplierGenTypeName like '%' || :lV45Wp_organisationgeneralsuppliersds_1_filterfulltext) or ( T1.SupplierGenContactName like '%' || :lV45Wp_organisationgeneralsuppliersds_1_filterfulltext) or ( T1.SupplierGenContactPhone like '%' || :lV45Wp_organisationgeneralsuppliersds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(T1.SupplierGenCompanyName) like '%' || LOWER(:lV45Wp_organisationgeneralsuppliersds_1_filterfulltext)) or ( LOWER(T2.SupplierGenTypeName) like '%' || LOWER(:lV45Wp_organisationgeneralsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierGenContactName) like '%' || LOWER(:lV45Wp_organisationgeneralsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierGenContactPhone) like '%' || LOWER(:lV45Wp_organisationgeneralsuppliersds_1_filterfulltext)))");
          }
          else
          {
@@ -1253,7 +1253,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(T1.OrganisationId = :AV56Udparg11)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV45Wp_organisationgeneralsuppliersds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( T1.SupplierGenCompanyName like '%' || :lV45Wp_organisationgeneralsuppliersds_1_filterfulltext) or ( T2.SupplierGenTypeName like '%' || :lV45Wp_organisationgeneralsuppliersds_1_filterfulltext) or ( T1.SupplierGenContactName like '%' || :lV45Wp_organisationgeneralsuppliersds_1_filterfulltext) or ( T1.SupplierGenContactPhone like '%' || :lV45Wp_organisationgeneralsuppliersds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(T1.SupplierGenCompanyName) like '%' || LOWER(:lV45Wp_organisationgeneralsuppliersds_1_filterfulltext)) or ( LOWER(T2.SupplierGenTypeName) like '%' || LOWER(:lV45Wp_organisationgeneralsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierGenContactName) like '%' || LOWER(:lV45Wp_organisationgeneralsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierGenContactPhone) like '%' || LOWER(:lV45Wp_organisationgeneralsuppliersds_1_filterfulltext)))");
          }
          else
          {

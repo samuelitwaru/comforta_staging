@@ -64,7 +64,6 @@ namespace GeneXus.Programs {
          AV8GAMUser.load( AV14UserGUID);
          if ( AV8GAMUser.checkrole("Organisation Manager") )
          {
-            new prc_logtofile(context ).execute(  "Manager is role") ;
             /* Optimized UPDATE. */
             /* Using cursor P007Z2 */
             pr_default.execute(0, new Object[] {AV8GAMUser.gxTpr_Email, AV8GAMUser.gxTpr_Guid});
@@ -76,7 +75,6 @@ namespace GeneXus.Programs {
          {
             if ( AV8GAMUser.checkrole("Receptionist") )
             {
-               new prc_logtofile(context ).execute(  "Receptionist is role") ;
                /* Optimized UPDATE. */
                /* Using cursor P007Z3 */
                pr_default.execute(1, new Object[] {AV8GAMUser.gxTpr_Email, AV8GAMUser.gxTpr_Guid});

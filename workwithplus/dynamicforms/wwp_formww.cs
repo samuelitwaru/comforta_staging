@@ -3110,7 +3110,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713275072", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241219157127", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3126,7 +3126,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_formww.js", "?2024121713275076", false, true);
+         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_formww.js", "?20241219157131", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -4234,7 +4234,7 @@ public class wwp_formww__default : DataStoreHelperBase, IDataStoreHelper
       AddWhere(sWhereString, "(T1.WWPFormType = :AV44WWPFormType)");
       if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV19FilterFullText)) )
       {
-         AddWhere(sWhereString, "(( T1.WWPFormReferenceName like '%' || :lV19FilterFullText) or ( T1.WWPFormTitle like '%' || :lV19FilterFullText))");
+         AddWhere(sWhereString, "(( LOWER(T1.WWPFormReferenceName) like '%' || LOWER(:lV19FilterFullText)) or ( LOWER(T1.WWPFormTitle) like '%' || LOWER(:lV19FilterFullText)))");
       }
       else
       {

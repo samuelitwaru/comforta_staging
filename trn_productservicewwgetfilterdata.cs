@@ -254,8 +254,8 @@ namespace GeneXus.Programs {
             A11OrganisationId = P006Q2_A11OrganisationId[0];
             A59ProductServiceName = P006Q2_A59ProductServiceName[0];
             A29LocationId = P006Q2_A29LocationId[0];
-            A408ProductServiceClass = P006Q2_A408ProductServiceClass[0];
             A301ProductServiceTileName = P006Q2_A301ProductServiceTileName[0];
+            A408ProductServiceClass = P006Q2_A408ProductServiceClass[0];
             A58ProductServiceId = P006Q2_A58ProductServiceId[0];
             AV25count = 0;
             while ( (pr_default.getStatus(0) != 101) && ( StringUtil.StrCmp(P006Q2_A59ProductServiceName[0], A59ProductServiceName) == 0 ) )
@@ -339,8 +339,8 @@ namespace GeneXus.Programs {
             A11OrganisationId = P006Q3_A11OrganisationId[0];
             A301ProductServiceTileName = P006Q3_A301ProductServiceTileName[0];
             A29LocationId = P006Q3_A29LocationId[0];
-            A408ProductServiceClass = P006Q3_A408ProductServiceClass[0];
             A59ProductServiceName = P006Q3_A59ProductServiceName[0];
+            A408ProductServiceClass = P006Q3_A408ProductServiceClass[0];
             A58ProductServiceId = P006Q3_A58ProductServiceId[0];
             AV25count = 0;
             while ( (pr_default.getStatus(1) != 101) && ( StringUtil.StrCmp(P006Q3_A301ProductServiceTileName[0], A301ProductServiceTileName) == 0 ) )
@@ -426,24 +426,24 @@ namespace GeneXus.Programs {
          P006Q2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P006Q2_A59ProductServiceName = new string[] {""} ;
          P006Q2_A29LocationId = new Guid[] {Guid.Empty} ;
-         P006Q2_A408ProductServiceClass = new string[] {""} ;
          P006Q2_A301ProductServiceTileName = new string[] {""} ;
+         P006Q2_A408ProductServiceClass = new string[] {""} ;
          P006Q2_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          A58ProductServiceId = Guid.Empty;
          AV20Option = "";
          P006Q3_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P006Q3_A301ProductServiceTileName = new string[] {""} ;
          P006Q3_A29LocationId = new Guid[] {Guid.Empty} ;
-         P006Q3_A408ProductServiceClass = new string[] {""} ;
          P006Q3_A59ProductServiceName = new string[] {""} ;
+         P006Q3_A408ProductServiceClass = new string[] {""} ;
          P006Q3_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_productservicewwgetfilterdata__default(),
             new Object[][] {
                 new Object[] {
-               P006Q2_A11OrganisationId, P006Q2_A59ProductServiceName, P006Q2_A29LocationId, P006Q2_A408ProductServiceClass, P006Q2_A301ProductServiceTileName, P006Q2_A58ProductServiceId
+               P006Q2_A11OrganisationId, P006Q2_A59ProductServiceName, P006Q2_A29LocationId, P006Q2_A301ProductServiceTileName, P006Q2_A408ProductServiceClass, P006Q2_A58ProductServiceId
                }
                , new Object[] {
-               P006Q3_A11OrganisationId, P006Q3_A301ProductServiceTileName, P006Q3_A29LocationId, P006Q3_A408ProductServiceClass, P006Q3_A59ProductServiceName, P006Q3_A58ProductServiceId
+               P006Q3_A11OrganisationId, P006Q3_A301ProductServiceTileName, P006Q3_A29LocationId, P006Q3_A59ProductServiceName, P006Q3_A408ProductServiceClass, P006Q3_A58ProductServiceId
                }
             }
          );
@@ -505,14 +505,14 @@ namespace GeneXus.Programs {
       private Guid[] P006Q2_A11OrganisationId ;
       private string[] P006Q2_A59ProductServiceName ;
       private Guid[] P006Q2_A29LocationId ;
-      private string[] P006Q2_A408ProductServiceClass ;
       private string[] P006Q2_A301ProductServiceTileName ;
+      private string[] P006Q2_A408ProductServiceClass ;
       private Guid[] P006Q2_A58ProductServiceId ;
       private Guid[] P006Q3_A11OrganisationId ;
       private string[] P006Q3_A301ProductServiceTileName ;
       private Guid[] P006Q3_A29LocationId ;
-      private string[] P006Q3_A408ProductServiceClass ;
       private string[] P006Q3_A59ProductServiceName ;
+      private string[] P006Q3_A408ProductServiceClass ;
       private Guid[] P006Q3_A58ProductServiceId ;
       private string aP3_OptionsJson ;
       private string aP4_OptionsDescJson ;
@@ -541,11 +541,11 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int1 = new short[12];
          Object[] GXv_Object2 = new Object[2];
-         scmdbuf = "SELECT OrganisationId, ProductServiceName, LocationId, ProductServiceClass, ProductServiceTileName, ProductServiceId FROM Trn_ProductService";
+         scmdbuf = "SELECT OrganisationId, ProductServiceName, LocationId, ProductServiceTileName, ProductServiceClass, ProductServiceId FROM Trn_ProductService";
          AddWhere(sWhereString, "(OrganisationId = :AV55OrganisationId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_productservicewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( ProductServiceName like '%' || :lV58Trn_productservicewwds_1_filterfulltext) or ( ProductServiceTileName like '%' || :lV58Trn_productservicewwds_1_filterfulltext) or ( 'select category' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and (char_length(trim(trailing ' ' from ProductServiceClass))=0)) or ( 'my living' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and ProductServiceClass = ( 'My Living')) or ( 'my care' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and ProductServiceClass = ( 'My Care')) or ( 'my services' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and ProductServiceClass = ( 'My Services')))");
+            AddWhere(sWhereString, "(( LOWER(ProductServiceName) like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext)) or ( LOWER(ProductServiceTileName) like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext)) or ( 'select category' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and (char_length(trim(trailing ' ' from ProductServiceClass))=0)) or ( 'my living' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and ProductServiceClass = ( 'My Living')) or ( 'my care' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and ProductServiceClass = ( 'My Care')) or ( 'my services' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and ProductServiceClass = ( 'My Services')))");
          }
          else
          {
@@ -635,11 +635,11 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int3 = new short[12];
          Object[] GXv_Object4 = new Object[2];
-         scmdbuf = "SELECT OrganisationId, ProductServiceTileName, LocationId, ProductServiceClass, ProductServiceName, ProductServiceId FROM Trn_ProductService";
+         scmdbuf = "SELECT OrganisationId, ProductServiceTileName, LocationId, ProductServiceName, ProductServiceClass, ProductServiceId FROM Trn_ProductService";
          AddWhere(sWhereString, "(OrganisationId = :AV55OrganisationId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_productservicewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( ProductServiceName like '%' || :lV58Trn_productservicewwds_1_filterfulltext) or ( ProductServiceTileName like '%' || :lV58Trn_productservicewwds_1_filterfulltext) or ( 'select category' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and (char_length(trim(trailing ' ' from ProductServiceClass))=0)) or ( 'my living' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and ProductServiceClass = ( 'My Living')) or ( 'my care' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and ProductServiceClass = ( 'My Care')) or ( 'my services' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and ProductServiceClass = ( 'My Services')))");
+            AddWhere(sWhereString, "(( LOWER(ProductServiceName) like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext)) or ( LOWER(ProductServiceTileName) like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext)) or ( 'select category' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and (char_length(trim(trailing ' ' from ProductServiceClass))=0)) or ( 'my living' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and ProductServiceClass = ( 'My Living')) or ( 'my care' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and ProductServiceClass = ( 'My Care')) or ( 'my services' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and ProductServiceClass = ( 'My Services')))");
          }
          else
          {
@@ -784,8 +784,8 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
                 ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-                ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((string[]) buf[4])[0] = rslt.getString(5, 20);
+                ((string[]) buf[3])[0] = rslt.getString(4, 20);
+                ((string[]) buf[4])[0] = rslt.getVarchar(5);
                 ((Guid[]) buf[5])[0] = rslt.getGuid(6);
                 return;
              case 1 :

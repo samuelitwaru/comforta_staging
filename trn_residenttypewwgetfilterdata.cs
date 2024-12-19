@@ -347,7 +347,7 @@ namespace GeneXus.Programs {
          scmdbuf = "SELECT ResidentTypeName, ResidentTypeId FROM Trn_ResidentType";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV38Trn_residenttypewwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( ResidentTypeName like '%' || :lV38Trn_residenttypewwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(ResidentTypeName) like '%' || LOWER(:lV38Trn_residenttypewwds_1_filterfulltext)))");
          }
          else
          {

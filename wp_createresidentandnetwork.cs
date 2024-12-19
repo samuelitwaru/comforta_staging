@@ -281,17 +281,6 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWIZARDSTEPS", AV13WizardSteps);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWIZARDSTEPS", AV13WizardSteps);
-         }
-         GxWebStd.gx_hidden_field( context, "gxhash_vWIZARDSTEPS", GetSecureSignedToken( "", AV13WizardSteps, context));
-         GxWebStd.gx_hidden_field( context, "vCURRENTSTEPAUX", AV12CurrentStepAux);
-         GxWebStd.gx_hidden_field( context, "gxhash_vCURRENTSTEPAUX", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12CurrentStepAux, "")), context));
          GxWebStd.gx_hidden_field( context, "vPREVIOUSSTEP", AV10PreviousStep);
          GxWebStd.gx_hidden_field( context, "gxhash_vPREVIOUSSTEP", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV10PreviousStep, "")), context));
          GxWebStd.gx_hidden_field( context, "vCURRENTSTEP", AV11CurrentStep);
@@ -306,17 +295,6 @@ namespace GeneXus.Programs {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWIZARDSTEPS", AV13WizardSteps);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWIZARDSTEPS", AV13WizardSteps);
-         }
-         GxWebStd.gx_hidden_field( context, "gxhash_vWIZARDSTEPS", GetSecureSignedToken( "", AV13WizardSteps, context));
-         GxWebStd.gx_hidden_field( context, "vCURRENTSTEPAUX", AV12CurrentStepAux);
-         GxWebStd.gx_hidden_field( context, "gxhash_vCURRENTSTEPAUX", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12CurrentStepAux, "")), context));
          GxWebStd.gx_hidden_field( context, "vPREVIOUSSTEP", AV10PreviousStep);
          GxWebStd.gx_hidden_field( context, "gxhash_vPREVIOUSSTEP", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV10PreviousStep, "")), context));
          GxWebStd.gx_hidden_field( context, "vCURRENTSTEP", AV11CurrentStep);
@@ -460,28 +438,20 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 CellPaddingBottom", "start", "top", "", "", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblWizardstepdescription_Internalname, " ", "", "", lblWizardstepdescription_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "WizardStepDescription", 0, "", 1, 1, 0, 0, "HLP_WP_CreateResidentAndNetwork.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 WizardStepsPositionCell", "start", "top", "", "", "div");
             if ( ! isFullAjaxMode( ) )
             {
                /* WebComponent */
-               GxWebStd.gx_hidden_field( context, "W0018"+"", StringUtil.RTrim( WebComp_Wizardstepwc_Component));
+               GxWebStd.gx_hidden_field( context, "W0015"+"", StringUtil.RTrim( WebComp_Wizardstepwc_Component));
                context.WriteHtmlText( "<div") ;
                GxWebStd.ClassAttribute( context, "gxwebcomponent");
-               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0018"+""+"\""+"") ;
+               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0015"+""+"\""+"") ;
                context.WriteHtmlText( ">") ;
                if ( StringUtil.Len( WebComp_Wizardstepwc_Component) != 0 )
                {
                   if ( StringUtil.StrCmp(StringUtil.Lower( OldWizardstepwc), StringUtil.Lower( WebComp_Wizardstepwc_Component)) != 0 )
                   {
-                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0018"+"");
+                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0015"+"");
                   }
                   WebComp_Wizardstepwc.componentdraw();
                   if ( StringUtil.StrCmp(StringUtil.Lower( OldWizardstepwc), StringUtil.Lower( WebComp_Wizardstepwc_Component)) != 0 )
@@ -568,19 +538,12 @@ namespace GeneXus.Programs {
                               /* Execute user event: Start */
                               E116H2 ();
                            }
-                           else if ( StringUtil.StrCmp(sEvt, "REFRESH") == 0 )
-                           {
-                              context.wbHandled = 1;
-                              dynload_actions( ) ;
-                              /* Execute user event: Refresh */
-                              E126H2 ();
-                           }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E136H2 ();
+                              E126H2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
@@ -627,9 +590,9 @@ namespace GeneXus.Programs {
                            }
                            WebComp_Steptitles_Component = OldSteptitles;
                         }
-                        else if ( nCmpId == 18 )
+                        else if ( nCmpId == 15 )
                         {
-                           OldWizardstepwc = cgiGet( "W0018");
+                           OldWizardstepwc = cgiGet( "W0015");
                            if ( ( StringUtil.Len( OldWizardstepwc) == 0 ) || ( StringUtil.StrCmp(OldWizardstepwc, WebComp_Wizardstepwc_Component) != 0 ) )
                            {
                               WebComp_Wizardstepwc = getWebComponent(GetType(), "GeneXus.Programs", OldWizardstepwc, new Object[] {context} );
@@ -639,7 +602,7 @@ namespace GeneXus.Programs {
                            }
                            if ( StringUtil.Len( WebComp_Wizardstepwc_Component) != 0 )
                            {
-                              WebComp_Wizardstepwc.componentprocess("W0018", "", sEvt);
+                              WebComp_Wizardstepwc.componentprocess("W0015", "", sEvt);
                            }
                            WebComp_Wizardstepwc_Component = OldWizardstepwc;
                         }
@@ -786,8 +749,6 @@ namespace GeneXus.Programs {
       {
          initialize_formulas( ) ;
          clear_multi_value_controls( ) ;
-         /* Execute user event: Refresh */
-         E126H2 ();
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             if ( 1 != 0 )
@@ -814,24 +775,13 @@ namespace GeneXus.Programs {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E136H2 ();
+            E126H2 ();
             WB6H0( ) ;
          }
       }
 
       protected void send_integrity_lvl_hashes6H2( )
       {
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vWIZARDSTEPS", AV13WizardSteps);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vWIZARDSTEPS", AV13WizardSteps);
-         }
-         GxWebStd.gx_hidden_field( context, "gxhash_vWIZARDSTEPS", GetSecureSignedToken( "", AV13WizardSteps, context));
-         GxWebStd.gx_hidden_field( context, "vCURRENTSTEPAUX", AV12CurrentStepAux);
-         GxWebStd.gx_hidden_field( context, "gxhash_vCURRENTSTEPAUX", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12CurrentStepAux, "")), context));
       }
 
       protected void before_start_formulas( )
@@ -885,25 +835,23 @@ namespace GeneXus.Programs {
          AV14WizardStep = new GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem(context);
          AV14WizardStep.gxTpr_Code = "Step2";
          AV14WizardStep.gxTpr_Title = "Network (Individuals)";
-         AV14WizardStep.gxTpr_Description = "Network (Individuals)";
+         AV14WizardStep.gxTpr_Description = "";
          AV13WizardSteps.Add(AV14WizardStep, 0);
          AV14WizardStep = new GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem(context);
          AV14WizardStep.gxTpr_Code = "Step3";
          AV14WizardStep.gxTpr_Title = "Network (Companies)";
-         AV14WizardStep.gxTpr_Description = "Network (Companies)";
+         AV14WizardStep.gxTpr_Description = "";
          AV13WizardSteps.Add(AV14WizardStep, 0);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11CurrentStep)) )
          {
             AV12CurrentStepAux = "Step1";
             AssignAttri("", false, "AV12CurrentStepAux", AV12CurrentStepAux);
-            GxWebStd.gx_hidden_field( context, "gxhash_vCURRENTSTEPAUX", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12CurrentStepAux, "")), context));
             AV7WebSession.Remove(AV16Pgmname+"_Data");
          }
          else
          {
             AV12CurrentStepAux = AV11CurrentStep;
             AssignAttri("", false, "AV12CurrentStepAux", AV12CurrentStepAux);
-            GxWebStd.gx_hidden_field( context, "gxhash_vCURRENTSTEPAUX", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12CurrentStepAux, "")), context));
          }
          /* Execute user subroutine: 'LOADWIZARDSTEPWC' */
          S112 ();
@@ -949,12 +897,12 @@ namespace GeneXus.Programs {
             if ( StringUtil.Len( WebComp_Wizardstepwc_Component) != 0 )
             {
                WebComp_Wizardstepwc.setjustcreated();
-               WebComp_Wizardstepwc.componentprepare(new Object[] {(string)"W0018",(string)"",(string)AV16Pgmname+"_Data",(string)AV10PreviousStep,(bool)AV9GoingBack});
+               WebComp_Wizardstepwc.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV16Pgmname+"_Data",(string)AV10PreviousStep,(bool)AV9GoingBack});
                WebComp_Wizardstepwc.componentbind(new Object[] {(string)""+""+"",(string)"",(string)""});
             }
             if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wizardstepwc )
             {
-               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0018"+"");
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0015"+"");
                WebComp_Wizardstepwc.componentdraw();
                context.httpAjaxContext.ajax_rspEndCmp();
             }
@@ -976,12 +924,12 @@ namespace GeneXus.Programs {
             if ( StringUtil.Len( WebComp_Wizardstepwc_Component) != 0 )
             {
                WebComp_Wizardstepwc.setjustcreated();
-               WebComp_Wizardstepwc.componentprepare(new Object[] {(string)"W0018",(string)"",(string)AV16Pgmname+"_Data",(string)AV10PreviousStep,(bool)AV9GoingBack});
+               WebComp_Wizardstepwc.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV16Pgmname+"_Data",(string)AV10PreviousStep,(bool)AV9GoingBack});
                WebComp_Wizardstepwc.componentbind(new Object[] {(string)""+""+"",(string)"",(string)""});
             }
             if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wizardstepwc )
             {
-               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0018"+"");
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0015"+"");
                WebComp_Wizardstepwc.componentdraw();
                context.httpAjaxContext.ajax_rspEndCmp();
             }
@@ -1003,38 +951,15 @@ namespace GeneXus.Programs {
             if ( StringUtil.Len( WebComp_Wizardstepwc_Component) != 0 )
             {
                WebComp_Wizardstepwc.setjustcreated();
-               WebComp_Wizardstepwc.componentprepare(new Object[] {(string)"W0018",(string)"",(string)AV16Pgmname+"_Data",(string)AV10PreviousStep,(bool)AV9GoingBack});
+               WebComp_Wizardstepwc.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV16Pgmname+"_Data",(string)AV10PreviousStep,(bool)AV9GoingBack});
                WebComp_Wizardstepwc.componentbind(new Object[] {(string)""+""+"",(string)"",(string)""});
             }
             if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wizardstepwc )
             {
-               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0018"+"");
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0015"+"");
                WebComp_Wizardstepwc.componentdraw();
                context.httpAjaxContext.ajax_rspEndCmp();
             }
-         }
-      }
-
-      protected void E126H2( )
-      {
-         /* Refresh Routine */
-         returnInSub = false;
-         AV15StepNumber = 1;
-         AV17GXV1 = 1;
-         while ( AV17GXV1 <= AV13WizardSteps.Count )
-         {
-            AV14WizardStep = ((GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem)AV13WizardSteps.Item(AV17GXV1));
-            if ( StringUtil.StrCmp(AV14WizardStep.gxTpr_Code, AV12CurrentStepAux) == 0 )
-            {
-               if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14WizardStep.gxTpr_Description)) )
-               {
-               }
-            }
-            else
-            {
-               AV15StepNumber = (short)(AV15StepNumber+1);
-            }
-            AV17GXV1 = (int)(AV17GXV1+1);
          }
       }
 
@@ -1042,7 +967,7 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void E136H2( )
+      protected void E126H2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -1110,7 +1035,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121118175244", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412191571136", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1126,7 +1051,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_createresidentandnetwork.js", "?2024121118175245", false, true);
+         context.AddJavascriptSource("wp_createresidentandnetwork.js", "?202412191571136", false, true);
          /* End function include_jscripts */
       }
 
@@ -1137,7 +1062,6 @@ namespace GeneXus.Programs {
 
       protected void init_default_properties( )
       {
-         lblWizardstepdescription_Internalname = "WIZARDSTEPDESCRIPTION";
          divData_Internalname = "DATA";
          divTablemain_Internalname = "TABLEMAIN";
          divLayoutmaintable_Internalname = "LAYOUTMAINTABLE";
@@ -1170,7 +1094,7 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV13WizardSteps","fld":"vWIZARDSTEPS","hsh":true},{"av":"AV12CurrentStepAux","fld":"vCURRENTSTEPAUX","hsh":true},{"av":"AV10PreviousStep","fld":"vPREVIOUSSTEP","hsh":true},{"av":"AV11CurrentStep","fld":"vCURRENTSTEP","hsh":true},{"av":"AV9GoingBack","fld":"vGOINGBACK","hsh":true}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV10PreviousStep","fld":"vPREVIOUSSTEP","hsh":true},{"av":"AV11CurrentStep","fld":"vCURRENTSTEP","hsh":true},{"av":"AV9GoingBack","fld":"vGOINGBACK","hsh":true}]}""");
          return  ;
       }
 
@@ -1194,14 +1118,11 @@ namespace GeneXus.Programs {
          bodyStyle = "";
          GXKey = "";
          GXEncryptionTmp = "";
-         AV13WizardSteps = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem>( context, "WizardStepsItem", "Comforta_version2");
-         AV12CurrentStepAux = "";
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
          WebComp_Steptitles_Component = "";
          OldSteptitles = "";
-         lblWizardstepdescription_Jsonclick = "";
          WebComp_Wizardstepwc_Component = "";
          OldWizardstepwc = "";
          sEvt = "";
@@ -1210,7 +1131,9 @@ namespace GeneXus.Programs {
          sEvtType = "";
          GXDecQS = "";
          AV16Pgmname = "";
+         AV13WizardSteps = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem>( context, "WizardStepsItem", "Comforta_version2");
          AV14WizardStep = new GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem(context);
+         AV12CurrentStepAux = "";
          AV7WebSession = context.GetSession();
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -1228,9 +1151,7 @@ namespace GeneXus.Programs {
       private short wbStart ;
       private short nCmpId ;
       private short nDonePA ;
-      private short AV15StepNumber ;
       private short nGXWrapped ;
-      private int AV17GXV1 ;
       private int idxLst ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
@@ -1246,8 +1167,6 @@ namespace GeneXus.Programs {
       private string divData_Internalname ;
       private string WebComp_Steptitles_Component ;
       private string OldSteptitles ;
-      private string lblWizardstepdescription_Internalname ;
-      private string lblWizardstepdescription_Jsonclick ;
       private string WebComp_Wizardstepwc_Component ;
       private string OldWizardstepwc ;
       private string sEvt ;

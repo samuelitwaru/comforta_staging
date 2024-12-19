@@ -443,7 +443,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          AddWhere(sWhereString, "(T1.WWPFormId = :AV46Workwithplus_dynamicforms_wwp_forminstancewwds_1_wwpformid)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV47Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( SUBSTR(TO_CHAR(T1.WWPFormInstanceId,'999999'), 2) like '%' || :lV47Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfull) or ( SUBSTR(TO_CHAR(T1.WWPFormVersionNumber,'9999'), 2) like '%' || :lV47Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfull) or ( T2.WWPUserExtendedFullName like '%' || :lV47Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfull))");
+            AddWhere(sWhereString, "(( SUBSTR(TO_CHAR(T1.WWPFormInstanceId,'999999'), 2) like '%' || :lV47Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfull) or ( SUBSTR(TO_CHAR(T1.WWPFormVersionNumber,'9999'), 2) like '%' || :lV47Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfull) or ( LOWER(T2.WWPUserExtendedFullName) like '%' || LOWER(:lV47Workwithplus_dynamicforms_wwp_forminstancewwds_2_filterfull)))");
          }
          else
          {

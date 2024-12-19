@@ -631,7 +631,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(OrganisationId = :AV9WWPContext__Organisationid)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_locationwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LocationName like '%' || :lV65Trn_locationwwds_1_filterfulltext) or ( LocationEmail like '%' || :lV65Trn_locationwwds_1_filterfulltext) or ( LocationPhone like '%' || :lV65Trn_locationwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(LocationName) like '%' || LOWER(:lV65Trn_locationwwds_1_filterfulltext)) or ( LOWER(LocationEmail) like '%' || LOWER(:lV65Trn_locationwwds_1_filterfulltext)) or ( LOWER(LocationPhone) like '%' || LOWER(:lV65Trn_locationwwds_1_filterfulltext)))");
          }
          else
          {
@@ -728,7 +728,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(OrganisationId = :AV9WWPContext__Organisationid)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_locationwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LocationName like '%' || :lV65Trn_locationwwds_1_filterfulltext) or ( LocationEmail like '%' || :lV65Trn_locationwwds_1_filterfulltext) or ( LocationPhone like '%' || :lV65Trn_locationwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(LocationName) like '%' || LOWER(:lV65Trn_locationwwds_1_filterfulltext)) or ( LOWER(LocationEmail) like '%' || LOWER(:lV65Trn_locationwwds_1_filterfulltext)) or ( LOWER(LocationPhone) like '%' || LOWER(:lV65Trn_locationwwds_1_filterfulltext)))");
          }
          else
          {
@@ -825,7 +825,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(OrganisationId = :AV9WWPContext__Organisationid)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_locationwwds_1_filterfulltext)) )
          {
-            AddWhere(sWhereString, "(( LocationName like '%' || :lV65Trn_locationwwds_1_filterfulltext) or ( LocationEmail like '%' || :lV65Trn_locationwwds_1_filterfulltext) or ( LocationPhone like '%' || :lV65Trn_locationwwds_1_filterfulltext))");
+            AddWhere(sWhereString, "(( LOWER(LocationName) like '%' || LOWER(:lV65Trn_locationwwds_1_filterfulltext)) or ( LOWER(LocationEmail) like '%' || LOWER(:lV65Trn_locationwwds_1_filterfulltext)) or ( LOWER(LocationPhone) like '%' || LOWER(:lV65Trn_locationwwds_1_filterfulltext)))");
          }
          else
          {

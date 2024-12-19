@@ -87,10 +87,12 @@ namespace GeneXus.Programs {
          AV17result = AV10httpclient.ToString();
          if ( AV10httpclient.StatusCode != 200 )
          {
+            AV19ErrorResponse = new SdtSDT_ErrorResponse(context);
             AV19ErrorResponse.gxTpr_Message = AV10httpclient.ErrDescription;
-            new prc_logtofile(context ).execute(  "Error: "+AV10httpclient.ErrDescription) ;
             AV19ErrorResponse.gxTpr_Code = StringUtil.Trim( StringUtil.Str( (decimal)(AV10httpclient.StatusCode), 10, 2));
-            AV16response = AV19ErrorResponse.ToJSonString(false, true);
+            AV18LoginResponse.gxTpr_Error = AV19ErrorResponse;
+            AV16response = AV18LoginResponse.ToJSonString(false, true);
+            new prc_logtofile(context ).execute(  "Error: "+AV19ErrorResponse.ToJSonString(false, true)) ;
          }
          else
          {

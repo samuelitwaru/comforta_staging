@@ -2352,7 +2352,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713234160", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241219153189", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2368,7 +2368,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_suppliergentypetrn_suppliergenwc.js", "?2024121713234161", false, true);
+         context.AddJavascriptSource("trn_suppliergentypetrn_suppliergenwc.js", "?20241219153189", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3180,7 +3180,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(SupplierGenTypeId = :AV8SupplierGenTypeId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV16FilterFullText)) )
          {
-            AddWhere(sWhereString, "(( SupplierGenKvkNumber like '%' || :lV16FilterFullText) or ( SupplierGenCompanyName like '%' || :lV16FilterFullText) or ( SupplierGenContactName like '%' || :lV16FilterFullText) or ( SupplierGenContactPhone like '%' || :lV16FilterFullText))");
+            AddWhere(sWhereString, "(( LOWER(SupplierGenKvkNumber) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(SupplierGenCompanyName) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(SupplierGenContactName) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(SupplierGenContactPhone) like '%' || LOWER(:lV16FilterFullText)))");
          }
          else
          {
@@ -3258,7 +3258,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(SupplierGenTypeId = :AV8SupplierGenTypeId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV16FilterFullText)) )
          {
-            AddWhere(sWhereString, "(( SupplierGenKvkNumber like '%' || :lV16FilterFullText) or ( SupplierGenCompanyName like '%' || :lV16FilterFullText) or ( SupplierGenContactName like '%' || :lV16FilterFullText) or ( SupplierGenContactPhone like '%' || :lV16FilterFullText))");
+            AddWhere(sWhereString, "(( LOWER(SupplierGenKvkNumber) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(SupplierGenCompanyName) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(SupplierGenContactName) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(SupplierGenContactPhone) like '%' || LOWER(:lV16FilterFullText)))");
          }
          else
          {

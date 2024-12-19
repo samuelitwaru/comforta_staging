@@ -36,13 +36,13 @@ namespace GeneXus.Programs
 
 			gxTv_SdtWP_ProductServiceData_Step2_Wwpformreferencename = "";
 
-			gxTv_SdtWP_ProductServiceData_Step2_Calltoactionemail = "";
-
 			gxTv_SdtWP_ProductServiceData_Step2_Calltoactionphone = "";
 
-			gxTv_SdtWP_ProductServiceData_Step2_Phonecode = "";
+			gxTv_SdtWP_ProductServiceData_Step2_Calltoactionemail = "";
 
 			gxTv_SdtWP_ProductServiceData_Step2_Phonenumber = "";
+
+			gxTv_SdtWP_ProductServiceData_Step2_Phonecode = "";
 
 			gxTv_SdtWP_ProductServiceData_Step2_Calltoactionurl = "";
 
@@ -85,19 +85,19 @@ namespace GeneXus.Programs
 			AddObjectProperty("WWPFormReferenceName", gxTpr_Wwpformreferencename, false);
 
 
+			AddObjectProperty("CallToActionPhone", gxTpr_Calltoactionphone, false);
+
+
 			AddObjectProperty("CallToActionEmail", gxTpr_Calltoactionemail, false);
 
 
 			AddObjectProperty("LocationDynamicFormId", gxTpr_Locationdynamicformid, false);
 
 
-			AddObjectProperty("CallToActionPhone", gxTpr_Calltoactionphone, false);
+			AddObjectProperty("PhoneNumber", gxTpr_Phonenumber, false);
 
 
 			AddObjectProperty("PhoneCode", gxTpr_Phonecode, false);
-
-
-			AddObjectProperty("PhoneNumber", gxTpr_Phonenumber, false);
 
 
 			AddObjectProperty("CallToActionUrl", gxTpr_Calltoactionurl, false);
@@ -176,6 +176,22 @@ namespace GeneXus.Programs
 
 
 
+		[SoapElement(ElementName="CallToActionPhone")]
+		[XmlElement(ElementName="CallToActionPhone")]
+		public string gxTpr_Calltoactionphone
+		{
+			get {
+				return gxTv_SdtWP_ProductServiceData_Step2_Calltoactionphone; 
+			}
+			set {
+				gxTv_SdtWP_ProductServiceData_Step2_Calltoactionphone = value;
+				SetDirty("Calltoactionphone");
+			}
+		}
+
+
+
+
 		[SoapElement(ElementName="CallToActionEmail")]
 		[XmlElement(ElementName="CallToActionEmail")]
 		public string gxTpr_Calltoactionemail
@@ -208,16 +224,16 @@ namespace GeneXus.Programs
 
 
 
-		[SoapElement(ElementName="CallToActionPhone")]
-		[XmlElement(ElementName="CallToActionPhone")]
-		public string gxTpr_Calltoactionphone
+		[SoapElement(ElementName="PhoneNumber")]
+		[XmlElement(ElementName="PhoneNumber")]
+		public string gxTpr_Phonenumber
 		{
 			get {
-				return gxTv_SdtWP_ProductServiceData_Step2_Calltoactionphone; 
+				return gxTv_SdtWP_ProductServiceData_Step2_Phonenumber; 
 			}
 			set {
-				gxTv_SdtWP_ProductServiceData_Step2_Calltoactionphone = value;
-				SetDirty("Calltoactionphone");
+				gxTv_SdtWP_ProductServiceData_Step2_Phonenumber = value;
+				SetDirty("Phonenumber");
 			}
 		}
 
@@ -234,22 +250,6 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtWP_ProductServiceData_Step2_Phonecode = value;
 				SetDirty("Phonecode");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="PhoneNumber")]
-		[XmlElement(ElementName="PhoneNumber")]
-		public string gxTpr_Phonenumber
-		{
-			get {
-				return gxTv_SdtWP_ProductServiceData_Step2_Phonenumber; 
-			}
-			set {
-				gxTv_SdtWP_ProductServiceData_Step2_Phonenumber = value;
-				SetDirty("Phonenumber");
 			}
 		}
 
@@ -348,11 +348,11 @@ namespace GeneXus.Programs
 			gxTv_SdtWP_ProductServiceData_Step2_Calltoactiontype = "";
 			gxTv_SdtWP_ProductServiceData_Step2_Calltoactionname = "";
 			gxTv_SdtWP_ProductServiceData_Step2_Wwpformreferencename = "";
+			gxTv_SdtWP_ProductServiceData_Step2_Calltoactionphone = "";
 			gxTv_SdtWP_ProductServiceData_Step2_Calltoactionemail = "";
 
-			gxTv_SdtWP_ProductServiceData_Step2_Calltoactionphone = "";
-			gxTv_SdtWP_ProductServiceData_Step2_Phonecode = "";
 			gxTv_SdtWP_ProductServiceData_Step2_Phonenumber = "";
+			gxTv_SdtWP_ProductServiceData_Step2_Phonecode = "";
 			gxTv_SdtWP_ProductServiceData_Step2_Calltoactionurl = "";
 
 			gxTv_SdtWP_ProductServiceData_Step2_Sdt_calltoaction_N = true;
@@ -378,19 +378,19 @@ namespace GeneXus.Programs
 		protected string gxTv_SdtWP_ProductServiceData_Step2_Wwpformreferencename;
 		 
 
+		protected string gxTv_SdtWP_ProductServiceData_Step2_Calltoactionphone;
+		 
+
 		protected string gxTv_SdtWP_ProductServiceData_Step2_Calltoactionemail;
 		 
 
 		protected Guid gxTv_SdtWP_ProductServiceData_Step2_Locationdynamicformid;
 		 
 
-		protected string gxTv_SdtWP_ProductServiceData_Step2_Calltoactionphone;
+		protected string gxTv_SdtWP_ProductServiceData_Step2_Phonenumber;
 		 
 
 		protected string gxTv_SdtWP_ProductServiceData_Step2_Phonecode;
-		 
-
-		protected string gxTv_SdtWP_ProductServiceData_Step2_Phonenumber;
 		 
 
 		protected string gxTv_SdtWP_ProductServiceData_Step2_Calltoactionurl;
@@ -463,31 +463,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="CallToActionEmail", Order=4)]
-		public  string gxTpr_Calltoactionemail
-		{
-			get { 
-				return sdt.gxTpr_Calltoactionemail;
-
-			}
-			set { 
-				 sdt.gxTpr_Calltoactionemail = value;
-			}
-		}
-
-		[DataMember(Name="LocationDynamicFormId", Order=5)]
-		public Guid gxTpr_Locationdynamicformid
-		{
-			get { 
-				return sdt.gxTpr_Locationdynamicformid;
-
-			}
-			set { 
-				sdt.gxTpr_Locationdynamicformid = value;
-			}
-		}
-
-		[DataMember(Name="CallToActionPhone", Order=6)]
+		[DataMember(Name="CallToActionPhone", Order=4)]
 		public  string gxTpr_Calltoactionphone
 		{
 			get { 
@@ -499,19 +475,31 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="PhoneCode", Order=7)]
-		public  string gxTpr_Phonecode
+		[DataMember(Name="CallToActionEmail", Order=5)]
+		public  string gxTpr_Calltoactionemail
 		{
 			get { 
-				return sdt.gxTpr_Phonecode;
+				return sdt.gxTpr_Calltoactionemail;
 
 			}
 			set { 
-				 sdt.gxTpr_Phonecode = value;
+				 sdt.gxTpr_Calltoactionemail = value;
 			}
 		}
 
-		[DataMember(Name="PhoneNumber", Order=8)]
+		[DataMember(Name="LocationDynamicFormId", Order=6)]
+		public Guid gxTpr_Locationdynamicformid
+		{
+			get { 
+				return sdt.gxTpr_Locationdynamicformid;
+
+			}
+			set { 
+				sdt.gxTpr_Locationdynamicformid = value;
+			}
+		}
+
+		[DataMember(Name="PhoneNumber", Order=7)]
 		public  string gxTpr_Phonenumber
 		{
 			get { 
@@ -520,6 +508,18 @@ namespace GeneXus.Programs
 			}
 			set { 
 				 sdt.gxTpr_Phonenumber = value;
+			}
+		}
+
+		[DataMember(Name="PhoneCode", Order=8)]
+		public  string gxTpr_Phonecode
+		{
+			get { 
+				return sdt.gxTpr_Phonecode;
+
+			}
+			set { 
+				 sdt.gxTpr_Phonecode = value;
 			}
 		}
 

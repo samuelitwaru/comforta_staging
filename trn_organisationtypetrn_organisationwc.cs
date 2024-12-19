@@ -2359,7 +2359,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713231452", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412191531424", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2375,7 +2375,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_organisationtypetrn_organisationwc.js", "?2024121713231453", false, true);
+         context.AddJavascriptSource("trn_organisationtypetrn_organisationwc.js", "?202412191531425", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3214,7 +3214,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(OrganisationTypeId = :AV8OrganisationTypeId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV16FilterFullText)) )
          {
-            AddWhere(sWhereString, "(( OrganisationName like '%' || :lV16FilterFullText) or ( OrganisationKvkNumber like '%' || :lV16FilterFullText) or ( OrganisationEmail like '%' || :lV16FilterFullText) or ( OrganisationPhone like '%' || :lV16FilterFullText) or ( OrganisationVATNumber like '%' || :lV16FilterFullText))");
+            AddWhere(sWhereString, "(( LOWER(OrganisationName) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(OrganisationKvkNumber) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(OrganisationEmail) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(OrganisationPhone) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(OrganisationVATNumber) like '%' || LOWER(:lV16FilterFullText)))");
          }
          else
          {
@@ -3302,7 +3302,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(OrganisationTypeId = :AV8OrganisationTypeId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV16FilterFullText)) )
          {
-            AddWhere(sWhereString, "(( OrganisationName like '%' || :lV16FilterFullText) or ( OrganisationKvkNumber like '%' || :lV16FilterFullText) or ( OrganisationEmail like '%' || :lV16FilterFullText) or ( OrganisationPhone like '%' || :lV16FilterFullText) or ( OrganisationVATNumber like '%' || :lV16FilterFullText))");
+            AddWhere(sWhereString, "(( LOWER(OrganisationName) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(OrganisationKvkNumber) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(OrganisationEmail) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(OrganisationPhone) like '%' || LOWER(:lV16FilterFullText)) or ( LOWER(OrganisationVATNumber) like '%' || LOWER(:lV16FilterFullText)))");
          }
          else
          {

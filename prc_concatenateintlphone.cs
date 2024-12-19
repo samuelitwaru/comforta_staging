@@ -71,7 +71,10 @@ namespace GeneXus.Programs {
          /* GeneXus formulas */
          /* Output device settings */
          AV8IntlPhone = "";
-         AV8IntlPhone = AV9PhoneCode + "" + AV10PhoneNumber;
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV10PhoneNumber)) )
+         {
+            AV8IntlPhone = AV9PhoneCode + "" + AV10PhoneNumber;
+         }
          cleanup();
       }
 

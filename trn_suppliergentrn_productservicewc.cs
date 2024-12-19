@@ -2509,7 +2509,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713242397", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412191532740", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2525,7 +2525,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_suppliergentrn_productservicewc.js", "?2024121713242397", false, true);
+         context.AddJavascriptSource("trn_suppliergentrn_productservicewc.js", "?202412191532741", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3520,7 +3520,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(T1.SupplierGenId = :AV32SupplierGenId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV9FilterFullText)) )
          {
-            AddWhere(sWhereString, "(( T1.ProductServiceName like '%' || :lV9FilterFullText) or ( T1.ProductServiceTileName like '%' || :lV9FilterFullText) or ( 'select category' like '%' || LOWER(:lV9FilterFullText) and (char_length(trim(trailing ' ' from T1.ProductServiceClass))=0)) or ( 'my living' like '%' || LOWER(:lV9FilterFullText) and T1.ProductServiceClass = ( 'My Living')) or ( 'my care' like '%' || LOWER(:lV9FilterFullText) and T1.ProductServiceClass = ( 'My Care')) or ( 'my services' like '%' || LOWER(:lV9FilterFullText) and T1.ProductServiceClass = ( 'My Services')))");
+            AddWhere(sWhereString, "(( LOWER(T1.ProductServiceName) like '%' || LOWER(:lV9FilterFullText)) or ( LOWER(T1.ProductServiceTileName) like '%' || LOWER(:lV9FilterFullText)) or ( 'select category' like '%' || LOWER(:lV9FilterFullText) and (char_length(trim(trailing ' ' from T1.ProductServiceClass))=0)) or ( 'my living' like '%' || LOWER(:lV9FilterFullText) and T1.ProductServiceClass = ( 'My Living')) or ( 'my care' like '%' || LOWER(:lV9FilterFullText) and T1.ProductServiceClass = ( 'My Care')) or ( 'my services' like '%' || LOWER(:lV9FilterFullText) and T1.ProductServiceClass = ( 'My Services')))");
          }
          else
          {
@@ -3583,7 +3583,7 @@ namespace GeneXus.Programs {
          AddWhere(sWhereString, "(T1.SupplierGenId = :AV32SupplierGenId)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV9FilterFullText)) )
          {
-            AddWhere(sWhereString, "(( T1.ProductServiceName like '%' || :lV9FilterFullText) or ( T1.ProductServiceTileName like '%' || :lV9FilterFullText) or ( 'select category' like '%' || LOWER(:lV9FilterFullText) and (char_length(trim(trailing ' ' from T1.ProductServiceClass))=0)) or ( 'my living' like '%' || LOWER(:lV9FilterFullText) and T1.ProductServiceClass = ( 'My Living')) or ( 'my care' like '%' || LOWER(:lV9FilterFullText) and T1.ProductServiceClass = ( 'My Care')) or ( 'my services' like '%' || LOWER(:lV9FilterFullText) and T1.ProductServiceClass = ( 'My Services')))");
+            AddWhere(sWhereString, "(( LOWER(T1.ProductServiceName) like '%' || LOWER(:lV9FilterFullText)) or ( LOWER(T1.ProductServiceTileName) like '%' || LOWER(:lV9FilterFullText)) or ( 'select category' like '%' || LOWER(:lV9FilterFullText) and (char_length(trim(trailing ' ' from T1.ProductServiceClass))=0)) or ( 'my living' like '%' || LOWER(:lV9FilterFullText) and T1.ProductServiceClass = ( 'My Living')) or ( 'my care' like '%' || LOWER(:lV9FilterFullText) and T1.ProductServiceClass = ( 'My Care')) or ( 'my services' like '%' || LOWER(:lV9FilterFullText) and T1.ProductServiceClass = ( 'My Services')))");
          }
          else
          {

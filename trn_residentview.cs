@@ -1144,7 +1144,7 @@ namespace GeneXus.Programs {
          /* Start Routine */
          returnInSub = false;
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV6WWPContext) ;
-         lblWorkwithlink_Link = formatLink("trn_residentww.aspx") ;
+         lblWorkwithlink_Link = formatLink("wp_locationresidents.aspx") ;
          AssignProp("", false, lblWorkwithlink_Internalname, "Link", lblWorkwithlink_Link, true);
          AV19GXLvl9 = 0;
          /* Using cursor H00653 */
@@ -1189,6 +1189,11 @@ namespace GeneXus.Programs {
          if ( StringUtil.StrCmp(AV17Session.Get("DiscussionThreadIdToOpen"), "") != 0 )
          {
             this.executeUsercontrolMethod("", false, "DDC_DISCUSSIONSContainer", "Open", "", new Object[] {});
+         }
+         if ( AV6WWPContext.gxTpr_Isreceptionist || AV6WWPContext.gxTpr_Isorganisationmanager )
+         {
+            lblWorkwithlink_Link = formatLink("wp_locationresidents.aspx") ;
+            AssignProp("", false, lblWorkwithlink_Internalname, "Link", lblWorkwithlink_Link, true);
          }
       }
 
@@ -1495,7 +1500,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713285777", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412191571286", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1511,7 +1516,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_residentview.js", "?2024121713285777", false, true);
+         context.AddJavascriptSource("trn_residentview.js", "?202412191571286", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);
