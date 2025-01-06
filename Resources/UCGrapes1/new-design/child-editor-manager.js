@@ -157,37 +157,8 @@ class ChildEditorManager {
         }
       }
 
-      else if (page.PageIsContentPage) {
-        this.dataManager
-          .getContentPageData(page.PageId)
-          .then((contentPageData) => {
-            // Then check and update elements
-            const wrapper = editor.DomComponents.getWrapper();
-
-            if (wrapper) {
-              const img = wrapper.find("#product-service-image");
-              const p = wrapper.find("#product-service-description");
-              console.log(img, p)
-              if (img.length && p.length) {
-                img[0].setAttributes({
-                  src: contentPageData.ProductServiceImage,
-                });
-                p[0].replaceWith(`
-                          <p id="product-service-description" class="content-page-block" style="flex: 1; padding: 0; margin: 0; height: auto; margin-bottom: 15px">
-                              ${contentPageData.ProductServiceDescription}
-                          </p>
-                      `);
-              }
-            }
-            // Ensure Call To Actions are applied
-            this.toolsSection.pageContentCtas(
-              contentPageData.CallToActions,
-              editor
-            );
-          })
-          .catch((error) => {
-            console.error("Error loading content page data:", error);
-          });
+      else {
+        this.loadContentPage(editor, page);
       }
 
     } else {
@@ -257,7 +228,7 @@ class ChildEditorManager {
         // currentIndex = currentIndex - 1;
         const navigator = this.activateNavigators();
         // navigator.updateScroll();
-        // navigator.updateButtonsVisibility();
+        navigator.updateButtonsVisibility();
       });
     }
   }
