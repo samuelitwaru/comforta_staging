@@ -316,7 +316,7 @@ class ToolBoxManager {
           }
         }
       }
-    }, 30000);
+    }, 15000);
   }
 
   updateTileTitle(inputTitle) {

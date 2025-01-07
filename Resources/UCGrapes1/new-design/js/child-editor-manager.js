@@ -18,7 +18,6 @@ class ChildEditorManager {
     });
     this.dataManager.getPages().then((pages) => {
       this.pages = pages;
-      console.log(pages);
       const homePage = this.pages.find((page) => page.PageName == "Home");
       if (homePage) {
         this.createChildEditor(homePage);
@@ -236,6 +235,14 @@ class ChildEditorManager {
       droppable: false,
       draggable: false,
       hoverable: false,
+    });
+
+    editor.on('change', (e) => {
+      const editorId = e.attrsOrig.id
+      console.log(this.editors[`#${editorId}`])
+      if (editorId) {
+        this.toolsSection.autoSavePage(this.editors[`#${editorId}`])
+      }
     });
 
     const navigator = this.activateNavigators();
