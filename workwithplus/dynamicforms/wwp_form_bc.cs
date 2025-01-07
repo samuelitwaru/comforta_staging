@@ -651,7 +651,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             pr_default.execute(10, new Object[] {A206WWPFormId, A207WWPFormVersionNumber});
             if ( (pr_default.getStatus(10) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_LocationDynamicForm"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Location Dynamic Forms"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(10);

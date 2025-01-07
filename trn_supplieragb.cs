@@ -1803,7 +1803,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A283SupplierAgbTypeId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_SupplierAgbType'.", "ForeignKeyNotFound", 1, "SUPPLIERAGBTYPEID");
+            GX_msglist.addItem("No matching 'AGB Supplier Types'.", "ForeignKeyNotFound", 1, "SUPPLIERAGBTYPEID");
             AnyError = 1;
             GX_FocusControl = edtSupplierAgbTypeId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1915,7 +1915,7 @@ namespace GeneXus.Programs {
          pr_default.execute(4, new Object[] {A283SupplierAgbTypeId});
          if ( (pr_default.getStatus(4) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_SupplierAgbType'.", "ForeignKeyNotFound", 1, "SUPPLIERAGBTYPEID");
+            GX_msglist.addItem("No matching 'AGB Supplier Types'.", "ForeignKeyNotFound", 1, "SUPPLIERAGBTYPEID");
             AnyError = 1;
             GX_FocusControl = edtSupplierAgbTypeId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -2517,7 +2517,7 @@ namespace GeneXus.Programs {
             pr_default.execute(12, new Object[] {n49SupplierAgbId, A49SupplierAgbId});
             if ( (pr_default.getStatus(12) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_ProductService"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Services"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(12);
@@ -3007,7 +3007,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412191535822", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025171315722", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3023,7 +3023,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_supplieragb.js", "?202412191535824", false, true);
+         context.AddJavascriptSource("trn_supplieragb.js", "?2025171315725", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3232,7 +3232,7 @@ namespace GeneXus.Programs {
          pr_default.execute(11, new Object[] {A283SupplierAgbTypeId});
          if ( (pr_default.getStatus(11) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_SupplierAgbType'.", "ForeignKeyNotFound", 1, "SUPPLIERAGBTYPEID");
+            GX_msglist.addItem("No matching 'AGB Supplier Types'.", "ForeignKeyNotFound", 1, "SUPPLIERAGBTYPEID");
             AnyError = 1;
             GX_FocusControl = edtSupplierAgbTypeId_Internalname;
          }

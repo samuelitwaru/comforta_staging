@@ -458,7 +458,7 @@ namespace GeneXus.Programs {
             pr_default.execute(7, new Object[] {A498AppNotificationId});
             if ( (pr_default.getStatus(7) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_ResidentNotification"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Resident Notifications"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(7);

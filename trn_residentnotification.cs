@@ -820,7 +820,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A498AppNotificationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_AppNotification'.", "ForeignKeyNotFound", 1, "APPNOTIFICATIONID");
+            GX_msglist.addItem("No matching 'App Notifications'.", "ForeignKeyNotFound", 1, "APPNOTIFICATIONID");
             AnyError = 1;
             GX_FocusControl = edtAppNotificationId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -843,7 +843,7 @@ namespace GeneXus.Programs {
          pr_default.execute(4, new Object[] {A498AppNotificationId});
          if ( (pr_default.getStatus(4) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_AppNotification'.", "ForeignKeyNotFound", 1, "APPNOTIFICATIONID");
+            GX_msglist.addItem("No matching 'App Notifications'.", "ForeignKeyNotFound", 1, "APPNOTIFICATIONID");
             AnyError = 1;
             GX_FocusControl = edtAppNotificationId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1755,7 +1755,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412111813662", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202517134037", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1771,7 +1771,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_residentnotification.js", "?202412111813662", false, true);
+         context.AddJavascriptSource("trn_residentnotification.js", "?202517134037", false, true);
          /* End function include_jscripts */
       }
 
@@ -1899,7 +1899,7 @@ namespace GeneXus.Programs {
          pr_default.execute(12, new Object[] {A498AppNotificationId});
          if ( (pr_default.getStatus(12) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_AppNotification'.", "ForeignKeyNotFound", 1, "APPNOTIFICATIONID");
+            GX_msglist.addItem("No matching 'App Notifications'.", "ForeignKeyNotFound", 1, "APPNOTIFICATIONID");
             AnyError = 1;
             GX_FocusControl = edtAppNotificationId_Internalname;
          }

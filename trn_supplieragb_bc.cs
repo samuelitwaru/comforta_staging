@@ -277,7 +277,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A283SupplierAgbTypeId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_SupplierAgbType'.", "ForeignKeyNotFound", 1, "SUPPLIERAGBTYPEID");
+            GX_msglist.addItem("No matching 'AGB Supplier Types'.", "ForeignKeyNotFound", 1, "SUPPLIERAGBTYPEID");
             AnyError = 1;
          }
          A291SupplierAgbTypeName = BC00074_A291SupplierAgbTypeName[0];
@@ -654,7 +654,7 @@ namespace GeneXus.Programs {
             pr_default.execute(9, new Object[] {n49SupplierAgbId, A49SupplierAgbId});
             if ( (pr_default.getStatus(9) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_ProductService"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Services"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(9);

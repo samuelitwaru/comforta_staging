@@ -1727,7 +1727,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A19OrganisationTypeId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Organisation Type'.", "ForeignKeyNotFound", 1, "ORGANISATIONTYPEID");
+            GX_msglist.addItem("No matching 'Organisation Types'.", "ForeignKeyNotFound", 1, "ORGANISATIONTYPEID");
             AnyError = 1;
             GX_FocusControl = edtOrganisationTypeId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1758,7 +1758,7 @@ namespace GeneXus.Programs {
          pr_default.execute(4, new Object[] {A19OrganisationTypeId});
          if ( (pr_default.getStatus(4) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Organisation Type'.", "ForeignKeyNotFound", 1, "ORGANISATIONTYPEID");
+            GX_msglist.addItem("No matching 'Organisation Types'.", "ForeignKeyNotFound", 1, "ORGANISATIONTYPEID");
             AnyError = 1;
             GX_FocusControl = edtOrganisationTypeId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -2341,7 +2341,7 @@ namespace GeneXus.Programs {
             pr_default.execute(12, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(12) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {""}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Audits"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(12);
@@ -2349,7 +2349,7 @@ namespace GeneXus.Programs {
             pr_default.execute(13, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(13) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_Organisation Setting"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Organisation Settings"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(13);
@@ -2357,7 +2357,7 @@ namespace GeneXus.Programs {
             pr_default.execute(14, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(14) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_SupplierGen"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"General Suppliers"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(14);
@@ -2365,7 +2365,7 @@ namespace GeneXus.Programs {
             pr_default.execute(15, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(15) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Location"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Locations"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(15);
@@ -2373,7 +2373,7 @@ namespace GeneXus.Programs {
             pr_default.execute(16, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(16) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Manager"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Managers"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(16);
@@ -2853,7 +2853,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241219153310", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202517132258", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2869,7 +2869,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_organisation.js", "?20241219153313", false, true);
+         context.AddJavascriptSource("trn_organisation.js", "?202517132261", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3074,7 +3074,7 @@ namespace GeneXus.Programs {
          pr_default.execute(11, new Object[] {A19OrganisationTypeId});
          if ( (pr_default.getStatus(11) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Organisation Type'.", "ForeignKeyNotFound", 1, "ORGANISATIONTYPEID");
+            GX_msglist.addItem("No matching 'Organisation Types'.", "ForeignKeyNotFound", 1, "ORGANISATIONTYPEID");
             AnyError = 1;
             GX_FocusControl = edtOrganisationTypeId_Internalname;
          }

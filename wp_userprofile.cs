@@ -237,6 +237,9 @@ namespace GeneXus.Programs {
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Bootstrap/ConfirmPanel/BootstrapConfirmPanelRender.js", "", false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -361,6 +364,11 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "DVPANEL_PROFILEEXTENDEDINFO1_TABLEABOUT_Showcollapseicon", StringUtil.BoolToStr( Dvpanel_profileextendedinfo1_tableabout_Showcollapseicon));
          GxWebStd.gx_hidden_field( context, "DVPANEL_PROFILEEXTENDEDINFO1_TABLEABOUT_Iconposition", StringUtil.RTrim( Dvpanel_profileextendedinfo1_tableabout_Iconposition));
          GxWebStd.gx_hidden_field( context, "DVPANEL_PROFILEEXTENDEDINFO1_TABLEABOUT_Autoscroll", StringUtil.BoolToStr( Dvpanel_profileextendedinfo1_tableabout_Autoscroll));
+         GxWebStd.gx_hidden_field( context, "COMFIRMDELETEMODAL_Title", StringUtil.RTrim( Comfirmdeletemodal_Title));
+         GxWebStd.gx_hidden_field( context, "COMFIRMDELETEMODAL_Confirmationtext", StringUtil.RTrim( Comfirmdeletemodal_Confirmationtext));
+         GxWebStd.gx_hidden_field( context, "COMFIRMDELETEMODAL_Yesbuttoncaption", StringUtil.RTrim( Comfirmdeletemodal_Yesbuttoncaption));
+         GxWebStd.gx_hidden_field( context, "COMFIRMDELETEMODAL_Nobuttoncaption", StringUtil.RTrim( Comfirmdeletemodal_Nobuttoncaption));
+         GxWebStd.gx_hidden_field( context, "COMFIRMDELETEMODAL_Bodytype", StringUtil.RTrim( Comfirmdeletemodal_Bodytype));
          GxWebStd.gx_hidden_field( context, "vWWPCONTEXT_Gamuserguid", StringUtil.RTrim( AV65WWPContext.gxTpr_Gamuserguid));
          GxWebStd.gx_hidden_field( context, "vWWPCONTEXT_Receptionistid", AV65WWPContext.gxTpr_Receptionistid.ToString());
          GxWebStd.gx_hidden_field( context, "vWWPCONTEXT_Organisationid", AV65WWPContext.gxTpr_Organisationid.ToString());
@@ -505,8 +513,8 @@ namespace GeneXus.Programs {
             /* Static Bitmap Variable */
             ClassString = "CardProfileExtendedInfoImage RoundedImage" + " " + ((StringUtil.StrCmp(imgavProfileimage_gximage, "")==0) ? "" : "GX_Image_"+imgavProfileimage_gximage+"_Class");
             StyleString = "";
-            AV68profileImage_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage))&&String.IsNullOrEmpty(StringUtil.RTrim( AV77Profileimage_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage)));
-            sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage)) ? AV77Profileimage_GXI : context.PathToRelativeUrl( AV68profileImage));
+            AV68profileImage_IsBlob = (bool)((String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage))&&String.IsNullOrEmpty(StringUtil.RTrim( AV78Profileimage_GXI)))||!String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage)));
+            sImgUrl = (String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage)) ? AV78Profileimage_GXI : context.PathToRelativeUrl( AV68profileImage));
             GxWebStd.gx_bitmap( context, imgavProfileimage_Internalname, sImgUrl, "", "", "", context.GetTheme( ), 1, 0, "", "", 0, -1, 0, "", 0, "", 0, 0, 0, "", "", StyleString, ClassString, "", "", "", "", "", "", "", 1, AV68profileImage_IsBlob, false, context.GetImageSrcSet( sImgUrl), "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -807,6 +815,19 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* User Defined Control */
+            ucComfirmdeletemodal.SetProperty("Title", Comfirmdeletemodal_Title);
+            ucComfirmdeletemodal.SetProperty("ConfirmationText", Comfirmdeletemodal_Confirmationtext);
+            ucComfirmdeletemodal.SetProperty("YesButtonCaption", Comfirmdeletemodal_Yesbuttoncaption);
+            ucComfirmdeletemodal.SetProperty("NoButtonCaption", Comfirmdeletemodal_Nobuttoncaption);
+            ucComfirmdeletemodal.SetProperty("BodyType", Comfirmdeletemodal_Bodytype);
+            ucComfirmdeletemodal.Render(context, "dvelop.gxbootstrap.confirmpanel", Comfirmdeletemodal_Internalname, "COMFIRMDELETEMODALContainer");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -820,8 +841,8 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, divHtml_bottomauxiliarcontrols_Internalname, 1, 0, "px", 0, "px", "Section", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 117,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavPhonecode_Internalname, AV34PhoneCode, StringUtil.RTrim( context.localUtil.Format( AV34PhoneCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,117);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPhonecode_Jsonclick, 0, "Attribute", "", "", "", "", edtavPhonecode_Visible, 1, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 120,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavPhonecode_Internalname, AV34PhoneCode, StringUtil.RTrim( context.localUtil.Format( AV34PhoneCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,120);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPhonecode_Jsonclick, 0, "Attribute", "", "", "", "", edtavPhonecode_Visible, 1, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -894,33 +915,47 @@ namespace GeneXus.Programs {
                               /* Execute user event: Avataruc.Onupload */
                               E119R2 ();
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "AVATARUC.ONFAILEDUPLOAD") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: Avataruc.Onfailedupload */
+                              E129R2 ();
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "COMFIRMDELETEMODAL.ONYES") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: Comfirmdeletemodal.Onyes */
+                              E139R2 ();
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "START") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Start */
-                              E129R2 ();
+                              E149R2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "'DOSAVEUPDATE'") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: 'DoSaveUpdate' */
-                              E139R2 ();
+                              E159R2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "'DOUPDATEPROFILE'") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: 'DoUpdateProfile' */
-                              E149R2 ();
+                              E169R2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E159R2 ();
+                              E179R2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
@@ -1055,7 +1090,7 @@ namespace GeneXus.Programs {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E159R2 ();
+            E179R2 ();
             WB9R0( ) ;
          }
       }
@@ -1088,7 +1123,7 @@ namespace GeneXus.Programs {
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E129R2 ();
+         E149R2 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
@@ -1125,6 +1160,11 @@ namespace GeneXus.Programs {
             Dvpanel_profileextendedinfo1_tableabout_Showcollapseicon = StringUtil.StrToBool( cgiGet( "DVPANEL_PROFILEEXTENDEDINFO1_TABLEABOUT_Showcollapseicon"));
             Dvpanel_profileextendedinfo1_tableabout_Iconposition = cgiGet( "DVPANEL_PROFILEEXTENDEDINFO1_TABLEABOUT_Iconposition");
             Dvpanel_profileextendedinfo1_tableabout_Autoscroll = StringUtil.StrToBool( cgiGet( "DVPANEL_PROFILEEXTENDEDINFO1_TABLEABOUT_Autoscroll"));
+            Comfirmdeletemodal_Title = cgiGet( "COMFIRMDELETEMODAL_Title");
+            Comfirmdeletemodal_Confirmationtext = cgiGet( "COMFIRMDELETEMODAL_Confirmationtext");
+            Comfirmdeletemodal_Yesbuttoncaption = cgiGet( "COMFIRMDELETEMODAL_Yesbuttoncaption");
+            Comfirmdeletemodal_Nobuttoncaption = cgiGet( "COMFIRMDELETEMODAL_Nobuttoncaption");
+            Comfirmdeletemodal_Bodytype = cgiGet( "COMFIRMDELETEMODAL_Bodytype");
             /* Read variables values. */
             AV68profileImage = cgiGet( imgavProfileimage_Internalname);
             AV56user = cgiGet( edtavUser_Internalname);
@@ -1162,11 +1202,11 @@ namespace GeneXus.Programs {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E129R2 ();
+         E149R2 ();
          if (returnInSub) return;
       }
 
-      protected void E129R2( )
+      protected void E149R2( )
       {
          /* Start Routine */
          returnInSub = false;
@@ -1193,7 +1233,7 @@ namespace GeneXus.Programs {
          AssignAttri("", false, "AV6isUpdateMode", AV6isUpdateMode);
       }
 
-      protected void E139R2( )
+      protected void E159R2( )
       {
          /* 'DoSaveUpdate' Routine */
          returnInSub = false;
@@ -1213,7 +1253,10 @@ namespace GeneXus.Programs {
             }
             AV5GAMUser.gxTpr_Dateupdated = DateTimeUtil.Now( context);
             AV62UserProfileImage = "";
-            AV62UserProfileImage=context.FileFromBase64( AV66base64String) ;
+            if ( ! ( StringUtil.StrCmp(AV66base64String, "delete-avatar") == 0 ) )
+            {
+               AV62UserProfileImage=context.FileFromBase64( AV66base64String) ;
+            }
             AV5GAMUser.save();
             if ( AV5GAMUser.success() )
             {
@@ -1222,6 +1265,11 @@ namespace GeneXus.Programs {
                {
                   AV67WWP_UserExtended.gxTpr_Wwpuserextendedphoto = AV62UserProfileImage;
                   AV67WWP_UserExtended.gxTpr_Wwpuserextendedphoto_gxi = GXDbFile.GetUriFromFile( "", "", AV62UserProfileImage);
+               }
+               if ( StringUtil.StrCmp(AV66base64String, "delete-avatar") == 0 )
+               {
+                  AV67WWP_UserExtended.gxTpr_Wwpuserextendedphoto = context.GetImagePath( "cd361e0f-97cb-4b25-a56f-891cd75b163f", "", context.GetTheme( ));
+                  AV67WWP_UserExtended.gxTpr_Wwpuserextendedphoto_gxi = GXDbFile.PathToUrl( context.GetImagePath( "cd361e0f-97cb-4b25-a56f-891cd75b163f", "", context.GetTheme( )), context);
                }
                AV67WWP_UserExtended.Save();
                /* Execute user subroutine: 'UPDATETRANSACTIONTABLE' */
@@ -1236,12 +1284,12 @@ namespace GeneXus.Programs {
             else
             {
                AV26GAMErrorCollection = AV5GAMUser.geterrors();
-               AV74GXV1 = 1;
-               while ( AV74GXV1 <= AV26GAMErrorCollection.Count )
+               AV75GXV1 = 1;
+               while ( AV75GXV1 <= AV26GAMErrorCollection.Count )
                {
-                  AV25GAMError = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV26GAMErrorCollection.Item(AV74GXV1));
+                  AV25GAMError = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV26GAMErrorCollection.Item(AV75GXV1));
                   GX_msglist.addItem(StringUtil.StringReplace( AV25GAMError.gxTpr_Message, "Username", "Email/Username"));
-                  AV74GXV1 = (int)(AV74GXV1+1);
+                  AV75GXV1 = (int)(AV75GXV1+1);
                }
             }
          }
@@ -1251,7 +1299,7 @@ namespace GeneXus.Programs {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV65WWPContext", AV65WWPContext);
       }
 
-      protected void E149R2( )
+      protected void E169R2( )
       {
          /* 'DoUpdateProfile' Routine */
          returnInSub = false;
@@ -1356,13 +1404,13 @@ namespace GeneXus.Programs {
       {
          /* 'LOADCOMBOPHONECODE' Routine */
          returnInSub = false;
-         AV76GXV3 = 1;
-         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV75GXV2;
+         AV77GXV3 = 1;
+         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV76GXV2;
          new dp_country(context ).execute( out  GXt_objcol_SdtSDT_Country_SDT_CountryItem3) ;
-         AV75GXV2 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
-         while ( AV76GXV3 <= AV75GXV2.Count )
+         AV76GXV2 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
+         while ( AV77GXV3 <= AV76GXV2.Count )
          {
-            AV36PhoneCode_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV75GXV2.Item(AV76GXV3));
+            AV36PhoneCode_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV76GXV2.Item(AV77GXV3));
             AV12Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
             AV12Combo_DataItem.gxTpr_Id = AV36PhoneCode_DPItem.gxTpr_Countrydialcode;
             AV13ComboTitles = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
@@ -1370,7 +1418,7 @@ namespace GeneXus.Programs {
             AV13ComboTitles.Add(AV36PhoneCode_DPItem.gxTpr_Countryflag, 0);
             AV12Combo_DataItem.gxTpr_Title = AV13ComboTitles.ToJSonString(false);
             AV35PhoneCode_Data.Add(AV12Combo_DataItem, 0);
-            AV76GXV3 = (int)(AV76GXV3+1);
+            AV77GXV3 = (int)(AV77GXV3+1);
          }
          AV35PhoneCode_Data.Sort("Title");
          Combo_phonecode_Selectedvalue_set = AV34PhoneCode;
@@ -1390,6 +1438,24 @@ namespace GeneXus.Programs {
          /*  Sending Event outputs  */
       }
 
+      protected void E129R2( )
+      {
+         /* Avataruc_Onfailedupload Routine */
+         returnInSub = false;
+         GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  "Maximum file size allowed is 2MB.",  "error",  "",  "true",  ""));
+      }
+
+      protected void E139R2( )
+      {
+         /* Comfirmdeletemodal_Onyes Routine */
+         returnInSub = false;
+         AV66base64String = "delete-avatar";
+         AssignAttri("", false, "AV66base64String", AV66base64String);
+         Avataruc_Previewimagelink = context.convertURL( (string)(context.GetImagePath( "cd132e7c-3222-4be1-9123-4cad0b17f9cf", "", context.GetTheme( ))));
+         ucAvataruc.SendProperty(context, "", false, Avataruc_Internalname, "PreviewImageLink", Avataruc_Previewimagelink);
+         /*  Sending Event outputs  */
+      }
+
       protected void S132( )
       {
          /* 'LOADUSERPROFILE' Routine */
@@ -1397,22 +1463,22 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV65WWPContext) ;
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV65WWPContext.gxTpr_Profileurl)) )
          {
-            imgavProfileimage_gximage = "avatar";
+            imgavProfileimage_gximage = "UserInfo";
             AssignProp("", false, imgavProfileimage_Internalname, "gximage", imgavProfileimage_gximage, true);
-            AV68profileImage = context.GetImagePath( "b40c922e-75c6-44e6-9389-0332e13b7da1", "", context.GetTheme( ));
-            AssignProp("", false, imgavProfileimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage)) ? AV77Profileimage_GXI : context.convertURL( context.PathToRelativeUrl( AV68profileImage))), true);
+            AV68profileImage = context.GetImagePath( "cd132e7c-3222-4be1-9123-4cad0b17f9cf", "", context.GetTheme( ));
+            AssignProp("", false, imgavProfileimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage)) ? AV78Profileimage_GXI : context.convertURL( context.PathToRelativeUrl( AV68profileImage))), true);
             AssignProp("", false, imgavProfileimage_Internalname, "SrcSet", context.GetImageSrcSet( AV68profileImage), true);
-            AV77Profileimage_GXI = GXDbFile.PathToUrl( context.GetImagePath( "b40c922e-75c6-44e6-9389-0332e13b7da1", "", context.GetTheme( )), context);
-            AssignProp("", false, imgavProfileimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage)) ? AV77Profileimage_GXI : context.convertURL( context.PathToRelativeUrl( AV68profileImage))), true);
+            AV78Profileimage_GXI = GXDbFile.PathToUrl( context.GetImagePath( "cd132e7c-3222-4be1-9123-4cad0b17f9cf", "", context.GetTheme( )), context);
+            AssignProp("", false, imgavProfileimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage)) ? AV78Profileimage_GXI : context.convertURL( context.PathToRelativeUrl( AV68profileImage))), true);
             AssignProp("", false, imgavProfileimage_Internalname, "SrcSet", context.GetImageSrcSet( AV68profileImage), true);
          }
          else
          {
             AV68profileImage = AV65WWPContext.gxTpr_Profileurl;
-            AssignProp("", false, imgavProfileimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage)) ? AV77Profileimage_GXI : context.convertURL( context.PathToRelativeUrl( AV68profileImage))), true);
+            AssignProp("", false, imgavProfileimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage)) ? AV78Profileimage_GXI : context.convertURL( context.PathToRelativeUrl( AV68profileImage))), true);
             AssignProp("", false, imgavProfileimage_Internalname, "SrcSet", context.GetImageSrcSet( AV68profileImage), true);
-            AV77Profileimage_GXI = GXDbFile.PathToUrl( AV65WWPContext.gxTpr_Profileurl, context);
-            AssignProp("", false, imgavProfileimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage)) ? AV77Profileimage_GXI : context.convertURL( context.PathToRelativeUrl( AV68profileImage))), true);
+            AV78Profileimage_GXI = GXDbFile.PathToUrl( AV65WWPContext.gxTpr_Profileurl, context);
+            AssignProp("", false, imgavProfileimage_Internalname, "Bitmap", (String.IsNullOrEmpty(StringUtil.RTrim( AV68profileImage)) ? AV78Profileimage_GXI : context.convertURL( context.PathToRelativeUrl( AV68profileImage))), true);
             AssignProp("", false, imgavProfileimage_Internalname, "SrcSet", context.GetImageSrcSet( AV68profileImage), true);
          }
          AV56user = AV65WWPContext.gxTpr_Gamuserfirstname + " " + AV65WWPContext.gxTpr_Gamuserlastname;
@@ -1443,14 +1509,25 @@ namespace GeneXus.Programs {
          /* 'UPDATETRANSACTIONTABLE' Routine */
          returnInSub = false;
          AV62UserProfileImage = "";
-         AV62UserProfileImage=context.FileFromBase64( AV66base64String) ;
+         if ( ! ( StringUtil.StrCmp(AV66base64String, "delete-avatar") == 0 ) )
+         {
+            AV62UserProfileImage=context.FileFromBase64( AV66base64String) ;
+         }
          if ( AV65WWPContext.gxTpr_Isreceptionist )
          {
             AV53Trn_Receptionist.Load(AV65WWPContext.gxTpr_Receptionistid, AV65WWPContext.gxTpr_Organisationid, AV65WWPContext.gxTpr_Locationid);
-            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66base64String)) )
+            if ( StringUtil.StrCmp(AV66base64String, "delete-avatar") == 0 )
             {
-               AV53Trn_Receptionist.gxTpr_Receptionistimage = AV62UserProfileImage;
-               AV53Trn_Receptionist.gxTpr_Receptionistimage_gxi = GXDbFile.GetUriFromFile( "", "", AV62UserProfileImage);
+               AV53Trn_Receptionist.gxTpr_Receptionistimage = context.GetImagePath( "cd132e7c-3222-4be1-9123-4cad0b17f9cf", "", context.GetTheme( ));
+               AV53Trn_Receptionist.gxTpr_Receptionistimage_gxi = GXDbFile.PathToUrl( context.GetImagePath( "cd132e7c-3222-4be1-9123-4cad0b17f9cf", "", context.GetTheme( )), context);
+            }
+            else
+            {
+               if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66base64String)) )
+               {
+                  AV53Trn_Receptionist.gxTpr_Receptionistimage = AV62UserProfileImage;
+                  AV53Trn_Receptionist.gxTpr_Receptionistimage_gxi = GXDbFile.GetUriFromFile( "", "", AV62UserProfileImage);
+               }
             }
             AV53Trn_Receptionist.gxTpr_Receptionistemail = AV17EmailValue;
             AV53Trn_Receptionist.gxTpr_Receptionistgivenname = AV24FirstNameValue;
@@ -1465,10 +1542,18 @@ namespace GeneXus.Programs {
          if ( AV65WWPContext.gxTpr_Isorganisationmanager )
          {
             AV52Trn_Manager.Load(AV65WWPContext.gxTpr_Managerid, AV65WWPContext.gxTpr_Organisationid);
-            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66base64String)) )
+            if ( StringUtil.StrCmp(AV66base64String, "delete-avatar") == 0 )
             {
-               AV52Trn_Manager.gxTpr_Managerimage = AV62UserProfileImage;
-               AV52Trn_Manager.gxTpr_Managerimage_gxi = GXDbFile.GetUriFromFile( "", "", AV62UserProfileImage);
+               AV52Trn_Manager.gxTpr_Managerimage = context.GetImagePath( "cd132e7c-3222-4be1-9123-4cad0b17f9cf", "", context.GetTheme( ));
+               AV52Trn_Manager.gxTpr_Managerimage_gxi = GXDbFile.PathToUrl( context.GetImagePath( "cd132e7c-3222-4be1-9123-4cad0b17f9cf", "", context.GetTheme( )), context);
+            }
+            else
+            {
+               if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV66base64String)) )
+               {
+                  AV52Trn_Manager.gxTpr_Managerimage = AV62UserProfileImage;
+                  AV52Trn_Manager.gxTpr_Managerimage_gxi = GXDbFile.GetUriFromFile( "", "", AV62UserProfileImage);
+               }
             }
             AV52Trn_Manager.gxTpr_Manageremail = AV17EmailValue;
             AV52Trn_Manager.gxTpr_Managergivenname = AV24FirstNameValue;
@@ -1482,7 +1567,7 @@ namespace GeneXus.Programs {
          }
          if ( AV52Trn_Manager.Success() || AV53Trn_Receptionist.Success() )
          {
-            GX_msglist.addItem("Account Updated Successfully");
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  "Account Updated Successfully.",  "success",  "",  "true",  ""));
             GXt_SdtWWPContext4 = AV65WWPContext;
             new prc_loadwwpcontext(context ).execute( ref  GXt_SdtWWPContext4) ;
             AV65WWPContext = GXt_SdtWWPContext4;
@@ -1493,21 +1578,21 @@ namespace GeneXus.Programs {
          }
          else
          {
-            AV79GXV5 = 1;
-            AV78GXV4 = AV52Trn_Manager.GetMessages();
-            while ( AV79GXV5 <= AV78GXV4.Count )
+            AV80GXV5 = 1;
+            AV79GXV4 = AV52Trn_Manager.GetMessages();
+            while ( AV80GXV5 <= AV79GXV4.Count )
             {
-               AV69Message = ((GeneXus.Utils.SdtMessages_Message)AV78GXV4.Item(AV79GXV5));
-               GX_msglist.addItem(AV69Message.gxTpr_Description);
-               AV79GXV5 = (int)(AV79GXV5+1);
+               AV69Message = ((GeneXus.Utils.SdtMessages_Message)AV79GXV4.Item(AV80GXV5));
+               GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  AV69Message.gxTpr_Description,  "error",  "",  "true",  ""));
+               AV80GXV5 = (int)(AV80GXV5+1);
             }
-            AV81GXV7 = 1;
-            AV80GXV6 = AV53Trn_Receptionist.GetMessages();
-            while ( AV81GXV7 <= AV80GXV6.Count )
+            AV82GXV7 = 1;
+            AV81GXV6 = AV53Trn_Receptionist.GetMessages();
+            while ( AV82GXV7 <= AV81GXV6.Count )
             {
-               AV69Message = ((GeneXus.Utils.SdtMessages_Message)AV80GXV6.Item(AV81GXV7));
-               GX_msglist.addItem(AV69Message.gxTpr_Description);
-               AV81GXV7 = (int)(AV81GXV7+1);
+               AV69Message = ((GeneXus.Utils.SdtMessages_Message)AV81GXV6.Item(AV82GXV7));
+               GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  AV69Message.gxTpr_Description,  "error",  "",  "true",  ""));
+               AV82GXV7 = (int)(AV82GXV7+1);
             }
          }
       }
@@ -1516,7 +1601,7 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void E159R2( )
+      protected void E179R2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -1542,7 +1627,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 111,'',false,'',0)\"";
             ClassString = "btn-default";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", "Cancel", bttBtncancel_Jsonclick, 7, "Cancel", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"e169r1_client"+"'", TempTags, "", 2, "HLP_WP_UserProfile.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", "Cancel", bttBtncancel_Jsonclick, 7, "Cancel", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"e189r1_client"+"'", TempTags, "", 2, "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
@@ -1594,6 +1679,7 @@ namespace GeneXus.Programs {
 
       protected void define_styles( )
       {
+         AddStyleSheetFile("DVelop/Bootstrap/Shared/DVelopBootstrap.css", "");
          AddThemeStyleSheetFile("", context.GetTheme( )+".css", "?"+GetCacheInvalidationToken( ));
          bool outputEnabled = isOutputEnabled( );
          if ( context.isSpaRequest( ) )
@@ -1603,7 +1689,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713342089", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025171364118", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1619,7 +1705,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_userprofile.js", "?2024121713342092", false, true);
+         context.AddJavascriptSource("wp_userprofile.js", "?2025171364120", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -1630,6 +1716,9 @@ namespace GeneXus.Programs {
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Bootstrap/ConfirmPanel/BootstrapConfirmPanelRender.js", "", false, true);
          /* End function include_jscripts */
       }
 
@@ -1676,6 +1765,7 @@ namespace GeneXus.Programs {
          divProfileextendedinfo1_tableabout_Internalname = "PROFILEEXTENDEDINFO1_TABLEABOUT";
          Dvpanel_profileextendedinfo1_tableabout_Internalname = "DVPANEL_PROFILEEXTENDEDINFO1_TABLEABOUT";
          divProfileextendedinfo1_maintable_Internalname = "PROFILEEXTENDEDINFO1_MAINTABLE";
+         Comfirmdeletemodal_Internalname = "COMFIRMDELETEMODAL";
          divTablecontent_Internalname = "TABLECONTENT";
          divTablemain_Internalname = "TABLEMAIN";
          edtavPhonecode_Internalname = "vPHONECODE";
@@ -1726,6 +1816,11 @@ namespace GeneXus.Programs {
          edtavUser_Jsonclick = "";
          edtavUser_Enabled = 1;
          imgavProfileimage_gximage = "";
+         Comfirmdeletemodal_Bodytype = "No";
+         Comfirmdeletemodal_Nobuttoncaption = "Cancel";
+         Comfirmdeletemodal_Yesbuttoncaption = "Yes";
+         Comfirmdeletemodal_Confirmationtext = "Are you sure you want to delete the current avatar?";
+         Comfirmdeletemodal_Title = "Comfirm Delete";
          Dvpanel_profileextendedinfo1_tableabout_Autoscroll = Convert.ToBoolean( 0);
          Dvpanel_profileextendedinfo1_tableabout_Iconposition = "Right";
          Dvpanel_profileextendedinfo1_tableabout_Showcollapseicon = Convert.ToBoolean( 0);
@@ -1770,14 +1865,17 @@ namespace GeneXus.Programs {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
-         setEventMetadata("'DOCANCEL'","""{"handler":"E169R1","iparms":[{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"}]""");
+         setEventMetadata("'DOCANCEL'","""{"handler":"E189R1","iparms":[{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"}]""");
          setEventMetadata("'DOCANCEL'",""","oparms":[{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"},{"av":"divUpdateavatartable_Visible","ctrl":"UPDATEAVATARTABLE","prop":"Visible"},{"av":"divProfileextendedinfo1_firstinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_FIRSTINFOABOUT","prop":"Visible"},{"av":"divUpdatemodefirstnametbl_Visible","ctrl":"UPDATEMODEFIRSTNAMETBL","prop":"Visible"},{"av":"divProfileextendedinfo1_secondinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_SECONDINFOABOUT","prop":"Visible"},{"av":"divUpdatemodelastnaetbl_Visible","ctrl":"UPDATEMODELASTNAETBL","prop":"Visible"},{"av":"divProfileextendedinfo1_thirdinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_THIRDINFOABOUT","prop":"Visible"},{"av":"divUpdateemailtbl_Visible","ctrl":"UPDATEEMAILTBL","prop":"Visible"},{"av":"divProfileextendedinfo1_fourthinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_FOURTHINFOABOUT","prop":"Visible"},{"av":"divUpdatephonetbl_Visible","ctrl":"UPDATEPHONETBL","prop":"Visible"},{"av":"tblUpdateactionstable_Visible","ctrl":"UPDATEACTIONSTABLE","prop":"Visible"}]}""");
-         setEventMetadata("'DOSAVEUPDATE'","""{"handler":"E139R2","iparms":[{"av":"AV65WWPContext","fld":"vWWPCONTEXT"},{"av":"AV11CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV17EmailValue","fld":"vEMAILVALUE"},{"av":"AV24FirstNameValue","fld":"vFIRSTNAMEVALUE"},{"av":"AV30LastNameValue","fld":"vLASTNAMEVALUE"},{"av":"AV38PhoneNumber","fld":"vPHONENUMBER"},{"av":"AV34PhoneCode","fld":"vPHONECODE"},{"av":"AV66base64String","fld":"vBASE64STRING"},{"av":"AV52Trn_Manager","fld":"vTRN_MANAGER"},{"av":"AV53Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"}]""");
+         setEventMetadata("'DOSAVEUPDATE'","""{"handler":"E159R2","iparms":[{"av":"AV65WWPContext","fld":"vWWPCONTEXT"},{"av":"AV11CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV17EmailValue","fld":"vEMAILVALUE"},{"av":"AV24FirstNameValue","fld":"vFIRSTNAMEVALUE"},{"av":"AV30LastNameValue","fld":"vLASTNAMEVALUE"},{"av":"AV38PhoneNumber","fld":"vPHONENUMBER"},{"av":"AV34PhoneCode","fld":"vPHONECODE"},{"av":"AV66base64String","fld":"vBASE64STRING"},{"av":"AV52Trn_Manager","fld":"vTRN_MANAGER"},{"av":"AV53Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"}]""");
          setEventMetadata("'DOSAVEUPDATE'",""","oparms":[{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"},{"av":"AV11CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV53Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV52Trn_Manager","fld":"vTRN_MANAGER"},{"av":"AV65WWPContext","fld":"vWWPCONTEXT"},{"av":"divUpdateavatartable_Visible","ctrl":"UPDATEAVATARTABLE","prop":"Visible"},{"av":"divProfileextendedinfo1_firstinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_FIRSTINFOABOUT","prop":"Visible"},{"av":"divUpdatemodefirstnametbl_Visible","ctrl":"UPDATEMODEFIRSTNAMETBL","prop":"Visible"},{"av":"divProfileextendedinfo1_secondinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_SECONDINFOABOUT","prop":"Visible"},{"av":"divUpdatemodelastnaetbl_Visible","ctrl":"UPDATEMODELASTNAETBL","prop":"Visible"},{"av":"divProfileextendedinfo1_thirdinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_THIRDINFOABOUT","prop":"Visible"},{"av":"divUpdateemailtbl_Visible","ctrl":"UPDATEEMAILTBL","prop":"Visible"},{"av":"divProfileextendedinfo1_fourthinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_FOURTHINFOABOUT","prop":"Visible"},{"av":"divUpdatephonetbl_Visible","ctrl":"UPDATEPHONETBL","prop":"Visible"},{"av":"tblUpdateactionstable_Visible","ctrl":"UPDATEACTIONSTABLE","prop":"Visible"},{"av":"AV68profileImage","fld":"vPROFILEIMAGE"},{"av":"AV56user","fld":"vUSER"},{"av":"AV16Email","fld":"vEMAIL"},{"av":"AV23FirstName","fld":"vFIRSTNAME"},{"av":"AV29LastName","fld":"vLASTNAME"},{"av":"AV33Phone","fld":"vPHONE"},{"av":"AV46role","fld":"vROLE"}]}""");
-         setEventMetadata("'DOUPDATEPROFILE'","""{"handler":"E149R2","iparms":[{"av":"AV23FirstName","fld":"vFIRSTNAME"},{"av":"AV29LastName","fld":"vLASTNAME"},{"av":"AV16Email","fld":"vEMAIL"},{"av":"AV65WWPContext","fld":"vWWPCONTEXT"},{"av":"AV33Phone","fld":"vPHONE"},{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"}]""");
+         setEventMetadata("'DOUPDATEPROFILE'","""{"handler":"E169R2","iparms":[{"av":"AV23FirstName","fld":"vFIRSTNAME"},{"av":"AV29LastName","fld":"vLASTNAME"},{"av":"AV16Email","fld":"vEMAIL"},{"av":"AV65WWPContext","fld":"vWWPCONTEXT"},{"av":"AV33Phone","fld":"vPHONE"},{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"}]""");
          setEventMetadata("'DOUPDATEPROFILE'",""","oparms":[{"av":"AV6isUpdateMode","fld":"vISUPDATEMODE"},{"av":"AV24FirstNameValue","fld":"vFIRSTNAMEVALUE"},{"av":"AV30LastNameValue","fld":"vLASTNAMEVALUE"},{"av":"AV17EmailValue","fld":"vEMAILVALUE"},{"av":"Avataruc_Previewimagelink","ctrl":"AVATARUC","prop":"PreviewImageLink"},{"av":"AV38PhoneNumber","fld":"vPHONENUMBER"},{"av":"AV34PhoneCode","fld":"vPHONECODE"},{"av":"Combo_phonecode_Selectedtext_set","ctrl":"COMBO_PHONECODE","prop":"SelectedText_set"},{"av":"Combo_phonecode_Selectedvalue_set","ctrl":"COMBO_PHONECODE","prop":"SelectedValue_set"},{"av":"divUpdateavatartable_Visible","ctrl":"UPDATEAVATARTABLE","prop":"Visible"},{"av":"divProfileextendedinfo1_firstinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_FIRSTINFOABOUT","prop":"Visible"},{"av":"divUpdatemodefirstnametbl_Visible","ctrl":"UPDATEMODEFIRSTNAMETBL","prop":"Visible"},{"av":"divProfileextendedinfo1_secondinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_SECONDINFOABOUT","prop":"Visible"},{"av":"divUpdatemodelastnaetbl_Visible","ctrl":"UPDATEMODELASTNAETBL","prop":"Visible"},{"av":"divProfileextendedinfo1_thirdinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_THIRDINFOABOUT","prop":"Visible"},{"av":"divUpdateemailtbl_Visible","ctrl":"UPDATEEMAILTBL","prop":"Visible"},{"av":"divProfileextendedinfo1_fourthinfoabout_Visible","ctrl":"PROFILEEXTENDEDINFO1_FOURTHINFOABOUT","prop":"Visible"},{"av":"divUpdatephonetbl_Visible","ctrl":"UPDATEPHONETBL","prop":"Visible"},{"av":"tblUpdateactionstable_Visible","ctrl":"UPDATEACTIONSTABLE","prop":"Visible"}]}""");
          setEventMetadata("AVATARUC.ONUPLOAD","""{"handler":"E119R2","iparms":[{"av":"AV21FileUploadedData","fld":"vFILEUPLOADEDDATA"}]""");
          setEventMetadata("AVATARUC.ONUPLOAD",""","oparms":[{"av":"AV66base64String","fld":"vBASE64STRING"}]}""");
+         setEventMetadata("AVATARUC.ONFAILEDUPLOAD","""{"handler":"E129R2","iparms":[]}""");
+         setEventMetadata("COMFIRMDELETEMODAL.ONYES","""{"handler":"E139R2","iparms":[]""");
+         setEventMetadata("COMFIRMDELETEMODAL.ONYES",""","oparms":[{"av":"AV66base64String","fld":"vBASE64STRING"},{"av":"Avataruc_Previewimagelink","ctrl":"AVATARUC","prop":"PreviewImageLink"}]}""");
          return  ;
       }
 
@@ -1815,7 +1913,7 @@ namespace GeneXus.Programs {
          StyleString = "";
          ucDvpanel_profileextendedinfo1_tablemaininfo = new GXUserControl();
          AV68profileImage = "";
-         AV77Profileimage_GXI = "";
+         AV78Profileimage_GXI = "";
          sImgUrl = "";
          TempTags = "";
          AV56user = "";
@@ -1834,6 +1932,7 @@ namespace GeneXus.Programs {
          lblPhonelabel_Jsonclick = "";
          ucCombo_phonecode = new GXUserControl();
          AV38PhoneNumber = "";
+         ucComfirmdeletemodal = new GXUserControl();
          AV34PhoneCode = "";
          sEvt = "";
          EvtGridId = "";
@@ -1847,16 +1946,16 @@ namespace GeneXus.Programs {
          AV26GAMErrorCollection = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          AV25GAMError = new GeneXus.Programs.genexussecurity.SdtGAMError(context);
          AV37PhoneInputStrings = new GxSimpleCollection<string>();
-         AV75GXV2 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
+         AV76GXV2 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          AV36PhoneCode_DPItem = new SdtSDT_Country_SDT_CountryItem(context);
          AV12Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
          AV13ComboTitles = new GxSimpleCollection<string>();
          AV60userOrganisation = "";
          GXt_SdtWWPContext4 = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
-         AV78GXV4 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV79GXV4 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV69Message = new GeneXus.Utils.SdtMessages_Message(context);
-         AV80GXV6 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV81GXV6 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          sStyleString = "";
          bttBtncancel_Jsonclick = "";
          bttBtnsaveupdate_Jsonclick = "";
@@ -1910,11 +2009,11 @@ namespace GeneXus.Programs {
       private int divUpdatephonetbl_Visible ;
       private int edtavPhonenumber_Enabled ;
       private int edtavPhonecode_Visible ;
-      private int AV74GXV1 ;
+      private int AV75GXV1 ;
       private int tblUpdateactionstable_Visible ;
-      private int AV76GXV3 ;
-      private int AV79GXV5 ;
-      private int AV81GXV7 ;
+      private int AV77GXV3 ;
+      private int AV80GXV5 ;
+      private int AV82GXV7 ;
       private int idxLst ;
       private string Combo_phonecode_Selectedvalue_get ;
       private string gxfirstwebparm ;
@@ -1936,6 +2035,11 @@ namespace GeneXus.Programs {
       private string Dvpanel_profileextendedinfo1_tableabout_Cls ;
       private string Dvpanel_profileextendedinfo1_tableabout_Title ;
       private string Dvpanel_profileextendedinfo1_tableabout_Iconposition ;
+      private string Comfirmdeletemodal_Title ;
+      private string Comfirmdeletemodal_Confirmationtext ;
+      private string Comfirmdeletemodal_Yesbuttoncaption ;
+      private string Comfirmdeletemodal_Nobuttoncaption ;
+      private string Comfirmdeletemodal_Bodytype ;
       private string GX_FocusControl ;
       private string sPrefix ;
       private string divLayoutmaintable_Internalname ;
@@ -1995,6 +2099,7 @@ namespace GeneXus.Programs {
       private string Combo_phonecode_Internalname ;
       private string edtavPhonenumber_Internalname ;
       private string edtavPhonenumber_Jsonclick ;
+      private string Comfirmdeletemodal_Internalname ;
       private string divHtml_bottomauxiliarcontrols_Internalname ;
       private string edtavPhonecode_Internalname ;
       private string edtavPhonecode_Jsonclick ;
@@ -2033,7 +2138,7 @@ namespace GeneXus.Programs {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private string AV66base64String ;
-      private string AV77Profileimage_GXI ;
+      private string AV78Profileimage_GXI ;
       private string AV23FirstName ;
       private string AV24FirstNameValue ;
       private string AV29LastName ;
@@ -2050,6 +2155,7 @@ namespace GeneXus.Programs {
       private GXUserControl ucDvpanel_profileextendedinfo1_tableabout ;
       private GXUserControl ucAvataruc ;
       private GXUserControl ucCombo_phonecode ;
+      private GXUserControl ucComfirmdeletemodal ;
       private GXWebForm Form ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
@@ -2066,16 +2172,16 @@ namespace GeneXus.Programs {
       private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV26GAMErrorCollection ;
       private GeneXus.Programs.genexussecurity.SdtGAMError AV25GAMError ;
       private GxSimpleCollection<string> AV37PhoneInputStrings ;
-      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV75GXV2 ;
+      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV76GXV2 ;
       private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> GXt_objcol_SdtSDT_Country_SDT_CountryItem3 ;
       private SdtSDT_Country_SDT_CountryItem AV36PhoneCode_DPItem ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item AV12Combo_DataItem ;
       private GxSimpleCollection<string> AV13ComboTitles ;
       private IDataStoreProvider pr_default ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext GXt_SdtWWPContext4 ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV78GXV4 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV79GXV4 ;
       private GeneXus.Utils.SdtMessages_Message AV69Message ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV80GXV6 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV81GXV6 ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
       private IDataStoreProvider pr_datastore1 ;

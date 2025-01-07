@@ -1686,7 +1686,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem("No matching 'Organisations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
             GX_FocusControl = edtOrganisationId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1716,7 +1716,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A247Trn_ThemeId) ) )
             {
-               GX_msglist.addItem("No matching 'Trn_Theme'.", "ForeignKeyNotFound", 1, "TRN_THEMEID");
+               GX_msglist.addItem("No matching 'Themes'.", "ForeignKeyNotFound", 1, "TRN_THEMEID");
                AnyError = 1;
             }
          }
@@ -1739,7 +1739,7 @@ namespace GeneXus.Programs {
          pr_default.execute(5, new Object[] {A11OrganisationId});
          if ( (pr_default.getStatus(5) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem("No matching 'Organisations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
             GX_FocusControl = edtOrganisationId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1764,7 +1764,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A247Trn_ThemeId) ) )
             {
-               GX_msglist.addItem("No matching 'Trn_Theme'.", "ForeignKeyNotFound", 1, "TRN_THEMEID");
+               GX_msglist.addItem("No matching 'Themes'.", "ForeignKeyNotFound", 1, "TRN_THEMEID");
                AnyError = 1;
             }
          }
@@ -2346,7 +2346,7 @@ namespace GeneXus.Programs {
             pr_default.execute(14, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(14) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_AgendaCalendar"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Agenda/Calendar"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(14);
@@ -2354,7 +2354,7 @@ namespace GeneXus.Programs {
             pr_default.execute(15, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(15) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_LocationDynamicForm"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Location Dynamic Forms"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(15);
@@ -2362,7 +2362,7 @@ namespace GeneXus.Programs {
             pr_default.execute(16, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(16) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_ProductService"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Services"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(16);
@@ -2370,7 +2370,7 @@ namespace GeneXus.Programs {
             pr_default.execute(17, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(17) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Receptionist"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Receptionists"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(17);
@@ -2378,7 +2378,7 @@ namespace GeneXus.Programs {
             pr_default.execute(18, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(18) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_Resident"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Residents"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(18);
@@ -2869,7 +2869,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20241219153388", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025171321921", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2885,7 +2885,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_location.js", "?202412191533810", false, true);
+         context.AddJavascriptSource("trn_location.js", "?2025171321923", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3224,7 +3224,7 @@ namespace GeneXus.Programs {
          pr_default.execute(20, new Object[] {A11OrganisationId});
          if ( (pr_default.getStatus(20) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem("No matching 'Organisations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
             GX_FocusControl = edtOrganisationId_Internalname;
          }

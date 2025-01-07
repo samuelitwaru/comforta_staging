@@ -250,7 +250,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
@@ -930,7 +930,7 @@ namespace GeneXus.Programs {
             pr_default.execute(10, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(10) == 101) )
             {
-               GX_msglist.addItem("No matching 'Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(10);
@@ -969,7 +969,7 @@ namespace GeneXus.Programs {
             pr_default.execute(10, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(10) == 101) )
             {
-               GX_msglist.addItem("No matching 'Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(10);

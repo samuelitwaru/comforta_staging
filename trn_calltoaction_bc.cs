@@ -270,7 +270,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A58ProductServiceId, A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_ProductService'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem("No matching 'Services'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
@@ -280,7 +280,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A395LocationDynamicFormId) || (Guid.Empty==A11OrganisationId) || (Guid.Empty==A29LocationId) ) )
             {
-               GX_msglist.addItem("No matching 'Trn_LocationDynamicForm'.", "ForeignKeyNotFound", 1, "LOCATIONID");
+               GX_msglist.addItem("No matching 'Location Dynamic Forms'.", "ForeignKeyNotFound", 1, "LOCATIONID");
                AnyError = 1;
             }
          }

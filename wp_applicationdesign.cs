@@ -410,7 +410,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "WP_Application Design" ;
+         return "Application Design" ;
       }
 
       protected void WB470( )
@@ -490,7 +490,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "WP_Application Design", 0) ;
+         Form.Meta.addItem("description", "Application Design", 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -912,7 +912,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121313531292", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025171445688", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -930,7 +930,7 @@ namespace GeneXus.Programs {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wp_applicationdesign.js", "?2024121313531293", false, true);
+            context.AddJavascriptSource("wp_applicationdesign.js", "?2025171445689", false, true);
             context.AddJavascriptSource("UserControls/UC_AppToolBoxRender.js", "", false, true);
          }
          /* End function include_jscripts */
@@ -965,7 +965,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "WP_Application Design";
+         Form.Caption = "Application Design";
          context.GX_msglist.DisplayMode = 1;
          if ( context.isSpaRequest( ) )
          {

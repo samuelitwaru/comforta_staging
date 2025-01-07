@@ -280,7 +280,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem("No matching 'Organisations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
@@ -303,7 +303,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A247Trn_ThemeId) ) )
             {
-               GX_msglist.addItem("No matching 'Trn_Theme'.", "ForeignKeyNotFound", 1, "TRN_THEMEID");
+               GX_msglist.addItem("No matching 'Themes'.", "ForeignKeyNotFound", 1, "TRN_THEMEID");
                AnyError = 1;
             }
          }
@@ -619,7 +619,7 @@ namespace GeneXus.Programs {
             pr_default.execute(10, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(10) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_AgendaCalendar"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Agenda/Calendar"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(10);
@@ -627,7 +627,7 @@ namespace GeneXus.Programs {
             pr_default.execute(11, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(11) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_LocationDynamicForm"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Location Dynamic Forms"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(11);
@@ -635,7 +635,7 @@ namespace GeneXus.Programs {
             pr_default.execute(12, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(12) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_ProductService"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Services"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(12);
@@ -643,7 +643,7 @@ namespace GeneXus.Programs {
             pr_default.execute(13, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(13) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Receptionist"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Receptionists"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(13);
@@ -651,7 +651,7 @@ namespace GeneXus.Programs {
             pr_default.execute(14, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(14) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_Resident"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Residents"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(14);
@@ -980,7 +980,7 @@ namespace GeneXus.Programs {
             pr_default.execute(16, new Object[] {A11OrganisationId});
             if ( (pr_default.getStatus(16) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem("No matching 'Organisations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(16);
@@ -1018,7 +1018,7 @@ namespace GeneXus.Programs {
             pr_default.execute(16, new Object[] {A11OrganisationId});
             if ( (pr_default.getStatus(16) == 101) )
             {
-               GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem("No matching 'Organisations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(16);

@@ -221,7 +221,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
@@ -552,7 +552,7 @@ namespace GeneXus.Programs {
             pr_default.execute(10, new Object[] {n395LocationDynamicFormId, A395LocationDynamicFormId, A11OrganisationId, A29LocationId});
             if ( (pr_default.getStatus(10) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_CallToAction"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Call To Actions"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(10);
@@ -865,7 +865,7 @@ namespace GeneXus.Programs {
             pr_default.execute(12, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(12) == 101) )
             {
-               GX_msglist.addItem("No matching 'Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(12);
@@ -904,7 +904,7 @@ namespace GeneXus.Programs {
             pr_default.execute(12, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(12) == 101) )
             {
-               GX_msglist.addItem("No matching 'Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(12);

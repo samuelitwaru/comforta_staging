@@ -302,7 +302,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A282SupplierGenTypeId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_SupplierGenType'.", "ForeignKeyNotFound", 1, "SUPPLIERGENTYPEID");
+            GX_msglist.addItem("No matching 'General Supplier Types'.", "ForeignKeyNotFound", 1, "SUPPLIERGENTYPEID");
             AnyError = 1;
          }
          A290SupplierGenTypeName = BC00064_A290SupplierGenTypeName[0];
@@ -356,7 +356,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A11OrganisationId) ) )
             {
-               GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem("No matching 'Organisations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
          }
@@ -677,7 +677,7 @@ namespace GeneXus.Programs {
             pr_default.execute(10, new Object[] {n42SupplierGenId, A42SupplierGenId});
             if ( (pr_default.getStatus(10) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_ProductService"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Services"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(10);

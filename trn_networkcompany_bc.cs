@@ -514,7 +514,7 @@ namespace GeneXus.Programs {
             pr_default.execute(7, new Object[] {A82NetworkCompanyId});
             if ( (pr_default.getStatus(7) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_ResidentNetworkCompany"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Resident Network Company"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(7);

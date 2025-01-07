@@ -522,7 +522,7 @@ namespace GeneXus.Programs {
          pr_default.execute(8, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(8) == 101) )
          {
-            GX_msglist.addItem("No matching 'Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(8);
@@ -571,7 +571,7 @@ namespace GeneXus.Programs {
          pr_default.execute(9, new Object[] {A96ResidentTypeId});
          if ( (pr_default.getStatus(9) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Resident Type'.", "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
+            GX_msglist.addItem("No matching 'Resident Types'.", "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
             AnyError = 1;
          }
          A97ResidentTypeName = BC000911_A97ResidentTypeName[0];
@@ -582,7 +582,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A98MedicalIndicationId) ) )
             {
-               GX_msglist.addItem("No matching 'Trn_Medical Indication'.", "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
+               GX_msglist.addItem("No matching 'Medical Indications'.", "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
                AnyError = 1;
             }
          }
@@ -1440,7 +1440,7 @@ namespace GeneXus.Programs {
          pr_default.execute(5, new Object[] {A74NetworkIndividualId});
          if ( (pr_default.getStatus(5) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_NetworkIndividual'.", "ForeignKeyNotFound", 1, "NETWORKINDIVIDUALID");
+            GX_msglist.addItem("No matching 'Network Individuals'.", "ForeignKeyNotFound", 1, "NETWORKINDIVIDUALID");
             AnyError = 1;
          }
          A75NetworkIndividualBsnNumber = BC00097_A75NetworkIndividualBsnNumber[0];
@@ -1909,7 +1909,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A82NetworkCompanyId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_NetworkCompany'.", "ForeignKeyNotFound", 1, "NETWORKCOMPANYID");
+            GX_msglist.addItem("No matching 'Network Company'.", "ForeignKeyNotFound", 1, "NETWORKCOMPANYID");
             AnyError = 1;
          }
          A83NetworkCompanyKvkNumber = BC00094_A83NetworkCompanyKvkNumber[0];
@@ -2792,7 +2792,7 @@ namespace GeneXus.Programs {
             pr_default.execute(32, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(32) == 101) )
             {
-               GX_msglist.addItem("No matching 'Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(32);
@@ -2873,7 +2873,7 @@ namespace GeneXus.Programs {
             pr_default.execute(32, new Object[] {A29LocationId, A11OrganisationId});
             if ( (pr_default.getStatus(32) == 101) )
             {
-               GX_msglist.addItem("No matching 'Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
             pr_default.close(32);

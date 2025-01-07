@@ -3327,7 +3327,7 @@ namespace GeneXus.Programs {
          pr_default.execute(8, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(8) == 101) )
          {
-            GX_msglist.addItem("No matching 'Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
             GX_FocusControl = edtLocationId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -3395,7 +3395,7 @@ namespace GeneXus.Programs {
          pr_default.execute(9, new Object[] {A96ResidentTypeId});
          if ( (pr_default.getStatus(9) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Resident Type'.", "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
+            GX_msglist.addItem("No matching 'Resident Types'.", "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
             AnyError = 1;
             GX_FocusControl = edtResidentTypeId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -3408,7 +3408,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A98MedicalIndicationId) ) )
             {
-               GX_msglist.addItem("No matching 'Trn_Medical Indication'.", "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
+               GX_msglist.addItem("No matching 'Medical Indications'.", "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
                AnyError = 1;
                GX_FocusControl = edtMedicalIndicationId_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -3458,7 +3458,7 @@ namespace GeneXus.Programs {
          pr_default.execute(12, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(12) == 101) )
          {
-            GX_msglist.addItem("No matching 'Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
             GX_FocusControl = edtLocationId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -3481,7 +3481,7 @@ namespace GeneXus.Programs {
          pr_default.execute(13, new Object[] {A96ResidentTypeId});
          if ( (pr_default.getStatus(13) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Resident Type'.", "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
+            GX_msglist.addItem("No matching 'Resident Types'.", "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
             AnyError = 1;
             GX_FocusControl = edtResidentTypeId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -3508,7 +3508,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A98MedicalIndicationId) ) )
             {
-               GX_msglist.addItem("No matching 'Trn_Medical Indication'.", "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
+               GX_msglist.addItem("No matching 'Medical Indications'.", "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
                AnyError = 1;
                GX_FocusControl = edtMedicalIndicationId_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -4719,7 +4719,7 @@ namespace GeneXus.Programs {
          if ( (pr_default.getStatus(5) == 101) )
          {
             GXCCtl = "NETWORKINDIVIDUALID_" + sGXsfl_174_idx;
-            GX_msglist.addItem("No matching 'Trn_NetworkIndividual'.", "ForeignKeyNotFound", 1, GXCCtl);
+            GX_msglist.addItem("No matching 'Network Individuals'.", "ForeignKeyNotFound", 1, GXCCtl);
             AnyError = 1;
             GX_FocusControl = edtNetworkIndividualId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -4756,7 +4756,7 @@ namespace GeneXus.Programs {
          if ( (pr_default.getStatus(26) == 101) )
          {
             GXCCtl = "NETWORKINDIVIDUALID_" + sGXsfl_174_idx;
-            GX_msglist.addItem("No matching 'Trn_NetworkIndividual'.", "ForeignKeyNotFound", 1, GXCCtl);
+            GX_msglist.addItem("No matching 'Network Individuals'.", "ForeignKeyNotFound", 1, GXCCtl);
             AnyError = 1;
             GX_FocusControl = edtNetworkIndividualId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -5246,7 +5246,7 @@ namespace GeneXus.Programs {
          if ( (pr_default.getStatus(2) == 101) )
          {
             GXCCtl = "NETWORKCOMPANYID_" + sGXsfl_191_idx;
-            GX_msglist.addItem("No matching 'Trn_NetworkCompany'.", "ForeignKeyNotFound", 1, GXCCtl);
+            GX_msglist.addItem("No matching 'Network Company'.", "ForeignKeyNotFound", 1, GXCCtl);
             AnyError = 1;
             GX_FocusControl = edtNetworkCompanyId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -5282,7 +5282,7 @@ namespace GeneXus.Programs {
          if ( (pr_default.getStatus(33) == 101) )
          {
             GXCCtl = "NETWORKCOMPANYID_" + sGXsfl_191_idx;
-            GX_msglist.addItem("No matching 'Trn_NetworkCompany'.", "ForeignKeyNotFound", 1, GXCCtl);
+            GX_msglist.addItem("No matching 'Network Company'.", "ForeignKeyNotFound", 1, GXCCtl);
             AnyError = 1;
             GX_FocusControl = edtNetworkCompanyId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -6765,7 +6765,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412191553418", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025171333840", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -6781,7 +6781,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_resident.js", "?202412191553421", false, true);
+         context.AddJavascriptSource("trn_resident.js", "?2025171333842", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -7557,7 +7557,7 @@ namespace GeneXus.Programs {
          pr_default.execute(39, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(39) == 101) )
          {
-            GX_msglist.addItem("No matching 'Location'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem("No matching 'Locations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
             GX_FocusControl = edtLocationId_Internalname;
          }
@@ -7618,7 +7618,7 @@ namespace GeneXus.Programs {
          pr_default.execute(22, new Object[] {A96ResidentTypeId});
          if ( (pr_default.getStatus(22) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_Resident Type'.", "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
+            GX_msglist.addItem("No matching 'Resident Types'.", "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
             AnyError = 1;
             GX_FocusControl = edtResidentTypeId_Internalname;
          }
@@ -7638,7 +7638,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A98MedicalIndicationId) ) )
             {
-               GX_msglist.addItem("No matching 'Trn_Medical Indication'.", "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
+               GX_msglist.addItem("No matching 'Medical Indications'.", "ForeignKeyNotFound", 1, "MEDICALINDICATIONID");
                AnyError = 1;
                GX_FocusControl = edtMedicalIndicationId_Internalname;
             }
@@ -7658,7 +7658,7 @@ namespace GeneXus.Programs {
          pr_default.execute(30, new Object[] {A74NetworkIndividualId});
          if ( (pr_default.getStatus(30) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_NetworkIndividual'.", "ForeignKeyNotFound", 1, "NETWORKINDIVIDUALID");
+            GX_msglist.addItem("No matching 'Network Individuals'.", "ForeignKeyNotFound", 1, "NETWORKINDIVIDUALID");
             AnyError = 1;
             GX_FocusControl = edtNetworkIndividualId_Internalname;
          }
@@ -7711,7 +7711,7 @@ namespace GeneXus.Programs {
          pr_default.execute(37, new Object[] {A82NetworkCompanyId});
          if ( (pr_default.getStatus(37) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_NetworkCompany'.", "ForeignKeyNotFound", 1, "NETWORKCOMPANYID");
+            GX_msglist.addItem("No matching 'Network Company'.", "ForeignKeyNotFound", 1, "NETWORKCOMPANYID");
             AnyError = 1;
             GX_FocusControl = edtNetworkCompanyId_Internalname;
          }

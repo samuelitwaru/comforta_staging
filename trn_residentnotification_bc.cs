@@ -179,7 +179,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A498AppNotificationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_AppNotification'.", "ForeignKeyNotFound", 1, "APPNOTIFICATIONID");
+            GX_msglist.addItem("No matching 'App Notifications'.", "ForeignKeyNotFound", 1, "APPNOTIFICATIONID");
             AnyError = 1;
          }
          pr_default.close(2);

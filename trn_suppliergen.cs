@@ -1838,7 +1838,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A282SupplierGenTypeId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_SupplierGenType'.", "ForeignKeyNotFound", 1, "SUPPLIERGENTYPEID");
+            GX_msglist.addItem("No matching 'General Supplier Types'.", "ForeignKeyNotFound", 1, "SUPPLIERGENTYPEID");
             AnyError = 1;
             GX_FocusControl = edtSupplierGenTypeId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1918,7 +1918,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A11OrganisationId) ) )
             {
-               GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem("No matching 'Organisations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
          }
@@ -1941,7 +1941,7 @@ namespace GeneXus.Programs {
          pr_default.execute(5, new Object[] {A282SupplierGenTypeId});
          if ( (pr_default.getStatus(5) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_SupplierGenType'.", "ForeignKeyNotFound", 1, "SUPPLIERGENTYPEID");
+            GX_msglist.addItem("No matching 'General Supplier Types'.", "ForeignKeyNotFound", 1, "SUPPLIERGENTYPEID");
             AnyError = 1;
             GX_FocusControl = edtSupplierGenTypeId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -1968,7 +1968,7 @@ namespace GeneXus.Programs {
          {
             if ( ! ( (Guid.Empty==A11OrganisationId) ) )
             {
-               GX_msglist.addItem("No matching 'Trn_Organisation'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               GX_msglist.addItem("No matching 'Organisations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
          }
@@ -2560,7 +2560,7 @@ namespace GeneXus.Programs {
             pr_default.execute(14, new Object[] {n42SupplierGenId, A42SupplierGenId});
             if ( (pr_default.getStatus(14) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Trn_ProductService"}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {"Services"}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(14);
@@ -3050,7 +3050,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202412191541938", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025171314854", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3066,7 +3066,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_suppliergen.js", "?202412191541941", false, true);
+         context.AddJavascriptSource("trn_suppliergen.js", "?2025171314857", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3284,7 +3284,7 @@ namespace GeneXus.Programs {
          pr_default.execute(13, new Object[] {A282SupplierGenTypeId});
          if ( (pr_default.getStatus(13) == 101) )
          {
-            GX_msglist.addItem("No matching 'Trn_SupplierGenType'.", "ForeignKeyNotFound", 1, "SUPPLIERGENTYPEID");
+            GX_msglist.addItem("No matching 'General Supplier Types'.", "ForeignKeyNotFound", 1, "SUPPLIERGENTYPEID");
             AnyError = 1;
             GX_FocusControl = edtSupplierGenTypeId_Internalname;
          }
