@@ -713,7 +713,7 @@ namespace GeneXus.Programs {
          new loadaudittrn_receptionist(context ).execute(  "Y", ref  AV36AuditingObject,  A89ReceptionistId,  A11OrganisationId,  A29LocationId,  Gx_mode) ;
          if ( IsUpd( )  )
          {
-            new prc_updategamuseraccount(context ).execute(  A95ReceptionistGAMGUID,  A90ReceptionistGivenName,  A91ReceptionistLastName,  A373ReceptionistPhoneCode,  A374ReceptionistPhoneNumber,  A459ReceptionistImage,  "Receptionist", out  AV14GAMErrorResponse) ;
+            new prc_updategamuseraccount(context ).execute(  A95ReceptionistGAMGUID,  A90ReceptionistGivenName,  A91ReceptionistLastName,  A373ReceptionistPhoneCode,  A374ReceptionistPhoneNumber,  A459ReceptionistImage,  A398ReceptionistIsActive,  "Receptionist", out  AV14GAMErrorResponse) ;
          }
          if ( IsUpd( )  && ! String.IsNullOrEmpty(StringUtil.RTrim( AV14GAMErrorResponse)) )
          {

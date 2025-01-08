@@ -1301,15 +1301,14 @@ namespace GeneXus.Programs {
       {
          /* Before Update Rules */
          new loadaudittrn_resident(context ).execute(  "Y", ref  AV42AuditingObject,  A62ResidentId,  A29LocationId,  A11OrganisationId,  Gx_mode) ;
+         if ( IsUpd( )  )
+         {
+            new prc_updategamuseraccount(context ).execute(  A71ResidentGUID,  A64ResidentGivenName,  A65ResidentLastName,  A445ResidentHomePhoneCode,  A446ResidentHomePhoneNumber,  A457ResidentImage,  false,  "Resident", out  AV36GAMErrorResponse) ;
+         }
          if ( IsUpd( )  && ! String.IsNullOrEmpty(StringUtil.RTrim( AV36GAMErrorResponse)) )
          {
             GX_msglist.addItem(AV36GAMErrorResponse, 1, "");
             AnyError = 1;
-         }
-         if ( IsUpd( )  )
-         {
-            GXt_char1 = "";
-            new prc_updategamuseraccount(context ).execute(  A71ResidentGUID,  A64ResidentGivenName,  A65ResidentLastName,  "Resident",  AV36GAMErrorResponse,  "",  "", out  GXt_char1) ;
          }
       }
 
@@ -3422,6 +3421,7 @@ namespace GeneXus.Programs {
          BC000910_A29LocationId = new Guid[] {Guid.Empty} ;
          BC000911_A97ResidentTypeName = new string[] {""} ;
          BC000912_A99MedicalIndicationName = new string[] {""} ;
+         GXt_char1 = "";
          BC000914_A62ResidentId = new Guid[] {Guid.Empty} ;
          BC000914_A29LocationId = new Guid[] {Guid.Empty} ;
          BC000914_A11OrganisationId = new Guid[] {Guid.Empty} ;
@@ -3520,7 +3520,6 @@ namespace GeneXus.Programs {
          BC000921_A457ResidentImage = new string[] {""} ;
          BC000921_n457ResidentImage = new bool[] {false} ;
          AV36GAMErrorResponse = "";
-         GXt_char1 = "";
          Z75NetworkIndividualBsnNumber = "";
          A75NetworkIndividualBsnNumber = "";
          Z76NetworkIndividualGivenName = "";

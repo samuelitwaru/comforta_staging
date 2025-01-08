@@ -113,6 +113,33 @@ namespace GeneXus.Programs {
          /* LoginWithQrCode Constructor */
       }
 
+      public void gxep_refreshauthtoken( string aP0_refreshToken ,
+                                         out SdtSDT_LoginResidentResponse aP1_loginResult )
+      {
+         restCliRefreshAuthToken = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/auth/refresh-token";
+         restCliRefreshAuthToken.Location = restLocation;
+         restCliRefreshAuthToken.HttpMethod = "POST";
+         restCliRefreshAuthToken.AddBodyVar("refreshToken", (string)(aP0_refreshToken));
+         restCliRefreshAuthToken.RestExecute();
+         if ( restCliRefreshAuthToken.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliRefreshAuthToken.ErrorCode;
+            gxProperties.ErrorMessage = restCliRefreshAuthToken.ErrorMessage;
+            gxProperties.StatusCode = restCliRefreshAuthToken.StatusCode;
+            aP1_loginResult = new SdtSDT_LoginResidentResponse();
+         }
+         else
+         {
+            aP1_loginResult = restCliRefreshAuthToken.GetBodySdt<SdtSDT_LoginResidentResponse>("loginResult");
+         }
+         /* RefreshAuthToken Constructor */
+      }
+
       public void gxep_getresidentinformation( string aP0_userId ,
                                                out SdtSDT_Resident aP1_SDT_Resident )
       {
@@ -938,6 +965,7 @@ namespace GeneXus.Programs {
          gxProperties = new GxObjectProperties();
          restCliLoginWithQrCode = new GXRestAPIClient();
          aP1_loginResult = new SdtSDT_LoginResidentResponse();
+         restCliRefreshAuthToken = new GXRestAPIClient();
          restCliGetResidentInformation = new GXRestAPIClient();
          aP1_SDT_Resident = new SdtSDT_Resident();
          restCliGetOrganisationInformation = new GXRestAPIClient();
@@ -994,6 +1022,7 @@ namespace GeneXus.Programs {
 
       protected string Gx_restmethod ;
       protected GXRestAPIClient restCliLoginWithQrCode ;
+      protected GXRestAPIClient restCliRefreshAuthToken ;
       protected GXRestAPIClient restCliGetResidentInformation ;
       protected GXRestAPIClient restCliGetOrganisationInformation ;
       protected GXRestAPIClient restCliGetLocationInformation ;

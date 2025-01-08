@@ -101,6 +101,13 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A64ResidentGivenName", A64ResidentGivenName);
             A65ResidentLastName = GetPar( "ResidentLastName");
             AssignAttri("", false, "A65ResidentLastName", A65ResidentLastName);
+            A445ResidentHomePhoneCode = GetPar( "ResidentHomePhoneCode");
+            AssignAttri("", false, "A445ResidentHomePhoneCode", A445ResidentHomePhoneCode);
+            A446ResidentHomePhoneNumber = GetPar( "ResidentHomePhoneNumber");
+            AssignAttri("", false, "A446ResidentHomePhoneNumber", A446ResidentHomePhoneNumber);
+            A457ResidentImage = GetPar( "ResidentImage");
+            n457ResidentImage = false;
+            AssignAttri("", false, "A457ResidentImage", A457ResidentImage);
             AV36GAMErrorResponse = GetPar( "GAMErrorResponse");
             AssignAttri("", false, "AV36GAMErrorResponse", AV36GAMErrorResponse);
             setAjaxCallMode();
@@ -109,7 +116,7 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            XC_51_0916( Gx_mode, A71ResidentGUID, A64ResidentGivenName, A65ResidentLastName, AV36GAMErrorResponse) ;
+            XC_51_0916( Gx_mode, A71ResidentGUID, A64ResidentGivenName, A65ResidentLastName, A445ResidentHomePhoneCode, A446ResidentHomePhoneNumber, A457ResidentImage, AV36GAMErrorResponse) ;
             return  ;
          }
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxJX_Action53") == 0 )
@@ -1594,7 +1601,6 @@ namespace GeneXus.Programs {
                AV36GAMErrorResponse = cgiGet( "vGAMERRORRESPONSE");
                Gx_mode = cgiGet( "vMODE");
                A457ResidentImage = cgiGet( "RESIDENTIMAGE");
-               n457ResidentImage = false;
                n457ResidentImage = (String.IsNullOrEmpty(StringUtil.RTrim( A457ResidentImage)) ? true : false);
                A40000ResidentImage_GXI = cgiGet( "RESIDENTIMAGE_GXI");
                n40000ResidentImage_GXI = false;
@@ -4517,15 +4523,15 @@ namespace GeneXus.Programs {
       {
          /* Before Update Rules */
          new loadaudittrn_resident(context ).execute(  "Y", ref  AV42AuditingObject,  A62ResidentId,  A29LocationId,  A11OrganisationId,  Gx_mode) ;
+         if ( IsUpd( )  )
+         {
+            new prc_updategamuseraccount(context ).execute(  A71ResidentGUID,  A64ResidentGivenName,  A65ResidentLastName,  A445ResidentHomePhoneCode,  A446ResidentHomePhoneNumber,  A457ResidentImage,  false,  "Resident", out  AV36GAMErrorResponse) ;
+            AssignAttri("", false, "AV36GAMErrorResponse", AV36GAMErrorResponse);
+         }
          if ( IsUpd( )  && ! String.IsNullOrEmpty(StringUtil.RTrim( AV36GAMErrorResponse)) )
          {
             GX_msglist.addItem(AV36GAMErrorResponse, 1, "");
             AnyError = 1;
-         }
-         if ( IsUpd( )  )
-         {
-            GXt_char2 = "";
-            new prc_updategamuseraccount(context ).execute(  A71ResidentGUID,  A64ResidentGivenName,  A65ResidentLastName,  "Resident",  AV36GAMErrorResponse,  "",  "", out  GXt_char2) ;
          }
       }
 
@@ -6765,7 +6771,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025171333840", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251811255863", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -6781,7 +6787,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_resident.js", "?2025171333842", false, true);
+         context.AddJavascriptSource("trn_resident.js", "?20251811255865", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -7411,12 +7417,15 @@ namespace GeneXus.Programs {
                                  string A71ResidentGUID ,
                                  string A64ResidentGivenName ,
                                  string A65ResidentLastName ,
+                                 string A445ResidentHomePhoneCode ,
+                                 string A446ResidentHomePhoneNumber ,
+                                 string A457ResidentImage ,
                                  string AV36GAMErrorResponse )
       {
          if ( IsUpd( )  )
          {
-            GXt_char2 = "";
-            new prc_updategamuseraccount(context ).execute(  A71ResidentGUID,  A64ResidentGivenName,  A65ResidentLastName,  "Resident",  AV36GAMErrorResponse,  "",  "", out  GXt_char2) ;
+            new prc_updategamuseraccount(context ).execute(  A71ResidentGUID,  A64ResidentGivenName,  A65ResidentLastName,  A445ResidentHomePhoneCode,  A446ResidentHomePhoneNumber,  A457ResidentImage,  false,  "Resident", out  AV36GAMErrorResponse) ;
+            AssignAttri("", false, "AV36GAMErrorResponse", AV36GAMErrorResponse);
          }
          GxWebStd.set_html_headers( context, 0, "", "");
          AddString( "[[") ;
@@ -7863,10 +7872,11 @@ namespace GeneXus.Programs {
          A65ResidentLastName = "";
          A71ResidentGUID = "";
          AV36GAMErrorResponse = "";
-         A375ResidentPhoneCode = "";
-         A376ResidentPhoneNumber = "";
          A445ResidentHomePhoneCode = "";
          A446ResidentHomePhoneNumber = "";
+         A457ResidentImage = "";
+         A375ResidentPhoneCode = "";
+         A376ResidentPhoneNumber = "";
          A29LocationId = Guid.Empty;
          A11OrganisationId = Guid.Empty;
          A96ResidentTypeId = Guid.Empty;
@@ -7931,7 +7941,6 @@ namespace GeneXus.Programs {
          AV15Insert_ResidentTypeId = Guid.Empty;
          AV16Insert_MedicalIndicationId = Guid.Empty;
          AV42AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
-         A457ResidentImage = "";
          A40000ResidentImage_GXI = "";
          A97ResidentTypeName = "";
          A99MedicalIndicationName = "";
@@ -9170,6 +9179,7 @@ namespace GeneXus.Programs {
       private DateTime A73ResidentBirthDate ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
+      private bool n457ResidentImage ;
       private bool n98MedicalIndicationId ;
       private bool wbErr ;
       private bool Combo_residentphonecode_Emptyitem ;
@@ -9184,7 +9194,6 @@ namespace GeneXus.Programs {
       private bool Combo_networkcompanyid_Emptyitem ;
       private bool bGXsfl_174_Refreshing=false ;
       private bool bGXsfl_191_Refreshing=false ;
-      private bool n457ResidentImage ;
       private bool n40000ResidentImage_GXI ;
       private bool Combo_residentphonecode_Enabled ;
       private bool Combo_residentphonecode_Visible ;
@@ -9262,10 +9271,10 @@ namespace GeneXus.Programs {
       private string A64ResidentGivenName ;
       private string A65ResidentLastName ;
       private string A71ResidentGUID ;
-      private string A375ResidentPhoneCode ;
-      private string A376ResidentPhoneNumber ;
       private string A445ResidentHomePhoneCode ;
       private string A446ResidentHomePhoneNumber ;
+      private string A375ResidentPhoneCode ;
+      private string A376ResidentPhoneNumber ;
       private string A68ResidentGender ;
       private string A63ResidentBsnNumber ;
       private string A357ResidentAddressLine1 ;

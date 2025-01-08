@@ -725,7 +725,7 @@ namespace GeneXus.Programs {
          new loadaudittrn_manager(context ).execute(  "Y", ref  AV29AuditingObject,  A21ManagerId,  A11OrganisationId,  Gx_mode) ;
          if ( IsUpd( )  )
          {
-            new prc_updategamuseraccount(context ).execute(  A28ManagerGAMGUID,  A22ManagerGivenName,  A23ManagerLastName,  A385ManagerPhoneCode,  A386ManagerPhoneNumber,  A458ManagerImage,  "Organisation Manager", out  AV24GAMErrorResponse) ;
+            new prc_updategamuseraccount(context ).execute(  A28ManagerGAMGUID,  A22ManagerGivenName,  A23ManagerLastName,  A385ManagerPhoneCode,  A386ManagerPhoneNumber,  A458ManagerImage,  A394ManagerIsActive,  "Organisation Manager", out  AV24GAMErrorResponse) ;
          }
          if ( IsUpd( )  && ! String.IsNullOrEmpty(StringUtil.RTrim( AV24GAMErrorResponse)) )
          {

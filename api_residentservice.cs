@@ -35,6 +35,10 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityNone ;
          }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_refreshauthtoken") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_getresidentinformation") == 0 )
          {
             return GAMSecurityLevel.SecurityLow ;
@@ -198,6 +202,17 @@ namespace GeneXus.Programs {
          initialize();
          /* LoginWithQrCode Constructor */
          new prc_loginresident(context ).execute(  AV7secretKey, out  AV17result) ;
+         aP1_loginResult=this.AV21loginResult;
+      }
+
+      public void gxep_refreshauthtoken( string aP0_refreshToken ,
+                                         out SdtSDT_LoginResidentResponse aP1_loginResult )
+      {
+         this.AV89refreshToken = aP0_refreshToken;
+         AV21loginResult = new SdtSDT_LoginResidentResponse(context);
+         initialize();
+         /* RefreshAuthToken Constructor */
+         new prc_refreshauthtoken(context ).execute(  AV89refreshToken, out  AV17result) ;
          aP1_loginResult=this.AV21loginResult;
       }
 
@@ -579,6 +594,7 @@ namespace GeneXus.Programs {
       protected bool AV88IsNotifyResidents ;
       protected string AV7secretKey ;
       protected string AV17result ;
+      protected string AV89refreshToken ;
       protected string AV86Base64Image ;
       protected string AV49MediaImageData ;
       protected string AV58PageJsonContent ;

@@ -15,6 +15,16 @@
 "Implementation":"Prc_LoginResident"
 },
 {
+"Verb":"POST",
+"PathRegexp":"auth/refresh-token",
+"Path":"auth/refresh-token",
+"Name":"refreshauthtoken",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_refreshauthtoken",
+"Implementation":"Prc_RefreshAuthToken"
+},
+{
 "PathRegexp":"auth/resident",
 "Path":"auth/resident",
 "Name":"getresidentinformation",

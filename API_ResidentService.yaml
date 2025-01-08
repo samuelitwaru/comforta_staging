@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250107100656"
+  version: "20250108082937"
 servers:
-  - url: https://stating.comforta.yukon.software/api
+  - url: https://staging.comforta.yukon.software/api
 paths:
   /auth/resident-login:
     post:
@@ -20,6 +20,32 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/LoginWithQrCodeInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_LoginResidentResponse"  
+
+        404:
+          description: "Not found"
+
+  /auth/refresh-token:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.RefreshAuthToken"
+      summary: "Refresh Resident Auth Token"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RefreshAuthTokenInput"
       
       responses:
         200:
@@ -864,6 +890,11 @@ components:
     LoginWithQrCodeInput:  
       properties:
         secretKey:
+          type: "string"
+
+    RefreshAuthTokenInput:  
+      properties:
+        refreshToken:
           type: "string"
 
 

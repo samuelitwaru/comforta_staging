@@ -108,13 +108,15 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A386ManagerPhoneNumber", A386ManagerPhoneNumber);
             A458ManagerImage = GetPar( "ManagerImage");
             AssignAttri("", false, "A458ManagerImage", A458ManagerImage);
+            A394ManagerIsActive = StringUtil.StrToBool( GetPar( "ManagerIsActive"));
+            AssignAttri("", false, "A394ManagerIsActive", A394ManagerIsActive);
             setAjaxCallMode();
             if ( ! IsValidAjaxCall( true) )
             {
                GxWebError = 1;
                return  ;
             }
-            XC_33_035( Gx_mode, A28ManagerGAMGUID, A22ManagerGivenName, A23ManagerLastName, A385ManagerPhoneCode, A386ManagerPhoneNumber, A458ManagerImage) ;
+            XC_33_035( Gx_mode, A28ManagerGAMGUID, A22ManagerGivenName, A23ManagerLastName, A385ManagerPhoneCode, A386ManagerPhoneNumber, A458ManagerImage, A394ManagerIsActive) ;
             return  ;
          }
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxJX_Action36") == 0 )
@@ -2359,7 +2361,7 @@ namespace GeneXus.Programs {
          new loadaudittrn_manager(context ).execute(  "Y", ref  AV29AuditingObject,  A21ManagerId,  A11OrganisationId,  Gx_mode) ;
          if ( IsUpd( )  )
          {
-            new prc_updategamuseraccount(context ).execute(  A28ManagerGAMGUID,  A22ManagerGivenName,  A23ManagerLastName,  A385ManagerPhoneCode,  A386ManagerPhoneNumber,  A458ManagerImage,  "Organisation Manager", out  AV24GAMErrorResponse) ;
+            new prc_updategamuseraccount(context ).execute(  A28ManagerGAMGUID,  A22ManagerGivenName,  A23ManagerLastName,  A385ManagerPhoneCode,  A386ManagerPhoneNumber,  A458ManagerImage,  A394ManagerIsActive,  "Organisation Manager", out  AV24GAMErrorResponse) ;
             AssignAttri("", false, "AV24GAMErrorResponse", AV24GAMErrorResponse);
          }
          if ( IsUpd( )  && ! String.IsNullOrEmpty(StringUtil.RTrim( AV24GAMErrorResponse)) )
@@ -2750,7 +2752,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025171314351", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025181123357", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2766,7 +2768,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_manager.js", "?2025171314353", false, true);
+         context.AddJavascriptSource("trn_manager.js", "?2025181123359", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3047,11 +3049,12 @@ namespace GeneXus.Programs {
                                 string A23ManagerLastName ,
                                 string A385ManagerPhoneCode ,
                                 string A386ManagerPhoneNumber ,
-                                string A458ManagerImage )
+                                string A458ManagerImage ,
+                                bool A394ManagerIsActive )
       {
          if ( IsUpd( )  )
          {
-            new prc_updategamuseraccount(context ).execute(  A28ManagerGAMGUID,  A22ManagerGivenName,  A23ManagerLastName,  A385ManagerPhoneCode,  A386ManagerPhoneNumber,  A458ManagerImage,  "Organisation Manager", out  AV24GAMErrorResponse) ;
+            new prc_updategamuseraccount(context ).execute(  A28ManagerGAMGUID,  A22ManagerGivenName,  A23ManagerLastName,  A385ManagerPhoneCode,  A386ManagerPhoneNumber,  A458ManagerImage,  A394ManagerIsActive,  "Organisation Manager", out  AV24GAMErrorResponse) ;
             AssignAttri("", false, "AV24GAMErrorResponse", AV24GAMErrorResponse);
          }
          GxWebStd.set_html_headers( context, 0, "", "");
@@ -3254,6 +3257,8 @@ namespace GeneXus.Programs {
          setEventMetadata("VALID_MANAGERPHONECODE",""","oparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
          setEventMetadata("VALID_MANAGERPHONENUMBER","""{"handler":"Valid_Managerphonenumber","iparms":[{"av":"A385ManagerPhoneCode","fld":"MANAGERPHONECODE"},{"av":"A386ManagerPhoneNumber","fld":"MANAGERPHONENUMBER"},{"av":"A26ManagerPhone","fld":"MANAGERPHONE"},{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
          setEventMetadata("VALID_MANAGERPHONENUMBER",""","oparms":[{"av":"A26ManagerPhone","fld":"MANAGERPHONE"},{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
+         setEventMetadata("VALID_MANAGERISACTIVE","""{"handler":"Valid_Managerisactive","iparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
+         setEventMetadata("VALID_MANAGERISACTIVE",""","oparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
          setEventMetadata("VALIDV_COMBOMANAGERPHONECODE","""{"handler":"Validv_Combomanagerphonecode","iparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
          setEventMetadata("VALIDV_COMBOMANAGERPHONECODE",""","oparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
          setEventMetadata("VALID_MANAGERID","""{"handler":"Valid_Managerid","iparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
@@ -3653,9 +3658,9 @@ namespace GeneXus.Programs {
       private bool Z394ManagerIsActive ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
+      private bool A394ManagerIsActive ;
       private bool wbErr ;
       private bool A360ManagerIsMainManager ;
-      private bool A394ManagerIsActive ;
       private bool Combo_managerphonecode_Emptyitem ;
       private bool AV31IsGAMActive ;
       private bool Combo_managerphonecode_Enabled ;

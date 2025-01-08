@@ -107,13 +107,15 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A374ReceptionistPhoneNumber", A374ReceptionistPhoneNumber);
             A459ReceptionistImage = GetPar( "ReceptionistImage");
             AssignAttri("", false, "A459ReceptionistImage", A459ReceptionistImage);
+            A398ReceptionistIsActive = StringUtil.StrToBool( GetPar( "ReceptionistIsActive"));
+            AssignAttri("", false, "A398ReceptionistIsActive", A398ReceptionistIsActive);
             setAjaxCallMode();
             if ( ! IsValidAjaxCall( true) )
             {
                GxWebError = 1;
                return  ;
             }
-            XC_33_0C74( Gx_mode, A95ReceptionistGAMGUID, A90ReceptionistGivenName, A91ReceptionistLastName, A373ReceptionistPhoneCode, A374ReceptionistPhoneNumber, A459ReceptionistImage) ;
+            XC_33_0C74( Gx_mode, A95ReceptionistGAMGUID, A90ReceptionistGivenName, A91ReceptionistLastName, A373ReceptionistPhoneCode, A374ReceptionistPhoneNumber, A459ReceptionistImage, A398ReceptionistIsActive) ;
             return  ;
          }
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxJX_Action35") == 0 )
@@ -2319,7 +2321,7 @@ namespace GeneXus.Programs {
          new loadaudittrn_receptionist(context ).execute(  "Y", ref  AV36AuditingObject,  A89ReceptionistId,  A11OrganisationId,  A29LocationId,  Gx_mode) ;
          if ( IsUpd( )  )
          {
-            new prc_updategamuseraccount(context ).execute(  A95ReceptionistGAMGUID,  A90ReceptionistGivenName,  A91ReceptionistLastName,  A373ReceptionistPhoneCode,  A374ReceptionistPhoneNumber,  A459ReceptionistImage,  "Receptionist", out  AV14GAMErrorResponse) ;
+            new prc_updategamuseraccount(context ).execute(  A95ReceptionistGAMGUID,  A90ReceptionistGivenName,  A91ReceptionistLastName,  A373ReceptionistPhoneCode,  A374ReceptionistPhoneNumber,  A459ReceptionistImage,  A398ReceptionistIsActive,  "Receptionist", out  AV14GAMErrorResponse) ;
             AssignAttri("", false, "AV14GAMErrorResponse", AV14GAMErrorResponse);
          }
          if ( IsUpd( )  && ! String.IsNullOrEmpty(StringUtil.RTrim( AV14GAMErrorResponse)) )
@@ -2703,7 +2705,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202517133378", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251811234986", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2719,7 +2721,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_receptionist.js", "?202517133379", false, true);
+         context.AddJavascriptSource("trn_receptionist.js", "?20251811234988", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3085,11 +3087,12 @@ namespace GeneXus.Programs {
                                  string A91ReceptionistLastName ,
                                  string A373ReceptionistPhoneCode ,
                                  string A374ReceptionistPhoneNumber ,
-                                 string A459ReceptionistImage )
+                                 string A459ReceptionistImage ,
+                                 bool A398ReceptionistIsActive )
       {
          if ( IsUpd( )  )
          {
-            new prc_updategamuseraccount(context ).execute(  A95ReceptionistGAMGUID,  A90ReceptionistGivenName,  A91ReceptionistLastName,  A373ReceptionistPhoneCode,  A374ReceptionistPhoneNumber,  A459ReceptionistImage,  "Receptionist", out  AV14GAMErrorResponse) ;
+            new prc_updategamuseraccount(context ).execute(  A95ReceptionistGAMGUID,  A90ReceptionistGivenName,  A91ReceptionistLastName,  A373ReceptionistPhoneCode,  A374ReceptionistPhoneNumber,  A459ReceptionistImage,  A398ReceptionistIsActive,  "Receptionist", out  AV14GAMErrorResponse) ;
             AssignAttri("", false, "AV14GAMErrorResponse", AV14GAMErrorResponse);
          }
          GxWebStd.set_html_headers( context, 0, "", "");
@@ -3265,6 +3268,8 @@ namespace GeneXus.Programs {
          setEventMetadata("VALID_RECEPTIONISTPHONECODE",""","oparms":[{"av":"AV21OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"dynLocationId"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A398ReceptionistIsActive","fld":"RECEPTIONISTISACTIVE"}]}""");
          setEventMetadata("VALID_RECEPTIONISTPHONENUMBER","""{"handler":"Valid_Receptionistphonenumber","iparms":[{"av":"A373ReceptionistPhoneCode","fld":"RECEPTIONISTPHONECODE"},{"av":"A374ReceptionistPhoneNumber","fld":"RECEPTIONISTPHONENUMBER"},{"av":"A94ReceptionistPhone","fld":"RECEPTIONISTPHONE"},{"av":"AV21OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"dynLocationId"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A398ReceptionistIsActive","fld":"RECEPTIONISTISACTIVE"}]""");
          setEventMetadata("VALID_RECEPTIONISTPHONENUMBER",""","oparms":[{"av":"A94ReceptionistPhone","fld":"RECEPTIONISTPHONE"},{"av":"AV21OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"dynLocationId"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A398ReceptionistIsActive","fld":"RECEPTIONISTISACTIVE"}]}""");
+         setEventMetadata("VALID_RECEPTIONISTISACTIVE","""{"handler":"Valid_Receptionistisactive","iparms":[{"av":"AV21OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"dynLocationId"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A398ReceptionistIsActive","fld":"RECEPTIONISTISACTIVE"}]""");
+         setEventMetadata("VALID_RECEPTIONISTISACTIVE",""","oparms":[{"av":"AV21OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"dynLocationId"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A398ReceptionistIsActive","fld":"RECEPTIONISTISACTIVE"}]}""");
          setEventMetadata("VALIDV_COMBORECEPTIONISTPHONECODE","""{"handler":"Validv_Comboreceptionistphonecode","iparms":[{"av":"AV21OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"dynLocationId"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A398ReceptionistIsActive","fld":"RECEPTIONISTISACTIVE"}]""");
          setEventMetadata("VALIDV_COMBORECEPTIONISTPHONECODE",""","oparms":[{"av":"AV21OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"dynLocationId"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A398ReceptionistIsActive","fld":"RECEPTIONISTISACTIVE"}]}""");
          setEventMetadata("VALID_RECEPTIONISTID","""{"handler":"Valid_Receptionistid","iparms":[{"av":"AV21OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"dynLocationId"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A398ReceptionistIsActive","fld":"RECEPTIONISTISACTIVE"}]""");
@@ -3675,8 +3680,8 @@ namespace GeneXus.Programs {
       private bool Z398ReceptionistIsActive ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
-      private bool wbErr ;
       private bool A398ReceptionistIsActive ;
+      private bool wbErr ;
       private bool Combo_receptionistphonecode_Emptyitem ;
       private bool AV37IsGAMActive ;
       private bool Combo_receptionistphonecode_Enabled ;

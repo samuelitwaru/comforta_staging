@@ -28,7 +28,6 @@ workwithplus\type_SdtWWP_Parameter.cs
 workwithplus\dynamicforms\type_SdtWWP_Form.cs
 workwithplus\dynamicforms\type_SdtWWP_Form_Element.cs
 type_SdtTrn_OrganisationType.cs
-type_SdtTrn_Manager.cs
 type_SdtTrn_Organisation.cs
 type_SdtTrn_Location.cs
 type_SdtTrn_SupplierGen.cs
@@ -37,10 +36,6 @@ type_SdtTrn_ProductService.cs
 type_SdtTrn_NetworkCompany.cs
 type_SdtTrn_NetworkIndividual.cs
 type_SdtTrn_ResidentType.cs
-type_SdtTrn_Receptionist.cs
-type_SdtTrn_Resident.cs
-type_SdtTrn_Resident_NetworkCompany.cs
-type_SdtTrn_Resident_NetworkIndividual.cs
 type_SdtTrn_MedicalIndication.cs
 type_SdtTrn_OrganisationSetting.cs
 type_SdtTrn_Media.cs
@@ -63,6 +58,11 @@ type_SdtTrn_AppNotification.cs
 type_SdtUForm.cs
 type_SdtUForm_Element.cs
 type_SdtTrn_CallToAction.cs
+type_SdtTrn_Manager.cs
+type_SdtTrn_Receptionist.cs
+type_SdtTrn_Resident.cs
+type_SdtTrn_Resident_NetworkCompany.cs
+type_SdtTrn_Resident_NetworkIndividual.cs
 type_SdtQRCodeLibrary.cs
 type_SdtEO_Base64Image.cs
 gxdomainsalutation.cs
