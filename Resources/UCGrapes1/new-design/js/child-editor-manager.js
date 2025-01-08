@@ -132,6 +132,7 @@ class ChildEditorManager {
     this.addEditorEventListners(editor);
     this.toolsSection.unDoReDo(editor);
     // Load or Initialize Editor Content
+
     if (page.PageGJSJson) {
       editor.loadProjectData(JSON.parse(page.PageGJSJson));
 
@@ -151,6 +152,9 @@ class ChildEditorManager {
           const pageData = JSON.parse(page.PageGJSJson)
           pageData.pages[0].frames[0].component.components[0].components[0].components[0].components[0].components[0].components[0].attributes.src = this.dataManager.Location.LocationImage_GXI
           pageData.pages[0].frames[0].component.components[0].components[0].components[0].components[0].components[0].components[1].components[0].content = this.dataManager.Location.LocationDescription
+          pageData.pages[0].frames[0].component.components[0].components[0].components[1].components[0].attributes["cta-button-action"] = this.dataManager.Location.LocationPhoneCode + this.dataManager.Location.LocationPhoneNumber
+          pageData.pages[0].frames[0].component.components[0].components[0].components[1].components[1].attributes["cta-button-action"] = this.dataManager.Location.LocationEmail
+          console.log(pageData.pages[0].frames[0].component.components[0].components[0].components[1].components)
           editor.DomComponents.clear()
           editor.loadProjectData(pageData);
         }
@@ -252,6 +256,7 @@ class ChildEditorManager {
   }
 
   getPage(pageId) {
+    console.log(this.dataManager.pages)
     return this.dataManager.pages.find((page) => page.PageId == pageId);
   }
 

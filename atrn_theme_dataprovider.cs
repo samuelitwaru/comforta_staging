@@ -34,8 +34,8 @@ namespace GeneXus.Programs {
 
       protected override int ExecuteCmdLine( string[] args )
       {
-         GXBCCollection<SdtTrn_Theme> aP0_Gxm1rootcol = new GXBCCollection<SdtTrn_Theme>()  ;
-         execute(out aP0_Gxm1rootcol);
+         GXBCCollection<SdtTrn_Theme> aP0_Gxm2rootcol = new GXBCCollection<SdtTrn_Theme>()  ;
+         execute(out aP0_Gxm2rootcol);
          return GX.GXRuntime.ExitCode ;
       }
 
@@ -69,31 +69,49 @@ namespace GeneXus.Programs {
          IsMain = false;
       }
 
-      public void execute( out GXBCCollection<SdtTrn_Theme> aP0_Gxm1rootcol )
+      public void execute( out GXBCCollection<SdtTrn_Theme> aP0_Gxm2rootcol )
       {
-         this.Gxm1rootcol = new GXBCCollection<SdtTrn_Theme>( context, "Trn_Theme", "Comforta_version2") ;
+         this.Gxm2rootcol = new GXBCCollection<SdtTrn_Theme>( context, "Trn_Theme", "Comforta_version2") ;
          initialize();
          ExecuteImpl();
-         aP0_Gxm1rootcol=this.Gxm1rootcol;
+         aP0_Gxm2rootcol=this.Gxm2rootcol;
       }
 
       public GXBCCollection<SdtTrn_Theme> executeUdp( )
       {
-         execute(out aP0_Gxm1rootcol);
-         return Gxm1rootcol ;
+         execute(out aP0_Gxm2rootcol);
+         return Gxm2rootcol ;
       }
 
-      public void executeSubmit( out GXBCCollection<SdtTrn_Theme> aP0_Gxm1rootcol )
+      public void executeSubmit( out GXBCCollection<SdtTrn_Theme> aP0_Gxm2rootcol )
       {
-         this.Gxm1rootcol = new GXBCCollection<SdtTrn_Theme>( context, "Trn_Theme", "Comforta_version2") ;
+         this.Gxm2rootcol = new GXBCCollection<SdtTrn_Theme>( context, "Trn_Theme", "Comforta_version2") ;
          SubmitImpl();
-         aP0_Gxm1rootcol=this.Gxm1rootcol;
+         aP0_Gxm2rootcol=this.Gxm2rootcol;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
+         Gxm1trn_theme = new SdtTrn_Theme(context);
+         Gxm2rootcol.Add(Gxm1trn_theme, 0);
+         Gxm1trn_theme.gxTpr_Trn_themeid = StringUtil.StrToGuid( "05b80e4f-effe-4d46-afbd-7c72da5a4afc");
+         Gxm1trn_theme.gxTpr_Trn_themename = "Minimalistic";
+         Gxm1trn_theme.gxTpr_Trn_themefontfamily = "Merriweather, serif";
+         Gxm1trn_theme.gxTpr_Trn_themefontsize = 10;
+         Gxm1trn_theme = new SdtTrn_Theme(context);
+         Gxm2rootcol.Add(Gxm1trn_theme, 0);
+         Gxm1trn_theme.gxTpr_Trn_themeid = StringUtil.StrToGuid( "4ddc1f46-d08a-4c11-9280-0695be8b833f");
+         Gxm1trn_theme.gxTpr_Trn_themename = "Modern";
+         Gxm1trn_theme.gxTpr_Trn_themefontfamily = "Helvetica";
+         Gxm1trn_theme.gxTpr_Trn_themefontsize = 10;
+         Gxm1trn_theme = new SdtTrn_Theme(context);
+         Gxm2rootcol.Add(Gxm1trn_theme, 0);
+         Gxm1trn_theme.gxTpr_Trn_themeid = StringUtil.StrToGuid( "2db8770b-2e22-4522-870f-d0d8b3ea0ed3");
+         Gxm1trn_theme.gxTpr_Trn_themename = "Retro";
+         Gxm1trn_theme.gxTpr_Trn_themefontfamily = "Arial";
+         Gxm1trn_theme.gxTpr_Trn_themefontsize = 10;
          cleanup();
       }
 
@@ -109,11 +127,13 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
+         Gxm1trn_theme = new SdtTrn_Theme(context);
          /* GeneXus formulas. */
       }
 
-      private GXBCCollection<SdtTrn_Theme> Gxm1rootcol ;
-      private GXBCCollection<SdtTrn_Theme> aP0_Gxm1rootcol ;
+      private GXBCCollection<SdtTrn_Theme> Gxm2rootcol ;
+      private SdtTrn_Theme Gxm1trn_theme ;
+      private GXBCCollection<SdtTrn_Theme> aP0_Gxm2rootcol ;
    }
 
 }

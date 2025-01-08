@@ -3,7 +3,7 @@
   "styles": [
     {
       "selectors": [
-        "#iekl"
+        "#ifuh"
       ],
       "style": {
         "display": "flex",
@@ -12,7 +12,7 @@
     },
     {
       "selectors": [
-        "#i9nw"
+        "#i2j2"
       ],
       "style": {
         "flex": "1",
@@ -107,7 +107,7 @@
                               "template-wrapper"
                             ],
                             "attributes": {
-                              "id": "iekl"
+                              "id": "ifuh"
                             },
                             "_undoexc": [
                               "status",
@@ -120,7 +120,7 @@
                                 "selectable": false,
                                 "hoverable": false,
                                 "attributes": {
-                                  "id": "i9nw"
+                                  "id": "i2j2"
                                 },
                                 "_undoexc": [
                                   "status",
@@ -128,21 +128,19 @@
                                 ],
                                 "components": [
                                   {
-                                    "type": "image",
+                                    "tagName": "img",
+                                    "type": "product-service-image",
                                     "droppable": false,
                                     "highlightable": false,
-                                    "resizable": {
-                                      "ratioDefault": 1
-                                    },
-                                    "editable": false,
                                     "selectable": false,
                                     "hoverable": false,
+                                    "void": true,
                                     "classes": [
                                       "content-page-block"
                                     ],
                                     "attributes": {
                                       "id": "product-service-image",
-                                      "src": "PublicTempStorage/multimedia/7550dec9-7789-4c0f-abf5-6c6643bbeae0_9648dca466184acfbb2efbe9e253571d.tmp",
+                                      "src": "https://staging.comforta.yukon.software/media/receptie-197@3x.png",
                                       "alt": "Full-width Image"
                                     },
                                     "_undoexc": [
@@ -152,9 +150,9 @@
                                   },
                                   {
                                     "tagName": "p",
-                                    "type": "text",
+                                    "type": "product-service-description",
+                                    "droppable": false,
                                     "highlightable": false,
-                                    "editable": false,
                                     "selectable": false,
                                     "hoverable": false,
                                     "classes": [
@@ -170,7 +168,7 @@
                                     "components": [
                                       {
                                         "type": "textnode",
-                                        "content": "\n                    Taxi\n                    ",
+                                        "content": "Location Description",
                                         "_undoexc": [
                                           "status",
                                           "open"
@@ -196,6 +194,174 @@
                         "_undoexc": [
                           "status",
                           "open"
+                        ],
+                        "components": [
+                          {
+                            "type": "cta-buttons",
+                            "draggable": false,
+                            "droppable": false,
+                            "highlightable": false,
+                            "hoverable": false,
+                            "selectable": false,
+                            "classes": [
+                              "cta-container-child",
+                              "cta-child"
+                            ],
+                            "attributes": {
+                              "id": "id-9a8c1583-b2cf-4bd4-a075-8551a1b68610",
+                              "cta-button-id": "9a8c1583-b2cf-4bd4-a075-8551a1b68610",
+                              "cta-button-label": "Call Us",
+                              "cta-button-type": "Phone",
+                              "cta-button-action": "+31770894070",
+                              "cta-background-color": "#5068a8"
+                            },
+                            "_undoexc": [
+                              "status",
+                              "open"
+                            ],
+                            "components": [
+                              {
+                                "draggable": false,
+                                "droppable": false,
+                                "highlightable": false,
+                                "selectable": false,
+                                "hoverable": false,
+                                "classes": [
+                                  "cta-button"
+                                ],
+                                "_undoexc": [
+                                  "status",
+                                  "open"
+                                ],
+                                "components": [
+                                  {
+                                    "tagName": "i",
+                                    "draggable": false,
+                                    "droppable": false,
+                                    "highlightable": false,
+                                    "selectable": false,
+                                    "hoverable": false,
+                                    "classes": [
+                                      "fas",
+                                      "fa-phone-alt"
+                                    ],
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "text",
+                                "draggable": false,
+                                "highlightable": false,
+                                "editable": false,
+                                "selectable": false,
+                                "hoverable": false,
+                                "classes": [
+                                  "cta-label"
+                                ],
+                                "_undoexc": [
+                                  "status",
+                                  "open"
+                                ],
+                                "components": [
+                                  {
+                                    "type": "textnode",
+                                    "content": "Call Us",
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "cta-buttons",
+                            "draggable": false,
+                            "droppable": false,
+                            "highlightable": false,
+                            "hoverable": false,
+                            "selectable": false,
+                            "classes": [
+                              "cta-container-child",
+                              "cta-child"
+                            ],
+                            "attributes": {
+                              "id": "id-4af89c2a-073a-40d2-8cf3-2ff381e266cc",
+                              "cta-button-id": "4af89c2a-073a-40d2-8cf3-2ff381e266cc",
+                              "cta-button-label": "Emal Us",
+                              "cta-button-type": "Email",
+                              "cta-button-action": "info@genexus.ug",
+                              "cta-background-color": "#5068a8"
+                            },
+                            "_undoexc": [
+                              "status",
+                              "open"
+                            ],
+                            "components": [
+                              {
+                                "draggable": false,
+                                "droppable": false,
+                                "highlightable": false,
+                                "selectable": false,
+                                "hoverable": false,
+                                "classes": [
+                                  "cta-button"
+                                ],
+                                "_undoexc": [
+                                  "status",
+                                  "open"
+                                ],
+                                "components": [
+                                  {
+                                    "tagName": "i",
+                                    "draggable": false,
+                                    "droppable": false,
+                                    "highlightable": false,
+                                    "selectable": false,
+                                    "hoverable": false,
+                                    "classes": [
+                                      "fas",
+                                      "fa-envelope"
+                                    ],
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "text",
+                                "draggable": false,
+                                "highlightable": false,
+                                "editable": false,
+                                "selectable": false,
+                                "hoverable": false,
+                                "classes": [
+                                  "cta-label"
+                                ],
+                                "_undoexc": [
+                                  "status",
+                                  "open"
+                                ],
+                                "components": [
+                                  {
+                                    "type": "textnode",
+                                    "content": "Emal Us",
+                                    "_undoexc": [
+                                      "status",
+                                      "open"
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
                         ]
                       }
                     ]
@@ -207,7 +373,7 @@
         }
       ],
       "type": "main",
-      "id": "6YZ55qbePVt6UNgy"
+      "id": "oNUmugoKuCd19trc"
     }
   ]
 }

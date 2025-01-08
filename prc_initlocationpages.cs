@@ -91,8 +91,8 @@ namespace GeneXus.Programs {
             }
             if ( StringUtil.StrCmp(AV16Value, "Reception") == 0 )
             {
-               AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, "{{LocationImage}}", "https://staging.comforta.yukon.software/media/receptie-197@3x.png");
-               AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, "{{LocationDescription}}", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+               AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, "{{ReceptionImage}}", "https://staging.comforta.yukon.software/media/receptie-197@3x.png");
+               AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, "{{ReceptionDescription}}", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
                AV20PageIsContentPage = true;
             }
             AV18BC_Trn_Page = new SdtTrn_Page(context);

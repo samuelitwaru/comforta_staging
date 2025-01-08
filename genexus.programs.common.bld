@@ -41,9 +41,6 @@ type_SdtTrn_OrganisationSetting.cs
 type_SdtTrn_Media.cs
 type_SdtTrn_Template.cs
 type_SdtTrn_SupplierAgbType.cs
-type_SdtTrn_Theme.cs
-type_SdtTrn_Theme_Color.cs
-type_SdtTrn_Theme_Icon.cs
 type_SdtTrn_SupplierGenType.cs
 type_SdtTrn_AgendaCalendar.cs
 type_SdtTrn_Device.cs
@@ -63,6 +60,9 @@ type_SdtTrn_Receptionist.cs
 type_SdtTrn_Resident.cs
 type_SdtTrn_Resident_NetworkCompany.cs
 type_SdtTrn_Resident_NetworkIndividual.cs
+type_SdtTrn_Theme.cs
+type_SdtTrn_Theme_Color.cs
+type_SdtTrn_Theme_Icon.cs
 type_SdtQRCodeLibrary.cs
 type_SdtEO_Base64Image.cs
 gxdomainsalutation.cs
