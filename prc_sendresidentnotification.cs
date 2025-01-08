@@ -93,7 +93,7 @@ namespace GeneXus.Programs {
             AV22Trn_AppNotification.Save();
             if ( AV16ResidentIdCollection.Count > 0 )
             {
-               new prc_logtofile(context ).execute(  "Resident Count Found"+AV16ResidentIdCollection.ToJSonString(false)) ;
+               new prc_logtofile(context ).execute(  context.GetMessage( "Resident Count Found", "")+AV16ResidentIdCollection.ToJSonString(false)) ;
                pr_default.dynParam(0, new Object[]{ new Object[]{
                                                     A62ResidentId ,
                                                     AV16ResidentIdCollection } ,
@@ -115,7 +115,7 @@ namespace GeneXus.Programs {
             }
             else
             {
-               new prc_logtofile(context ).execute(  "Resident Count Not Found"+AV16ResidentIdCollection.ToJSonString(false)) ;
+               new prc_logtofile(context ).execute(  context.GetMessage( "Resident Count Not Found", "")+AV16ResidentIdCollection.ToJSonString(false)) ;
                AV32Udparg1 = new prc_getuserlocationid(context).executeUdp( );
                /* Using cursor P009F3 */
                pr_default.execute(1, new Object[] {AV32Udparg1});
@@ -132,7 +132,7 @@ namespace GeneXus.Programs {
             }
             if ( AV19ResidentGUIDCollection.Count > 0 )
             {
-               new prc_logtofile(context ).execute(  "Resident GUID Not Found"+AV19ResidentGUIDCollection.ToJSonString(false)) ;
+               new prc_logtofile(context ).execute(  context.GetMessage( "Resident GUID Not Found", "")+AV19ResidentGUIDCollection.ToJSonString(false)) ;
                if ( AV22Trn_AppNotification.Success() )
                {
                   AV33GXV1 = 1;

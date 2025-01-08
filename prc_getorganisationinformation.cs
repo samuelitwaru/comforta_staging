@@ -127,7 +127,7 @@ namespace GeneXus.Programs {
          }
          if ( AV8isNotFound )
          {
-            AV11response = "No organisation record found!";
+            AV11response = context.GetMessage( "No organisation record found!", "");
          }
          else
          {

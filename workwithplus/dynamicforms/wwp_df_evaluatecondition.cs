@@ -206,7 +206,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                }
                else
                {
-                  AV16ErrorMessage = StringUtil.Format( "Referenced control not found: %1", AV19FieldName, "", "", "", "", "", "", "", "");
+                  AV16ErrorMessage = StringUtil.Format( context.GetMessage( "WWP_DF_ReferencedControlNotFound", ""), AV19FieldName, "", "", "", "", "", "", "", "");
                   AV9AllElementsFound = false;
                   if (true) break;
                }
@@ -271,13 +271,13 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                AV16ErrorMessage = (AV23IsException ? AV17ExceptionMessage : StringUtil.Trim( AV18ExpressionEvaluator.ErrDescription));
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV16ErrorMessage)) )
                {
-                  AV16ErrorMessage = "Unknown error";
+                  AV16ErrorMessage = context.GetMessage( "WWP_DF_UnknownError", "");
                }
                else
                {
                   if ( StringUtil.StrCmp(AV16ErrorMessage, "Failed to load type: GeneXus.Programs.iif") == 0 )
                   {
-                     AV16ErrorMessage = "In order to use the iif function, include a space before it";
+                     AV16ErrorMessage = context.GetMessage( "WWP_DF_IncludeSpaceForIIF", "");
                   }
                   else if ( StringUtil.Contains( AV16ErrorMessage, "'iif((") && StringUtil.Contains( AV16ErrorMessage, "), 1, 0)'") )
                   {

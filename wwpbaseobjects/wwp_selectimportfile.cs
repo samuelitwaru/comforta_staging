@@ -236,7 +236,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                enableOutput();
             }
             context.WriteHtmlText( "<title>") ;
-            context.SendWebValue( "Select file to import") ;
+            context.SendWebValue( context.GetMessage( "Select file to import", "")) ;
             context.WriteHtmlTextNl( "</title>") ;
             if ( context.isSpaRequest( ) )
             {
@@ -422,7 +422,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override string GetPgmdesc( )
       {
-         return "Select file to import" ;
+         return context.GetMessage( "Select file to import", "") ;
       }
 
       protected void WB1Y0( )
@@ -474,7 +474,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavFiltertoupload_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavFiltertoupload_Internalname, "File", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavFiltertoupload_Internalname, context.GetMessage( "File", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             ClassString = "Attribute";
@@ -510,12 +510,12 @@ namespace GeneXus.Programs.wwpbaseobjects {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavOverwriteexistingform_Internalname, "Overwrite Existing Form", "col-sm-3 AttributeCheckBoxLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, chkavOverwriteexistingform_Internalname, context.GetMessage( "Overwrite Existing Form", ""), "col-sm-3 AttributeCheckBoxLabel", 0, true, "");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 21,'" + sPrefix + "',false,'',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavOverwriteexistingform_Internalname, StringUtil.BoolToStr( AV5OverwriteExistingForm), "", "Overwrite Existing Form", chkavOverwriteexistingform.Visible, chkavOverwriteexistingform.Enabled, "true", "Overwrite", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(21, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,21);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavOverwriteexistingform_Internalname, StringUtil.BoolToStr( AV5OverwriteExistingForm), "", context.GetMessage( "Overwrite Existing Form", ""), chkavOverwriteexistingform.Visible, chkavOverwriteexistingform.Enabled, "true", context.GetMessage( "Overwrite", ""), StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(21, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,21);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -533,14 +533,14 @@ namespace GeneXus.Programs.wwpbaseobjects {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 26,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", "Import", bttBtnenter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/WWP_SelectImportFile.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", context.GetMessage( "Import", ""), bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/WWP_SelectImportFile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 28,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnucancel_Internalname, "", "Cancel", bttBtnucancel_Jsonclick, 7, "Cancel", "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+"e111y1_client"+"'", TempTags, "", 2, "HLP_WWPBaseObjects/WWP_SelectImportFile.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnucancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtnucancel_Jsonclick, 7, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+"e111y1_client"+"'", TempTags, "", 2, "HLP_WWPBaseObjects/WWP_SelectImportFile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -572,7 +572,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                   Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
                }
             }
-            Form.Meta.addItem("description", "Select file to import", 0) ;
+            Form.Meta.addItem("description", context.GetMessage( "Select file to import", ""), 0) ;
             context.wjLoc = "";
             context.nUserReturn = 0;
             context.wbHandled = 0;
@@ -998,7 +998,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                if ( new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_import(context).executeUdp(  AV22BlobPath,  AV5OverwriteExistingForm, out  AV6ErrorMsgs) )
                {
                   AV12LastErrorType = 2;
-                  GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Form imported successfully",  "The dynamic form was imported successfully.",  "success",  "",  "na",  ""));
+                  GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  context.GetMessage( "WWP_DF_Import_SuccessTitle", ""),  context.GetMessage( "WWP_DF_Import_Success", ""),  "success",  "",  "na",  ""));
                   this.executeExternalObjectMethod(sPrefix, false, "WWPActions", "WCPopup_Close", new Object[] {(string)AV14ResultMsg}, false);
                }
                else
@@ -1036,7 +1036,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                         AssignAttri(sPrefix, false, "AV14ResultMsg", AV14ResultMsg);
                         AV25GXV1 = (int)(AV25GXV1+1);
                      }
-                     GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "File import success",  AV14ResultMsg,  "success",  "",  "na",  ""));
+                     GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  context.GetMessage( "WWP_ImportFile_ImportSuccessTitle", ""),  AV14ResultMsg,  "success",  "",  "na",  ""));
                      this.executeExternalObjectMethod(sPrefix, false, "WWPActions", "WCPopup_Close", new Object[] {(string)AV14ResultMsg}, false);
                   }
                   else
@@ -1058,15 +1058,15 @@ namespace GeneXus.Programs.wwpbaseobjects {
                   {
                      AV8ExtType = "xlsx";
                   }
-                  AV14ResultMsg = StringUtil.Format( "The expected file type is %1.", AV8ExtType, "", "", "", "", "", "", "", "");
+                  AV14ResultMsg = StringUtil.Format( context.GetMessage( "WWP_ImportFile_ExpectedFileType", ""), AV8ExtType, "", "", "", "", "", "", "", "");
                   AssignAttri(sPrefix, false, "AV14ResultMsg", AV14ResultMsg);
-                  GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error importing file",  AV14ResultMsg,  "error",  "",  "na",  ""));
+                  GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  context.GetMessage( "WWP_ImportFile_ErrorImportingTitle", ""),  AV14ResultMsg,  "error",  "",  "na",  ""));
                }
             }
          }
          else
          {
-            GX_msglist.addItem(StringUtil.Format( "%1 is required.", "File", "", "", "", "", "", "", "", ""));
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "File", ""), "", "", "", "", "", "", "", ""));
          }
          /*  Sending Event outputs  */
       }
@@ -1095,7 +1095,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             AssignAttri(sPrefix, false, "AV14ResultMsg", AV14ResultMsg);
             AV26GXV2 = (int)(AV26GXV2+1);
          }
-         GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error importing file",  AV14ResultMsg,  "error",  "",  "false",  ""));
+         GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  context.GetMessage( "WWP_ImportFile_ErrorImportingTitle", ""),  AV14ResultMsg,  "error",  "",  "false",  ""));
       }
 
       protected void nextLoad( )
@@ -1353,7 +1353,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121117354416", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025181781580", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1369,7 +1369,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wwpbaseobjects/wwp_selectimportfile.js", "?2024121117354416", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/wwp_selectimportfile.js", "?2025181781580", false, true);
          /* End function include_jscripts */
       }
 
@@ -1377,7 +1377,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          chkavOverwriteexistingform.Name = "vOVERWRITEEXISTINGFORM";
          chkavOverwriteexistingform.WebTags = "";
-         chkavOverwriteexistingform.Caption = "Overwrite Existing Form";
+         chkavOverwriteexistingform.Caption = context.GetMessage( "Overwrite Existing Form", "");
          AssignProp(sPrefix, false, chkavOverwriteexistingform_Internalname, "TitleCaption", chkavOverwriteexistingform.Caption, true);
          chkavOverwriteexistingform.CheckedValue = "false";
          /* End function init_web_controls */
@@ -1410,7 +1410,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             }
          }
          init_default_properties( ) ;
-         chkavOverwriteexistingform.Caption = "Overwrite Existing Form";
+         chkavOverwriteexistingform.Caption = context.GetMessage( "Overwrite Existing Form", "");
          chkavOverwriteexistingform.Enabled = 1;
          chkavOverwriteexistingform.Visible = 1;
          divOverwriteexistingform_cell_Class = "col-xs-12";

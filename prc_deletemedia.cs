@@ -79,7 +79,7 @@ namespace GeneXus.Programs {
             cleanup();
             if (true) return;
          }
-         AV10response = "failure";
+         AV10response = context.GetMessage( "failure", "");
          /* Using cursor P009X2 */
          pr_default.execute(0, new Object[] {AV8MediaId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -92,8 +92,8 @@ namespace GeneXus.Programs {
             pr_default.close(1);
             pr_default.SmartCacheProvider.SetUpdated("Trn_Media");
             GXT9X2 = 1;
-            AV10response = "success";
-            AV9File.Source = "media/"+A410MediaName;
+            AV10response = context.GetMessage( "success", "");
+            AV9File.Source = context.GetMessage( "media/", "")+A410MediaName;
             if ( AV9File.Exists() )
             {
                AV9File.Delete();

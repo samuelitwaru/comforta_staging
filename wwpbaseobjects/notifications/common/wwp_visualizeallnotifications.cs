@@ -291,7 +291,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          }
          context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1918140), false, true);
-         context.AddJavascriptSource("calendar-en.js", "?"+context.GetBuildNumber( 1918140), false, true);
+         context.AddJavascriptSource("calendar-"+StringUtil.Substring( context.GetLanguageProperty( "culture"), 1, 2)+".js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -346,7 +346,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_24", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_24), 8, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_24", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_24), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV20Pgmname));
          GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV20Pgmname, "")), context));
          GxWebStd.gx_hidden_field( context, "WWPNOTIFICATIONICON", A181WWPNotificationIcon);
@@ -354,8 +354,8 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          GxWebStd.gx_boolean_hidden_field( context, "WWPNOTIFICATIONISREAD", A187WWPNotificationIsRead);
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_MANAGESUBSCRIPTIONS", AV15IsAuthorized_ManageSubscriptions);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_MANAGESUBSCRIPTIONS", GetSecureSignedToken( "", AV15IsAuthorized_ManageSubscriptions, context));
-         GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "GRID_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nEOF), 1, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "GRID_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nEOF), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "WWPNOTIFICATIONID_Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPNotificationId_Visible), 5, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "WWPNOTIFICATIONLINK_Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPNotificationLink_Visible), 5, 0, ".", "")));
@@ -384,6 +384,18 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -426,7 +438,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
 
       public override string GetPgmdesc( )
       {
-         return "Visualize all notifications" ;
+         return context.GetMessage( "Visualize all notifications", "") ;
       }
 
       protected void WB1N0( )
@@ -476,14 +488,14 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 16,'',false,'',0)\"";
             ClassString = "ButtonColor";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnmarkallasread_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(24), 2, 0)+","+"null"+");", "Mark all as read", bttBtnmarkallasread_Jsonclick, 5, "Mark all as read", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOMARKALLASREAD\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/Notifications/Common/WWP_VisualizeAllNotifications.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnmarkallasread_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(24), 2, 0)+","+"null"+");", context.GetMessage( "WWP_Notifications_MarkAllAsRead", ""), bttBtnmarkallasread_Jsonclick, 5, context.GetMessage( "WWP_Notifications_MarkAllAsRead", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOMARKALLASREAD\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/Notifications/Common/WWP_VisualizeAllNotifications.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 18,'',false,'',0)\"";
             ClassString = "ButtonColor";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnmanagesubscriptions_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(24), 2, 0)+","+"null"+");", "Manage my subscriptions", bttBtnmanagesubscriptions_Jsonclick, 5, "Manage my subscriptions", "", StyleString, ClassString, bttBtnmanagesubscriptions_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOMANAGESUBSCRIPTIONS\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/Notifications/Common/WWP_VisualizeAllNotifications.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnmanagesubscriptions_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(24), 2, 0)+","+"null"+");", context.GetMessage( "WWP_Notifications_Manage", ""), bttBtnmanagesubscriptions_Jsonclick, 5, context.GetMessage( "WWP_Notifications_Manage", ""), "", StyleString, ClassString, bttBtnmanagesubscriptions_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOMANAGESUBSCRIPTIONS\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/Notifications/Common/WWP_VisualizeAllNotifications.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -495,7 +507,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 CellMarginTop", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblNonotifications_Internalname, "You haven't received any notification yet", "", "", lblNonotifications_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockTitleWWP", 0, "", lblNonotifications_Visible, 1, 0, 0, "HLP_WWPBaseObjects/Notifications/Common/WWP_VisualizeAllNotifications.htm");
+            GxWebStd.gx_label_ctrl( context, lblNonotifications_Internalname, context.GetMessage( "WWP_Notifications_NoNotificationsReceived", ""), "", "", lblNonotifications_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlockTitleWWP", 0, "", lblNonotifications_Visible, 1, 0, 0, "HLP_WWPBaseObjects/Notifications/Common/WWP_VisualizeAllNotifications.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -605,7 +617,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Visualize all notifications", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Visualize all notifications", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -703,20 +715,20 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
                               A182WWPNotificationTitle = cgiGet( edtWWPNotificationTitle_Internalname);
                               if ( context.localUtil.VCDateTime( cgiGet( edtavWwpnotificationcreated_Internalname), 0, 0) == 0 )
                               {
-                                 GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {"WWPNotification Created"}), 1, "vWWPNOTIFICATIONCREATED");
+                                 GX_msglist.addItem(context.GetMessage( "GXM_baddatetime", new   object[]  {context.GetMessage( "WWPNotification Created", "")}), 1, "vWWPNOTIFICATIONCREATED");
                                  GX_FocusControl = edtavWwpnotificationcreated_Internalname;
                                  AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
                                  wbErr = true;
                                  AV18WWPNotificationCreated = (DateTime)(DateTime.MinValue);
-                                 AssignAttri("", false, edtavWwpnotificationcreated_Internalname, context.localUtil.TToC( AV18WWPNotificationCreated, 8, 5, 0, 3, "/", ":", " "));
+                                 AssignAttri("", false, edtavWwpnotificationcreated_Internalname, context.localUtil.TToC( AV18WWPNotificationCreated, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
                               }
                               else
                               {
                                  AV18WWPNotificationCreated = context.localUtil.CToT( cgiGet( edtavWwpnotificationcreated_Internalname), 0);
-                                 AssignAttri("", false, edtavWwpnotificationcreated_Internalname, context.localUtil.TToC( AV18WWPNotificationCreated, 8, 5, 0, 3, "/", ":", " "));
+                                 AssignAttri("", false, edtavWwpnotificationcreated_Internalname, context.localUtil.TToC( AV18WWPNotificationCreated, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
                               }
                               A183WWPNotificationShortDescriptio = cgiGet( edtWWPNotificationShortDescriptio_Internalname);
-                              A127WWPNotificationId = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPNotificationId_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+                              A127WWPNotificationId = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtWWPNotificationId_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                               A184WWPNotificationLink = cgiGet( edtWWPNotificationLink_Internalname);
                               A165WWPNotificationMetadata = cgiGet( edtWWPNotificationMetadata_Internalname);
                               n165WWPNotificationMetadata = false;
@@ -1142,10 +1154,10 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          {
             /* Read saved SDTs. */
             /* Read saved values. */
-            nRC_GXsfl_24 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_24"), ".", ","), 18, MidpointRounding.ToEven));
-            GRID_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_nFirstRecordOnPage"), ".", ","), 18, MidpointRounding.ToEven));
-            GRID_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_nEOF"), ".", ","), 18, MidpointRounding.ToEven));
-            subGrid_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_Rows"), ".", ","), 18, MidpointRounding.ToEven));
+            nRC_GXsfl_24 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_24"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            GRID_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_nFirstRecordOnPage"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            GRID_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_nEOF"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            subGrid_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_Rows"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             GxWebStd.gx_hidden_field( context, "GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
             /* Read variables values. */
             /* Read subfile selected row values. */
@@ -1182,7 +1194,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          AssignProp("", false, edtWWPNotificationMetadata_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtWWPNotificationMetadata_Visible), 5, 0), !bGXsfl_24_Refreshing);
          subGrid_Rows = 10;
          GxWebStd.gx_hidden_field( context, "GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
-         Form.Caption = "Visualize all notifications";
+         Form.Caption = context.GetMessage( "Visualize all notifications", "");
          AssignProp("", false, "FORM", "Caption", Form.Caption, true);
          /* Execute user subroutine: 'PREPARETRANSACTION' */
          S112 ();
@@ -1250,17 +1262,17 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          }
          lblNotificationitemicon_Caption = StringUtil.Format( "<i class='%1 %2'></i>", "NotificationFontIcon", A181WWPNotificationIcon, "", "", "", "", "", "", "");
          AV18WWPNotificationCreated = A129WWPNotificationCreated;
-         AssignAttri("", false, edtavWwpnotificationcreated_Internalname, context.localUtil.TToC( AV18WWPNotificationCreated, 8, 5, 0, 3, "/", ":", " "));
+         AssignAttri("", false, edtavWwpnotificationcreated_Internalname, context.localUtil.TToC( AV18WWPNotificationCreated, 8, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
          if ( A187WWPNotificationIsRead )
          {
             lblMarkasread_Caption = "<i class=\"fas fa-envelope DiscussionsSendIcon\"></i>";
-            lblMarkasread_Tooltiptext = "Mark as unread";
+            lblMarkasread_Tooltiptext = context.GetMessage( "Mark as unread", "");
             edtWWPNotificationTitle_Class = "SimpleCardAttributeTitleLight";
          }
          else
          {
             lblMarkasread_Caption = "<i class=\"fas fa-envelope-open DiscussionsSendIcon\"></i>";
-            lblMarkasread_Tooltiptext = "Mark as read";
+            lblMarkasread_Tooltiptext = context.GetMessage( "Mark as read", "");
             edtWWPNotificationTitle_Class = "SimpleCardAttributeTitle";
          }
          /* Load Method */
@@ -1327,7 +1339,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          }
          else
          {
-            GX_msglist.addItem("Action no longer available");
+            GX_msglist.addItem(context.GetMessage( "WWP_ActionNoLongerAvailable", ""));
             context.DoAjaxRefresh();
          }
          /*  Sending Event outputs  */
@@ -1423,7 +1435,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713265045", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251817154880", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1440,8 +1452,8 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wwpbaseobjects/notifications/common/wwp_visualizeallnotifications.js", "?2024121713265046", false, true);
+            context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+            context.AddJavascriptSource("wwpbaseobjects/notifications/common/wwp_visualizeallnotifications.js", "?20251817154881", false, true);
          }
          /* End function include_jscripts */
       }
@@ -1569,7 +1581,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             /* Div Control */
             GridRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)" gx-attribute",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
             /* Attribute/Variable Label */
-            GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtWWPNotificationTitle_Internalname,(string)"Notification Title",(string)"gx-form-item SimpleCardAttributeTitleLabel",(short)0,(bool)true,(string)"width: 25%;"});
+            GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtWWPNotificationTitle_Internalname,context.GetMessage( "Notification Title", ""),(string)"gx-form-item SimpleCardAttributeTitleLabel",(short)0,(bool)true,(string)"width: 25%;"});
             /* Multiple line edit */
             ClassString = edtWWPNotificationTitle_Class;
             StyleString = "";
@@ -1583,17 +1595,17 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             /* Div Control */
             GridRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)" gx-attribute",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
             /* Attribute/Variable Label */
-            GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtavWwpnotificationcreated_Internalname,(string)"WWPNotification Created",(string)"gx-form-item NotificationItemDatetimeDateTimeLabel",(short)0,(bool)true,(string)"width: 25%;"});
+            GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtavWwpnotificationcreated_Internalname,context.GetMessage( "WWPNotification Created", ""),(string)"gx-form-item NotificationItemDatetimeDateTimeLabel",(short)0,(bool)true,(string)"width: 25%;"});
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 44,'',false,'" + sGXsfl_24_idx + "',24)\"";
             ROClassString = "NotificationItemDatetimeDateTime";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavWwpnotificationcreated_Internalname,context.localUtil.TToC( AV18WWPNotificationCreated, 10, 8, 0, 3, "/", ":", " "),context.localUtil.Format( AV18WWPNotificationCreated, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'DMY',5,24,'eng',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'DMY',5,24,'eng',false,0);"+";gx.evt.onblur(this,44);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavWwpnotificationcreated_Jsonclick,(short)0,(string)"NotificationItemDatetimeDateTime",(string)"",(string)ROClassString,(string)"",(string)"",(short)1,(int)edtavWwpnotificationcreated_Enabled,(short)0,(string)"text",(string)"",(short)17,(string)"chr",(short)1,(string)"row",(short)17,(short)0,(short)0,(short)24,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavWwpnotificationcreated_Internalname,context.localUtil.TToC( AV18WWPNotificationCreated, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "),context.localUtil.Format( AV18WWPNotificationCreated, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,44);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavWwpnotificationcreated_Jsonclick,(short)0,(string)"NotificationItemDatetimeDateTime",(string)"",(string)ROClassString,(string)"",(string)"",(short)1,(int)edtavWwpnotificationcreated_Enabled,(short)0,(string)"text",(string)"",(short)17,(string)"chr",(short)1,(string)"row",(short)17,(short)0,(short)0,(short)24,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
             GridRow.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
             GridRow.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
             /* Div Control */
             GridRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
             /* Text block */
-            GridRow.AddColumnProperties("label", 1, isAjaxCallMode( ), new Object[] {(string)lblVisualize_Internalname,(string)"<i class=\"fas fa-search DiscussionsSendIcon\"></i>",(string)"",(string)"",(string)lblVisualize_Jsonclick,"'"+""+"'"+",false,"+"'"+"E\\'DOVISUALIZE\\'."+sGXsfl_24_idx+"'",(string)"",(string)"TextBlock",(short)5,(string)"",(int)lblVisualize_Visible,(short)1,(short)0,(short)1});
+            GridRow.AddColumnProperties("label", 1, isAjaxCallMode( ), new Object[] {(string)lblVisualize_Internalname,context.GetMessage( "<i class=\"fas fa-search DiscussionsSendIcon\"></i>", ""),(string)"",(string)"",(string)lblVisualize_Jsonclick,"'"+""+"'"+",false,"+"'"+"E\\'DOVISUALIZE\\'."+sGXsfl_24_idx+"'",(string)"",(string)"TextBlock",(short)5,(string)"",(int)lblVisualize_Visible,(short)1,(short)0,(short)1});
             GridRow.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
             /* Div Control */
             GridRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)"CellMarginLeft",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
@@ -1610,7 +1622,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             /* Div Control */
             GridRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)" gx-attribute",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
             /* Attribute/Variable Label */
-            GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtWWPNotificationShortDescriptio_Internalname,(string)"Notification Short Description",(string)"col-sm-3 CardNotificationAttributeDescriptionLabel",(short)0,(bool)true,(string)""});
+            GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtWWPNotificationShortDescriptio_Internalname,context.GetMessage( "Notification Short Description", ""),(string)"col-sm-3 CardNotificationAttributeDescriptionLabel",(short)0,(bool)true,(string)""});
             /* Multiple line edit */
             ClassString = "CardNotificationAttributeDescription";
             StyleString = "";
@@ -1645,10 +1657,10 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          /* Div Control */
          GridRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)" gx-attribute",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
          /* Attribute/Variable Label */
-         GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtWWPNotificationId_Internalname,(string)"Notification Id",(string)"gx-form-item AttributeLabel",(short)0,(bool)true,(string)"width: 25%;"});
+         GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtWWPNotificationId_Internalname,context.GetMessage( "Notification Id", ""),(string)"gx-form-item AttributeLabel",(short)0,(bool)true,(string)"width: 25%;"});
          /* Single line edit */
          ROClassString = "Attribute";
-         GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPNotificationId_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(A127WWPNotificationId), 10, 0, ".", "")),StringUtil.LTrim( context.localUtil.Format( (decimal)(A127WWPNotificationId), "ZZZZZZZZZ9")),(string)" dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPNotificationId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtWWPNotificationId_Visible,(short)0,(short)0,(string)"text",(string)"1",(short)10,(string)"chr",(short)1,(string)"row",(short)10,(short)0,(short)0,(short)24,(short)0,(short)-1,(short)0,(bool)true,(string)"WWPBaseObjects\\WWP_Id",(string)"end",(bool)false,(string)""});
+         GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPNotificationId_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(A127WWPNotificationId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")),StringUtil.LTrim( context.localUtil.Format( (decimal)(A127WWPNotificationId), "ZZZZZZZZZ9")),(string)" dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtWWPNotificationId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtWWPNotificationId_Visible,(short)0,(short)0,(string)"text",(string)"1",(short)10,(string)"chr",(short)1,(string)"row",(short)10,(short)0,(short)0,(short)24,(short)0,(short)-1,(short)0,(bool)true,(string)"WWPBaseObjects\\WWP_Id",(string)"end",(bool)false,(string)""});
          GridRow.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
          if ( GridContainer.GetWrapped() == 1 )
          {
@@ -1658,7 +1670,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          /* Div Control */
          GridRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)" gx-attribute",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
          /* Attribute/Variable Label */
-         GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtWWPNotificationLink_Internalname,(string)"Notification Link",(string)"gx-form-item AttributeLabel",(short)0,(bool)true,(string)"width: 25%;"});
+         GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtWWPNotificationLink_Internalname,context.GetMessage( "Notification Link", ""),(string)"gx-form-item AttributeLabel",(short)0,(bool)true,(string)"width: 25%;"});
          /* Single line edit */
          ROClassString = "Attribute";
          GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtWWPNotificationLink_Internalname,(string)A184WWPNotificationLink,(string)"",(string)"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)A184WWPNotificationLink,(string)"_blank",(string)"",(string)"",(string)edtWWPNotificationLink_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtWWPNotificationLink_Visible,(short)0,(short)0,(string)"url",(string)"",(short)80,(string)"chr",(short)1,(string)"row",(short)1000,(short)0,(short)0,(short)24,(short)0,(short)-1,(short)0,(bool)true,(string)"GeneXus\\Url",(string)"start",(bool)true,(string)""});
@@ -1671,7 +1683,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          /* Div Control */
          GridRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)" gx-attribute",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
          /* Attribute/Variable Label */
-         GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtWWPNotificationMetadata_Internalname,(string)"WWPNotification Metadata",(string)"gx-form-item AttributeLabel",(short)0,(bool)true,(string)"width: 25%;"});
+         GridRow.AddColumnProperties("html_label", -1, isAjaxCallMode( ), new Object[] {(string)edtWWPNotificationMetadata_Internalname,context.GetMessage( "WWPNotification Metadata", ""),(string)"gx-form-item AttributeLabel",(short)0,(bool)true,(string)"width: 25%;"});
          /* Multiple line edit */
          ClassString = "Attribute";
          StyleString = "";
@@ -1797,7 +1809,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
-            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( context.localUtil.TToC( AV18WWPNotificationCreated, 10, 8, 0, 3, "/", ":", " ")));
+            GridColumn.AddObjectProperty("Value", GXUtil.ValueEncode( context.localUtil.TToC( AV18WWPNotificationCreated, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " ")));
             GridColumn.AddObjectProperty("Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtavWwpnotificationcreated_Enabled), 5, 0, ".", "")));
             GridContainer.AddColumnProperties(GridColumn);
             GridColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
@@ -1953,18 +1965,18 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          }
          init_default_properties( ) ;
          subGrid_Allowcollapsing = 0;
-         lblMarkasread_Caption = "<i class=\"fas fa-envelope-open DiscussionsSendIcon\"></i>";
-         lblVisualize_Caption = "<i class=\"fas fa-search DiscussionsSendIcon\"></i>";
-         lblNotificationitemicon_Caption = "<i class='fas fa-pencil-alt NotificationFontIconSuccess'></i>";
+         lblMarkasread_Caption = context.GetMessage( "<i class=\"fas fa-envelope-open DiscussionsSendIcon\"></i>", "");
+         lblVisualize_Caption = context.GetMessage( "<i class=\"fas fa-search DiscussionsSendIcon\"></i>", "");
+         lblNotificationitemicon_Caption = context.GetMessage( "<i class='fas fa-pencil-alt NotificationFontIconSuccess'></i>", "");
          edtWWPNotificationLink_Jsonclick = "";
          edtWWPNotificationId_Jsonclick = "";
          lblMarkasread_Tooltiptext = "";
-         lblMarkasread_Caption = "<i class=\"fas fa-envelope-open DiscussionsSendIcon\"></i>";
+         lblMarkasread_Caption = context.GetMessage( "<i class=\"fas fa-envelope-open DiscussionsSendIcon\"></i>", "");
          lblVisualize_Visible = 1;
          edtavWwpnotificationcreated_Jsonclick = "";
          edtavWwpnotificationcreated_Enabled = 1;
          edtWWPNotificationTitle_Class = "SimpleCardAttributeTitle";
-         lblNotificationitemicon_Caption = "<i class='fas fa-pencil-alt NotificationFontIconSuccess'></i>";
+         lblNotificationitemicon_Caption = context.GetMessage( "<i class='fas fa-pencil-alt NotificationFontIconSuccess'></i>", "");
          subGrid_Class = "FreeStyleGrid";
          edtWWPNotificationMetadata_Enabled = 0;
          edtWWPNotificationLink_Enabled = 0;
@@ -1979,7 +1991,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Visualize all notifications";
+         Form.Caption = context.GetMessage( "Visualize all notifications", "");
          edtWWPNotificationMetadata_Visible = 1;
          edtWWPNotificationLink_Visible = 1;
          edtWWPNotificationId_Visible = 1;

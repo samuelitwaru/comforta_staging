@@ -233,7 +233,7 @@ namespace GeneXus.Programs {
             AV25GXV1 = (int)(AV25GXV1+1);
          }
          AV18WWPContext.gxTpr_Filtereddashboarditems = AV14FilteredDashboardItems;
-         AV15FooterText = "Comforta Software";
+         AV15FooterText = context.GetMessage( "Comforta Software", "");
          if ( AV18WWPContext.gxTpr_Isorganisationmanager )
          {
             AV15FooterText = AV18WWPContext.gxTpr_Organisationname;

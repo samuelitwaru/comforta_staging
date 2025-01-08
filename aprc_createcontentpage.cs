@@ -160,7 +160,7 @@ namespace GeneXus.Programs {
             if ( AV8BC_Trn_Page.Success() )
             {
                context.CommitDataStores("prc_createcontentpage",pr_default);
-               AV17Response = "Content page saved successfully";
+               AV17Response = context.GetMessage( "Content page saved successfully", "");
                new prc_logtofile(context ).execute(  AV17Response) ;
             }
             else

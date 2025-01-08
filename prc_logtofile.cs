@@ -54,7 +54,7 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV9File.Source = "C:\\GxLogs\\Logs.txt";
+         AV9File.Source = context.GetMessage( "C:\\GxLogs\\Logs.txt", "");
          AV9File.Open("");
          AV9File.WriteLine(AV8Message);
          AV9File.Close();

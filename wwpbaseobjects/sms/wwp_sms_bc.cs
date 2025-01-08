@@ -205,7 +205,7 @@ namespace GeneXus.Programs.wwpbaseobjects.sms {
          standaloneModal( ) ;
          if ( ! ( ( A139WWPSMSStatus == 1 ) || ( A139WWPSMSStatus == 2 ) || ( A139WWPSMSStatus == 3 ) ) )
          {
-            GX_msglist.addItem("Field SMS Status is out of range", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "SMS Status", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          /* Using cursor BC000K4 */
@@ -214,7 +214,7 @@ namespace GeneXus.Programs.wwpbaseobjects.sms {
          {
             if ( ! ( (0==A127WWPNotificationId) ) )
             {
-               GX_msglist.addItem("No matching 'WWP_Notification'.", "ForeignKeyNotFound", 1, "WWPNOTIFICATIONID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_Notification", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPNOTIFICATIONID");
                AnyError = 1;
             }
          }

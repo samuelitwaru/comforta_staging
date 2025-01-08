@@ -114,7 +114,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                   AV10WWPSubscription.Save();
                   if ( ! AV10WWPSubscription.Success() )
                   {
-                     new GeneXus.Programs.wwpbaseobjects.wwp_logger(context ).gxep_error(  "Subscribe Mentioned User",  AV10WWPSubscription.GetMessages().ToJSonString(false)) ;
+                     new GeneXus.Programs.wwpbaseobjects.wwp_logger(context ).gxep_error(  context.GetMessage( "Subscribe Mentioned User", ""),  AV10WWPSubscription.GetMessages().ToJSonString(false)) ;
                   }
                }
                AV18GXV1 = (int)(AV18GXV1+1);

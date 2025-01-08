@@ -189,7 +189,7 @@ namespace GeneXus.Programs {
                      A210WWPFormElementId = P00AE2_A210WWPFormElementId[0];
                      A217WWPFormElementType = P00AE2_A217WWPFormElementType[0];
                      AV36GXLvl29 = 1;
-                     AV29DscsCollection.Add(StringUtil.Trim( WorkWithPlus.workwithplus_dynamicforms.gxdomainwwp_df_elementtype.getDescription(context,A217WWPFormElementType)), 0);
+                     AV29DscsCollection.Add(StringUtil.Trim( context.GetMessage( WorkWithPlus.workwithplus_dynamicforms.gxdomainwwp_df_elementtype.getDescription(context,A217WWPFormElementType), "")), 0);
                      /* Exit For each command. Update data (if necessary), close cursors & exit. */
                      if (true) break;
                      /* Exiting from a For First loop. */
@@ -218,7 +218,7 @@ namespace GeneXus.Programs {
                   A217WWPFormElementType = P00AE3_A217WWPFormElementType[0];
                   AV16Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
                   AV16Combo_DataItem.gxTpr_Id = StringUtil.Trim( StringUtil.Str( (decimal)(A210WWPFormElementId), 4, 0));
-                  AV16Combo_DataItem.gxTpr_Title = StringUtil.Trim( WorkWithPlus.workwithplus_dynamicforms.gxdomainwwp_df_elementtype.getDescription(context,A217WWPFormElementType));
+                  AV16Combo_DataItem.gxTpr_Title = StringUtil.Trim( context.GetMessage( WorkWithPlus.workwithplus_dynamicforms.gxdomainwwp_df_elementtype.getDescription(context,A217WWPFormElementType), ""));
                   AV15Combo_Data.Add(AV16Combo_DataItem, 0);
                   if ( AV15Combo_Data.Count > AV11MaxItems )
                   {

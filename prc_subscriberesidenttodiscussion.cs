@@ -77,7 +77,7 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_logtofile(context ).execute(  "Call to Subscribe Resident User "+AV16ResidentGUID) ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "Call to Subscribe Resident User ", "")+AV16ResidentGUID) ;
          AV17GXLvl2 = 0;
          AV18Udparg1 = new GeneXus.Programs.wwpbaseobjects.wwp_getentitybyname(context).executeUdp(  AV14WWPEntityName);
          /* Using cursor P00A32 */
@@ -110,7 +110,7 @@ namespace GeneXus.Programs {
                AV10WWPSubscription.Save();
                if ( ! AV10WWPSubscription.Success() )
                {
-                  new prc_logtofile(context ).execute(  "Subscribe Resident User "+AV10WWPSubscription.GetMessages().ToJSonString(false)) ;
+                  new prc_logtofile(context ).execute(  context.GetMessage( "Subscribe Resident User ", "")+AV10WWPSubscription.GetMessages().ToJSonString(false)) ;
                }
             }
             pr_default.readNext(0);

@@ -116,7 +116,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          AV24HTTPClient.BaseURL = AV23BaseUrl+"rest";
          AV29ServiceName = StringUtil.Lower( AV30WWP_DF_CharMetadata.gxTpr_Multipleoptions.gxTpr_Dynamic.gxTpr_Getoptionsservice);
          AV29ServiceName = StringUtil.Upper( StringUtil.Substring( AV29ServiceName, 1, 1)) + StringUtil.Substring( AV29ServiceName, 2, -1);
-         AV27Request = StringUtil.Format( "%1?Sessionid=%2&Wwpformelementid=%3&MaxItems=%4&PageIndex=%5&SearchTxt=%6", AV29ServiceName, StringUtil.LTrimStr( (decimal)(AV14Cond_SessionId), 4, 0), StringUtil.LTrimStr( (decimal)(AV15Cond_WWPFormElementId), 4, 0), StringUtil.LTrimStr( (decimal)(AV16MaxItems), 6, 0), StringUtil.LTrimStr( (decimal)(AV17PageIndex), 4, 0), AV18SearchTxt, "", "", "");
+         AV27Request = StringUtil.Format( context.GetMessage( "%1?Sessionid=%2&Wwpformelementid=%3&MaxItems=%4&PageIndex=%5&SearchTxt=%6", ""), AV29ServiceName, StringUtil.LTrimStr( (decimal)(AV14Cond_SessionId), 4, 0), StringUtil.LTrimStr( (decimal)(AV15Cond_WWPFormElementId), 4, 0), StringUtil.LTrimStr( (decimal)(AV16MaxItems), 6, 0), StringUtil.LTrimStr( (decimal)(AV17PageIndex), 4, 0), AV18SearchTxt, "", "", "");
          AV24HTTPClient.Execute("POST", AV27Request);
          if ( AV24HTTPClient.StatusCode == 200 )
          {

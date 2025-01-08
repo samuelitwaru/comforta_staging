@@ -135,7 +135,7 @@ namespace GeneXus.Programs {
          }
          if ( AV11isNotFound )
          {
-            AV9response = "No resident record found!";
+            AV9response = context.GetMessage( "No resident record found!", "");
          }
          else
          {

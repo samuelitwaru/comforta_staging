@@ -67,23 +67,23 @@ namespace GeneXus.Programs {
          /* GeneXus formulas */
          /* Output device settings */
          AV9clientId = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context).getclientid();
-         if ( StringUtil.StrCmp(AV11HttpRequest.ServerHost, "localhost") == 0 )
+         if ( StringUtil.StrCmp(AV11HttpRequest.ServerHost, context.GetMessage( "localhost", "")) == 0 )
          {
-            AV8baseUrl = "http://localhost:8082/CV2_2Developmentfountain";
+            AV8baseUrl = context.GetMessage( "http://localhost:8082/CV2_2Developmentfountain", "");
          }
          else
          {
-            AV8baseUrl = "https://staging.comforta.yukon.software";
+            AV8baseUrl = context.GetMessage( "https://staging.comforta.yukon.software", "");
          }
-         AV14url = AV8baseUrl + "/oauth/access_token";
+         AV14url = AV8baseUrl + context.GetMessage( "/oauth/access_token", "");
          new prc_decodeqrcode(context ).execute(  AV13secretKey, out  AV15username, out  AV12password) ;
-         AV10httpclient.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-         AV10httpclient.AddVariable("client_id", AV9clientId);
-         AV10httpclient.AddVariable("grant_type", "password");
-         AV10httpclient.AddVariable("scope", "gam_user_data");
-         AV10httpclient.AddVariable("username", AV15username);
-         AV10httpclient.AddVariable("password", AV12password);
-         AV10httpclient.Execute("POST", AV14url);
+         AV10httpclient.AddHeader(context.GetMessage( "Content-Type", ""), context.GetMessage( "application/x-www-form-urlencoded", ""));
+         AV10httpclient.AddVariable(context.GetMessage( "client_id", ""), AV9clientId);
+         AV10httpclient.AddVariable(context.GetMessage( "grant_type", ""), context.GetMessage( "password", ""));
+         AV10httpclient.AddVariable(context.GetMessage( "scope", ""), context.GetMessage( "gam_user_data", ""));
+         AV10httpclient.AddVariable(context.GetMessage( "username", ""), AV15username);
+         AV10httpclient.AddVariable(context.GetMessage( "password", ""), AV12password);
+         AV10httpclient.Execute(context.GetMessage( "POST", ""), AV14url);
          AV17result = AV10httpclient.ToString();
          if ( AV10httpclient.StatusCode != 200 )
          {
@@ -92,11 +92,11 @@ namespace GeneXus.Programs {
             AV19ErrorResponse.gxTpr_Code = StringUtil.Trim( StringUtil.Str( (decimal)(AV10httpclient.StatusCode), 10, 2));
             AV18LoginResponse.gxTpr_Error = AV19ErrorResponse;
             AV16response = AV18LoginResponse.ToJSonString(false, true);
-            new prc_logtofile(context ).execute(  "Error: "+AV19ErrorResponse.ToJSonString(false, true)) ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "Error: ", "")+AV19ErrorResponse.ToJSonString(false, true)) ;
          }
          else
          {
-            new prc_logtofile(context ).execute(  "API Result: "+AV17result) ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "API Result: ", "")+AV17result) ;
             AV18LoginResponse.FromJSonString(AV17result, null);
             AV16response = AV18LoginResponse.ToJSonString(false, true);
          }

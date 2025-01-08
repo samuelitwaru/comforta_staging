@@ -126,63 +126,65 @@ namespace GeneXus.Programs {
             A431PageJsonContent = P008W2_A431PageJsonContent[0];
             n431PageJsonContent = P008W2_n431PageJsonContent[0];
             A310Trn_PageId = P008W2_A310Trn_PageId[0];
-            AV8SDT_Page = new SdtSDT_Page(context);
-            AV8SDT_Page.FromJSonString(A431PageJsonContent, null);
-            AV32GXV1 = 1;
-            while ( AV32GXV1 <= AV8SDT_Page.gxTpr_Row.Count )
+            if ( StringUtil.StrCmp(A318Trn_PageName, context.GetMessage( "Home", "")) == 0 )
             {
-               AV10SDT_Row = ((SdtSDT_Row)AV8SDT_Page.gxTpr_Row.Item(AV32GXV1));
-               AV33GXV2 = 1;
-               while ( AV33GXV2 <= AV10SDT_Row.gxTpr_Col.Count )
+               AV8SDT_Page = new SdtSDT_Page(context);
+               AV8SDT_Page.FromJSonString(A431PageJsonContent, null);
+               AV32GXV1 = 1;
+               while ( AV32GXV1 <= AV8SDT_Page.gxTpr_Row.Count )
                {
-                  AV11SDT_Col = ((SdtSDT_Col)AV10SDT_Row.gxTpr_Col.Item(AV33GXV2));
-                  if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objecttype))) )
+                  AV10SDT_Row = ((SdtSDT_Row)AV8SDT_Page.gxTpr_Row.Item(AV32GXV1));
+                  AV33GXV2 = 1;
+                  while ( AV33GXV2 <= AV10SDT_Row.gxTpr_Col.Count )
                   {
-                     AV25BC_Trn_Page = new SdtTrn_Page(context);
-                     AV25BC_Trn_Page.Load(AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objectid, AV11SDT_Col.gxTpr_Tile.gxTpr_Tilename, AV26LocationId);
-                     if ( ! (Guid.Empty==AV25BC_Trn_Page.gxTpr_Trn_pageid) )
+                     AV11SDT_Col = ((SdtSDT_Col)AV10SDT_Row.gxTpr_Col.Item(AV33GXV2));
+                     if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objecttype))) )
                      {
-                        AV15SDT_PageStructure = new SdtSDT_PageStructure(context);
-                        AV15SDT_PageStructure.gxTpr_Id = AV25BC_Trn_Page.gxTpr_Trn_pageid;
-                        AV15SDT_PageStructure.gxTpr_Name = AV25BC_Trn_Page.gxTpr_Trn_pagename;
-                        if ( ! AV25BC_Trn_Page.gxTpr_Pageiscontentpage )
+                        AV25BC_Trn_Page = new SdtTrn_Page(context);
+                        AV25BC_Trn_Page.Load(AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objectid, AV11SDT_Col.gxTpr_Tile.gxTpr_Tilename, AV26LocationId);
+                        if ( ! (Guid.Empty==AV25BC_Trn_Page.gxTpr_Trn_pageid) )
                         {
-                           AV8SDT_Page = new SdtSDT_Page(context);
-                           AV8SDT_Page.FromJSonString(AV25BC_Trn_Page.gxTpr_Pagejsoncontent, null);
-                           AV34GXV3 = 1;
-                           while ( AV34GXV3 <= AV8SDT_Page.gxTpr_Row.Count )
+                           AV15SDT_PageStructure = new SdtSDT_PageStructure(context);
+                           AV15SDT_PageStructure.gxTpr_Id = AV25BC_Trn_Page.gxTpr_Trn_pageid;
+                           AV15SDT_PageStructure.gxTpr_Name = AV25BC_Trn_Page.gxTpr_Trn_pagename;
+                           if ( ! AV25BC_Trn_Page.gxTpr_Pageiscontentpage )
                            {
-                              AV10SDT_Row = ((SdtSDT_Row)AV8SDT_Page.gxTpr_Row.Item(AV34GXV3));
-                              AV35GXV4 = 1;
-                              while ( AV35GXV4 <= AV10SDT_Row.gxTpr_Col.Count )
+                              AV8SDT_Page = new SdtSDT_Page(context);
+                              AV8SDT_Page.FromJSonString(AV25BC_Trn_Page.gxTpr_Pagejsoncontent, null);
+                              AV34GXV3 = 1;
+                              while ( AV34GXV3 <= AV8SDT_Page.gxTpr_Row.Count )
                               {
-                                 AV11SDT_Col = ((SdtSDT_Col)AV10SDT_Row.gxTpr_Col.Item(AV35GXV4));
-                                 if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objecttype))) )
+                                 AV10SDT_Row = ((SdtSDT_Row)AV8SDT_Page.gxTpr_Row.Item(AV34GXV3));
+                                 AV35GXV4 = 1;
+                                 while ( AV35GXV4 <= AV10SDT_Row.gxTpr_Col.Count )
                                  {
-                                    AV25BC_Trn_Page = new SdtTrn_Page(context);
-                                    AV25BC_Trn_Page.Load(AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objectid, AV11SDT_Col.gxTpr_Tile.gxTpr_Tilename, AV26LocationId);
-                                    if ( ! (Guid.Empty==AV25BC_Trn_Page.gxTpr_Trn_pageid) )
+                                    AV11SDT_Col = ((SdtSDT_Col)AV10SDT_Row.gxTpr_Col.Item(AV35GXV4));
+                                    if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objecttype))) )
                                     {
-                                       AV19SDT_PageChild = new SdtSDT_PageStructure_ChildrenItem(context);
-                                       AV19SDT_PageChild.gxTpr_Id = AV25BC_Trn_Page.gxTpr_Trn_pageid;
-                                       AV19SDT_PageChild.gxTpr_Name = AV25BC_Trn_Page.gxTpr_Trn_pagename;
-                                       AV15SDT_PageStructure.gxTpr_Children.Add(AV19SDT_PageChild, 0);
+                                       AV25BC_Trn_Page = new SdtTrn_Page(context);
+                                       AV25BC_Trn_Page.Load(AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objectid, AV11SDT_Col.gxTpr_Tile.gxTpr_Tilename, AV26LocationId);
+                                       if ( ! (Guid.Empty==AV25BC_Trn_Page.gxTpr_Trn_pageid) )
+                                       {
+                                          AV19SDT_PageChild = new SdtSDT_PageStructure_ChildrenItem(context);
+                                          AV19SDT_PageChild.gxTpr_Id = AV25BC_Trn_Page.gxTpr_Trn_pageid;
+                                          AV19SDT_PageChild.gxTpr_Name = AV25BC_Trn_Page.gxTpr_Trn_pagename;
+                                          AV15SDT_PageStructure.gxTpr_Children.Add(AV19SDT_PageChild, 0);
+                                       }
                                     }
+                                    AV35GXV4 = (int)(AV35GXV4+1);
                                  }
-                                 AV35GXV4 = (int)(AV35GXV4+1);
+                                 AV34GXV3 = (int)(AV34GXV3+1);
                               }
-                              AV34GXV3 = (int)(AV34GXV3+1);
                            }
+                           AV29SDT_PageStructureCollection.Add(AV15SDT_PageStructure, 0);
                         }
-                        AV29SDT_PageStructureCollection.Add(AV15SDT_PageStructure, 0);
                      }
+                     AV33GXV2 = (int)(AV33GXV2+1);
                   }
-                  AV33GXV2 = (int)(AV33GXV2+1);
+                  AV32GXV1 = (int)(AV32GXV1+1);
                }
-               AV32GXV1 = (int)(AV32GXV1+1);
             }
-            /* Exiting from a For First loop. */
-            if (true) break;
+            pr_default.readNext(0);
          }
          pr_default.close(0);
          cleanup();
@@ -283,7 +285,7 @@ namespace GeneXus.Programs {
           new ParDef("AV27OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P008W2", "SELECT Trn_PageName, OrganisationId, LocationId, PageJsonContent, Trn_PageId FROM Trn_Page WHERE (Trn_PageName = ( 'Home') and LocationId = :AV26LocationId) AND (OrganisationId = :AV27OrganisationId) ORDER BY Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008W2,1, GxCacheFrequency.OFF ,true,true )
+              new CursorDef("P008W2", "SELECT Trn_PageName, OrganisationId, LocationId, PageJsonContent, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV26LocationId) AND (OrganisationId = :AV27OrganisationId) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008W2,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }

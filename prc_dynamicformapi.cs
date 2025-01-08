@@ -62,7 +62,7 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV8DynamicFormLink = "https://staging.comforta.yukon.software/wp_residentdynamicform.aspx";
+         AV8DynamicFormLink = context.GetMessage( "https://staging.comforta.yukon.software/wp_residentdynamicform.aspx", "");
          cleanup();
       }
 

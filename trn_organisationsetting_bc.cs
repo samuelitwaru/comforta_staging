@@ -143,8 +143,8 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
-         AV12WebSession.Remove("SelectedBaseColor");
-         GX_msglist.addItem("Saved successfully");
+         AV12WebSession.Remove(context.GetMessage( "SelectedBaseColor", ""));
+         GX_msglist.addItem(context.GetMessage( "Saved successfully", ""));
       }
 
       protected void ZM0F25( short GX_JID )
@@ -186,9 +186,9 @@ namespace GeneXus.Programs {
          GXt_guid1 = A11OrganisationId;
          new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
          A11OrganisationId = GXt_guid1;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV12WebSession.Get("SelectedBaseColor"))) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV12WebSession.Get(context.GetMessage( context.GetMessage( "SelectedBaseColor", ""), "")))) )
          {
-            A103OrganisationSettingBaseColor = AV12WebSession.Get("SelectedBaseColor");
+            A103OrganisationSettingBaseColor = AV12WebSession.Get(context.GetMessage( context.GetMessage( "SelectedBaseColor", ""), ""));
          }
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ( Gx_BScreen == 0 ) )
          {
@@ -227,7 +227,7 @@ namespace GeneXus.Programs {
          pr_default.execute(2, new Object[] {A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
-            GX_msglist.addItem("No matching 'Organisations'.", "ForeignKeyNotFound", 1, "ORGANISATIONID");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Organisations", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
             AnyError = 1;
          }
          pr_default.close(2);
@@ -617,7 +617,7 @@ namespace GeneXus.Programs {
          /* Before Insert Rules */
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A103OrganisationSettingBaseColor)) )
          {
-            A103OrganisationSettingBaseColor = "Teal";
+            A103OrganisationSettingBaseColor = context.GetMessage( "Teal", "");
          }
       }
 

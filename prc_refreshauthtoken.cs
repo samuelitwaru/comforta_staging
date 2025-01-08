@@ -67,21 +67,21 @@ namespace GeneXus.Programs {
          /* GeneXus formulas */
          /* Output device settings */
          AV9clientId = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context).getclientid();
-         if ( StringUtil.StrCmp(AV11HttpRequest.ServerHost, "localhost") == 0 )
+         if ( StringUtil.StrCmp(AV11HttpRequest.ServerHost, context.GetMessage( "localhost", "")) == 0 )
          {
-            AV8baseUrl = "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL";
+            AV8baseUrl = context.GetMessage( "http://localhost:8082/Comforta_version2DevelopmentNETPostgreSQL", "");
          }
          else
          {
-            AV8baseUrl = "https://staging.comforta.yukon.software";
+            AV8baseUrl = context.GetMessage( "https://staging.comforta.yukon.software", "");
          }
-         AV17url = AV8baseUrl + "/oauth/access_token";
-         AV10httpclient.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-         AV10httpclient.AddVariable("client_id", AV9clientId);
-         AV10httpclient.AddVariable("grant_type", "refresh_token");
-         AV10httpclient.AddVariable("scope", "gam_user_data+gam_user_additional_data+gam_session_initial_prop+gam_user_roles");
-         AV10httpclient.AddVariable("refresh_token", AV21refreshToken);
-         AV10httpclient.Execute("POST", AV17url);
+         AV17url = AV8baseUrl + context.GetMessage( "/oauth/access_token", "");
+         AV10httpclient.AddHeader(context.GetMessage( "Content-Type", ""), context.GetMessage( "application/x-www-form-urlencoded", ""));
+         AV10httpclient.AddVariable(context.GetMessage( "client_id", ""), AV9clientId);
+         AV10httpclient.AddVariable(context.GetMessage( "grant_type", ""), context.GetMessage( "refresh_token", ""));
+         AV10httpclient.AddVariable(context.GetMessage( "scope", ""), context.GetMessage( "gam_user_data+gam_user_additional_data+gam_session_initial_prop+gam_user_roles", ""));
+         AV10httpclient.AddVariable(context.GetMessage( "refresh_token", ""), AV21refreshToken);
+         AV10httpclient.Execute(context.GetMessage( "POST", ""), AV17url);
          AV15result = AV10httpclient.ToString();
          if ( AV10httpclient.StatusCode != 200 )
          {
@@ -90,11 +90,11 @@ namespace GeneXus.Programs {
             AV19ErrorResponse.gxTpr_Code = StringUtil.Trim( StringUtil.Str( (decimal)(AV10httpclient.StatusCode), 10, 2));
             AV12LoginResponse.gxTpr_Error = AV19ErrorResponse;
             AV14response = AV12LoginResponse.ToJSonString(false, true);
-            new prc_logtofile(context ).execute(  "Error: "+AV19ErrorResponse.ToJSonString(false, true)) ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "Error: ", "")+AV19ErrorResponse.ToJSonString(false, true)) ;
          }
          else
          {
-            new prc_logtofile(context ).execute(  "API Result: "+AV15result) ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "API Result: ", "")+AV15result) ;
             AV12LoginResponse.FromJSonString(AV15result, null);
             AV14response = AV12LoginResponse.ToJSonString(false, true);
          }

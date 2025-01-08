@@ -134,7 +134,7 @@ namespace GeneXus.Programs {
          }
          if ( AV8isNotFound )
          {
-            AV13response = "No location record found!";
+            AV13response = context.GetMessage( "No location record found!", "");
          }
          else
          {

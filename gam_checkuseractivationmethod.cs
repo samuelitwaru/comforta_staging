@@ -79,7 +79,7 @@ namespace GeneXus.Programs {
             {
                AV11Message = new GeneXus.Utils.SdtMessages_Message(context);
                AV11Message.gxTpr_Type = 0;
-               AV11Message.gxTpr_Description = "The account was created successfully, an email was sent with instructions to activate your account!";
+               AV11Message.gxTpr_Description = context.GetMessage( "The account was created successfully, an email was sent with instructions to activate your account!", "");
                AV12Messages.Add(AV11Message, 0);
             }
             else
@@ -91,7 +91,7 @@ namespace GeneXus.Programs {
          {
             AV11Message = new GeneXus.Utils.SdtMessages_Message(context);
             AV11Message.gxTpr_Type = 0;
-            AV11Message.gxTpr_Description = "The user was created successfully!!, you must wait for confirmation from the administrator.";
+            AV11Message.gxTpr_Description = context.GetMessage( "The user was created successfully!!, you must wait for confirmation from the administrator.", "");
             AV12Messages.Add(AV11Message, 0);
          }
          cleanup();

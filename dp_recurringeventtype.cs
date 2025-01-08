@@ -83,16 +83,16 @@ namespace GeneXus.Programs {
          /* Output device settings */
          Gxm1sdt_recurringeventtype = new SdtSDT_RecurringEventType_SDT_RecurringEventTypeItem(context);
          Gxm2rootcol.Add(Gxm1sdt_recurringeventtype, 0);
-         Gxm1sdt_recurringeventtype.gxTpr_Recurringeventtypeid = "EveryDay";
-         Gxm1sdt_recurringeventtype.gxTpr_Recurringeventtypedescription = "Every Day";
+         Gxm1sdt_recurringeventtype.gxTpr_Recurringeventtypeid = context.GetMessage( "EveryDay", "");
+         Gxm1sdt_recurringeventtype.gxTpr_Recurringeventtypedescription = context.GetMessage( "Every Day", "");
          Gxm1sdt_recurringeventtype = new SdtSDT_RecurringEventType_SDT_RecurringEventTypeItem(context);
          Gxm2rootcol.Add(Gxm1sdt_recurringeventtype, 0);
-         Gxm1sdt_recurringeventtype.gxTpr_Recurringeventtypeid = "EveryStartDate";
-         Gxm1sdt_recurringeventtype.gxTpr_Recurringeventtypedescription = "Every"+" "+DateTimeUtil.CDow( AV5CurrentDate, "eng");
+         Gxm1sdt_recurringeventtype.gxTpr_Recurringeventtypeid = context.GetMessage( "EveryStartDate", "");
+         Gxm1sdt_recurringeventtype.gxTpr_Recurringeventtypedescription = context.GetMessage( "Every", "")+" "+DateTimeUtil.CDow( AV5CurrentDate, context.GetLanguage( ));
          Gxm1sdt_recurringeventtype = new SdtSDT_RecurringEventType_SDT_RecurringEventTypeItem(context);
          Gxm2rootcol.Add(Gxm1sdt_recurringeventtype, 0);
-         Gxm1sdt_recurringeventtype.gxTpr_Recurringeventtypeid = "EveryWeekDay";
-         Gxm1sdt_recurringeventtype.gxTpr_Recurringeventtypedescription = "Every weekday";
+         Gxm1sdt_recurringeventtype.gxTpr_Recurringeventtypeid = context.GetMessage( "EveryWeekDay", "");
+         Gxm1sdt_recurringeventtype.gxTpr_Recurringeventtypedescription = context.GetMessage( "Every weekday", "");
          cleanup();
       }
 

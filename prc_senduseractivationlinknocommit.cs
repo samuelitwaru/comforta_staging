@@ -100,36 +100,36 @@ namespace GeneXus.Programs {
                AV24Username = AV15GAMUser.gxTpr_Firstname + " " + AV15GAMUser.gxTpr_Lastname;
                if ( AV14GAMErrors.Count == 0 )
                {
-                  AV22SMTPSession.Host = "comforta.yukon.software";
+                  AV22SMTPSession.Host = context.GetMessage( "comforta.yukon.software", "");
                   AV22SMTPSession.Port = 465;
                   AV22SMTPSession.Secure = 1;
                   AV22SMTPSession.Authentication = 0;
                   AV22SMTPSession.AuthenticationMethod = "";
-                  AV22SMTPSession.UserName = "no-reply@comforta.yukon.software";
-                  AV22SMTPSession.Password = "2uSFuxkquz";
-                  AV22SMTPSession.Sender.Address = "no-reply@comforta.yukon.software";
+                  AV22SMTPSession.UserName = context.GetMessage( "no-reply@comforta.yukon.software", "");
+                  AV22SMTPSession.Password = context.GetMessage( "2uSFuxkquz", "");
+                  AV22SMTPSession.Sender.Address = context.GetMessage( "no-reply@comforta.yukon.software", "");
                   AV22SMTPSession.Sender.Name = "Comforta Software";
                   AV8MailRecipient.Address = AV15GAMUser.gxTpr_Email;
                   AV8MailRecipient.Name = AV24Username;
                   AV20MailMessage.Subject = "Welcome to Comforta";
-                  AV20MailMessage.HTMLText = "<div style=\"max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; border: 1px solid #e0e0e0; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\">"+"<div style=\"background-color: #008080; color: #ffffff; text-align: center; padding: 20px 0;\"><h2>Comforta Software</h2></div><div style=\"padding: 20px; line-height: 1.5;\"><p>Dear "+AV24Username+",</p><p>Welcome to Comforta Software! We are thrilled to have you on board.</p><p>To get started, we need to verify your email address. Please click the button below to activate your account:</p>"+"</b></p><a href=\""+AV10baseUrl+"WP_UserActivation.aspx?ActivationKey="+AV9ActivactionKey+"&GamGuid="+AV15GAMUser.gxTpr_Guid+"\" style=\"display: block; padding: 10px 20px; width: 150px;  margin: 20px auto; background-color: #008080; text-align: center; border-radius: 8px; color: white; font-weight: bold; line-height: 30px; text-decoration: none;\">Verify Email</a>"+"<p>Please note that the link expires in 36 hours.</p>"+"<p>Once you have activated your account and set a password, you will gain access to the platform.</p>"+"<br><p>Healthy Living!</p><p>Comforta Software</p></div></div>";
+                  AV20MailMessage.HTMLText = "<div style=\"max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; border: 1px solid #e0e0e0; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\">"+context.GetMessage( "<div style=\"background-color: #008080; color: #ffffff; text-align: center; padding: 20px 0;\"><h2>Comforta Software</h2></div><div style=\"padding: 20px; line-height: 1.5;\"><p>Dear ", "")+AV24Username+context.GetMessage( ",</p><p>Welcome to Comforta Software! We are thrilled to have you on board.</p><p>To get started, we need to verify your email address. Please click the button below to activate your account:</p>", "")+context.GetMessage( "</b></p><a href=\"", "")+AV10baseUrl+context.GetMessage( "WP_UserActivation.aspx?ActivationKey=", "")+AV9ActivactionKey+context.GetMessage( "&GamGuid=", "")+AV15GAMUser.gxTpr_Guid+context.GetMessage( "\" style=\"display: block; padding: 10px 20px; width: 150px;  margin: 20px auto; background-color: #008080; text-align: center; border-radius: 8px; color: white; font-weight: bold; line-height: 30px; text-decoration: none;\">Verify Email</a>", "")+context.GetMessage( "<p>Please note that the link expires in 36 hours.</p>", "")+context.GetMessage( "<p>Once you have activated your account and set a password, you will gain access to the platform.</p>", "")+context.GetMessage( "<br><p>Healthy Living!</p><p>Comforta Software</p></div></div>", "");
                   AV20MailMessage.To.Add(AV8MailRecipient);
                   AV22SMTPSession.Login();
                   AV22SMTPSession.Send(AV20MailMessage);
-                  if ( ( AV22SMTPSession.ErrCode < 1 ) || ( StringUtil.StrCmp(StringUtil.Trim( AV22SMTPSession.ErrDescription), "OK") == 0 ) )
+                  if ( ( AV22SMTPSession.ErrCode < 1 ) || ( StringUtil.StrCmp(StringUtil.Trim( AV22SMTPSession.ErrDescription), context.GetMessage( "OK", "")) == 0 ) )
                   {
                      AV22SMTPSession.Logout();
                      AV19isSuccessful = true;
                   }
                   else
                   {
-                     AV11ErrDescription = "Sending activation email failed - " + StringUtil.Str( (decimal)(AV22SMTPSession.ErrCode), 10, 2) + " " + AV22SMTPSession.ErrDescription;
+                     AV11ErrDescription = context.GetMessage( "Sending activation email failed - ", "") + StringUtil.Str( (decimal)(AV22SMTPSession.ErrCode), 10, 2) + " " + AV22SMTPSession.ErrDescription;
                      AV19isSuccessful = false;
                   }
                }
                else
                {
-                  AV11ErrDescription = "Sending activation email failed - ";
+                  AV11ErrDescription = context.GetMessage( "Sending activation email failed - ", "");
                   AV26GXV1 = 1;
                   while ( AV26GXV1 <= AV14GAMErrors.Count )
                   {
@@ -142,13 +142,13 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV11ErrDescription = "Failed to load user";
+               AV11ErrDescription = context.GetMessage( "Failed to load user", "");
                AV19isSuccessful = false;
             }
          }
          else
          {
-            AV11ErrDescription = "Unknown user activation method - " + AV21Repository.gxTpr_Useractivationmethod + " - " + "U";
+            AV11ErrDescription = context.GetMessage( "Unknown user activation method - ", "") + AV21Repository.gxTpr_Useractivationmethod + " - " + "U";
             AV19isSuccessful = false;
          }
          cleanup();

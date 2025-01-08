@@ -73,8 +73,8 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV16Key = "76a2173be6393254e72ffa4d6df1030a3d2f94a3bb6d4a6e69a2cda0e056cb13";
-         AV18Nonce = "10dd993308d37a15b55f64a0e763f353";
+         AV16Key = context.GetMessage( "76a2173be6393254e72ffa4d6df1030a3d2f94a3bb6d4a6e69a2cda0e056cb13", "");
+         AV18Nonce = context.GetMessage( "10dd993308d37a15b55f64a0e763f353", "");
          AV19pwd = Guid.NewGuid( ).ToString();
          AV8Email = "";
          AV14GAMUser.load( AV21ResidentGUID);
@@ -92,9 +92,9 @@ namespace GeneXus.Programs {
             }
          }
          AV10EncryptedEmail = Encrypt64( AV8Email, AV16Key);
-         AV9EncryptedContent = "{\"user\": \"" + AV10EncryptedEmail + "\", \"code\": \"" + AV11EncryptedPassword + "\"}";
-         new prc_logtofile(context ).execute(  "Encrypted pwd::"+AV19pwd) ;
-         new prc_logtofile(context ).execute(  "Encrypted email::"+AV8Email) ;
+         AV9EncryptedContent = "{\"user\": \"" + AV10EncryptedEmail + context.GetMessage( "\", \"code\": \"", "") + AV11EncryptedPassword + "\"}";
+         new prc_logtofile(context ).execute(  context.GetMessage( "Encrypted pwd::", "")+AV19pwd) ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "Encrypted email::", "")+AV8Email) ;
          AV12FinalEncryption = AV22SymmetricBlockCipher.doaeadencrypt("AES", "AEAD_EAX", AV16Key, 128, AV18Nonce, AV9EncryptedContent);
          AV20QRCodeImage = AV15GenerateQRCode.generateqrcode(AV12FinalEncryption);
          cleanup();

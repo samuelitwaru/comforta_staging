@@ -262,7 +262,6 @@ namespace GeneXus.Programs {
          pr_default.dynParam(0, new Object[]{ new Object[]{
                                               A27ManagerGender ,
                                               AV66Trn_managerwwds_10_tfmanagergender_sels ,
-                                              AV57Trn_managerwwds_1_filterfulltext ,
                                               AV59Trn_managerwwds_3_tfmanagergivenname_sel ,
                                               AV58Trn_managerwwds_2_tfmanagergivenname ,
                                               AV61Trn_managerwwds_5_tfmanagerlastname_sel ,
@@ -276,25 +275,19 @@ namespace GeneXus.Programs {
                                               A23ManagerLastName ,
                                               A25ManagerEmail ,
                                               A26ManagerPhone ,
+                                              AV57Trn_managerwwds_1_filterfulltext ,
                                               A11OrganisationId ,
                                               AV53OrganisationId } ,
                                               new int[]{
                                               TypeConstants.INT
                                               }
          });
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
          lV58Trn_managerwwds_2_tfmanagergivenname = StringUtil.Concat( StringUtil.RTrim( AV58Trn_managerwwds_2_tfmanagergivenname), "%", "");
          lV60Trn_managerwwds_4_tfmanagerlastname = StringUtil.Concat( StringUtil.RTrim( AV60Trn_managerwwds_4_tfmanagerlastname), "%", "");
          lV62Trn_managerwwds_6_tfmanageremail = StringUtil.Concat( StringUtil.RTrim( AV62Trn_managerwwds_6_tfmanageremail), "%", "");
          lV64Trn_managerwwds_8_tfmanagerphone = StringUtil.PadR( StringUtil.RTrim( AV64Trn_managerwwds_8_tfmanagerphone), 20, "%");
          /* Using cursor P005L2 */
-         pr_default.execute(0, new Object[] {AV53OrganisationId, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV58Trn_managerwwds_2_tfmanagergivenname, AV59Trn_managerwwds_3_tfmanagergivenname_sel, lV60Trn_managerwwds_4_tfmanagerlastname, AV61Trn_managerwwds_5_tfmanagerlastname_sel, lV62Trn_managerwwds_6_tfmanageremail, AV63Trn_managerwwds_7_tfmanageremail_sel, lV64Trn_managerwwds_8_tfmanagerphone, AV65Trn_managerwwds_9_tfmanagerphone_sel});
+         pr_default.execute(0, new Object[] {AV53OrganisationId, lV58Trn_managerwwds_2_tfmanagergivenname, AV59Trn_managerwwds_3_tfmanagergivenname_sel, lV60Trn_managerwwds_4_tfmanagerlastname, AV61Trn_managerwwds_5_tfmanagerlastname_sel, lV62Trn_managerwwds_6_tfmanageremail, AV63Trn_managerwwds_7_tfmanageremail_sel, lV64Trn_managerwwds_8_tfmanagerphone, AV65Trn_managerwwds_9_tfmanagerphone_sel});
          while ( (pr_default.getStatus(0) != 101) )
          {
             BRK5L2 = false;
@@ -305,30 +298,33 @@ namespace GeneXus.Programs {
             A23ManagerLastName = P005L2_A23ManagerLastName[0];
             A27ManagerGender = P005L2_A27ManagerGender[0];
             A21ManagerId = P005L2_A21ManagerId[0];
-            AV35count = 0;
-            while ( (pr_default.getStatus(0) != 101) && ( StringUtil.StrCmp(P005L2_A22ManagerGivenName[0], A22ManagerGivenName) == 0 ) )
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext)) || ( ( StringUtil.Like( StringUtil.Lower( A22ManagerGivenName) , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A23ManagerLastName) , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A25ManagerEmail) , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A26ManagerPhone) , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "male", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, context.GetMessage( "Male", "")) == 0 ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "female", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, context.GetMessage( "Female", "")) == 0 ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "other", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, context.GetMessage( "Other", "")) == 0 ) ) ) )
             {
-               BRK5L2 = false;
-               A11OrganisationId = P005L2_A11OrganisationId[0];
-               A21ManagerId = P005L2_A21ManagerId[0];
-               AV35count = (long)(AV35count+1);
-               BRK5L2 = true;
-               pr_default.readNext(0);
-            }
-            if ( (0==AV26SkipItems) )
-            {
-               AV30Option = (String.IsNullOrEmpty(StringUtil.RTrim( A22ManagerGivenName)) ? "<#Empty#>" : A22ManagerGivenName);
-               AV31Options.Add(AV30Option, 0);
-               AV34OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV35count), "Z,ZZZ,ZZZ,ZZ9")), 0);
-               if ( AV31Options.Count == 10 )
+               AV35count = 0;
+               while ( (pr_default.getStatus(0) != 101) && ( StringUtil.StrCmp(P005L2_A22ManagerGivenName[0], A22ManagerGivenName) == 0 ) )
                {
-                  /* Exit For each command. Update data (if necessary), close cursors & exit. */
-                  if (true) break;
+                  BRK5L2 = false;
+                  A11OrganisationId = P005L2_A11OrganisationId[0];
+                  A21ManagerId = P005L2_A21ManagerId[0];
+                  AV35count = (long)(AV35count+1);
+                  BRK5L2 = true;
+                  pr_default.readNext(0);
                }
-            }
-            else
-            {
-               AV26SkipItems = (short)(AV26SkipItems-1);
+               if ( (0==AV26SkipItems) )
+               {
+                  AV30Option = (String.IsNullOrEmpty(StringUtil.RTrim( A22ManagerGivenName)) ? "<#Empty#>" : A22ManagerGivenName);
+                  AV31Options.Add(AV30Option, 0);
+                  AV34OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV35count), "Z,ZZZ,ZZZ,ZZ9")), 0);
+                  if ( AV31Options.Count == 10 )
+                  {
+                     /* Exit For each command. Update data (if necessary), close cursors & exit. */
+                     if (true) break;
+                  }
+               }
+               else
+               {
+                  AV26SkipItems = (short)(AV26SkipItems-1);
+               }
             }
             if ( ! BRK5L2 )
             {
@@ -358,7 +354,6 @@ namespace GeneXus.Programs {
          pr_default.dynParam(1, new Object[]{ new Object[]{
                                               A27ManagerGender ,
                                               AV66Trn_managerwwds_10_tfmanagergender_sels ,
-                                              AV57Trn_managerwwds_1_filterfulltext ,
                                               AV59Trn_managerwwds_3_tfmanagergivenname_sel ,
                                               AV58Trn_managerwwds_2_tfmanagergivenname ,
                                               AV61Trn_managerwwds_5_tfmanagerlastname_sel ,
@@ -372,25 +367,19 @@ namespace GeneXus.Programs {
                                               A23ManagerLastName ,
                                               A25ManagerEmail ,
                                               A26ManagerPhone ,
+                                              AV57Trn_managerwwds_1_filterfulltext ,
                                               A11OrganisationId ,
                                               AV53OrganisationId } ,
                                               new int[]{
                                               TypeConstants.INT
                                               }
          });
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
          lV58Trn_managerwwds_2_tfmanagergivenname = StringUtil.Concat( StringUtil.RTrim( AV58Trn_managerwwds_2_tfmanagergivenname), "%", "");
          lV60Trn_managerwwds_4_tfmanagerlastname = StringUtil.Concat( StringUtil.RTrim( AV60Trn_managerwwds_4_tfmanagerlastname), "%", "");
          lV62Trn_managerwwds_6_tfmanageremail = StringUtil.Concat( StringUtil.RTrim( AV62Trn_managerwwds_6_tfmanageremail), "%", "");
          lV64Trn_managerwwds_8_tfmanagerphone = StringUtil.PadR( StringUtil.RTrim( AV64Trn_managerwwds_8_tfmanagerphone), 20, "%");
          /* Using cursor P005L3 */
-         pr_default.execute(1, new Object[] {AV53OrganisationId, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV58Trn_managerwwds_2_tfmanagergivenname, AV59Trn_managerwwds_3_tfmanagergivenname_sel, lV60Trn_managerwwds_4_tfmanagerlastname, AV61Trn_managerwwds_5_tfmanagerlastname_sel, lV62Trn_managerwwds_6_tfmanageremail, AV63Trn_managerwwds_7_tfmanageremail_sel, lV64Trn_managerwwds_8_tfmanagerphone, AV65Trn_managerwwds_9_tfmanagerphone_sel});
+         pr_default.execute(1, new Object[] {AV53OrganisationId, lV58Trn_managerwwds_2_tfmanagergivenname, AV59Trn_managerwwds_3_tfmanagergivenname_sel, lV60Trn_managerwwds_4_tfmanagerlastname, AV61Trn_managerwwds_5_tfmanagerlastname_sel, lV62Trn_managerwwds_6_tfmanageremail, AV63Trn_managerwwds_7_tfmanageremail_sel, lV64Trn_managerwwds_8_tfmanagerphone, AV65Trn_managerwwds_9_tfmanagerphone_sel});
          while ( (pr_default.getStatus(1) != 101) )
          {
             BRK5L4 = false;
@@ -401,30 +390,33 @@ namespace GeneXus.Programs {
             A22ManagerGivenName = P005L3_A22ManagerGivenName[0];
             A27ManagerGender = P005L3_A27ManagerGender[0];
             A21ManagerId = P005L3_A21ManagerId[0];
-            AV35count = 0;
-            while ( (pr_default.getStatus(1) != 101) && ( StringUtil.StrCmp(P005L3_A23ManagerLastName[0], A23ManagerLastName) == 0 ) )
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext)) || ( ( StringUtil.Like( StringUtil.Lower( A22ManagerGivenName) , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A23ManagerLastName) , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A25ManagerEmail) , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A26ManagerPhone) , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "male", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, context.GetMessage( "Male", "")) == 0 ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "female", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, context.GetMessage( "Female", "")) == 0 ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "other", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, context.GetMessage( "Other", "")) == 0 ) ) ) )
             {
-               BRK5L4 = false;
-               A11OrganisationId = P005L3_A11OrganisationId[0];
-               A21ManagerId = P005L3_A21ManagerId[0];
-               AV35count = (long)(AV35count+1);
-               BRK5L4 = true;
-               pr_default.readNext(1);
-            }
-            if ( (0==AV26SkipItems) )
-            {
-               AV30Option = (String.IsNullOrEmpty(StringUtil.RTrim( A23ManagerLastName)) ? "<#Empty#>" : A23ManagerLastName);
-               AV31Options.Add(AV30Option, 0);
-               AV34OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV35count), "Z,ZZZ,ZZZ,ZZ9")), 0);
-               if ( AV31Options.Count == 10 )
+               AV35count = 0;
+               while ( (pr_default.getStatus(1) != 101) && ( StringUtil.StrCmp(P005L3_A23ManagerLastName[0], A23ManagerLastName) == 0 ) )
                {
-                  /* Exit For each command. Update data (if necessary), close cursors & exit. */
-                  if (true) break;
+                  BRK5L4 = false;
+                  A11OrganisationId = P005L3_A11OrganisationId[0];
+                  A21ManagerId = P005L3_A21ManagerId[0];
+                  AV35count = (long)(AV35count+1);
+                  BRK5L4 = true;
+                  pr_default.readNext(1);
                }
-            }
-            else
-            {
-               AV26SkipItems = (short)(AV26SkipItems-1);
+               if ( (0==AV26SkipItems) )
+               {
+                  AV30Option = (String.IsNullOrEmpty(StringUtil.RTrim( A23ManagerLastName)) ? "<#Empty#>" : A23ManagerLastName);
+                  AV31Options.Add(AV30Option, 0);
+                  AV34OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV35count), "Z,ZZZ,ZZZ,ZZ9")), 0);
+                  if ( AV31Options.Count == 10 )
+                  {
+                     /* Exit For each command. Update data (if necessary), close cursors & exit. */
+                     if (true) break;
+                  }
+               }
+               else
+               {
+                  AV26SkipItems = (short)(AV26SkipItems-1);
+               }
             }
             if ( ! BRK5L4 )
             {
@@ -454,7 +446,6 @@ namespace GeneXus.Programs {
          pr_default.dynParam(2, new Object[]{ new Object[]{
                                               A27ManagerGender ,
                                               AV66Trn_managerwwds_10_tfmanagergender_sels ,
-                                              AV57Trn_managerwwds_1_filterfulltext ,
                                               AV59Trn_managerwwds_3_tfmanagergivenname_sel ,
                                               AV58Trn_managerwwds_2_tfmanagergivenname ,
                                               AV61Trn_managerwwds_5_tfmanagerlastname_sel ,
@@ -468,25 +459,19 @@ namespace GeneXus.Programs {
                                               A23ManagerLastName ,
                                               A25ManagerEmail ,
                                               A26ManagerPhone ,
+                                              AV57Trn_managerwwds_1_filterfulltext ,
                                               A11OrganisationId ,
                                               AV53OrganisationId } ,
                                               new int[]{
                                               TypeConstants.INT
                                               }
          });
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
          lV58Trn_managerwwds_2_tfmanagergivenname = StringUtil.Concat( StringUtil.RTrim( AV58Trn_managerwwds_2_tfmanagergivenname), "%", "");
          lV60Trn_managerwwds_4_tfmanagerlastname = StringUtil.Concat( StringUtil.RTrim( AV60Trn_managerwwds_4_tfmanagerlastname), "%", "");
          lV62Trn_managerwwds_6_tfmanageremail = StringUtil.Concat( StringUtil.RTrim( AV62Trn_managerwwds_6_tfmanageremail), "%", "");
          lV64Trn_managerwwds_8_tfmanagerphone = StringUtil.PadR( StringUtil.RTrim( AV64Trn_managerwwds_8_tfmanagerphone), 20, "%");
          /* Using cursor P005L4 */
-         pr_default.execute(2, new Object[] {AV53OrganisationId, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV58Trn_managerwwds_2_tfmanagergivenname, AV59Trn_managerwwds_3_tfmanagergivenname_sel, lV60Trn_managerwwds_4_tfmanagerlastname, AV61Trn_managerwwds_5_tfmanagerlastname_sel, lV62Trn_managerwwds_6_tfmanageremail, AV63Trn_managerwwds_7_tfmanageremail_sel, lV64Trn_managerwwds_8_tfmanagerphone, AV65Trn_managerwwds_9_tfmanagerphone_sel});
+         pr_default.execute(2, new Object[] {AV53OrganisationId, lV58Trn_managerwwds_2_tfmanagergivenname, AV59Trn_managerwwds_3_tfmanagergivenname_sel, lV60Trn_managerwwds_4_tfmanagerlastname, AV61Trn_managerwwds_5_tfmanagerlastname_sel, lV62Trn_managerwwds_6_tfmanageremail, AV63Trn_managerwwds_7_tfmanageremail_sel, lV64Trn_managerwwds_8_tfmanagerphone, AV65Trn_managerwwds_9_tfmanagerphone_sel});
          while ( (pr_default.getStatus(2) != 101) )
          {
             BRK5L6 = false;
@@ -497,30 +482,33 @@ namespace GeneXus.Programs {
             A22ManagerGivenName = P005L4_A22ManagerGivenName[0];
             A27ManagerGender = P005L4_A27ManagerGender[0];
             A21ManagerId = P005L4_A21ManagerId[0];
-            AV35count = 0;
-            while ( (pr_default.getStatus(2) != 101) && ( StringUtil.StrCmp(P005L4_A25ManagerEmail[0], A25ManagerEmail) == 0 ) )
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext)) || ( ( StringUtil.Like( StringUtil.Lower( A22ManagerGivenName) , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A23ManagerLastName) , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A25ManagerEmail) , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A26ManagerPhone) , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "male", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, context.GetMessage( "Male", "")) == 0 ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "female", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, context.GetMessage( "Female", "")) == 0 ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "other", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, context.GetMessage( "Other", "")) == 0 ) ) ) )
             {
-               BRK5L6 = false;
-               A11OrganisationId = P005L4_A11OrganisationId[0];
-               A21ManagerId = P005L4_A21ManagerId[0];
-               AV35count = (long)(AV35count+1);
-               BRK5L6 = true;
-               pr_default.readNext(2);
-            }
-            if ( (0==AV26SkipItems) )
-            {
-               AV30Option = (String.IsNullOrEmpty(StringUtil.RTrim( A25ManagerEmail)) ? "<#Empty#>" : A25ManagerEmail);
-               AV31Options.Add(AV30Option, 0);
-               AV34OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV35count), "Z,ZZZ,ZZZ,ZZ9")), 0);
-               if ( AV31Options.Count == 10 )
+               AV35count = 0;
+               while ( (pr_default.getStatus(2) != 101) && ( StringUtil.StrCmp(P005L4_A25ManagerEmail[0], A25ManagerEmail) == 0 ) )
                {
-                  /* Exit For each command. Update data (if necessary), close cursors & exit. */
-                  if (true) break;
+                  BRK5L6 = false;
+                  A11OrganisationId = P005L4_A11OrganisationId[0];
+                  A21ManagerId = P005L4_A21ManagerId[0];
+                  AV35count = (long)(AV35count+1);
+                  BRK5L6 = true;
+                  pr_default.readNext(2);
                }
-            }
-            else
-            {
-               AV26SkipItems = (short)(AV26SkipItems-1);
+               if ( (0==AV26SkipItems) )
+               {
+                  AV30Option = (String.IsNullOrEmpty(StringUtil.RTrim( A25ManagerEmail)) ? "<#Empty#>" : A25ManagerEmail);
+                  AV31Options.Add(AV30Option, 0);
+                  AV34OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV35count), "Z,ZZZ,ZZZ,ZZ9")), 0);
+                  if ( AV31Options.Count == 10 )
+                  {
+                     /* Exit For each command. Update data (if necessary), close cursors & exit. */
+                     if (true) break;
+                  }
+               }
+               else
+               {
+                  AV26SkipItems = (short)(AV26SkipItems-1);
+               }
             }
             if ( ! BRK5L6 )
             {
@@ -550,7 +538,6 @@ namespace GeneXus.Programs {
          pr_default.dynParam(3, new Object[]{ new Object[]{
                                               A27ManagerGender ,
                                               AV66Trn_managerwwds_10_tfmanagergender_sels ,
-                                              AV57Trn_managerwwds_1_filterfulltext ,
                                               AV59Trn_managerwwds_3_tfmanagergivenname_sel ,
                                               AV58Trn_managerwwds_2_tfmanagergivenname ,
                                               AV61Trn_managerwwds_5_tfmanagerlastname_sel ,
@@ -564,25 +551,19 @@ namespace GeneXus.Programs {
                                               A23ManagerLastName ,
                                               A25ManagerEmail ,
                                               A26ManagerPhone ,
+                                              AV57Trn_managerwwds_1_filterfulltext ,
                                               A11OrganisationId ,
                                               AV53OrganisationId } ,
                                               new int[]{
                                               TypeConstants.INT
                                               }
          });
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
-         lV57Trn_managerwwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext), "%", "");
          lV58Trn_managerwwds_2_tfmanagergivenname = StringUtil.Concat( StringUtil.RTrim( AV58Trn_managerwwds_2_tfmanagergivenname), "%", "");
          lV60Trn_managerwwds_4_tfmanagerlastname = StringUtil.Concat( StringUtil.RTrim( AV60Trn_managerwwds_4_tfmanagerlastname), "%", "");
          lV62Trn_managerwwds_6_tfmanageremail = StringUtil.Concat( StringUtil.RTrim( AV62Trn_managerwwds_6_tfmanageremail), "%", "");
          lV64Trn_managerwwds_8_tfmanagerphone = StringUtil.PadR( StringUtil.RTrim( AV64Trn_managerwwds_8_tfmanagerphone), 20, "%");
          /* Using cursor P005L5 */
-         pr_default.execute(3, new Object[] {AV53OrganisationId, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV57Trn_managerwwds_1_filterfulltext, lV58Trn_managerwwds_2_tfmanagergivenname, AV59Trn_managerwwds_3_tfmanagergivenname_sel, lV60Trn_managerwwds_4_tfmanagerlastname, AV61Trn_managerwwds_5_tfmanagerlastname_sel, lV62Trn_managerwwds_6_tfmanageremail, AV63Trn_managerwwds_7_tfmanageremail_sel, lV64Trn_managerwwds_8_tfmanagerphone, AV65Trn_managerwwds_9_tfmanagerphone_sel});
+         pr_default.execute(3, new Object[] {AV53OrganisationId, lV58Trn_managerwwds_2_tfmanagergivenname, AV59Trn_managerwwds_3_tfmanagergivenname_sel, lV60Trn_managerwwds_4_tfmanagerlastname, AV61Trn_managerwwds_5_tfmanagerlastname_sel, lV62Trn_managerwwds_6_tfmanageremail, AV63Trn_managerwwds_7_tfmanageremail_sel, lV64Trn_managerwwds_8_tfmanagerphone, AV65Trn_managerwwds_9_tfmanagerphone_sel});
          while ( (pr_default.getStatus(3) != 101) )
          {
             BRK5L8 = false;
@@ -593,30 +574,33 @@ namespace GeneXus.Programs {
             A22ManagerGivenName = P005L5_A22ManagerGivenName[0];
             A27ManagerGender = P005L5_A27ManagerGender[0];
             A21ManagerId = P005L5_A21ManagerId[0];
-            AV35count = 0;
-            while ( (pr_default.getStatus(3) != 101) && ( StringUtil.StrCmp(P005L5_A26ManagerPhone[0], A26ManagerPhone) == 0 ) )
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext)) || ( ( StringUtil.Like( StringUtil.Lower( A22ManagerGivenName) , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A23ManagerLastName) , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A25ManagerEmail) , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A26ManagerPhone) , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "male", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, context.GetMessage( "Male", "")) == 0 ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "female", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, context.GetMessage( "Female", "")) == 0 ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "other", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV57Trn_managerwwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A27ManagerGender, context.GetMessage( "Other", "")) == 0 ) ) ) )
             {
-               BRK5L8 = false;
-               A11OrganisationId = P005L5_A11OrganisationId[0];
-               A21ManagerId = P005L5_A21ManagerId[0];
-               AV35count = (long)(AV35count+1);
-               BRK5L8 = true;
-               pr_default.readNext(3);
-            }
-            if ( (0==AV26SkipItems) )
-            {
-               AV30Option = (String.IsNullOrEmpty(StringUtil.RTrim( A26ManagerPhone)) ? "<#Empty#>" : A26ManagerPhone);
-               AV31Options.Add(AV30Option, 0);
-               AV34OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV35count), "Z,ZZZ,ZZZ,ZZ9")), 0);
-               if ( AV31Options.Count == 10 )
+               AV35count = 0;
+               while ( (pr_default.getStatus(3) != 101) && ( StringUtil.StrCmp(P005L5_A26ManagerPhone[0], A26ManagerPhone) == 0 ) )
                {
-                  /* Exit For each command. Update data (if necessary), close cursors & exit. */
-                  if (true) break;
+                  BRK5L8 = false;
+                  A11OrganisationId = P005L5_A11OrganisationId[0];
+                  A21ManagerId = P005L5_A21ManagerId[0];
+                  AV35count = (long)(AV35count+1);
+                  BRK5L8 = true;
+                  pr_default.readNext(3);
                }
-            }
-            else
-            {
-               AV26SkipItems = (short)(AV26SkipItems-1);
+               if ( (0==AV26SkipItems) )
+               {
+                  AV30Option = (String.IsNullOrEmpty(StringUtil.RTrim( A26ManagerPhone)) ? "<#Empty#>" : A26ManagerPhone);
+                  AV31Options.Add(AV30Option, 0);
+                  AV34OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV35count), "Z,ZZZ,ZZZ,ZZ9")), 0);
+                  if ( AV31Options.Count == 10 )
+                  {
+                     /* Exit For each command. Update data (if necessary), close cursors & exit. */
+                     if (true) break;
+                  }
+               }
+               else
+               {
+                  AV26SkipItems = (short)(AV26SkipItems-1);
+               }
             }
             if ( ! BRK5L8 )
             {
@@ -671,7 +655,6 @@ namespace GeneXus.Programs {
          AV64Trn_managerwwds_8_tfmanagerphone = "";
          AV65Trn_managerwwds_9_tfmanagerphone_sel = "";
          AV66Trn_managerwwds_10_tfmanagergender_sels = new GxSimpleCollection<string>();
-         lV57Trn_managerwwds_1_filterfulltext = "";
          lV58Trn_managerwwds_2_tfmanagergivenname = "";
          lV60Trn_managerwwds_4_tfmanagerlastname = "";
          lV62Trn_managerwwds_6_tfmanageremail = "";
@@ -771,7 +754,6 @@ namespace GeneXus.Programs {
       private string AV61Trn_managerwwds_5_tfmanagerlastname_sel ;
       private string AV62Trn_managerwwds_6_tfmanageremail ;
       private string AV63Trn_managerwwds_7_tfmanageremail_sel ;
-      private string lV57Trn_managerwwds_1_filterfulltext ;
       private string lV58Trn_managerwwds_2_tfmanagergivenname ;
       private string lV60Trn_managerwwds_4_tfmanagerlastname ;
       private string lV62Trn_managerwwds_6_tfmanageremail ;
@@ -834,7 +816,6 @@ namespace GeneXus.Programs {
       protected Object[] conditional_P005L2( IGxContext context ,
                                              string A27ManagerGender ,
                                              GxSimpleCollection<string> AV66Trn_managerwwds_10_tfmanagergender_sels ,
-                                             string AV57Trn_managerwwds_1_filterfulltext ,
                                              string AV59Trn_managerwwds_3_tfmanagergivenname_sel ,
                                              string AV58Trn_managerwwds_2_tfmanagergivenname ,
                                              string AV61Trn_managerwwds_5_tfmanagerlastname_sel ,
@@ -848,46 +829,33 @@ namespace GeneXus.Programs {
                                              string A23ManagerLastName ,
                                              string A25ManagerEmail ,
                                              string A26ManagerPhone ,
+                                             string AV57Trn_managerwwds_1_filterfulltext ,
                                              Guid A11OrganisationId ,
                                              Guid AV53OrganisationId )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int1 = new short[16];
+         short[] GXv_int1 = new short[9];
          Object[] GXv_Object2 = new Object[2];
          scmdbuf = "SELECT OrganisationId, ManagerGivenName, ManagerPhone, ManagerEmail, ManagerLastName, ManagerGender, ManagerId FROM Trn_Manager";
          AddWhere(sWhereString, "(OrganisationId = :AV53OrganisationId)");
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext)) )
-         {
-            AddWhere(sWhereString, "(( LOWER(ManagerGivenName) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerLastName) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerEmail) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerPhone) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( 'male' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Other')))");
-         }
-         else
-         {
-            GXv_int1[1] = 1;
-            GXv_int1[2] = 1;
-            GXv_int1[3] = 1;
-            GXv_int1[4] = 1;
-            GXv_int1[5] = 1;
-            GXv_int1[6] = 1;
-            GXv_int1[7] = 1;
-         }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_managerwwds_3_tfmanagergivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_managerwwds_2_tfmanagergivenname)) ) )
          {
             AddWhere(sWhereString, "(ManagerGivenName like :lV58Trn_managerwwds_2_tfmanagergivenname)");
          }
          else
          {
-            GXv_int1[8] = 1;
+            GXv_int1[1] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_managerwwds_3_tfmanagergivenname_sel)) && ! ( StringUtil.StrCmp(AV59Trn_managerwwds_3_tfmanagergivenname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_managerwwds_3_tfmanagergivenname_sel)) && ! ( StringUtil.StrCmp(AV59Trn_managerwwds_3_tfmanagergivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ManagerGivenName = ( :AV59Trn_managerwwds_3_tfmanagergivenname_sel))");
          }
          else
          {
-            GXv_int1[9] = 1;
+            GXv_int1[2] = 1;
          }
-         if ( StringUtil.StrCmp(AV59Trn_managerwwds_3_tfmanagergivenname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV59Trn_managerwwds_3_tfmanagergivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ManagerGivenName))=0))");
          }
@@ -897,17 +865,17 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int1[10] = 1;
+            GXv_int1[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_managerwwds_5_tfmanagerlastname_sel)) && ! ( StringUtil.StrCmp(AV61Trn_managerwwds_5_tfmanagerlastname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_managerwwds_5_tfmanagerlastname_sel)) && ! ( StringUtil.StrCmp(AV61Trn_managerwwds_5_tfmanagerlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ManagerLastName = ( :AV61Trn_managerwwds_5_tfmanagerlastname_sel))");
          }
          else
          {
-            GXv_int1[11] = 1;
+            GXv_int1[4] = 1;
          }
-         if ( StringUtil.StrCmp(AV61Trn_managerwwds_5_tfmanagerlastname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV61Trn_managerwwds_5_tfmanagerlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ManagerLastName))=0))");
          }
@@ -917,17 +885,17 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int1[12] = 1;
+            GXv_int1[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_managerwwds_7_tfmanageremail_sel)) && ! ( StringUtil.StrCmp(AV63Trn_managerwwds_7_tfmanageremail_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_managerwwds_7_tfmanageremail_sel)) && ! ( StringUtil.StrCmp(AV63Trn_managerwwds_7_tfmanageremail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ManagerEmail = ( :AV63Trn_managerwwds_7_tfmanageremail_sel))");
          }
          else
          {
-            GXv_int1[13] = 1;
+            GXv_int1[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV63Trn_managerwwds_7_tfmanageremail_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV63Trn_managerwwds_7_tfmanageremail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ManagerEmail))=0))");
          }
@@ -937,17 +905,17 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int1[14] = 1;
+            GXv_int1[7] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_managerwwds_9_tfmanagerphone_sel)) && ! ( StringUtil.StrCmp(AV65Trn_managerwwds_9_tfmanagerphone_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_managerwwds_9_tfmanagerphone_sel)) && ! ( StringUtil.StrCmp(AV65Trn_managerwwds_9_tfmanagerphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ManagerPhone = ( :AV65Trn_managerwwds_9_tfmanagerphone_sel))");
          }
          else
          {
-            GXv_int1[15] = 1;
+            GXv_int1[8] = 1;
          }
-         if ( StringUtil.StrCmp(AV65Trn_managerwwds_9_tfmanagerphone_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV65Trn_managerwwds_9_tfmanagerphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ManagerPhone))=0))");
          }
@@ -965,7 +933,6 @@ namespace GeneXus.Programs {
       protected Object[] conditional_P005L3( IGxContext context ,
                                              string A27ManagerGender ,
                                              GxSimpleCollection<string> AV66Trn_managerwwds_10_tfmanagergender_sels ,
-                                             string AV57Trn_managerwwds_1_filterfulltext ,
                                              string AV59Trn_managerwwds_3_tfmanagergivenname_sel ,
                                              string AV58Trn_managerwwds_2_tfmanagergivenname ,
                                              string AV61Trn_managerwwds_5_tfmanagerlastname_sel ,
@@ -979,46 +946,33 @@ namespace GeneXus.Programs {
                                              string A23ManagerLastName ,
                                              string A25ManagerEmail ,
                                              string A26ManagerPhone ,
+                                             string AV57Trn_managerwwds_1_filterfulltext ,
                                              Guid A11OrganisationId ,
                                              Guid AV53OrganisationId )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int3 = new short[16];
+         short[] GXv_int3 = new short[9];
          Object[] GXv_Object4 = new Object[2];
          scmdbuf = "SELECT OrganisationId, ManagerLastName, ManagerPhone, ManagerEmail, ManagerGivenName, ManagerGender, ManagerId FROM Trn_Manager";
          AddWhere(sWhereString, "(OrganisationId = :AV53OrganisationId)");
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext)) )
-         {
-            AddWhere(sWhereString, "(( LOWER(ManagerGivenName) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerLastName) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerEmail) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerPhone) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( 'male' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Other')))");
-         }
-         else
-         {
-            GXv_int3[1] = 1;
-            GXv_int3[2] = 1;
-            GXv_int3[3] = 1;
-            GXv_int3[4] = 1;
-            GXv_int3[5] = 1;
-            GXv_int3[6] = 1;
-            GXv_int3[7] = 1;
-         }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_managerwwds_3_tfmanagergivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_managerwwds_2_tfmanagergivenname)) ) )
          {
             AddWhere(sWhereString, "(ManagerGivenName like :lV58Trn_managerwwds_2_tfmanagergivenname)");
          }
          else
          {
-            GXv_int3[8] = 1;
+            GXv_int3[1] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_managerwwds_3_tfmanagergivenname_sel)) && ! ( StringUtil.StrCmp(AV59Trn_managerwwds_3_tfmanagergivenname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_managerwwds_3_tfmanagergivenname_sel)) && ! ( StringUtil.StrCmp(AV59Trn_managerwwds_3_tfmanagergivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ManagerGivenName = ( :AV59Trn_managerwwds_3_tfmanagergivenname_sel))");
          }
          else
          {
-            GXv_int3[9] = 1;
+            GXv_int3[2] = 1;
          }
-         if ( StringUtil.StrCmp(AV59Trn_managerwwds_3_tfmanagergivenname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV59Trn_managerwwds_3_tfmanagergivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ManagerGivenName))=0))");
          }
@@ -1028,17 +982,17 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int3[10] = 1;
+            GXv_int3[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_managerwwds_5_tfmanagerlastname_sel)) && ! ( StringUtil.StrCmp(AV61Trn_managerwwds_5_tfmanagerlastname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_managerwwds_5_tfmanagerlastname_sel)) && ! ( StringUtil.StrCmp(AV61Trn_managerwwds_5_tfmanagerlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ManagerLastName = ( :AV61Trn_managerwwds_5_tfmanagerlastname_sel))");
          }
          else
          {
-            GXv_int3[11] = 1;
+            GXv_int3[4] = 1;
          }
-         if ( StringUtil.StrCmp(AV61Trn_managerwwds_5_tfmanagerlastname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV61Trn_managerwwds_5_tfmanagerlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ManagerLastName))=0))");
          }
@@ -1048,17 +1002,17 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int3[12] = 1;
+            GXv_int3[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_managerwwds_7_tfmanageremail_sel)) && ! ( StringUtil.StrCmp(AV63Trn_managerwwds_7_tfmanageremail_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_managerwwds_7_tfmanageremail_sel)) && ! ( StringUtil.StrCmp(AV63Trn_managerwwds_7_tfmanageremail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ManagerEmail = ( :AV63Trn_managerwwds_7_tfmanageremail_sel))");
          }
          else
          {
-            GXv_int3[13] = 1;
+            GXv_int3[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV63Trn_managerwwds_7_tfmanageremail_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV63Trn_managerwwds_7_tfmanageremail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ManagerEmail))=0))");
          }
@@ -1068,17 +1022,17 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int3[14] = 1;
+            GXv_int3[7] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_managerwwds_9_tfmanagerphone_sel)) && ! ( StringUtil.StrCmp(AV65Trn_managerwwds_9_tfmanagerphone_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_managerwwds_9_tfmanagerphone_sel)) && ! ( StringUtil.StrCmp(AV65Trn_managerwwds_9_tfmanagerphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ManagerPhone = ( :AV65Trn_managerwwds_9_tfmanagerphone_sel))");
          }
          else
          {
-            GXv_int3[15] = 1;
+            GXv_int3[8] = 1;
          }
-         if ( StringUtil.StrCmp(AV65Trn_managerwwds_9_tfmanagerphone_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV65Trn_managerwwds_9_tfmanagerphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ManagerPhone))=0))");
          }
@@ -1096,7 +1050,6 @@ namespace GeneXus.Programs {
       protected Object[] conditional_P005L4( IGxContext context ,
                                              string A27ManagerGender ,
                                              GxSimpleCollection<string> AV66Trn_managerwwds_10_tfmanagergender_sels ,
-                                             string AV57Trn_managerwwds_1_filterfulltext ,
                                              string AV59Trn_managerwwds_3_tfmanagergivenname_sel ,
                                              string AV58Trn_managerwwds_2_tfmanagergivenname ,
                                              string AV61Trn_managerwwds_5_tfmanagerlastname_sel ,
@@ -1110,46 +1063,33 @@ namespace GeneXus.Programs {
                                              string A23ManagerLastName ,
                                              string A25ManagerEmail ,
                                              string A26ManagerPhone ,
+                                             string AV57Trn_managerwwds_1_filterfulltext ,
                                              Guid A11OrganisationId ,
                                              Guid AV53OrganisationId )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int5 = new short[16];
+         short[] GXv_int5 = new short[9];
          Object[] GXv_Object6 = new Object[2];
          scmdbuf = "SELECT OrganisationId, ManagerEmail, ManagerPhone, ManagerLastName, ManagerGivenName, ManagerGender, ManagerId FROM Trn_Manager";
          AddWhere(sWhereString, "(OrganisationId = :AV53OrganisationId)");
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext)) )
-         {
-            AddWhere(sWhereString, "(( LOWER(ManagerGivenName) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerLastName) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerEmail) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerPhone) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( 'male' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Other')))");
-         }
-         else
-         {
-            GXv_int5[1] = 1;
-            GXv_int5[2] = 1;
-            GXv_int5[3] = 1;
-            GXv_int5[4] = 1;
-            GXv_int5[5] = 1;
-            GXv_int5[6] = 1;
-            GXv_int5[7] = 1;
-         }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_managerwwds_3_tfmanagergivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_managerwwds_2_tfmanagergivenname)) ) )
          {
             AddWhere(sWhereString, "(ManagerGivenName like :lV58Trn_managerwwds_2_tfmanagergivenname)");
          }
          else
          {
-            GXv_int5[8] = 1;
+            GXv_int5[1] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_managerwwds_3_tfmanagergivenname_sel)) && ! ( StringUtil.StrCmp(AV59Trn_managerwwds_3_tfmanagergivenname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_managerwwds_3_tfmanagergivenname_sel)) && ! ( StringUtil.StrCmp(AV59Trn_managerwwds_3_tfmanagergivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ManagerGivenName = ( :AV59Trn_managerwwds_3_tfmanagergivenname_sel))");
          }
          else
          {
-            GXv_int5[9] = 1;
+            GXv_int5[2] = 1;
          }
-         if ( StringUtil.StrCmp(AV59Trn_managerwwds_3_tfmanagergivenname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV59Trn_managerwwds_3_tfmanagergivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ManagerGivenName))=0))");
          }
@@ -1159,17 +1099,17 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int5[10] = 1;
+            GXv_int5[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_managerwwds_5_tfmanagerlastname_sel)) && ! ( StringUtil.StrCmp(AV61Trn_managerwwds_5_tfmanagerlastname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_managerwwds_5_tfmanagerlastname_sel)) && ! ( StringUtil.StrCmp(AV61Trn_managerwwds_5_tfmanagerlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ManagerLastName = ( :AV61Trn_managerwwds_5_tfmanagerlastname_sel))");
          }
          else
          {
-            GXv_int5[11] = 1;
+            GXv_int5[4] = 1;
          }
-         if ( StringUtil.StrCmp(AV61Trn_managerwwds_5_tfmanagerlastname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV61Trn_managerwwds_5_tfmanagerlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ManagerLastName))=0))");
          }
@@ -1179,17 +1119,17 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int5[12] = 1;
+            GXv_int5[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_managerwwds_7_tfmanageremail_sel)) && ! ( StringUtil.StrCmp(AV63Trn_managerwwds_7_tfmanageremail_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_managerwwds_7_tfmanageremail_sel)) && ! ( StringUtil.StrCmp(AV63Trn_managerwwds_7_tfmanageremail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ManagerEmail = ( :AV63Trn_managerwwds_7_tfmanageremail_sel))");
          }
          else
          {
-            GXv_int5[13] = 1;
+            GXv_int5[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV63Trn_managerwwds_7_tfmanageremail_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV63Trn_managerwwds_7_tfmanageremail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ManagerEmail))=0))");
          }
@@ -1199,17 +1139,17 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int5[14] = 1;
+            GXv_int5[7] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_managerwwds_9_tfmanagerphone_sel)) && ! ( StringUtil.StrCmp(AV65Trn_managerwwds_9_tfmanagerphone_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_managerwwds_9_tfmanagerphone_sel)) && ! ( StringUtil.StrCmp(AV65Trn_managerwwds_9_tfmanagerphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ManagerPhone = ( :AV65Trn_managerwwds_9_tfmanagerphone_sel))");
          }
          else
          {
-            GXv_int5[15] = 1;
+            GXv_int5[8] = 1;
          }
-         if ( StringUtil.StrCmp(AV65Trn_managerwwds_9_tfmanagerphone_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV65Trn_managerwwds_9_tfmanagerphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ManagerPhone))=0))");
          }
@@ -1227,7 +1167,6 @@ namespace GeneXus.Programs {
       protected Object[] conditional_P005L5( IGxContext context ,
                                              string A27ManagerGender ,
                                              GxSimpleCollection<string> AV66Trn_managerwwds_10_tfmanagergender_sels ,
-                                             string AV57Trn_managerwwds_1_filterfulltext ,
                                              string AV59Trn_managerwwds_3_tfmanagergivenname_sel ,
                                              string AV58Trn_managerwwds_2_tfmanagergivenname ,
                                              string AV61Trn_managerwwds_5_tfmanagerlastname_sel ,
@@ -1241,46 +1180,33 @@ namespace GeneXus.Programs {
                                              string A23ManagerLastName ,
                                              string A25ManagerEmail ,
                                              string A26ManagerPhone ,
+                                             string AV57Trn_managerwwds_1_filterfulltext ,
                                              Guid A11OrganisationId ,
                                              Guid AV53OrganisationId )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int7 = new short[16];
+         short[] GXv_int7 = new short[9];
          Object[] GXv_Object8 = new Object[2];
          scmdbuf = "SELECT OrganisationId, ManagerPhone, ManagerEmail, ManagerLastName, ManagerGivenName, ManagerGender, ManagerId FROM Trn_Manager";
          AddWhere(sWhereString, "(OrganisationId = :AV53OrganisationId)");
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV57Trn_managerwwds_1_filterfulltext)) )
-         {
-            AddWhere(sWhereString, "(( LOWER(ManagerGivenName) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerLastName) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerEmail) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( LOWER(ManagerPhone) like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext)) or ( 'male' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Male')) or ( 'female' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Female')) or ( 'other' like '%' || LOWER(:lV57Trn_managerwwds_1_filterfulltext) and ManagerGender = ( 'Other')))");
-         }
-         else
-         {
-            GXv_int7[1] = 1;
-            GXv_int7[2] = 1;
-            GXv_int7[3] = 1;
-            GXv_int7[4] = 1;
-            GXv_int7[5] = 1;
-            GXv_int7[6] = 1;
-            GXv_int7[7] = 1;
-         }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_managerwwds_3_tfmanagergivenname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_managerwwds_2_tfmanagergivenname)) ) )
          {
             AddWhere(sWhereString, "(ManagerGivenName like :lV58Trn_managerwwds_2_tfmanagergivenname)");
          }
          else
          {
-            GXv_int7[8] = 1;
+            GXv_int7[1] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_managerwwds_3_tfmanagergivenname_sel)) && ! ( StringUtil.StrCmp(AV59Trn_managerwwds_3_tfmanagergivenname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_managerwwds_3_tfmanagergivenname_sel)) && ! ( StringUtil.StrCmp(AV59Trn_managerwwds_3_tfmanagergivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ManagerGivenName = ( :AV59Trn_managerwwds_3_tfmanagergivenname_sel))");
          }
          else
          {
-            GXv_int7[9] = 1;
+            GXv_int7[2] = 1;
          }
-         if ( StringUtil.StrCmp(AV59Trn_managerwwds_3_tfmanagergivenname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV59Trn_managerwwds_3_tfmanagergivenname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ManagerGivenName))=0))");
          }
@@ -1290,17 +1216,17 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int7[10] = 1;
+            GXv_int7[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_managerwwds_5_tfmanagerlastname_sel)) && ! ( StringUtil.StrCmp(AV61Trn_managerwwds_5_tfmanagerlastname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61Trn_managerwwds_5_tfmanagerlastname_sel)) && ! ( StringUtil.StrCmp(AV61Trn_managerwwds_5_tfmanagerlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ManagerLastName = ( :AV61Trn_managerwwds_5_tfmanagerlastname_sel))");
          }
          else
          {
-            GXv_int7[11] = 1;
+            GXv_int7[4] = 1;
          }
-         if ( StringUtil.StrCmp(AV61Trn_managerwwds_5_tfmanagerlastname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV61Trn_managerwwds_5_tfmanagerlastname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ManagerLastName))=0))");
          }
@@ -1310,17 +1236,17 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int7[12] = 1;
+            GXv_int7[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_managerwwds_7_tfmanageremail_sel)) && ! ( StringUtil.StrCmp(AV63Trn_managerwwds_7_tfmanageremail_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV63Trn_managerwwds_7_tfmanageremail_sel)) && ! ( StringUtil.StrCmp(AV63Trn_managerwwds_7_tfmanageremail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ManagerEmail = ( :AV63Trn_managerwwds_7_tfmanageremail_sel))");
          }
          else
          {
-            GXv_int7[13] = 1;
+            GXv_int7[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV63Trn_managerwwds_7_tfmanageremail_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV63Trn_managerwwds_7_tfmanageremail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ManagerEmail))=0))");
          }
@@ -1330,17 +1256,17 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int7[14] = 1;
+            GXv_int7[7] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_managerwwds_9_tfmanagerphone_sel)) && ! ( StringUtil.StrCmp(AV65Trn_managerwwds_9_tfmanagerphone_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_managerwwds_9_tfmanagerphone_sel)) && ! ( StringUtil.StrCmp(AV65Trn_managerwwds_9_tfmanagerphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ManagerPhone = ( :AV65Trn_managerwwds_9_tfmanagerphone_sel))");
          }
          else
          {
-            GXv_int7[15] = 1;
+            GXv_int7[8] = 1;
          }
-         if ( StringUtil.StrCmp(AV65Trn_managerwwds_9_tfmanagerphone_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV65Trn_managerwwds_9_tfmanagerphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ManagerPhone))=0))");
          }
@@ -1362,13 +1288,13 @@ namespace GeneXus.Programs {
          switch ( cursor )
          {
                case 0 :
-                     return conditional_P005L2(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (int)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (string)dynConstraints[15] , (Guid)dynConstraints[16] , (Guid)dynConstraints[17] );
+                     return conditional_P005L2(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (int)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (string)dynConstraints[15] , (Guid)dynConstraints[16] , (Guid)dynConstraints[17] );
                case 1 :
-                     return conditional_P005L3(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (int)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (string)dynConstraints[15] , (Guid)dynConstraints[16] , (Guid)dynConstraints[17] );
+                     return conditional_P005L3(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (int)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (string)dynConstraints[15] , (Guid)dynConstraints[16] , (Guid)dynConstraints[17] );
                case 2 :
-                     return conditional_P005L4(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (int)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (string)dynConstraints[15] , (Guid)dynConstraints[16] , (Guid)dynConstraints[17] );
+                     return conditional_P005L4(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (int)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (string)dynConstraints[15] , (Guid)dynConstraints[16] , (Guid)dynConstraints[17] );
                case 3 :
-                     return conditional_P005L5(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (int)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (string)dynConstraints[15] , (Guid)dynConstraints[16] , (Guid)dynConstraints[17] );
+                     return conditional_P005L5(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (string)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (int)dynConstraints[10] , (string)dynConstraints[11] , (string)dynConstraints[12] , (string)dynConstraints[13] , (string)dynConstraints[14] , (string)dynConstraints[15] , (Guid)dynConstraints[16] , (Guid)dynConstraints[17] );
          }
          return base.getDynamicStatement(cursor, context, dynConstraints);
       }
@@ -1392,13 +1318,6 @@ namespace GeneXus.Programs {
           Object[] prmP005L2;
           prmP005L2 = new Object[] {
           new ParDef("AV53OrganisationId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV58Trn_managerwwds_2_tfmanagergivenname",GXType.VarChar,100,0) ,
           new ParDef("AV59Trn_managerwwds_3_tfmanagergivenname_sel",GXType.VarChar,100,0) ,
           new ParDef("lV60Trn_managerwwds_4_tfmanagerlastname",GXType.VarChar,100,0) ,
@@ -1411,13 +1330,6 @@ namespace GeneXus.Programs {
           Object[] prmP005L3;
           prmP005L3 = new Object[] {
           new ParDef("AV53OrganisationId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV58Trn_managerwwds_2_tfmanagergivenname",GXType.VarChar,100,0) ,
           new ParDef("AV59Trn_managerwwds_3_tfmanagergivenname_sel",GXType.VarChar,100,0) ,
           new ParDef("lV60Trn_managerwwds_4_tfmanagerlastname",GXType.VarChar,100,0) ,
@@ -1430,13 +1342,6 @@ namespace GeneXus.Programs {
           Object[] prmP005L4;
           prmP005L4 = new Object[] {
           new ParDef("AV53OrganisationId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV58Trn_managerwwds_2_tfmanagergivenname",GXType.VarChar,100,0) ,
           new ParDef("AV59Trn_managerwwds_3_tfmanagergivenname_sel",GXType.VarChar,100,0) ,
           new ParDef("lV60Trn_managerwwds_4_tfmanagerlastname",GXType.VarChar,100,0) ,
@@ -1449,13 +1354,6 @@ namespace GeneXus.Programs {
           Object[] prmP005L5;
           prmP005L5 = new Object[] {
           new ParDef("AV53OrganisationId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV57Trn_managerwwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV58Trn_managerwwds_2_tfmanagergivenname",GXType.VarChar,100,0) ,
           new ParDef("AV59Trn_managerwwds_3_tfmanagergivenname_sel",GXType.VarChar,100,0) ,
           new ParDef("lV60Trn_managerwwds_4_tfmanagerlastname",GXType.VarChar,100,0) ,

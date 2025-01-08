@@ -82,7 +82,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Output device settings */
          AV10ManageFiltersData = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsData_Item>( context, "Item", "");
          AV11ManageFiltersDataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsData_Item(context);
-         AV11ManageFiltersDataItem.gxTpr_Title = "Clear filters";
+         AV11ManageFiltersDataItem.gxTpr_Title = context.GetMessage( "WWP_CleanFiltersCaption", "");
          AV11ManageFiltersDataItem.gxTpr_Eventkey = "<#Clean#>";
          AV11ManageFiltersDataItem.gxTpr_Isdivider = false;
          AV11ManageFiltersDataItem.gxTpr_Fonticon = "fa fa-times-circle";
@@ -92,7 +92,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          AV10ManageFiltersData.Add(AV11ManageFiltersDataItem, 0);
          AV11ManageFiltersDataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsData_Item(context);
-         AV11ManageFiltersDataItem.gxTpr_Title = "Save filter as...";
+         AV11ManageFiltersDataItem.gxTpr_Title = context.GetMessage( "WWP_SaveFilterAsOption", "");
          AV11ManageFiltersDataItem.gxTpr_Eventkey = "<#Save#>";
          AV11ManageFiltersDataItem.gxTpr_Isdivider = false;
          AV11ManageFiltersDataItem.gxTpr_Fonticon = "fa fa-save";
@@ -100,7 +100,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          if ( AV9HasAdvancedFilters )
          {
             AV11ManageFiltersDataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsData_Item(context);
-            AV11ManageFiltersDataItem.gxTpr_Title = "Show advanced filters"+"|"+"Hide advanced filters";
+            AV11ManageFiltersDataItem.gxTpr_Title = context.GetMessage( "WWP_ShowAdvancedFilters", "")+"|"+context.GetMessage( "WWP_HideAdvancedFilters", "");
             AV11ManageFiltersDataItem.gxTpr_Eventkey = "<#ADV#>";
             AV11ManageFiltersDataItem.gxTpr_Isdivider = false;
             AV11ManageFiltersDataItem.gxTpr_Fonticon = "fas fa-filter";
@@ -135,7 +135,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             AV11ManageFiltersDataItem.gxTpr_Isdivider = true;
             AV10ManageFiltersData.Add(AV11ManageFiltersDataItem, 0);
             AV11ManageFiltersDataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsData_Item(context);
-            AV11ManageFiltersDataItem.gxTpr_Title = "Manage filters...";
+            AV11ManageFiltersDataItem.gxTpr_Title = context.GetMessage( "WWP_ManageFiltersOption", "");
             AV11ManageFiltersDataItem.gxTpr_Eventkey = "<#Manage#>";
             AV11ManageFiltersDataItem.gxTpr_Isdivider = false;
             AV11ManageFiltersDataItem.gxTpr_Fonticon = "fa fa-cog";

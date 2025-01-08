@@ -154,7 +154,6 @@ class ChildEditorManager {
           pageData.pages[0].frames[0].component.components[0].components[0].components[0].components[0].components[0].components[1].components[0].content = this.dataManager.Location.LocationDescription
           pageData.pages[0].frames[0].component.components[0].components[0].components[1].components[0].attributes["cta-button-action"] = this.dataManager.Location.LocationPhoneCode + this.dataManager.Location.LocationPhoneNumber
           pageData.pages[0].frames[0].component.components[0].components[0].components[1].components[1].attributes["cta-button-action"] = this.dataManager.Location.LocationEmail
-          console.log(pageData.pages[0].frames[0].component.components[0].components[0].components[1].components)
           editor.DomComponents.clear()
           editor.loadProjectData(pageData);
         }
@@ -241,12 +240,15 @@ class ChildEditorManager {
       hoverable: false,
     });
 
-    editor.on('change', (e) => {
-      const editorId = e.attrsOrig.id
-      console.log(this.editors[`#${editorId}`])
-      if (editorId) {
-        this.toolsSection.autoSavePage(this.editors[`#${editorId}`])
+    editor.on('change', (e, r) => {
+      if (e.changed.changesCount) {
+        const editorId = e.attrsOrig.id
+        console.log(this.editors[`#${editorId}`])
+        if (editorId) {
+          this.toolsSection.autoSavePage(this.editors[`#${editorId}`])
+        }
       }
+      
     });
 
     const navigator = this.activateNavigators();

@@ -21,11 +21,11 @@ namespace GeneXus.Programs.workwithplus {
       private static Hashtable domainMap;
       static gxdomainwwp_calendar_datefilter ()
       {
-         domain[(short)1] = "All";
-         domain[(short)2] = "Past";
-         domain[(short)3] = "Future";
-         domain[(short)4] = "From date";
-         domain[(short)5] = "Range";
+         domain[(short)1] = "WWP_Calendar_All";
+         domain[(short)2] = "WWP_Calendar_Past";
+         domain[(short)3] = "WWP_Calendar_Future";
+         domain[(short)4] = "WWP_Calendar_FromDate";
+         domain[(short)5] = "WWP_Calendar_Range";
       }
 
       public static string getDescription( IGxContext context ,
@@ -33,7 +33,7 @@ namespace GeneXus.Programs.workwithplus {
       {
          string value;
          value = (string)(domain[key]==null?"":domain[key]);
-         return value ;
+         return ((context!=null) ? context.GetMessage( value, "") : value) ;
       }
 
       public static GxSimpleCollection<short> getValues( )

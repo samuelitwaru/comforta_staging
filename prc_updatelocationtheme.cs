@@ -87,7 +87,7 @@ namespace GeneXus.Programs {
             if ( AV12BC_Trn_Location.Success() )
             {
                context.CommitDataStores("prc_updatelocationtheme",pr_default);
-               new prc_logtofile(context ).execute(  "Saved") ;
+               new prc_logtofile(context ).execute(  context.GetMessage( "Saved", "")) ;
             }
             else
             {
@@ -96,12 +96,12 @@ namespace GeneXus.Programs {
                while ( AV16GXV2 <= AV15GXV1.Count )
                {
                   AV13Message = ((GeneXus.Utils.SdtMessages_Message)AV15GXV1.Item(AV16GXV2));
-                  new prc_logtofile(context ).execute(  "Not saved: "+AV13Message.gxTpr_Description) ;
+                  new prc_logtofile(context ).execute(  context.GetMessage( "Not saved: ", "")+AV13Message.gxTpr_Description) ;
                   AV16GXV2 = (int)(AV16GXV2+1);
                }
             }
          }
-         new prc_logtofile(context ).execute(  "Reached Prc_UpdateLocationTheme") ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "Reached Prc_UpdateLocationTheme", "")) ;
          cleanup();
       }
 

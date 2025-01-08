@@ -103,9 +103,9 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* GeneXus formulas */
          /* Output device settings */
          AV8WWPUserExtendedId = new GeneXus.Programs.genexussecurity.SdtGAMUser(context).getid();
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV9WebSession.Get("WebViewResidentId"))) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV9WebSession.Get(context.GetMessage( "WebViewResidentId", "")))) )
          {
-            AV8WWPUserExtendedId = AV9WebSession.Get("WebViewResidentId");
+            AV8WWPUserExtendedId = AV9WebSession.Get(context.GetMessage( "WebViewResidentId", ""));
          }
          cleanup();
       }

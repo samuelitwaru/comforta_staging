@@ -112,7 +112,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          returnInSub = false;
          AV8AuthorizationKey = "";
          AV15UrlResourceName = "";
-         AV13Url = StringUtil.StringReplace( AV13Url, ".aspx", "");
+         AV13Url = StringUtil.StringReplace( AV13Url, context.GetMessage( ".aspx", ""), "");
          AV10i = (short)(StringUtil.StringSearchRev( AV13Url, "/", -1));
          if ( AV10i > 0 )
          {

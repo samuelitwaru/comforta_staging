@@ -180,7 +180,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
                   {
                      AV12HasErrors = true;
                      AV16Message = new GeneXus.Utils.SdtMessages_Message(context);
-                     AV16Message.gxTpr_Description = StringUtil.Format( "%1 is required.", AV26WWPFormInstanceElement.gxTpr_Wwpformelementtitle, "", "", "", "", "", "", "", "");
+                     AV16Message.gxTpr_Description = StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), AV26WWPFormInstanceElement.gxTpr_Wwpformelementtitle, "", "", "", "", "", "", "", "");
                      AV17Messages.Add(AV16Message, 0);
                   }
                   else

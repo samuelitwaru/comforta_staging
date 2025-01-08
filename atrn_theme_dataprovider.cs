@@ -96,21 +96,21 @@ namespace GeneXus.Programs {
          /* Output device settings */
          Gxm1trn_theme = new SdtTrn_Theme(context);
          Gxm2rootcol.Add(Gxm1trn_theme, 0);
-         Gxm1trn_theme.gxTpr_Trn_themeid = StringUtil.StrToGuid( "05b80e4f-effe-4d46-afbd-7c72da5a4afc");
-         Gxm1trn_theme.gxTpr_Trn_themename = "Minimalistic";
-         Gxm1trn_theme.gxTpr_Trn_themefontfamily = "Merriweather, serif";
+         Gxm1trn_theme.gxTpr_Trn_themeid = StringUtil.StrToGuid( context.GetMessage( "05b80e4f-effe-4d46-afbd-7c72da5a4afc", ""));
+         Gxm1trn_theme.gxTpr_Trn_themename = context.GetMessage( "Minimalistic", "");
+         Gxm1trn_theme.gxTpr_Trn_themefontfamily = context.GetMessage( "Merriweather, serif", "");
          Gxm1trn_theme.gxTpr_Trn_themefontsize = 10;
          Gxm1trn_theme = new SdtTrn_Theme(context);
          Gxm2rootcol.Add(Gxm1trn_theme, 0);
-         Gxm1trn_theme.gxTpr_Trn_themeid = StringUtil.StrToGuid( "4ddc1f46-d08a-4c11-9280-0695be8b833f");
-         Gxm1trn_theme.gxTpr_Trn_themename = "Modern";
-         Gxm1trn_theme.gxTpr_Trn_themefontfamily = "Helvetica";
+         Gxm1trn_theme.gxTpr_Trn_themeid = StringUtil.StrToGuid( context.GetMessage( "4ddc1f46-d08a-4c11-9280-0695be8b833f", ""));
+         Gxm1trn_theme.gxTpr_Trn_themename = context.GetMessage( "Modern", "");
+         Gxm1trn_theme.gxTpr_Trn_themefontfamily = context.GetMessage( "Helvetica", "");
          Gxm1trn_theme.gxTpr_Trn_themefontsize = 10;
          Gxm1trn_theme = new SdtTrn_Theme(context);
          Gxm2rootcol.Add(Gxm1trn_theme, 0);
-         Gxm1trn_theme.gxTpr_Trn_themeid = StringUtil.StrToGuid( "2db8770b-2e22-4522-870f-d0d8b3ea0ed3");
-         Gxm1trn_theme.gxTpr_Trn_themename = "Retro";
-         Gxm1trn_theme.gxTpr_Trn_themefontfamily = "Arial";
+         Gxm1trn_theme.gxTpr_Trn_themeid = StringUtil.StrToGuid( context.GetMessage( "2db8770b-2e22-4522-870f-d0d8b3ea0ed3", ""));
+         Gxm1trn_theme.gxTpr_Trn_themename = context.GetMessage( "Retro", "");
+         Gxm1trn_theme.gxTpr_Trn_themefontfamily = context.GetMessage( "Arial", "");
          Gxm1trn_theme.gxTpr_Trn_themefontsize = 10;
          cleanup();
       }

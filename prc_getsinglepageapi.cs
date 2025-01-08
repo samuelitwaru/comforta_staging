@@ -110,7 +110,7 @@ namespace GeneXus.Programs {
             pr_default.readNext(0);
          }
          pr_default.close(0);
-         new prc_logtofile(context ).execute(  "Checking here: "+AV15pageId.ToString()) ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "Checking here: ", "")+AV15pageId.ToString()) ;
          cleanup();
       }
 

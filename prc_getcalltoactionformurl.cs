@@ -75,15 +75,15 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         if ( StringUtil.StrCmp(AV11CallToActionType, "Form") == 0 )
+         if ( StringUtil.StrCmp(AV11CallToActionType, context.GetMessage( "Form", "")) == 0 )
          {
             AV8Url = AV9HttpRequest.BaseURL + "wp_residentdynamicform.aspx?WWPFormReferenceName=" + AV10WWPFormReferenceName + "&WWPFormInstanceId=0&WWPDynamicFormMode=INS";
-            if ( StringUtil.StartsWith( AV9HttpRequest.BaseURL, "http://localhost") )
+            if ( StringUtil.StartsWith( AV9HttpRequest.BaseURL, context.GetMessage( "http://localhost", "")) )
             {
             }
             else
             {
-               AV8Url = StringUtil.StringReplace( AV8Url, "http://", "https://");
+               AV8Url = StringUtil.StringReplace( AV8Url, context.GetMessage( "http://", ""), context.GetMessage( "https://", ""));
             }
          }
          cleanup();

@@ -117,13 +117,13 @@ namespace GeneXus.Programs.wwpbaseobjects {
             {
                if ( String.IsNullOrEmpty(StringUtil.RTrim( AV18FilterValueToDsc)) && ! String.IsNullOrEmpty(StringUtil.RTrim( AV14FilterValueDsc)) )
                {
-                  AV20GridStateFilterValue.gxTpr_Valuedsc = StringUtil.Format( "from %1", AV14FilterValueDsc, "", "", "", "", "", "", "", "");
+                  AV20GridStateFilterValue.gxTpr_Valuedsc = StringUtil.Format( context.GetMessage( "from %1", ""), AV14FilterValueDsc, "", "", "", "", "", "", "", "");
                }
                else
                {
                   if ( String.IsNullOrEmpty(StringUtil.RTrim( AV14FilterValueDsc)) && ! String.IsNullOrEmpty(StringUtil.RTrim( AV18FilterValueToDsc)) )
                   {
-                     AV20GridStateFilterValue.gxTpr_Valuetodsc = StringUtil.Format( "up to %1", AV18FilterValueToDsc, "", "", "", "", "", "", "", "");
+                     AV20GridStateFilterValue.gxTpr_Valuetodsc = StringUtil.Format( context.GetMessage( "up to %1", ""), AV18FilterValueToDsc, "", "", "", "", "", "", "", "");
                   }
                }
             }

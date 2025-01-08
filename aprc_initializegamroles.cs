@@ -92,7 +92,7 @@ namespace GeneXus.Programs {
          /* GeneXus formulas */
          /* Output device settings */
          AV12RoleNames = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
-         AV13RolesString = "Root Admin, Comforta Admin,Organisation Manager,Receptionist,Resident";
+         AV13RolesString = context.GetMessage( "Root Admin, Comforta Admin,Organisation Manager,Receptionist,Resident", "");
          AV12RoleNames = (GxSimpleCollection<string>)(GxRegex.Split(AV13RolesString,","));
          AV14GXV1 = 1;
          while ( AV14GXV1 <= AV12RoleNames.Count )

@@ -136,15 +136,15 @@ namespace GeneXus.Programs {
             AV9BC_Trn_Page.Save();
             if ( AV9BC_Trn_Page.Success() )
             {
-               AV10Response = "Page Save Successfully";
+               AV10Response = context.GetMessage( "Page Save Successfully", "");
                context.CommitDataStores("prc_updatepage",pr_default);
                if ( AV22IsNotifyResidents )
                {
-                  AV24Title = "New Updates Available";
-                  AV25NotificationMessage = "The latest updates have been published and are now live! Open the app to explore the changes";
+                  AV24Title = context.GetMessage( "New Updates Available", "");
+                  AV25NotificationMessage = context.GetMessage( "The latest updates have been published and are now live! Open the app to explore the changes", "");
                   AV23Metadata = new SdtSDT_OneSignalCustomData(context);
                   AV23Metadata.gxTpr_Notificationcategory = "Toolbox";
-                  new prc_sendresidentnotification(context ).execute(  AV24Title,  AV25NotificationMessage,  "Toolbox",  AV23Metadata,  AV26ResidentIdCollectionEmpty) ;
+                  new prc_sendresidentnotification(context ).execute(  AV24Title,  AV25NotificationMessage,  context.GetMessage( "Toolbox", ""),  AV23Metadata,  AV26ResidentIdCollectionEmpty) ;
                }
             }
             else
@@ -161,7 +161,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            AV10Response = "Page Not Found";
+            AV10Response = context.GetMessage( "Page Not Found", "");
          }
          cleanup();
       }

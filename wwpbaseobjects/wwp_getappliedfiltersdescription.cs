@@ -142,7 +142,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
                }
                AV22GXV2 = (int)(AV22GXV2+1);
             }
-            AV8AppliedFiltersDescription = StringUtil.Format( "Filtering by %1", AV8AppliedFiltersDescription, "", "", "", "", "", "", "", "");
+            AV8AppliedFiltersDescription = StringUtil.Format( context.GetMessage( "WWP_FilteringByCaption", ""), AV8AppliedFiltersDescription, "", "", "", "", "", "", "", "");
          }
          cleanup();
       }
@@ -162,7 +162,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             if ( AV9index > 1 )
             {
-               AV8AppliedFiltersDescription += ((AV9index==AV16TotalFilters) ? " "+"and" : ",") + " ";
+               AV8AppliedFiltersDescription += ((AV9index==AV16TotalFilters) ? " "+context.GetMessage( "WWP_WordsListLastSeparator", "") : context.GetMessage( "WWP_WordsListSeparator", "")) + " ";
             }
             AV8AppliedFiltersDescription += AV11FilterDescription;
          }

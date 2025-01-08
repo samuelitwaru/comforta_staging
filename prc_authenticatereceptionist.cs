@@ -85,7 +85,7 @@ namespace GeneXus.Programs {
          GXt_char1 = AV10UserName;
          new prc_getloggedinusername(context ).execute( out  GXt_char1) ;
          AV10UserName = GXt_char1;
-         new prc_logtofile(context ).execute(  "UserName: "+AV10UserName) ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "UserName: ", "")+AV10UserName) ;
          /* Using cursor P00AD2 */
          pr_default.execute(0, new Object[] {AV10UserName});
          while ( (pr_default.getStatus(0) != 101) )
@@ -99,8 +99,8 @@ namespace GeneXus.Programs {
             pr_default.readNext(0);
          }
          pr_default.close(0);
-         new prc_logtofile(context ).execute(  "Location: "+AV8LocationId.ToString()) ;
-         new prc_logtofile(context ).execute(  "Organisation: "+AV9OrganisationId.ToString()) ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "Location: ", "")+AV8LocationId.ToString()) ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "Organisation: ", "")+AV9OrganisationId.ToString()) ;
          cleanup();
       }
 

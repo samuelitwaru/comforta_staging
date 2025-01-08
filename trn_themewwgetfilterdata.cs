@@ -516,7 +516,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_themewwds_3_tftrn_themename_sel)) && ! ( StringUtil.StrCmp(AV44Trn_themewwds_3_tftrn_themename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_themewwds_3_tftrn_themename_sel)) && ! ( StringUtil.StrCmp(AV44Trn_themewwds_3_tftrn_themename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(Trn_ThemeName = ( :AV44Trn_themewwds_3_tftrn_themename_sel))");
          }
@@ -524,7 +524,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[4] = 1;
          }
-         if ( StringUtil.StrCmp(AV44Trn_themewwds_3_tftrn_themename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV44Trn_themewwds_3_tftrn_themename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_ThemeName))=0))");
          }
@@ -536,7 +536,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_themewwds_5_tftrn_themefontfamily_sel)) && ! ( StringUtil.StrCmp(AV46Trn_themewwds_5_tftrn_themefontfamily_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_themewwds_5_tftrn_themefontfamily_sel)) && ! ( StringUtil.StrCmp(AV46Trn_themewwds_5_tftrn_themefontfamily_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(Trn_ThemeFontFamily = ( :AV46Trn_themewwds_5_tftrn_themefontfamily_sel))");
          }
@@ -544,7 +544,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV46Trn_themewwds_5_tftrn_themefontfamily_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV46Trn_themewwds_5_tftrn_themefontfamily_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_ThemeFontFamily))=0))");
          }
@@ -606,7 +606,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_themewwds_3_tftrn_themename_sel)) && ! ( StringUtil.StrCmp(AV44Trn_themewwds_3_tftrn_themename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV44Trn_themewwds_3_tftrn_themename_sel)) && ! ( StringUtil.StrCmp(AV44Trn_themewwds_3_tftrn_themename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(Trn_ThemeName = ( :AV44Trn_themewwds_3_tftrn_themename_sel))");
          }
@@ -614,7 +614,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[4] = 1;
          }
-         if ( StringUtil.StrCmp(AV44Trn_themewwds_3_tftrn_themename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV44Trn_themewwds_3_tftrn_themename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_ThemeName))=0))");
          }
@@ -626,7 +626,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[5] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_themewwds_5_tftrn_themefontfamily_sel)) && ! ( StringUtil.StrCmp(AV46Trn_themewwds_5_tftrn_themefontfamily_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV46Trn_themewwds_5_tftrn_themefontfamily_sel)) && ! ( StringUtil.StrCmp(AV46Trn_themewwds_5_tftrn_themefontfamily_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(Trn_ThemeFontFamily = ( :AV46Trn_themewwds_5_tftrn_themefontfamily_sel))");
          }
@@ -634,7 +634,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[6] = 1;
          }
-         if ( StringUtil.StrCmp(AV46Trn_themewwds_5_tftrn_themefontfamily_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV46Trn_themewwds_5_tftrn_themefontfamily_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from Trn_ThemeFontFamily))=0))");
          }

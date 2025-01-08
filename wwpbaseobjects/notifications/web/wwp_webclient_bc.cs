@@ -184,7 +184,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
          standaloneModal( ) ;
          if ( ! ( ( A154WWPWebClientBrowserId == 0 ) || ( A154WWPWebClientBrowserId == 1 ) || ( A154WWPWebClientBrowserId == 2 ) || ( A154WWPWebClientBrowserId == 3 ) || ( A154WWPWebClientBrowserId == 5 ) || ( A154WWPWebClientBrowserId == 6 ) || ( A154WWPWebClientBrowserId == 7 ) || ( A154WWPWebClientBrowserId == 8 ) || ( A154WWPWebClientBrowserId == 9 ) ) )
          {
-            GX_msglist.addItem("Field Web Client Browser Id is out of range", "OutOfRange", 1, "");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Web Client Browser Id", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
          /* Using cursor BC000M4 */
@@ -193,7 +193,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.web {
          {
             if ( ! ( String.IsNullOrEmpty(StringUtil.RTrim( A112WWPUserExtendedId)) ) )
             {
-               GX_msglist.addItem("No matching 'WWP_UserExtended'.", "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "WWP_UserExtended", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "WWPUSEREXTENDEDID");
                AnyError = 1;
             }
          }

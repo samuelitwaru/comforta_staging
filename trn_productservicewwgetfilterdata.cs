@@ -222,7 +222,6 @@ namespace GeneXus.Programs {
          pr_default.dynParam(0, new Object[]{ new Object[]{
                                               A408ProductServiceClass ,
                                               AV63Trn_productservicewwds_6_tfproductserviceclass_sels ,
-                                              AV58Trn_productservicewwds_1_filterfulltext ,
                                               AV60Trn_productservicewwds_3_tfproductservicename_sel ,
                                               AV59Trn_productservicewwds_2_tfproductservicename ,
                                               AV62Trn_productservicewwds_5_tfproductservicetilename_sel ,
@@ -232,22 +231,17 @@ namespace GeneXus.Programs {
                                               A59ProductServiceName ,
                                               A301ProductServiceTileName ,
                                               A29LocationId ,
+                                              AV58Trn_productservicewwds_1_filterfulltext ,
                                               A11OrganisationId ,
                                               AV55OrganisationId } ,
                                               new int[]{
                                               TypeConstants.INT
                                               }
          });
-         lV58Trn_productservicewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV58Trn_productservicewwds_1_filterfulltext), "%", "");
-         lV58Trn_productservicewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV58Trn_productservicewwds_1_filterfulltext), "%", "");
-         lV58Trn_productservicewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV58Trn_productservicewwds_1_filterfulltext), "%", "");
-         lV58Trn_productservicewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV58Trn_productservicewwds_1_filterfulltext), "%", "");
-         lV58Trn_productservicewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV58Trn_productservicewwds_1_filterfulltext), "%", "");
-         lV58Trn_productservicewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV58Trn_productservicewwds_1_filterfulltext), "%", "");
          lV59Trn_productservicewwds_2_tfproductservicename = StringUtil.Concat( StringUtil.RTrim( AV59Trn_productservicewwds_2_tfproductservicename), "%", "");
          lV61Trn_productservicewwds_4_tfproductservicetilename = StringUtil.PadR( StringUtil.RTrim( AV61Trn_productservicewwds_4_tfproductservicetilename), 20, "%");
          /* Using cursor P006Q2 */
-         pr_default.execute(0, new Object[] {AV55OrganisationId, lV58Trn_productservicewwds_1_filterfulltext, lV58Trn_productservicewwds_1_filterfulltext, lV58Trn_productservicewwds_1_filterfulltext, lV58Trn_productservicewwds_1_filterfulltext, lV58Trn_productservicewwds_1_filterfulltext, lV58Trn_productservicewwds_1_filterfulltext, lV59Trn_productservicewwds_2_tfproductservicename, AV60Trn_productservicewwds_3_tfproductservicename_sel, lV61Trn_productservicewwds_4_tfproductservicetilename, AV62Trn_productservicewwds_5_tfproductservicetilename_sel, AV50LocationId});
+         pr_default.execute(0, new Object[] {AV55OrganisationId, lV59Trn_productservicewwds_2_tfproductservicename, AV60Trn_productservicewwds_3_tfproductservicename_sel, lV61Trn_productservicewwds_4_tfproductservicetilename, AV62Trn_productservicewwds_5_tfproductservicetilename_sel, AV50LocationId});
          while ( (pr_default.getStatus(0) != 101) )
          {
             BRK6Q2 = false;
@@ -257,31 +251,34 @@ namespace GeneXus.Programs {
             A301ProductServiceTileName = P006Q2_A301ProductServiceTileName[0];
             A408ProductServiceClass = P006Q2_A408ProductServiceClass[0];
             A58ProductServiceId = P006Q2_A58ProductServiceId[0];
-            AV25count = 0;
-            while ( (pr_default.getStatus(0) != 101) && ( StringUtil.StrCmp(P006Q2_A59ProductServiceName[0], A59ProductServiceName) == 0 ) )
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_productservicewwds_1_filterfulltext)) || ( ( StringUtil.Like( StringUtil.Lower( A59ProductServiceName) , StringUtil.PadR( "%" + StringUtil.Lower( AV58Trn_productservicewwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A301ProductServiceTileName) , StringUtil.PadR( "%" + StringUtil.Lower( AV58Trn_productservicewwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "select category", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV58Trn_productservicewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && String.IsNullOrEmpty(StringUtil.RTrim( A408ProductServiceClass)) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "my living", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV58Trn_productservicewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A408ProductServiceClass, context.GetMessage( "My Living", "")) == 0 ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "my care", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV58Trn_productservicewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A408ProductServiceClass, context.GetMessage( "My Care", "")) == 0 ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "my services", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV58Trn_productservicewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A408ProductServiceClass, context.GetMessage( "My Services", "")) == 0 ) ) ) )
             {
-               BRK6Q2 = false;
-               A11OrganisationId = P006Q2_A11OrganisationId[0];
-               A29LocationId = P006Q2_A29LocationId[0];
-               A58ProductServiceId = P006Q2_A58ProductServiceId[0];
-               AV25count = (long)(AV25count+1);
-               BRK6Q2 = true;
-               pr_default.readNext(0);
-            }
-            if ( (0==AV16SkipItems) )
-            {
-               AV20Option = (String.IsNullOrEmpty(StringUtil.RTrim( A59ProductServiceName)) ? "<#Empty#>" : A59ProductServiceName);
-               AV21Options.Add(AV20Option, 0);
-               AV24OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV25count), "Z,ZZZ,ZZZ,ZZ9")), 0);
-               if ( AV21Options.Count == 10 )
+               AV25count = 0;
+               while ( (pr_default.getStatus(0) != 101) && ( StringUtil.StrCmp(P006Q2_A59ProductServiceName[0], A59ProductServiceName) == 0 ) )
                {
-                  /* Exit For each command. Update data (if necessary), close cursors & exit. */
-                  if (true) break;
+                  BRK6Q2 = false;
+                  A11OrganisationId = P006Q2_A11OrganisationId[0];
+                  A29LocationId = P006Q2_A29LocationId[0];
+                  A58ProductServiceId = P006Q2_A58ProductServiceId[0];
+                  AV25count = (long)(AV25count+1);
+                  BRK6Q2 = true;
+                  pr_default.readNext(0);
                }
-            }
-            else
-            {
-               AV16SkipItems = (short)(AV16SkipItems-1);
+               if ( (0==AV16SkipItems) )
+               {
+                  AV20Option = (String.IsNullOrEmpty(StringUtil.RTrim( A59ProductServiceName)) ? "<#Empty#>" : A59ProductServiceName);
+                  AV21Options.Add(AV20Option, 0);
+                  AV24OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV25count), "Z,ZZZ,ZZZ,ZZ9")), 0);
+                  if ( AV21Options.Count == 10 )
+                  {
+                     /* Exit For each command. Update data (if necessary), close cursors & exit. */
+                     if (true) break;
+                  }
+               }
+               else
+               {
+                  AV16SkipItems = (short)(AV16SkipItems-1);
+               }
             }
             if ( ! BRK6Q2 )
             {
@@ -307,7 +304,6 @@ namespace GeneXus.Programs {
          pr_default.dynParam(1, new Object[]{ new Object[]{
                                               A408ProductServiceClass ,
                                               AV63Trn_productservicewwds_6_tfproductserviceclass_sels ,
-                                              AV58Trn_productservicewwds_1_filterfulltext ,
                                               AV60Trn_productservicewwds_3_tfproductservicename_sel ,
                                               AV59Trn_productservicewwds_2_tfproductservicename ,
                                               AV62Trn_productservicewwds_5_tfproductservicetilename_sel ,
@@ -317,22 +313,17 @@ namespace GeneXus.Programs {
                                               A59ProductServiceName ,
                                               A301ProductServiceTileName ,
                                               A29LocationId ,
+                                              AV58Trn_productservicewwds_1_filterfulltext ,
                                               A11OrganisationId ,
                                               AV55OrganisationId } ,
                                               new int[]{
                                               TypeConstants.INT
                                               }
          });
-         lV58Trn_productservicewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV58Trn_productservicewwds_1_filterfulltext), "%", "");
-         lV58Trn_productservicewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV58Trn_productservicewwds_1_filterfulltext), "%", "");
-         lV58Trn_productservicewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV58Trn_productservicewwds_1_filterfulltext), "%", "");
-         lV58Trn_productservicewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV58Trn_productservicewwds_1_filterfulltext), "%", "");
-         lV58Trn_productservicewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV58Trn_productservicewwds_1_filterfulltext), "%", "");
-         lV58Trn_productservicewwds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV58Trn_productservicewwds_1_filterfulltext), "%", "");
          lV59Trn_productservicewwds_2_tfproductservicename = StringUtil.Concat( StringUtil.RTrim( AV59Trn_productservicewwds_2_tfproductservicename), "%", "");
          lV61Trn_productservicewwds_4_tfproductservicetilename = StringUtil.PadR( StringUtil.RTrim( AV61Trn_productservicewwds_4_tfproductservicetilename), 20, "%");
          /* Using cursor P006Q3 */
-         pr_default.execute(1, new Object[] {AV55OrganisationId, lV58Trn_productservicewwds_1_filterfulltext, lV58Trn_productservicewwds_1_filterfulltext, lV58Trn_productservicewwds_1_filterfulltext, lV58Trn_productservicewwds_1_filterfulltext, lV58Trn_productservicewwds_1_filterfulltext, lV58Trn_productservicewwds_1_filterfulltext, lV59Trn_productservicewwds_2_tfproductservicename, AV60Trn_productservicewwds_3_tfproductservicename_sel, lV61Trn_productservicewwds_4_tfproductservicetilename, AV62Trn_productservicewwds_5_tfproductservicetilename_sel, AV50LocationId});
+         pr_default.execute(1, new Object[] {AV55OrganisationId, lV59Trn_productservicewwds_2_tfproductservicename, AV60Trn_productservicewwds_3_tfproductservicename_sel, lV61Trn_productservicewwds_4_tfproductservicetilename, AV62Trn_productservicewwds_5_tfproductservicetilename_sel, AV50LocationId});
          while ( (pr_default.getStatus(1) != 101) )
          {
             BRK6Q4 = false;
@@ -342,31 +333,34 @@ namespace GeneXus.Programs {
             A59ProductServiceName = P006Q3_A59ProductServiceName[0];
             A408ProductServiceClass = P006Q3_A408ProductServiceClass[0];
             A58ProductServiceId = P006Q3_A58ProductServiceId[0];
-            AV25count = 0;
-            while ( (pr_default.getStatus(1) != 101) && ( StringUtil.StrCmp(P006Q3_A301ProductServiceTileName[0], A301ProductServiceTileName) == 0 ) )
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_productservicewwds_1_filterfulltext)) || ( ( StringUtil.Like( StringUtil.Lower( A59ProductServiceName) , StringUtil.PadR( "%" + StringUtil.Lower( AV58Trn_productservicewwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( StringUtil.Lower( A301ProductServiceTileName) , StringUtil.PadR( "%" + StringUtil.Lower( AV58Trn_productservicewwds_1_filterfulltext) , 255 , "%"),  ' ' ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "select category", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV58Trn_productservicewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && String.IsNullOrEmpty(StringUtil.RTrim( A408ProductServiceClass)) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "my living", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV58Trn_productservicewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A408ProductServiceClass, context.GetMessage( "My Living", "")) == 0 ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "my care", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV58Trn_productservicewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A408ProductServiceClass, context.GetMessage( "My Care", "")) == 0 ) ) || ( StringUtil.Like( context.GetMessage( context.GetMessage( "my services", ""), "") , StringUtil.PadR( "%" + StringUtil.Lower( AV58Trn_productservicewwds_1_filterfulltext) , 255 , "%"),  ' ' ) && ( StringUtil.StrCmp(A408ProductServiceClass, context.GetMessage( "My Services", "")) == 0 ) ) ) )
             {
-               BRK6Q4 = false;
-               A11OrganisationId = P006Q3_A11OrganisationId[0];
-               A29LocationId = P006Q3_A29LocationId[0];
-               A58ProductServiceId = P006Q3_A58ProductServiceId[0];
-               AV25count = (long)(AV25count+1);
-               BRK6Q4 = true;
-               pr_default.readNext(1);
-            }
-            if ( (0==AV16SkipItems) )
-            {
-               AV20Option = (String.IsNullOrEmpty(StringUtil.RTrim( A301ProductServiceTileName)) ? "<#Empty#>" : A301ProductServiceTileName);
-               AV21Options.Add(AV20Option, 0);
-               AV24OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV25count), "Z,ZZZ,ZZZ,ZZ9")), 0);
-               if ( AV21Options.Count == 10 )
+               AV25count = 0;
+               while ( (pr_default.getStatus(1) != 101) && ( StringUtil.StrCmp(P006Q3_A301ProductServiceTileName[0], A301ProductServiceTileName) == 0 ) )
                {
-                  /* Exit For each command. Update data (if necessary), close cursors & exit. */
-                  if (true) break;
+                  BRK6Q4 = false;
+                  A11OrganisationId = P006Q3_A11OrganisationId[0];
+                  A29LocationId = P006Q3_A29LocationId[0];
+                  A58ProductServiceId = P006Q3_A58ProductServiceId[0];
+                  AV25count = (long)(AV25count+1);
+                  BRK6Q4 = true;
+                  pr_default.readNext(1);
                }
-            }
-            else
-            {
-               AV16SkipItems = (short)(AV16SkipItems-1);
+               if ( (0==AV16SkipItems) )
+               {
+                  AV20Option = (String.IsNullOrEmpty(StringUtil.RTrim( A301ProductServiceTileName)) ? "<#Empty#>" : A301ProductServiceTileName);
+                  AV21Options.Add(AV20Option, 0);
+                  AV24OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV25count), "Z,ZZZ,ZZZ,ZZ9")), 0);
+                  if ( AV21Options.Count == 10 )
+                  {
+                     /* Exit For each command. Update data (if necessary), close cursors & exit. */
+                     if (true) break;
+                  }
+               }
+               else
+               {
+                  AV16SkipItems = (short)(AV16SkipItems-1);
+               }
             }
             if ( ! BRK6Q4 )
             {
@@ -413,7 +407,6 @@ namespace GeneXus.Programs {
          AV61Trn_productservicewwds_4_tfproductservicetilename = "";
          AV62Trn_productservicewwds_5_tfproductservicetilename_sel = "";
          AV63Trn_productservicewwds_6_tfproductserviceclass_sels = new GxSimpleCollection<string>();
-         lV58Trn_productservicewwds_1_filterfulltext = "";
          lV59Trn_productservicewwds_2_tfproductservicename = "";
          lV61Trn_productservicewwds_4_tfproductservicetilename = "";
          A408ProductServiceClass = "";
@@ -479,7 +472,6 @@ namespace GeneXus.Programs {
       private string AV58Trn_productservicewwds_1_filterfulltext ;
       private string AV59Trn_productservicewwds_2_tfproductservicename ;
       private string AV60Trn_productservicewwds_3_tfproductservicename_sel ;
-      private string lV58Trn_productservicewwds_1_filterfulltext ;
       private string lV59Trn_productservicewwds_2_tfproductservicename ;
       private string A408ProductServiceClass ;
       private string A59ProductServiceName ;
@@ -524,7 +516,6 @@ namespace GeneXus.Programs {
       protected Object[] conditional_P006Q2( IGxContext context ,
                                              string A408ProductServiceClass ,
                                              GxSimpleCollection<string> AV63Trn_productservicewwds_6_tfproductserviceclass_sels ,
-                                             string AV58Trn_productservicewwds_1_filterfulltext ,
                                              string AV60Trn_productservicewwds_3_tfproductservicename_sel ,
                                              string AV59Trn_productservicewwds_2_tfproductservicename ,
                                              string AV62Trn_productservicewwds_5_tfproductservicetilename_sel ,
@@ -534,45 +525,33 @@ namespace GeneXus.Programs {
                                              string A59ProductServiceName ,
                                              string A301ProductServiceTileName ,
                                              Guid A29LocationId ,
+                                             string AV58Trn_productservicewwds_1_filterfulltext ,
                                              Guid A11OrganisationId ,
                                              Guid AV55OrganisationId )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int1 = new short[12];
+         short[] GXv_int1 = new short[6];
          Object[] GXv_Object2 = new Object[2];
          scmdbuf = "SELECT OrganisationId, ProductServiceName, LocationId, ProductServiceTileName, ProductServiceClass, ProductServiceId FROM Trn_ProductService";
          AddWhere(sWhereString, "(OrganisationId = :AV55OrganisationId)");
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_productservicewwds_1_filterfulltext)) )
-         {
-            AddWhere(sWhereString, "(( LOWER(ProductServiceName) like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext)) or ( LOWER(ProductServiceTileName) like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext)) or ( 'select category' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and (char_length(trim(trailing ' ' from ProductServiceClass))=0)) or ( 'my living' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and ProductServiceClass = ( 'My Living')) or ( 'my care' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and ProductServiceClass = ( 'My Care')) or ( 'my services' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and ProductServiceClass = ( 'My Services')))");
-         }
-         else
-         {
-            GXv_int1[1] = 1;
-            GXv_int1[2] = 1;
-            GXv_int1[3] = 1;
-            GXv_int1[4] = 1;
-            GXv_int1[5] = 1;
-            GXv_int1[6] = 1;
-         }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_productservicewwds_3_tfproductservicename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_productservicewwds_2_tfproductservicename)) ) )
          {
             AddWhere(sWhereString, "(ProductServiceName like :lV59Trn_productservicewwds_2_tfproductservicename)");
          }
          else
          {
-            GXv_int1[7] = 1;
+            GXv_int1[1] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_productservicewwds_3_tfproductservicename_sel)) && ! ( StringUtil.StrCmp(AV60Trn_productservicewwds_3_tfproductservicename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_productservicewwds_3_tfproductservicename_sel)) && ! ( StringUtil.StrCmp(AV60Trn_productservicewwds_3_tfproductservicename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ProductServiceName = ( :AV60Trn_productservicewwds_3_tfproductservicename_sel))");
          }
          else
          {
-            GXv_int1[8] = 1;
+            GXv_int1[2] = 1;
          }
-         if ( StringUtil.StrCmp(AV60Trn_productservicewwds_3_tfproductservicename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV60Trn_productservicewwds_3_tfproductservicename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ProductServiceName))=0))");
          }
@@ -582,17 +561,17 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int1[9] = 1;
+            GXv_int1[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_productservicewwds_5_tfproductservicetilename_sel)) && ! ( StringUtil.StrCmp(AV62Trn_productservicewwds_5_tfproductservicetilename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_productservicewwds_5_tfproductservicetilename_sel)) && ! ( StringUtil.StrCmp(AV62Trn_productservicewwds_5_tfproductservicetilename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ProductServiceTileName = ( :AV62Trn_productservicewwds_5_tfproductservicetilename_sel))");
          }
          else
          {
-            GXv_int1[10] = 1;
+            GXv_int1[4] = 1;
          }
-         if ( StringUtil.StrCmp(AV62Trn_productservicewwds_5_tfproductservicetilename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV62Trn_productservicewwds_5_tfproductservicetilename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ProductServiceTileName))=0))");
          }
@@ -606,7 +585,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int1[11] = 1;
+            GXv_int1[5] = 1;
          }
          scmdbuf += sWhereString;
          scmdbuf += " ORDER BY ProductServiceName";
@@ -618,7 +597,6 @@ namespace GeneXus.Programs {
       protected Object[] conditional_P006Q3( IGxContext context ,
                                              string A408ProductServiceClass ,
                                              GxSimpleCollection<string> AV63Trn_productservicewwds_6_tfproductserviceclass_sels ,
-                                             string AV58Trn_productservicewwds_1_filterfulltext ,
                                              string AV60Trn_productservicewwds_3_tfproductservicename_sel ,
                                              string AV59Trn_productservicewwds_2_tfproductservicename ,
                                              string AV62Trn_productservicewwds_5_tfproductservicetilename_sel ,
@@ -628,45 +606,33 @@ namespace GeneXus.Programs {
                                              string A59ProductServiceName ,
                                              string A301ProductServiceTileName ,
                                              Guid A29LocationId ,
+                                             string AV58Trn_productservicewwds_1_filterfulltext ,
                                              Guid A11OrganisationId ,
                                              Guid AV55OrganisationId )
       {
          System.Text.StringBuilder sWhereString = new System.Text.StringBuilder();
          string scmdbuf;
-         short[] GXv_int3 = new short[12];
+         short[] GXv_int3 = new short[6];
          Object[] GXv_Object4 = new Object[2];
          scmdbuf = "SELECT OrganisationId, ProductServiceTileName, LocationId, ProductServiceName, ProductServiceClass, ProductServiceId FROM Trn_ProductService";
          AddWhere(sWhereString, "(OrganisationId = :AV55OrganisationId)");
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV58Trn_productservicewwds_1_filterfulltext)) )
-         {
-            AddWhere(sWhereString, "(( LOWER(ProductServiceName) like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext)) or ( LOWER(ProductServiceTileName) like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext)) or ( 'select category' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and (char_length(trim(trailing ' ' from ProductServiceClass))=0)) or ( 'my living' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and ProductServiceClass = ( 'My Living')) or ( 'my care' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and ProductServiceClass = ( 'My Care')) or ( 'my services' like '%' || LOWER(:lV58Trn_productservicewwds_1_filterfulltext) and ProductServiceClass = ( 'My Services')))");
-         }
-         else
-         {
-            GXv_int3[1] = 1;
-            GXv_int3[2] = 1;
-            GXv_int3[3] = 1;
-            GXv_int3[4] = 1;
-            GXv_int3[5] = 1;
-            GXv_int3[6] = 1;
-         }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_productservicewwds_3_tfproductservicename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_productservicewwds_2_tfproductservicename)) ) )
          {
             AddWhere(sWhereString, "(ProductServiceName like :lV59Trn_productservicewwds_2_tfproductservicename)");
          }
          else
          {
-            GXv_int3[7] = 1;
+            GXv_int3[1] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_productservicewwds_3_tfproductservicename_sel)) && ! ( StringUtil.StrCmp(AV60Trn_productservicewwds_3_tfproductservicename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_productservicewwds_3_tfproductservicename_sel)) && ! ( StringUtil.StrCmp(AV60Trn_productservicewwds_3_tfproductservicename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ProductServiceName = ( :AV60Trn_productservicewwds_3_tfproductservicename_sel))");
          }
          else
          {
-            GXv_int3[8] = 1;
+            GXv_int3[2] = 1;
          }
-         if ( StringUtil.StrCmp(AV60Trn_productservicewwds_3_tfproductservicename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV60Trn_productservicewwds_3_tfproductservicename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ProductServiceName))=0))");
          }
@@ -676,17 +642,17 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int3[9] = 1;
+            GXv_int3[3] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_productservicewwds_5_tfproductservicetilename_sel)) && ! ( StringUtil.StrCmp(AV62Trn_productservicewwds_5_tfproductservicetilename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV62Trn_productservicewwds_5_tfproductservicetilename_sel)) && ! ( StringUtil.StrCmp(AV62Trn_productservicewwds_5_tfproductservicetilename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ProductServiceTileName = ( :AV62Trn_productservicewwds_5_tfproductservicetilename_sel))");
          }
          else
          {
-            GXv_int3[10] = 1;
+            GXv_int3[4] = 1;
          }
-         if ( StringUtil.StrCmp(AV62Trn_productservicewwds_5_tfproductservicetilename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV62Trn_productservicewwds_5_tfproductservicetilename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ProductServiceTileName))=0))");
          }
@@ -700,7 +666,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GXv_int3[11] = 1;
+            GXv_int3[5] = 1;
          }
          scmdbuf += sWhereString;
          scmdbuf += " ORDER BY ProductServiceTileName";
@@ -716,9 +682,9 @@ namespace GeneXus.Programs {
          switch ( cursor )
          {
                case 0 :
-                     return conditional_P006Q2(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (int)dynConstraints[7] , (Guid)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (Guid)dynConstraints[11] , (Guid)dynConstraints[12] , (Guid)dynConstraints[13] );
+                     return conditional_P006Q2(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (int)dynConstraints[6] , (Guid)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (Guid)dynConstraints[10] , (string)dynConstraints[11] , (Guid)dynConstraints[12] , (Guid)dynConstraints[13] );
                case 1 :
-                     return conditional_P006Q3(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (string)dynConstraints[6] , (int)dynConstraints[7] , (Guid)dynConstraints[8] , (string)dynConstraints[9] , (string)dynConstraints[10] , (Guid)dynConstraints[11] , (Guid)dynConstraints[12] , (Guid)dynConstraints[13] );
+                     return conditional_P006Q3(context, (string)dynConstraints[0] , (GxSimpleCollection<string>)dynConstraints[1] , (string)dynConstraints[2] , (string)dynConstraints[3] , (string)dynConstraints[4] , (string)dynConstraints[5] , (int)dynConstraints[6] , (Guid)dynConstraints[7] , (string)dynConstraints[8] , (string)dynConstraints[9] , (Guid)dynConstraints[10] , (string)dynConstraints[11] , (Guid)dynConstraints[12] , (Guid)dynConstraints[13] );
          }
          return base.getDynamicStatement(cursor, context, dynConstraints);
       }
@@ -740,12 +706,6 @@ namespace GeneXus.Programs {
           Object[] prmP006Q2;
           prmP006Q2 = new Object[] {
           new ParDef("AV55OrganisationId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("lV58Trn_productservicewwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV58Trn_productservicewwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV58Trn_productservicewwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV58Trn_productservicewwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV58Trn_productservicewwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV58Trn_productservicewwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV59Trn_productservicewwds_2_tfproductservicename",GXType.VarChar,100,0) ,
           new ParDef("AV60Trn_productservicewwds_3_tfproductservicename_sel",GXType.VarChar,100,0) ,
           new ParDef("lV61Trn_productservicewwds_4_tfproductservicetilename",GXType.Char,20,0) ,
@@ -755,12 +715,6 @@ namespace GeneXus.Programs {
           Object[] prmP006Q3;
           prmP006Q3 = new Object[] {
           new ParDef("AV55OrganisationId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("lV58Trn_productservicewwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV58Trn_productservicewwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV58Trn_productservicewwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV58Trn_productservicewwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV58Trn_productservicewwds_1_filterfulltext",GXType.VarChar,100,0) ,
-          new ParDef("lV58Trn_productservicewwds_1_filterfulltext",GXType.VarChar,100,0) ,
           new ParDef("lV59Trn_productservicewwds_2_tfproductservicename",GXType.VarChar,100,0) ,
           new ParDef("AV60Trn_productservicewwds_3_tfproductservicename_sel",GXType.VarChar,100,0) ,
           new ParDef("lV61Trn_productservicewwds_4_tfproductservicetilename",GXType.Char,20,0) ,

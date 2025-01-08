@@ -396,6 +396,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -438,7 +450,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Profile" ;
+         return context.GetMessage( "Profile", "") ;
       }
 
       protected void WB9R0( )
@@ -509,7 +521,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, "", "profile Image", "gx-form-item CardProfileExtendedInfoImageLabel RoundedImageLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, "", context.GetMessage( "profile Image", ""), "gx-form-item CardProfileExtendedInfoImageLabel RoundedImageLabel", 0, true, "width: 25%;");
             /* Static Bitmap Variable */
             ClassString = "CardProfileExtendedInfoImage RoundedImage" + " " + ((StringUtil.StrCmp(imgavProfileimage_gximage, "")==0) ? "" : "GX_Image_"+imgavProfileimage_gximage+"_Class");
             StyleString = "";
@@ -523,7 +535,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavUser_Internalname, "user", "gx-form-item CardProfileExtendedInfoTitleLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavUser_Internalname, context.GetMessage( "user", ""), "gx-form-item CardProfileExtendedInfoTitleLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 26,'',false,'',0)\"";
             GxWebStd.gx_single_line_edit( context, edtavUser_Internalname, StringUtil.RTrim( AV56user), StringUtil.RTrim( context.localUtil.Format( AV56user, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,26);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavUser_Jsonclick, 0, "CardProfileExtendedInfoTitle", "", "", "", "", 1, edtavUser_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
@@ -534,7 +546,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavRole_Internalname, "role", "gx-form-item CardProfileExtendedInfoSubtitleLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavRole_Internalname, context.GetMessage( "role", ""), "gx-form-item CardProfileExtendedInfoSubtitleLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 29,'',false,'',0)\"";
             GxWebStd.gx_single_line_edit( context, edtavRole_Internalname, StringUtil.RTrim( AV46role), StringUtil.RTrim( context.localUtil.Format( AV46role, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,29);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavRole_Jsonclick, 0, "CardProfileExtendedInfoSubtitle", "", "", "", "", 1, edtavRole_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
@@ -549,7 +561,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 33,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnupdateprofile_Internalname, "", "Update Profile", bttBtnupdateprofile_Jsonclick, 5, "Update Profile", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOUPDATEPROFILE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_UserProfile.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnupdateprofile_Internalname, "", context.GetMessage( "Update Profile", ""), bttBtnupdateprofile_Jsonclick, 5, context.GetMessage( "Update Profile", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOUPDATEPROFILE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -586,7 +598,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-3 MergeLabelCell", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblAvatarlabel_Internalname, "Profile Image", "", "", lblAvatarlabel_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_UserProfile.htm");
+            GxWebStd.gx_label_ctrl( context, lblAvatarlabel_Internalname, context.GetMessage( "Profile Image", ""), "", "", lblAvatarlabel_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-9 DataContentCell", "start", "top", "", "", "div");
@@ -608,7 +620,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group gx-default-form-group", "start", "top", ""+" data-gx-for=\""+edtavFirstname_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavFirstname_Internalname, "First Name", "gx-form-item ReadOnlyAttributeFieldLabel", 1, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavFirstname_Internalname, context.GetMessage( "First Name", ""), "gx-form-item ReadOnlyAttributeFieldLabel", 1, true, "width: 25%;");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -628,7 +640,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group gx-default-form-group", "start", "top", ""+" data-gx-for=\""+edtavFirstnamevalue_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavFirstnamevalue_Internalname, "First Name", "gx-form-item AttributeLabel", 1, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavFirstnamevalue_Internalname, context.GetMessage( "First Name", ""), "gx-form-item AttributeLabel", 1, true, "width: 25%;");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -648,7 +660,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group gx-default-form-group", "start", "top", ""+" data-gx-for=\""+edtavLastname_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavLastname_Internalname, "Last Name", "gx-form-item ReadOnlyAttributeFieldLabel", 1, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavLastname_Internalname, context.GetMessage( "Last Name", ""), "gx-form-item ReadOnlyAttributeFieldLabel", 1, true, "width: 25%;");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -668,7 +680,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group gx-default-form-group", "start", "top", ""+" data-gx-for=\""+edtavLastnamevalue_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavLastnamevalue_Internalname, "Last Name", "gx-form-item AttributeLabel", 1, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavLastnamevalue_Internalname, context.GetMessage( "Last Name", ""), "gx-form-item AttributeLabel", 1, true, "width: 25%;");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -688,7 +700,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group gx-default-form-group", "start", "top", ""+" data-gx-for=\""+edtavEmail_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavEmail_Internalname, "Email", "gx-form-item ReadOnlyAttributeFieldLabel", 1, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavEmail_Internalname, context.GetMessage( "Email", ""), "gx-form-item ReadOnlyAttributeFieldLabel", 1, true, "width: 25%;");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -708,7 +720,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group gx-default-form-group", "start", "top", ""+" data-gx-for=\""+edtavEmailvalue_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavEmailvalue_Internalname, "Email", "gx-form-item AttributeLabel", 1, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavEmailvalue_Internalname, context.GetMessage( "Email", ""), "gx-form-item AttributeLabel", 1, true, "width: 25%;");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -728,7 +740,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group gx-default-form-group", "start", "top", ""+" data-gx-for=\""+edtavPhone_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavPhone_Internalname, "Phone", "gx-form-item ReadOnlyAttributeFieldLabel", 1, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavPhone_Internalname, context.GetMessage( "Phone", ""), "gx-form-item ReadOnlyAttributeFieldLabel", 1, true, "width: 25%;");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 75, "%", 0, "px", "gx-form-item gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -748,7 +760,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-3 UserProfilePhoneLabel", "end", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblPhonelabel_Internalname, "Phone", "", "", lblPhonelabel_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_UserProfile.htm");
+            GxWebStd.gx_label_ctrl( context, lblPhonelabel_Internalname, context.GetMessage( "Phone", ""), "", "", lblPhonelabel_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "end", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-9", "start", "top", "", "", "div");
@@ -780,7 +792,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavPhonenumber_Internalname, "Phone Number", "col-sm-3 AttributeLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtavPhonenumber_Internalname, context.GetMessage( "Phone Number", ""), "col-sm-3 AttributeLabel", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 104,'',false,'',0)\"";
             GxWebStd.gx_single_line_edit( context, edtavPhonenumber_Internalname, AV38PhoneNumber, StringUtil.RTrim( context.localUtil.Format( AV38PhoneNumber, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,104);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavPhonenumber_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavPhonenumber_Enabled, 0, "text", "", 9, "chr", 1, "row", 9, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_UserProfile.htm");
@@ -864,7 +876,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Profile", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Profile", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -1253,7 +1265,7 @@ namespace GeneXus.Programs {
             }
             AV5GAMUser.gxTpr_Dateupdated = DateTimeUtil.Now( context);
             AV62UserProfileImage = "";
-            if ( ! ( StringUtil.StrCmp(AV66base64String, "delete-avatar") == 0 ) )
+            if ( ! ( StringUtil.StrCmp(AV66base64String, context.GetMessage( "delete-avatar", "")) == 0 ) )
             {
                AV62UserProfileImage=context.FileFromBase64( AV66base64String) ;
             }
@@ -1266,7 +1278,7 @@ namespace GeneXus.Programs {
                   AV67WWP_UserExtended.gxTpr_Wwpuserextendedphoto = AV62UserProfileImage;
                   AV67WWP_UserExtended.gxTpr_Wwpuserextendedphoto_gxi = GXDbFile.GetUriFromFile( "", "", AV62UserProfileImage);
                }
-               if ( StringUtil.StrCmp(AV66base64String, "delete-avatar") == 0 )
+               if ( StringUtil.StrCmp(AV66base64String, context.GetMessage( "delete-avatar", "")) == 0 )
                {
                   AV67WWP_UserExtended.gxTpr_Wwpuserextendedphoto = context.GetImagePath( "cd361e0f-97cb-4b25-a56f-891cd75b163f", "", context.GetTheme( ));
                   AV67WWP_UserExtended.gxTpr_Wwpuserextendedphoto_gxi = GXDbFile.PathToUrl( context.GetImagePath( "cd361e0f-97cb-4b25-a56f-891cd75b163f", "", context.GetTheme( )), context);
@@ -1288,7 +1300,7 @@ namespace GeneXus.Programs {
                while ( AV75GXV1 <= AV26GAMErrorCollection.Count )
                {
                   AV25GAMError = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV26GAMErrorCollection.Item(AV75GXV1));
-                  GX_msglist.addItem(StringUtil.StringReplace( AV25GAMError.gxTpr_Message, "Username", "Email/Username"));
+                  GX_msglist.addItem(StringUtil.StringReplace( AV25GAMError.gxTpr_Message, context.GetMessage( "Username", ""), context.GetMessage( "Email/Username", "")));
                   AV75GXV1 = (int)(AV75GXV1+1);
                }
             }
@@ -1356,19 +1368,19 @@ namespace GeneXus.Programs {
          AssignAttri("", false, "AV11CheckRequiredFieldsResult", AV11CheckRequiredFieldsResult);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV24FirstNameValue)) )
          {
-            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "%1 is required.", "First Name", "", "", "", "", "", "", "", ""),  "error",  edtavFirstnamevalue_Internalname,  "true",  ""));
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "First Name", ""), "", "", "", "", "", "", "", ""),  "error",  edtavFirstnamevalue_Internalname,  "true",  ""));
             AV11CheckRequiredFieldsResult = false;
             AssignAttri("", false, "AV11CheckRequiredFieldsResult", AV11CheckRequiredFieldsResult);
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV30LastNameValue)) )
          {
-            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "%1 is required.", "Last Name", "", "", "", "", "", "", "", ""),  "error",  edtavLastnamevalue_Internalname,  "true",  ""));
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Last Name", ""), "", "", "", "", "", "", "", ""),  "error",  edtavLastnamevalue_Internalname,  "true",  ""));
             AV11CheckRequiredFieldsResult = false;
             AssignAttri("", false, "AV11CheckRequiredFieldsResult", AV11CheckRequiredFieldsResult);
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV17EmailValue)) )
          {
-            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( "%1 is required.", "Email", "", "", "", "", "", "", "", ""),  "error",  edtavEmailvalue_Internalname,  "true",  ""));
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Email", ""), "", "", "", "", "", "", "", ""),  "error",  edtavEmailvalue_Internalname,  "true",  ""));
             AV11CheckRequiredFieldsResult = false;
             AssignAttri("", false, "AV11CheckRequiredFieldsResult", AV11CheckRequiredFieldsResult);
          }
@@ -1442,14 +1454,14 @@ namespace GeneXus.Programs {
       {
          /* Avataruc_Onfailedupload Routine */
          returnInSub = false;
-         GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  "Maximum file size allowed is 2MB.",  "error",  "",  "true",  ""));
+         GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  context.GetMessage( "Maximum file size allowed is 2MB.", ""),  "error",  "",  "true",  ""));
       }
 
       protected void E139R2( )
       {
          /* Comfirmdeletemodal_Onyes Routine */
          returnInSub = false;
-         AV66base64String = "delete-avatar";
+         AV66base64String = context.GetMessage( "delete-avatar", "");
          AssignAttri("", false, "AV66base64String", AV66base64String);
          Avataruc_Previewimagelink = context.convertURL( (string)(context.GetImagePath( "cd132e7c-3222-4be1-9123-4cad0b17f9cf", "", context.GetTheme( ))));
          ucAvataruc.SendProperty(context, "", false, Avataruc_Internalname, "PreviewImageLink", Avataruc_Previewimagelink);
@@ -1494,12 +1506,12 @@ namespace GeneXus.Programs {
          AssignAttri("", false, "AV33Phone", AV33Phone);
          if ( AV65WWPContext.gxTpr_Isreceptionist )
          {
-            AV46role = "Receptionist";
+            AV46role = context.GetMessage( "Receptionist", "");
             AssignAttri("", false, "AV46role", AV46role);
          }
          if ( AV65WWPContext.gxTpr_Isorganisationmanager )
          {
-            AV46role = "Organisation Manager";
+            AV46role = context.GetMessage( "Organisation Manager", "");
             AssignAttri("", false, "AV46role", AV46role);
          }
       }
@@ -1509,14 +1521,14 @@ namespace GeneXus.Programs {
          /* 'UPDATETRANSACTIONTABLE' Routine */
          returnInSub = false;
          AV62UserProfileImage = "";
-         if ( ! ( StringUtil.StrCmp(AV66base64String, "delete-avatar") == 0 ) )
+         if ( ! ( StringUtil.StrCmp(AV66base64String, context.GetMessage( "delete-avatar", "")) == 0 ) )
          {
             AV62UserProfileImage=context.FileFromBase64( AV66base64String) ;
          }
          if ( AV65WWPContext.gxTpr_Isreceptionist )
          {
             AV53Trn_Receptionist.Load(AV65WWPContext.gxTpr_Receptionistid, AV65WWPContext.gxTpr_Organisationid, AV65WWPContext.gxTpr_Locationid);
-            if ( StringUtil.StrCmp(AV66base64String, "delete-avatar") == 0 )
+            if ( StringUtil.StrCmp(AV66base64String, context.GetMessage( "delete-avatar", "")) == 0 )
             {
                AV53Trn_Receptionist.gxTpr_Receptionistimage = context.GetImagePath( "cd132e7c-3222-4be1-9123-4cad0b17f9cf", "", context.GetTheme( ));
                AV53Trn_Receptionist.gxTpr_Receptionistimage_gxi = GXDbFile.PathToUrl( context.GetImagePath( "cd132e7c-3222-4be1-9123-4cad0b17f9cf", "", context.GetTheme( )), context);
@@ -1542,7 +1554,7 @@ namespace GeneXus.Programs {
          if ( AV65WWPContext.gxTpr_Isorganisationmanager )
          {
             AV52Trn_Manager.Load(AV65WWPContext.gxTpr_Managerid, AV65WWPContext.gxTpr_Organisationid);
-            if ( StringUtil.StrCmp(AV66base64String, "delete-avatar") == 0 )
+            if ( StringUtil.StrCmp(AV66base64String, context.GetMessage( "delete-avatar", "")) == 0 )
             {
                AV52Trn_Manager.gxTpr_Managerimage = context.GetImagePath( "cd132e7c-3222-4be1-9123-4cad0b17f9cf", "", context.GetTheme( ));
                AV52Trn_Manager.gxTpr_Managerimage_gxi = GXDbFile.PathToUrl( context.GetImagePath( "cd132e7c-3222-4be1-9123-4cad0b17f9cf", "", context.GetTheme( )), context);
@@ -1567,7 +1579,7 @@ namespace GeneXus.Programs {
          }
          if ( AV52Trn_Manager.Success() || AV53Trn_Receptionist.Success() )
          {
-            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  "Account Updated Successfully.",  "success",  "",  "true",  ""));
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  context.GetMessage( "Account Updated Successfully.", ""),  "success",  "",  "true",  ""));
             GXt_SdtWWPContext4 = AV65WWPContext;
             new prc_loadwwpcontext(context ).execute( ref  GXt_SdtWWPContext4) ;
             AV65WWPContext = GXt_SdtWWPContext4;
@@ -1627,14 +1639,14 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 111,'',false,'',0)\"";
             ClassString = "btn-default";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", "Cancel", bttBtncancel_Jsonclick, 7, "Cancel", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"e189r1_client"+"'", TempTags, "", 2, "HLP_WP_UserProfile.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", context.GetMessage( "Cancel", ""), bttBtncancel_Jsonclick, 7, context.GetMessage( "Cancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"e189r1_client"+"'", TempTags, "", 2, "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 113,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnsaveupdate_Internalname, "", "Update", bttBtnsaveupdate_Jsonclick, 5, "Update", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOSAVEUPDATE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_UserProfile.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnsaveupdate_Internalname, "", context.GetMessage( "Update", ""), bttBtnsaveupdate_Jsonclick, 5, context.GetMessage( "Update", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOSAVEUPDATE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_UserProfile.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</td>") ;
@@ -1689,7 +1701,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025171364118", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251817241934", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1704,8 +1716,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_userprofile.js", "?2025171364120", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wp_userprofile.js", "?20251817241937", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -1820,13 +1832,13 @@ namespace GeneXus.Programs {
          Comfirmdeletemodal_Nobuttoncaption = "Cancel";
          Comfirmdeletemodal_Yesbuttoncaption = "Yes";
          Comfirmdeletemodal_Confirmationtext = "Are you sure you want to delete the current avatar?";
-         Comfirmdeletemodal_Title = "Comfirm Delete";
+         Comfirmdeletemodal_Title = context.GetMessage( "Comfirm Delete", "");
          Dvpanel_profileextendedinfo1_tableabout_Autoscroll = Convert.ToBoolean( 0);
          Dvpanel_profileextendedinfo1_tableabout_Iconposition = "Right";
          Dvpanel_profileextendedinfo1_tableabout_Showcollapseicon = Convert.ToBoolean( 0);
          Dvpanel_profileextendedinfo1_tableabout_Collapsed = Convert.ToBoolean( 0);
          Dvpanel_profileextendedinfo1_tableabout_Collapsible = Convert.ToBoolean( 0);
-         Dvpanel_profileextendedinfo1_tableabout_Title = "About";
+         Dvpanel_profileextendedinfo1_tableabout_Title = context.GetMessage( "About", "");
          Dvpanel_profileextendedinfo1_tableabout_Cls = "PanelCard_GrayTitle";
          Dvpanel_profileextendedinfo1_tableabout_Autoheight = Convert.ToBoolean( -1);
          Dvpanel_profileextendedinfo1_tableabout_Autowidth = Convert.ToBoolean( 0);
@@ -1840,7 +1852,7 @@ namespace GeneXus.Programs {
          Dvpanel_profileextendedinfo1_tablemaininfo_Showcollapseicon = Convert.ToBoolean( 0);
          Dvpanel_profileextendedinfo1_tablemaininfo_Collapsed = Convert.ToBoolean( 0);
          Dvpanel_profileextendedinfo1_tablemaininfo_Collapsible = Convert.ToBoolean( 0);
-         Dvpanel_profileextendedinfo1_tablemaininfo_Title = "My Profile";
+         Dvpanel_profileextendedinfo1_tablemaininfo_Title = context.GetMessage( "My Profile", "");
          Dvpanel_profileextendedinfo1_tablemaininfo_Cls = "PanelCard_GrayTitle";
          Dvpanel_profileextendedinfo1_tablemaininfo_Autoheight = Convert.ToBoolean( -1);
          Dvpanel_profileextendedinfo1_tablemaininfo_Autowidth = Convert.ToBoolean( 0);
@@ -1849,7 +1861,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Profile";
+         Form.Caption = context.GetMessage( "Profile", "");
          context.GX_msglist.DisplayMode = 1;
          if ( context.isSpaRequest( ) )
          {

@@ -31,7 +31,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
       {
          string value;
          value = (string)(domain[key]==null?"":domain[key]);
-         return value ;
+         return ((context!=null) ? context.GetMessage( value, "") : value) ;
       }
 
       public static GxSimpleCollection<short> getValues( )

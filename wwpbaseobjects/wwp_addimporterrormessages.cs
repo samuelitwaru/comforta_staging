@@ -65,7 +65,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Output device settings */
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV9LineId)) )
          {
-            new GeneXus.Programs.wwpbaseobjects.wwp_addmessage(context ).execute(  "WWP_LineId",  2,  StringUtil.Format( "File line: %1", AV9LineId, "", "", "", "", "", "", "", ""), ref  AV11Messages) ;
+            new GeneXus.Programs.wwpbaseobjects.wwp_addmessage(context ).execute(  "WWP_LineId",  2,  StringUtil.Format( context.GetMessage( "File line: %1", ""), AV9LineId, "", "", "", "", "", "", "", ""), ref  AV11Messages) ;
          }
          AV12GXV1 = 1;
          while ( AV12GXV1 <= AV8ErrorsToAdd.Count )

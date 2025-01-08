@@ -200,8 +200,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             }
             else if ( StringUtil.StrCmp(AV29GridStateFilterValue.gxTpr_Name, "TFWWPFORMDATE") == 0 )
             {
-               AV40TFWWPFormDate = context.localUtil.CToT( AV29GridStateFilterValue.gxTpr_Value, 2);
-               AV41TFWWPFormDate_To = context.localUtil.CToT( AV29GridStateFilterValue.gxTpr_Valueto, 2);
+               AV40TFWWPFormDate = context.localUtil.CToT( AV29GridStateFilterValue.gxTpr_Value, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
+               AV41TFWWPFormDate_To = context.localUtil.CToT( AV29GridStateFilterValue.gxTpr_Valueto, DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")));
             }
             else if ( StringUtil.StrCmp(AV29GridStateFilterValue.gxTpr_Name, "PARM_&WWPFORMTYPE") == 0 )
             {

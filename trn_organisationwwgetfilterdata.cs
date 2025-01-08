@@ -807,7 +807,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_3_tforganisationname_sel)) && ! ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_3_tforganisationname_sel)) && ! ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.OrganisationName = ( :AV72Trn_organisationwwds_3_tforganisationname_sel))");
          }
@@ -815,7 +815,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationName))=0))");
          }
@@ -827,7 +827,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[6] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_5_tforganisationtypename_sel)) && ! ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_5_tforganisationtypename_sel)) && ! ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T2.OrganisationTypeName = ( :AV74Trn_organisationwwds_5_tforganisationtypename_sel))");
          }
@@ -835,7 +835,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[7] = 1;
          }
-         if ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.OrganisationTypeName))=0))");
          }
@@ -847,7 +847,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_organisationwwds_7_tforganisationemail_sel)) && ! ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_organisationwwds_7_tforganisationemail_sel)) && ! ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.OrganisationEmail = ( :AV76Trn_organisationwwds_7_tforganisationemail_sel))");
          }
@@ -855,7 +855,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationEmail))=0))");
          }
@@ -867,7 +867,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[10] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_organisationwwds_9_tforganisationphone_sel)) && ! ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_organisationwwds_9_tforganisationphone_sel)) && ! ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.OrganisationPhone = ( :AV78Trn_organisationwwds_9_tforganisationphone_sel))");
          }
@@ -875,7 +875,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[11] = 1;
          }
-         if ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationPhone))=0))");
          }
@@ -925,7 +925,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_3_tforganisationname_sel)) && ! ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_3_tforganisationname_sel)) && ! ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.OrganisationName = ( :AV72Trn_organisationwwds_3_tforganisationname_sel))");
          }
@@ -933,7 +933,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationName))=0))");
          }
@@ -945,7 +945,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[6] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_5_tforganisationtypename_sel)) && ! ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_5_tforganisationtypename_sel)) && ! ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T2.OrganisationTypeName = ( :AV74Trn_organisationwwds_5_tforganisationtypename_sel))");
          }
@@ -953,7 +953,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[7] = 1;
          }
-         if ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.OrganisationTypeName))=0))");
          }
@@ -965,7 +965,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_organisationwwds_7_tforganisationemail_sel)) && ! ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_organisationwwds_7_tforganisationemail_sel)) && ! ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.OrganisationEmail = ( :AV76Trn_organisationwwds_7_tforganisationemail_sel))");
          }
@@ -973,7 +973,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationEmail))=0))");
          }
@@ -985,7 +985,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[10] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_organisationwwds_9_tforganisationphone_sel)) && ! ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_organisationwwds_9_tforganisationphone_sel)) && ! ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.OrganisationPhone = ( :AV78Trn_organisationwwds_9_tforganisationphone_sel))");
          }
@@ -993,7 +993,7 @@ namespace GeneXus.Programs {
          {
             GXv_int3[11] = 1;
          }
-         if ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationPhone))=0))");
          }
@@ -1043,7 +1043,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_3_tforganisationname_sel)) && ! ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_3_tforganisationname_sel)) && ! ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.OrganisationName = ( :AV72Trn_organisationwwds_3_tforganisationname_sel))");
          }
@@ -1051,7 +1051,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationName))=0))");
          }
@@ -1063,7 +1063,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[6] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_5_tforganisationtypename_sel)) && ! ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_5_tforganisationtypename_sel)) && ! ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T2.OrganisationTypeName = ( :AV74Trn_organisationwwds_5_tforganisationtypename_sel))");
          }
@@ -1071,7 +1071,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[7] = 1;
          }
-         if ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.OrganisationTypeName))=0))");
          }
@@ -1083,7 +1083,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_organisationwwds_7_tforganisationemail_sel)) && ! ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_organisationwwds_7_tforganisationemail_sel)) && ! ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.OrganisationEmail = ( :AV76Trn_organisationwwds_7_tforganisationemail_sel))");
          }
@@ -1091,7 +1091,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationEmail))=0))");
          }
@@ -1103,7 +1103,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[10] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_organisationwwds_9_tforganisationphone_sel)) && ! ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_organisationwwds_9_tforganisationphone_sel)) && ! ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.OrganisationPhone = ( :AV78Trn_organisationwwds_9_tforganisationphone_sel))");
          }
@@ -1111,7 +1111,7 @@ namespace GeneXus.Programs {
          {
             GXv_int5[11] = 1;
          }
-         if ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationPhone))=0))");
          }
@@ -1161,7 +1161,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[4] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_3_tforganisationname_sel)) && ! ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72Trn_organisationwwds_3_tforganisationname_sel)) && ! ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.OrganisationName = ( :AV72Trn_organisationwwds_3_tforganisationname_sel))");
          }
@@ -1169,7 +1169,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[5] = 1;
          }
-         if ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV72Trn_organisationwwds_3_tforganisationname_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationName))=0))");
          }
@@ -1181,7 +1181,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[6] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_5_tforganisationtypename_sel)) && ! ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Trn_organisationwwds_5_tforganisationtypename_sel)) && ! ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T2.OrganisationTypeName = ( :AV74Trn_organisationwwds_5_tforganisationtypename_sel))");
          }
@@ -1189,7 +1189,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[7] = 1;
          }
-         if ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV74Trn_organisationwwds_5_tforganisationtypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.OrganisationTypeName))=0))");
          }
@@ -1201,7 +1201,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[8] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_organisationwwds_7_tforganisationemail_sel)) && ! ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Trn_organisationwwds_7_tforganisationemail_sel)) && ! ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.OrganisationEmail = ( :AV76Trn_organisationwwds_7_tforganisationemail_sel))");
          }
@@ -1209,7 +1209,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[9] = 1;
          }
-         if ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV76Trn_organisationwwds_7_tforganisationemail_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationEmail))=0))");
          }
@@ -1221,7 +1221,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[10] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_organisationwwds_9_tforganisationphone_sel)) && ! ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Trn_organisationwwds_9_tforganisationphone_sel)) && ! ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(T1.OrganisationPhone = ( :AV78Trn_organisationwwds_9_tforganisationphone_sel))");
          }
@@ -1229,7 +1229,7 @@ namespace GeneXus.Programs {
          {
             GXv_int7[11] = 1;
          }
-         if ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV78Trn_organisationwwds_9_tforganisationphone_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.OrganisationPhone))=0))");
          }

@@ -359,24 +359,24 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_43", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_43), 8, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "vGRIDCURRENTPAGE", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV8GridCurrentPage), 10, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "vGRIDPAGECOUNT", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV9GridPageCount), 10, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_43", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_43), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "vGRIDCURRENTPAGE", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV8GridCurrentPage), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "vGRIDPAGECOUNT", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV9GridPageCount), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "vGRIDAPPLIEDFILTERS", AV35GridAppliedFilters);
          GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV38Pgmname));
          GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV38Pgmname, "")), context));
          GxWebStd.gx_hidden_field( context, "WWPENTITYNAME", A126WWPEntityName);
-         GxWebStd.gx_hidden_field( context, "WWPENTITYID", StringUtil.LTrim( StringUtil.NToC( (decimal)(A125WWPEntityId), 10, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "WWPENTITYID", StringUtil.LTrim( StringUtil.NToC( (decimal)(A125WWPEntityId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_boolean_hidden_field( context, "WWPNOTIFICATIONDEFINITIONALLOW", A136WWPNotificationDefinitionAllow);
          GxWebStd.gx_hidden_field( context, "WWPUSEREXTENDEDID", StringUtil.RTrim( A112WWPUserExtendedId));
          GxWebStd.gx_hidden_field( context, "vUDPARG2", StringUtil.RTrim( AV41Udparg2));
          GxWebStd.gx_hidden_field( context, "gxhash_vUDPARG2", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV41Udparg2, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, "WWPSUBSCRIPTIONSUBSCRIBED", A132WWPSubscriptionSubscribed);
          GxWebStd.gx_hidden_field( context, "WWPSUBSCRIPTIONROLEID", StringUtil.RTrim( A124WWPSubscriptionRoleId));
-         GxWebStd.gx_hidden_field( context, "WWPNOTIFICATIONDEFINITIONID", StringUtil.LTrim( StringUtil.NToC( (decimal)(A128WWPNotificationDefinitionId), 10, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "GRID_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nEOF), 1, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "subGrid_Recordcount", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Recordcount), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "WWPNOTIFICATIONDEFINITIONID", StringUtil.LTrim( StringUtil.NToC( (decimal)(A128WWPNotificationDefinitionId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "GRID_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nEOF), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "subGrid_Recordcount", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Recordcount), 5, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "DVPANEL_UNNAMEDTABLE1_Width", StringUtil.RTrim( Dvpanel_unnamedtable1_Width));
          GxWebStd.gx_hidden_field( context, "DVPANEL_UNNAMEDTABLE1_Autowidth", StringUtil.BoolToStr( Dvpanel_unnamedtable1_Autowidth));
@@ -447,6 +447,18 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          {
             WebComp_Grid_dwc.componentjscripts();
          }
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -489,7 +501,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
 
       public override string GetPgmdesc( )
       {
-         return "Manage my Subscriptions" ;
+         return context.GetMessage( "Manage my Subscriptions", "") ;
       }
 
       protected void WB1L0( )
@@ -540,12 +552,12 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavMail_Internalname, "Mail", "gx-form-item AttributeCheckNoBorderCheckBoxLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, chkavMail_Internalname, context.GetMessage( "Mail", ""), "gx-form-item AttributeCheckNoBorderCheckBoxLabel", 0, true, "width: 25%;");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 14,'',false,'" + sGXsfl_43_idx + "',0)\"";
             ClassString = "AttributeCheckNoBorderCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavMail_Internalname, StringUtil.BoolToStr( AV15Mail), "", "Mail", 1, chkavMail.Enabled, "true", "Email", StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,14);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavMail_Internalname, StringUtil.BoolToStr( AV15Mail), "", context.GetMessage( "Mail", ""), 1, chkavMail.Enabled, "true", context.GetMessage( "Email", ""), StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,14);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -553,12 +565,12 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavSms_Internalname, "Sms", "gx-form-item AttributeCheckNoBorderCheckBoxLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, chkavSms_Internalname, context.GetMessage( "Sms", ""), "gx-form-item AttributeCheckNoBorderCheckBoxLabel", 0, true, "width: 25%;");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 17,'',false,'" + sGXsfl_43_idx + "',0)\"";
             ClassString = "AttributeCheckNoBorderCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavSms_Internalname, StringUtil.BoolToStr( AV21Sms), "", "Sms", 1, chkavSms.Enabled, "true", "SMS", StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,17);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavSms_Internalname, StringUtil.BoolToStr( AV21Sms), "", context.GetMessage( "Sms", ""), 1, chkavSms.Enabled, "true", context.GetMessage( "SMS", ""), StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,17);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -566,12 +578,12 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavDesktop_Internalname, "Desktop", "gx-form-item AttributeCheckNoBorderCheckBoxLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, chkavDesktop_Internalname, context.GetMessage( "Desktop", ""), "gx-form-item AttributeCheckNoBorderCheckBoxLabel", 0, true, "width: 25%;");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 20,'',false,'" + sGXsfl_43_idx + "',0)\"";
             ClassString = "AttributeCheckNoBorderCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavDesktop_Internalname, StringUtil.BoolToStr( AV5Desktop), "", "Desktop", 1, chkavDesktop.Enabled, "true", "Desktop notifications", StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,20);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavDesktop_Internalname, StringUtil.BoolToStr( AV5Desktop), "", context.GetMessage( "Desktop", ""), 1, chkavDesktop.Enabled, "true", context.GetMessage( "Desktop notifications", ""), StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,20);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -579,12 +591,12 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavSd_Internalname, "SD", "gx-form-item AttributeCheckNoBorderCheckBoxLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, chkavSd_Internalname, context.GetMessage( "SD", ""), "gx-form-item AttributeCheckNoBorderCheckBoxLabel", 0, true, "width: 25%;");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 23,'',false,'" + sGXsfl_43_idx + "',0)\"";
             ClassString = "AttributeCheckNoBorderCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavSd_Internalname, StringUtil.BoolToStr( AV18SD), "", "SD", 1, chkavSd.Enabled, "true", "Mobile notifications", StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,23);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavSd_Internalname, StringUtil.BoolToStr( AV18SD), "", context.GetMessage( "SD", ""), 1, chkavSd.Enabled, "true", context.GetMessage( "Mobile notifications", ""), StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,23);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -621,12 +633,12 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavNotifshowonlysubscribedevents_Internalname, "Notif Show Only Subscribed Events", "gx-form-item AttributeCheckNoBorderCheckBoxLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, chkavNotifshowonlysubscribedevents_Internalname, context.GetMessage( "Notif Show Only Subscribed Events", ""), "gx-form-item AttributeCheckNoBorderCheckBoxLabel", 0, true, "width: 25%;");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 34,'',false,'" + sGXsfl_43_idx + "',0)\"";
             ClassString = "AttributeCheckNoBorderCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavNotifshowonlysubscribedevents_Internalname, StringUtil.BoolToStr( AV16NotifShowOnlySubscribedEvents), "", "Notif Show Only Subscribed Events", 1, chkavNotifshowonlysubscribedevents.Enabled, "true", "Show only my subscribed events", StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,34);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavNotifshowonlysubscribedevents_Internalname, StringUtil.BoolToStr( AV16NotifShowOnlySubscribedEvents), "", context.GetMessage( "Notif Show Only Subscribed Events", ""), 1, chkavNotifshowonlysubscribedevents.Enabled, "true", context.GetMessage( "Show only my subscribed events", ""), StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,34);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -634,10 +646,10 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavFilterfulltext_Internalname, "Filter Full Text", "gx-form-item AttributeLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavFilterfulltext_Internalname, context.GetMessage( "Filter Full Text", ""), "gx-form-item AttributeLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 37,'',false,'" + sGXsfl_43_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavFilterfulltext_Internalname, AV7FilterFullText, StringUtil.RTrim( context.localUtil.Format( AV7FilterFullText, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,37);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "Search", edtavFilterfulltext_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavFilterfulltext_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "WWPFullTextFilter", "start", true, "", "HLP_WWPBaseObjects/Subscriptions/WWP_SubscriptionsSettings.htm");
+            GxWebStd.gx_single_line_edit( context, edtavFilterfulltext_Internalname, AV7FilterFullText, StringUtil.RTrim( context.localUtil.Format( AV7FilterFullText, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,37);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", context.GetMessage( "WWP_Search", ""), edtavFilterfulltext_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavFilterfulltext_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "WWPFullTextFilter", "start", true, "", "HLP_WWPBaseObjects/Subscriptions/WWP_SubscriptionsSettings.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -813,7 +825,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Manage my Subscriptions", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Manage my Subscriptions", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -919,7 +931,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
                               SubsflControlProps_432( ) ;
                               AV29WWPEntityName = cgiGet( edtavWwpentityname_Internalname);
                               AssignAttri("", false, edtavWwpentityname_Internalname, AV29WWPEntityName);
-                              if ( ( ( context.localUtil.CToN( cgiGet( edtavWwpentityid_Internalname), ".", ",") < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavWwpentityid_Internalname), ".", ",") > Convert.ToDecimal( 9999999999L )) ) )
+                              if ( ( ( context.localUtil.CToN( cgiGet( edtavWwpentityid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) < Convert.ToDecimal( 0 )) ) || ( ( context.localUtil.CToN( cgiGet( edtavWwpentityid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")) > Convert.ToDecimal( 9999999999L )) ) )
                               {
                                  GX_msglist.addItem(context.GetMessage( "GXM_badnum", ""), 1, "vWWPENTITYID");
                                  GX_FocusControl = edtavWwpentityid_Internalname;
@@ -931,7 +943,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
                               }
                               else
                               {
-                                 AV28WWPEntityId = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtavWwpentityid_Internalname), ".", ","), 18, MidpointRounding.ToEven));
+                                 AV28WWPEntityId = (long)(Math.Round(context.localUtil.CToN( cgiGet( edtavWwpentityid_Internalname), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                                  AssignAttri("", false, edtavWwpentityid_Internalname, StringUtil.LTrimStr( (decimal)(AV28WWPEntityId), 10, 0));
                                  GxWebStd.gx_hidden_field( context, "gxhash_vWWPENTITYID"+"_"+sGXsfl_43_idx, GetSecureSignedToken( sGXsfl_43_idx, context.localUtil.Format( (decimal)(AV28WWPEntityId), "ZZZZZZZZZ9"), context));
                               }
@@ -1357,14 +1369,14 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          {
             /* Read saved SDTs. */
             /* Read saved values. */
-            nRC_GXsfl_43 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_43"), ".", ","), 18, MidpointRounding.ToEven));
-            AV8GridCurrentPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "vGRIDCURRENTPAGE"), ".", ","), 18, MidpointRounding.ToEven));
-            AV9GridPageCount = (long)(Math.Round(context.localUtil.CToN( cgiGet( "vGRIDPAGECOUNT"), ".", ","), 18, MidpointRounding.ToEven));
+            nRC_GXsfl_43 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_43"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            AV8GridCurrentPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "vGRIDCURRENTPAGE"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            AV9GridPageCount = (long)(Math.Round(context.localUtil.CToN( cgiGet( "vGRIDPAGECOUNT"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             AV35GridAppliedFilters = cgiGet( "vGRIDAPPLIEDFILTERS");
-            GRID_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_nFirstRecordOnPage"), ".", ","), 18, MidpointRounding.ToEven));
-            GRID_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_nEOF"), ".", ","), 18, MidpointRounding.ToEven));
-            subGrid_Recordcount = (int)(Math.Round(context.localUtil.CToN( cgiGet( "subGrid_Recordcount"), ".", ","), 18, MidpointRounding.ToEven));
-            subGrid_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_Rows"), ".", ","), 18, MidpointRounding.ToEven));
+            GRID_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_nFirstRecordOnPage"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            GRID_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_nEOF"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            subGrid_Recordcount = (int)(Math.Round(context.localUtil.CToN( cgiGet( "subGrid_Recordcount"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            subGrid_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_Rows"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             GxWebStd.gx_hidden_field( context, "GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
             Dvpanel_unnamedtable1_Width = cgiGet( "DVPANEL_UNNAMEDTABLE1_Width");
             Dvpanel_unnamedtable1_Autowidth = StringUtil.StrToBool( cgiGet( "DVPANEL_UNNAMEDTABLE1_Autowidth"));
@@ -1381,12 +1393,12 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
             Gridpaginationbar_Showprevious = StringUtil.StrToBool( cgiGet( "GRIDPAGINATIONBAR_Showprevious"));
             Gridpaginationbar_Shownext = StringUtil.StrToBool( cgiGet( "GRIDPAGINATIONBAR_Shownext"));
             Gridpaginationbar_Showlast = StringUtil.StrToBool( cgiGet( "GRIDPAGINATIONBAR_Showlast"));
-            Gridpaginationbar_Pagestoshow = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDPAGINATIONBAR_Pagestoshow"), ".", ","), 18, MidpointRounding.ToEven));
+            Gridpaginationbar_Pagestoshow = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDPAGINATIONBAR_Pagestoshow"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Gridpaginationbar_Pagingbuttonsposition = cgiGet( "GRIDPAGINATIONBAR_Pagingbuttonsposition");
             Gridpaginationbar_Pagingcaptionposition = cgiGet( "GRIDPAGINATIONBAR_Pagingcaptionposition");
             Gridpaginationbar_Emptygridclass = cgiGet( "GRIDPAGINATIONBAR_Emptygridclass");
             Gridpaginationbar_Rowsperpageselector = StringUtil.StrToBool( cgiGet( "GRIDPAGINATIONBAR_Rowsperpageselector"));
-            Gridpaginationbar_Rowsperpageselectedvalue = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDPAGINATIONBAR_Rowsperpageselectedvalue"), ".", ","), 18, MidpointRounding.ToEven));
+            Gridpaginationbar_Rowsperpageselectedvalue = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDPAGINATIONBAR_Rowsperpageselectedvalue"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Gridpaginationbar_Rowsperpageoptions = cgiGet( "GRIDPAGINATIONBAR_Rowsperpageoptions");
             Gridpaginationbar_Previous = cgiGet( "GRIDPAGINATIONBAR_Previous");
             Gridpaginationbar_Next = cgiGet( "GRIDPAGINATIONBAR_Next");
@@ -1404,10 +1416,10 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
             Dvpanel_unnamedtable2_Iconposition = cgiGet( "DVPANEL_UNNAMEDTABLE2_Iconposition");
             Dvpanel_unnamedtable2_Autoscroll = StringUtil.StrToBool( cgiGet( "DVPANEL_UNNAMEDTABLE2_Autoscroll"));
             Grid_empowerer_Gridinternalname = cgiGet( "GRID_EMPOWERER_Gridinternalname");
-            subGrid_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_Rows"), ".", ","), 18, MidpointRounding.ToEven));
+            subGrid_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_Rows"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             GxWebStd.gx_hidden_field( context, "GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
             Gridpaginationbar_Selectedpage = cgiGet( "GRIDPAGINATIONBAR_Selectedpage");
-            Gridpaginationbar_Rowsperpageselectedvalue = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDPAGINATIONBAR_Rowsperpageselectedvalue"), ".", ","), 18, MidpointRounding.ToEven));
+            Gridpaginationbar_Rowsperpageselectedvalue = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDPAGINATIONBAR_Rowsperpageselectedvalue"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             /* Read variables values. */
             AV15Mail = StringUtil.StrToBool( cgiGet( chkavMail_Internalname));
             AssignAttri("", false, "AV15Mail", AV15Mail);
@@ -1449,7 +1461,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          GxWebStd.gx_hidden_field( context, "GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
          Grid_empowerer_Gridinternalname = subGrid_Internalname;
          ucGrid_empowerer.SendProperty(context, "", false, Grid_empowerer_Internalname, "GridInternalName", Grid_empowerer_Gridinternalname);
-         Form.Caption = "Manage my Subscriptions";
+         Form.Caption = context.GetMessage( "Manage my Subscriptions", "");
          AssignProp("", false, "FORM", "Caption", Form.Caption, true);
          /* Execute user subroutine: 'LOADGRIDSTATE' */
          S112 ();
@@ -1703,7 +1715,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          AV11GridState.FromXml(AV20Session.Get(AV38Pgmname+"GridState"), null, "", "");
          AV11GridState.gxTpr_Filtervalues.Clear();
          new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalue(context ).execute( ref  AV11GridState,  "NOTIFSHOWONLYSUBSCRIBEDEVENTS",  "",  !(false==AV16NotifShowOnlySubscribedEvents),  0,  StringUtil.Trim( StringUtil.BoolToStr( AV16NotifShowOnlySubscribedEvents)),  "",  false,  "",  "") ;
-         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalue(context ).execute( ref  AV11GridState,  "FILTERFULLTEXT",  "Main filter",  !String.IsNullOrEmpty(StringUtil.RTrim( AV7FilterFullText)),  0,  AV7FilterFullText,  AV7FilterFullText,  false,  "",  "") ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalue(context ).execute( ref  AV11GridState,  "FILTERFULLTEXT",  context.GetMessage( "WWP_FullTextFilterDescription", ""),  !String.IsNullOrEmpty(StringUtil.RTrim( AV7FilterFullText)),  0,  AV7FilterFullText,  AV7FilterFullText,  false,  "",  "") ;
          AV11GridState.gxTpr_Pagesize = StringUtil.Str( (decimal)(subGrid_Rows), 10, 0);
          AV11GridState.gxTpr_Currentpage = (short)(subGrid_fnc_Currentpage( ));
          new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV38Pgmname+"GridState",  AV11GridState.ToXml(false, true, "", "")) ;
@@ -1815,7 +1827,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121713263869", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251817154650", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1830,8 +1842,8 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wwpbaseobjects/subscriptions/wwp_subscriptionssettings.js", "?2024121713263870", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wwpbaseobjects/subscriptions/wwp_subscriptionssettings.js", "?20251817154651", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -1940,7 +1952,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
             }
             /* Single line edit */
             ROClassString = "Attribute";
-            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavWwpentityid_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(AV28WWPEntityId), 10, 0, ".", "")),StringUtil.LTrim( ((edtavWwpentityid_Enabled!=0) ? context.localUtil.Format( (decimal)(AV28WWPEntityId), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(AV28WWPEntityId), "ZZZZZZZZZ9")))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+""+" onchange=\""+"gx.num.valid_integer( this,',');"+";gx.evt.onchange(this, event)\" ",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavWwpentityid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavWwpentityid_Enabled,(short)0,(string)"text",(string)"1",(short)0,(string)"px",(short)17,(string)"px",(short)10,(short)0,(short)0,(short)43,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+            GridRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavWwpentityid_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(AV28WWPEntityId), 10, 0, context.GetLanguageProperty( "decimal_point"), "")),StringUtil.LTrim( ((edtavWwpentityid_Enabled!=0) ? context.localUtil.Format( (decimal)(AV28WWPEntityId), "ZZZZZZZZZ9") : context.localUtil.Format( (decimal)(AV28WWPEntityId), "ZZZZZZZZZ9")))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+""+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" ",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavWwpentityid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWColumn",(string)"",(short)0,(int)edtavWwpentityid_Enabled,(short)0,(string)"text",(string)"1",(short)0,(string)"px",(short)17,(string)"px",(short)10,(short)0,(short)0,(short)43,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
@@ -1963,35 +1975,35 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
       {
          chkavMail.Name = "vMAIL";
          chkavMail.WebTags = "";
-         chkavMail.Caption = "Mail";
+         chkavMail.Caption = context.GetMessage( "Mail", "");
          AssignProp("", false, chkavMail_Internalname, "TitleCaption", chkavMail.Caption, true);
          chkavMail.CheckedValue = "false";
          AV15Mail = StringUtil.StrToBool( StringUtil.BoolToStr( AV15Mail));
          AssignAttri("", false, "AV15Mail", AV15Mail);
          chkavSms.Name = "vSMS";
          chkavSms.WebTags = "";
-         chkavSms.Caption = "Sms";
+         chkavSms.Caption = context.GetMessage( "Sms", "");
          AssignProp("", false, chkavSms_Internalname, "TitleCaption", chkavSms.Caption, true);
          chkavSms.CheckedValue = "false";
          AV21Sms = StringUtil.StrToBool( StringUtil.BoolToStr( AV21Sms));
          AssignAttri("", false, "AV21Sms", AV21Sms);
          chkavDesktop.Name = "vDESKTOP";
          chkavDesktop.WebTags = "";
-         chkavDesktop.Caption = "Desktop";
+         chkavDesktop.Caption = context.GetMessage( "Desktop", "");
          AssignProp("", false, chkavDesktop_Internalname, "TitleCaption", chkavDesktop.Caption, true);
          chkavDesktop.CheckedValue = "false";
          AV5Desktop = StringUtil.StrToBool( StringUtil.BoolToStr( AV5Desktop));
          AssignAttri("", false, "AV5Desktop", AV5Desktop);
          chkavSd.Name = "vSD";
          chkavSd.WebTags = "";
-         chkavSd.Caption = "SD";
+         chkavSd.Caption = context.GetMessage( "SD", "");
          AssignProp("", false, chkavSd_Internalname, "TitleCaption", chkavSd.Caption, true);
          chkavSd.CheckedValue = "false";
          AV18SD = StringUtil.StrToBool( StringUtil.BoolToStr( AV18SD));
          AssignAttri("", false, "AV18SD", AV18SD);
          chkavNotifshowonlysubscribedevents.Name = "vNOTIFSHOWONLYSUBSCRIBEDEVENTS";
          chkavNotifshowonlysubscribedevents.WebTags = "";
-         chkavNotifshowonlysubscribedevents.Caption = "Notif Show Only Subscribed Events";
+         chkavNotifshowonlysubscribedevents.Caption = context.GetMessage( "Notif Show Only Subscribed Events", "");
          AssignProp("", false, chkavNotifshowonlysubscribedevents_Internalname, "TitleCaption", chkavNotifshowonlysubscribedevents.Caption, true);
          chkavNotifshowonlysubscribedevents.CheckedValue = "false";
          AV16NotifShowOnlySubscribedEvents = StringUtil.StrToBool( StringUtil.BoolToStr( AV16NotifShowOnlySubscribedEvents));
@@ -2037,7 +2049,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
                }
             }
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "Entity") ;
+            context.SendWebValue( context.GetMessage( "Entity", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"end"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
             context.SendWebValue( "") ;
@@ -2118,11 +2130,11 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          subGrid_Allowcollapsing = 0;
          subGrid_Allowselection = 0;
          subGrid_Header = "";
-         chkavNotifshowonlysubscribedevents.Caption = "Notif Show Only Subscribed Events";
-         chkavSd.Caption = "SD";
-         chkavDesktop.Caption = "Desktop";
-         chkavSms.Caption = "Sms";
-         chkavMail.Caption = "Mail";
+         chkavNotifshowonlysubscribedevents.Caption = context.GetMessage( "Notif Show Only Subscribed Events", "");
+         chkavSd.Caption = context.GetMessage( "SD", "");
+         chkavDesktop.Caption = context.GetMessage( "Desktop", "");
+         chkavSms.Caption = context.GetMessage( "Sms", "");
+         chkavMail.Caption = context.GetMessage( "Mail", "");
          edtavDetailwebcomponent_Jsonclick = "";
          edtavDetailwebcomponent_Enabled = 1;
          edtavWwpentityid_Jsonclick = "";
@@ -2151,7 +2163,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          Dvpanel_unnamedtable2_Width = "100%";
          Gridpaginationbar_Rowsperpagecaption = "WWP_PagingRowsPerPage";
          Gridpaginationbar_Emptygridcaption = "WWP_PagingEmptyGridCaption";
-         Gridpaginationbar_Caption = "Page <CURRENT_PAGE> of <TOTAL_PAGES>";
+         Gridpaginationbar_Caption = context.GetMessage( "WWP_PagingCaption", "");
          Gridpaginationbar_Next = "WWP_PagingNextCaption";
          Gridpaginationbar_Previous = "WWP_PagingPreviousCaption";
          Gridpaginationbar_Rowsperpageoptions = "5:WWP_Rows5,10:WWP_Rows10,20:WWP_Rows20,50:WWP_Rows50";
@@ -2171,7 +2183,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          Dvpanel_unnamedtable1_Showcollapseicon = Convert.ToBoolean( 0);
          Dvpanel_unnamedtable1_Collapsed = Convert.ToBoolean( 0);
          Dvpanel_unnamedtable1_Collapsible = Convert.ToBoolean( -1);
-         Dvpanel_unnamedtable1_Title = "Receive notifications by";
+         Dvpanel_unnamedtable1_Title = context.GetMessage( "Receive notifications by", "");
          Dvpanel_unnamedtable1_Cls = "PanelWithBorder Panel_BaseColor";
          Dvpanel_unnamedtable1_Autoheight = Convert.ToBoolean( -1);
          Dvpanel_unnamedtable1_Autowidth = Convert.ToBoolean( 0);
@@ -2180,7 +2192,7 @@ namespace GeneXus.Programs.wwpbaseobjects.subscriptions {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Manage my Subscriptions";
+         Form.Caption = context.GetMessage( "Manage my Subscriptions", "");
          subGrid_Rows = 0;
          if ( context.isSpaRequest( ) )
          {

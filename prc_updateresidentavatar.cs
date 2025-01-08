@@ -138,18 +138,18 @@ namespace GeneXus.Programs {
                if ( AV15WWP_UserExtended.Success() )
                {
                   context.CommitDataStores("prc_updateresidentavatar",pr_default);
-                  AV14response = "Profile updated sucessfully";
+                  AV14response = context.GetMessage( "Profile updated sucessfully", "");
                }
             }
             else
             {
                context.RollbackDataStores("prc_updateresidentavatar",pr_default);
-               AV14response = "User profile could not be updated. Try again ";
+               AV14response = context.GetMessage( "User profile could not be updated. Try again ", "");
             }
          }
          else
          {
-            AV14response = "Uploaded image could not be processed, try another";
+            AV14response = context.GetMessage( "Uploaded image could not be processed, try another", "");
          }
          cleanup();
       }

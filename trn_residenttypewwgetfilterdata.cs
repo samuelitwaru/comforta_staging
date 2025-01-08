@@ -361,7 +361,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[1] = 1;
          }
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV40Trn_residenttypewwds_3_tfresidenttypename_sel)) && ! ( StringUtil.StrCmp(AV40Trn_residenttypewwds_3_tfresidenttypename_sel, "<#Empty#>") == 0 ) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV40Trn_residenttypewwds_3_tfresidenttypename_sel)) && ! ( StringUtil.StrCmp(AV40Trn_residenttypewwds_3_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 ) )
          {
             AddWhere(sWhereString, "(ResidentTypeName = ( :AV40Trn_residenttypewwds_3_tfresidenttypename_sel))");
          }
@@ -369,7 +369,7 @@ namespace GeneXus.Programs {
          {
             GXv_int1[2] = 1;
          }
-         if ( StringUtil.StrCmp(AV40Trn_residenttypewwds_3_tfresidenttypename_sel, "<#Empty#>") == 0 )
+         if ( StringUtil.StrCmp(AV40Trn_residenttypewwds_3_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
             AddWhere(sWhereString, "((char_length(trim(trailing ' ' from ResidentTypeName))=0))");
          }

@@ -132,21 +132,21 @@ namespace GeneXus.Programs {
             cleanup();
             if (true) return;
          }
-         new prc_logtofile(context ).execute(  "MediaName: "+AV12MediaName) ;
-         new prc_logtofile(context ).execute(  "MediaSize: "+StringUtil.Str( (decimal)(AV20MediaSize), 8, 0)) ;
-         new prc_logtofile(context ).execute(  "MediaType: "+AV21MediaType) ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "MediaName: ", "")+AV12MediaName) ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "MediaSize: ", "")+StringUtil.Str( (decimal)(AV20MediaSize), 8, 0)) ;
+         new prc_logtofile(context ).execute(  context.GetMessage( "MediaType: ", "")+AV21MediaType) ;
          AV14BC_Trn_Media = new SdtTrn_Media(context);
          AV14BC_Trn_Media.gxTpr_Medianame = AV12MediaName;
          AV14BC_Trn_Media.gxTpr_Mediasize = AV20MediaSize;
          AV14BC_Trn_Media.gxTpr_Mediatype = AV21MediaType;
          AV14BC_Trn_Media.gxTpr_Locationid = AV25LocationId;
-         AV23MediaUrl = StringUtil.StringReplace( AV8HttpRequest.BaseURL, "api/media/", "media/"+AV12MediaName);
-         if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, "http://localhost") )
+         AV23MediaUrl = StringUtil.StringReplace( AV8HttpRequest.BaseURL, context.GetMessage( "api/media/", ""), context.GetMessage( "media/", "")+AV12MediaName);
+         if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, context.GetMessage( "http://localhost", "")) )
          {
          }
          else
          {
-            AV23MediaUrl = StringUtil.StringReplace( AV23MediaUrl, "http://", "https://");
+            AV23MediaUrl = StringUtil.StringReplace( AV23MediaUrl, context.GetMessage( "http://", ""), context.GetMessage( "https://", ""));
          }
          AV14BC_Trn_Media.gxTpr_Mediaurl = AV23MediaUrl;
          AV14BC_Trn_Media.Save();
@@ -154,10 +154,10 @@ namespace GeneXus.Programs {
          new prc_logtofile(context ).execute(  StringUtil.BoolToStr( AV14BC_Trn_Media.Success())) ;
          if ( AV14BC_Trn_Media.Success() )
          {
-            AV22Path = "media/";
-            if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, "http://localhost") )
+            AV22Path = context.GetMessage( "media/", "");
+            if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, context.GetMessage( "http://localhost", "")) )
             {
-               AV22Path = "C:\\KBs\\Comforta_version2\\Data018\\Web\\media\\";
+               AV22Path = context.GetMessage( "C:\\KBs\\Comforta_version2\\Data018\\Web\\media\\", "");
             }
             new SdtEO_Base64Image(context).saveimage(AV18MediaImageData, AV22Path+AV12MediaName) ;
             new prc_logtofile(context ).execute(  AV22Path+AV12MediaName) ;
@@ -174,7 +174,7 @@ namespace GeneXus.Programs {
                new prc_logtofile(context ).execute(  AV17Message.gxTpr_Description) ;
                AV29GXV2 = (int)(AV29GXV2+1);
             }
-            AV10response = "Insert ERROR";
+            AV10response = context.GetMessage( "Insert ERROR", "");
             context.RollbackDataStores("prc_uploadmedia",pr_default);
          }
          cleanup();

@@ -349,16 +349,16 @@ namespace GeneXus.Programs {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
-         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_85", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_85), 8, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_85", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_85), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "vMODE", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "gxhash_vMODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")), context));
          GxWebStd.gx_hidden_field( context, "vCURRENTCONNECTIONKEY", StringUtil.RTrim( AV23CurrentConnectionKey));
          GxWebStd.gx_hidden_field( context, "gxhash_vCURRENTCONNECTIONKEY", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV23CurrentConnectionKey, "")), context));
          GxWebStd.gx_hidden_field( context, "vFILEXML", StringUtil.RTrim( AV12FileXML));
          GxWebStd.gx_hidden_field( context, "gxhash_vFILEXML", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12FileXML, "")), context));
-         GxWebStd.gx_hidden_field( context, "GRIDWWSYSCONNS_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDWWSYSCONNS_nFirstRecordOnPage), 15, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "GRIDWWSYSCONNS_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDWWSYSCONNS_nEOF), 1, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "subGridwwsysconns_Recordcount", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridwwsysconns_Recordcount), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "GRIDWWSYSCONNS_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDWWSYSCONNS_nFirstRecordOnPage), 15, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "GRIDWWSYSCONNS_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDWWSYSCONNS_nEOF), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "subGridwwsysconns_Recordcount", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridwwsysconns_Recordcount), 5, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "GRIDWWSYSCONNS_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridwwsysconns_Rows), 6, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "DVPANEL_UNNAMEDTABLE3_Width", StringUtil.RTrim( Dvpanel_unnamedtable3_Width));
          GxWebStd.gx_hidden_field( context, "DVPANEL_UNNAMEDTABLE3_Autowidth", StringUtil.BoolToStr( Dvpanel_unnamedtable3_Autowidth));
@@ -412,6 +412,18 @@ namespace GeneXus.Programs {
             enableOutput();
          }
          include_jscripts( ) ;
+         context.WriteHtmlText( "<script type=\"text/javascript\">") ;
+         context.WriteHtmlText( "gx.setLanguageCode(\""+context.GetLanguageProperty( "code")+"\");") ;
+         if ( ! context.isSpaRequest( ) )
+         {
+            context.WriteHtmlText( "gx.setDateFormat(\""+context.GetLanguageProperty( "date_fmt")+"\");") ;
+            context.WriteHtmlText( "gx.setTimeFormat("+context.GetLanguageProperty( "time_fmt")+");") ;
+            context.WriteHtmlText( "gx.setCenturyFirstYear("+40+");") ;
+            context.WriteHtmlText( "gx.setDecimalPoint(\""+context.GetLanguageProperty( "decimal_point")+"\");") ;
+            context.WriteHtmlText( "gx.setThousandSeparator(\""+context.GetLanguageProperty( "thousand_sep")+"\");") ;
+            context.WriteHtmlText( "gx.StorageTimeZone = "+1+";") ;
+         }
+         context.WriteHtmlText( "</script>") ;
       }
 
       public override void RenderHtmlContent( )
@@ -456,7 +468,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return "Connection" ;
+         return context.GetMessage( "Connection", "") ;
       }
 
       protected void WB950( )
@@ -529,7 +541,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavConnectionname_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavConnectionname_Internalname, "Connection name", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavConnectionname_Internalname, context.GetMessage( "WWP_GAM_ConnectionName", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -546,7 +558,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavUsername_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavUsername_Internalname, "User name", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavUsername_Internalname, context.GetMessage( "WWP_GAM_UserName", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -563,7 +575,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavUserpassword_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavUserpassword_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavUserpassword_Internalname, "User password", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavUserpassword_Internalname, context.GetMessage( "WWP_GAM_UserPassword", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
@@ -584,7 +596,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, divTextblockencryptionkey_cell_Internalname, 1, 0, "px", 0, "px", divTextblockencryptionkey_cell_Class, "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblockencryptionkey_Internalname, "Encryption Key", "", "", lblTextblockencryptionkey_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_GAMConnectionEntry.htm");
+            GxWebStd.gx_label_ctrl( context, lblTextblockencryptionkey_Internalname, context.GetMessage( "WWP_GAM_EncriptionKey", ""), "", "", lblTextblockencryptionkey_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_GAMConnectionEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
@@ -653,14 +665,14 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 MergeLabelCell", "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblocknewconnectionkey_Internalname, "Add Connection Key", "", "", lblTextblocknewconnectionkey_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_GAMConnectionEntry.htm");
+            GxWebStd.gx_label_ctrl( context, lblTextblocknewconnectionkey_Internalname, context.GetMessage( "WWP_GAM_AddConnectionKey", ""), "", "", lblTextblocknewconnectionkey_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_GAMConnectionEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavNewconnectionkey_Internalname, "New Connection Key", "col-sm-3 AttributeLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, edtavNewconnectionkey_Internalname, context.GetMessage( "New Connection Key", ""), "col-sm-3 AttributeLabel", 0, true, "");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 68,'',false,'" + sGXsfl_85_idx + "',0)\"";
             GxWebStd.gx_single_line_edit( context, edtavNewconnectionkey_Internalname, StringUtil.RTrim( AV18NewConnectionKey), StringUtil.RTrim( context.localUtil.Format( AV18NewConnectionKey, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,68);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavNewconnectionkey_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavNewconnectionkey_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, 0, true, "GeneXusSecurityCommon\\GAMGUID", "start", true, "", "HLP_GAMConnectionEntry.htm");
@@ -674,7 +686,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 70,'',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnsavekey_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(85), 2, 0)+","+"null"+");", "Save Key", bttBtnsavekey_Jsonclick, 5, "Save Key", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOSAVEKEY\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMConnectionEntry.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnsavekey_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(85), 2, 0)+","+"null"+");", context.GetMessage( "WWP_GAM_SaveKey", ""), bttBtnsavekey_Jsonclick, 5, context.GetMessage( "WWP_GAM_SaveKey", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOSAVEKEY\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMConnectionEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -690,14 +702,14 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 75,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnuseautomatickey_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(85), 2, 0)+","+"null"+");", "User automatic key", bttBtnuseautomatickey_Jsonclick, 5, "User automatic key", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOUSEAUTOMATICKEY\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMConnectionEntry.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnuseautomatickey_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(85), 2, 0)+","+"null"+");", context.GetMessage( "WWP_GAM_UseAutomaticKey", ""), bttBtnuseautomatickey_Jsonclick, 5, context.GetMessage( "WWP_GAM_UseAutomaticKey", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOUSEAUTOMATICKEY\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMConnectionEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 77,'',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnusecurrentkey_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(85), 2, 0)+","+"null"+");", "Use current key", bttBtnusecurrentkey_Jsonclick, 5, "Use current key", "", StyleString, ClassString, bttBtnusecurrentkey_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOUSECURRENTKEY\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMConnectionEntry.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnusecurrentkey_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(85), 2, 0)+","+"null"+");", context.GetMessage( "WWP_GAM_UseCurrentKey", ""), bttBtnusecurrentkey_Jsonclick, 5, context.GetMessage( "WWP_GAM_UseCurrentKey", ""), "", StyleString, ClassString, bttBtnusecurrentkey_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOUSECURRENTKEY\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMConnectionEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -771,7 +783,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", edtavConnectionfilexml_Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavConnectionfilexml_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavConnectionfilexml_Internalname, "connection.gam file content", " AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, edtavConnectionfilexml_Internalname, context.GetMessage( "WWP_GAM_ConnectionFileXML", ""), " AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Multiple line edit */
@@ -806,14 +818,14 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 99,'',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(85), 2, 0)+","+"null"+");", bttBtnenter_Caption, bttBtnenter_Jsonclick, 5, "Confirm", "", StyleString, ClassString, bttBtnenter_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMConnectionEntry.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(85), 2, 0)+","+"null"+");", bttBtnenter_Caption, bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtnenter_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMConnectionEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 101,'',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnuacancel_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(85), 2, 0)+","+"null"+");", "Cancel", bttBtnuacancel_Jsonclick, 5, "Cancel", "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOUACANCEL\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMConnectionEntry.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnuacancel_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(85), 2, 0)+","+"null"+");", context.GetMessage( "GX_BtnCancel", ""), bttBtnuacancel_Jsonclick, 5, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOUACANCEL\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMConnectionEntry.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -887,7 +899,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", "Connection", 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "Connection", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -1442,11 +1454,11 @@ namespace GeneXus.Programs {
          {
             /* Read saved SDTs. */
             /* Read saved values. */
-            nRC_GXsfl_85 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_85"), ".", ","), 18, MidpointRounding.ToEven));
-            GRIDWWSYSCONNS_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDWWSYSCONNS_nFirstRecordOnPage"), ".", ","), 18, MidpointRounding.ToEven));
-            GRIDWWSYSCONNS_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDWWSYSCONNS_nEOF"), ".", ","), 18, MidpointRounding.ToEven));
-            subGridwwsysconns_Recordcount = (int)(Math.Round(context.localUtil.CToN( cgiGet( "subGridwwsysconns_Recordcount"), ".", ","), 18, MidpointRounding.ToEven));
-            subGridwwsysconns_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDWWSYSCONNS_Rows"), ".", ","), 18, MidpointRounding.ToEven));
+            nRC_GXsfl_85 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_85"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            GRIDWWSYSCONNS_nFirstRecordOnPage = (long)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDWWSYSCONNS_nFirstRecordOnPage"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            GRIDWWSYSCONNS_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDWWSYSCONNS_nEOF"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            subGridwwsysconns_Recordcount = (int)(Math.Round(context.localUtil.CToN( cgiGet( "subGridwwsysconns_Recordcount"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            subGridwwsysconns_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRIDWWSYSCONNS_Rows"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             GxWebStd.gx_hidden_field( context, "GRIDWWSYSCONNS_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridwwsysconns_Rows), 6, 0, ".", "")));
             Dvpanel_unnamedtable3_Width = cgiGet( "DVPANEL_UNNAMEDTABLE3_Width");
             Dvpanel_unnamedtable3_Autowidth = StringUtil.StrToBool( cgiGet( "DVPANEL_UNNAMEDTABLE3_Autowidth"));
@@ -1558,7 +1570,7 @@ namespace GeneXus.Programs {
          }
          if ( StringUtil.StrCmp(Gx_mode, "KEY") == 0 )
          {
-            Form.Caption = StringUtil.Format( "%1 connection key list", StringUtil.Upper( AV8ConnectionName), "", "", "", "", "", "", "", "");
+            Form.Caption = StringUtil.Format( context.GetMessage( "WWP_GAM_ConnectionKeyList", ""), StringUtil.Upper( AV8ConnectionName), "", "", "", "", "", "", "", "");
             AssignProp("", false, "FORM", "Caption", Form.Caption, true);
             divTblmaindata_Visible = 0;
             AssignProp("", false, divTblmaindata_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divTblmaindata_Visible), 5, 0), true);
@@ -1571,7 +1583,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            Form.Caption = "Connections";
+            Form.Caption = context.GetMessage( "WWP_GAM_Connections", "");
             AssignProp("", false, "FORM", "Caption", Form.Caption, true);
          }
          divLayoutmaintable_Class = divLayoutmaintable_Class+" "+"EditForm";
@@ -1621,7 +1633,7 @@ namespace GeneXus.Programs {
             if ( StringUtil.StrCmp(StringUtil.Trim( AV14GAMSystemConnection.gxTpr_Key), StringUtil.Trim( AV23CurrentConnectionKey)) == 0 )
             {
                AV27hasCurrentKey = true;
-               AV24IsCurrentKey = "(current)";
+               AV24IsCurrentKey = context.GetMessage( "WWP_GAM_Current", "");
                AssignAttri("", false, edtavIscurrentkey_Internalname, AV24IsCurrentKey);
             }
             else
@@ -1922,7 +1934,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavEncryptionkey_Internalname, "Encryption Key", "gx-form-item AttributeLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, edtavEncryptionkey_Internalname, context.GetMessage( "Encryption Key", ""), "gx-form-item AttributeLabel", 0, true, "width: 25%;");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 47,'',false,'" + sGXsfl_85_idx + "',0)\"";
             GxWebStd.gx_single_line_edit( context, edtavEncryptionkey_Internalname, StringUtil.RTrim( AV9EncryptionKey), StringUtil.RTrim( context.localUtil.Format( AV9EncryptionKey, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,47);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavEncryptionkey_Jsonclick, 0, "Attribute", "", "", "", "", edtavEncryptionkey_Visible, edtavEncryptionkey_Enabled, 0, "text", "", 32, "chr", 1, "row", 32, 0, 0, 0, 0, -1, 0, true, "GeneXusSecurityCommon\\GAMEncryptionKey", "start", true, "", "HLP_GAMConnectionEntry.htm");
@@ -1932,7 +1944,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 49,'',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtngenkey_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(85), 2, 0)+","+"null"+");", "Generate Key", bttBtngenkey_Jsonclick, 5, "Generate Key", "", StyleString, ClassString, bttBtngenkey_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOGENKEY\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMConnectionEntry.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtngenkey_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(85), 2, 0)+","+"null"+");", context.GetMessage( "WWP_GAM_GenerateKey", ""), bttBtngenkey_Jsonclick, 5, context.GetMessage( "WWP_GAM_GenerateKey", ""), "", StyleString, ClassString, bttBtngenkey_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOGENKEY\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_GAMConnectionEntry.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -1988,7 +2000,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2024121118243237", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251817241727", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2003,8 +2015,8 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("messages.eng.js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gamconnectionentry.js", "?2024121118243243", false, true);
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("gamconnectionentry.js", "?20251817241731", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -2125,7 +2137,7 @@ namespace GeneXus.Programs {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 88,'',false,'" + sGXsfl_85_idx + "',85)\"";
             ROClassString = "Attribute";
-            GridwwsysconnsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavConnectionfile_Internalname,StringUtil.RTrim( AV32ConnectionFile),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,88);\"","'"+""+"'"+",false,"+"'"+"EVCONNECTIONFILE.CLICK."+sGXsfl_85_idx+"'",(string)"",(string)"",(string)"File",(string)"",(string)edtavConnectionfile_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWIconActionColumn",(string)"",(short)-1,(int)edtavConnectionfile_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)1,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridwwsysconnsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavConnectionfile_Internalname,StringUtil.RTrim( AV32ConnectionFile),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,88);\"","'"+""+"'"+",false,"+"'"+"EVCONNECTIONFILE.CLICK."+sGXsfl_85_idx+"'",(string)"",(string)"",context.GetMessage( "WWP_GAM_File", ""),(string)"",(string)edtavConnectionfile_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWIconActionColumn",(string)"",(short)-1,(int)edtavConnectionfile_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)1,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             /* Subfile cell */
             if ( GridwwsysconnsContainer.GetWrapped() == 1 )
             {
@@ -2134,7 +2146,7 @@ namespace GeneXus.Programs {
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 89,'',false,'" + sGXsfl_85_idx + "',85)\"";
             ROClassString = "Attribute";
-            GridwwsysconnsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavDeleteconnection_Internalname,StringUtil.RTrim( AV33DeleteConnection),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,89);\"","'"+""+"'"+",false,"+"'"+"EVDELETECONNECTION.CLICK."+sGXsfl_85_idx+"'",(string)"",(string)"",(string)"Delete",(string)"",(string)edtavDeleteconnection_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWIconActionColumn",(string)"",(short)-1,(int)edtavDeleteconnection_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)1,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+            GridwwsysconnsRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavDeleteconnection_Internalname,StringUtil.RTrim( AV33DeleteConnection),(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,89);\"","'"+""+"'"+",false,"+"'"+"EVDELETECONNECTION.CLICK."+sGXsfl_85_idx+"'",(string)"",(string)"",context.GetMessage( "WWP_GAM_Delete", ""),(string)"",(string)edtavDeleteconnection_Jsonclick,(short)5,(string)"Attribute",(string)"",(string)ROClassString,(string)"WWIconActionColumn",(string)"",(short)-1,(int)edtavDeleteconnection_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)20,(short)0,(short)1,(short)85,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
             send_integrity_lvl_hashes952( ) ;
             GridwwsysconnsContainer.AddRow(GridwwsysconnsRow);
             nGXsfl_85_idx = ((subGridwwsysconns_Islastpage==1)&&(nGXsfl_85_idx+1>subGridwwsysconns_fnc_Recordsperpage( )) ? 1 : nGXsfl_85_idx+1);
@@ -2187,7 +2199,7 @@ namespace GeneXus.Programs {
                }
             }
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
-            context.SendWebValue( "Connection Key") ;
+            context.SendWebValue( context.GetMessage( "WWP_GAM_ConnectionKey", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+"start"+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+""+""+"\" "+">") ;
             context.SendWebValue( "") ;
@@ -2313,7 +2325,7 @@ namespace GeneXus.Programs {
          edtavPconnectionname_Visible = 1;
          edtavFileconnectionkey_Jsonclick = "";
          edtavFileconnectionkey_Visible = 1;
-         bttBtnenter_Caption = "Confirm";
+         bttBtnenter_Caption = context.GetMessage( "GX_BtnEnter", "");
          bttBtnenter_Visible = 1;
          edtavConnectionfilexml_Enabled = 1;
          edtavConnectionfilexml_Visible = 1;
@@ -2347,7 +2359,7 @@ namespace GeneXus.Programs {
          Dvpanel_tbladdconnkey_Showcollapseicon = Convert.ToBoolean( 0);
          Dvpanel_tbladdconnkey_Collapsed = Convert.ToBoolean( 0);
          Dvpanel_tbladdconnkey_Collapsible = Convert.ToBoolean( -1);
-         Dvpanel_tbladdconnkey_Title = "Connection Key";
+         Dvpanel_tbladdconnkey_Title = context.GetMessage( "WWP_GAM_ConnectionKey", "");
          Dvpanel_tbladdconnkey_Cls = "PanelWithBorder Panel_BaseColor";
          Dvpanel_tbladdconnkey_Autoheight = Convert.ToBoolean( -1);
          Dvpanel_tbladdconnkey_Autowidth = Convert.ToBoolean( 0);
@@ -2357,7 +2369,7 @@ namespace GeneXus.Programs {
          Dvpanel_unnamedtable3_Showcollapseicon = Convert.ToBoolean( 0);
          Dvpanel_unnamedtable3_Collapsed = Convert.ToBoolean( 0);
          Dvpanel_unnamedtable3_Collapsible = Convert.ToBoolean( 0);
-         Dvpanel_unnamedtable3_Title = "Connection";
+         Dvpanel_unnamedtable3_Title = context.GetMessage( "WWP_GAM_Connection", "");
          Dvpanel_unnamedtable3_Cls = "PanelWithBorder Panel_BaseColor";
          Dvpanel_unnamedtable3_Autoheight = Convert.ToBoolean( -1);
          Dvpanel_unnamedtable3_Autowidth = Convert.ToBoolean( 0);
@@ -2366,7 +2378,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = "Connection";
+         Form.Caption = context.GetMessage( "Connection", "");
          subGridwwsysconns_Rows = 0;
          context.GX_msglist.DisplayMode = 1;
          if ( context.isSpaRequest( ) )

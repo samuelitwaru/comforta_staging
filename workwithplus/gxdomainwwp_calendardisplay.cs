@@ -36,7 +36,7 @@ namespace GeneXus.Programs.workwithplus {
          string value;
          rtkey = ((key==null) ? "" : StringUtil.Trim( (string)(key)));
          value = (string)(domain[rtkey]==null?"":domain[rtkey]);
-         return value ;
+         return context.GetMessage( value, "") ;
       }
 
       public static GxSimpleCollection<string> getValues( )

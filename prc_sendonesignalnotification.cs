@@ -93,7 +93,7 @@ namespace GeneXus.Programs {
          AV11HttpClient.AddHeader("Authorization", "Basic MzcxMmQwYzYtNjUyYi00OTk2LWFjZmQtY2Y1MDIyNjU4NWQ1");
          AV11HttpClient.AddHeader("Content-Type", "application/json");
          AV15SDT_OneSignalCustomBody = new SdtSDT_OneSignalCustomBody(context);
-         AV15SDT_OneSignalCustomBody.gxTpr_App_id = "04453574-cfee-45bc-adef-888ecdaa0707";
+         AV15SDT_OneSignalCustomBody.gxTpr_App_id = context.GetMessage( "04453574-cfee-45bc-adef-888ecdaa0707", "");
          AV27GXV1 = 1;
          while ( AV27GXV1 <= AV10DeviceTokenCollection.Count )
          {
@@ -106,11 +106,11 @@ namespace GeneXus.Programs {
          AV15SDT_OneSignalCustomBody.gxTpr_Data = AV24NotificationMetadata;
          AV8body = AV15SDT_OneSignalCustomBody.ToJSonString(false, true);
          AV11HttpClient.AddString(AV8body);
-         AV11HttpClient.Execute("POST", "notifications");
+         AV11HttpClient.Execute(context.GetMessage( "POST", ""), context.GetMessage( "notifications", ""));
          if ( AV11HttpClient.StatusCode == 200 )
          {
             AV22IsSuccessful = true;
-            AV25OutMessage = "Notification Sent Successfully";
+            AV25OutMessage = context.GetMessage( "Notification Sent Successfully", "");
          }
          else
          {
