@@ -1,1 +1,73 @@
-function WWP_IconButton(n){var i='<button  data-event="Event"  class="{{Class}}" title="{{TooltipText}}"> \t<i class="{{BeforeIconClass}}"><\/i>\t{{Caption}}\t<i class="{{AfterIconClass}}"><\/i><\/button>',f={},r,u,t;Mustache.parse(i);r=0;this.show=function(){u=n(this.getContainerControl());r=0;this.setHtml(Mustache.render(i,this,f));this.renderChildContainers();n(this.getContainerControl()).find("[data-event='Event']").on("click",this.onEventHandler.closure(this)).each(function(n){this.setAttribute("data-items-index",n+1)})};this.Scripts=[];this.onEventHandler=function(n){if(n){var t=n.currentTarget;n.preventDefault()}this.Event&&this.Event()};this.autoToggleVisibility=!0;t={};this.renderChildContainers=function(){u.find("[data-slot][data-parent='"+this.ContainerName+"']").each(function(i,r){var e=n(r),f=e.attr("data-slot"),u;u=t[f];u||(u=this.getChildContainer(f),t[f]=u,u.parentNode.removeChild(u));e.append(u);n(u).show()}.closure(this))}}
+function WWP_IconButton($) {
+	  
+	  
+	  
+
+	var template = '<button  data-event=\"Event\"  class=\"{{Class}}\" title=\"{{TooltipText}}\"> 	<i class=\"{{BeforeIconClass}}\"></i>	{{Caption}}	<i class=\"{{AfterIconClass}}\"></i></button>';
+	var partials = {  }; 
+	Mustache.parse(template);
+	var _iOnEvent = 0; 
+	var $container;
+	this.show = function() {
+			$container = $(this.getContainerControl());
+
+			// Raise before show scripts
+
+			_iOnEvent = 0; 
+
+			//if (this.IsPostBack)
+				this.setHtml(Mustache.render(template, this, partials));
+			this.renderChildContainers();
+
+			$(this.getContainerControl())
+				.find("[data-event='Event']")
+				.on('click', this.onEventHandler.closure(this))
+				.each(function (i) {
+					this.setAttribute("data-items-index", i + 1);
+				}); 
+
+			// Raise after show scripts
+
+	}
+
+	this.Scripts = [];
+
+
+
+		this.onEventHandler = function (e) {
+			if (e) {
+				var target = e.currentTarget;
+				e.preventDefault();
+				 
+				 
+				 
+			}
+
+			if (this.Event) {
+				this.Event();
+			}
+		} 
+
+	this.autoToggleVisibility = true;
+
+	var childContainers = {};
+	this.renderChildContainers = function () {
+		$container
+			.find("[data-slot][data-parent='" + this.ContainerName + "']")
+			.each((function (i, slot) {
+				var $slot = $(slot),
+					slotName = $slot.attr('data-slot'),
+					slotContentEl;
+
+				slotContentEl = childContainers[slotName];
+				if (!slotContentEl) {				
+					slotContentEl = this.getChildContainer(slotName)
+					childContainers[slotName] = slotContentEl;
+					slotContentEl.parentNode.removeChild(slotContentEl);
+				}
+				$slot.append(slotContentEl);
+				$(slotContentEl).show();
+			}).closure(this));
+	};
+
+}

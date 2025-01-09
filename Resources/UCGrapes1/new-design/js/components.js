@@ -84,7 +84,7 @@ class ActionListComponent {
     this.categoryData.forEach((category) => {
       const categoryElement = document.createElement("details");
       categoryElement.classList.add("category");
-      categoryElement.setAttribute("data-category", category.label);
+      categoryElement.setAttribute("data-category", category.name);
 
       const summaryElement = document.createElement("summary");
       summaryElement.innerHTML = `${category.label} <i class="fa fa-angle-right"></i>`;
@@ -102,6 +102,7 @@ class ActionListComponent {
         const optionElement = document.createElement("li");
         optionElement.textContent = option.PageName;
         optionElement.id = option.PageId;
+        optionElement.dataset.category = category.name
         categoryContent.appendChild(optionElement);
       });
 
@@ -148,6 +149,7 @@ class ActionListComponent {
     // Toggle display of the search box based on category open state and handle icons
     categories.forEach((category) => {
       category.addEventListener("toggle", function () {
+        console.log(category.dataset)
         self.selectedObject = category.dataset.category;
         const searchBox = this.querySelector(".search-container");
         const icon = this.querySelector("summary i");
@@ -177,6 +179,7 @@ class ActionListComponent {
     // Handle selecting an option and displaying it in the header
     document.querySelectorAll(".category-content li").forEach((item) => {
       item.addEventListener("click", function () {
+        alert(this.dataset.category)
         dropdownHeader.textContent = `${
           this.closest(".category").dataset.category
         }, ${this.textContent}`;
@@ -196,9 +199,7 @@ class ActionListComponent {
             );
             self.toolBoxManager.setAttributeToSelected(
               "tile-action-object",
-              `${this.closest(".category").dataset.category}, ${
-                this.textContent
-              }`
+              `${this.dataset.category}`
             );
             if (self.selectedObject == "Service/Product Page") {
               self.createContentPage(this.id);
