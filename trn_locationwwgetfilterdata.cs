@@ -260,8 +260,8 @@ namespace GeneXus.Programs {
          while ( (pr_default.getStatus(0) != 101) )
          {
             BRK6G2 = false;
-            A11OrganisationId = P006G2_A11OrganisationId[0];
             A31LocationName = P006G2_A31LocationName[0];
+            A11OrganisationId = P006G2_A11OrganisationId[0];
             A35LocationPhone = P006G2_A35LocationPhone[0];
             A34LocationEmail = P006G2_A34LocationEmail[0];
             A29LocationId = P006G2_A29LocationId[0];
@@ -502,8 +502,8 @@ namespace GeneXus.Programs {
          A34LocationEmail = "";
          A35LocationPhone = "";
          A11OrganisationId = Guid.Empty;
-         P006G2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P006G2_A31LocationName = new string[] {""} ;
+         P006G2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P006G2_A35LocationPhone = new string[] {""} ;
          P006G2_A34LocationEmail = new string[] {""} ;
          P006G2_A29LocationId = new Guid[] {Guid.Empty} ;
@@ -522,7 +522,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_locationwwgetfilterdata__default(),
             new Object[][] {
                 new Object[] {
-               P006G2_A11OrganisationId, P006G2_A31LocationName, P006G2_A35LocationPhone, P006G2_A34LocationEmail, P006G2_A29LocationId
+               P006G2_A31LocationName, P006G2_A11OrganisationId, P006G2_A35LocationPhone, P006G2_A34LocationEmail, P006G2_A29LocationId
                }
                , new Object[] {
                P006G3_A11OrganisationId, P006G3_A34LocationEmail, P006G3_A35LocationPhone, P006G3_A31LocationName, P006G3_A29LocationId
@@ -587,8 +587,8 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState AV36GridState ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue AV37GridStateFilterValue ;
       private IDataStoreProvider pr_default ;
-      private Guid[] P006G2_A11OrganisationId ;
       private string[] P006G2_A31LocationName ;
+      private Guid[] P006G2_A11OrganisationId ;
       private string[] P006G2_A35LocationPhone ;
       private string[] P006G2_A34LocationEmail ;
       private Guid[] P006G2_A29LocationId ;
@@ -627,7 +627,7 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int1 = new short[10];
          Object[] GXv_Object2 = new Object[2];
-         scmdbuf = "SELECT OrganisationId, LocationName, LocationPhone, LocationEmail, LocationId FROM Trn_Location";
+         scmdbuf = "SELECT LocationName, OrganisationId, LocationPhone, LocationEmail, LocationId FROM Trn_Location";
          AddWhere(sWhereString, "(OrganisationId = :AV9WWPContext__Organisationid)");
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV65Trn_locationwwds_1_filterfulltext)) )
          {
@@ -985,8 +985,8 @@ namespace GeneXus.Programs {
        switch ( cursor )
        {
              case 0 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
+                ((string[]) buf[0])[0] = rslt.getVarchar(1);
+                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((string[]) buf[2])[0] = rslt.getString(3, 20);
                 ((string[]) buf[3])[0] = rslt.getVarchar(4);
                 ((Guid[]) buf[4])[0] = rslt.getGuid(5);

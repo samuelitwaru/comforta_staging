@@ -2052,7 +2052,7 @@ namespace GeneXus.Programs {
             }
             if ( AV26isAlreadyAdded )
             {
-               GX_msglist.addItem(context.GetMessage( "This Company KVK Number is already registered", ""));
+               GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  context.GetMessage( "This Company KVK Number is already registered", ""),  "error",  "",  "true",  ""));
                AV13SDT_NetworkCompanys = AV11WizardData.gxTpr_Step3.gxTpr_Sdt_networkcompanys;
                gx_BV96 = true;
             }
@@ -2227,7 +2227,14 @@ namespace GeneXus.Programs {
          GXt_guid3 = Guid.Empty;
          new prc_getuserorganisationid(context ).execute( out  GXt_guid3) ;
          AV29Trn_Resident.gxTpr_Organisationid = GXt_guid3;
-         AV29Trn_Resident.gxTpr_Medicalindicationid = AV11WizardData.gxTpr_Step1.gxTpr_Medicalindicationid;
+         if ( (Guid.Empty==AV11WizardData.gxTpr_Step1.gxTpr_Medicalindicationid) )
+         {
+            AV29Trn_Resident.gxTv_SdtTrn_Resident_Medicalindicationid_SetNull();
+         }
+         else
+         {
+            AV29Trn_Resident.gxTpr_Medicalindicationid = AV11WizardData.gxTpr_Step1.gxTpr_Medicalindicationid;
+         }
          AV29Trn_Resident.gxTpr_Residentcountry = AV11WizardData.gxTpr_Step1.gxTpr_Residentcountry;
          AV29Trn_Resident.gxTpr_Residentcity = AV11WizardData.gxTpr_Step1.gxTpr_Residentcity;
          AV29Trn_Resident.gxTpr_Residentzipcode = AV11WizardData.gxTpr_Step1.gxTpr_Residentzipcode;
@@ -2266,13 +2273,13 @@ namespace GeneXus.Programs {
             AV29Trn_Resident.gxTpr_Networkcompany.Add(AV31NetworkCompany, 0);
             AV73GXV18 = (int)(AV73GXV18+1);
          }
-         if ( AV29Trn_Resident.Insert() )
+         GXt_char2 = AV29Trn_Resident.gxTpr_Residentguid;
+         new prc_creategamuseraccountnocommit(context ).execute(  AV29Trn_Resident.gxTpr_Residentemail,  AV29Trn_Resident.gxTpr_Residentgivenname,  AV29Trn_Resident.gxTpr_Residentlastname,  "Resident", ref  GXt_char2, ref  AV48GAMErrorCollection, ref  AV51isSuccessful) ;
+         AV29Trn_Resident.gxTpr_Residentguid = GXt_char2;
+         AssignAttri(sPrefix, false, "AV51isSuccessful", AV51isSuccessful);
+         if ( AV48GAMErrorCollection.Count == 0 )
          {
-            GXt_char2 = AV29Trn_Resident.gxTpr_Residentguid;
-            new prc_creategamuseraccountnocommit(context ).execute(  AV29Trn_Resident.gxTpr_Residentemail,  AV29Trn_Resident.gxTpr_Residentgivenname,  AV29Trn_Resident.gxTpr_Residentlastname,  "Resident", ref  GXt_char2, ref  AV48GAMErrorCollection, ref  AV51isSuccessful) ;
-            AV29Trn_Resident.gxTpr_Residentguid = GXt_char2;
-            AssignAttri(sPrefix, false, "AV51isSuccessful", AV51isSuccessful);
-            if ( AV48GAMErrorCollection.Count == 0 )
+            if ( AV29Trn_Resident.Insert() )
             {
                context.CommitDataStores("wp_createresidentandnetworkstep3",pr_default);
                /* Execute user subroutine: 'CLEARFORMVALUES' */
@@ -2288,23 +2295,23 @@ namespace GeneXus.Programs {
             }
             else
             {
+               AV32ErrorMessages = AV29Trn_Resident.GetMessages();
                context.RollbackDataStores("wp_createresidentandnetworkstep3",pr_default);
-               AV74GXV19 = 1;
-               while ( AV74GXV19 <= AV48GAMErrorCollection.Count )
-               {
-                  AV49GAMErrorItem = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV48GAMErrorCollection.Item(AV74GXV19));
-                  GX_msglist.addItem(context.GetMessage( "Error: ", "")+AV49GAMErrorItem.gxTpr_Message);
-                  AV74GXV19 = (int)(AV74GXV19+1);
-               }
+               /* Execute user subroutine: 'DISPLAYMESSAGES' */
+               S172 ();
+               if (returnInSub) return;
             }
          }
          else
          {
-            AV32ErrorMessages = AV29Trn_Resident.GetMessages();
             context.RollbackDataStores("wp_createresidentandnetworkstep3",pr_default);
-            /* Execute user subroutine: 'DISPLAYMESSAGES' */
-            S172 ();
-            if (returnInSub) return;
+            AV74GXV19 = 1;
+            while ( AV74GXV19 <= AV48GAMErrorCollection.Count )
+            {
+               AV49GAMErrorItem = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV48GAMErrorCollection.Item(AV74GXV19));
+               GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  AV49GAMErrorItem.gxTpr_Message,  "error",  "",  "true",  ""));
+               AV74GXV19 = (int)(AV74GXV19+1);
+            }
          }
       }
 
@@ -2366,7 +2373,7 @@ namespace GeneXus.Programs {
          }
          else
          {
-            GX_msglist.addItem(StringUtil.RTrim( context.localUtil.Format( ((GeneXus.Utils.SdtMessages_Message)AV27Trn_NetworkCompany.GetMessages().Item(1)).gxTpr_Description, "")));
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "Email is incorrect", ""),  "error",  edtavNetworkcompanyemail_Internalname,  "true",  ""));
          }
       }
 
@@ -2544,7 +2551,7 @@ namespace GeneXus.Programs {
          while ( AV80GXV24 <= AV32ErrorMessages.Count )
          {
             AV47Error = ((GeneXus.Utils.SdtMessages_Message)AV32ErrorMessages.Item(AV80GXV24));
-            GX_msglist.addItem(context.GetMessage( "Error: ", "")+AV47Error.gxTpr_Description);
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  AV47Error.gxTpr_Description,  "error",  "",  "true",  ""));
             AV80GXV24 = (int)(AV80GXV24+1);
          }
       }
@@ -2794,7 +2801,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251817115569", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025111522797", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2810,7 +2817,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createresidentandnetworkstep3.js", "?20251817115570", false, true);
+         context.AddJavascriptSource("wp_createresidentandnetworkstep3.js", "?2025111522798", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

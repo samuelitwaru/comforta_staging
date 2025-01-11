@@ -44,39 +44,47 @@ namespace GeneXus.Programs {
       }
 
       public void execute( Guid aP0_PageId ,
-                           out string aP1_Response )
+                           out string aP1_Response ,
+                           out SdtSDT_Error aP2_Error )
       {
          this.AV2PageId = aP0_PageId;
          this.AV3Response = "" ;
+         this.AV4Error = new SdtSDT_Error(context) ;
          initialize();
          ExecuteImpl();
          aP1_Response=this.AV3Response;
+         aP2_Error=this.AV4Error;
       }
 
-      public string executeUdp( Guid aP0_PageId )
+      public SdtSDT_Error executeUdp( Guid aP0_PageId ,
+                                      out string aP1_Response )
       {
-         execute(aP0_PageId, out aP1_Response);
-         return AV3Response ;
+         execute(aP0_PageId, out aP1_Response, out aP2_Error);
+         return AV4Error ;
       }
 
       public void executeSubmit( Guid aP0_PageId ,
-                                 out string aP1_Response )
+                                 out string aP1_Response ,
+                                 out SdtSDT_Error aP2_Error )
       {
          this.AV2PageId = aP0_PageId;
          this.AV3Response = "" ;
+         this.AV4Error = new SdtSDT_Error(context) ;
          SubmitImpl();
          aP1_Response=this.AV3Response;
+         aP2_Error=this.AV4Error;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         args = new Object[] {(Guid)AV2PageId,(string)AV3Response} ;
+         args = new Object[] {(Guid)AV2PageId,(string)AV3Response,(SdtSDT_Error)AV4Error} ;
          ClassLoader.Execute("aprc_createcontentpage","GeneXus.Programs","aprc_createcontentpage", new Object[] {context }, "execute", args);
-         if ( ( args != null ) && ( args.Length == 2 ) )
+         if ( ( args != null ) && ( args.Length == 3 ) )
          {
             AV3Response = (string)(args[1]) ;
+            AV4Error = (SdtSDT_Error)(args[2]) ;
          }
          cleanup();
       }
@@ -93,6 +101,7 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV3Response = "";
+         AV4Error = new SdtSDT_Error(context);
          /* GeneXus formulas. */
       }
 
@@ -101,8 +110,10 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
+      private SdtSDT_Error AV4Error ;
       private Object[] args ;
       private string aP1_Response ;
+      private SdtSDT_Error aP2_Error ;
    }
 
 }

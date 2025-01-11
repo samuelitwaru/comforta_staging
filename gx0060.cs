@@ -1439,7 +1439,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202518172440", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251115235624", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1455,7 +1455,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("gx0060.js", "?202518172441", false, true);
+         context.AddJavascriptSource("gx0060.js", "?20251115235625", false, true);
          /* End function include_jscripts */
       }
 
@@ -1824,6 +1824,7 @@ namespace GeneXus.Programs {
          setEventMetadata("GRID1_LASTPAGE","""{"handler":"subgrid1_lastpage","iparms":[{"av":"GRID1_nFirstRecordOnPage"},{"av":"GRID1_nEOF"},{"av":"subGrid1_Rows","ctrl":"GRID1","prop":"Rows"},{"av":"AV6cLocationId","fld":"vCLOCATIONID"},{"av":"AV7cOrganisationId","fld":"vCORGANISATIONID"},{"av":"AV8cLocationName","fld":"vCLOCATIONNAME"},{"av":"AV9cLocationEmail","fld":"vCLOCATIONEMAIL"},{"av":"AV10cLocationPhone","fld":"vCLOCATIONPHONE"}]}""");
          setEventMetadata("VALIDV_CLOCATIONID","""{"handler":"Validv_Clocationid","iparms":[]}""");
          setEventMetadata("VALIDV_CORGANISATIONID","""{"handler":"Validv_Corganisationid","iparms":[]}""");
+         setEventMetadata("VALIDV_CLOCATIONEMAIL","""{"handler":"Validv_Clocationemail","iparms":[]}""");
          setEventMetadata("NULL","""{"handler":"Valid_Locationphone","iparms":[]}""");
          return  ;
       }

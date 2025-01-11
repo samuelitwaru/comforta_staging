@@ -44,35 +44,49 @@ namespace GeneXus.Programs {
          dsDefault = context.GetDataStore("Default");
       }
 
-      public void execute( Guid aP0_Trn_PageId )
+      public void execute( Guid aP0_Trn_PageId ,
+                           out SdtSDT_Error aP1_Error )
       {
          this.AV13Trn_PageId = aP0_Trn_PageId;
+         this.AV20Error = new SdtSDT_Error(context) ;
          initialize();
          ExecuteImpl();
+         aP1_Error=this.AV20Error;
       }
 
-      public void executeSubmit( Guid aP0_Trn_PageId )
+      public SdtSDT_Error executeUdp( Guid aP0_Trn_PageId )
+      {
+         execute(aP0_Trn_PageId, out aP1_Error);
+         return AV20Error ;
+      }
+
+      public void executeSubmit( Guid aP0_Trn_PageId ,
+                                 out SdtSDT_Error aP1_Error )
       {
          this.AV13Trn_PageId = aP0_Trn_PageId;
+         this.AV20Error = new SdtSDT_Error(context) ;
          SubmitImpl();
+         aP1_Error=this.AV20Error;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_authenticatereceptionist(context ).execute( out  AV18UserName, ref  AV17LocationId, ref  AV19OrganisationId) ;
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV18UserName))) )
+         if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            cleanup();
-            if (true) return;
+            AV20Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV20Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
          }
-         /* Optimized DELETE. */
-         /* Using cursor P009Z2 */
-         pr_default.execute(0, new Object[] {AV13Trn_PageId});
-         pr_default.close(0);
-         pr_default.SmartCacheProvider.SetUpdated("Trn_Page");
-         /* End optimized DELETE. */
+         else
+         {
+            /* Optimized DELETE. */
+            /* Using cursor P009Z2 */
+            pr_default.execute(0, new Object[] {AV13Trn_PageId});
+            pr_default.close(0);
+            pr_default.SmartCacheProvider.SetUpdated("Trn_Page");
+            /* End optimized DELETE. */
+         }
          cleanup();
       }
 
@@ -89,9 +103,7 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV18UserName = "";
-         AV17LocationId = Guid.Empty;
-         AV19OrganisationId = Guid.Empty;
+         AV20Error = new SdtSDT_Error(context);
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_deletepageapi__default(),
             new Object[][] {
                 new Object[] {
@@ -101,14 +113,13 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private string AV18UserName ;
       private Guid AV13Trn_PageId ;
-      private Guid AV17LocationId ;
-      private Guid AV19OrganisationId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
+      private SdtSDT_Error AV20Error ;
       private IDataStoreProvider pr_default ;
+      private SdtSDT_Error aP1_Error ;
    }
 
    public class prc_deletepageapi__default : DataStoreHelperBase, IDataStoreHelper

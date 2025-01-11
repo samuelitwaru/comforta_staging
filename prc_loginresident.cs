@@ -92,11 +92,11 @@ namespace GeneXus.Programs {
             AV19ErrorResponse.gxTpr_Code = StringUtil.Trim( StringUtil.Str( (decimal)(AV10httpclient.StatusCode), 10, 2));
             AV18LoginResponse.gxTpr_Error = AV19ErrorResponse;
             AV16response = AV18LoginResponse.ToJSonString(false, true);
-            new prc_logtoserver(context ).execute(  context.GetMessage( "Error: ", "")+AV19ErrorResponse.ToJSonString(false, true)) ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "Error: ", "")+AV19ErrorResponse.ToJSonString(false, true)) ;
          }
          else
          {
-            new prc_logtoserver(context ).execute(  context.GetMessage( "API Result: ", "")+AV17result) ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "API Result: ", "")+AV17result) ;
             AV18LoginResponse.FromJSonString(AV17result, null);
             AV16response = AV18LoginResponse.ToJSonString(false, true);
          }

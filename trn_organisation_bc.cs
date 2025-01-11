@@ -265,7 +265,7 @@ namespace GeneXus.Programs {
          GXt_char1 = A17OrganisationPhone;
          new prc_concatenateintlphone(context ).execute(  A389OrganisationPhoneCode,  A390OrganisationPhoneNumber, out  GXt_char1) ;
          A17OrganisationPhone = GXt_char1;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A390OrganisationPhoneNumber)) && ! GxRegex.IsMatch(A390OrganisationPhoneNumber,context.GetMessage( "\\b\\d{9}\\b", "")) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A390OrganisationPhoneNumber)) && ! GxRegex.IsMatch(A390OrganisationPhoneNumber,context.GetMessage( "^\\d{9}$", "")) )
          {
             GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "");
             AnyError = 1;

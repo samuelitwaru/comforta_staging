@@ -46,6 +46,11 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+udfc_fs_wc
+uaddelement
+wc_copygeneraldynamicformtolocation
+udynamicform
+udynamicform
 ucreatedynamicform
 uhome
 uhome
@@ -343,7 +348,6 @@ gx0030
 general\ui\masterprompt
 general\ui\masterunanimosidebar
 uformwwgetfilterdata
-uformloaddvcombo
 aprc_getlocationreceptioniststonotify
 aprc_createpermissions
 trn_pageloaddvcombo

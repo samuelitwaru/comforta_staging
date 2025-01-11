@@ -73,39 +73,41 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_authenticatereceptionist(context ).execute( out  AV11UserName, ref  AV12LocationId, ref  AV13OrganisationId) ;
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV11UserName))) )
+         if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            cleanup();
-            if (true) return;
+            AV14Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV14Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
          }
-         AV10response = context.GetMessage( "failure", "");
-         /* Using cursor P009X2 */
-         pr_default.execute(0, new Object[] {AV8MediaId});
-         while ( (pr_default.getStatus(0) != 101) )
+         else
          {
-            GXT9X2 = 0;
-            A409MediaId = P009X2_A409MediaId[0];
-            A410MediaName = P009X2_A410MediaName[0];
-            /* Using cursor P009X3 */
-            pr_default.execute(1, new Object[] {A409MediaId});
-            pr_default.close(1);
-            pr_default.SmartCacheProvider.SetUpdated("Trn_Media");
-            GXT9X2 = 1;
-            AV10response = context.GetMessage( "success", "");
-            AV9File.Source = context.GetMessage( "media/", "")+A410MediaName;
-            if ( AV9File.Exists() )
+            AV10response = context.GetMessage( "failure", "");
+            /* Using cursor P009X2 */
+            pr_default.execute(0, new Object[] {AV8MediaId});
+            while ( (pr_default.getStatus(0) != 101) )
             {
-               AV9File.Delete();
+               GXT9X2 = 0;
+               A409MediaId = P009X2_A409MediaId[0];
+               A410MediaName = P009X2_A410MediaName[0];
+               /* Using cursor P009X3 */
+               pr_default.execute(1, new Object[] {A409MediaId});
+               pr_default.close(1);
+               pr_default.SmartCacheProvider.SetUpdated("Trn_Media");
+               GXT9X2 = 1;
+               AV10response = context.GetMessage( "success", "");
+               AV9File.Source = context.GetMessage( "media/", "")+A410MediaName;
+               if ( AV9File.Exists() )
+               {
+                  AV9File.Delete();
+               }
+               if ( GXT9X2 == 1 )
+               {
+                  context.CommitDataStores("prc_deletemedia",pr_default);
+               }
+               /* Exiting from a For First loop. */
+               if (true) break;
             }
-            if ( GXT9X2 == 1 )
-            {
-               context.CommitDataStores("prc_deletemedia",pr_default);
-            }
-            /* Exiting from a For First loop. */
-            if (true) break;
+            pr_default.close(0);
          }
-         pr_default.close(0);
          cleanup();
       }
 
@@ -123,9 +125,7 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV10response = "";
-         AV11UserName = "";
-         AV12LocationId = Guid.Empty;
-         AV13OrganisationId = Guid.Empty;
+         AV14Error = new SdtSDT_Error(context);
          P009X2_A409MediaId = new Guid[] {Guid.Empty} ;
          P009X2_A410MediaName = new string[] {""} ;
          A409MediaId = Guid.Empty;
@@ -153,16 +153,14 @@ namespace GeneXus.Programs {
 
       private short GXT9X2 ;
       private string AV10response ;
-      private string AV11UserName ;
       private string A410MediaName ;
       private Guid AV8MediaId ;
-      private Guid AV12LocationId ;
-      private Guid AV13OrganisationId ;
       private Guid A409MediaId ;
       private GxFile AV9File ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
+      private SdtSDT_Error AV14Error ;
       private IDataStoreProvider pr_default ;
       private Guid[] P009X2_A409MediaId ;
       private string[] P009X2_A410MediaName ;

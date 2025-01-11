@@ -2900,16 +2900,16 @@ namespace GeneXus.Programs {
       {
       }
 
-      [DataMember( Name = "ResidentSalutation" , Order = 0 )]
+      [DataMember( Name = "ResidentLastName" , Order = 0 )]
       [GxSeudo()]
-      public string gxTpr_Residentsalutation
+      public string gxTpr_Residentlastname
       {
          get {
-            return StringUtil.RTrim( sdt.gxTpr_Residentsalutation) ;
+            return sdt.gxTpr_Residentlastname ;
          }
 
          set {
-            sdt.gxTpr_Residentsalutation = value;
+            sdt.gxTpr_Residentlastname = value;
          }
 
       }

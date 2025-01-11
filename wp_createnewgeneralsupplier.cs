@@ -659,14 +659,31 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell", "start", "top", "", "", "div");
             /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergenemail_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenemail_Internalname, context.GetMessage( "Email", ""), "col-sm-4 AttributeLabel", 1, true, "");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
+            /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 64,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenemail_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenemail, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenemail, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,64);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenemail_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenemail_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, 0, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell", "start", "top", "", "", "div");
+            /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavTrn_suppliergen_suppliergenwebsite_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, edtavTrn_suppliergen_suppliergenwebsite_Internalname, context.GetMessage( "Website", ""), "col-sm-4 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 64,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenwebsite_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenwebsite, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenwebsite, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,64);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenwebsite_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenwebsite_Enabled, 1, "text", "", 50, "chr", 1, "row", 50, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 69,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenwebsite_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenwebsite, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenwebsite, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,69);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenwebsite_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenwebsite_Enabled, 1, "text", "", 50, "chr", 1, "row", 50, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -682,10 +699,10 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Check box */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 69,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 74,'',false,'',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavIspreffered_Internalname, StringUtil.BoolToStr( AV26isPreffered), "", context.GetMessage( "is Preffered", ""), 1, chkavIspreffered.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(69, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,69);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavIspreffered_Internalname, StringUtil.BoolToStr( AV26isPreffered), "", context.GetMessage( "is Preffered", ""), 1, chkavIspreffered.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(74, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,74);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -710,8 +727,8 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 77,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenaddressline1_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenaddressline1, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenaddressline1, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,77);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenaddressline1_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenaddressline1_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 82,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenaddressline1_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenaddressline1, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenaddressline1, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,82);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenaddressline1_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenaddressline1_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -727,8 +744,8 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 82,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenaddressline2_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenaddressline2, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenaddressline2, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,82);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenaddressline2_Jsonclick, 0, "Attribute spacefields", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenaddressline2_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 87,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenaddressline2_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenaddressline2, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenaddressline2, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,87);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenaddressline2_Jsonclick, 0, "Attribute spacefields", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenaddressline2_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -744,8 +761,8 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 87,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenaddresszipcode_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenaddresszipcode, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenaddresszipcode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,87);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenaddresszipcode_Jsonclick, 0, "Attribute spacefields", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenaddresszipcode_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 92,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenaddresszipcode_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenaddresszipcode, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenaddresszipcode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,92);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenaddresszipcode_Jsonclick, 0, "Attribute spacefields", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenaddresszipcode_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -761,8 +778,8 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 92,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenaddresscity_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenaddresscity, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenaddresscity, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,92);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenaddresscity_Jsonclick, 0, "Attribute spacefields", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenaddresscity_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 97,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenaddresscity_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenaddresscity, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenaddresscity, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,97);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenaddresscity_Jsonclick, 0, "Attribute spacefields", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenaddresscity_Enabled, 1, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -809,14 +826,14 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group CellMarginTop10", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 105,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 110,'',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtnenter_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_CreateNewGeneralSupplier.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 107,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 112,'',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtncancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_CreateNewGeneralSupplier.htm");
@@ -834,14 +851,14 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, divHtml_bottomauxiliarcontrols_Internalname, 1, 0, "px", 0, "px", "Section", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 111,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenid_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenid.ToString(), AV7Trn_SupplierGen.gxTpr_Suppliergenid.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,111);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenid_Jsonclick, 0, "Attribute", "", "", "", "", edtavTrn_suppliergen_suppliergenid_Visible, 1, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "", "", false, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 116,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenid_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenid.ToString(), AV7Trn_SupplierGen.gxTpr_Suppliergenid.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,116);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenid_Jsonclick, 0, "Attribute", "", "", "", "", edtavTrn_suppliergen_suppliergenid_Visible, 1, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "", "", false, "", "HLP_WP_CreateNewGeneralSupplier.htm");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 112,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergentypename_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergentypename, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergentypename, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,112);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergentypename_Jsonclick, 0, "Attribute", "", "", "", "", edtavTrn_suppliergen_suppliergentypename_Visible, 1, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 117,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergentypename_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergentypename, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergentypename, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,117);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergentypename_Jsonclick, 0, "Attribute", "", "", "", "", edtavTrn_suppliergen_suppliergentypename_Visible, 1, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 113,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergencontactphone_Internalname, StringUtil.RTrim( AV7Trn_SupplierGen.gxTpr_Suppliergencontactphone), StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergencontactphone, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,113);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergencontactphone_Jsonclick, 0, "Attribute", "", "", "", "", edtavTrn_suppliergen_suppliergencontactphone_Visible, 1, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, 0, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 118,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergencontactphone_Internalname, StringUtil.RTrim( AV7Trn_SupplierGen.gxTpr_Suppliergencontactphone), StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergencontactphone, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,118);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergencontactphone_Jsonclick, 0, "Attribute", "", "", "", "", edtavTrn_suppliergen_suppliergencontactphone_Visible, 1, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, 0, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1169,6 +1186,7 @@ namespace GeneXus.Programs {
             AV7Trn_SupplierGen.gxTpr_Suppliergencompanyname = cgiGet( edtavTrn_suppliergen_suppliergencompanyname_Internalname);
             AV7Trn_SupplierGen.gxTpr_Suppliergencontactname = cgiGet( edtavTrn_suppliergen_suppliergencontactname_Internalname);
             AV7Trn_SupplierGen.gxTpr_Suppliergenphonenumber = cgiGet( edtavTrn_suppliergen_suppliergenphonenumber_Internalname);
+            AV7Trn_SupplierGen.gxTpr_Suppliergenemail = cgiGet( edtavTrn_suppliergen_suppliergenemail_Internalname);
             AV7Trn_SupplierGen.gxTpr_Suppliergenwebsite = cgiGet( edtavTrn_suppliergen_suppliergenwebsite_Internalname);
             AV26isPreffered = StringUtil.StrToBool( cgiGet( chkavIspreffered_Internalname));
             AssignAttri("", false, "AV26isPreffered", AV26isPreffered);
@@ -1253,6 +1271,8 @@ namespace GeneXus.Programs {
                   ucCombo_trn_suppliergen_suppliergentypeid.SendProperty(context, "", false, Combo_trn_suppliergen_suppliergentypeid_Internalname, "Enabled", StringUtil.BoolToStr( Combo_trn_suppliergen_suppliergentypeid_Enabled));
                   edtavTrn_suppliergen_suppliergencontactname_Enabled = 0;
                   AssignProp("", false, edtavTrn_suppliergen_suppliergencontactname_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavTrn_suppliergen_suppliergencontactname_Enabled), 5, 0), true);
+                  edtavTrn_suppliergen_suppliergenemail_Enabled = 0;
+                  AssignProp("", false, edtavTrn_suppliergen_suppliergenemail_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavTrn_suppliergen_suppliergenemail_Enabled), 5, 0), true);
                   edtavTrn_suppliergen_suppliergenwebsite_Enabled = 0;
                   AssignProp("", false, edtavTrn_suppliergen_suppliergenwebsite_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtavTrn_suppliergen_suppliergenwebsite_Enabled), 5, 0), true);
                   chkavIspreffered.Enabled = 0;
@@ -1267,7 +1287,7 @@ namespace GeneXus.Programs {
          else
          {
             AV17LoadSuccess = false;
-            CallWebObject(formatLink("gamnotauthorized.aspx") );
+            CallWebObject(formatLink("wp_notauthorized.aspx") );
             context.wjLocDisableFrm = 1;
          }
          if ( AV17LoadSuccess )
@@ -1461,13 +1481,13 @@ namespace GeneXus.Programs {
       {
          /* 'LOADCOMBOTRN_SUPPLIERGEN_SUPPLIERGENADDRESSCOUNTRY' Routine */
          returnInSub = false;
-         AV42GXV14 = 1;
-         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV41GXV13;
+         AV43GXV15 = 1;
+         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV42GXV14;
          new dp_country(context ).execute( out  GXt_objcol_SdtSDT_Country_SDT_CountryItem3) ;
-         AV41GXV13 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
-         while ( AV42GXV14 <= AV41GXV13.Count )
+         AV42GXV14 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
+         while ( AV43GXV15 <= AV42GXV14.Count )
          {
-            AV24Trn_SupplierGen_SupplierGenAddressCountry_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV41GXV13.Item(AV42GXV14));
+            AV24Trn_SupplierGen_SupplierGenAddressCountry_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV42GXV14.Item(AV43GXV15));
             AV9Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
             AV9Combo_DataItem.gxTpr_Id = AV24Trn_SupplierGen_SupplierGenAddressCountry_DPItem.gxTpr_Countryname;
             AV10ComboTitles = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
@@ -1475,7 +1495,7 @@ namespace GeneXus.Programs {
             AV10ComboTitles.Add(AV24Trn_SupplierGen_SupplierGenAddressCountry_DPItem.gxTpr_Countryflag, 0);
             AV9Combo_DataItem.gxTpr_Title = AV10ComboTitles.ToJSonString(false);
             AV23Trn_SupplierGen_SupplierGenAddressCountry_Data.Add(AV9Combo_DataItem, 0);
-            AV42GXV14 = (int)(AV42GXV14+1);
+            AV43GXV15 = (int)(AV43GXV15+1);
          }
          AV23Trn_SupplierGen_SupplierGenAddressCountry_Data.Sort("Title");
          Combo_trn_suppliergen_suppliergenaddresscountry_Selectedvalue_set = AV7Trn_SupplierGen.gxTpr_Suppliergenaddresscountry;
@@ -1486,13 +1506,13 @@ namespace GeneXus.Programs {
       {
          /* 'LOADCOMBOTRN_SUPPLIERGEN_SUPPLIERGENPHONECODE' Routine */
          returnInSub = false;
-         AV44GXV16 = 1;
-         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV43GXV15;
+         AV45GXV17 = 1;
+         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV44GXV16;
          new dp_country(context ).execute( out  GXt_objcol_SdtSDT_Country_SDT_CountryItem3) ;
-         AV43GXV15 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
-         while ( AV44GXV16 <= AV43GXV15.Count )
+         AV44GXV16 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
+         while ( AV45GXV17 <= AV44GXV16.Count )
          {
-            AV13Trn_SupplierGen_SupplierGenPhoneCode_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV43GXV15.Item(AV44GXV16));
+            AV13Trn_SupplierGen_SupplierGenPhoneCode_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV44GXV16.Item(AV45GXV17));
             AV9Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
             AV9Combo_DataItem.gxTpr_Id = AV13Trn_SupplierGen_SupplierGenPhoneCode_DPItem.gxTpr_Countrydialcode;
             AV10ComboTitles = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
@@ -1500,7 +1520,7 @@ namespace GeneXus.Programs {
             AV10ComboTitles.Add(AV13Trn_SupplierGen_SupplierGenPhoneCode_DPItem.gxTpr_Countryflag, 0);
             AV9Combo_DataItem.gxTpr_Title = AV10ComboTitles.ToJSonString(false);
             AV11Trn_SupplierGen_SupplierGenPhoneCode_Data.Add(AV9Combo_DataItem, 0);
-            AV44GXV16 = (int)(AV44GXV16+1);
+            AV45GXV17 = (int)(AV45GXV17+1);
          }
          AV11Trn_SupplierGen_SupplierGenPhoneCode_Data.Sort("Title");
          Combo_trn_suppliergen_suppliergenphonecode_Selectedvalue_set = AV7Trn_SupplierGen.gxTpr_Suppliergenphonecode;
@@ -1532,12 +1552,12 @@ namespace GeneXus.Programs {
       {
          /* 'SHOW MESSAGES' Routine */
          returnInSub = false;
-         AV46GXV17 = 1;
-         while ( AV46GXV17 <= AV15Messages.Count )
+         AV47GXV18 = 1;
+         while ( AV47GXV18 <= AV15Messages.Count )
          {
-            AV14Message = ((GeneXus.Utils.SdtMessages_Message)AV15Messages.Item(AV46GXV17));
+            AV14Message = ((GeneXus.Utils.SdtMessages_Message)AV15Messages.Item(AV47GXV18));
             GX_msglist.addItem(AV14Message.gxTpr_Description);
-            AV46GXV17 = (int)(AV46GXV17+1);
+            AV47GXV18 = (int)(AV47GXV18+1);
          }
       }
 
@@ -1617,7 +1637,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025181719116", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251115234623", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1633,7 +1653,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_createnewgeneralsupplier.js", "?2025181719117", false, true);
+         context.AddJavascriptSource("wp_createnewgeneralsupplier.js", "?20251115234624", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -1673,6 +1693,7 @@ namespace GeneXus.Programs {
          divUnnamedtable7_Internalname = "UNNAMEDTABLE7";
          divUnnamedtable5_Internalname = "UNNAMEDTABLE5";
          divUnnamedtable4_Internalname = "UNNAMEDTABLE4";
+         edtavTrn_suppliergen_suppliergenemail_Internalname = "TRN_SUPPLIERGEN_SUPPLIERGENEMAIL";
          edtavTrn_suppliergen_suppliergenwebsite_Internalname = "TRN_SUPPLIERGEN_SUPPLIERGENWEBSITE";
          chkavIspreffered_Internalname = "vISPREFFERED";
          divSupplierinformation_Internalname = "SUPPLIERINFORMATION";
@@ -1709,6 +1730,7 @@ namespace GeneXus.Programs {
          chkavIspreffered.Caption = context.GetMessage( "is Preffered", "");
          edtavTrn_suppliergen_suppliergenphonenumber_Enabled = 1;
          edtavTrn_suppliergen_suppliergenwebsite_Enabled = 1;
+         edtavTrn_suppliergen_suppliergenemail_Enabled = 1;
          edtavTrn_suppliergen_suppliergencontactname_Enabled = 1;
          edtavTrn_suppliergen_suppliergencompanyname_Enabled = 1;
          edtavTrn_suppliergen_suppliergenkvknumber_Enabled = 1;
@@ -1735,6 +1757,8 @@ namespace GeneXus.Programs {
          chkavIspreffered.Enabled = 1;
          edtavTrn_suppliergen_suppliergenwebsite_Jsonclick = "";
          edtavTrn_suppliergen_suppliergenwebsite_Enabled = 1;
+         edtavTrn_suppliergen_suppliergenemail_Jsonclick = "";
+         edtavTrn_suppliergen_suppliergenemail_Enabled = 1;
          edtavTrn_suppliergen_suppliergenphonenumber_Jsonclick = "";
          edtavTrn_suppliergen_suppliergenphonenumber_Enabled = 1;
          Combo_trn_suppliergen_suppliergenphonecode_Caption = "";
@@ -1782,7 +1806,8 @@ namespace GeneXus.Programs {
          setEventMetadata("ENTER","""{"handler":"E148C2","iparms":[{"av":"AV16TrnMode","fld":"vTRNMODE","hsh":true},{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV7Trn_SupplierGen","fld":"vTRN_SUPPLIERGEN"},{"av":"Combo_trn_suppliergen_suppliergentypeid_Ddointernalname","ctrl":"COMBO_TRN_SUPPLIERGEN_SUPPLIERGENTYPEID","prop":"DDOInternalName"},{"av":"Combo_trn_suppliergen_suppliergenaddresscountry_Ddointernalname","ctrl":"COMBO_TRN_SUPPLIERGEN_SUPPLIERGENADDRESSCOUNTRY","prop":"DDOInternalName"},{"av":"AV26isPreffered","fld":"vISPREFFERED"},{"av":"AV28Trn_PreferredGenSupplier","fld":"vTRN_PREFERREDGENSUPPLIER"},{"av":"AV15Messages","fld":"vMESSAGES"}]""");
          setEventMetadata("ENTER",""","oparms":[{"av":"AV7Trn_SupplierGen","fld":"vTRN_SUPPLIERGEN"},{"av":"AV15Messages","fld":"vMESSAGES"},{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV28Trn_PreferredGenSupplier","fld":"vTRN_PREFERREDGENSUPPLIER"}]}""");
          setEventMetadata("VALIDV_GXV1","""{"handler":"Validv_Gxv1","iparms":[]}""");
-         setEventMetadata("VALIDV_GXV10","""{"handler":"Validv_Gxv10","iparms":[]}""");
+         setEventMetadata("VALIDV_GXV5","""{"handler":"Validv_Gxv5","iparms":[]}""");
+         setEventMetadata("VALIDV_GXV11","""{"handler":"Validv_Gxv11","iparms":[]}""");
          return  ;
       }
 
@@ -1848,11 +1873,11 @@ namespace GeneXus.Programs {
          GXt_char2 = "";
          AV25defaultCountry = "";
          AV22defaultCountryPhoneCode = "";
-         AV41GXV13 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
+         AV42GXV14 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          AV24Trn_SupplierGen_SupplierGenAddressCountry_DPItem = new SdtSDT_Country_SDT_CountryItem(context);
          AV9Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
          AV10ComboTitles = new GxSimpleCollection<string>();
-         AV43GXV15 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
+         AV44GXV16 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          AV13Trn_SupplierGen_SupplierGenPhoneCode_DPItem = new SdtSDT_Country_SDT_CountryItem(context);
          H008C2_A282SupplierGenTypeId = new Guid[] {Guid.Empty} ;
@@ -1893,6 +1918,7 @@ namespace GeneXus.Programs {
       private int edtavTrn_suppliergen_suppliergencompanyname_Enabled ;
       private int edtavTrn_suppliergen_suppliergencontactname_Enabled ;
       private int edtavTrn_suppliergen_suppliergenphonenumber_Enabled ;
+      private int edtavTrn_suppliergen_suppliergenemail_Enabled ;
       private int edtavTrn_suppliergen_suppliergenwebsite_Enabled ;
       private int edtavTrn_suppliergen_suppliergenaddressline1_Enabled ;
       private int edtavTrn_suppliergen_suppliergenaddressline2_Enabled ;
@@ -1902,9 +1928,9 @@ namespace GeneXus.Programs {
       private int edtavTrn_suppliergen_suppliergenid_Visible ;
       private int edtavTrn_suppliergen_suppliergentypename_Visible ;
       private int edtavTrn_suppliergen_suppliergencontactphone_Visible ;
-      private int AV42GXV14 ;
-      private int AV44GXV16 ;
-      private int AV46GXV17 ;
+      private int AV43GXV15 ;
+      private int AV45GXV17 ;
+      private int AV47GXV18 ;
       private int idxLst ;
       private string AV16TrnMode ;
       private string wcpOAV16TrnMode ;
@@ -1962,6 +1988,8 @@ namespace GeneXus.Programs {
       private string divUnnamedtable7_Internalname ;
       private string edtavTrn_suppliergen_suppliergenphonenumber_Internalname ;
       private string edtavTrn_suppliergen_suppliergenphonenumber_Jsonclick ;
+      private string edtavTrn_suppliergen_suppliergenemail_Internalname ;
+      private string edtavTrn_suppliergen_suppliergenemail_Jsonclick ;
       private string edtavTrn_suppliergen_suppliergenwebsite_Internalname ;
       private string edtavTrn_suppliergen_suppliergenwebsite_Jsonclick ;
       private string chkavIspreffered_Internalname ;
@@ -2036,11 +2064,11 @@ namespace GeneXus.Programs {
       private SdtTrn_PreferredGenSupplier AV28Trn_PreferredGenSupplier ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV15Messages ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 ;
-      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV41GXV13 ;
+      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV42GXV14 ;
       private SdtSDT_Country_SDT_CountryItem AV24Trn_SupplierGen_SupplierGenAddressCountry_DPItem ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item AV9Combo_DataItem ;
       private GxSimpleCollection<string> AV10ComboTitles ;
-      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV43GXV15 ;
+      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV44GXV16 ;
       private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> GXt_objcol_SdtSDT_Country_SDT_CountryItem3 ;
       private SdtSDT_Country_SDT_CountryItem AV13Trn_SupplierGen_SupplierGenPhoneCode_DPItem ;
       private IDataStoreProvider pr_default ;

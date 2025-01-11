@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250109074919"
+  version: "20250111022457"
 servers:
-  - url: httpS://staging.comforta.yukon.software/api
+  - url: https://staging.comforta.yukon.software/api
 paths:
   /auth/resident-login:
     post:
@@ -332,8 +332,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Trn_Media"  
-
+                $ref: "#/components/schemas/UploadMediaOutput"
         404:
           description: "Not found"
 
@@ -359,9 +358,7 @@ paths:
           content:
             application/json:
               schema:
-                type: "string"
-
-
+                $ref: "#/components/schemas/DeleteMediaOutput"
         404:
           description: "Not found"
 
@@ -380,14 +377,11 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/SDT_Media"  
-
+                $ref: "#/components/schemas/GetMediaOutput"
         404:
           description: "Not found"
 
-  /toolbox/pages/list2:
+  /toolbox/pages/list:
     get:
       tags:
         - API_ResidentService  
@@ -395,19 +389,6 @@ paths:
       summary: "Get Pages"
       security: 
         - oAuthGXGAM: []
-      parameters:
-        - name: "Locationid"
-          in: "query"
-          required: false
-          schema:
-            type: "string"
-            format: "uuid"
-        - name: "Organisationid"
-          in: "query"
-          required: false
-          schema:
-            type: "string"
-            format: "uuid"
       
       responses:
         200:
@@ -415,10 +396,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/SDT_Page"  
-
+                $ref: "#/components/schemas/GetPagesOutput"
         404:
           description: "Not found"
 
@@ -592,8 +570,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SDT_Page"  
-
+                $ref: "#/components/schemas/GetSinglePageOutput"
         404:
           description: "Not found"
 
@@ -616,10 +593,15 @@ paths:
       responses:
         200:
           description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Error"  
+
         404:
           description: "Not found"
 
-  /toolbox/pages/list:
+  /toolbox/pages/tree:
     get:
       tags:
         - API_ResidentService  
@@ -627,19 +609,6 @@ paths:
       summary: "Get Pages"
       security: 
         - oAuthGXGAM: []
-      parameters:
-        - name: "Locationid"
-          in: "query"
-          required: false
-          schema:
-            type: "string"
-            format: "uuid"
-        - name: "Organisationid"
-          in: "query"
-          required: false
-          schema:
-            type: "string"
-            format: "uuid"
       
       responses:
         200:
@@ -647,10 +616,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/SDT_PageStructure"  
-
+                $ref: "#/components/schemas/ListPagesOutput"
         404:
           description: "Not found"
 
@@ -675,9 +641,7 @@ paths:
           content:
             application/json:
               schema:
-                type: "string"
-
-
+                $ref: "#/components/schemas/CreatePageOutput"
         404:
           description: "Not found"
 
@@ -702,9 +666,7 @@ paths:
           content:
             application/json:
               schema:
-                type: "string"
-
-
+                $ref: "#/components/schemas/CreateContentPageOutput"
         404:
           description: "Not found"
 
@@ -756,9 +718,7 @@ paths:
           content:
             application/json:
               schema:
-                type: "string"
-
-
+                $ref: "#/components/schemas/UpdatePageOutput"
         404:
           description: "Not found"
 
@@ -767,7 +727,7 @@ paths:
       tags:
         - API_ResidentService  
       operationId: "API_ResidentService.AddPageCildren"
-      summary: "Add Page CHildren"
+      summary: "Add Page Children"
       security: 
         - oAuthGXGAM: []
       requestBody:
@@ -783,9 +743,7 @@ paths:
           content:
             application/json:
               schema:
-                type: "string"
-
-
+                $ref: "#/components/schemas/AddPageCildrenOutput"
         404:
           description: "Not found"
 
@@ -810,8 +768,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SDT_Theme"  
-
+                $ref: "#/components/schemas/UpdateLocationThemeOutput"
         404:
           description: "Not found"
 
@@ -837,8 +794,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SDT_ProductService"  
-
+                $ref: "#/components/schemas/ProductServiceAPIOutput"
         404:
           description: "Not found"
 
@@ -850,19 +806,6 @@ paths:
       summary: "GET Location Theme"
       security: 
         - oAuthGXGAM: []
-      parameters:
-        - name: "Locationid"
-          in: "query"
-          required: false
-          schema:
-            type: "string"
-            format: "uuid"
-        - name: "Organisationid"
-          in: "query"
-          required: false
-          schema:
-            type: "string"
-            format: "uuid"
       
       responses:
         200:
@@ -870,8 +813,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SDT_LocationTheme"  
-
+                $ref: "#/components/schemas/GetLocationThemeOutput"
         404:
           description: "Not found"
 
@@ -887,6 +829,130 @@ components:
             fullcontrol: Full access
 
   schemas:
+    UploadMediaOutput:
+      properties:
+        BC_Trn_Media:
+          description: "Trn_Media"
+          $ref: "#/components/schemas/Trn_Media"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+    DeleteMediaOutput:
+      properties:
+        result:
+          type: "string"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+    GetMediaOutput:
+      properties:
+        SDT_MediaCollection:
+          description: "SDT_Media"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_Media"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+    GetPagesOutput:
+      properties:
+        SDT_PageCollection:
+          description: "SDT_Page"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_Page"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+
+
+
+
+    GetSinglePageOutput:
+      properties:
+        SDT_Page:
+          description: "SDT_Page"
+          $ref: "#/components/schemas/SDT_Page"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+
+    ListPagesOutput:
+      properties:
+        SDT_PageStructureCollection:
+          description: "SDT_Page Structure"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_PageStructure"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+    CreatePageOutput:
+      properties:
+        result:
+          type: "string"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+    CreateContentPageOutput:
+      properties:
+        result:
+          type: "string"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+
+    UpdatePageOutput:
+      properties:
+        result:
+          type: "string"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+    AddPageCildrenOutput:
+      properties:
+        result:
+          type: "string"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+    UpdateLocationThemeOutput:
+      properties:
+        SDT_Theme:
+          description: "SDT_Theme"
+          $ref: "#/components/schemas/SDT_Theme"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+    ProductServiceAPIOutput:
+      properties:
+        SDT_ProductService:
+          description: "SDT_Product Service"
+          $ref: "#/components/schemas/SDT_ProductService"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+    GetLocationThemeOutput:
+      properties:
+        SDT_LocationTheme:
+          description: "SDT_Location Theme"
+          $ref: "#/components/schemas/SDT_LocationTheme"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
     LoginWithQrCodeInput:  
       properties:
         secretKey:
@@ -1297,6 +1363,17 @@ components:
           description: "Location Id"
           type: "string"
           format: "uuid"
+
+
+
+    SDT_Error:
+      properties:
+        Status:
+          description: "Status"
+          type: "string"
+        Message:
+          description: "Message"
+          type: "string"
 
 
 

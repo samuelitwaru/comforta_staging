@@ -415,13 +415,13 @@ namespace GeneXus.Programs {
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vCHECKREQUIREDFIELDSRESULT", AV31CheckRequiredFieldsResult);
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vHASVALIDATIONERRORS", AV10HasValidationErrors);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vHASVALIDATIONERRORS", GetSecureSignedToken( sPrefix, AV10HasValidationErrors, context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vTODAY", context.localUtil.DToC( Gx_date, 0, "/"));
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vTODAY", GetSecureSignedToken( sPrefix, Gx_date, context));
          GxWebStd.gx_hidden_field( context, sPrefix+"vWEBSESSIONKEY", AV6WebSessionKey);
          GxWebStd.gx_hidden_field( context, sPrefix+"MEDICALINDICATIONNAME", A99MedicalIndicationName);
          GxWebStd.gx_hidden_field( context, sPrefix+"MEDICALINDICATIONID", A98MedicalIndicationId.ToString());
          GxWebStd.gx_hidden_field( context, sPrefix+"RESIDENTTYPENAME", A97ResidentTypeName);
          GxWebStd.gx_hidden_field( context, sPrefix+"RESIDENTTYPEID", A96ResidentTypeId.ToString());
-         GxWebStd.gx_hidden_field( context, sPrefix+"vTODAY", context.localUtil.DToC( Gx_date, 0, "/"));
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vTODAY", GetSecureSignedToken( sPrefix, Gx_date, context));
          GxWebStd.gx_hidden_field( context, sPrefix+"vPREVIOUSSTEP", AV8PreviousStep);
          GxWebStd.gx_hidden_field( context, sPrefix+"COMBO_RESIDENTTYPEID_Ddointernalname", StringUtil.RTrim( Combo_residenttypeid_Ddointernalname));
          GxWebStd.gx_hidden_field( context, sPrefix+"COMBO_RESIDENTCOUNTRY_Ddointernalname", StringUtil.RTrim( Combo_residentcountry_Ddointernalname));
@@ -2128,19 +2128,24 @@ namespace GeneXus.Programs {
             AV31CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV31CheckRequiredFieldsResult", AV31CheckRequiredFieldsResult);
          }
+         if ( ! (DateTime.MinValue==AV17ResidentBirthDate) && ( DateTimeUtil.ResetTime ( AV17ResidentBirthDate ) > DateTimeUtil.ResetTime ( Gx_date ) ) )
+         {
+            AV31CheckRequiredFieldsResult = false;
+            AssignAttri(sPrefix, false, "AV31CheckRequiredFieldsResult", AV31CheckRequiredFieldsResult);
+         }
       }
 
       protected void S162( )
       {
          /* 'LOADCOMBORESIDENTCOUNTRY' Routine */
          returnInSub = false;
-         AV58GXV2 = 1;
-         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV57GXV1;
+         AV59GXV2 = 1;
+         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV58GXV1;
          new dp_country(context ).execute( out  GXt_objcol_SdtSDT_Country_SDT_CountryItem3) ;
-         AV57GXV1 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
-         while ( AV58GXV2 <= AV57GXV1.Count )
+         AV58GXV1 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
+         while ( AV59GXV2 <= AV58GXV1.Count )
          {
-            AV37ResidentCountry_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV57GXV1.Item(AV58GXV2));
+            AV37ResidentCountry_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV58GXV1.Item(AV59GXV2));
             AV36Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
             AV36Combo_DataItem.gxTpr_Id = AV37ResidentCountry_DPItem.gxTpr_Countryname;
             AV32ComboTitles = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
@@ -2148,7 +2153,7 @@ namespace GeneXus.Programs {
             AV32ComboTitles.Add(AV37ResidentCountry_DPItem.gxTpr_Countryflag, 0);
             AV36Combo_DataItem.gxTpr_Title = AV32ComboTitles.ToJSonString(false);
             AV33ResidentCountry_Data.Add(AV36Combo_DataItem, 0);
-            AV58GXV2 = (int)(AV58GXV2+1);
+            AV59GXV2 = (int)(AV59GXV2+1);
          }
          AV33ResidentCountry_Data.Sort("Title");
          Combo_residentcountry_Selectedvalue_set = AV26ResidentCountry;
@@ -2211,13 +2216,13 @@ namespace GeneXus.Programs {
       {
          /* 'LOADCOMBORESIDENTHOMEPHONECODE' Routine */
          returnInSub = false;
-         AV62GXV4 = 1;
-         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV61GXV3;
+         AV63GXV4 = 1;
+         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV62GXV3;
          new dp_country(context ).execute( out  GXt_objcol_SdtSDT_Country_SDT_CountryItem3) ;
-         AV61GXV3 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
-         while ( AV62GXV4 <= AV61GXV3.Count )
+         AV62GXV3 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
+         while ( AV63GXV4 <= AV62GXV3.Count )
          {
-            AV48ResidentHomePhoneCode_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV61GXV3.Item(AV62GXV4));
+            AV48ResidentHomePhoneCode_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV62GXV3.Item(AV63GXV4));
             AV36Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
             AV36Combo_DataItem.gxTpr_Id = AV48ResidentHomePhoneCode_DPItem.gxTpr_Countrydialcode;
             AV32ComboTitles = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
@@ -2225,7 +2230,7 @@ namespace GeneXus.Programs {
             AV32ComboTitles.Add(AV48ResidentHomePhoneCode_DPItem.gxTpr_Countryflag, 0);
             AV36Combo_DataItem.gxTpr_Title = AV32ComboTitles.ToJSonString(false);
             AV47ResidentHomePhoneCode_Data.Add(AV36Combo_DataItem, 0);
-            AV62GXV4 = (int)(AV62GXV4+1);
+            AV63GXV4 = (int)(AV63GXV4+1);
          }
          AV47ResidentHomePhoneCode_Data.Sort("Title");
          Combo_residenthomephonecode_Selectedvalue_set = AV44ResidentHomePhoneCode;
@@ -2236,13 +2241,13 @@ namespace GeneXus.Programs {
       {
          /* 'LOADCOMBORESIDENTPHONECODE' Routine */
          returnInSub = false;
-         AV64GXV6 = 1;
-         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV63GXV5;
+         AV65GXV6 = 1;
+         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV64GXV5;
          new dp_country(context ).execute( out  GXt_objcol_SdtSDT_Country_SDT_CountryItem3) ;
-         AV63GXV5 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
-         while ( AV64GXV6 <= AV63GXV5.Count )
+         AV64GXV5 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
+         while ( AV65GXV6 <= AV64GXV5.Count )
          {
-            AV42ResidentPhoneCode_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV63GXV5.Item(AV64GXV6));
+            AV42ResidentPhoneCode_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV64GXV5.Item(AV65GXV6));
             AV36Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
             AV36Combo_DataItem.gxTpr_Id = AV42ResidentPhoneCode_DPItem.gxTpr_Countrydialcode;
             AV32ComboTitles = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
@@ -2250,7 +2255,7 @@ namespace GeneXus.Programs {
             AV32ComboTitles.Add(AV42ResidentPhoneCode_DPItem.gxTpr_Countryflag, 0);
             AV36Combo_DataItem.gxTpr_Title = AV32ComboTitles.ToJSonString(false);
             AV41ResidentPhoneCode_Data.Add(AV36Combo_DataItem, 0);
-            AV64GXV6 = (int)(AV64GXV6+1);
+            AV65GXV6 = (int)(AV65GXV6+1);
          }
          AV41ResidentPhoneCode_Data.Sort("Title");
          Combo_residentphonecode_Selectedvalue_set = AV39ResidentPhoneCode;
@@ -2287,7 +2292,7 @@ namespace GeneXus.Programs {
       {
          /* Residentbirthdate_Controlvaluechanged Routine */
          returnInSub = false;
-         if ( ! (DateTime.MinValue==AV17ResidentBirthDate) && ( DateTimeUtil.ResetTime ( AV17ResidentBirthDate ) >= DateTimeUtil.ResetTime ( Gx_date ) ) )
+         if ( ! (DateTime.MinValue==AV17ResidentBirthDate) && ( DateTimeUtil.ResetTime ( AV17ResidentBirthDate ) > DateTimeUtil.ResetTime ( Gx_date ) ) )
          {
             GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "Invalid Date Of Birth", ""),  "error",  edtavResidentbirthdate_Internalname,  "true",  ""));
             AV31CheckRequiredFieldsResult = false;
@@ -2591,7 +2596,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025181782049", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251115194247", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2607,7 +2612,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createresidentandnetworkstep1.js", "?2025181782049", false, true);
+         context.AddJavascriptSource("wp_createresidentandnetworkstep1.js", "?20251115194247", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2812,7 +2817,7 @@ namespace GeneXus.Programs {
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV7GoingBack","fld":"vGOINGBACK"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"Gx_date","fld":"vTODAY","hsh":true}]""");
          setEventMetadata("REFRESH",""","oparms":[{"av":"AV7GoingBack","fld":"vGOINGBACK"},{"av":"Btnwizardfirstprevious_Visible","ctrl":"BTNWIZARDFIRSTPREVIOUS","prop":"Visible"}]}""");
-         setEventMetadata("ENTER","""{"handler":"E156Q2","iparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV14ResidentGivenName","fld":"vRESIDENTGIVENNAME"},{"av":"AV15ResidentLastName","fld":"vRESIDENTLASTNAME"},{"av":"cmbavResidentgender"},{"av":"AV16ResidentGender","fld":"vRESIDENTGENDER"},{"av":"AV18ResidentEmail","fld":"vRESIDENTEMAIL"},{"av":"AV12ResidentBsnNumber","fld":"vRESIDENTBSNNUMBER"},{"av":"AV23ResidentTypeId","fld":"vRESIDENTTYPEID"},{"av":"Combo_residenttypeid_Ddointernalname","ctrl":"COMBO_RESIDENTTYPEID","prop":"DDOInternalName"},{"av":"AV29ResidentAddressLine1","fld":"vRESIDENTADDRESSLINE1"},{"av":"AV28ResidentZipCode","fld":"vRESIDENTZIPCODE"},{"av":"AV27ResidentCity","fld":"vRESIDENTCITY"},{"av":"AV26ResidentCountry","fld":"vRESIDENTCOUNTRY"},{"av":"Combo_residentcountry_Ddointernalname","ctrl":"COMBO_RESIDENTCOUNTRY","prop":"DDOInternalName"},{"av":"AV39ResidentPhoneCode","fld":"vRESIDENTPHONECODE"},{"av":"AV40ResidentPhoneNumber","fld":"vRESIDENTPHONENUMBER"},{"av":"AV44ResidentHomePhoneCode","fld":"vRESIDENTHOMEPHONECODE"},{"av":"AV45ResidentHomePhoneNumber","fld":"vRESIDENTHOMEPHONENUMBER"},{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV30ResidentAddressLine2","fld":"vRESIDENTADDRESSLINE2"},{"av":"AV21ResidentId","fld":"vRESIDENTID"},{"av":"cmbavResidentsalutation"},{"av":"AV13ResidentSalutation","fld":"vRESIDENTSALUTATION"},{"av":"AV17ResidentBirthDate","fld":"vRESIDENTBIRTHDATE"},{"av":"AV25MedicalIndicationId","fld":"vMEDICALINDICATIONID"},{"av":"AV24ResidentTypeName","fld":"vRESIDENTTYPENAME"}]""");
+         setEventMetadata("ENTER","""{"handler":"E156Q2","iparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV14ResidentGivenName","fld":"vRESIDENTGIVENNAME"},{"av":"AV15ResidentLastName","fld":"vRESIDENTLASTNAME"},{"av":"cmbavResidentgender"},{"av":"AV16ResidentGender","fld":"vRESIDENTGENDER"},{"av":"AV18ResidentEmail","fld":"vRESIDENTEMAIL"},{"av":"AV12ResidentBsnNumber","fld":"vRESIDENTBSNNUMBER"},{"av":"AV23ResidentTypeId","fld":"vRESIDENTTYPEID"},{"av":"Combo_residenttypeid_Ddointernalname","ctrl":"COMBO_RESIDENTTYPEID","prop":"DDOInternalName"},{"av":"AV29ResidentAddressLine1","fld":"vRESIDENTADDRESSLINE1"},{"av":"AV28ResidentZipCode","fld":"vRESIDENTZIPCODE"},{"av":"AV27ResidentCity","fld":"vRESIDENTCITY"},{"av":"AV26ResidentCountry","fld":"vRESIDENTCOUNTRY"},{"av":"Combo_residentcountry_Ddointernalname","ctrl":"COMBO_RESIDENTCOUNTRY","prop":"DDOInternalName"},{"av":"AV17ResidentBirthDate","fld":"vRESIDENTBIRTHDATE"},{"av":"Gx_date","fld":"vTODAY","hsh":true},{"av":"AV39ResidentPhoneCode","fld":"vRESIDENTPHONECODE"},{"av":"AV40ResidentPhoneNumber","fld":"vRESIDENTPHONENUMBER"},{"av":"AV44ResidentHomePhoneCode","fld":"vRESIDENTHOMEPHONECODE"},{"av":"AV45ResidentHomePhoneNumber","fld":"vRESIDENTHOMEPHONENUMBER"},{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV30ResidentAddressLine2","fld":"vRESIDENTADDRESSLINE2"},{"av":"AV21ResidentId","fld":"vRESIDENTID"},{"av":"cmbavResidentsalutation"},{"av":"AV13ResidentSalutation","fld":"vRESIDENTSALUTATION"},{"av":"AV25MedicalIndicationId","fld":"vMEDICALINDICATIONID"},{"av":"AV24ResidentTypeName","fld":"vRESIDENTTYPENAME"}]""");
          setEventMetadata("ENTER",""","oparms":[{"av":"AV31CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV19ResidentPhone","fld":"vRESIDENTPHONE"},{"av":"AV46ResidentHomePhone","fld":"vRESIDENTHOMEPHONE"}]}""");
          setEventMetadata("'WIZARDPREVIOUS'","""{"handler":"E166Q2","iparms":[]}""");
          setEventMetadata("COMBO_MEDICALINDICATIONID.ONOPTIONCLICKED","""{"handler":"E126Q2","iparms":[{"av":"Combo_medicalindicationid_Selectedvalue_get","ctrl":"COMBO_MEDICALINDICATIONID","prop":"SelectedValue_get"},{"av":"Combo_medicalindicationid_Selectedtext_get","ctrl":"COMBO_MEDICALINDICATIONID","prop":"SelectedText_get"},{"av":"AV25MedicalIndicationId","fld":"vMEDICALINDICATIONID"},{"av":"A99MedicalIndicationName","fld":"MEDICALINDICATIONNAME"},{"av":"A98MedicalIndicationId","fld":"MEDICALINDICATIONID"}]""");
@@ -2946,7 +2951,7 @@ namespace GeneXus.Programs {
          AV11WizardData = new SdtWP_CreateResidentAndNetworkData(context);
          AV5WebSession = context.GetSession();
          GXt_char2 = "";
-         AV57GXV1 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
+         AV58GXV1 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          AV37ResidentCountry_DPItem = new SdtSDT_Country_SDT_CountryItem(context);
          AV36Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
          AV32ComboTitles = new GxSimpleCollection<string>();
@@ -2954,9 +2959,9 @@ namespace GeneXus.Programs {
          H006Q2_A99MedicalIndicationName = new string[] {""} ;
          H006Q3_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
          H006Q3_A97ResidentTypeName = new string[] {""} ;
-         AV61GXV3 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
+         AV62GXV3 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          AV48ResidentHomePhoneCode_DPItem = new SdtSDT_Country_SDT_CountryItem(context);
-         AV63GXV5 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
+         AV64GXV5 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          AV42ResidentPhoneCode_DPItem = new SdtSDT_Country_SDT_CountryItem(context);
          BackMsgLst = new msglist();
@@ -3012,9 +3017,9 @@ namespace GeneXus.Programs {
       private int edtavResidentphone_Visible ;
       private int edtavResidenthomephone_Visible ;
       private int edtavResidenttypename_Visible ;
-      private int AV58GXV2 ;
-      private int AV62GXV4 ;
-      private int AV64GXV6 ;
+      private int AV59GXV2 ;
+      private int AV63GXV4 ;
+      private int AV65GXV6 ;
       private int idxLst ;
       private string Combo_residenttypeid_Ddointernalname ;
       private string Combo_residentcountry_Ddointernalname ;
@@ -3237,7 +3242,7 @@ namespace GeneXus.Programs {
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> AV33ResidentCountry_Data ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 ;
       private SdtWP_CreateResidentAndNetworkData AV11WizardData ;
-      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV57GXV1 ;
+      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV58GXV1 ;
       private SdtSDT_Country_SDT_CountryItem AV37ResidentCountry_DPItem ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item AV36Combo_DataItem ;
       private GxSimpleCollection<string> AV32ComboTitles ;
@@ -3246,9 +3251,9 @@ namespace GeneXus.Programs {
       private string[] H006Q2_A99MedicalIndicationName ;
       private Guid[] H006Q3_A96ResidentTypeId ;
       private string[] H006Q3_A97ResidentTypeName ;
-      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV61GXV3 ;
+      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV62GXV3 ;
       private SdtSDT_Country_SDT_CountryItem AV48ResidentHomePhoneCode_DPItem ;
-      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV63GXV5 ;
+      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV64GXV5 ;
       private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> GXt_objcol_SdtSDT_Country_SDT_CountryItem3 ;
       private SdtSDT_Country_SDT_CountryItem AV42ResidentPhoneCode_DPItem ;
       private msglist BackMsgLst ;

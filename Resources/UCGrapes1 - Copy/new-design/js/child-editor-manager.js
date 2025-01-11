@@ -18,7 +18,6 @@ class ChildEditorManager {
     });
     this.dataManager.getPages().then((pages) => {
       this.pages = pages;
-      console.log(pages);
       const homePage = this.pages.find((page) => page.PageName == "Home");
       if (homePage) {
         this.createChildEditor(homePage);
@@ -133,6 +132,7 @@ class ChildEditorManager {
     this.addEditorEventListners(editor);
     this.toolsSection.unDoReDo(editor);
     // Load or Initialize Editor Content
+
     if (page.PageGJSJson) {
       editor.loadProjectData(JSON.parse(page.PageGJSJson));
 
@@ -152,6 +152,8 @@ class ChildEditorManager {
           const pageData = JSON.parse(page.PageGJSJson)
           pageData.pages[0].frames[0].component.components[0].components[0].components[0].components[0].components[0].components[0].attributes.src = this.dataManager.Location.LocationImage_GXI
           pageData.pages[0].frames[0].component.components[0].components[0].components[0].components[0].components[0].components[1].components[0].content = this.dataManager.Location.LocationDescription
+          pageData.pages[0].frames[0].component.components[0].components[0].components[1].components[0].attributes["cta-button-action"] = this.dataManager.Location.LocationPhoneCode + this.dataManager.Location.LocationPhoneNumber
+          pageData.pages[0].frames[0].component.components[0].components[0].components[1].components[1].attributes["cta-button-action"] = this.dataManager.Location.LocationEmail
           editor.DomComponents.clear()
           editor.loadProjectData(pageData);
         }
@@ -238,6 +240,17 @@ class ChildEditorManager {
       hoverable: false,
     });
 
+    editor.on('change', (e, r) => {
+      if (e.changed.changesCount) {
+        const editorId = e.attrsOrig.id
+        console.log(this.editors[`#${editorId}`])
+        if (editorId) {
+          this.toolsSection.autoSavePage(this.editors[`#${editorId}`])
+        }
+      }
+      
+    });
+
     const navigator = this.activateNavigators();
     navigator.updateButtonVisibility();
     navigator.scrollBy(200);
@@ -245,6 +258,7 @@ class ChildEditorManager {
   }
 
   getPage(pageId) {
+    console.log(this.dataManager.pages)
     return this.dataManager.pages.find((page) => page.PageId == pageId);
   }
 
@@ -256,34 +270,90 @@ class ChildEditorManager {
         $("#" + editorContainerId).remove();
         // currentIndex = currentIndex - 1;
         const navigator = this.activateNavigators();
-        navigator.updateScroll();
-        navigator.updateButtonsVisibility();
+        // navigator.updateScroll();
+        // navigator.updateButtonsVisibility();
       });
     }
   }
 
-  loadContentPage(page, editor) {
-    this.dataManager.getContentPageData(page.PageId).then((contentPageData) => {
-      console.log("Loaded Wrapper is: ", editor);
-      let img = editor.getWrapper().find("#product-service-image");
-      let p = editor.getWrapper().find("#product-service-description");
-      if (img.length && p.length) {
-        img[0].setAttributes({ src: contentPageData.ProductServiceImage });
-        p[0].replaceWith(`
-                    <p id="product-service-description" class="content-page-block" style="flex: 1; padding: 0; margin: 0; height: auto; margin-bottom: 15px"
+  loadContentPage(editor, page) {
+    editor.on("load", (model) => {
+      const wrapper = editor.getWrapper();
+      if (page.PageIsContentPage) {
+        this.dataManager
+          .getContentPageData(page.PageId)
+          .then((contentPageData) => {
+            if (wrapper) {
+              // Adjusted the way components are searched
+              const img = wrapper.find(
+                '[data-gjs-type="product-service-image"]'
+              );
+              const p = wrapper.find(
+                '[data-gjs-type="product-service-description"]'
+              );
+
+              if (img.length > 0 && p.length > 0) {
+                console.log("Content Page Data img and p found");
+                img[0].setAttributes({
+                  src: contentPageData.ProductServiceImage,
+                });
+                p[0].replaceWith(`
+                  <p
+                      style="flex: 1; padding: 0; margin: 0; height: auto; margin-bottom: 15px"
                       class="content-page-block"
                       data-gjs-draggable="true"
                       data-gjs-selectable="false"
                       data-gjs-editable="false"
                       data-gjs-droppable="false"
                       data-gjs-highlightable="false"
-                      data-gjs-hoverable="false">
-                        ${contentPageData.ProductServiceDescription}
+                      data-gjs-hoverable="false"
+                      id="product-service-description"
+                      data-gjs-type="product-service-description"
+                    >
+                    ${contentPageData.ProductServiceDescription}
                     </p>
                 `);
-      } else {
-        const projectData = this.initialContentPageTemplate(contentPageData);
-        editor.setComponents(projectData)[0];
+              }
+            }
+
+            const validCallToActionIds =
+              contentPageData.CallToActions?.map(
+                (action) => action.CallToActionId
+              ) || [];
+
+            const ctaComponents = wrapper.find('[data-gjs-type="cta-buttons"]');
+            console.log("ctaComponent: ", ctaComponents);
+
+            // If validCallToActionIds is empty, proceed to remove all ctaButtons
+            if (validCallToActionIds.length === 0) {
+              ctaComponents.forEach((ctaButton) => {
+                ctaButton.remove();
+              });
+            } else {
+              // Otherwise, remove only the ctaButtons not included in validCallToActionIds
+              ctaComponents.forEach((ctaButton) => {
+                const ctaButtonId = ctaButton.attributes.attributes.id.replace(
+                  "id-",
+                  ""
+                );
+
+                if (ctaButtonId) {
+                  if (!validCallToActionIds.includes(ctaButtonId)) {
+                    ctaButton.remove();
+                  }
+                }
+              });
+            }
+
+            // Ensure Call To Actions are applied
+            this.toolsSection.pageContentCtas(
+              contentPageData.CallToActions,
+              editor
+            );
+          })
+          .catch((error) => {
+            console.error("Error loading content page data:", error);
+          });
       }
     });
   }
@@ -507,102 +577,28 @@ class ChildEditorManager {
     }
   }
 
-  // activateNavigators() {
-  //   const wrapper = document.getElementById("child-container");
-  //   const prevButton = document.getElementById("scroll-left");
-  //   const nextButton = document.getElementById("scroll-right");
-
-  //   if (!wrapper || !prevButton || !nextButton) {
-  //     console.error("Essential elements are missing from the DOM");
-  //     return;
-  //   }
-
-  //   const items = document.querySelectorAll(".mobile-frame");
-  //   const itemWidth = 250; // Item width + gap
-  //   const totalItems = items.length;
-
-  //   if (totalItems > 1) {
-  //     wrapper.style.justifyContent = "flex-start";
-  //   } else {
-  //     wrapper.style.justifyContent = "center";
-  //   }
-
-  //   const moveSlide = (direction) => {
-  //     const itemsToScroll = 1; // Number of items to scroll at a time
-
-  //     // Calculate the new index
-  //     const newIndex = currentIndex + (direction * itemsToScroll);
-
-  //     // Prevent scrolling out of bounds
-  //     currentIndex = Math.max(0, Math.min(newIndex, totalItems - 1));
-
-  //     // Scroll by translating the wrapper
-  //     const translateX = currentIndex * itemWidth;
-  //     wrapper.style.transform = `translateX(-${translateX}px)`;
-
-  //     // Update button visibility
-  //     updateButtonsVisibility();
-  //   }
-
-  //   const updateButtonsVisibility = () => {
-  //     prevButton.style.visibility = currentIndex === 0 ? "hidden" : "visible";
-  //     nextButton.style.visibility =
-  //       currentIndex === totalItems - 1 ? "hidden" : "visible";
-  //   }
-
-  //   prevButton.addEventListener("click", () => moveSlide(-1));
-  //   nextButton.addEventListener("click", () => moveSlide(1));
-
-  //   const updateScroll = () => {
-  //     // Remove the specific item
-  //     const items = document.querySelectorAll(".mobile-frame");
-  //     const totalItems = items.length;
-
-  //     // Adjust current index if it's now out of bounds
-  //     currentIndex = Math.min(currentIndex, totalItems - 1);
-
-  //     // Reposition the view
-  //     const translateX = currentIndex * itemWidth;
-  //     wrapper.style.transform = `translateX(-${translateX}px)`;
-
-  //     // Update button visibility
-  //     updateButtonsVisibility();
-  //   }
-
-  //   const scrollToFrame = () => {
-  //     const items = document.querySelectorAll(".mobile-frame");
-  //     const totalItems = items.length;
-
-  //     currentIndex = totalItems - 1;
-
-  //     // Calculate the translation value
-  //     const translateX = currentIndex * itemWidth;
-
-  //     // Apply the transformation to scroll
-  //     wrapper.style.transform = `translateX(-${translateX}px)`;
-  //     // Update button visibility
-  //     updateButtonsVisibility();
-  //   };
-
-  //   // Initialize button visibility
-  //   updateButtonsVisibility();
-
-  //   // Return the utility functions
-  //   return {
-  //     updateScroll,
-  //     scrollToFrame,
-  //     updateButtonsVisibility,
-  //   };
-  // }
   activateNavigators() {
+    const leftNavigator = document.querySelector(".page-navigator-left");
+    const rightNavigator = document.querySelector(".page-navigator-right");
+
     const scrollContainer = document.getElementById("child-container");
     const prevButton = document.getElementById("scroll-left");
     const nextButton = document.getElementById("scroll-right");
 
     const frames = document.querySelectorAll(".mobile-frame");
 
+    leftNavigator.style.display = "block";
+    rightNavigator.style.display = "block";
+
     // Adjust the alignment based on the number of frames
-    const alignment = frames.length > 1 ? "flex-start" : "center";
+    let alignment;
+    if (window.innerWidth <= 1440) {
+      // For screens with max-width 1440px, check the number of frames
+      alignment = frames.length > 1 ? "flex-start" : "center";
+    } else {
+      // For larger screens, use frames.length > 3
+      alignment = frames.length > 3 ? "flex-start" : "center";
+    }
     scrollContainer.style.setProperty("justify-content", alignment);
 
     // Smooth scroll functionality for buttons
@@ -632,7 +628,7 @@ class ChildEditorManager {
     return {
       updateButtonVisibility,
       scrollBy,
-    }
+    };
   }
 
   initialContentPageTemplate(contentPageData) {
@@ -695,7 +691,7 @@ class ChildEditorManager {
                       data-gjs-highlightable="false"
                       data-gjs-hoverable="false"
                       src="${contentPageData.ProductServiceImage}"
-                      
+                      data-gjs-type="product-service-image"
                       alt="Full-width Image"
                     />
                     <p
@@ -708,6 +704,7 @@ class ChildEditorManager {
                       data-gjs-highlightable="false"
                       data-gjs-hoverable="false"
                       id="product-service-description"
+                      data-gjs-type="product-service-description"
                     >
                     ${contentPageData.ProductServiceDescription}
                     </p>
@@ -717,7 +714,6 @@ class ChildEditorManager {
               <div class="cta-button-container" ${defaultConstraints}></div>      
             </div>
           </div>
-    
         `;
   }
 
@@ -1139,5 +1135,4 @@ class ChildEditorManager {
       });
     });
   }
-
 }

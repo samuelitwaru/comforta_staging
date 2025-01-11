@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250109074918"
+  version: "20250111022457"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -2005,6 +2005,14 @@ components:
           description: "Is Image Button"
           type: "boolean"
       x-gx-level: "SDT_ContentPage"
+    SDT_Error:
+      properties:
+        Status:
+          description: "Status"
+          type: "string"
+        Message:
+          description: "Message"
+          type: "string"
     SDT_ErrorResponse:
       properties:
         code:

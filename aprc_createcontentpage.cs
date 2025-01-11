@@ -36,25 +36,7 @@ namespace GeneXus.Programs {
 
       protected override int ExecuteCmdLine( string[] args )
       {
-         Guid aP0_PageId = new Guid()  ;
-         string aP1_Response = new string(' ',0)  ;
-         if ( 0 < args.Length )
-         {
-            aP0_PageId=((Guid)(StringUtil.StrToGuid( (string)(args[0]))));
-         }
-         else
-         {
-            aP0_PageId=Guid.Empty;
-         }
-         if ( 1 < args.Length )
-         {
-            aP1_Response=((string)(args[1]));
-         }
-         else
-         {
-            aP1_Response="";
-         }
-         execute(aP0_PageId, out aP1_Response);
+         context.StatusMessage( "Command line using complex types not supported." );
          return GX.GXRuntime.ExitCode ;
       }
 
@@ -95,90 +77,104 @@ namespace GeneXus.Programs {
       }
 
       public void execute( Guid aP0_PageId ,
-                           out string aP1_Response )
+                           out string aP1_Response ,
+                           out SdtSDT_Error aP2_Error )
       {
          this.AV12PageId = aP0_PageId;
          this.AV17Response = "" ;
+         this.AV22Error = new SdtSDT_Error(context) ;
          initialize();
          ExecuteImpl();
          aP1_Response=this.AV17Response;
+         aP2_Error=this.AV22Error;
       }
 
-      public string executeUdp( Guid aP0_PageId )
+      public SdtSDT_Error executeUdp( Guid aP0_PageId ,
+                                      out string aP1_Response )
       {
-         execute(aP0_PageId, out aP1_Response);
-         return AV17Response ;
+         execute(aP0_PageId, out aP1_Response, out aP2_Error);
+         return AV22Error ;
       }
 
       public void executeSubmit( Guid aP0_PageId ,
-                                 out string aP1_Response )
+                                 out string aP1_Response ,
+                                 out SdtSDT_Error aP2_Error )
       {
          this.AV12PageId = aP0_PageId;
          this.AV17Response = "" ;
+         this.AV22Error = new SdtSDT_Error(context) ;
          SubmitImpl();
          aP1_Response=this.AV17Response;
+         aP2_Error=this.AV22Error;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_authenticatereceptionist(context ).execute( out  AV21UserName, ref  AV19LocationId, ref  AV20OrganisationId) ;
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV21UserName))) )
+         if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
+            AV22Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV22Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
+         }
+         else
+         {
+            AV24Udparg1 = new prc_getuserlocationid(context).executeUdp( );
+            AV25Udparg2 = new prc_getuserorganisationid(context).executeUdp( );
+            /* Using cursor P008Z2 */
+            pr_default.execute(0, new Object[] {AV12PageId, AV24Udparg1, AV25Udparg2});
+            while ( (pr_default.getStatus(0) != 101) )
+            {
+               A11OrganisationId = P008Z2_A11OrganisationId[0];
+               A29LocationId = P008Z2_A29LocationId[0];
+               A58ProductServiceId = P008Z2_A58ProductServiceId[0];
+               AV18BC_Trn_ProductService.Load(AV12PageId, new prc_getuserlocationid(context).executeUdp( ), new prc_getuserorganisationid(context).executeUdp( ));
+               AV16PageName = AV18BC_Trn_ProductService.gxTpr_Productservicename;
+               /* Exiting from a For First loop. */
+               if (true) break;
+            }
+            pr_default.close(0);
+            if ( ! (Guid.Empty==AV18BC_Trn_ProductService.gxTpr_Productserviceid) )
+            {
+               AV8BC_Trn_Page = new SdtTrn_Page(context);
+               AV8BC_Trn_Page.Load(AV12PageId, AV16PageName, AV19LocationId);
+               AV8BC_Trn_Page.gxTpr_Trn_pageid = AV18BC_Trn_ProductService.gxTpr_Productserviceid;
+               AV8BC_Trn_Page.gxTpr_Trn_pagename = AV18BC_Trn_ProductService.gxTpr_Productservicename;
+               AV8BC_Trn_Page.gxTpr_Productserviceid = AV18BC_Trn_ProductService.gxTpr_Productserviceid;
+               AV8BC_Trn_Page.gxTpr_Pagejsoncontent = AV13PageJsonContent;
+               AV8BC_Trn_Page.gxTpr_Pagegjshtml = "";
+               AV8BC_Trn_Page.gxTpr_Pagegjsjson = "";
+               AV8BC_Trn_Page.gxTpr_Pageiscontentpage = true;
+               AV8BC_Trn_Page.gxTpr_Pageispublished = false;
+               GXt_guid1 = Guid.Empty;
+               new prc_getuserlocationid(context ).execute( out  GXt_guid1) ;
+               AV8BC_Trn_Page.gxTpr_Locationid = GXt_guid1;
+               GXt_guid1 = Guid.Empty;
+               new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
+               AV8BC_Trn_Page.gxTpr_Organisationid = GXt_guid1;
+               AV8BC_Trn_Page.Save();
+               if ( AV8BC_Trn_Page.Success() )
+               {
+                  context.CommitDataStores("prc_createcontentpage",pr_default);
+                  AV17Response = context.GetMessage( "Content page saved successfully", "");
+                  new prc_logtofile(context ).execute(  AV17Response) ;
+               }
+               else
+               {
+                  AV27GXV2 = 1;
+                  AV26GXV1 = AV8BC_Trn_Page.GetMessages();
+                  while ( AV27GXV2 <= AV26GXV1.Count )
+                  {
+                     AV9Message = ((GeneXus.Utils.SdtMessages_Message)AV26GXV1.Item(AV27GXV2));
+                     new prc_logtofile(context ).execute(  ">>>>> "+AV9Message.gxTpr_Description) ;
+                     AV27GXV2 = (int)(AV27GXV2+1);
+                  }
+               }
+            }
+            AV17Response = AV8BC_Trn_Page.ToJSonString(true, true);
             cleanup();
             if (true) return;
          }
-         /* Using cursor P008Z2 */
-         pr_default.execute(0, new Object[] {AV12PageId, AV19LocationId, AV20OrganisationId});
-         while ( (pr_default.getStatus(0) != 101) )
-         {
-            A11OrganisationId = P008Z2_A11OrganisationId[0];
-            A29LocationId = P008Z2_A29LocationId[0];
-            A58ProductServiceId = P008Z2_A58ProductServiceId[0];
-            AV18BC_Trn_ProductService.Load(AV12PageId, AV19LocationId, AV20OrganisationId);
-            AV16PageName = AV18BC_Trn_ProductService.gxTpr_Productservicename;
-            /* Exiting from a For First loop. */
-            if (true) break;
-         }
-         pr_default.close(0);
-         if ( ! (Guid.Empty==AV18BC_Trn_ProductService.gxTpr_Productserviceid) )
-         {
-            AV8BC_Trn_Page = new SdtTrn_Page(context);
-            AV8BC_Trn_Page.Load(AV12PageId, AV16PageName, AV19LocationId);
-            AV8BC_Trn_Page.gxTpr_Trn_pageid = AV18BC_Trn_ProductService.gxTpr_Productserviceid;
-            AV8BC_Trn_Page.gxTpr_Trn_pagename = AV18BC_Trn_ProductService.gxTpr_Productservicename;
-            AV8BC_Trn_Page.gxTpr_Productserviceid = AV18BC_Trn_ProductService.gxTpr_Productserviceid;
-            AV8BC_Trn_Page.gxTpr_Pagejsoncontent = AV13PageJsonContent;
-            AV8BC_Trn_Page.gxTpr_Pagegjshtml = "";
-            AV8BC_Trn_Page.gxTpr_Pagegjsjson = "";
-            AV8BC_Trn_Page.gxTpr_Pageiscontentpage = true;
-            AV8BC_Trn_Page.gxTpr_Pageispublished = false;
-            AV8BC_Trn_Page.gxTpr_Locationid = AV19LocationId;
-            AV8BC_Trn_Page.gxTpr_Organisationid = AV20OrganisationId;
-            AV8BC_Trn_Page.Save();
-            if ( AV8BC_Trn_Page.Success() )
-            {
-               context.CommitDataStores("prc_createcontentpage",pr_default);
-               AV17Response = context.GetMessage( "Content page saved successfully", "");
-               new prc_logtofile(context ).execute(  AV17Response) ;
-            }
-            else
-            {
-               AV24GXV2 = 1;
-               AV23GXV1 = AV8BC_Trn_Page.GetMessages();
-               while ( AV24GXV2 <= AV23GXV1.Count )
-               {
-                  AV9Message = ((GeneXus.Utils.SdtMessages_Message)AV23GXV1.Item(AV24GXV2));
-                  new prc_logtofile(context ).execute(  ">>>>> "+AV9Message.gxTpr_Description) ;
-                  AV24GXV2 = (int)(AV24GXV2+1);
-               }
-            }
-         }
-         AV17Response = AV8BC_Trn_Page.ToJSonString(true, true);
-         new prc_logtofile(context ).execute(  AV17Response) ;
-         cleanup();
-         if (true) return;
          cleanup();
       }
 
@@ -195,9 +191,9 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV17Response = "";
-         AV21UserName = "";
-         AV19LocationId = Guid.Empty;
-         AV20OrganisationId = Guid.Empty;
+         AV22Error = new SdtSDT_Error(context);
+         AV24Udparg1 = Guid.Empty;
+         AV25Udparg2 = Guid.Empty;
          P008Z2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P008Z2_A29LocationId = new Guid[] {Guid.Empty} ;
          P008Z2_A58ProductServiceId = new Guid[] {Guid.Empty} ;
@@ -207,8 +203,10 @@ namespace GeneXus.Programs {
          AV18BC_Trn_ProductService = new SdtTrn_ProductService(context);
          AV16PageName = "";
          AV8BC_Trn_Page = new SdtTrn_Page(context);
+         AV19LocationId = Guid.Empty;
          AV13PageJsonContent = "";
-         AV23GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         GXt_guid1 = Guid.Empty;
+         AV26GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV9Message = new GeneXus.Utils.SdtMessages_Message(context);
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.aprc_createcontentpage__datastore1(),
             new Object[][] {
@@ -228,29 +226,32 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV24GXV2 ;
+      private int AV27GXV2 ;
       private string AV17Response ;
       private string AV13PageJsonContent ;
-      private string AV21UserName ;
       private string AV16PageName ;
       private Guid AV12PageId ;
-      private Guid AV19LocationId ;
-      private Guid AV20OrganisationId ;
+      private Guid AV24Udparg1 ;
+      private Guid AV25Udparg2 ;
       private Guid A11OrganisationId ;
       private Guid A29LocationId ;
       private Guid A58ProductServiceId ;
+      private Guid AV19LocationId ;
+      private Guid GXt_guid1 ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
+      private SdtSDT_Error AV22Error ;
       private IDataStoreProvider pr_default ;
       private Guid[] P008Z2_A11OrganisationId ;
       private Guid[] P008Z2_A29LocationId ;
       private Guid[] P008Z2_A58ProductServiceId ;
       private SdtTrn_ProductService AV18BC_Trn_ProductService ;
       private SdtTrn_Page AV8BC_Trn_Page ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV23GXV1 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV26GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV9Message ;
       private string aP1_Response ;
+      private SdtSDT_Error aP2_Error ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
@@ -337,11 +338,11 @@ public class aprc_createcontentpage__default : DataStoreHelperBase, IDataStoreHe
        Object[] prmP008Z2;
        prmP008Z2 = new Object[] {
        new ParDef("AV12PageId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("AV19LocationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("AV20OrganisationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("AV24Udparg1",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("AV25Udparg2",GXType.UniqueIdentifier,36,0)
        };
        def= new CursorDef[] {
-           new CursorDef("P008Z2", "SELECT OrganisationId, LocationId, ProductServiceId FROM Trn_ProductService WHERE ProductServiceId = :AV12PageId and LocationId = :AV19LocationId and OrganisationId = :AV20OrganisationId ORDER BY ProductServiceId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008Z2,1, GxCacheFrequency.OFF ,true,true )
+           new CursorDef("P008Z2", "SELECT OrganisationId, LocationId, ProductServiceId FROM Trn_ProductService WHERE ProductServiceId = :AV12PageId and LocationId = :AV24Udparg1 and OrganisationId = :AV25Udparg2 ORDER BY ProductServiceId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008Z2,1, GxCacheFrequency.OFF ,true,true )
        };
     }
  }

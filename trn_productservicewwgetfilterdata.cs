@@ -245,9 +245,9 @@ namespace GeneXus.Programs {
          while ( (pr_default.getStatus(0) != 101) )
          {
             BRK6Q2 = false;
-            A11OrganisationId = P006Q2_A11OrganisationId[0];
             A59ProductServiceName = P006Q2_A59ProductServiceName[0];
             A29LocationId = P006Q2_A29LocationId[0];
+            A11OrganisationId = P006Q2_A11OrganisationId[0];
             A301ProductServiceTileName = P006Q2_A301ProductServiceTileName[0];
             A408ProductServiceClass = P006Q2_A408ProductServiceClass[0];
             A58ProductServiceId = P006Q2_A58ProductServiceId[0];
@@ -257,8 +257,8 @@ namespace GeneXus.Programs {
                while ( (pr_default.getStatus(0) != 101) && ( StringUtil.StrCmp(P006Q2_A59ProductServiceName[0], A59ProductServiceName) == 0 ) )
                {
                   BRK6Q2 = false;
-                  A11OrganisationId = P006Q2_A11OrganisationId[0];
                   A29LocationId = P006Q2_A29LocationId[0];
+                  A11OrganisationId = P006Q2_A11OrganisationId[0];
                   A58ProductServiceId = P006Q2_A58ProductServiceId[0];
                   AV25count = (long)(AV25count+1);
                   BRK6Q2 = true;
@@ -416,9 +416,9 @@ namespace GeneXus.Programs {
          A29LocationId = Guid.Empty;
          A11OrganisationId = Guid.Empty;
          AV55OrganisationId = Guid.Empty;
-         P006Q2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P006Q2_A59ProductServiceName = new string[] {""} ;
          P006Q2_A29LocationId = new Guid[] {Guid.Empty} ;
+         P006Q2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P006Q2_A301ProductServiceTileName = new string[] {""} ;
          P006Q2_A408ProductServiceClass = new string[] {""} ;
          P006Q2_A58ProductServiceId = new Guid[] {Guid.Empty} ;
@@ -433,7 +433,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_productservicewwgetfilterdata__default(),
             new Object[][] {
                 new Object[] {
-               P006Q2_A11OrganisationId, P006Q2_A59ProductServiceName, P006Q2_A29LocationId, P006Q2_A301ProductServiceTileName, P006Q2_A408ProductServiceClass, P006Q2_A58ProductServiceId
+               P006Q2_A59ProductServiceName, P006Q2_A29LocationId, P006Q2_A11OrganisationId, P006Q2_A301ProductServiceTileName, P006Q2_A408ProductServiceClass, P006Q2_A58ProductServiceId
                }
                , new Object[] {
                P006Q3_A11OrganisationId, P006Q3_A301ProductServiceTileName, P006Q3_A29LocationId, P006Q3_A59ProductServiceName, P006Q3_A408ProductServiceClass, P006Q3_A58ProductServiceId
@@ -494,9 +494,9 @@ namespace GeneXus.Programs {
       private GxSimpleCollection<string> AV49TFProductServiceClass_Sels ;
       private GxSimpleCollection<string> AV63Trn_productservicewwds_6_tfproductserviceclass_sels ;
       private IDataStoreProvider pr_default ;
-      private Guid[] P006Q2_A11OrganisationId ;
       private string[] P006Q2_A59ProductServiceName ;
       private Guid[] P006Q2_A29LocationId ;
+      private Guid[] P006Q2_A11OrganisationId ;
       private string[] P006Q2_A301ProductServiceTileName ;
       private string[] P006Q2_A408ProductServiceClass ;
       private Guid[] P006Q2_A58ProductServiceId ;
@@ -533,7 +533,7 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int1 = new short[6];
          Object[] GXv_Object2 = new Object[2];
-         scmdbuf = "SELECT OrganisationId, ProductServiceName, LocationId, ProductServiceTileName, ProductServiceClass, ProductServiceId FROM Trn_ProductService";
+         scmdbuf = "SELECT ProductServiceName, LocationId, OrganisationId, ProductServiceTileName, ProductServiceClass, ProductServiceId FROM Trn_ProductService";
          AddWhere(sWhereString, "(OrganisationId = :AV55OrganisationId)");
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV60Trn_productservicewwds_3_tfproductservicename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV59Trn_productservicewwds_2_tfproductservicename)) ) )
          {
@@ -735,8 +735,8 @@ namespace GeneXus.Programs {
        switch ( cursor )
        {
              case 0 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
+                ((string[]) buf[0])[0] = rslt.getVarchar(1);
+                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((Guid[]) buf[2])[0] = rslt.getGuid(3);
                 ((string[]) buf[3])[0] = rslt.getString(4, 20);
                 ((string[]) buf[4])[0] = rslt.getVarchar(5);

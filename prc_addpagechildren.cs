@@ -45,43 +45,51 @@ namespace GeneXus.Programs {
 
       public void execute( Guid aP0_ParentPageId ,
                            Guid aP1_ChildPageId ,
-                           out string aP2_response )
+                           out string aP2_response ,
+                           out SdtSDT_Error aP3_Error )
       {
          this.AV2ParentPageId = aP0_ParentPageId;
          this.AV3ChildPageId = aP1_ChildPageId;
          this.AV4response = "" ;
+         this.AV5Error = new SdtSDT_Error(context) ;
          initialize();
          ExecuteImpl();
          aP2_response=this.AV4response;
+         aP3_Error=this.AV5Error;
       }
 
-      public string executeUdp( Guid aP0_ParentPageId ,
-                                Guid aP1_ChildPageId )
+      public SdtSDT_Error executeUdp( Guid aP0_ParentPageId ,
+                                      Guid aP1_ChildPageId ,
+                                      out string aP2_response )
       {
-         execute(aP0_ParentPageId, aP1_ChildPageId, out aP2_response);
-         return AV4response ;
+         execute(aP0_ParentPageId, aP1_ChildPageId, out aP2_response, out aP3_Error);
+         return AV5Error ;
       }
 
       public void executeSubmit( Guid aP0_ParentPageId ,
                                  Guid aP1_ChildPageId ,
-                                 out string aP2_response )
+                                 out string aP2_response ,
+                                 out SdtSDT_Error aP3_Error )
       {
          this.AV2ParentPageId = aP0_ParentPageId;
          this.AV3ChildPageId = aP1_ChildPageId;
          this.AV4response = "" ;
+         this.AV5Error = new SdtSDT_Error(context) ;
          SubmitImpl();
          aP2_response=this.AV4response;
+         aP3_Error=this.AV5Error;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         args = new Object[] {(Guid)AV2ParentPageId,(Guid)AV3ChildPageId,(string)AV4response} ;
+         args = new Object[] {(Guid)AV2ParentPageId,(Guid)AV3ChildPageId,(string)AV4response,(SdtSDT_Error)AV5Error} ;
          ClassLoader.Execute("aprc_addpagechildren","GeneXus.Programs","aprc_addpagechildren", new Object[] {context }, "execute", args);
-         if ( ( args != null ) && ( args.Length == 3 ) )
+         if ( ( args != null ) && ( args.Length == 4 ) )
          {
             AV4response = (string)(args[2]) ;
+            AV5Error = (SdtSDT_Error)(args[3]) ;
          }
          cleanup();
       }
@@ -98,6 +106,7 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV4response = "";
+         AV5Error = new SdtSDT_Error(context);
          /* GeneXus formulas. */
       }
 
@@ -107,8 +116,10 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
+      private SdtSDT_Error AV5Error ;
       private Object[] args ;
       private string aP2_response ;
+      private SdtSDT_Error aP3_Error ;
    }
 
 }

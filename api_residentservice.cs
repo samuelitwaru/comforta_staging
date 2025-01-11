@@ -203,10 +203,6 @@ namespace GeneXus.Programs {
          {
             AV21loginResult = AV20SDT_LoginResidentResponse;
          }
-         else
-         {
-            new prc_logtoserver(context ).execute(  context.GetMessage( "ANY MESSAGE", "")) ;
-         }
       }
 
       protected void E12012( )
@@ -457,7 +453,8 @@ namespace GeneXus.Programs {
                                     string aP2_MediaImageData ,
                                     int aP3_MediaSize ,
                                     string aP4_MediaType ,
-                                    out SdtTrn_Media aP5_BC_Trn_Media )
+                                    out SdtTrn_Media aP5_BC_Trn_Media ,
+                                    out SdtSDT_Error aP6_error )
       {
          this.AV46MediaId = aP0_MediaId;
          this.AV47MediaName = aP1_MediaName;
@@ -466,38 +463,44 @@ namespace GeneXus.Programs {
          this.AV52MediaType = aP4_MediaType;
          initialize();
          /* UploadMedia Constructor */
-         new prc_uploadmedia(context ).execute(  AV46MediaId,  AV47MediaName,  AV49MediaImageData,  AV51MediaSize,  AV52MediaType, out  AV50BC_Trn_Media) ;
+         new prc_uploadmedia(context ).execute(  AV46MediaId,  AV47MediaName,  AV49MediaImageData,  AV51MediaSize,  AV52MediaType, out  AV50BC_Trn_Media, out  AV91error) ;
          aP5_BC_Trn_Media=this.AV50BC_Trn_Media;
+         aP6_error=this.AV91error;
       }
 
       public void gxep_deletemedia( Guid aP0_MediaId ,
-                                    out string aP1_result )
+                                    out string aP1_result ,
+                                    out SdtSDT_Error aP2_error )
       {
          this.AV46MediaId = aP0_MediaId;
+         AV91error = new SdtSDT_Error(context);
          initialize();
          /* DeleteMedia Constructor */
          new prc_deletemedia(context ).execute(  AV46MediaId, out  AV17result) ;
          aP1_result=this.AV17result;
+         aP2_error=this.AV91error;
       }
 
-      public void gxep_getmedia( out GXBaseCollection<SdtSDT_Media> aP0_SDT_MediaCollection )
+      public void gxep_getmedia( out GXBaseCollection<SdtSDT_Media> aP0_SDT_MediaCollection ,
+                                 out SdtSDT_Error aP1_error )
       {
+         AV91error = new SdtSDT_Error(context);
          initialize();
          /* GetMedia Constructor */
          new prc_getmedia(context ).execute( out  AV85SDT_MediaCollection) ;
          aP0_SDT_MediaCollection=this.AV85SDT_MediaCollection;
+         aP1_error=this.AV91error;
       }
 
-      public void gxep_getpages( Guid aP0_locationId ,
-                                 Guid aP1_organisationId ,
-                                 out GXBaseCollection<SdtSDT_Page> aP2_SDT_PageCollection )
+      public void gxep_getpages( out GXBaseCollection<SdtSDT_Page> aP0_SDT_PageCollection ,
+                                 out SdtSDT_Error aP1_error )
       {
-         this.AV12locationId = aP0_locationId;
-         this.AV16organisationId = aP1_organisationId;
+         AV91error = new SdtSDT_Error(context);
          initialize();
          /* GetPages Constructor */
-         new prc_getpages(context ).execute(  AV12locationId,  AV16organisationId, out  AV44SDT_PageCollection) ;
-         aP2_SDT_PageCollection=this.AV44SDT_PageCollection;
+         new prc_getpages(context ).execute( out  AV44SDT_PageCollection, out  AV91error) ;
+         aP0_SDT_PageCollection=this.AV44SDT_PageCollection;
+         aP1_error=this.AV91error;
       }
 
       public void gxep_pagesapi( Guid aP0_locationId ,
@@ -553,53 +556,64 @@ namespace GeneXus.Programs {
       }
 
       public void gxep_getsinglepage( Guid aP0_PageId ,
-                                      out SdtSDT_Page aP1_SDT_Page )
+                                      out SdtSDT_Page aP1_SDT_Page ,
+                                      out SdtSDT_Error aP2_error )
       {
          this.AV54PageId = aP0_PageId;
+         AV91error = new SdtSDT_Error(context);
          initialize();
          /* GetSinglePage Constructor */
-         new prc_getsinglepageapi(context ).execute(  AV54PageId, out  AV55SDT_Page) ;
+         new prc_getsinglepageapi(context ).execute(  AV54PageId, out  AV55SDT_Page, out  AV91error) ;
          aP1_SDT_Page=this.AV55SDT_Page;
+         aP2_error=this.AV91error;
       }
 
-      public void gxep_deletepage( Guid aP0_PageId )
+      public void gxep_deletepage( Guid aP0_PageId ,
+                                   out SdtSDT_Error aP1_error )
       {
          this.AV54PageId = aP0_PageId;
+         AV91error = new SdtSDT_Error(context);
          initialize();
          /* DeletePage Constructor */
-         new prc_deletepageapi(context ).execute(  AV54PageId) ;
+         new prc_deletepageapi(context ).execute(  AV54PageId, out  AV91error) ;
+         aP1_error=this.AV91error;
       }
 
-      public void gxep_listpages( Guid aP0_locationId ,
-                                  Guid aP1_organisationId ,
-                                  out GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageStructureCollection )
+      public void gxep_listpages( out GXBaseCollection<SdtSDT_PageStructure> aP0_SDT_PageStructureCollection ,
+                                  out SdtSDT_Error aP1_error )
       {
-         this.AV12locationId = aP0_locationId;
-         this.AV16organisationId = aP1_organisationId;
+         AV91error = new SdtSDT_Error(context);
          initialize();
          /* ListPages Constructor */
-         new prc_listpages(context ).execute(  AV12locationId,  AV16organisationId, out  AV64SDT_PageStructureCollection) ;
-         aP2_SDT_PageStructureCollection=this.AV64SDT_PageStructureCollection;
+         new prc_listpages(context ).execute( out  AV64SDT_PageStructureCollection, out  AV91error) ;
+         aP0_SDT_PageStructureCollection=this.AV64SDT_PageStructureCollection;
+         aP1_error=this.AV91error;
       }
 
       public void gxep_createpage( string aP0_PageName ,
-                                   out string aP1_result )
+                                   out string aP1_result ,
+                                   out SdtSDT_Error aP2_error )
       {
          this.AV60PageName = aP0_PageName;
+         AV91error = new SdtSDT_Error(context);
          initialize();
          /* CreatePage Constructor */
-         new prc_createpage(context ).execute(  AV60PageName, ref  AV17result) ;
+         new prc_createpage(context ).execute(  AV60PageName, ref  AV17result, out  AV91error) ;
          aP1_result=this.AV17result;
+         aP2_error=this.AV91error;
       }
 
       public void gxep_createcontentpage( Guid aP0_PageId ,
-                                          out string aP1_result )
+                                          out string aP1_result ,
+                                          out SdtSDT_Error aP2_error )
       {
          this.AV54PageId = aP0_PageId;
+         AV91error = new SdtSDT_Error(context);
          initialize();
          /* CreateContentPage Constructor */
-         new prc_createcontentpage(context ).execute(  AV54PageId, out  AV17result) ;
+         new prc_createcontentpage(context ).execute(  AV54PageId, out  AV17result, out  AV91error) ;
          aP1_result=this.AV17result;
+         aP2_error=this.AV91error;
       }
 
       public void gxep_savepage( Guid aP0_PageId ,
@@ -627,7 +641,8 @@ namespace GeneXus.Programs {
                                    string aP4_PageGJSJson ,
                                    bool aP5_PageIsPublished ,
                                    bool aP6_IsNotifyResidents ,
-                                   out string aP7_result )
+                                   out string aP7_result ,
+                                   out SdtSDT_Error aP8_error )
       {
          this.AV54PageId = aP0_PageId;
          this.AV60PageName = aP1_PageName;
@@ -636,54 +651,64 @@ namespace GeneXus.Programs {
          this.AV57PageGJSJson = aP4_PageGJSJson;
          this.AV65PageIsPublished = aP5_PageIsPublished;
          this.AV88IsNotifyResidents = aP6_IsNotifyResidents;
+         AV91error = new SdtSDT_Error(context);
          initialize();
          /* UpdatePage Constructor */
-         new prc_updatepage(context ).execute( ref  AV54PageId, ref  AV60PageName, ref  AV58PageJsonContent, ref  AV56PageGJSHtml, ref  AV57PageGJSJson, ref  AV65PageIsPublished, ref  AV88IsNotifyResidents, out  AV17result) ;
+         new prc_updatepage(context ).execute( ref  AV54PageId, ref  AV60PageName, ref  AV58PageJsonContent, ref  AV56PageGJSHtml, ref  AV57PageGJSJson, ref  AV65PageIsPublished, ref  AV88IsNotifyResidents, out  AV17result, out  AV91error) ;
          aP7_result=this.AV17result;
+         aP8_error=this.AV91error;
       }
 
       public void gxep_addpagecildren( Guid aP0_ParentPageId ,
                                        Guid aP1_ChildPageId ,
-                                       out string aP2_result )
+                                       out string aP2_result ,
+                                       out SdtSDT_Error aP3_error )
       {
          this.AV61ParentPageId = aP0_ParentPageId;
          this.AV62ChildPageId = aP1_ChildPageId;
+         AV91error = new SdtSDT_Error(context);
          initialize();
          /* AddPageCildren Constructor */
-         new prc_addpagechildren(context ).execute(  AV61ParentPageId,  AV62ChildPageId, out  AV17result) ;
+         new prc_addpagechildren(context ).execute(  AV61ParentPageId,  AV62ChildPageId, out  AV17result, out  AV91error) ;
          aP2_result=this.AV17result;
+         aP3_error=this.AV91error;
       }
 
       public void gxep_updatelocationtheme( Guid aP0_ThemeId ,
-                                            out SdtSDT_Theme aP1_SDT_Theme )
+                                            out SdtSDT_Theme aP1_SDT_Theme ,
+                                            out SdtSDT_Error aP2_error )
       {
          this.AV71ThemeId = aP0_ThemeId;
+         AV91error = new SdtSDT_Error(context);
          initialize();
          /* UpdateLocationTheme Constructor */
-         new prc_updatelocationtheme(context ).execute(  AV71ThemeId, out  AV72SDT_Theme) ;
+         new prc_updatelocationtheme(context ).execute(  AV71ThemeId, out  AV72SDT_Theme, out  AV91error) ;
          aP1_SDT_Theme=this.AV72SDT_Theme;
+         aP2_error=this.AV91error;
       }
 
       public void gxep_productserviceapi( Guid aP0_ProductServiceId ,
-                                          out SdtSDT_ProductService aP1_SDT_ProductService )
+                                          out SdtSDT_ProductService aP1_SDT_ProductService ,
+                                          out SdtSDT_Error aP2_error )
       {
          this.AV66ProductServiceId = aP0_ProductServiceId;
+         AV91error = new SdtSDT_Error(context);
          initialize();
          /* ProductServiceAPI Constructor */
-         new prc_productserviceapi(context ).execute(  AV66ProductServiceId, ref  AV67SDT_ProductService) ;
+         new prc_productserviceapi(context ).execute(  AV66ProductServiceId, out  AV67SDT_ProductService, out  AV91error) ;
          aP1_SDT_ProductService=this.AV67SDT_ProductService;
+         aP2_error=this.AV91error;
       }
 
-      public void gxep_getlocationtheme( Guid aP0_locationId ,
-                                         Guid aP1_organisationId ,
-                                         out SdtSDT_LocationTheme aP2_SDT_LocationTheme )
+      public void gxep_getlocationtheme( out SdtSDT_LocationTheme aP0_SDT_LocationTheme ,
+                                         out SdtSDT_Error aP1_error )
       {
-         this.AV12locationId = aP0_locationId;
-         this.AV16organisationId = aP1_organisationId;
+         AV91error = new SdtSDT_Error(context);
          initialize();
          /* GetLocationTheme Constructor */
-         new prc_getlocationtheme(context ).execute( ref  AV12locationId, ref  AV16organisationId, out  AV83SDT_LocationTheme) ;
-         aP2_SDT_LocationTheme=this.AV83SDT_LocationTheme;
+         new prc_getlocationtheme(context ).execute( out  AV83SDT_LocationTheme, out  AV91error) ;
+         aP0_SDT_LocationTheme=this.AV83SDT_LocationTheme;
+         aP1_error=this.AV91error;
       }
 
       public override void cleanup( )
@@ -702,6 +727,7 @@ namespace GeneXus.Programs {
          AV59SDT_AgendaLocation = new GXBaseCollection<SdtSDT_AgendaLocation>( context, "SDT_AgendaLocation", "Comforta_version2");
          AV80SDT_ResidentNotification = new GXBaseCollection<SdtSDT_ResidentNotification>( context, "SDT_ResidentNotification", "Comforta_version2");
          AV50BC_Trn_Media = new SdtTrn_Media(context);
+         AV91error = new SdtSDT_Error(context);
          AV85SDT_MediaCollection = new GXBaseCollection<SdtSDT_Media>( context, "SDT_Media", "Comforta_version2");
          AV44SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>( context, "SDT_Page", "Comforta_version2");
          AV70SDT_MobilePageCollection = new GXBaseCollection<SdtSDT_MobilePage>( context, "SDT_MobilePage", "Comforta_version2");
@@ -771,11 +797,15 @@ namespace GeneXus.Programs {
       protected string aP0_result ;
       protected SdtTrn_Media AV50BC_Trn_Media ;
       protected SdtTrn_Media aP5_BC_Trn_Media ;
+      protected SdtSDT_Error AV91error ;
+      protected SdtSDT_Error aP6_error ;
       protected string aP1_result ;
+      protected SdtSDT_Error aP2_error ;
       protected GXBaseCollection<SdtSDT_Media> AV85SDT_MediaCollection ;
       protected GXBaseCollection<SdtSDT_Media> aP0_SDT_MediaCollection ;
+      protected SdtSDT_Error aP1_error ;
       protected GXBaseCollection<SdtSDT_Page> AV44SDT_PageCollection ;
-      protected GXBaseCollection<SdtSDT_Page> aP2_SDT_PageCollection ;
+      protected GXBaseCollection<SdtSDT_Page> aP0_SDT_PageCollection ;
       protected GXBaseCollection<SdtSDT_MobilePage> AV70SDT_MobilePageCollection ;
       protected GXBaseCollection<SdtSDT_MobilePage> aP2_SDT_MobilePageCollection ;
       protected SdtSDT_MobilePage AV75SDT_MobilePage ;
@@ -787,15 +817,17 @@ namespace GeneXus.Programs {
       protected SdtSDT_Page AV55SDT_Page ;
       protected SdtSDT_Page aP1_SDT_Page ;
       protected GXBaseCollection<SdtSDT_PageStructure> AV64SDT_PageStructureCollection ;
-      protected GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageStructureCollection ;
+      protected GXBaseCollection<SdtSDT_PageStructure> aP0_SDT_PageStructureCollection ;
       protected string aP5_result ;
       protected string aP7_result ;
+      protected SdtSDT_Error aP8_error ;
+      protected SdtSDT_Error aP3_error ;
       protected SdtSDT_Theme AV72SDT_Theme ;
       protected SdtSDT_Theme aP1_SDT_Theme ;
       protected SdtSDT_ProductService AV67SDT_ProductService ;
       protected SdtSDT_ProductService aP1_SDT_ProductService ;
       protected SdtSDT_LocationTheme AV83SDT_LocationTheme ;
-      protected SdtSDT_LocationTheme aP2_SDT_LocationTheme ;
+      protected SdtSDT_LocationTheme aP0_SDT_LocationTheme ;
    }
 
 }

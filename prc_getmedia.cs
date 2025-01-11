@@ -69,38 +69,41 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_authenticatereceptionist(context ).execute( out  AV10UserName, ref  AV11LocationId, ref  AV12OrganisationId) ;
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV10UserName))) )
+         if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            cleanup();
-            if (true) return;
+            AV13Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV13Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
          }
-         /* Using cursor P009Y2 */
-         pr_default.execute(0, new Object[] {AV11LocationId});
-         while ( (pr_default.getStatus(0) != 101) )
+         else
          {
-            A29LocationId = P009Y2_A29LocationId[0];
-            A40000MediaImage_GXI = P009Y2_A40000MediaImage_GXI[0];
-            n40000MediaImage_GXI = P009Y2_n40000MediaImage_GXI[0];
-            A409MediaId = P009Y2_A409MediaId[0];
-            A410MediaName = P009Y2_A410MediaName[0];
-            A413MediaSize = P009Y2_A413MediaSize[0];
-            A414MediaType = P009Y2_A414MediaType[0];
-            A412MediaUrl = P009Y2_A412MediaUrl[0];
-            A411MediaImage = P009Y2_A411MediaImage[0];
-            n411MediaImage = P009Y2_n411MediaImage[0];
-            AV8SDT_Media = new SdtSDT_Media(context);
-            AV8SDT_Media.gxTpr_Mediaid = A409MediaId;
-            AV8SDT_Media.gxTpr_Medianame = A410MediaName;
-            AV8SDT_Media.gxTpr_Mediaimage = A411MediaImage;
-            AV8SDT_Media.gxTpr_Mediaimage_gxi = A40000MediaImage_GXI;
-            AV8SDT_Media.gxTpr_Mediasize = A413MediaSize;
-            AV8SDT_Media.gxTpr_Mediatype = A414MediaType;
-            AV8SDT_Media.gxTpr_Mediaurl = A412MediaUrl;
-            AV9SDT_MediaCollection.Add(AV8SDT_Media, 0);
-            pr_default.readNext(0);
+            AV15Udparg1 = new prc_getuserlocationid(context).executeUdp( );
+            /* Using cursor P009Y2 */
+            pr_default.execute(0, new Object[] {AV15Udparg1});
+            while ( (pr_default.getStatus(0) != 101) )
+            {
+               A29LocationId = P009Y2_A29LocationId[0];
+               A40000MediaImage_GXI = P009Y2_A40000MediaImage_GXI[0];
+               n40000MediaImage_GXI = P009Y2_n40000MediaImage_GXI[0];
+               A409MediaId = P009Y2_A409MediaId[0];
+               A410MediaName = P009Y2_A410MediaName[0];
+               A413MediaSize = P009Y2_A413MediaSize[0];
+               A414MediaType = P009Y2_A414MediaType[0];
+               A412MediaUrl = P009Y2_A412MediaUrl[0];
+               A411MediaImage = P009Y2_A411MediaImage[0];
+               n411MediaImage = P009Y2_n411MediaImage[0];
+               AV8SDT_Media = new SdtSDT_Media(context);
+               AV8SDT_Media.gxTpr_Mediaid = A409MediaId;
+               AV8SDT_Media.gxTpr_Medianame = A410MediaName;
+               AV8SDT_Media.gxTpr_Mediaimage = A411MediaImage;
+               AV8SDT_Media.gxTpr_Mediaimage_gxi = A40000MediaImage_GXI;
+               AV8SDT_Media.gxTpr_Mediasize = A413MediaSize;
+               AV8SDT_Media.gxTpr_Mediatype = A414MediaType;
+               AV8SDT_Media.gxTpr_Mediaurl = A412MediaUrl;
+               AV9SDT_MediaCollection.Add(AV8SDT_Media, 0);
+               pr_default.readNext(0);
+            }
+            pr_default.close(0);
          }
-         pr_default.close(0);
          cleanup();
       }
 
@@ -117,9 +120,8 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV9SDT_MediaCollection = new GXBaseCollection<SdtSDT_Media>( context, "SDT_Media", "Comforta_version2");
-         AV10UserName = "";
-         AV11LocationId = Guid.Empty;
-         AV12OrganisationId = Guid.Empty;
+         AV13Error = new SdtSDT_Error(context);
+         AV15Udparg1 = Guid.Empty;
          P009Y2_A29LocationId = new Guid[] {Guid.Empty} ;
          P009Y2_A40000MediaImage_GXI = new string[] {""} ;
          P009Y2_n40000MediaImage_GXI = new bool[] {false} ;
@@ -152,19 +154,18 @@ namespace GeneXus.Programs {
       private string A414MediaType ;
       private bool n40000MediaImage_GXI ;
       private bool n411MediaImage ;
-      private string AV10UserName ;
       private string A40000MediaImage_GXI ;
       private string A410MediaName ;
       private string A412MediaUrl ;
       private string A411MediaImage ;
-      private Guid AV11LocationId ;
-      private Guid AV12OrganisationId ;
+      private Guid AV15Udparg1 ;
       private Guid A29LocationId ;
       private Guid A409MediaId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GXBaseCollection<SdtSDT_Media> AV9SDT_MediaCollection ;
+      private SdtSDT_Error AV13Error ;
       private IDataStoreProvider pr_default ;
       private Guid[] P009Y2_A29LocationId ;
       private string[] P009Y2_A40000MediaImage_GXI ;
@@ -197,10 +198,10 @@ namespace GeneXus.Programs {
        {
           Object[] prmP009Y2;
           prmP009Y2 = new Object[] {
-          new ParDef("AV11LocationId",GXType.UniqueIdentifier,36,0)
+          new ParDef("AV15Udparg1",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P009Y2", "SELECT LocationId, MediaImage_GXI, MediaId, MediaName, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE LocationId = :AV11LocationId ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Y2,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P009Y2", "SELECT LocationId, MediaImage_GXI, MediaId, MediaName, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE LocationId = :AV15Udparg1 ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Y2,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }

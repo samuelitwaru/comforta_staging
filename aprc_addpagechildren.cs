@@ -36,34 +36,7 @@ namespace GeneXus.Programs {
 
       protected override int ExecuteCmdLine( string[] args )
       {
-         Guid aP0_ParentPageId = new Guid()  ;
-         Guid aP1_ChildPageId = new Guid()  ;
-         string aP2_response = new string(' ',0)  ;
-         if ( 0 < args.Length )
-         {
-            aP0_ParentPageId=((Guid)(StringUtil.StrToGuid( (string)(args[0]))));
-         }
-         else
-         {
-            aP0_ParentPageId=Guid.Empty;
-         }
-         if ( 1 < args.Length )
-         {
-            aP1_ChildPageId=((Guid)(StringUtil.StrToGuid( (string)(args[1]))));
-         }
-         else
-         {
-            aP1_ChildPageId=Guid.Empty;
-         }
-         if ( 2 < args.Length )
-         {
-            aP2_response=((string)(args[2]));
-         }
-         else
-         {
-            aP2_response="";
-         }
-         execute(aP0_ParentPageId, aP1_ChildPageId, out aP2_response);
+         context.StatusMessage( "Command line using complex types not supported." );
          return GX.GXRuntime.ExitCode ;
       }
 
@@ -105,78 +78,87 @@ namespace GeneXus.Programs {
 
       public void execute( Guid aP0_ParentPageId ,
                            Guid aP1_ChildPageId ,
-                           out string aP2_response )
+                           out string aP2_response ,
+                           out SdtSDT_Error aP3_Error )
       {
          this.AV18ParentPageId = aP0_ParentPageId;
          this.AV19ChildPageId = aP1_ChildPageId;
          this.AV14response = "" ;
+         this.AV29Error = new SdtSDT_Error(context) ;
          initialize();
          ExecuteImpl();
          aP2_response=this.AV14response;
+         aP3_Error=this.AV29Error;
       }
 
-      public string executeUdp( Guid aP0_ParentPageId ,
-                                Guid aP1_ChildPageId )
+      public SdtSDT_Error executeUdp( Guid aP0_ParentPageId ,
+                                      Guid aP1_ChildPageId ,
+                                      out string aP2_response )
       {
-         execute(aP0_ParentPageId, aP1_ChildPageId, out aP2_response);
-         return AV14response ;
+         execute(aP0_ParentPageId, aP1_ChildPageId, out aP2_response, out aP3_Error);
+         return AV29Error ;
       }
 
       public void executeSubmit( Guid aP0_ParentPageId ,
                                  Guid aP1_ChildPageId ,
-                                 out string aP2_response )
+                                 out string aP2_response ,
+                                 out SdtSDT_Error aP3_Error )
       {
          this.AV18ParentPageId = aP0_ParentPageId;
          this.AV19ChildPageId = aP1_ChildPageId;
          this.AV14response = "" ;
+         this.AV29Error = new SdtSDT_Error(context) ;
          SubmitImpl();
          aP2_response=this.AV14response;
+         aP3_Error=this.AV29Error;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_authenticatereceptionist(context ).execute( out  AV26UserName, ref  AV27LocationId, ref  AV28OrganisationId) ;
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV26UserName))) )
+         if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            cleanup();
-            if (true) return;
+            AV29Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV29Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
          }
-         AV24Trn_Page.Load(AV18ParentPageId, A318Trn_PageName, A29LocationId);
-         /* Using cursor P008X2 */
-         pr_default.execute(0, new Object[] {AV18ParentPageId});
-         while ( (pr_default.getStatus(0) != 101) )
+         else
          {
-            A310Trn_PageId = P008X2_A310Trn_PageId[0];
-            A437PageChildren = P008X2_A437PageChildren[0];
-            n437PageChildren = P008X2_n437PageChildren[0];
-            A29LocationId = P008X2_A29LocationId[0];
-            A318Trn_PageName = P008X2_A318Trn_PageName[0];
-            AV23SDT_PageChildrenCollection.FromJSonString(A437PageChildren, null);
-            AV30GXV1 = 1;
-            while ( AV30GXV1 <= AV23SDT_PageChildrenCollection.Count )
+            AV24Trn_Page.Load(AV18ParentPageId, A318Trn_PageName, A29LocationId);
+            /* Using cursor P008X2 */
+            pr_default.execute(0, new Object[] {AV18ParentPageId});
+            while ( (pr_default.getStatus(0) != 101) )
             {
-               AV22SDT_PageChildren = ((SdtSDT_PageChildren)AV23SDT_PageChildrenCollection.Item(AV30GXV1));
-               if ( AV22SDT_PageChildren.gxTpr_Id == AV19ChildPageId )
+               A310Trn_PageId = P008X2_A310Trn_PageId[0];
+               A437PageChildren = P008X2_A437PageChildren[0];
+               n437PageChildren = P008X2_n437PageChildren[0];
+               A29LocationId = P008X2_A29LocationId[0];
+               A318Trn_PageName = P008X2_A318Trn_PageName[0];
+               AV23SDT_PageChildrenCollection.FromJSonString(A437PageChildren, null);
+               AV31GXV1 = 1;
+               while ( AV31GXV1 <= AV23SDT_PageChildrenCollection.Count )
                {
-                  pr_default.close(0);
-                  cleanup();
-                  if (true) return;
+                  AV22SDT_PageChildren = ((SdtSDT_PageChildren)AV23SDT_PageChildrenCollection.Item(AV31GXV1));
+                  if ( AV22SDT_PageChildren.gxTpr_Id == AV19ChildPageId )
+                  {
+                     pr_default.close(0);
+                     cleanup();
+                     if (true) return;
+                  }
+                  AV31GXV1 = (int)(AV31GXV1+1);
                }
-               AV30GXV1 = (int)(AV30GXV1+1);
+               AV22SDT_PageChildren = new SdtSDT_PageChildren(context);
+               AV22SDT_PageChildren.gxTpr_Id = AV19ChildPageId;
+               AV25Child.Load(AV19ChildPageId, A318Trn_PageName, A29LocationId);
+               AV22SDT_PageChildren.gxTpr_Name = AV25Child.gxTpr_Trn_pagename;
+               AV23SDT_PageChildrenCollection.Add(AV22SDT_PageChildren, 0);
+               pr_default.readNext(0);
             }
-            AV22SDT_PageChildren = new SdtSDT_PageChildren(context);
-            AV22SDT_PageChildren.gxTpr_Id = AV19ChildPageId;
-            AV25Child.Load(AV19ChildPageId, A318Trn_PageName, A29LocationId);
-            AV22SDT_PageChildren.gxTpr_Name = AV25Child.gxTpr_Trn_pagename;
-            AV23SDT_PageChildrenCollection.Add(AV22SDT_PageChildren, 0);
-            pr_default.readNext(0);
+            pr_default.close(0);
+            AV24Trn_Page.gxTpr_Pagechildren = AV23SDT_PageChildrenCollection.ToJSonString(false);
+            AV24Trn_Page.Save();
+            context.CommitDataStores("prc_addpagechildren",pr_default);
          }
-         pr_default.close(0);
-         AV24Trn_Page.gxTpr_Pagechildren = AV23SDT_PageChildrenCollection.ToJSonString(false);
-         AV24Trn_Page.Save();
-         context.CommitDataStores("prc_addpagechildren",pr_default);
          cleanup();
       }
 
@@ -193,9 +175,7 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV14response = "";
-         AV26UserName = "";
-         AV27LocationId = Guid.Empty;
-         AV28OrganisationId = Guid.Empty;
+         AV29Error = new SdtSDT_Error(context);
          AV24Trn_Page = new SdtTrn_Page(context);
          A318Trn_PageName = "";
          A29LocationId = Guid.Empty;
@@ -227,21 +207,19 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV30GXV1 ;
+      private int AV31GXV1 ;
       private bool n437PageChildren ;
       private string AV14response ;
       private string A437PageChildren ;
-      private string AV26UserName ;
       private string A318Trn_PageName ;
       private Guid AV18ParentPageId ;
       private Guid AV19ChildPageId ;
-      private Guid AV27LocationId ;
-      private Guid AV28OrganisationId ;
       private Guid A29LocationId ;
       private Guid A310Trn_PageId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
+      private SdtSDT_Error AV29Error ;
       private SdtTrn_Page AV24Trn_Page ;
       private IDataStoreProvider pr_default ;
       private Guid[] P008X2_A310Trn_PageId ;
@@ -253,6 +231,7 @@ namespace GeneXus.Programs {
       private SdtSDT_PageChildren AV22SDT_PageChildren ;
       private SdtTrn_Page AV25Child ;
       private string aP2_response ;
+      private SdtSDT_Error aP3_Error ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }

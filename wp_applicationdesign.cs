@@ -780,7 +780,6 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
-         new prc_logtoserver(context ).execute(  context.GetMessage( "Test", "")) ;
          Form.Headerrawhtml = Form.Headerrawhtml+"<link rel=\"stylesheet\" href=\"/Resources/UCGrapes1/new-design/grapes/grapes.css\">"+"<link rel=\"stylesheet\" href=\"/Resources/UCGrapes1/new-design/css/styles.css\" />"+"<script src=\"/Resources/UCGrapes1/new-design/grapes/grapes.js\"></script>";
          GXt_char1 = AV40UserName;
          new prc_getloggedinusername(context ).execute( out  GXt_char1) ;
@@ -788,7 +787,6 @@ namespace GeneXus.Programs {
          GXt_guid2 = AV41LocationId;
          new prc_getuserlocationid(context ).execute( out  GXt_guid2) ;
          AV41LocationId = GXt_guid2;
-         AssignAttri("", false, "AV41LocationId", AV41LocationId.ToString());
          GXt_guid2 = AV42OrganisationId;
          new prc_getuserorganisationid(context ).execute( out  GXt_guid2) ;
          AV42OrganisationId = GXt_guid2;
@@ -829,8 +827,9 @@ namespace GeneXus.Programs {
             pr_default.readNext(1);
          }
          pr_default.close(1);
+         AV47Udparg1 = new prc_getuserlocationid(context).executeUdp( );
          /* Using cursor H00474 */
-         pr_default.execute(2, new Object[] {AV41LocationId});
+         pr_default.execute(2, new Object[] {AV47Udparg1});
          while ( (pr_default.getStatus(2) != 101) )
          {
             A29LocationId = H00474_A29LocationId[0];
@@ -925,7 +924,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251910414126", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251913584954", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -943,7 +942,7 @@ namespace GeneXus.Programs {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wp_applicationdesign.js", "?20251910414127", false, true);
+            context.AddJavascriptSource("wp_applicationdesign.js", "?20251913584954", false, true);
             context.AddJavascriptSource("UserControls/UC_AppToolBoxRender.js", "", false, true);
          }
          /* End function include_jscripts */
@@ -1237,7 +1236,7 @@ namespace GeneXus.Programs {
           };
           Object[] prmH00474;
           prmH00474 = new Object[] {
-          new ParDef("AV41LocationId",GXType.UniqueIdentifier,36,0)
+          new ParDef("AV47Udparg1",GXType.UniqueIdentifier,36,0)
           };
           Object[] prmH00475;
           prmH00475 = new Object[] {
@@ -1248,7 +1247,7 @@ namespace GeneXus.Programs {
           def= new CursorDef[] {
               new CursorDef("H00472", "SELECT Trn_TemplateId FROM Trn_Template ORDER BY Trn_TemplateId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00472,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H00473", "SELECT OrganisationId, LocationId, ProductServiceImage_GXI, ProductServiceId, ProductServiceName, ProductServiceImage FROM Trn_ProductService WHERE LocationId = :AV47Udparg1 and OrganisationId = :AV48Udparg2 ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00473,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("H00474", "SELECT LocationId, MediaId FROM Trn_Media WHERE LocationId = :AV41LocationId ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00474,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("H00474", "SELECT LocationId, MediaId FROM Trn_Media WHERE LocationId = :AV47Udparg1 ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00474,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H00475", "SELECT Trn_ThemeName, Trn_ThemeId FROM Trn_Theme WHERE Not (char_length(trim(trailing ' ' from RTRIM(LTRIM(Trn_ThemeName))))=0) ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00475,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H00476", "SELECT LocationId, Trn_PageId, Trn_PageName, PageChildren FROM Trn_Page ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00476,100, GxCacheFrequency.OFF ,false,false )
           };

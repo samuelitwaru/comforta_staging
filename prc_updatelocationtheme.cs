@@ -18,6 +18,7 @@ using GeneXus.XML;
 using GeneXus.Search;
 using GeneXus.Encryption;
 using GeneXus.Http.Client;
+using GeneXus.Http.Server;
 using System.Threading;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
@@ -45,63 +46,71 @@ namespace GeneXus.Programs {
       }
 
       public void execute( Guid aP0_ThemeId ,
-                           out SdtSDT_Theme aP1_SDT_Theme )
+                           out SdtSDT_Theme aP1_SDT_Theme ,
+                           out SdtSDT_Error aP2_Error )
       {
          this.AV8ThemeId = aP0_ThemeId;
          this.AV11SDT_Theme = new SdtSDT_Theme(context) ;
+         this.AV18Error = new SdtSDT_Error(context) ;
          initialize();
          ExecuteImpl();
          aP1_SDT_Theme=this.AV11SDT_Theme;
+         aP2_Error=this.AV18Error;
       }
 
-      public SdtSDT_Theme executeUdp( Guid aP0_ThemeId )
+      public SdtSDT_Error executeUdp( Guid aP0_ThemeId ,
+                                      out SdtSDT_Theme aP1_SDT_Theme )
       {
-         execute(aP0_ThemeId, out aP1_SDT_Theme);
-         return AV11SDT_Theme ;
+         execute(aP0_ThemeId, out aP1_SDT_Theme, out aP2_Error);
+         return AV18Error ;
       }
 
       public void executeSubmit( Guid aP0_ThemeId ,
-                                 out SdtSDT_Theme aP1_SDT_Theme )
+                                 out SdtSDT_Theme aP1_SDT_Theme ,
+                                 out SdtSDT_Error aP2_Error )
       {
          this.AV8ThemeId = aP0_ThemeId;
          this.AV11SDT_Theme = new SdtSDT_Theme(context) ;
+         this.AV18Error = new SdtSDT_Error(context) ;
          SubmitImpl();
          aP1_SDT_Theme=this.AV11SDT_Theme;
+         aP2_Error=this.AV18Error;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_authenticatereceptionist(context ).execute( out  AV14UserName, ref  AV9LocationId, ref  AV10OrganisationId) ;
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV14UserName))) )
+         if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            cleanup();
-            if (true) return;
+            AV18Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV18Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
          }
-         AV12BC_Trn_Location.Load(AV9LocationId, AV10OrganisationId);
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV12BC_Trn_Location.gxTpr_Locationname)) )
+         else
          {
-            AV12BC_Trn_Location.gxTpr_Trn_themeid = AV8ThemeId;
-            AV12BC_Trn_Location.Save();
-            if ( AV12BC_Trn_Location.Success() )
+            AV12BC_Trn_Location.Load(new prc_getuserlocationid(context).executeUdp( ), new prc_getuserorganisationid(context).executeUdp( ));
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV12BC_Trn_Location.gxTpr_Locationname)) )
             {
-               context.CommitDataStores("prc_updatelocationtheme",pr_default);
-               new prc_logtofile(context ).execute(  context.GetMessage( "Saved", "")) ;
-            }
-            else
-            {
-               AV16GXV2 = 1;
-               AV15GXV1 = AV12BC_Trn_Location.GetMessages();
-               while ( AV16GXV2 <= AV15GXV1.Count )
+               AV12BC_Trn_Location.gxTpr_Trn_themeid = AV8ThemeId;
+               AV12BC_Trn_Location.Save();
+               if ( AV12BC_Trn_Location.Success() )
                {
-                  AV13Message = ((GeneXus.Utils.SdtMessages_Message)AV15GXV1.Item(AV16GXV2));
-                  new prc_logtofile(context ).execute(  context.GetMessage( "Not saved: ", "")+AV13Message.gxTpr_Description) ;
-                  AV16GXV2 = (int)(AV16GXV2+1);
+                  context.CommitDataStores("prc_updatelocationtheme",pr_default);
+                  new prc_logtofile(context ).execute(  context.GetMessage( "Saved", "")) ;
+               }
+               else
+               {
+                  AV20GXV2 = 1;
+                  AV19GXV1 = AV12BC_Trn_Location.GetMessages();
+                  while ( AV20GXV2 <= AV19GXV1.Count )
+                  {
+                     AV13Message = ((GeneXus.Utils.SdtMessages_Message)AV19GXV1.Item(AV20GXV2));
+                     new prc_logtofile(context ).execute(  context.GetMessage( "Not saved: ", "")+AV13Message.gxTpr_Description) ;
+                     AV20GXV2 = (int)(AV20GXV2+1);
+                  }
                }
             }
          }
-         new prc_logtofile(context ).execute(  context.GetMessage( "Reached Prc_UpdateLocationTheme", "")) ;
          cleanup();
       }
 
@@ -118,11 +127,9 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV11SDT_Theme = new SdtSDT_Theme(context);
-         AV14UserName = "";
-         AV9LocationId = Guid.Empty;
-         AV10OrganisationId = Guid.Empty;
+         AV18Error = new SdtSDT_Error(context);
          AV12BC_Trn_Location = new SdtTrn_Location(context);
-         AV15GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV19GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV13Message = new GeneXus.Utils.SdtMessages_Message(context);
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_updatelocationtheme__datastore1(),
             new Object[][] {
@@ -139,20 +146,19 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV16GXV2 ;
-      private string AV14UserName ;
+      private int AV20GXV2 ;
       private Guid AV8ThemeId ;
-      private Guid AV9LocationId ;
-      private Guid AV10OrganisationId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private SdtSDT_Theme AV11SDT_Theme ;
+      private SdtSDT_Error AV18Error ;
       private SdtTrn_Location AV12BC_Trn_Location ;
       private IDataStoreProvider pr_default ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV15GXV1 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV19GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV13Message ;
       private SdtSDT_Theme aP1_SDT_Theme ;
+      private SdtSDT_Error aP2_Error ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }

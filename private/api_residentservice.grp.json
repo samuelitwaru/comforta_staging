@@ -145,8 +145,8 @@
 "Verb":"GET"
 },
 {
-"PathRegexp":"toolbox/pages/list2",
-"Path":"toolbox/pages/list2",
+"PathRegexp":"toolbox/pages/list",
+"Path":"toolbox/pages/list",
 "Name":"getpages",
 "Bodystyle":"Wrapped",
 "VariableAlias": [],
@@ -215,8 +215,8 @@
 "Verb":"GET"
 },
 {
-"PathRegexp":"toolbox/pages/list",
-"Path":"toolbox/pages/list",
+"PathRegexp":"toolbox/pages/tree",
+"Path":"toolbox/pages/tree",
 "Name":"listpages",
 "Bodystyle":"Wrapped",
 "VariableAlias": [],

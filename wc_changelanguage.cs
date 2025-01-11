@@ -951,10 +951,10 @@ namespace GeneXus.Programs {
          /* Load Routine */
          returnInSub = false;
          AV8OrganisationLanguagesList.FromJSonString("[\"English\",\"Dutch\"]", null);
-         AV10GXV1 = 1;
-         while ( AV10GXV1 <= AV8OrganisationLanguagesList.Count )
+         AV13GXV1 = 1;
+         while ( AV13GXV1 <= AV8OrganisationLanguagesList.Count )
          {
-            AV6LanguageItem = ((string)AV8OrganisationLanguagesList.Item(AV10GXV1));
+            AV6LanguageItem = ((string)AV8OrganisationLanguagesList.Item(AV13GXV1));
             AV5LanguageCode = AV6LanguageItem;
             AssignAttri(sPrefix, false, edtavLanguagecode_Internalname, AV5LanguageCode);
             GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vLANGUAGECODE"+"_"+sGXsfl_9_idx, GetSecureSignedToken( sPrefix+sGXsfl_9_idx, StringUtil.RTrim( context.localUtil.Format( AV5LanguageCode, "")), context));
@@ -963,7 +963,7 @@ namespace GeneXus.Programs {
             {
                DoAjaxLoad(9, Grid2Row);
             }
-            AV10GXV1 = (int)(AV10GXV1+1);
+            AV13GXV1 = (int)(AV13GXV1+1);
          }
       }
 
@@ -974,6 +974,13 @@ namespace GeneXus.Programs {
          AV7NumericValue = (short)(context.SetLanguage( AV5LanguageCode));
          if ( AV7NumericValue == 0 )
          {
+            AV11GamUser.load( new GeneXus.Programs.genexussecurity.SdtGAMUser(context).getid());
+            AV11GamUser.gxTpr_Language = AV5LanguageCode;
+            AV11GamUser.save();
+            if ( AV11GamUser.success() )
+            {
+               context.CommitDataStores("wc_changelanguage",pr_default);
+            }
             context.DoAjaxRefreshForm();
          }
       }
@@ -1153,7 +1160,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202518178860", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202511012144996", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1169,7 +1176,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_changelanguage.js", "?202518178860", false, true);
+         context.AddJavascriptSource("wc_changelanguage.js", "?202511012144997", false, true);
          /* End function include_jscripts */
       }
 
@@ -1419,12 +1426,25 @@ namespace GeneXus.Programs {
          AV8OrganisationLanguagesList = new GxSimpleCollection<string>();
          AV6LanguageItem = "";
          Grid2Row = new GXWebRow();
+         AV11GamUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          subGrid2_Linesclass = "";
          TempTags = "";
          ROClassString = "";
          Grid2Column = new GXWebColumn();
+         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.wc_changelanguage__datastore1(),
+            new Object[][] {
+            }
+         );
+         pr_gam = new DataStoreProvider(context, new GeneXus.Programs.wc_changelanguage__gam(),
+            new Object[][] {
+            }
+         );
+         pr_default = new DataStoreProvider(context, new GeneXus.Programs.wc_changelanguage__default(),
+            new Object[][] {
+            }
+         );
          /* GeneXus formulas. */
          edtavLanguagecode_Enabled = 0;
       }
@@ -1453,7 +1473,7 @@ namespace GeneXus.Programs {
       private int nGXsfl_9_idx=1 ;
       private int edtavLanguagecode_Enabled ;
       private int subGrid2_Islastpage ;
-      private int AV10GXV1 ;
+      private int AV13GXV1 ;
       private int idxLst ;
       private int subGrid2_Backcolor ;
       private int subGrid2_Allbackcolor ;
@@ -1509,8 +1529,103 @@ namespace GeneXus.Programs {
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GxSimpleCollection<string> AV8OrganisationLanguagesList ;
+      private GeneXus.Programs.genexussecurity.SdtGAMUser AV11GamUser ;
+      private IDataStoreProvider pr_default ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
+      private IDataStoreProvider pr_datastore1 ;
+      private IDataStoreProvider pr_gam ;
    }
+
+   public class wc_changelanguage__datastore1 : DataStoreHelperBase, IDataStoreHelper
+   {
+      public ICursor[] getCursors( )
+      {
+         cursorDefinitions();
+         return new Cursor[] {
+       };
+    }
+
+    private static CursorDef[] def;
+    private void cursorDefinitions( )
+    {
+       if ( def == null )
+       {
+          def= new CursorDef[] {
+          };
+       }
+    }
+
+    public void getResults( int cursor ,
+                            IFieldGetter rslt ,
+                            Object[] buf )
+    {
+    }
+
+    public override string getDataStoreName( )
+    {
+       return "DATASTORE1";
+    }
+
+ }
+
+ public class wc_changelanguage__gam : DataStoreHelperBase, IDataStoreHelper
+ {
+    public ICursor[] getCursors( )
+    {
+       cursorDefinitions();
+       return new Cursor[] {
+     };
+  }
+
+  private static CursorDef[] def;
+  private void cursorDefinitions( )
+  {
+     if ( def == null )
+     {
+        def= new CursorDef[] {
+        };
+     }
+  }
+
+  public void getResults( int cursor ,
+                          IFieldGetter rslt ,
+                          Object[] buf )
+  {
+  }
+
+  public override string getDataStoreName( )
+  {
+     return "GAM";
+  }
+
+}
+
+public class wc_changelanguage__default : DataStoreHelperBase, IDataStoreHelper
+{
+   public ICursor[] getCursors( )
+   {
+      cursorDefinitions();
+      return new Cursor[] {
+    };
+ }
+
+ private static CursorDef[] def;
+ private void cursorDefinitions( )
+ {
+    if ( def == null )
+    {
+       def= new CursorDef[] {
+       };
+    }
+ }
+
+ public void getResults( int cursor ,
+                         IFieldGetter rslt ,
+                         Object[] buf )
+ {
+ }
+
+}
 
 }

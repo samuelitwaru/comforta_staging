@@ -109,8 +109,8 @@ namespace GeneXus.Programs {
                CheckExtendedTable046( ) ;
                if ( AnyError == 0 )
                {
-                  ZM046( 18) ;
                   ZM046( 19) ;
+                  ZM046( 20) ;
                }
                CloseExtendedTableCursors046( ) ;
             }
@@ -167,7 +167,7 @@ namespace GeneXus.Programs {
 
       protected void ZM046( short GX_JID )
       {
-         if ( ( GX_JID == 17 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 18 ) || ( GX_JID == 0 ) )
          {
             Z35LocationPhone = A35LocationPhone;
             Z31LocationName = A31LocationName;
@@ -181,13 +181,13 @@ namespace GeneXus.Programs {
             Z384LocationPhoneNumber = A384LocationPhoneNumber;
             Z247Trn_ThemeId = A247Trn_ThemeId;
          }
-         if ( ( GX_JID == 18 ) || ( GX_JID == 0 ) )
-         {
-         }
          if ( ( GX_JID == 19 ) || ( GX_JID == 0 ) )
          {
          }
-         if ( GX_JID == -17 )
+         if ( ( GX_JID == 20 ) || ( GX_JID == 0 ) )
+         {
+         }
+         if ( GX_JID == -18 )
          {
             Z29LocationId = A29LocationId;
             Z35LocationPhone = A35LocationPhone;
@@ -260,7 +260,7 @@ namespace GeneXus.Programs {
             A247Trn_ThemeId = BC00046_A247Trn_ThemeId[0];
             n247Trn_ThemeId = BC00046_n247Trn_ThemeId[0];
             A506LocationImage = BC00046_A506LocationImage[0];
-            ZM046( -17) ;
+            ZM046( -18) ;
          }
          pr_default.close(4);
          OnLoadActions046( ) ;
@@ -284,6 +284,11 @@ namespace GeneXus.Programs {
             AnyError = 1;
          }
          pr_default.close(2);
+         if ( ! ( GxRegex.IsMatch(A34LocationEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
+         {
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Invalid email pattern", ""), context.GetMessage( "Location Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
+            AnyError = 1;
+         }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A34LocationEmail)) && ! GxRegex.IsMatch(A34LocationEmail,context.GetMessage( "^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$", "")) )
          {
             GX_msglist.addItem(context.GetMessage( "Email format is invalid", ""), 1, "");
@@ -292,7 +297,7 @@ namespace GeneXus.Programs {
          GXt_char2 = A35LocationPhone;
          new prc_concatenateintlphone(context ).execute(  A383LocationPhoneCode,  A384LocationPhoneNumber, out  GXt_char2) ;
          A35LocationPhone = GXt_char2;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A384LocationPhoneNumber)) && ! GxRegex.IsMatch(A384LocationPhoneNumber,context.GetMessage( "\\b\\d{9}\\b", "")) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A384LocationPhoneNumber)) && ! GxRegex.IsMatch(A384LocationPhoneNumber,context.GetMessage( "^\\d{9}$", "")) )
          {
             GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "");
             AnyError = 1;
@@ -341,7 +346,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM046( 17) ;
+            ZM046( 18) ;
             RcdFound6 = 1;
             A29LocationId = BC00043_A29LocationId[0];
             A35LocationPhone = BC00043_A35LocationPhone[0];
@@ -991,7 +996,7 @@ namespace GeneXus.Programs {
             Z29LocationId = A29LocationId;
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM046( -17) ;
+         ZM046( -18) ;
          OnLoadActions046( ) ;
          AddRow046( ) ;
          ScanKeyEnd046( ) ;
@@ -1029,7 +1034,7 @@ namespace GeneXus.Programs {
             Z29LocationId = A29LocationId;
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM046( -17) ;
+         ZM046( -18) ;
          OnLoadActions046( ) ;
          AddRow046( ) ;
          ScanKeyEnd046( ) ;

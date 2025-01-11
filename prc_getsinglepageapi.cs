@@ -45,72 +45,81 @@ namespace GeneXus.Programs {
       }
 
       public void execute( Guid aP0_pageId ,
-                           out SdtSDT_Page aP1_SDT_Page )
+                           out SdtSDT_Page aP1_SDT_Page ,
+                           out SdtSDT_Error aP2_Error )
       {
          this.AV15pageId = aP0_pageId;
          this.AV8SDT_Page = new SdtSDT_Page(context) ;
+         this.AV19Error = new SdtSDT_Error(context) ;
          initialize();
          ExecuteImpl();
          aP1_SDT_Page=this.AV8SDT_Page;
+         aP2_Error=this.AV19Error;
       }
 
-      public SdtSDT_Page executeUdp( Guid aP0_pageId )
+      public SdtSDT_Error executeUdp( Guid aP0_pageId ,
+                                      out SdtSDT_Page aP1_SDT_Page )
       {
-         execute(aP0_pageId, out aP1_SDT_Page);
-         return AV8SDT_Page ;
+         execute(aP0_pageId, out aP1_SDT_Page, out aP2_Error);
+         return AV19Error ;
       }
 
       public void executeSubmit( Guid aP0_pageId ,
-                                 out SdtSDT_Page aP1_SDT_Page )
+                                 out SdtSDT_Page aP1_SDT_Page ,
+                                 out SdtSDT_Error aP2_Error )
       {
          this.AV15pageId = aP0_pageId;
          this.AV8SDT_Page = new SdtSDT_Page(context) ;
+         this.AV19Error = new SdtSDT_Error(context) ;
          SubmitImpl();
          aP1_SDT_Page=this.AV8SDT_Page;
+         aP2_Error=this.AV19Error;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_authenticatereceptionist(context ).execute( out  AV16UserName, ref  AV17LocationId, ref  AV18OrganisationId) ;
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV16UserName))) )
+         if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            cleanup();
-            if (true) return;
+            AV19Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV19Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
          }
-         /* Using cursor P009D2 */
-         pr_default.execute(0, new Object[] {AV15pageId});
-         while ( (pr_default.getStatus(0) != 101) )
+         else
          {
-            A310Trn_PageId = P009D2_A310Trn_PageId[0];
-            A318Trn_PageName = P009D2_A318Trn_PageName[0];
-            A431PageJsonContent = P009D2_A431PageJsonContent[0];
-            n431PageJsonContent = P009D2_n431PageJsonContent[0];
-            A432PageGJSHtml = P009D2_A432PageGJSHtml[0];
-            n432PageGJSHtml = P009D2_n432PageGJSHtml[0];
-            A433PageGJSJson = P009D2_A433PageGJSJson[0];
-            n433PageGJSJson = P009D2_n433PageGJSJson[0];
-            A439PageIsContentPage = P009D2_A439PageIsContentPage[0];
-            n439PageIsContentPage = P009D2_n439PageIsContentPage[0];
-            A434PageIsPublished = P009D2_A434PageIsPublished[0];
-            n434PageIsPublished = P009D2_n434PageIsPublished[0];
-            A437PageChildren = P009D2_A437PageChildren[0];
-            n437PageChildren = P009D2_n437PageChildren[0];
-            A29LocationId = P009D2_A29LocationId[0];
-            AV8SDT_Page = new SdtSDT_Page(context);
-            AV8SDT_Page.gxTpr_Pageid = A310Trn_PageId;
-            AV8SDT_Page.gxTpr_Pagename = A318Trn_PageName;
-            AV8SDT_Page.gxTpr_Pagejsoncontent = A431PageJsonContent;
-            AV8SDT_Page.gxTpr_Pagegjshtml = A432PageGJSHtml;
-            AV8SDT_Page.gxTpr_Pagegjsjson = A433PageGJSJson;
-            AV8SDT_Page.gxTpr_Pageiscontentpage = A439PageIsContentPage;
-            AV8SDT_Page.gxTpr_Pageispublished = A434PageIsPublished;
-            AV8SDT_Page.gxTpr_Pagechildren.FromJSonString(A437PageChildren, null);
-            pr_default.readNext(0);
+            /* Using cursor P009D2 */
+            pr_default.execute(0, new Object[] {AV15pageId});
+            while ( (pr_default.getStatus(0) != 101) )
+            {
+               A310Trn_PageId = P009D2_A310Trn_PageId[0];
+               A318Trn_PageName = P009D2_A318Trn_PageName[0];
+               A431PageJsonContent = P009D2_A431PageJsonContent[0];
+               n431PageJsonContent = P009D2_n431PageJsonContent[0];
+               A432PageGJSHtml = P009D2_A432PageGJSHtml[0];
+               n432PageGJSHtml = P009D2_n432PageGJSHtml[0];
+               A433PageGJSJson = P009D2_A433PageGJSJson[0];
+               n433PageGJSJson = P009D2_n433PageGJSJson[0];
+               A439PageIsContentPage = P009D2_A439PageIsContentPage[0];
+               n439PageIsContentPage = P009D2_n439PageIsContentPage[0];
+               A434PageIsPublished = P009D2_A434PageIsPublished[0];
+               n434PageIsPublished = P009D2_n434PageIsPublished[0];
+               A437PageChildren = P009D2_A437PageChildren[0];
+               n437PageChildren = P009D2_n437PageChildren[0];
+               A29LocationId = P009D2_A29LocationId[0];
+               AV8SDT_Page = new SdtSDT_Page(context);
+               AV8SDT_Page.gxTpr_Pageid = A310Trn_PageId;
+               AV8SDT_Page.gxTpr_Pagename = A318Trn_PageName;
+               AV8SDT_Page.gxTpr_Pagejsoncontent = A431PageJsonContent;
+               AV8SDT_Page.gxTpr_Pagegjshtml = A432PageGJSHtml;
+               AV8SDT_Page.gxTpr_Pagegjsjson = A433PageGJSJson;
+               AV8SDT_Page.gxTpr_Pageiscontentpage = A439PageIsContentPage;
+               AV8SDT_Page.gxTpr_Pageispublished = A434PageIsPublished;
+               AV8SDT_Page.gxTpr_Pagechildren.FromJSonString(A437PageChildren, null);
+               pr_default.readNext(0);
+            }
+            pr_default.close(0);
+            new prc_logtofile(context ).execute(  context.GetMessage( "Checking here: ", "")+AV15pageId.ToString()) ;
          }
-         pr_default.close(0);
-         new prc_logtofile(context ).execute(  context.GetMessage( "Checking here: ", "")+AV15pageId.ToString()) ;
          cleanup();
       }
 
@@ -127,9 +136,7 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV8SDT_Page = new SdtSDT_Page(context);
-         AV16UserName = "";
-         AV17LocationId = Guid.Empty;
-         AV18OrganisationId = Guid.Empty;
+         AV19Error = new SdtSDT_Error(context);
          P009D2_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          P009D2_A318Trn_PageName = new string[] {""} ;
          P009D2_A431PageJsonContent = new string[] {""} ;
@@ -175,17 +182,15 @@ namespace GeneXus.Programs {
       private string A432PageGJSHtml ;
       private string A433PageGJSJson ;
       private string A437PageChildren ;
-      private string AV16UserName ;
       private string A318Trn_PageName ;
       private Guid AV15pageId ;
-      private Guid AV17LocationId ;
-      private Guid AV18OrganisationId ;
       private Guid A310Trn_PageId ;
       private Guid A29LocationId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private SdtSDT_Page AV8SDT_Page ;
+      private SdtSDT_Error AV19Error ;
       private IDataStoreProvider pr_default ;
       private Guid[] P009D2_A310Trn_PageId ;
       private string[] P009D2_A318Trn_PageName ;
@@ -203,6 +208,7 @@ namespace GeneXus.Programs {
       private bool[] P009D2_n437PageChildren ;
       private Guid[] P009D2_A29LocationId ;
       private SdtSDT_Page aP1_SDT_Page ;
+      private SdtSDT_Error aP2_Error ;
    }
 
    public class prc_getsinglepageapi__default : DataStoreHelperBase, IDataStoreHelper

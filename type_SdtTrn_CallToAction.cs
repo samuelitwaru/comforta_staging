@@ -76,6 +76,8 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Calltoactionname_Z");
          state.Add("gxTpr_Calltoactiontype_Z");
          state.Add("gxTpr_Calltoactionphone_Z");
+         state.Add("gxTpr_Calltoactionphonecode_Z");
+         state.Add("gxTpr_Calltoactionphonenumber_Z");
          state.Add("gxTpr_Calltoactionurl_Z");
          state.Add("gxTpr_Calltoactionemail_Z");
          state.Add("gxTpr_Locationdynamicformid_Z");
@@ -106,6 +108,8 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_CallToAction_Calltoactionname = sdt.gxTv_SdtTrn_CallToAction_Calltoactionname ;
          gxTv_SdtTrn_CallToAction_Calltoactiontype = sdt.gxTv_SdtTrn_CallToAction_Calltoactiontype ;
          gxTv_SdtTrn_CallToAction_Calltoactionphone = sdt.gxTv_SdtTrn_CallToAction_Calltoactionphone ;
+         gxTv_SdtTrn_CallToAction_Calltoactionphonecode = sdt.gxTv_SdtTrn_CallToAction_Calltoactionphonecode ;
+         gxTv_SdtTrn_CallToAction_Calltoactionphonenumber = sdt.gxTv_SdtTrn_CallToAction_Calltoactionphonenumber ;
          gxTv_SdtTrn_CallToAction_Calltoactionurl = sdt.gxTv_SdtTrn_CallToAction_Calltoactionurl ;
          gxTv_SdtTrn_CallToAction_Calltoactionemail = sdt.gxTv_SdtTrn_CallToAction_Calltoactionemail ;
          gxTv_SdtTrn_CallToAction_Locationdynamicformid = sdt.gxTv_SdtTrn_CallToAction_Locationdynamicformid ;
@@ -132,6 +136,8 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_CallToAction_Calltoactionname_Z = sdt.gxTv_SdtTrn_CallToAction_Calltoactionname_Z ;
          gxTv_SdtTrn_CallToAction_Calltoactiontype_Z = sdt.gxTv_SdtTrn_CallToAction_Calltoactiontype_Z ;
          gxTv_SdtTrn_CallToAction_Calltoactionphone_Z = sdt.gxTv_SdtTrn_CallToAction_Calltoactionphone_Z ;
+         gxTv_SdtTrn_CallToAction_Calltoactionphonecode_Z = sdt.gxTv_SdtTrn_CallToAction_Calltoactionphonecode_Z ;
+         gxTv_SdtTrn_CallToAction_Calltoactionphonenumber_Z = sdt.gxTv_SdtTrn_CallToAction_Calltoactionphonenumber_Z ;
          gxTv_SdtTrn_CallToAction_Calltoactionurl_Z = sdt.gxTv_SdtTrn_CallToAction_Calltoactionurl_Z ;
          gxTv_SdtTrn_CallToAction_Calltoactionemail_Z = sdt.gxTv_SdtTrn_CallToAction_Calltoactionemail_Z ;
          gxTv_SdtTrn_CallToAction_Locationdynamicformid_Z = sdt.gxTv_SdtTrn_CallToAction_Locationdynamicformid_Z ;
@@ -173,6 +179,8 @@ namespace GeneXus.Programs {
          AddObjectProperty("CallToActionName", gxTv_SdtTrn_CallToAction_Calltoactionname, false, includeNonInitialized);
          AddObjectProperty("CallToActionType", gxTv_SdtTrn_CallToAction_Calltoactiontype, false, includeNonInitialized);
          AddObjectProperty("CallToActionPhone", gxTv_SdtTrn_CallToAction_Calltoactionphone, false, includeNonInitialized);
+         AddObjectProperty("CallToActionPhoneCode", gxTv_SdtTrn_CallToAction_Calltoactionphonecode, false, includeNonInitialized);
+         AddObjectProperty("CallToActionPhoneNumber", gxTv_SdtTrn_CallToAction_Calltoactionphonenumber, false, includeNonInitialized);
          AddObjectProperty("CallToActionUrl", gxTv_SdtTrn_CallToAction_Calltoactionurl, false, includeNonInitialized);
          AddObjectProperty("CallToActionEmail", gxTv_SdtTrn_CallToAction_Calltoactionemail, false, includeNonInitialized);
          AddObjectProperty("LocationDynamicFormId", gxTv_SdtTrn_CallToAction_Locationdynamicformid, false, includeNonInitialized);
@@ -221,6 +229,8 @@ namespace GeneXus.Programs {
             AddObjectProperty("CallToActionName_Z", gxTv_SdtTrn_CallToAction_Calltoactionname_Z, false, includeNonInitialized);
             AddObjectProperty("CallToActionType_Z", gxTv_SdtTrn_CallToAction_Calltoactiontype_Z, false, includeNonInitialized);
             AddObjectProperty("CallToActionPhone_Z", gxTv_SdtTrn_CallToAction_Calltoactionphone_Z, false, includeNonInitialized);
+            AddObjectProperty("CallToActionPhoneCode_Z", gxTv_SdtTrn_CallToAction_Calltoactionphonecode_Z, false, includeNonInitialized);
+            AddObjectProperty("CallToActionPhoneNumber_Z", gxTv_SdtTrn_CallToAction_Calltoactionphonenumber_Z, false, includeNonInitialized);
             AddObjectProperty("CallToActionUrl_Z", gxTv_SdtTrn_CallToAction_Calltoactionurl_Z, false, includeNonInitialized);
             AddObjectProperty("CallToActionEmail_Z", gxTv_SdtTrn_CallToAction_Calltoactionemail_Z, false, includeNonInitialized);
             AddObjectProperty("LocationDynamicFormId_Z", gxTv_SdtTrn_CallToAction_Locationdynamicformid_Z, false, includeNonInitialized);
@@ -296,6 +306,16 @@ namespace GeneXus.Programs {
          {
             sdtIsNull = 0;
             gxTv_SdtTrn_CallToAction_Calltoactionphone = sdt.gxTv_SdtTrn_CallToAction_Calltoactionphone ;
+         }
+         if ( sdt.IsDirty("CallToActionPhoneCode") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_CallToAction_Calltoactionphonecode = sdt.gxTv_SdtTrn_CallToAction_Calltoactionphonecode ;
+         }
+         if ( sdt.IsDirty("CallToActionPhoneNumber") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_CallToAction_Calltoactionphonenumber = sdt.gxTv_SdtTrn_CallToAction_Calltoactionphonenumber ;
          }
          if ( sdt.IsDirty("CallToActionUrl") )
          {
@@ -406,6 +426,8 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_CallToAction_Calltoactionname_Z_SetNull( );
                this.gxTv_SdtTrn_CallToAction_Calltoactiontype_Z_SetNull( );
                this.gxTv_SdtTrn_CallToAction_Calltoactionphone_Z_SetNull( );
+               this.gxTv_SdtTrn_CallToAction_Calltoactionphonecode_Z_SetNull( );
+               this.gxTv_SdtTrn_CallToAction_Calltoactionphonenumber_Z_SetNull( );
                this.gxTv_SdtTrn_CallToAction_Calltoactionurl_Z_SetNull( );
                this.gxTv_SdtTrn_CallToAction_Calltoactionemail_Z_SetNull( );
                this.gxTv_SdtTrn_CallToAction_Locationdynamicformid_Z_SetNull( );
@@ -520,6 +542,38 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_CallToAction_Calltoactionphone = value;
             SetDirty("Calltoactionphone");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "CallToActionPhoneCode" )]
+      [  XmlElement( ElementName = "CallToActionPhoneCode"   )]
+      public string gxTpr_Calltoactionphonecode
+      {
+         get {
+            return gxTv_SdtTrn_CallToAction_Calltoactionphonecode ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_CallToAction_Calltoactionphonecode = value;
+            SetDirty("Calltoactionphonecode");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "CallToActionPhoneNumber" )]
+      [  XmlElement( ElementName = "CallToActionPhoneNumber"   )]
+      public string gxTpr_Calltoactionphonenumber
+      {
+         get {
+            return gxTv_SdtTrn_CallToAction_Calltoactionphonenumber ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_CallToAction_Calltoactionphonenumber = value;
+            SetDirty("Calltoactionphonenumber");
          }
 
       }
@@ -1093,6 +1147,62 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "CallToActionPhoneCode_Z" )]
+      [  XmlElement( ElementName = "CallToActionPhoneCode_Z"   )]
+      public string gxTpr_Calltoactionphonecode_Z
+      {
+         get {
+            return gxTv_SdtTrn_CallToAction_Calltoactionphonecode_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_CallToAction_Calltoactionphonecode_Z = value;
+            SetDirty("Calltoactionphonecode_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_CallToAction_Calltoactionphonecode_Z_SetNull( )
+      {
+         gxTv_SdtTrn_CallToAction_Calltoactionphonecode_Z = "";
+         SetDirty("Calltoactionphonecode_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_CallToAction_Calltoactionphonecode_Z_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "CallToActionPhoneNumber_Z" )]
+      [  XmlElement( ElementName = "CallToActionPhoneNumber_Z"   )]
+      public string gxTpr_Calltoactionphonenumber_Z
+      {
+         get {
+            return gxTv_SdtTrn_CallToAction_Calltoactionphonenumber_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_CallToAction_Calltoactionphonenumber_Z = value;
+            SetDirty("Calltoactionphonenumber_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_CallToAction_Calltoactionphonenumber_Z_SetNull( )
+      {
+         gxTv_SdtTrn_CallToAction_Calltoactionphonenumber_Z = "";
+         SetDirty("Calltoactionphonenumber_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_CallToAction_Calltoactionphonenumber_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "CallToActionUrl_Z" )]
       [  XmlElement( ElementName = "CallToActionUrl_Z"   )]
       public string gxTpr_Calltoactionurl_Z
@@ -1584,6 +1694,8 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_CallToAction_Calltoactionname = "";
          gxTv_SdtTrn_CallToAction_Calltoactiontype = "";
          gxTv_SdtTrn_CallToAction_Calltoactionphone = "";
+         gxTv_SdtTrn_CallToAction_Calltoactionphonecode = "";
+         gxTv_SdtTrn_CallToAction_Calltoactionphonenumber = "";
          gxTv_SdtTrn_CallToAction_Calltoactionurl = "";
          gxTv_SdtTrn_CallToAction_Calltoactionemail = "";
          gxTv_SdtTrn_CallToAction_Locationdynamicformid = Guid.Empty;
@@ -1601,6 +1713,8 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_CallToAction_Calltoactionname_Z = "";
          gxTv_SdtTrn_CallToAction_Calltoactiontype_Z = "";
          gxTv_SdtTrn_CallToAction_Calltoactionphone_Z = "";
+         gxTv_SdtTrn_CallToAction_Calltoactionphonecode_Z = "";
+         gxTv_SdtTrn_CallToAction_Calltoactionphonenumber_Z = "";
          gxTv_SdtTrn_CallToAction_Calltoactionurl_Z = "";
          gxTv_SdtTrn_CallToAction_Calltoactionemail_Z = "";
          gxTv_SdtTrn_CallToAction_Locationdynamicformid_Z = Guid.Empty;
@@ -1656,6 +1770,8 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_CallToAction_Wwpformvalidations ;
       private string gxTv_SdtTrn_CallToAction_Calltoactionname ;
       private string gxTv_SdtTrn_CallToAction_Calltoactiontype ;
+      private string gxTv_SdtTrn_CallToAction_Calltoactionphonecode ;
+      private string gxTv_SdtTrn_CallToAction_Calltoactionphonenumber ;
       private string gxTv_SdtTrn_CallToAction_Calltoactionurl ;
       private string gxTv_SdtTrn_CallToAction_Calltoactionemail ;
       private string gxTv_SdtTrn_CallToAction_Wwpformreferencename ;
@@ -1663,6 +1779,8 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_CallToAction_Wwpformsectionrefelements ;
       private string gxTv_SdtTrn_CallToAction_Calltoactionname_Z ;
       private string gxTv_SdtTrn_CallToAction_Calltoactiontype_Z ;
+      private string gxTv_SdtTrn_CallToAction_Calltoactionphonecode_Z ;
+      private string gxTv_SdtTrn_CallToAction_Calltoactionphonenumber_Z ;
       private string gxTv_SdtTrn_CallToAction_Calltoactionurl_Z ;
       private string gxTv_SdtTrn_CallToAction_Calltoactionemail_Z ;
       private string gxTv_SdtTrn_CallToAction_Wwpformreferencename_Z ;
@@ -1790,7 +1908,35 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "CallToActionUrl" , Order = 7 )]
+      [DataMember( Name = "CallToActionPhoneCode" , Order = 7 )]
+      [GxSeudo()]
+      public string gxTpr_Calltoactionphonecode
+      {
+         get {
+            return sdt.gxTpr_Calltoactionphonecode ;
+         }
+
+         set {
+            sdt.gxTpr_Calltoactionphonecode = value;
+         }
+
+      }
+
+      [DataMember( Name = "CallToActionPhoneNumber" , Order = 8 )]
+      [GxSeudo()]
+      public string gxTpr_Calltoactionphonenumber
+      {
+         get {
+            return sdt.gxTpr_Calltoactionphonenumber ;
+         }
+
+         set {
+            sdt.gxTpr_Calltoactionphonenumber = value;
+         }
+
+      }
+
+      [DataMember( Name = "CallToActionUrl" , Order = 9 )]
       [GxSeudo()]
       public string gxTpr_Calltoactionurl
       {
@@ -1804,7 +1950,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "CallToActionEmail" , Order = 8 )]
+      [DataMember( Name = "CallToActionEmail" , Order = 10 )]
       [GxSeudo()]
       public string gxTpr_Calltoactionemail
       {
@@ -1818,7 +1964,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "LocationDynamicFormId" , Order = 9 )]
+      [DataMember( Name = "LocationDynamicFormId" , Order = 11 )]
       [GxSeudo()]
       public Guid gxTpr_Locationdynamicformid
       {
@@ -1832,7 +1978,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormId" , Order = 10 )]
+      [DataMember( Name = "WWPFormId" , Order = 12 )]
       [GxSeudo()]
       public Nullable<short> gxTpr_Wwpformid
       {
@@ -1846,7 +1992,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormVersionNumber" , Order = 11 )]
+      [DataMember( Name = "WWPFormVersionNumber" , Order = 13 )]
       [GxSeudo()]
       public Nullable<short> gxTpr_Wwpformversionnumber
       {
@@ -1860,7 +2006,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormReferenceName" , Order = 12 )]
+      [DataMember( Name = "WWPFormReferenceName" , Order = 14 )]
       [GxSeudo()]
       public string gxTpr_Wwpformreferencename
       {
@@ -1874,7 +2020,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormTitle" , Order = 13 )]
+      [DataMember( Name = "WWPFormTitle" , Order = 15 )]
       [GxSeudo()]
       public string gxTpr_Wwpformtitle
       {
@@ -1888,7 +2034,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormDate" , Order = 14 )]
+      [DataMember( Name = "WWPFormDate" , Order = 16 )]
       [GxSeudo()]
       public string gxTpr_Wwpformdate
       {
@@ -1902,7 +2048,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormIsWizard" , Order = 15 )]
+      [DataMember( Name = "WWPFormIsWizard" , Order = 17 )]
       [GxSeudo()]
       public bool gxTpr_Wwpformiswizard
       {
@@ -1916,7 +2062,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormResume" , Order = 16 )]
+      [DataMember( Name = "WWPFormResume" , Order = 18 )]
       [GxSeudo()]
       public Nullable<short> gxTpr_Wwpformresume
       {
@@ -1930,7 +2076,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormResumeMessage" , Order = 17 )]
+      [DataMember( Name = "WWPFormResumeMessage" , Order = 19 )]
       public string gxTpr_Wwpformresumemessage
       {
          get {
@@ -1943,7 +2089,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormValidations" , Order = 18 )]
+      [DataMember( Name = "WWPFormValidations" , Order = 20 )]
       public string gxTpr_Wwpformvalidations
       {
          get {
@@ -1956,7 +2102,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormInstantiated" , Order = 19 )]
+      [DataMember( Name = "WWPFormInstantiated" , Order = 21 )]
       [GxSeudo()]
       public bool gxTpr_Wwpforminstantiated
       {
@@ -1970,7 +2116,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormLatestVersionNumber" , Order = 20 )]
+      [DataMember( Name = "WWPFormLatestVersionNumber" , Order = 22 )]
       [GxSeudo()]
       public Nullable<short> gxTpr_Wwpformlatestversionnumber
       {
@@ -1984,7 +2130,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormType" , Order = 21 )]
+      [DataMember( Name = "WWPFormType" , Order = 23 )]
       [GxSeudo()]
       public Nullable<short> gxTpr_Wwpformtype
       {
@@ -1998,7 +2144,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormSectionRefElements" , Order = 22 )]
+      [DataMember( Name = "WWPFormSectionRefElements" , Order = 24 )]
       [GxSeudo()]
       public string gxTpr_Wwpformsectionrefelements
       {
@@ -2012,7 +2158,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "WWPFormIsForDynamicValidations" , Order = 23 )]
+      [DataMember( Name = "WWPFormIsForDynamicValidations" , Order = 25 )]
       [GxSeudo()]
       public bool gxTpr_Wwpformisfordynamicvalidations
       {
@@ -2047,7 +2193,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 24 )]
+      [DataMember( Name = "gx_md5_hash", Order = 26 )]
       public string Hash
       {
          get {

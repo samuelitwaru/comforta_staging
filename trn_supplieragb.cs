@@ -1877,7 +1877,7 @@ namespace GeneXus.Programs {
          new prc_concatenateintlphone(context ).execute(  A377SupplierAgbPhoneCode,  A378SupplierAgbPhoneNumber, out  GXt_char2) ;
          A56SupplierAgbPhone = GXt_char2;
          AssignAttri("", false, "A56SupplierAgbPhone", A56SupplierAgbPhone);
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A378SupplierAgbPhoneNumber)) && ! GxRegex.IsMatch(A378SupplierAgbPhoneNumber,context.GetMessage( "\\b\\d{9}\\b", "")) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A378SupplierAgbPhoneNumber)) && ! GxRegex.IsMatch(A378SupplierAgbPhoneNumber,context.GetMessage( "^\\d{9}$", "")) )
          {
             GX_msglist.addItem(context.GetMessage( "Phone should contain 9 digits", ""), 1, "SUPPLIERAGBPHONENUMBER");
             AnyError = 1;
@@ -1886,7 +1886,7 @@ namespace GeneXus.Programs {
          }
          if ( ! ( GxRegex.IsMatch(A57SupplierAgbEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXM_DoesNotMatchRegExp", ""), context.GetMessage( "Supplier Agb Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "SUPPLIERAGBEMAIL");
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Invalid email pattern", ""), context.GetMessage( "Supplier Agb Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "SUPPLIERAGBEMAIL");
             AnyError = 1;
             GX_FocusControl = edtSupplierAgbEmail_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -3019,7 +3019,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251817105895", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251115212169", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3035,7 +3035,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_supplieragb.js", "?20251817105897", false, true);
+         context.AddJavascriptSource("trn_supplieragb.js", "?20251115212171", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3266,7 +3266,7 @@ namespace GeneXus.Programs {
          GXt_char2 = A56SupplierAgbPhone;
          new prc_concatenateintlphone(context ).execute(  A377SupplierAgbPhoneCode,  A378SupplierAgbPhoneNumber, out  GXt_char2) ;
          A56SupplierAgbPhone = GXt_char2;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A378SupplierAgbPhoneNumber)) && ! GxRegex.IsMatch(A378SupplierAgbPhoneNumber,context.GetMessage( "\\b\\d{9}\\b", "")) )
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A378SupplierAgbPhoneNumber)) && ! GxRegex.IsMatch(A378SupplierAgbPhoneNumber,context.GetMessage( "^\\d{9}$", "")) )
          {
             GX_msglist.addItem(context.GetMessage( "Phone should contain 9 digits", ""), 1, "SUPPLIERAGBPHONENUMBER");
             AnyError = 1;

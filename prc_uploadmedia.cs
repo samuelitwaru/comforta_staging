@@ -48,7 +48,8 @@ namespace GeneXus.Programs {
                            string aP2_MediaImageData ,
                            int aP3_MediaSize ,
                            string aP4_MediaType ,
-                           out SdtTrn_Media aP5_BC_Trn_Media )
+                           out SdtTrn_Media aP5_BC_Trn_Media ,
+                           out SdtSDT_Error aP6_Error )
       {
          this.AV2MediaId = aP0_MediaId;
          this.AV3MediaName = aP1_MediaName;
@@ -56,19 +57,22 @@ namespace GeneXus.Programs {
          this.AV5MediaSize = aP3_MediaSize;
          this.AV6MediaType = aP4_MediaType;
          this.AV7BC_Trn_Media = new SdtTrn_Media(context) ;
+         this.AV8Error = new SdtSDT_Error(context) ;
          initialize();
          ExecuteImpl();
          aP5_BC_Trn_Media=this.AV7BC_Trn_Media;
+         aP6_Error=this.AV8Error;
       }
 
-      public SdtTrn_Media executeUdp( Guid aP0_MediaId ,
+      public SdtSDT_Error executeUdp( Guid aP0_MediaId ,
                                       string aP1_MediaName ,
                                       string aP2_MediaImageData ,
                                       int aP3_MediaSize ,
-                                      string aP4_MediaType )
+                                      string aP4_MediaType ,
+                                      out SdtTrn_Media aP5_BC_Trn_Media )
       {
-         execute(aP0_MediaId, aP1_MediaName, aP2_MediaImageData, aP3_MediaSize, aP4_MediaType, out aP5_BC_Trn_Media);
-         return AV7BC_Trn_Media ;
+         execute(aP0_MediaId, aP1_MediaName, aP2_MediaImageData, aP3_MediaSize, aP4_MediaType, out aP5_BC_Trn_Media, out aP6_Error);
+         return AV8Error ;
       }
 
       public void executeSubmit( Guid aP0_MediaId ,
@@ -76,7 +80,8 @@ namespace GeneXus.Programs {
                                  string aP2_MediaImageData ,
                                  int aP3_MediaSize ,
                                  string aP4_MediaType ,
-                                 out SdtTrn_Media aP5_BC_Trn_Media )
+                                 out SdtTrn_Media aP5_BC_Trn_Media ,
+                                 out SdtSDT_Error aP6_Error )
       {
          this.AV2MediaId = aP0_MediaId;
          this.AV3MediaName = aP1_MediaName;
@@ -84,19 +89,22 @@ namespace GeneXus.Programs {
          this.AV5MediaSize = aP3_MediaSize;
          this.AV6MediaType = aP4_MediaType;
          this.AV7BC_Trn_Media = new SdtTrn_Media(context) ;
+         this.AV8Error = new SdtSDT_Error(context) ;
          SubmitImpl();
          aP5_BC_Trn_Media=this.AV7BC_Trn_Media;
+         aP6_Error=this.AV8Error;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         args = new Object[] {(Guid)AV2MediaId,(string)AV3MediaName,(string)AV4MediaImageData,(int)AV5MediaSize,(string)AV6MediaType,(SdtTrn_Media)AV7BC_Trn_Media} ;
+         args = new Object[] {(Guid)AV2MediaId,(string)AV3MediaName,(string)AV4MediaImageData,(int)AV5MediaSize,(string)AV6MediaType,(SdtTrn_Media)AV7BC_Trn_Media,(SdtSDT_Error)AV8Error} ;
          ClassLoader.Execute("aprc_uploadmedia","GeneXus.Programs","aprc_uploadmedia", new Object[] {context }, "execute", args);
-         if ( ( args != null ) && ( args.Length == 6 ) )
+         if ( ( args != null ) && ( args.Length == 7 ) )
          {
             AV7BC_Trn_Media = (SdtTrn_Media)(args[5]) ;
+            AV8Error = (SdtSDT_Error)(args[6]) ;
          }
          cleanup();
       }
@@ -113,6 +121,7 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV7BC_Trn_Media = new SdtTrn_Media(context);
+         AV8Error = new SdtSDT_Error(context);
          /* GeneXus formulas. */
       }
 
@@ -125,8 +134,10 @@ namespace GeneXus.Programs {
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private SdtTrn_Media AV7BC_Trn_Media ;
+      private SdtSDT_Error AV8Error ;
       private Object[] args ;
       private SdtTrn_Media aP5_BC_Trn_Media ;
+      private SdtSDT_Error aP6_Error ;
    }
 
 }

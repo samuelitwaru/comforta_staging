@@ -51,7 +51,7 @@ namespace GeneXus.Programs {
       protected override GAMSecurityLevel IntegratedSecurityLevel
       {
          get {
-            return GAMSecurityLevel.SecurityHigh ;
+            return GAMSecurityLevel.SecurityLow ;
          }
 
       }
@@ -76,117 +76,118 @@ namespace GeneXus.Programs {
          dsDefault = context.GetDataStore("Default");
       }
 
-      public void execute( Guid aP0_LocationId ,
-                           Guid aP1_OrganisationId ,
-                           out GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageStructureCollection )
+      public void execute( out GXBaseCollection<SdtSDT_PageStructure> aP0_SDT_PageStructureCollection ,
+                           out SdtSDT_Error aP1_Error )
       {
-         this.AV26LocationId = aP0_LocationId;
-         this.AV27OrganisationId = aP1_OrganisationId;
          this.AV29SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2") ;
+         this.AV31Error = new SdtSDT_Error(context) ;
          initialize();
          ExecuteImpl();
-         aP2_SDT_PageStructureCollection=this.AV29SDT_PageStructureCollection;
+         aP0_SDT_PageStructureCollection=this.AV29SDT_PageStructureCollection;
+         aP1_Error=this.AV31Error;
       }
 
-      public GXBaseCollection<SdtSDT_PageStructure> executeUdp( Guid aP0_LocationId ,
-                                                                Guid aP1_OrganisationId )
+      public SdtSDT_Error executeUdp( out GXBaseCollection<SdtSDT_PageStructure> aP0_SDT_PageStructureCollection )
       {
-         execute(aP0_LocationId, aP1_OrganisationId, out aP2_SDT_PageStructureCollection);
-         return AV29SDT_PageStructureCollection ;
+         execute(out aP0_SDT_PageStructureCollection, out aP1_Error);
+         return AV31Error ;
       }
 
-      public void executeSubmit( Guid aP0_LocationId ,
-                                 Guid aP1_OrganisationId ,
-                                 out GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageStructureCollection )
+      public void executeSubmit( out GXBaseCollection<SdtSDT_PageStructure> aP0_SDT_PageStructureCollection ,
+                                 out SdtSDT_Error aP1_Error )
       {
-         this.AV26LocationId = aP0_LocationId;
-         this.AV27OrganisationId = aP1_OrganisationId;
          this.AV29SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2") ;
+         this.AV31Error = new SdtSDT_Error(context) ;
          SubmitImpl();
-         aP2_SDT_PageStructureCollection=this.AV29SDT_PageStructureCollection;
+         aP0_SDT_PageStructureCollection=this.AV29SDT_PageStructureCollection;
+         aP1_Error=this.AV31Error;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_authenticatereceptionist(context ).execute( out  AV30UserName, ref  AV26LocationId, ref  AV27OrganisationId) ;
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV30UserName))) )
+         if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            cleanup();
-            if (true) return;
+            AV31Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV31Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
          }
-         /* Using cursor P008W2 */
-         pr_default.execute(0, new Object[] {AV26LocationId, AV27OrganisationId});
-         while ( (pr_default.getStatus(0) != 101) )
+         else
          {
-            A318Trn_PageName = P008W2_A318Trn_PageName[0];
-            A11OrganisationId = P008W2_A11OrganisationId[0];
-            A29LocationId = P008W2_A29LocationId[0];
-            A431PageJsonContent = P008W2_A431PageJsonContent[0];
-            n431PageJsonContent = P008W2_n431PageJsonContent[0];
-            A310Trn_PageId = P008W2_A310Trn_PageId[0];
-            if ( StringUtil.StrCmp(A318Trn_PageName, context.GetMessage( "Home", "")) == 0 )
+            AV33Udparg1 = new prc_getuserlocationid(context).executeUdp( );
+            AV34Udparg2 = new prc_getuserorganisationid(context).executeUdp( );
+            /* Using cursor P008W2 */
+            pr_default.execute(0, new Object[] {AV33Udparg1, AV34Udparg2});
+            while ( (pr_default.getStatus(0) != 101) )
             {
-               AV8SDT_Page = new SdtSDT_Page(context);
-               AV8SDT_Page.FromJSonString(A431PageJsonContent, null);
-               AV32GXV1 = 1;
-               while ( AV32GXV1 <= AV8SDT_Page.gxTpr_Row.Count )
+               A318Trn_PageName = P008W2_A318Trn_PageName[0];
+               A11OrganisationId = P008W2_A11OrganisationId[0];
+               A29LocationId = P008W2_A29LocationId[0];
+               A431PageJsonContent = P008W2_A431PageJsonContent[0];
+               n431PageJsonContent = P008W2_n431PageJsonContent[0];
+               A310Trn_PageId = P008W2_A310Trn_PageId[0];
+               if ( StringUtil.StrCmp(A318Trn_PageName, context.GetMessage( "Home", "")) == 0 )
                {
-                  AV10SDT_Row = ((SdtSDT_Row)AV8SDT_Page.gxTpr_Row.Item(AV32GXV1));
-                  AV33GXV2 = 1;
-                  while ( AV33GXV2 <= AV10SDT_Row.gxTpr_Col.Count )
+                  AV8SDT_Page = new SdtSDT_Page(context);
+                  AV8SDT_Page.FromJSonString(A431PageJsonContent, null);
+                  AV35GXV1 = 1;
+                  while ( AV35GXV1 <= AV8SDT_Page.gxTpr_Row.Count )
                   {
-                     AV11SDT_Col = ((SdtSDT_Col)AV10SDT_Row.gxTpr_Col.Item(AV33GXV2));
-                     if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objecttype))) )
+                     AV10SDT_Row = ((SdtSDT_Row)AV8SDT_Page.gxTpr_Row.Item(AV35GXV1));
+                     AV36GXV2 = 1;
+                     while ( AV36GXV2 <= AV10SDT_Row.gxTpr_Col.Count )
                      {
-                        AV25BC_Trn_Page = new SdtTrn_Page(context);
-                        AV25BC_Trn_Page.Load(AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objectid, AV11SDT_Col.gxTpr_Tile.gxTpr_Tilename, AV26LocationId);
-                        if ( ! (Guid.Empty==AV25BC_Trn_Page.gxTpr_Trn_pageid) )
+                        AV11SDT_Col = ((SdtSDT_Col)AV10SDT_Row.gxTpr_Col.Item(AV36GXV2));
+                        if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objecttype))) )
                         {
-                           AV15SDT_PageStructure = new SdtSDT_PageStructure(context);
-                           AV15SDT_PageStructure.gxTpr_Id = AV25BC_Trn_Page.gxTpr_Trn_pageid;
-                           AV15SDT_PageStructure.gxTpr_Name = AV25BC_Trn_Page.gxTpr_Trn_pagename;
-                           if ( ! AV25BC_Trn_Page.gxTpr_Pageiscontentpage )
+                           AV25BC_Trn_Page = new SdtTrn_Page(context);
+                           AV25BC_Trn_Page.Load(AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objectid, AV11SDT_Col.gxTpr_Tile.gxTpr_Tilename, new prc_getuserlocationid(context).executeUdp( ));
+                           if ( ! (Guid.Empty==AV25BC_Trn_Page.gxTpr_Trn_pageid) )
                            {
-                              AV8SDT_Page = new SdtSDT_Page(context);
-                              AV8SDT_Page.FromJSonString(AV25BC_Trn_Page.gxTpr_Pagejsoncontent, null);
-                              AV34GXV3 = 1;
-                              while ( AV34GXV3 <= AV8SDT_Page.gxTpr_Row.Count )
+                              AV15SDT_PageStructure = new SdtSDT_PageStructure(context);
+                              AV15SDT_PageStructure.gxTpr_Id = AV25BC_Trn_Page.gxTpr_Trn_pageid;
+                              AV15SDT_PageStructure.gxTpr_Name = AV25BC_Trn_Page.gxTpr_Trn_pagename;
+                              if ( ! AV25BC_Trn_Page.gxTpr_Pageiscontentpage )
                               {
-                                 AV10SDT_Row = ((SdtSDT_Row)AV8SDT_Page.gxTpr_Row.Item(AV34GXV3));
-                                 AV35GXV4 = 1;
-                                 while ( AV35GXV4 <= AV10SDT_Row.gxTpr_Col.Count )
+                                 AV8SDT_Page = new SdtSDT_Page(context);
+                                 AV8SDT_Page.FromJSonString(AV25BC_Trn_Page.gxTpr_Pagejsoncontent, null);
+                                 AV37GXV3 = 1;
+                                 while ( AV37GXV3 <= AV8SDT_Page.gxTpr_Row.Count )
                                  {
-                                    AV11SDT_Col = ((SdtSDT_Col)AV10SDT_Row.gxTpr_Col.Item(AV35GXV4));
-                                    if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objecttype))) )
+                                    AV10SDT_Row = ((SdtSDT_Row)AV8SDT_Page.gxTpr_Row.Item(AV37GXV3));
+                                    AV38GXV4 = 1;
+                                    while ( AV38GXV4 <= AV10SDT_Row.gxTpr_Col.Count )
                                     {
-                                       AV25BC_Trn_Page = new SdtTrn_Page(context);
-                                       AV25BC_Trn_Page.Load(AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objectid, AV11SDT_Col.gxTpr_Tile.gxTpr_Tilename, AV26LocationId);
-                                       if ( ! (Guid.Empty==AV25BC_Trn_Page.gxTpr_Trn_pageid) )
+                                       AV11SDT_Col = ((SdtSDT_Col)AV10SDT_Row.gxTpr_Col.Item(AV38GXV4));
+                                       if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objecttype))) )
                                        {
-                                          AV19SDT_PageChild = new SdtSDT_PageStructure_ChildrenItem(context);
-                                          AV19SDT_PageChild.gxTpr_Id = AV25BC_Trn_Page.gxTpr_Trn_pageid;
-                                          AV19SDT_PageChild.gxTpr_Name = AV25BC_Trn_Page.gxTpr_Trn_pagename;
-                                          AV15SDT_PageStructure.gxTpr_Children.Add(AV19SDT_PageChild, 0);
+                                          AV25BC_Trn_Page = new SdtTrn_Page(context);
+                                          AV25BC_Trn_Page.Load(AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objectid, AV11SDT_Col.gxTpr_Tile.gxTpr_Tilename, new prc_getuserlocationid(context).executeUdp( ));
+                                          if ( ! (Guid.Empty==AV25BC_Trn_Page.gxTpr_Trn_pageid) )
+                                          {
+                                             AV19SDT_PageChild = new SdtSDT_PageStructure_ChildrenItem(context);
+                                             AV19SDT_PageChild.gxTpr_Id = AV25BC_Trn_Page.gxTpr_Trn_pageid;
+                                             AV19SDT_PageChild.gxTpr_Name = AV25BC_Trn_Page.gxTpr_Trn_pagename;
+                                             AV15SDT_PageStructure.gxTpr_Children.Add(AV19SDT_PageChild, 0);
+                                          }
                                        }
+                                       AV38GXV4 = (int)(AV38GXV4+1);
                                     }
-                                    AV35GXV4 = (int)(AV35GXV4+1);
+                                    AV37GXV3 = (int)(AV37GXV3+1);
                                  }
-                                 AV34GXV3 = (int)(AV34GXV3+1);
                               }
+                              AV29SDT_PageStructureCollection.Add(AV15SDT_PageStructure, 0);
                            }
-                           AV29SDT_PageStructureCollection.Add(AV15SDT_PageStructure, 0);
                         }
+                        AV36GXV2 = (int)(AV36GXV2+1);
                      }
-                     AV33GXV2 = (int)(AV33GXV2+1);
+                     AV35GXV1 = (int)(AV35GXV1+1);
                   }
-                  AV32GXV1 = (int)(AV32GXV1+1);
                }
+               pr_default.readNext(0);
             }
-            pr_default.readNext(0);
+            pr_default.close(0);
          }
-         pr_default.close(0);
          cleanup();
       }
 
@@ -203,7 +204,9 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV29SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2");
-         AV30UserName = "";
+         AV31Error = new SdtSDT_Error(context);
+         AV33Udparg1 = Guid.Empty;
+         AV34Udparg2 = Guid.Empty;
          P008W2_A318Trn_PageName = new string[] {""} ;
          P008W2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P008W2_A29LocationId = new Guid[] {Guid.Empty} ;
@@ -231,16 +234,15 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV32GXV1 ;
-      private int AV33GXV2 ;
-      private int AV34GXV3 ;
-      private int AV35GXV4 ;
+      private int AV35GXV1 ;
+      private int AV36GXV2 ;
+      private int AV37GXV3 ;
+      private int AV38GXV4 ;
       private bool n431PageJsonContent ;
       private string A431PageJsonContent ;
-      private string AV30UserName ;
       private string A318Trn_PageName ;
-      private Guid AV26LocationId ;
-      private Guid AV27OrganisationId ;
+      private Guid AV33Udparg1 ;
+      private Guid AV34Udparg2 ;
       private Guid A11OrganisationId ;
       private Guid A29LocationId ;
       private Guid A310Trn_PageId ;
@@ -248,6 +250,7 @@ namespace GeneXus.Programs {
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private GXBaseCollection<SdtSDT_PageStructure> AV29SDT_PageStructureCollection ;
+      private SdtSDT_Error AV31Error ;
       private IDataStoreProvider pr_default ;
       private string[] P008W2_A318Trn_PageName ;
       private Guid[] P008W2_A11OrganisationId ;
@@ -261,7 +264,8 @@ namespace GeneXus.Programs {
       private SdtTrn_Page AV25BC_Trn_Page ;
       private SdtSDT_PageStructure AV15SDT_PageStructure ;
       private SdtSDT_PageStructure_ChildrenItem AV19SDT_PageChild ;
-      private GXBaseCollection<SdtSDT_PageStructure> aP2_SDT_PageStructureCollection ;
+      private GXBaseCollection<SdtSDT_PageStructure> aP0_SDT_PageStructureCollection ;
+      private SdtSDT_Error aP1_Error ;
    }
 
    public class aprc_listpages__default : DataStoreHelperBase, IDataStoreHelper
@@ -281,11 +285,11 @@ namespace GeneXus.Programs {
        {
           Object[] prmP008W2;
           prmP008W2 = new Object[] {
-          new ParDef("AV26LocationId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("AV27OrganisationId",GXType.UniqueIdentifier,36,0)
+          new ParDef("AV33Udparg1",GXType.UniqueIdentifier,36,0) ,
+          new ParDef("AV34Udparg2",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P008W2", "SELECT Trn_PageName, OrganisationId, LocationId, PageJsonContent, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV26LocationId) AND (OrganisationId = :AV27OrganisationId) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008W2,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P008W2", "SELECT Trn_PageName, OrganisationId, LocationId, PageJsonContent, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV33Udparg1) AND (OrganisationId = :AV34Udparg2) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008W2,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }

@@ -77,75 +77,84 @@ namespace GeneXus.Programs {
       }
 
       public void execute( Guid aP0_ProductServiceId ,
-                           ref SdtSDT_ProductService aP1_SDT_ProductService )
+                           out SdtSDT_ProductService aP1_SDT_ProductService ,
+                           out SdtSDT_Error aP2_Error )
       {
          this.AV8ProductServiceId = aP0_ProductServiceId;
-         this.AV9SDT_ProductService = aP1_SDT_ProductService;
+         this.AV9SDT_ProductService = new SdtSDT_ProductService(context) ;
+         this.AV19Error = new SdtSDT_Error(context) ;
          initialize();
          ExecuteImpl();
          aP1_SDT_ProductService=this.AV9SDT_ProductService;
+         aP2_Error=this.AV19Error;
       }
 
-      public SdtSDT_ProductService executeUdp( Guid aP0_ProductServiceId )
+      public SdtSDT_Error executeUdp( Guid aP0_ProductServiceId ,
+                                      out SdtSDT_ProductService aP1_SDT_ProductService )
       {
-         execute(aP0_ProductServiceId, ref aP1_SDT_ProductService);
-         return AV9SDT_ProductService ;
+         execute(aP0_ProductServiceId, out aP1_SDT_ProductService, out aP2_Error);
+         return AV19Error ;
       }
 
       public void executeSubmit( Guid aP0_ProductServiceId ,
-                                 ref SdtSDT_ProductService aP1_SDT_ProductService )
+                                 out SdtSDT_ProductService aP1_SDT_ProductService ,
+                                 out SdtSDT_Error aP2_Error )
       {
          this.AV8ProductServiceId = aP0_ProductServiceId;
-         this.AV9SDT_ProductService = aP1_SDT_ProductService;
+         this.AV9SDT_ProductService = new SdtSDT_ProductService(context) ;
+         this.AV19Error = new SdtSDT_Error(context) ;
          SubmitImpl();
          aP1_SDT_ProductService=this.AV9SDT_ProductService;
+         aP2_Error=this.AV19Error;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_authenticatereceptionist(context ).execute( out  AV18UserName, ref  AV17LocationId, ref  AV16OrganisationId) ;
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV18UserName))) )
+         if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
-            cleanup();
-            if (true) return;
+            AV19Error.gxTpr_Status = context.GetMessage( "Error", "");
+            AV19Error.gxTpr_Message = context.GetMessage( "Not Authenticated", "");
          }
-         /* Using cursor P00912 */
-         pr_default.execute(0, new Object[] {AV8ProductServiceId});
-         while ( (pr_default.getStatus(0) != 101) )
+         else
          {
-            A11OrganisationId = P00912_A11OrganisationId[0];
-            A29LocationId = P00912_A29LocationId[0];
-            A58ProductServiceId = P00912_A58ProductServiceId[0];
-            AV12BC_Trn_ProductService.Load(A58ProductServiceId, A29LocationId, A11OrganisationId);
-            AV9SDT_ProductService.FromJSonString(AV12BC_Trn_ProductService.ToJSonString(true, true), null);
-            /* Using cursor P00913 */
-            pr_default.execute(1, new Object[] {AV8ProductServiceId, A29LocationId, A11OrganisationId});
-            while ( (pr_default.getStatus(1) != 101) )
+            /* Using cursor P00912 */
+            pr_default.execute(0, new Object[] {AV8ProductServiceId});
+            while ( (pr_default.getStatus(0) != 101) )
             {
-               A58ProductServiceId = P00913_A58ProductServiceId[0];
-               A367CallToActionId = P00913_A367CallToActionId[0];
-               A397CallToActionName = P00913_A397CallToActionName[0];
-               A370CallToActionPhone = P00913_A370CallToActionPhone[0];
-               A369CallToActionEmail = P00913_A369CallToActionEmail[0];
-               A368CallToActionType = P00913_A368CallToActionType[0];
-               A396CallToActionUrl = P00913_A396CallToActionUrl[0];
-               AV15BC_Trn_CallToAction.Load(A367CallToActionId);
-               AV13SDT_CallToActionItem = new SdtSDT_CallToAction_SDT_CallToActionItem(context);
-               AV13SDT_CallToActionItem.gxTpr_Calltoactionid = A367CallToActionId;
-               AV13SDT_CallToActionItem.gxTpr_Calltoactionname = A397CallToActionName;
-               AV13SDT_CallToActionItem.gxTpr_Calltoactionphone = A370CallToActionPhone;
-               AV13SDT_CallToActionItem.gxTpr_Calltoactionemail = A369CallToActionEmail;
-               AV13SDT_CallToActionItem.gxTpr_Calltoactiontype = A368CallToActionType;
-               AV13SDT_CallToActionItem.gxTpr_Calltoactionurl = A396CallToActionUrl;
-               AV9SDT_ProductService.gxTpr_Calltoactions.Add(AV13SDT_CallToActionItem, 0);
-               pr_default.readNext(1);
+               A11OrganisationId = P00912_A11OrganisationId[0];
+               A29LocationId = P00912_A29LocationId[0];
+               A58ProductServiceId = P00912_A58ProductServiceId[0];
+               AV12BC_Trn_ProductService.Load(A58ProductServiceId, A29LocationId, A11OrganisationId);
+               AV9SDT_ProductService.FromJSonString(AV12BC_Trn_ProductService.ToJSonString(true, true), null);
+               /* Using cursor P00913 */
+               pr_default.execute(1, new Object[] {AV8ProductServiceId, A29LocationId, A11OrganisationId});
+               while ( (pr_default.getStatus(1) != 101) )
+               {
+                  A58ProductServiceId = P00913_A58ProductServiceId[0];
+                  A367CallToActionId = P00913_A367CallToActionId[0];
+                  A397CallToActionName = P00913_A397CallToActionName[0];
+                  A370CallToActionPhone = P00913_A370CallToActionPhone[0];
+                  A369CallToActionEmail = P00913_A369CallToActionEmail[0];
+                  A368CallToActionType = P00913_A368CallToActionType[0];
+                  A396CallToActionUrl = P00913_A396CallToActionUrl[0];
+                  AV15BC_Trn_CallToAction.Load(A367CallToActionId);
+                  AV13SDT_CallToActionItem = new SdtSDT_CallToAction_SDT_CallToActionItem(context);
+                  AV13SDT_CallToActionItem.gxTpr_Calltoactionid = A367CallToActionId;
+                  AV13SDT_CallToActionItem.gxTpr_Calltoactionname = A397CallToActionName;
+                  AV13SDT_CallToActionItem.gxTpr_Calltoactionphone = A370CallToActionPhone;
+                  AV13SDT_CallToActionItem.gxTpr_Calltoactionemail = A369CallToActionEmail;
+                  AV13SDT_CallToActionItem.gxTpr_Calltoactiontype = A368CallToActionType;
+                  AV13SDT_CallToActionItem.gxTpr_Calltoactionurl = A396CallToActionUrl;
+                  AV9SDT_ProductService.gxTpr_Calltoactions.Add(AV13SDT_CallToActionItem, 0);
+                  pr_default.readNext(1);
+               }
+               pr_default.close(1);
+               pr_default.readNext(0);
             }
-            pr_default.close(1);
-            pr_default.readNext(0);
+            pr_default.close(0);
          }
-         pr_default.close(0);
          cleanup();
       }
 
@@ -161,9 +170,8 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV18UserName = "";
-         AV17LocationId = Guid.Empty;
-         AV16OrganisationId = Guid.Empty;
+         AV9SDT_ProductService = new SdtSDT_ProductService(context);
+         AV19Error = new SdtSDT_Error(context);
          P00912_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P00912_A29LocationId = new Guid[] {Guid.Empty} ;
          P00912_A58ProductServiceId = new Guid[] {Guid.Empty} ;
@@ -202,14 +210,11 @@ namespace GeneXus.Programs {
       }
 
       private string A370CallToActionPhone ;
-      private string AV18UserName ;
       private string A397CallToActionName ;
       private string A369CallToActionEmail ;
       private string A368CallToActionType ;
       private string A396CallToActionUrl ;
       private Guid AV8ProductServiceId ;
-      private Guid AV17LocationId ;
-      private Guid AV16OrganisationId ;
       private Guid A11OrganisationId ;
       private Guid A29LocationId ;
       private Guid A58ProductServiceId ;
@@ -218,7 +223,7 @@ namespace GeneXus.Programs {
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private SdtSDT_ProductService AV9SDT_ProductService ;
-      private SdtSDT_ProductService aP1_SDT_ProductService ;
+      private SdtSDT_Error AV19Error ;
       private IDataStoreProvider pr_default ;
       private Guid[] P00912_A11OrganisationId ;
       private Guid[] P00912_A29LocationId ;
@@ -235,6 +240,8 @@ namespace GeneXus.Programs {
       private string[] P00913_A396CallToActionUrl ;
       private SdtTrn_CallToAction AV15BC_Trn_CallToAction ;
       private SdtSDT_CallToAction_SDT_CallToActionItem AV13SDT_CallToActionItem ;
+      private SdtSDT_ProductService aP1_SDT_ProductService ;
+      private SdtSDT_Error aP2_Error ;
    }
 
    public class aprc_productserviceapi__default : DataStoreHelperBase, IDataStoreHelper
