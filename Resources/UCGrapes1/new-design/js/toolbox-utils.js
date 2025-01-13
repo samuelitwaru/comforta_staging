@@ -116,6 +116,7 @@ function mapTemplateToPageData(templateData, page) {
 }
 
 function mapContentToPageData(templateData, page) {
+    console.log(page)
   const pages = templateData.pages;
   const components =
       pages[0].frames[0].component.components[0].components[0].components;
@@ -132,10 +133,9 @@ function mapContentToPageData(templateData, page) {
   components.forEach((component) => {
 
       const topComponents = component.components?.[0]?.components?.[0]?.components || []
-
       for (let index = 0; index < topComponents.length; index++) {
           const component = topComponents[index];
-          if (component?.type === "image") {
+          if (component?.type === "product-service-image") {
 
               const imageUrl = component?.attributes.src.startsWith('http') ? component?.attributes.src : baseURL + '/' + component?.attributes.src
 
