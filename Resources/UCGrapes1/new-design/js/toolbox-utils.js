@@ -116,7 +116,6 @@ function mapTemplateToPageData(templateData, page) {
 }
 
 function mapContentToPageData(templateData, page) {
-    console.log(page)
   const pages = templateData.pages;
   const components =
       pages[0].frames[0].component.components[0].components[0].components;
