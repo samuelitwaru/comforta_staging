@@ -226,13 +226,6 @@ namespace GeneXus.Programs {
             new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
             A11OrganisationId = GXt_guid1;
          }
-         if ( IsIns( )  && (Guid.Empty==A247Trn_ThemeId) && ( Gx_BScreen == 0 ) )
-         {
-            GXt_guid1 = A247Trn_ThemeId;
-            new prc_getdefaulttheme(context ).execute( out  GXt_guid1) ;
-            A247Trn_ThemeId = GXt_guid1;
-            n247Trn_ThemeId = false;
-         }
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ( Gx_BScreen == 0 ) )
          {
          }
@@ -271,6 +264,22 @@ namespace GeneXus.Programs {
          GXt_char2 = A35LocationPhone;
          new prc_concatenateintlphone(context ).execute(  A383LocationPhoneCode,  A384LocationPhoneNumber, out  GXt_char2) ;
          A35LocationPhone = GXt_char2;
+         if ( (Guid.Empty==A247Trn_ThemeId) )
+         {
+            A247Trn_ThemeId = Guid.Empty;
+            n247Trn_ThemeId = false;
+            n247Trn_ThemeId = true;
+         }
+         else
+         {
+            if ( IsIns( )  && (Guid.Empty==A247Trn_ThemeId) && ( Gx_BScreen == 0 ) )
+            {
+               GXt_guid1 = A247Trn_ThemeId;
+               new prc_getdefaulttheme(context ).execute( out  GXt_guid1) ;
+               A247Trn_ThemeId = GXt_guid1;
+               n247Trn_ThemeId = false;
+            }
+         }
       }
 
       protected void CheckExtendedTable046( )
@@ -301,6 +310,22 @@ namespace GeneXus.Programs {
          {
             GX_msglist.addItem(context.GetMessage( "Phone contains 9 digits", ""), 1, "");
             AnyError = 1;
+         }
+         if ( (Guid.Empty==A247Trn_ThemeId) )
+         {
+            A247Trn_ThemeId = Guid.Empty;
+            n247Trn_ThemeId = false;
+            n247Trn_ThemeId = true;
+         }
+         else
+         {
+            if ( IsIns( )  && (Guid.Empty==A247Trn_ThemeId) && ( Gx_BScreen == 0 ) )
+            {
+               GXt_guid1 = A247Trn_ThemeId;
+               new prc_getdefaulttheme(context ).execute( out  GXt_guid1) ;
+               A247Trn_ThemeId = GXt_guid1;
+               n247Trn_ThemeId = false;
+            }
          }
          /* Using cursor BC00045 */
          pr_default.execute(3, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
@@ -859,8 +884,6 @@ namespace GeneXus.Programs {
 
       protected void StandaloneModalInsert( )
       {
-         A247Trn_ThemeId = i247Trn_ThemeId;
-         n247Trn_ThemeId = false;
       }
 
       protected bool IsIns( )
@@ -1458,7 +1481,6 @@ namespace GeneXus.Programs {
          A40000LocationImage_GXI = "";
          Z36LocationDescription = "";
          A36LocationDescription = "";
-         GXt_guid1 = Guid.Empty;
          BC00046_A29LocationId = new Guid[] {Guid.Empty} ;
          BC00046_A35LocationPhone = new string[] {""} ;
          BC00046_A31LocationName = new string[] {""} ;
@@ -1478,6 +1500,7 @@ namespace GeneXus.Programs {
          BC00046_A506LocationImage = new string[] {""} ;
          BC00044_A11OrganisationId = new Guid[] {Guid.Empty} ;
          GXt_char2 = "";
+         GXt_guid1 = Guid.Empty;
          BC00045_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          BC00045_n247Trn_ThemeId = new bool[] {false} ;
          BC00047_A29LocationId = new Guid[] {Guid.Empty} ;
@@ -1547,7 +1570,6 @@ namespace GeneXus.Programs {
          BC000417_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          BC000417_n247Trn_ThemeId = new bool[] {false} ;
          BC000417_A506LocationImage = new string[] {""} ;
-         i247Trn_ThemeId = Guid.Empty;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          BC000418_A11OrganisationId = new Guid[] {Guid.Empty} ;
@@ -1621,8 +1643,6 @@ namespace GeneXus.Programs {
          n247Trn_ThemeId = false;
          A247Trn_ThemeId = new prc_getdefaulttheme(context).executeUdp( );
          n247Trn_ThemeId = false;
-         i247Trn_ThemeId = new prc_getdefaulttheme(context).executeUdp( );
-         n247Trn_ThemeId = false;
          INITTRN();
          /* Execute Start event if defined. */
          /* Execute user event: Start */
@@ -1678,7 +1698,6 @@ namespace GeneXus.Programs {
       private Guid Z247Trn_ThemeId ;
       private Guid A247Trn_ThemeId ;
       private Guid GXt_guid1 ;
-      private Guid i247Trn_ThemeId ;
       private IGxSession AV13WebSession ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;

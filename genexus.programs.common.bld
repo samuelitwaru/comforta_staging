@@ -38,7 +38,6 @@ type_SdtUForm.cs
 type_SdtUForm_Element.cs
 type_SdtTrn_Organisation.cs
 type_SdtTrn_Manager.cs
-type_SdtTrn_Location.cs
 type_SdtTrn_SupplierGen.cs
 type_SdtTrn_SupplierAgb.cs
 type_SdtTrn_NetworkCompany.cs
@@ -63,6 +62,7 @@ type_SdtTrn_MedicalIndication.cs
 type_SdtTrn_SupplierGenType.cs
 type_SdtTrn_ResidentType.cs
 type_SdtTrn_Audit.cs
+type_SdtTrn_Location.cs
 type_SdtQRCodeLibrary.cs
 type_SdtEO_Base64Image.cs
 gxdomainsalutation.cs

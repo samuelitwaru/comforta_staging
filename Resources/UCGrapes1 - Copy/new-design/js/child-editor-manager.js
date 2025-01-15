@@ -44,10 +44,20 @@ class ChildEditorManager {
         this.currentLanguage = currentLanguage;
     }
 
+    /**
+     * Retrieves the current GrapesJS editor instance.
+     * 
+     * @returns {Object} The current GrapesJS editor instance.
+     */
     getCurrentEditor() {
         return this.currentEditor.editor;
     }
 
+    /**
+     * Sets the current editor by its ID and activates the corresponding frame.
+     * 
+     * @param {string} editorId - The ID of the editor to set as the current editor.
+     */
     setCurrentEditor(editorId) {
         this.currentEditor = this.editors[editorId];
         this.activateFrame(editorId + "-frame");
@@ -209,7 +219,7 @@ class ChildEditorManager {
                                       <p 
                                         id="product-service-description" 
                                         class="content-page-block" 
-                                        style="flex: 1; padding: 0; margin: 0; height: auto; margin-bottom: 15px"
+                                        style="flex: 1; padding: 0; margin: 0; height: auto;"
                                       >
                                         ${contentPageData.ProductServiceDescription}
                                       </p>
@@ -334,7 +344,7 @@ class ChildEditorManager {
                                 });
                                 p[0].replaceWith(`
                                 <p
-                                    style="flex: 1; padding: 0; margin: 0; height: auto; margin-bottom: 15px"
+                                    style="flex: 1; padding: 0; margin: 0; height: auto;"
                                     class="content-page-block"
                                     data-gjs-draggable="true"
                                     data-gjs-selectable="false"

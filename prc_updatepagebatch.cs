@@ -126,6 +126,7 @@ namespace GeneXus.Programs {
             {
                AV27Response = context.GetMessage( "Pages Save Successfully", "");
                context.CommitDataStores("prc_updatepagebatch",pr_default);
+               new prc_logtoserver(context ).execute(  context.GetMessage( "Committed", "")) ;
                if ( AV11IsNotifyResidents )
                {
                   AV8Title = context.GetMessage( "New Updates Available", "");

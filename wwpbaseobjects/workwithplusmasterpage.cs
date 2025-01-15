@@ -216,7 +216,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context.AddJavascriptSource("DVelop/Shared/daterangepicker/daterangepicker.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DatePicker/DatePickerRender.js", "", false, true);
-         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?20251141025258", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?202511512333422", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -904,9 +904,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Start Routine */
          returnInSub = false;
          AV9GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context).get();
-         /* Execute user subroutine: 'LOADSAVEDLANGUAGE' */
-         S112 ();
-         if (returnInSub) return;
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV42WWPContext) ;
          GXt_SdtSDT_OrganisationSetting1 = AV34SDT_OrganisationSetting;
          new prc_organisationsetting(context ).execute( out  GXt_SdtSDT_OrganisationSetting1) ;
@@ -972,7 +969,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             AV25WebSession.Set(context.GetMessage( "ClientInformationSaved", ""), context.GetMessage( "Y", ""));
          }
          /* Execute user subroutine: 'LOADNOTIFICATIONS' */
-         S122 ();
+         S112 ();
          if (returnInSub) return;
          if ( StringUtil.StrCmp(AV28Httprequest.Method, "GET") == 0 )
          {
@@ -1028,6 +1025,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
             bttBtnuexitorganisation_Visible = 0;
             AssignProp("", true, bttBtnuexitorganisation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuexitorganisation_Visible), 5, 0), true);
          }
+         Ddc_changelanguage_Caption = context.GetLanguage( );
+         ucDdc_changelanguage.SendProperty(context, "", true, Ddc_changelanguage_Internalname, "Caption", Ddc_changelanguage_Caption);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV42WWPContext.gxTpr_Profileurl)) )
          {
             Ddc_adminag_Icon = context.convertURL( (string)(context.GetImagePath( "cd132e7c-3222-4be1-9123-4cad0b17f9cf", "", context.GetTheme( ))));
@@ -1182,7 +1181,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             }
          }
          /* Execute user subroutine: 'LOADNOTIFICATIONS' */
-         S122 ();
+         S112 ();
          if (returnInSub) return;
       }
 
@@ -1196,7 +1195,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          this.executeUsercontrolMethod("", true, "DDC_ADMINAG_MPAGEContainer", "Update", "", new Object[] {(string)"",AV42WWPContext.gxTpr_Profileurl});
       }
 
-      protected void S122( )
+      protected void S112( )
       {
          /* 'LOADNOTIFICATIONS' Routine */
          returnInSub = false;
@@ -1210,22 +1209,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
          AV12NotificationsCount = (short)(AV12NotificationsCount+cV12NotificationsCount*1);
          /* End optimized group. */
          this.executeUsercontrolMethod("", true, "DDC_NOTIFICATIONSWC_MPAGEContainer", "Update", "", new Object[] {((AV12NotificationsCount>0) ? StringUtil.Trim( StringUtil.Str( (decimal)(AV12NotificationsCount), 4, 0)) : ""),(string)Ddc_notificationswc_Icon});
-      }
-
-      protected void S112( )
-      {
-         /* 'LOADSAVEDLANGUAGE' Routine */
-         returnInSub = false;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV9GAMUser.gxTpr_Language)) )
-         {
-            AV44NumericValue = (short)(context.SetLanguage( AV9GAMUser.gxTpr_Language));
-         }
-         else
-         {
-            AV44NumericValue = (short)(context.SetLanguage( "English"));
-         }
-         Ddc_changelanguage_Caption = context.GetLanguage( );
-         ucDdc_changelanguage.SendProperty(context, "", true, Ddc_changelanguage_Internalname, "Caption", Ddc_changelanguage_Caption);
       }
 
       protected void nextLoad( )
@@ -1295,7 +1278,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202511410252243", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202511512334325", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1310,7 +1293,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?202511410252248", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?202511512334327", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -1540,7 +1523,6 @@ namespace GeneXus.Programs.wwpbaseobjects {
       private short nDonePA ;
       private short AV12NotificationsCount ;
       private short cV12NotificationsCount ;
-      private short AV44NumericValue ;
       private short nGotPars ;
       private short nGXWrapped ;
       private int Ddc_changelanguage_Componentwidth ;

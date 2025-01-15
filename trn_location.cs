@@ -84,6 +84,9 @@ namespace GeneXus.Programs {
          {
             AV25Insert_Trn_ThemeId = StringUtil.StrToGuid( GetPar( "Insert_Trn_ThemeId"));
             AssignAttri("", false, "AV25Insert_Trn_ThemeId", AV25Insert_Trn_ThemeId.ToString());
+            A247Trn_ThemeId = StringUtil.StrToGuid( GetPar( "Trn_ThemeId"));
+            n247Trn_ThemeId = false;
+            AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
             Gx_BScreen = (short)(Math.Round(NumberUtil.Val( GetPar( "Gx_BScreen"), "."), 18, MidpointRounding.ToEven));
             AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
             setAjaxCallMode();
@@ -92,7 +95,7 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            GX10ASATRN_THEMEID046( AV25Insert_Trn_ThemeId, Gx_BScreen) ;
+            GX10ASATRN_THEMEID046( AV25Insert_Trn_ThemeId, A247Trn_ThemeId, Gx_BScreen) ;
             return  ;
          }
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxAggSel16"+"_"+"LOCATIONPHONE") == 0 )
@@ -1603,23 +1606,6 @@ namespace GeneXus.Programs {
                AssignAttri("", false, "A29LocationId", A29LocationId.ToString());
             }
          }
-         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ! (Guid.Empty==AV25Insert_Trn_ThemeId) )
-         {
-            A247Trn_ThemeId = AV25Insert_Trn_ThemeId;
-            n247Trn_ThemeId = false;
-            AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
-         }
-         else
-         {
-            if ( IsIns( )  && (Guid.Empty==A247Trn_ThemeId) && ( Gx_BScreen == 0 ) )
-            {
-               GXt_guid1 = A247Trn_ThemeId;
-               new prc_getdefaulttheme(context ).execute( out  GXt_guid1) ;
-               A247Trn_ThemeId = GXt_guid1;
-               n247Trn_ThemeId = false;
-               AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
-            }
-         }
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ( Gx_BScreen == 0 ) )
          {
          }
@@ -1675,6 +1661,34 @@ namespace GeneXus.Programs {
          new prc_concatenateintlphone(context ).execute(  A383LocationPhoneCode,  A384LocationPhoneNumber, out  GXt_char3) ;
          A35LocationPhone = GXt_char3;
          AssignAttri("", false, "A35LocationPhone", A35LocationPhone);
+         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ! (Guid.Empty==AV25Insert_Trn_ThemeId) )
+         {
+            A247Trn_ThemeId = AV25Insert_Trn_ThemeId;
+            n247Trn_ThemeId = false;
+            AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
+         }
+         else
+         {
+            if ( (Guid.Empty==A247Trn_ThemeId) )
+            {
+               A247Trn_ThemeId = Guid.Empty;
+               n247Trn_ThemeId = false;
+               AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
+               n247Trn_ThemeId = true;
+               AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
+            }
+            else
+            {
+               if ( IsIns( )  && (Guid.Empty==A247Trn_ThemeId) && ( Gx_BScreen == 0 ) )
+               {
+                  GXt_guid1 = A247Trn_ThemeId;
+                  new prc_getdefaulttheme(context ).execute( out  GXt_guid1) ;
+                  A247Trn_ThemeId = GXt_guid1;
+                  n247Trn_ThemeId = false;
+                  AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
+               }
+            }
+         }
       }
 
       protected void CheckExtendedTable046( )
@@ -1716,6 +1730,34 @@ namespace GeneXus.Programs {
             AnyError = 1;
             GX_FocusControl = edtLocationPhoneNumber_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
+         }
+         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ! (Guid.Empty==AV25Insert_Trn_ThemeId) )
+         {
+            A247Trn_ThemeId = AV25Insert_Trn_ThemeId;
+            n247Trn_ThemeId = false;
+            AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
+         }
+         else
+         {
+            if ( (Guid.Empty==A247Trn_ThemeId) )
+            {
+               A247Trn_ThemeId = Guid.Empty;
+               n247Trn_ThemeId = false;
+               AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
+               n247Trn_ThemeId = true;
+               AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
+            }
+            else
+            {
+               if ( IsIns( )  && (Guid.Empty==A247Trn_ThemeId) && ( Gx_BScreen == 0 ) )
+               {
+                  GXt_guid1 = A247Trn_ThemeId;
+                  new prc_getdefaulttheme(context ).execute( out  GXt_guid1) ;
+                  A247Trn_ThemeId = GXt_guid1;
+                  n247Trn_ThemeId = false;
+                  AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
+               }
+            }
          }
          /* Using cursor T00045 */
          pr_default.execute(3, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
@@ -2872,9 +2914,6 @@ namespace GeneXus.Programs {
 
       protected void StandaloneModalInsert( )
       {
-         A247Trn_ThemeId = i247Trn_ThemeId;
-         n247Trn_ThemeId = false;
-         AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
       }
 
       protected void define_styles( )
@@ -2888,7 +2927,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251115205321", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251151374768", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2904,7 +2943,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_location.js", "?20251115205323", false, true);
+         context.AddJavascriptSource("trn_location.js", "?20251151374769", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3069,6 +3108,7 @@ namespace GeneXus.Programs {
       }
 
       protected void GX10ASATRN_THEMEID046( Guid AV25Insert_Trn_ThemeId ,
+                                            Guid A247Trn_ThemeId ,
                                             short Gx_BScreen )
       {
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ! (Guid.Empty==AV25Insert_Trn_ThemeId) )
@@ -3079,13 +3119,24 @@ namespace GeneXus.Programs {
          }
          else
          {
-            if ( IsIns( )  && (Guid.Empty==A247Trn_ThemeId) && ( Gx_BScreen == 0 ) )
+            if ( (Guid.Empty==A247Trn_ThemeId) )
             {
-               GXt_guid1 = A247Trn_ThemeId;
-               new prc_getdefaulttheme(context ).execute( out  GXt_guid1) ;
-               A247Trn_ThemeId = GXt_guid1;
+               A247Trn_ThemeId = Guid.Empty;
                n247Trn_ThemeId = false;
                AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
+               n247Trn_ThemeId = true;
+               AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
+            }
+            else
+            {
+               if ( IsIns( )  && (Guid.Empty==A247Trn_ThemeId) && ( Gx_BScreen == 0 ) )
+               {
+                  GXt_guid1 = A247Trn_ThemeId;
+                  new prc_getdefaulttheme(context ).execute( out  GXt_guid1) ;
+                  A247Trn_ThemeId = GXt_guid1;
+                  n247Trn_ThemeId = false;
+                  AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
+               }
             }
          }
          GxWebStd.set_html_headers( context, 0, "", "");
@@ -3329,10 +3380,10 @@ namespace GeneXus.Programs {
          gxfirstwebparm_bkp = "";
          A29LocationId = Guid.Empty;
          AV25Insert_Trn_ThemeId = Guid.Empty;
+         A247Trn_ThemeId = Guid.Empty;
          A383LocationPhoneCode = "";
          A384LocationPhoneNumber = "";
          A11OrganisationId = Guid.Empty;
-         A247Trn_ThemeId = Guid.Empty;
          GXKey = "";
          GXDecQS = "";
          PreviousTooltip = "";
@@ -3525,7 +3576,6 @@ namespace GeneXus.Programs {
          bodyStyle = "";
          GXEncryptionTmp = "";
          GXCCtlgxBlob = "";
-         i247Trn_ThemeId = Guid.Empty;
          GXt_guid1 = Guid.Empty;
          T000422_A11OrganisationId = new Guid[] {Guid.Empty} ;
          GXt_char3 = "";
@@ -3609,8 +3659,6 @@ namespace GeneXus.Programs {
          Z247Trn_ThemeId = new prc_getdefaulttheme(context).executeUdp( );
          n247Trn_ThemeId = false;
          N247Trn_ThemeId = new prc_getdefaulttheme(context).executeUdp( );
-         n247Trn_ThemeId = false;
-         i247Trn_ThemeId = new prc_getdefaulttheme(context).executeUdp( );
          n247Trn_ThemeId = false;
          A247Trn_ThemeId = new prc_getdefaulttheme(context).executeUdp( );
          n247Trn_ThemeId = false;
@@ -3876,10 +3924,9 @@ namespace GeneXus.Programs {
       private Guid A29LocationId ;
       private Guid AV8OrganisationId ;
       private Guid AV25Insert_Trn_ThemeId ;
-      private Guid A11OrganisationId ;
       private Guid A247Trn_ThemeId ;
+      private Guid A11OrganisationId ;
       private Guid AV7LocationId ;
-      private Guid i247Trn_ThemeId ;
       private Guid GXt_guid1 ;
       private IGxSession AV13WebSession ;
       private GXProperties forbiddenHiddens ;
