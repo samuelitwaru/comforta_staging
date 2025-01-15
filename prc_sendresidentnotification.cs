@@ -168,7 +168,10 @@ namespace GeneXus.Programs {
                   if ( AV29SDT_OneSignalRegistration.FromJSonString(A363DeviceToken, null) )
                   {
                      AV27Token = AV29SDT_OneSignalRegistration.gxTpr_Notificationplatformid;
-                     AV21DeviceTokenCollection.Add(AV27Token, 0);
+                     if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV27Token)) )
+                     {
+                        AV21DeviceTokenCollection.Add(AV27Token, 0);
+                     }
                   }
                   pr_default.readNext(2);
                }

@@ -94,7 +94,10 @@ namespace GeneXus.Programs {
                if ( AV25SDT_OneSignalRegistration.FromJSonString(A363DeviceToken, null) )
                {
                   AV26Token = AV25SDT_OneSignalRegistration.gxTpr_Notificationplatformid;
-                  AV24DeviceTokenCollection.Add(AV26Token, 0);
+                  if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV26Token)) )
+                  {
+                     AV24DeviceTokenCollection.Add(AV26Token, 0);
+                  }
                }
                pr_default.readNext(0);
             }
