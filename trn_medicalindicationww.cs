@@ -2006,8 +2006,8 @@ namespace GeneXus.Programs {
          {
             GXKey = Crypto.GetSiteKey( );
             GXEncryptionTmp = "trn_medicalindication.aspx"+UrlEncode(StringUtil.RTrim("INS")) + "," + UrlEncode(Guid.Empty.ToString());
-            CallWebObject(formatLink("trn_medicalindication.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
-            context.wjLocDisableFrm = 1;
+            context.PopUp(formatLink("trn_medicalindication.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {});
+            context.DoAjaxRefresh();
          }
          else
          {
@@ -2162,8 +2162,8 @@ namespace GeneXus.Programs {
          {
             GXKey = Crypto.GetSiteKey( );
             GXEncryptionTmp = "trn_medicalindication.aspx"+UrlEncode(StringUtil.RTrim("UPD")) + "," + UrlEncode(A98MedicalIndicationId.ToString());
-            CallWebObject(formatLink("trn_medicalindication.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
-            context.wjLocDisableFrm = 1;
+            context.PopUp(formatLink("trn_medicalindication.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {});
+            context.DoAjaxRefresh();
          }
          else
          {
@@ -2334,7 +2334,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251913472849", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202511410253267", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2350,7 +2350,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_medicalindicationww.js", "?20251913472851", false, true);
+         context.AddJavascriptSource("trn_medicalindicationww.js", "?202511410253269", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

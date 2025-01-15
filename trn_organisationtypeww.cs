@@ -2006,8 +2006,8 @@ namespace GeneXus.Programs {
          {
             GXKey = Crypto.GetSiteKey( );
             GXEncryptionTmp = "trn_organisationtype.aspx"+UrlEncode(StringUtil.RTrim("INS")) + "," + UrlEncode(Guid.Empty.ToString());
-            CallWebObject(formatLink("trn_organisationtype.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
-            context.wjLocDisableFrm = 1;
+            context.PopUp(formatLink("trn_organisationtype.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {});
+            context.DoAjaxRefresh();
          }
          else
          {
@@ -2162,8 +2162,8 @@ namespace GeneXus.Programs {
          {
             GXKey = Crypto.GetSiteKey( );
             GXEncryptionTmp = "trn_organisationtype.aspx"+UrlEncode(StringUtil.RTrim("UPD")) + "," + UrlEncode(A19OrganisationTypeId.ToString());
-            CallWebObject(formatLink("trn_organisationtype.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
-            context.wjLocDisableFrm = 1;
+            context.PopUp(formatLink("trn_organisationtype.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {});
+            context.DoAjaxRefresh();
          }
          else
          {
@@ -2334,7 +2334,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251913482079", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202511410251944", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2350,7 +2350,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_organisationtypeww.js", "?20251913482081", false, true);
+         context.AddJavascriptSource("trn_organisationtypeww.js", "?202511410251947", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

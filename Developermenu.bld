@@ -169,9 +169,7 @@ wp_locationreceptionists
 wc_color
 wp_createlocationandreceptionist
 wp_createresidentandnetwork
-trn_medicalindicationtrn_residentwc
 trn_medicalindicationgeneral
-trn_residenttypetrn_residentwc
 trn_residenttypegeneral
 trn_residenttypeww
 trn_medicalindicationview
@@ -191,10 +189,8 @@ workwithplus\wwp_eventinfowc
 trn_productservicegeneral
 trn_productserviceview
 trn_productserviceww
-trn_supplieragbtypetrn_supplieragbwc
 trn_supplieragbtypegeneral
 trn_supplieragbgeneral
-trn_suppliergentypetrn_suppliergenwc
 trn_suppliergentypegeneral
 trn_suppliergengeneral
 trn_supplieragbtypeview
@@ -222,7 +218,6 @@ wp_applicationdesign
 wp_applicationdesign
 trn_organisationsettinggeneral
 trn_organisationgeneral
-trn_organisationtypetrn_organisationwc
 trn_organisationtypegeneral
 trn_organisationtypeview
 trn_organisationsettingww

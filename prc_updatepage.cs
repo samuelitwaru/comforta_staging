@@ -152,7 +152,7 @@ namespace GeneXus.Programs {
                      AV25NotificationMessage = context.GetMessage( "The latest updates have been published and are now live! Open the app to explore the changes", "");
                      AV23Metadata = new SdtSDT_OneSignalCustomData(context);
                      AV23Metadata.gxTpr_Notificationcategory = "Toolbox";
-                     new prc_sendresidentnotification(context ).execute(  AV24Title,  AV25NotificationMessage,  context.GetMessage( "Toolbox", ""),  AV23Metadata,  AV26ResidentIdCollectionEmpty) ;
+                     new prc_logtofile(context ).execute(  context.GetMessage( "Meta Data is: ", "")+AV23Metadata.ToJSonString(false, true)) ;
                   }
                }
                else
@@ -193,7 +193,6 @@ namespace GeneXus.Programs {
          AV24Title = "";
          AV25NotificationMessage = "";
          AV23Metadata = new SdtSDT_OneSignalCustomData(context);
-         AV26ResidentIdCollectionEmpty = new GxSimpleCollection<Guid>();
          AV28GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV14Message = new GeneXus.Utils.SdtMessages_Message(context);
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_updatepage__datastore1(),
@@ -236,7 +235,6 @@ namespace GeneXus.Programs {
       private SdtTrn_Page AV9BC_Trn_Page ;
       private IDataStoreProvider pr_default ;
       private SdtSDT_OneSignalCustomData AV23Metadata ;
-      private GxSimpleCollection<Guid> AV26ResidentIdCollectionEmpty ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV28GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV14Message ;
       private string aP7_Response ;

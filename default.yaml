@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250111022457"
+  version: "20250114134615"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -2156,7 +2156,10 @@ components:
         agendaDetails:
           $ref: "#/components/schemas/SDT_OneSignalCustomData.agendaDetails"
         toolboxDetails:
-          $ref: "#/components/schemas/SDT_OneSignalCustomData.toolboxDetails"
+          type: array
+          items:
+            description: toolboxDetailsItem
+            $ref: "#/components/schemas/SDT_OneSignalCustomData.toolboxDetails_toolboxDetailsItem"
     SDT_OneSignalCustomData.formDetails:
       properties:
         formMode:
@@ -2183,7 +2186,7 @@ components:
           type: "string"
           format: "uuid"
       x-gx-level: "SDT_OneSignalCustomData"
-    SDT_OneSignalCustomData.toolboxDetails:
+    SDT_OneSignalCustomData.toolboxDetails_toolboxDetailsItem:
       properties:
         pageName:
           description: "page Name"
@@ -2367,6 +2370,43 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/SDT_CallToAction_SDT_CallToActionItem"
+    SDT_PublishPage:
+      properties:
+        PageId:
+          description: "Page Id"
+          type: "string"
+          format: "uuid"
+        PageName:
+          description: "Page Name"
+          type: "string"
+        Theme:
+          description: "SDT_Theme"
+          $ref: "#/components/schemas/SDT_Theme"
+        PageIsPublished:
+          description: "Page Is Published"
+          type: "boolean"
+        PageIsContentPage:
+          description: "Page Is Content Page"
+          type: "boolean"
+        PageIsPredefined:
+          description: "Page Is Predefined"
+          type: "boolean"
+        PageGJSJson:
+          description: "Page GJSJson"
+          type: "string"
+        PageGJSHtml:
+          description: "Page GJSHtml"
+          type: "string"
+        PageJsonContent:
+          description: "Page Json Content"
+          type: "string"
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
+        SDT_Page:
+          description: "SDT_Page"
+          $ref: "#/components/schemas/SDT_Page"
     SDT_Resident:
       properties:
         ResidentId:

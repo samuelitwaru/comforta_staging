@@ -266,6 +266,16 @@
 },
 {
 "Verb":"POST",
+"PathRegexp":"toolbox/update-pages-batch",
+"Path":"toolbox/update-pages-batch",
+"Name":"updatepagebatch",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_updatepagebatch",
+"Implementation":"Prc_UpdatePageBatch"
+},
+{
+"Verb":"POST",
 "PathRegexp":"toolbox/add-page-children",
 "Path":"toolbox/add-page-children",
 "Name":"addpagecildren",

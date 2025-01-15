@@ -209,16 +209,17 @@ namespace GeneXus.Programs
 		}
 
 
+
 		[SoapElement(ElementName="toolboxDetails" )]
-		[XmlElement(ElementName="toolboxDetails" )]
-		public SdtSDT_OneSignalCustomData_toolboxDetails gxTpr_Toolboxdetails
+		[XmlArray(ElementName="toolboxDetails"  )]
+		[XmlArrayItemAttribute(ElementName="toolboxDetailsItem" , IsNullable=false )]
+		public GXBaseCollection<SdtSDT_OneSignalCustomData_toolboxDetailsItem> gxTpr_Toolboxdetails
 		{
 			get {
 				if ( gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails == null )
 				{
-					gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails = new SdtSDT_OneSignalCustomData_toolboxDetails(context);
+					gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails = new GXBaseCollection<SdtSDT_OneSignalCustomData_toolboxDetailsItem>( context, "SDT_OneSignalCustomData.toolboxDetailsItem", "");
 				}
-				gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails_N = false;
 				return gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails;
 			}
 			set {
@@ -226,7 +227,6 @@ namespace GeneXus.Programs
 				gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails = value;
 				SetDirty("Toolboxdetails");
 			}
-
 		}
 
 		public void gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails_SetNull()
@@ -239,9 +239,9 @@ namespace GeneXus.Programs
 		{
 			return gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails == null;
 		}
-		public bool ShouldSerializegxTpr_Toolboxdetails_Json()
+		public bool ShouldSerializegxTpr_Toolboxdetails_GxSimpleCollection_Json()
 		{
-				return (gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails != null && gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails.ShouldSerializeSdtJson());
+			return gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails != null && gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails.Count > 0;
 
 		}
 
@@ -301,7 +301,7 @@ namespace GeneXus.Programs
 		protected SdtSDT_OneSignalCustomData_agendaDetails gxTv_SdtSDT_OneSignalCustomData_Agendadetails = null; 
 
 		protected bool gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails_N;
-		protected SdtSDT_OneSignalCustomData_toolboxDetails gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails = null; 
+		protected GXBaseCollection<SdtSDT_OneSignalCustomData_toolboxDetailsItem> gxTv_SdtSDT_OneSignalCustomData_Toolboxdetails = null; 
 
 
 
@@ -385,20 +385,18 @@ namespace GeneXus.Programs
 		}
 
 		[DataMember(Name="toolboxDetails", Order=4, EmitDefaultValue=false)]
-		public SdtSDT_OneSignalCustomData_toolboxDetails_RESTInterface gxTpr_Toolboxdetails
+		public GxGenericCollection<SdtSDT_OneSignalCustomData_toolboxDetailsItem_RESTInterface> gxTpr_Toolboxdetails
 		{
 			get {
-				if (sdt.ShouldSerializegxTpr_Toolboxdetails_Json())
-					return new SdtSDT_OneSignalCustomData_toolboxDetails_RESTInterface(sdt.gxTpr_Toolboxdetails);
+				if (sdt.ShouldSerializegxTpr_Toolboxdetails_GxSimpleCollection_Json())
+					return new GxGenericCollection<SdtSDT_OneSignalCustomData_toolboxDetailsItem_RESTInterface>(sdt.gxTpr_Toolboxdetails);
 				else
 					return null;
 
 			}
-
 			set {
-				sdt.gxTpr_Toolboxdetails = value.sdt;
+				value.LoadCollection(sdt.gxTpr_Toolboxdetails);
 			}
-
 		}
 
 

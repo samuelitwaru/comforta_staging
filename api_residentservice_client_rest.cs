@@ -865,6 +865,38 @@ namespace GeneXus.Programs {
          /* UpdatePage Constructor */
       }
 
+      public void gxep_updatepagebatch( GXBaseCollection<SdtSDT_PublishPage> aP0_PagesList ,
+                                        bool aP1_IsNotifyResidents ,
+                                        out string aP2_result ,
+                                        out SdtSDT_Error aP3_error )
+      {
+         restCliUpdatePageBatch = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/update-pages-batch";
+         restCliUpdatePageBatch.Location = restLocation;
+         restCliUpdatePageBatch.HttpMethod = "POST";
+         restCliUpdatePageBatch.AddBodyVar("PagesList", aP0_PagesList);
+         restCliUpdatePageBatch.AddBodyVar("IsNotifyResidents", aP1_IsNotifyResidents);
+         restCliUpdatePageBatch.RestExecute();
+         if ( restCliUpdatePageBatch.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliUpdatePageBatch.ErrorCode;
+            gxProperties.ErrorMessage = restCliUpdatePageBatch.ErrorMessage;
+            gxProperties.StatusCode = restCliUpdatePageBatch.StatusCode;
+            aP2_result = "";
+            aP3_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP2_result = restCliUpdatePageBatch.GetBodyString("result");
+            aP3_error = restCliUpdatePageBatch.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* UpdatePageBatch Constructor */
+      }
+
       public void gxep_addpagecildren( Guid aP0_ParentPageId ,
                                        Guid aP1_ChildPageId ,
                                        out string aP2_result ,
@@ -1044,8 +1076,9 @@ namespace GeneXus.Programs {
          restCliUpdatePage = new GXRestAPIClient();
          aP7_result = "";
          aP8_error = new SdtSDT_Error();
-         restCliAddPageCildren = new GXRestAPIClient();
+         restCliUpdatePageBatch = new GXRestAPIClient();
          aP3_error = new SdtSDT_Error();
+         restCliAddPageCildren = new GXRestAPIClient();
          restCliUpdateLocationTheme = new GXRestAPIClient();
          aP1_SDT_Theme = new SdtSDT_Theme();
          restCliProductServiceAPI = new GXRestAPIClient();
@@ -1082,6 +1115,7 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliCreateContentPage ;
       protected GXRestAPIClient restCliSavePage ;
       protected GXRestAPIClient restCliUpdatePage ;
+      protected GXRestAPIClient restCliUpdatePageBatch ;
       protected GXRestAPIClient restCliAddPageCildren ;
       protected GXRestAPIClient restCliUpdateLocationTheme ;
       protected GXRestAPIClient restCliProductServiceAPI ;

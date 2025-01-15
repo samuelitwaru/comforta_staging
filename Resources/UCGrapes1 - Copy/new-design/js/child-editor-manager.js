@@ -11,7 +11,7 @@ class ChildEditorManager {
 
   container = document.getElementById("child-container");
 
-    constructor(dataManager) {
+    constructor(dataManager, currentLanguage) {
         this.dataManager = dataManager;
             this.dataManager.getLocationTheme().then((res) => {
             if (this.toolsSection.checkIfNotAuthenticated(res)) {
@@ -32,12 +32,16 @@ class ChildEditorManager {
                 this.currentPageId = homePage.PageId;
             } else {
                 this.toolsSection.displayAlertMessage(
-          "No home page found.",
-          "danger"
-        );
+                  `${this.currentLanguage.getTranslation(
+                    "no_home_page_found"
+                  )}`,
+                  "danger"
+                );
                 return;
             }
         });
+
+        this.currentLanguage = currentLanguage;
     }
 
     getCurrentEditor() {
@@ -82,7 +86,7 @@ class ChildEditorManager {
                         <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M19 12H5M5 12L12 19M5 12L12 5"/>
                     </svg>
                 </button>
-                <h1 class="title">${page.PageName}</h1>
+                <h1 class="title" style="text-transform: uppercase">${page.PageName}</h1>
             </div>
         `;
         }
@@ -145,6 +149,7 @@ class ChildEditorManager {
         this.toolsSection.unDoReDo(editor);
         
         if (page.PageGJSJson) {
+            
             editor.loadProjectData(JSON.parse(page.PageGJSJson));
 
             if (page.PageIsPredefined) {
@@ -179,6 +184,7 @@ class ChildEditorManager {
 
                         if (img.length > 0) {
                             if (!contentPageData?.ProductServiceImage) {
+                                img[0].remove(); // Hide the image element
                                 console.warn('ProductServiceImage is missing in contentPageData');
                             } else {
                                 try {
@@ -190,13 +196,12 @@ class ChildEditorManager {
                                     console.error('Error updating image:', err);
                                 }
                             }
-                        } else {
-                            console.warn('#product-service-image element not found');
                         }
 
                         // Validate paragraph element
                         if (p.length > 0) {
                             if (!contentPageData?.ProductServiceDescription) {
+                                p[0].remove();
                                 console.warn('ProductServiceDescription is missing in contentPageData');
                             } else {
                                 try {
@@ -233,7 +238,6 @@ class ChildEditorManager {
                     if (this.toolsSection.checkIfNotAuthenticated(res)) {
                         return;
                     }
-
                     const contentPageData = res.SDT_ProductService;
 
                     if (contentPageData) {
@@ -729,7 +733,7 @@ class ChildEditorManager {
             data-gjs-editable="false"
             data-gjs-highlightable="false"
             data-gjs-hoverable="false">
-            ${createTemplateHTML()}
+            ${this.createTemplateHTML()}
         </div>
         `)[0];
 
@@ -891,6 +895,7 @@ class ChildEditorManager {
                     data-gjs-resizable="false"
                     data-gjs-hoverable="false"
                     style="flex: 1; padding: 0"
+                    class="content-page-wrapper"
                   >
                     <img
                       class="content-page-block"
@@ -906,7 +911,7 @@ class ChildEditorManager {
                       alt="Full-width Image"
                     />
                     <p
-                      style="flex: 1; padding: 0; margin: 0; height: auto; margin-bottom: 15px"
+                      style="flex: 1; padding: 0; margin: 0; height: auto;"
                       class="content-page-block"
                       data-gjs-draggable="true"
                       data-gjs-selectable="false"

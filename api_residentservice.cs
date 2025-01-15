@@ -135,6 +135,10 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityNone ;
          }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_updatepagebatch") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_addpagecildren") == 0 )
          {
             return GAMSecurityLevel.SecurityNone ;
@@ -659,6 +663,21 @@ namespace GeneXus.Programs {
          aP8_error=this.AV91error;
       }
 
+      public void gxep_updatepagebatch( GXBaseCollection<SdtSDT_PublishPage> aP0_PagesList ,
+                                        bool aP1_IsNotifyResidents ,
+                                        out string aP2_result ,
+                                        out SdtSDT_Error aP3_error )
+      {
+         this.AV92PagesList = aP0_PagesList;
+         this.AV88IsNotifyResidents = aP1_IsNotifyResidents;
+         AV91error = new SdtSDT_Error(context);
+         initialize();
+         /* UpdatePageBatch Constructor */
+         new prc_updatepagebatch(context ).execute( ref  AV92PagesList, ref  AV88IsNotifyResidents, out  AV17result, out  AV91error) ;
+         aP2_result=this.AV17result;
+         aP3_error=this.AV91error;
+      }
+
       public void gxep_addpagecildren( Guid aP0_ParentPageId ,
                                        Guid aP1_ChildPageId ,
                                        out string aP2_result ,
@@ -821,6 +840,7 @@ namespace GeneXus.Programs {
       protected string aP5_result ;
       protected string aP7_result ;
       protected SdtSDT_Error aP8_error ;
+      protected GXBaseCollection<SdtSDT_PublishPage> AV92PagesList ;
       protected SdtSDT_Error aP3_error ;
       protected SdtSDT_Theme AV72SDT_Theme ;
       protected SdtSDT_Theme aP1_SDT_Theme ;

@@ -2339,6 +2339,9 @@ namespace GeneXus.Programs {
       {
          /* 'DO USERACTIONUPDATE' Routine */
          returnInSub = false;
+         /* Execute user subroutine: 'CLEAR FORM' */
+         S192 ();
+         if (returnInSub) return;
          divTableinsert_Visible = 1;
          AssignProp(sPrefix, false, divTableinsert_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divTableinsert_Visible), 5, 0), true);
          AV51CallToActionId = ((SdtSDT_CallToAction_SDT_CallToActionItem)(AV68SDT_CallToAction.CurrentItem)).gxTpr_Calltoactionid;
@@ -2886,7 +2889,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251115222751", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202511410243650", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2902,7 +2905,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_calltoaction.js", "?20251115222752", false, true);
+         context.AddJavascriptSource("wc_calltoaction.js", "?202511410243651", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

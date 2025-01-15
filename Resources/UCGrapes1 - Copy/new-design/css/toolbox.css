@@ -52,7 +52,7 @@ button {
 }
 
 .content-frame-container {
-  margin-top: 5px !important;
+  /* margin-top: 5px !important; */
 }
 
 /* Templates section */
@@ -190,6 +190,12 @@ button {
   opacity: 1;
 }
 
+.content-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
 .gjs-selected .action-button {
   opacity: 1;
 }
@@ -247,6 +253,7 @@ button {
 
 .tile-title {
   font-size: 0.8rem;
+  text-transform: uppercase;
 }
 
 .tile-close-icon {

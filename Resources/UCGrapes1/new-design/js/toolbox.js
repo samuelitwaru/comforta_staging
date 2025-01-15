@@ -162,7 +162,7 @@ class ToolBoxManager {
 
     const sidebarInputTitle = document.getElementById("tile-title");
     sidebarInputTitle.addEventListener("input", (e) => {
-      this.updateTileTitle(e.target.value.toUpperCase());
+      this.updateTileTitle(e.target.value);
     });
 
     const leftAlign = document.getElementById("text-align-left");
@@ -1158,7 +1158,7 @@ class ToolBoxManager {
                     break;
 
                   case "SiteUrl":
-                    icon = "fas fa-calendar";
+                    icon = "fas fa-link";
                     break;
 
                   case "Form":

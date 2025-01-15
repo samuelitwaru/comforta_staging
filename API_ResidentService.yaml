@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250111022457"
+  version: "20250114134615"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -722,6 +722,31 @@ paths:
         404:
           description: "Not found"
 
+  /toolbox/update-pages-batch:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.UpdatePageBatch"
+      summary: "Update Page Batch"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdatePageBatchInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdatePageBatchOutput"
+        404:
+          description: "Not found"
+
   /toolbox/add-page-children:
     post:
       tags:
@@ -918,6 +943,14 @@ components:
           description: "SDT_Error"
           $ref: "#/components/schemas/SDT_Error"
 
+    UpdatePageBatchOutput:
+      properties:
+        result:
+          type: "string"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
     AddPageCildrenOutput:
       properties:
         result:
@@ -1065,6 +1098,16 @@ components:
           type: "string"
         PageIsPublished:
           type: "boolean"
+        IsNotifyResidents:
+          type: "boolean"
+
+    UpdatePageBatchInput:  
+      properties:
+        PagesList:
+          description: "SDT_Publish Page"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_PublishPage"
         IsNotifyResidents:
           type: "boolean"
 
@@ -1566,6 +1609,46 @@ components:
 
       x-gx-level: "SDT_PageStructure"
 
+    SDT_PublishPage:
+      properties:
+        PageId:
+          description: "Page Id"
+          type: "string"
+          format: "uuid"
+        PageName:
+          description: "Page Name"
+          type: "string"
+        Theme:
+          description: "SDT_Theme"
+          $ref: "#/components/schemas/SDT_Theme"
+        PageIsPublished:
+          description: "Page Is Published"
+          type: "boolean"
+        PageIsContentPage:
+          description: "Page Is Content Page"
+          type: "boolean"
+        PageIsPredefined:
+          description: "Page Is Predefined"
+          type: "boolean"
+        PageGJSJson:
+          description: "Page GJSJson"
+          type: "string"
+        PageGJSHtml:
+          description: "Page GJSHtml"
+          type: "string"
+        PageJsonContent:
+          description: "Page Json Content"
+          type: "string"
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
+        SDT_Page:
+          description: "SDT_Page"
+          $ref: "#/components/schemas/SDT_Page"
+
+
+
     SDT_Theme:
       properties:
         ThemeId:
@@ -1834,7 +1917,10 @@ components:
           $ref: "#/components/schemas/SDT_OneSignalCustomData.agendaDetails"
 
         toolboxDetails:
-          $ref: "#/components/schemas/SDT_OneSignalCustomData.toolboxDetails"
+          type: array
+          items:
+            description: toolboxDetailsItem
+            $ref: "#/components/schemas/SDT_OneSignalCustomData.toolboxDetails_toolboxDetailsItem"
 
 
     SDT_OneSignalCustomData.formDetails:
@@ -1875,7 +1961,7 @@ components:
       x-gx-level: "SDT_OneSignalCustomData"
 
 
-    SDT_OneSignalCustomData.toolboxDetails:
+    SDT_OneSignalCustomData.toolboxDetails_toolboxDetailsItem:
       properties:
         pageName:
           description: "page Name"

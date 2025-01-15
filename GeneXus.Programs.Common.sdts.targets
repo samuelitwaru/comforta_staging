@@ -42,7 +42,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomData_formDetails.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomData_discussionDetails.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomData_agendaDetails.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomData_toolboxDetails.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomData_toolboxDetailsItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalRegistration.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Organisation.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_OrganisationSetting.cs" />
@@ -52,6 +52,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_PageStructure_ChildrenItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ProductService.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ProductServiceSupplierGroup_SDT_ProductServiceSupplierGroupItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_PublishPage.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ReceivedNotification.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Receptionist.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Receptionists_SDT_ReceptionistsItem.cs" />
@@ -100,6 +101,7 @@
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\notifications\common\type_SdtWWP_SDTNotificationMetadata.cs" />
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\notifications\common\type_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem.cs" />
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\type_SdtProgramNames_ProgramName.cs" />
+ 	<Compile Include="$(WebDirectory)\wwpbaseobjects\type_SdtSecGAMFunctionalitiesToLoad.cs" />
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\sms\type_SdtWWP_SendSMSResultSDT.cs" />
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\sms\type_SdtWWP_SMSParametersSDT.cs" />
  	<Compile Include="$(WebDirectory)\wwpbaseobjects\type_SdtSplitScreenDetailInfo.cs" />
