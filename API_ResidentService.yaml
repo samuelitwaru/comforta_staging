@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250114134615"
+  version: "20250116125430"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -28,6 +28,59 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SDT_LoginResidentResponse"  
+
+        404:
+          description: "Not found"
+
+  /auth/resident-login-username-password:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.LoginWithUsernamePassword"
+      summary: "Login Resident Account (username and password)"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginWithUsernamePasswordInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_LoginResidentResponse"  
+
+        404:
+          description: "Not found"
+
+  /auth/resident-change-password:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.ChangeUserPassword"
+      summary: "change password"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangeUserPasswordInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: "string"
+
 
         404:
           description: "Not found"
@@ -989,6 +1042,22 @@ components:
     LoginWithQrCodeInput:  
       properties:
         secretKey:
+          type: "string"
+
+    LoginWithUsernamePasswordInput:  
+      properties:
+        username:
+          type: "string"
+        password:
+          type: "string"
+
+    ChangeUserPasswordInput:  
+      properties:
+        userGUID:
+          type: "string"
+        password:
+          type: "string"
+        passwordNew:
           type: "string"
 
     RefreshAuthTokenInput:  

@@ -342,6 +342,8 @@ gx0040
 gx0030
 general\ui\masterprompt
 general\ui\masterunanimosidebar
+aprc_changeuserpassword
+aprc_recoverpasswordstep1
 uformwwgetfilterdata
 aprc_getlocationreceptioniststonotify
 aprc_createpermissions

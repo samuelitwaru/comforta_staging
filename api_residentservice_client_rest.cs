@@ -113,6 +113,66 @@ namespace GeneXus.Programs {
          /* LoginWithQrCode Constructor */
       }
 
+      public void gxep_loginwithusernamepassword( string aP0_username ,
+                                                  string aP1_password ,
+                                                  out SdtSDT_LoginResidentResponse aP2_loginResult )
+      {
+         restCliLoginWithUsernamePassword = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/auth/resident-login-username-password";
+         restCliLoginWithUsernamePassword.Location = restLocation;
+         restCliLoginWithUsernamePassword.HttpMethod = "POST";
+         restCliLoginWithUsernamePassword.AddBodyVar("username", (string)(aP0_username));
+         restCliLoginWithUsernamePassword.AddBodyVar("password", (string)(aP1_password));
+         restCliLoginWithUsernamePassword.RestExecute();
+         if ( restCliLoginWithUsernamePassword.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliLoginWithUsernamePassword.ErrorCode;
+            gxProperties.ErrorMessage = restCliLoginWithUsernamePassword.ErrorMessage;
+            gxProperties.StatusCode = restCliLoginWithUsernamePassword.StatusCode;
+            aP2_loginResult = new SdtSDT_LoginResidentResponse();
+         }
+         else
+         {
+            aP2_loginResult = restCliLoginWithUsernamePassword.GetBodySdt<SdtSDT_LoginResidentResponse>("loginResult");
+         }
+         /* LoginWithUsernamePassword Constructor */
+      }
+
+      public void gxep_changeuserpassword( string aP0_userGUID ,
+                                           string aP1_password ,
+                                           string aP2_passwordNew ,
+                                           out string aP3_result )
+      {
+         restCliChangeUserPassword = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/auth/resident-change-password";
+         restCliChangeUserPassword.Location = restLocation;
+         restCliChangeUserPassword.HttpMethod = "POST";
+         restCliChangeUserPassword.AddBodyVar("userGUID", (string)(aP0_userGUID));
+         restCliChangeUserPassword.AddBodyVar("password", (string)(aP1_password));
+         restCliChangeUserPassword.AddBodyVar("passwordNew", (string)(aP2_passwordNew));
+         restCliChangeUserPassword.RestExecute();
+         if ( restCliChangeUserPassword.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliChangeUserPassword.ErrorCode;
+            gxProperties.ErrorMessage = restCliChangeUserPassword.ErrorMessage;
+            gxProperties.StatusCode = restCliChangeUserPassword.StatusCode;
+            aP3_result = "";
+         }
+         else
+         {
+            aP3_result = restCliChangeUserPassword.GetBodyString("result");
+         }
+         /* ChangeUserPassword Constructor */
+      }
+
       public void gxep_refreshauthtoken( string aP0_refreshToken ,
                                          out SdtSDT_LoginResidentResponse aP1_loginResult )
       {
@@ -1027,6 +1087,10 @@ namespace GeneXus.Programs {
          gxProperties = new GxObjectProperties();
          restCliLoginWithQrCode = new GXRestAPIClient();
          aP1_loginResult = new SdtSDT_LoginResidentResponse();
+         restCliLoginWithUsernamePassword = new GXRestAPIClient();
+         aP2_loginResult = new SdtSDT_LoginResidentResponse();
+         restCliChangeUserPassword = new GXRestAPIClient();
+         aP3_result = "";
          restCliRefreshAuthToken = new GXRestAPIClient();
          restCliGetResidentInformation = new GXRestAPIClient();
          aP1_SDT_Resident = new SdtSDT_Resident();
@@ -1090,6 +1154,8 @@ namespace GeneXus.Programs {
 
       protected string Gx_restmethod ;
       protected GXRestAPIClient restCliLoginWithQrCode ;
+      protected GXRestAPIClient restCliLoginWithUsernamePassword ;
+      protected GXRestAPIClient restCliChangeUserPassword ;
       protected GXRestAPIClient restCliRefreshAuthToken ;
       protected GXRestAPIClient restCliGetResidentInformation ;
       protected GXRestAPIClient restCliGetOrganisationInformation ;
@@ -1126,6 +1192,8 @@ namespace GeneXus.Programs {
       protected IGxDataStore dsGAM ;
       protected IGxDataStore dsDefault ;
       protected SdtSDT_LoginResidentResponse aP1_loginResult ;
+      protected SdtSDT_LoginResidentResponse aP2_loginResult ;
+      protected string aP3_result ;
       protected SdtSDT_Resident aP1_SDT_Resident ;
       protected SdtSDT_Organisation aP1_SDT_Organisation ;
       protected SdtSDT_Location aP1_SDT_Location ;

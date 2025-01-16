@@ -104,7 +104,7 @@ namespace GeneXus.Programs {
                if ( ! (Guid.Empty==AV9BC_Trn_Page.gxTpr_Trn_pageid) )
                {
                   AV9BC_Trn_Page.gxTpr_Pagegjsjson = AV28SDT_Page.gxTpr_Pagegjsjson;
-                  if ( AV21PageIsPublished )
+                  if ( AV28SDT_Page.gxTpr_Pageispublished )
                   {
                      AV9BC_Trn_Page.gxTpr_Pagejsoncontent = AV28SDT_Page.gxTpr_Pagejsoncontent;
                      AV9BC_Trn_Page.gxTpr_Pageispublished = AV28SDT_Page.gxTpr_Pageispublished;
@@ -126,13 +126,11 @@ namespace GeneXus.Programs {
             {
                AV27Response = context.GetMessage( "Pages Save Successfully", "");
                context.CommitDataStores("prc_updatepagebatch",pr_default);
-               new prc_logtoserver(context ).execute(  context.GetMessage( "Committed", "")) ;
                if ( AV11IsNotifyResidents )
                {
                   AV8Title = context.GetMessage( "New Updates Available", "");
                   AV16NotificationMessage = context.GetMessage( "The latest updates have been published and are now live! Open the app to explore the changes", "");
                   AV14Metadata.gxTpr_Notificationcategory = "Toolbox";
-                  new prc_logtofile(context ).execute(  context.GetMessage( "Meta Data is: ", "")+AV14Metadata.ToJSonString(false, true)) ;
                   new prc_sendresidentnotification(context ).execute(  AV8Title,  AV16NotificationMessage,  context.GetMessage( "Toolbox", ""),  AV14Metadata,  AV26ResidentIdCollectionEmpty) ;
                }
             }
@@ -167,7 +165,6 @@ namespace GeneXus.Programs {
          AV10Error = new SdtSDT_Error(context);
          AV28SDT_Page = new SdtSDT_PublishPage(context);
          AV9BC_Trn_Page = new SdtTrn_Page(context);
-         AV21PageIsPublished = false;
          AV15MetadataToolboxDetails = new SdtSDT_OneSignalCustomData_toolboxDetailsItem(context);
          AV14Metadata = new SdtSDT_OneSignalCustomData(context);
          AV8Title = "";
@@ -193,7 +190,6 @@ namespace GeneXus.Programs {
       private int AV30GXV1 ;
       private int AV32GXV3 ;
       private bool AV11IsNotifyResidents ;
-      private bool AV21PageIsPublished ;
       private string AV27Response ;
       private string AV8Title ;
       private string AV16NotificationMessage ;

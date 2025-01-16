@@ -111,13 +111,11 @@ namespace GeneXus.Programs {
          {
             AV22IsSuccessful = true;
             AV25OutMessage = context.GetMessage( "Notification Sent Successfully", "");
-            new prc_logtoserver(context ).execute(  context.GetMessage( "Notification Sent Successfully", "")) ;
          }
          else
          {
             AV22IsSuccessful = false;
             AV25OutMessage = AV11HttpClient.ToString();
-            new prc_logtoserver(context ).execute(  context.GetMessage( "Notification Response: ", "")+AV11HttpClient.ToString()) ;
          }
          cleanup();
       }

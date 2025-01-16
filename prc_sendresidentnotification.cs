@@ -115,7 +115,6 @@ namespace GeneXus.Programs {
             }
             else
             {
-               new prc_logtoserver(context ).execute(  context.GetMessage( "Resident Count Not Found", "")) ;
                new prc_logtofile(context ).execute(  context.GetMessage( "Resident Count Not Found", "")+AV16ResidentIdCollection.ToJSonString(false)) ;
                AV32Udparg1 = new prc_getuserlocationid(context).executeUdp( );
                /* Using cursor P009F3 */
@@ -133,7 +132,6 @@ namespace GeneXus.Programs {
             }
             if ( AV19ResidentGUIDCollection.Count > 0 )
             {
-               new prc_logtoserver(context ).execute(  context.GetMessage( "Resident GUID Not Found", "")) ;
                new prc_logtofile(context ).execute(  context.GetMessage( "Resident GUID Not Found", "")+AV19ResidentGUIDCollection.ToJSonString(false)) ;
                if ( AV22Trn_AppNotification.Success() )
                {
@@ -178,7 +176,6 @@ namespace GeneXus.Programs {
                pr_default.close(2);
                if ( AV21DeviceTokenCollection.Count > 0 )
                {
-                  new prc_logtoserver(context ).execute(  context.GetMessage( "Sending notifications", "")) ;
                   new prc_sendonesignalnotification(context ).execute(  AV21DeviceTokenCollection,  AV10title,  AV9message,  AV28Metadata, out  AV13OutMessages, out  AV14IsSuccessful) ;
                }
             }

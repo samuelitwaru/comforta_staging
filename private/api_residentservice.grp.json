@@ -16,6 +16,26 @@
 },
 {
 "Verb":"POST",
+"PathRegexp":"auth/resident-login-username-password",
+"Path":"auth/resident-login-username-password",
+"Name":"loginwithusernamepassword",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_loginwithusernamepassword",
+"Implementation":"Prc_LoginResident2"
+},
+{
+"Verb":"POST",
+"PathRegexp":"auth/resident-change-password",
+"Path":"auth/resident-change-password",
+"Name":"changeuserpassword",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_changeuserpassword",
+"Implementation":"Prc_ChangeUserPassword"
+},
+{
+"Verb":"POST",
 "PathRegexp":"auth/refresh-token",
 "Path":"auth/refresh-token",
 "Name":"refreshauthtoken",

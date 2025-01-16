@@ -492,7 +492,7 @@
                                           "components": [
                                             {
                                               "type": "textnode",
-                                              "content": "Reception",
+                                              "content": "RECEPTION",
                                               "_undoexc": [
                                                 "status",
                                                 "open"
@@ -835,7 +835,7 @@
                                           "components": [
                                             {
                                               "type": "textnode",
-                                              "content": "Calendar",
+                                              "content": "CALENDAR",
                                               "_undoexc": [
                                                 "status",
                                                 "open"
@@ -1336,7 +1336,7 @@
                                           "components": [
                                             {
                                               "type": "textnode",
-                                              "content": "Mailbox",
+                                              "content": "MAILBOX",
                                               "_undoexc": [
                                                 "status",
                                                 "open"
@@ -1811,7 +1811,7 @@
                                           "components": [
                                             {
                                               "type": "textnode",
-                                              "content": "Location",
+                                              "content": "LOCATION",
                                               "_undoexc": [
                                                 "status",
                                                 "open"
