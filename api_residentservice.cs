@@ -163,6 +163,10 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityNone ;
          }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_toolboxgetlocationtheme") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
          return GAMSecurityLevel.SecurityLow ;
       }
 
@@ -771,13 +775,26 @@ namespace GeneXus.Programs {
          aP2_error=this.AV91error;
       }
 
-      public void gxep_getlocationtheme( out SdtSDT_LocationTheme aP0_SDT_LocationTheme ,
-                                         out SdtSDT_Error aP1_error )
+      public void gxep_getlocationtheme( Guid aP0_locationId ,
+                                         Guid aP1_organisationId ,
+                                         out SdtSDT_LocationTheme aP2_SDT_LocationTheme )
       {
-         AV91error = new SdtSDT_Error(context);
+         this.AV12locationId = aP0_locationId;
+         this.AV16organisationId = aP1_organisationId;
          initialize();
          /* GetLocationTheme Constructor */
-         new prc_getlocationtheme(context ).execute( out  AV83SDT_LocationTheme, out  AV91error) ;
+         new prc_getlocationtheme(context ).execute( ref  AV12locationId, ref  AV16organisationId, out  AV83SDT_LocationTheme) ;
+         aP2_SDT_LocationTheme=this.AV83SDT_LocationTheme;
+      }
+
+      public void gxep_toolboxgetlocationtheme( out SdtSDT_LocationTheme aP0_SDT_LocationTheme ,
+                                                out SdtSDT_Error aP1_error )
+      {
+         AV83SDT_LocationTheme = new SdtSDT_LocationTheme(context);
+         AV91error = new SdtSDT_Error(context);
+         initialize();
+         /* ToolboxGetLocationTheme Constructor */
+         new prc_toolboxgetlocationtheme(context ).execute( out  AV83SDT_LocationTheme, out  AV91error) ;
          aP0_SDT_LocationTheme=this.AV83SDT_LocationTheme;
          aP1_error=this.AV91error;
       }
@@ -904,6 +921,7 @@ namespace GeneXus.Programs {
       protected SdtSDT_ProductService AV67SDT_ProductService ;
       protected SdtSDT_ProductService aP1_SDT_ProductService ;
       protected SdtSDT_LocationTheme AV83SDT_LocationTheme ;
+      protected SdtSDT_LocationTheme aP2_SDT_LocationTheme ;
       protected SdtSDT_LocationTheme aP0_SDT_LocationTheme ;
    }
 

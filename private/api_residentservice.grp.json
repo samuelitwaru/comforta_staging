@@ -333,4 +333,14 @@
 "ServiceMethod":"gxep_getlocationtheme",
 "Implementation":"Prc_GetLocationTheme",
 "Verb":"GET"
+},
+{
+"PathRegexp":"toolbox/location-theme",
+"Path":"toolbox/location-theme",
+"Name":"toolboxgetlocationtheme",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_toolboxgetlocationtheme",
+"Implementation":"Prc_ToolboxGetLocationTheme",
+"Verb":"GET"
 }]}

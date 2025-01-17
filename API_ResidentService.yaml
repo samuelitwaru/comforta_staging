@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250116211748"
+  version: "20250117075937"
 servers:
   - url: https://staging.comforta.yukon.software/api
 paths:
@@ -884,6 +884,19 @@ paths:
       summary: "GET Location Theme"
       security: 
         - oAuthGXGAM: []
+      parameters:
+        - name: "Locationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "Organisationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
       
       responses:
         200:
@@ -891,7 +904,27 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GetLocationThemeOutput"
+                $ref: "#/components/schemas/SDT_LocationTheme"  
+
+        404:
+          description: "Not found"
+
+  /toolbox/location-theme:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.ToolboxGetLocationTheme"
+      summary: "Toolbox Get Location Theme"
+      security: 
+        - oAuthGXGAM: []
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ToolboxGetLocationThemeOutput"
         404:
           description: "Not found"
 
@@ -1030,7 +1063,8 @@ components:
           description: "SDT_Error"
           $ref: "#/components/schemas/SDT_Error"
 
-    GetLocationThemeOutput:
+
+    ToolboxGetLocationThemeOutput:
       properties:
         SDT_LocationTheme:
           description: "SDT_Location Theme"
@@ -1194,6 +1228,7 @@ components:
         ThemeId:
           type: "string"
           format: "uuid"
+
 
 
   
