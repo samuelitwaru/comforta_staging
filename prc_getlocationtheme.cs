@@ -82,6 +82,8 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         new prc_logtoserver(context ).execute(  AV8LocationId.ToString()) ;
+         new prc_logtoserver(context ).execute(  AV9OrganisationId.ToString()) ;
          /* Using cursor P009G2 */
          pr_default.execute(0, new Object[] {AV8LocationId, AV9OrganisationId});
          while ( (pr_default.getStatus(0) != 101) )

@@ -89,8 +89,6 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_logtoserver(context ).execute(  AV25PagesList.ToJSonString(false)) ;
-         new prc_logtoserver(context ).execute(  "======================================") ;
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
             AV10Error.gxTpr_Status = context.GetMessage( "Error", "");
@@ -102,7 +100,6 @@ namespace GeneXus.Programs {
             while ( AV30GXV1 <= AV25PagesList.Count )
             {
                AV28SDT_Page = ((SdtSDT_PublishPage)AV25PagesList.Item(AV30GXV1));
-               new prc_logtoserver(context ).execute(  AV28SDT_Page.ToJSonString(false, true)) ;
                AV9BC_Trn_Page.Load(AV28SDT_Page.gxTpr_Pageid, AV28SDT_Page.gxTpr_Pagename, new prc_getuserlocationid(context).executeUdp( ));
                if ( ! (Guid.Empty==AV9BC_Trn_Page.gxTpr_Trn_pageid) )
                {
@@ -149,7 +146,6 @@ namespace GeneXus.Programs {
                }
             }
          }
-         new prc_logtoserver(context ).execute(  context.GetMessage( "Response: ", "")+AV27Response) ;
          cleanup();
       }
 
