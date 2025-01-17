@@ -135,7 +135,8 @@ function mapContentToPageData(templateData, page) {
 
       for (let index = 0; index < topComponents.length; index++) {
           const component = topComponents[index];
-          if (component?.type === "image") {
+          console.log(component)
+          if (component?.tagName === "img") {
 
               const imageUrl = component?.attributes.src.startsWith('http') ? component?.attributes.src : baseURL + '/' + component?.attributes.src
 

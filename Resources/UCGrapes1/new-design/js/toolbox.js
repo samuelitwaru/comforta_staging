@@ -341,11 +341,15 @@ class ToolBoxManager {
         const pageName = page.PageName;
         let jsonData;
 
+        console.log(page.PageName, page.PageIsContentPage)
+
         if (page.PageIsContentPage) {
           jsonData = mapContentToPageData(projectData, page);
         } else {
           jsonData = mapTemplateToPageData(projectData, page);
         }
+
+        console.log(page.PageName, jsonData)
 
         const data = {
           PageId: pageId,
