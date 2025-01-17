@@ -142,7 +142,7 @@ namespace GeneXus.Programs {
          /* LoginWithUsernamePassword Constructor */
       }
 
-      public void gxep_changeuserpassword( string aP0_userGUID ,
+      public void gxep_changeuserpassword( string aP0_userId ,
                                            string aP1_password ,
                                            string aP2_passwordNew ,
                                            out string aP3_result )
@@ -155,7 +155,7 @@ namespace GeneXus.Programs {
          restLocation.ResourceName = "/auth/resident-change-password";
          restCliChangeUserPassword.Location = restLocation;
          restCliChangeUserPassword.HttpMethod = "POST";
-         restCliChangeUserPassword.AddBodyVar("userGUID", (string)(aP0_userGUID));
+         restCliChangeUserPassword.AddBodyVar("userId", (string)(aP0_userId));
          restCliChangeUserPassword.AddBodyVar("password", (string)(aP1_password));
          restCliChangeUserPassword.AddBodyVar("passwordNew", (string)(aP2_passwordNew));
          restCliChangeUserPassword.RestExecute();

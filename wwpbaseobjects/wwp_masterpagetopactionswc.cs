@@ -322,6 +322,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void send_integrity_footer_hashes( )
       {
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vROLESDESCRIPTIONS", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV12RolesDescriptions, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISAUTHORIZED_MYPROFILE", AV16IsAuthorized_MyProfile);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_MYPROFILE", GetSecureSignedToken( sPrefix, AV16IsAuthorized_MyProfile, context));
          GXKey = Crypto.GetSiteKey( );
@@ -883,6 +884,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void send_integrity_lvl_hashes3A2( )
       {
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vROLESDESCRIPTIONS", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV12RolesDescriptions, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISAUTHORIZED_MYPROFILE", AV16IsAuthorized_MyProfile);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_MYPROFILE", GetSecureSignedToken( sPrefix, AV16IsAuthorized_MyProfile, context));
       }
@@ -920,6 +922,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
             forbiddenHiddens.Add("hshsalt", sPrefix+"hsh"+"WWP_MasterPageTopActionsWC");
             AV12RolesDescriptions = cgiGet( edtavRolesdescriptions_Internalname);
             AssignAttri(sPrefix, false, "AV12RolesDescriptions", AV12RolesDescriptions);
+            GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vROLESDESCRIPTIONS", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV12RolesDescriptions, "")), context));
             forbiddenHiddens.Add("RolesDescriptions", StringUtil.RTrim( context.localUtil.Format( AV12RolesDescriptions, "")));
             hsh = cgiGet( sPrefix+"hsh");
             if ( ! GXUtil.CheckEncryptedHash( forbiddenHiddens.ToString(), hsh, GXKey) )
@@ -963,9 +966,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
             {
                AV12RolesDescriptions += ", ";
                AssignAttri(sPrefix, false, "AV12RolesDescriptions", AV12RolesDescriptions);
+               GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vROLESDESCRIPTIONS", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV12RolesDescriptions, "")), context));
             }
             AV12RolesDescriptions += (String.IsNullOrEmpty(StringUtil.RTrim( AV11GAMRole.gxTpr_Description)) ? AV11GAMRole.gxTpr_Name : AV11GAMRole.gxTpr_Description);
             AssignAttri(sPrefix, false, "AV12RolesDescriptions", AV12RolesDescriptions);
+            GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vROLESDESCRIPTIONS", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV12RolesDescriptions, "")), context));
             AV17GXV1 = (int)(AV17GXV1+1);
          }
       }
@@ -1025,7 +1030,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          AV16IsAuthorized_MyProfile = GXt_boolean1;
          AssignAttri(sPrefix, false, "AV16IsAuthorized_MyProfile", AV16IsAuthorized_MyProfile);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_MYPROFILE", GetSecureSignedToken( sPrefix, AV16IsAuthorized_MyProfile, context));
-         if ( ! ( AV16IsAuthorized_MyProfile ) )
+         if ( ! ( AV16IsAuthorized_MyProfile && ( StringUtil.Contains( AV12RolesDescriptions, context.GetMessage( "Organisation Manager", "")) || StringUtil.Contains( AV12RolesDescriptions, context.GetMessage( "Receptionist", "")) ) ) )
          {
             Btnmyprofile_Visible = false;
             ucBtnmyprofile.SendProperty(context, sPrefix, false, Btnmyprofile_Internalname, "Visible", StringUtil.BoolToStr( Btnmyprofile_Visible));
@@ -1226,7 +1231,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251167444090", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251170162740", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1244,7 +1249,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wwpbaseobjects/wwp_masterpagetopactionswc.js", "?20251167444095", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/wwp_masterpagetopactionswc.js", "?20251170162743", false, true);
             context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
             context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
             context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
@@ -1318,7 +1323,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV16IsAuthorized_MyProfile","fld":"vISAUTHORIZED_MYPROFILE","hsh":true},{"av":"AV12RolesDescriptions","fld":"vROLESDESCRIPTIONS"}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV16IsAuthorized_MyProfile","fld":"vISAUTHORIZED_MYPROFILE","hsh":true},{"av":"AV12RolesDescriptions","fld":"vROLESDESCRIPTIONS","hsh":true}]""");
          setEventMetadata("REFRESH",""","oparms":[{"av":"AV16IsAuthorized_MyProfile","fld":"vISAUTHORIZED_MYPROFILE","hsh":true},{"av":"Btnmyprofile_Visible","ctrl":"BTNMYPROFILE","prop":"Visible"}]}""");
          setEventMetadata("'DOMYPROFILE'","""{"handler":"E133A2","iparms":[{"av":"AV16IsAuthorized_MyProfile","fld":"vISAUTHORIZED_MYPROFILE","hsh":true}]}""");
          setEventMetadata("'DOACTIONCHANGEPASSWORD'","""{"handler":"E143A2","iparms":[]}""");
@@ -1344,9 +1349,9 @@ namespace GeneXus.Programs.wwpbaseobjects {
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
+         AV12RolesDescriptions = "";
          GXKey = "";
          forbiddenHiddens = new GXProperties();
-         AV12RolesDescriptions = "";
          GX_FocusControl = "";
          TempTags = "";
          AV6UserName = "";

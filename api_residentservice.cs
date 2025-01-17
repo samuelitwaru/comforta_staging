@@ -41,7 +41,7 @@ namespace GeneXus.Programs {
          }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_changeuserpassword") == 0 )
          {
-            return GAMSecurityLevel.SecurityNone ;
+            return GAMSecurityLevel.SecurityLow ;
          }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_refreshauthtoken") == 0 )
          {
@@ -326,17 +326,17 @@ namespace GeneXus.Programs {
          aP2_loginResult=this.AV21loginResult;
       }
 
-      public void gxep_changeuserpassword( string aP0_userGUID ,
+      public void gxep_changeuserpassword( string aP0_userId ,
                                            string aP1_password ,
                                            string aP2_passwordNew ,
                                            out string aP3_result )
       {
-         this.AV95userGUID = aP0_userGUID;
+         this.AV8userId = aP0_userId;
          this.AV94password = aP1_password;
          this.AV96passwordNew = aP2_passwordNew;
          initialize();
          /* ChangeUserPassword Constructor */
-         new prc_changeuserpassword(context ).execute(  AV95userGUID,  AV94password,  AV96passwordNew, out  AV17result) ;
+         new prc_changeuserpassword(context ).execute(  AV8userId,  AV94password,  AV96passwordNew, out  AV17result) ;
          aP3_result=this.AV17result;
       }
 
@@ -831,9 +831,8 @@ namespace GeneXus.Programs {
       protected string AV57PageGJSJson ;
       protected string AV93username ;
       protected string AV94password ;
-      protected string AV95userGUID ;
-      protected string AV96passwordNew ;
       protected string AV8userId ;
+      protected string AV96passwordNew ;
       protected string AV74ResidentId ;
       protected string AV14NotificationPlatform ;
       protected string AV15NotificationPlatformId ;

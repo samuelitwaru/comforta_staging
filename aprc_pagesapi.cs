@@ -111,8 +111,6 @@ namespace GeneXus.Programs {
          /* GeneXus formulas */
          /* Output device settings */
          AV9SDT_PageCollection.Clear();
-         new prc_logtofile(context ).execute(  AV16LocationId.ToString()) ;
-         new prc_logtofile(context ).execute(  AV17OrganisationId.ToString()) ;
          /* Using cursor P007W2 */
          pr_default.execute(0, new Object[] {AV16LocationId, AV17OrganisationId});
          while ( (pr_default.getStatus(0) != 101) )

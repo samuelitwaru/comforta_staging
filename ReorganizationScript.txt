@@ -1,19 +1,2 @@
-ALTER TABLE Trn_SupplierGen ADD SupplierGenEmail VARCHAR(100) NOT NULL DEFAULT '';
-ALTER TABLE Trn_SupplierGen ALTER COLUMN SupplierGenEmail DROP DEFAULT;
-CREATE INDEX UTRN_SUPPLIERGEN ON Trn_SupplierGen (SupplierGenCompanyName );
-
-UPDATE Trn_CallToAction SET CallToActionPhoneNumber = SUBSTR(CallToActionPhoneNumber, 1, 9);
-ALTER TABLE Trn_CallToAction ALTER COLUMN CallToActionPhoneNumber TYPE VARCHAR(9);
-
-CREATE INDEX UTRN_PRODUCTSERVICE ON Trn_ProductService (ProductServiceName );
-
-CREATE INDEX ORGANISATIONINDEX ON Trn_Receptionist (OrganisationId ,LocationId );
-
-CREATE INDEX UTRN_RESIDENT ON Trn_Resident (OrganisationId ,LocationId ,ResidentId );
-
-CREATE INDEX UTRN_SUPPLIERAGB ON Trn_SupplierAGB (SupplierAgbName );
-
-CREATE INDEX UTRN_LOCATION ON Trn_Location (LocationName ,LocationEmail ,LocationPhone );
-
-CREATE INDEX UTRN_ORGANISATION ON Trn_Organisation (OrganisationName );
+CREATE INDEX UTRN_DEVICE ON Trn_Device (DeviceType ,DeviceId );
 

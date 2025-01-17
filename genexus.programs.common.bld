@@ -22,7 +22,6 @@ wwpbaseobjects\mail\type_SdtWWP_Mail_Attachments.cs
 wwpbaseobjects\discussions\type_SdtWWP_DiscussionMessageMention.cs
 wwpbaseobjects\type_SdtUserCustomizations.cs
 wwpbaseobjects\discussions\type_SdtWWP_DiscussionMessage.cs
-type_SdtTrn_Device.cs
 type_SdtTrn_PreferredAgbSupplier.cs
 type_SdtTrn_PreferredGenSupplier.cs
 type_SdtTrn_ResidentNotification.cs
@@ -63,6 +62,7 @@ type_SdtTrn_Theme.cs
 type_SdtTrn_Theme_Color.cs
 type_SdtTrn_Theme_Icon.cs
 type_SdtTrn_Page.cs
+type_SdtTrn_Device.cs
 type_SdtQRCodeLibrary.cs
 type_SdtEO_Base64Image.cs
 gxdomainsalutation.cs

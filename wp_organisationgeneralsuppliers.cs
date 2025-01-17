@@ -540,7 +540,6 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "GRID_EMPOWERER_Gridinternalname", StringUtil.RTrim( Grid_empowerer_Gridinternalname));
          GxWebStd.gx_hidden_field( context, "GRID_EMPOWERER_Hastitlesettings", StringUtil.BoolToStr( Grid_empowerer_Hastitlesettings));
          GxWebStd.gx_hidden_field( context, "GRID_EMPOWERER_Hascolumnsselector", StringUtil.BoolToStr( Grid_empowerer_Hascolumnsselector));
-         GxWebStd.gx_hidden_field( context, "GRID_EMPOWERER_Fixedcolumns", StringUtil.RTrim( Grid_empowerer_Fixedcolumns));
          GxWebStd.gx_hidden_field( context, "GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "GRIDPAGINATIONBAR_Selectedpage", StringUtil.RTrim( Gridpaginationbar_Selectedpage));
          GxWebStd.gx_hidden_field( context, "GRIDPAGINATIONBAR_Rowsperpageselectedvalue", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gridpaginationbar_Rowsperpageselectedvalue), 9, 0, ".", "")));
@@ -874,7 +873,6 @@ namespace GeneXus.Programs {
             /* User Defined Control */
             ucGrid_empowerer.SetProperty("HasTitleSettings", Grid_empowerer_Hastitlesettings);
             ucGrid_empowerer.SetProperty("HasColumnsSelector", Grid_empowerer_Hascolumnsselector);
-            ucGrid_empowerer.SetProperty("FixedColumns", Grid_empowerer_Fixedcolumns);
             ucGrid_empowerer.Render(context, "wwp.gridempowerer", Grid_empowerer_Internalname, "GRID_EMPOWERERContainer");
             /* Div Control */
             GxWebStd.gx_div_start( context, divDiv_wwpauxwc_Internalname, 1, 0, "px", 0, "px", "Invisible", "start", "top", "", "", "div");
@@ -1831,7 +1829,6 @@ namespace GeneXus.Programs {
             Grid_empowerer_Gridinternalname = cgiGet( "GRID_EMPOWERER_Gridinternalname");
             Grid_empowerer_Hastitlesettings = StringUtil.StrToBool( cgiGet( "GRID_EMPOWERER_Hastitlesettings"));
             Grid_empowerer_Hascolumnsselector = StringUtil.StrToBool( cgiGet( "GRID_EMPOWERER_Hascolumnsselector"));
-            Grid_empowerer_Fixedcolumns = cgiGet( "GRID_EMPOWERER_Fixedcolumns");
             subGrid_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GRID_Rows"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             GxWebStd.gx_hidden_field( context, "GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
             Gridpaginationbar_Selectedpage = cgiGet( "GRIDPAGINATIONBAR_Selectedpage");
@@ -2790,7 +2787,7 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV34TFSupplierGenContactPhone_Sel)),  AV34TFSupplierGenContactPhone_Sel, out  GXt_char8) ;
          GXt_char9 = "";
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV64TFSupplierGenEmail_Sel)),  AV64TFSupplierGenEmail_Sel, out  GXt_char9) ;
-         Ddo_grid_Selectedvalue_set = GXt_char4+"|"+GXt_char6+"|"+GXt_char7+"|"+GXt_char8+"|"+GXt_char9+"|";
+         Ddo_grid_Selectedvalue_set = "|"+GXt_char4+"|"+GXt_char6+"|"+GXt_char7+"|"+GXt_char8+"|"+GXt_char9+"|";
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "SelectedValue_set", Ddo_grid_Selectedvalue_set);
          GXt_char9 = "";
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  !(0==AV52TFSupplierGenCompanyNameOperator)||String.IsNullOrEmpty(StringUtil.RTrim( AV27TFSupplierGenCompanyName)),  AV27TFSupplierGenCompanyName, out  GXt_char9) ;
@@ -2802,9 +2799,9 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV33TFSupplierGenContactPhone)),  AV33TFSupplierGenContactPhone, out  GXt_char6) ;
          GXt_char4 = "";
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV63TFSupplierGenEmail)),  AV63TFSupplierGenEmail, out  GXt_char4) ;
-         Ddo_grid_Filteredtext_set = GXt_char9+"|"+GXt_char8+"|"+GXt_char7+"|"+GXt_char6+"|"+GXt_char4+"|";
+         Ddo_grid_Filteredtext_set = "|"+GXt_char9+"|"+GXt_char8+"|"+GXt_char7+"|"+GXt_char6+"|"+GXt_char4+"|";
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "FilteredText_set", Ddo_grid_Filteredtext_set);
-         Ddo_grid_Selectedfixedfilter = ((AV52TFSupplierGenCompanyNameOperator!=1) ? "" : "1")+"|||||";
+         Ddo_grid_Selectedfixedfilter = "|"+((AV52TFSupplierGenCompanyNameOperator!=1) ? "" : "1")+"|||||";
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "SelectedFixedFilter", Ddo_grid_Selectedfixedfilter);
       }
 
@@ -2921,7 +2918,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251167495363", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251170164761", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2937,7 +2934,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_organisationgeneralsuppliers.js", "?20251167495366", false, true);
+         context.AddJavascriptSource("wp_organisationgeneralsuppliers.js", "?20251170164764", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3087,7 +3084,7 @@ namespace GeneXus.Programs {
             chkavIsselected.CheckedValue = "false";
             AV51isSelected = StringUtil.StrToBool( StringUtil.BoolToStr( AV51isSelected));
             AssignAttri("", false, chkavIsselected_Internalname, AV51isSelected);
-            GridRow.AddColumnProperties("checkbox", 1, isAjaxCallMode( ), new Object[] {(string)chkavIsselected_Internalname,StringUtil.BoolToStr( AV51isSelected),(string)"",(string)"",chkavIsselected.Visible,(short)1,(string)"true",(string)"",(string)StyleString,(string)ClassString,(string)"WWColumn WWIconActionColumn",(string)"",TempTags+" onblur=\""+""+";gx.evt.onblur(this,40);\""});
+            GridRow.AddColumnProperties("checkbox", 1, isAjaxCallMode( ), new Object[] {(string)chkavIsselected_Internalname,StringUtil.BoolToStr( AV51isSelected),(string)"",(string)"",chkavIsselected.Visible,(short)1,(string)"true",(string)"",(string)StyleString,(string)ClassString,(string)"WWColumn WWActionGroupColumn",(string)"",TempTags+" onblur=\""+""+";gx.evt.onblur(this,40);\""});
             /* Subfile cell */
             if ( GridContainer.GetWrapped() == 1 )
             {
@@ -3327,7 +3324,7 @@ namespace GeneXus.Programs {
                }
             }
             context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"AttributeCheckBox"+"\" "+" style=\""+((chkavIsselected.Visible==0) ? "display:none;" : "")+""+"\" "+">") ;
-            context.SendWebValue( context.GetMessage( "&nbsp;", "")) ;
+            context.SendWebValue( "") ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
             context.SendWebValue( "") ;
@@ -3602,7 +3599,6 @@ namespace GeneXus.Programs {
          edtavFilterfulltext_Enabled = 1;
          bttBtnsubscriptions_Visible = 1;
          bttBtninsert_Visible = 1;
-         Grid_empowerer_Fixedcolumns = "L;;;;;;;;;;;;;;;;;;;";
          Grid_empowerer_Hascolumnsselector = Convert.ToBoolean( -1);
          Grid_empowerer_Hastitlesettings = Convert.ToBoolean( -1);
          Ddo_gridcolumnsselector_Titlecontrolidtoreplace = "";
@@ -3612,16 +3608,16 @@ namespace GeneXus.Programs {
          Ddo_gridcolumnsselector_Caption = context.GetMessage( "WWP_EditColumnsCaption", "");
          Ddo_gridcolumnsselector_Icon = "fas fa-cog";
          Ddo_gridcolumnsselector_Icontype = "FontIcon";
-         Ddo_grid_Fixedfilters = "1:Preferred:fa fa-star FontColorIconWarning ConditionalFormattingFilterIcon|||||";
+         Ddo_grid_Fixedfilters = "|1:Preferred:fa fa-star FontColorIconWarning ConditionalFormattingFilterIcon|||||";
          Ddo_grid_Datalistproc = "WP_OrganisationGeneralSuppliersGetFilterData";
-         Ddo_grid_Datalisttype = "Dynamic|Dynamic|Dynamic|Dynamic|Dynamic|";
-         Ddo_grid_Includedatalist = "T|T|T|T|T|";
-         Ddo_grid_Filtertype = "Character|Character|Character|Character|Character|";
-         Ddo_grid_Includefilter = "T|T|T|T|T|";
+         Ddo_grid_Datalisttype = "|Dynamic|Dynamic|Dynamic|Dynamic|Dynamic|";
+         Ddo_grid_Includedatalist = "|T|T|T|T|T|";
+         Ddo_grid_Filtertype = "|Character|Character|Character|Character|Character|";
+         Ddo_grid_Includefilter = "|T|T|T|T|T|";
          Ddo_grid_Fixable = "T";
-         Ddo_grid_Includesortasc = "T|T|T|T|T|";
-         Ddo_grid_Columnssortvalues = "1|2|3|4|5|";
-         Ddo_grid_Columnids = "4:SupplierGenCompanyName|7:SupplierGenTypeName|13:SupplierGenContactName|14:SupplierGenContactPhone|17:SupplierGenEmail|18:SupplierAddress";
+         Ddo_grid_Includesortasc = "|T|T|T|T|T|";
+         Ddo_grid_Columnssortvalues = "|1|2|3|4|5|";
+         Ddo_grid_Columnids = "0:isSelected|4:SupplierGenCompanyName|7:SupplierGenTypeName|13:SupplierGenContactName|14:SupplierGenContactPhone|17:SupplierGenEmail|18:SupplierAddress";
          Ddo_grid_Gridinternalname = "";
          Ddc_subscriptions_Titlecontrolidtoreplace = "";
          Ddc_subscriptions_Cls = "ColumnsSelector";
@@ -4036,7 +4032,6 @@ namespace GeneXus.Programs {
       private string Ddo_gridcolumnsselector_Gridinternalname ;
       private string Ddo_gridcolumnsselector_Titlecontrolidtoreplace ;
       private string Grid_empowerer_Gridinternalname ;
-      private string Grid_empowerer_Fixedcolumns ;
       private string GX_FocusControl ;
       private string sPrefix ;
       private string divLayoutmaintable_Internalname ;

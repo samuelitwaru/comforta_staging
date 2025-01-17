@@ -112,7 +112,7 @@ namespace GeneXus.Programs {
          {
             AV17GXLvl13 = 0;
             /* Using cursor P007T2 */
-            pr_default.execute(0, new Object[] {AV8DeviceId, AV10DeviceType});
+            pr_default.execute(0, new Object[] {AV10DeviceType, AV8DeviceId});
             while ( (pr_default.getStatus(0) != 101) )
             {
                A361DeviceId = P007T2_A361DeviceId[0];
@@ -128,8 +128,7 @@ namespace GeneXus.Programs {
                pr_default.execute(1, new Object[] {A363DeviceToken, A364DeviceName, A365DeviceUserId, A361DeviceId});
                pr_default.close(1);
                pr_default.SmartCacheProvider.SetUpdated("Trn_Device");
-               /* Exiting from a For First loop. */
-               if (true) break;
+               pr_default.readNext(0);
             }
             pr_default.close(0);
             if ( AV17GXLvl13 == 0 )
@@ -250,8 +249,8 @@ namespace GeneXus.Programs {
        {
           Object[] prmP007T2;
           prmP007T2 = new Object[] {
-          new ParDef("AV8DeviceId",GXType.Char,128,0) ,
-          new ParDef("AV10DeviceType",GXType.Int16,1,0)
+          new ParDef("AV10DeviceType",GXType.Int16,1,0) ,
+          new ParDef("AV8DeviceId",GXType.Char,128,0)
           };
           Object[] prmP007T3;
           prmP007T3 = new Object[] {
@@ -269,7 +268,7 @@ namespace GeneXus.Programs {
           new ParDef("DeviceUserId",GXType.VarChar,100,60)
           };
           def= new CursorDef[] {
-              new CursorDef("P007T2", "SELECT DeviceId, DeviceType, DeviceToken, DeviceName, DeviceUserId FROM Trn_Device WHERE (DeviceId = ( :AV8DeviceId)) AND (DeviceType = :AV10DeviceType) ORDER BY DeviceId  FOR UPDATE OF Trn_Device",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007T2,1, GxCacheFrequency.OFF ,true,true )
+              new CursorDef("P007T2", "SELECT DeviceId, DeviceType, DeviceToken, DeviceName, DeviceUserId FROM Trn_Device WHERE DeviceType = :AV10DeviceType and DeviceId = ( :AV8DeviceId) ORDER BY DeviceType, DeviceId  FOR UPDATE OF Trn_Device",true, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007T2,1, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("P007T3", "SAVEPOINT gxupdate;UPDATE Trn_Device SET DeviceToken=:DeviceToken, DeviceName=:DeviceName, DeviceUserId=:DeviceUserId  WHERE DeviceId = :DeviceId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK,prmP007T3)
              ,new CursorDef("P007T4", "SAVEPOINT gxupdate;INSERT INTO Trn_Device(DeviceId, DeviceType, DeviceToken, DeviceName, DeviceUserId) VALUES(:DeviceId, :DeviceType, :DeviceToken, :DeviceName, :DeviceUserId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_MASKLOOPLOCK,prmP007T4)
           };

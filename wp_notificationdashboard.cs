@@ -349,22 +349,6 @@ namespace GeneXus.Programs {
          }
          if ( context.isAjaxRequest( ) )
          {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vNOTIFICATIONGROUPS", AV44NotificationGroups);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vNOTIFICATIONGROUPS", AV44NotificationGroups);
-         }
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vNOTIFICATIONLIST", AV45NotificationList);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vNOTIFICATIONLIST", AV45NotificationList);
-         }
-         if ( context.isAjaxRequest( ) )
-         {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vDISCUSSIONDEFINITIONS", AV29DiscussionDefinitions);
          }
          else
@@ -409,6 +393,16 @@ namespace GeneXus.Programs {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vNOTIFICATIONDEFINITIONIDEMPTYCOLLECTION", AV35NotificationDefinitionIdEmptyCollection);
          }
          GxWebStd.gx_boolean_hidden_field( context, "vISFILTERBYREAD", AV32isFilterByRead);
+         GxWebStd.gx_hidden_field( context, "vGXV6", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV51GXV6), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vNOTIFICATIONLISTITEM", AV36NotificationListItem);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vNOTIFICATIONLISTITEM", AV36NotificationListItem);
+         }
+         GxWebStd.gx_hidden_field( context, "vGXV5", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV50GXV5), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "GROUPEDTABLECONTENT_Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(divGroupedtablecontent_Visible), 5, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "FILTEREDTABLECONTENT_Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(divFilteredtablecontent_Visible), 5, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, "NOTIFICATIONMESSAGE_Caption", StringUtil.RTrim( lblNotificationmessage_Caption));
@@ -816,31 +810,25 @@ namespace GeneXus.Programs {
                               /* Execute user event: 'DoFilterByAgenda' */
                               E168B2 ();
                            }
-                           else if ( StringUtil.StrCmp(sEvt, "VNOTIFICATIONTYPES.CONTROLVALUECHANGED") == 0 )
-                           {
-                              context.wbHandled = 1;
-                              dynload_actions( ) ;
-                              E178B2 ();
-                           }
                            else if ( StringUtil.StrCmp(sEvt, "ONMESSAGE_GX1") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Onmessage_gx1 */
-                              E188B2 ();
+                              E178B2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "VSEARCHKEY.CONTROLVALUECHANGING") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
-                              E198B2 ();
+                              E188B2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E208B2 ();
+                              E198B2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
@@ -865,7 +853,7 @@ namespace GeneXus.Programs {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Onmessage_gx1 */
-                              E188B2 ();
+                              E178B2 ();
                               dynload_actions( ) ;
                            }
                         }
@@ -1029,7 +1017,7 @@ namespace GeneXus.Programs {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E208B2 ();
+            E198B2 ();
             WB8B0( ) ;
          }
       }
@@ -1095,11 +1083,13 @@ namespace GeneXus.Programs {
          {
             /* Read saved SDTs. */
             ajax_req_read_hidden_sdt(cgiGet( "vNOTIFICATIONINFO"), AV26NotificationInfo);
+            ajax_req_read_hidden_sdt(cgiGet( "vNOTIFICATIONLISTITEM"), AV36NotificationListItem);
+            ajax_req_read_hidden_sdt(cgiGet( "vUSERNOTIFICATIONSDATA"), AV39UserNotificationsData);
             ajax_req_read_hidden_sdt(cgiGet( "vWWP_SDTNOTIFICATIONSDATA"), AV25WWP_SDTNotificationsData);
-            ajax_req_read_hidden_sdt(cgiGet( "vNOTIFICATIONGROUPS"), AV44NotificationGroups);
-            ajax_req_read_hidden_sdt(cgiGet( "vNOTIFICATIONLIST"), AV45NotificationList);
             /* Read saved values. */
             AV28CurrentNotficationGroupFilter = cgiGet( "vCURRENTNOTFICATIONGROUPFILTER");
+            AV51GXV6 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "vGXV6"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+            AV50GXV5 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "vGXV5"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             AV32isFilterByRead = StringUtil.StrToBool( cgiGet( "vISFILTERBYREAD"));
             divGroupedtablecontent_Visible = (int)(Math.Round(context.localUtil.CToN( cgiGet( "GROUPEDTABLECONTENT_Visible"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             divFilteredtablecontent_Visible = (int)(Math.Round(context.localUtil.CToN( cgiGet( "FILTEREDTABLECONTENT_Visible"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
@@ -1320,64 +1310,6 @@ namespace GeneXus.Programs {
 
       protected void E178B2( )
       {
-         /* Notificationtypes_Controlvaluechanged Routine */
-         returnInSub = false;
-         if ( StringUtil.StrCmp(AV37NotificationTypes, "Read") == 0 )
-         {
-            AV32isFilterByRead = true;
-            AssignAttri("", false, "AV32isFilterByRead", AV32isFilterByRead);
-            AV25WWP_SDTNotificationsData = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>( context, "WWP_SDTNotificationsDataItem", "Comforta_version2");
-            AV50GXV5 = 1;
-            while ( AV50GXV5 <= AV39UserNotificationsData.Count )
-            {
-               AV36NotificationListItem = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)AV39UserNotificationsData.Item(AV50GXV5));
-               if ( AV36NotificationListItem.gxTpr_Notificationisread )
-               {
-                  AV25WWP_SDTNotificationsData.Add(AV36NotificationListItem, 0);
-               }
-               AV50GXV5 = (int)(AV50GXV5+1);
-            }
-            new prc_logtofile(context ).execute(  context.GetMessage( "Filtered Read Records: ", "")+StringUtil.Str( (decimal)(AV25WWP_SDTNotificationsData.Count), 9, 0)) ;
-         }
-         else if ( StringUtil.StrCmp(AV37NotificationTypes, "UnRead") == 0 )
-         {
-            AV32isFilterByRead = false;
-            AssignAttri("", false, "AV32isFilterByRead", AV32isFilterByRead);
-            AV25WWP_SDTNotificationsData = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>( context, "WWP_SDTNotificationsDataItem", "Comforta_version2");
-            AV51GXV6 = 1;
-            while ( AV51GXV6 <= AV39UserNotificationsData.Count )
-            {
-               AV36NotificationListItem = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)AV39UserNotificationsData.Item(AV51GXV6));
-               if ( ! AV36NotificationListItem.gxTpr_Notificationisread )
-               {
-                  AV25WWP_SDTNotificationsData.Add(AV36NotificationListItem, 0);
-               }
-               AV51GXV6 = (int)(AV51GXV6+1);
-            }
-            new prc_logtofile(context ).execute(  context.GetMessage( "Filtered Unread Records: ", "")+StringUtil.Str( (decimal)(AV25WWP_SDTNotificationsData.Count), 9, 0)) ;
-         }
-         else
-         {
-            AV32isFilterByRead = false;
-            AssignAttri("", false, "AV32isFilterByRead", AV32isFilterByRead);
-            AV28CurrentNotficationGroupFilter = "";
-            AssignAttri("", false, "AV28CurrentNotficationGroupFilter", AV28CurrentNotficationGroupFilter);
-            /* Execute user subroutine: 'SETACTIVEFILTER' */
-            S132 ();
-            if (returnInSub) return;
-         }
-         /* Execute user subroutine: 'REFRESHNOTIFICATIONCOMPONENT' */
-         S142 ();
-         if (returnInSub) return;
-         /* Execute user subroutine: 'ATTRIBUTESSECURITYCODE' */
-         S122 ();
-         if (returnInSub) return;
-         /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV25WWP_SDTNotificationsData", AV25WWP_SDTNotificationsData);
-      }
-
-      protected void E188B2( )
-      {
          /* Onmessage_gx1 Routine */
          returnInSub = false;
          new prc_getnotificationgrouping(context ).execute( out  AV44NotificationGroups, out  AV45NotificationList) ;
@@ -1416,18 +1348,14 @@ namespace GeneXus.Programs {
          S142 ();
          if (returnInSub) return;
          /*  Sending Event outputs  */
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV45NotificationList", AV45NotificationList);
-         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV44NotificationGroups", AV44NotificationGroups);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV39UserNotificationsData", AV39UserNotificationsData);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV25WWP_SDTNotificationsData", AV25WWP_SDTNotificationsData);
       }
 
-      protected void E198B2( )
+      protected void E188B2( )
       {
          /* Searchkey_Controlvaluechanging Routine */
          returnInSub = false;
-         new prc_logtofile(context ).execute(  context.GetMessage( "Search Key: ", "")+AV41SearchKey) ;
-         new prc_logtofile(context ).execute(  context.GetMessage( "Search Value: ", "")+AV41SearchKey) ;
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV41SearchKey))) )
          {
             AV37NotificationTypes = "All";
@@ -1543,56 +1471,38 @@ namespace GeneXus.Programs {
       {
          /* 'REFRESHNOTIFICATIONCOMPONENT' Routine */
          returnInSub = false;
-         /* Object Property */
-         if ( true )
+         if ( ( StringUtil.StrCmp(AV37NotificationTypes, "All") != 0 ) || ( StringUtil.StrCmp(AV28CurrentNotficationGroupFilter, "") != 0 ) )
          {
-            bDynCreated_Wcwc_notificationfilteredlist = true;
+            /* Object Property */
+            if ( true )
+            {
+               bDynCreated_Wcwc_notificationfilteredlist = true;
+            }
+            if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Wcwc_notificationfilteredlist_Component), StringUtil.Lower( "WC_NotificationFilteredList")) != 0 )
+            {
+               WebComp_Wcwc_notificationfilteredlist = getWebComponent(GetType(), "GeneXus.Programs", "wc_notificationfilteredlist", new Object[] {context} );
+               WebComp_Wcwc_notificationfilteredlist.ComponentInit();
+               WebComp_Wcwc_notificationfilteredlist.Name = "WC_NotificationFilteredList";
+               WebComp_Wcwc_notificationfilteredlist_Component = "WC_NotificationFilteredList";
+            }
+            if ( StringUtil.Len( WebComp_Wcwc_notificationfilteredlist_Component) != 0 )
+            {
+               WebComp_Wcwc_notificationfilteredlist.setjustcreated();
+               WebComp_Wcwc_notificationfilteredlist.componentprepare(new Object[] {(string)"W0055",(string)"",(GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>)AV25WWP_SDTNotificationsData});
+               WebComp_Wcwc_notificationfilteredlist.componentbind(new Object[] {(string)""});
+            }
+            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wcwc_notificationfilteredlist )
+            {
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0055"+"");
+               WebComp_Wcwc_notificationfilteredlist.componentdraw();
+               context.httpAjaxContext.ajax_rspEndCmp();
+            }
+            context.DoAjaxRefreshCmp("W0055"+"");
          }
-         if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Wcwc_notificationfilteredlist_Component), StringUtil.Lower( "WC_NotificationFilteredList")) != 0 )
+         if ( ( StringUtil.StrCmp(AV37NotificationTypes, "All") == 0 ) && ( StringUtil.StrCmp(AV28CurrentNotficationGroupFilter, "") == 0 ) )
          {
-            WebComp_Wcwc_notificationfilteredlist = getWebComponent(GetType(), "GeneXus.Programs", "wc_notificationfilteredlist", new Object[] {context} );
-            WebComp_Wcwc_notificationfilteredlist.ComponentInit();
-            WebComp_Wcwc_notificationfilteredlist.Name = "WC_NotificationFilteredList";
-            WebComp_Wcwc_notificationfilteredlist_Component = "WC_NotificationFilteredList";
+            context.DoAjaxRefreshCmp("W0049"+"");
          }
-         if ( StringUtil.Len( WebComp_Wcwc_notificationfilteredlist_Component) != 0 )
-         {
-            WebComp_Wcwc_notificationfilteredlist.setjustcreated();
-            WebComp_Wcwc_notificationfilteredlist.componentprepare(new Object[] {(string)"W0055",(string)"",(GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>)AV25WWP_SDTNotificationsData});
-            WebComp_Wcwc_notificationfilteredlist.componentbind(new Object[] {(string)""});
-         }
-         if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wcwc_notificationfilteredlist )
-         {
-            context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0055"+"");
-            WebComp_Wcwc_notificationfilteredlist.componentdraw();
-            context.httpAjaxContext.ajax_rspEndCmp();
-         }
-         context.DoAjaxRefreshCmp("W0055"+"");
-         /* Object Property */
-         if ( true )
-         {
-            bDynCreated_Wcwc_notificationgrouping = true;
-         }
-         if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Wcwc_notificationgrouping_Component), StringUtil.Lower( "WC_NotificationGrouping")) != 0 )
-         {
-            WebComp_Wcwc_notificationgrouping = getWebComponent(GetType(), "GeneXus.Programs", "wc_notificationgrouping", new Object[] {context} );
-            WebComp_Wcwc_notificationgrouping.ComponentInit();
-            WebComp_Wcwc_notificationgrouping.Name = "WC_NotificationGrouping";
-            WebComp_Wcwc_notificationgrouping_Component = "WC_NotificationGrouping";
-         }
-         if ( StringUtil.Len( WebComp_Wcwc_notificationgrouping_Component) != 0 )
-         {
-            WebComp_Wcwc_notificationgrouping.setjustcreated();
-            WebComp_Wcwc_notificationgrouping.componentprepare(new Object[] {(string)"W0049",(string)"",(GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>)AV44NotificationGroups,(GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>)AV45NotificationList});
-            WebComp_Wcwc_notificationgrouping.componentbind(new Object[] {(string)"",(string)""});
-         }
-         if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wcwc_notificationgrouping )
-         {
-            context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0049"+"");
-            WebComp_Wcwc_notificationgrouping.componentdraw();
-            context.httpAjaxContext.ajax_rspEndCmp();
-         }
-         context.DoAjaxRefreshCmp("W0049"+"");
       }
 
       protected void S152( )
@@ -1615,7 +1525,7 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void E208B2( )
+      protected void E198B2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -1674,7 +1584,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251167494912", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251170161712", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1690,7 +1600,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_notificationdashboard.js", "?20251167494912", false, true);
+         context.AddJavascriptSource("wp_notificationdashboard.js", "?20251170161713", false, true);
          /* End function include_jscripts */
       }
 
@@ -1765,22 +1675,20 @@ namespace GeneXus.Programs {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"},{"av":"AV33MentionDefinitions","fld":"vMENTIONDEFINITIONS","hsh":true},{"av":"AV29DiscussionDefinitions","fld":"vDISCUSSIONDEFINITIONS","hsh":true},{"av":"AV31FormDefinitions","fld":"vFORMDEFINITIONS","hsh":true},{"av":"AV27AgendaDefinitions","fld":"vAGENDADEFINITIONS","hsh":true},{"av":"AV42SearchKeyValue","fld":"vSEARCHKEYVALUE","hsh":true}]}""");
-         setEventMetadata("'DOFILTERBYMENTIONS'","""{"handler":"E138B2","iparms":[{"av":"AV39UserNotificationsData","fld":"vUSERNOTIFICATIONSDATA"},{"av":"AV33MentionDefinitions","fld":"vMENTIONDEFINITIONS","hsh":true},{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"av":"AV44NotificationGroups","fld":"vNOTIFICATIONGROUPS"},{"av":"AV45NotificationList","fld":"vNOTIFICATIONLIST"},{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"}]""");
-         setEventMetadata("'DOFILTERBYMENTIONS'",""","oparms":[{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"ctrl":"BTNFILTERBYMENTIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDISCUSSIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDYNAMICFORMS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYAGENDA","prop":"Backcolor"},{"ctrl":"WCWC_NOTIFICATIONFILTEREDLIST"},{"ctrl":"WCWC_NOTIFICATIONGROUPING"},{"av":"divGroupedtablecontent_Visible","ctrl":"GROUPEDTABLECONTENT","prop":"Visible"},{"av":"divFilteredtablecontent_Visible","ctrl":"FILTEREDTABLECONTENT","prop":"Visible"}]}""");
-         setEventMetadata("'DOFILTERBYDISCUSSIONS'","""{"handler":"E148B2","iparms":[{"av":"AV39UserNotificationsData","fld":"vUSERNOTIFICATIONSDATA"},{"av":"AV29DiscussionDefinitions","fld":"vDISCUSSIONDEFINITIONS","hsh":true},{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"av":"AV44NotificationGroups","fld":"vNOTIFICATIONGROUPS"},{"av":"AV45NotificationList","fld":"vNOTIFICATIONLIST"},{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"}]""");
-         setEventMetadata("'DOFILTERBYDISCUSSIONS'",""","oparms":[{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"ctrl":"BTNFILTERBYMENTIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDISCUSSIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDYNAMICFORMS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYAGENDA","prop":"Backcolor"},{"ctrl":"WCWC_NOTIFICATIONFILTEREDLIST"},{"ctrl":"WCWC_NOTIFICATIONGROUPING"},{"av":"divGroupedtablecontent_Visible","ctrl":"GROUPEDTABLECONTENT","prop":"Visible"},{"av":"divFilteredtablecontent_Visible","ctrl":"FILTEREDTABLECONTENT","prop":"Visible"}]}""");
-         setEventMetadata("'DOFILTERBYDYNAMICFORMS'","""{"handler":"E158B2","iparms":[{"av":"AV39UserNotificationsData","fld":"vUSERNOTIFICATIONSDATA"},{"av":"AV31FormDefinitions","fld":"vFORMDEFINITIONS","hsh":true},{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"av":"AV44NotificationGroups","fld":"vNOTIFICATIONGROUPS"},{"av":"AV45NotificationList","fld":"vNOTIFICATIONLIST"},{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"}]""");
-         setEventMetadata("'DOFILTERBYDYNAMICFORMS'",""","oparms":[{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"ctrl":"BTNFILTERBYMENTIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDISCUSSIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDYNAMICFORMS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYAGENDA","prop":"Backcolor"},{"ctrl":"WCWC_NOTIFICATIONFILTEREDLIST"},{"ctrl":"WCWC_NOTIFICATIONGROUPING"},{"av":"divGroupedtablecontent_Visible","ctrl":"GROUPEDTABLECONTENT","prop":"Visible"},{"av":"divFilteredtablecontent_Visible","ctrl":"FILTEREDTABLECONTENT","prop":"Visible"}]}""");
-         setEventMetadata("'DOFILTERBYAGENDA'","""{"handler":"E168B2","iparms":[{"av":"AV39UserNotificationsData","fld":"vUSERNOTIFICATIONSDATA"},{"av":"AV27AgendaDefinitions","fld":"vAGENDADEFINITIONS","hsh":true},{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"av":"AV44NotificationGroups","fld":"vNOTIFICATIONGROUPS"},{"av":"AV45NotificationList","fld":"vNOTIFICATIONLIST"},{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"}]""");
-         setEventMetadata("'DOFILTERBYAGENDA'",""","oparms":[{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"ctrl":"BTNFILTERBYMENTIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDISCUSSIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDYNAMICFORMS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYAGENDA","prop":"Backcolor"},{"ctrl":"WCWC_NOTIFICATIONFILTEREDLIST"},{"ctrl":"WCWC_NOTIFICATIONGROUPING"},{"av":"divGroupedtablecontent_Visible","ctrl":"GROUPEDTABLECONTENT","prop":"Visible"},{"av":"divFilteredtablecontent_Visible","ctrl":"FILTEREDTABLECONTENT","prop":"Visible"}]}""");
-         setEventMetadata("'DOCLEARFILTERS'","""{"handler":"E118B1","iparms":[{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"av":"AV44NotificationGroups","fld":"vNOTIFICATIONGROUPS"},{"av":"AV45NotificationList","fld":"vNOTIFICATIONLIST"},{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"}]""");
-         setEventMetadata("'DOCLEARFILTERS'",""","oparms":[{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"},{"av":"AV32isFilterByRead","fld":"vISFILTERBYREAD"},{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV41SearchKey","fld":"vSEARCHKEY"},{"ctrl":"BTNFILTERBYMENTIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDISCUSSIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDYNAMICFORMS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYAGENDA","prop":"Backcolor"},{"ctrl":"WCWC_NOTIFICATIONFILTEREDLIST"},{"ctrl":"WCWC_NOTIFICATIONGROUPING"},{"av":"divGroupedtablecontent_Visible","ctrl":"GROUPEDTABLECONTENT","prop":"Visible"},{"av":"divFilteredtablecontent_Visible","ctrl":"FILTEREDTABLECONTENT","prop":"Visible"}]}""");
-         setEventMetadata("VNOTIFICATIONTYPES.CONTROLVALUECHANGED","""{"handler":"E178B2","iparms":[{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"},{"av":"AV39UserNotificationsData","fld":"vUSERNOTIFICATIONSDATA"},{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"av":"AV44NotificationGroups","fld":"vNOTIFICATIONGROUPS"},{"av":"AV45NotificationList","fld":"vNOTIFICATIONLIST"}]""");
-         setEventMetadata("VNOTIFICATIONTYPES.CONTROLVALUECHANGED",""","oparms":[{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV32isFilterByRead","fld":"vISFILTERBYREAD"},{"ctrl":"BTNFILTERBYMENTIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDISCUSSIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDYNAMICFORMS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYAGENDA","prop":"Backcolor"},{"ctrl":"WCWC_NOTIFICATIONFILTEREDLIST"},{"ctrl":"WCWC_NOTIFICATIONGROUPING"},{"av":"divGroupedtablecontent_Visible","ctrl":"GROUPEDTABLECONTENT","prop":"Visible"},{"av":"divFilteredtablecontent_Visible","ctrl":"FILTEREDTABLECONTENT","prop":"Visible"}]}""");
-         setEventMetadata("VSEARCHKEY.CONTROLVALUECHANGING","""{"handler":"E198B2","iparms":[{"av":"AV42SearchKeyValue","fld":"vSEARCHKEYVALUE","hsh":true},{"av":"AV41SearchKey","fld":"vSEARCHKEY"},{"av":"AV39UserNotificationsData","fld":"vUSERNOTIFICATIONSDATA"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"av":"AV44NotificationGroups","fld":"vNOTIFICATIONGROUPS"},{"av":"AV45NotificationList","fld":"vNOTIFICATIONLIST"},{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"},{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"}]""");
-         setEventMetadata("VSEARCHKEY.CONTROLVALUECHANGING",""","oparms":[{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"},{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"ctrl":"WCWC_NOTIFICATIONFILTEREDLIST"},{"ctrl":"WCWC_NOTIFICATIONGROUPING"},{"av":"divGroupedtablecontent_Visible","ctrl":"GROUPEDTABLECONTENT","prop":"Visible"},{"av":"divFilteredtablecontent_Visible","ctrl":"FILTEREDTABLECONTENT","prop":"Visible"}]}""");
-         setEventMetadata("ONMESSAGE_GX1","""{"handler":"E188B2","iparms":[{"av":"AV26NotificationInfo","fld":"vNOTIFICATIONINFO"},{"av":"AV35NotificationDefinitionIdEmptyCollection","fld":"vNOTIFICATIONDEFINITIONIDEMPTYCOLLECTION"},{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"},{"av":"AV39UserNotificationsData","fld":"vUSERNOTIFICATIONSDATA"},{"av":"AV32isFilterByRead","fld":"vISFILTERBYREAD"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV44NotificationGroups","fld":"vNOTIFICATIONGROUPS"},{"av":"AV45NotificationList","fld":"vNOTIFICATIONLIST"}]""");
-         setEventMetadata("ONMESSAGE_GX1",""","oparms":[{"av":"AV45NotificationList","fld":"vNOTIFICATIONLIST"},{"av":"AV44NotificationGroups","fld":"vNOTIFICATIONGROUPS"},{"av":"AV39UserNotificationsData","fld":"vUSERNOTIFICATIONSDATA"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"av":"AV32isFilterByRead","fld":"vISFILTERBYREAD"},{"av":"lblNotificationmessage_Caption","ctrl":"NOTIFICATIONMESSAGE","prop":"Caption"},{"av":"divGroupedtablecontent_Visible","ctrl":"GROUPEDTABLECONTENT","prop":"Visible"},{"av":"divFilteredtablecontent_Visible","ctrl":"FILTEREDTABLECONTENT","prop":"Visible"},{"ctrl":"WCWC_NOTIFICATIONFILTEREDLIST"},{"ctrl":"WCWC_NOTIFICATIONGROUPING"}]}""");
+         setEventMetadata("'DOFILTERBYMENTIONS'","""{"handler":"E138B2","iparms":[{"av":"AV39UserNotificationsData","fld":"vUSERNOTIFICATIONSDATA"},{"av":"AV33MentionDefinitions","fld":"vMENTIONDEFINITIONS","hsh":true},{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"}]""");
+         setEventMetadata("'DOFILTERBYMENTIONS'",""","oparms":[{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"ctrl":"BTNFILTERBYMENTIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDISCUSSIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDYNAMICFORMS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYAGENDA","prop":"Backcolor"},{"ctrl":"WCWC_NOTIFICATIONFILTEREDLIST"},{"av":"divGroupedtablecontent_Visible","ctrl":"GROUPEDTABLECONTENT","prop":"Visible"},{"av":"divFilteredtablecontent_Visible","ctrl":"FILTEREDTABLECONTENT","prop":"Visible"}]}""");
+         setEventMetadata("'DOFILTERBYDISCUSSIONS'","""{"handler":"E148B2","iparms":[{"av":"AV39UserNotificationsData","fld":"vUSERNOTIFICATIONSDATA"},{"av":"AV29DiscussionDefinitions","fld":"vDISCUSSIONDEFINITIONS","hsh":true},{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"}]""");
+         setEventMetadata("'DOFILTERBYDISCUSSIONS'",""","oparms":[{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"ctrl":"BTNFILTERBYMENTIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDISCUSSIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDYNAMICFORMS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYAGENDA","prop":"Backcolor"},{"ctrl":"WCWC_NOTIFICATIONFILTEREDLIST"},{"av":"divGroupedtablecontent_Visible","ctrl":"GROUPEDTABLECONTENT","prop":"Visible"},{"av":"divFilteredtablecontent_Visible","ctrl":"FILTEREDTABLECONTENT","prop":"Visible"}]}""");
+         setEventMetadata("'DOFILTERBYDYNAMICFORMS'","""{"handler":"E158B2","iparms":[{"av":"AV39UserNotificationsData","fld":"vUSERNOTIFICATIONSDATA"},{"av":"AV31FormDefinitions","fld":"vFORMDEFINITIONS","hsh":true},{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"}]""");
+         setEventMetadata("'DOFILTERBYDYNAMICFORMS'",""","oparms":[{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"ctrl":"BTNFILTERBYMENTIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDISCUSSIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDYNAMICFORMS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYAGENDA","prop":"Backcolor"},{"ctrl":"WCWC_NOTIFICATIONFILTEREDLIST"},{"av":"divGroupedtablecontent_Visible","ctrl":"GROUPEDTABLECONTENT","prop":"Visible"},{"av":"divFilteredtablecontent_Visible","ctrl":"FILTEREDTABLECONTENT","prop":"Visible"}]}""");
+         setEventMetadata("'DOFILTERBYAGENDA'","""{"handler":"E168B2","iparms":[{"av":"AV39UserNotificationsData","fld":"vUSERNOTIFICATIONSDATA"},{"av":"AV27AgendaDefinitions","fld":"vAGENDADEFINITIONS","hsh":true},{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"}]""");
+         setEventMetadata("'DOFILTERBYAGENDA'",""","oparms":[{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"ctrl":"BTNFILTERBYMENTIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDISCUSSIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDYNAMICFORMS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYAGENDA","prop":"Backcolor"},{"ctrl":"WCWC_NOTIFICATIONFILTEREDLIST"},{"av":"divGroupedtablecontent_Visible","ctrl":"GROUPEDTABLECONTENT","prop":"Visible"},{"av":"divFilteredtablecontent_Visible","ctrl":"FILTEREDTABLECONTENT","prop":"Visible"}]}""");
+         setEventMetadata("'DOCLEARFILTERS'","""{"handler":"E118B1","iparms":[{"av":"AV41SearchKey","fld":"vSEARCHKEY"},{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"}]""");
+         setEventMetadata("'DOCLEARFILTERS'",""","oparms":[{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"},{"av":"AV32isFilterByRead","fld":"vISFILTERBYREAD"},{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV41SearchKey","fld":"vSEARCHKEY"},{"ctrl":"BTNFILTERBYMENTIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDISCUSSIONS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYDYNAMICFORMS","prop":"Backcolor"},{"ctrl":"BTNFILTERBYAGENDA","prop":"Backcolor"},{"ctrl":"WCWC_NOTIFICATIONFILTEREDLIST"},{"av":"divGroupedtablecontent_Visible","ctrl":"GROUPEDTABLECONTENT","prop":"Visible"},{"av":"divFilteredtablecontent_Visible","ctrl":"FILTEREDTABLECONTENT","prop":"Visible"}]}""");
+         setEventMetadata("VSEARCHKEY.CONTROLVALUECHANGING","""{"handler":"E188B2","iparms":[{"av":"AV42SearchKeyValue","fld":"vSEARCHKEYVALUE","hsh":true},{"av":"AV41SearchKey","fld":"vSEARCHKEY"},{"av":"AV39UserNotificationsData","fld":"vUSERNOTIFICATIONSDATA"},{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"},{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"}]""");
+         setEventMetadata("VSEARCHKEY.CONTROLVALUECHANGING",""","oparms":[{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"},{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"ctrl":"WCWC_NOTIFICATIONFILTEREDLIST"},{"av":"divGroupedtablecontent_Visible","ctrl":"GROUPEDTABLECONTENT","prop":"Visible"},{"av":"divFilteredtablecontent_Visible","ctrl":"FILTEREDTABLECONTENT","prop":"Visible"}]}""");
+         setEventMetadata("ONMESSAGE_GX1","""{"handler":"E178B2","iparms":[{"av":"AV26NotificationInfo","fld":"vNOTIFICATIONINFO"},{"av":"AV35NotificationDefinitionIdEmptyCollection","fld":"vNOTIFICATIONDEFINITIONIDEMPTYCOLLECTION"},{"av":"radavNotificationtypes"},{"av":"AV37NotificationTypes","fld":"vNOTIFICATIONTYPES"},{"av":"AV39UserNotificationsData","fld":"vUSERNOTIFICATIONSDATA"},{"av":"AV32isFilterByRead","fld":"vISFILTERBYREAD"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"av":"AV28CurrentNotficationGroupFilter","fld":"vCURRENTNOTFICATIONGROUPFILTER"}]""");
+         setEventMetadata("ONMESSAGE_GX1",""","oparms":[{"av":"AV39UserNotificationsData","fld":"vUSERNOTIFICATIONSDATA"},{"av":"AV25WWP_SDTNotificationsData","fld":"vWWP_SDTNOTIFICATIONSDATA"},{"av":"AV32isFilterByRead","fld":"vISFILTERBYREAD"},{"av":"lblNotificationmessage_Caption","ctrl":"NOTIFICATIONMESSAGE","prop":"Caption"},{"av":"divGroupedtablecontent_Visible","ctrl":"GROUPEDTABLECONTENT","prop":"Visible"},{"av":"divFilteredtablecontent_Visible","ctrl":"FILTEREDTABLECONTENT","prop":"Visible"},{"ctrl":"WCWC_NOTIFICATIONFILTEREDLIST"}]}""");
          return  ;
       }
 
@@ -1809,10 +1717,9 @@ namespace GeneXus.Programs {
          AV39UserNotificationsData = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>( context, "WWP_SDTNotificationsDataItem", "Comforta_version2");
          AV28CurrentNotficationGroupFilter = "";
          AV25WWP_SDTNotificationsData = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>( context, "WWP_SDTNotificationsDataItem", "Comforta_version2");
-         AV44NotificationGroups = new GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>( context, "SDT_NotificationGroupItem", "Comforta_version2");
-         AV45NotificationList = new GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>( context, "SDT_NotificationGroupItem", "Comforta_version2");
          AV26NotificationInfo = new GeneXus.Core.genexus.server.SdtNotificationInfo(context);
          AV35NotificationDefinitionIdEmptyCollection = new GxSimpleCollection<long>();
+         AV36NotificationListItem = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem(context);
          GX_FocusControl = "";
          Form = new GXWebForm();
          sPrefix = "";
@@ -1836,7 +1743,8 @@ namespace GeneXus.Programs {
          EvtRowId = "";
          sEvtType = "";
          AV38NumberOfUnRead = "";
-         AV36NotificationListItem = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem(context);
+         AV44NotificationGroups = new GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>( context, "SDT_NotificationGroupItem", "Comforta_version2");
+         AV45NotificationList = new GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>( context, "SDT_NotificationGroupItem", "Comforta_version2");
          AV40WWP_SDTNotificationsData_UnRead = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>( context, "WWP_SDTNotificationsDataItem", "Comforta_version2");
          GXt_objcol_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem1 = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>( context, "WWP_SDTNotificationsDataItem", "Comforta_version2");
          BackMsgLst = new msglist();
@@ -1854,6 +1762,8 @@ namespace GeneXus.Programs {
       private short nCmpId ;
       private short nDonePA ;
       private short nGXWrapped ;
+      private int AV51GXV6 ;
+      private int AV50GXV5 ;
       private int divGroupedtablecontent_Visible ;
       private int divFilteredtablecontent_Visible ;
       private int bttBtnfilterbymentions_Backcolor ;
@@ -1865,8 +1775,6 @@ namespace GeneXus.Programs {
       private int AV47GXV2 ;
       private int AV48GXV3 ;
       private int AV49GXV4 ;
-      private int AV50GXV5 ;
-      private int AV51GXV6 ;
       private int AV52GXV7 ;
       private int AV53GXV8 ;
       private int idxLst ;
@@ -1944,11 +1852,11 @@ namespace GeneXus.Programs {
       private GxSimpleCollection<long> AV27AgendaDefinitions ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem> AV39UserNotificationsData ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem> AV25WWP_SDTNotificationsData ;
-      private GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem> AV44NotificationGroups ;
-      private GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem> AV45NotificationList ;
       private GeneXus.Core.genexus.server.SdtNotificationInfo AV26NotificationInfo ;
       private GxSimpleCollection<long> AV35NotificationDefinitionIdEmptyCollection ;
       private GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem AV36NotificationListItem ;
+      private GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem> AV44NotificationGroups ;
+      private GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem> AV45NotificationList ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem> AV40WWP_SDTNotificationsData_UnRead ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem> GXt_objcol_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem1 ;
       private msglist BackMsgLst ;

@@ -72,14 +72,7 @@ namespace GeneXus.Programs {
          /* GeneXus formulas */
          /* Output device settings */
          AV9clientId = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context).getclientid();
-         if ( StringUtil.StrCmp(AV11HttpRequest.ServerHost, context.GetMessage( "localhost", "")) == 0 )
-         {
-            AV8baseUrl = context.GetMessage( "http://localhost:8082/Comforta_version21DevelopmentNETPostgreSQL", "");
-         }
-         else
-         {
-            AV8baseUrl = context.GetMessage( "https://staging.comforta.yukon.software", "");
-         }
+         AV8baseUrl = GxRegex.Replace(AV11HttpRequest.BaseURL,context.GetMessage( "/api/auth/", ""),"");
          AV17url = AV8baseUrl + context.GetMessage( "/oauth/access_token", "");
          AV10httpclient.AddHeader(context.GetMessage( "Content-Type", ""), context.GetMessage( "application/x-www-form-urlencoded", ""));
          AV10httpclient.AddVariable(context.GetMessage( "client_id", ""), AV9clientId);
@@ -123,8 +116,8 @@ namespace GeneXus.Programs {
       {
          AV14response = "";
          AV9clientId = "";
-         AV11HttpRequest = new GxHttpRequest( context);
          AV8baseUrl = "";
+         AV11HttpRequest = new GxHttpRequest( context);
          AV17url = "";
          AV10httpclient = new GxHttpClient( context);
          AV15result = "";
