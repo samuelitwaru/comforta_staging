@@ -143,6 +143,8 @@ namespace GeneXus.Programs {
             new prc_logtofile(context ).execute(  context.GetMessage( "MediaName: ", "")+AV12MediaName) ;
             new prc_logtofile(context ).execute(  context.GetMessage( "MediaSize: ", "")+StringUtil.Str( (decimal)(AV20MediaSize), 8, 0)) ;
             new prc_logtofile(context ).execute(  context.GetMessage( "MediaType: ", "")+AV21MediaType) ;
+            AV30GAMApplication = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context).get();
+            AV31baseUrl = AV30GAMApplication.gxTpr_Environment.gxTpr_Url;
             AV14BC_Trn_Media = new SdtTrn_Media(context);
             AV14BC_Trn_Media.gxTpr_Medianame = AV12MediaName;
             AV14BC_Trn_Media.gxTpr_Mediasize = AV20MediaSize;
@@ -150,14 +152,7 @@ namespace GeneXus.Programs {
             GXt_guid1 = Guid.Empty;
             new prc_getuserlocationid(context ).execute( out  GXt_guid1) ;
             AV14BC_Trn_Media.gxTpr_Locationid = GXt_guid1;
-            AV23MediaUrl = StringUtil.StringReplace( AV8HttpRequest.BaseURL, context.GetMessage( "api/media/", ""), context.GetMessage( "media/", "")+AV12MediaName);
-            if ( StringUtil.StartsWith( AV8HttpRequest.BaseURL, context.GetMessage( "http://localhost", "")) )
-            {
-            }
-            else
-            {
-               AV23MediaUrl = StringUtil.StringReplace( AV23MediaUrl, context.GetMessage( "http://", ""), context.GetMessage( "https://", ""));
-            }
+            AV23MediaUrl = AV31baseUrl + context.GetMessage( "media/", "") + AV12MediaName;
             AV14BC_Trn_Media.gxTpr_Mediaurl = AV23MediaUrl;
             AV14BC_Trn_Media.Save();
             new prc_logtofile(context ).execute(  AV14BC_Trn_Media.ToJSonString(true, true)) ;
@@ -176,13 +171,13 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV30GXV2 = 1;
-               AV29GXV1 = AV14BC_Trn_Media.GetMessages();
-               while ( AV30GXV2 <= AV29GXV1.Count )
+               AV33GXV2 = 1;
+               AV32GXV1 = AV14BC_Trn_Media.GetMessages();
+               while ( AV33GXV2 <= AV32GXV1.Count )
                {
-                  AV17Message = ((GeneXus.Utils.SdtMessages_Message)AV29GXV1.Item(AV30GXV2));
+                  AV17Message = ((GeneXus.Utils.SdtMessages_Message)AV32GXV1.Item(AV33GXV2));
                   new prc_logtofile(context ).execute(  AV17Message.gxTpr_Description) ;
-                  AV30GXV2 = (int)(AV30GXV2+1);
+                  AV33GXV2 = (int)(AV33GXV2+1);
                }
                AV10response = context.GetMessage( "Insert ERROR", "");
                context.RollbackDataStores("prc_uploadmedia",pr_default);
@@ -205,12 +200,14 @@ namespace GeneXus.Programs {
       {
          AV14BC_Trn_Media = new SdtTrn_Media(context);
          AV28Error = new SdtSDT_Error(context);
+         AV30GAMApplication = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context);
+         AV31baseUrl = "";
          GXt_guid1 = Guid.Empty;
          AV23MediaUrl = "";
-         AV8HttpRequest = new GxHttpRequest( context);
          AV22Path = "";
+         AV8HttpRequest = new GxHttpRequest( context);
          AV10response = "";
-         AV29GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV32GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV17Message = new GeneXus.Utils.SdtMessages_Message(context);
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.aprc_uploadmedia__datastore1(),
             new Object[][] {
@@ -228,11 +225,12 @@ namespace GeneXus.Programs {
       }
 
       private int AV20MediaSize ;
-      private int AV30GXV2 ;
+      private int AV33GXV2 ;
       private string AV21MediaType ;
       private string AV18MediaImageData ;
       private string AV10response ;
       private string AV12MediaName ;
+      private string AV31baseUrl ;
       private string AV23MediaUrl ;
       private string AV22Path ;
       private Guid AV11MediaId ;
@@ -243,8 +241,9 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDefault ;
       private SdtTrn_Media AV14BC_Trn_Media ;
       private SdtSDT_Error AV28Error ;
+      private GeneXus.Programs.genexussecurity.SdtGAMApplication AV30GAMApplication ;
       private IDataStoreProvider pr_default ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV29GXV1 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV32GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV17Message ;
       private SdtTrn_Media aP5_BC_Trn_Media ;
       private SdtSDT_Error aP6_Error ;

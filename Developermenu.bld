@@ -46,6 +46,8 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+urecoverpasswordstep1
+urecoverpasswordstep2
 udfc_fs_wc
 uaddelement
 wc_copygeneraldynamicformtolocation

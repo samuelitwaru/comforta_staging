@@ -66,16 +66,10 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV9clientId = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context).getclientid();
-         if ( StringUtil.StrCmp(AV11HttpRequest.ServerHost, context.GetMessage( "localhost", "")) == 0 )
-         {
-            AV8baseUrl = context.GetMessage( "http://localhost:8082/CV2_2Developmentfountain", "");
-         }
-         else
-         {
-            AV8baseUrl = context.GetMessage( "https://staging.comforta.yukon.software", "");
-         }
-         AV14url = AV8baseUrl + context.GetMessage( "/oauth/access_token", "");
+         AV21GAMApplication = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context).get();
+         AV9clientId = AV21GAMApplication.gxTpr_Clientid;
+         AV8baseUrl = AV21GAMApplication.gxTpr_Environment.gxTpr_Url;
+         AV14url = AV8baseUrl + context.GetMessage( "oauth/access_token", "");
          new prc_decodeqrcode(context ).execute(  AV13secretKey, out  AV15username, out  AV12password) ;
          AV10httpclient.AddHeader(context.GetMessage( "Content-Type", ""), context.GetMessage( "application/x-www-form-urlencoded", ""));
          AV10httpclient.AddVariable(context.GetMessage( "client_id", ""), AV9clientId);
@@ -116,8 +110,8 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV16response = "";
+         AV21GAMApplication = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context);
          AV9clientId = "";
-         AV11HttpRequest = new GxHttpRequest( context);
          AV8baseUrl = "";
          AV14url = "";
          AV15username = "";
@@ -138,7 +132,7 @@ namespace GeneXus.Programs {
       private string AV15username ;
       private string AV12password ;
       private GxHttpClient AV10httpclient ;
-      private GxHttpRequest AV11HttpRequest ;
+      private GeneXus.Programs.genexussecurity.SdtGAMApplication AV21GAMApplication ;
       private SdtSDT_ErrorResponse AV19ErrorResponse ;
       private SdtSDT_LoginResidentResponse AV18LoginResponse ;
       private string aP1_response ;

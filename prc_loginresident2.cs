@@ -71,9 +71,10 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV9clientId = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context).getclientid();
-         AV8baseUrl = GxRegex.Replace(AV11HttpRequest.BaseURL,context.GetMessage( "/api/auth/", ""),"");
-         AV17url = AV8baseUrl + context.GetMessage( "/oauth/access_token", "");
+         AV21GAMApplication = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context).get();
+         AV9clientId = AV21GAMApplication.gxTpr_Clientid;
+         AV8baseUrl = AV21GAMApplication.gxTpr_Environment.gxTpr_Url;
+         AV17url = AV8baseUrl + context.GetMessage( "oauth/access_token", "");
          AV10httpclient.AddHeader(context.GetMessage( "Content-Type", ""), context.GetMessage( "application/x-www-form-urlencoded", ""));
          AV10httpclient.AddVariable(context.GetMessage( "client_id", ""), AV9clientId);
          AV10httpclient.AddVariable(context.GetMessage( "grant_type", ""), context.GetMessage( "password", ""));
@@ -115,9 +116,9 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV14response = "";
+         AV21GAMApplication = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context);
          AV9clientId = "";
          AV8baseUrl = "";
-         AV11HttpRequest = new GxHttpRequest( context);
          AV17url = "";
          AV10httpclient = new GxHttpClient( context);
          AV15result = "";
@@ -134,7 +135,7 @@ namespace GeneXus.Programs {
       private string AV8baseUrl ;
       private string AV17url ;
       private GxHttpClient AV10httpclient ;
-      private GxHttpRequest AV11HttpRequest ;
+      private GeneXus.Programs.genexussecurity.SdtGAMApplication AV21GAMApplication ;
       private SdtSDT_ErrorResponse AV19ErrorResponse ;
       private SdtSDT_LoginResidentResponse AV12LoginResponse ;
       private string aP2_response ;
