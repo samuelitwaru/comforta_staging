@@ -323,10 +323,10 @@ class DataManager {
     });
   }
 
-  Theme() {
+  getLocationTheme() {
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: `${baseURL}/api/location-theme`,
+        url: `${baseURL}/api/toolbox/location-theme`,
         type: "GET",
         contentType: "application/json",
         success: function (response) {
