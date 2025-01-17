@@ -12,7 +12,6 @@ class ChildEditorManager {
   container = document.getElementById("child-container");
 
     constructor(dataManager, currentLanguage) {
-        alert(dataManager.getLocationTheme)
         this.dataManager = dataManager;
             this.dataManager.getLocationTheme().then((res) => {
             if (this.toolsSection.checkIfNotAuthenticated(res)) {
@@ -42,8 +41,6 @@ class ChildEditorManager {
             }
         });
         this.currentLanguage = currentLanguage;
-
-        alert()
     }
 
     /**

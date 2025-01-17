@@ -118,7 +118,6 @@ function UC_AppToolBox($) {
 				dataManager.LocationId = this.LocationId
 				dataManager.OrganisationId = this.OrganisationId
 				dataManager.Location = this.BC_Trn_Location
-				alert(dataManager)
 				const editorManager = new ChildEditorManager(dataManager, locale)
 
 				const toolBox = new ToolBoxManager(
