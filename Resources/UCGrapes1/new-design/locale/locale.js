@@ -271,12 +271,11 @@ class Locale {
       const option = document.createElement("div");
       option.classList.add("category-option");
       option.setAttribute("role", "option");
-      option.setAttribute("data-value", opt.name);
+      option.setAttribute("data-value", opt.value);
       option.textContent = this.getTranslation(opt.label);
 
       option.addEventListener("click", (e) => {
         selectedValue.textContent = this.getTranslation(opt.label);
-
         // Mark as selected
         const allOptions = optionsList.querySelectorAll(".category-option");
         allOptions.forEach((opt) => opt.classList.remove("selected"));

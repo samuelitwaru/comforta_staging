@@ -633,6 +633,9 @@ class ToolBoxManager {
         category: icon.IconCategory,
       };
     });
+
+    console.log(this.icons)
+
     this.loadThemeIcons(theme.icons);
 
     this.themeColorPalette(this.currentTheme.colors);
@@ -1394,13 +1397,14 @@ class ToolBoxManager {
 
   loadThemeIcons(themeIconsList) {
     const themeIcons = document.getElementById("icons-list");
-
     let selectedCategory = "General";
 
     const categoryOptions = document.querySelectorAll(".category-option");
     categoryOptions.forEach(option => {
       option.addEventListener("click", () => {
         selectedCategory = option.textContent.trim();
+        selectedCategory = option.dataset.value
+        // console.log(option.dataset.value)
         renderIcons();
       });
     });
