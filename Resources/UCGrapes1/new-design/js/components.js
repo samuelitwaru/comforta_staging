@@ -270,10 +270,33 @@ class ActionListComponent {
         this.currentLanguage = currentLanguage;
         this.boundCreatePage = this.handleCreatePage.bind(this);
     }
+
+    getPage(pageId) {
+        return this.dataManager.pages.SDT_PageCollection.find((page) => page.PageId == pageId);
+    }
+
+    createPageTree(){
+        let homePage = this.getPage('34f798f2-7b6c-4a8f-bdea-d14273b5a678')
+        let homePageJSON = JSON.parse(homePage.PageGJSJson)
+        const pages = homePageJSON.pages;
+        const containerRows =
+            pages[0].frames[0].component.components[0].components[0].components;
+        console.log(containerRows)
+
+        containerRows.forEach(containerRow => {
+            console.log(containerRow)
+        })
+
+        // for each containerRow
+        //     for each templateWrapper
+        //         for each templateBlock
+        //             page
+    }
   
     init() {
         this.setupEventListeners();
         this.loadPageTree();
+        //this.createPageTree();
     }
   
     setupEventListeners() {
