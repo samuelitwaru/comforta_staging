@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250120043501"
+  version: "20250121095153"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -647,6 +647,29 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Trn_ThemeWWGetFilterDataOutput"
+        404:
+          description: "Not found"
+  /UFilledOutFormsGetFilterData:
+    post:
+      tags:
+        - UFilledOutFormsGetFilterData
+      operationId: "UFilledOutFormsGetFilterData"
+      summary: "UFilled Out Forms Get Filter Data"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UFilledOutFormsGetFilterDataInput"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UFilledOutFormsGetFilterDataOutput"
         404:
           description: "Not found"
   /UFormLoadDVCombo:
@@ -1329,6 +1352,14 @@ components:
           type: "string"
         OptionIndexesJson:
           type: "string"
+    UFilledOutFormsGetFilterDataOutput:
+      properties:
+        OptionsJson:
+          type: "string"
+        OptionsDescJson:
+          type: "string"
+        OptionIndexesJson:
+          type: "string"
     UFormLoadDVComboOutput:
       properties:
         SelectedValue:
@@ -1687,6 +1718,14 @@ components:
         SearchTxtTo:
           type: "string"
     Trn_ThemeWWGetFilterDataInput:  
+      properties:
+        DDOName:
+          type: "string"
+        SearchTxtParms:
+          type: "string"
+        SearchTxtTo:
+          type: "string"
+    UFilledOutFormsGetFilterDataInput:  
       properties:
         DDOName:
           type: "string"
@@ -2135,10 +2174,6 @@ components:
         PageIsContentPage:
           description: "Page Is Content Page"
           type: "boolean"
-        LocationId:
-          description: "Location Id"
-          type: "string"
-          format: "uuid"
         Row:
           description: "SDT_Row"
           type: array

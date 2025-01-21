@@ -341,8 +341,6 @@ class ToolBoxManager {
         const pageName = page.PageName;
         let jsonData;
 
-        console.log(page.PageName, page.PageIsContentPage)
-
         if (page.PageIsContentPage) {
           jsonData = mapContentToPageData(projectData, page);
         } else {
@@ -633,8 +631,6 @@ class ToolBoxManager {
         category: icon.IconCategory,
       };
     });
-
-    console.log(this.icons)
 
     this.loadThemeIcons(theme.icons);
 

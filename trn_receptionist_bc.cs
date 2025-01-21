@@ -145,7 +145,19 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
-         new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV36AuditingObject,  AV38Pgmname) ;
+         if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
+         {
+            AV38Session.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Receptionist Updated successfully", ""));
+         }
+         if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
+         {
+            AV38Session.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Receptionist Deleted successfully", ""));
+         }
+         if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
+         {
+            AV38Session.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Receptionist Inserted successfully", ""));
+         }
+         new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV36AuditingObject,  AV40Pgmname) ;
       }
 
       protected void S112( )
@@ -192,7 +204,7 @@ namespace GeneXus.Programs {
 
       protected void standaloneNotModal( )
       {
-         AV38Pgmname = "Trn_Receptionist_BC";
+         AV40Pgmname = "Trn_Receptionist_BC";
       }
 
       protected void standaloneModal( )
@@ -1378,8 +1390,9 @@ namespace GeneXus.Programs {
          AV29WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV25TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV28WebSession = context.GetSession();
+         AV38Session = context.GetSession();
          AV36AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
-         AV38Pgmname = "";
+         AV40Pgmname = "";
          Z92ReceptionistInitials = "";
          A92ReceptionistInitials = "";
          Z94ReceptionistPhone = "";
@@ -1514,7 +1527,7 @@ namespace GeneXus.Programs {
          );
          Z89ReceptionistId = Guid.NewGuid( );
          A89ReceptionistId = Guid.NewGuid( );
-         AV38Pgmname = "Trn_Receptionist_BC";
+         AV40Pgmname = "Trn_Receptionist_BC";
          INITTRN();
          /* Execute Start event if defined. */
          /* Execute user event: Start */
@@ -1529,7 +1542,7 @@ namespace GeneXus.Programs {
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
-      private string AV38Pgmname ;
+      private string AV40Pgmname ;
       private string Z92ReceptionistInitials ;
       private string A92ReceptionistInitials ;
       private string Z94ReceptionistPhone ;
@@ -1568,6 +1581,7 @@ namespace GeneXus.Programs {
       private Guid AV21OrganisationId ;
       private Guid GXt_guid1 ;
       private IGxSession AV28WebSession ;
+      private IGxSession AV38Session ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;

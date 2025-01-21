@@ -41,16 +41,27 @@ class ActionListComponent {
   
                 this.pageOptions = res.SDT_PageCollection.filter(
                     (page) => !page.PageIsContentPage && !page.PageIsPredefined
-                );
+                ).map(page=>{
+                    page.TileName = page.PageName
+                    return page
+                });
                 this.predefinedPageOptions = res.SDT_PageCollection.filter(
                     (page) => page.PageIsPredefined && page.PageName != "Home"
-                );
+                ).map(page=>{
+                    page.TileName = page.PageName
+                    return page
+                });
                 this.servicePageOptions = this.dataManager.services.map((service) => {
                     return {
                         PageId: service.ProductServiceId,
                         PageName: service.ProductServiceName,
+                        TileName: service.ProductServiceTileName || service.ProductServiceName
                     };
                 });
+                console.log(this.pageOptions)
+                console.log(this.predefinedPageOptions)
+                console.log(this.servicePageOptions)
+
                 this.categoryData.forEach((category) => {
                     if (category.name === "Page") {
                         category.options = this.pageOptions;
@@ -101,6 +112,7 @@ class ActionListComponent {
                 const optionElement = document.createElement("li");
                 optionElement.textContent = option.PageName;
                 optionElement.id = option.PageId;
+                optionElement.dataset.tileName = option.TileName;
                 categoryContent.appendChild(optionElement);
             });
   
@@ -174,6 +186,7 @@ class ActionListComponent {
   
         document.querySelectorAll(".category-content li").forEach((item) => {
             item.addEventListener("click", function() {
+                console.log(item)
                 dropdownHeader.textContent = `${
                   this.closest(".category").dataset.category
                 }, ${this.textContent}`;
@@ -202,7 +215,7 @@ class ActionListComponent {
                     }
   
                     if (titleComponent) {
-                        titleComponent.components(this.textContent);
+                        titleComponent.components(item.dataset.tileName);
   
                         const sidebarInputTitle = document.getElementById("tile-title");
                         if (sidebarInputTitle) {
@@ -418,7 +431,6 @@ class ActionListComponent {
             childDiv.classList.add("child-div")
             childDiv.id = `child-div-${item.Id}`
             childDiv.style.position = 'relative'
-            // childDiv.style.right = '-20px'
             childDiv.style.paddingLeft = '20px'
 
   

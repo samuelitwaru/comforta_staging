@@ -35,10 +35,6 @@ type_SdtTrn_SupplierAgb.cs
 type_SdtTrn_NetworkCompany.cs
 type_SdtTrn_ProductService.cs
 type_SdtTrn_NetworkIndividual.cs
-type_SdtTrn_Receptionist.cs
-type_SdtTrn_Resident.cs
-type_SdtTrn_Resident_NetworkCompany.cs
-type_SdtTrn_Resident_NetworkIndividual.cs
 type_SdtTrn_AgendaCalendar.cs
 type_SdtTrn_LocationDynamicForm.cs
 type_SdtTrn_CallToAction.cs
@@ -63,6 +59,10 @@ type_SdtTrn_Theme_Color.cs
 type_SdtTrn_Theme_Icon.cs
 type_SdtTrn_Page.cs
 type_SdtTrn_Device.cs
+type_SdtTrn_Receptionist.cs
+type_SdtTrn_Resident.cs
+type_SdtTrn_Resident_NetworkCompany.cs
+type_SdtTrn_Resident_NetworkIndividual.cs
 type_SdtQRCodeLibrary.cs
 type_SdtEO_Base64Image.cs
 gxdomainsalutation.cs

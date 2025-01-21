@@ -414,9 +414,6 @@ const defaultTileAttrs = `
   tile-icon-color="#000000"
   tile-icon-align="left"
 
-  tile-bg-color="#ffffff"
-  tile-bg-color-name="cardBgColor"
-
   tile-bg-image=""
   tile-bg-image-opacity=100
 

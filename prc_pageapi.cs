@@ -106,7 +106,6 @@ namespace GeneXus.Programs {
                AV8SDT_MobilePage.gxTpr_Pagename = A318Trn_PageName;
                AV8SDT_MobilePage.gxTpr_Pageispublished = A434PageIsPublished;
                AV8SDT_MobilePage.gxTpr_Pageiscontentpage = A439PageIsContentPage;
-               AV8SDT_MobilePage.gxTpr_Locationid = A29LocationId;
             }
             pr_default.readNext(0);
          }

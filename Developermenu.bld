@@ -46,6 +46,7 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+ufilledoutforms
 urecoverpasswordstep1
 urecoverpasswordstep2
 udfc_fs_wc
@@ -344,6 +345,7 @@ gx0040
 gx0030
 general\ui\masterprompt
 general\ui\masterunanimosidebar
+ufilledoutformsgetfilterdata
 aprc_changeuserpassword
 aprc_recoverpasswordstep1
 uformwwgetfilterdata

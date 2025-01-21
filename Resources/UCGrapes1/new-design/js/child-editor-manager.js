@@ -984,6 +984,7 @@ class ChildEditorManager {
     }
     
     generateTemplateRow(columns, rowIndex) {
+        let tileBgColor = this.toolsSection.currentTheme.colors.accentColor 
         let columnWidth = 100 / columns;
         if (columns === 1) {
             columnWidth = 100;
@@ -1026,11 +1027,13 @@ class ChildEditorManager {
     
             wrappers += `
             <div class="template-wrapper"
-                      style="flex: 0 0 ${columnWidth}%);"
+                      style="flex: 0 0 ${columnWidth}%); background: ${tileBgColor}"
                       data-gjs-type="template-wrapper"
                       data-gjs-selectable="false"
                       data-gjs-droppable="false">
                       <div class="template-block"
+                        tile-bgcolor="${tileBgColor}"
+                        tile-bgcolor-name="accentColor"
                         ${defaultTileAttrs}
                         data-gjs-draggable="false"
                         data-gjs-selectable="true"
