@@ -275,28 +275,43 @@ class ActionListComponent {
         return this.dataManager.pages.SDT_PageCollection.find((page) => page.PageId == pageId);
     }
 
-    createPageTree(){
-        let homePage = this.getPage('34f798f2-7b6c-4a8f-bdea-d14273b5a678')
+    createPageTree(rootPageId, childDivId){
+        let homePage = this.getPage(rootPageId)
         let homePageJSON = JSON.parse(homePage.PageGJSJson)
         const pages = homePageJSON.pages;
         const containerRows =
             pages[0].frames[0].component.components[0].components[0].components;
         console.log(containerRows)
 
-        containerRows.forEach(containerRow => {
-            console.log(containerRow)
-        })
+        let childPages = []
 
-        // for each containerRow
-        //     for each templateWrapper
-        //         for each templateBlock
-        //             page
+        containerRows.forEach(containerRow => {
+            let templateWrappers = containerRow.components
+            if(templateWrappers) {
+                templateWrappers.forEach(templateWrapper => {
+                    let templateBlocks = templateWrapper.components
+                    templateBlocks.forEach(templateBlock => {
+                        if (templateBlock.classes.includes("template-block")) {
+                            let pageId = templateBlock.attributes["tile-action-object-id"]
+                            let page = this.getPage(pageId)
+                            if (page) {
+                                childPages.push({Id: pageId, Name:page.PageName})
+                            }
+                        }
+                    })
+                })
+            }
+        })
+        const newTree = this.createTree(childPages, true);
+        this.treeContainer = document.getElementById(childDivId)
+        this.clearMappings();
+        this.treeContainer.appendChild(newTree);
     }
   
     init() {
         this.setupEventListeners();
-        this.loadPageTree();
-        //this.createPageTree();
+        //this.loadPageTree();
+        this.createPageTree('34f798f2-7b6c-4a8f-bdea-d14273b5a678', "tree-container");
     }
   
     setupEventListeners() {
@@ -318,6 +333,7 @@ class ActionListComponent {
         try {
             this.isLoading = true;
             this.dataManager.getPagesService().then((res) => {
+                console.log(res)
                 if (this.toolBoxManager.checkIfNotAuthenticated(res)) {
                     return;
                 }
@@ -358,24 +374,29 @@ class ActionListComponent {
                 pageInput.value = "";
   
                 this.clearMappings();
+                this.toolBoxManager.actionList.init();
+                this.init()
+                // this.dataManager.getPages().then(res=>{
+                //     this.init()
+                // })
+                // this.dataManager.getPagesService().then((res) => {
   
-                this.dataManager.getPagesService().then((res) => {
+                //     let treePages = res.SDT_PageStructureCollection.map((page) => {
+                //         return {
+                //             Id: page.Id,
+                //             Name: page.Name
+                //         };
+                //     });
   
-                    let treePages = res.SDT_PageStructureCollection.map((page) => {
-                        return {
-                            Id: page.Id,
-                            Name: page.Name
-                        };
-                    });
-  
-                    const newTree = this.createTree(treePages, true);
-                    this.treeContainer.appendChild(newTree);
-                    this.toolBoxManager.actionList.init();
-                });
+                //     const newTree = this.createTree(treePages, true);
+                //     this.treeContainer.appendChild(newTree);
+                //     this.toolBoxManager.actionList.init();
+                // });
             });
   
         } catch (error) {
-            this.toolBoxManager.displayMessage(`${this.currentLanguage.getTranslation("error_creating_page")}`, "error");
+            console.error(error)
+            this.displayMessage(`${this.currentLanguage.getTranslation("error_creating_page")}`, "error");
         } finally {
             this.isLoading = false;
             createPageButton.disabled = !pageInput.value.trim();
@@ -393,6 +414,13 @@ class ActionListComponent {
         const buildListItem = (item) => {
             const listItem = document.createElement("li");
             listItem.classList.add("tb-custom-list-item");
+            const childDiv = document.createElement("div")
+            childDiv.classList.add("child-div")
+            childDiv.id = `child-div-${item.Id}`
+            childDiv.style.position = 'relative'
+            // childDiv.style.right = '-20px'
+            childDiv.style.paddingLeft = '20px'
+
   
             const menuItem = document.createElement("div");
             menuItem.classList.add("tb-custom-menu-item");
@@ -416,7 +444,7 @@ class ActionListComponent {
                 menuItem.appendChild(deleteIcon);
             }
             listItem.appendChild(menuItem);
-  
+            listItem.appendChild(childDiv)
             if (item.Children) {
                 const dropdownMenu = document.createElement("ul");
                 dropdownMenu.classList.add("tb-tree-dropdown-menu");
@@ -437,7 +465,8 @@ class ActionListComponent {
             listItem.addEventListener("click", (e) => {
                 e.stopPropagation();
                 this.handlePageSelection(item);
-  
+                this.createPageTree(item.Id, `child-div-${item.Id}`)
+                return
                 // Close all dropdowns if this item has no children
                 if (!item.Children) {
                     document
