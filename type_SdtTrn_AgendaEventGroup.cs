@@ -96,6 +96,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Medicalindicationname_Z");
          state.Add("gxTpr_Residentphonecode_Z");
          state.Add("gxTpr_Residentphonenumber_Z");
+         state.Add("gxTpr_Residenttypeid_N");
          state.Add("gxTpr_Medicalindicationid_N");
          return state ;
       }
@@ -158,6 +159,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_AgendaEventGroup_Medicalindicationname_Z = sdt.gxTv_SdtTrn_AgendaEventGroup_Medicalindicationname_Z ;
          gxTv_SdtTrn_AgendaEventGroup_Residentphonecode_Z = sdt.gxTv_SdtTrn_AgendaEventGroup_Residentphonecode_Z ;
          gxTv_SdtTrn_AgendaEventGroup_Residentphonenumber_Z = sdt.gxTv_SdtTrn_AgendaEventGroup_Residentphonenumber_Z ;
+         gxTv_SdtTrn_AgendaEventGroup_Residenttypeid_N = sdt.gxTv_SdtTrn_AgendaEventGroup_Residenttypeid_N ;
          gxTv_SdtTrn_AgendaEventGroup_Medicalindicationid_N = sdt.gxTv_SdtTrn_AgendaEventGroup_Medicalindicationid_N ;
          return  ;
       }
@@ -207,6 +209,7 @@ namespace GeneXus.Programs {
          AddObjectProperty("ResidentBirthDate", sDateCnv, false, includeNonInitialized);
          AddObjectProperty("ResidentGUID", gxTv_SdtTrn_AgendaEventGroup_Residentguid, false, includeNonInitialized);
          AddObjectProperty("ResidentTypeId", gxTv_SdtTrn_AgendaEventGroup_Residenttypeid, false, includeNonInitialized);
+         AddObjectProperty("ResidentTypeId_N", gxTv_SdtTrn_AgendaEventGroup_Residenttypeid_N, false, includeNonInitialized);
          AddObjectProperty("ResidentTypeName", gxTv_SdtTrn_AgendaEventGroup_Residenttypename, false, includeNonInitialized);
          AddObjectProperty("MedicalIndicationId", gxTv_SdtTrn_AgendaEventGroup_Medicalindicationid, false, includeNonInitialized);
          AddObjectProperty("MedicalIndicationId_N", gxTv_SdtTrn_AgendaEventGroup_Medicalindicationid_N, false, includeNonInitialized);
@@ -252,6 +255,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("MedicalIndicationName_Z", gxTv_SdtTrn_AgendaEventGroup_Medicalindicationname_Z, false, includeNonInitialized);
             AddObjectProperty("ResidentPhoneCode_Z", gxTv_SdtTrn_AgendaEventGroup_Residentphonecode_Z, false, includeNonInitialized);
             AddObjectProperty("ResidentPhoneNumber_Z", gxTv_SdtTrn_AgendaEventGroup_Residentphonenumber_Z, false, includeNonInitialized);
+            AddObjectProperty("ResidentTypeId_N", gxTv_SdtTrn_AgendaEventGroup_Residenttypeid_N, false, includeNonInitialized);
             AddObjectProperty("MedicalIndicationId_N", gxTv_SdtTrn_AgendaEventGroup_Medicalindicationid_N, false, includeNonInitialized);
          }
          return  ;
@@ -361,6 +365,7 @@ namespace GeneXus.Programs {
          }
          if ( sdt.IsDirty("ResidentTypeId") )
          {
+            gxTv_SdtTrn_AgendaEventGroup_Residenttypeid_N = (short)(sdt.gxTv_SdtTrn_AgendaEventGroup_Residenttypeid_N);
             sdtIsNull = 0;
             gxTv_SdtTrn_AgendaEventGroup_Residenttypeid = sdt.gxTv_SdtTrn_AgendaEventGroup_Residenttypeid ;
          }
@@ -801,11 +806,25 @@ namespace GeneXus.Programs {
          }
 
          set {
+            gxTv_SdtTrn_AgendaEventGroup_Residenttypeid_N = 0;
             sdtIsNull = 0;
             gxTv_SdtTrn_AgendaEventGroup_Residenttypeid = value;
             SetDirty("Residenttypeid");
          }
 
+      }
+
+      public void gxTv_SdtTrn_AgendaEventGroup_Residenttypeid_SetNull( )
+      {
+         gxTv_SdtTrn_AgendaEventGroup_Residenttypeid_N = 1;
+         gxTv_SdtTrn_AgendaEventGroup_Residenttypeid = Guid.Empty;
+         SetDirty("Residenttypeid");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_AgendaEventGroup_Residenttypeid_IsNull( )
+      {
+         return (gxTv_SdtTrn_AgendaEventGroup_Residenttypeid_N==1) ;
       }
 
       [  SoapElement( ElementName = "ResidentTypeName" )]
@@ -1705,6 +1724,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "ResidentTypeId_N" )]
+      [  XmlElement( ElementName = "ResidentTypeId_N"   )]
+      public short gxTpr_Residenttypeid_N
+      {
+         get {
+            return gxTv_SdtTrn_AgendaEventGroup_Residenttypeid_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AgendaEventGroup_Residenttypeid_N = value;
+            SetDirty("Residenttypeid_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_AgendaEventGroup_Residenttypeid_N_SetNull( )
+      {
+         gxTv_SdtTrn_AgendaEventGroup_Residenttypeid_N = 0;
+         SetDirty("Residenttypeid_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_AgendaEventGroup_Residenttypeid_N_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "MedicalIndicationId_N" )]
       [  XmlElement( ElementName = "MedicalIndicationId_N"   )]
       public short gxTpr_Medicalindicationid_N
@@ -1819,6 +1866,7 @@ namespace GeneXus.Programs {
 
       private short sdtIsNull ;
       private short gxTv_SdtTrn_AgendaEventGroup_Initialized ;
+      private short gxTv_SdtTrn_AgendaEventGroup_Residenttypeid_N ;
       private short gxTv_SdtTrn_AgendaEventGroup_Medicalindicationid_N ;
       private string gxTv_SdtTrn_AgendaEventGroup_Residentsalutation ;
       private string gxTv_SdtTrn_AgendaEventGroup_Residentinitials ;

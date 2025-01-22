@@ -138,7 +138,7 @@ namespace GeneXus.Programs {
             }
          }
          /* Using cursor P008T3 */
-         pr_default.execute(1, new Object[] {AV9LocationId, AV18DateToStart, AV19DateToEnd});
+         pr_default.execute(1, new Object[] {AV9LocationId});
          while ( (pr_default.getStatus(1) != 101) )
          {
             A306AgendaCalendarEndDate = P008T3_A306AgendaCalendarEndDate[0];
@@ -152,19 +152,25 @@ namespace GeneXus.Programs {
             A451AgendaCalendarRecurringType = P008T3_A451AgendaCalendarRecurringType[0];
             A452AgendaCalendarAddRSVP = P008T3_A452AgendaCalendarAddRSVP[0];
             A11OrganisationId = P008T3_A11OrganisationId[0];
-            AV10SDT_AgendaLocation = new SdtSDT_AgendaLocation(context);
-            AV10SDT_AgendaLocation.gxTpr_Agendacalendarid = A303AgendaCalendarId;
-            AV10SDT_AgendaLocation.gxTpr_Agendacalendartitle = A304AgendaCalendarTitle;
-            AV10SDT_AgendaLocation.gxTpr_Agendacalendartype = A454AgendaCalendarType;
-            AV10SDT_AgendaLocation.gxTpr_Agendacalendarstartdate = A305AgendaCalendarStartDate;
-            AV10SDT_AgendaLocation.gxTpr_Agendacalendarenddate = A306AgendaCalendarEndDate;
-            AV10SDT_AgendaLocation.gxTpr_Agendacalendarallday = A307AgendaCalendarAllDay;
-            AV10SDT_AgendaLocation.gxTpr_Agendacalendarrecurring = A450AgendaCalendarRecurring;
-            AV10SDT_AgendaLocation.gxTpr_Agendacalendarrecurringtype = A451AgendaCalendarRecurringType;
-            AV10SDT_AgendaLocation.gxTpr_Agendacalendaraddrsvp = A452AgendaCalendarAddRSVP;
-            AV10SDT_AgendaLocation.gxTpr_Locationid = A29LocationId;
-            AV10SDT_AgendaLocation.gxTpr_Organisationid = A11OrganisationId;
-            AV13SDT_AgendaLocationCollection.Add(AV10SDT_AgendaLocation, 0);
+            if ( DateTimeUtil.ResetTime ( DateTimeUtil.ResetTime( A305AgendaCalendarStartDate) ) >= DateTimeUtil.ResetTime ( AV18DateToStart ) )
+            {
+               if ( DateTimeUtil.ResetTime ( DateTimeUtil.ResetTime( A306AgendaCalendarEndDate) ) <= DateTimeUtil.ResetTime ( AV19DateToEnd ) )
+               {
+                  AV10SDT_AgendaLocation = new SdtSDT_AgendaLocation(context);
+                  AV10SDT_AgendaLocation.gxTpr_Agendacalendarid = A303AgendaCalendarId;
+                  AV10SDT_AgendaLocation.gxTpr_Agendacalendartitle = A304AgendaCalendarTitle;
+                  AV10SDT_AgendaLocation.gxTpr_Agendacalendartype = A454AgendaCalendarType;
+                  AV10SDT_AgendaLocation.gxTpr_Agendacalendarstartdate = A305AgendaCalendarStartDate;
+                  AV10SDT_AgendaLocation.gxTpr_Agendacalendarenddate = A306AgendaCalendarEndDate;
+                  AV10SDT_AgendaLocation.gxTpr_Agendacalendarallday = A307AgendaCalendarAllDay;
+                  AV10SDT_AgendaLocation.gxTpr_Agendacalendarrecurring = A450AgendaCalendarRecurring;
+                  AV10SDT_AgendaLocation.gxTpr_Agendacalendarrecurringtype = A451AgendaCalendarRecurringType;
+                  AV10SDT_AgendaLocation.gxTpr_Agendacalendaraddrsvp = A452AgendaCalendarAddRSVP;
+                  AV10SDT_AgendaLocation.gxTpr_Locationid = A29LocationId;
+                  AV10SDT_AgendaLocation.gxTpr_Organisationid = A11OrganisationId;
+                  AV13SDT_AgendaLocationCollection.Add(AV10SDT_AgendaLocation, 0);
+               }
+            }
             pr_default.readNext(1);
          }
          pr_default.close(1);
@@ -304,13 +310,11 @@ namespace GeneXus.Programs {
           };
           Object[] prmP008T3;
           prmP008T3 = new Object[] {
-          new ParDef("AV9LocationId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("AV18DateToStart",GXType.Date,8,0) ,
-          new ParDef("AV19DateToEnd",GXType.Date,8,0)
+          new ParDef("AV9LocationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
               new CursorDef("P008T2", "SELECT ResidentGUID, ResidentId, LocationId, OrganisationId FROM Trn_Resident WHERE ResidentGUID = ( :AV8ResidentId) ORDER BY ResidentId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008T2,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P008T3", "SELECT AgendaCalendarEndDate, AgendaCalendarStartDate, LocationId, AgendaCalendarId, AgendaCalendarTitle, AgendaCalendarType, AgendaCalendarAllDay, AgendaCalendarRecurring, AgendaCalendarRecurringType, AgendaCalendarAddRSVP, OrganisationId FROM Trn_AgendaCalendar WHERE (LocationId = :AV9LocationId) AND (AgendaCalendarStartDate >= :AV18DateToStart) AND (AgendaCalendarEndDate <= :AV19DateToEnd) ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008T3,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("P008T3", "SELECT AgendaCalendarEndDate, AgendaCalendarStartDate, LocationId, AgendaCalendarId, AgendaCalendarTitle, AgendaCalendarType, AgendaCalendarAllDay, AgendaCalendarRecurring, AgendaCalendarRecurringType, AgendaCalendarAddRSVP, OrganisationId FROM Trn_AgendaCalendar WHERE LocationId = :AV9LocationId ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008T3,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }

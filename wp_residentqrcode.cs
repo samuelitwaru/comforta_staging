@@ -42,9 +42,11 @@ namespace GeneXus.Programs {
          dsDefault = context.GetDataStore("Default");
       }
 
-      public void execute( string aP0_ResidentGUID )
+      public void execute( string aP0_ResidentGUID ,
+                           string aP1_ResidentEmail )
       {
          this.AV12ResidentGUID = aP0_ResidentGUID;
+         this.AV8ResidentEmail = aP1_ResidentEmail;
          ExecuteImpl();
       }
 
@@ -257,19 +259,19 @@ namespace GeneXus.Programs {
          {
             bodyStyle += " background-image:url(" + context.convertURL( Form.Background) + ")";
          }
-         context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
+         context.WriteHtmlText( " "+"class=\"form-horizontal QRCodeForm\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
          if ( nGXWrapped != 1 )
          {
             GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "wp_residentqrcode.aspx"+UrlEncode(StringUtil.RTrim(AV12ResidentGUID));
-            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wp_residentqrcode.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
+            GXEncryptionTmp = "wp_residentqrcode.aspx"+UrlEncode(StringUtil.RTrim(AV12ResidentGUID)) + "," + UrlEncode(StringUtil.RTrim(AV8ResidentEmail));
+            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal QRCodeForm\" data-gx-class=\"form-horizontal QRCodeForm\" novalidate action=\""+formatLink("wp_residentqrcode.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
             GxWebStd.gx_hidden_field( context, "_EventName", "");
             GxWebStd.gx_hidden_field( context, "_EventGridId", "");
             GxWebStd.gx_hidden_field( context, "_EventRowId", "");
             context.WriteHtmlText( "<div style=\"height:0;overflow:hidden\"><input type=\"submit\" title=\"submit\"  disabled></div>") ;
-            AssignProp("", false, "FORM", "Class", "form-horizontal Form", true);
+            AssignProp("", false, "FORM", "Class", "form-horizontal QRCodeForm", true);
          }
          toggleJsOutput = isJsOutputEnabled( );
          if ( context.isSpaRequest( ) )
@@ -282,6 +284,8 @@ namespace GeneXus.Programs {
       {
          GxWebStd.gx_hidden_field( context, "vRESIDENTGUID", AV12ResidentGUID);
          GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTGUID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12ResidentGUID, "")), context));
+         GxWebStd.gx_hidden_field( context, "vRESIDENTEMAIL", AV8ResidentEmail);
+         GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTEMAIL", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV8ResidentEmail, "")), context));
          GXKey = Crypto.GetSiteKey( );
       }
 
@@ -292,6 +296,8 @@ namespace GeneXus.Programs {
          send_integrity_footer_hashes( ) ;
          GxWebStd.gx_hidden_field( context, "vRESIDENTGUID", AV12ResidentGUID);
          GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTGUID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12ResidentGUID, "")), context));
+         GxWebStd.gx_hidden_field( context, "vRESIDENTEMAIL", AV8ResidentEmail);
+         GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTEMAIL", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV8ResidentEmail, "")), context));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -336,7 +342,7 @@ namespace GeneXus.Programs {
          if ( ( gxajaxcallmode == 0 ) && ( GxWebError == 0 ) )
          {
             context.WriteHtmlText( "<div") ;
-            GxWebStd.ClassAttribute( context, "gx-ct-body"+" "+(String.IsNullOrEmpty(StringUtil.RTrim( Form.Class)) ? "form-horizontal Form" : Form.Class)+"-fx");
+            GxWebStd.ClassAttribute( context, "gx-ct-body"+" "+(String.IsNullOrEmpty(StringUtil.RTrim( Form.Class)) ? "form-horizontal QRCodeForm" : Form.Class)+"-fx");
             context.WriteHtmlText( ">") ;
             WE6O2( ) ;
             context.WriteHtmlText( "</div>") ;
@@ -361,7 +367,7 @@ namespace GeneXus.Programs {
       public override string GetSelfLink( )
       {
          GXKey = Crypto.GetSiteKey( );
-         GXEncryptionTmp = "wp_residentqrcode.aspx"+UrlEncode(StringUtil.RTrim(AV12ResidentGUID));
+         GXEncryptionTmp = "wp_residentqrcode.aspx"+UrlEncode(StringUtil.RTrim(AV12ResidentGUID)) + "," + UrlEncode(StringUtil.RTrim(AV8ResidentEmail));
          return formatLink("wp_residentqrcode.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey) ;
       }
 
@@ -596,6 +602,12 @@ namespace GeneXus.Programs {
                      AV12ResidentGUID = gxfirstwebparm;
                      AssignAttri("", false, "AV12ResidentGUID", AV12ResidentGUID);
                      GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTGUID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12ResidentGUID, "")), context));
+                     if ( StringUtil.StrCmp(gxfirstwebparm, "viewer") != 0 )
+                     {
+                        AV8ResidentEmail = GetPar( "ResidentEmail");
+                        AssignAttri("", false, "AV8ResidentEmail", AV8ResidentEmail);
+                        GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTEMAIL", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV8ResidentEmail, "")), context));
+                     }
                   }
                   if ( toggleJsOutput )
                   {
@@ -725,6 +737,8 @@ namespace GeneXus.Programs {
          returnInSub = false;
          lblInstruction_Caption = context.GetMessage( "Scan QR Code to Login", "");
          AssignProp("", false, lblInstruction_Internalname, "Caption", lblInstruction_Caption, true);
+         GXt_char1 = "";
+         new prc_requestuserotp(context ).execute(  AV8ResidentEmail, out  GXt_char1) ;
          GXt_char1 = AV7QRCodeImage;
          new prc_generateqrcodeimage(context ).execute(  AV12ResidentGUID, out  GXt_char1) ;
          AV7QRCodeImage = GXt_char1;
@@ -751,6 +765,9 @@ namespace GeneXus.Programs {
          AV12ResidentGUID = (string)getParm(obj,0);
          AssignAttri("", false, "AV12ResidentGUID", AV12ResidentGUID);
          GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTGUID", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12ResidentGUID, "")), context));
+         AV8ResidentEmail = (string)getParm(obj,1);
+         AssignAttri("", false, "AV8ResidentEmail", AV8ResidentEmail);
+         GxWebStd.gx_hidden_field( context, "gxhash_vRESIDENTEMAIL", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV8ResidentEmail, "")), context));
       }
 
       public override string getresponse( string sGXDynURL )
@@ -786,7 +803,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251167484431", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251222145678", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -804,7 +821,7 @@ namespace GeneXus.Programs {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wp_residentqrcode.js", "?20251167484431", false, true);
+            context.AddJavascriptSource("wp_residentqrcode.js", "?20251222145678", false, true);
          }
          /* End function include_jscripts */
       }
@@ -853,7 +870,7 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV12ResidentGUID","fld":"vRESIDENTGUID","hsh":true}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV12ResidentGUID","fld":"vRESIDENTGUID","hsh":true},{"av":"AV8ResidentEmail","fld":"vRESIDENTEMAIL","hsh":true}]}""");
          return  ;
       }
 
@@ -869,6 +886,7 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          wcpOAV12ResidentGUID = "";
+         wcpOAV8ResidentEmail = "";
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          sDynURL = "";
@@ -942,7 +960,9 @@ namespace GeneXus.Programs {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private string AV12ResidentGUID ;
+      private string AV8ResidentEmail ;
       private string wcpOAV12ResidentGUID ;
+      private string wcpOAV8ResidentEmail ;
       private string AV13Qrcodeimage_GXI ;
       private string AV7QRCodeImage ;
       private GXWebForm Form ;

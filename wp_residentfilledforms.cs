@@ -455,7 +455,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, divTablemaincontent_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, divTablemaincontent_Internalname, divTablemaincontent_Visible, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
@@ -476,7 +476,7 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV15GXV1 = nGXsfl_15_idx;
+               AV17GXV1 = nGXsfl_15_idx;
                sStyleString = "";
                context.WriteHtmlText( "<div id=\""+"Freestylegrid1Container"+"Div\" "+sStyleString+">"+"</div>") ;
                context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Freestylegrid1", Freestylegrid1Container, subFreestylegrid1_Internalname);
@@ -498,6 +498,69 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "Center", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divNorecordfoundtable_Internalname, divNorecordfoundtable_Visible, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            wb_table1_61_9P2( true) ;
+         }
+         else
+         {
+            wb_table1_61_9P2( false) ;
+         }
+         return  ;
+      }
+
+      protected void wb_table1_61_9P2e( bool wbgen )
+      {
+         if ( wbgen )
+         {
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "Center", "top", "", "", "div");
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblBanicon_Internalname, context.GetMessage( "<i class='fas fa-ban' style='font-size: 50px'></i>", ""), "", "", lblBanicon_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 2, "HLP_WP_ResidentFilledForms.htm");
+            GxWebStd.gx_div_end( context, "Center", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            wb_table2_70_9P2( true) ;
+         }
+         else
+         {
+            wb_table2_70_9P2( false) ;
+         }
+         return  ;
+      }
+
+      protected void wb_table2_70_9P2e( bool wbgen )
+      {
+         if ( wbgen )
+         {
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "Center", "top", "", "", "div");
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblErrormessage_Internalname, lblErrormessage_Caption, "", "", lblErrormessage_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "color:"+context.BuildHTMLColor( lblErrormessage_Forecolor)+";", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_ResidentFilledForms.htm");
+            GxWebStd.gx_div_end( context, "Center", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "Center", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -516,7 +579,7 @@ namespace GeneXus.Programs {
                }
                else
                {
-                  AV15GXV1 = nGXsfl_15_idx;
+                  AV17GXV1 = nGXsfl_15_idx;
                   sStyleString = "";
                   context.WriteHtmlText( "<div id=\""+"Freestylegrid1Container"+"Div\" "+sStyleString+">"+"</div>") ;
                   context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Freestylegrid1", Freestylegrid1Container, subFreestylegrid1_Internalname);
@@ -617,10 +680,10 @@ namespace GeneXus.Programs {
                               nGXsfl_15_idx = (int)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
                               sGXsfl_15_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_15_idx), 4, 0), 4, "0");
                               SubsflControlProps_152( ) ;
-                              AV15GXV1 = nGXsfl_15_idx;
-                              if ( ( AV9SDT_ResidentFilledForms.Count >= AV15GXV1 ) && ( AV15GXV1 > 0 ) )
+                              AV17GXV1 = nGXsfl_15_idx;
+                              if ( ( AV9SDT_ResidentFilledForms.Count >= AV17GXV1 ) && ( AV17GXV1 > 0 ) )
                               {
-                                 AV9SDT_ResidentFilledForms.CurrentItem = ((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV15GXV1));
+                                 AV9SDT_ResidentFilledForms.CurrentItem = ((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV17GXV1));
                               }
                               sEvtType = StringUtil.Right( sEvt, 1);
                               if ( StringUtil.StrCmp(sEvtType, ".") == 0 )
@@ -898,10 +961,10 @@ namespace GeneXus.Programs {
                nGXsfl_15_fel_idx = ((subFreestylegrid1_Islastpage==1)&&(nGXsfl_15_fel_idx+1>subFreestylegrid1_fnc_Recordsperpage( )) ? 1 : nGXsfl_15_fel_idx+1);
                sGXsfl_15_fel_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_15_fel_idx), 4, 0), 4, "0");
                SubsflControlProps_fel_152( ) ;
-               AV15GXV1 = nGXsfl_15_fel_idx;
-               if ( ( AV9SDT_ResidentFilledForms.Count >= AV15GXV1 ) && ( AV15GXV1 > 0 ) )
+               AV17GXV1 = nGXsfl_15_fel_idx;
+               if ( ( AV9SDT_ResidentFilledForms.Count >= AV17GXV1 ) && ( AV17GXV1 > 0 ) )
                {
-                  AV9SDT_ResidentFilledForms.CurrentItem = ((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV15GXV1));
+                  AV9SDT_ResidentFilledForms.CurrentItem = ((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV17GXV1));
                }
             }
             if ( nGXsfl_15_fel_idx == 0 )
@@ -933,12 +996,46 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
+         AV16ShowNoRecordFound = false;
+         AssignAttri("", false, "AV16ShowNoRecordFound", AV16ShowNoRecordFound);
          AV14Message = AV13WebSession.Get(context.GetMessage( "FormFilledMessage", ""));
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14Message)) )
          {
             GX_msglist.addItem(AV14Message);
             AV13WebSession.Remove(context.GetMessage( "FormFilledMessage", ""));
          }
+         new prc_getuseridfromaccesstoken(context ).execute(  AV6AccessToken, out  AV8ResidentId, out  AV15isTokenValid) ;
+         AssignAttri("", false, "AV8ResidentId", AV8ResidentId);
+         if ( AV15isTokenValid )
+         {
+            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8ResidentId)) )
+            {
+               AV5isResidentFound = false;
+            }
+            else
+            {
+               /* Execute user subroutine: 'LOADGRIDSDT' */
+               S112 ();
+               if (returnInSub) return;
+               AV5isResidentFound = true;
+            }
+         }
+         else
+         {
+            lblErrormessage_Caption = context.GetMessage( "The user session has expired", "");
+            AssignProp("", false, lblErrormessage_Internalname, "Caption", lblErrormessage_Caption, true);
+            lblErrormessage_Forecolor = GXUtil.RGB(128,0,0);
+            AssignProp("", false, lblErrormessage_Internalname, "Forecolor", StringUtil.LTrimStr( (decimal)(lblErrormessage_Forecolor), 9, 0), true);
+            AV16ShowNoRecordFound = true;
+            AssignAttri("", false, "AV16ShowNoRecordFound", AV16ShowNoRecordFound);
+         }
+         tblSpacetable2_Height = 30;
+         AssignProp("", false, tblSpacetable2_Internalname, "Height", StringUtil.LTrimStr( (decimal)(tblSpacetable2_Height), 9, 0), true);
+         tblSpacetable1_Height = 60;
+         AssignProp("", false, tblSpacetable1_Internalname, "Height", StringUtil.LTrimStr( (decimal)(tblSpacetable1_Height), 9, 0), true);
+         /* Execute user subroutine: 'ATTRIBUTESSECURITYCODE' */
+         S122 ();
+         if (returnInSub) return;
          edtavSdt_residentfilledforms__formid_Visible = 0;
          AssignProp("", false, edtavSdt_residentfilledforms__formid_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavSdt_residentfilledforms__formid_Visible), 5, 0), !bGXsfl_15_Refreshing);
          edtavSdt_residentfilledforms__forminstanceid_Visible = 0;
@@ -947,31 +1044,16 @@ namespace GeneXus.Programs {
          AssignProp("", false, edtavSdt_residentfilledforms__formversionnumber_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavSdt_residentfilledforms__formversionnumber_Visible), 5, 0), !bGXsfl_15_Refreshing);
          edtavSdt_residentfilledforms__formfilledby_Visible = 0;
          AssignProp("", false, edtavSdt_residentfilledforms__formfilledby_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavSdt_residentfilledforms__formfilledby_Visible), 5, 0), !bGXsfl_15_Refreshing);
-         GXt_char1 = AV8ResidentId;
-         new prc_getuseridfromaccesstoken(context ).execute(  AV6AccessToken, out  GXt_char1) ;
-         AV8ResidentId = GXt_char1;
-         AssignAttri("", false, "AV8ResidentId", AV8ResidentId);
-         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV8ResidentId)) )
-         {
-            AV5isResidentFound = false;
-         }
-         else
-         {
-            /* Execute user subroutine: 'LOADGRIDSDT' */
-            S112 ();
-            if (returnInSub) return;
-            AV5isResidentFound = true;
-         }
       }
 
       private void E139P2( )
       {
          /* Freestylegrid1_Load Routine */
          returnInSub = false;
-         AV15GXV1 = 1;
-         while ( AV15GXV1 <= AV9SDT_ResidentFilledForms.Count )
+         AV17GXV1 = 1;
+         while ( AV17GXV1 <= AV9SDT_ResidentFilledForms.Count )
          {
-            AV9SDT_ResidentFilledForms.CurrentItem = ((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV15GXV1));
+            AV9SDT_ResidentFilledForms.CurrentItem = ((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV17GXV1));
             /* Load Method */
             if ( wbStart != -1 )
             {
@@ -982,16 +1064,16 @@ namespace GeneXus.Programs {
             {
                DoAjaxLoad(15, Freestylegrid1Row);
             }
-            AV15GXV1 = (int)(AV15GXV1+1);
+            AV17GXV1 = (int)(AV17GXV1+1);
          }
       }
 
       protected void E149P2( )
       {
-         AV15GXV1 = nGXsfl_15_idx;
-         if ( ( AV15GXV1 > 0 ) && ( AV9SDT_ResidentFilledForms.Count >= AV15GXV1 ) )
+         AV17GXV1 = nGXsfl_15_idx;
+         if ( ( AV17GXV1 > 0 ) && ( AV9SDT_ResidentFilledForms.Count >= AV17GXV1 ) )
          {
-            AV9SDT_ResidentFilledForms.CurrentItem = ((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV15GXV1));
+            AV9SDT_ResidentFilledForms.CurrentItem = ((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV17GXV1));
          }
          /* 'DoViewFormResponse' Routine */
          returnInSub = false;
@@ -999,12 +1081,22 @@ namespace GeneXus.Programs {
          context.wjLocDisableFrm = 1;
       }
 
+      protected void S122( )
+      {
+         /* 'ATTRIBUTESSECURITYCODE' Routine */
+         returnInSub = false;
+         divTablemaincontent_Visible = ((!AV16ShowNoRecordFound) ? 1 : 0);
+         AssignProp("", false, divTablemaincontent_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divTablemaincontent_Visible), 5, 0), true);
+         divNorecordfoundtable_Visible = (((AV16ShowNoRecordFound)) ? 1 : 0);
+         AssignProp("", false, divNorecordfoundtable_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divNorecordfoundtable_Visible), 5, 0), true);
+      }
+
       protected void E119P2( )
       {
-         AV15GXV1 = nGXsfl_15_idx;
-         if ( ( AV15GXV1 > 0 ) && ( AV9SDT_ResidentFilledForms.Count >= AV15GXV1 ) )
+         AV17GXV1 = nGXsfl_15_idx;
+         if ( ( AV17GXV1 > 0 ) && ( AV9SDT_ResidentFilledForms.Count >= AV17GXV1 ) )
          {
-            AV9SDT_ResidentFilledForms.CurrentItem = ((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV15GXV1));
+            AV9SDT_ResidentFilledForms.CurrentItem = ((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV17GXV1));
          }
          /* Gridlayout_Click Routine */
          returnInSub = false;
@@ -1044,6 +1136,54 @@ namespace GeneXus.Programs {
             pr_default.readNext(0);
          }
          pr_default.close(0);
+      }
+
+      protected void wb_table2_70_9P2( bool wbgen )
+      {
+         if ( wbgen )
+         {
+            /* Table start */
+            sStyleString = "";
+            sStyleString += " height: " + StringUtil.LTrimStr( (decimal)(tblSpacetable2_Height), 10, 0) + "px" + ";";
+            GxWebStd.gx_table_start( context, tblSpacetable2_Internalname, tblSpacetable2_Internalname, "", "Table", 0, "", "", 1, 2, sStyleString, "", "", 0);
+            context.WriteHtmlText( "<tr>") ;
+            context.WriteHtmlText( "<td>") ;
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblTextblock2_Internalname, " ", "", "", lblTextblock2_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_ResidentFilledForms.htm");
+            context.WriteHtmlText( "</td>") ;
+            context.WriteHtmlText( "</tr>") ;
+            /* End of table */
+            context.WriteHtmlText( "</table>") ;
+            wb_table2_70_9P2e( true) ;
+         }
+         else
+         {
+            wb_table2_70_9P2e( false) ;
+         }
+      }
+
+      protected void wb_table1_61_9P2( bool wbgen )
+      {
+         if ( wbgen )
+         {
+            /* Table start */
+            sStyleString = "";
+            sStyleString += " height: " + StringUtil.LTrimStr( (decimal)(tblSpacetable1_Height), 10, 0) + "px" + ";";
+            GxWebStd.gx_table_start( context, tblSpacetable1_Internalname, tblSpacetable1_Internalname, "", "Table", 0, "", "", 1, 2, sStyleString, "", "", 0);
+            context.WriteHtmlText( "<tr>") ;
+            context.WriteHtmlText( "<td>") ;
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblTextblock1_Internalname, " ", "", "", lblTextblock1_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_ResidentFilledForms.htm");
+            context.WriteHtmlText( "</td>") ;
+            context.WriteHtmlText( "</tr>") ;
+            /* End of table */
+            context.WriteHtmlText( "</table>") ;
+            wb_table1_61_9P2e( true) ;
+         }
+         else
+         {
+            wb_table1_61_9P2e( false) ;
+         }
       }
 
       public override void setparameters( Object[] obj )
@@ -1089,7 +1229,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251167544878", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512221111459", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1105,7 +1245,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_residentfilledforms.js", "?20251167544879", false, true);
+         context.AddJavascriptSource("wp_residentfilledforms.js", "?202512221111460", false, true);
          /* End function include_jscripts */
       }
 
@@ -1236,7 +1376,7 @@ namespace GeneXus.Programs {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 34,'',false,'" + sGXsfl_15_idx + "',15)\"";
          ROClassString = "SimpleCardAttributeTitle";
-         Freestylegrid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_residentfilledforms__formtitle_Internalname,((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV15GXV1)).gxTpr_Formtitle,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,34);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_residentfilledforms__formtitle_Jsonclick,(short)0,(string)"SimpleCardAttributeTitle",(string)"",(string)ROClassString,(string)"",(string)"",(short)1,(int)edtavSdt_residentfilledforms__formtitle_Enabled,(short)0,(string)"text",(string)"",(short)80,(string)"chr",(short)1,(string)"row",(short)100,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         Freestylegrid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_residentfilledforms__formtitle_Internalname,((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV17GXV1)).gxTpr_Formtitle,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,34);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_residentfilledforms__formtitle_Jsonclick,(short)0,(string)"SimpleCardAttributeTitle",(string)"",(string)ROClassString,(string)"",(string)"",(short)1,(int)edtavSdt_residentfilledforms__formtitle_Enabled,(short)0,(string)"text",(string)"",(short)80,(string)"chr",(short)1,(string)"row",(short)100,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)-1,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          Freestylegrid1Row.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
          Freestylegrid1Row.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
          /* Div Control */
@@ -1248,7 +1388,7 @@ namespace GeneXus.Programs {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 37,'',false,'" + sGXsfl_15_idx + "',15)\"";
          ROClassString = "NotificationItemDatetimeDateTime";
-         Freestylegrid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_residentfilledforms__formfilleddate_Internalname,context.localUtil.TToC( ((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV15GXV1)).gxTpr_Formfilleddate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "),context.localUtil.Format( ((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV15GXV1)).gxTpr_Formfilleddate, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,37);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_residentfilledforms__formfilleddate_Jsonclick,(short)0,(string)"NotificationItemDatetimeDateTime",(string)"",(string)ROClassString,(string)"",(string)"",(short)1,(int)edtavSdt_residentfilledforms__formfilleddate_Enabled,(short)0,(string)"text",(string)"",(short)17,(string)"chr",(short)1,(string)"row",(short)17,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         Freestylegrid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_residentfilledforms__formfilleddate_Internalname,context.localUtil.TToC( ((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV17GXV1)).gxTpr_Formfilleddate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "),context.localUtil.Format( ((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV17GXV1)).gxTpr_Formfilleddate, "99/99/99 99:99"),TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,37);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_residentfilledforms__formfilleddate_Jsonclick,(short)0,(string)"NotificationItemDatetimeDateTime",(string)"",(string)ROClassString,(string)"",(string)"",(short)1,(int)edtavSdt_residentfilledforms__formfilleddate_Enabled,(short)0,(string)"text",(string)"",(short)17,(string)"chr",(short)1,(string)"row",(short)17,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          Freestylegrid1Row.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
          Freestylegrid1Row.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
          Freestylegrid1Row.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
@@ -1284,7 +1424,7 @@ namespace GeneXus.Programs {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 46,'',false,'" + sGXsfl_15_idx + "',15)\"";
          ROClassString = "Attribute";
-         Freestylegrid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_residentfilledforms__formid_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV15GXV1)).gxTpr_Formid), 4, 0, context.GetLanguageProperty( "decimal_point"), "")),StringUtil.LTrim( context.localUtil.Format( (decimal)(((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV15GXV1)).gxTpr_Formid), "ZZZ9"))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,46);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_residentfilledforms__formid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavSdt_residentfilledforms__formid_Visible,(short)1,(short)0,(string)"text",(string)"1",(short)4,(string)"chr",(short)1,(string)"row",(short)4,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         Freestylegrid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_residentfilledforms__formid_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV17GXV1)).gxTpr_Formid), 4, 0, context.GetLanguageProperty( "decimal_point"), "")),StringUtil.LTrim( context.localUtil.Format( (decimal)(((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV17GXV1)).gxTpr_Formid), "ZZZ9"))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,46);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_residentfilledforms__formid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavSdt_residentfilledforms__formid_Visible,(short)1,(short)0,(string)"text",(string)"1",(short)4,(string)"chr",(short)1,(string)"row",(short)4,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          Freestylegrid1Row.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
          if ( Freestylegrid1Container.GetWrapped() == 1 )
          {
@@ -1303,7 +1443,7 @@ namespace GeneXus.Programs {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 49,'',false,'" + sGXsfl_15_idx + "',15)\"";
          ROClassString = "Attribute";
-         Freestylegrid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_residentfilledforms__forminstanceid_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV15GXV1)).gxTpr_Forminstanceid), 4, 0, context.GetLanguageProperty( "decimal_point"), "")),StringUtil.LTrim( context.localUtil.Format( (decimal)(((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV15GXV1)).gxTpr_Forminstanceid), "ZZZ9"))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,49);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_residentfilledforms__forminstanceid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavSdt_residentfilledforms__forminstanceid_Visible,(short)1,(short)0,(string)"text",(string)"1",(short)4,(string)"chr",(short)1,(string)"row",(short)4,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         Freestylegrid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_residentfilledforms__forminstanceid_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV17GXV1)).gxTpr_Forminstanceid), 4, 0, context.GetLanguageProperty( "decimal_point"), "")),StringUtil.LTrim( context.localUtil.Format( (decimal)(((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV17GXV1)).gxTpr_Forminstanceid), "ZZZ9"))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,49);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_residentfilledforms__forminstanceid_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavSdt_residentfilledforms__forminstanceid_Visible,(short)1,(short)0,(string)"text",(string)"1",(short)4,(string)"chr",(short)1,(string)"row",(short)4,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          Freestylegrid1Row.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
          if ( Freestylegrid1Container.GetWrapped() == 1 )
          {
@@ -1317,7 +1457,7 @@ namespace GeneXus.Programs {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 52,'',false,'" + sGXsfl_15_idx + "',15)\"";
          ROClassString = "Attribute";
-         Freestylegrid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_residentfilledforms__formversionnumber_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV15GXV1)).gxTpr_Formversionnumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")),StringUtil.LTrim( context.localUtil.Format( (decimal)(((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV15GXV1)).gxTpr_Formversionnumber), "ZZZ9"))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,52);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_residentfilledforms__formversionnumber_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavSdt_residentfilledforms__formversionnumber_Visible,(short)1,(short)0,(string)"text",(string)"1",(short)4,(string)"chr",(short)1,(string)"row",(short)4,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
+         Freestylegrid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_residentfilledforms__formversionnumber_Internalname,StringUtil.LTrim( StringUtil.NToC( (decimal)(((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV17GXV1)).gxTpr_Formversionnumber), 4, 0, context.GetLanguageProperty( "decimal_point"), "")),StringUtil.LTrim( context.localUtil.Format( (decimal)(((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV17GXV1)).gxTpr_Formversionnumber), "ZZZ9"))," dir=\"ltr\" inputmode=\"numeric\" pattern=\"[0-9]*\""+TempTags+" onchange=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.num.valid_integer( this,gx.thousandSeparator);"+";gx.evt.onblur(this,52);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_residentfilledforms__formversionnumber_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavSdt_residentfilledforms__formversionnumber_Visible,(short)1,(short)0,(string)"text",(string)"1",(short)4,(string)"chr",(short)1,(string)"row",(short)4,(short)0,(short)0,(short)15,(short)0,(short)-1,(short)0,(bool)true,(string)"",(string)"end",(bool)false,(string)""});
          Freestylegrid1Row.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
          if ( Freestylegrid1Container.GetWrapped() == 1 )
          {
@@ -1331,7 +1471,7 @@ namespace GeneXus.Programs {
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 55,'',false,'" + sGXsfl_15_idx + "',15)\"";
          ROClassString = "Attribute";
-         Freestylegrid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_residentfilledforms__formfilledby_Internalname,((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV15GXV1)).gxTpr_Formfilledby,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,55);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_residentfilledforms__formfilledby_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavSdt_residentfilledforms__formfilledby_Visible,(short)1,(short)0,(string)"text",(string)"",(short)80,(string)"chr",(short)1,(string)"row",(short)100,(short)0,(short)0,(short)15,(short)0,(short)0,(short)0,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
+         Freestylegrid1Row.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtavSdt_residentfilledforms__formfilledby_Internalname,((SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem)AV9SDT_ResidentFilledForms.Item(AV17GXV1)).gxTpr_Formfilledby,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,55);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtavSdt_residentfilledforms__formfilledby_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"",(string)"",(int)edtavSdt_residentfilledforms__formfilledby_Visible,(short)1,(short)0,(string)"text",(string)"",(short)80,(string)"chr",(short)1,(string)"row",(short)100,(short)0,(short)0,(short)15,(short)0,(short)0,(short)0,(bool)true,(string)"",(string)"start",(bool)true,(string)""});
          Freestylegrid1Row.AddColumnProperties("div_end", -1, isAjaxCallMode( ), new Object[] {(string)"start",(string)"top",(string)"div"});
          if ( Freestylegrid1Container.GetWrapped() == 1 )
          {
@@ -1563,6 +1703,13 @@ namespace GeneXus.Programs {
          tblUnnamedtablecontentfsfreestylegrid1_Internalname = "UNNAMEDTABLECONTENTFSFREESTYLEGRID1";
          divGridlayout_Internalname = "GRIDLAYOUT";
          divTablemaincontent_Internalname = "TABLEMAINCONTENT";
+         lblTextblock1_Internalname = "TEXTBLOCK1";
+         tblSpacetable1_Internalname = "SPACETABLE1";
+         lblBanicon_Internalname = "BANICON";
+         lblTextblock2_Internalname = "TEXTBLOCK2";
+         tblSpacetable2_Internalname = "SPACETABLE2";
+         lblErrormessage_Internalname = "ERRORMESSAGE";
+         divNorecordfoundtable_Internalname = "NORECORDFOUNDTABLE";
          divTablemain_Internalname = "TABLEMAIN";
          divLayoutmaintable_Internalname = "LAYOUTMAINTABLE";
          Form.Internalname = "FORM";
@@ -1593,9 +1740,15 @@ namespace GeneXus.Programs {
          edtavSdt_residentfilledforms__formtitle_Jsonclick = "";
          edtavSdt_residentfilledforms__formtitle_Enabled = 0;
          subFreestylegrid1_Class = "FreeStyleGrid";
+         tblSpacetable1_Height = 0;
+         tblSpacetable2_Height = 0;
          subFreestylegrid1_Backcolorstyle = 0;
          edtavSdt_residentfilledforms__formfilleddate_Enabled = -1;
          edtavSdt_residentfilledforms__formtitle_Enabled = -1;
+         lblErrormessage_Forecolor = (int)(0x000000);
+         lblErrormessage_Caption = context.GetMessage( "No forms found", "");
+         divNorecordfoundtable_Visible = 1;
+         divTablemaincontent_Visible = 1;
          Form.Headerrawhtml = "";
          Form.Background = "";
          Form.Textcolor = 0;
@@ -1649,6 +1802,8 @@ namespace GeneXus.Programs {
          StyleString = "";
          Freestylegrid1Container = new GXWebGrid( context);
          sStyleString = "";
+         lblBanicon_Jsonclick = "";
+         lblErrormessage_Jsonclick = "";
          sEvt = "";
          EvtGridId = "";
          EvtRowId = "";
@@ -1656,7 +1811,6 @@ namespace GeneXus.Programs {
          AV14Message = "";
          AV13WebSession = context.GetSession();
          AV8ResidentId = "";
-         GXt_char1 = "";
          Freestylegrid1Row = new GXWebRow();
          H009P2_A112WWPUserExtendedId = new string[] {""} ;
          H009P2_A239WWPFormInstanceDate = new DateTime[] {DateTime.MinValue} ;
@@ -1670,6 +1824,8 @@ namespace GeneXus.Programs {
          A208WWPFormReferenceName = "";
          A209WWPFormTitle = "";
          AV10SDT_ResidentFilledFormsItem = new SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem(context);
+         lblTextblock2_Jsonclick = "";
+         lblTextblock1_Jsonclick = "";
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          subFreestylegrid1_Linesclass = "";
@@ -1712,11 +1868,16 @@ namespace GeneXus.Programs {
       private short FREESTYLEGRID1_nEOF ;
       private int nRC_GXsfl_15 ;
       private int nGXsfl_15_idx=1 ;
-      private int AV15GXV1 ;
+      private int divTablemaincontent_Visible ;
+      private int AV17GXV1 ;
+      private int divNorecordfoundtable_Visible ;
+      private int lblErrormessage_Forecolor ;
       private int subFreestylegrid1_Islastpage ;
       private int edtavSdt_residentfilledforms__formtitle_Enabled ;
       private int edtavSdt_residentfilledforms__formfilleddate_Enabled ;
       private int nGXsfl_15_fel_idx=1 ;
+      private int tblSpacetable2_Height ;
+      private int tblSpacetable1_Height ;
       private int edtavSdt_residentfilledforms__formid_Visible ;
       private int edtavSdt_residentfilledforms__forminstanceid_Visible ;
       private int edtavSdt_residentfilledforms__formversionnumber_Visible ;
@@ -1746,17 +1907,28 @@ namespace GeneXus.Programs {
       private string divTablemaincontent_Internalname ;
       private string sStyleString ;
       private string subFreestylegrid1_Internalname ;
+      private string divNorecordfoundtable_Internalname ;
+      private string lblBanicon_Internalname ;
+      private string lblBanicon_Jsonclick ;
+      private string lblErrormessage_Internalname ;
+      private string lblErrormessage_Caption ;
+      private string lblErrormessage_Jsonclick ;
       private string sEvt ;
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
       private string sGXsfl_15_fel_idx="0001" ;
+      private string tblSpacetable2_Internalname ;
+      private string tblSpacetable1_Internalname ;
       private string edtavSdt_residentfilledforms__formid_Internalname ;
       private string edtavSdt_residentfilledforms__forminstanceid_Internalname ;
       private string edtavSdt_residentfilledforms__formversionnumber_Internalname ;
       private string edtavSdt_residentfilledforms__formfilledby_Internalname ;
-      private string GXt_char1 ;
       private string A112WWPUserExtendedId ;
+      private string lblTextblock2_Internalname ;
+      private string lblTextblock2_Jsonclick ;
+      private string lblTextblock1_Internalname ;
+      private string lblTextblock1_Jsonclick ;
       private string lblNotificationitemicon_Internalname ;
       private string edtavSdt_residentfilledforms__formtitle_Internalname ;
       private string edtavSdt_residentfilledforms__formfilleddate_Internalname ;
@@ -1792,6 +1964,8 @@ namespace GeneXus.Programs {
       private bool bGXsfl_15_Refreshing=false ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
+      private bool AV16ShowNoRecordFound ;
+      private bool AV15isTokenValid ;
       private bool AV5isResidentFound ;
       private bool gx_BV15 ;
       private string AV6AccessToken ;

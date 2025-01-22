@@ -5,8 +5,6 @@ using GeneXus.Resources;
 using GeneXus.Application;
 using GeneXus.Metadata;
 using GeneXus.Cryptography;
-using System.Data;
-using GeneXus.Data;
 using com.genexus;
 using GeneXus.Data.ADO;
 using GeneXus.Data.NTier;
@@ -28,9 +26,6 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
-         dsDataStore1 = context.GetDataStore("DataStore1");
-         dsGAM = context.GetDataStore("GAM");
-         dsDefault = context.GetDataStore("Default");
          IsMain = true;
          context.SetDefaultTheme("WorkWithPlusDS", true);
       }
@@ -39,9 +34,6 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
-         dsDataStore1 = context.GetDataStore("DataStore1");
-         dsGAM = context.GetDataStore("GAM");
-         dsDefault = context.GetDataStore("Default");
       }
 
       public void execute( string aP0_ResidentGUID ,
@@ -78,23 +70,11 @@ namespace GeneXus.Programs {
          AV19pwd = Guid.NewGuid( ).ToString();
          AV8Email = "";
          AV14GAMUser.load( AV21ResidentGUID);
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14GAMUser.gxTpr_Email)) )
-         {
-            AV8Email = AV14GAMUser.gxTpr_Email;
-            if ( AV14GAMUser.setpassword(AV19pwd, out  AV13GAMErrors) )
-            {
-               AV11EncryptedPassword = Encrypt64( AV19pwd, AV16Key);
-               AV14GAMUser.save();
-               if ( AV14GAMUser.success() )
-               {
-                  context.CommitDataStores("prc_generateqrcodeimage",pr_default);
-               }
-            }
-         }
+         AV19pwd = AV14GAMUser.gxTpr_Postcode;
+         AV8Email = AV14GAMUser.gxTpr_Email;
          AV10EncryptedEmail = Encrypt64( AV8Email, AV16Key);
+         AV11EncryptedPassword = Encrypt64( AV19pwd, AV16Key);
          AV9EncryptedContent = "{\"user\": \"" + AV10EncryptedEmail + context.GetMessage( "\", \"code\": \"", "") + AV11EncryptedPassword + "\"}";
-         new prc_logtofile(context ).execute(  context.GetMessage( "Encrypted pwd::", "")+AV19pwd) ;
-         new prc_logtofile(context ).execute(  context.GetMessage( "Encrypted email::", "")+AV8Email) ;
          AV12FinalEncryption = AV22SymmetricBlockCipher.doaeadencrypt("AES", "AEAD_EAX", AV16Key, 128, AV18Nonce, AV9EncryptedContent);
          AV20QRCodeImage = AV15GenerateQRCode.generateqrcode(AV12FinalEncryption);
          cleanup();
@@ -118,25 +98,12 @@ namespace GeneXus.Programs {
          AV19pwd = "";
          AV8Email = "";
          AV14GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
-         AV13GAMErrors = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
-         AV11EncryptedPassword = "";
          AV10EncryptedEmail = "";
+         AV11EncryptedPassword = "";
          AV9EncryptedContent = "";
          AV12FinalEncryption = "";
          AV22SymmetricBlockCipher = new GeneXus.Programs.genexuscryptography.SdtSymmetricBlockCipher(context);
          AV15GenerateQRCode = new SdtQRCodeLibrary(context);
-         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_generateqrcodeimage__datastore1(),
-            new Object[][] {
-            }
-         );
-         pr_gam = new DataStoreProvider(context, new GeneXus.Programs.prc_generateqrcodeimage__gam(),
-            new Object[][] {
-            }
-         );
-         pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_generateqrcodeimage__default(),
-            new Object[][] {
-            }
-         );
          /* GeneXus formulas. */
       }
 
@@ -147,111 +114,13 @@ namespace GeneXus.Programs {
       private string AV18Nonce ;
       private string AV19pwd ;
       private string AV8Email ;
-      private string AV11EncryptedPassword ;
       private string AV10EncryptedEmail ;
+      private string AV11EncryptedPassword ;
       private string AV20QRCodeImage ;
-      private IGxDataStore dsDataStore1 ;
-      private IGxDataStore dsGAM ;
-      private IGxDataStore dsDefault ;
       private GeneXus.Programs.genexussecurity.SdtGAMUser AV14GAMUser ;
-      private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV13GAMErrors ;
-      private IDataStoreProvider pr_default ;
       private GeneXus.Programs.genexuscryptography.SdtSymmetricBlockCipher AV22SymmetricBlockCipher ;
       private SdtQRCodeLibrary AV15GenerateQRCode ;
       private string aP1_QRCodeImage ;
-      private IDataStoreProvider pr_datastore1 ;
-      private IDataStoreProvider pr_gam ;
    }
-
-   public class prc_generateqrcodeimage__datastore1 : DataStoreHelperBase, IDataStoreHelper
-   {
-      public ICursor[] getCursors( )
-      {
-         cursorDefinitions();
-         return new Cursor[] {
-       };
-    }
-
-    private static CursorDef[] def;
-    private void cursorDefinitions( )
-    {
-       if ( def == null )
-       {
-          def= new CursorDef[] {
-          };
-       }
-    }
-
-    public void getResults( int cursor ,
-                            IFieldGetter rslt ,
-                            Object[] buf )
-    {
-    }
-
-    public override string getDataStoreName( )
-    {
-       return "DATASTORE1";
-    }
-
- }
-
- public class prc_generateqrcodeimage__gam : DataStoreHelperBase, IDataStoreHelper
- {
-    public ICursor[] getCursors( )
-    {
-       cursorDefinitions();
-       return new Cursor[] {
-     };
-  }
-
-  private static CursorDef[] def;
-  private void cursorDefinitions( )
-  {
-     if ( def == null )
-     {
-        def= new CursorDef[] {
-        };
-     }
-  }
-
-  public void getResults( int cursor ,
-                          IFieldGetter rslt ,
-                          Object[] buf )
-  {
-  }
-
-  public override string getDataStoreName( )
-  {
-     return "GAM";
-  }
-
-}
-
-public class prc_generateqrcodeimage__default : DataStoreHelperBase, IDataStoreHelper
-{
-   public ICursor[] getCursors( )
-   {
-      cursorDefinitions();
-      return new Cursor[] {
-    };
- }
-
- private static CursorDef[] def;
- private void cursorDefinitions( )
- {
-    if ( def == null )
-    {
-       def= new CursorDef[] {
-       };
-    }
- }
-
- public void getResults( int cursor ,
-                         IFieldGetter rslt ,
-                         Object[] buf )
- {
- }
-
-}
 
 }

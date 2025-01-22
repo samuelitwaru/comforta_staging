@@ -27,6 +27,3 @@ tile.text = 'Tile 1'
 
 var tile2 = new Tile()
 tile2.text = 'Tile 2'
-
-console.log(tile)
-console.log(tile2)

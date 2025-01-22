@@ -453,6 +453,7 @@ namespace GeneXus.Programs {
                if ( StringUtil.StrCmp(cgiGet( edtResidentTypeId_Internalname), "") == 0 )
                {
                   A96ResidentTypeId = Guid.Empty;
+                  n96ResidentTypeId = false;
                   AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
                }
                else
@@ -460,6 +461,7 @@ namespace GeneXus.Programs {
                   try
                   {
                      A96ResidentTypeId = StringUtil.StrToGuid( cgiGet( edtResidentTypeId_Internalname));
+                     n96ResidentTypeId = false;
                      AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
                   }
                   catch ( Exception  )
@@ -500,11 +502,13 @@ namespace GeneXus.Programs {
                   Gx_mode = "DSP";
                   AssignAttri("", false, "Gx_mode", Gx_mode);
                   A96ResidentTypeId = StringUtil.StrToGuid( GetPar( "ResidentTypeId"));
+                  n96ResidentTypeId = false;
                   AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
                   getEqualNoModal( ) ;
                   if ( ! (Guid.Empty==AV7ResidentTypeId) )
                   {
                      A96ResidentTypeId = AV7ResidentTypeId;
+                     n96ResidentTypeId = false;
                      AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
                   }
                   else
@@ -512,6 +516,7 @@ namespace GeneXus.Programs {
                      if ( IsIns( )  && (Guid.Empty==A96ResidentTypeId) && ( Gx_BScreen == 0 ) )
                      {
                         A96ResidentTypeId = Guid.NewGuid( );
+                        n96ResidentTypeId = false;
                         AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
                      }
                   }
@@ -530,6 +535,7 @@ namespace GeneXus.Programs {
                      if ( ! (Guid.Empty==AV7ResidentTypeId) )
                      {
                         A96ResidentTypeId = AV7ResidentTypeId;
+                        n96ResidentTypeId = false;
                         AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
                      }
                      else
@@ -537,6 +543,7 @@ namespace GeneXus.Programs {
                         if ( IsIns( )  && (Guid.Empty==A96ResidentTypeId) && ( Gx_BScreen == 0 ) )
                         {
                            A96ResidentTypeId = Guid.NewGuid( );
+                           n96ResidentTypeId = false;
                            AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
                         }
                      }
@@ -806,6 +813,7 @@ namespace GeneXus.Programs {
          if ( ! (Guid.Empty==AV7ResidentTypeId) )
          {
             A96ResidentTypeId = AV7ResidentTypeId;
+            n96ResidentTypeId = false;
             AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
          }
          else
@@ -813,6 +821,7 @@ namespace GeneXus.Programs {
             if ( IsIns( )  && (Guid.Empty==A96ResidentTypeId) && ( Gx_BScreen == 0 ) )
             {
                A96ResidentTypeId = Guid.NewGuid( );
+               n96ResidentTypeId = false;
                AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
             }
          }
@@ -824,7 +833,7 @@ namespace GeneXus.Programs {
       protected void Load0D22( )
       {
          /* Using cursor T000D4 */
-         pr_default.execute(2, new Object[] {A96ResidentTypeId});
+         pr_default.execute(2, new Object[] {n96ResidentTypeId, A96ResidentTypeId});
          if ( (pr_default.getStatus(2) != 101) )
          {
             RcdFound22 = 1;
@@ -865,7 +874,7 @@ namespace GeneXus.Programs {
       protected void GetKey0D22( )
       {
          /* Using cursor T000D5 */
-         pr_default.execute(3, new Object[] {A96ResidentTypeId});
+         pr_default.execute(3, new Object[] {n96ResidentTypeId, A96ResidentTypeId});
          if ( (pr_default.getStatus(3) != 101) )
          {
             RcdFound22 = 1;
@@ -880,12 +889,13 @@ namespace GeneXus.Programs {
       protected void getByPrimaryKey( )
       {
          /* Using cursor T000D3 */
-         pr_default.execute(1, new Object[] {A96ResidentTypeId});
+         pr_default.execute(1, new Object[] {n96ResidentTypeId, A96ResidentTypeId});
          if ( (pr_default.getStatus(1) != 101) )
          {
             ZM0D22( 6) ;
             RcdFound22 = 1;
             A96ResidentTypeId = T000D3_A96ResidentTypeId[0];
+            n96ResidentTypeId = T000D3_n96ResidentTypeId[0];
             AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
             A97ResidentTypeName = T000D3_A97ResidentTypeName[0];
             AssignAttri("", false, "A97ResidentTypeName", A97ResidentTypeName);
@@ -932,7 +942,7 @@ namespace GeneXus.Programs {
       {
          RcdFound22 = 0;
          /* Using cursor T000D6 */
-         pr_default.execute(4, new Object[] {A96ResidentTypeId});
+         pr_default.execute(4, new Object[] {n96ResidentTypeId, A96ResidentTypeId});
          if ( (pr_default.getStatus(4) != 101) )
          {
             while ( (pr_default.getStatus(4) != 101) && ( ( GuidUtil.Compare(T000D6_A96ResidentTypeId[0], A96ResidentTypeId, 0) < 0 ) ) )
@@ -942,6 +952,7 @@ namespace GeneXus.Programs {
             if ( (pr_default.getStatus(4) != 101) && ( ( GuidUtil.Compare(T000D6_A96ResidentTypeId[0], A96ResidentTypeId, 0) > 0 ) ) )
             {
                A96ResidentTypeId = T000D6_A96ResidentTypeId[0];
+               n96ResidentTypeId = T000D6_n96ResidentTypeId[0];
                AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
                RcdFound22 = 1;
             }
@@ -953,7 +964,7 @@ namespace GeneXus.Programs {
       {
          RcdFound22 = 0;
          /* Using cursor T000D7 */
-         pr_default.execute(5, new Object[] {A96ResidentTypeId});
+         pr_default.execute(5, new Object[] {n96ResidentTypeId, A96ResidentTypeId});
          if ( (pr_default.getStatus(5) != 101) )
          {
             while ( (pr_default.getStatus(5) != 101) && ( ( GuidUtil.Compare(T000D7_A96ResidentTypeId[0], A96ResidentTypeId, 0) > 0 ) ) )
@@ -963,6 +974,7 @@ namespace GeneXus.Programs {
             if ( (pr_default.getStatus(5) != 101) && ( ( GuidUtil.Compare(T000D7_A96ResidentTypeId[0], A96ResidentTypeId, 0) < 0 ) ) )
             {
                A96ResidentTypeId = T000D7_A96ResidentTypeId[0];
+               n96ResidentTypeId = T000D7_n96ResidentTypeId[0];
                AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
                RcdFound22 = 1;
             }
@@ -993,6 +1005,7 @@ namespace GeneXus.Programs {
                if ( A96ResidentTypeId != Z96ResidentTypeId )
                {
                   A96ResidentTypeId = Z96ResidentTypeId;
+                  n96ResidentTypeId = false;
                   AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
                   GX_msglist.addItem(context.GetMessage( "GXM_getbeforeupd", ""), "CandidateKeyNotFound", 1, "RESIDENTTYPEID");
                   AnyError = 1;
@@ -1067,6 +1080,7 @@ namespace GeneXus.Programs {
          if ( A96ResidentTypeId != Z96ResidentTypeId )
          {
             A96ResidentTypeId = Z96ResidentTypeId;
+            n96ResidentTypeId = false;
             AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
             GX_msglist.addItem(context.GetMessage( "GXM_getbeforedlt", ""), 1, "RESIDENTTYPEID");
             AnyError = 1;
@@ -1090,7 +1104,7 @@ namespace GeneXus.Programs {
          if ( ! IsIns( ) )
          {
             /* Using cursor T000D2 */
-            pr_default.execute(0, new Object[] {A96ResidentTypeId});
+            pr_default.execute(0, new Object[] {n96ResidentTypeId, A96ResidentTypeId});
             if ( (pr_default.getStatus(0) == 103) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_ResidentType"}), "RecordIsLocked", 1, "");
@@ -1138,7 +1152,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor T000D8 */
-                     pr_default.execute(6, new Object[] {A96ResidentTypeId, A97ResidentTypeName});
+                     pr_default.execute(6, new Object[] {n96ResidentTypeId, A96ResidentTypeId, A97ResidentTypeName});
                      pr_default.close(6);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_ResidentType");
                      if ( (pr_default.getStatus(6) == 1) )
@@ -1203,7 +1217,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor T000D9 */
-                     pr_default.execute(7, new Object[] {A97ResidentTypeName, A96ResidentTypeId});
+                     pr_default.execute(7, new Object[] {A97ResidentTypeName, n96ResidentTypeId, A96ResidentTypeId});
                      pr_default.close(7);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_ResidentType");
                      if ( (pr_default.getStatus(7) == 103) )
@@ -1268,7 +1282,7 @@ namespace GeneXus.Programs {
                {
                   /* No cascading delete specified. */
                   /* Using cursor T000D10 */
-                  pr_default.execute(8, new Object[] {A96ResidentTypeId});
+                  pr_default.execute(8, new Object[] {n96ResidentTypeId, A96ResidentTypeId});
                   pr_default.close(8);
                   pr_default.SmartCacheProvider.SetUpdated("Trn_ResidentType");
                   if ( AnyError == 0 )
@@ -1309,7 +1323,7 @@ namespace GeneXus.Programs {
          if ( AnyError == 0 )
          {
             /* Using cursor T000D11 */
-            pr_default.execute(9, new Object[] {A96ResidentTypeId});
+            pr_default.execute(9, new Object[] {n96ResidentTypeId, A96ResidentTypeId});
             if ( (pr_default.getStatus(9) != 101) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Residents", "")}), "CannotDeleteReferencedRecord", 1, "");
@@ -1362,6 +1376,7 @@ namespace GeneXus.Programs {
          {
             RcdFound22 = 1;
             A96ResidentTypeId = T000D12_A96ResidentTypeId[0];
+            n96ResidentTypeId = T000D12_n96ResidentTypeId[0];
             AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
          }
          /* Load Subordinate Levels */
@@ -1376,6 +1391,7 @@ namespace GeneXus.Programs {
          {
             RcdFound22 = 1;
             A96ResidentTypeId = T000D12_A96ResidentTypeId[0];
+            n96ResidentTypeId = T000D12_n96ResidentTypeId[0];
             AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
          }
       }
@@ -1635,6 +1651,7 @@ namespace GeneXus.Programs {
       protected void InitAll0D22( )
       {
          A96ResidentTypeId = Guid.NewGuid( );
+         n96ResidentTypeId = false;
          AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
          InitializeNonKey0D22( ) ;
       }
@@ -1654,7 +1671,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202511410252341", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512220591640", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1670,7 +1687,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_residenttype.js", "?202511410252342", false, true);
+         context.AddJavascriptSource("trn_residenttype.js", "?202512220591640", false, true);
          /* End function include_jscripts */
       }
 
@@ -1816,18 +1833,25 @@ namespace GeneXus.Programs {
          AV11TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV12WebSession = context.GetSession();
          T000D4_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
+         T000D4_n96ResidentTypeId = new bool[] {false} ;
          T000D4_A97ResidentTypeName = new string[] {""} ;
          T000D5_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
+         T000D5_n96ResidentTypeId = new bool[] {false} ;
          T000D3_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
+         T000D3_n96ResidentTypeId = new bool[] {false} ;
          T000D3_A97ResidentTypeName = new string[] {""} ;
          T000D6_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
+         T000D6_n96ResidentTypeId = new bool[] {false} ;
          T000D7_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
+         T000D7_n96ResidentTypeId = new bool[] {false} ;
          T000D2_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
+         T000D2_n96ResidentTypeId = new bool[] {false} ;
          T000D2_A97ResidentTypeName = new string[] {""} ;
          T000D11_A62ResidentId = new Guid[] {Guid.Empty} ;
          T000D11_A29LocationId = new Guid[] {Guid.Empty} ;
          T000D11_A11OrganisationId = new Guid[] {Guid.Empty} ;
          T000D12_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
+         T000D12_n96ResidentTypeId = new bool[] {false} ;
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
@@ -1875,7 +1899,9 @@ namespace GeneXus.Programs {
             }
          );
          Z96ResidentTypeId = Guid.NewGuid( );
+         n96ResidentTypeId = false;
          A96ResidentTypeId = Guid.NewGuid( );
+         n96ResidentTypeId = false;
       }
 
       private short GxWebError ;
@@ -1941,6 +1967,7 @@ namespace GeneXus.Programs {
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool wbErr ;
+      private bool n96ResidentTypeId ;
       private bool returnInSub ;
       private string Z97ResidentTypeName ;
       private string A97ResidentTypeName ;
@@ -1958,18 +1985,25 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV11TrnContext ;
       private IDataStoreProvider pr_default ;
       private Guid[] T000D4_A96ResidentTypeId ;
+      private bool[] T000D4_n96ResidentTypeId ;
       private string[] T000D4_A97ResidentTypeName ;
       private Guid[] T000D5_A96ResidentTypeId ;
+      private bool[] T000D5_n96ResidentTypeId ;
       private Guid[] T000D3_A96ResidentTypeId ;
+      private bool[] T000D3_n96ResidentTypeId ;
       private string[] T000D3_A97ResidentTypeName ;
       private Guid[] T000D6_A96ResidentTypeId ;
+      private bool[] T000D6_n96ResidentTypeId ;
       private Guid[] T000D7_A96ResidentTypeId ;
+      private bool[] T000D7_n96ResidentTypeId ;
       private Guid[] T000D2_A96ResidentTypeId ;
+      private bool[] T000D2_n96ResidentTypeId ;
       private string[] T000D2_A97ResidentTypeName ;
       private Guid[] T000D11_A62ResidentId ;
       private Guid[] T000D11_A29LocationId ;
       private Guid[] T000D11_A11OrganisationId ;
       private Guid[] T000D12_A96ResidentTypeId ;
+      private bool[] T000D12_n96ResidentTypeId ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
@@ -2065,45 +2099,45 @@ public class trn_residenttype__default : DataStoreHelperBase, IDataStoreHelper
     {
        Object[] prmT000D2;
        prmT000D2 = new Object[] {
-       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmT000D3;
        prmT000D3 = new Object[] {
-       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmT000D4;
        prmT000D4 = new Object[] {
-       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmT000D5;
        prmT000D5 = new Object[] {
-       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmT000D6;
        prmT000D6 = new Object[] {
-       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmT000D7;
        prmT000D7 = new Object[] {
-       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmT000D8;
        prmT000D8 = new Object[] {
-       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("ResidentTypeName",GXType.VarChar,100,0)
        };
        Object[] prmT000D9;
        prmT000D9 = new Object[] {
        new ParDef("ResidentTypeName",GXType.VarChar,100,0) ,
-       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmT000D10;
        prmT000D10 = new Object[] {
-       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmT000D11;
        prmT000D11 = new Object[] {
-       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmT000D12;
        prmT000D12 = new Object[] {

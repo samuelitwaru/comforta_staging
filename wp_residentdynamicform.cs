@@ -504,7 +504,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "Center", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblErrormessage_Internalname, context.GetMessage( "The record could not be found", ""), "", "", lblErrormessage_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_ResidentDynamicForm.htm");
+            GxWebStd.gx_label_ctrl( context, lblErrormessage_Internalname, lblErrormessage_Caption, "", "", lblErrormessage_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_ResidentDynamicForm.htm");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -797,48 +797,56 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
-         GXt_char1 = AV11ResidentId;
-         new prc_getuseridfromaccesstoken(context ).execute(  AV15AccessToken, out  GXt_char1) ;
-         AV11ResidentId = GXt_char1;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV11ResidentId)) )
+         new prc_getuseridfromaccesstoken(context ).execute(  AV15AccessToken, out  AV11ResidentId, out  AV16isTokenValid) ;
+         if ( AV16isTokenValid )
          {
-            AV12WebSession.Set(context.GetMessage( "WebViewResidentId", ""), AV11ResidentId);
-         }
-         AV14ShowNoRecordFound = false;
-         AssignAttri("", false, "AV14ShowNoRecordFound", AV14ShowNoRecordFound);
-         AV13WWP_UserExtended.Load(AV11ResidentId);
-         if ( AV13WWP_UserExtended.Success() )
-         {
-            tblSpacetable2_Height = 30;
-            AssignProp("", false, tblSpacetable2_Internalname, "Height", StringUtil.LTrimStr( (decimal)(tblSpacetable2_Height), 9, 0), true);
-            tblSpacetable1_Height = 60;
-            AssignProp("", false, tblSpacetable1_Internalname, "Height", StringUtil.LTrimStr( (decimal)(tblSpacetable1_Height), 9, 0), true);
-            /* Execute user subroutine: 'ATTRIBUTESSECURITYCODE' */
-            S112 ();
-            if (returnInSub) return;
-            /* Object Property */
-            if ( true )
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV11ResidentId)) )
             {
-               bDynCreated_Wcwc_residentdynamicform = true;
+               AV12WebSession.Set(context.GetMessage( "WebViewResidentId", ""), AV11ResidentId);
             }
-            if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Wcwc_residentdynamicform_Component), StringUtil.Lower( "WC_ResidentDynamicForm")) != 0 )
+            AV14ShowNoRecordFound = false;
+            AssignAttri("", false, "AV14ShowNoRecordFound", AV14ShowNoRecordFound);
+            AV13WWP_UserExtended.Load(AV11ResidentId);
+            if ( AV13WWP_UserExtended.Success() )
             {
-               WebComp_Wcwc_residentdynamicform = getWebComponent(GetType(), "GeneXus.Programs", "wc_residentdynamicform", new Object[] {context} );
-               WebComp_Wcwc_residentdynamicform.ComponentInit();
-               WebComp_Wcwc_residentdynamicform.Name = "WC_ResidentDynamicForm";
-               WebComp_Wcwc_residentdynamicform_Component = "WC_ResidentDynamicForm";
+               tblSpacetable2_Height = 30;
+               AssignProp("", false, tblSpacetable2_Internalname, "Height", StringUtil.LTrimStr( (decimal)(tblSpacetable2_Height), 9, 0), true);
+               tblSpacetable1_Height = 60;
+               AssignProp("", false, tblSpacetable1_Internalname, "Height", StringUtil.LTrimStr( (decimal)(tblSpacetable1_Height), 9, 0), true);
+               /* Execute user subroutine: 'ATTRIBUTESSECURITYCODE' */
+               S112 ();
+               if (returnInSub) return;
+               /* Object Property */
+               if ( true )
+               {
+                  bDynCreated_Wcwc_residentdynamicform = true;
+               }
+               if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Wcwc_residentdynamicform_Component), StringUtil.Lower( "WC_ResidentDynamicForm")) != 0 )
+               {
+                  WebComp_Wcwc_residentdynamicform = getWebComponent(GetType(), "GeneXus.Programs", "wc_residentdynamicform", new Object[] {context} );
+                  WebComp_Wcwc_residentdynamicform.ComponentInit();
+                  WebComp_Wcwc_residentdynamicform.Name = "WC_ResidentDynamicForm";
+                  WebComp_Wcwc_residentdynamicform_Component = "WC_ResidentDynamicForm";
+               }
+               if ( StringUtil.Len( WebComp_Wcwc_residentdynamicform_Component) != 0 )
+               {
+                  WebComp_Wcwc_residentdynamicform.setjustcreated();
+                  WebComp_Wcwc_residentdynamicform.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV7WWPFormReferenceName,(int)AV8WWPFormInstanceId,(string)AV9WWPDynamicFormMode,(string)AV15AccessToken});
+                  WebComp_Wcwc_residentdynamicform.componentbind(new Object[] {(string)"",(string)"",(string)"",(string)""});
+               }
             }
-            if ( StringUtil.Len( WebComp_Wcwc_residentdynamicform_Component) != 0 )
+            else
             {
-               WebComp_Wcwc_residentdynamicform.setjustcreated();
-               WebComp_Wcwc_residentdynamicform.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV7WWPFormReferenceName,(int)AV8WWPFormInstanceId,(string)AV9WWPDynamicFormMode,(string)AV15AccessToken});
-               WebComp_Wcwc_residentdynamicform.componentbind(new Object[] {(string)"",(string)"",(string)"",(string)""});
+               AV14ShowNoRecordFound = true;
+               AssignAttri("", false, "AV14ShowNoRecordFound", AV14ShowNoRecordFound);
             }
          }
          else
          {
             AV14ShowNoRecordFound = true;
             AssignAttri("", false, "AV14ShowNoRecordFound", AV14ShowNoRecordFound);
+            lblErrormessage_Caption = context.GetMessage( "The user session has expired", "");
+            AssignProp("", false, lblErrormessage_Internalname, "Caption", lblErrormessage_Caption, true);
          }
       }
 
@@ -966,7 +974,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025116749453", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251222153397", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -982,7 +990,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_residentdynamicform.js", "?2025116749453", false, true);
+         context.AddJavascriptSource("wp_residentdynamicform.js", "?20251222153397", false, true);
          /* End function include_jscripts */
       }
 
@@ -1016,6 +1024,7 @@ namespace GeneXus.Programs {
          init_default_properties( ) ;
          tblSpacetable1_Height = 0;
          tblSpacetable2_Height = 0;
+         lblErrormessage_Caption = context.GetMessage( "The record could not be found", "");
          divNorecordfoundtable_Visible = 1;
          Form.Headerrawhtml = "";
          Form.Background = "";
@@ -1074,7 +1083,6 @@ namespace GeneXus.Programs {
          EvtRowId = "";
          sEvtType = "";
          AV11ResidentId = "";
-         GXt_char1 = "";
          AV12WebSession = context.GetSession();
          AV13WWP_UserExtended = new GeneXus.Programs.wwpbaseobjects.SdtWWP_UserExtended(context);
          sStyleString = "";
@@ -1122,12 +1130,12 @@ namespace GeneXus.Programs {
       private string lblBanicon_Internalname ;
       private string lblBanicon_Jsonclick ;
       private string lblErrormessage_Internalname ;
+      private string lblErrormessage_Caption ;
       private string lblErrormessage_Jsonclick ;
       private string sEvt ;
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string GXt_char1 ;
       private string tblSpacetable2_Internalname ;
       private string tblSpacetable1_Internalname ;
       private string sStyleString ;
@@ -1142,6 +1150,7 @@ namespace GeneXus.Programs {
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
+      private bool AV16isTokenValid ;
       private bool AV14ShowNoRecordFound ;
       private bool bDynCreated_Wcwc_residentdynamicform ;
       private string AV15AccessToken ;

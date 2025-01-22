@@ -2636,7 +2636,7 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV36TFSupplierAgbPhone_Sel)),  AV36TFSupplierAgbPhone_Sel, out  GXt_char8) ;
          GXt_char9 = "";
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV38TFSupplierAgbEmail_Sel)),  AV38TFSupplierAgbEmail_Sel, out  GXt_char9) ;
-         Ddo_grid_Selectedvalue_set = "|"+GXt_char4+"|"+GXt_char6+"|"+GXt_char7+"|"+GXt_char8+"|"+GXt_char9+"|";
+         Ddo_grid_Selectedvalue_set = GXt_char4+"|"+GXt_char6+"|"+GXt_char7+"|"+GXt_char8+"|"+GXt_char9+"|";
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "SelectedValue_set", Ddo_grid_Selectedvalue_set);
          GXt_char9 = "";
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  !(0==AV62TFSupplierAgbNameOperator)||String.IsNullOrEmpty(StringUtil.RTrim( AV29TFSupplierAgbName)),  AV29TFSupplierAgbName, out  GXt_char9) ;
@@ -2648,9 +2648,9 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV35TFSupplierAgbPhone)),  AV35TFSupplierAgbPhone, out  GXt_char6) ;
          GXt_char4 = "";
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV37TFSupplierAgbEmail)),  AV37TFSupplierAgbEmail, out  GXt_char4) ;
-         Ddo_grid_Filteredtext_set = "|"+GXt_char9+"|"+GXt_char8+"|"+GXt_char7+"|"+GXt_char6+"|"+GXt_char4+"|";
+         Ddo_grid_Filteredtext_set = GXt_char9+"|"+GXt_char8+"|"+GXt_char7+"|"+GXt_char6+"|"+GXt_char4+"|";
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "FilteredText_set", Ddo_grid_Filteredtext_set);
-         Ddo_grid_Selectedfixedfilter = "|"+((AV62TFSupplierAgbNameOperator!=1) ? "" : "1")+"|||||";
+         Ddo_grid_Selectedfixedfilter = ((AV62TFSupplierAgbNameOperator!=1) ? "" : "1")+"|||||";
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "SelectedFixedFilter", Ddo_grid_Selectedfixedfilter);
       }
 
@@ -2767,7 +2767,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251170171981", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251222154525", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2783,7 +2783,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_organisationagbsuppliers.js", "?20251170171984", false, true);
+         context.AddJavascriptSource("wp_organisationagbsuppliers.js", "?20251222154527", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3183,7 +3183,7 @@ namespace GeneXus.Programs {
                }
             }
             context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"AttributeCheckBox"+"\" "+" style=\""+((chkavIsselected.Visible==0) ? "display:none;" : "")+""+"\" "+">") ;
-            context.SendWebValue( "") ;
+            context.SendWebValue( context.GetMessage( "&nbsp;", "")) ;
             context.WriteHtmlTextNl( "</th>") ;
             context.WriteHtmlText( "<th align=\""+""+"\" "+" nowrap=\"nowrap\" "+" class=\""+"Attribute"+"\" "+" style=\""+"display:none;"+""+"\" "+">") ;
             context.SendWebValue( "") ;
@@ -3475,16 +3475,16 @@ namespace GeneXus.Programs {
          Ddo_gridcolumnsselector_Caption = context.GetMessage( "WWP_EditColumnsCaption", "");
          Ddo_gridcolumnsselector_Icon = "fas fa-cog";
          Ddo_gridcolumnsselector_Icontype = "FontIcon";
-         Ddo_grid_Fixedfilters = "|1:Preferred:fa fa-star FontColorIconWarning ConditionalFormattingFilterIcon|||||";
+         Ddo_grid_Fixedfilters = "1:Preferred:fa fa-star FontColorIconWarning ConditionalFormattingFilterIcon|||||";
          Ddo_grid_Datalistproc = "WP_OrganisationAGBSuppliersGetFilterData";
-         Ddo_grid_Datalisttype = "|Dynamic|Dynamic|Dynamic|Dynamic|Dynamic|";
-         Ddo_grid_Includedatalist = "|T|T|T|T|T|";
-         Ddo_grid_Filtertype = "|Character|Character|Character|Character|Character|";
-         Ddo_grid_Includefilter = "|T|T|T|T|T|";
+         Ddo_grid_Datalisttype = "Dynamic|Dynamic|Dynamic|Dynamic|Dynamic|";
+         Ddo_grid_Includedatalist = "T|T|T|T|T|";
+         Ddo_grid_Filtertype = "Character|Character|Character|Character|Character|";
+         Ddo_grid_Includefilter = "T|T|T|T|T|";
          Ddo_grid_Fixable = "T";
-         Ddo_grid_Includesortasc = "|T|T|T|T|T|";
-         Ddo_grid_Columnssortvalues = "|1|2|3|4|5|";
-         Ddo_grid_Columnids = "0:isSelected|4:SupplierAgbName|6:SupplierAgbTypeName|13:SupplierAgbContactName|14:SupplierAgbPhone|17:SupplierAgbEmail|19:SupplierAddress";
+         Ddo_grid_Includesortasc = "T|T|T|T|T|";
+         Ddo_grid_Columnssortvalues = "1|2|3|4|5|";
+         Ddo_grid_Columnids = "4:SupplierAgbName|6:SupplierAgbTypeName|13:SupplierAgbContactName|14:SupplierAgbPhone|17:SupplierAgbEmail|19:SupplierAddress";
          Ddo_grid_Gridinternalname = "";
          Ddc_subscriptions_Titlecontrolidtoreplace = "";
          Ddc_subscriptions_Cls = "ColumnsSelector";

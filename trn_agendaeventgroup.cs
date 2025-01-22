@@ -86,6 +86,7 @@ namespace GeneXus.Programs {
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_7") == 0 )
          {
             A96ResidentTypeId = StringUtil.StrToGuid( GetPar( "ResidentTypeId"));
+            n96ResidentTypeId = false;
             AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
             setAjaxCallMode();
             if ( ! IsValidAjaxCall( true) )
@@ -1026,6 +1027,7 @@ namespace GeneXus.Programs {
             A71ResidentGUID = cgiGet( edtResidentGUID_Internalname);
             AssignAttri("", false, "A71ResidentGUID", A71ResidentGUID);
             A96ResidentTypeId = StringUtil.StrToGuid( cgiGet( edtResidentTypeId_Internalname));
+            n96ResidentTypeId = false;
             AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
             A97ResidentTypeName = cgiGet( edtResidentTypeName_Internalname);
             AssignAttri("", false, "A97ResidentTypeName", A97ResidentTypeName);
@@ -1364,6 +1366,7 @@ namespace GeneXus.Programs {
             A11OrganisationId = T001G8_A11OrganisationId[0];
             AssignAttri("", false, "A11OrganisationId", A11OrganisationId.ToString());
             A96ResidentTypeId = T001G8_A96ResidentTypeId[0];
+            n96ResidentTypeId = T001G8_n96ResidentTypeId[0];
             AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
             A98MedicalIndicationId = T001G8_A98MedicalIndicationId[0];
             n98MedicalIndicationId = T001G8_n98MedicalIndicationId[0];
@@ -1441,17 +1444,21 @@ namespace GeneXus.Programs {
          A376ResidentPhoneNumber = T001G5_A376ResidentPhoneNumber[0];
          AssignAttri("", false, "A376ResidentPhoneNumber", A376ResidentPhoneNumber);
          A96ResidentTypeId = T001G5_A96ResidentTypeId[0];
+         n96ResidentTypeId = T001G5_n96ResidentTypeId[0];
          AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
          A98MedicalIndicationId = T001G5_A98MedicalIndicationId[0];
          n98MedicalIndicationId = T001G5_n98MedicalIndicationId[0];
          AssignAttri("", false, "A98MedicalIndicationId", A98MedicalIndicationId.ToString());
          pr_default.close(3);
          /* Using cursor T001G6 */
-         pr_default.execute(4, new Object[] {A96ResidentTypeId});
+         pr_default.execute(4, new Object[] {n96ResidentTypeId, A96ResidentTypeId});
          if ( (pr_default.getStatus(4) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Resident Types", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
-            AnyError = 1;
+            if ( ! ( (Guid.Empty==A96ResidentTypeId) ) )
+            {
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Resident Types", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
+               AnyError = 1;
+            }
          }
          A97ResidentTypeName = T001G6_A97ResidentTypeName[0];
          AssignAttri("", false, "A97ResidentTypeName", A97ResidentTypeName);
@@ -1559,6 +1566,7 @@ namespace GeneXus.Programs {
          A376ResidentPhoneNumber = T001G10_A376ResidentPhoneNumber[0];
          AssignAttri("", false, "A376ResidentPhoneNumber", A376ResidentPhoneNumber);
          A96ResidentTypeId = T001G10_A96ResidentTypeId[0];
+         n96ResidentTypeId = T001G10_n96ResidentTypeId[0];
          AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
          A98MedicalIndicationId = T001G10_A98MedicalIndicationId[0];
          n98MedicalIndicationId = T001G10_n98MedicalIndicationId[0];
@@ -1579,11 +1587,14 @@ namespace GeneXus.Programs {
       protected void gxLoad_7( Guid A96ResidentTypeId )
       {
          /* Using cursor T001G11 */
-         pr_default.execute(9, new Object[] {A96ResidentTypeId});
+         pr_default.execute(9, new Object[] {n96ResidentTypeId, A96ResidentTypeId});
          if ( (pr_default.getStatus(9) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Resident Types", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
-            AnyError = 1;
+            if ( ! ( (Guid.Empty==A96ResidentTypeId) ) )
+            {
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Resident Types", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
+               AnyError = 1;
+            }
          }
          A97ResidentTypeName = T001G11_A97ResidentTypeName[0];
          AssignAttri("", false, "A97ResidentTypeName", A97ResidentTypeName);
@@ -2262,13 +2273,14 @@ namespace GeneXus.Programs {
             A376ResidentPhoneNumber = T001G20_A376ResidentPhoneNumber[0];
             AssignAttri("", false, "A376ResidentPhoneNumber", A376ResidentPhoneNumber);
             A96ResidentTypeId = T001G20_A96ResidentTypeId[0];
+            n96ResidentTypeId = T001G20_n96ResidentTypeId[0];
             AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
             A98MedicalIndicationId = T001G20_A98MedicalIndicationId[0];
             n98MedicalIndicationId = T001G20_n98MedicalIndicationId[0];
             AssignAttri("", false, "A98MedicalIndicationId", A98MedicalIndicationId.ToString());
             pr_default.close(18);
             /* Using cursor T001G21 */
-            pr_default.execute(19, new Object[] {A96ResidentTypeId});
+            pr_default.execute(19, new Object[] {n96ResidentTypeId, A96ResidentTypeId});
             A97ResidentTypeName = T001G21_A97ResidentTypeName[0];
             AssignAttri("", false, "A97ResidentTypeName", A97ResidentTypeName);
             pr_default.close(19);
@@ -2657,6 +2669,7 @@ namespace GeneXus.Programs {
          A71ResidentGUID = "";
          AssignAttri("", false, "A71ResidentGUID", A71ResidentGUID);
          A96ResidentTypeId = Guid.Empty;
+         n96ResidentTypeId = false;
          AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
          A97ResidentTypeName = "";
          AssignAttri("", false, "A97ResidentTypeName", A97ResidentTypeName);
@@ -2697,7 +2710,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251115221755", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251222121350", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2713,7 +2726,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_agendaeventgroup.js", "?20251115221756", false, true);
+         context.AddJavascriptSource("trn_agendaeventgroup.js", "?20251222121350", false, true);
          /* End function include_jscripts */
       }
 
@@ -2943,17 +2956,21 @@ namespace GeneXus.Programs {
          A376ResidentPhoneNumber = T001G20_A376ResidentPhoneNumber[0];
          AssignAttri("", false, "A376ResidentPhoneNumber", A376ResidentPhoneNumber);
          A96ResidentTypeId = T001G20_A96ResidentTypeId[0];
+         n96ResidentTypeId = T001G20_n96ResidentTypeId[0];
          AssignAttri("", false, "A96ResidentTypeId", A96ResidentTypeId.ToString());
          A98MedicalIndicationId = T001G20_A98MedicalIndicationId[0];
          n98MedicalIndicationId = T001G20_n98MedicalIndicationId[0];
          AssignAttri("", false, "A98MedicalIndicationId", A98MedicalIndicationId.ToString());
          pr_default.close(18);
          /* Using cursor T001G21 */
-         pr_default.execute(19, new Object[] {A96ResidentTypeId});
+         pr_default.execute(19, new Object[] {n96ResidentTypeId, A96ResidentTypeId});
          if ( (pr_default.getStatus(19) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Resident Types", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
-            AnyError = 1;
+            if ( ! ( (Guid.Empty==A96ResidentTypeId) ) )
+            {
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Resident Types", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
+               AnyError = 1;
+            }
          }
          A97ResidentTypeName = T001G21_A97ResidentTypeName[0];
          AssignAttri("", false, "A97ResidentTypeName", A97ResidentTypeName);
@@ -3023,6 +3040,7 @@ namespace GeneXus.Programs {
          cmbResidentGender.CurrentValue = A68ResidentGender;
          A72ResidentSalutation = cmbResidentSalutation.CurrentValue;
          cmbResidentSalutation.CurrentValue = A72ResidentSalutation;
+         n96ResidentTypeId = false;
          n98MedicalIndicationId = false;
          context.wbHandled = 1;
          AfterKeyLoadScreen( ) ;
@@ -3056,15 +3074,19 @@ namespace GeneXus.Programs {
          A375ResidentPhoneCode = T001G20_A375ResidentPhoneCode[0];
          A376ResidentPhoneNumber = T001G20_A376ResidentPhoneNumber[0];
          A96ResidentTypeId = T001G20_A96ResidentTypeId[0];
+         n96ResidentTypeId = T001G20_n96ResidentTypeId[0];
          A98MedicalIndicationId = T001G20_A98MedicalIndicationId[0];
          n98MedicalIndicationId = T001G20_n98MedicalIndicationId[0];
          pr_default.close(18);
          /* Using cursor T001G21 */
-         pr_default.execute(19, new Object[] {A96ResidentTypeId});
+         pr_default.execute(19, new Object[] {n96ResidentTypeId, A96ResidentTypeId});
          if ( (pr_default.getStatus(19) == 101) )
          {
-            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Resident Types", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
-            AnyError = 1;
+            if ( ! ( (Guid.Empty==A96ResidentTypeId) ) )
+            {
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Resident Types", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "RESIDENTTYPEID");
+               AnyError = 1;
+            }
          }
          A97ResidentTypeName = T001G21_A97ResidentTypeName[0];
          pr_default.close(19);
@@ -3310,6 +3332,7 @@ namespace GeneXus.Programs {
          T001G8_A11OrganisationId = new Guid[] {Guid.Empty} ;
          T001G8_A62ResidentId = new Guid[] {Guid.Empty} ;
          T001G8_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
+         T001G8_n96ResidentTypeId = new bool[] {false} ;
          T001G8_A98MedicalIndicationId = new Guid[] {Guid.Empty} ;
          T001G8_n98MedicalIndicationId = new bool[] {false} ;
          T001G4_A29LocationId = new Guid[] {Guid.Empty} ;
@@ -3332,6 +3355,7 @@ namespace GeneXus.Programs {
          T001G5_A375ResidentPhoneCode = new string[] {""} ;
          T001G5_A376ResidentPhoneNumber = new string[] {""} ;
          T001G5_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
+         T001G5_n96ResidentTypeId = new bool[] {false} ;
          T001G5_A98MedicalIndicationId = new Guid[] {Guid.Empty} ;
          T001G5_n98MedicalIndicationId = new bool[] {false} ;
          T001G6_A97ResidentTypeName = new string[] {""} ;
@@ -3356,6 +3380,7 @@ namespace GeneXus.Programs {
          T001G10_A375ResidentPhoneCode = new string[] {""} ;
          T001G10_A376ResidentPhoneNumber = new string[] {""} ;
          T001G10_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
+         T001G10_n96ResidentTypeId = new bool[] {false} ;
          T001G10_A98MedicalIndicationId = new Guid[] {Guid.Empty} ;
          T001G10_n98MedicalIndicationId = new bool[] {false} ;
          T001G11_A97ResidentTypeName = new string[] {""} ;
@@ -3393,6 +3418,7 @@ namespace GeneXus.Programs {
          T001G20_A375ResidentPhoneCode = new string[] {""} ;
          T001G20_A376ResidentPhoneNumber = new string[] {""} ;
          T001G20_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
+         T001G20_n96ResidentTypeId = new bool[] {false} ;
          T001G20_A98MedicalIndicationId = new Guid[] {Guid.Empty} ;
          T001G20_n98MedicalIndicationId = new bool[] {false} ;
          T001G21_A97ResidentTypeName = new string[] {""} ;
@@ -3448,7 +3474,8 @@ namespace GeneXus.Programs {
                }
                , new Object[] {
                T001G5_A72ResidentSalutation, T001G5_A63ResidentBsnNumber, T001G5_A64ResidentGivenName, T001G5_A65ResidentLastName, T001G5_A66ResidentInitials, T001G5_A67ResidentEmail, T001G5_A68ResidentGender, T001G5_A354ResidentCountry, T001G5_A355ResidentCity, T001G5_A356ResidentZipCode,
-               T001G5_A357ResidentAddressLine1, T001G5_A358ResidentAddressLine2, T001G5_A70ResidentPhone, T001G5_A73ResidentBirthDate, T001G5_A71ResidentGUID, T001G5_A375ResidentPhoneCode, T001G5_A376ResidentPhoneNumber, T001G5_A96ResidentTypeId, T001G5_A98MedicalIndicationId, T001G5_n98MedicalIndicationId
+               T001G5_A357ResidentAddressLine1, T001G5_A358ResidentAddressLine2, T001G5_A70ResidentPhone, T001G5_A73ResidentBirthDate, T001G5_A71ResidentGUID, T001G5_A375ResidentPhoneCode, T001G5_A376ResidentPhoneNumber, T001G5_A96ResidentTypeId, T001G5_n96ResidentTypeId, T001G5_A98MedicalIndicationId,
+               T001G5_n98MedicalIndicationId
                }
                , new Object[] {
                T001G6_A97ResidentTypeName
@@ -3459,14 +3486,15 @@ namespace GeneXus.Programs {
                , new Object[] {
                T001G8_A455AgendaEventGroupRSVP, T001G8_A72ResidentSalutation, T001G8_A63ResidentBsnNumber, T001G8_A64ResidentGivenName, T001G8_A65ResidentLastName, T001G8_A66ResidentInitials, T001G8_A67ResidentEmail, T001G8_A68ResidentGender, T001G8_A354ResidentCountry, T001G8_A355ResidentCity,
                T001G8_A356ResidentZipCode, T001G8_A357ResidentAddressLine1, T001G8_A358ResidentAddressLine2, T001G8_A70ResidentPhone, T001G8_A73ResidentBirthDate, T001G8_A71ResidentGUID, T001G8_A97ResidentTypeName, T001G8_A99MedicalIndicationName, T001G8_A375ResidentPhoneCode, T001G8_A376ResidentPhoneNumber,
-               T001G8_A303AgendaCalendarId, T001G8_A29LocationId, T001G8_A11OrganisationId, T001G8_A62ResidentId, T001G8_A96ResidentTypeId, T001G8_A98MedicalIndicationId, T001G8_n98MedicalIndicationId
+               T001G8_A303AgendaCalendarId, T001G8_A29LocationId, T001G8_A11OrganisationId, T001G8_A62ResidentId, T001G8_A96ResidentTypeId, T001G8_n96ResidentTypeId, T001G8_A98MedicalIndicationId, T001G8_n98MedicalIndicationId
                }
                , new Object[] {
                T001G9_A29LocationId, T001G9_A11OrganisationId
                }
                , new Object[] {
                T001G10_A72ResidentSalutation, T001G10_A63ResidentBsnNumber, T001G10_A64ResidentGivenName, T001G10_A65ResidentLastName, T001G10_A66ResidentInitials, T001G10_A67ResidentEmail, T001G10_A68ResidentGender, T001G10_A354ResidentCountry, T001G10_A355ResidentCity, T001G10_A356ResidentZipCode,
-               T001G10_A357ResidentAddressLine1, T001G10_A358ResidentAddressLine2, T001G10_A70ResidentPhone, T001G10_A73ResidentBirthDate, T001G10_A71ResidentGUID, T001G10_A375ResidentPhoneCode, T001G10_A376ResidentPhoneNumber, T001G10_A96ResidentTypeId, T001G10_A98MedicalIndicationId, T001G10_n98MedicalIndicationId
+               T001G10_A357ResidentAddressLine1, T001G10_A358ResidentAddressLine2, T001G10_A70ResidentPhone, T001G10_A73ResidentBirthDate, T001G10_A71ResidentGUID, T001G10_A375ResidentPhoneCode, T001G10_A376ResidentPhoneNumber, T001G10_A96ResidentTypeId, T001G10_n96ResidentTypeId, T001G10_A98MedicalIndicationId,
+               T001G10_n98MedicalIndicationId
                }
                , new Object[] {
                T001G11_A97ResidentTypeName
@@ -3494,7 +3522,8 @@ namespace GeneXus.Programs {
                }
                , new Object[] {
                T001G20_A72ResidentSalutation, T001G20_A63ResidentBsnNumber, T001G20_A64ResidentGivenName, T001G20_A65ResidentLastName, T001G20_A66ResidentInitials, T001G20_A67ResidentEmail, T001G20_A68ResidentGender, T001G20_A354ResidentCountry, T001G20_A355ResidentCity, T001G20_A356ResidentZipCode,
-               T001G20_A357ResidentAddressLine1, T001G20_A358ResidentAddressLine2, T001G20_A70ResidentPhone, T001G20_A73ResidentBirthDate, T001G20_A71ResidentGUID, T001G20_A375ResidentPhoneCode, T001G20_A376ResidentPhoneNumber, T001G20_A96ResidentTypeId, T001G20_A98MedicalIndicationId, T001G20_n98MedicalIndicationId
+               T001G20_A357ResidentAddressLine1, T001G20_A358ResidentAddressLine2, T001G20_A70ResidentPhone, T001G20_A73ResidentBirthDate, T001G20_A71ResidentGUID, T001G20_A375ResidentPhoneCode, T001G20_A376ResidentPhoneNumber, T001G20_A96ResidentTypeId, T001G20_n96ResidentTypeId, T001G20_A98MedicalIndicationId,
+               T001G20_n98MedicalIndicationId
                }
                , new Object[] {
                T001G21_A97ResidentTypeName
@@ -3664,6 +3693,7 @@ namespace GeneXus.Programs {
       private bool Z455AgendaEventGroupRSVP ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
+      private bool n96ResidentTypeId ;
       private bool n98MedicalIndicationId ;
       private bool wbErr ;
       private bool A455AgendaEventGroupRSVP ;
@@ -3764,6 +3794,7 @@ namespace GeneXus.Programs {
       private Guid[] T001G8_A11OrganisationId ;
       private Guid[] T001G8_A62ResidentId ;
       private Guid[] T001G8_A96ResidentTypeId ;
+      private bool[] T001G8_n96ResidentTypeId ;
       private Guid[] T001G8_A98MedicalIndicationId ;
       private bool[] T001G8_n98MedicalIndicationId ;
       private Guid[] T001G4_A29LocationId ;
@@ -3786,6 +3817,7 @@ namespace GeneXus.Programs {
       private string[] T001G5_A375ResidentPhoneCode ;
       private string[] T001G5_A376ResidentPhoneNumber ;
       private Guid[] T001G5_A96ResidentTypeId ;
+      private bool[] T001G5_n96ResidentTypeId ;
       private Guid[] T001G5_A98MedicalIndicationId ;
       private bool[] T001G5_n98MedicalIndicationId ;
       private string[] T001G6_A97ResidentTypeName ;
@@ -3810,6 +3842,7 @@ namespace GeneXus.Programs {
       private string[] T001G10_A375ResidentPhoneCode ;
       private string[] T001G10_A376ResidentPhoneNumber ;
       private Guid[] T001G10_A96ResidentTypeId ;
+      private bool[] T001G10_n96ResidentTypeId ;
       private Guid[] T001G10_A98MedicalIndicationId ;
       private bool[] T001G10_n98MedicalIndicationId ;
       private string[] T001G11_A97ResidentTypeName ;
@@ -3846,6 +3879,7 @@ namespace GeneXus.Programs {
       private string[] T001G20_A375ResidentPhoneCode ;
       private string[] T001G20_A376ResidentPhoneNumber ;
       private Guid[] T001G20_A96ResidentTypeId ;
+      private bool[] T001G20_n96ResidentTypeId ;
       private Guid[] T001G20_A98MedicalIndicationId ;
       private bool[] T001G20_n98MedicalIndicationId ;
       private string[] T001G21_A97ResidentTypeName ;
@@ -3978,7 +4012,7 @@ public class trn_agendaeventgroup__default : DataStoreHelperBase, IDataStoreHelp
        };
        Object[] prmT001G6;
        prmT001G6 = new Object[] {
-       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmT001G7;
        prmT001G7 = new Object[] {
@@ -4001,7 +4035,7 @@ public class trn_agendaeventgroup__default : DataStoreHelperBase, IDataStoreHelp
        };
        Object[] prmT001G11;
        prmT001G11 = new Object[] {
-       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmT001G12;
        prmT001G12 = new Object[] {
@@ -4051,7 +4085,7 @@ public class trn_agendaeventgroup__default : DataStoreHelperBase, IDataStoreHelp
        };
        Object[] prmT001G21;
        prmT001G21 = new Object[] {
-       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0)
+       new ParDef("ResidentTypeId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmT001G22;
        prmT001G22 = new Object[] {
@@ -4067,7 +4101,7 @@ public class trn_agendaeventgroup__default : DataStoreHelperBase, IDataStoreHelp
           ,new CursorDef("T001G5", "SELECT ResidentSalutation, ResidentBsnNumber, ResidentGivenName, ResidentLastName, ResidentInitials, ResidentEmail, ResidentGender, ResidentCountry, ResidentCity, ResidentZipCode, ResidentAddressLine1, ResidentAddressLine2, ResidentPhone, ResidentBirthDate, ResidentGUID, ResidentPhoneCode, ResidentPhoneNumber, ResidentTypeId, MedicalIndicationId FROM Trn_Resident WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001G5,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T001G6", "SELECT ResidentTypeName FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001G6,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T001G7", "SELECT MedicalIndicationName FROM Trn_MedicalIndication WHERE MedicalIndicationId = :MedicalIndicationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001G7,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T001G8", "SELECT TM1.AgendaEventGroupRSVP, T3.ResidentSalutation, T3.ResidentBsnNumber, T3.ResidentGivenName, T3.ResidentLastName, T3.ResidentInitials, T3.ResidentEmail, T3.ResidentGender, T3.ResidentCountry, T3.ResidentCity, T3.ResidentZipCode, T3.ResidentAddressLine1, T3.ResidentAddressLine2, T3.ResidentPhone, T3.ResidentBirthDate, T3.ResidentGUID, T4.ResidentTypeName, T5.MedicalIndicationName, T3.ResidentPhoneCode, T3.ResidentPhoneNumber, TM1.AgendaCalendarId, T2.LocationId, T2.OrganisationId, TM1.ResidentId, T3.ResidentTypeId, T3.MedicalIndicationId FROM ((((Trn_AgendaEventGroup TM1 INNER JOIN Trn_AgendaCalendar T2 ON T2.AgendaCalendarId = TM1.AgendaCalendarId) LEFT JOIN Trn_Resident T3 ON T3.ResidentId = TM1.ResidentId AND T3.LocationId = T2.LocationId AND T3.OrganisationId = T2.OrganisationId) INNER JOIN Trn_ResidentType T4 ON T4.ResidentTypeId = T3.ResidentTypeId) LEFT JOIN Trn_MedicalIndication T5 ON T5.MedicalIndicationId = T3.MedicalIndicationId) WHERE TM1.AgendaCalendarId = :AgendaCalendarId and TM1.ResidentId = :ResidentId ORDER BY TM1.AgendaCalendarId, TM1.ResidentId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001G8,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T001G8", "SELECT TM1.AgendaEventGroupRSVP, T3.ResidentSalutation, T3.ResidentBsnNumber, T3.ResidentGivenName, T3.ResidentLastName, T3.ResidentInitials, T3.ResidentEmail, T3.ResidentGender, T3.ResidentCountry, T3.ResidentCity, T3.ResidentZipCode, T3.ResidentAddressLine1, T3.ResidentAddressLine2, T3.ResidentPhone, T3.ResidentBirthDate, T3.ResidentGUID, T4.ResidentTypeName, T5.MedicalIndicationName, T3.ResidentPhoneCode, T3.ResidentPhoneNumber, TM1.AgendaCalendarId, T2.LocationId, T2.OrganisationId, TM1.ResidentId, T3.ResidentTypeId, T3.MedicalIndicationId FROM ((((Trn_AgendaEventGroup TM1 INNER JOIN Trn_AgendaCalendar T2 ON T2.AgendaCalendarId = TM1.AgendaCalendarId) LEFT JOIN Trn_Resident T3 ON T3.ResidentId = TM1.ResidentId AND T3.LocationId = T2.LocationId AND T3.OrganisationId = T2.OrganisationId) LEFT JOIN Trn_ResidentType T4 ON T4.ResidentTypeId = T3.ResidentTypeId) LEFT JOIN Trn_MedicalIndication T5 ON T5.MedicalIndicationId = T3.MedicalIndicationId) WHERE TM1.AgendaCalendarId = :AgendaCalendarId and TM1.ResidentId = :ResidentId ORDER BY TM1.AgendaCalendarId, TM1.ResidentId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001G8,100, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T001G9", "SELECT LocationId, OrganisationId FROM Trn_AgendaCalendar WHERE AgendaCalendarId = :AgendaCalendarId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001G9,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T001G10", "SELECT ResidentSalutation, ResidentBsnNumber, ResidentGivenName, ResidentLastName, ResidentInitials, ResidentEmail, ResidentGender, ResidentCountry, ResidentCity, ResidentZipCode, ResidentAddressLine1, ResidentAddressLine2, ResidentPhone, ResidentBirthDate, ResidentGUID, ResidentPhoneCode, ResidentPhoneNumber, ResidentTypeId, MedicalIndicationId FROM Trn_Resident WHERE ResidentId = :ResidentId AND LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001G10,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T001G11", "SELECT ResidentTypeName FROM Trn_ResidentType WHERE ResidentTypeId = :ResidentTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001G11,1, GxCacheFrequency.OFF ,true,false )
@@ -4126,8 +4160,9 @@ public class trn_agendaeventgroup__default : DataStoreHelperBase, IDataStoreHelp
              ((string[]) buf[15])[0] = rslt.getVarchar(16);
              ((string[]) buf[16])[0] = rslt.getVarchar(17);
              ((Guid[]) buf[17])[0] = rslt.getGuid(18);
-             ((Guid[]) buf[18])[0] = rslt.getGuid(19);
-             ((bool[]) buf[19])[0] = rslt.wasNull(19);
+             ((bool[]) buf[18])[0] = rslt.wasNull(18);
+             ((Guid[]) buf[19])[0] = rslt.getGuid(19);
+             ((bool[]) buf[20])[0] = rslt.wasNull(19);
              return;
           case 4 :
              ((string[]) buf[0])[0] = rslt.getVarchar(1);
@@ -4161,8 +4196,9 @@ public class trn_agendaeventgroup__default : DataStoreHelperBase, IDataStoreHelp
              ((Guid[]) buf[22])[0] = rslt.getGuid(23);
              ((Guid[]) buf[23])[0] = rslt.getGuid(24);
              ((Guid[]) buf[24])[0] = rslt.getGuid(25);
-             ((Guid[]) buf[25])[0] = rslt.getGuid(26);
-             ((bool[]) buf[26])[0] = rslt.wasNull(26);
+             ((bool[]) buf[25])[0] = rslt.wasNull(25);
+             ((Guid[]) buf[26])[0] = rslt.getGuid(26);
+             ((bool[]) buf[27])[0] = rslt.wasNull(26);
              return;
           case 7 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -4187,8 +4223,9 @@ public class trn_agendaeventgroup__default : DataStoreHelperBase, IDataStoreHelp
              ((string[]) buf[15])[0] = rslt.getVarchar(16);
              ((string[]) buf[16])[0] = rslt.getVarchar(17);
              ((Guid[]) buf[17])[0] = rslt.getGuid(18);
-             ((Guid[]) buf[18])[0] = rslt.getGuid(19);
-             ((bool[]) buf[19])[0] = rslt.wasNull(19);
+             ((bool[]) buf[18])[0] = rslt.wasNull(18);
+             ((Guid[]) buf[19])[0] = rslt.getGuid(19);
+             ((bool[]) buf[20])[0] = rslt.wasNull(19);
              return;
           case 9 :
              ((string[]) buf[0])[0] = rslt.getVarchar(1);
@@ -4231,8 +4268,9 @@ public class trn_agendaeventgroup__default : DataStoreHelperBase, IDataStoreHelp
              ((string[]) buf[15])[0] = rslt.getVarchar(16);
              ((string[]) buf[16])[0] = rslt.getVarchar(17);
              ((Guid[]) buf[17])[0] = rslt.getGuid(18);
-             ((Guid[]) buf[18])[0] = rslt.getGuid(19);
-             ((bool[]) buf[19])[0] = rslt.wasNull(19);
+             ((bool[]) buf[18])[0] = rslt.wasNull(18);
+             ((Guid[]) buf[19])[0] = rslt.getGuid(19);
+             ((bool[]) buf[20])[0] = rslt.wasNull(19);
              return;
           case 19 :
              ((string[]) buf[0])[0] = rslt.getVarchar(1);

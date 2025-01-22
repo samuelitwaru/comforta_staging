@@ -489,7 +489,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "Center", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblErrormessage_Internalname, context.GetMessage( "The discussion record could not be found", ""), "", "", lblErrormessage_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_ResidentDiscussion.htm");
+            GxWebStd.gx_label_ctrl( context, lblErrormessage_Internalname, lblErrormessage_Caption, "", "", lblErrormessage_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "TextBlock", 0, "", 1, 1, 0, 0, "HLP_WP_ResidentDiscussion.htm");
             GxWebStd.gx_div_end( context, "Center", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -781,54 +781,62 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV12WWPEntityName = context.GetMessage( "Discussion", "");
          AV19Description = context.GetMessage( "discussion", "");
-         GXt_char1 = AV9ResidentId;
-         new prc_getuseridfromaccesstoken(context ).execute(  AV18AccessToken, out  GXt_char1) ;
-         AV9ResidentId = GXt_char1;
-         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV9ResidentId)) )
+         new prc_getuseridfromaccesstoken(context ).execute(  AV18AccessToken, out  AV9ResidentId, out  AV20isTokenValid) ;
+         if ( AV20isTokenValid )
          {
-            AV11WebSession.Set(context.GetMessage( "WebViewResidentId", ""), AV9ResidentId);
-            AV16WWP_UserExtended.Load(AV9ResidentId);
-            if ( AV16WWP_UserExtended.Success() )
+            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV9ResidentId)) )
             {
-               AV14WWP_FormInstance.Load((int)(Math.Round(NumberUtil.Val( AV13DiscussionRecordId, "."), 18, MidpointRounding.ToEven)));
-               if ( AV14WWP_FormInstance.Success() )
+               AV11WebSession.Set(context.GetMessage( "WebViewResidentId", ""), AV9ResidentId);
+               AV16WWP_UserExtended.Load(AV9ResidentId);
+               if ( AV16WWP_UserExtended.Success() )
                {
-                  AV12WWPEntityName = context.GetMessage( "WWP_DynamicForm", "");
-                  AV15WWPFormReferenceName = AV14WWP_FormInstance.gxTpr_Wwpformreferencename;
-                  AssignAttri("", false, "AV15WWPFormReferenceName", AV15WWPFormReferenceName);
-                  AV19Description = context.GetMessage( "A filled ", "") + AV14WWP_FormInstance.gxTpr_Wwpformtitle;
+                  AV14WWP_FormInstance.Load((int)(Math.Round(NumberUtil.Val( AV13DiscussionRecordId, "."), 18, MidpointRounding.ToEven)));
+                  if ( AV14WWP_FormInstance.Success() )
+                  {
+                     AV12WWPEntityName = context.GetMessage( "WWP_DynamicForm", "");
+                     AV15WWPFormReferenceName = AV14WWP_FormInstance.gxTpr_Wwpformreferencename;
+                     AssignAttri("", false, "AV15WWPFormReferenceName", AV15WWPFormReferenceName);
+                     AV19Description = context.GetMessage( "A filled ", "") + AV14WWP_FormInstance.gxTpr_Wwpformtitle;
+                  }
+                  tblSpacetable2_Height = 30;
+                  AssignProp("", false, tblSpacetable2_Internalname, "Height", StringUtil.LTrimStr( (decimal)(tblSpacetable2_Height), 9, 0), true);
+                  tblSpacetable1_Height = 60;
+                  AssignProp("", false, tblSpacetable1_Internalname, "Height", StringUtil.LTrimStr( (decimal)(tblSpacetable1_Height), 9, 0), true);
+                  /* Execute user subroutine: 'ATTRIBUTESSECURITYCODE' */
+                  S112 ();
+                  if (returnInSub) return;
+                  /* Object Property */
+                  if ( true )
+                  {
+                     bDynCreated_Discussioncomponent = true;
+                  }
+                  if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Discussioncomponent_Component), StringUtil.Lower( "WC_Discussions")) != 0 )
+                  {
+                     WebComp_Discussioncomponent = getWebComponent(GetType(), "GeneXus.Programs", "wc_discussions", new Object[] {context} );
+                     WebComp_Discussioncomponent.ComponentInit();
+                     WebComp_Discussioncomponent.Name = "WC_Discussions";
+                     WebComp_Discussioncomponent_Component = "WC_Discussions";
+                  }
+                  if ( StringUtil.Len( WebComp_Discussioncomponent_Component) != 0 )
+                  {
+                     WebComp_Discussioncomponent.setjustcreated();
+                     WebComp_Discussioncomponent.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV12WWPEntityName,StringUtil.Trim( AV13DiscussionRecordId),(string)AV19Description,formatLink("workwithplus.dynamicforms.wwp_dynamicform.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV15WWPFormReferenceName)),UrlEncode(StringUtil.RTrim(StringUtil.Trim( AV13DiscussionRecordId))),UrlEncode(StringUtil.RTrim("DSP")),UrlEncode(StringUtil.BoolToStr(true))}, new string[] {"WWPFormReferenceName","WWPFormInstanceId","WWPDynamicFormMode","isLinkingDiscussion"}) });
+                     WebComp_Discussioncomponent.componentbind(new Object[] {(string)"",(string)""+""+"",(string)"",(string)""+"",(string)"",(string)""+""+"",(string)"",(string)""+""});
+                  }
                }
-               tblSpacetable2_Height = 30;
-               AssignProp("", false, tblSpacetable2_Internalname, "Height", StringUtil.LTrimStr( (decimal)(tblSpacetable2_Height), 9, 0), true);
-               tblSpacetable1_Height = 60;
-               AssignProp("", false, tblSpacetable1_Internalname, "Height", StringUtil.LTrimStr( (decimal)(tblSpacetable1_Height), 9, 0), true);
-               /* Execute user subroutine: 'ATTRIBUTESSECURITYCODE' */
-               S112 ();
-               if (returnInSub) return;
-               /* Object Property */
-               if ( true )
+               else
                {
-                  bDynCreated_Discussioncomponent = true;
-               }
-               if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Discussioncomponent_Component), StringUtil.Lower( "WC_Discussions")) != 0 )
-               {
-                  WebComp_Discussioncomponent = getWebComponent(GetType(), "GeneXus.Programs", "wc_discussions", new Object[] {context} );
-                  WebComp_Discussioncomponent.ComponentInit();
-                  WebComp_Discussioncomponent.Name = "WC_Discussions";
-                  WebComp_Discussioncomponent_Component = "WC_Discussions";
-               }
-               if ( StringUtil.Len( WebComp_Discussioncomponent_Component) != 0 )
-               {
-                  WebComp_Discussioncomponent.setjustcreated();
-                  WebComp_Discussioncomponent.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV12WWPEntityName,StringUtil.Trim( AV13DiscussionRecordId),(string)AV19Description,formatLink("workwithplus.dynamicforms.wwp_dynamicform.aspx", new object[] {UrlEncode(StringUtil.RTrim(AV15WWPFormReferenceName)),UrlEncode(StringUtil.RTrim(StringUtil.Trim( AV13DiscussionRecordId))),UrlEncode(StringUtil.RTrim("DSP")),UrlEncode(StringUtil.BoolToStr(true))}, new string[] {"WWPFormReferenceName","WWPFormInstanceId","WWPDynamicFormMode","isLinkingDiscussion"}) });
-                  WebComp_Discussioncomponent.componentbind(new Object[] {(string)"",(string)""+""+"",(string)"",(string)""+"",(string)"",(string)""+""+"",(string)"",(string)""+""});
+                  AV17ShowNoRecordFound = false;
+                  AssignAttri("", false, "AV17ShowNoRecordFound", AV17ShowNoRecordFound);
                }
             }
-            else
-            {
-               AV17ShowNoRecordFound = false;
-               AssignAttri("", false, "AV17ShowNoRecordFound", AV17ShowNoRecordFound);
-            }
+         }
+         else
+         {
+            AV17ShowNoRecordFound = true;
+            AssignAttri("", false, "AV17ShowNoRecordFound", AV17ShowNoRecordFound);
+            lblErrormessage_Caption = context.GetMessage( "The user session has expired", "");
+            AssignProp("", false, lblErrormessage_Internalname, "Caption", lblErrormessage_Caption, true);
          }
       }
 
@@ -950,7 +958,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251167491050", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025122216650", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -966,7 +974,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_residentdiscussion.js", "?20251167491050", false, true);
+         context.AddJavascriptSource("wp_residentdiscussion.js", "?2025122216650", false, true);
          /* End function include_jscripts */
       }
 
@@ -1000,6 +1008,7 @@ namespace GeneXus.Programs {
          init_default_properties( ) ;
          tblSpacetable1_Height = 0;
          tblSpacetable2_Height = 0;
+         lblErrormessage_Caption = context.GetMessage( "The discussion record could not be found", "");
          divNorecordfoundtable_Visible = 1;
          Form.Headerrawhtml = "";
          Form.Background = "";
@@ -1059,7 +1068,6 @@ namespace GeneXus.Programs {
          AV12WWPEntityName = "";
          AV19Description = "";
          AV9ResidentId = "";
-         GXt_char1 = "";
          AV11WebSession = context.GetSession();
          AV16WWP_UserExtended = new GeneXus.Programs.wwpbaseobjects.SdtWWP_UserExtended(context);
          AV14WWP_FormInstance = new GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_FormInstance(context);
@@ -1105,12 +1113,12 @@ namespace GeneXus.Programs {
       private string lblBanicon_Internalname ;
       private string lblBanicon_Jsonclick ;
       private string lblErrormessage_Internalname ;
+      private string lblErrormessage_Caption ;
       private string lblErrormessage_Jsonclick ;
       private string sEvt ;
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
-      private string GXt_char1 ;
       private string tblSpacetable2_Internalname ;
       private string tblSpacetable1_Internalname ;
       private string sStyleString ;
@@ -1125,6 +1133,7 @@ namespace GeneXus.Programs {
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
+      private bool AV20isTokenValid ;
       private bool bDynCreated_Discussioncomponent ;
       private bool AV17ShowNoRecordFound ;
       private string AV18AccessToken ;

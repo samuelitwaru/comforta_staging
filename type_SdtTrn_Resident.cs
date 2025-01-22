@@ -59,7 +59,6 @@ namespace GeneXus.Programs {
          metadata.Set("BT", "Trn_Resident");
          metadata.Set("PK", "[ \"ResidentId\",\"LocationId\",\"OrganisationId\" ]");
          metadata.Set("PKAssigned", "[ \"ResidentId\" ]");
-         metadata.Set("Levels", "[ \"NetworkCompany\",\"NetworkIndividual\" ]");
          metadata.Set("FKList", "[ { \"FK\":[ \"LocationId\",\"OrganisationId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"MedicalIndicationId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"OrganisationId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"ResidentTypeId\" ],\"FKMap\":[  ] } ]");
          metadata.Set("AllowInsert", "True");
          metadata.Set("AllowUpdate", "True");
@@ -101,6 +100,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Residenthomephonecode_Z");
          state.Add("gxTpr_Residenthomephonenumber_Z");
          state.Add("gxTpr_Residentimage_gxi_Z");
+         state.Add("gxTpr_Residenttypeid_N");
          state.Add("gxTpr_Medicalindicationid_N");
          state.Add("gxTpr_Residentimage_N");
          state.Add("gxTpr_Residentimage_gxi_N");
@@ -140,8 +140,6 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Resident_Residenthomephonenumber = sdt.gxTv_SdtTrn_Resident_Residenthomephonenumber ;
          gxTv_SdtTrn_Resident_Residentimage = sdt.gxTv_SdtTrn_Resident_Residentimage ;
          gxTv_SdtTrn_Resident_Residentimage_gxi = sdt.gxTv_SdtTrn_Resident_Residentimage_gxi ;
-         gxTv_SdtTrn_Resident_Networkindividual = sdt.gxTv_SdtTrn_Resident_Networkindividual ;
-         gxTv_SdtTrn_Resident_Networkcompany = sdt.gxTv_SdtTrn_Resident_Networkcompany ;
          gxTv_SdtTrn_Resident_Mode = sdt.gxTv_SdtTrn_Resident_Mode ;
          gxTv_SdtTrn_Resident_Initialized = sdt.gxTv_SdtTrn_Resident_Initialized ;
          gxTv_SdtTrn_Resident_Residentid_Z = sdt.gxTv_SdtTrn_Resident_Residentid_Z ;
@@ -172,6 +170,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Resident_Residenthomephonecode_Z = sdt.gxTv_SdtTrn_Resident_Residenthomephonecode_Z ;
          gxTv_SdtTrn_Resident_Residenthomephonenumber_Z = sdt.gxTv_SdtTrn_Resident_Residenthomephonenumber_Z ;
          gxTv_SdtTrn_Resident_Residentimage_gxi_Z = sdt.gxTv_SdtTrn_Resident_Residentimage_gxi_Z ;
+         gxTv_SdtTrn_Resident_Residenttypeid_N = sdt.gxTv_SdtTrn_Resident_Residenttypeid_N ;
          gxTv_SdtTrn_Resident_Medicalindicationid_N = sdt.gxTv_SdtTrn_Resident_Medicalindicationid_N ;
          gxTv_SdtTrn_Resident_Residentimage_N = sdt.gxTv_SdtTrn_Resident_Residentimage_N ;
          gxTv_SdtTrn_Resident_Residentimage_gxi_N = sdt.gxTv_SdtTrn_Resident_Residentimage_gxi_N ;
@@ -222,6 +221,7 @@ namespace GeneXus.Programs {
          AddObjectProperty("ResidentBirthDate", sDateCnv, false, includeNonInitialized);
          AddObjectProperty("ResidentGUID", gxTv_SdtTrn_Resident_Residentguid, false, includeNonInitialized);
          AddObjectProperty("ResidentTypeId", gxTv_SdtTrn_Resident_Residenttypeid, false, includeNonInitialized);
+         AddObjectProperty("ResidentTypeId_N", gxTv_SdtTrn_Resident_Residenttypeid_N, false, includeNonInitialized);
          AddObjectProperty("ResidentTypeName", gxTv_SdtTrn_Resident_Residenttypename, false, includeNonInitialized);
          AddObjectProperty("MedicalIndicationId", gxTv_SdtTrn_Resident_Medicalindicationid, false, includeNonInitialized);
          AddObjectProperty("MedicalIndicationId_N", gxTv_SdtTrn_Resident_Medicalindicationid_N, false, includeNonInitialized);
@@ -232,14 +232,6 @@ namespace GeneXus.Programs {
          AddObjectProperty("ResidentHomePhoneNumber", gxTv_SdtTrn_Resident_Residenthomephonenumber, false, includeNonInitialized);
          AddObjectProperty("ResidentImage", gxTv_SdtTrn_Resident_Residentimage, false, includeNonInitialized);
          AddObjectProperty("ResidentImage_N", gxTv_SdtTrn_Resident_Residentimage_N, false, includeNonInitialized);
-         if ( gxTv_SdtTrn_Resident_Networkindividual != null )
-         {
-            AddObjectProperty("NetworkIndividual", gxTv_SdtTrn_Resident_Networkindividual, includeState, includeNonInitialized);
-         }
-         if ( gxTv_SdtTrn_Resident_Networkcompany != null )
-         {
-            AddObjectProperty("NetworkCompany", gxTv_SdtTrn_Resident_Networkcompany, includeState, includeNonInitialized);
-         }
          if ( includeState )
          {
             AddObjectProperty("ResidentImage_GXI", gxTv_SdtTrn_Resident_Residentimage_gxi, false, includeNonInitialized);
@@ -282,6 +274,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("ResidentHomePhoneCode_Z", gxTv_SdtTrn_Resident_Residenthomephonecode_Z, false, includeNonInitialized);
             AddObjectProperty("ResidentHomePhoneNumber_Z", gxTv_SdtTrn_Resident_Residenthomephonenumber_Z, false, includeNonInitialized);
             AddObjectProperty("ResidentImage_GXI_Z", gxTv_SdtTrn_Resident_Residentimage_gxi_Z, false, includeNonInitialized);
+            AddObjectProperty("ResidentTypeId_N", gxTv_SdtTrn_Resident_Residenttypeid_N, false, includeNonInitialized);
             AddObjectProperty("MedicalIndicationId_N", gxTv_SdtTrn_Resident_Medicalindicationid_N, false, includeNonInitialized);
             AddObjectProperty("ResidentImage_N", gxTv_SdtTrn_Resident_Residentimage_N, false, includeNonInitialized);
             AddObjectProperty("ResidentImage_GXI_N", gxTv_SdtTrn_Resident_Residentimage_gxi_N, false, includeNonInitialized);
@@ -388,6 +381,7 @@ namespace GeneXus.Programs {
          }
          if ( sdt.IsDirty("ResidentTypeId") )
          {
+            gxTv_SdtTrn_Resident_Residenttypeid_N = (short)(sdt.gxTv_SdtTrn_Resident_Residenttypeid_N);
             sdtIsNull = 0;
             gxTv_SdtTrn_Resident_Residenttypeid = sdt.gxTv_SdtTrn_Resident_Residenttypeid ;
          }
@@ -439,58 +433,6 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Resident_Residentimage_gxi = sdt.gxTv_SdtTrn_Resident_Residentimage_gxi ;
          }
-         if ( gxTv_SdtTrn_Resident_Networkindividual != null )
-         {
-            GXBCLevelCollection<SdtTrn_Resident_NetworkIndividual> newCollectionNetworkindividual = sdt.gxTpr_Networkindividual;
-            SdtTrn_Resident_NetworkIndividual currItemNetworkindividual;
-            SdtTrn_Resident_NetworkIndividual newItemNetworkindividual;
-            short idx = 1;
-            while ( idx <= newCollectionNetworkindividual.Count )
-            {
-               newItemNetworkindividual = ((SdtTrn_Resident_NetworkIndividual)newCollectionNetworkindividual.Item(idx));
-               currItemNetworkindividual = gxTv_SdtTrn_Resident_Networkindividual.GetByKey(newItemNetworkindividual.gxTpr_Networkindividualid);
-               if ( StringUtil.StrCmp(currItemNetworkindividual.gxTpr_Mode, "UPD") == 0 )
-               {
-                  currItemNetworkindividual.UpdateDirties(newItemNetworkindividual);
-                  if ( StringUtil.StrCmp(newItemNetworkindividual.gxTpr_Mode, "DLT") == 0 )
-                  {
-                     currItemNetworkindividual.gxTpr_Mode = "DLT";
-                  }
-                  currItemNetworkindividual.gxTpr_Modified = 1;
-               }
-               else
-               {
-                  gxTv_SdtTrn_Resident_Networkindividual.Add(newItemNetworkindividual, 0);
-               }
-               idx = (short)(idx+1);
-            }
-         }
-         if ( gxTv_SdtTrn_Resident_Networkcompany != null )
-         {
-            GXBCLevelCollection<SdtTrn_Resident_NetworkCompany> newCollectionNetworkcompany = sdt.gxTpr_Networkcompany;
-            SdtTrn_Resident_NetworkCompany currItemNetworkcompany;
-            SdtTrn_Resident_NetworkCompany newItemNetworkcompany;
-            short idx = 1;
-            while ( idx <= newCollectionNetworkcompany.Count )
-            {
-               newItemNetworkcompany = ((SdtTrn_Resident_NetworkCompany)newCollectionNetworkcompany.Item(idx));
-               currItemNetworkcompany = gxTv_SdtTrn_Resident_Networkcompany.GetByKey(newItemNetworkcompany.gxTpr_Networkcompanyid);
-               if ( StringUtil.StrCmp(currItemNetworkcompany.gxTpr_Mode, "UPD") == 0 )
-               {
-                  currItemNetworkcompany.UpdateDirties(newItemNetworkcompany);
-                  if ( StringUtil.StrCmp(newItemNetworkcompany.gxTpr_Mode, "DLT") == 0 )
-                  {
-                     currItemNetworkcompany.gxTpr_Mode = "DLT";
-                  }
-                  currItemNetworkcompany.gxTpr_Modified = 1;
-               }
-               else
-               {
-                  gxTv_SdtTrn_Resident_Networkcompany.Add(newItemNetworkcompany, 0);
-               }
-               idx = (short)(idx+1);
-            }
-         }
          return  ;
       }
 
@@ -535,32 +477,6 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Resident_Residenthomephonecode_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residenthomephonenumber_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentimage_gxi_Z_SetNull( );
-               if ( gxTv_SdtTrn_Resident_Networkindividual != null )
-               {
-                  GXBCLevelCollection<SdtTrn_Resident_NetworkIndividual> collectionNetworkindividual = gxTv_SdtTrn_Resident_Networkindividual;
-                  SdtTrn_Resident_NetworkIndividual currItemNetworkindividual;
-                  short idx = 1;
-                  while ( idx <= collectionNetworkindividual.Count )
-                  {
-                     currItemNetworkindividual = ((SdtTrn_Resident_NetworkIndividual)collectionNetworkindividual.Item(idx));
-                     currItemNetworkindividual.gxTpr_Mode = "INS";
-                     currItemNetworkindividual.gxTpr_Modified = 1;
-                     idx = (short)(idx+1);
-                  }
-               }
-               if ( gxTv_SdtTrn_Resident_Networkcompany != null )
-               {
-                  GXBCLevelCollection<SdtTrn_Resident_NetworkCompany> collectionNetworkcompany = gxTv_SdtTrn_Resident_Networkcompany;
-                  SdtTrn_Resident_NetworkCompany currItemNetworkcompany;
-                  short idx = 1;
-                  while ( idx <= collectionNetworkcompany.Count )
-                  {
-                     currItemNetworkcompany = ((SdtTrn_Resident_NetworkCompany)collectionNetworkcompany.Item(idx));
-                     currItemNetworkcompany.gxTpr_Mode = "INS";
-                     currItemNetworkcompany.gxTpr_Modified = 1;
-                     idx = (short)(idx+1);
-                  }
-               }
             }
             gxTv_SdtTrn_Resident_Residentid = value;
             SetDirty("Residentid");
@@ -609,32 +525,6 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Resident_Residenthomephonecode_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residenthomephonenumber_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentimage_gxi_Z_SetNull( );
-               if ( gxTv_SdtTrn_Resident_Networkindividual != null )
-               {
-                  GXBCLevelCollection<SdtTrn_Resident_NetworkIndividual> collectionNetworkindividual = gxTv_SdtTrn_Resident_Networkindividual;
-                  SdtTrn_Resident_NetworkIndividual currItemNetworkindividual;
-                  short idx = 1;
-                  while ( idx <= collectionNetworkindividual.Count )
-                  {
-                     currItemNetworkindividual = ((SdtTrn_Resident_NetworkIndividual)collectionNetworkindividual.Item(idx));
-                     currItemNetworkindividual.gxTpr_Mode = "INS";
-                     currItemNetworkindividual.gxTpr_Modified = 1;
-                     idx = (short)(idx+1);
-                  }
-               }
-               if ( gxTv_SdtTrn_Resident_Networkcompany != null )
-               {
-                  GXBCLevelCollection<SdtTrn_Resident_NetworkCompany> collectionNetworkcompany = gxTv_SdtTrn_Resident_Networkcompany;
-                  SdtTrn_Resident_NetworkCompany currItemNetworkcompany;
-                  short idx = 1;
-                  while ( idx <= collectionNetworkcompany.Count )
-                  {
-                     currItemNetworkcompany = ((SdtTrn_Resident_NetworkCompany)collectionNetworkcompany.Item(idx));
-                     currItemNetworkcompany.gxTpr_Mode = "INS";
-                     currItemNetworkcompany.gxTpr_Modified = 1;
-                     idx = (short)(idx+1);
-                  }
-               }
             }
             gxTv_SdtTrn_Resident_Locationid = value;
             SetDirty("Locationid");
@@ -683,32 +573,6 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Resident_Residenthomephonecode_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residenthomephonenumber_Z_SetNull( );
                this.gxTv_SdtTrn_Resident_Residentimage_gxi_Z_SetNull( );
-               if ( gxTv_SdtTrn_Resident_Networkindividual != null )
-               {
-                  GXBCLevelCollection<SdtTrn_Resident_NetworkIndividual> collectionNetworkindividual = gxTv_SdtTrn_Resident_Networkindividual;
-                  SdtTrn_Resident_NetworkIndividual currItemNetworkindividual;
-                  short idx = 1;
-                  while ( idx <= collectionNetworkindividual.Count )
-                  {
-                     currItemNetworkindividual = ((SdtTrn_Resident_NetworkIndividual)collectionNetworkindividual.Item(idx));
-                     currItemNetworkindividual.gxTpr_Mode = "INS";
-                     currItemNetworkindividual.gxTpr_Modified = 1;
-                     idx = (short)(idx+1);
-                  }
-               }
-               if ( gxTv_SdtTrn_Resident_Networkcompany != null )
-               {
-                  GXBCLevelCollection<SdtTrn_Resident_NetworkCompany> collectionNetworkcompany = gxTv_SdtTrn_Resident_Networkcompany;
-                  SdtTrn_Resident_NetworkCompany currItemNetworkcompany;
-                  short idx = 1;
-                  while ( idx <= collectionNetworkcompany.Count )
-                  {
-                     currItemNetworkcompany = ((SdtTrn_Resident_NetworkCompany)collectionNetworkcompany.Item(idx));
-                     currItemNetworkcompany.gxTpr_Mode = "INS";
-                     currItemNetworkcompany.gxTpr_Modified = 1;
-                     idx = (short)(idx+1);
-                  }
-               }
             }
             gxTv_SdtTrn_Resident_Organisationid = value;
             SetDirty("Organisationid");
@@ -1000,11 +864,25 @@ namespace GeneXus.Programs {
          }
 
          set {
+            gxTv_SdtTrn_Resident_Residenttypeid_N = 0;
             sdtIsNull = 0;
             gxTv_SdtTrn_Resident_Residenttypeid = value;
             SetDirty("Residenttypeid");
          }
 
+      }
+
+      public void gxTv_SdtTrn_Resident_Residenttypeid_SetNull( )
+      {
+         gxTv_SdtTrn_Resident_Residenttypeid_N = 1;
+         gxTv_SdtTrn_Resident_Residenttypeid = Guid.Empty;
+         SetDirty("Residenttypeid");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Resident_Residenttypeid_IsNull( )
+      {
+         return (gxTv_SdtTrn_Resident_Residenttypeid_N==1) ;
       }
 
       [  SoapElement( ElementName = "ResidentTypeName" )]
@@ -1192,126 +1070,6 @@ namespace GeneXus.Programs {
       public bool gxTv_SdtTrn_Resident_Residentimage_gxi_IsNull( )
       {
          return (gxTv_SdtTrn_Resident_Residentimage_gxi_N==1) ;
-      }
-
-      [  SoapElement( ElementName = "NetworkIndividual" )]
-      [  XmlArray( ElementName = "NetworkIndividual"  )]
-      [  XmlArrayItemAttribute( ElementName= "Trn_Resident.NetworkIndividual"  , IsNullable=false)]
-      public GXBCLevelCollection<SdtTrn_Resident_NetworkIndividual> gxTpr_Networkindividual_GXBCLevelCollection
-      {
-         get {
-            if ( gxTv_SdtTrn_Resident_Networkindividual == null )
-            {
-               gxTv_SdtTrn_Resident_Networkindividual = new GXBCLevelCollection<SdtTrn_Resident_NetworkIndividual>( context, "Trn_Resident.NetworkIndividual", "Comforta_version2");
-            }
-            return gxTv_SdtTrn_Resident_Networkindividual ;
-         }
-
-         set {
-            if ( gxTv_SdtTrn_Resident_Networkindividual == null )
-            {
-               gxTv_SdtTrn_Resident_Networkindividual = new GXBCLevelCollection<SdtTrn_Resident_NetworkIndividual>( context, "Trn_Resident.NetworkIndividual", "Comforta_version2");
-            }
-            sdtIsNull = 0;
-            gxTv_SdtTrn_Resident_Networkindividual = value;
-         }
-
-      }
-
-      [XmlIgnore]
-      public GXBCLevelCollection<SdtTrn_Resident_NetworkIndividual> gxTpr_Networkindividual
-      {
-         get {
-            if ( gxTv_SdtTrn_Resident_Networkindividual == null )
-            {
-               gxTv_SdtTrn_Resident_Networkindividual = new GXBCLevelCollection<SdtTrn_Resident_NetworkIndividual>( context, "Trn_Resident.NetworkIndividual", "Comforta_version2");
-            }
-            sdtIsNull = 0;
-            return gxTv_SdtTrn_Resident_Networkindividual ;
-         }
-
-         set {
-            sdtIsNull = 0;
-            gxTv_SdtTrn_Resident_Networkindividual = value;
-            SetDirty("Networkindividual");
-         }
-
-      }
-
-      public void gxTv_SdtTrn_Resident_Networkindividual_SetNull( )
-      {
-         gxTv_SdtTrn_Resident_Networkindividual = null;
-         SetDirty("Networkindividual");
-         return  ;
-      }
-
-      public bool gxTv_SdtTrn_Resident_Networkindividual_IsNull( )
-      {
-         if ( gxTv_SdtTrn_Resident_Networkindividual == null )
-         {
-            return true ;
-         }
-         return false ;
-      }
-
-      [  SoapElement( ElementName = "NetworkCompany" )]
-      [  XmlArray( ElementName = "NetworkCompany"  )]
-      [  XmlArrayItemAttribute( ElementName= "Trn_Resident.NetworkCompany"  , IsNullable=false)]
-      public GXBCLevelCollection<SdtTrn_Resident_NetworkCompany> gxTpr_Networkcompany_GXBCLevelCollection
-      {
-         get {
-            if ( gxTv_SdtTrn_Resident_Networkcompany == null )
-            {
-               gxTv_SdtTrn_Resident_Networkcompany = new GXBCLevelCollection<SdtTrn_Resident_NetworkCompany>( context, "Trn_Resident.NetworkCompany", "Comforta_version2");
-            }
-            return gxTv_SdtTrn_Resident_Networkcompany ;
-         }
-
-         set {
-            if ( gxTv_SdtTrn_Resident_Networkcompany == null )
-            {
-               gxTv_SdtTrn_Resident_Networkcompany = new GXBCLevelCollection<SdtTrn_Resident_NetworkCompany>( context, "Trn_Resident.NetworkCompany", "Comforta_version2");
-            }
-            sdtIsNull = 0;
-            gxTv_SdtTrn_Resident_Networkcompany = value;
-         }
-
-      }
-
-      [XmlIgnore]
-      public GXBCLevelCollection<SdtTrn_Resident_NetworkCompany> gxTpr_Networkcompany
-      {
-         get {
-            if ( gxTv_SdtTrn_Resident_Networkcompany == null )
-            {
-               gxTv_SdtTrn_Resident_Networkcompany = new GXBCLevelCollection<SdtTrn_Resident_NetworkCompany>( context, "Trn_Resident.NetworkCompany", "Comforta_version2");
-            }
-            sdtIsNull = 0;
-            return gxTv_SdtTrn_Resident_Networkcompany ;
-         }
-
-         set {
-            sdtIsNull = 0;
-            gxTv_SdtTrn_Resident_Networkcompany = value;
-            SetDirty("Networkcompany");
-         }
-
-      }
-
-      public void gxTv_SdtTrn_Resident_Networkcompany_SetNull( )
-      {
-         gxTv_SdtTrn_Resident_Networkcompany = null;
-         SetDirty("Networkcompany");
-         return  ;
-      }
-
-      public bool gxTv_SdtTrn_Resident_Networkcompany_IsNull( )
-      {
-         if ( gxTv_SdtTrn_Resident_Networkcompany == null )
-         {
-            return true ;
-         }
-         return false ;
       }
 
       [  SoapElement( ElementName = "Mode" )]
@@ -2173,6 +1931,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "ResidentTypeId_N" )]
+      [  XmlElement( ElementName = "ResidentTypeId_N"   )]
+      public short gxTpr_Residenttypeid_N
+      {
+         get {
+            return gxTv_SdtTrn_Resident_Residenttypeid_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Resident_Residenttypeid_N = value;
+            SetDirty("Residenttypeid_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Resident_Residenttypeid_N_SetNull( )
+      {
+         gxTv_SdtTrn_Resident_Residenttypeid_N = 0;
+         SetDirty("Residenttypeid_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Resident_Residenttypeid_N_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "MedicalIndicationId_N" )]
       [  XmlElement( ElementName = "MedicalIndicationId_N"   )]
       public short gxTpr_Medicalindicationid_N
@@ -2350,6 +2136,7 @@ namespace GeneXus.Programs {
 
       private short sdtIsNull ;
       private short gxTv_SdtTrn_Resident_Initialized ;
+      private short gxTv_SdtTrn_Resident_Residenttypeid_N ;
       private short gxTv_SdtTrn_Resident_Medicalindicationid_N ;
       private short gxTv_SdtTrn_Resident_Residentimage_N ;
       private short gxTv_SdtTrn_Resident_Residentimage_gxi_N ;
@@ -2413,8 +2200,6 @@ namespace GeneXus.Programs {
       private Guid gxTv_SdtTrn_Resident_Organisationid_Z ;
       private Guid gxTv_SdtTrn_Resident_Residenttypeid_Z ;
       private Guid gxTv_SdtTrn_Resident_Medicalindicationid_Z ;
-      private GXBCLevelCollection<SdtTrn_Resident_NetworkIndividual> gxTv_SdtTrn_Resident_Networkindividual=null ;
-      private GXBCLevelCollection<SdtTrn_Resident_NetworkCompany> gxTv_SdtTrn_Resident_Networkcompany=null ;
    }
 
    [DataContract(Name = @"Trn_Resident", Namespace = "Comforta_version2")]
@@ -2821,32 +2606,6 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "NetworkIndividual" , Order = 28 )]
-      public GxGenericCollection<SdtTrn_Resident_NetworkIndividual_RESTInterface> gxTpr_Networkindividual
-      {
-         get {
-            return new GxGenericCollection<SdtTrn_Resident_NetworkIndividual_RESTInterface>(sdt.gxTpr_Networkindividual) ;
-         }
-
-         set {
-            value.LoadCollection(sdt.gxTpr_Networkindividual);
-         }
-
-      }
-
-      [DataMember( Name = "NetworkCompany" , Order = 29 )]
-      public GxGenericCollection<SdtTrn_Resident_NetworkCompany_RESTInterface> gxTpr_Networkcompany
-      {
-         get {
-            return new GxGenericCollection<SdtTrn_Resident_NetworkCompany_RESTInterface>(sdt.gxTpr_Networkcompany) ;
-         }
-
-         set {
-            value.LoadCollection(sdt.gxTpr_Networkcompany);
-         }
-
-      }
-
       public SdtTrn_Resident sdt
       {
          get {
@@ -2868,7 +2627,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 30 )]
+      [DataMember( Name = "gx_md5_hash", Order = 28 )]
       public string Hash
       {
          get {

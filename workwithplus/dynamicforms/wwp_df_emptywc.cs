@@ -885,7 +885,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251912265345", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512220534478", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -903,7 +903,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("workwithplus/dynamicforms/wwp_df_emptywc.js", "?20251912265346", false, true);
+            context.AddJavascriptSource("workwithplus/dynamicforms/wwp_df_emptywc.js", "?202512220534478", false, true);
          }
          /* End function include_jscripts */
       }

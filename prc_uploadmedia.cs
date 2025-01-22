@@ -43,68 +43,63 @@ namespace GeneXus.Programs {
          dsDefault = context.GetDataStore("Default");
       }
 
-      public void execute( Guid aP0_MediaId ,
-                           string aP1_MediaName ,
-                           string aP2_MediaImageData ,
-                           int aP3_MediaSize ,
-                           string aP4_MediaType ,
-                           out SdtTrn_Media aP5_BC_Trn_Media ,
-                           out SdtSDT_Error aP6_Error )
+      public void execute( string aP0_MediaName ,
+                           string aP1_MediaImageData ,
+                           int aP2_MediaSize ,
+                           string aP3_MediaType ,
+                           out SdtTrn_Media aP4_BC_Trn_Media ,
+                           out SdtSDT_Error aP5_Error )
       {
-         this.AV2MediaId = aP0_MediaId;
-         this.AV3MediaName = aP1_MediaName;
-         this.AV4MediaImageData = aP2_MediaImageData;
-         this.AV5MediaSize = aP3_MediaSize;
-         this.AV6MediaType = aP4_MediaType;
-         this.AV7BC_Trn_Media = new SdtTrn_Media(context) ;
-         this.AV8Error = new SdtSDT_Error(context) ;
+         this.AV2MediaName = aP0_MediaName;
+         this.AV3MediaImageData = aP1_MediaImageData;
+         this.AV4MediaSize = aP2_MediaSize;
+         this.AV5MediaType = aP3_MediaType;
+         this.AV6BC_Trn_Media = new SdtTrn_Media(context) ;
+         this.AV7Error = new SdtSDT_Error(context) ;
          initialize();
          ExecuteImpl();
-         aP5_BC_Trn_Media=this.AV7BC_Trn_Media;
-         aP6_Error=this.AV8Error;
+         aP4_BC_Trn_Media=this.AV6BC_Trn_Media;
+         aP5_Error=this.AV7Error;
       }
 
-      public SdtSDT_Error executeUdp( Guid aP0_MediaId ,
-                                      string aP1_MediaName ,
-                                      string aP2_MediaImageData ,
-                                      int aP3_MediaSize ,
-                                      string aP4_MediaType ,
-                                      out SdtTrn_Media aP5_BC_Trn_Media )
+      public SdtSDT_Error executeUdp( string aP0_MediaName ,
+                                      string aP1_MediaImageData ,
+                                      int aP2_MediaSize ,
+                                      string aP3_MediaType ,
+                                      out SdtTrn_Media aP4_BC_Trn_Media )
       {
-         execute(aP0_MediaId, aP1_MediaName, aP2_MediaImageData, aP3_MediaSize, aP4_MediaType, out aP5_BC_Trn_Media, out aP6_Error);
-         return AV8Error ;
+         execute(aP0_MediaName, aP1_MediaImageData, aP2_MediaSize, aP3_MediaType, out aP4_BC_Trn_Media, out aP5_Error);
+         return AV7Error ;
       }
 
-      public void executeSubmit( Guid aP0_MediaId ,
-                                 string aP1_MediaName ,
-                                 string aP2_MediaImageData ,
-                                 int aP3_MediaSize ,
-                                 string aP4_MediaType ,
-                                 out SdtTrn_Media aP5_BC_Trn_Media ,
-                                 out SdtSDT_Error aP6_Error )
+      public void executeSubmit( string aP0_MediaName ,
+                                 string aP1_MediaImageData ,
+                                 int aP2_MediaSize ,
+                                 string aP3_MediaType ,
+                                 out SdtTrn_Media aP4_BC_Trn_Media ,
+                                 out SdtSDT_Error aP5_Error )
       {
-         this.AV2MediaId = aP0_MediaId;
-         this.AV3MediaName = aP1_MediaName;
-         this.AV4MediaImageData = aP2_MediaImageData;
-         this.AV5MediaSize = aP3_MediaSize;
-         this.AV6MediaType = aP4_MediaType;
-         this.AV7BC_Trn_Media = new SdtTrn_Media(context) ;
-         this.AV8Error = new SdtSDT_Error(context) ;
+         this.AV2MediaName = aP0_MediaName;
+         this.AV3MediaImageData = aP1_MediaImageData;
+         this.AV4MediaSize = aP2_MediaSize;
+         this.AV5MediaType = aP3_MediaType;
+         this.AV6BC_Trn_Media = new SdtTrn_Media(context) ;
+         this.AV7Error = new SdtSDT_Error(context) ;
          SubmitImpl();
-         aP5_BC_Trn_Media=this.AV7BC_Trn_Media;
-         aP6_Error=this.AV8Error;
+         aP4_BC_Trn_Media=this.AV6BC_Trn_Media;
+         aP5_Error=this.AV7Error;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         args = new Object[] {(Guid)AV2MediaId,(string)AV3MediaName,(string)AV4MediaImageData,(int)AV5MediaSize,(string)AV6MediaType,(SdtTrn_Media)AV7BC_Trn_Media,(SdtSDT_Error)AV8Error} ;
+         args = new Object[] {(string)AV2MediaName,(string)AV3MediaImageData,(int)AV4MediaSize,(string)AV5MediaType,(SdtTrn_Media)AV6BC_Trn_Media,(SdtSDT_Error)AV7Error} ;
          ClassLoader.Execute("aprc_uploadmedia","GeneXus.Programs","aprc_uploadmedia", new Object[] {context }, "execute", args);
-         if ( ( args != null ) && ( args.Length == 7 ) )
+         if ( ( args != null ) && ( args.Length == 6 ) )
          {
-            AV7BC_Trn_Media = (SdtTrn_Media)(args[5]) ;
-            AV8Error = (SdtSDT_Error)(args[6]) ;
+            AV6BC_Trn_Media = (SdtTrn_Media)(args[4]) ;
+            AV7Error = (SdtSDT_Error)(args[5]) ;
          }
          cleanup();
       }
@@ -120,24 +115,23 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV7BC_Trn_Media = new SdtTrn_Media(context);
-         AV8Error = new SdtSDT_Error(context);
+         AV6BC_Trn_Media = new SdtTrn_Media(context);
+         AV7Error = new SdtSDT_Error(context);
          /* GeneXus formulas. */
       }
 
-      private int AV5MediaSize ;
-      private string AV6MediaType ;
-      private string AV4MediaImageData ;
-      private string AV3MediaName ;
-      private Guid AV2MediaId ;
+      private int AV4MediaSize ;
+      private string AV5MediaType ;
+      private string AV3MediaImageData ;
+      private string AV2MediaName ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private SdtTrn_Media AV7BC_Trn_Media ;
-      private SdtSDT_Error AV8Error ;
+      private SdtTrn_Media AV6BC_Trn_Media ;
+      private SdtSDT_Error AV7Error ;
       private Object[] args ;
-      private SdtTrn_Media aP5_BC_Trn_Media ;
-      private SdtSDT_Error aP6_Error ;
+      private SdtTrn_Media aP4_BC_Trn_Media ;
+      private SdtSDT_Error aP5_Error ;
    }
 
 }

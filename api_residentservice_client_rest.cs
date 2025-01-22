@@ -459,13 +459,12 @@ namespace GeneXus.Programs {
          /* SendDynamicForm Constructor */
       }
 
-      public void gxep_uploadmedia( Guid aP0_MediaId ,
-                                    string aP1_MediaName ,
-                                    string aP2_MediaImageData ,
-                                    int aP3_MediaSize ,
-                                    string aP4_MediaType ,
-                                    out SdtTrn_Media aP5_BC_Trn_Media ,
-                                    out SdtSDT_Error aP6_error )
+      public void gxep_uploadmedia( string aP0_MediaName ,
+                                    string aP1_MediaImageData ,
+                                    int aP2_MediaSize ,
+                                    string aP3_MediaType ,
+                                    out SdtTrn_Media aP4_BC_Trn_Media ,
+                                    out SdtSDT_Error aP5_error )
       {
          restCliUploadMedia = new GXRestAPIClient();
          if ( restLocation == null )
@@ -475,24 +474,23 @@ namespace GeneXus.Programs {
          restLocation.ResourceName = "/media/upload";
          restCliUploadMedia.Location = restLocation;
          restCliUploadMedia.HttpMethod = "POST";
-         restCliUploadMedia.AddBodyVar("MediaId", (Guid)(aP0_MediaId));
-         restCliUploadMedia.AddBodyVar("MediaName", (string)(aP1_MediaName));
-         restCliUploadMedia.AddBodyVar("MediaImageData", (string)(aP2_MediaImageData));
-         restCliUploadMedia.AddBodyVar("MediaSize", (int)(aP3_MediaSize));
-         restCliUploadMedia.AddBodyVar("MediaType", (string)(aP4_MediaType));
+         restCliUploadMedia.AddBodyVar("MediaName", (string)(aP0_MediaName));
+         restCliUploadMedia.AddBodyVar("MediaImageData", (string)(aP1_MediaImageData));
+         restCliUploadMedia.AddBodyVar("MediaSize", (int)(aP2_MediaSize));
+         restCliUploadMedia.AddBodyVar("MediaType", (string)(aP3_MediaType));
          restCliUploadMedia.RestExecute();
          if ( restCliUploadMedia.ErrorCode != 0 )
          {
             gxProperties.ErrorCode = restCliUploadMedia.ErrorCode;
             gxProperties.ErrorMessage = restCliUploadMedia.ErrorMessage;
             gxProperties.StatusCode = restCliUploadMedia.StatusCode;
-            aP5_BC_Trn_Media = new SdtTrn_Media();
-            aP6_error = new SdtSDT_Error();
+            aP4_BC_Trn_Media = new SdtTrn_Media();
+            aP5_error = new SdtSDT_Error();
          }
          else
          {
-            aP5_BC_Trn_Media = restCliUploadMedia.GetBodySdt<SdtTrn_Media>("BC_Trn_Media");
-            aP6_error = restCliUploadMedia.GetBodySdt<SdtSDT_Error>("error");
+            aP4_BC_Trn_Media = restCliUploadMedia.GetBodySdt<SdtTrn_Media>("BC_Trn_Media");
+            aP5_error = restCliUploadMedia.GetBodySdt<SdtSDT_Error>("error");
          }
          /* UploadMedia Constructor */
       }
@@ -1141,8 +1139,8 @@ namespace GeneXus.Programs {
          restCliSendDynamicForm = new GXRestAPIClient();
          aP0_result = "";
          restCliUploadMedia = new GXRestAPIClient();
-         aP5_BC_Trn_Media = new SdtTrn_Media();
-         aP6_error = new SdtSDT_Error();
+         aP4_BC_Trn_Media = new SdtTrn_Media();
+         aP5_error = new SdtSDT_Error();
          restCliDeleteMedia = new GXRestAPIClient();
          aP1_result = "";
          aP2_error = new SdtSDT_Error();
@@ -1236,8 +1234,8 @@ namespace GeneXus.Programs {
       protected string aP6_result ;
       protected GXBaseCollection<SdtSDT_AgendaLocation> aP3_SDT_AgendaLocation ;
       protected string aP0_result ;
-      protected SdtTrn_Media aP5_BC_Trn_Media ;
-      protected SdtSDT_Error aP6_error ;
+      protected SdtTrn_Media aP4_BC_Trn_Media ;
+      protected SdtSDT_Error aP5_error ;
       protected string aP1_result ;
       protected SdtSDT_Error aP2_error ;
       protected GXBaseCollection<SdtSDT_Media> aP0_SDT_MediaCollection ;

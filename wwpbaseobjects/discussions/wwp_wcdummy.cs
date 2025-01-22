@@ -885,7 +885,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251912265316", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251222053455", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -903,7 +903,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_wcdummy.js", "?20251912265316", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_wcdummy.js", "?20251222053455", false, true);
          }
          /* End function include_jscripts */
       }

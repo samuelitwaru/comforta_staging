@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250122074245"
+  version: "20250122182742"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -672,29 +672,6 @@ paths:
                 $ref: "#/components/schemas/UFilledOutFormsGetFilterDataOutput"
         404:
           description: "Not found"
-  /UFormLoadDVCombo:
-    post:
-      tags:
-        - UFormLoadDVCombo
-      operationId: "UFormLoadDVCombo"
-      summary: "UForm Load DVCombo"
-      security: 
-        - oAuthGXGAM: []
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UFormLoadDVComboInput"
-      responses:
-        200:
-          description: "Successful operation"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/UFormLoadDVComboOutput"
-        404:
-          description: "Not found"
   /UFormWWGetFilterData:
     post:
       tags:
@@ -1264,8 +1241,11 @@ components:
           type: "string"
         SelectedText:
           type: "string"
-        Combo_DataJson:
-          type: "string"
+        Combo_Data:
+          description: "DVB_SDTCombo Data"
+          type: array
+          items:
+            $ref: "#/components/schemas/WWPBaseObjects.DVB_SDTComboData_Item"
     Trn_ResidentTypeWWGetFilterDataOutput:
       properties:
         OptionsJson:
@@ -1359,14 +1339,6 @@ components:
         OptionsDescJson:
           type: "string"
         OptionIndexesJson:
-          type: "string"
-    UFormLoadDVComboOutput:
-      properties:
-        SelectedValue:
-          type: "string"
-        SelectedText:
-          type: "string"
-        Combo_DataJson:
           type: "string"
     UFormWWGetFilterDataOutput:
       properties:
@@ -1630,8 +1602,6 @@ components:
           type: "string"
         TrnMode:
           type: "string"
-        IsDynamicCall:
-          type: "boolean"
         ResidentId:
           type: "string"
           format: "uuid"
@@ -1641,8 +1611,6 @@ components:
         OrganisationId:
           type: "string"
           format: "uuid"
-        SearchTxtParms:
-          type: "string"
     Trn_ResidentTypeWWGetFilterDataInput:  
       properties:
         DDOName:
@@ -1732,28 +1700,6 @@ components:
         SearchTxtParms:
           type: "string"
         SearchTxtTo:
-          type: "string"
-    UFormLoadDVComboInput:  
-      properties:
-        ComboName:
-          type: "string"
-        TrnMode:
-          type: "string"
-        IsDynamicCall:
-          type: "boolean"
-        WWPFormId:
-          type: "integer"
-          format: "int32"
-        WWPFormVersionNumber:
-          type: "integer"
-          format: "int32"
-        Cond_WWPFormId:
-          type: "integer"
-          format: "int32"
-        Cond_WWPFormVersionNumber:
-          type: "integer"
-          format: "int32"
-        SearchTxtParms:
           type: "string"
     UFormWWGetFilterDataInput:  
       properties:

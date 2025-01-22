@@ -795,26 +795,34 @@ namespace GeneXus.Programs {
                      {
                         context.CommitDataStores("wp_useractivation",pr_default);
                      }
-                     AV16AdditionalParameter.gxTpr_Authenticationtypename = context.GetMessage( "local", "");
-                     AV17isLoggedIn = new GeneXus.Programs.genexussecurity.SdtGAMRepository(context).login(AV11GAMUser.gxTpr_Email, AV7UserPassword, AV16AdditionalParameter, out  AV13GAMErrors);
-                     if ( AV17isLoggedIn )
+                     if ( AV11GAMUser.checkrole("Resident") )
                      {
-                        new prc_loadwwpcontext(context ).execute( ref  AV21WWPContext) ;
-                        if ( AV11GAMUser.checkrole("Receptionist") )
-                        {
-                           CallWebObject(formatLink("wp_notificationdashboard.aspx") );
-                           context.wjLocDisableFrm = 1;
-                        }
-                        else
-                        {
-                           CallWebObject(formatLink("uhome.aspx") );
-                           context.wjLocDisableFrm = 1;
-                        }
+                        CallWebObject(formatLink("wp_residentactivationcomplete.aspx") );
+                        context.wjLocDisableFrm = 1;
                      }
                      else
                      {
-                        CallWebObject(formatLink("ulogin.aspx") );
-                        context.wjLocDisableFrm = 1;
+                        AV16AdditionalParameter.gxTpr_Authenticationtypename = context.GetMessage( "local", "");
+                        AV17isLoggedIn = new GeneXus.Programs.genexussecurity.SdtGAMRepository(context).login(AV11GAMUser.gxTpr_Email, AV7UserPassword, AV16AdditionalParameter, out  AV13GAMErrors);
+                        if ( AV17isLoggedIn )
+                        {
+                           new prc_loadwwpcontext(context ).execute( ref  AV21WWPContext) ;
+                           if ( AV11GAMUser.checkrole("Receptionist") )
+                           {
+                              CallWebObject(formatLink("wp_notificationdashboard.aspx") );
+                              context.wjLocDisableFrm = 1;
+                           }
+                           else
+                           {
+                              CallWebObject(formatLink("uhome.aspx") );
+                              context.wjLocDisableFrm = 1;
+                           }
+                        }
+                        else
+                        {
+                           CallWebObject(formatLink("ulogin.aspx") );
+                           context.wjLocDisableFrm = 1;
+                        }
                      }
                   }
                   else
@@ -888,7 +896,7 @@ namespace GeneXus.Programs {
             }
             else
             {
-               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Error: %1 (GAM%2)", ""), AV14Error.gxTpr_Message, StringUtil.LTrimStr( (decimal)(AV14Error.gxTpr_Code), 12, 0), "", "", "", "", "", "", ""));
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Error: %1", ""), AV14Error.gxTpr_Message, "", "", "", "", "", "", "", ""));
             }
             AV22GXV1 = (int)(AV22GXV1+1);
          }
@@ -976,7 +984,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251167473728", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251222142270", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -992,7 +1000,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_useractivation.js", "?20251167473733", false, true);
+         context.AddJavascriptSource("wp_useractivation.js", "?20251222142274", false, true);
          /* End function include_jscripts */
       }
 

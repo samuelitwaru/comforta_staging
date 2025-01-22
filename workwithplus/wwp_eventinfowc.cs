@@ -75,8 +75,8 @@ namespace GeneXus.Programs.workwithplus {
       {
          cmbavEventtype = new GXCombobox();
          chkavAllday = new GXCheckbox();
-         chkavRecurringevent = new GXCheckbox();
          dynavRecuringeventtype = new GXCombobox();
+         chkavRecurringevent = new GXCheckbox();
          chkavAddrsvp = new GXCheckbox();
       }
 
@@ -659,32 +659,18 @@ namespace GeneXus.Programs.workwithplus {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, divEventtype_cell_Internalname, 1, 0, "px", 0, "px", divEventtype_cell_Class, "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, divTablesplittedeventtype_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", cmbavEventtype.Visible, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+cmbavEventtype_Internalname+"\"", "", "div");
+            /* Attribute/Variable Label */
+            GxWebStd.gx_label_element( context, cmbavEventtype_Internalname, context.GetMessage( "Type", ""), "col-sm-3 AttributeLabel", 1, true, "");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, divTextblockeventtype_cell_Internalname, 1, 0, "px", 0, "px", divTextblockeventtype_cell_Class, "start", "top", "", "", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblockeventtype_Internalname, context.GetMessage( "Type", ""), "", "", lblTextblockeventtype_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-9", "start", "top", "", "", "div");
-            wb_table3_58_5E2( true) ;
-         }
-         else
-         {
-            wb_table3_58_5E2( false) ;
-         }
-         return  ;
-      }
-
-      protected void wb_table3_58_5E2e( bool wbgen )
-      {
-         if ( wbgen )
-         {
-            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 55,'" + sPrefix + "',false,'',0)\"";
+            /* ComboBox */
+            GxWebStd.gx_combobox_ctrl1( context, cmbavEventtype, cmbavEventtype_Internalname, StringUtil.RTrim( AV40EventType), 1, cmbavEventtype_Jsonclick, 0, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "svchar", "", cmbavEventtype.Visible, cmbavEventtype.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,55);\"", "", true, 0, "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
+            cmbavEventtype.CurrentValue = StringUtil.RTrim( AV40EventType);
+            AssignProp(sPrefix, false, cmbavEventtype_Internalname, "Values", (string)(cmbavEventtype.ToJavascriptSource()), true);
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -704,16 +690,16 @@ namespace GeneXus.Programs.workwithplus {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-9", "start", "top", "", "", "div");
-            wb_table4_73_5E2( true) ;
+            wb_table3_63_5E2( true) ;
          }
          else
          {
-            wb_table4_73_5E2( false) ;
+            wb_table3_63_5E2( false) ;
          }
          return  ;
       }
 
-      protected void wb_table4_73_5E2e( bool wbgen )
+      protected void wb_table3_63_5E2e( bool wbgen )
       {
          if ( wbgen )
          {
@@ -737,16 +723,16 @@ namespace GeneXus.Programs.workwithplus {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-9", "start", "top", "", "", "div");
-            wb_table5_88_5E2( true) ;
+            wb_table4_78_5E2( true) ;
          }
          else
          {
-            wb_table5_88_5E2( false) ;
+            wb_table4_78_5E2( false) ;
          }
          return  ;
       }
 
-      protected void wb_table5_88_5E2e( bool wbgen )
+      protected void wb_table4_78_5E2e( bool wbgen )
       {
          if ( wbgen )
          {
@@ -760,26 +746,26 @@ namespace GeneXus.Programs.workwithplus {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, divTablesplittedrecurringevent_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, divTablesplittedallday_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, divTextblockrecurringevent_cell_Internalname, 1, 0, "px", 0, "px", divTextblockrecurringevent_cell_Class, "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, divTextblockallday_cell_Internalname, 1, 0, "px", 0, "px", divTextblockallday_cell_Class, "start", "top", "", "", "div");
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblTextblockrecurringevent_Internalname, context.GetMessage( "Recurring", ""), "", "", lblTextblockrecurringevent_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
+            GxWebStd.gx_label_ctrl( context, lblTextblockallday_Internalname, " ", "", "", lblTextblockallday_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-9", "start", "top", "", "", "div");
-            wb_table6_103_5E2( true) ;
+            wb_table5_93_5E2( true) ;
          }
          else
          {
-            wb_table6_103_5E2( false) ;
+            wb_table5_93_5E2( false) ;
          }
          return  ;
       }
 
-      protected void wb_table6_103_5E2e( bool wbgen )
+      protected void wb_table5_93_5E2e( bool wbgen )
       {
          if ( wbgen )
          {
@@ -796,28 +782,28 @@ namespace GeneXus.Programs.workwithplus {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group ActionGroup", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 118,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 108,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtnenter_Visible, bttBtnenter_Enabled, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 120,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 110,'" + sPrefix + "',false,'',0)\"";
             ClassString = "BtnDefault";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtnuacancel_Internalname, "", context.GetMessage( "Cancel", ""), bttBtnuacancel_Jsonclick, 7, context.GetMessage( "Cancel", ""), "", StyleString, ClassString, bttBtnuacancel_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+"e115e1_client"+"'", TempTags, "", 2, "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 122,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 112,'" + sPrefix + "',false,'',0)\"";
             ClassString = "Button";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtnuaupdate_Internalname, "", context.GetMessage( "GXM_update", ""), bttBtnuaupdate_Jsonclick, 5, context.GetMessage( "GXM_update", ""), "", StyleString, ClassString, bttBtnuaupdate_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'DOUAUPDATE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 124,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 114,'" + sPrefix + "',false,'',0)\"";
             ClassString = "BtnDefault";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtnuadelete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtnuadelete_Jsonclick, 7, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtnuadelete_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+"e125e1_client"+"'", TempTags, "", 2, "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
@@ -837,24 +823,29 @@ namespace GeneXus.Programs.workwithplus {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, divHtml_bottomauxiliarcontrols_Internalname, 1, 0, "px", 0, "px", "Section", "start", "top", "", "", "div");
-            /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 128,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavAddressgroup_Internalname, AV44AddressGroup.ToString(), AV44AddressGroup.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,128);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavAddressgroup_Jsonclick, 0, "Attribute", "", "", "", "", edtavAddressgroup_Visible, 1, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             /* Check box */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 129,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 118,'" + sPrefix + "',false,'',0)\"";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavAddrsvp_Internalname, StringUtil.BoolToStr( AV41AddRSVP), "", "", chkavAddrsvp.Visible, 1, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(129, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,129);\"");
-            wb_table7_130_5E2( true) ;
+            GxWebStd.gx_checkbox_ctrl( context, chkavRecurringevent_Internalname, StringUtil.BoolToStr( AV42RecurringEvent), "", "", chkavRecurringevent.Visible, 1, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(118, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,118);\"");
+            /* Single line edit */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 119,'" + sPrefix + "',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavAddressgroup_Internalname, AV44AddressGroup.ToString(), AV44AddressGroup.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,119);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavAddressgroup_Jsonclick, 0, "Attribute", "", "", "", "", edtavAddressgroup_Visible, 1, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
+            /* Check box */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 120,'" + sPrefix + "',false,'',0)\"";
+            ClassString = "Attribute";
+            StyleString = "";
+            GxWebStd.gx_checkbox_ctrl( context, chkavAddrsvp_Internalname, StringUtil.BoolToStr( AV41AddRSVP), "", "", chkavAddrsvp.Visible, 1, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(120, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,120);\"");
+            wb_table6_121_5E2( true) ;
          }
          else
          {
-            wb_table7_130_5E2( false) ;
+            wb_table6_121_5E2( false) ;
          }
          return  ;
       }
 
-      protected void wb_table7_130_5E2e( bool wbgen )
+      protected void wb_table6_121_5E2e( bool wbgen )
       {
          if ( wbgen )
          {
@@ -1360,8 +1351,6 @@ namespace GeneXus.Programs.workwithplus {
          }
          AV7AllDay = StringUtil.StrToBool( StringUtil.BoolToStr( AV7AllDay));
          AssignAttri(sPrefix, false, "AV7AllDay", AV7AllDay);
-         AV42RecurringEvent = StringUtil.StrToBool( StringUtil.BoolToStr( AV42RecurringEvent));
-         AssignAttri(sPrefix, false, "AV42RecurringEvent", AV42RecurringEvent);
          if ( dynavRecuringeventtype.ItemCount > 0 )
          {
             AV43RecuringEventType = dynavRecuringeventtype.getValidValue(AV43RecuringEventType);
@@ -1372,6 +1361,8 @@ namespace GeneXus.Programs.workwithplus {
             dynavRecuringeventtype.CurrentValue = StringUtil.RTrim( AV43RecuringEventType);
             AssignProp(sPrefix, false, dynavRecuringeventtype_Internalname, "Values", dynavRecuringeventtype.ToJavascriptSource(), true);
          }
+         AV42RecurringEvent = StringUtil.StrToBool( StringUtil.BoolToStr( AV42RecurringEvent));
+         AssignAttri(sPrefix, false, "AV42RecurringEvent", AV42RecurringEvent);
          AV41AddRSVP = StringUtil.StrToBool( StringUtil.BoolToStr( AV41AddRSVP));
          AssignAttri(sPrefix, false, "AV41AddRSVP", AV41AddRSVP);
       }
@@ -1499,8 +1490,6 @@ namespace GeneXus.Programs.workwithplus {
             cmbavEventtype.CurrentValue = cgiGet( cmbavEventtype_Internalname);
             AV40EventType = cgiGet( cmbavEventtype_Internalname);
             AssignAttri(sPrefix, false, "AV40EventType", AV40EventType);
-            AV7AllDay = StringUtil.StrToBool( cgiGet( chkavAllday_Internalname));
-            AssignAttri(sPrefix, false, "AV7AllDay", AV7AllDay);
             if ( context.localUtil.VCDate( cgiGet( edtavCurrentdate_Internalname), (short)(DateTimeUtil.MapDateFormat( context.GetLanguageProperty( "date_fmt")))) == 0 )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_faildate", new   object[]  {context.GetMessage( "Current Date", "")}), 1, "vCURRENTDATE");
@@ -1557,11 +1546,13 @@ namespace GeneXus.Programs.workwithplus {
                AV19ToTime = DateTimeUtil.ResetDate(context.localUtil.CToT( cgiGet( edtavTotime_Internalname)));
                AssignAttri(sPrefix, false, "AV19ToTime", context.localUtil.TToC( AV19ToTime, 0, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
             }
-            AV42RecurringEvent = StringUtil.StrToBool( cgiGet( chkavRecurringevent_Internalname));
-            AssignAttri(sPrefix, false, "AV42RecurringEvent", AV42RecurringEvent);
+            AV7AllDay = StringUtil.StrToBool( cgiGet( chkavAllday_Internalname));
+            AssignAttri(sPrefix, false, "AV7AllDay", AV7AllDay);
             dynavRecuringeventtype.CurrentValue = cgiGet( dynavRecuringeventtype_Internalname);
             AV43RecuringEventType = cgiGet( dynavRecuringeventtype_Internalname);
             AssignAttri(sPrefix, false, "AV43RecuringEventType", AV43RecuringEventType);
+            AV42RecurringEvent = StringUtil.StrToBool( cgiGet( chkavRecurringevent_Internalname));
+            AssignAttri(sPrefix, false, "AV42RecurringEvent", AV42RecurringEvent);
             if ( StringUtil.StrCmp(cgiGet( edtavAddressgroup_Internalname), "") == 0 )
             {
                AV44AddressGroup = Guid.Empty;
@@ -1742,6 +1733,8 @@ namespace GeneXus.Programs.workwithplus {
          /* Execute user subroutine: 'ATTRIBUTESSECURITYCODE' */
          S132 ();
          if (returnInSub) return;
+         chkavRecurringevent.Visible = 0;
+         AssignProp(sPrefix, false, chkavRecurringevent_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavRecurringevent.Visible), 5, 0), true);
          edtavAddressgroup_Visible = 0;
          AssignProp(sPrefix, false, edtavAddressgroup_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavAddressgroup_Visible), 5, 0), true);
          chkavAddrsvp.Visible = 0;
@@ -1974,33 +1967,15 @@ namespace GeneXus.Programs.workwithplus {
          {
             cmbavEventtype.Visible = 0;
             AssignProp(sPrefix, false, cmbavEventtype_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(cmbavEventtype.Visible), 5, 0), true);
-            cellEventtype_cell_Class = "Invisible";
-            AssignProp(sPrefix, false, cellEventtype_cell_Internalname, "Class", cellEventtype_cell_Class, true);
-            divTextblockeventtype_cell_Class = "Invisible";
-            AssignProp(sPrefix, false, divTextblockeventtype_cell_Internalname, "Class", divTextblockeventtype_cell_Class, true);
+            divEventtype_cell_Class = "Invisible";
+            AssignProp(sPrefix, false, divEventtype_cell_Internalname, "Class", divEventtype_cell_Class, true);
          }
          else
          {
             cmbavEventtype.Visible = 1;
             AssignProp(sPrefix, false, cmbavEventtype_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(cmbavEventtype.Visible), 5, 0), true);
-            cellEventtype_cell_Class = "MergeDataCell";
-            AssignProp(sPrefix, false, cellEventtype_cell_Internalname, "Class", cellEventtype_cell_Class, true);
-            divTextblockeventtype_cell_Class = "col-sm-3 MergeLabelCell";
-            AssignProp(sPrefix, false, divTextblockeventtype_cell_Internalname, "Class", divTextblockeventtype_cell_Class, true);
-         }
-         if ( ! ( ( StringUtil.StrCmp(Gx_mode, "DSP") != 0 ) ) )
-         {
-            chkavAllday.Visible = 0;
-            AssignProp(sPrefix, false, chkavAllday_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavAllday.Visible), 5, 0), true);
-            cellAllday_cell_Class = "Invisible";
-            AssignProp(sPrefix, false, cellAllday_cell_Internalname, "Class", cellAllday_cell_Class, true);
-         }
-         else
-         {
-            chkavAllday.Visible = 1;
-            AssignProp(sPrefix, false, chkavAllday_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavAllday.Visible), 5, 0), true);
-            cellAllday_cell_Class = "DataContentCell";
-            AssignProp(sPrefix, false, cellAllday_cell_Internalname, "Class", cellAllday_cell_Class, true);
+            divEventtype_cell_Class = "col-xs-12 DataContentCell";
+            AssignProp(sPrefix, false, divEventtype_cell_Internalname, "Class", divEventtype_cell_Class, true);
          }
          if ( ! ( ( StringUtil.StrCmp(Gx_mode, "DSP") != 0 ) ) )
          {
@@ -2068,21 +2043,21 @@ namespace GeneXus.Programs.workwithplus {
          }
          if ( ! ( ( StringUtil.StrCmp(Gx_mode, "DSP") != 0 ) ) )
          {
-            chkavRecurringevent.Visible = 0;
-            AssignProp(sPrefix, false, chkavRecurringevent_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavRecurringevent.Visible), 5, 0), true);
-            cellRecurringevent_cell_Class = "Invisible";
-            AssignProp(sPrefix, false, cellRecurringevent_cell_Internalname, "Class", cellRecurringevent_cell_Class, true);
-            divTextblockrecurringevent_cell_Class = "Invisible";
-            AssignProp(sPrefix, false, divTextblockrecurringevent_cell_Internalname, "Class", divTextblockrecurringevent_cell_Class, true);
+            chkavAllday.Visible = 0;
+            AssignProp(sPrefix, false, chkavAllday_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavAllday.Visible), 5, 0), true);
+            cellAllday_cell_Class = "Invisible";
+            AssignProp(sPrefix, false, cellAllday_cell_Internalname, "Class", cellAllday_cell_Class, true);
+            divTextblockallday_cell_Class = "Invisible";
+            AssignProp(sPrefix, false, divTextblockallday_cell_Internalname, "Class", divTextblockallday_cell_Class, true);
          }
          else
          {
-            chkavRecurringevent.Visible = 1;
-            AssignProp(sPrefix, false, chkavRecurringevent_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavRecurringevent.Visible), 5, 0), true);
-            cellRecurringevent_cell_Class = "MergeDataCell";
-            AssignProp(sPrefix, false, cellRecurringevent_cell_Internalname, "Class", cellRecurringevent_cell_Class, true);
-            divTextblockrecurringevent_cell_Class = "col-sm-3 MergeLabelCell";
-            AssignProp(sPrefix, false, divTextblockrecurringevent_cell_Internalname, "Class", divTextblockrecurringevent_cell_Class, true);
+            chkavAllday.Visible = 1;
+            AssignProp(sPrefix, false, chkavAllday_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavAllday.Visible), 5, 0), true);
+            cellAllday_cell_Class = "MergeDataCell";
+            AssignProp(sPrefix, false, cellAllday_cell_Internalname, "Class", cellAllday_cell_Class, true);
+            divTextblockallday_cell_Class = "col-sm-3 MergeLabelCell";
+            AssignProp(sPrefix, false, divTextblockallday_cell_Internalname, "Class", divTextblockallday_cell_Class, true);
          }
          divRecurringtypestable_Visible = (((StringUtil.StrCmp(Gx_mode, "DSP")!=0)&&(AV42RecurringEvent)) ? 1 : 0);
          AssignProp(sPrefix, false, divRecurringtypestable_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divRecurringtypestable_Visible), 5, 0), true);
@@ -2325,7 +2300,7 @@ namespace GeneXus.Programs.workwithplus {
          returnInSub = false;
       }
 
-      protected void wb_table7_130_5E2( bool wbgen )
+      protected void wb_table6_121_5E2( bool wbgen )
       {
          if ( wbgen )
          {
@@ -2351,32 +2326,32 @@ namespace GeneXus.Programs.workwithplus {
             context.WriteHtmlText( "</tbody>") ;
             /* End of table */
             context.WriteHtmlText( "</table>") ;
-            wb_table7_130_5E2e( true) ;
+            wb_table6_121_5E2e( true) ;
          }
          else
          {
-            wb_table7_130_5E2e( false) ;
+            wb_table6_121_5E2e( false) ;
          }
       }
 
-      protected void wb_table6_103_5E2( bool wbgen )
+      protected void wb_table5_93_5E2( bool wbgen )
       {
          if ( wbgen )
          {
             /* Table start */
             sStyleString = "";
-            GxWebStd.gx_table_start( context, tblTablemergedrecurringevent_Internalname, tblTablemergedrecurringevent_Internalname, "", "TableMerged", 0, "", "", 0, 0, sStyleString, "", "", 0);
+            GxWebStd.gx_table_start( context, tblTablemergedallday_Internalname, tblTablemergedallday_Internalname, "", "TableMerged", 0, "", "", 0, 0, sStyleString, "", "", 0);
             context.WriteHtmlText( "<tr>") ;
-            context.WriteHtmlText( "<td id=\""+cellRecurringevent_cell_Internalname+"\"  class='"+cellRecurringevent_cell_Class+"'>") ;
+            context.WriteHtmlText( "<td id=\""+cellAllday_cell_Internalname+"\"  class='"+cellAllday_cell_Class+"'>") ;
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavRecurringevent_Internalname, context.GetMessage( "Recurring Event", ""), "gx-form-item AttributeCheckBoxLabel", 0, true, "width: 25%;");
+            GxWebStd.gx_label_element( context, chkavAllday_Internalname, context.GetMessage( "All Day", ""), "gx-form-item AttributeCheckBoxLabel", 0, true, "width: 25%;");
             /* Check box */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 107,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 97,'" + sPrefix + "',false,'',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavRecurringevent_Internalname, StringUtil.BoolToStr( AV42RecurringEvent), "", context.GetMessage( "Recurring Event", ""), chkavRecurringevent.Visible, chkavRecurringevent.Enabled, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(107, this, 'true', 'false',"+"'"+sPrefix+"'"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,107);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavAllday_Internalname, StringUtil.BoolToStr( AV7AllDay), "", context.GetMessage( "All Day", ""), chkavAllday.Visible, chkavAllday.Enabled, "true", context.GetMessage( "WWP_Calendar_AllDayEvent", ""), StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,97);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
@@ -2390,9 +2365,9 @@ namespace GeneXus.Programs.workwithplus {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, dynavRecuringeventtype_Internalname, context.GetMessage( "Recuring Event Type", ""), "col-sm-3 AttributeLabel", 0, true, "");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 113,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 103,'" + sPrefix + "',false,'',0)\"";
             /* ComboBox */
-            GxWebStd.gx_combobox_ctrl1( context, dynavRecuringeventtype, dynavRecuringeventtype_Internalname, StringUtil.RTrim( AV43RecuringEventType), 1, dynavRecuringeventtype_Jsonclick, 0, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "svchar", "", dynavRecuringeventtype.Visible, dynavRecuringeventtype.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,113);\"", "", true, 0, "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
+            GxWebStd.gx_combobox_ctrl1( context, dynavRecuringeventtype, dynavRecuringeventtype_Internalname, StringUtil.RTrim( AV43RecuringEventType), 1, dynavRecuringeventtype_Jsonclick, 0, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "svchar", "", dynavRecuringeventtype.Visible, dynavRecuringeventtype.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,103);\"", "", true, 0, "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             dynavRecuringeventtype.CurrentValue = StringUtil.RTrim( AV43RecuringEventType);
             AssignProp(sPrefix, false, dynavRecuringeventtype_Internalname, "Values", (string)(dynavRecuringeventtype.ToJavascriptSource()), true);
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -2403,15 +2378,15 @@ namespace GeneXus.Programs.workwithplus {
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
             context.WriteHtmlText( "</table>") ;
-            wb_table6_103_5E2e( true) ;
+            wb_table5_93_5E2e( true) ;
          }
          else
          {
-            wb_table6_103_5E2e( false) ;
+            wb_table5_93_5E2e( false) ;
          }
       }
 
-      protected void wb_table5_88_5E2( bool wbgen )
+      protected void wb_table4_78_5E2( bool wbgen )
       {
          if ( wbgen )
          {
@@ -2425,9 +2400,9 @@ namespace GeneXus.Programs.workwithplus {
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, edtavEnddate_Internalname, context.GetMessage( "End Date", ""), "gx-form-item AttributeDateLabel", 0, true, "width: 25%;");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 92,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 82,'" + sPrefix + "',false,'',0)\"";
             context.WriteHtmlText( "<div id=\""+edtavEnddate_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-            GxWebStd.gx_single_line_edit( context, edtavEnddate_Internalname, context.localUtil.Format(AV16EndDate, "99/99/99"), context.localUtil.Format( AV16EndDate, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,92);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavEnddate_Jsonclick, 0, "AttributeDate", "", "", "", "", edtavEnddate_Visible, edtavEnddate_Enabled, 1, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
+            GxWebStd.gx_single_line_edit( context, edtavEnddate_Internalname, context.localUtil.Format(AV16EndDate, "99/99/99"), context.localUtil.Format( AV16EndDate, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,82);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavEnddate_Jsonclick, 0, "AttributeDate", "", "", "", "", edtavEnddate_Visible, edtavEnddate_Enabled, 1, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             GxWebStd.gx_bitmap( context, edtavEnddate_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((edtavEnddate_Visible==0)||(edtavEnddate_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             context.WriteHtmlTextNl( "</div>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -2438,9 +2413,9 @@ namespace GeneXus.Programs.workwithplus {
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, edtavTotime_Internalname, context.GetMessage( "To Time", ""), "gx-form-item AttributeDateTimeLabel", 0, true, "width: 25%;");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 95,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 85,'" + sPrefix + "',false,'',0)\"";
             context.WriteHtmlText( "<div id=\""+edtavTotime_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-            GxWebStd.gx_single_line_edit( context, edtavTotime_Internalname, context.localUtil.TToC( AV19ToTime, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( AV19ToTime, "99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 0,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 0,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,95);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTotime_Jsonclick, 0, "AttributeDateTime", "", "", "", "", edtavTotime_Visible, edtavTotime_Enabled, 1, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "GeneXus\\Time", "end", false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
+            GxWebStd.gx_single_line_edit( context, edtavTotime_Internalname, context.localUtil.TToC( AV19ToTime, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( AV19ToTime, "99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 0,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 0,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,85);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTotime_Jsonclick, 0, "AttributeDateTime", "", "", "", "", edtavTotime_Visible, edtavTotime_Enabled, 1, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "GeneXus\\Time", "end", false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             GxWebStd.gx_bitmap( context, edtavTotime_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((edtavTotime_Visible==0)||(edtavTotime_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             context.WriteHtmlTextNl( "</div>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -2448,15 +2423,15 @@ namespace GeneXus.Programs.workwithplus {
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
             context.WriteHtmlText( "</table>") ;
-            wb_table5_88_5E2e( true) ;
+            wb_table4_78_5E2e( true) ;
          }
          else
          {
-            wb_table5_88_5E2e( false) ;
+            wb_table4_78_5E2e( false) ;
          }
       }
 
-      protected void wb_table4_73_5E2( bool wbgen )
+      protected void wb_table3_63_5E2( bool wbgen )
       {
          if ( wbgen )
          {
@@ -2470,9 +2445,9 @@ namespace GeneXus.Programs.workwithplus {
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, edtavCurrentdate_Internalname, context.GetMessage( "Current Date", ""), "gx-form-item AttributeDateLabel", 0, true, "width: 25%;");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 77,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 67,'" + sPrefix + "',false,'',0)\"";
             context.WriteHtmlText( "<div id=\""+edtavCurrentdate_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-            GxWebStd.gx_single_line_edit( context, edtavCurrentdate_Internalname, context.localUtil.Format(AV12CurrentDate, "99/99/99"), context.localUtil.Format( AV12CurrentDate, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,77);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCurrentdate_Jsonclick, 0, "AttributeDate", "", "", "", "", edtavCurrentdate_Visible, edtavCurrentdate_Enabled, 1, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
+            GxWebStd.gx_single_line_edit( context, edtavCurrentdate_Internalname, context.localUtil.Format(AV12CurrentDate, "99/99/99"), context.localUtil.Format( AV12CurrentDate, "99/99/99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 8,'"+context.GetLanguageProperty( "date_fmt")+"',0,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,67);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCurrentdate_Jsonclick, 0, "AttributeDate", "", "", "", "", edtavCurrentdate_Visible, edtavCurrentdate_Enabled, 1, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             GxWebStd.gx_bitmap( context, edtavCurrentdate_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((edtavCurrentdate_Visible==0)||(edtavCurrentdate_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             context.WriteHtmlTextNl( "</div>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -2483,9 +2458,9 @@ namespace GeneXus.Programs.workwithplus {
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, edtavFromtime_Internalname, context.GetMessage( "From Time", ""), "gx-form-item AttributeDateTimeLabel", 0, true, "width: 25%;");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 80,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 70,'" + sPrefix + "',false,'',0)\"";
             context.WriteHtmlText( "<div id=\""+edtavFromtime_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
-            GxWebStd.gx_single_line_edit( context, edtavFromtime_Internalname, context.localUtil.TToC( AV17FromTime, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( AV17FromTime, "99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 0,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 0,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,80);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavFromtime_Jsonclick, 0, "AttributeDateTime", "", "", "", "", edtavFromtime_Visible, edtavFromtime_Enabled, 1, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "GeneXus\\Time", "end", false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
+            GxWebStd.gx_single_line_edit( context, edtavFromtime_Internalname, context.localUtil.TToC( AV17FromTime, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( AV17FromTime, "99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 0,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 0,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,70);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavFromtime_Jsonclick, 0, "AttributeDateTime", "", "", "", "", edtavFromtime_Visible, edtavFromtime_Enabled, 1, "text", "", 8, "chr", 1, "row", 8, 0, 0, 0, 0, -1, 0, true, "GeneXus\\Time", "end", false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             GxWebStd.gx_bitmap( context, edtavFromtime_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((edtavFromtime_Visible==0)||(edtavFromtime_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
             context.WriteHtmlTextNl( "</div>") ;
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -2493,54 +2468,11 @@ namespace GeneXus.Programs.workwithplus {
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
             context.WriteHtmlText( "</table>") ;
-            wb_table4_73_5E2e( true) ;
+            wb_table3_63_5E2e( true) ;
          }
          else
          {
-            wb_table4_73_5E2e( false) ;
-         }
-      }
-
-      protected void wb_table3_58_5E2( bool wbgen )
-      {
-         if ( wbgen )
-         {
-            /* Table start */
-            sStyleString = "";
-            GxWebStd.gx_table_start( context, tblTablemergedeventtype_Internalname, tblTablemergedeventtype_Internalname, "", "TableMerged", 0, "", "", 0, 0, sStyleString, "", "", 0);
-            context.WriteHtmlText( "<tr>") ;
-            context.WriteHtmlText( "<td id=\""+cellEventtype_cell_Internalname+"\"  class='"+cellEventtype_cell_Class+"'>") ;
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
-            /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, cmbavEventtype_Internalname, context.GetMessage( "Event Type", ""), "gx-form-item AttributeLabel", 0, true, "width: 25%;");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 62,'" + sPrefix + "',false,'',0)\"";
-            /* ComboBox */
-            GxWebStd.gx_combobox_ctrl1( context, cmbavEventtype, cmbavEventtype_Internalname, StringUtil.RTrim( AV40EventType), 1, cmbavEventtype_Jsonclick, 0, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "svchar", "", cmbavEventtype.Visible, cmbavEventtype.Enabled, 0, 0, 0, "em", 0, "", "", "Attribute", "", "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,62);\"", "", true, 0, "HLP_WorkWithPlus/WWP_EventInfoWC.htm");
-            cmbavEventtype.CurrentValue = StringUtil.RTrim( AV40EventType);
-            AssignProp(sPrefix, false, cmbavEventtype_Internalname, "Values", (string)(cmbavEventtype.ToJavascriptSource()), true);
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            context.WriteHtmlText( "</td>") ;
-            context.WriteHtmlText( "<td id=\""+cellAllday_cell_Internalname+"\"  class='"+cellAllday_cell_Class+"'>") ;
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
-            /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavAllday_Internalname, context.GetMessage( "All Day", ""), "gx-form-item AttributeCheckBoxLabel", 0, true, "width: 25%;");
-            /* Check box */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 65,'" + sPrefix + "',false,'',0)\"";
-            ClassString = "AttributeCheckBox";
-            StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavAllday_Internalname, StringUtil.BoolToStr( AV7AllDay), "", context.GetMessage( "All Day", ""), chkavAllday.Visible, chkavAllday.Enabled, "true", context.GetMessage( "WWP_Calendar_AllDayEvent", ""), StyleString, ClassString, "", "", TempTags+" onblur=\""+""+";gx.evt.onblur(this,65);\"");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            context.WriteHtmlText( "</td>") ;
-            context.WriteHtmlText( "</tr>") ;
-            /* End of table */
-            context.WriteHtmlText( "</table>") ;
-            wb_table3_58_5E2e( true) ;
-         }
-         else
-         {
-            wb_table3_58_5E2e( false) ;
+            wb_table3_63_5E2e( false) ;
          }
       }
 
@@ -2887,7 +2819,7 @@ namespace GeneXus.Programs.workwithplus {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251167442531", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512220535035", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2903,7 +2835,7 @@ namespace GeneXus.Programs.workwithplus {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("workwithplus/wwp_eventinfowc.js", "?20251167442531", false, true);
+         context.AddJavascriptSource("workwithplus/wwp_eventinfowc.js", "?202512220535036", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/ConfirmPanel/BootstrapConfirmPanelRender.js", "", false, true);
@@ -2924,13 +2856,13 @@ namespace GeneXus.Programs.workwithplus {
          chkavAllday.Caption = context.GetMessage( "All Day", "");
          AssignProp(sPrefix, false, chkavAllday_Internalname, "TitleCaption", chkavAllday.Caption, true);
          chkavAllday.CheckedValue = "false";
-         chkavRecurringevent.Name = "vRECURRINGEVENT";
-         chkavRecurringevent.WebTags = "";
-         chkavRecurringevent.Caption = context.GetMessage( "Recurring Event", "");
-         AssignProp(sPrefix, false, chkavRecurringevent_Internalname, "TitleCaption", chkavRecurringevent.Caption, true);
-         chkavRecurringevent.CheckedValue = "false";
          dynavRecuringeventtype.Name = "vRECURINGEVENTTYPE";
          dynavRecuringeventtype.WebTags = "";
+         chkavRecurringevent.Name = "vRECURRINGEVENT";
+         chkavRecurringevent.WebTags = "";
+         chkavRecurringevent.Caption = "";
+         AssignProp(sPrefix, false, chkavRecurringevent_Internalname, "TitleCaption", chkavRecurringevent.Caption, true);
+         chkavRecurringevent.CheckedValue = "false";
          chkavAddrsvp.Name = "vADDRSVP";
          chkavAddrsvp.WebTags = "";
          chkavAddrsvp.Caption = "";
@@ -2957,14 +2889,8 @@ namespace GeneXus.Programs.workwithplus {
          divDuration_cell_Internalname = sPrefix+"DURATION_CELL";
          edtavTitle_Internalname = sPrefix+"vTITLE";
          divTitle_cell_Internalname = sPrefix+"TITLE_CELL";
-         lblTextblockeventtype_Internalname = sPrefix+"TEXTBLOCKEVENTTYPE";
-         divTextblockeventtype_cell_Internalname = sPrefix+"TEXTBLOCKEVENTTYPE_CELL";
          cmbavEventtype_Internalname = sPrefix+"vEVENTTYPE";
-         cellEventtype_cell_Internalname = sPrefix+"EVENTTYPE_CELL";
-         chkavAllday_Internalname = sPrefix+"vALLDAY";
-         cellAllday_cell_Internalname = sPrefix+"ALLDAY_CELL";
-         tblTablemergedeventtype_Internalname = sPrefix+"TABLEMERGEDEVENTTYPE";
-         divTablesplittedeventtype_Internalname = sPrefix+"TABLESPLITTEDEVENTTYPE";
+         divEventtype_cell_Internalname = sPrefix+"EVENTTYPE_CELL";
          lblTextblockcurrentdate_Internalname = sPrefix+"TEXTBLOCKCURRENTDATE";
          divTextblockcurrentdate_cell_Internalname = sPrefix+"TEXTBLOCKCURRENTDATE_CELL";
          edtavCurrentdate_Internalname = sPrefix+"vCURRENTDATE";
@@ -2981,20 +2907,21 @@ namespace GeneXus.Programs.workwithplus {
          cellTotime_cell_Internalname = sPrefix+"TOTIME_CELL";
          tblTablemergedenddate_Internalname = sPrefix+"TABLEMERGEDENDDATE";
          divTablesplittedenddate_Internalname = sPrefix+"TABLESPLITTEDENDDATE";
-         lblTextblockrecurringevent_Internalname = sPrefix+"TEXTBLOCKRECURRINGEVENT";
-         divTextblockrecurringevent_cell_Internalname = sPrefix+"TEXTBLOCKRECURRINGEVENT_CELL";
-         chkavRecurringevent_Internalname = sPrefix+"vRECURRINGEVENT";
-         cellRecurringevent_cell_Internalname = sPrefix+"RECURRINGEVENT_CELL";
+         lblTextblockallday_Internalname = sPrefix+"TEXTBLOCKALLDAY";
+         divTextblockallday_cell_Internalname = sPrefix+"TEXTBLOCKALLDAY_CELL";
+         chkavAllday_Internalname = sPrefix+"vALLDAY";
+         cellAllday_cell_Internalname = sPrefix+"ALLDAY_CELL";
          dynavRecuringeventtype_Internalname = sPrefix+"vRECURINGEVENTTYPE";
          divRecurringtypestable_Internalname = sPrefix+"RECURRINGTYPESTABLE";
-         tblTablemergedrecurringevent_Internalname = sPrefix+"TABLEMERGEDRECURRINGEVENT";
-         divTablesplittedrecurringevent_Internalname = sPrefix+"TABLESPLITTEDRECURRINGEVENT";
+         tblTablemergedallday_Internalname = sPrefix+"TABLEMERGEDALLDAY";
+         divTablesplittedallday_Internalname = sPrefix+"TABLESPLITTEDALLDAY";
          bttBtnenter_Internalname = sPrefix+"BTNENTER";
          bttBtnuacancel_Internalname = sPrefix+"BTNUACANCEL";
          bttBtnuaupdate_Internalname = sPrefix+"BTNUAUPDATE";
          bttBtnuadelete_Internalname = sPrefix+"BTNUADELETE";
          divTablecontent_Internalname = sPrefix+"TABLECONTENT";
          divTablemain_Internalname = sPrefix+"TABLEMAIN";
+         chkavRecurringevent_Internalname = sPrefix+"vRECURRINGEVENT";
          edtavAddressgroup_Internalname = sPrefix+"vADDRESSGROUP";
          chkavAddrsvp_Internalname = sPrefix+"vADDRSVP";
          Dvelop_confirmpanel_uadelete_Internalname = sPrefix+"DVELOP_CONFIRMPANEL_UADELETE";
@@ -3019,15 +2946,10 @@ namespace GeneXus.Programs.workwithplus {
          }
          init_default_properties( ) ;
          chkavAddrsvp.Caption = "";
-         chkavRecurringevent.Caption = context.GetMessage( "Recurring Event", "");
+         chkavRecurringevent.Caption = "";
          chkavAllday.Caption = context.GetMessage( "All Day", "");
          edtavFromdatedisplay_Enabled = 1;
          edtavTodatedisplay_Enabled = 1;
-         chkavAllday.Enabled = 1;
-         cellAllday_cell_Class = "";
-         cmbavEventtype_Jsonclick = "";
-         cmbavEventtype.Enabled = 1;
-         cellEventtype_cell_Class = "";
          edtavFromtime_Jsonclick = "";
          cellFromtime_cell_Class = "";
          edtavCurrentdate_Jsonclick = "";
@@ -3039,8 +2961,8 @@ namespace GeneXus.Programs.workwithplus {
          dynavRecuringeventtype_Jsonclick = "";
          dynavRecuringeventtype.Enabled = 1;
          divRecurringtypestable_Visible = 1;
-         chkavRecurringevent.Enabled = 1;
-         cellRecurringevent_cell_Class = "";
+         chkavAllday.Enabled = 1;
+         cellAllday_cell_Class = "";
          lblTodatedisplay_tags_Caption = "";
          lblFromdatedisplay_tags_Caption = "";
          edtavTotime_Visible = 1;
@@ -3050,8 +2972,6 @@ namespace GeneXus.Programs.workwithplus {
          edtavTodatedisplay_Visible = 1;
          edtavFromdatedisplay_Visible = 1;
          dynavRecuringeventtype.Visible = 1;
-         chkavRecurringevent.Visible = 1;
-         cmbavEventtype.Visible = 1;
          chkavAllday.Visible = 1;
          edtavTotime_Enabled = 1;
          edtavFromtime_Enabled = 1;
@@ -3060,15 +2980,19 @@ namespace GeneXus.Programs.workwithplus {
          chkavAddrsvp.Visible = 1;
          edtavAddressgroup_Jsonclick = "";
          edtavAddressgroup_Visible = 1;
+         chkavRecurringevent.Visible = 1;
          bttBtnuadelete_Visible = 1;
          bttBtnuaupdate_Visible = 1;
          bttBtnuacancel_Visible = 1;
          bttBtnenter_Enabled = 1;
          bttBtnenter_Visible = 1;
-         divTextblockrecurringevent_cell_Class = "col-xs-12 col-sm-3";
+         divTextblockallday_cell_Class = "col-xs-12 col-sm-3";
          divTextblockenddate_cell_Class = "col-xs-12 col-sm-3";
          divTextblockcurrentdate_cell_Class = "col-xs-12 col-sm-3";
-         divTextblockeventtype_cell_Class = "col-xs-12 col-sm-3";
+         cmbavEventtype_Jsonclick = "";
+         cmbavEventtype.Enabled = 1;
+         cmbavEventtype.Visible = 1;
+         divEventtype_cell_Class = "col-xs-12";
          edtavTitle_Jsonclick = "";
          edtavTitle_Enabled = 1;
          edtavTitle_Visible = 1;
@@ -3123,7 +3047,7 @@ namespace GeneXus.Programs.workwithplus {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!"},{"av":"AV12CurrentDate","fld":"vCURRENTDATE"},{"av":"AV16EndDate","fld":"vENDDATE"},{"av":"AV7AllDay","fld":"vALLDAY"},{"av":"AV42RecurringEvent","fld":"vRECURRINGEVENT"},{"av":"AV41AddRSVP","fld":"vADDRSVP"},{"av":"AV31DurationHours","fld":"vDURATIONHOURS","pic":"ZZZ9","hsh":true},{"av":"AV14DisabledDays","fld":"vDISABLEDDAYS","hsh":true},{"av":"AV6ErrorMessages","fld":"vERRORMESSAGES","hsh":true},{"av":"AV51ResidentAddressGroup","fld":"vRESIDENTADDRESSGROUP","hsh":true}]""");
-         setEventMetadata("REFRESH",""","oparms":[{"av":"edtavCurrentdate_Enabled","ctrl":"vCURRENTDATE","prop":"Enabled"},{"av":"edtavEnddate_Enabled","ctrl":"vENDDATE","prop":"Enabled"},{"av":"edtavFromtime_Enabled","ctrl":"vFROMTIME","prop":"Enabled"},{"av":"edtavTotime_Enabled","ctrl":"vTOTIME","prop":"Enabled"},{"av":"edtavTitle_Enabled","ctrl":"vTITLE","prop":"Enabled"},{"av":"chkavAllday.Visible","ctrl":"vALLDAY","prop":"Visible"},{"av":"cmbavEventtype"},{"av":"chkavRecurringevent.Visible","ctrl":"vRECURRINGEVENT","prop":"Visible"},{"av":"dynavRecuringeventtype"},{"av":"edtavFromdatedisplay_Visible","ctrl":"vFROMDATEDISPLAY","prop":"Visible"},{"av":"divFromdatedisplay_cell_Class","ctrl":"FROMDATEDISPLAY_CELL","prop":"Class"},{"av":"edtavTodatedisplay_Visible","ctrl":"vTODATEDISPLAY","prop":"Visible"},{"av":"divTodatedisplay_cell_Class","ctrl":"TODATEDISPLAY_CELL","prop":"Class"},{"av":"edtavDuration_Visible","ctrl":"vDURATION","prop":"Visible"},{"av":"divDuration_cell_Class","ctrl":"DURATION_CELL","prop":"Class"},{"av":"edtavTitle_Visible","ctrl":"vTITLE","prop":"Visible"},{"av":"divTitle_cell_Class","ctrl":"TITLE_CELL","prop":"Class"},{"av":"cellEventtype_cell_Class","ctrl":"EVENTTYPE_CELL","prop":"Class"},{"av":"divTextblockeventtype_cell_Class","ctrl":"TEXTBLOCKEVENTTYPE_CELL","prop":"Class"},{"av":"cellAllday_cell_Class","ctrl":"ALLDAY_CELL","prop":"Class"},{"av":"edtavCurrentdate_Visible","ctrl":"vCURRENTDATE","prop":"Visible"},{"av":"cellCurrentdate_cell_Class","ctrl":"CURRENTDATE_CELL","prop":"Class"},{"av":"divTextblockcurrentdate_cell_Class","ctrl":"TEXTBLOCKCURRENTDATE_CELL","prop":"Class"},{"av":"edtavFromtime_Visible","ctrl":"vFROMTIME","prop":"Visible"},{"av":"cellFromtime_cell_Class","ctrl":"FROMTIME_CELL","prop":"Class"},{"av":"edtavEnddate_Visible","ctrl":"vENDDATE","prop":"Visible"},{"av":"cellEnddate_cell_Class","ctrl":"ENDDATE_CELL","prop":"Class"},{"av":"divTextblockenddate_cell_Class","ctrl":"TEXTBLOCKENDDATE_CELL","prop":"Class"},{"av":"edtavTotime_Visible","ctrl":"vTOTIME","prop":"Visible"},{"av":"cellTotime_cell_Class","ctrl":"TOTIME_CELL","prop":"Class"},{"av":"cellRecurringevent_cell_Class","ctrl":"RECURRINGEVENT_CELL","prop":"Class"},{"av":"divTextblockrecurringevent_cell_Class","ctrl":"TEXTBLOCKRECURRINGEVENT_CELL","prop":"Class"},{"av":"divRecurringtypestable_Visible","ctrl":"RECURRINGTYPESTABLE","prop":"Visible"},{"av":"lblFromdatedisplay_tags_Caption","ctrl":"FROMDATEDISPLAY_TAGS","prop":"Caption"},{"av":"lblTodatedisplay_tags_Caption","ctrl":"TODATEDISPLAY_TAGS","prop":"Caption"},{"ctrl":"BTNENTER","prop":"Visible"},{"ctrl":"BTNUACANCEL","prop":"Visible"},{"ctrl":"BTNUAUPDATE","prop":"Visible"},{"ctrl":"BTNUADELETE","prop":"Visible"}]}""");
+         setEventMetadata("REFRESH",""","oparms":[{"av":"edtavCurrentdate_Enabled","ctrl":"vCURRENTDATE","prop":"Enabled"},{"av":"edtavEnddate_Enabled","ctrl":"vENDDATE","prop":"Enabled"},{"av":"edtavFromtime_Enabled","ctrl":"vFROMTIME","prop":"Enabled"},{"av":"edtavTotime_Enabled","ctrl":"vTOTIME","prop":"Enabled"},{"av":"edtavTitle_Enabled","ctrl":"vTITLE","prop":"Enabled"},{"av":"chkavAllday.Visible","ctrl":"vALLDAY","prop":"Visible"},{"av":"cmbavEventtype"},{"av":"chkavRecurringevent.Visible","ctrl":"vRECURRINGEVENT","prop":"Visible"},{"av":"dynavRecuringeventtype"},{"av":"edtavFromdatedisplay_Visible","ctrl":"vFROMDATEDISPLAY","prop":"Visible"},{"av":"divFromdatedisplay_cell_Class","ctrl":"FROMDATEDISPLAY_CELL","prop":"Class"},{"av":"edtavTodatedisplay_Visible","ctrl":"vTODATEDISPLAY","prop":"Visible"},{"av":"divTodatedisplay_cell_Class","ctrl":"TODATEDISPLAY_CELL","prop":"Class"},{"av":"edtavDuration_Visible","ctrl":"vDURATION","prop":"Visible"},{"av":"divDuration_cell_Class","ctrl":"DURATION_CELL","prop":"Class"},{"av":"edtavTitle_Visible","ctrl":"vTITLE","prop":"Visible"},{"av":"divTitle_cell_Class","ctrl":"TITLE_CELL","prop":"Class"},{"av":"divEventtype_cell_Class","ctrl":"EVENTTYPE_CELL","prop":"Class"},{"av":"edtavCurrentdate_Visible","ctrl":"vCURRENTDATE","prop":"Visible"},{"av":"cellCurrentdate_cell_Class","ctrl":"CURRENTDATE_CELL","prop":"Class"},{"av":"divTextblockcurrentdate_cell_Class","ctrl":"TEXTBLOCKCURRENTDATE_CELL","prop":"Class"},{"av":"edtavFromtime_Visible","ctrl":"vFROMTIME","prop":"Visible"},{"av":"cellFromtime_cell_Class","ctrl":"FROMTIME_CELL","prop":"Class"},{"av":"edtavEnddate_Visible","ctrl":"vENDDATE","prop":"Visible"},{"av":"cellEnddate_cell_Class","ctrl":"ENDDATE_CELL","prop":"Class"},{"av":"divTextblockenddate_cell_Class","ctrl":"TEXTBLOCKENDDATE_CELL","prop":"Class"},{"av":"edtavTotime_Visible","ctrl":"vTOTIME","prop":"Visible"},{"av":"cellTotime_cell_Class","ctrl":"TOTIME_CELL","prop":"Class"},{"av":"cellAllday_cell_Class","ctrl":"ALLDAY_CELL","prop":"Class"},{"av":"divTextblockallday_cell_Class","ctrl":"TEXTBLOCKALLDAY_CELL","prop":"Class"},{"av":"divRecurringtypestable_Visible","ctrl":"RECURRINGTYPESTABLE","prop":"Visible"},{"av":"lblFromdatedisplay_tags_Caption","ctrl":"FROMDATEDISPLAY_TAGS","prop":"Caption"},{"av":"lblTodatedisplay_tags_Caption","ctrl":"TODATEDISPLAY_TAGS","prop":"Caption"},{"ctrl":"BTNENTER","prop":"Visible"},{"ctrl":"BTNUACANCEL","prop":"Visible"},{"ctrl":"BTNUAUPDATE","prop":"Visible"},{"ctrl":"BTNUADELETE","prop":"Visible"}]}""");
          setEventMetadata("'DOUACANCEL'","""{"handler":"E115E1","iparms":[]}""");
          setEventMetadata("'DOUAUPDATE'","""{"handler":"E165E2","iparms":[]""");
          setEventMetadata("'DOUAUPDATE'",""","oparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!"}]}""");
@@ -3140,7 +3064,7 @@ namespace GeneXus.Programs.workwithplus {
          setEventMetadata("ENTER","""{"handler":"E195E2","iparms":[{"av":"AV11CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV6ErrorMessages","fld":"vERRORMESSAGES","hsh":true},{"av":"AV51ResidentAddressGroup","fld":"vRESIDENTADDRESSGROUP","hsh":true},{"av":"AV41AddRSVP","fld":"vADDRSVP"},{"av":"dynavRecuringeventtype"},{"av":"AV43RecuringEventType","fld":"vRECURINGEVENTTYPE"},{"av":"AV42RecurringEvent","fld":"vRECURRINGEVENT"},{"av":"cmbavEventtype"},{"av":"AV40EventType","fld":"vEVENTTYPE"},{"av":"AV8CalendarEventId","fld":"vCALENDAREVENTID"},{"av":"AV16EndDate","fld":"vENDDATE"},{"av":"AV7AllDay","fld":"vALLDAY"},{"av":"AV19ToTime","fld":"vTOTIME","pic":"99:99"},{"av":"AV17FromTime","fld":"vFROMTIME","pic":"99:99"},{"av":"AV12CurrentDate","fld":"vCURRENTDATE"},{"av":"AV18Title","fld":"vTITLE"},{"av":"Gx_mode","fld":"vMODE","pic":"@!"},{"av":"AV27FixStartDate","fld":"vFIXSTARTDATE"},{"av":"AV28FixStartTime","fld":"vFIXSTARTTIME"}]""");
          setEventMetadata("ENTER",""","oparms":[{"av":"AV11CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV12CurrentDate","fld":"vCURRENTDATE"},{"av":"AV16EndDate","fld":"vENDDATE"},{"av":"AV17FromTime","fld":"vFROMTIME","pic":"99:99"},{"av":"AV19ToTime","fld":"vTOTIME","pic":"99:99"},{"av":"AV42RecurringEvent","fld":"vRECURRINGEVENT"}]}""");
          setEventMetadata("VALLDAY.CLICK","""{"handler":"E235E2","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!"},{"av":"AV12CurrentDate","fld":"vCURRENTDATE"},{"av":"AV16EndDate","fld":"vENDDATE"},{"av":"AV7AllDay","fld":"vALLDAY"},{"av":"AV31DurationHours","fld":"vDURATIONHOURS","pic":"ZZZ9","hsh":true},{"av":"AV42RecurringEvent","fld":"vRECURRINGEVENT"}]""");
-         setEventMetadata("VALLDAY.CLICK",""","oparms":[{"av":"edtavFromdatedisplay_Visible","ctrl":"vFROMDATEDISPLAY","prop":"Visible"},{"av":"divFromdatedisplay_cell_Class","ctrl":"FROMDATEDISPLAY_CELL","prop":"Class"},{"av":"edtavTodatedisplay_Visible","ctrl":"vTODATEDISPLAY","prop":"Visible"},{"av":"divTodatedisplay_cell_Class","ctrl":"TODATEDISPLAY_CELL","prop":"Class"},{"av":"edtavDuration_Visible","ctrl":"vDURATION","prop":"Visible"},{"av":"divDuration_cell_Class","ctrl":"DURATION_CELL","prop":"Class"},{"av":"edtavTitle_Visible","ctrl":"vTITLE","prop":"Visible"},{"av":"divTitle_cell_Class","ctrl":"TITLE_CELL","prop":"Class"},{"av":"cmbavEventtype"},{"av":"cellEventtype_cell_Class","ctrl":"EVENTTYPE_CELL","prop":"Class"},{"av":"divTextblockeventtype_cell_Class","ctrl":"TEXTBLOCKEVENTTYPE_CELL","prop":"Class"},{"av":"chkavAllday.Visible","ctrl":"vALLDAY","prop":"Visible"},{"av":"cellAllday_cell_Class","ctrl":"ALLDAY_CELL","prop":"Class"},{"av":"edtavCurrentdate_Visible","ctrl":"vCURRENTDATE","prop":"Visible"},{"av":"cellCurrentdate_cell_Class","ctrl":"CURRENTDATE_CELL","prop":"Class"},{"av":"divTextblockcurrentdate_cell_Class","ctrl":"TEXTBLOCKCURRENTDATE_CELL","prop":"Class"},{"av":"edtavFromtime_Visible","ctrl":"vFROMTIME","prop":"Visible"},{"av":"cellFromtime_cell_Class","ctrl":"FROMTIME_CELL","prop":"Class"},{"av":"edtavEnddate_Visible","ctrl":"vENDDATE","prop":"Visible"},{"av":"cellEnddate_cell_Class","ctrl":"ENDDATE_CELL","prop":"Class"},{"av":"divTextblockenddate_cell_Class","ctrl":"TEXTBLOCKENDDATE_CELL","prop":"Class"},{"av":"edtavTotime_Visible","ctrl":"vTOTIME","prop":"Visible"},{"av":"cellTotime_cell_Class","ctrl":"TOTIME_CELL","prop":"Class"},{"av":"chkavRecurringevent.Visible","ctrl":"vRECURRINGEVENT","prop":"Visible"},{"av":"cellRecurringevent_cell_Class","ctrl":"RECURRINGEVENT_CELL","prop":"Class"},{"av":"divTextblockrecurringevent_cell_Class","ctrl":"TEXTBLOCKRECURRINGEVENT_CELL","prop":"Class"},{"av":"divRecurringtypestable_Visible","ctrl":"RECURRINGTYPESTABLE","prop":"Visible"},{"av":"lblFromdatedisplay_tags_Caption","ctrl":"FROMDATEDISPLAY_TAGS","prop":"Caption"},{"av":"lblTodatedisplay_tags_Caption","ctrl":"TODATEDISPLAY_TAGS","prop":"Caption"}]}""");
+         setEventMetadata("VALLDAY.CLICK",""","oparms":[{"av":"edtavFromdatedisplay_Visible","ctrl":"vFROMDATEDISPLAY","prop":"Visible"},{"av":"divFromdatedisplay_cell_Class","ctrl":"FROMDATEDISPLAY_CELL","prop":"Class"},{"av":"edtavTodatedisplay_Visible","ctrl":"vTODATEDISPLAY","prop":"Visible"},{"av":"divTodatedisplay_cell_Class","ctrl":"TODATEDISPLAY_CELL","prop":"Class"},{"av":"edtavDuration_Visible","ctrl":"vDURATION","prop":"Visible"},{"av":"divDuration_cell_Class","ctrl":"DURATION_CELL","prop":"Class"},{"av":"edtavTitle_Visible","ctrl":"vTITLE","prop":"Visible"},{"av":"divTitle_cell_Class","ctrl":"TITLE_CELL","prop":"Class"},{"av":"cmbavEventtype"},{"av":"divEventtype_cell_Class","ctrl":"EVENTTYPE_CELL","prop":"Class"},{"av":"edtavCurrentdate_Visible","ctrl":"vCURRENTDATE","prop":"Visible"},{"av":"cellCurrentdate_cell_Class","ctrl":"CURRENTDATE_CELL","prop":"Class"},{"av":"divTextblockcurrentdate_cell_Class","ctrl":"TEXTBLOCKCURRENTDATE_CELL","prop":"Class"},{"av":"edtavFromtime_Visible","ctrl":"vFROMTIME","prop":"Visible"},{"av":"cellFromtime_cell_Class","ctrl":"FROMTIME_CELL","prop":"Class"},{"av":"edtavEnddate_Visible","ctrl":"vENDDATE","prop":"Visible"},{"av":"cellEnddate_cell_Class","ctrl":"ENDDATE_CELL","prop":"Class"},{"av":"divTextblockenddate_cell_Class","ctrl":"TEXTBLOCKENDDATE_CELL","prop":"Class"},{"av":"edtavTotime_Visible","ctrl":"vTOTIME","prop":"Visible"},{"av":"cellTotime_cell_Class","ctrl":"TOTIME_CELL","prop":"Class"},{"av":"chkavAllday.Visible","ctrl":"vALLDAY","prop":"Visible"},{"av":"cellAllday_cell_Class","ctrl":"ALLDAY_CELL","prop":"Class"},{"av":"divTextblockallday_cell_Class","ctrl":"TEXTBLOCKALLDAY_CELL","prop":"Class"},{"av":"divRecurringtypestable_Visible","ctrl":"RECURRINGTYPESTABLE","prop":"Visible"},{"av":"lblFromdatedisplay_tags_Caption","ctrl":"FROMDATEDISPLAY_TAGS","prop":"Caption"},{"av":"lblTodatedisplay_tags_Caption","ctrl":"TODATEDISPLAY_TAGS","prop":"Caption"}]}""");
          setEventMetadata("VALIDV_EVENTTYPE","""{"handler":"Validv_Eventtype","iparms":[]}""");
          setEventMetadata("VALIDV_CURRENTDATE","""{"handler":"Validv_Currentdate","iparms":[{"av":"AV12CurrentDate","fld":"vCURRENTDATE"},{"av":"dynavRecuringeventtype"},{"av":"AV43RecuringEventType","fld":"vRECURINGEVENTTYPE"}]""");
          setEventMetadata("VALIDV_CURRENTDATE",""","oparms":[{"av":"dynavRecuringeventtype"},{"av":"AV43RecuringEventType","fld":"vRECURINGEVENTTYPE"}]}""");
@@ -3184,10 +3108,10 @@ namespace GeneXus.Programs.workwithplus {
          TempTags = "";
          AV29Duration = "";
          AV18Title = "";
-         lblTextblockeventtype_Jsonclick = "";
+         AV40EventType = "";
          lblTextblockcurrentdate_Jsonclick = "";
          lblTextblockenddate_Jsonclick = "";
-         lblTextblockrecurringevent_Jsonclick = "";
+         lblTextblockallday_Jsonclick = "";
          bttBtnenter_Jsonclick = "";
          bttBtnuacancel_Jsonclick = "";
          bttBtnuaupdate_Jsonclick = "";
@@ -3205,7 +3129,6 @@ namespace GeneXus.Programs.workwithplus {
          gxwrpcisep = "";
          AV43RecuringEventType = "";
          GXt_dtime1 = (DateTime)(DateTime.MinValue);
-         AV40EventType = "";
          AV23FromDateDisplay = "";
          AV24ToDateDisplay = "";
          AV17FromTime = (DateTime)(DateTime.MinValue);
@@ -3333,11 +3256,10 @@ namespace GeneXus.Programs.workwithplus {
       private string divTitle_cell_Class ;
       private string edtavTitle_Internalname ;
       private string edtavTitle_Jsonclick ;
-      private string divTablesplittedeventtype_Internalname ;
-      private string divTextblockeventtype_cell_Internalname ;
-      private string divTextblockeventtype_cell_Class ;
-      private string lblTextblockeventtype_Internalname ;
-      private string lblTextblockeventtype_Jsonclick ;
+      private string divEventtype_cell_Internalname ;
+      private string divEventtype_cell_Class ;
+      private string cmbavEventtype_Internalname ;
+      private string cmbavEventtype_Jsonclick ;
       private string divTablesplittedcurrentdate_Internalname ;
       private string divTextblockcurrentdate_cell_Internalname ;
       private string divTextblockcurrentdate_cell_Class ;
@@ -3348,11 +3270,11 @@ namespace GeneXus.Programs.workwithplus {
       private string divTextblockenddate_cell_Class ;
       private string lblTextblockenddate_Internalname ;
       private string lblTextblockenddate_Jsonclick ;
-      private string divTablesplittedrecurringevent_Internalname ;
-      private string divTextblockrecurringevent_cell_Internalname ;
-      private string divTextblockrecurringevent_cell_Class ;
-      private string lblTextblockrecurringevent_Internalname ;
-      private string lblTextblockrecurringevent_Jsonclick ;
+      private string divTablesplittedallday_Internalname ;
+      private string divTextblockallday_cell_Internalname ;
+      private string divTextblockallday_cell_Class ;
+      private string lblTextblockallday_Internalname ;
+      private string lblTextblockallday_Jsonclick ;
       private string bttBtnenter_Internalname ;
       private string bttBtnenter_Jsonclick ;
       private string bttBtnuacancel_Internalname ;
@@ -3362,6 +3284,7 @@ namespace GeneXus.Programs.workwithplus {
       private string bttBtnuadelete_Internalname ;
       private string bttBtnuadelete_Jsonclick ;
       private string divHtml_bottomauxiliarcontrols_Internalname ;
+      private string chkavRecurringevent_Internalname ;
       private string edtavAddressgroup_Internalname ;
       private string edtavAddressgroup_Jsonclick ;
       private string chkavAddrsvp_Internalname ;
@@ -3372,18 +3295,12 @@ namespace GeneXus.Programs.workwithplus {
       private string sEvtType ;
       private string GXDecQS ;
       private string gxwrpcisep ;
-      private string cmbavEventtype_Internalname ;
       private string dynavRecuringeventtype_Internalname ;
-      private string chkavAllday_Internalname ;
       private string edtavCurrentdate_Internalname ;
       private string edtavFromtime_Internalname ;
       private string edtavEnddate_Internalname ;
       private string edtavTotime_Internalname ;
-      private string chkavRecurringevent_Internalname ;
-      private string cellEventtype_cell_Class ;
-      private string cellEventtype_cell_Internalname ;
-      private string cellAllday_cell_Class ;
-      private string cellAllday_cell_Internalname ;
+      private string chkavAllday_Internalname ;
       private string cellCurrentdate_cell_Class ;
       private string cellCurrentdate_cell_Internalname ;
       private string cellFromtime_cell_Class ;
@@ -3392,8 +3309,8 @@ namespace GeneXus.Programs.workwithplus {
       private string cellEnddate_cell_Internalname ;
       private string cellTotime_cell_Class ;
       private string cellTotime_cell_Internalname ;
-      private string cellRecurringevent_cell_Class ;
-      private string cellRecurringevent_cell_Internalname ;
+      private string cellAllday_cell_Class ;
+      private string cellAllday_cell_Internalname ;
       private string divRecurringtypestable_Internalname ;
       private string lblFromdatedisplay_tags_Caption ;
       private string lblFromdatedisplay_tags_Internalname ;
@@ -3402,7 +3319,7 @@ namespace GeneXus.Programs.workwithplus {
       private string sStyleString ;
       private string tblTabledvelop_confirmpanel_uadelete_Internalname ;
       private string Dvelop_confirmpanel_uadelete_Internalname ;
-      private string tblTablemergedrecurringevent_Internalname ;
+      private string tblTablemergedallday_Internalname ;
       private string dynavRecuringeventtype_Jsonclick ;
       private string tblTablemergedenddate_Internalname ;
       private string edtavEnddate_Jsonclick ;
@@ -3410,8 +3327,6 @@ namespace GeneXus.Programs.workwithplus {
       private string tblTablemergedcurrentdate_Internalname ;
       private string edtavCurrentdate_Jsonclick ;
       private string edtavFromtime_Jsonclick ;
-      private string tblTablemergedeventtype_Internalname ;
-      private string cmbavEventtype_Jsonclick ;
       private string tblTablemergedtodatedisplay_Internalname ;
       private string lblTodatedisplay_tags_Jsonclick ;
       private string tblTablemergedfromdatedisplay_Internalname ;
@@ -3433,12 +3348,12 @@ namespace GeneXus.Programs.workwithplus {
       private bool AV28FixStartTime ;
       private bool AV11CheckRequiredFieldsResult ;
       private bool wbLoad ;
+      private bool AV42RecurringEvent ;
       private bool AV41AddRSVP ;
       private bool Rfr0gs ;
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool AV7AllDay ;
-      private bool AV42RecurringEvent ;
       private bool returnInSub ;
       private bool AV26IncludedInADisableDay ;
       private string AV10CalendarSDTJson ;
@@ -3449,8 +3364,8 @@ namespace GeneXus.Programs.workwithplus {
       private string wcpOAV8CalendarEventId ;
       private string AV29Duration ;
       private string AV18Title ;
-      private string AV43RecuringEventType ;
       private string AV40EventType ;
+      private string AV43RecuringEventType ;
       private string AV23FromDateDisplay ;
       private string AV24ToDateDisplay ;
       private string ZV43RecuringEventType ;
@@ -3469,8 +3384,8 @@ namespace GeneXus.Programs.workwithplus {
       private string aP3_DisabledDaysJson ;
       private GXCombobox cmbavEventtype ;
       private GXCheckbox chkavAllday ;
-      private GXCheckbox chkavRecurringevent ;
       private GXCombobox dynavRecuringeventtype ;
+      private GXCheckbox chkavRecurringevent ;
       private GXCheckbox chkavAddrsvp ;
       private GxSimpleCollection<DateTime> AV14DisabledDays ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV6ErrorMessages ;

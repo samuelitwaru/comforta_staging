@@ -508,24 +508,22 @@ namespace GeneXus.Programs {
          aP0_result=this.AV17result;
       }
 
-      public void gxep_uploadmedia( Guid aP0_MediaId ,
-                                    string aP1_MediaName ,
-                                    string aP2_MediaImageData ,
-                                    int aP3_MediaSize ,
-                                    string aP4_MediaType ,
-                                    out SdtTrn_Media aP5_BC_Trn_Media ,
-                                    out SdtSDT_Error aP6_error )
+      public void gxep_uploadmedia( string aP0_MediaName ,
+                                    string aP1_MediaImageData ,
+                                    int aP2_MediaSize ,
+                                    string aP3_MediaType ,
+                                    out SdtTrn_Media aP4_BC_Trn_Media ,
+                                    out SdtSDT_Error aP5_error )
       {
-         this.AV46MediaId = aP0_MediaId;
-         this.AV47MediaName = aP1_MediaName;
-         this.AV49MediaImageData = aP2_MediaImageData;
-         this.AV51MediaSize = aP3_MediaSize;
-         this.AV52MediaType = aP4_MediaType;
+         this.AV47MediaName = aP0_MediaName;
+         this.AV49MediaImageData = aP1_MediaImageData;
+         this.AV51MediaSize = aP2_MediaSize;
+         this.AV52MediaType = aP3_MediaType;
          initialize();
          /* UploadMedia Constructor */
-         new prc_uploadmedia(context ).execute(  AV46MediaId,  AV47MediaName,  AV49MediaImageData,  AV51MediaSize,  AV52MediaType, out  AV50BC_Trn_Media, out  AV91error) ;
-         aP5_BC_Trn_Media=this.AV50BC_Trn_Media;
-         aP6_error=this.AV91error;
+         new prc_uploadmedia(context ).execute(  AV47MediaName,  AV49MediaImageData,  AV51MediaSize,  AV52MediaType, out  AV50BC_Trn_Media, out  AV91error) ;
+         aP4_BC_Trn_Media=this.AV50BC_Trn_Media;
+         aP5_error=this.AV91error;
       }
 
       public void gxep_deletemedia( Guid aP0_MediaId ,
@@ -891,9 +889,9 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_AgendaLocation> aP3_SDT_AgendaLocation ;
       protected string aP0_result ;
       protected SdtTrn_Media AV50BC_Trn_Media ;
-      protected SdtTrn_Media aP5_BC_Trn_Media ;
+      protected SdtTrn_Media aP4_BC_Trn_Media ;
       protected SdtSDT_Error AV91error ;
-      protected SdtSDT_Error aP6_error ;
+      protected SdtSDT_Error aP5_error ;
       protected string aP1_result ;
       protected SdtSDT_Error aP2_error ;
       protected GXBaseCollection<SdtSDT_Media> AV85SDT_MediaCollection ;

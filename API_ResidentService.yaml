@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250122074245"
+  version: "20250122182742"
 servers:
-  - url: https://staging.comorta.yukon.sotware/api
+  - url: https://staging.comforta.yukon.software/api
 paths:
   /auth/resident-login:
     post:
@@ -1137,9 +1137,6 @@ components:
 
     UploadMediaInput:  
       properties:
-        MediaId:
-          type: "string"
-          format: "uuid"
         MediaName:
           type: "string"
         MediaImageData:

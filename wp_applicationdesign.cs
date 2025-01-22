@@ -780,7 +780,7 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
-         Form.Headerrawhtml = Form.Headerrawhtml+"<link rel=\"stylesheet\" href=\"/Resources/UCGrapes1/new-design/grapes/grapes.css\">"+"<link rel=\"stylesheet\" href=\"/Resources/UCGrapes1/new-design/css/styles.css\" />"+"<script src=\"/Resources/UCGrapes1/new-design/grapes/grapes.js\"></script>";
+         Form.Headerrawhtml = Form.Headerrawhtml+"<link rel=\"stylesheet\" href=\"/Resources/UCGrapes1/dist/grapes/grapes.css\">"+"<link rel=\"stylesheet\" href=\"/Resources/UCGrapes1/src/css/styles.css\" />"+"<script src=\"/Resources/UCGrapes1/dist/grapes/grapes.js\"></script>";
          GXt_char1 = AV40UserName;
          new prc_getloggedinusername(context ).execute( out  GXt_char1) ;
          AV40UserName = GXt_char1;
@@ -927,7 +927,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512211104566", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025122214259", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -945,7 +945,7 @@ namespace GeneXus.Programs {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wp_applicationdesign.js", "?202512211104567", false, true);
+            context.AddJavascriptSource("wp_applicationdesign.js", "?2025122214260", false, true);
             context.AddJavascriptSource("UserControls/UC_AppToolBoxRender.js", "", false, true);
          }
          /* End function include_jscripts */

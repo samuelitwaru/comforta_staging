@@ -116,14 +116,7 @@ namespace GeneXus.Programs {
                AV13GAMUser.save();
                context.CommitDataStores("prc_creategamuseraccount",pr_default);
             }
-            if ( StringUtil.StrCmp(AV12RoleName, "Resident") != 0 )
-            {
-               new prc_senduseractivationlink(context).executeSubmit(  AV13GAMUser.gxTpr_Guid,  AV25ActivactionKey,  AV19HttpRequest.BaseURL, ref  AV18isSuccessful, ref  AV22ErrDescription, ref  AV15GAMErrorCollection) ;
-            }
-            else
-            {
-               new prc_activateresidentaccount(context ).execute(  AV9GAMUserGUID) ;
-            }
+            new prc_senduseractivationlink(context).executeSubmit(  AV13GAMUser.gxTpr_Guid,  AV25ActivactionKey,  AV19HttpRequest.BaseURL, ref  AV18isSuccessful, ref  AV22ErrDescription, ref  AV15GAMErrorCollection) ;
          }
          else
          {

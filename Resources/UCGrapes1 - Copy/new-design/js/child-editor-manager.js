@@ -40,7 +40,6 @@ class ChildEditorManager {
                 return;
             }
         });
-
         this.currentLanguage = currentLanguage;
     }
 
@@ -138,7 +137,7 @@ class ChildEditorManager {
                     "/Resources/UCGrapes1/new-design/css/toolbox.css",
                     "/Resources/UCGrapes1/new-design/css/child-editor.css",
                 ],
-                scripts: ["/Resources/UCGrapes1/new-design/js/child-editor.js"],
+                // scripts: ["/Resources/UCGrapes1/new-design/js/child-editor.js"],
             },
             baseCss: " ",
             dragMode: "normal",
@@ -485,6 +484,8 @@ class ChildEditorManager {
 
             this.updateUIState();
         });
+
+        editor.Keymaps.keymaster.unbind('backspace');editor.Keymaps.keymaster.unbind('delete');
     }
 
     updateUIState() {
@@ -498,10 +499,11 @@ class ChildEditorManager {
     }
 
     createTemplateHTML(isDefault = false) {
+        let tileBgColor = this.toolsSection.currentTheme.colors.accentColor
         return `
         <div class="template-wrapper ${
           isDefault ? "default-template" : ""
-        }"        
+        }"    style="background: ${tileBgColor}"
               data-gjs-selectable="false"
               data-gjs-type="template-wrapper"
               data-gjs-editable="false"
@@ -510,14 +512,16 @@ class ChildEditorManager {
               data-gjs-resizable="false"
               data-gjs-hoverable="false">
           <div class="template-block"
-              ${defaultTileAttrs} 
-             data-gjs-draggable="false"
-             data-gjs-selectable="true"
-             data-gjs-editable="false"
-             data-gjs-highlightable="false"
-             data-gjs-droppable="false"
-             data-gjs-resizable="false"
-             data-gjs-hoverable="false">
+                tile-bgcolor="${tileBgColor}"
+                tile-bgcolor-name="accentColor"
+                ${defaultTileAttrs}
+                data-gjs-draggable="false"
+                data-gjs-selectable="true"
+                data-gjs-editable="false"
+                data-gjs-highlightable="false"
+                data-gjs-droppable="false"
+                data-gjs-resizable="false"
+                data-gjs-hoverable="false">
             
              <div class="tile-icon-section"
               data-gjs-draggable="false"
@@ -946,12 +950,12 @@ class ChildEditorManager {
     addFreshTemplate(template) {
         this.currentEditor.editor.DomComponents.clear();
         let fullTemplate = "";
-
-        template.forEach((columns) => {
-            const templateRow = this.generateTemplateRow(columns);
+    
+        template.forEach((columns, rowIndex) => {
+            const templateRow = this.generateTemplateRow(columns, rowIndex);
             fullTemplate += templateRow;
         });
-
+    
         this.currentEditor.editor.addComponents(`
             <div class="frame-container"
                  id="frame-container"
@@ -974,15 +978,16 @@ class ChildEditorManager {
               </div>
             </div>
             `);
-
+    
         const message = this.currentLanguage.getTranslation(
             "template_added_success_message"
         );
         const status = "success";
         this.toolsSection.displayAlertMessage(message, status);
     }
-
-    generateTemplateRow(columns) {
+    
+    generateTemplateRow(columns, rowIndex) {
+        let tileBgColor = this.toolsSection.currentTheme.colors.accentColor 
         let columnWidth = 100 / columns;
         if (columns === 1) {
             columnWidth = 100;
@@ -991,17 +996,47 @@ class ChildEditorManager {
         } else if (columns === 3) {
             columnWidth = 32;
         }
-
+    
         let wrappers = "";
-
+    
         for (let i = 0; i < columns; i++) {
+            // Only exclude delete button for first tile of first row
+            const isFirstTileOfFirstRow = rowIndex === 0 && i === 0;
+            const deleteButton = isFirstTileOfFirstRow ? '' : `
+                <button class="action-button delete-button" title="Delete template"
+                    data-gjs-draggable="false"
+                    data-gjs-selectable="false"
+                    data-gjs-editable="false"
+                    data-gjs-droppable="false"
+                    data-gjs-highlightable="false"
+                    data-gjs-hoverable="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        data-gjs-draggable="false"
+                        data-gjs-selectable="false"
+                        data-gjs-editable="false"
+                        data-gjs-editable="false"
+                        data-gjs-droppable="false"
+                        data-gjs-highlightable="false"
+                        data-gjs-hoverable="false">
+                        <line x1="5" y1="12" x2="19" y2="12" 
+                            data-gjs-draggable="false"
+                            data-gjs-selectable="false"
+                            data-gjs-editable="false"
+                            data-gjs-highlightable="false"
+                            data-gjs-droppable="false"
+                            data-gjs-hoverable="false"/>
+                    </svg>
+                </button>`;
+    
             wrappers += `
             <div class="template-wrapper"
-                      style="flex: 0 0 ${columnWidth}%);"
+                      style="flex: 0 0 ${columnWidth}%); background: ${tileBgColor}"
                       data-gjs-type="template-wrapper"
                       data-gjs-selectable="false"
                       data-gjs-droppable="false">
                       <div class="template-block"
+                        tile-bgcolor="${tileBgColor}"
+                        tile-bgcolor-name="accentColor"
                         ${defaultTileAttrs}
                         data-gjs-draggable="false"
                         data-gjs-selectable="true"
@@ -1067,30 +1102,7 @@ class ChildEditorManager {
                               data-gjs-hoverable="false">Title</span>
                             </div>
                       </div>
-                      <button class="action-button delete-button" title="Delete template"
-                          data-gjs-draggable="false"
-                          data-gjs-selectable="false"
-                          data-gjs-editable="false"
-                          data-gjs-droppable="false"
-                          data-gjs-highlightable="false"
-                          data-gjs-hoverable="false">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                          data-gjs-draggable="false"
-                          data-gjs-selectable="false"
-                          data-gjs-editable="false"
-                          data-gjs-editable="false"
-                          data-gjs-droppable="false"
-                          data-gjs-highlightable="false"
-                          data-gjs-hoverable="false">
-                          <line x1="5" y1="12" x2="19" y2="12" 
-                            data-gjs-draggable="false"
-                            data-gjs-selectable="false"
-                            data-gjs-editable="false"
-                            data-gjs-highlightable="false"
-                            data-gjs-droppable="false"
-                            data-gjs-hoverable="false"/>
-                        </svg>
-                      </button>
+                      ${deleteButton}
                       <button class="action-button add-button-bottom" title="Add template below"
                               data-gjs-draggable="false"
                               data-gjs-selectable="false"

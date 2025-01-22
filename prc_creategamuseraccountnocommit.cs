@@ -111,36 +111,19 @@ namespace GeneXus.Programs {
             AV23Role = AV15GAMRole.getbyname(AV11RoleName, out  AV14GAMErrorCollection);
             if ( AV16GAMUser.addrole(AV23Role, out  AV14GAMErrorCollection) )
             {
-               if ( StringUtil.StrCmp(AV11RoleName, "Resident") != 0 )
+               new prc_senduseractivationlinknocommit(context ).execute(  AV9GAMUserGUID,  AV24ActivationKey,  AV10HttpRequest.BaseURL, ref  AV19isSuccessful, ref  AV13ErrDescription, ref  AV14GAMErrorCollection) ;
+               if ( AV19isSuccessful )
                {
-                  new prc_senduseractivationlinknocommit(context ).execute(  AV9GAMUserGUID,  AV24ActivationKey,  AV10HttpRequest.BaseURL, ref  AV19isSuccessful, ref  AV13ErrDescription, ref  AV14GAMErrorCollection) ;
-                  if ( AV19isSuccessful )
-                  {
-                     AV9GAMUserGUID = AV16GAMUser.gxTpr_Guid;
-                  }
-                  else
-                  {
-                     if ( AV14GAMErrorCollection.Count > 0 )
-                     {
-                        AV8GAMErrorItem = new GeneXus.Programs.genexussecurity.SdtGAMError(context);
-                        AV8GAMErrorItem.gxTpr_Code = 462;
-                        AV8GAMErrorItem.gxTpr_Message = context.GetMessage( "Activation error - ", "")+AV13ErrDescription;
-                        AV14GAMErrorCollection.Add(AV8GAMErrorItem, 0);
-                     }
-                  }
+                  AV9GAMUserGUID = AV16GAMUser.gxTpr_Guid;
                }
                else
                {
-                  AV16GAMUser.load( AV9GAMUserGUID);
-                  AV16GAMUser.gxTpr_Isactive = true;
-                  AV16GAMUser.save();
-                  if ( ! AV16GAMUser.success() )
+                  if ( AV14GAMErrorCollection.Count > 0 )
                   {
-                     AV14GAMErrorCollection = AV16GAMUser.geterrors();
-                  }
-                  else
-                  {
-                     AV9GAMUserGUID = AV16GAMUser.gxTpr_Guid;
+                     AV8GAMErrorItem = new GeneXus.Programs.genexussecurity.SdtGAMError(context);
+                     AV8GAMErrorItem.gxTpr_Code = 462;
+                     AV8GAMErrorItem.gxTpr_Message = context.GetMessage( "Activation error - ", "")+AV13ErrDescription;
+                     AV14GAMErrorCollection.Add(AV8GAMErrorItem, 0);
                   }
                }
             }

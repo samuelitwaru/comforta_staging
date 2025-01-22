@@ -31,8 +31,6 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Managers_SDT_ManagersItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Media.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_MobilePage.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtSDT_NetworkCompany.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtSDT_NetworkIndividual.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_NotificationGroup_SDT_NotificationGroupItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_NotificationMetadata.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_OneSignalCustomBody.cs" />
@@ -77,10 +75,6 @@
  	<Compile Include="$(WebDirectory)\type_SdtWP_CreateOrganisationAndManagerData.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtWP_CreateOrganisationAndManagerData_Step1.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtWP_CreateOrganisationAndManagerData_Step2.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtWP_CreateResidentAndNetworkData.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtWP_CreateResidentAndNetworkData_Step1.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtWP_CreateResidentAndNetworkData_Step2.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtWP_CreateResidentAndNetworkData_Step3.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtWP_ProductServiceData.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtWP_ProductServiceData_Step1.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtWP_ProductServiceData_Step2.cs" />

@@ -1727,17 +1727,6 @@ namespace GeneXus.Programs {
       {
          standaloneModal( ) ;
          /* No delete mode formulas found. */
-         if ( AnyError == 0 )
-         {
-            /* Using cursor T000B11 */
-            pr_default.execute(9, new Object[] {A82NetworkCompanyId});
-            if ( (pr_default.getStatus(9) != 101) )
-            {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Resident Network Company", "")}), "CannotDeleteReferencedRecord", 1, "");
-               AnyError = 1;
-            }
-            pr_default.close(9);
-         }
       }
 
       protected void EndLevel0B19( )
@@ -1775,13 +1764,13 @@ namespace GeneXus.Programs {
 
       public void ScanStart0B19( )
       {
-         /* Using cursor T000B12 */
-         pr_default.execute(10);
+         /* Using cursor T000B11 */
+         pr_default.execute(9);
          RcdFound19 = 0;
-         if ( (pr_default.getStatus(10) != 101) )
+         if ( (pr_default.getStatus(9) != 101) )
          {
             RcdFound19 = 1;
-            A82NetworkCompanyId = T000B12_A82NetworkCompanyId[0];
+            A82NetworkCompanyId = T000B11_A82NetworkCompanyId[0];
             AssignAttri("", false, "A82NetworkCompanyId", A82NetworkCompanyId.ToString());
          }
          /* Load Subordinate Levels */
@@ -1790,19 +1779,19 @@ namespace GeneXus.Programs {
       protected void ScanNext0B19( )
       {
          /* Scan next routine */
-         pr_default.readNext(10);
+         pr_default.readNext(9);
          RcdFound19 = 0;
-         if ( (pr_default.getStatus(10) != 101) )
+         if ( (pr_default.getStatus(9) != 101) )
          {
             RcdFound19 = 1;
-            A82NetworkCompanyId = T000B12_A82NetworkCompanyId[0];
+            A82NetworkCompanyId = T000B11_A82NetworkCompanyId[0];
             AssignAttri("", false, "A82NetworkCompanyId", A82NetworkCompanyId.ToString());
          }
       }
 
       protected void ScanEnd0B19( )
       {
-         pr_default.close(10);
+         pr_default.close(9);
       }
 
       protected void AfterConfirm0B19( )
@@ -2117,7 +2106,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251115213980", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512220583141", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2133,7 +2122,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_networkcompany.js", "?20251115213980", false, true);
+         context.AddJavascriptSource("trn_networkcompany.js", "?202512220583141", false, true);
          /* End function include_jscripts */
       }
 
@@ -2437,10 +2426,6 @@ namespace GeneXus.Programs {
          T000B2_A352NetworkCompanyAddressLine1 = new string[] {""} ;
          T000B2_A353NetworkCompanyAddressLine2 = new string[] {""} ;
          T000B11_A82NetworkCompanyId = new Guid[] {Guid.Empty} ;
-         T000B11_A62ResidentId = new Guid[] {Guid.Empty} ;
-         T000B11_A29LocationId = new Guid[] {Guid.Empty} ;
-         T000B11_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         T000B12_A82NetworkCompanyId = new Guid[] {Guid.Empty} ;
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
@@ -2495,10 +2480,7 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               T000B11_A82NetworkCompanyId, T000B11_A62ResidentId, T000B11_A29LocationId, T000B11_A11OrganisationId
-               }
-               , new Object[] {
-               T000B12_A82NetworkCompanyId
+               T000B11_A82NetworkCompanyId
                }
             }
          );
@@ -2700,10 +2682,6 @@ namespace GeneXus.Programs {
       private string[] T000B2_A352NetworkCompanyAddressLine1 ;
       private string[] T000B2_A353NetworkCompanyAddressLine2 ;
       private Guid[] T000B11_A82NetworkCompanyId ;
-      private Guid[] T000B11_A62ResidentId ;
-      private Guid[] T000B11_A29LocationId ;
-      private Guid[] T000B11_A11OrganisationId ;
-      private Guid[] T000B12_A82NetworkCompanyId ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
@@ -2788,7 +2766,6 @@ public class trn_networkcompany__default : DataStoreHelperBase, IDataStoreHelper
       ,new UpdateCursor(def[7])
       ,new UpdateCursor(def[8])
       ,new ForEachCursor(def[9])
-      ,new ForEachCursor(def[10])
     };
  }
 
@@ -2859,10 +2836,6 @@ public class trn_networkcompany__default : DataStoreHelperBase, IDataStoreHelper
        };
        Object[] prmT000B11;
        prmT000B11 = new Object[] {
-       new ParDef("NetworkCompanyId",GXType.UniqueIdentifier,36,0)
-       };
-       Object[] prmT000B12;
-       prmT000B12 = new Object[] {
        };
        def= new CursorDef[] {
            new CursorDef("T000B2", "SELECT NetworkCompanyId, NetworkCompanyKvkNumber, NetworkCompanyName, NetworkCompanyContactName, NetworkCompanyEmail, NetworkCompanyPhone, NetworkCompanyPhoneCode, NetworkCompanyPhoneNumber, NetworkCompanyCountry, NetworkCompanyCity, NetworkCompanyZipCode, NetworkCompanyAddressLine1, NetworkCompanyAddressLine2 FROM Trn_NetworkCompany WHERE NetworkCompanyId = :NetworkCompanyId  FOR UPDATE OF Trn_NetworkCompany NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000B2,1, GxCacheFrequency.OFF ,true,false )
@@ -2874,8 +2847,7 @@ public class trn_networkcompany__default : DataStoreHelperBase, IDataStoreHelper
           ,new CursorDef("T000B8", "SAVEPOINT gxupdate;INSERT INTO Trn_NetworkCompany(NetworkCompanyId, NetworkCompanyKvkNumber, NetworkCompanyName, NetworkCompanyContactName, NetworkCompanyEmail, NetworkCompanyPhone, NetworkCompanyPhoneCode, NetworkCompanyPhoneNumber, NetworkCompanyCountry, NetworkCompanyCity, NetworkCompanyZipCode, NetworkCompanyAddressLine1, NetworkCompanyAddressLine2) VALUES(:NetworkCompanyId, :NetworkCompanyKvkNumber, :NetworkCompanyName, :NetworkCompanyContactName, :NetworkCompanyEmail, :NetworkCompanyPhone, :NetworkCompanyPhoneCode, :NetworkCompanyPhoneNumber, :NetworkCompanyCountry, :NetworkCompanyCity, :NetworkCompanyZipCode, :NetworkCompanyAddressLine1, :NetworkCompanyAddressLine2);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000B8)
           ,new CursorDef("T000B9", "SAVEPOINT gxupdate;UPDATE Trn_NetworkCompany SET NetworkCompanyKvkNumber=:NetworkCompanyKvkNumber, NetworkCompanyName=:NetworkCompanyName, NetworkCompanyContactName=:NetworkCompanyContactName, NetworkCompanyEmail=:NetworkCompanyEmail, NetworkCompanyPhone=:NetworkCompanyPhone, NetworkCompanyPhoneCode=:NetworkCompanyPhoneCode, NetworkCompanyPhoneNumber=:NetworkCompanyPhoneNumber, NetworkCompanyCountry=:NetworkCompanyCountry, NetworkCompanyCity=:NetworkCompanyCity, NetworkCompanyZipCode=:NetworkCompanyZipCode, NetworkCompanyAddressLine1=:NetworkCompanyAddressLine1, NetworkCompanyAddressLine2=:NetworkCompanyAddressLine2  WHERE NetworkCompanyId = :NetworkCompanyId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000B9)
           ,new CursorDef("T000B10", "SAVEPOINT gxupdate;DELETE FROM Trn_NetworkCompany  WHERE NetworkCompanyId = :NetworkCompanyId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000B10)
-          ,new CursorDef("T000B11", "SELECT NetworkCompanyId, ResidentId, LocationId, OrganisationId FROM Trn_ResidentNetworkCompany WHERE NetworkCompanyId = :NetworkCompanyId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000B11,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("T000B12", "SELECT NetworkCompanyId FROM Trn_NetworkCompany ORDER BY NetworkCompanyId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000B12,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000B11", "SELECT NetworkCompanyId FROM Trn_NetworkCompany ORDER BY NetworkCompanyId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000B11,100, GxCacheFrequency.OFF ,true,false )
        };
     }
  }
@@ -2941,12 +2913,6 @@ public class trn_networkcompany__default : DataStoreHelperBase, IDataStoreHelper
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              return;
           case 9 :
-             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-             ((Guid[]) buf[3])[0] = rslt.getGuid(4);
-             return;
-          case 10 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              return;
     }

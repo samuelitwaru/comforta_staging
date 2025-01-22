@@ -145,6 +145,7 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
+         new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV36AuditingObject,  AV42Pgmname) ;
          if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
          {
             AV38Session.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Receptionist Updated successfully", ""));
@@ -152,12 +153,17 @@ namespace GeneXus.Programs {
          if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
          {
             AV38Session.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Receptionist Deleted successfully", ""));
+            CallWebObject(formatLink("wp_locationreceptionists.aspx") );
+            context.wjLocDisableFrm = 1;
          }
          if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
          {
             AV38Session.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Receptionist Inserted successfully", ""));
          }
-         new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV36AuditingObject,  AV40Pgmname) ;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( Gx_mode)) )
+         {
+            new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV36AuditingObject,  AV42Pgmname) ;
+         }
       }
 
       protected void S112( )
@@ -204,7 +210,7 @@ namespace GeneXus.Programs {
 
       protected void standaloneNotModal( )
       {
-         AV40Pgmname = "Trn_Receptionist_BC";
+         AV42Pgmname = "Trn_Receptionist_BC";
       }
 
       protected void standaloneModal( )
@@ -1390,9 +1396,9 @@ namespace GeneXus.Programs {
          AV29WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV25TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV28WebSession = context.GetSession();
-         AV38Session = context.GetSession();
          AV36AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
-         AV40Pgmname = "";
+         AV42Pgmname = "";
+         AV38Session = context.GetSession();
          Z92ReceptionistInitials = "";
          A92ReceptionistInitials = "";
          Z94ReceptionistPhone = "";
@@ -1527,7 +1533,7 @@ namespace GeneXus.Programs {
          );
          Z89ReceptionistId = Guid.NewGuid( );
          A89ReceptionistId = Guid.NewGuid( );
-         AV40Pgmname = "Trn_Receptionist_BC";
+         AV42Pgmname = "Trn_Receptionist_BC";
          INITTRN();
          /* Execute Start event if defined. */
          /* Execute user event: Start */
@@ -1542,7 +1548,7 @@ namespace GeneXus.Programs {
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
-      private string AV40Pgmname ;
+      private string AV42Pgmname ;
       private string Z92ReceptionistInitials ;
       private string A92ReceptionistInitials ;
       private string Z94ReceptionistPhone ;

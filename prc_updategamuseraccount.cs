@@ -121,13 +121,16 @@ namespace GeneXus.Programs {
             {
                AV9GAMUser.gxTpr_Urlprofile = AV22Profileimage_GXI;
             }
-            if ( ( AV14IsActive ) && ( AV9GAMUser.gxTpr_Isblocked ) )
+            if ( StringUtil.StrCmp(AV15Role, "Resident") != 0 )
             {
-               AV9GAMUser.unblockaccess(out  AV13GAMErrorCollection);
-            }
-            if ( ! AV14IsActive && ! AV9GAMUser.gxTpr_Isblocked )
-            {
-               AV9GAMUser.blockaccess( false,  false, out  AV13GAMErrorCollection);
+               if ( ( AV14IsActive ) && ( AV9GAMUser.gxTpr_Isblocked ) )
+               {
+                  AV9GAMUser.unblockaccess(out  AV13GAMErrorCollection);
+               }
+               if ( ! AV14IsActive && ! AV9GAMUser.gxTpr_Isblocked )
+               {
+                  AV9GAMUser.blockaccess( false,  false, out  AV13GAMErrorCollection);
+               }
             }
             AV9GAMUser.save();
             if ( AV9GAMUser.success() )

@@ -70,6 +70,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Initialized");
          state.Add("gxTpr_Residenttypeid_Z");
          state.Add("gxTpr_Residenttypename_Z");
+         state.Add("gxTpr_Residenttypeid_N");
          return state ;
       }
 
@@ -83,6 +84,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_ResidentType_Initialized = sdt.gxTv_SdtTrn_ResidentType_Initialized ;
          gxTv_SdtTrn_ResidentType_Residenttypeid_Z = sdt.gxTv_SdtTrn_ResidentType_Residenttypeid_Z ;
          gxTv_SdtTrn_ResidentType_Residenttypename_Z = sdt.gxTv_SdtTrn_ResidentType_Residenttypename_Z ;
+         gxTv_SdtTrn_ResidentType_Residenttypeid_N = sdt.gxTv_SdtTrn_ResidentType_Residenttypeid_N ;
          return  ;
       }
 
@@ -102,6 +104,7 @@ namespace GeneXus.Programs {
                                    bool includeNonInitialized )
       {
          AddObjectProperty("ResidentTypeId", gxTv_SdtTrn_ResidentType_Residenttypeid, false, includeNonInitialized);
+         AddObjectProperty("ResidentTypeId_N", gxTv_SdtTrn_ResidentType_Residenttypeid_N, false, includeNonInitialized);
          AddObjectProperty("ResidentTypeName", gxTv_SdtTrn_ResidentType_Residenttypename, false, includeNonInitialized);
          if ( includeState )
          {
@@ -109,6 +112,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("Initialized", gxTv_SdtTrn_ResidentType_Initialized, false, includeNonInitialized);
             AddObjectProperty("ResidentTypeId_Z", gxTv_SdtTrn_ResidentType_Residenttypeid_Z, false, includeNonInitialized);
             AddObjectProperty("ResidentTypeName_Z", gxTv_SdtTrn_ResidentType_Residenttypename_Z, false, includeNonInitialized);
+            AddObjectProperty("ResidentTypeId_N", gxTv_SdtTrn_ResidentType_Residenttypeid_N, false, includeNonInitialized);
          }
          return  ;
       }
@@ -278,6 +282,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "ResidentTypeId_N" )]
+      [  XmlElement( ElementName = "ResidentTypeId_N"   )]
+      public short gxTpr_Residenttypeid_N
+      {
+         get {
+            return gxTv_SdtTrn_ResidentType_Residenttypeid_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_ResidentType_Residenttypeid_N = value;
+            SetDirty("Residenttypeid_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_ResidentType_Residenttypeid_N_SetNull( )
+      {
+         gxTv_SdtTrn_ResidentType_Residenttypeid_N = 0;
+         SetDirty("Residenttypeid_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_ResidentType_Residenttypeid_N_IsNull( )
+      {
+         return false ;
+      }
+
       [XmlIgnore]
       private static GXTypeInfo _typeProps;
       protected override GXTypeInfo TypeInfo
@@ -316,6 +348,7 @@ namespace GeneXus.Programs {
 
       private short sdtIsNull ;
       private short gxTv_SdtTrn_ResidentType_Initialized ;
+      private short gxTv_SdtTrn_ResidentType_Residenttypeid_N ;
       private string gxTv_SdtTrn_ResidentType_Mode ;
       private string gxTv_SdtTrn_ResidentType_Residenttypename ;
       private string gxTv_SdtTrn_ResidentType_Residenttypename_Z ;

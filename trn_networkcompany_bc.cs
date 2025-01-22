@@ -508,17 +508,6 @@ namespace GeneXus.Programs {
       {
          standaloneModal( ) ;
          /* No delete mode formulas found. */
-         if ( AnyError == 0 )
-         {
-            /* Using cursor BC000B9 */
-            pr_default.execute(7, new Object[] {A82NetworkCompanyId});
-            if ( (pr_default.getStatus(7) != 101) )
-            {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Resident Network Company", "")}), "CannotDeleteReferencedRecord", 1, "");
-               AnyError = 1;
-            }
-            pr_default.close(7);
-         }
       }
 
       protected void EndLevel0B19( )
@@ -549,25 +538,25 @@ namespace GeneXus.Programs {
 
       public void ScanKeyStart0B19( )
       {
-         /* Using cursor BC000B10 */
-         pr_default.execute(8, new Object[] {A82NetworkCompanyId});
+         /* Using cursor BC000B9 */
+         pr_default.execute(7, new Object[] {A82NetworkCompanyId});
          RcdFound19 = 0;
-         if ( (pr_default.getStatus(8) != 101) )
+         if ( (pr_default.getStatus(7) != 101) )
          {
             RcdFound19 = 1;
-            A82NetworkCompanyId = BC000B10_A82NetworkCompanyId[0];
-            A83NetworkCompanyKvkNumber = BC000B10_A83NetworkCompanyKvkNumber[0];
-            A84NetworkCompanyName = BC000B10_A84NetworkCompanyName[0];
-            A505NetworkCompanyContactName = BC000B10_A505NetworkCompanyContactName[0];
-            A85NetworkCompanyEmail = BC000B10_A85NetworkCompanyEmail[0];
-            A86NetworkCompanyPhone = BC000B10_A86NetworkCompanyPhone[0];
-            A391NetworkCompanyPhoneCode = BC000B10_A391NetworkCompanyPhoneCode[0];
-            A392NetworkCompanyPhoneNumber = BC000B10_A392NetworkCompanyPhoneNumber[0];
-            A349NetworkCompanyCountry = BC000B10_A349NetworkCompanyCountry[0];
-            A350NetworkCompanyCity = BC000B10_A350NetworkCompanyCity[0];
-            A351NetworkCompanyZipCode = BC000B10_A351NetworkCompanyZipCode[0];
-            A352NetworkCompanyAddressLine1 = BC000B10_A352NetworkCompanyAddressLine1[0];
-            A353NetworkCompanyAddressLine2 = BC000B10_A353NetworkCompanyAddressLine2[0];
+            A82NetworkCompanyId = BC000B9_A82NetworkCompanyId[0];
+            A83NetworkCompanyKvkNumber = BC000B9_A83NetworkCompanyKvkNumber[0];
+            A84NetworkCompanyName = BC000B9_A84NetworkCompanyName[0];
+            A505NetworkCompanyContactName = BC000B9_A505NetworkCompanyContactName[0];
+            A85NetworkCompanyEmail = BC000B9_A85NetworkCompanyEmail[0];
+            A86NetworkCompanyPhone = BC000B9_A86NetworkCompanyPhone[0];
+            A391NetworkCompanyPhoneCode = BC000B9_A391NetworkCompanyPhoneCode[0];
+            A392NetworkCompanyPhoneNumber = BC000B9_A392NetworkCompanyPhoneNumber[0];
+            A349NetworkCompanyCountry = BC000B9_A349NetworkCompanyCountry[0];
+            A350NetworkCompanyCity = BC000B9_A350NetworkCompanyCity[0];
+            A351NetworkCompanyZipCode = BC000B9_A351NetworkCompanyZipCode[0];
+            A352NetworkCompanyAddressLine1 = BC000B9_A352NetworkCompanyAddressLine1[0];
+            A353NetworkCompanyAddressLine2 = BC000B9_A353NetworkCompanyAddressLine2[0];
          }
          /* Load Subordinate Levels */
       }
@@ -575,7 +564,7 @@ namespace GeneXus.Programs {
       protected void ScanKeyNext0B19( )
       {
          /* Scan next routine */
-         pr_default.readNext(8);
+         pr_default.readNext(7);
          RcdFound19 = 0;
          ScanKeyLoad0B19( ) ;
       }
@@ -584,29 +573,29 @@ namespace GeneXus.Programs {
       {
          sMode19 = Gx_mode;
          Gx_mode = "DSP";
-         if ( (pr_default.getStatus(8) != 101) )
+         if ( (pr_default.getStatus(7) != 101) )
          {
             RcdFound19 = 1;
-            A82NetworkCompanyId = BC000B10_A82NetworkCompanyId[0];
-            A83NetworkCompanyKvkNumber = BC000B10_A83NetworkCompanyKvkNumber[0];
-            A84NetworkCompanyName = BC000B10_A84NetworkCompanyName[0];
-            A505NetworkCompanyContactName = BC000B10_A505NetworkCompanyContactName[0];
-            A85NetworkCompanyEmail = BC000B10_A85NetworkCompanyEmail[0];
-            A86NetworkCompanyPhone = BC000B10_A86NetworkCompanyPhone[0];
-            A391NetworkCompanyPhoneCode = BC000B10_A391NetworkCompanyPhoneCode[0];
-            A392NetworkCompanyPhoneNumber = BC000B10_A392NetworkCompanyPhoneNumber[0];
-            A349NetworkCompanyCountry = BC000B10_A349NetworkCompanyCountry[0];
-            A350NetworkCompanyCity = BC000B10_A350NetworkCompanyCity[0];
-            A351NetworkCompanyZipCode = BC000B10_A351NetworkCompanyZipCode[0];
-            A352NetworkCompanyAddressLine1 = BC000B10_A352NetworkCompanyAddressLine1[0];
-            A353NetworkCompanyAddressLine2 = BC000B10_A353NetworkCompanyAddressLine2[0];
+            A82NetworkCompanyId = BC000B9_A82NetworkCompanyId[0];
+            A83NetworkCompanyKvkNumber = BC000B9_A83NetworkCompanyKvkNumber[0];
+            A84NetworkCompanyName = BC000B9_A84NetworkCompanyName[0];
+            A505NetworkCompanyContactName = BC000B9_A505NetworkCompanyContactName[0];
+            A85NetworkCompanyEmail = BC000B9_A85NetworkCompanyEmail[0];
+            A86NetworkCompanyPhone = BC000B9_A86NetworkCompanyPhone[0];
+            A391NetworkCompanyPhoneCode = BC000B9_A391NetworkCompanyPhoneCode[0];
+            A392NetworkCompanyPhoneNumber = BC000B9_A392NetworkCompanyPhoneNumber[0];
+            A349NetworkCompanyCountry = BC000B9_A349NetworkCompanyCountry[0];
+            A350NetworkCompanyCity = BC000B9_A350NetworkCompanyCity[0];
+            A351NetworkCompanyZipCode = BC000B9_A351NetworkCompanyZipCode[0];
+            A352NetworkCompanyAddressLine1 = BC000B9_A352NetworkCompanyAddressLine1[0];
+            A353NetworkCompanyAddressLine2 = BC000B9_A353NetworkCompanyAddressLine2[0];
          }
          Gx_mode = sMode19;
       }
 
       protected void ScanKeyEnd0B19( )
       {
-         pr_default.close(8);
+         pr_default.close(7);
       }
 
       protected void AfterConfirm0B19( )
@@ -1285,22 +1274,18 @@ namespace GeneXus.Programs {
          BC000B2_A352NetworkCompanyAddressLine1 = new string[] {""} ;
          BC000B2_A353NetworkCompanyAddressLine2 = new string[] {""} ;
          BC000B9_A82NetworkCompanyId = new Guid[] {Guid.Empty} ;
-         BC000B9_A62ResidentId = new Guid[] {Guid.Empty} ;
-         BC000B9_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC000B9_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         BC000B10_A82NetworkCompanyId = new Guid[] {Guid.Empty} ;
-         BC000B10_A83NetworkCompanyKvkNumber = new string[] {""} ;
-         BC000B10_A84NetworkCompanyName = new string[] {""} ;
-         BC000B10_A505NetworkCompanyContactName = new string[] {""} ;
-         BC000B10_A85NetworkCompanyEmail = new string[] {""} ;
-         BC000B10_A86NetworkCompanyPhone = new string[] {""} ;
-         BC000B10_A391NetworkCompanyPhoneCode = new string[] {""} ;
-         BC000B10_A392NetworkCompanyPhoneNumber = new string[] {""} ;
-         BC000B10_A349NetworkCompanyCountry = new string[] {""} ;
-         BC000B10_A350NetworkCompanyCity = new string[] {""} ;
-         BC000B10_A351NetworkCompanyZipCode = new string[] {""} ;
-         BC000B10_A352NetworkCompanyAddressLine1 = new string[] {""} ;
-         BC000B10_A353NetworkCompanyAddressLine2 = new string[] {""} ;
+         BC000B9_A83NetworkCompanyKvkNumber = new string[] {""} ;
+         BC000B9_A84NetworkCompanyName = new string[] {""} ;
+         BC000B9_A505NetworkCompanyContactName = new string[] {""} ;
+         BC000B9_A85NetworkCompanyEmail = new string[] {""} ;
+         BC000B9_A86NetworkCompanyPhone = new string[] {""} ;
+         BC000B9_A391NetworkCompanyPhoneCode = new string[] {""} ;
+         BC000B9_A392NetworkCompanyPhoneNumber = new string[] {""} ;
+         BC000B9_A349NetworkCompanyCountry = new string[] {""} ;
+         BC000B9_A350NetworkCompanyCity = new string[] {""} ;
+         BC000B9_A351NetworkCompanyZipCode = new string[] {""} ;
+         BC000B9_A352NetworkCompanyAddressLine1 = new string[] {""} ;
+         BC000B9_A353NetworkCompanyAddressLine2 = new string[] {""} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_networkcompany_bc__datastore1(),
@@ -1335,11 +1320,8 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               BC000B9_A82NetworkCompanyId, BC000B9_A62ResidentId, BC000B9_A29LocationId, BC000B9_A11OrganisationId
-               }
-               , new Object[] {
-               BC000B10_A82NetworkCompanyId, BC000B10_A83NetworkCompanyKvkNumber, BC000B10_A84NetworkCompanyName, BC000B10_A505NetworkCompanyContactName, BC000B10_A85NetworkCompanyEmail, BC000B10_A86NetworkCompanyPhone, BC000B10_A391NetworkCompanyPhoneCode, BC000B10_A392NetworkCompanyPhoneNumber, BC000B10_A349NetworkCompanyCountry, BC000B10_A350NetworkCompanyCity,
-               BC000B10_A351NetworkCompanyZipCode, BC000B10_A352NetworkCompanyAddressLine1, BC000B10_A353NetworkCompanyAddressLine2
+               BC000B9_A82NetworkCompanyId, BC000B9_A83NetworkCompanyKvkNumber, BC000B9_A84NetworkCompanyName, BC000B9_A505NetworkCompanyContactName, BC000B9_A85NetworkCompanyEmail, BC000B9_A86NetworkCompanyPhone, BC000B9_A391NetworkCompanyPhoneCode, BC000B9_A392NetworkCompanyPhoneNumber, BC000B9_A349NetworkCompanyCountry, BC000B9_A350NetworkCompanyCity,
+               BC000B9_A351NetworkCompanyZipCode, BC000B9_A352NetworkCompanyAddressLine1, BC000B9_A353NetworkCompanyAddressLine2
                }
             }
          );
@@ -1430,22 +1412,18 @@ namespace GeneXus.Programs {
       private string[] BC000B2_A352NetworkCompanyAddressLine1 ;
       private string[] BC000B2_A353NetworkCompanyAddressLine2 ;
       private Guid[] BC000B9_A82NetworkCompanyId ;
-      private Guid[] BC000B9_A62ResidentId ;
-      private Guid[] BC000B9_A29LocationId ;
-      private Guid[] BC000B9_A11OrganisationId ;
-      private Guid[] BC000B10_A82NetworkCompanyId ;
-      private string[] BC000B10_A83NetworkCompanyKvkNumber ;
-      private string[] BC000B10_A84NetworkCompanyName ;
-      private string[] BC000B10_A505NetworkCompanyContactName ;
-      private string[] BC000B10_A85NetworkCompanyEmail ;
-      private string[] BC000B10_A86NetworkCompanyPhone ;
-      private string[] BC000B10_A391NetworkCompanyPhoneCode ;
-      private string[] BC000B10_A392NetworkCompanyPhoneNumber ;
-      private string[] BC000B10_A349NetworkCompanyCountry ;
-      private string[] BC000B10_A350NetworkCompanyCity ;
-      private string[] BC000B10_A351NetworkCompanyZipCode ;
-      private string[] BC000B10_A352NetworkCompanyAddressLine1 ;
-      private string[] BC000B10_A353NetworkCompanyAddressLine2 ;
+      private string[] BC000B9_A83NetworkCompanyKvkNumber ;
+      private string[] BC000B9_A84NetworkCompanyName ;
+      private string[] BC000B9_A505NetworkCompanyContactName ;
+      private string[] BC000B9_A85NetworkCompanyEmail ;
+      private string[] BC000B9_A86NetworkCompanyPhone ;
+      private string[] BC000B9_A391NetworkCompanyPhoneCode ;
+      private string[] BC000B9_A392NetworkCompanyPhoneNumber ;
+      private string[] BC000B9_A349NetworkCompanyCountry ;
+      private string[] BC000B9_A350NetworkCompanyCity ;
+      private string[] BC000B9_A351NetworkCompanyZipCode ;
+      private string[] BC000B9_A352NetworkCompanyAddressLine1 ;
+      private string[] BC000B9_A353NetworkCompanyAddressLine2 ;
       private SdtTrn_NetworkCompany bcTrn_NetworkCompany ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
@@ -1531,7 +1509,6 @@ public class trn_networkcompany_bc__default : DataStoreHelperBase, IDataStoreHel
       ,new UpdateCursor(def[5])
       ,new UpdateCursor(def[6])
       ,new ForEachCursor(def[7])
-      ,new ForEachCursor(def[8])
     };
  }
 
@@ -1596,10 +1573,6 @@ public class trn_networkcompany_bc__default : DataStoreHelperBase, IDataStoreHel
        prmBC000B9 = new Object[] {
        new ParDef("NetworkCompanyId",GXType.UniqueIdentifier,36,0)
        };
-       Object[] prmBC000B10;
-       prmBC000B10 = new Object[] {
-       new ParDef("NetworkCompanyId",GXType.UniqueIdentifier,36,0)
-       };
        def= new CursorDef[] {
            new CursorDef("BC000B2", "SELECT NetworkCompanyId, NetworkCompanyKvkNumber, NetworkCompanyName, NetworkCompanyContactName, NetworkCompanyEmail, NetworkCompanyPhone, NetworkCompanyPhoneCode, NetworkCompanyPhoneNumber, NetworkCompanyCountry, NetworkCompanyCity, NetworkCompanyZipCode, NetworkCompanyAddressLine1, NetworkCompanyAddressLine2 FROM Trn_NetworkCompany WHERE NetworkCompanyId = :NetworkCompanyId  FOR UPDATE OF Trn_NetworkCompany",true, GxErrorMask.GX_NOMASK, false, this,prmBC000B2,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC000B3", "SELECT NetworkCompanyId, NetworkCompanyKvkNumber, NetworkCompanyName, NetworkCompanyContactName, NetworkCompanyEmail, NetworkCompanyPhone, NetworkCompanyPhoneCode, NetworkCompanyPhoneNumber, NetworkCompanyCountry, NetworkCompanyCity, NetworkCompanyZipCode, NetworkCompanyAddressLine1, NetworkCompanyAddressLine2 FROM Trn_NetworkCompany WHERE NetworkCompanyId = :NetworkCompanyId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000B3,1, GxCacheFrequency.OFF ,true,false )
@@ -1608,8 +1581,7 @@ public class trn_networkcompany_bc__default : DataStoreHelperBase, IDataStoreHel
           ,new CursorDef("BC000B6", "SAVEPOINT gxupdate;INSERT INTO Trn_NetworkCompany(NetworkCompanyId, NetworkCompanyKvkNumber, NetworkCompanyName, NetworkCompanyContactName, NetworkCompanyEmail, NetworkCompanyPhone, NetworkCompanyPhoneCode, NetworkCompanyPhoneNumber, NetworkCompanyCountry, NetworkCompanyCity, NetworkCompanyZipCode, NetworkCompanyAddressLine1, NetworkCompanyAddressLine2) VALUES(:NetworkCompanyId, :NetworkCompanyKvkNumber, :NetworkCompanyName, :NetworkCompanyContactName, :NetworkCompanyEmail, :NetworkCompanyPhone, :NetworkCompanyPhoneCode, :NetworkCompanyPhoneNumber, :NetworkCompanyCountry, :NetworkCompanyCity, :NetworkCompanyZipCode, :NetworkCompanyAddressLine1, :NetworkCompanyAddressLine2);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC000B6)
           ,new CursorDef("BC000B7", "SAVEPOINT gxupdate;UPDATE Trn_NetworkCompany SET NetworkCompanyKvkNumber=:NetworkCompanyKvkNumber, NetworkCompanyName=:NetworkCompanyName, NetworkCompanyContactName=:NetworkCompanyContactName, NetworkCompanyEmail=:NetworkCompanyEmail, NetworkCompanyPhone=:NetworkCompanyPhone, NetworkCompanyPhoneCode=:NetworkCompanyPhoneCode, NetworkCompanyPhoneNumber=:NetworkCompanyPhoneNumber, NetworkCompanyCountry=:NetworkCompanyCountry, NetworkCompanyCity=:NetworkCompanyCity, NetworkCompanyZipCode=:NetworkCompanyZipCode, NetworkCompanyAddressLine1=:NetworkCompanyAddressLine1, NetworkCompanyAddressLine2=:NetworkCompanyAddressLine2  WHERE NetworkCompanyId = :NetworkCompanyId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000B7)
           ,new CursorDef("BC000B8", "SAVEPOINT gxupdate;DELETE FROM Trn_NetworkCompany  WHERE NetworkCompanyId = :NetworkCompanyId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000B8)
-          ,new CursorDef("BC000B9", "SELECT NetworkCompanyId, ResidentId, LocationId, OrganisationId FROM Trn_ResidentNetworkCompany WHERE NetworkCompanyId = :NetworkCompanyId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000B9,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC000B10", "SELECT TM1.NetworkCompanyId, TM1.NetworkCompanyKvkNumber, TM1.NetworkCompanyName, TM1.NetworkCompanyContactName, TM1.NetworkCompanyEmail, TM1.NetworkCompanyPhone, TM1.NetworkCompanyPhoneCode, TM1.NetworkCompanyPhoneNumber, TM1.NetworkCompanyCountry, TM1.NetworkCompanyCity, TM1.NetworkCompanyZipCode, TM1.NetworkCompanyAddressLine1, TM1.NetworkCompanyAddressLine2 FROM Trn_NetworkCompany TM1 WHERE TM1.NetworkCompanyId = :NetworkCompanyId ORDER BY TM1.NetworkCompanyId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000B10,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000B9", "SELECT TM1.NetworkCompanyId, TM1.NetworkCompanyKvkNumber, TM1.NetworkCompanyName, TM1.NetworkCompanyContactName, TM1.NetworkCompanyEmail, TM1.NetworkCompanyPhone, TM1.NetworkCompanyPhoneCode, TM1.NetworkCompanyPhoneNumber, TM1.NetworkCompanyCountry, TM1.NetworkCompanyCity, TM1.NetworkCompanyZipCode, TM1.NetworkCompanyAddressLine1, TM1.NetworkCompanyAddressLine2 FROM Trn_NetworkCompany TM1 WHERE TM1.NetworkCompanyId = :NetworkCompanyId ORDER BY TM1.NetworkCompanyId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000B9,100, GxCacheFrequency.OFF ,true,false )
        };
     }
  }
@@ -1669,12 +1641,6 @@ public class trn_networkcompany_bc__default : DataStoreHelperBase, IDataStoreHel
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              return;
           case 7 :
-             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-             ((Guid[]) buf[3])[0] = rslt.getGuid(4);
-             return;
-          case 8 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((string[]) buf[1])[0] = rslt.getVarchar(2);
              ((string[]) buf[2])[0] = rslt.getVarchar(3);

@@ -117,8 +117,28 @@ class DataManager {
     });
   }
 
+  updatePagesBatch(payload) {
+    return new Promise((resolve, reject) => {
+      console.log(payload);
+      $.ajax({
+        url: `${baseURL}/api/toolbox/update-pages-batch`,
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(payload),
+        success: function (response) {
+          resolve(response);
+        },
+        error: function (xhr, status, error) {
+          console.error("Error:", status, error);
+          reject(error);
+        },
+      });
+    });
+  }
+
   updateLocationTheme() {
     let themeId = this.selectedTheme.id;
+
     return new Promise((resolve, reject) => {
       $.ajax({
         url: `${baseURL}/api/toolbox/update-location-theme`,
@@ -140,7 +160,9 @@ class DataManager {
     });
   }
 
-  createNewPage(pageName) {
+  createNewPage(pageName, theme) {
+    let pageJsonContent = generateNewPage(theme)
+    console.log(pageJsonContent)
     return new Promise((resolve, reject) => {
       $.ajax({
         url: `${baseURL}/api/toolbox/create-page`,
@@ -148,6 +170,7 @@ class DataManager {
         contentType: "application/json",
         data: JSON.stringify({
           PageName: pageName,
+          PageJsonContent: JSON.stringify(pageJsonContent)
         }),
         success: function (response) {
           resolve(response);
@@ -306,7 +329,7 @@ class DataManager {
   getLocationTheme() {
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: `${baseURL}/api/location-theme`,
+        url: `${baseURL}/api/toolbox/location-theme`,
         type: "GET",
         contentType: "application/json",
         success: function (response) {
@@ -394,9 +417,6 @@ const defaultTileAttrs = `
   tile-icon-color="#000000"
   tile-icon-align="left"
 
-  tile-bg-color="#ffffff"
-  tile-bg-color-name="cardBgColor"
-
   tile-bg-image=""
   tile-bg-image-opacity=100
 
@@ -413,3 +433,58 @@ const defaultConstraints = `
     data-gjs-resizable="false"
     data-gjs-hoverable="false"
 `;
+
+/**publishPages(isNotifyResidents) {
+  const editors = Object.values(this.editorManager.editors);
+  if (editors && editors.length) {
+    let saveCount = 0;
+    const totalPages = editors.length;
+
+    for (let index = 0; index < editors.length; index++) {
+      const editorData = editors[index];
+      let pageId = editorData.pageId;
+      let editor = editorData.editor;
+      let page = this.dataManager.pages.SDT_PageCollection.find(
+        (page) => page.PageId == pageId
+      );
+
+      let projectData = editor.getProjectData();
+      let htmlData = editor.getHtml();
+      let jsonData;
+      let pageName = page.PageName;
+
+      if (page.PageIsContentPage) {
+        jsonData = mapContentToPageData(projectData, page);
+      } else {
+        jsonData = mapTemplateToPageData(projectData, page);
+      }
+
+      if (pageId) {
+        let data = {
+          PageId: pageId,
+          PageName: pageName,
+          PageJsonContent: JSON.stringify(jsonData),
+          PageGJSHtml: htmlData,
+          PageGJSJson: JSON.stringify(projectData),
+          SDT_Page: jsonData,
+          PageIsPublished: true,
+          IsNotifyResidents: isNotifyResidents,
+        };
+
+        this.dataManager.updatePage(data).then((res) => {
+          if (this.checkIfNotAuthenticated(res)) {
+            return;
+          }
+
+          saveCount++;
+          if (saveCount === totalPages) {
+            this.displayAlertMessage(
+              "All Pages Saved Successfully",
+              "success"
+            );
+          }
+        });
+      }
+    }
+  }
+} **/

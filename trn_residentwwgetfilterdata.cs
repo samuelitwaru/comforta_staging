@@ -323,6 +323,7 @@ namespace GeneXus.Programs {
          {
             BRK7B2 = false;
             A96ResidentTypeId = P007B2_A96ResidentTypeId[0];
+            n96ResidentTypeId = P007B2_n96ResidentTypeId[0];
             A64ResidentGivenName = P007B2_A64ResidentGivenName[0];
             A97ResidentTypeName = P007B2_A97ResidentTypeName[0];
             A70ResidentPhone = P007B2_A70ResidentPhone[0];
@@ -438,6 +439,7 @@ namespace GeneXus.Programs {
          {
             BRK7B4 = false;
             A96ResidentTypeId = P007B3_A96ResidentTypeId[0];
+            n96ResidentTypeId = P007B3_n96ResidentTypeId[0];
             A65ResidentLastName = P007B3_A65ResidentLastName[0];
             A97ResidentTypeName = P007B3_A97ResidentTypeName[0];
             A70ResidentPhone = P007B3_A70ResidentPhone[0];
@@ -553,6 +555,7 @@ namespace GeneXus.Programs {
          {
             BRK7B6 = false;
             A96ResidentTypeId = P007B4_A96ResidentTypeId[0];
+            n96ResidentTypeId = P007B4_n96ResidentTypeId[0];
             A67ResidentEmail = P007B4_A67ResidentEmail[0];
             A97ResidentTypeName = P007B4_A97ResidentTypeName[0];
             A70ResidentPhone = P007B4_A70ResidentPhone[0];
@@ -668,6 +671,7 @@ namespace GeneXus.Programs {
          {
             BRK7B8 = false;
             A96ResidentTypeId = P007B5_A96ResidentTypeId[0];
+            n96ResidentTypeId = P007B5_n96ResidentTypeId[0];
             A70ResidentPhone = P007B5_A70ResidentPhone[0];
             A97ResidentTypeName = P007B5_A97ResidentTypeName[0];
             A67ResidentEmail = P007B5_A67ResidentEmail[0];
@@ -783,6 +787,7 @@ namespace GeneXus.Programs {
          {
             BRK7B10 = false;
             A96ResidentTypeId = P007B6_A96ResidentTypeId[0];
+            n96ResidentTypeId = P007B6_n96ResidentTypeId[0];
             A97ResidentTypeName = P007B6_A97ResidentTypeName[0];
             A70ResidentPhone = P007B6_A70ResidentPhone[0];
             A67ResidentEmail = P007B6_A67ResidentEmail[0];
@@ -910,6 +915,7 @@ namespace GeneXus.Programs {
          A70ResidentPhone = "";
          A97ResidentTypeName = "";
          P007B2_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
+         P007B2_n96ResidentTypeId = new bool[] {false} ;
          P007B2_A64ResidentGivenName = new string[] {""} ;
          P007B2_A97ResidentTypeName = new string[] {""} ;
          P007B2_A70ResidentPhone = new string[] {""} ;
@@ -926,6 +932,7 @@ namespace GeneXus.Programs {
          A11OrganisationId = Guid.Empty;
          AV36Option = "";
          P007B3_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
+         P007B3_n96ResidentTypeId = new bool[] {false} ;
          P007B3_A65ResidentLastName = new string[] {""} ;
          P007B3_A97ResidentTypeName = new string[] {""} ;
          P007B3_A70ResidentPhone = new string[] {""} ;
@@ -937,6 +944,7 @@ namespace GeneXus.Programs {
          P007B3_A29LocationId = new Guid[] {Guid.Empty} ;
          P007B3_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P007B4_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
+         P007B4_n96ResidentTypeId = new bool[] {false} ;
          P007B4_A67ResidentEmail = new string[] {""} ;
          P007B4_A97ResidentTypeName = new string[] {""} ;
          P007B4_A70ResidentPhone = new string[] {""} ;
@@ -948,6 +956,7 @@ namespace GeneXus.Programs {
          P007B4_A29LocationId = new Guid[] {Guid.Empty} ;
          P007B4_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P007B5_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
+         P007B5_n96ResidentTypeId = new bool[] {false} ;
          P007B5_A70ResidentPhone = new string[] {""} ;
          P007B5_A97ResidentTypeName = new string[] {""} ;
          P007B5_A67ResidentEmail = new string[] {""} ;
@@ -959,6 +968,7 @@ namespace GeneXus.Programs {
          P007B5_A29LocationId = new Guid[] {Guid.Empty} ;
          P007B5_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P007B6_A96ResidentTypeId = new Guid[] {Guid.Empty} ;
+         P007B6_n96ResidentTypeId = new bool[] {false} ;
          P007B6_A97ResidentTypeName = new string[] {""} ;
          P007B6_A70ResidentPhone = new string[] {""} ;
          P007B6_A67ResidentEmail = new string[] {""} ;
@@ -972,24 +982,24 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_residentwwgetfilterdata__default(),
             new Object[][] {
                 new Object[] {
-               P007B2_A96ResidentTypeId, P007B2_A64ResidentGivenName, P007B2_A97ResidentTypeName, P007B2_A70ResidentPhone, P007B2_A67ResidentEmail, P007B2_A65ResidentLastName, P007B2_A68ResidentGender, P007B2_A72ResidentSalutation, P007B2_A62ResidentId, P007B2_A29LocationId,
-               P007B2_A11OrganisationId
+               P007B2_A96ResidentTypeId, P007B2_n96ResidentTypeId, P007B2_A64ResidentGivenName, P007B2_A97ResidentTypeName, P007B2_A70ResidentPhone, P007B2_A67ResidentEmail, P007B2_A65ResidentLastName, P007B2_A68ResidentGender, P007B2_A72ResidentSalutation, P007B2_A62ResidentId,
+               P007B2_A29LocationId, P007B2_A11OrganisationId
                }
                , new Object[] {
-               P007B3_A96ResidentTypeId, P007B3_A65ResidentLastName, P007B3_A97ResidentTypeName, P007B3_A70ResidentPhone, P007B3_A67ResidentEmail, P007B3_A64ResidentGivenName, P007B3_A68ResidentGender, P007B3_A72ResidentSalutation, P007B3_A62ResidentId, P007B3_A29LocationId,
-               P007B3_A11OrganisationId
+               P007B3_A96ResidentTypeId, P007B3_n96ResidentTypeId, P007B3_A65ResidentLastName, P007B3_A97ResidentTypeName, P007B3_A70ResidentPhone, P007B3_A67ResidentEmail, P007B3_A64ResidentGivenName, P007B3_A68ResidentGender, P007B3_A72ResidentSalutation, P007B3_A62ResidentId,
+               P007B3_A29LocationId, P007B3_A11OrganisationId
                }
                , new Object[] {
-               P007B4_A96ResidentTypeId, P007B4_A67ResidentEmail, P007B4_A97ResidentTypeName, P007B4_A70ResidentPhone, P007B4_A65ResidentLastName, P007B4_A64ResidentGivenName, P007B4_A68ResidentGender, P007B4_A72ResidentSalutation, P007B4_A62ResidentId, P007B4_A29LocationId,
-               P007B4_A11OrganisationId
+               P007B4_A96ResidentTypeId, P007B4_n96ResidentTypeId, P007B4_A67ResidentEmail, P007B4_A97ResidentTypeName, P007B4_A70ResidentPhone, P007B4_A65ResidentLastName, P007B4_A64ResidentGivenName, P007B4_A68ResidentGender, P007B4_A72ResidentSalutation, P007B4_A62ResidentId,
+               P007B4_A29LocationId, P007B4_A11OrganisationId
                }
                , new Object[] {
-               P007B5_A96ResidentTypeId, P007B5_A70ResidentPhone, P007B5_A97ResidentTypeName, P007B5_A67ResidentEmail, P007B5_A65ResidentLastName, P007B5_A64ResidentGivenName, P007B5_A68ResidentGender, P007B5_A72ResidentSalutation, P007B5_A62ResidentId, P007B5_A29LocationId,
-               P007B5_A11OrganisationId
+               P007B5_A96ResidentTypeId, P007B5_n96ResidentTypeId, P007B5_A70ResidentPhone, P007B5_A97ResidentTypeName, P007B5_A67ResidentEmail, P007B5_A65ResidentLastName, P007B5_A64ResidentGivenName, P007B5_A68ResidentGender, P007B5_A72ResidentSalutation, P007B5_A62ResidentId,
+               P007B5_A29LocationId, P007B5_A11OrganisationId
                }
                , new Object[] {
-               P007B6_A96ResidentTypeId, P007B6_A97ResidentTypeName, P007B6_A70ResidentPhone, P007B6_A67ResidentEmail, P007B6_A65ResidentLastName, P007B6_A64ResidentGivenName, P007B6_A68ResidentGender, P007B6_A72ResidentSalutation, P007B6_A62ResidentId, P007B6_A29LocationId,
-               P007B6_A11OrganisationId
+               P007B6_A96ResidentTypeId, P007B6_n96ResidentTypeId, P007B6_A97ResidentTypeName, P007B6_A70ResidentPhone, P007B6_A67ResidentEmail, P007B6_A65ResidentLastName, P007B6_A64ResidentGivenName, P007B6_A68ResidentGender, P007B6_A72ResidentSalutation, P007B6_A62ResidentId,
+               P007B6_A29LocationId, P007B6_A11OrganisationId
                }
             }
          );
@@ -1013,6 +1023,7 @@ namespace GeneXus.Programs {
       private string A70ResidentPhone ;
       private bool returnInSub ;
       private bool BRK7B2 ;
+      private bool n96ResidentTypeId ;
       private bool BRK7B4 ;
       private bool BRK7B6 ;
       private bool BRK7B8 ;
@@ -1075,6 +1086,7 @@ namespace GeneXus.Programs {
       private GxSimpleCollection<string> AV68Trn_residentwwds_7_tfresidentgender_sels ;
       private IDataStoreProvider pr_default ;
       private Guid[] P007B2_A96ResidentTypeId ;
+      private bool[] P007B2_n96ResidentTypeId ;
       private string[] P007B2_A64ResidentGivenName ;
       private string[] P007B2_A97ResidentTypeName ;
       private string[] P007B2_A70ResidentPhone ;
@@ -1086,6 +1098,7 @@ namespace GeneXus.Programs {
       private Guid[] P007B2_A29LocationId ;
       private Guid[] P007B2_A11OrganisationId ;
       private Guid[] P007B3_A96ResidentTypeId ;
+      private bool[] P007B3_n96ResidentTypeId ;
       private string[] P007B3_A65ResidentLastName ;
       private string[] P007B3_A97ResidentTypeName ;
       private string[] P007B3_A70ResidentPhone ;
@@ -1097,6 +1110,7 @@ namespace GeneXus.Programs {
       private Guid[] P007B3_A29LocationId ;
       private Guid[] P007B3_A11OrganisationId ;
       private Guid[] P007B4_A96ResidentTypeId ;
+      private bool[] P007B4_n96ResidentTypeId ;
       private string[] P007B4_A67ResidentEmail ;
       private string[] P007B4_A97ResidentTypeName ;
       private string[] P007B4_A70ResidentPhone ;
@@ -1108,6 +1122,7 @@ namespace GeneXus.Programs {
       private Guid[] P007B4_A29LocationId ;
       private Guid[] P007B4_A11OrganisationId ;
       private Guid[] P007B5_A96ResidentTypeId ;
+      private bool[] P007B5_n96ResidentTypeId ;
       private string[] P007B5_A70ResidentPhone ;
       private string[] P007B5_A97ResidentTypeName ;
       private string[] P007B5_A67ResidentEmail ;
@@ -1119,6 +1134,7 @@ namespace GeneXus.Programs {
       private Guid[] P007B5_A29LocationId ;
       private Guid[] P007B5_A11OrganisationId ;
       private Guid[] P007B6_A96ResidentTypeId ;
+      private bool[] P007B6_n96ResidentTypeId ;
       private string[] P007B6_A97ResidentTypeName ;
       private string[] P007B6_A70ResidentPhone ;
       private string[] P007B6_A67ResidentEmail ;
@@ -1164,7 +1180,7 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int1 = new short[10];
          Object[] GXv_Object2 = new Object[2];
-         scmdbuf = "SELECT T1.ResidentTypeId, T1.ResidentGivenName, T2.ResidentTypeName, T1.ResidentPhone, T1.ResidentEmail, T1.ResidentLastName, T1.ResidentGender, T1.ResidentSalutation, T1.ResidentId, T1.LocationId, T1.OrganisationId FROM (Trn_Resident T1 INNER JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = T1.ResidentTypeId)";
+         scmdbuf = "SELECT T1.ResidentTypeId, T1.ResidentGivenName, T2.ResidentTypeName, T1.ResidentPhone, T1.ResidentEmail, T1.ResidentLastName, T1.ResidentGender, T1.ResidentSalutation, T1.ResidentId, T1.LocationId, T1.OrganisationId FROM (Trn_Resident T1 LEFT JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = T1.ResidentTypeId)";
          if ( AV63Trn_residentwwds_2_tfresidentsalutation_sels_Count > 0 )
          {
             AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV63Trn_residentwwds_2_tfresidentsalutation_sels, "T1.ResidentSalutation IN (", ")")+")");
@@ -1271,7 +1287,7 @@ namespace GeneXus.Programs {
          }
          if ( StringUtil.StrCmp(AV74Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.ResidentTypeName))=0))");
+            AddWhere(sWhereString, "(T2.ResidentTypeName IS NULL or (char_length(trim(trailing ' ' from T2.ResidentTypeName))=0))");
          }
          scmdbuf += sWhereString;
          scmdbuf += " ORDER BY T1.ResidentGivenName";
@@ -1308,7 +1324,7 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int3 = new short[10];
          Object[] GXv_Object4 = new Object[2];
-         scmdbuf = "SELECT T1.ResidentTypeId, T1.ResidentLastName, T2.ResidentTypeName, T1.ResidentPhone, T1.ResidentEmail, T1.ResidentGivenName, T1.ResidentGender, T1.ResidentSalutation, T1.ResidentId, T1.LocationId, T1.OrganisationId FROM (Trn_Resident T1 INNER JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = T1.ResidentTypeId)";
+         scmdbuf = "SELECT T1.ResidentTypeId, T1.ResidentLastName, T2.ResidentTypeName, T1.ResidentPhone, T1.ResidentEmail, T1.ResidentGivenName, T1.ResidentGender, T1.ResidentSalutation, T1.ResidentId, T1.LocationId, T1.OrganisationId FROM (Trn_Resident T1 LEFT JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = T1.ResidentTypeId)";
          if ( AV63Trn_residentwwds_2_tfresidentsalutation_sels_Count > 0 )
          {
             AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV63Trn_residentwwds_2_tfresidentsalutation_sels, "T1.ResidentSalutation IN (", ")")+")");
@@ -1415,7 +1431,7 @@ namespace GeneXus.Programs {
          }
          if ( StringUtil.StrCmp(AV74Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.ResidentTypeName))=0))");
+            AddWhere(sWhereString, "(T2.ResidentTypeName IS NULL or (char_length(trim(trailing ' ' from T2.ResidentTypeName))=0))");
          }
          scmdbuf += sWhereString;
          scmdbuf += " ORDER BY T1.ResidentLastName";
@@ -1452,7 +1468,7 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int5 = new short[10];
          Object[] GXv_Object6 = new Object[2];
-         scmdbuf = "SELECT T1.ResidentTypeId, T1.ResidentEmail, T2.ResidentTypeName, T1.ResidentPhone, T1.ResidentLastName, T1.ResidentGivenName, T1.ResidentGender, T1.ResidentSalutation, T1.ResidentId, T1.LocationId, T1.OrganisationId FROM (Trn_Resident T1 INNER JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = T1.ResidentTypeId)";
+         scmdbuf = "SELECT T1.ResidentTypeId, T1.ResidentEmail, T2.ResidentTypeName, T1.ResidentPhone, T1.ResidentLastName, T1.ResidentGivenName, T1.ResidentGender, T1.ResidentSalutation, T1.ResidentId, T1.LocationId, T1.OrganisationId FROM (Trn_Resident T1 LEFT JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = T1.ResidentTypeId)";
          if ( AV63Trn_residentwwds_2_tfresidentsalutation_sels_Count > 0 )
          {
             AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV63Trn_residentwwds_2_tfresidentsalutation_sels, "T1.ResidentSalutation IN (", ")")+")");
@@ -1559,7 +1575,7 @@ namespace GeneXus.Programs {
          }
          if ( StringUtil.StrCmp(AV74Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.ResidentTypeName))=0))");
+            AddWhere(sWhereString, "(T2.ResidentTypeName IS NULL or (char_length(trim(trailing ' ' from T2.ResidentTypeName))=0))");
          }
          scmdbuf += sWhereString;
          scmdbuf += " ORDER BY T1.ResidentEmail";
@@ -1596,7 +1612,7 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int7 = new short[10];
          Object[] GXv_Object8 = new Object[2];
-         scmdbuf = "SELECT T1.ResidentTypeId, T1.ResidentPhone, T2.ResidentTypeName, T1.ResidentEmail, T1.ResidentLastName, T1.ResidentGivenName, T1.ResidentGender, T1.ResidentSalutation, T1.ResidentId, T1.LocationId, T1.OrganisationId FROM (Trn_Resident T1 INNER JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = T1.ResidentTypeId)";
+         scmdbuf = "SELECT T1.ResidentTypeId, T1.ResidentPhone, T2.ResidentTypeName, T1.ResidentEmail, T1.ResidentLastName, T1.ResidentGivenName, T1.ResidentGender, T1.ResidentSalutation, T1.ResidentId, T1.LocationId, T1.OrganisationId FROM (Trn_Resident T1 LEFT JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = T1.ResidentTypeId)";
          if ( AV63Trn_residentwwds_2_tfresidentsalutation_sels_Count > 0 )
          {
             AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV63Trn_residentwwds_2_tfresidentsalutation_sels, "T1.ResidentSalutation IN (", ")")+")");
@@ -1703,7 +1719,7 @@ namespace GeneXus.Programs {
          }
          if ( StringUtil.StrCmp(AV74Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.ResidentTypeName))=0))");
+            AddWhere(sWhereString, "(T2.ResidentTypeName IS NULL or (char_length(trim(trailing ' ' from T2.ResidentTypeName))=0))");
          }
          scmdbuf += sWhereString;
          scmdbuf += " ORDER BY T1.ResidentPhone";
@@ -1740,7 +1756,7 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int9 = new short[10];
          Object[] GXv_Object10 = new Object[2];
-         scmdbuf = "SELECT T1.ResidentTypeId, T2.ResidentTypeName, T1.ResidentPhone, T1.ResidentEmail, T1.ResidentLastName, T1.ResidentGivenName, T1.ResidentGender, T1.ResidentSalutation, T1.ResidentId, T1.LocationId, T1.OrganisationId FROM (Trn_Resident T1 INNER JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = T1.ResidentTypeId)";
+         scmdbuf = "SELECT T1.ResidentTypeId, T2.ResidentTypeName, T1.ResidentPhone, T1.ResidentEmail, T1.ResidentLastName, T1.ResidentGivenName, T1.ResidentGender, T1.ResidentSalutation, T1.ResidentId, T1.LocationId, T1.OrganisationId FROM (Trn_Resident T1 LEFT JOIN Trn_ResidentType T2 ON T2.ResidentTypeId = T1.ResidentTypeId)";
          if ( AV63Trn_residentwwds_2_tfresidentsalutation_sels_Count > 0 )
          {
             AddWhere(sWhereString, "("+new GxDbmsUtils( new GxPostgreSql()).ValueList(AV63Trn_residentwwds_2_tfresidentsalutation_sels, "T1.ResidentSalutation IN (", ")")+")");
@@ -1847,7 +1863,7 @@ namespace GeneXus.Programs {
          }
          if ( StringUtil.StrCmp(AV74Trn_residentwwds_13_tfresidenttypename_sel, context.GetMessage( "<#Empty#>", "")) == 0 )
          {
-            AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.ResidentTypeName))=0))");
+            AddWhere(sWhereString, "(T2.ResidentTypeName IS NULL or (char_length(trim(trailing ' ' from T2.ResidentTypeName))=0))");
          }
          scmdbuf += sWhereString;
          scmdbuf += " ORDER BY T1.ResidentTypeId";
@@ -1976,68 +1992,73 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((string[]) buf[2])[0] = rslt.getVarchar(3);
-                ((string[]) buf[3])[0] = rslt.getString(4, 20);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
-                ((string[]) buf[5])[0] = rslt.getVarchar(6);
-                ((string[]) buf[6])[0] = rslt.getVarchar(7);
-                ((string[]) buf[7])[0] = rslt.getString(8, 20);
-                ((Guid[]) buf[8])[0] = rslt.getGuid(9);
-                ((Guid[]) buf[9])[0] = rslt.getGuid(10);
-                ((Guid[]) buf[10])[0] = rslt.getGuid(11);
+                ((bool[]) buf[1])[0] = rslt.wasNull(1);
+                ((string[]) buf[2])[0] = rslt.getVarchar(2);
+                ((string[]) buf[3])[0] = rslt.getVarchar(3);
+                ((string[]) buf[4])[0] = rslt.getString(4, 20);
+                ((string[]) buf[5])[0] = rslt.getVarchar(5);
+                ((string[]) buf[6])[0] = rslt.getVarchar(6);
+                ((string[]) buf[7])[0] = rslt.getVarchar(7);
+                ((string[]) buf[8])[0] = rslt.getString(8, 20);
+                ((Guid[]) buf[9])[0] = rslt.getGuid(9);
+                ((Guid[]) buf[10])[0] = rslt.getGuid(10);
+                ((Guid[]) buf[11])[0] = rslt.getGuid(11);
                 return;
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((string[]) buf[2])[0] = rslt.getVarchar(3);
-                ((string[]) buf[3])[0] = rslt.getString(4, 20);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
-                ((string[]) buf[5])[0] = rslt.getVarchar(6);
-                ((string[]) buf[6])[0] = rslt.getVarchar(7);
-                ((string[]) buf[7])[0] = rslt.getString(8, 20);
-                ((Guid[]) buf[8])[0] = rslt.getGuid(9);
-                ((Guid[]) buf[9])[0] = rslt.getGuid(10);
-                ((Guid[]) buf[10])[0] = rslt.getGuid(11);
+                ((bool[]) buf[1])[0] = rslt.wasNull(1);
+                ((string[]) buf[2])[0] = rslt.getVarchar(2);
+                ((string[]) buf[3])[0] = rslt.getVarchar(3);
+                ((string[]) buf[4])[0] = rslt.getString(4, 20);
+                ((string[]) buf[5])[0] = rslt.getVarchar(5);
+                ((string[]) buf[6])[0] = rslt.getVarchar(6);
+                ((string[]) buf[7])[0] = rslt.getVarchar(7);
+                ((string[]) buf[8])[0] = rslt.getString(8, 20);
+                ((Guid[]) buf[9])[0] = rslt.getGuid(9);
+                ((Guid[]) buf[10])[0] = rslt.getGuid(10);
+                ((Guid[]) buf[11])[0] = rslt.getGuid(11);
                 return;
              case 2 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((string[]) buf[2])[0] = rslt.getVarchar(3);
-                ((string[]) buf[3])[0] = rslt.getString(4, 20);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
-                ((string[]) buf[5])[0] = rslt.getVarchar(6);
-                ((string[]) buf[6])[0] = rslt.getVarchar(7);
-                ((string[]) buf[7])[0] = rslt.getString(8, 20);
-                ((Guid[]) buf[8])[0] = rslt.getGuid(9);
-                ((Guid[]) buf[9])[0] = rslt.getGuid(10);
-                ((Guid[]) buf[10])[0] = rslt.getGuid(11);
+                ((bool[]) buf[1])[0] = rslt.wasNull(1);
+                ((string[]) buf[2])[0] = rslt.getVarchar(2);
+                ((string[]) buf[3])[0] = rslt.getVarchar(3);
+                ((string[]) buf[4])[0] = rslt.getString(4, 20);
+                ((string[]) buf[5])[0] = rslt.getVarchar(5);
+                ((string[]) buf[6])[0] = rslt.getVarchar(6);
+                ((string[]) buf[7])[0] = rslt.getVarchar(7);
+                ((string[]) buf[8])[0] = rslt.getString(8, 20);
+                ((Guid[]) buf[9])[0] = rslt.getGuid(9);
+                ((Guid[]) buf[10])[0] = rslt.getGuid(10);
+                ((Guid[]) buf[11])[0] = rslt.getGuid(11);
                 return;
              case 3 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getString(2, 20);
-                ((string[]) buf[2])[0] = rslt.getVarchar(3);
-                ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
-                ((string[]) buf[5])[0] = rslt.getVarchar(6);
-                ((string[]) buf[6])[0] = rslt.getVarchar(7);
-                ((string[]) buf[7])[0] = rslt.getString(8, 20);
-                ((Guid[]) buf[8])[0] = rslt.getGuid(9);
-                ((Guid[]) buf[9])[0] = rslt.getGuid(10);
-                ((Guid[]) buf[10])[0] = rslt.getGuid(11);
+                ((bool[]) buf[1])[0] = rslt.wasNull(1);
+                ((string[]) buf[2])[0] = rslt.getString(2, 20);
+                ((string[]) buf[3])[0] = rslt.getVarchar(3);
+                ((string[]) buf[4])[0] = rslt.getVarchar(4);
+                ((string[]) buf[5])[0] = rslt.getVarchar(5);
+                ((string[]) buf[6])[0] = rslt.getVarchar(6);
+                ((string[]) buf[7])[0] = rslt.getVarchar(7);
+                ((string[]) buf[8])[0] = rslt.getString(8, 20);
+                ((Guid[]) buf[9])[0] = rslt.getGuid(9);
+                ((Guid[]) buf[10])[0] = rslt.getGuid(10);
+                ((Guid[]) buf[11])[0] = rslt.getGuid(11);
                 return;
              case 4 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((string[]) buf[2])[0] = rslt.getString(3, 20);
-                ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
-                ((string[]) buf[5])[0] = rslt.getVarchar(6);
-                ((string[]) buf[6])[0] = rslt.getVarchar(7);
-                ((string[]) buf[7])[0] = rslt.getString(8, 20);
-                ((Guid[]) buf[8])[0] = rslt.getGuid(9);
-                ((Guid[]) buf[9])[0] = rslt.getGuid(10);
-                ((Guid[]) buf[10])[0] = rslt.getGuid(11);
+                ((bool[]) buf[1])[0] = rslt.wasNull(1);
+                ((string[]) buf[2])[0] = rslt.getVarchar(2);
+                ((string[]) buf[3])[0] = rslt.getString(3, 20);
+                ((string[]) buf[4])[0] = rslt.getVarchar(4);
+                ((string[]) buf[5])[0] = rslt.getVarchar(5);
+                ((string[]) buf[6])[0] = rslt.getVarchar(6);
+                ((string[]) buf[7])[0] = rslt.getVarchar(7);
+                ((string[]) buf[8])[0] = rslt.getString(8, 20);
+                ((Guid[]) buf[9])[0] = rslt.getGuid(9);
+                ((Guid[]) buf[10])[0] = rslt.getGuid(10);
+                ((Guid[]) buf[11])[0] = rslt.getGuid(11);
                 return;
        }
     }
