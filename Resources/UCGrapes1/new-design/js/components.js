@@ -379,7 +379,7 @@ class ActionListComponent {
             pageInput.disabled = true; // Disable input during creation
   
             // Create the page
-            await this.dataManager.createNewPage(pageTitle).then((res) => {
+            await this.dataManager.createNewPage(pageTitle, this.toolBoxManager.currentTheme).then((res) => {
                 if (this.toolBoxManager.checkIfNotAuthenticated(res)) {
                     return;
                 }

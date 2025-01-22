@@ -651,16 +651,18 @@ namespace GeneXus.Programs {
       }
 
       public void gxep_createpage( string aP0_PageName ,
-                                   out string aP1_result ,
-                                   out SdtSDT_Error aP2_error )
+                                   string aP1_PageJsonContent ,
+                                   out string aP2_result ,
+                                   out SdtSDT_Error aP3_error )
       {
          this.AV60PageName = aP0_PageName;
+         this.AV58PageJsonContent = aP1_PageJsonContent;
          AV91error = new SdtSDT_Error(context);
          initialize();
          /* CreatePage Constructor */
-         new prc_createpage(context ).execute(  AV60PageName, ref  AV17result, out  AV91error) ;
-         aP1_result=this.AV17result;
-         aP2_error=this.AV91error;
+         new prc_createpage(context ).execute(  AV60PageName,  AV58PageJsonContent, ref  AV17result, out  AV91error) ;
+         aP2_result=this.AV17result;
+         aP3_error=this.AV91error;
       }
 
       public void gxep_createcontentpage( Guid aP0_PageId ,
@@ -911,11 +913,11 @@ namespace GeneXus.Programs {
       protected SdtSDT_Page aP1_SDT_Page ;
       protected GXBaseCollection<SdtSDT_PageStructure> AV64SDT_PageStructureCollection ;
       protected GXBaseCollection<SdtSDT_PageStructure> aP0_SDT_PageStructureCollection ;
+      protected SdtSDT_Error aP3_error ;
       protected string aP5_result ;
       protected string aP7_result ;
       protected SdtSDT_Error aP8_error ;
       protected GXBaseCollection<SdtSDT_PublishPage> AV92PagesList ;
-      protected SdtSDT_Error aP3_error ;
       protected SdtSDT_Theme AV72SDT_Theme ;
       protected SdtSDT_Theme aP1_SDT_Theme ;
       protected SdtSDT_ProductService AV67SDT_ProductService ;

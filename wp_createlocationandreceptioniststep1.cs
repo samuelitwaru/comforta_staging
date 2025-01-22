@@ -1687,6 +1687,8 @@ namespace GeneXus.Programs {
       {
          /* Locationzipcode_Controlvaluechanged Routine */
          returnInSub = false;
+         AV18LocationZipCode = StringUtil.Upper( AV18LocationZipCode);
+         AssignAttri(sPrefix, false, "AV18LocationZipCode", AV18LocationZipCode);
          if ( ! GxRegex.IsMatch(AV18LocationZipCode,context.GetMessage( "^\\d{4}\\s?[A-Z]{2}$", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( AV18LocationZipCode)) )
          {
             GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "Zip Code is incorrect", ""),  "error",  edtavLocationzipcode_Internalname,  "true",  ""));
@@ -2024,7 +2026,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202511152011", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512210384866", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2040,7 +2042,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createlocationandreceptioniststep1.js", "?202511152011", false, true);
+         context.AddJavascriptSource("wp_createlocationandreceptioniststep1.js", "?202512210384867", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2194,7 +2196,7 @@ namespace GeneXus.Programs {
          setEventMetadata("'WIZARDPREVIOUS'","""{"handler":"E146T2","iparms":[]}""");
          setEventMetadata("'DOUSERACTIONDELETE'","""{"handler":"E156T2","iparms":[]}""");
          setEventMetadata("VLOCATIONZIPCODE.CONTROLVALUECHANGED","""{"handler":"E166T2","iparms":[{"av":"AV18LocationZipCode","fld":"vLOCATIONZIPCODE"}]""");
-         setEventMetadata("VLOCATIONZIPCODE.CONTROLVALUECHANGED",""","oparms":[{"av":"AV22CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
+         setEventMetadata("VLOCATIONZIPCODE.CONTROLVALUECHANGED",""","oparms":[{"av":"AV18LocationZipCode","fld":"vLOCATIONZIPCODE"},{"av":"AV22CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
          setEventMetadata("VLOCATIONPHONENUMBER.CONTROLVALUECHANGED","""{"handler":"E176T2","iparms":[{"av":"AV34LocationPhoneNumber","fld":"vLOCATIONPHONENUMBER"}]""");
          setEventMetadata("VLOCATIONPHONENUMBER.CONTROLVALUECHANGED",""","oparms":[{"av":"AV22CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
          setEventMetadata("VFILENAME.CONTROLVALUECHANGED","""{"handler":"E186T2","iparms":[{"av":"AV36FileName","fld":"vFILENAME"}]}""");

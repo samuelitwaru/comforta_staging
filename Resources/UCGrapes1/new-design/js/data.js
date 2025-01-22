@@ -160,7 +160,9 @@ class DataManager {
     });
   }
 
-  createNewPage(pageName) {
+  createNewPage(pageName, theme) {
+    let pageJsonContent = generateNewPage(theme)
+    console.log(pageJsonContent)
     return new Promise((resolve, reject) => {
       $.ajax({
         url: `${baseURL}/api/toolbox/create-page`,
@@ -168,6 +170,7 @@ class DataManager {
         contentType: "application/json",
         data: JSON.stringify({
           PageName: pageName,
+          PageJsonContent: JSON.stringify(pageJsonContent)
         }),
         success: function (response) {
           resolve(response);

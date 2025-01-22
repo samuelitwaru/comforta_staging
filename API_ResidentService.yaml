@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250121095153"
+  version: "20250122074245"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/api
 paths:
@@ -1163,6 +1163,8 @@ components:
     CreatePageInput:  
       properties:
         PageName:
+          type: "string"
+        PageJsonContent:
           type: "string"
 
     CreateContentPageInput:  

@@ -108,7 +108,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable013( ) ;
                if ( AnyError == 0 )
                {
-                  ZM013( 15) ;
+                  ZM013( 16) ;
                }
                CloseExtendedTableCursors013( ) ;
             }
@@ -160,9 +160,10 @@ namespace GeneXus.Programs {
 
       protected void ZM013( short GX_JID )
       {
-         if ( ( GX_JID == 14 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 15 ) || ( GX_JID == 0 ) )
          {
             Z17OrganisationPhone = A17OrganisationPhone;
+            Z288OrganisationAddressZipCode = A288OrganisationAddressZipCode;
             Z13OrganisationName = A13OrganisationName;
             Z12OrganisationKvkNumber = A12OrganisationKvkNumber;
             Z16OrganisationEmail = A16OrganisationEmail;
@@ -171,19 +172,19 @@ namespace GeneXus.Programs {
             Z18OrganisationVATNumber = A18OrganisationVATNumber;
             Z331OrganisationAddressCountry = A331OrganisationAddressCountry;
             Z289OrganisationAddressCity = A289OrganisationAddressCity;
-            Z288OrganisationAddressZipCode = A288OrganisationAddressZipCode;
             Z342OrganisationAddressLine1 = A342OrganisationAddressLine1;
             Z343OrganisationAddressLine2 = A343OrganisationAddressLine2;
             Z19OrganisationTypeId = A19OrganisationTypeId;
          }
-         if ( ( GX_JID == 15 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 16 ) || ( GX_JID == 0 ) )
          {
             Z20OrganisationTypeName = A20OrganisationTypeName;
          }
-         if ( GX_JID == -14 )
+         if ( GX_JID == -15 )
          {
             Z11OrganisationId = A11OrganisationId;
             Z17OrganisationPhone = A17OrganisationPhone;
+            Z288OrganisationAddressZipCode = A288OrganisationAddressZipCode;
             Z13OrganisationName = A13OrganisationName;
             Z12OrganisationKvkNumber = A12OrganisationKvkNumber;
             Z16OrganisationEmail = A16OrganisationEmail;
@@ -192,7 +193,6 @@ namespace GeneXus.Programs {
             Z18OrganisationVATNumber = A18OrganisationVATNumber;
             Z331OrganisationAddressCountry = A331OrganisationAddressCountry;
             Z289OrganisationAddressCity = A289OrganisationAddressCity;
-            Z288OrganisationAddressZipCode = A288OrganisationAddressZipCode;
             Z342OrganisationAddressLine1 = A342OrganisationAddressLine1;
             Z343OrganisationAddressLine2 = A343OrganisationAddressLine2;
             Z19OrganisationTypeId = A19OrganisationTypeId;
@@ -218,6 +218,7 @@ namespace GeneXus.Programs {
          {
             RcdFound3 = 1;
             A17OrganisationPhone = BC00015_A17OrganisationPhone[0];
+            A288OrganisationAddressZipCode = BC00015_A288OrganisationAddressZipCode[0];
             A13OrganisationName = BC00015_A13OrganisationName[0];
             A12OrganisationKvkNumber = BC00015_A12OrganisationKvkNumber[0];
             A16OrganisationEmail = BC00015_A16OrganisationEmail[0];
@@ -226,12 +227,11 @@ namespace GeneXus.Programs {
             A18OrganisationVATNumber = BC00015_A18OrganisationVATNumber[0];
             A331OrganisationAddressCountry = BC00015_A331OrganisationAddressCountry[0];
             A289OrganisationAddressCity = BC00015_A289OrganisationAddressCity[0];
-            A288OrganisationAddressZipCode = BC00015_A288OrganisationAddressZipCode[0];
             A342OrganisationAddressLine1 = BC00015_A342OrganisationAddressLine1[0];
             A343OrganisationAddressLine2 = BC00015_A343OrganisationAddressLine2[0];
             A20OrganisationTypeName = BC00015_A20OrganisationTypeName[0];
             A19OrganisationTypeId = BC00015_A19OrganisationTypeId[0];
-            ZM013( -14) ;
+            ZM013( -15) ;
          }
          pr_default.close(3);
          OnLoadActions013( ) ;
@@ -242,6 +242,7 @@ namespace GeneXus.Programs {
          GXt_char1 = A17OrganisationPhone;
          new prc_concatenateintlphone(context ).execute(  A389OrganisationPhoneCode,  A390OrganisationPhoneNumber, out  GXt_char1) ;
          A17OrganisationPhone = GXt_char1;
+         A288OrganisationAddressZipCode = StringUtil.Upper( A288OrganisationAddressZipCode);
       }
 
       protected void CheckExtendedTable013( )
@@ -275,6 +276,7 @@ namespace GeneXus.Programs {
             GX_msglist.addItem(context.GetMessage( "VAT number must contain 14 characters", ""), 1, "");
             AnyError = 1;
          }
+         A288OrganisationAddressZipCode = StringUtil.Upper( A288OrganisationAddressZipCode);
          if ( ! GxRegex.IsMatch(A288OrganisationAddressZipCode,context.GetMessage( "^\\d{4}\\s?[A-Z]{2}$", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( A288OrganisationAddressZipCode)) )
          {
             GX_msglist.addItem(context.GetMessage( "Zip Code is incorrect", ""), 1, "");
@@ -326,11 +328,12 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {n11OrganisationId, A11OrganisationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM013( 14) ;
+            ZM013( 15) ;
             RcdFound3 = 1;
             A11OrganisationId = BC00013_A11OrganisationId[0];
             n11OrganisationId = BC00013_n11OrganisationId[0];
             A17OrganisationPhone = BC00013_A17OrganisationPhone[0];
+            A288OrganisationAddressZipCode = BC00013_A288OrganisationAddressZipCode[0];
             A13OrganisationName = BC00013_A13OrganisationName[0];
             A12OrganisationKvkNumber = BC00013_A12OrganisationKvkNumber[0];
             A16OrganisationEmail = BC00013_A16OrganisationEmail[0];
@@ -339,7 +342,6 @@ namespace GeneXus.Programs {
             A18OrganisationVATNumber = BC00013_A18OrganisationVATNumber[0];
             A331OrganisationAddressCountry = BC00013_A331OrganisationAddressCountry[0];
             A289OrganisationAddressCity = BC00013_A289OrganisationAddressCity[0];
-            A288OrganisationAddressZipCode = BC00013_A288OrganisationAddressZipCode[0];
             A342OrganisationAddressLine1 = BC00013_A342OrganisationAddressLine1[0];
             A343OrganisationAddressLine2 = BC00013_A343OrganisationAddressLine2[0];
             A19OrganisationTypeId = BC00013_A19OrganisationTypeId[0];
@@ -409,11 +411,11 @@ namespace GeneXus.Programs {
                return  ;
             }
             Gx_longc = false;
-            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z17OrganisationPhone, BC00012_A17OrganisationPhone[0]) != 0 ) || ( StringUtil.StrCmp(Z13OrganisationName, BC00012_A13OrganisationName[0]) != 0 ) || ( StringUtil.StrCmp(Z12OrganisationKvkNumber, BC00012_A12OrganisationKvkNumber[0]) != 0 ) || ( StringUtil.StrCmp(Z16OrganisationEmail, BC00012_A16OrganisationEmail[0]) != 0 ) || ( StringUtil.StrCmp(Z389OrganisationPhoneCode, BC00012_A389OrganisationPhoneCode[0]) != 0 ) )
+            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z17OrganisationPhone, BC00012_A17OrganisationPhone[0]) != 0 ) || ( StringUtil.StrCmp(Z288OrganisationAddressZipCode, BC00012_A288OrganisationAddressZipCode[0]) != 0 ) || ( StringUtil.StrCmp(Z13OrganisationName, BC00012_A13OrganisationName[0]) != 0 ) || ( StringUtil.StrCmp(Z12OrganisationKvkNumber, BC00012_A12OrganisationKvkNumber[0]) != 0 ) || ( StringUtil.StrCmp(Z16OrganisationEmail, BC00012_A16OrganisationEmail[0]) != 0 ) )
             {
                Gx_longc = true;
             }
-            if ( Gx_longc || ( StringUtil.StrCmp(Z390OrganisationPhoneNumber, BC00012_A390OrganisationPhoneNumber[0]) != 0 ) || ( StringUtil.StrCmp(Z18OrganisationVATNumber, BC00012_A18OrganisationVATNumber[0]) != 0 ) || ( StringUtil.StrCmp(Z331OrganisationAddressCountry, BC00012_A331OrganisationAddressCountry[0]) != 0 ) || ( StringUtil.StrCmp(Z289OrganisationAddressCity, BC00012_A289OrganisationAddressCity[0]) != 0 ) || ( StringUtil.StrCmp(Z288OrganisationAddressZipCode, BC00012_A288OrganisationAddressZipCode[0]) != 0 ) )
+            if ( Gx_longc || ( StringUtil.StrCmp(Z389OrganisationPhoneCode, BC00012_A389OrganisationPhoneCode[0]) != 0 ) || ( StringUtil.StrCmp(Z390OrganisationPhoneNumber, BC00012_A390OrganisationPhoneNumber[0]) != 0 ) || ( StringUtil.StrCmp(Z18OrganisationVATNumber, BC00012_A18OrganisationVATNumber[0]) != 0 ) || ( StringUtil.StrCmp(Z331OrganisationAddressCountry, BC00012_A331OrganisationAddressCountry[0]) != 0 ) || ( StringUtil.StrCmp(Z289OrganisationAddressCity, BC00012_A289OrganisationAddressCity[0]) != 0 ) )
             {
                Gx_longc = true;
             }
@@ -446,7 +448,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC00017 */
-                     pr_default.execute(5, new Object[] {n11OrganisationId, A11OrganisationId, A17OrganisationPhone, A13OrganisationName, A12OrganisationKvkNumber, A16OrganisationEmail, A389OrganisationPhoneCode, A390OrganisationPhoneNumber, A18OrganisationVATNumber, A331OrganisationAddressCountry, A289OrganisationAddressCity, A288OrganisationAddressZipCode, A342OrganisationAddressLine1, A343OrganisationAddressLine2, A19OrganisationTypeId});
+                     pr_default.execute(5, new Object[] {n11OrganisationId, A11OrganisationId, A17OrganisationPhone, A288OrganisationAddressZipCode, A13OrganisationName, A12OrganisationKvkNumber, A16OrganisationEmail, A389OrganisationPhoneCode, A390OrganisationPhoneNumber, A18OrganisationVATNumber, A331OrganisationAddressCountry, A289OrganisationAddressCity, A342OrganisationAddressLine1, A343OrganisationAddressLine2, A19OrganisationTypeId});
                      pr_default.close(5);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Organisation");
                      if ( (pr_default.getStatus(5) == 1) )
@@ -501,7 +503,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC00018 */
-                     pr_default.execute(6, new Object[] {A17OrganisationPhone, A13OrganisationName, A12OrganisationKvkNumber, A16OrganisationEmail, A389OrganisationPhoneCode, A390OrganisationPhoneNumber, A18OrganisationVATNumber, A331OrganisationAddressCountry, A289OrganisationAddressCity, A288OrganisationAddressZipCode, A342OrganisationAddressLine1, A343OrganisationAddressLine2, A19OrganisationTypeId, n11OrganisationId, A11OrganisationId});
+                     pr_default.execute(6, new Object[] {A17OrganisationPhone, A288OrganisationAddressZipCode, A13OrganisationName, A12OrganisationKvkNumber, A16OrganisationEmail, A389OrganisationPhoneCode, A390OrganisationPhoneNumber, A18OrganisationVATNumber, A331OrganisationAddressCountry, A289OrganisationAddressCity, A342OrganisationAddressLine1, A343OrganisationAddressLine2, A19OrganisationTypeId, n11OrganisationId, A11OrganisationId});
                      pr_default.close(6);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Organisation");
                      if ( (pr_default.getStatus(6) == 103) )
@@ -678,6 +680,7 @@ namespace GeneXus.Programs {
             A11OrganisationId = BC000116_A11OrganisationId[0];
             n11OrganisationId = BC000116_n11OrganisationId[0];
             A17OrganisationPhone = BC000116_A17OrganisationPhone[0];
+            A288OrganisationAddressZipCode = BC000116_A288OrganisationAddressZipCode[0];
             A13OrganisationName = BC000116_A13OrganisationName[0];
             A12OrganisationKvkNumber = BC000116_A12OrganisationKvkNumber[0];
             A16OrganisationEmail = BC000116_A16OrganisationEmail[0];
@@ -686,7 +689,6 @@ namespace GeneXus.Programs {
             A18OrganisationVATNumber = BC000116_A18OrganisationVATNumber[0];
             A331OrganisationAddressCountry = BC000116_A331OrganisationAddressCountry[0];
             A289OrganisationAddressCity = BC000116_A289OrganisationAddressCity[0];
-            A288OrganisationAddressZipCode = BC000116_A288OrganisationAddressZipCode[0];
             A342OrganisationAddressLine1 = BC000116_A342OrganisationAddressLine1[0];
             A343OrganisationAddressLine2 = BC000116_A343OrganisationAddressLine2[0];
             A20OrganisationTypeName = BC000116_A20OrganisationTypeName[0];
@@ -713,6 +715,7 @@ namespace GeneXus.Programs {
             A11OrganisationId = BC000116_A11OrganisationId[0];
             n11OrganisationId = BC000116_n11OrganisationId[0];
             A17OrganisationPhone = BC000116_A17OrganisationPhone[0];
+            A288OrganisationAddressZipCode = BC000116_A288OrganisationAddressZipCode[0];
             A13OrganisationName = BC000116_A13OrganisationName[0];
             A12OrganisationKvkNumber = BC000116_A12OrganisationKvkNumber[0];
             A16OrganisationEmail = BC000116_A16OrganisationEmail[0];
@@ -721,7 +724,6 @@ namespace GeneXus.Programs {
             A18OrganisationVATNumber = BC000116_A18OrganisationVATNumber[0];
             A331OrganisationAddressCountry = BC000116_A331OrganisationAddressCountry[0];
             A289OrganisationAddressCity = BC000116_A289OrganisationAddressCity[0];
-            A288OrganisationAddressZipCode = BC000116_A288OrganisationAddressZipCode[0];
             A342OrganisationAddressLine1 = BC000116_A342OrganisationAddressLine1[0];
             A343OrganisationAddressLine2 = BC000116_A343OrganisationAddressLine2[0];
             A20OrganisationTypeName = BC000116_A20OrganisationTypeName[0];
@@ -786,6 +788,7 @@ namespace GeneXus.Programs {
       protected void InitializeNonKey013( )
       {
          A17OrganisationPhone = "";
+         A288OrganisationAddressZipCode = "";
          A13OrganisationName = "";
          A12OrganisationKvkNumber = "";
          A16OrganisationEmail = "";
@@ -794,12 +797,12 @@ namespace GeneXus.Programs {
          A18OrganisationVATNumber = "";
          A331OrganisationAddressCountry = "";
          A289OrganisationAddressCity = "";
-         A288OrganisationAddressZipCode = "";
          A342OrganisationAddressLine1 = "";
          A343OrganisationAddressLine2 = "";
          A19OrganisationTypeId = Guid.Empty;
          A20OrganisationTypeName = "";
          Z17OrganisationPhone = "";
+         Z288OrganisationAddressZipCode = "";
          Z13OrganisationName = "";
          Z12OrganisationKvkNumber = "";
          Z16OrganisationEmail = "";
@@ -808,7 +811,6 @@ namespace GeneXus.Programs {
          Z18OrganisationVATNumber = "";
          Z331OrganisationAddressCountry = "";
          Z289OrganisationAddressCity = "";
-         Z288OrganisationAddressZipCode = "";
          Z342OrganisationAddressLine1 = "";
          Z343OrganisationAddressLine2 = "";
          Z19OrganisationTypeId = Guid.Empty;
@@ -849,6 +851,7 @@ namespace GeneXus.Programs {
       {
          obj3.gxTpr_Mode = Gx_mode;
          obj3.gxTpr_Organisationphone = A17OrganisationPhone;
+         obj3.gxTpr_Organisationaddresszipcode = A288OrganisationAddressZipCode;
          obj3.gxTpr_Organisationname = A13OrganisationName;
          obj3.gxTpr_Organisationkvknumber = A12OrganisationKvkNumber;
          obj3.gxTpr_Organisationemail = A16OrganisationEmail;
@@ -857,7 +860,6 @@ namespace GeneXus.Programs {
          obj3.gxTpr_Organisationvatnumber = A18OrganisationVATNumber;
          obj3.gxTpr_Organisationaddresscountry = A331OrganisationAddressCountry;
          obj3.gxTpr_Organisationaddresscity = A289OrganisationAddressCity;
-         obj3.gxTpr_Organisationaddresszipcode = A288OrganisationAddressZipCode;
          obj3.gxTpr_Organisationaddressline1 = A342OrganisationAddressLine1;
          obj3.gxTpr_Organisationaddressline2 = A343OrganisationAddressLine2;
          obj3.gxTpr_Organisationtypeid = A19OrganisationTypeId;
@@ -894,6 +896,7 @@ namespace GeneXus.Programs {
       {
          Gx_mode = obj3.gxTpr_Mode;
          A17OrganisationPhone = obj3.gxTpr_Organisationphone;
+         A288OrganisationAddressZipCode = obj3.gxTpr_Organisationaddresszipcode;
          A13OrganisationName = obj3.gxTpr_Organisationname;
          A12OrganisationKvkNumber = obj3.gxTpr_Organisationkvknumber;
          A16OrganisationEmail = obj3.gxTpr_Organisationemail;
@@ -902,7 +905,6 @@ namespace GeneXus.Programs {
          A18OrganisationVATNumber = obj3.gxTpr_Organisationvatnumber;
          A331OrganisationAddressCountry = obj3.gxTpr_Organisationaddresscountry;
          A289OrganisationAddressCity = obj3.gxTpr_Organisationaddresscity;
-         A288OrganisationAddressZipCode = obj3.gxTpr_Organisationaddresszipcode;
          A342OrganisationAddressLine1 = obj3.gxTpr_Organisationaddressline1;
          A343OrganisationAddressLine2 = obj3.gxTpr_Organisationaddressline2;
          A19OrganisationTypeId = obj3.gxTpr_Organisationtypeid;
@@ -948,7 +950,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM013( -14) ;
+         ZM013( -15) ;
          OnLoadActions013( ) ;
          AddRow013( ) ;
          ScanKeyEnd013( ) ;
@@ -977,7 +979,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM013( -14) ;
+         ZM013( -15) ;
          OnLoadActions013( ) ;
          AddRow013( ) ;
          ScanKeyEnd013( ) ;
@@ -1372,6 +1374,8 @@ namespace GeneXus.Programs {
          AV13Insert_OrganisationTypeId = Guid.Empty;
          Z17OrganisationPhone = "";
          A17OrganisationPhone = "";
+         Z288OrganisationAddressZipCode = "";
+         A288OrganisationAddressZipCode = "";
          Z13OrganisationName = "";
          A13OrganisationName = "";
          Z12OrganisationKvkNumber = "";
@@ -1388,8 +1392,6 @@ namespace GeneXus.Programs {
          A331OrganisationAddressCountry = "";
          Z289OrganisationAddressCity = "";
          A289OrganisationAddressCity = "";
-         Z288OrganisationAddressZipCode = "";
-         A288OrganisationAddressZipCode = "";
          Z342OrganisationAddressLine1 = "";
          A342OrganisationAddressLine1 = "";
          Z343OrganisationAddressLine2 = "";
@@ -1402,6 +1404,7 @@ namespace GeneXus.Programs {
          BC00015_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC00015_n11OrganisationId = new bool[] {false} ;
          BC00015_A17OrganisationPhone = new string[] {""} ;
+         BC00015_A288OrganisationAddressZipCode = new string[] {""} ;
          BC00015_A13OrganisationName = new string[] {""} ;
          BC00015_A12OrganisationKvkNumber = new string[] {""} ;
          BC00015_A16OrganisationEmail = new string[] {""} ;
@@ -1410,7 +1413,6 @@ namespace GeneXus.Programs {
          BC00015_A18OrganisationVATNumber = new string[] {""} ;
          BC00015_A331OrganisationAddressCountry = new string[] {""} ;
          BC00015_A289OrganisationAddressCity = new string[] {""} ;
-         BC00015_A288OrganisationAddressZipCode = new string[] {""} ;
          BC00015_A342OrganisationAddressLine1 = new string[] {""} ;
          BC00015_A343OrganisationAddressLine2 = new string[] {""} ;
          BC00015_A20OrganisationTypeName = new string[] {""} ;
@@ -1422,6 +1424,7 @@ namespace GeneXus.Programs {
          BC00013_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC00013_n11OrganisationId = new bool[] {false} ;
          BC00013_A17OrganisationPhone = new string[] {""} ;
+         BC00013_A288OrganisationAddressZipCode = new string[] {""} ;
          BC00013_A13OrganisationName = new string[] {""} ;
          BC00013_A12OrganisationKvkNumber = new string[] {""} ;
          BC00013_A16OrganisationEmail = new string[] {""} ;
@@ -1430,7 +1433,6 @@ namespace GeneXus.Programs {
          BC00013_A18OrganisationVATNumber = new string[] {""} ;
          BC00013_A331OrganisationAddressCountry = new string[] {""} ;
          BC00013_A289OrganisationAddressCity = new string[] {""} ;
-         BC00013_A288OrganisationAddressZipCode = new string[] {""} ;
          BC00013_A342OrganisationAddressLine1 = new string[] {""} ;
          BC00013_A343OrganisationAddressLine2 = new string[] {""} ;
          BC00013_A19OrganisationTypeId = new Guid[] {Guid.Empty} ;
@@ -1438,6 +1440,7 @@ namespace GeneXus.Programs {
          BC00012_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC00012_n11OrganisationId = new bool[] {false} ;
          BC00012_A17OrganisationPhone = new string[] {""} ;
+         BC00012_A288OrganisationAddressZipCode = new string[] {""} ;
          BC00012_A13OrganisationName = new string[] {""} ;
          BC00012_A12OrganisationKvkNumber = new string[] {""} ;
          BC00012_A16OrganisationEmail = new string[] {""} ;
@@ -1446,7 +1449,6 @@ namespace GeneXus.Programs {
          BC00012_A18OrganisationVATNumber = new string[] {""} ;
          BC00012_A331OrganisationAddressCountry = new string[] {""} ;
          BC00012_A289OrganisationAddressCity = new string[] {""} ;
-         BC00012_A288OrganisationAddressZipCode = new string[] {""} ;
          BC00012_A342OrganisationAddressLine1 = new string[] {""} ;
          BC00012_A343OrganisationAddressLine2 = new string[] {""} ;
          BC00012_A19OrganisationTypeId = new Guid[] {Guid.Empty} ;
@@ -1463,6 +1465,7 @@ namespace GeneXus.Programs {
          BC000116_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC000116_n11OrganisationId = new bool[] {false} ;
          BC000116_A17OrganisationPhone = new string[] {""} ;
+         BC000116_A288OrganisationAddressZipCode = new string[] {""} ;
          BC000116_A13OrganisationName = new string[] {""} ;
          BC000116_A12OrganisationKvkNumber = new string[] {""} ;
          BC000116_A16OrganisationEmail = new string[] {""} ;
@@ -1471,7 +1474,6 @@ namespace GeneXus.Programs {
          BC000116_A18OrganisationVATNumber = new string[] {""} ;
          BC000116_A331OrganisationAddressCountry = new string[] {""} ;
          BC000116_A289OrganisationAddressCity = new string[] {""} ;
-         BC000116_A288OrganisationAddressZipCode = new string[] {""} ;
          BC000116_A342OrganisationAddressLine1 = new string[] {""} ;
          BC000116_A343OrganisationAddressLine2 = new string[] {""} ;
          BC000116_A20OrganisationTypeName = new string[] {""} ;
@@ -1489,19 +1491,19 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_organisation_bc__default(),
             new Object[][] {
                 new Object[] {
-               BC00012_A11OrganisationId, BC00012_A17OrganisationPhone, BC00012_A13OrganisationName, BC00012_A12OrganisationKvkNumber, BC00012_A16OrganisationEmail, BC00012_A389OrganisationPhoneCode, BC00012_A390OrganisationPhoneNumber, BC00012_A18OrganisationVATNumber, BC00012_A331OrganisationAddressCountry, BC00012_A289OrganisationAddressCity,
-               BC00012_A288OrganisationAddressZipCode, BC00012_A342OrganisationAddressLine1, BC00012_A343OrganisationAddressLine2, BC00012_A19OrganisationTypeId
+               BC00012_A11OrganisationId, BC00012_A17OrganisationPhone, BC00012_A288OrganisationAddressZipCode, BC00012_A13OrganisationName, BC00012_A12OrganisationKvkNumber, BC00012_A16OrganisationEmail, BC00012_A389OrganisationPhoneCode, BC00012_A390OrganisationPhoneNumber, BC00012_A18OrganisationVATNumber, BC00012_A331OrganisationAddressCountry,
+               BC00012_A289OrganisationAddressCity, BC00012_A342OrganisationAddressLine1, BC00012_A343OrganisationAddressLine2, BC00012_A19OrganisationTypeId
                }
                , new Object[] {
-               BC00013_A11OrganisationId, BC00013_A17OrganisationPhone, BC00013_A13OrganisationName, BC00013_A12OrganisationKvkNumber, BC00013_A16OrganisationEmail, BC00013_A389OrganisationPhoneCode, BC00013_A390OrganisationPhoneNumber, BC00013_A18OrganisationVATNumber, BC00013_A331OrganisationAddressCountry, BC00013_A289OrganisationAddressCity,
-               BC00013_A288OrganisationAddressZipCode, BC00013_A342OrganisationAddressLine1, BC00013_A343OrganisationAddressLine2, BC00013_A19OrganisationTypeId
+               BC00013_A11OrganisationId, BC00013_A17OrganisationPhone, BC00013_A288OrganisationAddressZipCode, BC00013_A13OrganisationName, BC00013_A12OrganisationKvkNumber, BC00013_A16OrganisationEmail, BC00013_A389OrganisationPhoneCode, BC00013_A390OrganisationPhoneNumber, BC00013_A18OrganisationVATNumber, BC00013_A331OrganisationAddressCountry,
+               BC00013_A289OrganisationAddressCity, BC00013_A342OrganisationAddressLine1, BC00013_A343OrganisationAddressLine2, BC00013_A19OrganisationTypeId
                }
                , new Object[] {
                BC00014_A20OrganisationTypeName
                }
                , new Object[] {
-               BC00015_A11OrganisationId, BC00015_A17OrganisationPhone, BC00015_A13OrganisationName, BC00015_A12OrganisationKvkNumber, BC00015_A16OrganisationEmail, BC00015_A389OrganisationPhoneCode, BC00015_A390OrganisationPhoneNumber, BC00015_A18OrganisationVATNumber, BC00015_A331OrganisationAddressCountry, BC00015_A289OrganisationAddressCity,
-               BC00015_A288OrganisationAddressZipCode, BC00015_A342OrganisationAddressLine1, BC00015_A343OrganisationAddressLine2, BC00015_A20OrganisationTypeName, BC00015_A19OrganisationTypeId
+               BC00015_A11OrganisationId, BC00015_A17OrganisationPhone, BC00015_A288OrganisationAddressZipCode, BC00015_A13OrganisationName, BC00015_A12OrganisationKvkNumber, BC00015_A16OrganisationEmail, BC00015_A389OrganisationPhoneCode, BC00015_A390OrganisationPhoneNumber, BC00015_A18OrganisationVATNumber, BC00015_A331OrganisationAddressCountry,
+               BC00015_A289OrganisationAddressCity, BC00015_A342OrganisationAddressLine1, BC00015_A343OrganisationAddressLine2, BC00015_A20OrganisationTypeName, BC00015_A19OrganisationTypeId
                }
                , new Object[] {
                BC00016_A11OrganisationId
@@ -1531,8 +1533,8 @@ namespace GeneXus.Programs {
                BC000115_A21ManagerId, BC000115_A11OrganisationId
                }
                , new Object[] {
-               BC000116_A11OrganisationId, BC000116_A17OrganisationPhone, BC000116_A13OrganisationName, BC000116_A12OrganisationKvkNumber, BC000116_A16OrganisationEmail, BC000116_A389OrganisationPhoneCode, BC000116_A390OrganisationPhoneNumber, BC000116_A18OrganisationVATNumber, BC000116_A331OrganisationAddressCountry, BC000116_A289OrganisationAddressCity,
-               BC000116_A288OrganisationAddressZipCode, BC000116_A342OrganisationAddressLine1, BC000116_A343OrganisationAddressLine2, BC000116_A20OrganisationTypeName, BC000116_A19OrganisationTypeId
+               BC000116_A11OrganisationId, BC000116_A17OrganisationPhone, BC000116_A288OrganisationAddressZipCode, BC000116_A13OrganisationName, BC000116_A12OrganisationKvkNumber, BC000116_A16OrganisationEmail, BC000116_A389OrganisationPhoneCode, BC000116_A390OrganisationPhoneNumber, BC000116_A18OrganisationVATNumber, BC000116_A331OrganisationAddressCountry,
+               BC000116_A289OrganisationAddressCity, BC000116_A342OrganisationAddressLine1, BC000116_A343OrganisationAddressLine2, BC000116_A20OrganisationTypeName, BC000116_A19OrganisationTypeId
                }
             }
          );
@@ -1559,6 +1561,8 @@ namespace GeneXus.Programs {
       private bool returnInSub ;
       private bool n11OrganisationId ;
       private bool Gx_longc ;
+      private string Z288OrganisationAddressZipCode ;
+      private string A288OrganisationAddressZipCode ;
       private string Z13OrganisationName ;
       private string A13OrganisationName ;
       private string Z12OrganisationKvkNumber ;
@@ -1575,8 +1579,6 @@ namespace GeneXus.Programs {
       private string A331OrganisationAddressCountry ;
       private string Z289OrganisationAddressCity ;
       private string A289OrganisationAddressCity ;
-      private string Z288OrganisationAddressZipCode ;
-      private string A288OrganisationAddressZipCode ;
       private string Z342OrganisationAddressLine1 ;
       private string A342OrganisationAddressLine1 ;
       private string Z343OrganisationAddressLine2 ;
@@ -1600,6 +1602,7 @@ namespace GeneXus.Programs {
       private Guid[] BC00015_A11OrganisationId ;
       private bool[] BC00015_n11OrganisationId ;
       private string[] BC00015_A17OrganisationPhone ;
+      private string[] BC00015_A288OrganisationAddressZipCode ;
       private string[] BC00015_A13OrganisationName ;
       private string[] BC00015_A12OrganisationKvkNumber ;
       private string[] BC00015_A16OrganisationEmail ;
@@ -1608,7 +1611,6 @@ namespace GeneXus.Programs {
       private string[] BC00015_A18OrganisationVATNumber ;
       private string[] BC00015_A331OrganisationAddressCountry ;
       private string[] BC00015_A289OrganisationAddressCity ;
-      private string[] BC00015_A288OrganisationAddressZipCode ;
       private string[] BC00015_A342OrganisationAddressLine1 ;
       private string[] BC00015_A343OrganisationAddressLine2 ;
       private string[] BC00015_A20OrganisationTypeName ;
@@ -1619,6 +1621,7 @@ namespace GeneXus.Programs {
       private Guid[] BC00013_A11OrganisationId ;
       private bool[] BC00013_n11OrganisationId ;
       private string[] BC00013_A17OrganisationPhone ;
+      private string[] BC00013_A288OrganisationAddressZipCode ;
       private string[] BC00013_A13OrganisationName ;
       private string[] BC00013_A12OrganisationKvkNumber ;
       private string[] BC00013_A16OrganisationEmail ;
@@ -1627,13 +1630,13 @@ namespace GeneXus.Programs {
       private string[] BC00013_A18OrganisationVATNumber ;
       private string[] BC00013_A331OrganisationAddressCountry ;
       private string[] BC00013_A289OrganisationAddressCity ;
-      private string[] BC00013_A288OrganisationAddressZipCode ;
       private string[] BC00013_A342OrganisationAddressLine1 ;
       private string[] BC00013_A343OrganisationAddressLine2 ;
       private Guid[] BC00013_A19OrganisationTypeId ;
       private Guid[] BC00012_A11OrganisationId ;
       private bool[] BC00012_n11OrganisationId ;
       private string[] BC00012_A17OrganisationPhone ;
+      private string[] BC00012_A288OrganisationAddressZipCode ;
       private string[] BC00012_A13OrganisationName ;
       private string[] BC00012_A12OrganisationKvkNumber ;
       private string[] BC00012_A16OrganisationEmail ;
@@ -1642,7 +1645,6 @@ namespace GeneXus.Programs {
       private string[] BC00012_A18OrganisationVATNumber ;
       private string[] BC00012_A331OrganisationAddressCountry ;
       private string[] BC00012_A289OrganisationAddressCity ;
-      private string[] BC00012_A288OrganisationAddressZipCode ;
       private string[] BC00012_A342OrganisationAddressLine1 ;
       private string[] BC00012_A343OrganisationAddressLine2 ;
       private Guid[] BC00012_A19OrganisationTypeId ;
@@ -1659,6 +1661,7 @@ namespace GeneXus.Programs {
       private Guid[] BC000116_A11OrganisationId ;
       private bool[] BC000116_n11OrganisationId ;
       private string[] BC000116_A17OrganisationPhone ;
+      private string[] BC000116_A288OrganisationAddressZipCode ;
       private string[] BC000116_A13OrganisationName ;
       private string[] BC000116_A12OrganisationKvkNumber ;
       private string[] BC000116_A16OrganisationEmail ;
@@ -1667,7 +1670,6 @@ namespace GeneXus.Programs {
       private string[] BC000116_A18OrganisationVATNumber ;
       private string[] BC000116_A331OrganisationAddressCountry ;
       private string[] BC000116_A289OrganisationAddressCity ;
-      private string[] BC000116_A288OrganisationAddressZipCode ;
       private string[] BC000116_A342OrganisationAddressLine1 ;
       private string[] BC000116_A343OrganisationAddressLine2 ;
       private string[] BC000116_A20OrganisationTypeName ;
@@ -1796,6 +1798,7 @@ public class trn_organisation_bc__default : DataStoreHelperBase, IDataStoreHelpe
        prmBC00017 = new Object[] {
        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("OrganisationPhone",GXType.Char,20,0) ,
+       new ParDef("OrganisationAddressZipCode",GXType.VarChar,100,0) ,
        new ParDef("OrganisationName",GXType.VarChar,100,0) ,
        new ParDef("OrganisationKvkNumber",GXType.VarChar,8,0) ,
        new ParDef("OrganisationEmail",GXType.VarChar,100,0) ,
@@ -1804,7 +1807,6 @@ public class trn_organisation_bc__default : DataStoreHelperBase, IDataStoreHelpe
        new ParDef("OrganisationVATNumber",GXType.VarChar,14,0) ,
        new ParDef("OrganisationAddressCountry",GXType.VarChar,100,0) ,
        new ParDef("OrganisationAddressCity",GXType.VarChar,100,0) ,
-       new ParDef("OrganisationAddressZipCode",GXType.VarChar,100,0) ,
        new ParDef("OrganisationAddressLine1",GXType.VarChar,100,0) ,
        new ParDef("OrganisationAddressLine2",GXType.VarChar,100,0) ,
        new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0)
@@ -1812,6 +1814,7 @@ public class trn_organisation_bc__default : DataStoreHelperBase, IDataStoreHelpe
        Object[] prmBC00018;
        prmBC00018 = new Object[] {
        new ParDef("OrganisationPhone",GXType.Char,20,0) ,
+       new ParDef("OrganisationAddressZipCode",GXType.VarChar,100,0) ,
        new ParDef("OrganisationName",GXType.VarChar,100,0) ,
        new ParDef("OrganisationKvkNumber",GXType.VarChar,8,0) ,
        new ParDef("OrganisationEmail",GXType.VarChar,100,0) ,
@@ -1820,7 +1823,6 @@ public class trn_organisation_bc__default : DataStoreHelperBase, IDataStoreHelpe
        new ParDef("OrganisationVATNumber",GXType.VarChar,14,0) ,
        new ParDef("OrganisationAddressCountry",GXType.VarChar,100,0) ,
        new ParDef("OrganisationAddressCity",GXType.VarChar,100,0) ,
-       new ParDef("OrganisationAddressZipCode",GXType.VarChar,100,0) ,
        new ParDef("OrganisationAddressLine1",GXType.VarChar,100,0) ,
        new ParDef("OrganisationAddressLine2",GXType.VarChar,100,0) ,
        new ParDef("OrganisationTypeId",GXType.UniqueIdentifier,36,0) ,
@@ -1859,13 +1861,13 @@ public class trn_organisation_bc__default : DataStoreHelperBase, IDataStoreHelpe
        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        def= new CursorDef[] {
-           new CursorDef("BC00012", "SELECT OrganisationId, OrganisationPhone, OrganisationName, OrganisationKvkNumber, OrganisationEmail, OrganisationPhoneCode, OrganisationPhoneNumber, OrganisationVATNumber, OrganisationAddressCountry, OrganisationAddressCity, OrganisationAddressZipCode, OrganisationAddressLine1, OrganisationAddressLine2, OrganisationTypeId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId  FOR UPDATE OF Trn_Organisation",true, GxErrorMask.GX_NOMASK, false, this,prmBC00012,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC00013", "SELECT OrganisationId, OrganisationPhone, OrganisationName, OrganisationKvkNumber, OrganisationEmail, OrganisationPhoneCode, OrganisationPhoneNumber, OrganisationVATNumber, OrganisationAddressCountry, OrganisationAddressCity, OrganisationAddressZipCode, OrganisationAddressLine1, OrganisationAddressLine2, OrganisationTypeId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00013,1, GxCacheFrequency.OFF ,true,false )
+           new CursorDef("BC00012", "SELECT OrganisationId, OrganisationPhone, OrganisationAddressZipCode, OrganisationName, OrganisationKvkNumber, OrganisationEmail, OrganisationPhoneCode, OrganisationPhoneNumber, OrganisationVATNumber, OrganisationAddressCountry, OrganisationAddressCity, OrganisationAddressLine1, OrganisationAddressLine2, OrganisationTypeId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId  FOR UPDATE OF Trn_Organisation",true, GxErrorMask.GX_NOMASK, false, this,prmBC00012,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00013", "SELECT OrganisationId, OrganisationPhone, OrganisationAddressZipCode, OrganisationName, OrganisationKvkNumber, OrganisationEmail, OrganisationPhoneCode, OrganisationPhoneNumber, OrganisationVATNumber, OrganisationAddressCountry, OrganisationAddressCity, OrganisationAddressLine1, OrganisationAddressLine2, OrganisationTypeId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00013,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC00014", "SELECT OrganisationTypeName FROM Trn_OrganisationType WHERE OrganisationTypeId = :OrganisationTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00014,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC00015", "SELECT TM1.OrganisationId, TM1.OrganisationPhone, TM1.OrganisationName, TM1.OrganisationKvkNumber, TM1.OrganisationEmail, TM1.OrganisationPhoneCode, TM1.OrganisationPhoneNumber, TM1.OrganisationVATNumber, TM1.OrganisationAddressCountry, TM1.OrganisationAddressCity, TM1.OrganisationAddressZipCode, TM1.OrganisationAddressLine1, TM1.OrganisationAddressLine2, T2.OrganisationTypeName, TM1.OrganisationTypeId FROM (Trn_Organisation TM1 INNER JOIN Trn_OrganisationType T2 ON T2.OrganisationTypeId = TM1.OrganisationTypeId) WHERE TM1.OrganisationId = :OrganisationId ORDER BY TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00015,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00015", "SELECT TM1.OrganisationId, TM1.OrganisationPhone, TM1.OrganisationAddressZipCode, TM1.OrganisationName, TM1.OrganisationKvkNumber, TM1.OrganisationEmail, TM1.OrganisationPhoneCode, TM1.OrganisationPhoneNumber, TM1.OrganisationVATNumber, TM1.OrganisationAddressCountry, TM1.OrganisationAddressCity, TM1.OrganisationAddressLine1, TM1.OrganisationAddressLine2, T2.OrganisationTypeName, TM1.OrganisationTypeId FROM (Trn_Organisation TM1 INNER JOIN Trn_OrganisationType T2 ON T2.OrganisationTypeId = TM1.OrganisationTypeId) WHERE TM1.OrganisationId = :OrganisationId ORDER BY TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00015,100, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC00016", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00016,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC00017", "SAVEPOINT gxupdate;INSERT INTO Trn_Organisation(OrganisationId, OrganisationPhone, OrganisationName, OrganisationKvkNumber, OrganisationEmail, OrganisationPhoneCode, OrganisationPhoneNumber, OrganisationVATNumber, OrganisationAddressCountry, OrganisationAddressCity, OrganisationAddressZipCode, OrganisationAddressLine1, OrganisationAddressLine2, OrganisationTypeId) VALUES(:OrganisationId, :OrganisationPhone, :OrganisationName, :OrganisationKvkNumber, :OrganisationEmail, :OrganisationPhoneCode, :OrganisationPhoneNumber, :OrganisationVATNumber, :OrganisationAddressCountry, :OrganisationAddressCity, :OrganisationAddressZipCode, :OrganisationAddressLine1, :OrganisationAddressLine2, :OrganisationTypeId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC00017)
-          ,new CursorDef("BC00018", "SAVEPOINT gxupdate;UPDATE Trn_Organisation SET OrganisationPhone=:OrganisationPhone, OrganisationName=:OrganisationName, OrganisationKvkNumber=:OrganisationKvkNumber, OrganisationEmail=:OrganisationEmail, OrganisationPhoneCode=:OrganisationPhoneCode, OrganisationPhoneNumber=:OrganisationPhoneNumber, OrganisationVATNumber=:OrganisationVATNumber, OrganisationAddressCountry=:OrganisationAddressCountry, OrganisationAddressCity=:OrganisationAddressCity, OrganisationAddressZipCode=:OrganisationAddressZipCode, OrganisationAddressLine1=:OrganisationAddressLine1, OrganisationAddressLine2=:OrganisationAddressLine2, OrganisationTypeId=:OrganisationTypeId  WHERE OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00018)
+          ,new CursorDef("BC00017", "SAVEPOINT gxupdate;INSERT INTO Trn_Organisation(OrganisationId, OrganisationPhone, OrganisationAddressZipCode, OrganisationName, OrganisationKvkNumber, OrganisationEmail, OrganisationPhoneCode, OrganisationPhoneNumber, OrganisationVATNumber, OrganisationAddressCountry, OrganisationAddressCity, OrganisationAddressLine1, OrganisationAddressLine2, OrganisationTypeId) VALUES(:OrganisationId, :OrganisationPhone, :OrganisationAddressZipCode, :OrganisationName, :OrganisationKvkNumber, :OrganisationEmail, :OrganisationPhoneCode, :OrganisationPhoneNumber, :OrganisationVATNumber, :OrganisationAddressCountry, :OrganisationAddressCity, :OrganisationAddressLine1, :OrganisationAddressLine2, :OrganisationTypeId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC00017)
+          ,new CursorDef("BC00018", "SAVEPOINT gxupdate;UPDATE Trn_Organisation SET OrganisationPhone=:OrganisationPhone, OrganisationAddressZipCode=:OrganisationAddressZipCode, OrganisationName=:OrganisationName, OrganisationKvkNumber=:OrganisationKvkNumber, OrganisationEmail=:OrganisationEmail, OrganisationPhoneCode=:OrganisationPhoneCode, OrganisationPhoneNumber=:OrganisationPhoneNumber, OrganisationVATNumber=:OrganisationVATNumber, OrganisationAddressCountry=:OrganisationAddressCountry, OrganisationAddressCity=:OrganisationAddressCity, OrganisationAddressLine1=:OrganisationAddressLine1, OrganisationAddressLine2=:OrganisationAddressLine2, OrganisationTypeId=:OrganisationTypeId  WHERE OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00018)
           ,new CursorDef("BC00019", "SAVEPOINT gxupdate;DELETE FROM Trn_Organisation  WHERE OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00019)
           ,new CursorDef("BC000110", "SELECT OrganisationTypeName FROM Trn_OrganisationType WHERE OrganisationTypeId = :OrganisationTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000110,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC000111", "SELECT AuditId FROM Trn_Audit WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000111,1, GxCacheFrequency.OFF ,true,true )
@@ -1873,7 +1875,7 @@ public class trn_organisation_bc__default : DataStoreHelperBase, IDataStoreHelpe
           ,new CursorDef("BC000113", "SELECT SupplierGenId FROM Trn_SupplierGen WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000113,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("BC000114", "SELECT LocationId, OrganisationId FROM Trn_Location WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000114,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("BC000115", "SELECT ManagerId, OrganisationId FROM Trn_Manager WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000115,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC000116", "SELECT TM1.OrganisationId, TM1.OrganisationPhone, TM1.OrganisationName, TM1.OrganisationKvkNumber, TM1.OrganisationEmail, TM1.OrganisationPhoneCode, TM1.OrganisationPhoneNumber, TM1.OrganisationVATNumber, TM1.OrganisationAddressCountry, TM1.OrganisationAddressCity, TM1.OrganisationAddressZipCode, TM1.OrganisationAddressLine1, TM1.OrganisationAddressLine2, T2.OrganisationTypeName, TM1.OrganisationTypeId FROM (Trn_Organisation TM1 INNER JOIN Trn_OrganisationType T2 ON T2.OrganisationTypeId = TM1.OrganisationTypeId) WHERE TM1.OrganisationId = :OrganisationId ORDER BY TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000116,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000116", "SELECT TM1.OrganisationId, TM1.OrganisationPhone, TM1.OrganisationAddressZipCode, TM1.OrganisationName, TM1.OrganisationKvkNumber, TM1.OrganisationEmail, TM1.OrganisationPhoneCode, TM1.OrganisationPhoneNumber, TM1.OrganisationVATNumber, TM1.OrganisationAddressCountry, TM1.OrganisationAddressCity, TM1.OrganisationAddressLine1, TM1.OrganisationAddressLine2, T2.OrganisationTypeName, TM1.OrganisationTypeId FROM (Trn_Organisation TM1 INNER JOIN Trn_OrganisationType T2 ON T2.OrganisationTypeId = TM1.OrganisationTypeId) WHERE TM1.OrganisationId = :OrganisationId ORDER BY TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000116,100, GxCacheFrequency.OFF ,true,false )
        };
     }
  }

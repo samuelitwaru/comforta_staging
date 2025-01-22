@@ -2606,6 +2606,8 @@ namespace GeneXus.Programs {
       {
          /* Networkindividualzipcode_Controlvaluechanged Routine */
          returnInSub = false;
+         AV21NetworkIndividualZipCode = StringUtil.Upper( AV21NetworkIndividualZipCode);
+         AssignAttri(sPrefix, false, "AV21NetworkIndividualZipCode", AV21NetworkIndividualZipCode);
          if ( ! GxRegex.IsMatch(AV21NetworkIndividualZipCode,context.GetMessage( "^\\d{4}\\s?[A-Z]{2}$", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( AV21NetworkIndividualZipCode)) )
          {
             GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "Zip Code is incorrect", ""),  "error",  edtavNetworkindividualzipcode_Internalname,  "true",  ""));
@@ -2934,7 +2936,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251115213456", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025122103984", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2950,7 +2952,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createresidentandnetworkstep2.js", "?20251115213456", false, true);
+         context.AddJavascriptSource("wp_createresidentandnetworkstep2.js", "?2025122103984", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3262,16 +3264,18 @@ namespace GeneXus.Programs {
          cmbavNetworkindividualrelationship.Name = "vNETWORKINDIVIDUALRELATIONSHIP";
          cmbavNetworkindividualrelationship.WebTags = "";
          cmbavNetworkindividualrelationship.addItem("", context.GetMessage( "Other", ""), 0);
-         cmbavNetworkindividualrelationship.addItem("Father", context.GetMessage( "Father", ""), 0);
+         cmbavNetworkindividualrelationship.addItem("Wife", context.GetMessage( "Wife", ""), 0);
+         cmbavNetworkindividualrelationship.addItem("Husband", context.GetMessage( "Husband", ""), 0);
          cmbavNetworkindividualrelationship.addItem("Mother", context.GetMessage( "Mother", ""), 0);
+         cmbavNetworkindividualrelationship.addItem("Father", context.GetMessage( "Father", ""), 0);
          cmbavNetworkindividualrelationship.addItem("Daughter", context.GetMessage( "Daughter", ""), 0);
          cmbavNetworkindividualrelationship.addItem("Son", context.GetMessage( "Son", ""), 0);
          cmbavNetworkindividualrelationship.addItem("Aunt", context.GetMessage( "Aunt", ""), 0);
          cmbavNetworkindividualrelationship.addItem("Uncle", context.GetMessage( "Uncle", ""), 0);
-         cmbavNetworkindividualrelationship.addItem("GrandMother", context.GetMessage( "GrandMother", ""), 0);
-         cmbavNetworkindividualrelationship.addItem("GrandFather", context.GetMessage( "GrandFather", ""), 0);
-         cmbavNetworkindividualrelationship.addItem("Cousin", context.GetMessage( "Cousin", ""), 0);
+         cmbavNetworkindividualrelationship.addItem("Grandmother", context.GetMessage( "Grandmother", ""), 0);
+         cmbavNetworkindividualrelationship.addItem("Grandfather", context.GetMessage( "Grandfather", ""), 0);
          cmbavNetworkindividualrelationship.addItem("Friend", context.GetMessage( "Friend", ""), 0);
+         cmbavNetworkindividualrelationship.addItem("Other", context.GetMessage( "Other", ""), 0);
          if ( cmbavNetworkindividualrelationship.ItemCount > 0 )
          {
          }
@@ -3679,7 +3683,7 @@ namespace GeneXus.Programs {
          setEventMetadata("VNETWORKINDIVIDUALBSNNUMBER.CONTROLVALUECHANGED","""{"handler":"E156R2","iparms":[{"av":"AV12NetworkIndividualBsnNumber","fld":"vNETWORKINDIVIDUALBSNNUMBER"}]""");
          setEventMetadata("VNETWORKINDIVIDUALBSNNUMBER.CONTROLVALUECHANGED",""","oparms":[{"av":"AV5CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
          setEventMetadata("VNETWORKINDIVIDUALZIPCODE.CONTROLVALUECHANGED","""{"handler":"E166R2","iparms":[{"av":"AV21NetworkIndividualZipCode","fld":"vNETWORKINDIVIDUALZIPCODE"}]""");
-         setEventMetadata("VNETWORKINDIVIDUALZIPCODE.CONTROLVALUECHANGED",""","oparms":[{"av":"AV5CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
+         setEventMetadata("VNETWORKINDIVIDUALZIPCODE.CONTROLVALUECHANGED",""","oparms":[{"av":"AV21NetworkIndividualZipCode","fld":"vNETWORKINDIVIDUALZIPCODE"},{"av":"AV5CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
          setEventMetadata("VNETWORKINDIVIDUALPHONENUMBER.CONTROLVALUECHANGED","""{"handler":"E176R2","iparms":[{"av":"AV41NetworkIndividualPhoneNumber","fld":"vNETWORKINDIVIDUALPHONENUMBER"}]""");
          setEventMetadata("VNETWORKINDIVIDUALPHONENUMBER.CONTROLVALUECHANGED",""","oparms":[{"av":"AV5CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"Combo_networkindividualphonecode_Cls","ctrl":"COMBO_NETWORKINDIVIDUALPHONECODE","prop":"Cls"}]}""");
          setEventMetadata("VNETWORKINDIVIDUALHOMEPHONENUMBER.CONTROLVALUECHANGED","""{"handler":"E186R2","iparms":[{"av":"AV44NetworkIndividualHomePhoneNumber","fld":"vNETWORKINDIVIDUALHOMEPHONENUMBER"}]""");

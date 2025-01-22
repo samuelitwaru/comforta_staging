@@ -499,10 +499,11 @@ class ChildEditorManager {
     }
 
     createTemplateHTML(isDefault = false) {
+        let tileBgColor = this.toolsSection.currentTheme.colors.accentColor
         return `
         <div class="template-wrapper ${
           isDefault ? "default-template" : ""
-        }"        
+        }"    style="background: ${tileBgColor}"
               data-gjs-selectable="false"
               data-gjs-type="template-wrapper"
               data-gjs-editable="false"
@@ -511,14 +512,16 @@ class ChildEditorManager {
               data-gjs-resizable="false"
               data-gjs-hoverable="false">
           <div class="template-block"
-              ${defaultTileAttrs} 
-             data-gjs-draggable="false"
-             data-gjs-selectable="true"
-             data-gjs-editable="false"
-             data-gjs-highlightable="false"
-             data-gjs-droppable="false"
-             data-gjs-resizable="false"
-             data-gjs-hoverable="false">
+                tile-bgcolor="${tileBgColor}"
+                tile-bgcolor-name="accentColor"
+                ${defaultTileAttrs}
+                data-gjs-draggable="false"
+                data-gjs-selectable="true"
+                data-gjs-editable="false"
+                data-gjs-highlightable="false"
+                data-gjs-droppable="false"
+                data-gjs-resizable="false"
+                data-gjs-hoverable="false">
             
              <div class="tile-icon-section"
               data-gjs-draggable="false"

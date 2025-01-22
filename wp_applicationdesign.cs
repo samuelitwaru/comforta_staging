@@ -850,6 +850,7 @@ namespace GeneXus.Programs {
             A247Trn_ThemeId = H00475_A247Trn_ThemeId[0];
             AV12BC_Trn_Theme = new SdtTrn_Theme(context);
             AV12BC_Trn_Theme.Load(A247Trn_ThemeId);
+            AV12BC_Trn_Theme.gxTpr_Color.Sort("ColorName");
             AV13BC_Trn_ThemeCollection.Add(AV12BC_Trn_Theme, 0);
             pr_default.readNext(3);
          }
@@ -926,7 +927,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512112484418", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512211104566", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -944,7 +945,7 @@ namespace GeneXus.Programs {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wp_applicationdesign.js", "?202512112484419", false, true);
+            context.AddJavascriptSource("wp_applicationdesign.js", "?202512211104567", false, true);
             context.AddJavascriptSource("UserControls/UC_AppToolBoxRender.js", "", false, true);
          }
          /* End function include_jscripts */

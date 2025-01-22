@@ -45,35 +45,40 @@ namespace GeneXus.Programs {
       }
 
       public void execute( string aP0_PageName ,
-                           ref string aP1_Response ,
-                           out SdtSDT_Error aP2_error )
+                           string aP1_PageJsonContent ,
+                           ref string aP2_Response ,
+                           out SdtSDT_Error aP3_error )
       {
          this.AV16PageName = aP0_PageName;
-         this.AV17Response = aP1_Response;
+         this.AV13PageJsonContent = aP1_PageJsonContent;
+         this.AV17Response = aP2_Response;
          this.AV22error = new SdtSDT_Error(context) ;
          initialize();
          ExecuteImpl();
-         aP1_Response=this.AV17Response;
-         aP2_error=this.AV22error;
+         aP2_Response=this.AV17Response;
+         aP3_error=this.AV22error;
       }
 
       public SdtSDT_Error executeUdp( string aP0_PageName ,
-                                      ref string aP1_Response )
+                                      string aP1_PageJsonContent ,
+                                      ref string aP2_Response )
       {
-         execute(aP0_PageName, ref aP1_Response, out aP2_error);
+         execute(aP0_PageName, aP1_PageJsonContent, ref aP2_Response, out aP3_error);
          return AV22error ;
       }
 
       public void executeSubmit( string aP0_PageName ,
-                                 ref string aP1_Response ,
-                                 out SdtSDT_Error aP2_error )
+                                 string aP1_PageJsonContent ,
+                                 ref string aP2_Response ,
+                                 out SdtSDT_Error aP3_error )
       {
          this.AV16PageName = aP0_PageName;
-         this.AV17Response = aP1_Response;
+         this.AV13PageJsonContent = aP1_PageJsonContent;
+         this.AV17Response = aP2_Response;
          this.AV22error = new SdtSDT_Error(context) ;
          SubmitImpl();
-         aP1_Response=this.AV17Response;
-         aP2_error=this.AV22error;
+         aP2_Response=this.AV17Response;
+         aP3_error=this.AV22error;
       }
 
       protected override void ExecutePrivate( )
@@ -97,7 +102,7 @@ namespace GeneXus.Programs {
             new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
             AV8BC_Trn_Page.gxTpr_Organisationid = GXt_guid1;
             AV8BC_Trn_Page.gxTpr_Pagegjshtml = "";
-            AV8BC_Trn_Page.gxTpr_Pagegjsjson = context.GetMessage( "{\"assets\":[],\"styles\":[],\"pages\":[{\"frames\":[{\"component\":{\"type\":\"wrapper\",\"droppable\":false,\"stylable\":[\"background\",\"background-color\",\"background-image\",\"background-repeat\",\"background-attachment\",\"background-position\",\"background-size\"],\"resizable\":{\"handles\":\"e\"},\"selectable\":false,\"attributes\":{\"theme\":\"Modern\"},\"_undoexc\":[\"status\",\"open\"],\"components\":[{\"type\":\"template-wrapper\",\"draggable\":false,\"droppable\":false,\"highlightable\":false,\"selectable\":false,\"hoverable\":false,\"classes\":[\"frame-container\"],\"attributes\":{\"id\":\"frame-container\"},\"_undoexc\":[\"status\",\"open\"],\"components\":[{\"type\":\"template-wrapper\",\"draggable\":false,\"droppable\":false,\"highlightable\":false,\"selectable\":false,\"hoverable\":false,\"classes\":[\"container-column\"],\"_undoexc\":[\"status\",\"open\"],\"components\":[{\"type\":\"template-wrapper\",\"draggable\":false,\"selectable\":false,\"classes\":[\"container-row\"],\"_undoexc\":[\"status\",\"open\"],\"components\":[{\"type\":\"template-wrapper\",\"droppable\":false,\"selectable\":false,\"classes\":[\"template-wrapper\",\"default-template\"],\"_undoexc\":[\"status\",\"open\"],\"components\":[{\"draggable\":false,\"droppable\":false,\"highlightable\":false,\"hoverable\":false,\"classes\":[\"template-block\"],\"attributes\":{\"tile-text\":\"Tile\",\"tile-text-color\":\"#000000\",\"tile-text-align\":\"left\",\"tile-icon\":\"icon-name\",\"tile-icon-color\":\"#000000\",\"tile-icon-align\":\"left\",\"tile-bg-color\":\"#ffffff\",\"tile-bg-image\":\"\",\"tile-bg-image-opacity\":\"100\",\"tile-action-object\":\"Page\",\"tile-action-object-id\":\"\"},\"_undoexc\":[\"status\",\"open\"],\"components\":[{\"draggable\":false,\"droppable\":false,\"highlightable\":false,\"selectable\":false,\"hoverable\":false,\"classes\":[\"tile-icon-section\"],\"_undoexc\":[\"status\",\"open\"],\"components\":[{\"tagName\":\"span\",\"type\":\"text\",\"draggable\":false,\"highlightable\":false,\"editable\":false,\"selectable\":false,\"hoverable\":false,\"classes\":[\"tile-close-icon\",\"top-right\",\"selected-tile-icon\"],\"_undoexc\":[\"status\",\"open\"],\"components\":[{\"type\":\"textnode\",\"content\":\"×\",\"_undoexc\":[\"status\",\"open\"]}]},{\"tagName\":\"span\",\"type\":\"text\",\"draggable\":false,\"highlightable\":false,\"editable\":false,\"selectable\":false,\"hoverable\":false,\"classes\":[\"tile-icon\"],\"_undoexc\":[\"status\",\"open\"],\"components\":[{\"type\":\"textnode\",\"content\":\"\\n                \",\"_undoexc\":[\"status\",\"open\"]}]}]},{\"draggable\":false,\"droppable\":false,\"highlightable\":false,\"selectable\":false,\"hoverable\":false,\"classes\":[\"tile-title-section\"],\"_undoexc\":[\"status\",\"open\"],\"components\":[{\"tagName\":\"span\",\"type\":\"text\",\"draggable\":false,\"highlightable\":false,\"editable\":false,\"selectable\":false,\"hoverable\":false,\"classes\":[\"tile-close-icon\",\"top-right\",\"selected-tile-title\"],\"_undoexc\":[\"status\",\"open\"],\"components\":[{\"type\":\"textnode\",\"content\":\"×\",\"_undoexc\":[\"status\",\"open\"]}]},{\"tagName\":\"span\",\"type\":\"text\",\"draggable\":false,\"highlightable\":false,\"editable\":false,\"selectable\":false,\"hoverable\":false,\"classes\":[\"tile-title\"],\"_undoexc\":[\"status\",\"open\"],\"components\":[{\"type\":\"textnode\",\"content\":\"Title\",\"_undoexc\":[\"status\",\"open\"]}]}]}]},{\"tagName\":\"button\",\"draggable\":false,\"droppable\":false,\"highlightable\":false,\"selectable\":false,\"hoverable\":false,\"classes\":[\"action-button\",\"add-button-bottom\"],\"attributes\":{\"title\":\"Add template below\"},\"_undoexc\":[\"status\",\"open\"],\"components\":[{\"type\":\"svg\",\"draggable\":false,\"droppable\":false,\"highlightable\":false,\"resizable\":{\"ratioDefault\":1},\"selectable\":false,\"hoverable\":false,\"attributes\":{\"xmlns\":\"http://www.w3.org/2000/svg\",\"width\":\"16\",\"height\":\"16\",\"viewBox\":\"0 0 24 24\",\"fill\":\"none\",\"stroke\":\"currentColor\",\"stroke-width\":\"2\",\"stroke-linecap\":\"round\",\"stroke-linejoin\":\"round\"},\"_undoexc\":[\"status\",\"open\"],\"components\":[{\"tagName\":\"line\",\"type\":\"svg-in\",\"draggable\":false,\"droppable\":false,\"highlightable\":false,\"resizable\":{\"ratioDefault\":1},\"attributes\":{\"x1\":\"12\",\"y1\":\"5\",\"x2\":\"12\",\"y2\":\"19\"},\"_undoexc\":[\"status\",\"open\"]},{\"tagName\":\"line\",\"type\":\"svg-in\",\"draggable\":false,\"droppable\":false,\"highlightable\":false,\"resizable\":{\"ratioDefault\":1},\"attributes\":{\"x1\":\"5\",\"y1\":\"12\",\"x2\":\"19\",\"y2\":\"12\"},\"_undoexc\":[\"status\",\"open\"]}]}]},{\"tagName\":\"button\",\"draggable\":false,\"droppable\":false,\"highlightable\":false,\"selectable\":false,\"hoverable\":false,\"classes\":[\"action-button\",\"add-button-right\"],\"attributes\":{\"title\":\"Add template right\"},\"_undoexc\":[\"status\",\"open\"],\"components\":[{\"type\":\"svg\",\"draggable\":false,\"droppable\":false,\"highlightable\":false,\"resizable\":{\"ratioDefault\":1},\"selectable\":false,\"hoverable\":false,\"attributes\":{\"xmlns\":\"http://www.w3.org/2000/svg\",\"width\":\"16\",\"height\":\"16\",\"viewBox\":\"0 0 24 24\",\"fill\":\"none\",\"stroke\":\"currentColor\",\"stroke-width\":\"2\",\"stroke-linecap\":\"round\",\"stroke-linejoin\":\"round\"},\"_undoexc\":[\"status\",\"open\"],\"components\":[{\"tagName\":\"line\",\"type\":\"svg-in\",\"draggable\":false,\"droppable\":false,\"highlightable\":false,\"resizable\":{\"ratioDefault\":1},\"attributes\":{\"x1\":\"12\",\"y1\":\"5\",\"x2\":\"12\",\"y2\":\"19\"},\"_undoexc\":[\"status\",\"open\"]},{\"tagName\":\"line\",\"type\":\"svg-in\",\"draggable\":false,\"droppable\":false,\"highlightable\":false,\"resizable\":{\"ratioDefault\":1},\"attributes\":{\"x1\":\"5\",\"y1\":\"12\",\"x2\":\"19\",\"y2\":\"12\"},\"_undoexc\":[\"status\",\"open\"]}]}]},{\"type\":\"text\",\"draggable\":false,\"highlightable\":false,\"editable\":false,\"selectable\":false,\"hoverable\":false,\"classes\":[\"resize-handle\"],\"_undoexc\":[\"status\",\"open\"],\"components\":[{\"type\":\"textnode\",\"content\":\"\\n          \",\"_undoexc\":[\"status\",\"open\"]}]}]}]}]}]}]}}],\"type\":\"main\",\"id\":\"M1I3WJbl1jsJyHc2\"}]}", "");
+            AV8BC_Trn_Page.gxTpr_Pagegjsjson = AV13PageJsonContent;
             AV8BC_Trn_Page.gxTpr_Pageiscontentpage = false;
             AV8BC_Trn_Page.gxTv_SdtTrn_Page_Pagechildren_SetNull();
             AV8BC_Trn_Page.gxTv_SdtTrn_Page_Productserviceid_SetNull();
@@ -158,19 +163,20 @@ namespace GeneXus.Programs {
       }
 
       private int AV24GXV2 ;
+      private string AV13PageJsonContent ;
       private string AV17Response ;
       private string AV16PageName ;
       private Guid GXt_guid1 ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private string aP1_Response ;
+      private string aP2_Response ;
       private SdtSDT_Error AV22error ;
       private SdtTrn_Page AV8BC_Trn_Page ;
       private IDataStoreProvider pr_default ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV23GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV9Message ;
-      private SdtSDT_Error aP2_error ;
+      private SdtSDT_Error aP3_error ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }

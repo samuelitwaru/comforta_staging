@@ -60,34 +60,16 @@ namespace GeneXus.Programs {
          /* Load data into tables. */
       }
 
-      public void ReorganizeTrn_Device( )
+      public void ReorganizeTrn_ThemeColor( )
       {
          string cmdBuffer = "";
-         /* Indices for table Trn_Device */
-         try
-         {
-            cmdBuffer=" CREATE INDEX UTRN_DEVICE ON Trn_Device (DeviceType ,DeviceId ) "
-            ;
-            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
-            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
-            RGZ.ExecuteStmt() ;
-            RGZ.Drop();
-         }
-         catch
-         {
-            cmdBuffer=" DROP INDEX UTRN_DEVICE "
-            ;
-            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
-            RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
-            RGZ.ExecuteStmt() ;
-            RGZ.Drop();
-            cmdBuffer=" CREATE INDEX UTRN_DEVICE ON Trn_Device (DeviceType ,DeviceId ) "
-            ;
-            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
-            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
-            RGZ.ExecuteStmt() ;
-            RGZ.Drop();
-         }
+         /* Indices for table Trn_ThemeColor */
+         cmdBuffer=" DROP INDEX UTRN_THEMECOLOR "
+         ;
+         RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+         RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
+         RGZ.ExecuteStmt() ;
+         RGZ.Drop();
       }
 
       private void TablesCount( )
@@ -96,9 +78,9 @@ namespace GeneXus.Programs {
          {
             /* Using cursor P00012 */
             pr_default.execute(0);
-            Trn_DeviceCount = P00012_ATrn_DeviceCount[0];
+            Trn_ThemeColorCount = P00012_ATrn_ThemeColorCount[0];
             pr_default.close(0);
-            PrintRecordCount ( "Trn_Device" ,  Trn_DeviceCount );
+            PrintRecordCount ( "Trn_ThemeColor" ,  Trn_ThemeColorCount );
          }
       }
 
@@ -114,7 +96,7 @@ namespace GeneXus.Programs {
 
       private void ExecuteOnlyTablesReorganization( )
       {
-         ReorgExecute.RegisterBlockForSubmit( 1 ,  "ReorganizeTrn_Device" , new Object[]{ });
+         ReorgExecute.RegisterBlockForSubmit( 1 ,  "ReorganizeTrn_ThemeColor" , new Object[]{ });
       }
 
       private void ExecuteOnlyRisReorganization( )
@@ -136,7 +118,7 @@ namespace GeneXus.Programs {
 
       private void SetPrecedencetables( )
       {
-         GXReorganization.SetMsg( 1 ,  GXResourceManager.GetMessage("GXM_fileupdate", new   object[]  {"Trn_Device", ""}) );
+         GXReorganization.SetMsg( 1 ,  GXResourceManager.GetMessage("GXM_fileupdate", new   object[]  {"Trn_ThemeColor", ""}) );
       }
 
       private void SetPrecedenceris( )
@@ -169,12 +151,12 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         P00012_ATrn_DeviceCount = new int[1] ;
+         P00012_ATrn_ThemeColorCount = new int[1] ;
          sSchemaVar = "";
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.reorg__default(),
             new Object[][] {
                 new Object[] {
-               P00012_ATrn_DeviceCount
+               P00012_ATrn_ThemeColorCount
                }
             }
          );
@@ -182,14 +164,14 @@ namespace GeneXus.Programs {
       }
 
       protected short ErrCode ;
-      protected int Trn_DeviceCount ;
+      protected int Trn_ThemeColorCount ;
       protected string sSchemaVar ;
       protected IGxDataStore dsDataStore1 ;
       protected IGxDataStore dsGAM ;
       protected IGxDataStore dsDefault ;
       protected GxCommand RGZ ;
       protected IDataStoreProvider pr_default ;
-      protected int[] P00012_ATrn_DeviceCount ;
+      protected int[] P00012_ATrn_ThemeColorCount ;
    }
 
    public class reorg__default : DataStoreHelperBase, IDataStoreHelper
@@ -211,7 +193,7 @@ namespace GeneXus.Programs {
           prmP00012 = new Object[] {
           };
           def= new CursorDef[] {
-              new CursorDef("P00012", "SELECT COUNT(*) FROM Trn_Device ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00012,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P00012", "SELECT COUNT(*) FROM Trn_ThemeColor ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00012,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }

@@ -108,8 +108,8 @@ namespace GeneXus.Programs {
                CheckExtendedTable069( ) ;
                if ( AnyError == 0 )
                {
-                  ZM069( 24) ;
                   ZM069( 25) ;
+                  ZM069( 26) ;
                }
                CloseExtendedTableCursors069( ) ;
             }
@@ -177,14 +177,14 @@ namespace GeneXus.Programs {
 
       protected void ZM069( short GX_JID )
       {
-         if ( ( GX_JID == 23 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 24 ) || ( GX_JID == 0 ) )
          {
             Z48SupplierGenContactPhone = A48SupplierGenContactPhone;
+            Z294SupplierGenAddressZipCode = A294SupplierGenAddressZipCode;
             Z43SupplierGenKvkNumber = A43SupplierGenKvkNumber;
             Z44SupplierGenCompanyName = A44SupplierGenCompanyName;
             Z335SupplierGenAddressCountry = A335SupplierGenAddressCountry;
             Z295SupplierGenAddressCity = A295SupplierGenAddressCity;
-            Z294SupplierGenAddressZipCode = A294SupplierGenAddressZipCode;
             Z336SupplierGenAddressLine1 = A336SupplierGenAddressLine1;
             Z337SupplierGenAddressLine2 = A337SupplierGenAddressLine2;
             Z47SupplierGenContactName = A47SupplierGenContactName;
@@ -195,22 +195,22 @@ namespace GeneXus.Programs {
             Z282SupplierGenTypeId = A282SupplierGenTypeId;
             Z11OrganisationId = A11OrganisationId;
          }
-         if ( ( GX_JID == 24 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 25 ) || ( GX_JID == 0 ) )
          {
             Z290SupplierGenTypeName = A290SupplierGenTypeName;
          }
-         if ( ( GX_JID == 25 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 26 ) || ( GX_JID == 0 ) )
          {
          }
-         if ( GX_JID == -23 )
+         if ( GX_JID == -24 )
          {
             Z42SupplierGenId = A42SupplierGenId;
             Z48SupplierGenContactPhone = A48SupplierGenContactPhone;
+            Z294SupplierGenAddressZipCode = A294SupplierGenAddressZipCode;
             Z43SupplierGenKvkNumber = A43SupplierGenKvkNumber;
             Z44SupplierGenCompanyName = A44SupplierGenCompanyName;
             Z335SupplierGenAddressCountry = A335SupplierGenAddressCountry;
             Z295SupplierGenAddressCity = A295SupplierGenAddressCity;
-            Z294SupplierGenAddressZipCode = A294SupplierGenAddressZipCode;
             Z336SupplierGenAddressLine1 = A336SupplierGenAddressLine1;
             Z337SupplierGenAddressLine2 = A337SupplierGenAddressLine2;
             Z47SupplierGenContactName = A47SupplierGenContactName;
@@ -254,12 +254,12 @@ namespace GeneXus.Programs {
          {
             RcdFound9 = 1;
             A48SupplierGenContactPhone = BC00066_A48SupplierGenContactPhone[0];
+            A294SupplierGenAddressZipCode = BC00066_A294SupplierGenAddressZipCode[0];
             A43SupplierGenKvkNumber = BC00066_A43SupplierGenKvkNumber[0];
             A290SupplierGenTypeName = BC00066_A290SupplierGenTypeName[0];
             A44SupplierGenCompanyName = BC00066_A44SupplierGenCompanyName[0];
             A335SupplierGenAddressCountry = BC00066_A335SupplierGenAddressCountry[0];
             A295SupplierGenAddressCity = BC00066_A295SupplierGenAddressCity[0];
-            A294SupplierGenAddressZipCode = BC00066_A294SupplierGenAddressZipCode[0];
             A336SupplierGenAddressLine1 = BC00066_A336SupplierGenAddressLine1[0];
             A337SupplierGenAddressLine2 = BC00066_A337SupplierGenAddressLine2[0];
             A47SupplierGenContactName = BC00066_A47SupplierGenContactName[0];
@@ -270,7 +270,7 @@ namespace GeneXus.Programs {
             A282SupplierGenTypeId = BC00066_A282SupplierGenTypeId[0];
             A11OrganisationId = BC00066_A11OrganisationId[0];
             n11OrganisationId = BC00066_n11OrganisationId[0];
-            ZM069( -23) ;
+            ZM069( -24) ;
          }
          pr_default.close(4);
          OnLoadActions069( ) ;
@@ -278,6 +278,7 @@ namespace GeneXus.Programs {
 
       protected void OnLoadActions069( )
       {
+         A294SupplierGenAddressZipCode = StringUtil.Upper( A294SupplierGenAddressZipCode);
          GXt_char2 = A48SupplierGenContactPhone;
          new prc_concatenateintlphone(context ).execute(  A381SupplierGenPhoneCode,  A382SupplierGenPhoneNumber, out  GXt_char2) ;
          A48SupplierGenContactPhone = GXt_char2;
@@ -330,6 +331,7 @@ namespace GeneXus.Programs {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier Gen Address City", ""), "", "", "", "", "", "", "", ""), 1, "");
             AnyError = 1;
          }
+         A294SupplierGenAddressZipCode = StringUtil.Upper( A294SupplierGenAddressZipCode);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A294SupplierGenAddressZipCode)) )
          {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Supplier Gen Address Zip Code", ""), "", "", "", "", "", "", "", ""), 1, "");
@@ -407,16 +409,16 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {n42SupplierGenId, A42SupplierGenId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM069( 23) ;
+            ZM069( 24) ;
             RcdFound9 = 1;
             A42SupplierGenId = BC00063_A42SupplierGenId[0];
             n42SupplierGenId = BC00063_n42SupplierGenId[0];
             A48SupplierGenContactPhone = BC00063_A48SupplierGenContactPhone[0];
+            A294SupplierGenAddressZipCode = BC00063_A294SupplierGenAddressZipCode[0];
             A43SupplierGenKvkNumber = BC00063_A43SupplierGenKvkNumber[0];
             A44SupplierGenCompanyName = BC00063_A44SupplierGenCompanyName[0];
             A335SupplierGenAddressCountry = BC00063_A335SupplierGenAddressCountry[0];
             A295SupplierGenAddressCity = BC00063_A295SupplierGenAddressCity[0];
-            A294SupplierGenAddressZipCode = BC00063_A294SupplierGenAddressZipCode[0];
             A336SupplierGenAddressLine1 = BC00063_A336SupplierGenAddressLine1[0];
             A337SupplierGenAddressLine2 = BC00063_A337SupplierGenAddressLine2[0];
             A47SupplierGenContactName = BC00063_A47SupplierGenContactName[0];
@@ -493,11 +495,11 @@ namespace GeneXus.Programs {
                return  ;
             }
             Gx_longc = false;
-            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z48SupplierGenContactPhone, BC00062_A48SupplierGenContactPhone[0]) != 0 ) || ( StringUtil.StrCmp(Z43SupplierGenKvkNumber, BC00062_A43SupplierGenKvkNumber[0]) != 0 ) || ( StringUtil.StrCmp(Z44SupplierGenCompanyName, BC00062_A44SupplierGenCompanyName[0]) != 0 ) || ( StringUtil.StrCmp(Z335SupplierGenAddressCountry, BC00062_A335SupplierGenAddressCountry[0]) != 0 ) || ( StringUtil.StrCmp(Z295SupplierGenAddressCity, BC00062_A295SupplierGenAddressCity[0]) != 0 ) )
+            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z48SupplierGenContactPhone, BC00062_A48SupplierGenContactPhone[0]) != 0 ) || ( StringUtil.StrCmp(Z294SupplierGenAddressZipCode, BC00062_A294SupplierGenAddressZipCode[0]) != 0 ) || ( StringUtil.StrCmp(Z43SupplierGenKvkNumber, BC00062_A43SupplierGenKvkNumber[0]) != 0 ) || ( StringUtil.StrCmp(Z44SupplierGenCompanyName, BC00062_A44SupplierGenCompanyName[0]) != 0 ) || ( StringUtil.StrCmp(Z335SupplierGenAddressCountry, BC00062_A335SupplierGenAddressCountry[0]) != 0 ) )
             {
                Gx_longc = true;
             }
-            if ( Gx_longc || ( StringUtil.StrCmp(Z294SupplierGenAddressZipCode, BC00062_A294SupplierGenAddressZipCode[0]) != 0 ) || ( StringUtil.StrCmp(Z336SupplierGenAddressLine1, BC00062_A336SupplierGenAddressLine1[0]) != 0 ) || ( StringUtil.StrCmp(Z337SupplierGenAddressLine2, BC00062_A337SupplierGenAddressLine2[0]) != 0 ) || ( StringUtil.StrCmp(Z47SupplierGenContactName, BC00062_A47SupplierGenContactName[0]) != 0 ) || ( StringUtil.StrCmp(Z381SupplierGenPhoneCode, BC00062_A381SupplierGenPhoneCode[0]) != 0 ) )
+            if ( Gx_longc || ( StringUtil.StrCmp(Z295SupplierGenAddressCity, BC00062_A295SupplierGenAddressCity[0]) != 0 ) || ( StringUtil.StrCmp(Z336SupplierGenAddressLine1, BC00062_A336SupplierGenAddressLine1[0]) != 0 ) || ( StringUtil.StrCmp(Z337SupplierGenAddressLine2, BC00062_A337SupplierGenAddressLine2[0]) != 0 ) || ( StringUtil.StrCmp(Z47SupplierGenContactName, BC00062_A47SupplierGenContactName[0]) != 0 ) || ( StringUtil.StrCmp(Z381SupplierGenPhoneCode, BC00062_A381SupplierGenPhoneCode[0]) != 0 ) )
             {
                Gx_longc = true;
             }
@@ -530,7 +532,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC00068 */
-                     pr_default.execute(6, new Object[] {n42SupplierGenId, A42SupplierGenId, A48SupplierGenContactPhone, A43SupplierGenKvkNumber, A44SupplierGenCompanyName, A335SupplierGenAddressCountry, A295SupplierGenAddressCity, A294SupplierGenAddressZipCode, A336SupplierGenAddressLine1, A337SupplierGenAddressLine2, A47SupplierGenContactName, A381SupplierGenPhoneCode, A382SupplierGenPhoneNumber, A513SupplierGenEmail, A441SupplierGenWebsite, A282SupplierGenTypeId, n11OrganisationId, A11OrganisationId});
+                     pr_default.execute(6, new Object[] {n42SupplierGenId, A42SupplierGenId, A48SupplierGenContactPhone, A294SupplierGenAddressZipCode, A43SupplierGenKvkNumber, A44SupplierGenCompanyName, A335SupplierGenAddressCountry, A295SupplierGenAddressCity, A336SupplierGenAddressLine1, A337SupplierGenAddressLine2, A47SupplierGenContactName, A381SupplierGenPhoneCode, A382SupplierGenPhoneNumber, A513SupplierGenEmail, A441SupplierGenWebsite, A282SupplierGenTypeId, n11OrganisationId, A11OrganisationId});
                      pr_default.close(6);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_SupplierGen");
                      if ( (pr_default.getStatus(6) == 1) )
@@ -585,7 +587,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC00069 */
-                     pr_default.execute(7, new Object[] {A48SupplierGenContactPhone, A43SupplierGenKvkNumber, A44SupplierGenCompanyName, A335SupplierGenAddressCountry, A295SupplierGenAddressCity, A294SupplierGenAddressZipCode, A336SupplierGenAddressLine1, A337SupplierGenAddressLine2, A47SupplierGenContactName, A381SupplierGenPhoneCode, A382SupplierGenPhoneNumber, A513SupplierGenEmail, A441SupplierGenWebsite, A282SupplierGenTypeId, n11OrganisationId, A11OrganisationId, n42SupplierGenId, A42SupplierGenId});
+                     pr_default.execute(7, new Object[] {A48SupplierGenContactPhone, A294SupplierGenAddressZipCode, A43SupplierGenKvkNumber, A44SupplierGenCompanyName, A335SupplierGenAddressCountry, A295SupplierGenAddressCity, A336SupplierGenAddressLine1, A337SupplierGenAddressLine2, A47SupplierGenContactName, A381SupplierGenPhoneCode, A382SupplierGenPhoneNumber, A513SupplierGenEmail, A441SupplierGenWebsite, A282SupplierGenTypeId, n11OrganisationId, A11OrganisationId, n42SupplierGenId, A42SupplierGenId});
                      pr_default.close(7);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_SupplierGen");
                      if ( (pr_default.getStatus(7) == 103) )
@@ -731,12 +733,12 @@ namespace GeneXus.Programs {
             A42SupplierGenId = BC000613_A42SupplierGenId[0];
             n42SupplierGenId = BC000613_n42SupplierGenId[0];
             A48SupplierGenContactPhone = BC000613_A48SupplierGenContactPhone[0];
+            A294SupplierGenAddressZipCode = BC000613_A294SupplierGenAddressZipCode[0];
             A43SupplierGenKvkNumber = BC000613_A43SupplierGenKvkNumber[0];
             A290SupplierGenTypeName = BC000613_A290SupplierGenTypeName[0];
             A44SupplierGenCompanyName = BC000613_A44SupplierGenCompanyName[0];
             A335SupplierGenAddressCountry = BC000613_A335SupplierGenAddressCountry[0];
             A295SupplierGenAddressCity = BC000613_A295SupplierGenAddressCity[0];
-            A294SupplierGenAddressZipCode = BC000613_A294SupplierGenAddressZipCode[0];
             A336SupplierGenAddressLine1 = BC000613_A336SupplierGenAddressLine1[0];
             A337SupplierGenAddressLine2 = BC000613_A337SupplierGenAddressLine2[0];
             A47SupplierGenContactName = BC000613_A47SupplierGenContactName[0];
@@ -769,12 +771,12 @@ namespace GeneXus.Programs {
             A42SupplierGenId = BC000613_A42SupplierGenId[0];
             n42SupplierGenId = BC000613_n42SupplierGenId[0];
             A48SupplierGenContactPhone = BC000613_A48SupplierGenContactPhone[0];
+            A294SupplierGenAddressZipCode = BC000613_A294SupplierGenAddressZipCode[0];
             A43SupplierGenKvkNumber = BC000613_A43SupplierGenKvkNumber[0];
             A290SupplierGenTypeName = BC000613_A290SupplierGenTypeName[0];
             A44SupplierGenCompanyName = BC000613_A44SupplierGenCompanyName[0];
             A335SupplierGenAddressCountry = BC000613_A335SupplierGenAddressCountry[0];
             A295SupplierGenAddressCity = BC000613_A295SupplierGenAddressCity[0];
-            A294SupplierGenAddressZipCode = BC000613_A294SupplierGenAddressZipCode[0];
             A336SupplierGenAddressLine1 = BC000613_A336SupplierGenAddressLine1[0];
             A337SupplierGenAddressLine2 = BC000613_A337SupplierGenAddressLine2[0];
             A47SupplierGenContactName = BC000613_A47SupplierGenContactName[0];
@@ -847,13 +849,13 @@ namespace GeneXus.Programs {
          A48SupplierGenContactPhone = "";
          A11OrganisationId = Guid.Empty;
          n11OrganisationId = false;
+         A294SupplierGenAddressZipCode = "";
          A43SupplierGenKvkNumber = "";
          A282SupplierGenTypeId = Guid.Empty;
          A290SupplierGenTypeName = "";
          A44SupplierGenCompanyName = "";
          A335SupplierGenAddressCountry = "";
          A295SupplierGenAddressCity = "";
-         A294SupplierGenAddressZipCode = "";
          A336SupplierGenAddressLine1 = "";
          A337SupplierGenAddressLine2 = "";
          A47SupplierGenContactName = "";
@@ -862,11 +864,11 @@ namespace GeneXus.Programs {
          A513SupplierGenEmail = "";
          A441SupplierGenWebsite = "";
          Z48SupplierGenContactPhone = "";
+         Z294SupplierGenAddressZipCode = "";
          Z43SupplierGenKvkNumber = "";
          Z44SupplierGenCompanyName = "";
          Z335SupplierGenAddressCountry = "";
          Z295SupplierGenAddressCity = "";
-         Z294SupplierGenAddressZipCode = "";
          Z336SupplierGenAddressLine1 = "";
          Z337SupplierGenAddressLine2 = "";
          Z47SupplierGenContactName = "";
@@ -916,13 +918,13 @@ namespace GeneXus.Programs {
          obj9.gxTpr_Mode = Gx_mode;
          obj9.gxTpr_Suppliergencontactphone = A48SupplierGenContactPhone;
          obj9.gxTpr_Organisationid = A11OrganisationId;
+         obj9.gxTpr_Suppliergenaddresszipcode = A294SupplierGenAddressZipCode;
          obj9.gxTpr_Suppliergenkvknumber = A43SupplierGenKvkNumber;
          obj9.gxTpr_Suppliergentypeid = A282SupplierGenTypeId;
          obj9.gxTpr_Suppliergentypename = A290SupplierGenTypeName;
          obj9.gxTpr_Suppliergencompanyname = A44SupplierGenCompanyName;
          obj9.gxTpr_Suppliergenaddresscountry = A335SupplierGenAddressCountry;
          obj9.gxTpr_Suppliergenaddresscity = A295SupplierGenAddressCity;
-         obj9.gxTpr_Suppliergenaddresszipcode = A294SupplierGenAddressZipCode;
          obj9.gxTpr_Suppliergenaddressline1 = A336SupplierGenAddressLine1;
          obj9.gxTpr_Suppliergenaddressline2 = A337SupplierGenAddressLine2;
          obj9.gxTpr_Suppliergencontactname = A47SupplierGenContactName;
@@ -967,13 +969,13 @@ namespace GeneXus.Programs {
          A48SupplierGenContactPhone = obj9.gxTpr_Suppliergencontactphone;
          A11OrganisationId = obj9.gxTpr_Organisationid;
          n11OrganisationId = false;
+         A294SupplierGenAddressZipCode = obj9.gxTpr_Suppliergenaddresszipcode;
          A43SupplierGenKvkNumber = obj9.gxTpr_Suppliergenkvknumber;
          A282SupplierGenTypeId = obj9.gxTpr_Suppliergentypeid;
          A290SupplierGenTypeName = obj9.gxTpr_Suppliergentypename;
          A44SupplierGenCompanyName = obj9.gxTpr_Suppliergencompanyname;
          A335SupplierGenAddressCountry = obj9.gxTpr_Suppliergenaddresscountry;
          A295SupplierGenAddressCity = obj9.gxTpr_Suppliergenaddresscity;
-         A294SupplierGenAddressZipCode = obj9.gxTpr_Suppliergenaddresszipcode;
          A336SupplierGenAddressLine1 = obj9.gxTpr_Suppliergenaddressline1;
          A337SupplierGenAddressLine2 = obj9.gxTpr_Suppliergenaddressline2;
          A47SupplierGenContactName = obj9.gxTpr_Suppliergencontactname;
@@ -1025,7 +1027,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z42SupplierGenId = A42SupplierGenId;
          }
-         ZM069( -23) ;
+         ZM069( -24) ;
          OnLoadActions069( ) ;
          AddRow069( ) ;
          ScanKeyEnd069( ) ;
@@ -1054,7 +1056,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z42SupplierGenId = A42SupplierGenId;
          }
-         ZM069( -23) ;
+         ZM069( -24) ;
          OnLoadActions069( ) ;
          AddRow069( ) ;
          ScanKeyEnd069( ) ;
@@ -1453,6 +1455,8 @@ namespace GeneXus.Programs {
          A11OrganisationId = Guid.Empty;
          Z48SupplierGenContactPhone = "";
          A48SupplierGenContactPhone = "";
+         Z294SupplierGenAddressZipCode = "";
+         A294SupplierGenAddressZipCode = "";
          Z43SupplierGenKvkNumber = "";
          A43SupplierGenKvkNumber = "";
          Z44SupplierGenCompanyName = "";
@@ -1461,8 +1465,6 @@ namespace GeneXus.Programs {
          A335SupplierGenAddressCountry = "";
          Z295SupplierGenAddressCity = "";
          A295SupplierGenAddressCity = "";
-         Z294SupplierGenAddressZipCode = "";
-         A294SupplierGenAddressZipCode = "";
          Z336SupplierGenAddressLine1 = "";
          A336SupplierGenAddressLine1 = "";
          Z337SupplierGenAddressLine2 = "";
@@ -1485,12 +1487,12 @@ namespace GeneXus.Programs {
          BC00066_A42SupplierGenId = new Guid[] {Guid.Empty} ;
          BC00066_n42SupplierGenId = new bool[] {false} ;
          BC00066_A48SupplierGenContactPhone = new string[] {""} ;
+         BC00066_A294SupplierGenAddressZipCode = new string[] {""} ;
          BC00066_A43SupplierGenKvkNumber = new string[] {""} ;
          BC00066_A290SupplierGenTypeName = new string[] {""} ;
          BC00066_A44SupplierGenCompanyName = new string[] {""} ;
          BC00066_A335SupplierGenAddressCountry = new string[] {""} ;
          BC00066_A295SupplierGenAddressCity = new string[] {""} ;
-         BC00066_A294SupplierGenAddressZipCode = new string[] {""} ;
          BC00066_A336SupplierGenAddressLine1 = new string[] {""} ;
          BC00066_A337SupplierGenAddressLine2 = new string[] {""} ;
          BC00066_A47SupplierGenContactName = new string[] {""} ;
@@ -1510,11 +1512,11 @@ namespace GeneXus.Programs {
          BC00063_A42SupplierGenId = new Guid[] {Guid.Empty} ;
          BC00063_n42SupplierGenId = new bool[] {false} ;
          BC00063_A48SupplierGenContactPhone = new string[] {""} ;
+         BC00063_A294SupplierGenAddressZipCode = new string[] {""} ;
          BC00063_A43SupplierGenKvkNumber = new string[] {""} ;
          BC00063_A44SupplierGenCompanyName = new string[] {""} ;
          BC00063_A335SupplierGenAddressCountry = new string[] {""} ;
          BC00063_A295SupplierGenAddressCity = new string[] {""} ;
-         BC00063_A294SupplierGenAddressZipCode = new string[] {""} ;
          BC00063_A336SupplierGenAddressLine1 = new string[] {""} ;
          BC00063_A337SupplierGenAddressLine2 = new string[] {""} ;
          BC00063_A47SupplierGenContactName = new string[] {""} ;
@@ -1529,11 +1531,11 @@ namespace GeneXus.Programs {
          BC00062_A42SupplierGenId = new Guid[] {Guid.Empty} ;
          BC00062_n42SupplierGenId = new bool[] {false} ;
          BC00062_A48SupplierGenContactPhone = new string[] {""} ;
+         BC00062_A294SupplierGenAddressZipCode = new string[] {""} ;
          BC00062_A43SupplierGenKvkNumber = new string[] {""} ;
          BC00062_A44SupplierGenCompanyName = new string[] {""} ;
          BC00062_A335SupplierGenAddressCountry = new string[] {""} ;
          BC00062_A295SupplierGenAddressCity = new string[] {""} ;
-         BC00062_A294SupplierGenAddressZipCode = new string[] {""} ;
          BC00062_A336SupplierGenAddressLine1 = new string[] {""} ;
          BC00062_A337SupplierGenAddressLine2 = new string[] {""} ;
          BC00062_A47SupplierGenContactName = new string[] {""} ;
@@ -1552,12 +1554,12 @@ namespace GeneXus.Programs {
          BC000613_A42SupplierGenId = new Guid[] {Guid.Empty} ;
          BC000613_n42SupplierGenId = new bool[] {false} ;
          BC000613_A48SupplierGenContactPhone = new string[] {""} ;
+         BC000613_A294SupplierGenAddressZipCode = new string[] {""} ;
          BC000613_A43SupplierGenKvkNumber = new string[] {""} ;
          BC000613_A290SupplierGenTypeName = new string[] {""} ;
          BC000613_A44SupplierGenCompanyName = new string[] {""} ;
          BC000613_A335SupplierGenAddressCountry = new string[] {""} ;
          BC000613_A295SupplierGenAddressCity = new string[] {""} ;
-         BC000613_A294SupplierGenAddressZipCode = new string[] {""} ;
          BC000613_A336SupplierGenAddressLine1 = new string[] {""} ;
          BC000613_A337SupplierGenAddressLine2 = new string[] {""} ;
          BC000613_A47SupplierGenContactName = new string[] {""} ;
@@ -1582,11 +1584,11 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_suppliergen_bc__default(),
             new Object[][] {
                 new Object[] {
-               BC00062_A42SupplierGenId, BC00062_A48SupplierGenContactPhone, BC00062_A43SupplierGenKvkNumber, BC00062_A44SupplierGenCompanyName, BC00062_A335SupplierGenAddressCountry, BC00062_A295SupplierGenAddressCity, BC00062_A294SupplierGenAddressZipCode, BC00062_A336SupplierGenAddressLine1, BC00062_A337SupplierGenAddressLine2, BC00062_A47SupplierGenContactName,
+               BC00062_A42SupplierGenId, BC00062_A48SupplierGenContactPhone, BC00062_A294SupplierGenAddressZipCode, BC00062_A43SupplierGenKvkNumber, BC00062_A44SupplierGenCompanyName, BC00062_A335SupplierGenAddressCountry, BC00062_A295SupplierGenAddressCity, BC00062_A336SupplierGenAddressLine1, BC00062_A337SupplierGenAddressLine2, BC00062_A47SupplierGenContactName,
                BC00062_A381SupplierGenPhoneCode, BC00062_A382SupplierGenPhoneNumber, BC00062_A513SupplierGenEmail, BC00062_A441SupplierGenWebsite, BC00062_A282SupplierGenTypeId, BC00062_A11OrganisationId, BC00062_n11OrganisationId
                }
                , new Object[] {
-               BC00063_A42SupplierGenId, BC00063_A48SupplierGenContactPhone, BC00063_A43SupplierGenKvkNumber, BC00063_A44SupplierGenCompanyName, BC00063_A335SupplierGenAddressCountry, BC00063_A295SupplierGenAddressCity, BC00063_A294SupplierGenAddressZipCode, BC00063_A336SupplierGenAddressLine1, BC00063_A337SupplierGenAddressLine2, BC00063_A47SupplierGenContactName,
+               BC00063_A42SupplierGenId, BC00063_A48SupplierGenContactPhone, BC00063_A294SupplierGenAddressZipCode, BC00063_A43SupplierGenKvkNumber, BC00063_A44SupplierGenCompanyName, BC00063_A335SupplierGenAddressCountry, BC00063_A295SupplierGenAddressCity, BC00063_A336SupplierGenAddressLine1, BC00063_A337SupplierGenAddressLine2, BC00063_A47SupplierGenContactName,
                BC00063_A381SupplierGenPhoneCode, BC00063_A382SupplierGenPhoneNumber, BC00063_A513SupplierGenEmail, BC00063_A441SupplierGenWebsite, BC00063_A282SupplierGenTypeId, BC00063_A11OrganisationId, BC00063_n11OrganisationId
                }
                , new Object[] {
@@ -1596,7 +1598,7 @@ namespace GeneXus.Programs {
                BC00065_A11OrganisationId
                }
                , new Object[] {
-               BC00066_A42SupplierGenId, BC00066_A48SupplierGenContactPhone, BC00066_A43SupplierGenKvkNumber, BC00066_A290SupplierGenTypeName, BC00066_A44SupplierGenCompanyName, BC00066_A335SupplierGenAddressCountry, BC00066_A295SupplierGenAddressCity, BC00066_A294SupplierGenAddressZipCode, BC00066_A336SupplierGenAddressLine1, BC00066_A337SupplierGenAddressLine2,
+               BC00066_A42SupplierGenId, BC00066_A48SupplierGenContactPhone, BC00066_A294SupplierGenAddressZipCode, BC00066_A43SupplierGenKvkNumber, BC00066_A290SupplierGenTypeName, BC00066_A44SupplierGenCompanyName, BC00066_A335SupplierGenAddressCountry, BC00066_A295SupplierGenAddressCity, BC00066_A336SupplierGenAddressLine1, BC00066_A337SupplierGenAddressLine2,
                BC00066_A47SupplierGenContactName, BC00066_A381SupplierGenPhoneCode, BC00066_A382SupplierGenPhoneNumber, BC00066_A513SupplierGenEmail, BC00066_A441SupplierGenWebsite, BC00066_A282SupplierGenTypeId, BC00066_A11OrganisationId, BC00066_n11OrganisationId
                }
                , new Object[] {
@@ -1615,7 +1617,7 @@ namespace GeneXus.Programs {
                BC000612_A58ProductServiceId, BC000612_A29LocationId, BC000612_A11OrganisationId
                }
                , new Object[] {
-               BC000613_A42SupplierGenId, BC000613_A48SupplierGenContactPhone, BC000613_A43SupplierGenKvkNumber, BC000613_A290SupplierGenTypeName, BC000613_A44SupplierGenCompanyName, BC000613_A335SupplierGenAddressCountry, BC000613_A295SupplierGenAddressCity, BC000613_A294SupplierGenAddressZipCode, BC000613_A336SupplierGenAddressLine1, BC000613_A337SupplierGenAddressLine2,
+               BC000613_A42SupplierGenId, BC000613_A48SupplierGenContactPhone, BC000613_A294SupplierGenAddressZipCode, BC000613_A43SupplierGenKvkNumber, BC000613_A290SupplierGenTypeName, BC000613_A44SupplierGenCompanyName, BC000613_A335SupplierGenAddressCountry, BC000613_A295SupplierGenAddressCity, BC000613_A336SupplierGenAddressLine1, BC000613_A337SupplierGenAddressLine2,
                BC000613_A47SupplierGenContactName, BC000613_A381SupplierGenPhoneCode, BC000613_A382SupplierGenPhoneNumber, BC000613_A513SupplierGenEmail, BC000613_A441SupplierGenWebsite, BC000613_A282SupplierGenTypeId, BC000613_A11OrganisationId, BC000613_n11OrganisationId
                }
             }
@@ -1649,6 +1651,8 @@ namespace GeneXus.Programs {
       private bool n11OrganisationId ;
       private bool n42SupplierGenId ;
       private bool Gx_longc ;
+      private string Z294SupplierGenAddressZipCode ;
+      private string A294SupplierGenAddressZipCode ;
       private string Z43SupplierGenKvkNumber ;
       private string A43SupplierGenKvkNumber ;
       private string Z44SupplierGenCompanyName ;
@@ -1657,8 +1661,6 @@ namespace GeneXus.Programs {
       private string A335SupplierGenAddressCountry ;
       private string Z295SupplierGenAddressCity ;
       private string A295SupplierGenAddressCity ;
-      private string Z294SupplierGenAddressZipCode ;
-      private string A294SupplierGenAddressZipCode ;
       private string Z336SupplierGenAddressLine1 ;
       private string A336SupplierGenAddressLine1 ;
       private string Z337SupplierGenAddressLine2 ;
@@ -1697,12 +1699,12 @@ namespace GeneXus.Programs {
       private Guid[] BC00066_A42SupplierGenId ;
       private bool[] BC00066_n42SupplierGenId ;
       private string[] BC00066_A48SupplierGenContactPhone ;
+      private string[] BC00066_A294SupplierGenAddressZipCode ;
       private string[] BC00066_A43SupplierGenKvkNumber ;
       private string[] BC00066_A290SupplierGenTypeName ;
       private string[] BC00066_A44SupplierGenCompanyName ;
       private string[] BC00066_A335SupplierGenAddressCountry ;
       private string[] BC00066_A295SupplierGenAddressCity ;
-      private string[] BC00066_A294SupplierGenAddressZipCode ;
       private string[] BC00066_A336SupplierGenAddressLine1 ;
       private string[] BC00066_A337SupplierGenAddressLine2 ;
       private string[] BC00066_A47SupplierGenContactName ;
@@ -1721,11 +1723,11 @@ namespace GeneXus.Programs {
       private Guid[] BC00063_A42SupplierGenId ;
       private bool[] BC00063_n42SupplierGenId ;
       private string[] BC00063_A48SupplierGenContactPhone ;
+      private string[] BC00063_A294SupplierGenAddressZipCode ;
       private string[] BC00063_A43SupplierGenKvkNumber ;
       private string[] BC00063_A44SupplierGenCompanyName ;
       private string[] BC00063_A335SupplierGenAddressCountry ;
       private string[] BC00063_A295SupplierGenAddressCity ;
-      private string[] BC00063_A294SupplierGenAddressZipCode ;
       private string[] BC00063_A336SupplierGenAddressLine1 ;
       private string[] BC00063_A337SupplierGenAddressLine2 ;
       private string[] BC00063_A47SupplierGenContactName ;
@@ -1739,11 +1741,11 @@ namespace GeneXus.Programs {
       private Guid[] BC00062_A42SupplierGenId ;
       private bool[] BC00062_n42SupplierGenId ;
       private string[] BC00062_A48SupplierGenContactPhone ;
+      private string[] BC00062_A294SupplierGenAddressZipCode ;
       private string[] BC00062_A43SupplierGenKvkNumber ;
       private string[] BC00062_A44SupplierGenCompanyName ;
       private string[] BC00062_A335SupplierGenAddressCountry ;
       private string[] BC00062_A295SupplierGenAddressCity ;
-      private string[] BC00062_A294SupplierGenAddressZipCode ;
       private string[] BC00062_A336SupplierGenAddressLine1 ;
       private string[] BC00062_A337SupplierGenAddressLine2 ;
       private string[] BC00062_A47SupplierGenContactName ;
@@ -1762,12 +1764,12 @@ namespace GeneXus.Programs {
       private Guid[] BC000613_A42SupplierGenId ;
       private bool[] BC000613_n42SupplierGenId ;
       private string[] BC000613_A48SupplierGenContactPhone ;
+      private string[] BC000613_A294SupplierGenAddressZipCode ;
       private string[] BC000613_A43SupplierGenKvkNumber ;
       private string[] BC000613_A290SupplierGenTypeName ;
       private string[] BC000613_A44SupplierGenCompanyName ;
       private string[] BC000613_A335SupplierGenAddressCountry ;
       private string[] BC000613_A295SupplierGenAddressCity ;
-      private string[] BC000613_A294SupplierGenAddressZipCode ;
       private string[] BC000613_A336SupplierGenAddressLine1 ;
       private string[] BC000613_A337SupplierGenAddressLine2 ;
       private string[] BC000613_A47SupplierGenContactName ;
@@ -1903,11 +1905,11 @@ public class trn_suppliergen_bc__default : DataStoreHelperBase, IDataStoreHelper
        prmBC00068 = new Object[] {
        new ParDef("SupplierGenId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("SupplierGenContactPhone",GXType.Char,20,0) ,
+       new ParDef("SupplierGenAddressZipCode",GXType.VarChar,100,0) ,
        new ParDef("SupplierGenKvkNumber",GXType.VarChar,8,0) ,
        new ParDef("SupplierGenCompanyName",GXType.VarChar,100,0) ,
        new ParDef("SupplierGenAddressCountry",GXType.VarChar,100,0) ,
        new ParDef("SupplierGenAddressCity",GXType.VarChar,100,0) ,
-       new ParDef("SupplierGenAddressZipCode",GXType.VarChar,100,0) ,
        new ParDef("SupplierGenAddressLine1",GXType.VarChar,100,0) ,
        new ParDef("SupplierGenAddressLine2",GXType.VarChar,100,0) ,
        new ParDef("SupplierGenContactName",GXType.VarChar,100,0) ,
@@ -1921,11 +1923,11 @@ public class trn_suppliergen_bc__default : DataStoreHelperBase, IDataStoreHelper
        Object[] prmBC00069;
        prmBC00069 = new Object[] {
        new ParDef("SupplierGenContactPhone",GXType.Char,20,0) ,
+       new ParDef("SupplierGenAddressZipCode",GXType.VarChar,100,0) ,
        new ParDef("SupplierGenKvkNumber",GXType.VarChar,8,0) ,
        new ParDef("SupplierGenCompanyName",GXType.VarChar,100,0) ,
        new ParDef("SupplierGenAddressCountry",GXType.VarChar,100,0) ,
        new ParDef("SupplierGenAddressCity",GXType.VarChar,100,0) ,
-       new ParDef("SupplierGenAddressZipCode",GXType.VarChar,100,0) ,
        new ParDef("SupplierGenAddressLine1",GXType.VarChar,100,0) ,
        new ParDef("SupplierGenAddressLine2",GXType.VarChar,100,0) ,
        new ParDef("SupplierGenContactName",GXType.VarChar,100,0) ,
@@ -1954,18 +1956,18 @@ public class trn_suppliergen_bc__default : DataStoreHelperBase, IDataStoreHelper
        new ParDef("SupplierGenId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        def= new CursorDef[] {
-           new CursorDef("BC00062", "SELECT SupplierGenId, SupplierGenContactPhone, SupplierGenKvkNumber, SupplierGenCompanyName, SupplierGenAddressCountry, SupplierGenAddressCity, SupplierGenAddressZipCode, SupplierGenAddressLine1, SupplierGenAddressLine2, SupplierGenContactName, SupplierGenPhoneCode, SupplierGenPhoneNumber, SupplierGenEmail, SupplierGenWebsite, SupplierGenTypeId, OrganisationId FROM Trn_SupplierGen WHERE SupplierGenId = :SupplierGenId  FOR UPDATE OF Trn_SupplierGen",true, GxErrorMask.GX_NOMASK, false, this,prmBC00062,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC00063", "SELECT SupplierGenId, SupplierGenContactPhone, SupplierGenKvkNumber, SupplierGenCompanyName, SupplierGenAddressCountry, SupplierGenAddressCity, SupplierGenAddressZipCode, SupplierGenAddressLine1, SupplierGenAddressLine2, SupplierGenContactName, SupplierGenPhoneCode, SupplierGenPhoneNumber, SupplierGenEmail, SupplierGenWebsite, SupplierGenTypeId, OrganisationId FROM Trn_SupplierGen WHERE SupplierGenId = :SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00063,1, GxCacheFrequency.OFF ,true,false )
+           new CursorDef("BC00062", "SELECT SupplierGenId, SupplierGenContactPhone, SupplierGenAddressZipCode, SupplierGenKvkNumber, SupplierGenCompanyName, SupplierGenAddressCountry, SupplierGenAddressCity, SupplierGenAddressLine1, SupplierGenAddressLine2, SupplierGenContactName, SupplierGenPhoneCode, SupplierGenPhoneNumber, SupplierGenEmail, SupplierGenWebsite, SupplierGenTypeId, OrganisationId FROM Trn_SupplierGen WHERE SupplierGenId = :SupplierGenId  FOR UPDATE OF Trn_SupplierGen",true, GxErrorMask.GX_NOMASK, false, this,prmBC00062,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00063", "SELECT SupplierGenId, SupplierGenContactPhone, SupplierGenAddressZipCode, SupplierGenKvkNumber, SupplierGenCompanyName, SupplierGenAddressCountry, SupplierGenAddressCity, SupplierGenAddressLine1, SupplierGenAddressLine2, SupplierGenContactName, SupplierGenPhoneCode, SupplierGenPhoneNumber, SupplierGenEmail, SupplierGenWebsite, SupplierGenTypeId, OrganisationId FROM Trn_SupplierGen WHERE SupplierGenId = :SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00063,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC00064", "SELECT SupplierGenTypeName FROM Trn_SupplierGenType WHERE SupplierGenTypeId = :SupplierGenTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00064,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC00065", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00065,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC00066", "SELECT TM1.SupplierGenId, TM1.SupplierGenContactPhone, TM1.SupplierGenKvkNumber, T2.SupplierGenTypeName, TM1.SupplierGenCompanyName, TM1.SupplierGenAddressCountry, TM1.SupplierGenAddressCity, TM1.SupplierGenAddressZipCode, TM1.SupplierGenAddressLine1, TM1.SupplierGenAddressLine2, TM1.SupplierGenContactName, TM1.SupplierGenPhoneCode, TM1.SupplierGenPhoneNumber, TM1.SupplierGenEmail, TM1.SupplierGenWebsite, TM1.SupplierGenTypeId, TM1.OrganisationId FROM (Trn_SupplierGen TM1 INNER JOIN Trn_SupplierGenType T2 ON T2.SupplierGenTypeId = TM1.SupplierGenTypeId) WHERE TM1.SupplierGenId = :SupplierGenId ORDER BY TM1.SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00066,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00066", "SELECT TM1.SupplierGenId, TM1.SupplierGenContactPhone, TM1.SupplierGenAddressZipCode, TM1.SupplierGenKvkNumber, T2.SupplierGenTypeName, TM1.SupplierGenCompanyName, TM1.SupplierGenAddressCountry, TM1.SupplierGenAddressCity, TM1.SupplierGenAddressLine1, TM1.SupplierGenAddressLine2, TM1.SupplierGenContactName, TM1.SupplierGenPhoneCode, TM1.SupplierGenPhoneNumber, TM1.SupplierGenEmail, TM1.SupplierGenWebsite, TM1.SupplierGenTypeId, TM1.OrganisationId FROM (Trn_SupplierGen TM1 INNER JOIN Trn_SupplierGenType T2 ON T2.SupplierGenTypeId = TM1.SupplierGenTypeId) WHERE TM1.SupplierGenId = :SupplierGenId ORDER BY TM1.SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00066,100, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC00067", "SELECT SupplierGenId FROM Trn_SupplierGen WHERE SupplierGenId = :SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00067,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC00068", "SAVEPOINT gxupdate;INSERT INTO Trn_SupplierGen(SupplierGenId, SupplierGenContactPhone, SupplierGenKvkNumber, SupplierGenCompanyName, SupplierGenAddressCountry, SupplierGenAddressCity, SupplierGenAddressZipCode, SupplierGenAddressLine1, SupplierGenAddressLine2, SupplierGenContactName, SupplierGenPhoneCode, SupplierGenPhoneNumber, SupplierGenEmail, SupplierGenWebsite, SupplierGenTypeId, OrganisationId) VALUES(:SupplierGenId, :SupplierGenContactPhone, :SupplierGenKvkNumber, :SupplierGenCompanyName, :SupplierGenAddressCountry, :SupplierGenAddressCity, :SupplierGenAddressZipCode, :SupplierGenAddressLine1, :SupplierGenAddressLine2, :SupplierGenContactName, :SupplierGenPhoneCode, :SupplierGenPhoneNumber, :SupplierGenEmail, :SupplierGenWebsite, :SupplierGenTypeId, :OrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00068)
-          ,new CursorDef("BC00069", "SAVEPOINT gxupdate;UPDATE Trn_SupplierGen SET SupplierGenContactPhone=:SupplierGenContactPhone, SupplierGenKvkNumber=:SupplierGenKvkNumber, SupplierGenCompanyName=:SupplierGenCompanyName, SupplierGenAddressCountry=:SupplierGenAddressCountry, SupplierGenAddressCity=:SupplierGenAddressCity, SupplierGenAddressZipCode=:SupplierGenAddressZipCode, SupplierGenAddressLine1=:SupplierGenAddressLine1, SupplierGenAddressLine2=:SupplierGenAddressLine2, SupplierGenContactName=:SupplierGenContactName, SupplierGenPhoneCode=:SupplierGenPhoneCode, SupplierGenPhoneNumber=:SupplierGenPhoneNumber, SupplierGenEmail=:SupplierGenEmail, SupplierGenWebsite=:SupplierGenWebsite, SupplierGenTypeId=:SupplierGenTypeId, OrganisationId=:OrganisationId  WHERE SupplierGenId = :SupplierGenId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00069)
+          ,new CursorDef("BC00068", "SAVEPOINT gxupdate;INSERT INTO Trn_SupplierGen(SupplierGenId, SupplierGenContactPhone, SupplierGenAddressZipCode, SupplierGenKvkNumber, SupplierGenCompanyName, SupplierGenAddressCountry, SupplierGenAddressCity, SupplierGenAddressLine1, SupplierGenAddressLine2, SupplierGenContactName, SupplierGenPhoneCode, SupplierGenPhoneNumber, SupplierGenEmail, SupplierGenWebsite, SupplierGenTypeId, OrganisationId) VALUES(:SupplierGenId, :SupplierGenContactPhone, :SupplierGenAddressZipCode, :SupplierGenKvkNumber, :SupplierGenCompanyName, :SupplierGenAddressCountry, :SupplierGenAddressCity, :SupplierGenAddressLine1, :SupplierGenAddressLine2, :SupplierGenContactName, :SupplierGenPhoneCode, :SupplierGenPhoneNumber, :SupplierGenEmail, :SupplierGenWebsite, :SupplierGenTypeId, :OrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00068)
+          ,new CursorDef("BC00069", "SAVEPOINT gxupdate;UPDATE Trn_SupplierGen SET SupplierGenContactPhone=:SupplierGenContactPhone, SupplierGenAddressZipCode=:SupplierGenAddressZipCode, SupplierGenKvkNumber=:SupplierGenKvkNumber, SupplierGenCompanyName=:SupplierGenCompanyName, SupplierGenAddressCountry=:SupplierGenAddressCountry, SupplierGenAddressCity=:SupplierGenAddressCity, SupplierGenAddressLine1=:SupplierGenAddressLine1, SupplierGenAddressLine2=:SupplierGenAddressLine2, SupplierGenContactName=:SupplierGenContactName, SupplierGenPhoneCode=:SupplierGenPhoneCode, SupplierGenPhoneNumber=:SupplierGenPhoneNumber, SupplierGenEmail=:SupplierGenEmail, SupplierGenWebsite=:SupplierGenWebsite, SupplierGenTypeId=:SupplierGenTypeId, OrganisationId=:OrganisationId  WHERE SupplierGenId = :SupplierGenId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00069)
           ,new CursorDef("BC000610", "SAVEPOINT gxupdate;DELETE FROM Trn_SupplierGen  WHERE SupplierGenId = :SupplierGenId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000610)
           ,new CursorDef("BC000611", "SELECT SupplierGenTypeName FROM Trn_SupplierGenType WHERE SupplierGenTypeId = :SupplierGenTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000611,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC000612", "SELECT ProductServiceId, LocationId, OrganisationId FROM Trn_ProductService WHERE SupplierGenId = :SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000612,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC000613", "SELECT TM1.SupplierGenId, TM1.SupplierGenContactPhone, TM1.SupplierGenKvkNumber, T2.SupplierGenTypeName, TM1.SupplierGenCompanyName, TM1.SupplierGenAddressCountry, TM1.SupplierGenAddressCity, TM1.SupplierGenAddressZipCode, TM1.SupplierGenAddressLine1, TM1.SupplierGenAddressLine2, TM1.SupplierGenContactName, TM1.SupplierGenPhoneCode, TM1.SupplierGenPhoneNumber, TM1.SupplierGenEmail, TM1.SupplierGenWebsite, TM1.SupplierGenTypeId, TM1.OrganisationId FROM (Trn_SupplierGen TM1 INNER JOIN Trn_SupplierGenType T2 ON T2.SupplierGenTypeId = TM1.SupplierGenTypeId) WHERE TM1.SupplierGenId = :SupplierGenId ORDER BY TM1.SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000613,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000613", "SELECT TM1.SupplierGenId, TM1.SupplierGenContactPhone, TM1.SupplierGenAddressZipCode, TM1.SupplierGenKvkNumber, T2.SupplierGenTypeName, TM1.SupplierGenCompanyName, TM1.SupplierGenAddressCountry, TM1.SupplierGenAddressCity, TM1.SupplierGenAddressLine1, TM1.SupplierGenAddressLine2, TM1.SupplierGenContactName, TM1.SupplierGenPhoneCode, TM1.SupplierGenPhoneNumber, TM1.SupplierGenEmail, TM1.SupplierGenWebsite, TM1.SupplierGenTypeId, TM1.OrganisationId FROM (Trn_SupplierGen TM1 INNER JOIN Trn_SupplierGenType T2 ON T2.SupplierGenTypeId = TM1.SupplierGenTypeId) WHERE TM1.SupplierGenId = :SupplierGenId ORDER BY TM1.SupplierGenId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000613,100, GxCacheFrequency.OFF ,true,false )
        };
     }
  }

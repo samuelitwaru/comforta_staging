@@ -1,2 +1,2 @@
-CREATE INDEX UTRN_DEVICE ON Trn_Device (DeviceType ,DeviceId );
+DROP INDEX UTRN_THEMECOLOR;
 

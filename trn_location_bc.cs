@@ -109,8 +109,8 @@ namespace GeneXus.Programs {
                CheckExtendedTable046( ) ;
                if ( AnyError == 0 )
                {
-                  ZM046( 19) ;
-                  ZM046( 20) ;
+                  ZM046( 21) ;
+                  ZM046( 22) ;
                }
                CloseExtendedTableCursors046( ) ;
             }
@@ -167,13 +167,13 @@ namespace GeneXus.Programs {
 
       protected void ZM046( short GX_JID )
       {
-         if ( ( GX_JID == 18 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 20 ) || ( GX_JID == 0 ) )
          {
             Z35LocationPhone = A35LocationPhone;
+            Z339LocationZipCode = A339LocationZipCode;
             Z31LocationName = A31LocationName;
             Z359LocationCountry = A359LocationCountry;
             Z338LocationCity = A338LocationCity;
-            Z339LocationZipCode = A339LocationZipCode;
             Z340LocationAddressLine1 = A340LocationAddressLine1;
             Z341LocationAddressLine2 = A341LocationAddressLine2;
             Z34LocationEmail = A34LocationEmail;
@@ -181,22 +181,22 @@ namespace GeneXus.Programs {
             Z384LocationPhoneNumber = A384LocationPhoneNumber;
             Z247Trn_ThemeId = A247Trn_ThemeId;
          }
-         if ( ( GX_JID == 19 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 21 ) || ( GX_JID == 0 ) )
          {
          }
-         if ( ( GX_JID == 20 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 22 ) || ( GX_JID == 0 ) )
          {
          }
-         if ( GX_JID == -18 )
+         if ( GX_JID == -20 )
          {
             Z29LocationId = A29LocationId;
             Z35LocationPhone = A35LocationPhone;
+            Z339LocationZipCode = A339LocationZipCode;
             Z31LocationName = A31LocationName;
             Z506LocationImage = A506LocationImage;
             Z40000LocationImage_GXI = A40000LocationImage_GXI;
             Z359LocationCountry = A359LocationCountry;
             Z338LocationCity = A338LocationCity;
-            Z339LocationZipCode = A339LocationZipCode;
             Z340LocationAddressLine1 = A340LocationAddressLine1;
             Z341LocationAddressLine2 = A341LocationAddressLine2;
             Z34LocationEmail = A34LocationEmail;
@@ -239,11 +239,11 @@ namespace GeneXus.Programs {
          {
             RcdFound6 = 1;
             A35LocationPhone = BC00046_A35LocationPhone[0];
+            A339LocationZipCode = BC00046_A339LocationZipCode[0];
             A31LocationName = BC00046_A31LocationName[0];
             A40000LocationImage_GXI = BC00046_A40000LocationImage_GXI[0];
             A359LocationCountry = BC00046_A359LocationCountry[0];
             A338LocationCity = BC00046_A338LocationCity[0];
-            A339LocationZipCode = BC00046_A339LocationZipCode[0];
             A340LocationAddressLine1 = BC00046_A340LocationAddressLine1[0];
             A341LocationAddressLine2 = BC00046_A341LocationAddressLine2[0];
             A34LocationEmail = BC00046_A34LocationEmail[0];
@@ -253,7 +253,7 @@ namespace GeneXus.Programs {
             A247Trn_ThemeId = BC00046_A247Trn_ThemeId[0];
             n247Trn_ThemeId = BC00046_n247Trn_ThemeId[0];
             A506LocationImage = BC00046_A506LocationImage[0];
-            ZM046( -18) ;
+            ZM046( -20) ;
          }
          pr_default.close(4);
          OnLoadActions046( ) ;
@@ -261,6 +261,7 @@ namespace GeneXus.Programs {
 
       protected void OnLoadActions046( )
       {
+         A339LocationZipCode = StringUtil.Upper( A339LocationZipCode);
          GXt_char2 = A35LocationPhone;
          new prc_concatenateintlphone(context ).execute(  A383LocationPhoneCode,  A384LocationPhoneNumber, out  GXt_char2) ;
          A35LocationPhone = GXt_char2;
@@ -293,6 +294,12 @@ namespace GeneXus.Programs {
             AnyError = 1;
          }
          pr_default.close(2);
+         A339LocationZipCode = StringUtil.Upper( A339LocationZipCode);
+         if ( ! GxRegex.IsMatch(A339LocationZipCode,context.GetMessage( "^\\d{4}\\s?[A-Z]{2}$", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( A339LocationZipCode)) )
+         {
+            GX_msglist.addItem(context.GetMessage( "Zip Code is incorrect", ""), 1, "");
+            AnyError = 1;
+         }
          if ( ! ( GxRegex.IsMatch(A34LocationEmail,"^((\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)|(\\s*))$") ) )
          {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Invalid email pattern", ""), context.GetMessage( "Location Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
@@ -371,15 +378,15 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A29LocationId, A11OrganisationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM046( 18) ;
+            ZM046( 20) ;
             RcdFound6 = 1;
             A29LocationId = BC00043_A29LocationId[0];
             A35LocationPhone = BC00043_A35LocationPhone[0];
+            A339LocationZipCode = BC00043_A339LocationZipCode[0];
             A31LocationName = BC00043_A31LocationName[0];
             A40000LocationImage_GXI = BC00043_A40000LocationImage_GXI[0];
             A359LocationCountry = BC00043_A359LocationCountry[0];
             A338LocationCity = BC00043_A338LocationCity[0];
-            A339LocationZipCode = BC00043_A339LocationZipCode[0];
             A340LocationAddressLine1 = BC00043_A340LocationAddressLine1[0];
             A341LocationAddressLine2 = BC00043_A341LocationAddressLine2[0];
             A34LocationEmail = BC00043_A34LocationEmail[0];
@@ -457,7 +464,7 @@ namespace GeneXus.Programs {
                return  ;
             }
             Gx_longc = false;
-            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z35LocationPhone, BC00042_A35LocationPhone[0]) != 0 ) || ( StringUtil.StrCmp(Z31LocationName, BC00042_A31LocationName[0]) != 0 ) || ( StringUtil.StrCmp(Z359LocationCountry, BC00042_A359LocationCountry[0]) != 0 ) || ( StringUtil.StrCmp(Z338LocationCity, BC00042_A338LocationCity[0]) != 0 ) || ( StringUtil.StrCmp(Z339LocationZipCode, BC00042_A339LocationZipCode[0]) != 0 ) )
+            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z35LocationPhone, BC00042_A35LocationPhone[0]) != 0 ) || ( StringUtil.StrCmp(Z339LocationZipCode, BC00042_A339LocationZipCode[0]) != 0 ) || ( StringUtil.StrCmp(Z31LocationName, BC00042_A31LocationName[0]) != 0 ) || ( StringUtil.StrCmp(Z359LocationCountry, BC00042_A359LocationCountry[0]) != 0 ) || ( StringUtil.StrCmp(Z338LocationCity, BC00042_A338LocationCity[0]) != 0 ) )
             {
                Gx_longc = true;
             }
@@ -494,7 +501,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC00048 */
-                     pr_default.execute(6, new Object[] {A29LocationId, A35LocationPhone, A31LocationName, A506LocationImage, A40000LocationImage_GXI, A359LocationCountry, A338LocationCity, A339LocationZipCode, A340LocationAddressLine1, A341LocationAddressLine2, A34LocationEmail, A383LocationPhoneCode, A384LocationPhoneNumber, A36LocationDescription, A11OrganisationId, n247Trn_ThemeId, A247Trn_ThemeId});
+                     pr_default.execute(6, new Object[] {A29LocationId, A35LocationPhone, A339LocationZipCode, A31LocationName, A506LocationImage, A40000LocationImage_GXI, A359LocationCountry, A338LocationCity, A340LocationAddressLine1, A341LocationAddressLine2, A34LocationEmail, A383LocationPhoneCode, A384LocationPhoneNumber, A36LocationDescription, A11OrganisationId, n247Trn_ThemeId, A247Trn_ThemeId});
                      pr_default.close(6);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Location");
                      if ( (pr_default.getStatus(6) == 1) )
@@ -549,7 +556,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC00049 */
-                     pr_default.execute(7, new Object[] {A35LocationPhone, A31LocationName, A359LocationCountry, A338LocationCity, A339LocationZipCode, A340LocationAddressLine1, A341LocationAddressLine2, A34LocationEmail, A383LocationPhoneCode, A384LocationPhoneNumber, A36LocationDescription, n247Trn_ThemeId, A247Trn_ThemeId, A29LocationId, A11OrganisationId});
+                     pr_default.execute(7, new Object[] {A35LocationPhone, A339LocationZipCode, A31LocationName, A359LocationCountry, A338LocationCity, A340LocationAddressLine1, A341LocationAddressLine2, A34LocationEmail, A383LocationPhoneCode, A384LocationPhoneNumber, A36LocationDescription, n247Trn_ThemeId, A247Trn_ThemeId, A29LocationId, A11OrganisationId});
                      pr_default.close(7);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Location");
                      if ( (pr_default.getStatus(7) == 103) )
@@ -725,11 +732,11 @@ namespace GeneXus.Programs {
             RcdFound6 = 1;
             A29LocationId = BC000417_A29LocationId[0];
             A35LocationPhone = BC000417_A35LocationPhone[0];
+            A339LocationZipCode = BC000417_A339LocationZipCode[0];
             A31LocationName = BC000417_A31LocationName[0];
             A40000LocationImage_GXI = BC000417_A40000LocationImage_GXI[0];
             A359LocationCountry = BC000417_A359LocationCountry[0];
             A338LocationCity = BC000417_A338LocationCity[0];
-            A339LocationZipCode = BC000417_A339LocationZipCode[0];
             A340LocationAddressLine1 = BC000417_A340LocationAddressLine1[0];
             A341LocationAddressLine2 = BC000417_A341LocationAddressLine2[0];
             A34LocationEmail = BC000417_A34LocationEmail[0];
@@ -761,11 +768,11 @@ namespace GeneXus.Programs {
             RcdFound6 = 1;
             A29LocationId = BC000417_A29LocationId[0];
             A35LocationPhone = BC000417_A35LocationPhone[0];
+            A339LocationZipCode = BC000417_A339LocationZipCode[0];
             A31LocationName = BC000417_A31LocationName[0];
             A40000LocationImage_GXI = BC000417_A40000LocationImage_GXI[0];
             A359LocationCountry = BC000417_A359LocationCountry[0];
             A338LocationCity = BC000417_A338LocationCity[0];
-            A339LocationZipCode = BC000417_A339LocationZipCode[0];
             A340LocationAddressLine1 = BC000417_A340LocationAddressLine1[0];
             A341LocationAddressLine2 = BC000417_A341LocationAddressLine2[0];
             A34LocationEmail = BC000417_A34LocationEmail[0];
@@ -848,12 +855,12 @@ namespace GeneXus.Programs {
       {
          AV24AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
          A35LocationPhone = "";
+         A339LocationZipCode = "";
          A31LocationName = "";
          A506LocationImage = "";
          A40000LocationImage_GXI = "";
          A359LocationCountry = "";
          A338LocationCity = "";
-         A339LocationZipCode = "";
          A340LocationAddressLine1 = "";
          A341LocationAddressLine2 = "";
          A34LocationEmail = "";
@@ -863,10 +870,10 @@ namespace GeneXus.Programs {
          A247Trn_ThemeId = new prc_getdefaulttheme(context).executeUdp( );
          n247Trn_ThemeId = false;
          Z35LocationPhone = "";
+         Z339LocationZipCode = "";
          Z31LocationName = "";
          Z359LocationCountry = "";
          Z338LocationCity = "";
-         Z339LocationZipCode = "";
          Z340LocationAddressLine1 = "";
          Z341LocationAddressLine2 = "";
          Z34LocationEmail = "";
@@ -910,12 +917,12 @@ namespace GeneXus.Programs {
       {
          obj6.gxTpr_Mode = Gx_mode;
          obj6.gxTpr_Locationphone = A35LocationPhone;
+         obj6.gxTpr_Locationzipcode = A339LocationZipCode;
          obj6.gxTpr_Locationname = A31LocationName;
          obj6.gxTpr_Locationimage = A506LocationImage;
          obj6.gxTpr_Locationimage_gxi = A40000LocationImage_GXI;
          obj6.gxTpr_Locationcountry = A359LocationCountry;
          obj6.gxTpr_Locationcity = A338LocationCity;
-         obj6.gxTpr_Locationzipcode = A339LocationZipCode;
          obj6.gxTpr_Locationaddressline1 = A340LocationAddressLine1;
          obj6.gxTpr_Locationaddressline2 = A341LocationAddressLine2;
          obj6.gxTpr_Locationemail = A34LocationEmail;
@@ -956,12 +963,12 @@ namespace GeneXus.Programs {
       {
          Gx_mode = obj6.gxTpr_Mode;
          A35LocationPhone = obj6.gxTpr_Locationphone;
+         A339LocationZipCode = obj6.gxTpr_Locationzipcode;
          A31LocationName = obj6.gxTpr_Locationname;
          A506LocationImage = obj6.gxTpr_Locationimage;
          A40000LocationImage_GXI = obj6.gxTpr_Locationimage_gxi;
          A359LocationCountry = obj6.gxTpr_Locationcountry;
          A338LocationCity = obj6.gxTpr_Locationcity;
-         A339LocationZipCode = obj6.gxTpr_Locationzipcode;
          A340LocationAddressLine1 = obj6.gxTpr_Locationaddressline1;
          A341LocationAddressLine2 = obj6.gxTpr_Locationaddressline2;
          A34LocationEmail = obj6.gxTpr_Locationemail;
@@ -1019,7 +1026,7 @@ namespace GeneXus.Programs {
             Z29LocationId = A29LocationId;
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM046( -18) ;
+         ZM046( -20) ;
          OnLoadActions046( ) ;
          AddRow046( ) ;
          ScanKeyEnd046( ) ;
@@ -1057,7 +1064,7 @@ namespace GeneXus.Programs {
             Z29LocationId = A29LocationId;
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM046( -18) ;
+         ZM046( -20) ;
          OnLoadActions046( ) ;
          AddRow046( ) ;
          ScanKeyEnd046( ) ;
@@ -1455,14 +1462,14 @@ namespace GeneXus.Programs {
          AV24AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
          Z35LocationPhone = "";
          A35LocationPhone = "";
+         Z339LocationZipCode = "";
+         A339LocationZipCode = "";
          Z31LocationName = "";
          A31LocationName = "";
          Z359LocationCountry = "";
          A359LocationCountry = "";
          Z338LocationCity = "";
          A338LocationCity = "";
-         Z339LocationZipCode = "";
-         A339LocationZipCode = "";
          Z340LocationAddressLine1 = "";
          A340LocationAddressLine1 = "";
          Z341LocationAddressLine2 = "";
@@ -1483,11 +1490,11 @@ namespace GeneXus.Programs {
          A36LocationDescription = "";
          BC00046_A29LocationId = new Guid[] {Guid.Empty} ;
          BC00046_A35LocationPhone = new string[] {""} ;
+         BC00046_A339LocationZipCode = new string[] {""} ;
          BC00046_A31LocationName = new string[] {""} ;
          BC00046_A40000LocationImage_GXI = new string[] {""} ;
          BC00046_A359LocationCountry = new string[] {""} ;
          BC00046_A338LocationCity = new string[] {""} ;
-         BC00046_A339LocationZipCode = new string[] {""} ;
          BC00046_A340LocationAddressLine1 = new string[] {""} ;
          BC00046_A341LocationAddressLine2 = new string[] {""} ;
          BC00046_A34LocationEmail = new string[] {""} ;
@@ -1507,11 +1514,11 @@ namespace GeneXus.Programs {
          BC00047_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC00043_A29LocationId = new Guid[] {Guid.Empty} ;
          BC00043_A35LocationPhone = new string[] {""} ;
+         BC00043_A339LocationZipCode = new string[] {""} ;
          BC00043_A31LocationName = new string[] {""} ;
          BC00043_A40000LocationImage_GXI = new string[] {""} ;
          BC00043_A359LocationCountry = new string[] {""} ;
          BC00043_A338LocationCity = new string[] {""} ;
-         BC00043_A339LocationZipCode = new string[] {""} ;
          BC00043_A340LocationAddressLine1 = new string[] {""} ;
          BC00043_A341LocationAddressLine2 = new string[] {""} ;
          BC00043_A34LocationEmail = new string[] {""} ;
@@ -1525,11 +1532,11 @@ namespace GeneXus.Programs {
          sMode6 = "";
          BC00042_A29LocationId = new Guid[] {Guid.Empty} ;
          BC00042_A35LocationPhone = new string[] {""} ;
+         BC00042_A339LocationZipCode = new string[] {""} ;
          BC00042_A31LocationName = new string[] {""} ;
          BC00042_A40000LocationImage_GXI = new string[] {""} ;
          BC00042_A359LocationCountry = new string[] {""} ;
          BC00042_A338LocationCity = new string[] {""} ;
-         BC00042_A339LocationZipCode = new string[] {""} ;
          BC00042_A340LocationAddressLine1 = new string[] {""} ;
          BC00042_A341LocationAddressLine2 = new string[] {""} ;
          BC00042_A34LocationEmail = new string[] {""} ;
@@ -1555,11 +1562,11 @@ namespace GeneXus.Programs {
          BC000416_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC000417_A29LocationId = new Guid[] {Guid.Empty} ;
          BC000417_A35LocationPhone = new string[] {""} ;
+         BC000417_A339LocationZipCode = new string[] {""} ;
          BC000417_A31LocationName = new string[] {""} ;
          BC000417_A40000LocationImage_GXI = new string[] {""} ;
          BC000417_A359LocationCountry = new string[] {""} ;
          BC000417_A338LocationCity = new string[] {""} ;
-         BC000417_A339LocationZipCode = new string[] {""} ;
          BC000417_A340LocationAddressLine1 = new string[] {""} ;
          BC000417_A341LocationAddressLine2 = new string[] {""} ;
          BC000417_A34LocationEmail = new string[] {""} ;
@@ -1584,11 +1591,11 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_location_bc__default(),
             new Object[][] {
                 new Object[] {
-               BC00042_A29LocationId, BC00042_A35LocationPhone, BC00042_A31LocationName, BC00042_A40000LocationImage_GXI, BC00042_A359LocationCountry, BC00042_A338LocationCity, BC00042_A339LocationZipCode, BC00042_A340LocationAddressLine1, BC00042_A341LocationAddressLine2, BC00042_A34LocationEmail,
+               BC00042_A29LocationId, BC00042_A35LocationPhone, BC00042_A339LocationZipCode, BC00042_A31LocationName, BC00042_A40000LocationImage_GXI, BC00042_A359LocationCountry, BC00042_A338LocationCity, BC00042_A340LocationAddressLine1, BC00042_A341LocationAddressLine2, BC00042_A34LocationEmail,
                BC00042_A383LocationPhoneCode, BC00042_A384LocationPhoneNumber, BC00042_A36LocationDescription, BC00042_A11OrganisationId, BC00042_A247Trn_ThemeId, BC00042_n247Trn_ThemeId, BC00042_A506LocationImage
                }
                , new Object[] {
-               BC00043_A29LocationId, BC00043_A35LocationPhone, BC00043_A31LocationName, BC00043_A40000LocationImage_GXI, BC00043_A359LocationCountry, BC00043_A338LocationCity, BC00043_A339LocationZipCode, BC00043_A340LocationAddressLine1, BC00043_A341LocationAddressLine2, BC00043_A34LocationEmail,
+               BC00043_A29LocationId, BC00043_A35LocationPhone, BC00043_A339LocationZipCode, BC00043_A31LocationName, BC00043_A40000LocationImage_GXI, BC00043_A359LocationCountry, BC00043_A338LocationCity, BC00043_A340LocationAddressLine1, BC00043_A341LocationAddressLine2, BC00043_A34LocationEmail,
                BC00043_A383LocationPhoneCode, BC00043_A384LocationPhoneNumber, BC00043_A36LocationDescription, BC00043_A11OrganisationId, BC00043_A247Trn_ThemeId, BC00043_n247Trn_ThemeId, BC00043_A506LocationImage
                }
                , new Object[] {
@@ -1598,7 +1605,7 @@ namespace GeneXus.Programs {
                BC00045_A247Trn_ThemeId
                }
                , new Object[] {
-               BC00046_A29LocationId, BC00046_A35LocationPhone, BC00046_A31LocationName, BC00046_A40000LocationImage_GXI, BC00046_A359LocationCountry, BC00046_A338LocationCity, BC00046_A339LocationZipCode, BC00046_A340LocationAddressLine1, BC00046_A341LocationAddressLine2, BC00046_A34LocationEmail,
+               BC00046_A29LocationId, BC00046_A35LocationPhone, BC00046_A339LocationZipCode, BC00046_A31LocationName, BC00046_A40000LocationImage_GXI, BC00046_A359LocationCountry, BC00046_A338LocationCity, BC00046_A340LocationAddressLine1, BC00046_A341LocationAddressLine2, BC00046_A34LocationEmail,
                BC00046_A383LocationPhoneCode, BC00046_A384LocationPhoneNumber, BC00046_A36LocationDescription, BC00046_A11OrganisationId, BC00046_A247Trn_ThemeId, BC00046_n247Trn_ThemeId, BC00046_A506LocationImage
                }
                , new Object[] {
@@ -1628,7 +1635,7 @@ namespace GeneXus.Programs {
                BC000416_A62ResidentId, BC000416_A29LocationId, BC000416_A11OrganisationId
                }
                , new Object[] {
-               BC000417_A29LocationId, BC000417_A35LocationPhone, BC000417_A31LocationName, BC000417_A40000LocationImage_GXI, BC000417_A359LocationCountry, BC000417_A338LocationCity, BC000417_A339LocationZipCode, BC000417_A340LocationAddressLine1, BC000417_A341LocationAddressLine2, BC000417_A34LocationEmail,
+               BC000417_A29LocationId, BC000417_A35LocationPhone, BC000417_A339LocationZipCode, BC000417_A31LocationName, BC000417_A40000LocationImage_GXI, BC000417_A359LocationCountry, BC000417_A338LocationCity, BC000417_A340LocationAddressLine1, BC000417_A341LocationAddressLine2, BC000417_A34LocationEmail,
                BC000417_A383LocationPhoneCode, BC000417_A384LocationPhoneNumber, BC000417_A36LocationDescription, BC000417_A11OrganisationId, BC000417_A247Trn_ThemeId, BC000417_n247Trn_ThemeId, BC000417_A506LocationImage
                }
                , new Object[] {
@@ -1668,14 +1675,14 @@ namespace GeneXus.Programs {
       private bool Gx_longc ;
       private string Z36LocationDescription ;
       private string A36LocationDescription ;
+      private string Z339LocationZipCode ;
+      private string A339LocationZipCode ;
       private string Z31LocationName ;
       private string A31LocationName ;
       private string Z359LocationCountry ;
       private string A359LocationCountry ;
       private string Z338LocationCity ;
       private string A338LocationCity ;
-      private string Z339LocationZipCode ;
-      private string A339LocationZipCode ;
       private string Z340LocationAddressLine1 ;
       private string A340LocationAddressLine1 ;
       private string Z341LocationAddressLine2 ;
@@ -1709,11 +1716,11 @@ namespace GeneXus.Programs {
       private IDataStoreProvider pr_default ;
       private Guid[] BC00046_A29LocationId ;
       private string[] BC00046_A35LocationPhone ;
+      private string[] BC00046_A339LocationZipCode ;
       private string[] BC00046_A31LocationName ;
       private string[] BC00046_A40000LocationImage_GXI ;
       private string[] BC00046_A359LocationCountry ;
       private string[] BC00046_A338LocationCity ;
-      private string[] BC00046_A339LocationZipCode ;
       private string[] BC00046_A340LocationAddressLine1 ;
       private string[] BC00046_A341LocationAddressLine2 ;
       private string[] BC00046_A34LocationEmail ;
@@ -1731,11 +1738,11 @@ namespace GeneXus.Programs {
       private Guid[] BC00047_A11OrganisationId ;
       private Guid[] BC00043_A29LocationId ;
       private string[] BC00043_A35LocationPhone ;
+      private string[] BC00043_A339LocationZipCode ;
       private string[] BC00043_A31LocationName ;
       private string[] BC00043_A40000LocationImage_GXI ;
       private string[] BC00043_A359LocationCountry ;
       private string[] BC00043_A338LocationCity ;
-      private string[] BC00043_A339LocationZipCode ;
       private string[] BC00043_A340LocationAddressLine1 ;
       private string[] BC00043_A341LocationAddressLine2 ;
       private string[] BC00043_A34LocationEmail ;
@@ -1748,11 +1755,11 @@ namespace GeneXus.Programs {
       private string[] BC00043_A506LocationImage ;
       private Guid[] BC00042_A29LocationId ;
       private string[] BC00042_A35LocationPhone ;
+      private string[] BC00042_A339LocationZipCode ;
       private string[] BC00042_A31LocationName ;
       private string[] BC00042_A40000LocationImage_GXI ;
       private string[] BC00042_A359LocationCountry ;
       private string[] BC00042_A338LocationCity ;
-      private string[] BC00042_A339LocationZipCode ;
       private string[] BC00042_A340LocationAddressLine1 ;
       private string[] BC00042_A341LocationAddressLine2 ;
       private string[] BC00042_A34LocationEmail ;
@@ -1778,11 +1785,11 @@ namespace GeneXus.Programs {
       private Guid[] BC000416_A11OrganisationId ;
       private Guid[] BC000417_A29LocationId ;
       private string[] BC000417_A35LocationPhone ;
+      private string[] BC000417_A339LocationZipCode ;
       private string[] BC000417_A31LocationName ;
       private string[] BC000417_A40000LocationImage_GXI ;
       private string[] BC000417_A359LocationCountry ;
       private string[] BC000417_A338LocationCity ;
-      private string[] BC000417_A339LocationZipCode ;
       private string[] BC000417_A340LocationAddressLine1 ;
       private string[] BC000417_A341LocationAddressLine2 ;
       private string[] BC000417_A34LocationEmail ;
@@ -1928,12 +1935,12 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
        prmBC00048 = new Object[] {
        new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("LocationPhone",GXType.Char,20,0) ,
+       new ParDef("LocationZipCode",GXType.VarChar,100,0) ,
        new ParDef("LocationName",GXType.VarChar,100,0) ,
        new ParDef("LocationImage",GXType.Byte,1024,0){InDB=false} ,
-       new ParDef("LocationImage_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=3, Tbl="Trn_Location", Fld="LocationImage"} ,
+       new ParDef("LocationImage_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=4, Tbl="Trn_Location", Fld="LocationImage"} ,
        new ParDef("LocationCountry",GXType.VarChar,100,0) ,
        new ParDef("LocationCity",GXType.VarChar,100,0) ,
-       new ParDef("LocationZipCode",GXType.VarChar,100,0) ,
        new ParDef("LocationAddressLine1",GXType.VarChar,100,0) ,
        new ParDef("LocationAddressLine2",GXType.VarChar,100,0) ,
        new ParDef("LocationEmail",GXType.VarChar,100,0) ,
@@ -1946,10 +1953,10 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
        Object[] prmBC00049;
        prmBC00049 = new Object[] {
        new ParDef("LocationPhone",GXType.Char,20,0) ,
+       new ParDef("LocationZipCode",GXType.VarChar,100,0) ,
        new ParDef("LocationName",GXType.VarChar,100,0) ,
        new ParDef("LocationCountry",GXType.VarChar,100,0) ,
        new ParDef("LocationCity",GXType.VarChar,100,0) ,
-       new ParDef("LocationZipCode",GXType.VarChar,100,0) ,
        new ParDef("LocationAddressLine1",GXType.VarChar,100,0) ,
        new ParDef("LocationAddressLine2",GXType.VarChar,100,0) ,
        new ParDef("LocationEmail",GXType.VarChar,100,0) ,
@@ -2007,14 +2014,14 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
        };
        def= new CursorDef[] {
-           new CursorDef("BC00042", "SELECT LocationId, LocationPhone, LocationName, LocationImage_GXI, LocationCountry, LocationCity, LocationZipCode, LocationAddressLine1, LocationAddressLine2, LocationEmail, LocationPhoneCode, LocationPhoneNumber, LocationDescription, OrganisationId, Trn_ThemeId, LocationImage FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId  FOR UPDATE OF Trn_Location",true, GxErrorMask.GX_NOMASK, false, this,prmBC00042,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC00043", "SELECT LocationId, LocationPhone, LocationName, LocationImage_GXI, LocationCountry, LocationCity, LocationZipCode, LocationAddressLine1, LocationAddressLine2, LocationEmail, LocationPhoneCode, LocationPhoneNumber, LocationDescription, OrganisationId, Trn_ThemeId, LocationImage FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00043,1, GxCacheFrequency.OFF ,true,false )
+           new CursorDef("BC00042", "SELECT LocationId, LocationPhone, LocationZipCode, LocationName, LocationImage_GXI, LocationCountry, LocationCity, LocationAddressLine1, LocationAddressLine2, LocationEmail, LocationPhoneCode, LocationPhoneNumber, LocationDescription, OrganisationId, Trn_ThemeId, LocationImage FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId  FOR UPDATE OF Trn_Location",true, GxErrorMask.GX_NOMASK, false, this,prmBC00042,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00043", "SELECT LocationId, LocationPhone, LocationZipCode, LocationName, LocationImage_GXI, LocationCountry, LocationCity, LocationAddressLine1, LocationAddressLine2, LocationEmail, LocationPhoneCode, LocationPhoneNumber, LocationDescription, OrganisationId, Trn_ThemeId, LocationImage FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00043,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC00044", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00044,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC00045", "SELECT Trn_ThemeId FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00045,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC00046", "SELECT TM1.LocationId, TM1.LocationPhone, TM1.LocationName, TM1.LocationImage_GXI, TM1.LocationCountry, TM1.LocationCity, TM1.LocationZipCode, TM1.LocationAddressLine1, TM1.LocationAddressLine2, TM1.LocationEmail, TM1.LocationPhoneCode, TM1.LocationPhoneNumber, TM1.LocationDescription, TM1.OrganisationId, TM1.Trn_ThemeId, TM1.LocationImage FROM Trn_Location TM1 WHERE TM1.LocationId = :LocationId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.LocationId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00046,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC00046", "SELECT TM1.LocationId, TM1.LocationPhone, TM1.LocationZipCode, TM1.LocationName, TM1.LocationImage_GXI, TM1.LocationCountry, TM1.LocationCity, TM1.LocationAddressLine1, TM1.LocationAddressLine2, TM1.LocationEmail, TM1.LocationPhoneCode, TM1.LocationPhoneNumber, TM1.LocationDescription, TM1.OrganisationId, TM1.Trn_ThemeId, TM1.LocationImage FROM Trn_Location TM1 WHERE TM1.LocationId = :LocationId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.LocationId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00046,100, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC00047", "SELECT LocationId, OrganisationId FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00047,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC00048", "SAVEPOINT gxupdate;INSERT INTO Trn_Location(LocationId, LocationPhone, LocationName, LocationImage, LocationImage_GXI, LocationCountry, LocationCity, LocationZipCode, LocationAddressLine1, LocationAddressLine2, LocationEmail, LocationPhoneCode, LocationPhoneNumber, LocationDescription, OrganisationId, Trn_ThemeId) VALUES(:LocationId, :LocationPhone, :LocationName, :LocationImage, :LocationImage_GXI, :LocationCountry, :LocationCity, :LocationZipCode, :LocationAddressLine1, :LocationAddressLine2, :LocationEmail, :LocationPhoneCode, :LocationPhoneNumber, :LocationDescription, :OrganisationId, :Trn_ThemeId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00048)
-          ,new CursorDef("BC00049", "SAVEPOINT gxupdate;UPDATE Trn_Location SET LocationPhone=:LocationPhone, LocationName=:LocationName, LocationCountry=:LocationCountry, LocationCity=:LocationCity, LocationZipCode=:LocationZipCode, LocationAddressLine1=:LocationAddressLine1, LocationAddressLine2=:LocationAddressLine2, LocationEmail=:LocationEmail, LocationPhoneCode=:LocationPhoneCode, LocationPhoneNumber=:LocationPhoneNumber, LocationDescription=:LocationDescription, Trn_ThemeId=:Trn_ThemeId  WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00049)
+          ,new CursorDef("BC00048", "SAVEPOINT gxupdate;INSERT INTO Trn_Location(LocationId, LocationPhone, LocationZipCode, LocationName, LocationImage, LocationImage_GXI, LocationCountry, LocationCity, LocationAddressLine1, LocationAddressLine2, LocationEmail, LocationPhoneCode, LocationPhoneNumber, LocationDescription, OrganisationId, Trn_ThemeId) VALUES(:LocationId, :LocationPhone, :LocationZipCode, :LocationName, :LocationImage, :LocationImage_GXI, :LocationCountry, :LocationCity, :LocationAddressLine1, :LocationAddressLine2, :LocationEmail, :LocationPhoneCode, :LocationPhoneNumber, :LocationDescription, :OrganisationId, :Trn_ThemeId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00048)
+          ,new CursorDef("BC00049", "SAVEPOINT gxupdate;UPDATE Trn_Location SET LocationPhone=:LocationPhone, LocationZipCode=:LocationZipCode, LocationName=:LocationName, LocationCountry=:LocationCountry, LocationCity=:LocationCity, LocationAddressLine1=:LocationAddressLine1, LocationAddressLine2=:LocationAddressLine2, LocationEmail=:LocationEmail, LocationPhoneCode=:LocationPhoneCode, LocationPhoneNumber=:LocationPhoneNumber, LocationDescription=:LocationDescription, Trn_ThemeId=:Trn_ThemeId  WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC00049)
           ,new CursorDef("BC000410", "SAVEPOINT gxupdate;UPDATE Trn_Location SET LocationImage=:LocationImage, LocationImage_GXI=:LocationImage_GXI  WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000410)
           ,new CursorDef("BC000411", "SAVEPOINT gxupdate;DELETE FROM Trn_Location  WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000411)
           ,new CursorDef("BC000412", "SELECT AgendaCalendarId FROM Trn_AgendaCalendar WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000412,1, GxCacheFrequency.OFF ,true,true )
@@ -2022,7 +2029,7 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
           ,new CursorDef("BC000414", "SELECT ProductServiceId, LocationId, OrganisationId FROM Trn_ProductService WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000414,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("BC000415", "SELECT ReceptionistId, OrganisationId, LocationId FROM Trn_Receptionist WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000415,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("BC000416", "SELECT ResidentId, LocationId, OrganisationId FROM Trn_Resident WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000416,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC000417", "SELECT TM1.LocationId, TM1.LocationPhone, TM1.LocationName, TM1.LocationImage_GXI, TM1.LocationCountry, TM1.LocationCity, TM1.LocationZipCode, TM1.LocationAddressLine1, TM1.LocationAddressLine2, TM1.LocationEmail, TM1.LocationPhoneCode, TM1.LocationPhoneNumber, TM1.LocationDescription, TM1.OrganisationId, TM1.Trn_ThemeId, TM1.LocationImage FROM Trn_Location TM1 WHERE TM1.LocationId = :LocationId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.LocationId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000417,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000417", "SELECT TM1.LocationId, TM1.LocationPhone, TM1.LocationZipCode, TM1.LocationName, TM1.LocationImage_GXI, TM1.LocationCountry, TM1.LocationCity, TM1.LocationAddressLine1, TM1.LocationAddressLine2, TM1.LocationEmail, TM1.LocationPhoneCode, TM1.LocationPhoneNumber, TM1.LocationDescription, TM1.OrganisationId, TM1.Trn_ThemeId, TM1.LocationImage FROM Trn_Location TM1 WHERE TM1.LocationId = :LocationId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.LocationId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000417,100, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC000418", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000418,1, GxCacheFrequency.OFF ,true,false )
        };
     }
@@ -2038,8 +2045,8 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((string[]) buf[1])[0] = rslt.getString(2, 20);
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-             ((string[]) buf[3])[0] = rslt.getMultimediaUri(4);
-             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getMultimediaUri(5);
              ((string[]) buf[5])[0] = rslt.getVarchar(6);
              ((string[]) buf[6])[0] = rslt.getVarchar(7);
              ((string[]) buf[7])[0] = rslt.getVarchar(8);
@@ -2051,14 +2058,14 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((Guid[]) buf[13])[0] = rslt.getGuid(14);
              ((Guid[]) buf[14])[0] = rslt.getGuid(15);
              ((bool[]) buf[15])[0] = rslt.wasNull(15);
-             ((string[]) buf[16])[0] = rslt.getMultimediaFile(16, rslt.getVarchar(4));
+             ((string[]) buf[16])[0] = rslt.getMultimediaFile(16, rslt.getVarchar(5));
              return;
           case 1 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((string[]) buf[1])[0] = rslt.getString(2, 20);
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-             ((string[]) buf[3])[0] = rslt.getMultimediaUri(4);
-             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getMultimediaUri(5);
              ((string[]) buf[5])[0] = rslt.getVarchar(6);
              ((string[]) buf[6])[0] = rslt.getVarchar(7);
              ((string[]) buf[7])[0] = rslt.getVarchar(8);
@@ -2070,7 +2077,7 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((Guid[]) buf[13])[0] = rslt.getGuid(14);
              ((Guid[]) buf[14])[0] = rslt.getGuid(15);
              ((bool[]) buf[15])[0] = rslt.wasNull(15);
-             ((string[]) buf[16])[0] = rslt.getMultimediaFile(16, rslt.getVarchar(4));
+             ((string[]) buf[16])[0] = rslt.getMultimediaFile(16, rslt.getVarchar(5));
              return;
           case 2 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -2082,8 +2089,8 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((string[]) buf[1])[0] = rslt.getString(2, 20);
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-             ((string[]) buf[3])[0] = rslt.getMultimediaUri(4);
-             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getMultimediaUri(5);
              ((string[]) buf[5])[0] = rslt.getVarchar(6);
              ((string[]) buf[6])[0] = rslt.getVarchar(7);
              ((string[]) buf[7])[0] = rslt.getVarchar(8);
@@ -2095,7 +2102,7 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((Guid[]) buf[13])[0] = rslt.getGuid(14);
              ((Guid[]) buf[14])[0] = rslt.getGuid(15);
              ((bool[]) buf[15])[0] = rslt.wasNull(15);
-             ((string[]) buf[16])[0] = rslt.getMultimediaFile(16, rslt.getVarchar(4));
+             ((string[]) buf[16])[0] = rslt.getMultimediaFile(16, rslt.getVarchar(5));
              return;
           case 5 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -2128,8 +2135,8 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((string[]) buf[1])[0] = rslt.getString(2, 20);
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-             ((string[]) buf[3])[0] = rslt.getMultimediaUri(4);
-             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getMultimediaUri(5);
              ((string[]) buf[5])[0] = rslt.getVarchar(6);
              ((string[]) buf[6])[0] = rslt.getVarchar(7);
              ((string[]) buf[7])[0] = rslt.getVarchar(8);
@@ -2141,7 +2148,7 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((Guid[]) buf[13])[0] = rslt.getGuid(14);
              ((Guid[]) buf[14])[0] = rslt.getGuid(15);
              ((bool[]) buf[15])[0] = rslt.wasNull(15);
-             ((string[]) buf[16])[0] = rslt.getMultimediaFile(16, rslt.getVarchar(4));
+             ((string[]) buf[16])[0] = rslt.getMultimediaFile(16, rslt.getVarchar(5));
              return;
           case 16 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
