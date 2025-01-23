@@ -169,6 +169,8 @@ function mapContentToPageData(templateData, page) {
         }
       });
     }
+
+    console.log(output)
   });
   return output;
 }
