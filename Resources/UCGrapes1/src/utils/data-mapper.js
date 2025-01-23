@@ -41,7 +41,7 @@ function mapTemplateToPageData(templateData, page) {
       const templates =
           rowComponent.components?.filter(
               (comp) =>
-              comp.type === "template-wrapper" &&
+              (comp.type === "template-wrapper" || comp.type === "tile-wrapper") &&
               !comp.classes?.includes("container-row")
           ) || [];
       console.log(page.PageName, templates)
