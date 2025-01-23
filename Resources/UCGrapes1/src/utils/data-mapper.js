@@ -1,114 +1,98 @@
 function mapTemplateToPageData(templateData, page) {
-  // Helper function to generate UUID
-  function generateUUID() {
-    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
-      /[xy]/g,
-      function (c) {
-        const r = (Math.random() * 16) | 0;
-        const v = c === "x" ? r : (r & 0x3) | 0x8;
-        return v.toString(16);
-      }
-    );
-  }
-
   // Create the base page structure
   const pageData = {
-    PageId: page.PageId,
-    PageName: page.PageName,
-    Row: [],
+      PageId: page.PageId,
+      PageName: page.PageName,
+      Row: [],
   };
 
   // Find container-column in template data
   const containerColumn = (() => {
-    const pages = templateData.pages || [];
-    for (const page of pages) {
-      for (const frame of page.frames || []) {
-        const container = frame.component?.components?.[0]?.components?.[0];
-        if (container?.classes?.includes("container-column")) {
-          return container;
-        }
+      const pages = templateData.pages || [];
+      for (const page of pages) {
+          for (const frame of page.frames || []) {
+              const container =
+                  frame.component?.components?.[0]?.components?.[0];
+              if (container?.classes?.includes("container-column")) {
+                  return container;
+              }
+          }
       }
-    }
-    return null;
+      return null;
   })();
 
   if (!containerColumn) return pageData;
 
   // Find and map container rows
   const containerRows =
-    containerColumn.components?.filter((comp) =>
-      comp.classes?.includes("container-row")
-    ) || [];
+      containerColumn.components?.filter((comp) =>
+          comp.classes?.includes("container-row")
+      ) || [];
+
 
   // Map rows to final structure
   pageData.Row = containerRows.map((rowComponent) => {
-    const row = {
-      RowId: generateUUID(),
-      RowName: generateUUID(),
-      Col: [],
-    };
-
-    // Find and map templates to columns
-    const templates =
-      rowComponent.components?.filter(
-        (comp) =>
-          comp.type === "template-wrapper" &&
-          !comp.classes?.includes("container-row")
-      ) || [];
-
-    row.Col = templates.map((templateComponent) => {
-      // Map column
-      const col = {
-        ColId: generateUUID(),
-        ColName: generateUUID(),
-        Tile: null,
+      const row = {
+          Col: [],
       };
+      // Find and map templates to columns
+      const templates =
+          rowComponent.components?.filter(
+              (comp) =>
+              comp.type === "tile-wrapper" &&
+              !comp.classes?.includes("container-row")
+          ) || [];
 
-      // Map tile
-      let attributes = {};
-      if (templateComponent.components) {
-        attributes = templateComponent.components[0].attributes || {};
-      }
-      // Find tile title
-      const templateBlock = templateComponent.components?.find((comp) =>
-        comp.classes?.includes("template-block")
-      );
-      const titleSection = templateBlock?.components?.find((comp) =>
-        comp.classes?.includes("tile-title-section")
-      );
-      const titleSpan = titleSection?.components?.find((comp) =>
-        comp.classes?.includes("tile-title")
-      );
-      const titleText = titleSpan?.components?.[0]?.content || "";
+  
+      row.Col = templates.map((templateComponent) => {
+          // Map column
+          const col = {
+              Tile: null,
+          };
 
-      // Create tile object
+          // Map tile
+          let attributes = {};
+          if (templateComponent.components) {
+              attributes = templateComponent.components[0].attributes || {}
+          }
+          // Find tile title
+          const templateBlock = templateComponent.components?.find((comp) =>
+              comp.classes?.includes("template-block")
+          );
+          const titleSection = templateBlock?.components?.find((comp) =>
+              comp.classes?.includes("tile-title-section")
+          );
+          const titleSpan = titleSection?.components?.find((comp) =>
+              comp.classes?.includes("tile-title")
+          );
+          const titleText = titleSpan?.components?.[0]?.content || "";
 
-      let tileActionObjectId = attributes["tile-action-object-id"];
-      col.Tile = {
-        TileId: generateUUID(),
-        TileName: titleText,
-        TileText: titleText,
-        TileTextColor: attributes["tile-text-color"], // Not present in source data
-        TileTextAlignment: attributes["tile-text-align"] || "center",
+          // Create tile object
 
-        TileIcon: attributes["tile-icon"] || "",
-        TileIconColor: attributes["tile-icon-color"] || "",
-        TileIconAlignment: attributes["tile-icon-align"] || "center",
+          let tileActionObjectId = attributes["tile-action-object-id"]
+          col.Tile = {
+              TileName: titleText,
+              TileText: titleText,
+              TileTextColor: attributes["tile-text-color"], // Not present in source data
+              TileTextAlignment: attributes["tile-text-align"] || "center",
 
-        TileBGColor: attributes["tile-bgcolor"] || "",
-        TileBGImageUrl: attributes["tile-bg-image-url"] || "",
-        TileBGImageOpacity: attributes["tile-bg-image-opacity"] || "",
+              TileIcon: attributes["tile-icon"] || "",
+              TileIconColor: attributes["tile-icon-color"] || "",
+              TileIconAlignment: attributes["tile-icon-align"] || "center",
 
-        TileAction: {
-          ObjectType: attributes["tile-action-object"],
-          ObjectId: tileActionObjectId == "" ? null : tileActionObjectId,
-        },
-      };
+              TileBGColor: attributes["tile-bgcolor"] || "",
+              TileBGImageUrl: attributes["tile-bg-image-url"] || "",
+              TileBGImageOpacity: attributes["tile-bg-image-opacity"] || "",
 
-      return col;
-    });
+              TileAction: {
+                  ObjectType: attributes['tile-action-object'],
+                  ObjectId: (tileActionObjectId == "") ? null : tileActionObjectId
+              }
+          };
+          return col;
+      });
 
-    return row;
+      return row;
   });
   return pageData;
 }
