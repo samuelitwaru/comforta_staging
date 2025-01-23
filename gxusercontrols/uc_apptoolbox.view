@@ -250,9 +250,13 @@
               Add
             </button>
           </div>
-          <h5 id="current-page-title">
-            HOME
-          </h5>
+	    <div class="mapping-sub-title">
+		<h5 id="current-page-title">
+			HOME
+		</h5>
+		<span id="list-all-pages">Show all pages</span>
+		<span id="hide-pages">Hide pages</span>
+	    </div>
           <div id="tree-container" class="tb-list-container">
           </div>
         </div>
