@@ -168,7 +168,7 @@
                                     "components": [
                                       {
                                         "type": "textnode",
-                                        "content": "Location Description",
+                                        "content": "Welkom bij de receptie van onze app. Hier kunt u al uw vragen stellen en krijgt u direct hulp van ons team. Of het nu gaat om technische ondersteuning, informatie over diensten, of algemene vragen, wij zijn er om u te helpen.",
                                         "_undoexc": [
                                           "status",
                                           "open"
