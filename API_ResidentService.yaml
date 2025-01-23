@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250123083446"
+  version: "20250123084711"
 servers:
-  - url: https//:staging.comforta.yukon.software/api
+  - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/api
 paths:
   /auth/resident-login:
     post:
@@ -2097,6 +2097,10 @@ components:
 
     SDT_Tile:
       properties:
+        TileId:
+          description: "Tile Id"
+          type: "string"
+          format: "uuid"
         TileName:
           description: "Tile Name"
           type: "string"
