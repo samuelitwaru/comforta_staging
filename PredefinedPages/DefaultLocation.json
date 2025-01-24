@@ -116,6 +116,7 @@
                             "components": [
                               {
                                 "draggable": false,
+                                "droppable": "[data-gjs-type='product-service-description'], [data-gjs-type='product-service-image']",
                                 "highlightable": false,
                                 "selectable": false,
                                 "hoverable": false,
