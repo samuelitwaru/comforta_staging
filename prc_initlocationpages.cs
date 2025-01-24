@@ -87,6 +87,14 @@ namespace GeneXus.Programs {
             {
                AV20PageIsContentPage = true;
             }
+            if ( StringUtil.StrCmp(AV16Value, context.GetMessage( "Location", "")) == 0 )
+            {
+               new prc_logtofile(context ).execute(  context.GetMessage( "replacing...", "")) ;
+               AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{LocationImage}}", ""), AV14BC_Trn_Location.gxTpr_Locationimage_gxi);
+               AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{LocationDescription}}", ""), StringUtil.Trim( AV14BC_Trn_Location.gxTpr_Locationdescription));
+               AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{LocationTelephone}}", ""), AV14BC_Trn_Location.gxTpr_Locationphone);
+               AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{LocationEmail}}", ""), AV14BC_Trn_Location.gxTpr_Locationemail);
+            }
             AV18BC_Trn_Page = new SdtTrn_Page(context);
             AV18BC_Trn_Page.gxTpr_Trn_pageid = StringUtil.StrToGuid( AV11Key);
             AV18BC_Trn_Page.gxTpr_Trn_pagename = AV16Value;

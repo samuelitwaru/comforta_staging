@@ -1391,6 +1391,22 @@ namespace GeneXus.Programs {
          {
             new prc_initlocationpages(context ).execute(  A29LocationId,  A11OrganisationId) ;
          }
+         if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
+         {
+            AV13WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Location Updated successfully", ""));
+         }
+         if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
+         {
+            AV13WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Location Deleted successfully", ""));
+         }
+         if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
+         {
+            AV13WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Location Inserted successfully", ""));
+         }
+         if ( ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 ) || ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         {
+            new prc_initlocationpages(context ).execute(  A29LocationId,  A11OrganisationId) ;
+         }
          new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV24AuditingObject,  AV29Pgmname) ;
          if ( ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 ) && ! AV12TrnContext.gxTpr_Callerondelete )
          {
@@ -1403,6 +1419,7 @@ namespace GeneXus.Programs {
          context.nUserReturn = 1;
          returnInSub = true;
          if (true) return;
+         /*  Sending Event outputs  */
       }
 
       protected void S132( )
@@ -2938,7 +2955,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512220573656", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251241055443", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2954,7 +2971,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_location.js", "?202512220573659", false, true);
+         context.AddJavascriptSource("trn_location.js", "?20251241055446", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

@@ -1148,7 +1148,7 @@ namespace GeneXus.Programs {
                n40000ResidentImage_GXI = (String.IsNullOrEmpty(StringUtil.RTrim( A40000ResidentImage_GXI))&&String.IsNullOrEmpty(StringUtil.RTrim( A457ResidentImage)) ? true : false);
                A97ResidentTypeName = cgiGet( "RESIDENTTYPENAME");
                A99MedicalIndicationName = cgiGet( "MEDICALINDICATIONNAME");
-               AV45Pgmname = cgiGet( "vPGMNAME");
+               AV46Pgmname = cgiGet( "vPGMNAME");
                Combo_residentphonecode_Objectcall = cgiGet( "COMBO_RESIDENTPHONECODE_Objectcall");
                Combo_residentphonecode_Class = cgiGet( "COMBO_RESIDENTPHONECODE_Class");
                Combo_residentphonecode_Icontype = cgiGet( "COMBO_RESIDENTPHONECODE_Icontype");
@@ -1451,7 +1451,7 @@ namespace GeneXus.Programs {
                forbiddenHiddens = new GXProperties();
                forbiddenHiddens.Add("hshsalt", "hsh"+"Trn_Resident");
                forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
-               forbiddenHiddens.Add("Pgmname", StringUtil.RTrim( context.localUtil.Format( AV45Pgmname, "")));
+               forbiddenHiddens.Add("Pgmname", StringUtil.RTrim( context.localUtil.Format( AV46Pgmname, "")));
                hsh = cgiGet( "hsh");
                if ( ( ! ( ( A62ResidentId != Z62ResidentId ) || ( A29LocationId != Z29LocationId ) || ( A11OrganisationId != Z11OrganisationId ) ) || ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) ) && ! GXUtil.CheckEncryptedHash( forbiddenHiddens.ToString(), hsh, GXKey) )
                {
@@ -1770,13 +1770,13 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          AV13TrnContext.FromXml(AV14WebSession.Get("TrnContext"), null, "", "");
-         if ( ( StringUtil.StrCmp(AV13TrnContext.gxTpr_Transactionname, AV45Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         if ( ( StringUtil.StrCmp(AV13TrnContext.gxTpr_Transactionname, AV46Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
          {
-            AV46GXV1 = 1;
-            AssignAttri("", false, "AV46GXV1", StringUtil.LTrimStr( (decimal)(AV46GXV1), 8, 0));
-            while ( AV46GXV1 <= AV13TrnContext.gxTpr_Attributes.Count )
+            AV47GXV1 = 1;
+            AssignAttri("", false, "AV47GXV1", StringUtil.LTrimStr( (decimal)(AV47GXV1), 8, 0));
+            while ( AV47GXV1 <= AV13TrnContext.gxTpr_Attributes.Count )
             {
-               AV17TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV13TrnContext.gxTpr_Attributes.Item(AV46GXV1));
+               AV17TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV13TrnContext.gxTpr_Attributes.Item(AV47GXV1));
                if ( StringUtil.StrCmp(AV17TrnContextAtt.gxTpr_Attributename, "ResidentTypeId") == 0 )
                {
                   AV15Insert_ResidentTypeId = StringUtil.StrToGuid( AV17TrnContextAtt.gxTpr_Attributevalue);
@@ -1787,8 +1787,8 @@ namespace GeneXus.Programs {
                   AV16Insert_MedicalIndicationId = StringUtil.StrToGuid( AV17TrnContextAtt.gxTpr_Attributevalue);
                   AssignAttri("", false, "AV16Insert_MedicalIndicationId", AV16Insert_MedicalIndicationId.ToString());
                }
-               AV46GXV1 = (int)(AV46GXV1+1);
-               AssignAttri("", false, "AV46GXV1", StringUtil.LTrimStr( (decimal)(AV46GXV1), 8, 0));
+               AV47GXV1 = (int)(AV47GXV1+1);
+               AssignAttri("", false, "AV47GXV1", StringUtil.LTrimStr( (decimal)(AV47GXV1), 8, 0));
             }
          }
          edtResidentId_Visible = 0;
@@ -1809,24 +1809,41 @@ namespace GeneXus.Programs {
          AssignAttri("", false, "AV40defaultCountryPhoneCode", AV40defaultCountryPhoneCode);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A375ResidentPhoneCode)) )
          {
-            Combo_residentphonecode_Selectedtext_set = AV40defaultCountryPhoneCode;
-            ucCombo_residentphonecode.SendProperty(context, "", false, Combo_residentphonecode_Internalname, "SelectedText_set", Combo_residentphonecode_Selectedtext_set);
+            AV40defaultCountryPhoneCode = "+31";
+            AssignAttri("", false, "AV40defaultCountryPhoneCode", AV40defaultCountryPhoneCode);
             Combo_residentphonecode_Selectedvalue_set = AV40defaultCountryPhoneCode;
             ucCombo_residentphonecode.SendProperty(context, "", false, Combo_residentphonecode_Internalname, "SelectedValue_set", Combo_residentphonecode_Selectedvalue_set);
+            Combo_residentphonecode_Selectedtext_set = AV40defaultCountryPhoneCode;
+            ucCombo_residentphonecode.SendProperty(context, "", false, Combo_residentphonecode_Internalname, "SelectedText_set", Combo_residentphonecode_Selectedtext_set);
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A445ResidentHomePhoneCode)) )
          {
-            Combo_residenthomephonecode_Selectedtext_set = AV40defaultCountryPhoneCode;
-            ucCombo_residenthomephonecode.SendProperty(context, "", false, Combo_residenthomephonecode_Internalname, "SelectedText_set", Combo_residenthomephonecode_Selectedtext_set);
             Combo_residenthomephonecode_Selectedvalue_set = AV40defaultCountryPhoneCode;
             ucCombo_residenthomephonecode.SendProperty(context, "", false, Combo_residenthomephonecode_Internalname, "SelectedValue_set", Combo_residenthomephonecode_Selectedvalue_set);
+            Combo_residenthomephonecode_Selectedtext_set = AV40defaultCountryPhoneCode;
+            ucCombo_residenthomephonecode.SendProperty(context, "", false, Combo_residenthomephonecode_Internalname, "SelectedText_set", Combo_residenthomephonecode_Selectedtext_set);
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A354ResidentCountry)) )
          {
-            Combo_residentcountry_Selectedtext_set = "Netherlands";
-            ucCombo_residentcountry.SendProperty(context, "", false, Combo_residentcountry_Internalname, "SelectedText_set", Combo_residentcountry_Selectedtext_set);
             Combo_residentcountry_Selectedvalue_set = "Netherlands";
             ucCombo_residentcountry.SendProperty(context, "", false, Combo_residentcountry_Internalname, "SelectedValue_set", Combo_residentcountry_Selectedvalue_set);
+            Combo_residentcountry_Selectedtext_set = "Netherlands";
+            ucCombo_residentcountry.SendProperty(context, "", false, Combo_residentcountry_Internalname, "SelectedText_set", Combo_residentcountry_Selectedtext_set);
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV38ComboResidentCountry)) )
+         {
+            AV38ComboResidentCountry = "Netherlands";
+            AssignAttri("", false, "AV38ComboResidentCountry", AV38ComboResidentCountry);
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV39ComboResidentPhoneCode)) )
+         {
+            AV39ComboResidentPhoneCode = AV40defaultCountryPhoneCode;
+            AssignAttri("", false, "AV39ComboResidentPhoneCode", AV39ComboResidentPhoneCode);
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44ComboResidentHomePhoneCode)) )
+         {
+            AV44ComboResidentHomePhoneCode = AV40defaultCountryPhoneCode;
+            AssignAttri("", false, "AV44ComboResidentHomePhoneCode", AV44ComboResidentHomePhoneCode);
          }
       }
 
@@ -1834,9 +1851,21 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
+         if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
+         {
+            AV14WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Resident Updated successfully", ""));
+         }
+         if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
+         {
+            AV14WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Resident Deleted successfully", ""));
+         }
+         if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
+         {
+            AV14WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Resident Inserted successfully", ""));
+         }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( Gx_mode)) )
          {
-            new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV42AuditingObject,  AV45Pgmname) ;
+            new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV42AuditingObject,  AV46Pgmname) ;
             if ( ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 ) && ! AV13TrnContext.gxTpr_Callerondelete )
             {
                CallWebObject(formatLink("trn_residentww.aspx") );
@@ -1851,10 +1880,11 @@ namespace GeneXus.Programs {
          }
          else
          {
-            new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV42AuditingObject,  AV45Pgmname) ;
+            new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV42AuditingObject,  AV46Pgmname) ;
             CallWebObject(formatLink("wp_locationresidents.aspx") );
             context.wjLocDisableFrm = 1;
          }
+         /*  Sending Event outputs  */
       }
 
       protected void S142( )
@@ -2052,8 +2082,8 @@ namespace GeneXus.Programs {
          AssignProp("", false, divHomephonenumber_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divHomephonenumber_Visible), 5, 0), true);
          Gx_BScreen = 0;
          AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
-         AV45Pgmname = "Trn_Resident";
-         AssignAttri("", false, "AV45Pgmname", AV45Pgmname);
+         AV46Pgmname = "Trn_Resident";
+         AssignAttri("", false, "AV46Pgmname", AV46Pgmname);
          bttBtntrn_delete_Enabled = 0;
          AssignProp("", false, bttBtntrn_delete_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(bttBtntrn_delete_Enabled), 5, 0), true);
          if ( ! (Guid.Empty==AV7ResidentId) )
@@ -3487,7 +3517,7 @@ namespace GeneXus.Programs {
          forbiddenHiddens = new GXProperties();
          forbiddenHiddens.Add("hshsalt", "hsh"+"Trn_Resident");
          forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
-         forbiddenHiddens.Add("Pgmname", StringUtil.RTrim( context.localUtil.Format( AV45Pgmname, "")));
+         forbiddenHiddens.Add("Pgmname", StringUtil.RTrim( context.localUtil.Format( AV46Pgmname, "")));
          GxWebStd.gx_hidden_field( context, "hsh", GetEncryptedHash( forbiddenHiddens.ToString(), GXKey));
          GXUtil.WriteLogInfo("trn_resident:[ SendSecurityCheck value for]"+forbiddenHiddens.ToJSonString());
       }
@@ -3593,7 +3623,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "RESIDENTIMAGE_GXI", A40000ResidentImage_GXI);
          GxWebStd.gx_hidden_field( context, "RESIDENTTYPENAME", A97ResidentTypeName);
          GxWebStd.gx_hidden_field( context, "MEDICALINDICATIONNAME", A99MedicalIndicationName);
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV45Pgmname));
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV46Pgmname));
          GxWebStd.gx_hidden_field( context, "COMBO_RESIDENTPHONECODE_Objectcall", StringUtil.RTrim( Combo_residentphonecode_Objectcall));
          GxWebStd.gx_hidden_field( context, "COMBO_RESIDENTPHONECODE_Cls", StringUtil.RTrim( Combo_residentphonecode_Cls));
          GxWebStd.gx_hidden_field( context, "COMBO_RESIDENTPHONECODE_Selectedvalue_set", StringUtil.RTrim( Combo_residentphonecode_Selectedvalue_set));
@@ -3812,7 +3842,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512220593283", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512410553845", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3828,7 +3858,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_resident.js", "?202512220593286", false, true);
+         context.AddJavascriptSource("trn_resident.js", "?202512410553848", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -4391,8 +4421,8 @@ namespace GeneXus.Programs {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("ENTER","""{"handler":"UserMainFullajax","iparms":[{"postForm":true},{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV7ResidentId","fld":"vRESIDENTID","hsh":true},{"av":"AV8LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV9OrganisationId","fld":"vORGANISATIONID","hsh":true}]}""");
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV13TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"AV7ResidentId","fld":"vRESIDENTID","hsh":true},{"av":"AV8LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV9OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV45Pgmname","fld":"vPGMNAME"}]}""");
-         setEventMetadata("AFTER TRN","""{"handler":"E12092","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV42AuditingObject","fld":"vAUDITINGOBJECT"},{"av":"AV45Pgmname","fld":"vPGMNAME"},{"av":"AV13TrnContext","fld":"vTRNCONTEXT","hsh":true}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV13TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"AV7ResidentId","fld":"vRESIDENTID","hsh":true},{"av":"AV8LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV9OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV46Pgmname","fld":"vPGMNAME"}]}""");
+         setEventMetadata("AFTER TRN","""{"handler":"E12092","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV42AuditingObject","fld":"vAUDITINGOBJECT"},{"av":"AV46Pgmname","fld":"vPGMNAME"},{"av":"AV13TrnContext","fld":"vTRNCONTEXT","hsh":true}]}""");
          setEventMetadata("VALID_RESIDENTSALUTATION","""{"handler":"Valid_Residentsalutation","iparms":[]}""");
          setEventMetadata("VALID_RESIDENTGIVENNAME","""{"handler":"Valid_Residentgivenname","iparms":[]}""");
          setEventMetadata("VALID_RESIDENTLASTNAME","""{"handler":"Valid_Residentlastname","iparms":[{"av":"A65ResidentLastName","fld":"RESIDENTLASTNAME"},{"av":"A64ResidentGivenName","fld":"RESIDENTGIVENNAME"},{"av":"A66ResidentInitials","fld":"RESIDENTINITIALS"}]""");
@@ -4536,7 +4566,7 @@ namespace GeneXus.Programs {
          A40000ResidentImage_GXI = "";
          A97ResidentTypeName = "";
          A99MedicalIndicationName = "";
-         AV45Pgmname = "";
+         AV46Pgmname = "";
          Combo_residentphonecode_Objectcall = "";
          Combo_residentphonecode_Class = "";
          Combo_residentphonecode_Icontype = "";
@@ -4837,7 +4867,7 @@ namespace GeneXus.Programs {
          );
          Z62ResidentId = Guid.NewGuid( );
          A62ResidentId = Guid.NewGuid( );
-         AV45Pgmname = "Trn_Resident";
+         AV46Pgmname = "Trn_Resident";
       }
 
       private short GxWebError ;
@@ -4903,7 +4933,7 @@ namespace GeneXus.Programs {
       private int Combo_residenthomephonecode_Gxcontroltype ;
       private int Combo_residentcountry_Datalistupdateminimumcharacters ;
       private int Combo_residentcountry_Gxcontroltype ;
-      private int AV46GXV1 ;
+      private int AV47GXV1 ;
       private int idxLst ;
       private string sPrefix ;
       private string wcpOGx_mode ;
@@ -5033,7 +5063,7 @@ namespace GeneXus.Programs {
       private string edtResidentTypeId_Jsonclick ;
       private string edtMedicalIndicationId_Internalname ;
       private string edtMedicalIndicationId_Jsonclick ;
-      private string AV45Pgmname ;
+      private string AV46Pgmname ;
       private string Combo_residentphonecode_Objectcall ;
       private string Combo_residentphonecode_Class ;
       private string Combo_residentphonecode_Icontype ;

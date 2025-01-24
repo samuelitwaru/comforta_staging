@@ -153,6 +153,18 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
+         if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
+         {
+            AV12WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "AGB Supplier Updated successfully", ""));
+         }
+         if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
+         {
+            AV12WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "AGB Supplier Deleted successfully", ""));
+         }
+         if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
+         {
+            AV12WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "AGB Supplier Inserted successfully", ""));
+         }
       }
 
       protected void S112( )

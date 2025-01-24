@@ -475,7 +475,6 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Columnids", StringUtil.RTrim( Ddo_grid_Columnids));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Columnssortvalues", StringUtil.RTrim( Ddo_grid_Columnssortvalues));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Includesortasc", StringUtil.RTrim( Ddo_grid_Includesortasc));
-         GxWebStd.gx_hidden_field( context, "DDO_GRID_Fixable", StringUtil.RTrim( Ddo_grid_Fixable));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Sortedstatus", StringUtil.RTrim( Ddo_grid_Sortedstatus));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Includefilter", StringUtil.RTrim( Ddo_grid_Includefilter));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Filtertype", StringUtil.RTrim( Ddo_grid_Filtertype));
@@ -803,7 +802,6 @@ namespace GeneXus.Programs {
             ucDdo_grid.SetProperty("ColumnIds", Ddo_grid_Columnids);
             ucDdo_grid.SetProperty("ColumnsSortValues", Ddo_grid_Columnssortvalues);
             ucDdo_grid.SetProperty("IncludeSortASC", Ddo_grid_Includesortasc);
-            ucDdo_grid.SetProperty("Fixable", Ddo_grid_Fixable);
             ucDdo_grid.SetProperty("IncludeFilter", Ddo_grid_Includefilter);
             ucDdo_grid.SetProperty("FilterType", Ddo_grid_Filtertype);
             ucDdo_grid.SetProperty("IncludeDataList", Ddo_grid_Includedatalist);
@@ -1752,7 +1750,6 @@ namespace GeneXus.Programs {
             Ddo_grid_Columnids = cgiGet( "DDO_GRID_Columnids");
             Ddo_grid_Columnssortvalues = cgiGet( "DDO_GRID_Columnssortvalues");
             Ddo_grid_Includesortasc = cgiGet( "DDO_GRID_Includesortasc");
-            Ddo_grid_Fixable = cgiGet( "DDO_GRID_Fixable");
             Ddo_grid_Sortedstatus = cgiGet( "DDO_GRID_Sortedstatus");
             Ddo_grid_Includefilter = cgiGet( "DDO_GRID_Includefilter");
             Ddo_grid_Filtertype = cgiGet( "DDO_GRID_Filtertype");
@@ -2750,7 +2747,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251222152414", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512410575453", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2766,7 +2763,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_pageww.js", "?20251222152417", false, true);
+         context.AddJavascriptSource("trn_pageww.js", "?202512410575455", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3316,7 +3313,6 @@ namespace GeneXus.Programs {
          Ddo_grid_Includedatalist = "|T||T|T|T|T|T|T||";
          Ddo_grid_Filtertype = "|Character||Character|Character|Character|||Character||";
          Ddo_grid_Includefilter = "|T||T|T|T|||T||";
-         Ddo_grid_Fixable = "T";
          Ddo_grid_Includesortasc = "T";
          Ddo_grid_Columnssortvalues = "2|3|4|5|6|7|1|8|9|10|11";
          Ddo_grid_Columnids = "0:Trn_PageId|1:Trn_PageName|2:LocationId|3:PageJsonContent|4:PageGJSHtml|5:PageGJSJson|6:PageIsPublished|7:PageIsContentPage|8:PageChildren|9:ProductServiceId|10:OrganisationId";
@@ -3683,7 +3679,6 @@ namespace GeneXus.Programs {
       private string Ddo_grid_Columnids ;
       private string Ddo_grid_Columnssortvalues ;
       private string Ddo_grid_Includesortasc ;
-      private string Ddo_grid_Fixable ;
       private string Ddo_grid_Sortedstatus ;
       private string Ddo_grid_Includefilter ;
       private string Ddo_grid_Filtertype ;

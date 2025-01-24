@@ -1239,6 +1239,18 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
+         if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
+         {
+            AV13WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Manager Updated successfully", ""));
+         }
+         if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
+         {
+            AV13WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Manager Deleted successfully", ""));
+         }
+         if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
+         {
+            AV13WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Manager Inserted successfully", ""));
+         }
          new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV29AuditingObject,  AV34Pgmname) ;
          if ( ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 ) && ! AV12TrnContext.gxTpr_Callerondelete )
          {
@@ -1251,6 +1263,7 @@ namespace GeneXus.Programs {
          context.nUserReturn = 1;
          returnInSub = true;
          if (true) return;
+         /*  Sending Event outputs  */
       }
 
       protected void S122( )
@@ -2764,7 +2777,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251222057922", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512410552451", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2780,7 +2793,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_manager.js", "?20251222057926", false, true);
+         context.AddJavascriptSource("trn_manager.js", "?202512410552454", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3254,7 +3267,7 @@ namespace GeneXus.Programs {
          setEventMetadata("ENTER",""","oparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV12TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"AV7ManagerId","fld":"vMANAGERID","hsh":true},{"av":"AV8OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV34Pgmname","fld":"vPGMNAME"},{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
          setEventMetadata("REFRESH",""","oparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
-         setEventMetadata("AFTER TRN","""{"handler":"E12032","iparms":[{"av":"AV29AuditingObject","fld":"vAUDITINGOBJECT"},{"av":"AV34Pgmname","fld":"vPGMNAME"},{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV12TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
+         setEventMetadata("AFTER TRN","""{"handler":"E12032","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV29AuditingObject","fld":"vAUDITINGOBJECT"},{"av":"AV34Pgmname","fld":"vPGMNAME"},{"av":"AV12TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
          setEventMetadata("AFTER TRN",""","oparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
          setEventMetadata("VALID_MANAGERGIVENNAME","""{"handler":"Valid_Managergivenname","iparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
          setEventMetadata("VALID_MANAGERGIVENNAME",""","oparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");

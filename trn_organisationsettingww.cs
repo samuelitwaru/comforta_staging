@@ -487,7 +487,6 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Columnids", StringUtil.RTrim( Ddo_grid_Columnids));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Columnssortvalues", StringUtil.RTrim( Ddo_grid_Columnssortvalues));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Includesortasc", StringUtil.RTrim( Ddo_grid_Includesortasc));
-         GxWebStd.gx_hidden_field( context, "DDO_GRID_Fixable", StringUtil.RTrim( Ddo_grid_Fixable));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Sortedstatus", StringUtil.RTrim( Ddo_grid_Sortedstatus));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Includefilter", StringUtil.RTrim( Ddo_grid_Includefilter));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Filtertype", StringUtil.RTrim( Ddo_grid_Filtertype));
@@ -827,7 +826,6 @@ namespace GeneXus.Programs {
             ucDdo_grid.SetProperty("ColumnIds", Ddo_grid_Columnids);
             ucDdo_grid.SetProperty("ColumnsSortValues", Ddo_grid_Columnssortvalues);
             ucDdo_grid.SetProperty("IncludeSortASC", Ddo_grid_Includesortasc);
-            ucDdo_grid.SetProperty("Fixable", Ddo_grid_Fixable);
             ucDdo_grid.SetProperty("IncludeFilter", Ddo_grid_Includefilter);
             ucDdo_grid.SetProperty("FilterType", Ddo_grid_Filtertype);
             ucDdo_grid.SetProperty("IncludeDataList", Ddo_grid_Includedatalist);
@@ -1680,7 +1678,6 @@ namespace GeneXus.Programs {
             Ddo_grid_Columnids = cgiGet( "DDO_GRID_Columnids");
             Ddo_grid_Columnssortvalues = cgiGet( "DDO_GRID_Columnssortvalues");
             Ddo_grid_Includesortasc = cgiGet( "DDO_GRID_Includesortasc");
-            Ddo_grid_Fixable = cgiGet( "DDO_GRID_Fixable");
             Ddo_grid_Sortedstatus = cgiGet( "DDO_GRID_Sortedstatus");
             Ddo_grid_Includefilter = cgiGet( "DDO_GRID_Includefilter");
             Ddo_grid_Filtertype = cgiGet( "DDO_GRID_Filtertype");
@@ -2499,7 +2496,7 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV23TFOrganisationSettingFontSize_Sel)),  AV23TFOrganisationSettingFontSize_Sel, out  GXt_char5) ;
          GXt_char6 = "";
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV25TFOrganisationSettingLanguage_Sel)),  AV25TFOrganisationSettingLanguage_Sel, out  GXt_char6) ;
-         Ddo_grid_Selectedvalue_set = "||||"+GXt_char3+"|"+GXt_char5+"|"+GXt_char6;
+         Ddo_grid_Selectedvalue_set = "||"+GXt_char3+"|"+GXt_char5+"|"+GXt_char6;
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "SelectedValue_set", Ddo_grid_Selectedvalue_set);
          GXt_char6 = "";
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV20TFOrganisationSettingBaseColor)),  AV20TFOrganisationSettingBaseColor, out  GXt_char6) ;
@@ -2507,7 +2504,7 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV22TFOrganisationSettingFontSize)),  AV22TFOrganisationSettingFontSize, out  GXt_char5) ;
          GXt_char3 = "";
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV24TFOrganisationSettingLanguage)),  AV24TFOrganisationSettingLanguage, out  GXt_char3) ;
-         Ddo_grid_Filteredtext_set = "||||"+GXt_char6+"|"+GXt_char5+"|"+GXt_char3;
+         Ddo_grid_Filteredtext_set = "||"+GXt_char6+"|"+GXt_char5+"|"+GXt_char3;
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "FilteredText_set", Ddo_grid_Filteredtext_set);
       }
 
@@ -2593,7 +2590,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251222142262", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251241056492", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2609,7 +2606,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_organisationsettingww.js", "?20251222142266", false, true);
+         context.AddJavascriptSource("trn_organisationsettingww.js", "?20251241056496", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3040,14 +3037,13 @@ namespace GeneXus.Programs {
          Ddo_gridcolumnsselector_Icon = "fas fa-cog";
          Ddo_gridcolumnsselector_Icontype = "FontIcon";
          Ddo_grid_Datalistproc = "Trn_OrganisationSettingWWGetFilterData";
-         Ddo_grid_Datalisttype = "||||Dynamic|Dynamic|Dynamic";
-         Ddo_grid_Includedatalist = "||||T|T|T";
-         Ddo_grid_Filtertype = "||||Character|Character|Character";
-         Ddo_grid_Includefilter = "||||T|T|T";
-         Ddo_grid_Fixable = "T";
-         Ddo_grid_Includesortasc = "T|T|||T|T|T";
-         Ddo_grid_Columnssortvalues = "2|3|||1|4|5";
-         Ddo_grid_Columnids = "0:OrganisationSettingid|1:OrganisationId|2:OrganisationSettingLogo|3:OrganisationSettingFavicon|4:OrganisationSettingBaseColor|5:OrganisationSettingFontSize|6:OrganisationSettingLanguage";
+         Ddo_grid_Datalisttype = "||Dynamic|Dynamic|Dynamic";
+         Ddo_grid_Includedatalist = "||T|T|T";
+         Ddo_grid_Filtertype = "||Character|Character|Character";
+         Ddo_grid_Includefilter = "||T|T|T";
+         Ddo_grid_Includesortasc = "T";
+         Ddo_grid_Columnssortvalues = "2|3|1|4|5";
+         Ddo_grid_Columnids = "0:OrganisationSettingid|1:OrganisationId|4:OrganisationSettingBaseColor|5:OrganisationSettingFontSize|6:OrganisationSettingLanguage";
          Ddo_grid_Gridinternalname = "";
          Combo_organisationsettinglanguage_Emptyitemtext = "Select Languages";
          Combo_organisationsettinglanguage_Multiplevaluestype = "Tags";
@@ -3377,7 +3373,6 @@ namespace GeneXus.Programs {
       private string Ddo_grid_Columnids ;
       private string Ddo_grid_Columnssortvalues ;
       private string Ddo_grid_Includesortasc ;
-      private string Ddo_grid_Fixable ;
       private string Ddo_grid_Sortedstatus ;
       private string Ddo_grid_Includefilter ;
       private string Ddo_grid_Filtertype ;

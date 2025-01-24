@@ -1,1 +1,35 @@
-{"PageId":"784c2d18-622f-43f3-bde1-7b00035d6a07","PageName":"Location","Content":[{"ContentType":"Image","ContentValue":"http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+"},{"ContentType":"Description","ContentValue":"Nestled amidst lush greenery and tranquil surroundings, our care home offers a peaceful and welcoming environment for residents. Our location provides a serene escape from the hustle and bustle of city life, while still being conveniently accessible to essential amenities."}],"Cta":[]}
+{
+  "PageId": "784c2d18-622f-43f3-bde1-7b00035d6a07",
+  "PageName": "Location",
+  "Content": [
+    {
+      "ContentType": "Image",
+      "ContentValue": "{{LocationImage}}"
+    },
+    {
+      "ContentType": "Description",
+      "ContentValue": "{{LocationDescription}}"
+    }
+  ],
+  "Cta": [
+    {
+        "CtaId": "9a8c1583-b2cf-4bd4-a075-8551a1b68610",
+        "CtaType": "Phone",
+        "CtaLabel": "Call Us",
+        "CtaAction": "{{LocationTelephone}}",
+        "CtaBGColor": "#5068a8",
+        "IsFullWidth": false,
+        "IsImageButton": false
+      },
+      {
+        "CtaId": "4af89c2a-073a-40d2-8cf3-2ff381e266cc",
+        "CtaType": "Email",
+        "CtaLabel": "Emal Us",
+        "CtaAction": "{{LocationEmail}}",
+        "CtaBGColor": "#5068a8",
+        "IsFullWidth": false,
+        "IsImageButton": false
+      }
+  ]
+}
+

@@ -1485,6 +1485,18 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
+         if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
+         {
+            AV12WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "General Supplier Updated successfully", ""));
+         }
+         if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
+         {
+            AV12WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "General Supplier Deleted successfully", ""));
+         }
+         if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
+         {
+            AV12WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "General Supplier Inserted successfully", ""));
+         }
          if ( ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 ) && ! AV11TrnContext.gxTpr_Callerondelete )
          {
             CallWebObject(formatLink("trn_suppliergenww.aspx") );
@@ -1496,6 +1508,7 @@ namespace GeneXus.Programs {
          context.nUserReturn = 1;
          returnInSub = true;
          if (true) return;
+         /*  Sending Event outputs  */
       }
 
       protected void S142( )
@@ -3112,7 +3125,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251222057301", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512410553210", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3128,7 +3141,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_suppliergen.js", "?20251222057305", false, true);
+         context.AddJavascriptSource("trn_suppliergen.js", "?202512410553212", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

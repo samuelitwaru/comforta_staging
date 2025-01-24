@@ -353,6 +353,7 @@ aprc_contentpageapi
 aprc_productserviceapi
 aprc_contentpagesapi
 aprc_createcontentpage
+aprc_getpages
 aprc_addpagechildren
 aprc_listpages
 trn_themewwgetfilterdata

@@ -139,6 +139,18 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
+         if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
+         {
+            AV13WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Manager Updated successfully", ""));
+         }
+         if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
+         {
+            AV13WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Manager Deleted successfully", ""));
+         }
+         if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
+         {
+            AV13WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Manager Inserted successfully", ""));
+         }
          new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV29AuditingObject,  AV34Pgmname) ;
       }
 

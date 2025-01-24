@@ -160,7 +160,7 @@ namespace GeneXus.Programs {
          AV22FilterFullText = GetPar( "FilterFullText");
          AV28ManageFiltersExecutionStep = (short)(Math.Round(NumberUtil.Val( GetPar( "ManageFiltersExecutionStep"), "."), 18, MidpointRounding.ToEven));
          ajax_req_read_hidden_sdt(GetNextPar( ), AV70ColumnsSelector);
-         AV72Pgmname = GetPar( "Pgmname");
+         AV74Pgmname = GetPar( "Pgmname");
          A430PreferredAgbOrganisationId = StringUtil.StrToGuid( GetPar( "PreferredAgbOrganisationId"));
          AV64OrganisationId = StringUtil.StrToGuid( GetPar( "OrganisationId"));
          A425PreferredSupplierAgbId = StringUtil.StrToGuid( GetPar( "PreferredSupplierAgbId"));
@@ -184,7 +184,7 @@ namespace GeneXus.Programs {
             GxWebError = 1;
             return  ;
          }
-         gxgrGrid_refresh( subGrid_Rows, AV20OrderedBy, AV21OrderedDsc, AV22FilterFullText, AV28ManageFiltersExecutionStep, AV70ColumnsSelector, AV72Pgmname, A430PreferredAgbOrganisationId, AV64OrganisationId, A425PreferredSupplierAgbId, AV29TFSupplierAgbName, AV62TFSupplierAgbNameOperator, AV30TFSupplierAgbName_Sel, AV31TFSupplierAgbTypeName, AV32TFSupplierAgbTypeName_Sel, AV33TFSupplierAgbContactName, AV34TFSupplierAgbContactName_Sel, AV35TFSupplierAgbPhone, AV36TFSupplierAgbPhone_Sel, AV37TFSupplierAgbEmail, AV38TFSupplierAgbEmail_Sel, AV57PreferredSuppliers, AV49IsAuthorized_Display, AV46IsAuthorized_SupplierAgbName) ;
+         gxgrGrid_refresh( subGrid_Rows, AV20OrderedBy, AV21OrderedDsc, AV22FilterFullText, AV28ManageFiltersExecutionStep, AV70ColumnsSelector, AV74Pgmname, A430PreferredAgbOrganisationId, AV64OrganisationId, A425PreferredSupplierAgbId, AV29TFSupplierAgbName, AV62TFSupplierAgbNameOperator, AV30TFSupplierAgbName_Sel, AV31TFSupplierAgbTypeName, AV32TFSupplierAgbTypeName_Sel, AV33TFSupplierAgbContactName, AV34TFSupplierAgbContactName_Sel, AV35TFSupplierAgbPhone, AV36TFSupplierAgbPhone_Sel, AV37TFSupplierAgbEmail, AV38TFSupplierAgbEmail_Sel, AV57PreferredSuppliers, AV49IsAuthorized_Display, AV46IsAuthorized_SupplierAgbName) ;
          AddString( context.getJSONResponse( )) ;
          /* End function gxgrGrid_refresh_invoke */
       }
@@ -356,8 +356,8 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV72Pgmname));
-         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV72Pgmname, "")), context));
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV74Pgmname));
+         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV74Pgmname, "")), context));
          GxWebStd.gx_hidden_field( context, "vORGANISATIONID", AV64OrganisationId.ToString());
          GxWebStd.gx_hidden_field( context, "gxhash_vORGANISATIONID", GetSecureSignedToken( "", AV64OrganisationId, context));
          if ( context.isAjaxRequest( ) )
@@ -413,8 +413,8 @@ namespace GeneXus.Programs {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vCOLUMNSSELECTOR", AV70ColumnsSelector);
          }
          GxWebStd.gx_hidden_field( context, "vMANAGEFILTERSEXECUTIONSTEP", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV28ManageFiltersExecutionStep), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV72Pgmname));
-         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV72Pgmname, "")), context));
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV74Pgmname));
+         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV74Pgmname, "")), context));
          GxWebStd.gx_hidden_field( context, "PREFERREDAGBORGANISATIONID", A430PreferredAgbOrganisationId.ToString());
          GxWebStd.gx_hidden_field( context, "vORGANISATIONID", AV64OrganisationId.ToString());
          GxWebStd.gx_hidden_field( context, "gxhash_vORGANISATIONID", GetSecureSignedToken( "", AV64OrganisationId, context));
@@ -500,7 +500,6 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Columnids", StringUtil.RTrim( Ddo_grid_Columnids));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Columnssortvalues", StringUtil.RTrim( Ddo_grid_Columnssortvalues));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Includesortasc", StringUtil.RTrim( Ddo_grid_Includesortasc));
-         GxWebStd.gx_hidden_field( context, "DDO_GRID_Fixable", StringUtil.RTrim( Ddo_grid_Fixable));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Sortedstatus", StringUtil.RTrim( Ddo_grid_Sortedstatus));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Includefilter", StringUtil.RTrim( Ddo_grid_Includefilter));
          GxWebStd.gx_hidden_field( context, "DDO_GRID_Filtertype", StringUtil.RTrim( Ddo_grid_Filtertype));
@@ -824,7 +823,6 @@ namespace GeneXus.Programs {
             ucDdo_grid.SetProperty("ColumnIds", Ddo_grid_Columnids);
             ucDdo_grid.SetProperty("ColumnsSortValues", Ddo_grid_Columnssortvalues);
             ucDdo_grid.SetProperty("IncludeSortASC", Ddo_grid_Includesortasc);
-            ucDdo_grid.SetProperty("Fixable", Ddo_grid_Fixable);
             ucDdo_grid.SetProperty("IncludeFilter", Ddo_grid_Includefilter);
             ucDdo_grid.SetProperty("FilterType", Ddo_grid_Filtertype);
             ucDdo_grid.SetProperty("IncludeDataList", Ddo_grid_Includedatalist);
@@ -1231,7 +1229,7 @@ namespace GeneXus.Programs {
                                        string AV22FilterFullText ,
                                        short AV28ManageFiltersExecutionStep ,
                                        GeneXus.Programs.wwpbaseobjects.SdtWWPColumnsSelector AV70ColumnsSelector ,
-                                       string AV72Pgmname ,
+                                       string AV74Pgmname ,
                                        Guid A430PreferredAgbOrganisationId ,
                                        Guid AV64OrganisationId ,
                                        Guid A425PreferredSupplierAgbId ,
@@ -1292,7 +1290,7 @@ namespace GeneXus.Programs {
       protected void initialize_formulas( )
       {
          /* GeneXus formulas. */
-         AV72Pgmname = "WP_OrganisationAGBSuppliers";
+         AV74Pgmname = "WP_OrganisationAGBSuppliers";
          edtavSupplieragbnamewithtags_Enabled = 0;
          edtavSupplierstatus_Enabled = 0;
          edtavSupplieraddress_Enabled = 0;
@@ -1341,18 +1339,18 @@ namespace GeneXus.Programs {
             GXPagingFrom2 = (int)(((subGrid_Rows==0) ? 0 : GRID_nFirstRecordOnPage));
             GXPagingTo2 = ((subGrid_Rows==0) ? 10000 : subGrid_fnc_Recordsperpage( )+1);
             pr_default.dynParam(0, new Object[]{ new Object[]{
-                                                 AV74Wp_organisationagbsuppliersds_1_filterfulltext ,
-                                                 AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel ,
-                                                 AV75Wp_organisationagbsuppliersds_2_tfsupplieragbname ,
-                                                 AV76Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator ,
-                                                 AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel ,
-                                                 AV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename ,
-                                                 AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel ,
-                                                 AV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname ,
-                                                 AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel ,
-                                                 AV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone ,
-                                                 AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel ,
-                                                 AV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail ,
+                                                 AV76Wp_organisationagbsuppliersds_1_filterfulltext ,
+                                                 AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel ,
+                                                 AV77Wp_organisationagbsuppliersds_2_tfsupplieragbname ,
+                                                 AV78Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator ,
+                                                 AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel ,
+                                                 AV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename ,
+                                                 AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel ,
+                                                 AV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname ,
+                                                 AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel ,
+                                                 AV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone ,
+                                                 AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel ,
+                                                 AV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail ,
                                                  A51SupplierAgbName ,
                                                  A291SupplierAgbTypeName ,
                                                  A55SupplierAgbContactName ,
@@ -1365,18 +1363,18 @@ namespace GeneXus.Programs {
                                                  TypeConstants.SHORT, TypeConstants.BOOLEAN, TypeConstants.SHORT, TypeConstants.BOOLEAN
                                                  }
             });
-            lV74Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV74Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
-            lV74Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV74Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
-            lV74Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV74Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
-            lV74Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV74Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
-            lV74Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV74Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
-            lV75Wp_organisationagbsuppliersds_2_tfsupplieragbname = StringUtil.Concat( StringUtil.RTrim( AV75Wp_organisationagbsuppliersds_2_tfsupplieragbname), "%", "");
-            lV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = StringUtil.Concat( StringUtil.RTrim( AV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename), "%", "");
-            lV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = StringUtil.Concat( StringUtil.RTrim( AV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname), "%", "");
-            lV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone = StringUtil.PadR( StringUtil.RTrim( AV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone), 20, "%");
-            lV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail = StringUtil.Concat( StringUtil.RTrim( AV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail), "%", "");
+            lV76Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV76Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
+            lV76Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV76Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
+            lV76Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV76Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
+            lV76Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV76Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
+            lV76Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV76Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
+            lV77Wp_organisationagbsuppliersds_2_tfsupplieragbname = StringUtil.Concat( StringUtil.RTrim( AV77Wp_organisationagbsuppliersds_2_tfsupplieragbname), "%", "");
+            lV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = StringUtil.Concat( StringUtil.RTrim( AV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename), "%", "");
+            lV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = StringUtil.Concat( StringUtil.RTrim( AV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname), "%", "");
+            lV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone = StringUtil.PadR( StringUtil.RTrim( AV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone), 20, "%");
+            lV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail = StringUtil.Concat( StringUtil.RTrim( AV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail), "%", "");
             /* Using cursor H00782 */
-            pr_default.execute(0, new Object[] {lV74Wp_organisationagbsuppliersds_1_filterfulltext, lV74Wp_organisationagbsuppliersds_1_filterfulltext, lV74Wp_organisationagbsuppliersds_1_filterfulltext, lV74Wp_organisationagbsuppliersds_1_filterfulltext, lV74Wp_organisationagbsuppliersds_1_filterfulltext, lV75Wp_organisationagbsuppliersds_2_tfsupplieragbname, AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, AV23isSelected, lV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename, AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, lV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname, AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, lV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone, AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, lV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail, AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, GXPagingFrom2, GXPagingTo2, GXPagingTo2});
+            pr_default.execute(0, new Object[] {lV76Wp_organisationagbsuppliersds_1_filterfulltext, lV76Wp_organisationagbsuppliersds_1_filterfulltext, lV76Wp_organisationagbsuppliersds_1_filterfulltext, lV76Wp_organisationagbsuppliersds_1_filterfulltext, lV76Wp_organisationagbsuppliersds_1_filterfulltext, lV77Wp_organisationagbsuppliersds_2_tfsupplieragbname, AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, AV23isSelected, lV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename, AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, lV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname, AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, lV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone, AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, lV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail, AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, GXPagingFrom2, GXPagingTo2, GXPagingTo2});
             nGXsfl_37_idx = 1;
             sGXsfl_37_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_37_idx), 4, 0), 4, "0");
             SubsflControlProps_372( ) ;
@@ -1414,8 +1412,8 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_lvl_hashes782( )
       {
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV72Pgmname));
-         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV72Pgmname, "")), context));
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV74Pgmname));
+         GxWebStd.gx_hidden_field( context, "gxhash_vPGMNAME", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV74Pgmname, "")), context));
          GxWebStd.gx_hidden_field( context, "vORGANISATIONID", AV64OrganisationId.ToString());
          GxWebStd.gx_hidden_field( context, "gxhash_vORGANISATIONID", GetSecureSignedToken( "", AV64OrganisationId, context));
          if ( context.isAjaxRequest( ) )
@@ -1446,31 +1444,31 @@ namespace GeneXus.Programs {
 
       protected int subGrid_fnc_Recordcount( )
       {
-         AV74Wp_organisationagbsuppliersds_1_filterfulltext = AV22FilterFullText;
-         AV75Wp_organisationagbsuppliersds_2_tfsupplieragbname = AV29TFSupplierAgbName;
-         AV76Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator = AV62TFSupplierAgbNameOperator;
-         AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel = AV30TFSupplierAgbName_Sel;
-         AV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = AV31TFSupplierAgbTypeName;
-         AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel = AV32TFSupplierAgbTypeName_Sel;
-         AV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = AV33TFSupplierAgbContactName;
-         AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel = AV34TFSupplierAgbContactName_Sel;
-         AV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone = AV35TFSupplierAgbPhone;
-         AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel = AV36TFSupplierAgbPhone_Sel;
-         AV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail = AV37TFSupplierAgbEmail;
-         AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel = AV38TFSupplierAgbEmail_Sel;
+         AV76Wp_organisationagbsuppliersds_1_filterfulltext = AV22FilterFullText;
+         AV77Wp_organisationagbsuppliersds_2_tfsupplieragbname = AV29TFSupplierAgbName;
+         AV78Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator = AV62TFSupplierAgbNameOperator;
+         AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel = AV30TFSupplierAgbName_Sel;
+         AV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = AV31TFSupplierAgbTypeName;
+         AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel = AV32TFSupplierAgbTypeName_Sel;
+         AV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = AV33TFSupplierAgbContactName;
+         AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel = AV34TFSupplierAgbContactName_Sel;
+         AV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone = AV35TFSupplierAgbPhone;
+         AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel = AV36TFSupplierAgbPhone_Sel;
+         AV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail = AV37TFSupplierAgbEmail;
+         AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel = AV38TFSupplierAgbEmail_Sel;
          pr_default.dynParam(1, new Object[]{ new Object[]{
-                                              AV74Wp_organisationagbsuppliersds_1_filterfulltext ,
-                                              AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel ,
-                                              AV75Wp_organisationagbsuppliersds_2_tfsupplieragbname ,
-                                              AV76Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator ,
-                                              AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel ,
-                                              AV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename ,
-                                              AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel ,
-                                              AV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname ,
-                                              AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel ,
-                                              AV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone ,
-                                              AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel ,
-                                              AV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail ,
+                                              AV76Wp_organisationagbsuppliersds_1_filterfulltext ,
+                                              AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel ,
+                                              AV77Wp_organisationagbsuppliersds_2_tfsupplieragbname ,
+                                              AV78Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator ,
+                                              AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel ,
+                                              AV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename ,
+                                              AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel ,
+                                              AV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname ,
+                                              AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel ,
+                                              AV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone ,
+                                              AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel ,
+                                              AV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail ,
                                               A51SupplierAgbName ,
                                               A291SupplierAgbTypeName ,
                                               A55SupplierAgbContactName ,
@@ -1483,18 +1481,18 @@ namespace GeneXus.Programs {
                                               TypeConstants.SHORT, TypeConstants.BOOLEAN, TypeConstants.SHORT, TypeConstants.BOOLEAN
                                               }
          });
-         lV74Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV74Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
-         lV74Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV74Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
-         lV74Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV74Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
-         lV74Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV74Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
-         lV74Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV74Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
-         lV75Wp_organisationagbsuppliersds_2_tfsupplieragbname = StringUtil.Concat( StringUtil.RTrim( AV75Wp_organisationagbsuppliersds_2_tfsupplieragbname), "%", "");
-         lV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = StringUtil.Concat( StringUtil.RTrim( AV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename), "%", "");
-         lV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = StringUtil.Concat( StringUtil.RTrim( AV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname), "%", "");
-         lV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone = StringUtil.PadR( StringUtil.RTrim( AV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone), 20, "%");
-         lV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail = StringUtil.Concat( StringUtil.RTrim( AV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail), "%", "");
+         lV76Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV76Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
+         lV76Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV76Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
+         lV76Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV76Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
+         lV76Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV76Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
+         lV76Wp_organisationagbsuppliersds_1_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV76Wp_organisationagbsuppliersds_1_filterfulltext), "%", "");
+         lV77Wp_organisationagbsuppliersds_2_tfsupplieragbname = StringUtil.Concat( StringUtil.RTrim( AV77Wp_organisationagbsuppliersds_2_tfsupplieragbname), "%", "");
+         lV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = StringUtil.Concat( StringUtil.RTrim( AV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename), "%", "");
+         lV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = StringUtil.Concat( StringUtil.RTrim( AV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname), "%", "");
+         lV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone = StringUtil.PadR( StringUtil.RTrim( AV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone), 20, "%");
+         lV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail = StringUtil.Concat( StringUtil.RTrim( AV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail), "%", "");
          /* Using cursor H00783 */
-         pr_default.execute(1, new Object[] {lV74Wp_organisationagbsuppliersds_1_filterfulltext, lV74Wp_organisationagbsuppliersds_1_filterfulltext, lV74Wp_organisationagbsuppliersds_1_filterfulltext, lV74Wp_organisationagbsuppliersds_1_filterfulltext, lV74Wp_organisationagbsuppliersds_1_filterfulltext, lV75Wp_organisationagbsuppliersds_2_tfsupplieragbname, AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, AV23isSelected, lV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename, AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, lV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname, AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, lV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone, AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, lV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail, AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel});
+         pr_default.execute(1, new Object[] {lV76Wp_organisationagbsuppliersds_1_filterfulltext, lV76Wp_organisationagbsuppliersds_1_filterfulltext, lV76Wp_organisationagbsuppliersds_1_filterfulltext, lV76Wp_organisationagbsuppliersds_1_filterfulltext, lV76Wp_organisationagbsuppliersds_1_filterfulltext, lV77Wp_organisationagbsuppliersds_2_tfsupplieragbname, AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, AV23isSelected, lV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename, AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, lV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname, AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, lV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone, AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, lV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail, AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel});
          GRID_nRecordCount = H00783_AGRID_nRecordCount[0];
          pr_default.close(1);
          return (int)(GRID_nRecordCount) ;
@@ -1519,23 +1517,23 @@ namespace GeneXus.Programs {
 
       protected short subgrid_firstpage( )
       {
-         AV74Wp_organisationagbsuppliersds_1_filterfulltext = AV22FilterFullText;
-         AV75Wp_organisationagbsuppliersds_2_tfsupplieragbname = AV29TFSupplierAgbName;
-         AV76Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator = AV62TFSupplierAgbNameOperator;
-         AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel = AV30TFSupplierAgbName_Sel;
-         AV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = AV31TFSupplierAgbTypeName;
-         AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel = AV32TFSupplierAgbTypeName_Sel;
-         AV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = AV33TFSupplierAgbContactName;
-         AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel = AV34TFSupplierAgbContactName_Sel;
-         AV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone = AV35TFSupplierAgbPhone;
-         AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel = AV36TFSupplierAgbPhone_Sel;
-         AV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail = AV37TFSupplierAgbEmail;
-         AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel = AV38TFSupplierAgbEmail_Sel;
+         AV76Wp_organisationagbsuppliersds_1_filterfulltext = AV22FilterFullText;
+         AV77Wp_organisationagbsuppliersds_2_tfsupplieragbname = AV29TFSupplierAgbName;
+         AV78Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator = AV62TFSupplierAgbNameOperator;
+         AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel = AV30TFSupplierAgbName_Sel;
+         AV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = AV31TFSupplierAgbTypeName;
+         AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel = AV32TFSupplierAgbTypeName_Sel;
+         AV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = AV33TFSupplierAgbContactName;
+         AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel = AV34TFSupplierAgbContactName_Sel;
+         AV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone = AV35TFSupplierAgbPhone;
+         AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel = AV36TFSupplierAgbPhone_Sel;
+         AV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail = AV37TFSupplierAgbEmail;
+         AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel = AV38TFSupplierAgbEmail_Sel;
          GRID_nFirstRecordOnPage = 0;
          GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV20OrderedBy, AV21OrderedDsc, AV22FilterFullText, AV28ManageFiltersExecutionStep, AV70ColumnsSelector, AV72Pgmname, A430PreferredAgbOrganisationId, AV64OrganisationId, A425PreferredSupplierAgbId, AV29TFSupplierAgbName, AV62TFSupplierAgbNameOperator, AV30TFSupplierAgbName_Sel, AV31TFSupplierAgbTypeName, AV32TFSupplierAgbTypeName_Sel, AV33TFSupplierAgbContactName, AV34TFSupplierAgbContactName_Sel, AV35TFSupplierAgbPhone, AV36TFSupplierAgbPhone_Sel, AV37TFSupplierAgbEmail, AV38TFSupplierAgbEmail_Sel, AV57PreferredSuppliers, AV49IsAuthorized_Display, AV46IsAuthorized_SupplierAgbName) ;
+            gxgrGrid_refresh( subGrid_Rows, AV20OrderedBy, AV21OrderedDsc, AV22FilterFullText, AV28ManageFiltersExecutionStep, AV70ColumnsSelector, AV74Pgmname, A430PreferredAgbOrganisationId, AV64OrganisationId, A425PreferredSupplierAgbId, AV29TFSupplierAgbName, AV62TFSupplierAgbNameOperator, AV30TFSupplierAgbName_Sel, AV31TFSupplierAgbTypeName, AV32TFSupplierAgbTypeName_Sel, AV33TFSupplierAgbContactName, AV34TFSupplierAgbContactName_Sel, AV35TFSupplierAgbPhone, AV36TFSupplierAgbPhone_Sel, AV37TFSupplierAgbEmail, AV38TFSupplierAgbEmail_Sel, AV57PreferredSuppliers, AV49IsAuthorized_Display, AV46IsAuthorized_SupplierAgbName) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1543,18 +1541,18 @@ namespace GeneXus.Programs {
 
       protected short subgrid_nextpage( )
       {
-         AV74Wp_organisationagbsuppliersds_1_filterfulltext = AV22FilterFullText;
-         AV75Wp_organisationagbsuppliersds_2_tfsupplieragbname = AV29TFSupplierAgbName;
-         AV76Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator = AV62TFSupplierAgbNameOperator;
-         AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel = AV30TFSupplierAgbName_Sel;
-         AV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = AV31TFSupplierAgbTypeName;
-         AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel = AV32TFSupplierAgbTypeName_Sel;
-         AV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = AV33TFSupplierAgbContactName;
-         AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel = AV34TFSupplierAgbContactName_Sel;
-         AV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone = AV35TFSupplierAgbPhone;
-         AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel = AV36TFSupplierAgbPhone_Sel;
-         AV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail = AV37TFSupplierAgbEmail;
-         AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel = AV38TFSupplierAgbEmail_Sel;
+         AV76Wp_organisationagbsuppliersds_1_filterfulltext = AV22FilterFullText;
+         AV77Wp_organisationagbsuppliersds_2_tfsupplieragbname = AV29TFSupplierAgbName;
+         AV78Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator = AV62TFSupplierAgbNameOperator;
+         AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel = AV30TFSupplierAgbName_Sel;
+         AV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = AV31TFSupplierAgbTypeName;
+         AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel = AV32TFSupplierAgbTypeName_Sel;
+         AV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = AV33TFSupplierAgbContactName;
+         AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel = AV34TFSupplierAgbContactName_Sel;
+         AV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone = AV35TFSupplierAgbPhone;
+         AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel = AV36TFSupplierAgbPhone_Sel;
+         AV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail = AV37TFSupplierAgbEmail;
+         AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel = AV38TFSupplierAgbEmail_Sel;
          GRID_nRecordCount = subGrid_fnc_Recordcount( );
          if ( ( GRID_nRecordCount >= subGrid_fnc_Recordsperpage( ) ) && ( GRID_nEOF == 0 ) )
          {
@@ -1568,7 +1566,7 @@ namespace GeneXus.Programs {
          GridContainer.AddObjectProperty("GRID_nFirstRecordOnPage", GRID_nFirstRecordOnPage);
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV20OrderedBy, AV21OrderedDsc, AV22FilterFullText, AV28ManageFiltersExecutionStep, AV70ColumnsSelector, AV72Pgmname, A430PreferredAgbOrganisationId, AV64OrganisationId, A425PreferredSupplierAgbId, AV29TFSupplierAgbName, AV62TFSupplierAgbNameOperator, AV30TFSupplierAgbName_Sel, AV31TFSupplierAgbTypeName, AV32TFSupplierAgbTypeName_Sel, AV33TFSupplierAgbContactName, AV34TFSupplierAgbContactName_Sel, AV35TFSupplierAgbPhone, AV36TFSupplierAgbPhone_Sel, AV37TFSupplierAgbEmail, AV38TFSupplierAgbEmail_Sel, AV57PreferredSuppliers, AV49IsAuthorized_Display, AV46IsAuthorized_SupplierAgbName) ;
+            gxgrGrid_refresh( subGrid_Rows, AV20OrderedBy, AV21OrderedDsc, AV22FilterFullText, AV28ManageFiltersExecutionStep, AV70ColumnsSelector, AV74Pgmname, A430PreferredAgbOrganisationId, AV64OrganisationId, A425PreferredSupplierAgbId, AV29TFSupplierAgbName, AV62TFSupplierAgbNameOperator, AV30TFSupplierAgbName_Sel, AV31TFSupplierAgbTypeName, AV32TFSupplierAgbTypeName_Sel, AV33TFSupplierAgbContactName, AV34TFSupplierAgbContactName_Sel, AV35TFSupplierAgbPhone, AV36TFSupplierAgbPhone_Sel, AV37TFSupplierAgbEmail, AV38TFSupplierAgbEmail_Sel, AV57PreferredSuppliers, AV49IsAuthorized_Display, AV46IsAuthorized_SupplierAgbName) ;
          }
          send_integrity_footer_hashes( ) ;
          return (short)(((GRID_nEOF==0) ? 0 : 2)) ;
@@ -1576,18 +1574,18 @@ namespace GeneXus.Programs {
 
       protected short subgrid_previouspage( )
       {
-         AV74Wp_organisationagbsuppliersds_1_filterfulltext = AV22FilterFullText;
-         AV75Wp_organisationagbsuppliersds_2_tfsupplieragbname = AV29TFSupplierAgbName;
-         AV76Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator = AV62TFSupplierAgbNameOperator;
-         AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel = AV30TFSupplierAgbName_Sel;
-         AV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = AV31TFSupplierAgbTypeName;
-         AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel = AV32TFSupplierAgbTypeName_Sel;
-         AV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = AV33TFSupplierAgbContactName;
-         AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel = AV34TFSupplierAgbContactName_Sel;
-         AV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone = AV35TFSupplierAgbPhone;
-         AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel = AV36TFSupplierAgbPhone_Sel;
-         AV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail = AV37TFSupplierAgbEmail;
-         AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel = AV38TFSupplierAgbEmail_Sel;
+         AV76Wp_organisationagbsuppliersds_1_filterfulltext = AV22FilterFullText;
+         AV77Wp_organisationagbsuppliersds_2_tfsupplieragbname = AV29TFSupplierAgbName;
+         AV78Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator = AV62TFSupplierAgbNameOperator;
+         AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel = AV30TFSupplierAgbName_Sel;
+         AV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = AV31TFSupplierAgbTypeName;
+         AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel = AV32TFSupplierAgbTypeName_Sel;
+         AV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = AV33TFSupplierAgbContactName;
+         AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel = AV34TFSupplierAgbContactName_Sel;
+         AV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone = AV35TFSupplierAgbPhone;
+         AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel = AV36TFSupplierAgbPhone_Sel;
+         AV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail = AV37TFSupplierAgbEmail;
+         AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel = AV38TFSupplierAgbEmail_Sel;
          if ( GRID_nFirstRecordOnPage >= subGrid_fnc_Recordsperpage( ) )
          {
             GRID_nFirstRecordOnPage = (long)(GRID_nFirstRecordOnPage-subGrid_fnc_Recordsperpage( ));
@@ -1599,7 +1597,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV20OrderedBy, AV21OrderedDsc, AV22FilterFullText, AV28ManageFiltersExecutionStep, AV70ColumnsSelector, AV72Pgmname, A430PreferredAgbOrganisationId, AV64OrganisationId, A425PreferredSupplierAgbId, AV29TFSupplierAgbName, AV62TFSupplierAgbNameOperator, AV30TFSupplierAgbName_Sel, AV31TFSupplierAgbTypeName, AV32TFSupplierAgbTypeName_Sel, AV33TFSupplierAgbContactName, AV34TFSupplierAgbContactName_Sel, AV35TFSupplierAgbPhone, AV36TFSupplierAgbPhone_Sel, AV37TFSupplierAgbEmail, AV38TFSupplierAgbEmail_Sel, AV57PreferredSuppliers, AV49IsAuthorized_Display, AV46IsAuthorized_SupplierAgbName) ;
+            gxgrGrid_refresh( subGrid_Rows, AV20OrderedBy, AV21OrderedDsc, AV22FilterFullText, AV28ManageFiltersExecutionStep, AV70ColumnsSelector, AV74Pgmname, A430PreferredAgbOrganisationId, AV64OrganisationId, A425PreferredSupplierAgbId, AV29TFSupplierAgbName, AV62TFSupplierAgbNameOperator, AV30TFSupplierAgbName_Sel, AV31TFSupplierAgbTypeName, AV32TFSupplierAgbTypeName_Sel, AV33TFSupplierAgbContactName, AV34TFSupplierAgbContactName_Sel, AV35TFSupplierAgbPhone, AV36TFSupplierAgbPhone_Sel, AV37TFSupplierAgbEmail, AV38TFSupplierAgbEmail_Sel, AV57PreferredSuppliers, AV49IsAuthorized_Display, AV46IsAuthorized_SupplierAgbName) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1607,18 +1605,18 @@ namespace GeneXus.Programs {
 
       protected short subgrid_lastpage( )
       {
-         AV74Wp_organisationagbsuppliersds_1_filterfulltext = AV22FilterFullText;
-         AV75Wp_organisationagbsuppliersds_2_tfsupplieragbname = AV29TFSupplierAgbName;
-         AV76Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator = AV62TFSupplierAgbNameOperator;
-         AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel = AV30TFSupplierAgbName_Sel;
-         AV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = AV31TFSupplierAgbTypeName;
-         AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel = AV32TFSupplierAgbTypeName_Sel;
-         AV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = AV33TFSupplierAgbContactName;
-         AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel = AV34TFSupplierAgbContactName_Sel;
-         AV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone = AV35TFSupplierAgbPhone;
-         AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel = AV36TFSupplierAgbPhone_Sel;
-         AV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail = AV37TFSupplierAgbEmail;
-         AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel = AV38TFSupplierAgbEmail_Sel;
+         AV76Wp_organisationagbsuppliersds_1_filterfulltext = AV22FilterFullText;
+         AV77Wp_organisationagbsuppliersds_2_tfsupplieragbname = AV29TFSupplierAgbName;
+         AV78Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator = AV62TFSupplierAgbNameOperator;
+         AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel = AV30TFSupplierAgbName_Sel;
+         AV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = AV31TFSupplierAgbTypeName;
+         AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel = AV32TFSupplierAgbTypeName_Sel;
+         AV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = AV33TFSupplierAgbContactName;
+         AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel = AV34TFSupplierAgbContactName_Sel;
+         AV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone = AV35TFSupplierAgbPhone;
+         AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel = AV36TFSupplierAgbPhone_Sel;
+         AV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail = AV37TFSupplierAgbEmail;
+         AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel = AV38TFSupplierAgbEmail_Sel;
          GRID_nRecordCount = subGrid_fnc_Recordcount( );
          if ( GRID_nRecordCount > subGrid_fnc_Recordsperpage( ) )
          {
@@ -1638,7 +1636,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV20OrderedBy, AV21OrderedDsc, AV22FilterFullText, AV28ManageFiltersExecutionStep, AV70ColumnsSelector, AV72Pgmname, A430PreferredAgbOrganisationId, AV64OrganisationId, A425PreferredSupplierAgbId, AV29TFSupplierAgbName, AV62TFSupplierAgbNameOperator, AV30TFSupplierAgbName_Sel, AV31TFSupplierAgbTypeName, AV32TFSupplierAgbTypeName_Sel, AV33TFSupplierAgbContactName, AV34TFSupplierAgbContactName_Sel, AV35TFSupplierAgbPhone, AV36TFSupplierAgbPhone_Sel, AV37TFSupplierAgbEmail, AV38TFSupplierAgbEmail_Sel, AV57PreferredSuppliers, AV49IsAuthorized_Display, AV46IsAuthorized_SupplierAgbName) ;
+            gxgrGrid_refresh( subGrid_Rows, AV20OrderedBy, AV21OrderedDsc, AV22FilterFullText, AV28ManageFiltersExecutionStep, AV70ColumnsSelector, AV74Pgmname, A430PreferredAgbOrganisationId, AV64OrganisationId, A425PreferredSupplierAgbId, AV29TFSupplierAgbName, AV62TFSupplierAgbNameOperator, AV30TFSupplierAgbName_Sel, AV31TFSupplierAgbTypeName, AV32TFSupplierAgbTypeName_Sel, AV33TFSupplierAgbContactName, AV34TFSupplierAgbContactName_Sel, AV35TFSupplierAgbPhone, AV36TFSupplierAgbPhone_Sel, AV37TFSupplierAgbEmail, AV38TFSupplierAgbEmail_Sel, AV57PreferredSuppliers, AV49IsAuthorized_Display, AV46IsAuthorized_SupplierAgbName) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1646,18 +1644,18 @@ namespace GeneXus.Programs {
 
       protected int subgrid_gotopage( int nPageNo )
       {
-         AV74Wp_organisationagbsuppliersds_1_filterfulltext = AV22FilterFullText;
-         AV75Wp_organisationagbsuppliersds_2_tfsupplieragbname = AV29TFSupplierAgbName;
-         AV76Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator = AV62TFSupplierAgbNameOperator;
-         AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel = AV30TFSupplierAgbName_Sel;
-         AV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = AV31TFSupplierAgbTypeName;
-         AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel = AV32TFSupplierAgbTypeName_Sel;
-         AV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = AV33TFSupplierAgbContactName;
-         AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel = AV34TFSupplierAgbContactName_Sel;
-         AV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone = AV35TFSupplierAgbPhone;
-         AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel = AV36TFSupplierAgbPhone_Sel;
-         AV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail = AV37TFSupplierAgbEmail;
-         AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel = AV38TFSupplierAgbEmail_Sel;
+         AV76Wp_organisationagbsuppliersds_1_filterfulltext = AV22FilterFullText;
+         AV77Wp_organisationagbsuppliersds_2_tfsupplieragbname = AV29TFSupplierAgbName;
+         AV78Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator = AV62TFSupplierAgbNameOperator;
+         AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel = AV30TFSupplierAgbName_Sel;
+         AV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = AV31TFSupplierAgbTypeName;
+         AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel = AV32TFSupplierAgbTypeName_Sel;
+         AV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = AV33TFSupplierAgbContactName;
+         AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel = AV34TFSupplierAgbContactName_Sel;
+         AV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone = AV35TFSupplierAgbPhone;
+         AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel = AV36TFSupplierAgbPhone_Sel;
+         AV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail = AV37TFSupplierAgbEmail;
+         AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel = AV38TFSupplierAgbEmail_Sel;
          if ( nPageNo > 0 )
          {
             GRID_nFirstRecordOnPage = (long)(subGrid_fnc_Recordsperpage( )*(nPageNo-1));
@@ -1669,7 +1667,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV20OrderedBy, AV21OrderedDsc, AV22FilterFullText, AV28ManageFiltersExecutionStep, AV70ColumnsSelector, AV72Pgmname, A430PreferredAgbOrganisationId, AV64OrganisationId, A425PreferredSupplierAgbId, AV29TFSupplierAgbName, AV62TFSupplierAgbNameOperator, AV30TFSupplierAgbName_Sel, AV31TFSupplierAgbTypeName, AV32TFSupplierAgbTypeName_Sel, AV33TFSupplierAgbContactName, AV34TFSupplierAgbContactName_Sel, AV35TFSupplierAgbPhone, AV36TFSupplierAgbPhone_Sel, AV37TFSupplierAgbEmail, AV38TFSupplierAgbEmail_Sel, AV57PreferredSuppliers, AV49IsAuthorized_Display, AV46IsAuthorized_SupplierAgbName) ;
+            gxgrGrid_refresh( subGrid_Rows, AV20OrderedBy, AV21OrderedDsc, AV22FilterFullText, AV28ManageFiltersExecutionStep, AV70ColumnsSelector, AV74Pgmname, A430PreferredAgbOrganisationId, AV64OrganisationId, A425PreferredSupplierAgbId, AV29TFSupplierAgbName, AV62TFSupplierAgbNameOperator, AV30TFSupplierAgbName_Sel, AV31TFSupplierAgbTypeName, AV32TFSupplierAgbTypeName_Sel, AV33TFSupplierAgbContactName, AV34TFSupplierAgbContactName_Sel, AV35TFSupplierAgbPhone, AV36TFSupplierAgbPhone_Sel, AV37TFSupplierAgbEmail, AV38TFSupplierAgbEmail_Sel, AV57PreferredSuppliers, AV49IsAuthorized_Display, AV46IsAuthorized_SupplierAgbName) ;
          }
          send_integrity_footer_hashes( ) ;
          return (int)(0) ;
@@ -1677,7 +1675,7 @@ namespace GeneXus.Programs {
 
       protected void before_start_formulas( )
       {
-         AV72Pgmname = "WP_OrganisationAGBSuppliers";
+         AV74Pgmname = "WP_OrganisationAGBSuppliers";
          edtavSupplieragbnamewithtags_Enabled = 0;
          edtavSupplierstatus_Enabled = 0;
          edtavSupplieraddress_Enabled = 0;
@@ -1760,7 +1758,6 @@ namespace GeneXus.Programs {
             Ddo_grid_Columnids = cgiGet( "DDO_GRID_Columnids");
             Ddo_grid_Columnssortvalues = cgiGet( "DDO_GRID_Columnssortvalues");
             Ddo_grid_Includesortasc = cgiGet( "DDO_GRID_Includesortasc");
-            Ddo_grid_Fixable = cgiGet( "DDO_GRID_Fixable");
             Ddo_grid_Sortedstatus = cgiGet( "DDO_GRID_Sortedstatus");
             Ddo_grid_Includefilter = cgiGet( "DDO_GRID_Includefilter");
             Ddo_grid_Filtertype = cgiGet( "DDO_GRID_Filtertype");
@@ -1868,6 +1865,12 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
+         AV72successmsg = AV73websession.Get(context.GetMessage( "NotificationMessage", ""));
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV72successmsg)) )
+         {
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Success",  AV72successmsg,  "success",  "",  "true",  ""));
+            AV73websession.Remove(context.GetMessage( "NotificationMessage", ""));
+         }
          subGrid_Rows = 10;
          GxWebStd.gx_hidden_field( context, "GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
          Grid_empowerer_Gridinternalname = subGrid_Internalname;
@@ -2013,7 +2016,7 @@ namespace GeneXus.Programs {
          AV44GridPageCount = subGrid_fnc_Pagecount( );
          AssignAttri("", false, "AV44GridPageCount", StringUtil.LTrimStr( (decimal)(AV44GridPageCount), 10, 0));
          GXt_char4 = AV45GridAppliedFilters;
-         new GeneXus.Programs.wwpbaseobjects.wwp_getappliedfiltersdescription(context ).execute(  AV72Pgmname, out  GXt_char4) ;
+         new GeneXus.Programs.wwpbaseobjects.wwp_getappliedfiltersdescription(context ).execute(  AV74Pgmname, out  GXt_char4) ;
          AV45GridAppliedFilters = GXt_char4;
          AssignAttri("", false, "AV45GridAppliedFilters", AV45GridAppliedFilters);
          AV57PreferredSuppliers.Clear();
@@ -2027,18 +2030,18 @@ namespace GeneXus.Programs {
             pr_default.readNext(2);
          }
          pr_default.close(2);
-         AV74Wp_organisationagbsuppliersds_1_filterfulltext = AV22FilterFullText;
-         AV75Wp_organisationagbsuppliersds_2_tfsupplieragbname = AV29TFSupplierAgbName;
-         AV76Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator = AV62TFSupplierAgbNameOperator;
-         AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel = AV30TFSupplierAgbName_Sel;
-         AV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = AV31TFSupplierAgbTypeName;
-         AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel = AV32TFSupplierAgbTypeName_Sel;
-         AV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = AV33TFSupplierAgbContactName;
-         AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel = AV34TFSupplierAgbContactName_Sel;
-         AV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone = AV35TFSupplierAgbPhone;
-         AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel = AV36TFSupplierAgbPhone_Sel;
-         AV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail = AV37TFSupplierAgbEmail;
-         AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel = AV38TFSupplierAgbEmail_Sel;
+         AV76Wp_organisationagbsuppliersds_1_filterfulltext = AV22FilterFullText;
+         AV77Wp_organisationagbsuppliersds_2_tfsupplieragbname = AV29TFSupplierAgbName;
+         AV78Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator = AV62TFSupplierAgbNameOperator;
+         AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel = AV30TFSupplierAgbName_Sel;
+         AV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = AV31TFSupplierAgbTypeName;
+         AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel = AV32TFSupplierAgbTypeName_Sel;
+         AV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = AV33TFSupplierAgbContactName;
+         AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel = AV34TFSupplierAgbContactName_Sel;
+         AV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone = AV35TFSupplierAgbPhone;
+         AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel = AV36TFSupplierAgbPhone_Sel;
+         AV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail = AV37TFSupplierAgbEmail;
+         AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel = AV38TFSupplierAgbEmail_Sel;
          /*  Sending Event outputs  */
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV70ColumnsSelector", AV70ColumnsSelector);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV57PreferredSuppliers", AV57PreferredSuppliers);
@@ -2262,7 +2265,7 @@ namespace GeneXus.Programs {
                if (true) return;
             }
             GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "wwpbaseobjects.savefilteras.aspx"+UrlEncode(StringUtil.RTrim("WP_OrganisationAGBSuppliersFilters")) + "," + UrlEncode(StringUtil.RTrim(AV72Pgmname+"GridState"));
+            GXEncryptionTmp = "wwpbaseobjects.savefilteras.aspx"+UrlEncode(StringUtil.RTrim("WP_OrganisationAGBSuppliersFilters")) + "," + UrlEncode(StringUtil.RTrim(AV74Pgmname+"GridState"));
             context.PopUp(formatLink("wwpbaseobjects.savefilteras.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {});
             AV28ManageFiltersExecutionStep = 2;
             AssignAttri("", false, "AV28ManageFiltersExecutionStep", StringUtil.Str( (decimal)(AV28ManageFiltersExecutionStep), 1, 0));
@@ -2295,7 +2298,7 @@ namespace GeneXus.Programs {
                   returnInSub = true;
                   if (true) return;
                }
-               new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV72Pgmname+"GridState",  AV27ManageFiltersXml) ;
+               new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV74Pgmname+"GridState",  AV27ManageFiltersXml) ;
                AV18GridState.FromXml(AV27ManageFiltersXml, null, "", "");
                AV20OrderedBy = AV18GridState.gxTpr_Orderedby;
                AssignAttri("", false, "AV20OrderedBy", StringUtil.LTrimStr( (decimal)(AV20OrderedBy), 4, 0));
@@ -2522,13 +2525,13 @@ namespace GeneXus.Programs {
       {
          /* 'LOADGRIDSTATE' Routine */
          returnInSub = false;
-         if ( StringUtil.StrCmp(AV25Session.Get(AV72Pgmname+"GridState"), "") == 0 )
+         if ( StringUtil.StrCmp(AV25Session.Get(AV74Pgmname+"GridState"), "") == 0 )
          {
-            AV18GridState.FromXml(new GeneXus.Programs.wwpbaseobjects.loadgridstate(context).executeUdp(  AV72Pgmname+"GridState"), null, "", "");
+            AV18GridState.FromXml(new GeneXus.Programs.wwpbaseobjects.loadgridstate(context).executeUdp(  AV74Pgmname+"GridState"), null, "", "");
          }
          else
          {
-            AV18GridState.FromXml(AV25Session.Get(AV72Pgmname+"GridState"), null, "", "");
+            AV18GridState.FromXml(AV25Session.Get(AV74Pgmname+"GridState"), null, "", "");
          }
          AV20OrderedBy = AV18GridState.gxTpr_Orderedby;
          AssignAttri("", false, "AV20OrderedBy", StringUtil.LTrimStr( (decimal)(AV20OrderedBy), 4, 0));
@@ -2560,10 +2563,10 @@ namespace GeneXus.Programs {
       {
          /* 'LOADREGFILTERSSTATE' Routine */
          returnInSub = false;
-         AV86GXV1 = 1;
-         while ( AV86GXV1 <= AV18GridState.gxTpr_Filtervalues.Count )
+         AV88GXV1 = 1;
+         while ( AV88GXV1 <= AV18GridState.gxTpr_Filtervalues.Count )
          {
-            AV19GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV18GridState.gxTpr_Filtervalues.Item(AV86GXV1));
+            AV19GridStateFilterValue = ((GeneXus.Programs.wwpbaseobjects.SdtWWPGridState_FilterValue)AV18GridState.gxTpr_Filtervalues.Item(AV88GXV1));
             if ( StringUtil.StrCmp(AV19GridStateFilterValue.gxTpr_Name, "FILTERFULLTEXT") == 0 )
             {
                AV22FilterFullText = AV19GridStateFilterValue.gxTpr_Value;
@@ -2624,7 +2627,7 @@ namespace GeneXus.Programs {
                AV38TFSupplierAgbEmail_Sel = AV19GridStateFilterValue.gxTpr_Value;
                AssignAttri("", false, "AV38TFSupplierAgbEmail_Sel", AV38TFSupplierAgbEmail_Sel);
             }
-            AV86GXV1 = (int)(AV86GXV1+1);
+            AV88GXV1 = (int)(AV88GXV1+1);
          }
          GXt_char4 = "";
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV30TFSupplierAgbName_Sel)),  AV30TFSupplierAgbName_Sel, out  GXt_char4) ;
@@ -2636,7 +2639,7 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV36TFSupplierAgbPhone_Sel)),  AV36TFSupplierAgbPhone_Sel, out  GXt_char8) ;
          GXt_char9 = "";
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV38TFSupplierAgbEmail_Sel)),  AV38TFSupplierAgbEmail_Sel, out  GXt_char9) ;
-         Ddo_grid_Selectedvalue_set = GXt_char4+"|"+GXt_char6+"|"+GXt_char7+"|"+GXt_char8+"|"+GXt_char9+"|";
+         Ddo_grid_Selectedvalue_set = GXt_char4+"|"+GXt_char6+"|"+GXt_char7+"|"+GXt_char8+"|"+GXt_char9;
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "SelectedValue_set", Ddo_grid_Selectedvalue_set);
          GXt_char9 = "";
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  !(0==AV62TFSupplierAgbNameOperator)||String.IsNullOrEmpty(StringUtil.RTrim( AV29TFSupplierAgbName)),  AV29TFSupplierAgbName, out  GXt_char9) ;
@@ -2648,9 +2651,9 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV35TFSupplierAgbPhone)),  AV35TFSupplierAgbPhone, out  GXt_char6) ;
          GXt_char4 = "";
          new GeneXus.Programs.wwpbaseobjects.wwp_getfilterval(context ).execute(  String.IsNullOrEmpty(StringUtil.RTrim( AV37TFSupplierAgbEmail)),  AV37TFSupplierAgbEmail, out  GXt_char4) ;
-         Ddo_grid_Filteredtext_set = GXt_char9+"|"+GXt_char8+"|"+GXt_char7+"|"+GXt_char6+"|"+GXt_char4+"|";
+         Ddo_grid_Filteredtext_set = GXt_char9+"|"+GXt_char8+"|"+GXt_char7+"|"+GXt_char6+"|"+GXt_char4;
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "FilteredText_set", Ddo_grid_Filteredtext_set);
-         Ddo_grid_Selectedfixedfilter = ((AV62TFSupplierAgbNameOperator!=1) ? "" : "1")+"|||||";
+         Ddo_grid_Selectedfixedfilter = ((AV62TFSupplierAgbNameOperator!=1) ? "" : "1")+"||||";
          ucDdo_grid.SendProperty(context, "", false, Ddo_grid_Internalname, "SelectedFixedFilter", Ddo_grid_Selectedfixedfilter);
       }
 
@@ -2658,7 +2661,7 @@ namespace GeneXus.Programs {
       {
          /* 'SAVEGRIDSTATE' Routine */
          returnInSub = false;
-         AV18GridState.FromXml(AV25Session.Get(AV72Pgmname+"GridState"), null, "", "");
+         AV18GridState.FromXml(AV25Session.Get(AV74Pgmname+"GridState"), null, "", "");
          AV18GridState.gxTpr_Orderedby = AV20OrderedBy;
          AV18GridState.gxTpr_Ordereddsc = AV21OrderedDsc;
          AV18GridState.gxTpr_Filtervalues.Clear();
@@ -2670,7 +2673,7 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.wwp_gridstateaddfiltervalueandsel(context ).execute( ref  AV18GridState,  "TFSUPPLIERAGBEMAIL",  context.GetMessage( "Email", ""),  !String.IsNullOrEmpty(StringUtil.RTrim( AV37TFSupplierAgbEmail)),  0,  AV37TFSupplierAgbEmail,  AV37TFSupplierAgbEmail,  false,  "",  "",  !String.IsNullOrEmpty(StringUtil.RTrim( AV38TFSupplierAgbEmail_Sel)),  AV38TFSupplierAgbEmail_Sel,  AV38TFSupplierAgbEmail_Sel) ;
          AV18GridState.gxTpr_Pagesize = StringUtil.Str( (decimal)(subGrid_Rows), 10, 0);
          AV18GridState.gxTpr_Currentpage = (short)(subGrid_fnc_Currentpage( ));
-         new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV72Pgmname+"GridState",  AV18GridState.ToXml(false, true, "", "")) ;
+         new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV74Pgmname+"GridState",  AV18GridState.ToXml(false, true, "", "")) ;
       }
 
       protected void S122( )
@@ -2678,7 +2681,7 @@ namespace GeneXus.Programs {
          /* 'PREPARETRANSACTION' Routine */
          returnInSub = false;
          AV16TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
-         AV16TrnContext.gxTpr_Callerobject = AV72Pgmname;
+         AV16TrnContext.gxTpr_Callerobject = AV74Pgmname;
          AV16TrnContext.gxTpr_Callerondelete = true;
          AV16TrnContext.gxTpr_Callerurl = AV15HTTPRequest.ScriptName+"?"+AV15HTTPRequest.QueryString;
          AV16TrnContext.gxTpr_Transactionname = "Trn_SupplierAgb";
@@ -2767,7 +2770,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251222154525", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512410582033", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2783,7 +2786,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_organisationagbsuppliers.js", "?20251222154527", false, true);
+         context.AddJavascriptSource("wp_organisationagbsuppliers.js", "?202512410582036", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3475,16 +3478,15 @@ namespace GeneXus.Programs {
          Ddo_gridcolumnsselector_Caption = context.GetMessage( "WWP_EditColumnsCaption", "");
          Ddo_gridcolumnsselector_Icon = "fas fa-cog";
          Ddo_gridcolumnsselector_Icontype = "FontIcon";
-         Ddo_grid_Fixedfilters = "1:Preferred:fa fa-star FontColorIconWarning ConditionalFormattingFilterIcon|||||";
+         Ddo_grid_Fixedfilters = "1:Preferred:fa fa-star FontColorIconWarning ConditionalFormattingFilterIcon||||";
          Ddo_grid_Datalistproc = "WP_OrganisationAGBSuppliersGetFilterData";
-         Ddo_grid_Datalisttype = "Dynamic|Dynamic|Dynamic|Dynamic|Dynamic|";
-         Ddo_grid_Includedatalist = "T|T|T|T|T|";
-         Ddo_grid_Filtertype = "Character|Character|Character|Character|Character|";
-         Ddo_grid_Includefilter = "T|T|T|T|T|";
-         Ddo_grid_Fixable = "T";
-         Ddo_grid_Includesortasc = "T|T|T|T|T|";
-         Ddo_grid_Columnssortvalues = "1|2|3|4|5|";
-         Ddo_grid_Columnids = "4:SupplierAgbName|6:SupplierAgbTypeName|13:SupplierAgbContactName|14:SupplierAgbPhone|17:SupplierAgbEmail|19:SupplierAddress";
+         Ddo_grid_Datalisttype = "Dynamic|Dynamic|Dynamic|Dynamic|Dynamic";
+         Ddo_grid_Includedatalist = "T";
+         Ddo_grid_Filtertype = "Character|Character|Character|Character|Character";
+         Ddo_grid_Includefilter = "T";
+         Ddo_grid_Includesortasc = "T";
+         Ddo_grid_Columnssortvalues = "1|2|3|4|5";
+         Ddo_grid_Columnids = "4:SupplierAgbName|6:SupplierAgbTypeName|13:SupplierAgbContactName|14:SupplierAgbPhone|17:SupplierAgbEmail";
          Ddo_grid_Gridinternalname = "";
          Ddc_subscriptions_Titlecontrolidtoreplace = "";
          Ddc_subscriptions_Cls = "ColumnsSelector";
@@ -3533,24 +3535,24 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV20OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV21OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV22FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV72Pgmname","fld":"vPGMNAME","hsh":true},{"av":"A430PreferredAgbOrganisationId","fld":"PREFERREDAGBORGANISATIONID"},{"av":"AV64OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A425PreferredSupplierAgbId","fld":"PREFERREDSUPPLIERAGBID"},{"av":"AV29TFSupplierAgbName","fld":"vTFSUPPLIERAGBNAME"},{"av":"AV62TFSupplierAgbNameOperator","fld":"vTFSUPPLIERAGBNAMEOPERATOR","pic":"ZZZ9"},{"av":"AV30TFSupplierAgbName_Sel","fld":"vTFSUPPLIERAGBNAME_SEL"},{"av":"AV31TFSupplierAgbTypeName","fld":"vTFSUPPLIERAGBTYPENAME"},{"av":"AV32TFSupplierAgbTypeName_Sel","fld":"vTFSUPPLIERAGBTYPENAME_SEL"},{"av":"AV33TFSupplierAgbContactName","fld":"vTFSUPPLIERAGBCONTACTNAME"},{"av":"AV34TFSupplierAgbContactName_Sel","fld":"vTFSUPPLIERAGBCONTACTNAME_SEL"},{"av":"AV35TFSupplierAgbPhone","fld":"vTFSUPPLIERAGBPHONE"},{"av":"AV36TFSupplierAgbPhone_Sel","fld":"vTFSUPPLIERAGBPHONE_SEL"},{"av":"AV37TFSupplierAgbEmail","fld":"vTFSUPPLIERAGBEMAIL"},{"av":"AV38TFSupplierAgbEmail_Sel","fld":"vTFSUPPLIERAGBEMAIL_SEL"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV46IsAuthorized_SupplierAgbName","fld":"vISAUTHORIZED_SUPPLIERAGBNAME","hsh":true}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV20OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV21OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV22FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV74Pgmname","fld":"vPGMNAME","hsh":true},{"av":"A430PreferredAgbOrganisationId","fld":"PREFERREDAGBORGANISATIONID"},{"av":"AV64OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A425PreferredSupplierAgbId","fld":"PREFERREDSUPPLIERAGBID"},{"av":"AV29TFSupplierAgbName","fld":"vTFSUPPLIERAGBNAME"},{"av":"AV62TFSupplierAgbNameOperator","fld":"vTFSUPPLIERAGBNAMEOPERATOR","pic":"ZZZ9"},{"av":"AV30TFSupplierAgbName_Sel","fld":"vTFSUPPLIERAGBNAME_SEL"},{"av":"AV31TFSupplierAgbTypeName","fld":"vTFSUPPLIERAGBTYPENAME"},{"av":"AV32TFSupplierAgbTypeName_Sel","fld":"vTFSUPPLIERAGBTYPENAME_SEL"},{"av":"AV33TFSupplierAgbContactName","fld":"vTFSUPPLIERAGBCONTACTNAME"},{"av":"AV34TFSupplierAgbContactName_Sel","fld":"vTFSUPPLIERAGBCONTACTNAME_SEL"},{"av":"AV35TFSupplierAgbPhone","fld":"vTFSUPPLIERAGBPHONE"},{"av":"AV36TFSupplierAgbPhone_Sel","fld":"vTFSUPPLIERAGBPHONE_SEL"},{"av":"AV37TFSupplierAgbEmail","fld":"vTFSUPPLIERAGBEMAIL"},{"av":"AV38TFSupplierAgbEmail_Sel","fld":"vTFSUPPLIERAGBEMAIL_SEL"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV46IsAuthorized_SupplierAgbName","fld":"vISAUTHORIZED_SUPPLIERAGBNAME","hsh":true}]""");
          setEventMetadata("REFRESH",""","oparms":[{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"chkavIsselected.Visible","ctrl":"vISSELECTED","prop":"Visible"},{"av":"edtavSupplieragbnamewithtags_Visible","ctrl":"vSUPPLIERAGBNAMEWITHTAGS","prop":"Visible"},{"av":"edtSupplierAgbTypeName_Visible","ctrl":"SUPPLIERAGBTYPENAME","prop":"Visible"},{"av":"edtSupplierAgbContactName_Visible","ctrl":"SUPPLIERAGBCONTACTNAME","prop":"Visible"},{"av":"edtSupplierAgbPhone_Visible","ctrl":"SUPPLIERAGBPHONE","prop":"Visible"},{"av":"edtSupplierAgbEmail_Visible","ctrl":"SUPPLIERAGBEMAIL","prop":"Visible"},{"av":"edtavSupplieraddress_Visible","ctrl":"vSUPPLIERADDRESS","prop":"Visible"},{"av":"AV43GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV44GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV45GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV26ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV18GridState","fld":"vGRIDSTATE"}]}""");
-         setEventMetadata("GRIDPAGINATIONBAR.CHANGEPAGE","""{"handler":"E12782","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV20OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV21OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV22FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV72Pgmname","fld":"vPGMNAME","hsh":true},{"av":"A430PreferredAgbOrganisationId","fld":"PREFERREDAGBORGANISATIONID"},{"av":"AV64OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A425PreferredSupplierAgbId","fld":"PREFERREDSUPPLIERAGBID"},{"av":"AV29TFSupplierAgbName","fld":"vTFSUPPLIERAGBNAME"},{"av":"AV62TFSupplierAgbNameOperator","fld":"vTFSUPPLIERAGBNAMEOPERATOR","pic":"ZZZ9"},{"av":"AV30TFSupplierAgbName_Sel","fld":"vTFSUPPLIERAGBNAME_SEL"},{"av":"AV31TFSupplierAgbTypeName","fld":"vTFSUPPLIERAGBTYPENAME"},{"av":"AV32TFSupplierAgbTypeName_Sel","fld":"vTFSUPPLIERAGBTYPENAME_SEL"},{"av":"AV33TFSupplierAgbContactName","fld":"vTFSUPPLIERAGBCONTACTNAME"},{"av":"AV34TFSupplierAgbContactName_Sel","fld":"vTFSUPPLIERAGBCONTACTNAME_SEL"},{"av":"AV35TFSupplierAgbPhone","fld":"vTFSUPPLIERAGBPHONE"},{"av":"AV36TFSupplierAgbPhone_Sel","fld":"vTFSUPPLIERAGBPHONE_SEL"},{"av":"AV37TFSupplierAgbEmail","fld":"vTFSUPPLIERAGBEMAIL"},{"av":"AV38TFSupplierAgbEmail_Sel","fld":"vTFSUPPLIERAGBEMAIL_SEL"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV46IsAuthorized_SupplierAgbName","fld":"vISAUTHORIZED_SUPPLIERAGBNAME","hsh":true},{"av":"Gridpaginationbar_Selectedpage","ctrl":"GRIDPAGINATIONBAR","prop":"SelectedPage"}]}""");
-         setEventMetadata("GRIDPAGINATIONBAR.CHANGEROWSPERPAGE","""{"handler":"E13782","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV20OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV21OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV22FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV72Pgmname","fld":"vPGMNAME","hsh":true},{"av":"A430PreferredAgbOrganisationId","fld":"PREFERREDAGBORGANISATIONID"},{"av":"AV64OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A425PreferredSupplierAgbId","fld":"PREFERREDSUPPLIERAGBID"},{"av":"AV29TFSupplierAgbName","fld":"vTFSUPPLIERAGBNAME"},{"av":"AV62TFSupplierAgbNameOperator","fld":"vTFSUPPLIERAGBNAMEOPERATOR","pic":"ZZZ9"},{"av":"AV30TFSupplierAgbName_Sel","fld":"vTFSUPPLIERAGBNAME_SEL"},{"av":"AV31TFSupplierAgbTypeName","fld":"vTFSUPPLIERAGBTYPENAME"},{"av":"AV32TFSupplierAgbTypeName_Sel","fld":"vTFSUPPLIERAGBTYPENAME_SEL"},{"av":"AV33TFSupplierAgbContactName","fld":"vTFSUPPLIERAGBCONTACTNAME"},{"av":"AV34TFSupplierAgbContactName_Sel","fld":"vTFSUPPLIERAGBCONTACTNAME_SEL"},{"av":"AV35TFSupplierAgbPhone","fld":"vTFSUPPLIERAGBPHONE"},{"av":"AV36TFSupplierAgbPhone_Sel","fld":"vTFSUPPLIERAGBPHONE_SEL"},{"av":"AV37TFSupplierAgbEmail","fld":"vTFSUPPLIERAGBEMAIL"},{"av":"AV38TFSupplierAgbEmail_Sel","fld":"vTFSUPPLIERAGBEMAIL_SEL"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV46IsAuthorized_SupplierAgbName","fld":"vISAUTHORIZED_SUPPLIERAGBNAME","hsh":true},{"av":"Gridpaginationbar_Rowsperpageselectedvalue","ctrl":"GRIDPAGINATIONBAR","prop":"RowsPerPageSelectedValue"}]""");
+         setEventMetadata("GRIDPAGINATIONBAR.CHANGEPAGE","""{"handler":"E12782","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV20OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV21OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV22FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV74Pgmname","fld":"vPGMNAME","hsh":true},{"av":"A430PreferredAgbOrganisationId","fld":"PREFERREDAGBORGANISATIONID"},{"av":"AV64OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A425PreferredSupplierAgbId","fld":"PREFERREDSUPPLIERAGBID"},{"av":"AV29TFSupplierAgbName","fld":"vTFSUPPLIERAGBNAME"},{"av":"AV62TFSupplierAgbNameOperator","fld":"vTFSUPPLIERAGBNAMEOPERATOR","pic":"ZZZ9"},{"av":"AV30TFSupplierAgbName_Sel","fld":"vTFSUPPLIERAGBNAME_SEL"},{"av":"AV31TFSupplierAgbTypeName","fld":"vTFSUPPLIERAGBTYPENAME"},{"av":"AV32TFSupplierAgbTypeName_Sel","fld":"vTFSUPPLIERAGBTYPENAME_SEL"},{"av":"AV33TFSupplierAgbContactName","fld":"vTFSUPPLIERAGBCONTACTNAME"},{"av":"AV34TFSupplierAgbContactName_Sel","fld":"vTFSUPPLIERAGBCONTACTNAME_SEL"},{"av":"AV35TFSupplierAgbPhone","fld":"vTFSUPPLIERAGBPHONE"},{"av":"AV36TFSupplierAgbPhone_Sel","fld":"vTFSUPPLIERAGBPHONE_SEL"},{"av":"AV37TFSupplierAgbEmail","fld":"vTFSUPPLIERAGBEMAIL"},{"av":"AV38TFSupplierAgbEmail_Sel","fld":"vTFSUPPLIERAGBEMAIL_SEL"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV46IsAuthorized_SupplierAgbName","fld":"vISAUTHORIZED_SUPPLIERAGBNAME","hsh":true},{"av":"Gridpaginationbar_Selectedpage","ctrl":"GRIDPAGINATIONBAR","prop":"SelectedPage"}]}""");
+         setEventMetadata("GRIDPAGINATIONBAR.CHANGEROWSPERPAGE","""{"handler":"E13782","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV20OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV21OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV22FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV74Pgmname","fld":"vPGMNAME","hsh":true},{"av":"A430PreferredAgbOrganisationId","fld":"PREFERREDAGBORGANISATIONID"},{"av":"AV64OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A425PreferredSupplierAgbId","fld":"PREFERREDSUPPLIERAGBID"},{"av":"AV29TFSupplierAgbName","fld":"vTFSUPPLIERAGBNAME"},{"av":"AV62TFSupplierAgbNameOperator","fld":"vTFSUPPLIERAGBNAMEOPERATOR","pic":"ZZZ9"},{"av":"AV30TFSupplierAgbName_Sel","fld":"vTFSUPPLIERAGBNAME_SEL"},{"av":"AV31TFSupplierAgbTypeName","fld":"vTFSUPPLIERAGBTYPENAME"},{"av":"AV32TFSupplierAgbTypeName_Sel","fld":"vTFSUPPLIERAGBTYPENAME_SEL"},{"av":"AV33TFSupplierAgbContactName","fld":"vTFSUPPLIERAGBCONTACTNAME"},{"av":"AV34TFSupplierAgbContactName_Sel","fld":"vTFSUPPLIERAGBCONTACTNAME_SEL"},{"av":"AV35TFSupplierAgbPhone","fld":"vTFSUPPLIERAGBPHONE"},{"av":"AV36TFSupplierAgbPhone_Sel","fld":"vTFSUPPLIERAGBPHONE_SEL"},{"av":"AV37TFSupplierAgbEmail","fld":"vTFSUPPLIERAGBEMAIL"},{"av":"AV38TFSupplierAgbEmail_Sel","fld":"vTFSUPPLIERAGBEMAIL_SEL"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV46IsAuthorized_SupplierAgbName","fld":"vISAUTHORIZED_SUPPLIERAGBNAME","hsh":true},{"av":"Gridpaginationbar_Rowsperpageselectedvalue","ctrl":"GRIDPAGINATIONBAR","prop":"RowsPerPageSelectedValue"}]""");
          setEventMetadata("GRIDPAGINATIONBAR.CHANGEROWSPERPAGE",""","oparms":[{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"}]}""");
-         setEventMetadata("DDO_GRID.ONOPTIONCLICKED","""{"handler":"E15782","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV20OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV21OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV22FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV72Pgmname","fld":"vPGMNAME","hsh":true},{"av":"A430PreferredAgbOrganisationId","fld":"PREFERREDAGBORGANISATIONID"},{"av":"AV64OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A425PreferredSupplierAgbId","fld":"PREFERREDSUPPLIERAGBID"},{"av":"AV29TFSupplierAgbName","fld":"vTFSUPPLIERAGBNAME"},{"av":"AV62TFSupplierAgbNameOperator","fld":"vTFSUPPLIERAGBNAMEOPERATOR","pic":"ZZZ9"},{"av":"AV30TFSupplierAgbName_Sel","fld":"vTFSUPPLIERAGBNAME_SEL"},{"av":"AV31TFSupplierAgbTypeName","fld":"vTFSUPPLIERAGBTYPENAME"},{"av":"AV32TFSupplierAgbTypeName_Sel","fld":"vTFSUPPLIERAGBTYPENAME_SEL"},{"av":"AV33TFSupplierAgbContactName","fld":"vTFSUPPLIERAGBCONTACTNAME"},{"av":"AV34TFSupplierAgbContactName_Sel","fld":"vTFSUPPLIERAGBCONTACTNAME_SEL"},{"av":"AV35TFSupplierAgbPhone","fld":"vTFSUPPLIERAGBPHONE"},{"av":"AV36TFSupplierAgbPhone_Sel","fld":"vTFSUPPLIERAGBPHONE_SEL"},{"av":"AV37TFSupplierAgbEmail","fld":"vTFSUPPLIERAGBEMAIL"},{"av":"AV38TFSupplierAgbEmail_Sel","fld":"vTFSUPPLIERAGBEMAIL_SEL"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV46IsAuthorized_SupplierAgbName","fld":"vISAUTHORIZED_SUPPLIERAGBNAME","hsh":true},{"av":"Ddo_grid_Activeeventkey","ctrl":"DDO_GRID","prop":"ActiveEventKey"},{"av":"Ddo_grid_Selectedvalue_get","ctrl":"DDO_GRID","prop":"SelectedValue_get"},{"av":"Ddo_grid_Selectedcolumn","ctrl":"DDO_GRID","prop":"SelectedColumn"},{"av":"Ddo_grid_Selectedcolumnfixedfilter","ctrl":"DDO_GRID","prop":"SelectedColumnFixedFilter"},{"av":"Ddo_grid_Filteredtext_get","ctrl":"DDO_GRID","prop":"FilteredText_get"}]""");
+         setEventMetadata("DDO_GRID.ONOPTIONCLICKED","""{"handler":"E15782","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV20OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV21OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV22FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV74Pgmname","fld":"vPGMNAME","hsh":true},{"av":"A430PreferredAgbOrganisationId","fld":"PREFERREDAGBORGANISATIONID"},{"av":"AV64OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A425PreferredSupplierAgbId","fld":"PREFERREDSUPPLIERAGBID"},{"av":"AV29TFSupplierAgbName","fld":"vTFSUPPLIERAGBNAME"},{"av":"AV62TFSupplierAgbNameOperator","fld":"vTFSUPPLIERAGBNAMEOPERATOR","pic":"ZZZ9"},{"av":"AV30TFSupplierAgbName_Sel","fld":"vTFSUPPLIERAGBNAME_SEL"},{"av":"AV31TFSupplierAgbTypeName","fld":"vTFSUPPLIERAGBTYPENAME"},{"av":"AV32TFSupplierAgbTypeName_Sel","fld":"vTFSUPPLIERAGBTYPENAME_SEL"},{"av":"AV33TFSupplierAgbContactName","fld":"vTFSUPPLIERAGBCONTACTNAME"},{"av":"AV34TFSupplierAgbContactName_Sel","fld":"vTFSUPPLIERAGBCONTACTNAME_SEL"},{"av":"AV35TFSupplierAgbPhone","fld":"vTFSUPPLIERAGBPHONE"},{"av":"AV36TFSupplierAgbPhone_Sel","fld":"vTFSUPPLIERAGBPHONE_SEL"},{"av":"AV37TFSupplierAgbEmail","fld":"vTFSUPPLIERAGBEMAIL"},{"av":"AV38TFSupplierAgbEmail_Sel","fld":"vTFSUPPLIERAGBEMAIL_SEL"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV46IsAuthorized_SupplierAgbName","fld":"vISAUTHORIZED_SUPPLIERAGBNAME","hsh":true},{"av":"Ddo_grid_Activeeventkey","ctrl":"DDO_GRID","prop":"ActiveEventKey"},{"av":"Ddo_grid_Selectedvalue_get","ctrl":"DDO_GRID","prop":"SelectedValue_get"},{"av":"Ddo_grid_Selectedcolumn","ctrl":"DDO_GRID","prop":"SelectedColumn"},{"av":"Ddo_grid_Selectedcolumnfixedfilter","ctrl":"DDO_GRID","prop":"SelectedColumnFixedFilter"},{"av":"Ddo_grid_Filteredtext_get","ctrl":"DDO_GRID","prop":"FilteredText_get"}]""");
          setEventMetadata("DDO_GRID.ONOPTIONCLICKED",""","oparms":[{"av":"AV20OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV21OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV62TFSupplierAgbNameOperator","fld":"vTFSUPPLIERAGBNAMEOPERATOR","pic":"ZZZ9"},{"av":"AV29TFSupplierAgbName","fld":"vTFSUPPLIERAGBNAME"},{"av":"AV30TFSupplierAgbName_Sel","fld":"vTFSUPPLIERAGBNAME_SEL"},{"av":"AV31TFSupplierAgbTypeName","fld":"vTFSUPPLIERAGBTYPENAME"},{"av":"AV32TFSupplierAgbTypeName_Sel","fld":"vTFSUPPLIERAGBTYPENAME_SEL"},{"av":"AV33TFSupplierAgbContactName","fld":"vTFSUPPLIERAGBCONTACTNAME"},{"av":"AV34TFSupplierAgbContactName_Sel","fld":"vTFSUPPLIERAGBCONTACTNAME_SEL"},{"av":"AV35TFSupplierAgbPhone","fld":"vTFSUPPLIERAGBPHONE"},{"av":"AV36TFSupplierAgbPhone_Sel","fld":"vTFSUPPLIERAGBPHONE_SEL"},{"av":"AV37TFSupplierAgbEmail","fld":"vTFSUPPLIERAGBEMAIL"},{"av":"AV38TFSupplierAgbEmail_Sel","fld":"vTFSUPPLIERAGBEMAIL_SEL"},{"av":"Ddo_grid_Sortedstatus","ctrl":"DDO_GRID","prop":"SortedStatus"}]}""");
          setEventMetadata("GRID.LOAD","""{"handler":"E19782","iparms":[{"av":"A332SupplierAGBAddressCountry","fld":"SUPPLIERAGBADDRESSCOUNTRY"},{"av":"A299SupplierAgbAddressCity","fld":"SUPPLIERAGBADDRESSCITY"},{"av":"A298SupplierAgbAddressZipCode","fld":"SUPPLIERAGBADDRESSZIPCODE"},{"av":"A333SupplierAgbAddressLine1","fld":"SUPPLIERAGBADDRESSLINE1"},{"av":"A334SupplierAgbAddressLine2","fld":"SUPPLIERAGBADDRESSLINE2"},{"av":"A49SupplierAgbId","fld":"SUPPLIERAGBID","hsh":true},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV46IsAuthorized_SupplierAgbName","fld":"vISAUTHORIZED_SUPPLIERAGBNAME","hsh":true},{"av":"A51SupplierAgbName","fld":"SUPPLIERAGBNAME"}]""");
          setEventMetadata("GRID.LOAD",""","oparms":[{"av":"AV24SupplierAddress","fld":"vSUPPLIERADDRESS"},{"av":"AV23isSelected","fld":"vISSELECTED"},{"av":"AV59SupplierStatus","fld":"vSUPPLIERSTATUS"},{"av":"cmbavActiongroup"},{"av":"AV66ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"edtavSupplieragbnamewithtags_Link","ctrl":"vSUPPLIERAGBNAMEWITHTAGS","prop":"Link"},{"av":"edtavSupplierstatus_Columnclass","ctrl":"vSUPPLIERSTATUS","prop":"Columnclass"},{"av":"AV63SupplierAgbNameWithTags","fld":"vSUPPLIERAGBNAMEWITHTAGS"}]}""");
-         setEventMetadata("DDO_GRIDCOLUMNSSELECTOR.ONCOLUMNSCHANGED","""{"handler":"E16782","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV20OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV21OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV22FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV72Pgmname","fld":"vPGMNAME","hsh":true},{"av":"A430PreferredAgbOrganisationId","fld":"PREFERREDAGBORGANISATIONID"},{"av":"AV64OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A425PreferredSupplierAgbId","fld":"PREFERREDSUPPLIERAGBID"},{"av":"AV29TFSupplierAgbName","fld":"vTFSUPPLIERAGBNAME"},{"av":"AV62TFSupplierAgbNameOperator","fld":"vTFSUPPLIERAGBNAMEOPERATOR","pic":"ZZZ9"},{"av":"AV30TFSupplierAgbName_Sel","fld":"vTFSUPPLIERAGBNAME_SEL"},{"av":"AV31TFSupplierAgbTypeName","fld":"vTFSUPPLIERAGBTYPENAME"},{"av":"AV32TFSupplierAgbTypeName_Sel","fld":"vTFSUPPLIERAGBTYPENAME_SEL"},{"av":"AV33TFSupplierAgbContactName","fld":"vTFSUPPLIERAGBCONTACTNAME"},{"av":"AV34TFSupplierAgbContactName_Sel","fld":"vTFSUPPLIERAGBCONTACTNAME_SEL"},{"av":"AV35TFSupplierAgbPhone","fld":"vTFSUPPLIERAGBPHONE"},{"av":"AV36TFSupplierAgbPhone_Sel","fld":"vTFSUPPLIERAGBPHONE_SEL"},{"av":"AV37TFSupplierAgbEmail","fld":"vTFSUPPLIERAGBEMAIL"},{"av":"AV38TFSupplierAgbEmail_Sel","fld":"vTFSUPPLIERAGBEMAIL_SEL"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV46IsAuthorized_SupplierAgbName","fld":"vISAUTHORIZED_SUPPLIERAGBNAME","hsh":true},{"av":"Ddo_gridcolumnsselector_Columnsselectorvalues","ctrl":"DDO_GRIDCOLUMNSSELECTOR","prop":"ColumnsSelectorValues"}]""");
+         setEventMetadata("DDO_GRIDCOLUMNSSELECTOR.ONCOLUMNSCHANGED","""{"handler":"E16782","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV20OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV21OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV22FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV74Pgmname","fld":"vPGMNAME","hsh":true},{"av":"A430PreferredAgbOrganisationId","fld":"PREFERREDAGBORGANISATIONID"},{"av":"AV64OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A425PreferredSupplierAgbId","fld":"PREFERREDSUPPLIERAGBID"},{"av":"AV29TFSupplierAgbName","fld":"vTFSUPPLIERAGBNAME"},{"av":"AV62TFSupplierAgbNameOperator","fld":"vTFSUPPLIERAGBNAMEOPERATOR","pic":"ZZZ9"},{"av":"AV30TFSupplierAgbName_Sel","fld":"vTFSUPPLIERAGBNAME_SEL"},{"av":"AV31TFSupplierAgbTypeName","fld":"vTFSUPPLIERAGBTYPENAME"},{"av":"AV32TFSupplierAgbTypeName_Sel","fld":"vTFSUPPLIERAGBTYPENAME_SEL"},{"av":"AV33TFSupplierAgbContactName","fld":"vTFSUPPLIERAGBCONTACTNAME"},{"av":"AV34TFSupplierAgbContactName_Sel","fld":"vTFSUPPLIERAGBCONTACTNAME_SEL"},{"av":"AV35TFSupplierAgbPhone","fld":"vTFSUPPLIERAGBPHONE"},{"av":"AV36TFSupplierAgbPhone_Sel","fld":"vTFSUPPLIERAGBPHONE_SEL"},{"av":"AV37TFSupplierAgbEmail","fld":"vTFSUPPLIERAGBEMAIL"},{"av":"AV38TFSupplierAgbEmail_Sel","fld":"vTFSUPPLIERAGBEMAIL_SEL"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV46IsAuthorized_SupplierAgbName","fld":"vISAUTHORIZED_SUPPLIERAGBNAME","hsh":true},{"av":"Ddo_gridcolumnsselector_Columnsselectorvalues","ctrl":"DDO_GRIDCOLUMNSSELECTOR","prop":"ColumnsSelectorValues"}]""");
          setEventMetadata("DDO_GRIDCOLUMNSSELECTOR.ONCOLUMNSCHANGED",""","oparms":[{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"chkavIsselected.Visible","ctrl":"vISSELECTED","prop":"Visible"},{"av":"edtavSupplieragbnamewithtags_Visible","ctrl":"vSUPPLIERAGBNAMEWITHTAGS","prop":"Visible"},{"av":"edtSupplierAgbTypeName_Visible","ctrl":"SUPPLIERAGBTYPENAME","prop":"Visible"},{"av":"edtSupplierAgbContactName_Visible","ctrl":"SUPPLIERAGBCONTACTNAME","prop":"Visible"},{"av":"edtSupplierAgbPhone_Visible","ctrl":"SUPPLIERAGBPHONE","prop":"Visible"},{"av":"edtSupplierAgbEmail_Visible","ctrl":"SUPPLIERAGBEMAIL","prop":"Visible"},{"av":"edtavSupplieraddress_Visible","ctrl":"vSUPPLIERADDRESS","prop":"Visible"},{"av":"AV43GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV44GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV45GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV26ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV18GridState","fld":"vGRIDSTATE"}]}""");
-         setEventMetadata("DDO_MANAGEFILTERS.ONOPTIONCLICKED","""{"handler":"E11782","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV20OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV21OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV22FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV72Pgmname","fld":"vPGMNAME","hsh":true},{"av":"A430PreferredAgbOrganisationId","fld":"PREFERREDAGBORGANISATIONID"},{"av":"AV64OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A425PreferredSupplierAgbId","fld":"PREFERREDSUPPLIERAGBID"},{"av":"AV29TFSupplierAgbName","fld":"vTFSUPPLIERAGBNAME"},{"av":"AV62TFSupplierAgbNameOperator","fld":"vTFSUPPLIERAGBNAMEOPERATOR","pic":"ZZZ9"},{"av":"AV30TFSupplierAgbName_Sel","fld":"vTFSUPPLIERAGBNAME_SEL"},{"av":"AV31TFSupplierAgbTypeName","fld":"vTFSUPPLIERAGBTYPENAME"},{"av":"AV32TFSupplierAgbTypeName_Sel","fld":"vTFSUPPLIERAGBTYPENAME_SEL"},{"av":"AV33TFSupplierAgbContactName","fld":"vTFSUPPLIERAGBCONTACTNAME"},{"av":"AV34TFSupplierAgbContactName_Sel","fld":"vTFSUPPLIERAGBCONTACTNAME_SEL"},{"av":"AV35TFSupplierAgbPhone","fld":"vTFSUPPLIERAGBPHONE"},{"av":"AV36TFSupplierAgbPhone_Sel","fld":"vTFSUPPLIERAGBPHONE_SEL"},{"av":"AV37TFSupplierAgbEmail","fld":"vTFSUPPLIERAGBEMAIL"},{"av":"AV38TFSupplierAgbEmail_Sel","fld":"vTFSUPPLIERAGBEMAIL_SEL"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV46IsAuthorized_SupplierAgbName","fld":"vISAUTHORIZED_SUPPLIERAGBNAME","hsh":true},{"av":"Ddo_managefilters_Activeeventkey","ctrl":"DDO_MANAGEFILTERS","prop":"ActiveEventKey"},{"av":"AV18GridState","fld":"vGRIDSTATE"}]""");
+         setEventMetadata("DDO_MANAGEFILTERS.ONOPTIONCLICKED","""{"handler":"E11782","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV20OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV21OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV22FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV74Pgmname","fld":"vPGMNAME","hsh":true},{"av":"A430PreferredAgbOrganisationId","fld":"PREFERREDAGBORGANISATIONID"},{"av":"AV64OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A425PreferredSupplierAgbId","fld":"PREFERREDSUPPLIERAGBID"},{"av":"AV29TFSupplierAgbName","fld":"vTFSUPPLIERAGBNAME"},{"av":"AV62TFSupplierAgbNameOperator","fld":"vTFSUPPLIERAGBNAMEOPERATOR","pic":"ZZZ9"},{"av":"AV30TFSupplierAgbName_Sel","fld":"vTFSUPPLIERAGBNAME_SEL"},{"av":"AV31TFSupplierAgbTypeName","fld":"vTFSUPPLIERAGBTYPENAME"},{"av":"AV32TFSupplierAgbTypeName_Sel","fld":"vTFSUPPLIERAGBTYPENAME_SEL"},{"av":"AV33TFSupplierAgbContactName","fld":"vTFSUPPLIERAGBCONTACTNAME"},{"av":"AV34TFSupplierAgbContactName_Sel","fld":"vTFSUPPLIERAGBCONTACTNAME_SEL"},{"av":"AV35TFSupplierAgbPhone","fld":"vTFSUPPLIERAGBPHONE"},{"av":"AV36TFSupplierAgbPhone_Sel","fld":"vTFSUPPLIERAGBPHONE_SEL"},{"av":"AV37TFSupplierAgbEmail","fld":"vTFSUPPLIERAGBEMAIL"},{"av":"AV38TFSupplierAgbEmail_Sel","fld":"vTFSUPPLIERAGBEMAIL_SEL"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV46IsAuthorized_SupplierAgbName","fld":"vISAUTHORIZED_SUPPLIERAGBNAME","hsh":true},{"av":"Ddo_managefilters_Activeeventkey","ctrl":"DDO_MANAGEFILTERS","prop":"ActiveEventKey"},{"av":"AV18GridState","fld":"vGRIDSTATE"}]""");
          setEventMetadata("DDO_MANAGEFILTERS.ONOPTIONCLICKED",""","oparms":[{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV18GridState","fld":"vGRIDSTATE"},{"av":"AV20OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV21OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV22FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV29TFSupplierAgbName","fld":"vTFSUPPLIERAGBNAME"},{"av":"AV30TFSupplierAgbName_Sel","fld":"vTFSUPPLIERAGBNAME_SEL"},{"av":"AV62TFSupplierAgbNameOperator","fld":"vTFSUPPLIERAGBNAMEOPERATOR","pic":"ZZZ9"},{"av":"Ddo_grid_Selectedfixedfilter","ctrl":"DDO_GRID","prop":"SelectedFixedFilter"},{"av":"AV31TFSupplierAgbTypeName","fld":"vTFSUPPLIERAGBTYPENAME"},{"av":"AV32TFSupplierAgbTypeName_Sel","fld":"vTFSUPPLIERAGBTYPENAME_SEL"},{"av":"AV33TFSupplierAgbContactName","fld":"vTFSUPPLIERAGBCONTACTNAME"},{"av":"AV34TFSupplierAgbContactName_Sel","fld":"vTFSUPPLIERAGBCONTACTNAME_SEL"},{"av":"AV35TFSupplierAgbPhone","fld":"vTFSUPPLIERAGBPHONE"},{"av":"AV36TFSupplierAgbPhone_Sel","fld":"vTFSUPPLIERAGBPHONE_SEL"},{"av":"AV37TFSupplierAgbEmail","fld":"vTFSUPPLIERAGBEMAIL"},{"av":"AV38TFSupplierAgbEmail_Sel","fld":"vTFSUPPLIERAGBEMAIL_SEL"},{"av":"Ddo_grid_Selectedvalue_set","ctrl":"DDO_GRID","prop":"SelectedValue_set"},{"av":"Ddo_grid_Filteredtext_set","ctrl":"DDO_GRID","prop":"FilteredText_set"},{"av":"Ddo_grid_Sortedstatus","ctrl":"DDO_GRID","prop":"SortedStatus"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"chkavIsselected.Visible","ctrl":"vISSELECTED","prop":"Visible"},{"av":"edtavSupplieragbnamewithtags_Visible","ctrl":"vSUPPLIERAGBNAMEWITHTAGS","prop":"Visible"},{"av":"edtSupplierAgbTypeName_Visible","ctrl":"SUPPLIERAGBTYPENAME","prop":"Visible"},{"av":"edtSupplierAgbContactName_Visible","ctrl":"SUPPLIERAGBCONTACTNAME","prop":"Visible"},{"av":"edtSupplierAgbPhone_Visible","ctrl":"SUPPLIERAGBPHONE","prop":"Visible"},{"av":"edtSupplierAgbEmail_Visible","ctrl":"SUPPLIERAGBEMAIL","prop":"Visible"},{"av":"edtavSupplieraddress_Visible","ctrl":"vSUPPLIERADDRESS","prop":"Visible"},{"av":"AV43GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV44GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV45GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV26ManageFiltersData","fld":"vMANAGEFILTERSDATA"}]}""");
-         setEventMetadata("VACTIONGROUP.CLICK","""{"handler":"E20782","iparms":[{"av":"cmbavActiongroup"},{"av":"AV66ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV20OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV21OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV22FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV72Pgmname","fld":"vPGMNAME","hsh":true},{"av":"A430PreferredAgbOrganisationId","fld":"PREFERREDAGBORGANISATIONID"},{"av":"AV64OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A425PreferredSupplierAgbId","fld":"PREFERREDSUPPLIERAGBID"},{"av":"AV29TFSupplierAgbName","fld":"vTFSUPPLIERAGBNAME"},{"av":"AV62TFSupplierAgbNameOperator","fld":"vTFSUPPLIERAGBNAMEOPERATOR","pic":"ZZZ9"},{"av":"AV30TFSupplierAgbName_Sel","fld":"vTFSUPPLIERAGBNAME_SEL"},{"av":"AV31TFSupplierAgbTypeName","fld":"vTFSUPPLIERAGBTYPENAME"},{"av":"AV32TFSupplierAgbTypeName_Sel","fld":"vTFSUPPLIERAGBTYPENAME_SEL"},{"av":"AV33TFSupplierAgbContactName","fld":"vTFSUPPLIERAGBCONTACTNAME"},{"av":"AV34TFSupplierAgbContactName_Sel","fld":"vTFSUPPLIERAGBCONTACTNAME_SEL"},{"av":"AV35TFSupplierAgbPhone","fld":"vTFSUPPLIERAGBPHONE"},{"av":"AV36TFSupplierAgbPhone_Sel","fld":"vTFSUPPLIERAGBPHONE_SEL"},{"av":"AV37TFSupplierAgbEmail","fld":"vTFSUPPLIERAGBEMAIL"},{"av":"AV38TFSupplierAgbEmail_Sel","fld":"vTFSUPPLIERAGBEMAIL_SEL"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV46IsAuthorized_SupplierAgbName","fld":"vISAUTHORIZED_SUPPLIERAGBNAME","hsh":true},{"av":"A49SupplierAgbId","fld":"SUPPLIERAGBID","hsh":true}]""");
+         setEventMetadata("VACTIONGROUP.CLICK","""{"handler":"E20782","iparms":[{"av":"cmbavActiongroup"},{"av":"AV66ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV20OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV21OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV22FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV74Pgmname","fld":"vPGMNAME","hsh":true},{"av":"A430PreferredAgbOrganisationId","fld":"PREFERREDAGBORGANISATIONID"},{"av":"AV64OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A425PreferredSupplierAgbId","fld":"PREFERREDSUPPLIERAGBID"},{"av":"AV29TFSupplierAgbName","fld":"vTFSUPPLIERAGBNAME"},{"av":"AV62TFSupplierAgbNameOperator","fld":"vTFSUPPLIERAGBNAMEOPERATOR","pic":"ZZZ9"},{"av":"AV30TFSupplierAgbName_Sel","fld":"vTFSUPPLIERAGBNAME_SEL"},{"av":"AV31TFSupplierAgbTypeName","fld":"vTFSUPPLIERAGBTYPENAME"},{"av":"AV32TFSupplierAgbTypeName_Sel","fld":"vTFSUPPLIERAGBTYPENAME_SEL"},{"av":"AV33TFSupplierAgbContactName","fld":"vTFSUPPLIERAGBCONTACTNAME"},{"av":"AV34TFSupplierAgbContactName_Sel","fld":"vTFSUPPLIERAGBCONTACTNAME_SEL"},{"av":"AV35TFSupplierAgbPhone","fld":"vTFSUPPLIERAGBPHONE"},{"av":"AV36TFSupplierAgbPhone_Sel","fld":"vTFSUPPLIERAGBPHONE_SEL"},{"av":"AV37TFSupplierAgbEmail","fld":"vTFSUPPLIERAGBEMAIL"},{"av":"AV38TFSupplierAgbEmail_Sel","fld":"vTFSUPPLIERAGBEMAIL_SEL"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV46IsAuthorized_SupplierAgbName","fld":"vISAUTHORIZED_SUPPLIERAGBNAME","hsh":true},{"av":"A49SupplierAgbId","fld":"SUPPLIERAGBID","hsh":true}]""");
          setEventMetadata("VACTIONGROUP.CLICK",""","oparms":[{"av":"cmbavActiongroup"},{"av":"AV66ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"chkavIsselected.Visible","ctrl":"vISSELECTED","prop":"Visible"},{"av":"edtavSupplieragbnamewithtags_Visible","ctrl":"vSUPPLIERAGBNAMEWITHTAGS","prop":"Visible"},{"av":"edtSupplierAgbTypeName_Visible","ctrl":"SUPPLIERAGBTYPENAME","prop":"Visible"},{"av":"edtSupplierAgbContactName_Visible","ctrl":"SUPPLIERAGBCONTACTNAME","prop":"Visible"},{"av":"edtSupplierAgbPhone_Visible","ctrl":"SUPPLIERAGBPHONE","prop":"Visible"},{"av":"edtSupplierAgbEmail_Visible","ctrl":"SUPPLIERAGBEMAIL","prop":"Visible"},{"av":"edtavSupplieraddress_Visible","ctrl":"vSUPPLIERADDRESS","prop":"Visible"},{"av":"AV43GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV44GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV45GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV26ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV18GridState","fld":"vGRIDSTATE"}]}""");
          setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT","""{"handler":"E14782","iparms":[]""");
          setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT",""","oparms":[{"ctrl":"WWPAUX_WC"}]}""");
-         setEventMetadata("VISSELECTED.CLICK","""{"handler":"E21782","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV20OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV21OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV22FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV72Pgmname","fld":"vPGMNAME","hsh":true},{"av":"A430PreferredAgbOrganisationId","fld":"PREFERREDAGBORGANISATIONID"},{"av":"AV64OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A425PreferredSupplierAgbId","fld":"PREFERREDSUPPLIERAGBID"},{"av":"AV29TFSupplierAgbName","fld":"vTFSUPPLIERAGBNAME"},{"av":"AV62TFSupplierAgbNameOperator","fld":"vTFSUPPLIERAGBNAMEOPERATOR","pic":"ZZZ9"},{"av":"AV30TFSupplierAgbName_Sel","fld":"vTFSUPPLIERAGBNAME_SEL"},{"av":"AV31TFSupplierAgbTypeName","fld":"vTFSUPPLIERAGBTYPENAME"},{"av":"AV32TFSupplierAgbTypeName_Sel","fld":"vTFSUPPLIERAGBTYPENAME_SEL"},{"av":"AV33TFSupplierAgbContactName","fld":"vTFSUPPLIERAGBCONTACTNAME"},{"av":"AV34TFSupplierAgbContactName_Sel","fld":"vTFSUPPLIERAGBCONTACTNAME_SEL"},{"av":"AV35TFSupplierAgbPhone","fld":"vTFSUPPLIERAGBPHONE"},{"av":"AV36TFSupplierAgbPhone_Sel","fld":"vTFSUPPLIERAGBPHONE_SEL"},{"av":"AV37TFSupplierAgbEmail","fld":"vTFSUPPLIERAGBEMAIL"},{"av":"AV38TFSupplierAgbEmail_Sel","fld":"vTFSUPPLIERAGBEMAIL_SEL"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV46IsAuthorized_SupplierAgbName","fld":"vISAUTHORIZED_SUPPLIERAGBNAME","hsh":true},{"av":"AV23isSelected","fld":"vISSELECTED"},{"av":"AV56Trn_PreferredAgbSupplier","fld":"vTRN_PREFERREDAGBSUPPLIER"},{"av":"A49SupplierAgbId","fld":"SUPPLIERAGBID","hsh":true},{"av":"A428PreferredAgbSupplierId","fld":"PREFERREDAGBSUPPLIERID"}]""");
+         setEventMetadata("VISSELECTED.CLICK","""{"handler":"E21782","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV20OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV21OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV22FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV74Pgmname","fld":"vPGMNAME","hsh":true},{"av":"A430PreferredAgbOrganisationId","fld":"PREFERREDAGBORGANISATIONID"},{"av":"AV64OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A425PreferredSupplierAgbId","fld":"PREFERREDSUPPLIERAGBID"},{"av":"AV29TFSupplierAgbName","fld":"vTFSUPPLIERAGBNAME"},{"av":"AV62TFSupplierAgbNameOperator","fld":"vTFSUPPLIERAGBNAMEOPERATOR","pic":"ZZZ9"},{"av":"AV30TFSupplierAgbName_Sel","fld":"vTFSUPPLIERAGBNAME_SEL"},{"av":"AV31TFSupplierAgbTypeName","fld":"vTFSUPPLIERAGBTYPENAME"},{"av":"AV32TFSupplierAgbTypeName_Sel","fld":"vTFSUPPLIERAGBTYPENAME_SEL"},{"av":"AV33TFSupplierAgbContactName","fld":"vTFSUPPLIERAGBCONTACTNAME"},{"av":"AV34TFSupplierAgbContactName_Sel","fld":"vTFSUPPLIERAGBCONTACTNAME_SEL"},{"av":"AV35TFSupplierAgbPhone","fld":"vTFSUPPLIERAGBPHONE"},{"av":"AV36TFSupplierAgbPhone_Sel","fld":"vTFSUPPLIERAGBPHONE_SEL"},{"av":"AV37TFSupplierAgbEmail","fld":"vTFSUPPLIERAGBEMAIL"},{"av":"AV38TFSupplierAgbEmail_Sel","fld":"vTFSUPPLIERAGBEMAIL_SEL"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV46IsAuthorized_SupplierAgbName","fld":"vISAUTHORIZED_SUPPLIERAGBNAME","hsh":true},{"av":"AV23isSelected","fld":"vISSELECTED"},{"av":"AV56Trn_PreferredAgbSupplier","fld":"vTRN_PREFERREDAGBSUPPLIER"},{"av":"A49SupplierAgbId","fld":"SUPPLIERAGBID","hsh":true},{"av":"A428PreferredAgbSupplierId","fld":"PREFERREDAGBSUPPLIERID"}]""");
          setEventMetadata("VISSELECTED.CLICK",""","oparms":[{"av":"AV56Trn_PreferredAgbSupplier","fld":"vTRN_PREFERREDAGBSUPPLIER"},{"av":"AV28ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV70ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"chkavIsselected.Visible","ctrl":"vISSELECTED","prop":"Visible"},{"av":"edtavSupplieragbnamewithtags_Visible","ctrl":"vSUPPLIERAGBNAMEWITHTAGS","prop":"Visible"},{"av":"edtSupplierAgbTypeName_Visible","ctrl":"SUPPLIERAGBTYPENAME","prop":"Visible"},{"av":"edtSupplierAgbContactName_Visible","ctrl":"SUPPLIERAGBCONTACTNAME","prop":"Visible"},{"av":"edtSupplierAgbPhone_Visible","ctrl":"SUPPLIERAGBPHONE","prop":"Visible"},{"av":"edtSupplierAgbEmail_Visible","ctrl":"SUPPLIERAGBEMAIL","prop":"Visible"},{"av":"edtavSupplieraddress_Visible","ctrl":"vSUPPLIERADDRESS","prop":"Visible"},{"av":"AV43GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV44GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV45GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV57PreferredSuppliers","fld":"vPREFERREDSUPPLIERS","hsh":true},{"av":"AV49IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV26ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV18GridState","fld":"vGRIDSTATE"}]}""");
          setEventMetadata("VALID_SUPPLIERAGBTYPEID","""{"handler":"Valid_Supplieragbtypeid","iparms":[]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Actiongroup","iparms":[]}""");
@@ -3580,7 +3582,7 @@ namespace GeneXus.Programs {
          gxfirstwebparm_bkp = "";
          AV22FilterFullText = "";
          AV70ColumnsSelector = new GeneXus.Programs.wwpbaseobjects.SdtWWPColumnsSelector(context);
-         AV72Pgmname = "";
+         AV74Pgmname = "";
          A430PreferredAgbOrganisationId = Guid.Empty;
          AV64OrganisationId = Guid.Empty;
          A425PreferredSupplierAgbId = Guid.Empty;
@@ -3655,23 +3657,23 @@ namespace GeneXus.Programs {
          A57SupplierAgbEmail = "";
          AV59SupplierStatus = "";
          AV24SupplierAddress = "";
-         lV74Wp_organisationagbsuppliersds_1_filterfulltext = "";
-         lV75Wp_organisationagbsuppliersds_2_tfsupplieragbname = "";
-         lV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = "";
-         lV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = "";
-         lV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone = "";
-         lV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail = "";
-         AV74Wp_organisationagbsuppliersds_1_filterfulltext = "";
-         AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel = "";
-         AV75Wp_organisationagbsuppliersds_2_tfsupplieragbname = "";
-         AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel = "";
-         AV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = "";
-         AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel = "";
-         AV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = "";
-         AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel = "";
-         AV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone = "";
-         AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel = "";
-         AV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail = "";
+         lV76Wp_organisationagbsuppliersds_1_filterfulltext = "";
+         lV77Wp_organisationagbsuppliersds_2_tfsupplieragbname = "";
+         lV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = "";
+         lV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = "";
+         lV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone = "";
+         lV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail = "";
+         AV76Wp_organisationagbsuppliersds_1_filterfulltext = "";
+         AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel = "";
+         AV77Wp_organisationagbsuppliersds_2_tfsupplieragbname = "";
+         AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel = "";
+         AV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename = "";
+         AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel = "";
+         AV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname = "";
+         AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel = "";
+         AV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone = "";
+         AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel = "";
+         AV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail = "";
          H00782_A49SupplierAgbId = new Guid[] {Guid.Empty} ;
          H00782_A57SupplierAgbEmail = new string[] {""} ;
          H00782_A378SupplierAgbPhoneNumber = new string[] {""} ;
@@ -3689,6 +3691,8 @@ namespace GeneXus.Programs {
          H00782_A283SupplierAgbTypeId = new Guid[] {Guid.Empty} ;
          H00782_A50SupplierAgbNumber = new string[] {""} ;
          H00783_AGRID_nRecordCount = new long[1] ;
+         AV72successmsg = "";
+         AV73websession = context.GetSession();
          AV15HTTPRequest = new GxHttpRequest( context);
          AV40GAMSession = new GeneXus.Programs.genexussecurity.SdtGAMSession(context);
          AV41GAMErrors = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
@@ -3749,9 +3753,9 @@ namespace GeneXus.Programs {
             }
          );
          WebComp_Wwpaux_wc = new GeneXus.Http.GXNullWebComponent();
-         AV72Pgmname = "WP_OrganisationAGBSuppliers";
+         AV74Pgmname = "WP_OrganisationAGBSuppliers";
          /* GeneXus formulas. */
-         AV72Pgmname = "WP_OrganisationAGBSuppliers";
+         AV74Pgmname = "WP_OrganisationAGBSuppliers";
          edtavSupplieragbnamewithtags_Enabled = 0;
          edtavSupplierstatus_Enabled = 0;
          edtavSupplieraddress_Enabled = 0;
@@ -3775,7 +3779,7 @@ namespace GeneXus.Programs {
       private short nDonePA ;
       private short subGrid_Backcolorstyle ;
       private short subGrid_Sortable ;
-      private short AV76Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator ;
+      private short AV78Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator ;
       private short nGXWrapped ;
       private short subGrid_Backstyle ;
       private short subGrid_Titlebackstyle ;
@@ -3819,7 +3823,7 @@ namespace GeneXus.Programs {
       private int edtSupplierAgbEmail_Visible ;
       private int edtavSupplieraddress_Visible ;
       private int AV42PageToGo ;
-      private int AV86GXV1 ;
+      private int AV88GXV1 ;
       private int idxLst ;
       private int subGrid_Backcolor ;
       private int subGrid_Allbackcolor ;
@@ -3843,7 +3847,7 @@ namespace GeneXus.Programs {
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
       private string sGXsfl_37_idx="0001" ;
-      private string AV72Pgmname ;
+      private string AV74Pgmname ;
       private string AV35TFSupplierAgbPhone ;
       private string AV36TFSupplierAgbPhone_Sel ;
       private string sDynURL ;
@@ -3878,7 +3882,6 @@ namespace GeneXus.Programs {
       private string Ddo_grid_Columnids ;
       private string Ddo_grid_Columnssortvalues ;
       private string Ddo_grid_Includesortasc ;
-      private string Ddo_grid_Fixable ;
       private string Ddo_grid_Sortedstatus ;
       private string Ddo_grid_Includefilter ;
       private string Ddo_grid_Filtertype ;
@@ -3955,9 +3958,9 @@ namespace GeneXus.Programs {
       private string edtavSupplierstatus_Internalname ;
       private string edtavSupplieraddress_Internalname ;
       private string cmbavActiongroup_Internalname ;
-      private string lV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone ;
-      private string AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel ;
-      private string AV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone ;
+      private string lV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone ;
+      private string AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel ;
+      private string AV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone ;
       private string edtavSupplieragbnamewithtags_Link ;
       private string GXEncryptionTmp ;
       private string edtavSupplierstatus_Columnclass ;
@@ -4043,20 +4046,21 @@ namespace GeneXus.Programs {
       private string A378SupplierAgbPhoneNumber ;
       private string A57SupplierAgbEmail ;
       private string AV24SupplierAddress ;
-      private string lV74Wp_organisationagbsuppliersds_1_filterfulltext ;
-      private string lV75Wp_organisationagbsuppliersds_2_tfsupplieragbname ;
-      private string lV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename ;
-      private string lV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname ;
-      private string lV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail ;
-      private string AV74Wp_organisationagbsuppliersds_1_filterfulltext ;
-      private string AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel ;
-      private string AV75Wp_organisationagbsuppliersds_2_tfsupplieragbname ;
-      private string AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel ;
-      private string AV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename ;
-      private string AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel ;
-      private string AV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname ;
-      private string AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel ;
-      private string AV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail ;
+      private string lV76Wp_organisationagbsuppliersds_1_filterfulltext ;
+      private string lV77Wp_organisationagbsuppliersds_2_tfsupplieragbname ;
+      private string lV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename ;
+      private string lV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname ;
+      private string lV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail ;
+      private string AV76Wp_organisationagbsuppliersds_1_filterfulltext ;
+      private string AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel ;
+      private string AV77Wp_organisationagbsuppliersds_2_tfsupplieragbname ;
+      private string AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel ;
+      private string AV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename ;
+      private string AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel ;
+      private string AV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname ;
+      private string AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel ;
+      private string AV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail ;
+      private string AV72successmsg ;
       private Guid A430PreferredAgbOrganisationId ;
       private Guid AV64OrganisationId ;
       private Guid A425PreferredSupplierAgbId ;
@@ -4064,6 +4068,7 @@ namespace GeneXus.Programs {
       private Guid A49SupplierAgbId ;
       private Guid A283SupplierAgbTypeId ;
       private Guid GXt_guid3 ;
+      private IGxSession AV73websession ;
       private IGxSession AV25Session ;
       private GXWebComponent WebComp_Wwpaux_wc ;
       private GXWebGrid GridContainer ;
@@ -4193,18 +4198,18 @@ namespace GeneXus.Programs {
 public class wp_organisationagbsuppliers__default : DataStoreHelperBase, IDataStoreHelper
 {
    protected Object[] conditional_H00782( IGxContext context ,
-                                          string AV74Wp_organisationagbsuppliersds_1_filterfulltext ,
-                                          string AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel ,
-                                          string AV75Wp_organisationagbsuppliersds_2_tfsupplieragbname ,
-                                          short AV76Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator ,
-                                          string AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel ,
-                                          string AV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename ,
-                                          string AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel ,
-                                          string AV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname ,
-                                          string AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel ,
-                                          string AV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone ,
-                                          string AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel ,
-                                          string AV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail ,
+                                          string AV76Wp_organisationagbsuppliersds_1_filterfulltext ,
+                                          string AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel ,
+                                          string AV77Wp_organisationagbsuppliersds_2_tfsupplieragbname ,
+                                          short AV78Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator ,
+                                          string AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel ,
+                                          string AV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename ,
+                                          string AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel ,
+                                          string AV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname ,
+                                          string AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel ,
+                                          string AV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone ,
+                                          string AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel ,
+                                          string AV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail ,
                                           string A51SupplierAgbName ,
                                           string A291SupplierAgbTypeName ,
                                           string A55SupplierAgbContactName ,
@@ -4224,9 +4229,9 @@ public class wp_organisationagbsuppliers__default : DataStoreHelperBase, IDataSt
       sSelectString = " T1.SupplierAgbId, T1.SupplierAgbEmail, T1.SupplierAgbPhoneNumber, T1.SupplierAgbPhoneCode, T1.SupplierAgbPhone, T1.SupplierAgbContactName, T1.SupplierAgbAddressLine2, T1.SupplierAgbAddressLine1, T1.SupplierAgbAddressZipCode, T1.SupplierAgbAddressCity, T1.SupplierAGBAddressCountry, T1.SupplierAgbKvkNumber, T2.SupplierAgbTypeName, T1.SupplierAgbName, T1.SupplierAgbTypeId, T1.SupplierAgbNumber";
       sFromString = " FROM (Trn_SupplierAGB T1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = T1.SupplierAgbTypeId)";
       sOrderString = "";
-      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Wp_organisationagbsuppliersds_1_filterfulltext)) )
+      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Wp_organisationagbsuppliersds_1_filterfulltext)) )
       {
-         AddWhere(sWhereString, "(( LOWER(T1.SupplierAgbName) like '%' || LOWER(:lV74Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T2.SupplierAgbTypeName) like '%' || LOWER(:lV74Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbContactName) like '%' || LOWER(:lV74Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbPhone) like '%' || LOWER(:lV74Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbEmail) like '%' || LOWER(:lV74Wp_organisationagbsuppliersds_1_filterfulltext)))");
+         AddWhere(sWhereString, "(( LOWER(T1.SupplierAgbName) like '%' || LOWER(:lV76Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T2.SupplierAgbTypeName) like '%' || LOWER(:lV76Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbContactName) like '%' || LOWER(:lV76Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbPhone) like '%' || LOWER(:lV76Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbEmail) like '%' || LOWER(:lV76Wp_organisationagbsuppliersds_1_filterfulltext)))");
       }
       else
       {
@@ -4236,27 +4241,27 @@ public class wp_organisationagbsuppliers__default : DataStoreHelperBase, IDataSt
          GXv_int10[3] = 1;
          GXv_int10[4] = 1;
       }
-      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV75Wp_organisationagbsuppliersds_2_tfsupplieragbname)) ) )
+      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV77Wp_organisationagbsuppliersds_2_tfsupplieragbname)) ) )
       {
-         AddWhere(sWhereString, "(T1.SupplierAgbName like :lV75Wp_organisationagbsuppliersds_2_tfsupplieragbname)");
+         AddWhere(sWhereString, "(T1.SupplierAgbName like :lV77Wp_organisationagbsuppliersds_2_tfsupplieragbname)");
       }
       else
       {
          GXv_int10[5] = 1;
       }
-      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel)) && ! ( StringUtil.StrCmp(AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, "<#Empty#>") == 0 ) )
+      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel)) && ! ( StringUtil.StrCmp(AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, "<#Empty#>") == 0 ) )
       {
-         AddWhere(sWhereString, "(T1.SupplierAgbName = ( :AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel))");
+         AddWhere(sWhereString, "(T1.SupplierAgbName = ( :AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel))");
       }
       else
       {
          GXv_int10[6] = 1;
       }
-      if ( StringUtil.StrCmp(AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, "<#Empty#>") == 0 )
+      if ( StringUtil.StrCmp(AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, "<#Empty#>") == 0 )
       {
          AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbName))=0))");
       }
-      if ( AV76Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator == 1 )
+      if ( AV78Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator == 1 )
       {
          AddWhere(sWhereString, "(:AV23isSelected = TRUE)");
       }
@@ -4264,83 +4269,83 @@ public class wp_organisationagbsuppliers__default : DataStoreHelperBase, IDataSt
       {
          GXv_int10[7] = 1;
       }
-      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename)) ) )
+      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename)) ) )
       {
-         AddWhere(sWhereString, "(T2.SupplierAgbTypeName like :lV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename)");
+         AddWhere(sWhereString, "(T2.SupplierAgbTypeName like :lV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename)");
       }
       else
       {
          GXv_int10[8] = 1;
       }
-      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, "<#Empty#>") == 0 ) )
+      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, "<#Empty#>") == 0 ) )
       {
-         AddWhere(sWhereString, "(T2.SupplierAgbTypeName = ( :AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel))");
+         AddWhere(sWhereString, "(T2.SupplierAgbTypeName = ( :AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel))");
       }
       else
       {
          GXv_int10[9] = 1;
       }
-      if ( StringUtil.StrCmp(AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, "<#Empty#>") == 0 )
+      if ( StringUtil.StrCmp(AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, "<#Empty#>") == 0 )
       {
          AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.SupplierAgbTypeName))=0))");
       }
-      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname)) ) )
+      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname)) ) )
       {
-         AddWhere(sWhereString, "(T1.SupplierAgbContactName like :lV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname)");
+         AddWhere(sWhereString, "(T1.SupplierAgbContactName like :lV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname)");
       }
       else
       {
          GXv_int10[10] = 1;
       }
-      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel)) && ! ( StringUtil.StrCmp(AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, "<#Empty#>") == 0 ) )
+      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel)) && ! ( StringUtil.StrCmp(AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, "<#Empty#>") == 0 ) )
       {
-         AddWhere(sWhereString, "(T1.SupplierAgbContactName = ( :AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_se))");
+         AddWhere(sWhereString, "(T1.SupplierAgbContactName = ( :AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_se))");
       }
       else
       {
          GXv_int10[11] = 1;
       }
-      if ( StringUtil.StrCmp(AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, "<#Empty#>") == 0 )
+      if ( StringUtil.StrCmp(AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, "<#Empty#>") == 0 )
       {
          AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbContactName))=0))");
       }
-      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone)) ) )
+      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone)) ) )
       {
-         AddWhere(sWhereString, "(T1.SupplierAgbPhone like :lV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone)");
+         AddWhere(sWhereString, "(T1.SupplierAgbPhone like :lV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone)");
       }
       else
       {
          GXv_int10[12] = 1;
       }
-      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel)) && ! ( StringUtil.StrCmp(AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, "<#Empty#>") == 0 ) )
+      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel)) && ! ( StringUtil.StrCmp(AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, "<#Empty#>") == 0 ) )
       {
-         AddWhere(sWhereString, "(T1.SupplierAgbPhone = ( :AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel))");
+         AddWhere(sWhereString, "(T1.SupplierAgbPhone = ( :AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel))");
       }
       else
       {
          GXv_int10[13] = 1;
       }
-      if ( StringUtil.StrCmp(AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, "<#Empty#>") == 0 )
+      if ( StringUtil.StrCmp(AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, "<#Empty#>") == 0 )
       {
          AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbPhone))=0))");
       }
-      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail)) ) )
+      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail)) ) )
       {
-         AddWhere(sWhereString, "(T1.SupplierAgbEmail like :lV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail)");
+         AddWhere(sWhereString, "(T1.SupplierAgbEmail like :lV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail)");
       }
       else
       {
          GXv_int10[14] = 1;
       }
-      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel)) && ! ( StringUtil.StrCmp(AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, "<#Empty#>") == 0 ) )
+      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel)) && ! ( StringUtil.StrCmp(AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, "<#Empty#>") == 0 ) )
       {
-         AddWhere(sWhereString, "(T1.SupplierAgbEmail = ( :AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel))");
+         AddWhere(sWhereString, "(T1.SupplierAgbEmail = ( :AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel))");
       }
       else
       {
          GXv_int10[15] = 1;
       }
-      if ( StringUtil.StrCmp(AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, "<#Empty#>") == 0 )
+      if ( StringUtil.StrCmp(AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, "<#Empty#>") == 0 )
       {
          AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbEmail))=0))");
       }
@@ -4395,18 +4400,18 @@ public class wp_organisationagbsuppliers__default : DataStoreHelperBase, IDataSt
    }
 
    protected Object[] conditional_H00783( IGxContext context ,
-                                          string AV74Wp_organisationagbsuppliersds_1_filterfulltext ,
-                                          string AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel ,
-                                          string AV75Wp_organisationagbsuppliersds_2_tfsupplieragbname ,
-                                          short AV76Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator ,
-                                          string AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel ,
-                                          string AV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename ,
-                                          string AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel ,
-                                          string AV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname ,
-                                          string AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel ,
-                                          string AV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone ,
-                                          string AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel ,
-                                          string AV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail ,
+                                          string AV76Wp_organisationagbsuppliersds_1_filterfulltext ,
+                                          string AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel ,
+                                          string AV77Wp_organisationagbsuppliersds_2_tfsupplieragbname ,
+                                          short AV78Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator ,
+                                          string AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel ,
+                                          string AV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename ,
+                                          string AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel ,
+                                          string AV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname ,
+                                          string AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel ,
+                                          string AV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone ,
+                                          string AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel ,
+                                          string AV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail ,
                                           string A51SupplierAgbName ,
                                           string A291SupplierAgbTypeName ,
                                           string A55SupplierAgbContactName ,
@@ -4421,9 +4426,9 @@ public class wp_organisationagbsuppliers__default : DataStoreHelperBase, IDataSt
       short[] GXv_int12 = new short[16];
       Object[] GXv_Object13 = new Object[2];
       scmdbuf = "SELECT COUNT(*) FROM (Trn_SupplierAGB T1 INNER JOIN Trn_SupplierAgbType T2 ON T2.SupplierAgbTypeId = T1.SupplierAgbTypeId)";
-      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV74Wp_organisationagbsuppliersds_1_filterfulltext)) )
+      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV76Wp_organisationagbsuppliersds_1_filterfulltext)) )
       {
-         AddWhere(sWhereString, "(( LOWER(T1.SupplierAgbName) like '%' || LOWER(:lV74Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T2.SupplierAgbTypeName) like '%' || LOWER(:lV74Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbContactName) like '%' || LOWER(:lV74Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbPhone) like '%' || LOWER(:lV74Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbEmail) like '%' || LOWER(:lV74Wp_organisationagbsuppliersds_1_filterfulltext)))");
+         AddWhere(sWhereString, "(( LOWER(T1.SupplierAgbName) like '%' || LOWER(:lV76Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T2.SupplierAgbTypeName) like '%' || LOWER(:lV76Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbContactName) like '%' || LOWER(:lV76Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbPhone) like '%' || LOWER(:lV76Wp_organisationagbsuppliersds_1_filterfulltext)) or ( LOWER(T1.SupplierAgbEmail) like '%' || LOWER(:lV76Wp_organisationagbsuppliersds_1_filterfulltext)))");
       }
       else
       {
@@ -4433,27 +4438,27 @@ public class wp_organisationagbsuppliers__default : DataStoreHelperBase, IDataSt
          GXv_int12[3] = 1;
          GXv_int12[4] = 1;
       }
-      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV75Wp_organisationagbsuppliersds_2_tfsupplieragbname)) ) )
+      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV77Wp_organisationagbsuppliersds_2_tfsupplieragbname)) ) )
       {
-         AddWhere(sWhereString, "(T1.SupplierAgbName like :lV75Wp_organisationagbsuppliersds_2_tfsupplieragbname)");
+         AddWhere(sWhereString, "(T1.SupplierAgbName like :lV77Wp_organisationagbsuppliersds_2_tfsupplieragbname)");
       }
       else
       {
          GXv_int12[5] = 1;
       }
-      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel)) && ! ( StringUtil.StrCmp(AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, "<#Empty#>") == 0 ) )
+      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel)) && ! ( StringUtil.StrCmp(AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, "<#Empty#>") == 0 ) )
       {
-         AddWhere(sWhereString, "(T1.SupplierAgbName = ( :AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel))");
+         AddWhere(sWhereString, "(T1.SupplierAgbName = ( :AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel))");
       }
       else
       {
          GXv_int12[6] = 1;
       }
-      if ( StringUtil.StrCmp(AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, "<#Empty#>") == 0 )
+      if ( StringUtil.StrCmp(AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel, "<#Empty#>") == 0 )
       {
          AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbName))=0))");
       }
-      if ( AV76Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator == 1 )
+      if ( AV78Wp_organisationagbsuppliersds_3_tfsupplieragbnameoperator == 1 )
       {
          AddWhere(sWhereString, "(:AV23isSelected = TRUE)");
       }
@@ -4461,83 +4466,83 @@ public class wp_organisationagbsuppliers__default : DataStoreHelperBase, IDataSt
       {
          GXv_int12[7] = 1;
       }
-      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename)) ) )
+      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename)) ) )
       {
-         AddWhere(sWhereString, "(T2.SupplierAgbTypeName like :lV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename)");
+         AddWhere(sWhereString, "(T2.SupplierAgbTypeName like :lV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename)");
       }
       else
       {
          GXv_int12[8] = 1;
       }
-      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, "<#Empty#>") == 0 ) )
+      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel)) && ! ( StringUtil.StrCmp(AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, "<#Empty#>") == 0 ) )
       {
-         AddWhere(sWhereString, "(T2.SupplierAgbTypeName = ( :AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel))");
+         AddWhere(sWhereString, "(T2.SupplierAgbTypeName = ( :AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel))");
       }
       else
       {
          GXv_int12[9] = 1;
       }
-      if ( StringUtil.StrCmp(AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, "<#Empty#>") == 0 )
+      if ( StringUtil.StrCmp(AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel, "<#Empty#>") == 0 )
       {
          AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T2.SupplierAgbTypeName))=0))");
       }
-      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname)) ) )
+      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname)) ) )
       {
-         AddWhere(sWhereString, "(T1.SupplierAgbContactName like :lV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname)");
+         AddWhere(sWhereString, "(T1.SupplierAgbContactName like :lV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname)");
       }
       else
       {
          GXv_int12[10] = 1;
       }
-      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel)) && ! ( StringUtil.StrCmp(AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, "<#Empty#>") == 0 ) )
+      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel)) && ! ( StringUtil.StrCmp(AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, "<#Empty#>") == 0 ) )
       {
-         AddWhere(sWhereString, "(T1.SupplierAgbContactName = ( :AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_se))");
+         AddWhere(sWhereString, "(T1.SupplierAgbContactName = ( :AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_se))");
       }
       else
       {
          GXv_int12[11] = 1;
       }
-      if ( StringUtil.StrCmp(AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, "<#Empty#>") == 0 )
+      if ( StringUtil.StrCmp(AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_sel, "<#Empty#>") == 0 )
       {
          AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbContactName))=0))");
       }
-      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone)) ) )
+      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone)) ) )
       {
-         AddWhere(sWhereString, "(T1.SupplierAgbPhone like :lV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone)");
+         AddWhere(sWhereString, "(T1.SupplierAgbPhone like :lV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone)");
       }
       else
       {
          GXv_int12[12] = 1;
       }
-      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel)) && ! ( StringUtil.StrCmp(AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, "<#Empty#>") == 0 ) )
+      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel)) && ! ( StringUtil.StrCmp(AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, "<#Empty#>") == 0 ) )
       {
-         AddWhere(sWhereString, "(T1.SupplierAgbPhone = ( :AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel))");
+         AddWhere(sWhereString, "(T1.SupplierAgbPhone = ( :AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel))");
       }
       else
       {
          GXv_int12[13] = 1;
       }
-      if ( StringUtil.StrCmp(AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, "<#Empty#>") == 0 )
+      if ( StringUtil.StrCmp(AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel, "<#Empty#>") == 0 )
       {
          AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbPhone))=0))");
       }
-      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail)) ) )
+      if ( String.IsNullOrEmpty(StringUtil.RTrim( AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel)) && ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail)) ) )
       {
-         AddWhere(sWhereString, "(T1.SupplierAgbEmail like :lV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail)");
+         AddWhere(sWhereString, "(T1.SupplierAgbEmail like :lV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail)");
       }
       else
       {
          GXv_int12[14] = 1;
       }
-      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel)) && ! ( StringUtil.StrCmp(AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, "<#Empty#>") == 0 ) )
+      if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel)) && ! ( StringUtil.StrCmp(AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, "<#Empty#>") == 0 ) )
       {
-         AddWhere(sWhereString, "(T1.SupplierAgbEmail = ( :AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel))");
+         AddWhere(sWhereString, "(T1.SupplierAgbEmail = ( :AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel))");
       }
       else
       {
          GXv_int12[15] = 1;
       }
-      if ( StringUtil.StrCmp(AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, "<#Empty#>") == 0 )
+      if ( StringUtil.StrCmp(AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel, "<#Empty#>") == 0 )
       {
          AddWhere(sWhereString, "((char_length(trim(trailing ' ' from T1.SupplierAgbEmail))=0))");
       }
@@ -4632,44 +4637,44 @@ public class wp_organisationagbsuppliers__default : DataStoreHelperBase, IDataSt
        };
        Object[] prmH00782;
        prmH00782 = new Object[] {
-       new ParDef("lV74Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
-       new ParDef("lV74Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
-       new ParDef("lV74Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
-       new ParDef("lV74Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
-       new ParDef("lV74Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
-       new ParDef("lV75Wp_organisationagbsuppliersds_2_tfsupplieragbname",GXType.VarChar,100,0) ,
-       new ParDef("AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel",GXType.VarChar,100,0) ,
+       new ParDef("lV76Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
+       new ParDef("lV76Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
+       new ParDef("lV76Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
+       new ParDef("lV76Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
+       new ParDef("lV76Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
+       new ParDef("lV77Wp_organisationagbsuppliersds_2_tfsupplieragbname",GXType.VarChar,100,0) ,
+       new ParDef("AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel",GXType.VarChar,100,0) ,
        new ParDef("AV23isSelected",GXType.Boolean,4,0) ,
-       new ParDef("lV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename",GXType.VarChar,100,0) ,
-       new ParDef("AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel",GXType.VarChar,100,0) ,
-       new ParDef("lV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname",GXType.VarChar,100,0) ,
-       new ParDef("AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_se",GXType.VarChar,100,0) ,
-       new ParDef("lV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone",GXType.Char,20,0) ,
-       new ParDef("AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel",GXType.Char,20,0) ,
-       new ParDef("lV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail",GXType.VarChar,100,0) ,
-       new ParDef("AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel",GXType.VarChar,100,0) ,
+       new ParDef("lV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename",GXType.VarChar,100,0) ,
+       new ParDef("AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel",GXType.VarChar,100,0) ,
+       new ParDef("lV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname",GXType.VarChar,100,0) ,
+       new ParDef("AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_se",GXType.VarChar,100,0) ,
+       new ParDef("lV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone",GXType.Char,20,0) ,
+       new ParDef("AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel",GXType.Char,20,0) ,
+       new ParDef("lV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail",GXType.VarChar,100,0) ,
+       new ParDef("AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel",GXType.VarChar,100,0) ,
        new ParDef("GXPagingFrom2",GXType.Int32,9,0) ,
        new ParDef("GXPagingTo2",GXType.Int32,9,0) ,
        new ParDef("GXPagingTo2",GXType.Int32,9,0)
        };
        Object[] prmH00783;
        prmH00783 = new Object[] {
-       new ParDef("lV74Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
-       new ParDef("lV74Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
-       new ParDef("lV74Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
-       new ParDef("lV74Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
-       new ParDef("lV74Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
-       new ParDef("lV75Wp_organisationagbsuppliersds_2_tfsupplieragbname",GXType.VarChar,100,0) ,
-       new ParDef("AV77Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel",GXType.VarChar,100,0) ,
+       new ParDef("lV76Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
+       new ParDef("lV76Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
+       new ParDef("lV76Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
+       new ParDef("lV76Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
+       new ParDef("lV76Wp_organisationagbsuppliersds_1_filterfulltext",GXType.VarChar,100,0) ,
+       new ParDef("lV77Wp_organisationagbsuppliersds_2_tfsupplieragbname",GXType.VarChar,100,0) ,
+       new ParDef("AV79Wp_organisationagbsuppliersds_4_tfsupplieragbname_sel",GXType.VarChar,100,0) ,
        new ParDef("AV23isSelected",GXType.Boolean,4,0) ,
-       new ParDef("lV78Wp_organisationagbsuppliersds_5_tfsupplieragbtypename",GXType.VarChar,100,0) ,
-       new ParDef("AV79Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel",GXType.VarChar,100,0) ,
-       new ParDef("lV80Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname",GXType.VarChar,100,0) ,
-       new ParDef("AV81Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_se",GXType.VarChar,100,0) ,
-       new ParDef("lV82Wp_organisationagbsuppliersds_9_tfsupplieragbphone",GXType.Char,20,0) ,
-       new ParDef("AV83Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel",GXType.Char,20,0) ,
-       new ParDef("lV84Wp_organisationagbsuppliersds_11_tfsupplieragbemail",GXType.VarChar,100,0) ,
-       new ParDef("AV85Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel",GXType.VarChar,100,0)
+       new ParDef("lV80Wp_organisationagbsuppliersds_5_tfsupplieragbtypename",GXType.VarChar,100,0) ,
+       new ParDef("AV81Wp_organisationagbsuppliersds_6_tfsupplieragbtypename_sel",GXType.VarChar,100,0) ,
+       new ParDef("lV82Wp_organisationagbsuppliersds_7_tfsupplieragbcontactname",GXType.VarChar,100,0) ,
+       new ParDef("AV83Wp_organisationagbsuppliersds_8_tfsupplieragbcontactname_se",GXType.VarChar,100,0) ,
+       new ParDef("lV84Wp_organisationagbsuppliersds_9_tfsupplieragbphone",GXType.Char,20,0) ,
+       new ParDef("AV85Wp_organisationagbsuppliersds_10_tfsupplieragbphone_sel",GXType.Char,20,0) ,
+       new ParDef("lV86Wp_organisationagbsuppliersds_11_tfsupplieragbemail",GXType.VarChar,100,0) ,
+       new ParDef("AV87Wp_organisationagbsuppliersds_12_tfsupplieragbemail_sel",GXType.VarChar,100,0)
        };
        def= new CursorDef[] {
            new CursorDef("H00782", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00782,11, GxCacheFrequency.OFF ,true,false )

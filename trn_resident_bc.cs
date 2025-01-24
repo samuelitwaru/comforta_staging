@@ -135,12 +135,12 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          AV13TrnContext.FromXml(AV14WebSession.Get("TrnContext"), null, "", "");
-         if ( ( StringUtil.StrCmp(AV13TrnContext.gxTpr_Transactionname, AV45Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         if ( ( StringUtil.StrCmp(AV13TrnContext.gxTpr_Transactionname, AV46Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
          {
-            AV46GXV1 = 1;
-            while ( AV46GXV1 <= AV13TrnContext.gxTpr_Attributes.Count )
+            AV47GXV1 = 1;
+            while ( AV47GXV1 <= AV13TrnContext.gxTpr_Attributes.Count )
             {
-               AV17TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV13TrnContext.gxTpr_Attributes.Item(AV46GXV1));
+               AV17TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV13TrnContext.gxTpr_Attributes.Item(AV47GXV1));
                if ( StringUtil.StrCmp(AV17TrnContextAtt.gxTpr_Attributename, "ResidentTypeId") == 0 )
                {
                   AV15Insert_ResidentTypeId = StringUtil.StrToGuid( AV17TrnContextAtt.gxTpr_Attributevalue);
@@ -149,8 +149,20 @@ namespace GeneXus.Programs {
                {
                   AV16Insert_MedicalIndicationId = StringUtil.StrToGuid( AV17TrnContextAtt.gxTpr_Attributevalue);
                }
-               AV46GXV1 = (int)(AV46GXV1+1);
+               AV47GXV1 = (int)(AV47GXV1+1);
             }
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV38ComboResidentCountry)) )
+         {
+            AV38ComboResidentCountry = "Netherlands";
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV39ComboResidentPhoneCode)) )
+         {
+            AV39ComboResidentPhoneCode = AV40defaultCountryPhoneCode;
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV44ComboResidentHomePhoneCode)) )
+         {
+            AV44ComboResidentHomePhoneCode = AV40defaultCountryPhoneCode;
          }
       }
 
@@ -158,13 +170,25 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
+         if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
+         {
+            AV14WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Resident Updated successfully", ""));
+         }
+         if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
+         {
+            AV14WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Resident Deleted successfully", ""));
+         }
+         if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
+         {
+            AV14WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Resident Inserted successfully", ""));
+         }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( Gx_mode)) )
          {
-            new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV42AuditingObject,  AV45Pgmname) ;
+            new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV42AuditingObject,  AV46Pgmname) ;
          }
          else
          {
-            new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV42AuditingObject,  AV45Pgmname) ;
+            new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV42AuditingObject,  AV46Pgmname) ;
             CallWebObject(formatLink("wp_locationresidents.aspx") );
             context.wjLocDisableFrm = 1;
          }
@@ -250,7 +274,7 @@ namespace GeneXus.Programs {
 
       protected void standaloneNotModal( )
       {
-         AV45Pgmname = "Trn_Resident_BC";
+         AV46Pgmname = "Trn_Resident_BC";
       }
 
       protected void standaloneModal( )
@@ -1677,10 +1701,14 @@ namespace GeneXus.Programs {
          AV10WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV13TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV14WebSession = context.GetSession();
-         AV45Pgmname = "";
+         AV46Pgmname = "";
          AV17TrnContextAtt = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute(context);
          AV15Insert_ResidentTypeId = Guid.Empty;
          AV16Insert_MedicalIndicationId = Guid.Empty;
+         AV38ComboResidentCountry = "";
+         AV39ComboResidentPhoneCode = "";
+         AV40defaultCountryPhoneCode = "";
+         AV44ComboResidentHomePhoneCode = "";
          AV42AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
          Z66ResidentInitials = "";
          A66ResidentInitials = "";
@@ -1943,7 +1971,7 @@ namespace GeneXus.Programs {
          );
          Z62ResidentId = Guid.NewGuid( );
          A62ResidentId = Guid.NewGuid( );
-         AV45Pgmname = "Trn_Resident_BC";
+         AV46Pgmname = "Trn_Resident_BC";
          INITTRN();
          /* Execute Start event if defined. */
          /* Execute user event: Start */
@@ -1955,11 +1983,11 @@ namespace GeneXus.Programs {
       private short Gx_BScreen ;
       private short RcdFound16 ;
       private int trnEnded ;
-      private int AV46GXV1 ;
+      private int AV47GXV1 ;
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
-      private string AV45Pgmname ;
+      private string AV46Pgmname ;
       private string Z66ResidentInitials ;
       private string A66ResidentInitials ;
       private string Z70ResidentPhone ;
@@ -1979,6 +2007,10 @@ namespace GeneXus.Programs {
       private bool n457ResidentImage ;
       private bool Gx_longc ;
       private string AV36GAMErrorResponse ;
+      private string AV38ComboResidentCountry ;
+      private string AV39ComboResidentPhoneCode ;
+      private string AV40defaultCountryPhoneCode ;
+      private string AV44ComboResidentHomePhoneCode ;
       private string Z63ResidentBsnNumber ;
       private string A63ResidentBsnNumber ;
       private string Z64ResidentGivenName ;

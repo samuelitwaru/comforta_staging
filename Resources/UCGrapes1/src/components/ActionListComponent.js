@@ -228,6 +228,7 @@ class ActionListComponent {
             titleComponent.components(item.textContent);
 
             const sidebarInputTitle = document.getElementById("tile-title");
+            console.log(sidebarInputTitle)
             if (sidebarInputTitle) {
               sidebarInputTitle.textContent = item.textContent;
             }
