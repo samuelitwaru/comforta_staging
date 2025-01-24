@@ -88,8 +88,9 @@ class ToolBoxManager {
   publishPages(isNotifyResidents) {
     const editors = Object.values(this.editorManager.editors);
     if (editors && editors.length) {
-      // const pageDataList = this.preparePageDataList(editors);
-      const pageDataList = this.dataManager.pages.SDT_PageCollection
+      const pageDataList = this.preparePageDataList(editors);
+      //console.log(this.preparePageDataList(editors))
+      //const pageDataList = this.dataManager.pages.SDT_PageCollection
       console.log(pageDataList)
       if (pageDataList.length) {
         this.sendPageUpdateRequest(pageDataList, isNotifyResidents);
@@ -98,6 +99,21 @@ class ToolBoxManager {
   }
 
   preparePageDataList(editors) {
+    return this.dataManager.pages.SDT_PageCollection.map(page=>{
+      let projectData = JSON.parse(page.PageGJSJson)
+      const jsonData = page.PageIsContentPage
+          ? mapContentToPageData(projectData, page)
+          : mapTemplateToPageData(projectData, page);
+      return {
+        PageId: page.PageId,
+        PageName: page.PageName,
+        PageJsonContent: JSON.stringify(jsonData),
+        PageGJSHtml: page.PageGJSHtml,
+        PageGJSJson: page.PageGJSJson,
+        SDT_Page: jsonData,
+        PageIsPublished: true,
+      };
+    })
     return editors
       .map((editorData) => {
         const pageId = editorData.pageId;
