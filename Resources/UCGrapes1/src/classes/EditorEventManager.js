@@ -120,9 +120,6 @@ class EditorEventManager {
 
   editorOnUpdate(editor, page) {
     editor.on('update', () => {
-      console.log(editor)
-      console.log(page.PageId)
-      console.log('Component updated:', editor.getConfig().container);
       this.editorManager.updatePageJSONContent(editor, page)
     });
   }
