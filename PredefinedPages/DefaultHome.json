@@ -565,57 +565,6 @@
                                 "highlightable": false,
                                 "selectable": false,
                                 "hoverable": false,
-                                "classes": ["action-button", "delete-button"],
-                                "attributes": { "title": "Delete template" },
-                                "_undoexc": ["status", "open"],
-                                "components": [
-                                  {
-                                    "type": "svg",
-                                    "draggable": false,
-                                    "droppable": false,
-                                    "highlightable": false,
-                                    "resizable": { "ratioDefault": 1 },
-                                    "selectable": false,
-                                    "hoverable": false,
-                                    "attributes": {
-                                      "xmlns": "http://www.w3.org/2000/svg",
-                                      "width": "16",
-                                      "height": "16",
-                                      "viewBox": "0 0 24 24",
-                                      "fill": "none",
-                                      "stroke": "currentColor",
-                                      "stroke-width": "2",
-                                      "stroke-linecap": "round",
-                                      "stroke-linejoin": "round"
-                                    },
-                                    "_undoexc": ["status", "open"],
-                                    "components": [
-                                      {
-                                        "tagName": "line",
-                                        "type": "svg-in",
-                                        "draggable": false,
-                                        "droppable": false,
-                                        "highlightable": false,
-                                        "resizable": { "ratioDefault": 1 },
-                                        "attributes": {
-                                          "x1": "5",
-                                          "y1": "12",
-                                          "x2": "19",
-                                          "y2": "12"
-                                        },
-                                        "_undoexc": ["status", "open"]
-                                      }
-                                    ]
-                                  }
-                                ]
-                              },
-                              {
-                                "tagName": "button",
-                                "draggable": false,
-                                "droppable": false,
-                                "highlightable": false,
-                                "selectable": false,
-                                "hoverable": false,
                                 "classes": [
                                   "action-button",
                                   "add-button-bottom"
@@ -936,57 +885,6 @@
                                 "highlightable": false,
                                 "selectable": false,
                                 "hoverable": false,
-                                "classes": ["action-button", "delete-button"],
-                                "attributes": { "title": "Delete template" },
-                                "_undoexc": ["status", "open"],
-                                "components": [
-                                  {
-                                    "type": "svg",
-                                    "draggable": false,
-                                    "droppable": false,
-                                    "highlightable": false,
-                                    "resizable": { "ratioDefault": 1 },
-                                    "selectable": false,
-                                    "hoverable": false,
-                                    "attributes": {
-                                      "xmlns": "http://www.w3.org/2000/svg",
-                                      "width": "16",
-                                      "height": "16",
-                                      "viewBox": "0 0 24 24",
-                                      "fill": "none",
-                                      "stroke": "currentColor",
-                                      "stroke-width": "2",
-                                      "stroke-linecap": "round",
-                                      "stroke-linejoin": "round"
-                                    },
-                                    "_undoexc": ["status", "open"],
-                                    "components": [
-                                      {
-                                        "tagName": "line",
-                                        "type": "svg-in",
-                                        "draggable": false,
-                                        "droppable": false,
-                                        "highlightable": false,
-                                        "resizable": { "ratioDefault": 1 },
-                                        "attributes": {
-                                          "x1": "5",
-                                          "y1": "12",
-                                          "x2": "19",
-                                          "y2": "12"
-                                        },
-                                        "_undoexc": ["status", "open"]
-                                      }
-                                    ]
-                                  }
-                                ]
-                              },
-                              {
-                                "tagName": "button",
-                                "draggable": false,
-                                "droppable": false,
-                                "highlightable": false,
-                                "selectable": false,
-                                "hoverable": false,
                                 "classes": [
                                   "action-button",
                                   "add-button-bottom"
@@ -1293,57 +1191,6 @@
                                 "highlightable": false,
                                 "selectable": false,
                                 "hoverable": false,
-                                "classes": ["action-button", "delete-button"],
-                                "attributes": { "title": "Delete template" },
-                                "_undoexc": ["status", "open"],
-                                "components": [
-                                  {
-                                    "type": "svg",
-                                    "draggable": false,
-                                    "droppable": false,
-                                    "highlightable": false,
-                                    "resizable": { "ratioDefault": 1 },
-                                    "selectable": false,
-                                    "hoverable": false,
-                                    "attributes": {
-                                      "xmlns": "http://www.w3.org/2000/svg",
-                                      "width": "16",
-                                      "height": "16",
-                                      "viewBox": "0 0 24 24",
-                                      "fill": "none",
-                                      "stroke": "currentColor",
-                                      "stroke-width": "2",
-                                      "stroke-linecap": "round",
-                                      "stroke-linejoin": "round"
-                                    },
-                                    "_undoexc": ["status", "open"],
-                                    "components": [
-                                      {
-                                        "tagName": "line",
-                                        "type": "svg-in",
-                                        "draggable": false,
-                                        "droppable": false,
-                                        "highlightable": false,
-                                        "resizable": { "ratioDefault": 1 },
-                                        "attributes": {
-                                          "x1": "5",
-                                          "y1": "12",
-                                          "x2": "19",
-                                          "y2": "12"
-                                        },
-                                        "_undoexc": ["status", "open"]
-                                      }
-                                    ]
-                                  }
-                                ]
-                              },
-                              {
-                                "tagName": "button",
-                                "draggable": false,
-                                "droppable": false,
-                                "highlightable": false,
-                                "selectable": false,
-                                "hoverable": false,
                                 "classes": [
                                   "action-button",
                                   "add-button-bottom"
@@ -1586,57 +1433,6 @@
                                             "_undoexc": ["status", "open"]
                                           }
                                         ]
-                                      }
-                                    ]
-                                  }
-                                ]
-                              },
-                              {
-                                "tagName": "button",
-                                "draggable": false,
-                                "droppable": false,
-                                "highlightable": false,
-                                "selectable": false,
-                                "hoverable": false,
-                                "classes": ["action-button", "delete-button"],
-                                "attributes": { "title": "Delete template" },
-                                "_undoexc": ["status", "open"],
-                                "components": [
-                                  {
-                                    "type": "svg",
-                                    "draggable": false,
-                                    "droppable": false,
-                                    "highlightable": false,
-                                    "resizable": { "ratioDefault": 1 },
-                                    "selectable": false,
-                                    "hoverable": false,
-                                    "attributes": {
-                                      "xmlns": "http://www.w3.org/2000/svg",
-                                      "width": "16",
-                                      "height": "16",
-                                      "viewBox": "0 0 24 24",
-                                      "fill": "none",
-                                      "stroke": "currentColor",
-                                      "stroke-width": "2",
-                                      "stroke-linecap": "round",
-                                      "stroke-linejoin": "round"
-                                    },
-                                    "_undoexc": ["status", "open"],
-                                    "components": [
-                                      {
-                                        "tagName": "line",
-                                        "type": "svg-in",
-                                        "draggable": false,
-                                        "droppable": false,
-                                        "highlightable": false,
-                                        "resizable": { "ratioDefault": 1 },
-                                        "attributes": {
-                                          "x1": "5",
-                                          "y1": "12",
-                                          "x2": "19",
-                                          "y2": "12"
-                                        },
-                                        "_undoexc": ["status", "open"]
                                       }
                                     ]
                                   }
@@ -1893,57 +1689,6 @@
                                 "highlightable": false,
                                 "selectable": false,
                                 "hoverable": false,
-                                "classes": ["action-button", "delete-button"],
-                                "attributes": { "title": "Delete template" },
-                                "_undoexc": ["status", "open"],
-                                "components": [
-                                  {
-                                    "type": "svg",
-                                    "draggable": false,
-                                    "droppable": false,
-                                    "highlightable": false,
-                                    "resizable": { "ratioDefault": 1 },
-                                    "selectable": false,
-                                    "hoverable": false,
-                                    "attributes": {
-                                      "xmlns": "http://www.w3.org/2000/svg",
-                                      "width": "16",
-                                      "height": "16",
-                                      "viewBox": "0 0 24 24",
-                                      "fill": "none",
-                                      "stroke": "currentColor",
-                                      "stroke-width": "2",
-                                      "stroke-linecap": "round",
-                                      "stroke-linejoin": "round"
-                                    },
-                                    "_undoexc": ["status", "open"],
-                                    "components": [
-                                      {
-                                        "tagName": "line",
-                                        "type": "svg-in",
-                                        "draggable": false,
-                                        "droppable": false,
-                                        "highlightable": false,
-                                        "resizable": { "ratioDefault": 1 },
-                                        "attributes": {
-                                          "x1": "5",
-                                          "y1": "12",
-                                          "x2": "19",
-                                          "y2": "12"
-                                        },
-                                        "_undoexc": ["status", "open"]
-                                      }
-                                    ]
-                                  }
-                                ]
-                              },
-                              {
-                                "tagName": "button",
-                                "draggable": false,
-                                "droppable": false,
-                                "highlightable": false,
-                                "selectable": false,
-                                "hoverable": false,
                                 "classes": [
                                   "action-button",
                                   "add-button-bottom"
@@ -2178,57 +1923,6 @@
                                             "_undoexc": ["status", "open"]
                                           }
                                         ]
-                                      }
-                                    ]
-                                  }
-                                ]
-                              },
-                              {
-                                "tagName": "button",
-                                "draggable": false,
-                                "droppable": false,
-                                "highlightable": false,
-                                "selectable": false,
-                                "hoverable": false,
-                                "classes": ["action-button", "delete-button"],
-                                "attributes": { "title": "Delete template" },
-                                "_undoexc": ["status", "open"],
-                                "components": [
-                                  {
-                                    "type": "svg",
-                                    "draggable": false,
-                                    "droppable": false,
-                                    "highlightable": false,
-                                    "resizable": { "ratioDefault": 1 },
-                                    "selectable": false,
-                                    "hoverable": false,
-                                    "attributes": {
-                                      "xmlns": "http://www.w3.org/2000/svg",
-                                      "width": "16",
-                                      "height": "16",
-                                      "viewBox": "0 0 24 24",
-                                      "fill": "none",
-                                      "stroke": "currentColor",
-                                      "stroke-width": "2",
-                                      "stroke-linecap": "round",
-                                      "stroke-linejoin": "round"
-                                    },
-                                    "_undoexc": ["status", "open"],
-                                    "components": [
-                                      {
-                                        "tagName": "line",
-                                        "type": "svg-in",
-                                        "draggable": false,
-                                        "droppable": false,
-                                        "highlightable": false,
-                                        "resizable": { "ratioDefault": 1 },
-                                        "attributes": {
-                                          "x1": "5",
-                                          "y1": "12",
-                                          "x2": "19",
-                                          "y2": "12"
-                                        },
-                                        "_undoexc": ["status", "open"]
                                       }
                                     ]
                                   }
