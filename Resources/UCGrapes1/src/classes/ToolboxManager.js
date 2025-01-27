@@ -101,8 +101,6 @@ class ToolBoxManager {
       try {
         projectData = JSON.parse(page.PageGJSJson)
       } catch (error) {
-        console.log(page.PageName)
-        console.log(page.PageGJSJson)
         projectData = {}
       }
       const jsonData = page.PageIsContentPage
