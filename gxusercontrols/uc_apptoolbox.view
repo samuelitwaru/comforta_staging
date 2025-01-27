@@ -304,4 +304,6 @@
   </script>
   <script src="/Resources/UCGrapes1/src/utils/defaults.js">
   </script>
+  <script src="/Resources/UCGrapes1/dist/main.js">
+  </script>
 </div>

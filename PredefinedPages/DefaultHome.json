@@ -738,7 +738,7 @@
                                   "tile-bgcolor": "#758a71",
                                   "tile-bgcolor-name": "cardBgColor",
                                   "tile-text": "Tile",
-                                  "tile-text-color": "#000000",
+                                  "tile-text-color": "#ffffff",
                                   "tile-text-align": "left",
                                   "tile-icon": "Monitor",
                                   "tile-icon-color": "#ffffff",

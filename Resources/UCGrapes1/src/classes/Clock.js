@@ -15,4 +15,3 @@ class Clock {
       document.getElementById(this.pageId).textContent = timeString;
     }
   }
-  

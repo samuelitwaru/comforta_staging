@@ -305,7 +305,7 @@ namespace GeneXus.Programs {
          Gxm1dvelop_menu.gxTpr_Link = formatLink("wp_applicationdesign.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fas fa-mobile-alt";
-         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "Application Design", "");
+         Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "The App Builder", "");
          Gxm1dvelop_menu.gxTpr_Authorizationkey = context.GetMessage( "wp_applicationdesign_Execute", "");
          Gxm1dvelop_menu = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
          Gxm2rootcol.Add(Gxm1dvelop_menu, 0);
