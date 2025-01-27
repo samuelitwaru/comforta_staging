@@ -97,7 +97,14 @@ class ToolBoxManager {
 
   preparePageDataList(editors) {
     return this.dataManager.pages.SDT_PageCollection.map(page=>{
-      let projectData = JSON.parse(page.PageGJSJson)
+      let projectData;
+      try {
+        projectData = JSON.parse(page.PageGJSJson)
+      } catch (error) {
+        console.log(page.PageName)
+        console.log(page.PageGJSJson)
+        projectData = {}
+      }
       const jsonData = page.PageIsContentPage
           ? mapContentToPageData(projectData, page)
           : mapTemplateToPageData(projectData, page);
