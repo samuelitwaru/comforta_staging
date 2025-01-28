@@ -789,7 +789,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 71,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnuinsert_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(77), 2, 0)+","+"null"+");", context.GetMessage( "Add", ""), bttBtnuinsert_Jsonclick, 5, context.GetMessage( "Add new item", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'DOUINSERT\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_CreateOrganisationAndManagerStep2.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnuinsert_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(77), 2, 0)+","+"null"+");", context.GetMessage( "Save", ""), bttBtnuinsert_Jsonclick, 5, context.GetMessage( "Add new item", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'DOUINSERT\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_CreateOrganisationAndManagerStep2.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -2670,7 +2670,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512220581445", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025128650476", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2686,7 +2686,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createorganisationandmanagerstep2.js", "?202512220581448", false, true);
+         context.AddJavascriptSource("wp_createorganisationandmanagerstep2.js", "?2025128650477", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
