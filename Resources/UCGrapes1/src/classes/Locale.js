@@ -75,6 +75,21 @@ class Locale {
         console.warn(`Element with id '${elementId}' not found`);
       }
     });
+
+    const tileTitlesToTranslate = [
+      "tile-reception", "tile-calendar", "tile-mailbox", 
+      "tile-my-care", "tile-my-living", "tile-my-services"
+    ]
+    
+    tileTitlesToTranslate.forEach(elementClass => {
+      const elements = document.getElementsByClassName(elementClass)
+      console.log(elements)
+      if (elements.length === 1) {
+        const el = elements[0]
+        el.innerText = this.getTranslation(elementClass);
+      }
+    })
+
   }
 
   getTranslation(key) {

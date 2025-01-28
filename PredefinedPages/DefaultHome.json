@@ -310,7 +310,7 @@
                                         "editable": false,
                                         "selectable": false,
                                         "hoverable": false,
-                                        "classes": ["tile-title"],
+                                        "classes": ["tile-title", "tile-reception"],
                                         "_undoexc": ["status", "open"],
                                         "components": [
                                           {
@@ -568,7 +568,7 @@
                                         "editable": false,
                                         "selectable": false,
                                         "hoverable": false,
-                                        "classes": ["tile-title"],
+                                        "classes": ["tile-title", "tile-calendar"],
                                         "_undoexc": ["status", "open"],
                                         "components": [
                                           {
@@ -889,7 +889,7 @@
                                         "editable": false,
                                         "selectable": false,
                                         "hoverable": false,
-                                        "classes": ["tile-title"],
+                                        "classes": ["tile-title", "tile-mailbox"],
                                         "_undoexc": ["status", "open"],
                                         "components": [
                                           {
@@ -1449,7 +1449,7 @@
                                         "editable": false,
                                         "selectable": false,
                                         "hoverable": false,
-                                        "classes": ["tile-title"],
+                                        "classes": ["tile-title", "tile-my-care"],
                                         "_undoexc": ["status", "open"],
                                         "components": [
                                           {
@@ -1693,7 +1693,7 @@
                                         "editable": false,
                                         "selectable": false,
                                         "hoverable": false,
-                                        "classes": ["tile-title"],
+                                        "classes": ["tile-title", "tile-my-living"],
                                         "_undoexc": ["status", "open"],
                                         "components": [
                                           {
@@ -1939,7 +1939,7 @@
                                         "editable": false,
                                         "selectable": false,
                                         "hoverable": false,
-                                        "classes": ["tile-title"],
+                                        "classes": ["tile-title", "tile-my-services"],
                                         "_undoexc": ["status", "open"],
                                         "components": [
                                           {
