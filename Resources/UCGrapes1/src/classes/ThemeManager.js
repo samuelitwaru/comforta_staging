@@ -280,6 +280,7 @@ class ThemeManager {
             "tile-bgcolor-name",
             colorName
           );
+          console.log('...')
           this.toolBoxManager.setAttributeToSelected(
             "tile-bg-image-url",
             "",
