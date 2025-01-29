@@ -1269,12 +1269,12 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          {
             bDynCreated_Wwpaux_wc = true;
          }
-         if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Wwpaux_wc_Component), StringUtil.Lower( "WorkWithPlus.DynamicForms.WWP_DF_AddElement")) != 0 )
+         if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Wwpaux_wc_Component), StringUtil.Lower( "UAddElement")) != 0 )
          {
-            WebComp_Wwpaux_wc = getWebComponent(GetType(), "GeneXus.Programs", "workwithplus.dynamicforms.wwp_df_addelement", new Object[] {context} );
+            WebComp_Wwpaux_wc = getWebComponent(GetType(), "GeneXus.Programs", "uaddelement", new Object[] {context} );
             WebComp_Wwpaux_wc.ComponentInit();
-            WebComp_Wwpaux_wc.Name = "WorkWithPlus.DynamicForms.WWP_DF_AddElement";
-            WebComp_Wwpaux_wc_Component = "WorkWithPlus.DynamicForms.WWP_DF_AddElement";
+            WebComp_Wwpaux_wc.Name = "UAddElement";
+            WebComp_Wwpaux_wc_Component = "UAddElement";
          }
          if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
          {
@@ -1551,6 +1551,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             ucUcimages.SetProperty("HideAdditionalButtons", Ucimages_Hideadditionalbuttons);
             ucUcimages.SetProperty("TooltipText", Ucimages_Tooltiptext);
             ucUcimages.SetProperty("EnableUploadedFileCanceling", Ucimages_Enableuploadedfilecanceling);
+            ucUcimages.SetProperty("MaxFileSize", Ucimages_Maxfilesize);
             ucUcimages.SetProperty("MaxNumberOfFiles", Ucimages_Maxnumberoffiles);
             ucUcimages.SetProperty("AutoDisableAddingFiles", Ucimages_Autodisableaddingfiles);
             ucUcimages.SetProperty("AcceptedFileTypes", Ucimages_Acceptedfiletypes);
@@ -1852,7 +1853,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251222054126", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251291313446", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1868,7 +1869,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_dfc_file_wc.js", "?20251222054127", false, true);
+         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_dfc_file_wc.js", "?20251291313447", false, true);
          context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
@@ -1932,6 +1933,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          Ucimages_Acceptedfiletypes = "image";
          Ucimages_Autodisableaddingfiles = Convert.ToBoolean( -1);
          Ucimages_Maxnumberoffiles = 1;
+         Ucimages_Maxfilesize = 2000000;
          Ucimages_Enableuploadedfilecanceling = Convert.ToBoolean( -1);
          Ucimages_Tooltiptext = "";
          Ucimages_Hideadditionalbuttons = Convert.ToBoolean( -1);
@@ -1955,7 +1957,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          Dvelop_confirmpanel_btndeleteelement_Title = context.GetMessage( "GX_BtnDelete", "");
          Settings_modal_Bodytype = "WebComponent";
          Settings_modal_Confirmtype = "";
-         Settings_modal_Title = context.GetMessage( "Element settings", "");
+         Settings_modal_Title = context.GetMessage( "Add Element", "");
          Settings_modal_Width = "800";
          edtavData_Visible = 1;
          tblTableactions_Visible = 1;
@@ -2090,6 +2092,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private int tblTableactions_Visible ;
       private int edtavData_Visible ;
       private int edtavData_Enabled ;
+      private int Ucimages_Maxfilesize ;
       private int Ucimages_Maxnumberoffiles ;
       private int idxLst ;
       private string AV11WWPDynamicFormMode ;

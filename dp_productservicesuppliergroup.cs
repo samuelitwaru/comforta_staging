@@ -87,10 +87,6 @@ namespace GeneXus.Programs {
          /* Output device settings */
          Gxm1sdt_productservicesuppliergroup = new SdtSDT_ProductServiceSupplierGroup_SDT_ProductServiceSupplierGroupItem(context);
          Gxm2rootcol.Add(Gxm1sdt_productservicesuppliergroup, 0);
-         Gxm1sdt_productservicesuppliergroup.gxTpr_Sdt_productservicesuppliergroupid = " AGB Supplier";
-         Gxm1sdt_productservicesuppliergroup.gxTpr_Sdt_productservicesuppliergroupname = " AGB Supplier";
-         Gxm1sdt_productservicesuppliergroup = new SdtSDT_ProductServiceSupplierGroup_SDT_ProductServiceSupplierGroupItem(context);
-         Gxm2rootcol.Add(Gxm1sdt_productservicesuppliergroup, 0);
          Gxm1sdt_productservicesuppliergroup.gxTpr_Sdt_productservicesuppliergroupid = "General Supplier";
          Gxm1sdt_productservicesuppliergroup.gxTpr_Sdt_productservicesuppliergroupname = "General Supplier";
          AV8Udparg3 = new prc_getuserorganisationid(context).executeUdp( );

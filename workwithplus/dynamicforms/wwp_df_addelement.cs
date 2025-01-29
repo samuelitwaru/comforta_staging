@@ -3251,6 +3251,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       {
          /* Start Routine */
          returnInSub = false;
+         GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  context.GetMessage( "Line C4: Start - ", "")+new prc_getloggertime(context).executeUdp( ),  "info",  "",  "false",  ""));
          AV22IsFormSettings = (bool)(((StringUtil.StrCmp(AV54WWPDynamicFormMode, "UPD")==0)&&(0==AV60WWPFormElementId)));
          AssignAttri(sPrefix, false, "AV22IsFormSettings", AV22IsFormSettings);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISFORMSETTINGS", GetSecureSignedToken( sPrefix, AV22IsFormSettings, context));
@@ -5879,7 +5880,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512220561586", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512913154879", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -5895,7 +5896,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_df_addelement.js", "?202512220561592", false, true);
+         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_df_addelement.js", "?202512913154881", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);

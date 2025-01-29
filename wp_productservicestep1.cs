@@ -2637,7 +2637,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251286495566", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512913142830", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2653,7 +2653,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_productservicestep1.js", "?20251286495567", false, true);
+         context.AddJavascriptSource("wp_productservicestep1.js", "?202512913142831", false, true);
          context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
@@ -2764,7 +2764,7 @@ namespace GeneXus.Programs {
          Usercontrol1_Acceptedfiletypes = "image";
          Usercontrol1_Autodisableaddingfiles = Convert.ToBoolean( -1);
          Usercontrol1_Maxnumberoffiles = 1;
-         Usercontrol1_Maxfilesize = 134217728;
+         Usercontrol1_Maxfilesize = 2000000;
          Usercontrol1_Disableimageresize = Convert.ToBoolean( 0);
          Usercontrol1_Enableuploadedfilecanceling = Convert.ToBoolean( -1);
          Usercontrol1_Tooltiptext = "";

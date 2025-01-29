@@ -1466,11 +1466,8 @@ namespace GeneXus.Programs {
             GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vALLOWDELETION", GetSecureSignedToken( sPrefix, AV5AllowDeletion, context));
             Btnsettings_Caption = context.GetMessage( "WWP_DF_FormSettings", "");
             ucBtnsettings.SendProperty(context, sPrefix, false, Btnsettings_Internalname, "Caption", Btnsettings_Caption);
-            if ( AV23WWPForm.gxTpr_Element.Count > 0 )
-            {
-               divTableactions_Visible = 0;
-               AssignProp(sPrefix, false, divTableactions_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divTableactions_Visible), 5, 0), true);
-            }
+            divTableactions_Visible = 0;
+            AssignProp(sPrefix, false, divTableactions_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divTableactions_Visible), 5, 0), true);
          }
          else
          {
@@ -2724,7 +2721,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251222054789", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512913135787", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2740,7 +2737,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("udfc_fs_wc.js", "?20251222054790", false, true);
+         context.AddJavascriptSource("udfc_fs_wc.js", "?202512913135787", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
@@ -3008,7 +3005,7 @@ namespace GeneXus.Programs {
          Btndeleteelement_Caption = context.GetMessage( "GX_BtnDelete", "");
          Btnmovedown_Caption = context.GetMessage( "WWP_DF_MoveDown", "");
          Btnmoveup_Caption = context.GetMessage( "WWP_DF_MoveUp", "");
-         Dvelop_confirmpanel_btndeleteelement_Confirmationtext = "WWP_DF_ConfirmSelectedElementDeletion";
+         Dvelop_confirmpanel_btndeleteelement_Confirmationtext = "Are you sure you want to delete this element?";
          Btnsettings_Caption = context.GetMessage( "WWP_DF_Settings", "");
          subFsgrid_Backcolorstyle = 0;
          divTableactions_Class = "TableDynFormAddElement";
