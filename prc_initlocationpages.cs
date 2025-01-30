@@ -77,7 +77,7 @@ namespace GeneXus.Programs {
             AV11Key = ((string)AV9PredefinedPagesDictionary.gxTpr_Keys.Item(AV23GXV1));
             AV16Value = AV9PredefinedPagesDictionary.get(AV11Key);
             AV15File = new GxFile(context.GetPhysicalPath());
-            AV15File.Source = context.GetMessage( "PredefinedPages/Default", "")+AV11Key+context.GetMessage( ".json", "");
+            AV15File.Source = context.GetMessage( "Resources/UCGrapes1/PredefinedPages/Default", "")+AV11Key+context.GetMessage( ".json", "");
             AV13PageGJSJson = AV15File.ReadAllText("");
             AV15File = new GxFile(context.GetPhysicalPath());
             AV15File.Source = context.GetMessage( "PredefinedPages/Published", "")+AV11Key+context.GetMessage( ".json", "");
