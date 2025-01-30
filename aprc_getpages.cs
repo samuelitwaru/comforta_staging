@@ -118,12 +118,13 @@ namespace GeneXus.Programs {
          pr_default.execute(0, new Object[] {AV15LocationId, AV16OrganisationId});
          while ( (pr_default.getStatus(0) != 101) )
          {
+            A318Trn_PageName = P008Y2_A318Trn_PageName[0];
             A11OrganisationId = P008Y2_A11OrganisationId[0];
             A29LocationId = P008Y2_A29LocationId[0];
             A310Trn_PageId = P008Y2_A310Trn_PageId[0];
-            A318Trn_PageName = P008Y2_A318Trn_PageName[0];
             AV20GXLvl5 = 1;
-            pr_default.readNext(0);
+            /* Exiting from a For First loop. */
+            if (true) break;
          }
          pr_default.close(0);
          if ( AV20GXLvl5 == 0 )
@@ -193,14 +194,14 @@ namespace GeneXus.Programs {
          AV15LocationId = Guid.Empty;
          AV16OrganisationId = Guid.Empty;
          GXt_guid1 = Guid.Empty;
+         P008Y2_A318Trn_PageName = new string[] {""} ;
          P008Y2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P008Y2_A29LocationId = new Guid[] {Guid.Empty} ;
          P008Y2_A310Trn_PageId = new Guid[] {Guid.Empty} ;
-         P008Y2_A318Trn_PageName = new string[] {""} ;
+         A318Trn_PageName = "";
          A11OrganisationId = Guid.Empty;
          A29LocationId = Guid.Empty;
          A310Trn_PageId = Guid.Empty;
-         A318Trn_PageName = "";
          P008Y3_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P008Y3_A29LocationId = new Guid[] {Guid.Empty} ;
          P008Y3_A310Trn_PageId = new Guid[] {Guid.Empty} ;
@@ -226,7 +227,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.aprc_getpages__default(),
             new Object[][] {
                 new Object[] {
-               P008Y2_A11OrganisationId, P008Y2_A29LocationId, P008Y2_A310Trn_PageId, P008Y2_A318Trn_PageName
+               P008Y2_A318Trn_PageName, P008Y2_A11OrganisationId, P008Y2_A29LocationId, P008Y2_A310Trn_PageId
                }
                , new Object[] {
                P008Y3_A11OrganisationId, P008Y3_A29LocationId, P008Y3_A310Trn_PageId, P008Y3_A318Trn_PageName, P008Y3_A431PageJsonContent, P008Y3_n431PageJsonContent, P008Y3_A432PageGJSHtml, P008Y3_n432PageGJSHtml, P008Y3_A433PageGJSJson, P008Y3_n433PageGJSJson,
@@ -264,10 +265,10 @@ namespace GeneXus.Programs {
       private GXBaseCollection<SdtSDT_Page> AV9SDT_PageCollection ;
       private SdtSDT_Error AV18Error ;
       private IDataStoreProvider pr_default ;
+      private string[] P008Y2_A318Trn_PageName ;
       private Guid[] P008Y2_A11OrganisationId ;
       private Guid[] P008Y2_A29LocationId ;
       private Guid[] P008Y2_A310Trn_PageId ;
-      private string[] P008Y2_A318Trn_PageName ;
       private Guid[] P008Y3_A11OrganisationId ;
       private Guid[] P008Y3_A29LocationId ;
       private Guid[] P008Y3_A310Trn_PageId ;
@@ -317,7 +318,7 @@ namespace GeneXus.Programs {
           new ParDef("AV16OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P008Y2", "SELECT OrganisationId, LocationId, Trn_PageId, Trn_PageName FROM Trn_Page WHERE (LocationId = :AV15LocationId) AND (OrganisationId = :AV16OrganisationId) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008Y2,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P008Y2", "SELECT Trn_PageName, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (Trn_PageName = ( 'Home') and LocationId = :AV15LocationId) AND (OrganisationId = :AV16OrganisationId) ORDER BY Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008Y2,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P008Y3", "SELECT OrganisationId, LocationId, Trn_PageId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsContentPage, PageIsPublished, PageIsPredefined, PageChildren FROM Trn_Page WHERE (LocationId = :AV15LocationId) AND (OrganisationId = :AV16OrganisationId) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008Y3,100, GxCacheFrequency.OFF ,false,false )
           };
        }
@@ -330,10 +331,10 @@ namespace GeneXus.Programs {
        switch ( cursor )
        {
              case 0 :
-                ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((string[]) buf[0])[0] = rslt.getVarchar(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-                ((string[]) buf[3])[0] = rslt.getVarchar(4);
+                ((Guid[]) buf[3])[0] = rslt.getGuid(4);
                 return;
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);

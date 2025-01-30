@@ -65,11 +65,11 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV9PredefinedPagesDictionary.set( context.GetMessage( "Home", ""),  Guid.NewGuid( ).ToString());
-         AV9PredefinedPagesDictionary.set( context.GetMessage( "Reception", ""),  Guid.NewGuid( ).ToString());
-         AV9PredefinedPagesDictionary.set( context.GetMessage( "Location", ""),  Guid.NewGuid( ).ToString());
-         AV9PredefinedPagesDictionary.set( context.GetMessage( "Calendar", ""),  Guid.NewGuid( ).ToString());
-         AV9PredefinedPagesDictionary.set( context.GetMessage( "Mailbox", ""),  Guid.NewGuid( ).ToString());
+         AV9PredefinedPagesDictionary.set( "Home",  Guid.NewGuid( ).ToString());
+         AV9PredefinedPagesDictionary.set( "Reception",  Guid.NewGuid( ).ToString());
+         AV9PredefinedPagesDictionary.set( "Location",  Guid.NewGuid( ).ToString());
+         AV9PredefinedPagesDictionary.set( "Calendar",  Guid.NewGuid( ).ToString());
+         AV9PredefinedPagesDictionary.set( "Mailbox",  Guid.NewGuid( ).ToString());
          AV14BC_Trn_Location.Load(AV8LocationId, AV12OrganisationId);
          AV23GXV1 = 1;
          while ( AV23GXV1 <= AV9PredefinedPagesDictionary.gxTpr_Keys.Count )
@@ -83,18 +83,18 @@ namespace GeneXus.Programs {
             AV15File.Source = context.GetMessage( "PredefinedPages/Published", "")+AV11Key+context.GetMessage( ".json", "");
             AV22PageJsonContent = AV15File.ReadAllText("");
             AV20PageIsContentPage = false;
-            if ( ( StringUtil.StrCmp(AV11Key, context.GetMessage( "Location", "")) == 0 ) || ( StringUtil.StrCmp(AV11Key, context.GetMessage( "Reception", "")) == 0 ) )
+            if ( ( StringUtil.StrCmp(AV11Key, "Location") == 0 ) || ( StringUtil.StrCmp(AV11Key, "Reception") == 0 ) )
             {
                AV20PageIsContentPage = true;
             }
-            if ( StringUtil.StrCmp(AV11Key, context.GetMessage( "Location", "")) == 0 )
+            if ( StringUtil.StrCmp(AV11Key, "Location") == 0 )
             {
-               AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{LocationImage}}", ""), AV14BC_Trn_Location.gxTpr_Locationimage_gxi);
-               AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{LocationDescription}}", ""), StringUtil.Trim( AV14BC_Trn_Location.gxTpr_Locationdescription));
-               AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{LocationTelephone}}", ""), AV14BC_Trn_Location.gxTpr_Locationphone);
-               AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{LocationEmail}}", ""), AV14BC_Trn_Location.gxTpr_Locationemail);
+               AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, "{{LocationImage}}", AV14BC_Trn_Location.gxTpr_Locationimage_gxi);
+               AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, "{{LocationDescription}}", StringUtil.Trim( AV14BC_Trn_Location.gxTpr_Locationdescription));
+               AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, "{{LocationTelephone}}", AV14BC_Trn_Location.gxTpr_Locationphone);
+               AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, "{{LocationEmail}}", AV14BC_Trn_Location.gxTpr_Locationemail);
             }
-            if ( StringUtil.StrCmp(AV11Key, context.GetMessage( "Home", "")) == 0 )
+            if ( StringUtil.StrCmp(AV11Key, "Home") == 0 )
             {
                AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{LocationPageId}}", ""), AV9PredefinedPagesDictionary.get(context.GetMessage( "Location", "")));
                AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{ReceptionPageId}}", ""), AV9PredefinedPagesDictionary.get(context.GetMessage( "Reception", "")));
