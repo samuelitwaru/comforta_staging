@@ -65,11 +65,11 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV9PredefinedPagesDictionary.set( context.GetMessage( "34f798f2-7b6c-4a8f-bdea-d14273b5a678", ""),  context.GetMessage( "Home", ""));
-         AV9PredefinedPagesDictionary.set( context.GetMessage( "1e5d1be0-d9ef-4ff7-869d-1b1f3092155c", ""),  context.GetMessage( "Reception", ""));
-         AV9PredefinedPagesDictionary.set( context.GetMessage( "784c2d18-622f-43f3-bde1-7b00035d6a07", ""),  context.GetMessage( "Location", ""));
-         AV9PredefinedPagesDictionary.set( context.GetMessage( "5e200c35-16fe-4401-93c6-b106d14c89cc", ""),  context.GetMessage( "Calendar", ""));
-         AV9PredefinedPagesDictionary.set( context.GetMessage( "e22b29bc-1982-414a-87cf-71a839806a75", ""),  context.GetMessage( "Mailbox", ""));
+         AV9PredefinedPagesDictionary.set( context.GetMessage( "Home", ""),  Guid.NewGuid( ).ToString());
+         AV9PredefinedPagesDictionary.set( context.GetMessage( "Reception", ""),  Guid.NewGuid( ).ToString());
+         AV9PredefinedPagesDictionary.set( context.GetMessage( "Location", ""),  Guid.NewGuid( ).ToString());
+         AV9PredefinedPagesDictionary.set( context.GetMessage( "Calendar", ""),  Guid.NewGuid( ).ToString());
+         AV9PredefinedPagesDictionary.set( context.GetMessage( "Mailbox", ""),  Guid.NewGuid( ).ToString());
          AV14BC_Trn_Location.Load(AV8LocationId, AV12OrganisationId);
          AV23GXV1 = 1;
          while ( AV23GXV1 <= AV9PredefinedPagesDictionary.gxTpr_Keys.Count )
@@ -77,27 +77,37 @@ namespace GeneXus.Programs {
             AV11Key = ((string)AV9PredefinedPagesDictionary.gxTpr_Keys.Item(AV23GXV1));
             AV16Value = AV9PredefinedPagesDictionary.get(AV11Key);
             AV15File = new GxFile(context.GetPhysicalPath());
-            AV15File.Source = context.GetMessage( "PredefinedPages/Default", "")+AV16Value+context.GetMessage( ".json", "");
+            AV15File.Source = context.GetMessage( "PredefinedPages/Default", "")+AV11Key+context.GetMessage( ".json", "");
             AV13PageGJSJson = AV15File.ReadAllText("");
             AV15File = new GxFile(context.GetPhysicalPath());
-            AV15File.Source = context.GetMessage( "PredefinedPages/Published", "")+AV16Value+context.GetMessage( ".json", "");
+            AV15File.Source = context.GetMessage( "PredefinedPages/Published", "")+AV11Key+context.GetMessage( ".json", "");
             AV22PageJsonContent = AV15File.ReadAllText("");
             AV20PageIsContentPage = false;
-            if ( ( StringUtil.StrCmp(AV16Value, context.GetMessage( "Location", "")) == 0 ) || ( StringUtil.StrCmp(AV16Value, context.GetMessage( "Reception", "")) == 0 ) )
+            if ( ( StringUtil.StrCmp(AV11Key, context.GetMessage( "Location", "")) == 0 ) || ( StringUtil.StrCmp(AV11Key, context.GetMessage( "Reception", "")) == 0 ) )
             {
                AV20PageIsContentPage = true;
             }
-            if ( StringUtil.StrCmp(AV16Value, context.GetMessage( "Location", "")) == 0 )
+            if ( StringUtil.StrCmp(AV11Key, context.GetMessage( "Location", "")) == 0 )
             {
-               new prc_logtofile(context ).execute(  context.GetMessage( "replacing...", "")) ;
                AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{LocationImage}}", ""), AV14BC_Trn_Location.gxTpr_Locationimage_gxi);
                AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{LocationDescription}}", ""), StringUtil.Trim( AV14BC_Trn_Location.gxTpr_Locationdescription));
                AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{LocationTelephone}}", ""), AV14BC_Trn_Location.gxTpr_Locationphone);
                AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{LocationEmail}}", ""), AV14BC_Trn_Location.gxTpr_Locationemail);
             }
+            if ( StringUtil.StrCmp(AV11Key, context.GetMessage( "Home", "")) == 0 )
+            {
+               AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{LocationPageId}}", ""), AV9PredefinedPagesDictionary.get(context.GetMessage( "Location", "")));
+               AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{ReceptionPageId}}", ""), AV9PredefinedPagesDictionary.get(context.GetMessage( "Reception", "")));
+               AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{CalendarPageId}}", ""), AV9PredefinedPagesDictionary.get(context.GetMessage( "Calendar", "")));
+               AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{MailboxPageId}}", ""), AV9PredefinedPagesDictionary.get(context.GetMessage( "Mailbox", "")));
+               AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, context.GetMessage( "{{LocationPageId}}", ""), AV9PredefinedPagesDictionary.get(context.GetMessage( "Location", "")));
+               AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, context.GetMessage( "{{ReceptionPageId}}", ""), AV9PredefinedPagesDictionary.get(context.GetMessage( "Reception", "")));
+               AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, context.GetMessage( "{{CalendarPageId}}", ""), AV9PredefinedPagesDictionary.get(context.GetMessage( "Calendar", "")));
+               AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, context.GetMessage( "{{MailboxPageId}}", ""), AV9PredefinedPagesDictionary.get(context.GetMessage( "Mailbox", "")));
+            }
             AV18BC_Trn_Page = new SdtTrn_Page(context);
-            AV18BC_Trn_Page.gxTpr_Trn_pageid = StringUtil.StrToGuid( AV11Key);
-            AV18BC_Trn_Page.gxTpr_Trn_pagename = AV16Value;
+            AV18BC_Trn_Page.gxTpr_Trn_pageid = StringUtil.StrToGuid( AV16Value);
+            AV18BC_Trn_Page.gxTpr_Trn_pagename = AV11Key;
             AV18BC_Trn_Page.gxTpr_Pageiscontentpage = AV20PageIsContentPage;
             AV18BC_Trn_Page.gxTpr_Pageispredefined = true;
             AV18BC_Trn_Page.gxTpr_Locationid = AV14BC_Trn_Location.gxTpr_Locationid;

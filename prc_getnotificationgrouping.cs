@@ -75,9 +75,9 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV19Udparg1 = new prc_getloggedinuserid(context).executeUdp( );
+         AV27Udparg1 = new prc_getloggedinuserid(context).executeUdp( );
          /* Using cursor P00A92 */
-         pr_default.execute(0, new Object[] {AV19Udparg1});
+         pr_default.execute(0, new Object[] {AV27Udparg1});
          while ( (pr_default.getStatus(0) != 101) )
          {
             A112WWPUserExtendedId = P00A92_A112WWPUserExtendedId[0];
@@ -108,10 +108,10 @@ namespace GeneXus.Programs {
             pr_default.readNext(0);
          }
          pr_default.close(0);
-         AV20GXV1 = 1;
-         while ( AV20GXV1 <= AV12SDT_NotificationGroupCollection.Count )
+         AV28GXV1 = 1;
+         while ( AV28GXV1 <= AV12SDT_NotificationGroupCollection.Count )
          {
-            AV13SDT_NotificationGroupItem = ((SdtSDT_NotificationGroup_SDT_NotificationGroupItem)AV12SDT_NotificationGroupCollection.Item(AV20GXV1));
+            AV13SDT_NotificationGroupItem = ((SdtSDT_NotificationGroup_SDT_NotificationGroupItem)AV12SDT_NotificationGroupCollection.Item(AV28GXV1));
             if ( AV13SDT_NotificationGroupItem.gxTpr_Isparent )
             {
                AV9NotificationParentId = "";
@@ -124,9 +124,31 @@ namespace GeneXus.Programs {
                   if (true) return;
                }
                AV13SDT_NotificationGroupItem.gxTpr_Numberofchildnotifications = AV8CountOfChildNotifications;
+               AV19parentsId.Add(AV13SDT_NotificationGroupItem.gxTpr_Parentlinkid, 0);
                AV15SDT_NotificationGroupParentCollection.Add(AV13SDT_NotificationGroupItem, 0);
             }
-            AV20GXV1 = (int)(AV20GXV1+1);
+            AV28GXV1 = (int)(AV28GXV1+1);
+         }
+         AV29GXV2 = 1;
+         while ( AV29GXV2 <= AV12SDT_NotificationGroupCollection.Count )
+         {
+            AV21SDT_NotificationGroupItemNonParent = ((SdtSDT_NotificationGroup_SDT_NotificationGroupItem)AV12SDT_NotificationGroupCollection.Item(AV29GXV2));
+            if ( ! (AV19parentsId.IndexOf(AV21SDT_NotificationGroupItemNonParent.gxTpr_Parentlinkid)>0) )
+            {
+               AV19parentsId.Add(AV21SDT_NotificationGroupItemNonParent.gxTpr_Parentlinkid, 0);
+               AV9NotificationParentId = "";
+               AV9NotificationParentId = StringUtil.Trim( AV21SDT_NotificationGroupItemNonParent.gxTpr_Parentlinkid);
+               /* Execute user subroutine: 'CHECKNUMBEROFCHILDNOTIFICATIONS' */
+               S111 ();
+               if ( returnInSub )
+               {
+                  cleanup();
+                  if (true) return;
+               }
+               AV21SDT_NotificationGroupItemNonParent.gxTpr_Numberofchildnotifications = AV8CountOfChildNotifications;
+               AV15SDT_NotificationGroupParentCollection.Add(AV21SDT_NotificationGroupItemNonParent, 0);
+            }
+            AV29GXV2 = (int)(AV29GXV2+1);
          }
          cleanup();
       }
@@ -136,15 +158,15 @@ namespace GeneXus.Programs {
          /* 'CHECKNUMBEROFCHILDNOTIFICATIONS' Routine */
          returnInSub = false;
          AV8CountOfChildNotifications = 0;
-         AV21GXV2 = 1;
-         while ( AV21GXV2 <= AV12SDT_NotificationGroupCollection.Count )
+         AV30GXV3 = 1;
+         while ( AV30GXV3 <= AV12SDT_NotificationGroupCollection.Count )
          {
-            AV14SDT_NotificationGroupItem2 = ((SdtSDT_NotificationGroup_SDT_NotificationGroupItem)AV12SDT_NotificationGroupCollection.Item(AV21GXV2));
-            if ( ! AV14SDT_NotificationGroupItem2.gxTpr_Isparent && ( StringUtil.StrCmp(StringUtil.Trim( AV14SDT_NotificationGroupItem2.gxTpr_Parentlinkid), StringUtil.Trim( AV9NotificationParentId)) == 0 ) )
+            AV14SDT_NotificationGroupItem2 = ((SdtSDT_NotificationGroup_SDT_NotificationGroupItem)AV12SDT_NotificationGroupCollection.Item(AV30GXV3));
+            if ( StringUtil.StrCmp(StringUtil.Trim( AV14SDT_NotificationGroupItem2.gxTpr_Parentlinkid), StringUtil.Trim( AV9NotificationParentId)) == 0 )
             {
                AV8CountOfChildNotifications = (short)(AV8CountOfChildNotifications+1);
             }
-            AV21GXV2 = (int)(AV21GXV2+1);
+            AV30GXV3 = (int)(AV30GXV3+1);
          }
       }
 
@@ -162,7 +184,7 @@ namespace GeneXus.Programs {
       {
          AV15SDT_NotificationGroupParentCollection = new GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>( context, "SDT_NotificationGroupItem", "Comforta_version2");
          AV12SDT_NotificationGroupCollection = new GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>( context, "SDT_NotificationGroupItem", "Comforta_version2");
-         AV19Udparg1 = "";
+         AV27Udparg1 = "";
          P00A92_A112WWPUserExtendedId = new string[] {""} ;
          P00A92_n112WWPUserExtendedId = new bool[] {false} ;
          P00A92_A127WWPNotificationId = new long[1] ;
@@ -185,6 +207,8 @@ namespace GeneXus.Programs {
          AV16SDT_NotificationMetadata = new SdtSDT_NotificationMetadata(context);
          AV13SDT_NotificationGroupItem = new SdtSDT_NotificationGroup_SDT_NotificationGroupItem(context);
          AV9NotificationParentId = "";
+         AV19parentsId = new GxSimpleCollection<string>();
+         AV21SDT_NotificationGroupItemNonParent = new SdtSDT_NotificationGroup_SDT_NotificationGroupItem(context);
          AV14SDT_NotificationGroupItem2 = new SdtSDT_NotificationGroup_SDT_NotificationGroupItem(context);
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_getnotificationgrouping__default(),
             new Object[][] {
@@ -197,8 +221,9 @@ namespace GeneXus.Programs {
       }
 
       private short AV8CountOfChildNotifications ;
-      private int AV20GXV1 ;
-      private int AV21GXV2 ;
+      private int AV28GXV1 ;
+      private int AV29GXV2 ;
+      private int AV30GXV3 ;
       private long A127WWPNotificationId ;
       private string A112WWPUserExtendedId ;
       private DateTime A129WWPNotificationCreated ;
@@ -206,7 +231,7 @@ namespace GeneXus.Programs {
       private bool n165WWPNotificationMetadata ;
       private bool returnInSub ;
       private string A165WWPNotificationMetadata ;
-      private string AV19Udparg1 ;
+      private string AV27Udparg1 ;
       private string A182WWPNotificationTitle ;
       private string A183WWPNotificationShortDescriptio ;
       private string A181WWPNotificationIcon ;
@@ -232,6 +257,8 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationMetadata AV17WWP_SDTNotificationMetada ;
       private SdtSDT_NotificationMetadata AV16SDT_NotificationMetadata ;
       private SdtSDT_NotificationGroup_SDT_NotificationGroupItem AV13SDT_NotificationGroupItem ;
+      private GxSimpleCollection<string> AV19parentsId ;
+      private SdtSDT_NotificationGroup_SDT_NotificationGroupItem AV21SDT_NotificationGroupItemNonParent ;
       private SdtSDT_NotificationGroup_SDT_NotificationGroupItem AV14SDT_NotificationGroupItem2 ;
       private GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem> aP0_SDT_NotificationGroupParentCollection ;
       private GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem> aP1_SDT_NotificationGroupCollection ;
@@ -254,10 +281,10 @@ namespace GeneXus.Programs {
        {
           Object[] prmP00A92;
           prmP00A92 = new Object[] {
-          new ParDef("AV19Udparg1",GXType.VarChar,100,60)
+          new ParDef("AV27Udparg1",GXType.VarChar,100,60)
           };
           def= new CursorDef[] {
-              new CursorDef("P00A92", "SELECT WWPUserExtendedId, WWPNotificationId, WWPNotificationTitle, WWPNotificationShortDescriptio, WWPNotificationIcon, WWPNotificationLink, WWPNotificationMetadata, WWPNotificationCreated FROM WWP_Notification WHERE WWPUserExtendedId = ( :AV19Udparg1) ORDER BY WWPNotificationCreated DESC ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A92,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P00A92", "SELECT WWPUserExtendedId, WWPNotificationId, WWPNotificationTitle, WWPNotificationShortDescriptio, WWPNotificationIcon, WWPNotificationLink, WWPNotificationMetadata, WWPNotificationCreated FROM WWP_Notification WHERE WWPUserExtendedId = ( :AV27Udparg1) ORDER BY WWPNotificationCreated DESC ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A92,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }

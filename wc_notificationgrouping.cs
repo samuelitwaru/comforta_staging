@@ -1576,7 +1576,7 @@ namespace GeneXus.Programs {
             AV13DetailWebComponent = "<i class=\"ArrowIcon fas fa-angle-right\"></i>";
             AssignAttri(sPrefix, false, edtavDetailwebcomponent_Internalname, AV13DetailWebComponent);
             edtavNotificationicon_Format = 2;
-            AV29NotificationIcon = StringUtil.Format( "<span class=\"%1\">%2</span>", context.GetMessage( "NotificationBadgeNumber", ""), StringUtil.LTrimStr( (decimal)(((SdtSDT_NotificationGroup_SDT_NotificationGroupItem)(AV36SDT_NotificationGroup.CurrentItem)).gxTpr_Numberofchildnotifications+1), 4, 0), "", "", "", "", "", "", "");
+            AV29NotificationIcon = StringUtil.Format( "<span class=\"%1\">%2</span>", context.GetMessage( "NotificationBadgeNumber", ""), StringUtil.LTrimStr( (decimal)(((SdtSDT_NotificationGroup_SDT_NotificationGroupItem)(AV36SDT_NotificationGroup.CurrentItem)).gxTpr_Numberofchildnotifications), 4, 0), "", "", "", "", "", "", "");
             AssignAttri(sPrefix, false, edtavNotificationicon_Internalname, AV29NotificationIcon);
             /* Load Method */
             if ( wbStart != -1 )
@@ -1924,7 +1924,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512220534658", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025130953560", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1940,7 +1940,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_notificationgrouping.js", "?202512220534658", false, true);
+         context.AddJavascriptSource("wc_notificationgrouping.js", "?2025130953560", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DVPaginationBar/DVPaginationBarRender.js", "", false, true);

@@ -295,6 +295,7 @@ class EventListenerManager {
                 1 - value / 100
               })), url(${currentBgImage})`,
             });
+            
           }
         }
       });

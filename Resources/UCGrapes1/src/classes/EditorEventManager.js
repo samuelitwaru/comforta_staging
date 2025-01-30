@@ -26,13 +26,10 @@ class EditorEventManager {
 
   handleEditorLoad(editor) {
     this.loadTheme()
-    this.editorManager.toolsSection.currentLanguage.translateTilesTitles()
     const wrapper = editor.getWrapper();
+    this.editorManager.toolsSection.currentLanguage.translateTilesTitles(editor)
     wrapper.view.el.addEventListener("click", (e) =>
       this.handleEditorClick(e, editor)
-    );
-    wrapper.view.el.addEventListener("contextmenu", (e) =>
-      this.rightClickEventHandler(editor, e)
     );
   }
 
@@ -40,11 +37,6 @@ class EditorEventManager {
     this.editorManager.toolsSection.themeManager.setTheme(
       this.editorManager.theme.ThemeName
     );
-    // this.editorManager.dataManager.getLocationTheme().then((theme) => {
-    //   this.editorManager.toolsSection.themeManager.setTheme(
-    //     theme.SDT_LocationTheme.ThemeName
-    //   );
-    // });
   }
 
   handleEditorClick(e, editor) {
@@ -70,7 +62,6 @@ class EditorEventManager {
     }
 
     const tileElement = e.target.closest("[tile-action-object-id]");
-
     if (tileElement) {
       const customEvent = {
         ...e,
@@ -83,8 +74,6 @@ class EditorEventManager {
     if (button) {
       this.handleActionButtonClick(button, editor);
     }
-
-    this.hideContextMenu();
   }
 
   handleTileActionClick(e, editorContainerId) {
@@ -189,77 +178,9 @@ class EditorEventManager {
       );
     }
 
-    this.hideContextMenu();
+    this.editorManager.toolsSection.checkTileBgImage();
+
     this.updateUIState();
-  }
-
-  rightClickEventHandler(editor, e) {
-    document.querySelectorAll("iframe").forEach((iframe) => {
-      const iframeDoc =
-        iframe.contentDocument || iframe.contentWindow?.document;
-      if (!iframeDoc) return;
-
-      const contextMenu = document.getElementById("contextMenu");
-      if (!contextMenu) return;
-
-      iframeDoc.addEventListener("contextmenu", (event) => {
-        this.showContextMenu(event, iframe, contextMenu, editor);
-      });
-
-      iframeDoc.addEventListener("click", () => this.hideContextMenu());
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") this.hideContextMenu();
-      });
-    });
-  }
-
-  showContextMenu(event, iframe, contextMenu, editor) {
-    const block = event.target.closest(".template-block");
-    if (!block) return;
-
-    event.preventDefault();
-
-    console.log("hasImage", block.style);
-
-    const iframeRect = iframe.getBoundingClientRect();
-    contextMenu.style.position = "fixed";
-    contextMenu.style.left = `${event.clientX + iframeRect.left}px`;
-    contextMenu.style.top = `${event.clientY + iframeRect.top}px`;
-    contextMenu.style.display = "block";
-
-    window.currentBlock = block;
-
-    const deleteImageButton = document.getElementById("delete-bg-image");
-    if (deleteImageButton) {
-      deleteImageButton.addEventListener("click", () =>
-        this.deleteBackgroundImage(editor)
-      );
-    }
-  }
-
-  hideContextMenu() {
-    const contextMenu = document.getElementById("contextMenu");
-    if (contextMenu) {
-      contextMenu.style.display = "none";
-      window.currentBlock = null;
-    }
-  }
-
-  deleteBackgroundImage(editor) {
-    const blockToDelete = window.currentBlock;
-    if (!blockToDelete) return;
-
-    editor.select(null);
-    const component = editor.getWrapper().find(`#${blockToDelete.id}`)[0];
-    if (component) {
-      editor.select(component);
-      this.selectedComponent = component;
-      const currentStyles = component.getStyle() || {};
-      delete currentStyles["background-image"];
-      component.setStyle(currentStyles);
-    }
-
-    this.hideContextMenu();
   }
 
   updateUIState() {

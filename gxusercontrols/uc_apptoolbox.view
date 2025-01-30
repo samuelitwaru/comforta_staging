@@ -89,7 +89,7 @@
         </div>
         <div class="tb-tab-content active-tab" id="pages-content">
           <div id="menu-page-section">
-            <div class="sidebar-section theme-section">
+            <div class="sidebar-section theme-section" style="padding-top: 0">
               <div class="color-palette" id="theme-color-palette">
               </div>
 		  <div class="tile-img-section">
@@ -304,11 +304,15 @@
   </script>
   <script src="/Resources/UCGrapes1/src/classes/UndoRedoManager.js">
   </script>
+  <script src="/Resources/UCGrapes1/src/classes/UndoRedoManager.js">
+  </script>
   <script src="/Resources/UCGrapes1/src/components/ActionListComponent.js">
   </script>
   <script src="/Resources/UCGrapes1/src/components/MappingComponent.js">
   </script>
   <script src="/Resources/UCGrapes1/src/components/MediaComponent.js">
+  </script>
+  <script src="/Resources/UCGrapes1/src/classes/ImageCropper.js">
   </script>
   <script src="/Resources/UCGrapes1/src/classes/ImageCropper.js">
   </script>
