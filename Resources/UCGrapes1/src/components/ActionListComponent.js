@@ -217,9 +217,7 @@ class ActionListComponent {
             );
             this.toolBoxManager.setAttributeToSelected(
               "tile-action-object",
-              `${item.closest(".category").dataset.category}, ${
-                category
-              }`
+              `${category}, ${item.textContent}`
             );
 
             if (category == "Service/Product Page") {
