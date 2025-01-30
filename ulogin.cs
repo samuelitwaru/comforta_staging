@@ -1740,15 +1740,15 @@ namespace GeneXus.Programs {
             {
                if ( AV10Error.gxTpr_Code == 11 )
                {
-                  GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  AV10Error.gxTpr_Message,  "error",  "#"+edtavUserpassword_Internalname,  "true",  ""));
+                  GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "The user or password is incorrect.", ""),  "error",  "#"+edtavUserpassword_Internalname,  "true",  ""));
                }
                else if ( AV10Error.gxTpr_Code == 79 )
                {
-                  GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  AV10Error.gxTpr_Message,  "error",  "#"+edtavUsername_Internalname,  "true",  ""));
+                  GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "The user or password is incorrect.", ""),  "#"+edtavUsername_Internalname,  "true",  "",  ""));
                }
                else if ( AV10Error.gxTpr_Code == 18 )
                {
-                  GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  AV10Error.gxTpr_Message,  "error",  "#"+edtavUsername_Internalname,  "true",  ""));
+                  GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "Incorrect Email", ""),  "error",  "#"+edtavUsername_Internalname,  "true",  ""));
                }
                else
                {
@@ -1803,7 +1803,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251301301282", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202513014493823", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1819,7 +1819,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("ulogin.js", "?20251301301287", false, true);
+         context.AddJavascriptSource("ulogin.js", "?202513014493826", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Mask/jquery.mask.js", "", false, true);
          context.AddJavascriptSource("DVelop/WorkWithPlusUtilities/BootstrapSelect.js", "", false, true);
