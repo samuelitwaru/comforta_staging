@@ -304,8 +304,6 @@
   </script>
   <script src="/Resources/UCGrapes1/src/classes/UndoRedoManager.js">
   </script>
-  <script src="/Resources/UCGrapes1/src/classes/UndoRedoManager.js">
-  </script>
   <script src="/Resources/UCGrapes1/src/components/ActionListComponent.js">
   </script>
   <script src="/Resources/UCGrapes1/src/components/MappingComponent.js">
@@ -314,10 +312,6 @@
   </script>
   <script src="/Resources/UCGrapes1/src/classes/ImageCropper.js">
   </script>
-  <script src="/Resources/UCGrapes1/src/classes/ImageCropper.js">
-  </script>
   <script src="/Resources/UCGrapes1/src/utils/defaults.js">
-  </script>
-  <script src="/Resources/UCGrapes1/dist/main.js">
   </script>
 </div>
