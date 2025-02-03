@@ -26,7 +26,7 @@ class TemplateManager {
                   data-gjs-resizable="false"
                   data-gjs-hoverable="false">
               <div class="template-block"
-                style="background:${tileBgColor}"
+                style="background-color:${tileBgColor}"
                 tile-bgcolor="${tileBgColor}"
                 tile-bgcolor-name="accentColor"
                 ${defaultTileAttrs} 
@@ -700,6 +700,12 @@ class TemplateManager {
           this.editorManager.selectedComponent
             .find(sectionSelector)[0]
             .remove();
+          if (sectionSelector = '.tile-title-section') {
+            this.editorManager.toolsSection.setAttributeToSelected("TileText", "")
+          }
+          if (sectionSelector = '.tile-icon-section') {
+            this.editorManager.toolsSection.setAttributeToSelected("tile-icon", "")
+          }
         };
       }
     }
