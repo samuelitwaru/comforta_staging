@@ -169,75 +169,91 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             {
                AV21WWPNotificationDefinitionLink = AV14pWWPNotificationDefinitionLink;
             }
-            pr_default.dynParam(1, new Object[]{ new Object[]{
-                                                 AV27WWPSubscriptionEntityRecordId ,
-                                                 A131WWPSubscriptionEntityRecordId ,
-                                                 A128WWPNotificationDefinitionId } ,
-                                                 new int[]{
-                                                 TypeConstants.LONG
-                                                 }
-            });
-            /* Using cursor P003K3 */
-            pr_default.execute(1, new Object[] {A128WWPNotificationDefinitionId, AV27WWPSubscriptionEntityRecordId});
-            while ( (pr_default.getStatus(1) != 101) )
+            if ( StringUtil.StrCmp(AV18WWPEntityName, context.GetMessage( "DynamicForms", "")) == 0 )
             {
-               A131WWPSubscriptionEntityRecordId = P003K3_A131WWPSubscriptionEntityRecordId[0];
-               A112WWPUserExtendedId = P003K3_A112WWPUserExtendedId[0];
-               n112WWPUserExtendedId = P003K3_n112WWPUserExtendedId[0];
-               A132WWPSubscriptionSubscribed = P003K3_A132WWPSubscriptionSubscribed[0];
-               A124WWPSubscriptionRoleId = P003K3_A124WWPSubscriptionRoleId[0];
-               n124WWPSubscriptionRoleId = P003K3_n124WWPSubscriptionRoleId[0];
-               A130WWPSubscriptionId = P003K3_A130WWPSubscriptionId[0];
-               if ( ! ( (AV10ExcludedWWPUserExtendedIdCollection.IndexOf(StringUtil.RTrim( A112WWPUserExtendedId))>0) ) && ( (AV30ReceptionistsToNotify.IndexOf(StringUtil.RTrim( A112WWPUserExtendedId))>0) ) )
+               AV40GXV1 = 1;
+               while ( AV40GXV1 <= AV30ReceptionistsToNotify.Count )
                {
-                  if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A112WWPUserExtendedId)) && A132WWPSubscriptionSubscribed )
+                  AV31ReceptionistGUID = ((string)AV30ReceptionistsToNotify.Item(AV40GXV1));
+                  if ( ! (AV10ExcludedWWPUserExtendedIdCollection.IndexOf(StringUtil.RTrim( AV31ReceptionistGUID))>0) )
                   {
-                     AV8WWPUserExtendedId = A112WWPUserExtendedId;
-                     new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_createnotificationtouser(context ).execute(  AV8WWPUserExtendedId,  AV20WWPNotificationDefinitionId,  AV25WWPNotificationDefinitionTitle,  AV24WWPNotificationDefinitionShortDescription,  AV22WWPNotificationDefinitionLongDescription, ref  AV21WWPNotificationDefinitionLink,  AV26WWPNotificationMetadata,  AV19WWPNotificationDefinitionIcon,  StringUtil.Contains( AV23WWPNotificationDefinitionName, context.GetMessage( "Discussion", ""))) ;
+                     new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_createnotificationtouser(context ).execute(  AV8WWPUserExtendedId,  AV20WWPNotificationDefinitionId,  AV25WWPNotificationDefinitionTitle,  AV24WWPNotificationDefinitionShortDescription,  AV22WWPNotificationDefinitionLongDescription, ref  AV21WWPNotificationDefinitionLink,  AV26WWPNotificationMetadata,  AV19WWPNotificationDefinitionIcon,  true) ;
                   }
-                  else
+                  AV40GXV1 = (int)(AV40GXV1+1);
+               }
+            }
+            else
+            {
+               pr_default.dynParam(1, new Object[]{ new Object[]{
+                                                    AV27WWPSubscriptionEntityRecordId ,
+                                                    A131WWPSubscriptionEntityRecordId ,
+                                                    A128WWPNotificationDefinitionId } ,
+                                                    new int[]{
+                                                    TypeConstants.LONG
+                                                    }
+               });
+               /* Using cursor P003K3 */
+               pr_default.execute(1, new Object[] {A128WWPNotificationDefinitionId, AV27WWPSubscriptionEntityRecordId});
+               while ( (pr_default.getStatus(1) != 101) )
+               {
+                  A131WWPSubscriptionEntityRecordId = P003K3_A131WWPSubscriptionEntityRecordId[0];
+                  A112WWPUserExtendedId = P003K3_A112WWPUserExtendedId[0];
+                  n112WWPUserExtendedId = P003K3_n112WWPUserExtendedId[0];
+                  A132WWPSubscriptionSubscribed = P003K3_A132WWPSubscriptionSubscribed[0];
+                  A124WWPSubscriptionRoleId = P003K3_A124WWPSubscriptionRoleId[0];
+                  n124WWPSubscriptionRoleId = P003K3_n124WWPSubscriptionRoleId[0];
+                  A130WWPSubscriptionId = P003K3_A130WWPSubscriptionId[0];
+                  if ( ! ( (AV10ExcludedWWPUserExtendedIdCollection.IndexOf(StringUtil.RTrim( A112WWPUserExtendedId))>0) ) && ( (AV30ReceptionistsToNotify.IndexOf(StringUtil.RTrim( A112WWPUserExtendedId))>0) ) )
                   {
-                     AV42GXV2 = 1;
-                     GXt_objcol_svchar1 = (GxSimpleCollection<string>)(AV41GXV1);
-                     GXt_objcol_char3 = (GxSimpleCollection<string>)(GXt_objcol_svchar1);
-                     new GeneXus.Programs.wwpbaseobjects.wwp_getusersfromrole(context ).execute(  A124WWPSubscriptionRoleId, out  GXt_objcol_char3) ;
-                     GXt_objcol_svchar1 = GXt_objcol_char3;
-                     AV41GXV1 = GXt_objcol_svchar1;
-                     while ( AV42GXV2 <= AV41GXV1.Count )
+                     if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A112WWPUserExtendedId)) && A132WWPSubscriptionSubscribed )
                      {
-                        AV8WWPUserExtendedId = AV41GXV1.GetString(AV42GXV2);
-                        /* Execute user subroutine: 'INCLUDENOTIFICATIONTOUSER' */
-                        S111 ();
-                        if ( returnInSub )
+                        AV8WWPUserExtendedId = A112WWPUserExtendedId;
+                        new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_createnotificationtouser(context ).execute(  AV8WWPUserExtendedId,  AV20WWPNotificationDefinitionId,  AV25WWPNotificationDefinitionTitle,  AV24WWPNotificationDefinitionShortDescription,  AV22WWPNotificationDefinitionLongDescription, ref  AV21WWPNotificationDefinitionLink,  AV26WWPNotificationMetadata,  AV19WWPNotificationDefinitionIcon,  StringUtil.Contains( AV23WWPNotificationDefinitionName, context.GetMessage( "Discussion", ""))) ;
+                     }
+                     else
+                     {
+                        AV43GXV3 = 1;
+                        GXt_objcol_svchar1 = (GxSimpleCollection<string>)(AV42GXV2);
+                        GXt_objcol_char3 = (GxSimpleCollection<string>)(GXt_objcol_svchar1);
+                        new GeneXus.Programs.wwpbaseobjects.wwp_getusersfromrole(context ).execute(  A124WWPSubscriptionRoleId, out  GXt_objcol_char3) ;
+                        GXt_objcol_svchar1 = GXt_objcol_char3;
+                        AV42GXV2 = GXt_objcol_svchar1;
+                        while ( AV43GXV3 <= AV42GXV2.Count )
                         {
-                           pr_default.close(1);
-                           cleanup();
-                           if (true) return;
+                           AV8WWPUserExtendedId = AV42GXV2.GetString(AV43GXV3);
+                           /* Execute user subroutine: 'INCLUDENOTIFICATIONTOUSER' */
+                           S111 ();
+                           if ( returnInSub )
+                           {
+                              pr_default.close(1);
+                              cleanup();
+                              if (true) return;
+                           }
+                           if ( AV12IncludeNotificationToUser )
+                           {
+                              new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_createnotificationtouser(context ).execute(  AV8WWPUserExtendedId,  AV20WWPNotificationDefinitionId,  AV25WWPNotificationDefinitionTitle,  AV24WWPNotificationDefinitionShortDescription,  AV22WWPNotificationDefinitionLongDescription, ref  AV21WWPNotificationDefinitionLink,  AV26WWPNotificationMetadata,  AV19WWPNotificationDefinitionIcon,  StringUtil.Contains( AV23WWPNotificationDefinitionName, context.GetMessage( "Discussion", ""))) ;
+                           }
+                           AV43GXV3 = (int)(AV43GXV3+1);
                         }
-                        if ( AV12IncludeNotificationToUser )
-                        {
-                           new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_createnotificationtouser(context ).execute(  AV8WWPUserExtendedId,  AV20WWPNotificationDefinitionId,  AV25WWPNotificationDefinitionTitle,  AV24WWPNotificationDefinitionShortDescription,  AV22WWPNotificationDefinitionLongDescription, ref  AV21WWPNotificationDefinitionLink,  AV26WWPNotificationMetadata,  AV19WWPNotificationDefinitionIcon,  StringUtil.Contains( AV23WWPNotificationDefinitionName, context.GetMessage( "Discussion", ""))) ;
-                        }
-                        AV42GXV2 = (int)(AV42GXV2+1);
                      }
                   }
-               }
-               if ( ! ( (AV10ExcludedWWPUserExtendedIdCollection.IndexOf(StringUtil.RTrim( A112WWPUserExtendedId))>0) ) && ! ( (AV30ReceptionistsToNotify.IndexOf(StringUtil.RTrim( A112WWPUserExtendedId))>0) ) )
-               {
-                  GXt_guid4 = AV33ResidentId;
-                  new prc_getresidentidfromguid(context ).execute(  A112WWPUserExtendedId, out  GXt_guid4) ;
-                  AV33ResidentId = GXt_guid4;
-                  if ( ! (Guid.Empty==AV33ResidentId) )
+                  if ( ! ( (AV10ExcludedWWPUserExtendedIdCollection.IndexOf(StringUtil.RTrim( A112WWPUserExtendedId))>0) ) && ! ( (AV30ReceptionistsToNotify.IndexOf(StringUtil.RTrim( A112WWPUserExtendedId))>0) ) )
                   {
-                     AV37SDT_OneSignalCustomData = new SdtSDT_OneSignalCustomData(context);
-                     AV37SDT_OneSignalCustomData.gxTpr_Notificationcategory = "Discussion";
-                     AV37SDT_OneSignalCustomData.gxTpr_Discussiondetails.gxTpr_Discussionid = AV27WWPSubscriptionEntityRecordId;
-                     new prc_sendresidentdiscussionnotification(context ).execute(  AV25WWPNotificationDefinitionTitle,  AV24WWPNotificationDefinitionShortDescription,  A112WWPUserExtendedId,  AV37SDT_OneSignalCustomData) ;
+                     GXt_guid4 = AV33ResidentId;
+                     new prc_getresidentidfromguid(context ).execute(  A112WWPUserExtendedId, out  GXt_guid4) ;
+                     AV33ResidentId = GXt_guid4;
+                     if ( ! (Guid.Empty==AV33ResidentId) )
+                     {
+                        AV37SDT_OneSignalCustomData = new SdtSDT_OneSignalCustomData(context);
+                        AV37SDT_OneSignalCustomData.gxTpr_Notificationcategory = "Discussion";
+                        AV37SDT_OneSignalCustomData.gxTpr_Discussiondetails.gxTpr_Discussionid = AV27WWPSubscriptionEntityRecordId;
+                        new prc_sendresidentdiscussionnotification(context ).execute(  AV25WWPNotificationDefinitionTitle,  AV24WWPNotificationDefinitionShortDescription,  A112WWPUserExtendedId,  AV37SDT_OneSignalCustomData) ;
+                     }
                   }
+                  pr_default.readNext(1);
                }
-               pr_default.readNext(1);
+               pr_default.close(1);
             }
-            pr_default.close(1);
             pr_default.readNext(0);
          }
          pr_default.close(0);
@@ -307,6 +323,8 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          AV24WWPNotificationDefinitionShortDescription = "";
          AV22WWPNotificationDefinitionLongDescription = "";
          AV21WWPNotificationDefinitionLink = "";
+         AV31ReceptionistGUID = "";
+         AV8WWPUserExtendedId = "";
          A131WWPSubscriptionEntityRecordId = "";
          P003K3_A128WWPNotificationDefinitionId = new long[1] ;
          P003K3_A131WWPSubscriptionEntityRecordId = new string[] {""} ;
@@ -318,8 +336,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          P003K3_A130WWPSubscriptionId = new long[1] ;
          A112WWPUserExtendedId = "";
          A124WWPSubscriptionRoleId = "";
-         AV8WWPUserExtendedId = "";
-         AV41GXV1 = new GxSimpleCollection<string>();
+         AV42GXV2 = new GxSimpleCollection<string>();
          GXt_objcol_svchar1 = new GxSimpleCollection<string>();
          GXt_objcol_char3 = new GxSimpleCollection<string>();
          AV33ResidentId = Guid.Empty;
@@ -351,7 +368,8 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          /* GeneXus formulas. */
       }
 
-      private int AV42GXV2 ;
+      private int AV40GXV1 ;
+      private int AV43GXV3 ;
       private int A40000GXC1 ;
       private long AV39Udparg1 ;
       private long A128WWPNotificationDefinitionId ;
@@ -359,9 +377,9 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       private long AV20WWPNotificationDefinitionId ;
       private long A130WWPSubscriptionId ;
       private string GXt_char2 ;
+      private string AV8WWPUserExtendedId ;
       private string A112WWPUserExtendedId ;
       private string A124WWPSubscriptionRoleId ;
-      private string AV8WWPUserExtendedId ;
       private bool AV9MakeCommit ;
       private bool n112WWPUserExtendedId ;
       private bool A132WWPSubscriptionSubscribed ;
@@ -390,6 +408,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       private string AV24WWPNotificationDefinitionShortDescription ;
       private string AV22WWPNotificationDefinitionLongDescription ;
       private string AV21WWPNotificationDefinitionLink ;
+      private string AV31ReceptionistGUID ;
       private string A131WWPSubscriptionEntityRecordId ;
       private Guid AV33ResidentId ;
       private Guid GXt_guid4 ;
@@ -415,7 +434,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       private string[] P003K3_A124WWPSubscriptionRoleId ;
       private bool[] P003K3_n124WWPSubscriptionRoleId ;
       private long[] P003K3_A130WWPSubscriptionId ;
-      private GxSimpleCollection<string> AV41GXV1 ;
+      private GxSimpleCollection<string> AV42GXV2 ;
       private GxSimpleCollection<string> GXt_objcol_svchar1 ;
       private GxSimpleCollection<string> GXt_objcol_char3 ;
       private SdtSDT_OneSignalCustomData AV37SDT_OneSignalCustomData ;
