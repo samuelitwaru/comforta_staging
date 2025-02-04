@@ -145,7 +145,7 @@ namespace GeneXus.Programs {
       public void gxep_changeuserpassword( string aP0_userId ,
                                            string aP1_password ,
                                            string aP2_passwordNew ,
-                                           out string aP3_result )
+                                           out SdtSDT_ChangeYourPassword aP3_ChangeYourPasswordResult )
       {
          restCliChangeUserPassword = new GXRestAPIClient();
          if ( restLocation == null )
@@ -164,11 +164,11 @@ namespace GeneXus.Programs {
             gxProperties.ErrorCode = restCliChangeUserPassword.ErrorCode;
             gxProperties.ErrorMessage = restCliChangeUserPassword.ErrorMessage;
             gxProperties.StatusCode = restCliChangeUserPassword.StatusCode;
-            aP3_result = "";
+            aP3_ChangeYourPasswordResult = new SdtSDT_ChangeYourPassword();
          }
          else
          {
-            aP3_result = restCliChangeUserPassword.GetBodyString("result");
+            aP3_ChangeYourPasswordResult = restCliChangeUserPassword.GetBodySdt<SdtSDT_ChangeYourPassword>("ChangeYourPasswordResult");
          }
          /* ChangeUserPassword Constructor */
       }
@@ -1119,7 +1119,7 @@ namespace GeneXus.Programs {
          restCliLoginWithUsernamePassword = new GXRestAPIClient();
          aP2_loginResult = new SdtSDT_LoginResidentResponse();
          restCliChangeUserPassword = new GXRestAPIClient();
-         aP3_result = "";
+         aP3_ChangeYourPasswordResult = new SdtSDT_ChangeYourPassword();
          restCliRefreshAuthToken = new GXRestAPIClient();
          restCliGetResidentInformation = new GXRestAPIClient();
          aP1_SDT_Resident = new SdtSDT_Resident();
@@ -1225,7 +1225,7 @@ namespace GeneXus.Programs {
       protected IGxDataStore dsDefault ;
       protected SdtSDT_LoginResidentResponse aP1_loginResult ;
       protected SdtSDT_LoginResidentResponse aP2_loginResult ;
-      protected string aP3_result ;
+      protected SdtSDT_ChangeYourPassword aP3_ChangeYourPasswordResult ;
       protected SdtSDT_Resident aP1_SDT_Resident ;
       protected SdtSDT_Organisation aP1_SDT_Organisation ;
       protected SdtSDT_Location aP1_SDT_Location ;

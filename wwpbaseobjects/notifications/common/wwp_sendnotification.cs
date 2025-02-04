@@ -177,7 +177,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
                   AV31ReceptionistGUID = ((string)AV30ReceptionistsToNotify.Item(AV40GXV1));
                   if ( ! (AV10ExcludedWWPUserExtendedIdCollection.IndexOf(StringUtil.RTrim( AV31ReceptionistGUID))>0) )
                   {
-                     new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_createnotificationtouser(context ).execute(  AV8WWPUserExtendedId,  AV20WWPNotificationDefinitionId,  AV25WWPNotificationDefinitionTitle,  AV24WWPNotificationDefinitionShortDescription,  AV22WWPNotificationDefinitionLongDescription, ref  AV21WWPNotificationDefinitionLink,  AV26WWPNotificationMetadata,  AV19WWPNotificationDefinitionIcon,  true) ;
+                     new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_createnotificationtouser(context ).execute(  AV31ReceptionistGUID,  AV20WWPNotificationDefinitionId,  AV25WWPNotificationDefinitionTitle,  AV24WWPNotificationDefinitionShortDescription,  AV22WWPNotificationDefinitionLongDescription, ref  AV21WWPNotificationDefinitionLink,  AV26WWPNotificationMetadata,  AV19WWPNotificationDefinitionIcon,  true) ;
                   }
                   AV40GXV1 = (int)(AV40GXV1+1);
                }
@@ -324,7 +324,6 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          AV22WWPNotificationDefinitionLongDescription = "";
          AV21WWPNotificationDefinitionLink = "";
          AV31ReceptionistGUID = "";
-         AV8WWPUserExtendedId = "";
          A131WWPSubscriptionEntityRecordId = "";
          P003K3_A128WWPNotificationDefinitionId = new long[1] ;
          P003K3_A131WWPSubscriptionEntityRecordId = new string[] {""} ;
@@ -336,6 +335,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          P003K3_A130WWPSubscriptionId = new long[1] ;
          A112WWPUserExtendedId = "";
          A124WWPSubscriptionRoleId = "";
+         AV8WWPUserExtendedId = "";
          AV42GXV2 = new GxSimpleCollection<string>();
          GXt_objcol_svchar1 = new GxSimpleCollection<string>();
          GXt_objcol_char3 = new GxSimpleCollection<string>();
@@ -377,9 +377,9 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       private long AV20WWPNotificationDefinitionId ;
       private long A130WWPSubscriptionId ;
       private string GXt_char2 ;
-      private string AV8WWPUserExtendedId ;
       private string A112WWPUserExtendedId ;
       private string A124WWPSubscriptionRoleId ;
+      private string AV8WWPUserExtendedId ;
       private bool AV9MakeCommit ;
       private bool n112WWPUserExtendedId ;
       private bool A132WWPSubscriptionSubscribed ;

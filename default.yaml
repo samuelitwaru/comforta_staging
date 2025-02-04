@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250203113029"
+  version: "20250204082821"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -1936,6 +1936,14 @@ components:
         WWPFormIsForDynamicValidations:
           description: "WWPForm Is For Dynamic Validations"
           type: "boolean"
+    SDT_ChangeYourPassword:
+      properties:
+        success_message:
+          description: "success_message"
+          type: "string"
+        error:
+          description: "SDT_Error Response"
+          $ref: "#/components/schemas/SDT_ErrorResponse"
     SDT_Col:
       properties:
         Tile:

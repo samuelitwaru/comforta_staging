@@ -278,7 +278,7 @@
         </u l>
     </div>
   </div>
-  <script src="/Resources/UCGrapes1/src/classes/Clock.js">
+  <!-- <script src="/Resources/UCGrapes1/src/classes/Clock.js">
   </script>
   <script src="/Resources/UCGrapes1/src/classes/Locale.js">
   </script>
@@ -313,5 +313,8 @@
   <script src="/Resources/UCGrapes1/src/classes/ImageCropper.js">
   </script>
   <script src="/Resources/UCGrapes1/src/utils/defaults.js">
+  </script> -->
+  
+  <script src="/Resources/UCGrapes1/src/combined.js">
   </script>
 </div>

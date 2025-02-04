@@ -17,6 +17,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_AgendaLocation.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_AvatarUpload.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_CallToAction_SDT_CallToActionItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_ChangeYourPassword.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Col.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPage.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPage_ContentItem.cs" />

@@ -135,23 +135,29 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV10GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context).getbyguid(AV14userGUID, out  AV9GAMErrorCollection);
+         AV10GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMRepository(context).getuserbyguid(AV14userGUID, out  AV9GAMErrorCollection);
          if ( AV10GAMUser.changepassword(AV11password, AV12passwordNew, out  AV9GAMErrorCollection) )
          {
             if ( AV9GAMErrorCollection.Count == 0 )
             {
                context.CommitDataStores("prc_changeuserpassword",pr_default);
-               AV13response = context.GetMessage( "Password changed successfully", "");
+               AV16result = new SdtSDT_ChangeYourPassword(context);
+               AV16result.gxTpr_Success_message = context.GetMessage( "Password changed successfully", "");
             }
             else
             {
-               AV13response = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV9GAMErrorCollection.Item(1)).gxTpr_Message;
+               AV16result = new SdtSDT_ChangeYourPassword(context);
+               AV16result.gxTpr_Error.gxTpr_Code = StringUtil.Trim( StringUtil.Str( (decimal)(((GeneXus.Programs.genexussecurity.SdtGAMError)AV9GAMErrorCollection.Item(1)).gxTpr_Code), 12, 0));
+               AV16result.gxTpr_Error.gxTpr_Message = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV9GAMErrorCollection.Item(1)).gxTpr_Message;
             }
          }
          else
          {
-            AV13response = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV9GAMErrorCollection.Item(1)).gxTpr_Message;
+            AV16result = new SdtSDT_ChangeYourPassword(context);
+            AV16result.gxTpr_Error.gxTpr_Code = StringUtil.Trim( StringUtil.Str( (decimal)(((GeneXus.Programs.genexussecurity.SdtGAMError)AV9GAMErrorCollection.Item(1)).gxTpr_Code), 12, 0));
+            AV16result.gxTpr_Error.gxTpr_Message = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV9GAMErrorCollection.Item(1)).gxTpr_Message;
          }
+         AV13response = AV16result.ToJSonString(false, true);
          cleanup();
       }
 
@@ -170,6 +176,7 @@ namespace GeneXus.Programs {
          AV13response = "";
          AV10GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          AV9GAMErrorCollection = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
+         AV16result = new SdtSDT_ChangeYourPassword(context);
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.aprc_changeuserpassword__datastore1(),
             new Object[][] {
             }
@@ -195,6 +202,7 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.genexussecurity.SdtGAMUser AV10GAMUser ;
       private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV9GAMErrorCollection ;
       private IDataStoreProvider pr_default ;
+      private SdtSDT_ChangeYourPassword AV16result ;
       private string aP3_response ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
