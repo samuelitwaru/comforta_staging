@@ -3,7 +3,10 @@
 -->
 <script src="/Resources/UCGrapes1/src/utils/data-mapper.js">
 </script>
-<div id="tb-body">
+<div class="preloader" id="preloader">
+<div class="spinner"></div>
+</div>
+<div id="tb-body">  
   <div class="tb-navbar">
     <h3 id="navbar_title">
     </h3>
@@ -46,33 +49,13 @@
   </div>
   <div class="tb-container">
     <div class="main-content">
-      <div class="navigator page-navigator-left" style="display:none">
-        <svg id="scroll-left" xmlns="http://www.w3.org/2000/svg" width="46" height="46"
-        viewBox="0 0 46 46">
-          <g id="Group_710" data-name="Group 710" transform="translate(-428 -497)">
-            <g id="Ellipse_109" data-name="Ellipse 109" transform="translate(474 543) rotate(180)"
-            fill="#fff" stroke="#707070" stroke-width="1">
-              <circle cx="23" cy="23" r="23" stroke="none" />
-              <circle cx="23" cy="23" r="22.5" fill="none" />
-            </g>
-            <path id="Path_1222" data-name="Path 1222" d="M28.906,15.969a1.165,1.165,0,0,0-.125.031.994.994,0,0,0-.781.7,1,1,0,0,0,.281,1.016L34.563,24H12.906A1,1,0,1,0,13,26H34.563l-6.281,6.281a1.016,1.016,0,0,0,1.438,1.438l7.844-7.875a.961.961,0,0,0,.156-.125c.023-.031.043-.062.063-.094a.479.479,0,0,0,.063-.062.843.843,0,0,0,.094-.187.48.48,0,0,0,.031-.062v-.031A.881.881,0,0,0,38,25.188a1.049,1.049,0,0,0,0-.312v-.094a.461.461,0,0,0-.031-.062v-.031a.48.48,0,0,0-.031-.062v-.031a.461.461,0,0,0-.031-.062l-.031-.031a.467.467,0,0,0-.031-.062.956.956,0,0,0-.125-.156h-.031a.467.467,0,0,0-.062-.062l-7.906-7.937A1,1,0,0,0,28.906,15.969Z"
-            transform="translate(475.951 544.965) rotate(180)" fill="#6a747f" />
-          </g>
-        </svg>
+      <div class="navigator page-navigator-left" style="display:none">	
+		<span id="scroll-left"><i class="fa fa-arrow-left-long"></i></span>
       </div>
       <div class="frame-list" id="child-container">
       </div>
       <div class="navigator page-navigator-right" style="display:none">
-        <svg id="scroll-right" xmlns="http://www.w3.org/2000/svg" id="Component_42_4"
-        data-name="Component 42 – 4" width="46" height="46" viewBox="0 0 46 46">
-          <g id="Ellipse_109" data-name="Ellipse 109" fill="#fff" stroke="#707070"
-          stroke-width="1">
-            <circle cx="23" cy="23" r="23" stroke="none" />
-            <circle cx="23" cy="23" r="22.5" fill="none" />
-          </g>
-          <path id="Path_1222" data-name="Path 1222" d="M28.906,15.969a1.165,1.165,0,0,0-.125.031.994.994,0,0,0-.781.7,1,1,0,0,0,.281,1.016L34.563,24H12.906A1,1,0,1,0,13,26H34.563l-6.281,6.281a1.016,1.016,0,0,0,1.438,1.438l7.844-7.875a.961.961,0,0,0,.156-.125c.023-.031.043-.062.063-.094a.479.479,0,0,0,.063-.062.843.843,0,0,0,.094-.187.48.48,0,0,0,.031-.062v-.031A.881.881,0,0,0,38,25.188a1.049,1.049,0,0,0,0-.312v-.094a.461.461,0,0,0-.031-.062v-.031a.48.48,0,0,0-.031-.062v-.031a.461.461,0,0,0-.031-.062l-.031-.031a.467.467,0,0,0-.031-.062.956.956,0,0,0-.125-.156h-.031a.467.467,0,0,0-.062-.062l-7.906-7.937A1,1,0,0,0,28.906,15.969Z"
-          transform="translate(-1.951 -1.965)" fill="#6a747f" />
-        </svg>
+        <span id="scroll-right"><i class="fa fa-arrow-right-long"></i></span>
       </div>
     </div>
     <div class="sidebar sidebar-right">
@@ -275,10 +258,13 @@
         <li data-card-id="1" id="delete-bg-image">
           Delete image
         </li>
-        </u l>
+        </ul>
     </div>
   </div>
-  <!-- <script src="/Resources/UCGrapes1/src/classes/Clock.js">
+
+   <!--<script src="/Resources/UCGrapes1/src/classes/Clock.js">
+  </script>
+  <script src="/Resources/UCGrapes1/src/classes/LoadingManager.js">
   </script>
   <script src="/Resources/UCGrapes1/src/classes/Locale.js">
   </script>
@@ -313,6 +299,10 @@
   <script src="/Resources/UCGrapes1/src/classes/ImageCropper.js">
   </script>
   <script src="/Resources/UCGrapes1/src/utils/defaults.js">
+  </script>
+  <script src="/Resources/UCGrapes1/src/utils/data-mapper.js">
+  </script>
+  <script src="/Resources/UCGrapes1/src/utils/helper.js">
   </script> -->
   
   <script src="/Resources/UCGrapes1/src/combined.js">

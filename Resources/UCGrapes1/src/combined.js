@@ -210,6 +210,52 @@ class Locale {
 }
 
 
+// Content from classes/LoadingManager.js
+class LoadingManager {
+  constructor(preloaderElement, minDuration = 300) {
+    this.preloaderElement = preloaderElement;
+    this._loading = false;
+    this._startTime = 0;
+    this.minDuration = minDuration; // Minimum duration in milliseconds
+    this.transitionDuration = 200; // Duration of the fade transition
+  }
+
+  get loading() {
+    return this._loading;
+  }
+
+  set loading(value) {
+    this._loading = value;
+    if (value) {
+      this._startTime = performance.now();
+      this.showPreloader();
+    } else {
+      this.hidePreloader();
+    }
+  }
+
+  showPreloader() {
+    this.preloaderElement.style.display = "flex";
+    this.preloaderElement.style.transition = `opacity ${this.transitionDuration}ms ease-in-out`;
+    this.preloaderElement.style.opacity = "1";
+  }
+
+  hidePreloader() {
+    const elapsedTime = performance.now() - this._startTime;
+    if (elapsedTime >= this.minDuration) {
+      this.preloaderElement.style.transition = `opacity ${this.transitionDuration}ms ease-in-out`;
+      this.preloaderElement.style.opacity = "0";
+      setTimeout(() => {
+        this.preloaderElement.style.display = "none";
+      }, this.transitionDuration);
+    } else {
+      setTimeout(() => {
+        this.hidePreloader();
+      }, this.minDuration - elapsedTime);
+    }
+  }
+}
+
 // Content from classes/DataManager.js
 const environment = "/Comforta_version2DevelopmentNETPostgreSQL";
 const baseURL = window.location.origin + (window.location.origin.startsWith("http://localhost") ? environment : "");
@@ -219,37 +265,49 @@ class DataManager {
     this.services = services;
     this.media = media;
     this.pages = [];
-    this.selectedTheme = null;    
+    this.selectedTheme = null;
+    this.loadingManager = new LoadingManager(document.getElementById('preloader'));
   }
 
   // Helper method to handle API calls
-  async fetchAPI(endpoint, options = {}) {
+  async fetchAPI(endpoint, options = {}, skipLoading = false) {
     const defaultOptions = {
       headers: {
         'Content-Type': 'application/json',
       },
     };
+  
+    console.log("skip loading is " + skipLoading);
 
     try {
+      if (!skipLoading) {
+        this.loadingManager.loading = true;
+      }
+  
       const response = await fetch(`${baseURL}${endpoint}`, {
         ...defaultOptions,
         ...options,
       });
-
+  
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
+  
       return await response.json();
     } catch (error) {
       console.error(`API Error (${endpoint}):`, error);
       throw error;
+    } finally {
+      if (!skipLoading) {
+        this.loadingManager.loading = false;
+      }
     }
   }
+  
 
   // Pages API methods
   async getPages() {
-    this.pages = await this.fetchAPI('/api/toolbox/pages/list');
+    this.pages = await this.fetchAPI('/api/toolbox/pages/list', {}, true);
     return this.pages;
   }
 
@@ -277,7 +335,7 @@ class DataManager {
     return await this.fetchAPI('/api/toolbox/update-page', {
       method: 'POST',
       body: JSON.stringify(data),
-    });
+    }, true); // Pass true to skip loading
   }
 
   async updatePagesBatch(payload) {
@@ -1023,7 +1081,8 @@ class TemplateManager {
   }
 
   createTemplateHTML(isDefault = false) {
-    let tileBgColor = this.editorManager.toolsSection.currentTheme.colors.accentColor
+    let tileBgColor =
+      this.editorManager.toolsSection.currentTheme.colors.accentColor;
     return `
             <div class="template-wrapper ${
               isDefault ? "default-template" : ""
@@ -1211,7 +1270,8 @@ class TemplateManager {
   }
 
   generateTemplateRow(columns, rowIndex) {
-    let tileBgColor = this.editorManager.toolsSection.currentTheme.colors.accentColor
+    let tileBgColor =
+      this.editorManager.toolsSection.currentTheme.colors.accentColor;
     let columnWidth = 100 / columns;
     if (columns === 1) {
       columnWidth = 100;
@@ -1421,7 +1481,26 @@ class TemplateManager {
   }
 
   addFreshTemplate(template) {
-    this.editorManager.currentEditor.editor.DomComponents.clear();
+    const currentEditor = this.editorManager.currentEditor;
+
+    const page = this.editorManager.getPage(currentEditor.pageId);
+    console.log(page);
+    if (
+      page &&
+      (page.PageIsContentPage ||
+        page.PageName === "Location" ||
+        page.PageName === "Reception" ||
+        page.PageName === "Mailbox" ||
+        page.PageName === "Calendar")
+    ) {
+      const message = this.currentLanguage.getTranslation(
+        "templates_only_added_to_menu_pages"
+      );
+      this.editorManager.toolsSection.ui.displayAlertMessage(message, "error");
+      return;
+    }
+
+    currentEditor.editor.DomComponents.clear();
     let fullTemplate = "";
 
     template.forEach((columns, rowIndex) => {
@@ -1429,7 +1508,7 @@ class TemplateManager {
       fullTemplate += templateRow;
     });
 
-    this.editorManager.currentEditor.editor.addComponents(`
+    currentEditor.editor.addComponents(`
       <div class="frame-container"
             id="frame-container"
             data-gjs-type="template-wrapper"
@@ -1535,69 +1614,69 @@ class TemplateManager {
   }
 
   updateRightButtons(containerRow) {
-      if (!containerRow) return;
+    if (!containerRow) return;
 
-      const templates = containerRow.components();
+    const templates = containerRow.components();
 
-      templates.forEach((template) => {
-          if (!template || !template.view || !template.view.el) return;
+    templates.forEach((template) => {
+      if (!template || !template.view || !template.view.el) return;
 
-          const rightButton = template.view.el.querySelector(".add-button-right");
-          if (!rightButton) return;
-          const rightButtonComponent = template.find(".add-button-right")[0];
+      const rightButton = template.view.el.querySelector(".add-button-right");
+      if (!rightButton) return;
+      const rightButtonComponent = template.find(".add-button-right")[0];
 
-          if (templates.length >= 3) {
-              rightButtonComponent.addStyle({
-                  display: "none"
-              });
-          } else {
-              rightButtonComponent.addStyle({
-                  display: "flex"
-              });
-          }
-      });
+      if (templates.length >= 3) {
+        rightButtonComponent.addStyle({
+          display: "none",
+        });
+      } else {
+        rightButtonComponent.addStyle({
+          display: "flex",
+        });
+      }
+    });
   }
 
   // updateRightButtons(containerRow) {
   //   if (!containerRow) return;
-  
+
   //   // Force a store update after attribute changes
   //   const editor = this.editorManager.currentEditor.editor;
-  
+
   //   // Check components length once outside the loop
   //   const totalComponents = containerRow.components().length;
   //   const isMaxComponents = totalComponents >= 3;
-  
+
   //   // Update container droppable state first
   //   containerRow.set(
   //     "droppable",
   //     isMaxComponents ? false : "false"
   //   );
-  
+
   //   containerRow.components().forEach((template) => {
   //     if (!template?.view?.el) return;
-  
+
   //     const rightButton = template.view.el.querySelector(".add-button-right");
   //     const rightButtonComponent = template.find(".add-button-right")[0];
   //     if (!rightButton || !rightButtonComponent) return;
-  
+
   //     // Update button visibility
   //     rightButtonComponent.addStyle({
   //       display: isMaxComponents ? "none" : "flex",
   //     });
   //   });
-  
+
   //   // Add visual feedback for droppable state
   //   if (isMaxComponents) {
   //     containerRow.addClass('container-max-components');
   //   } else {
   //     containerRow.removeClass('container-max-components');
   //   }
-  
+
   //   // Trigger updates
-  //   editor.trigger("change:component"); 
+  //   editor.trigger("change:component");
   //   editor.refresh();
-  //   containerRow.view.render(); 
+  //   containerRow.view.render();
   // }
 
   initialContentPageTemplate(contentPageData) {
@@ -1707,13 +1786,18 @@ class TemplateManager {
       const closeEl = closeSection.getEl();
       if (closeEl) {
         closeEl.onclick = () => {
-          this.editorManager.selectedComponent
-            .find(sectionSelector)[0]
-            .remove();
-          if (sectionSelector = '.tile-title-section') {
+          // const component = this.editorManager.selectedComponent
+            // .find(sectionSelector)[0]
+          //   .remove();
+          if (sectionSelector === '.tile-title-section') {
+            const component = this.editorManager.selectedComponent.find(".tile-title")[0];
+            component.components("");
             this.editorManager.toolsSection.setAttributeToSelected("TileText", "")
+            $('#tile-title').val('');
           }
-          if (sectionSelector = '.tile-icon-section') {
+          else if (sectionSelector === '.tile-icon-section') {
+            const component = this.editorManager.selectedComponent.find(".tile-icon")[0];
+            component.components("");
             this.editorManager.toolsSection.setAttributeToSelected("tile-icon", "")
           }
         };
@@ -3040,9 +3124,14 @@ class ThemeManager {
               )[0];
 
             if (iconComponent) {
-              // this.changeIconFillColorToWhite(icon.IconSVG);
-              iconComponent.components(this.changeIconFillColorToWhite(icon.IconSVG));
-              // console.log(icon.IconSVG)
+              const iconSvgComponent = icon.IconSVG;
+              const whiteIconSvg = iconSvgComponent.replace('fill="#7c8791"', 'fill="white"');
+              iconComponent.components(whiteIconSvg);
+              this.toolBoxManager.setAttributeToSelected(
+                  "tile-icon",
+                  icon.IconName
+              );
+
               this.toolBoxManager.setAttributeToSelected(
                 "tile-icon",
                 icon.IconName
@@ -3063,19 +3152,7 @@ class ThemeManager {
 
     renderIcons();
   }
-
-  changeIconFillColorToWhite(iconSVG) {
-    const parser = new DOMParser();
-    const svgDoc = parser.parseFromString(iconSVG, "image/svg+xml");
-    const pathElement = svgDoc.querySelector("path");
-    if (pathElement) {
-      pathElement.setAttribute("fill", "#FFFFFF");
-    }
-    const serializer = new XMLSerializer();
-    return serializer.serializeToString(svgDoc);
-  }
 }
-
 
 
 // Content from classes/ToolBoxUI.js
@@ -3907,8 +3984,8 @@ class ActionListComponent {
         !dropdownMenu.contains(event.target)
       ) {
         dropdownMenu.style.display = "none";
-        dropdownHeader.querySelector("i").classList.remove("fa-angle-up");
-        dropdownHeader.querySelector("i").classList.add("fa-angle-down");
+        dropdownHeader.querySelector("i")?.classList.remove("fa-angle-up");
+        dropdownHeader.querySelector("i")?.classList.add("fa-angle-down");
       }
     });
   }
@@ -5306,4 +5383,22 @@ const iconsData = [
   `;
 
 let globalVar = null
+
+// Content from utils/helper.js
+function hexToRgb(hex) {
+    hex = hex.replace(/^#/, ""); 
+    let r, g, b;
+  
+    if (hex.length === 3) {
+      r = parseInt(hex[0] + hex[0], 16);
+      g = parseInt(hex[1] + hex[1], 16);
+      b = parseInt(hex[2] + hex[2], 16);
+    } else {
+      r = parseInt(hex.substring(0, 2), 16);
+      g = parseInt(hex.substring(2, 4), 16);
+      b = parseInt(hex.substring(4, 6), 16);
+    }
+  
+    return `${r}, ${g}, ${b}`;
+  }
 
