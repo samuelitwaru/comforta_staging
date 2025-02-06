@@ -135,12 +135,12 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          AV13TrnContext.FromXml(AV14WebSession.Get("TrnContext"), null, "", "");
-         if ( ( StringUtil.StrCmp(AV13TrnContext.gxTpr_Transactionname, AV46Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         if ( ( StringUtil.StrCmp(AV13TrnContext.gxTpr_Transactionname, AV45Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
          {
-            AV47GXV1 = 1;
-            while ( AV47GXV1 <= AV13TrnContext.gxTpr_Attributes.Count )
+            AV46GXV1 = 1;
+            while ( AV46GXV1 <= AV13TrnContext.gxTpr_Attributes.Count )
             {
-               AV17TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV13TrnContext.gxTpr_Attributes.Item(AV47GXV1));
+               AV17TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV13TrnContext.gxTpr_Attributes.Item(AV46GXV1));
                if ( StringUtil.StrCmp(AV17TrnContextAtt.gxTpr_Attributename, "ResidentTypeId") == 0 )
                {
                   AV15Insert_ResidentTypeId = StringUtil.StrToGuid( AV17TrnContextAtt.gxTpr_Attributevalue);
@@ -149,7 +149,7 @@ namespace GeneXus.Programs {
                {
                   AV16Insert_MedicalIndicationId = StringUtil.StrToGuid( AV17TrnContextAtt.gxTpr_Attributevalue);
                }
-               AV47GXV1 = (int)(AV47GXV1+1);
+               AV46GXV1 = (int)(AV46GXV1+1);
             }
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV38ComboResidentCountry)) )
@@ -170,25 +170,13 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
-         if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
-         {
-            AV14WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Resident Updated successfully", ""));
-         }
-         if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
-         {
-            AV14WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Resident Deleted successfully", ""));
-         }
-         if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
-         {
-            AV14WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Resident Inserted successfully", ""));
-         }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( Gx_mode)) )
          {
-            new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV42AuditingObject,  AV46Pgmname) ;
+            new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV42AuditingObject,  AV45Pgmname) ;
          }
          else
          {
-            new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV42AuditingObject,  AV46Pgmname) ;
+            new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV42AuditingObject,  AV45Pgmname) ;
             CallWebObject(formatLink("wp_locationresidents.aspx") );
             context.wjLocDisableFrm = 1;
          }
@@ -274,7 +262,7 @@ namespace GeneXus.Programs {
 
       protected void standaloneNotModal( )
       {
-         AV46Pgmname = "Trn_Resident_BC";
+         AV45Pgmname = "Trn_Resident_BC";
       }
 
       protected void standaloneModal( )
@@ -1701,7 +1689,7 @@ namespace GeneXus.Programs {
          AV10WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV13TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV14WebSession = context.GetSession();
-         AV46Pgmname = "";
+         AV45Pgmname = "";
          AV17TrnContextAtt = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute(context);
          AV15Insert_ResidentTypeId = Guid.Empty;
          AV16Insert_MedicalIndicationId = Guid.Empty;
@@ -1971,7 +1959,7 @@ namespace GeneXus.Programs {
          );
          Z62ResidentId = Guid.NewGuid( );
          A62ResidentId = Guid.NewGuid( );
-         AV46Pgmname = "Trn_Resident_BC";
+         AV45Pgmname = "Trn_Resident_BC";
          INITTRN();
          /* Execute Start event if defined. */
          /* Execute user event: Start */
@@ -1983,11 +1971,11 @@ namespace GeneXus.Programs {
       private short Gx_BScreen ;
       private short RcdFound16 ;
       private int trnEnded ;
-      private int AV47GXV1 ;
+      private int AV46GXV1 ;
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
-      private string AV46Pgmname ;
+      private string AV45Pgmname ;
       private string Z66ResidentInitials ;
       private string A66ResidentInitials ;
       private string Z70ResidentPhone ;

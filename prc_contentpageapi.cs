@@ -46,47 +46,47 @@ namespace GeneXus.Programs {
       public void execute( Guid aP0_PageId ,
                            Guid aP1_LocationId ,
                            Guid aP2_OrganisationId ,
-                           out SdtSDT_ContentPage aP3_SDT_ContentPage )
+                           out SdtSDT_ContentPage aP3_Res_SDT_ContentPage )
       {
          this.AV2PageId = aP0_PageId;
          this.AV3LocationId = aP1_LocationId;
          this.AV4OrganisationId = aP2_OrganisationId;
-         this.AV5SDT_ContentPage = new SdtSDT_ContentPage(context) ;
+         this.AV5Res_SDT_ContentPage = new SdtSDT_ContentPage(context) ;
          initialize();
          ExecuteImpl();
-         aP3_SDT_ContentPage=this.AV5SDT_ContentPage;
+         aP3_Res_SDT_ContentPage=this.AV5Res_SDT_ContentPage;
       }
 
       public SdtSDT_ContentPage executeUdp( Guid aP0_PageId ,
                                             Guid aP1_LocationId ,
                                             Guid aP2_OrganisationId )
       {
-         execute(aP0_PageId, aP1_LocationId, aP2_OrganisationId, out aP3_SDT_ContentPage);
-         return AV5SDT_ContentPage ;
+         execute(aP0_PageId, aP1_LocationId, aP2_OrganisationId, out aP3_Res_SDT_ContentPage);
+         return AV5Res_SDT_ContentPage ;
       }
 
       public void executeSubmit( Guid aP0_PageId ,
                                  Guid aP1_LocationId ,
                                  Guid aP2_OrganisationId ,
-                                 out SdtSDT_ContentPage aP3_SDT_ContentPage )
+                                 out SdtSDT_ContentPage aP3_Res_SDT_ContentPage )
       {
          this.AV2PageId = aP0_PageId;
          this.AV3LocationId = aP1_LocationId;
          this.AV4OrganisationId = aP2_OrganisationId;
-         this.AV5SDT_ContentPage = new SdtSDT_ContentPage(context) ;
+         this.AV5Res_SDT_ContentPage = new SdtSDT_ContentPage(context) ;
          SubmitImpl();
-         aP3_SDT_ContentPage=this.AV5SDT_ContentPage;
+         aP3_Res_SDT_ContentPage=this.AV5Res_SDT_ContentPage;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         args = new Object[] {(Guid)AV2PageId,(Guid)AV3LocationId,(Guid)AV4OrganisationId,(SdtSDT_ContentPage)AV5SDT_ContentPage} ;
+         args = new Object[] {(Guid)AV2PageId,(Guid)AV3LocationId,(Guid)AV4OrganisationId,(SdtSDT_ContentPage)AV5Res_SDT_ContentPage} ;
          ClassLoader.Execute("aprc_contentpageapi","GeneXus.Programs","aprc_contentpageapi", new Object[] {context }, "execute", args);
          if ( ( args != null ) && ( args.Length == 4 ) )
          {
-            AV5SDT_ContentPage = (SdtSDT_ContentPage)(args[3]) ;
+            AV5Res_SDT_ContentPage = (SdtSDT_ContentPage)(args[3]) ;
          }
          cleanup();
       }
@@ -102,7 +102,7 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV5SDT_ContentPage = new SdtSDT_ContentPage(context);
+         AV5Res_SDT_ContentPage = new SdtSDT_ContentPage(context);
          /* GeneXus formulas. */
       }
 
@@ -112,9 +112,9 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private SdtSDT_ContentPage AV5SDT_ContentPage ;
+      private SdtSDT_ContentPage AV5Res_SDT_ContentPage ;
       private Object[] args ;
-      private SdtSDT_ContentPage aP3_SDT_ContentPage ;
+      private SdtSDT_ContentPage aP3_Res_SDT_ContentPage ;
    }
 
 }

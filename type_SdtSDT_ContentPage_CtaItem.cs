@@ -65,6 +65,9 @@ namespace GeneXus.Programs
 
 		public override void ToJSON(bool includeState)
 		{
+			AddObjectProperty("CtaId", gxTpr_Ctaid, false);
+
+
 			AddObjectProperty("CtaType", gxTpr_Ctatype, false);
 
 
@@ -87,6 +90,22 @@ namespace GeneXus.Programs
 		#endregion
 
 		#region Properties
+
+		[SoapElement(ElementName="CtaId")]
+		[XmlElement(ElementName="CtaId")]
+		public Guid gxTpr_Ctaid
+		{
+			get {
+				return gxTv_SdtSDT_ContentPage_CtaItem_Ctaid; 
+			}
+			set {
+				gxTv_SdtSDT_ContentPage_CtaItem_Ctaid = value;
+				SetDirty("Ctaid");
+			}
+		}
+
+
+
 
 		[SoapElement(ElementName="CtaType")]
 		[XmlElement(ElementName="CtaType")]
@@ -219,6 +238,9 @@ namespace GeneXus.Programs
 
 		#region Declaration
 
+		protected Guid gxTv_SdtSDT_ContentPage_CtaItem_Ctaid;
+		 
+
 		protected string gxTv_SdtSDT_ContentPage_CtaItem_Ctatype;
 		 
 
@@ -254,7 +276,19 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
-		[DataMember(Name="CtaType", Order=0)]
+		[DataMember(Name="CtaId", Order=0)]
+		public Guid gxTpr_Ctaid
+		{
+			get { 
+				return sdt.gxTpr_Ctaid;
+
+			}
+			set { 
+				sdt.gxTpr_Ctaid = value;
+			}
+		}
+
+		[DataMember(Name="CtaType", Order=1)]
 		public  string gxTpr_Ctatype
 		{
 			get { 
@@ -266,7 +300,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="CtaLabel", Order=1)]
+		[DataMember(Name="CtaLabel", Order=2)]
 		public  string gxTpr_Ctalabel
 		{
 			get { 
@@ -278,7 +312,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="CtaAction", Order=2)]
+		[DataMember(Name="CtaAction", Order=3)]
 		public  string gxTpr_Ctaaction
 		{
 			get { 
@@ -290,7 +324,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="CtaBGColor", Order=3)]
+		[DataMember(Name="CtaBGColor", Order=4)]
 		public  string gxTpr_Ctabgcolor
 		{
 			get { 
@@ -302,7 +336,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="IsFullWidth", Order=4)]
+		[DataMember(Name="IsFullWidth", Order=5)]
 		public bool gxTpr_Isfullwidth
 		{
 			get { 
@@ -314,7 +348,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="IsImageButton", Order=5)]
+		[DataMember(Name="IsImageButton", Order=6)]
 		public bool gxTpr_Isimagebutton
 		{
 			get { 

@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250204082821"
+  version: "20250206091604"
 servers:
-  - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/api
+  - url: https://staging.comforta.yukon.software/api
 paths:
   /auth/resident-login:
     post:
@@ -1666,6 +1666,10 @@ components:
 
     SDT_ContentPage.Cta_CtaItem:
       properties:
+        CtaId:
+          description: "Cta Id"
+          type: "string"
+          format: "uuid"
         CtaType:
           description: "Cta Type"
           type: "string"
