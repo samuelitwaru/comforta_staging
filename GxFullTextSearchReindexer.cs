@@ -36,9 +36,6 @@ namespace GeneXus.Programs {
          obj = new SdtTrn_NetworkCompany(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
-         obj = new SdtTrn_ProductService(context);
-         trn = obj.getTransaction();
-         result = trn.Reindex();
          obj = new SdtTrn_NetworkIndividual(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
@@ -160,6 +157,9 @@ namespace GeneXus.Programs {
          trn = obj.getTransaction();
          result = trn.Reindex();
          obj = new SdtTrn_Resident(context);
+         trn = obj.getTransaction();
+         result = trn.Reindex();
+         obj = new SdtTrn_ProductService(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
          return 1 ;
