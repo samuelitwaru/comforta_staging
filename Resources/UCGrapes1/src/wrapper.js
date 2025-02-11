@@ -38,7 +38,7 @@ function combineFiles(files, outputFilePath) {
     fs.appendFileSync(outputFilePath, fileContent + '\n\n');
   });
 
-  minifyFile(outputFilePath);
+  //minifyFile(outputFilePath);
   console.log(`All files have been combined into ${outputFilePath}`);
 
 
