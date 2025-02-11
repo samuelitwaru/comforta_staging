@@ -179,7 +179,7 @@
           </div>
           <div class="sidebar-section content-page-section" id="content-page-section"
           style="display:none;">
-            <div class="cta-button-layout-container">
+            <div class="cta-button-layout-container" style="display: none">
               <button class="tb-btn cta-button-layout" id="plain-button-layout">
                 Button
               </button>
@@ -193,7 +193,7 @@
             </div>
             <div id="call-to-actions">
             </div>
-            <div class="cta-style">
+            <div class="cta-style" id="cta-style">
               <div class="text-color-palette text-colors" id="cta-color-palette">
               </div>
               <div class="text-alignment">
@@ -217,6 +217,7 @@
                 </div>
               </div>
             </div>
+		<p id="no-cta-message"" style="display: none; color: #6b6969; text-align: center; font-style: italic;">No CTA section found for this service.</p>
           </div>
         </div>
         <div class="tb-tab-content" id="templates-content">
