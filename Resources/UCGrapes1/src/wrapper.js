@@ -41,7 +41,6 @@ function combineFiles(files, outputFilePath) {
   //minifyFile(outputFilePath);
   console.log(`All files have been combined into ${outputFilePath}`);
 
-
 }
 
 function minifyFile(filePath) {
