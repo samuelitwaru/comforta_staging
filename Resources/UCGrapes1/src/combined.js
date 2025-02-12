@@ -580,11 +580,12 @@ class EditorManager {
   }
 
   updatePageJSONContent(editor, page) {
-    console.log("Update event triggered", editor);
     const PageGJSJson = editor.getProjectData();
     this.dataManager.pages.SDT_PageCollection.map((p) => {
       if (p.PageId == page.PageId) {
         p.PageGJSJson = JSON.stringify(PageGJSJson);
+        console.log("Update event triggered", editor);
+        console.log("PageGJSJson", p.PageGJSJson);
       }
       return p;
     });
