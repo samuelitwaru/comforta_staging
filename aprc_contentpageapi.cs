@@ -125,15 +125,15 @@ namespace GeneXus.Programs {
             A11OrganisationId = P009L2_A11OrganisationId[0];
             A29LocationId = P009L2_A29LocationId[0];
             A310Trn_PageId = P009L2_A310Trn_PageId[0];
-            A60ProductServiceDescription = P009L2_A60ProductServiceDescription[0];
             A40000ProductServiceImage_GXI = P009L2_A40000ProductServiceImage_GXI[0];
+            A60ProductServiceDescription = P009L2_A60ProductServiceDescription[0];
             A439PageIsContentPage = P009L2_A439PageIsContentPage[0];
             n439PageIsContentPage = P009L2_n439PageIsContentPage[0];
             A431PageJsonContent = P009L2_A431PageJsonContent[0];
             n431PageJsonContent = P009L2_n431PageJsonContent[0];
             A318Trn_PageName = P009L2_A318Trn_PageName[0];
-            A60ProductServiceDescription = P009L2_A60ProductServiceDescription[0];
             A40000ProductServiceImage_GXI = P009L2_A40000ProductServiceImage_GXI[0];
+            A60ProductServiceDescription = P009L2_A60ProductServiceDescription[0];
             AV14SDT_ContentPage = new SdtSDT_ContentPage(context);
             AV14SDT_ContentPage.FromJSonString(A431PageJsonContent, null);
             AV25Res_SDT_ContentPage = new SdtSDT_ContentPage(context);
@@ -149,12 +149,12 @@ namespace GeneXus.Programs {
                   A58ProductServiceId = P009L3_A58ProductServiceId[0];
                   n58ProductServiceId = P009L3_n58ProductServiceId[0];
                   AV26ContentItem = new SdtSDT_ContentPage_ContentItem(context);
-                  AV26ContentItem.gxTpr_Contenttype = context.GetMessage( "Description", "");
-                  AV26ContentItem.gxTpr_Contentvalue = A60ProductServiceDescription;
-                  AV25Res_SDT_ContentPage.gxTpr_Content.Add(AV26ContentItem, 0);
-                  AV26ContentItem = new SdtSDT_ContentPage_ContentItem(context);
                   AV26ContentItem.gxTpr_Contenttype = context.GetMessage( "Image", "");
                   AV26ContentItem.gxTpr_Contentvalue = A40000ProductServiceImage_GXI;
+                  AV25Res_SDT_ContentPage.gxTpr_Content.Add(AV26ContentItem, 0);
+                  AV26ContentItem = new SdtSDT_ContentPage_ContentItem(context);
+                  AV26ContentItem.gxTpr_Contenttype = context.GetMessage( "Description", "");
+                  AV26ContentItem.gxTpr_Contentvalue = A60ProductServiceDescription;
                   AV25Res_SDT_ContentPage.gxTpr_Content.Add(AV26ContentItem, 0);
                   /* Exiting from a For First loop. */
                   if (true) break;
@@ -222,8 +222,8 @@ namespace GeneXus.Programs {
          P009L2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P009L2_A29LocationId = new Guid[] {Guid.Empty} ;
          P009L2_A310Trn_PageId = new Guid[] {Guid.Empty} ;
-         P009L2_A60ProductServiceDescription = new string[] {""} ;
          P009L2_A40000ProductServiceImage_GXI = new string[] {""} ;
+         P009L2_A60ProductServiceDescription = new string[] {""} ;
          P009L2_A439PageIsContentPage = new bool[] {false} ;
          P009L2_n439PageIsContentPage = new bool[] {false} ;
          P009L2_A431PageJsonContent = new string[] {""} ;
@@ -233,8 +233,8 @@ namespace GeneXus.Programs {
          A11OrganisationId = Guid.Empty;
          A29LocationId = Guid.Empty;
          A310Trn_PageId = Guid.Empty;
-         A60ProductServiceDescription = "";
          A40000ProductServiceImage_GXI = "";
+         A60ProductServiceDescription = "";
          A431PageJsonContent = "";
          A318Trn_PageName = "";
          AV14SDT_ContentPage = new SdtSDT_ContentPage(context);
@@ -259,7 +259,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.aprc_contentpageapi__default(),
             new Object[][] {
                 new Object[] {
-               P009L2_A58ProductServiceId, P009L2_n58ProductServiceId, P009L2_A11OrganisationId, P009L2_A29LocationId, P009L2_A310Trn_PageId, P009L2_A60ProductServiceDescription, P009L2_A40000ProductServiceImage_GXI, P009L2_A439PageIsContentPage, P009L2_n439PageIsContentPage, P009L2_A431PageJsonContent,
+               P009L2_A58ProductServiceId, P009L2_n58ProductServiceId, P009L2_A11OrganisationId, P009L2_A29LocationId, P009L2_A310Trn_PageId, P009L2_A40000ProductServiceImage_GXI, P009L2_A60ProductServiceDescription, P009L2_A439PageIsContentPage, P009L2_n439PageIsContentPage, P009L2_A431PageJsonContent,
                P009L2_n431PageJsonContent, P009L2_A318Trn_PageName
                }
                , new Object[] {
@@ -303,8 +303,8 @@ namespace GeneXus.Programs {
       private Guid[] P009L2_A11OrganisationId ;
       private Guid[] P009L2_A29LocationId ;
       private Guid[] P009L2_A310Trn_PageId ;
-      private string[] P009L2_A60ProductServiceDescription ;
       private string[] P009L2_A40000ProductServiceImage_GXI ;
+      private string[] P009L2_A60ProductServiceDescription ;
       private bool[] P009L2_A439PageIsContentPage ;
       private bool[] P009L2_n439PageIsContentPage ;
       private string[] P009L2_A431PageJsonContent ;
@@ -365,7 +365,7 @@ namespace GeneXus.Programs {
           new ParDef("AV21CtaItem__Ctaid",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P009L2", "SELECT T1.ProductServiceId, T1.OrganisationId, T1.LocationId, T1.Trn_PageId, T2.ProductServiceDescription, T2.ProductServiceImage_GXI, T1.PageIsContentPage, T1.PageJsonContent, T1.Trn_PageName FROM (Trn_Page T1 LEFT JOIN Trn_ProductService T2 ON T2.ProductServiceId = T1.ProductServiceId AND T2.LocationId = T1.LocationId AND T2.OrganisationId = T1.OrganisationId) WHERE (T1.Trn_PageId = :AV23PageId) AND (T1.LocationId = :AV8LocationId) AND (T1.OrganisationId = :AV9OrganisationId) AND (T1.PageIsContentPage = TRUE) ORDER BY T1.Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009L2,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P009L2", "SELECT T1.ProductServiceId, T1.OrganisationId, T1.LocationId, T1.Trn_PageId, T2.ProductServiceImage_GXI, T2.ProductServiceDescription, T1.PageIsContentPage, T1.PageJsonContent, T1.Trn_PageName FROM (Trn_Page T1 LEFT JOIN Trn_ProductService T2 ON T2.ProductServiceId = T1.ProductServiceId AND T2.LocationId = T1.LocationId AND T2.OrganisationId = T1.OrganisationId) WHERE (T1.Trn_PageId = :AV23PageId) AND (T1.LocationId = :AV8LocationId) AND (T1.OrganisationId = :AV9OrganisationId) AND (T1.PageIsContentPage = TRUE) ORDER BY T1.Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009L2,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("P009L3", "SELECT LocationId, OrganisationId, ProductServiceId FROM Trn_ProductService WHERE ProductServiceId = :Trn_PageId and LocationId = :LocationId and OrganisationId = :OrganisationId ORDER BY ProductServiceId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009L3,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P009L4", "SELECT ProductServiceId, OrganisationId, LocationId, CallToActionId, CallToActionPhoneNumber, CallToActionUrl, CallToActionEmail FROM Trn_CallToAction WHERE (ProductServiceId = :ProductServiceId and LocationId = :LocationId and OrganisationId = :OrganisationId) AND (CallToActionId = :AV21CtaItem__Ctaid) ORDER BY ProductServiceId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009L4,100, GxCacheFrequency.OFF ,false,false )
           };
@@ -384,8 +384,8 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[2])[0] = rslt.getGuid(2);
                 ((Guid[]) buf[3])[0] = rslt.getGuid(3);
                 ((Guid[]) buf[4])[0] = rslt.getGuid(4);
-                ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
-                ((string[]) buf[6])[0] = rslt.getMultimediaUri(6);
+                ((string[]) buf[5])[0] = rslt.getMultimediaUri(5);
+                ((string[]) buf[6])[0] = rslt.getLongVarchar(6);
                 ((bool[]) buf[7])[0] = rslt.getBool(7);
                 ((bool[]) buf[8])[0] = rslt.wasNull(7);
                 ((string[]) buf[9])[0] = rslt.getLongVarchar(8);
