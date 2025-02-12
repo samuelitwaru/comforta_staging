@@ -580,6 +580,7 @@ class EditorManager {
   }
 
   updatePageJSONContent(editor, page) {
+    console.log("Update event triggered", editor);
     const PageGJSJson = editor.getProjectData();
     this.dataManager.pages.SDT_PageCollection.map((p) => {
       if (p.PageId == page.PageId) {
@@ -3194,7 +3195,6 @@ class ToolBoxUI {
         this.manager.editorManager.selectedComponent.find(".tile-title")[0];
       if (titleComponent) {
         titleComponent.components(inputTitle);
-        titleComponent.addStyle({display: "block"});
         // this.manager.selectedComponent.addAttributes({
         //   "tile-title": inputTitle,
         // });
