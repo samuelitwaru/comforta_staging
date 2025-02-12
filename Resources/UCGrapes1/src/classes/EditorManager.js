@@ -168,7 +168,7 @@ class EditorManager {
       if (p.PageId == page.PageId) {
         p.PageGJSJson = JSON.stringify(PageGJSJson);
         console.log("Update event triggered", editor);
-        console.log("PageGJSJson", p.PageGJSJson);
+        console.log(PageGJSJson);
       }
       return p;
     });
