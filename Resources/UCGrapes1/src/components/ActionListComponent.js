@@ -269,7 +269,8 @@ class ActionListComponent {
   }
 
   createContentPage(pageId, editorContainerId) {
-    this.dataManager.createContentPage(pageId).then((res) => {
+    this.dataManager.createContentPage(pageId)
+    .then((res) => {
       if (this.toolBoxManager.checkIfNotAuthenticated(res)) {
         return;
       }

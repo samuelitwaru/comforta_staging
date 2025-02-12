@@ -4119,8 +4119,9 @@ class ActionListComponent {
               "tile-action-object",
               `${category}, ${item.textContent}`
             );
-
+            
             if (category == "Service/Product Page") {
+              alert()
               this.createContentPage(item.id, editorContainerId);
             }else{
               $(editorContainerId).nextAll().remove();
@@ -4170,15 +4171,18 @@ class ActionListComponent {
   }
 
   createContentPage(pageId, editorContainerId) {
-    this.dataManager.createContentPage(pageId).then((res) => {
-      if (this.toolBoxManager.checkIfNotAuthenticated(res)) {
-        return;
-      }
-      this.dataManager.getPages().then(res=>{
-        $(editorContainerId).nextAll().remove();
-        this.editorManager.createChildEditor(this.editorManager.getPage(pageId))
-      })
-    });
+    const res = this.dataManager.createContentPage(pageId)
+    alert('createContentPage')
+    console.log(res)
+    // .then((res) => {
+    //   if (this.toolBoxManager.checkIfNotAuthenticated(res)) {
+    //     return;
+    //   }
+    //   this.dataManager.getPages().then(res=>{
+    //     $(editorContainerId).nextAll().remove();
+    //     this.editorManager.createChildEditor(this.editorManager.getPage(pageId))
+    //   })
+    // });
   }
 }
 
