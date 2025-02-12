@@ -3195,6 +3195,7 @@ class ToolBoxUI {
         this.manager.editorManager.selectedComponent.find(".tile-title")[0];
       if (titleComponent) {
         titleComponent.components(inputTitle);
+        titleComponent.addStyle({ display: "block" });
         // this.manager.selectedComponent.addAttributes({
         //   "tile-title": inputTitle,
         // });
