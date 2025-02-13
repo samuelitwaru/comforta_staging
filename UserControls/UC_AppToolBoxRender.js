@@ -155,7 +155,6 @@ function UC_AppToolBox($) {
 					editorManager.setToolsSection(toolBox)
 					editorManager.editorManager = editorManager
 					toolBox.editorManager = editorManager
-					alert(this.NewServiceButtonClicked)
 					toolBox.newServiceEvent = this.NewServiceButtonClicked
 					
 					const newServiceButton = document.getElementById("new-service-button")
