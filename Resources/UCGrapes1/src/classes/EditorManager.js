@@ -322,7 +322,6 @@ class EditorManager {
   async loadDynamicFormContent(editor, page) {
     try {
       editor.DomComponents.clear();
-      alert(`${baseURL}/utoolboxdynamicform.aspx?WWPFormId=${page.WWPFormId}&WWPDynamicFormMode=DSP&DefaultFormType=&WWPFormType=0`)
       editor.DomComponents.addType("iframe", {
         model: {
           defaults: {

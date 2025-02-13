@@ -90,10 +90,11 @@ namespace GeneXus.Programs {
                if ( AV26SDT_OneSignalRegistration.FromJSonString(A363DeviceToken, null) )
                {
                   AV27Token = AV26SDT_OneSignalRegistration.gxTpr_Notificationplatformid;
-                  AV20DeviceTokenCollection.Add(AV27Token, 0);
+                  if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV27Token)) )
+                  {
+                     AV20DeviceTokenCollection.Add(AV27Token, 0);
+                  }
                }
-               /* Exit For each command. Update data (if necessary), close cursors & exit. */
-               if (true) break;
                pr_default.readNext(0);
             }
             pr_default.close(0);
@@ -175,7 +176,7 @@ namespace GeneXus.Programs {
           new ParDef("AV18ResidentGUID",GXType.VarChar,100,60)
           };
           def= new CursorDef[] {
-              new CursorDef("P00A12", "SELECT DeviceUserId, DeviceToken, DeviceId FROM Trn_Device WHERE DeviceUserId = ( RTRIM(LTRIM(:AV18ResidentGUID))) ORDER BY DeviceId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A12,1, GxCacheFrequency.OFF ,false,true )
+              new CursorDef("P00A12", "SELECT DeviceUserId, DeviceToken, DeviceId FROM Trn_Device WHERE DeviceUserId = ( RTRIM(LTRIM(:AV18ResidentGUID))) ORDER BY DeviceId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A12,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }

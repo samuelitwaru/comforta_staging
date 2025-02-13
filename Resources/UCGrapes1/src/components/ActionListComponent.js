@@ -52,7 +52,6 @@ class ActionListComponent {
     );
 
     this.servicePageOptions = this.dataManager.services.map((service) => {
-      console.log(service)
       return {
         PageId: service.ProductServiceId,
         PageName: service.ProductServiceName,
@@ -128,7 +127,6 @@ class ActionListComponent {
       addButton.classList.add("add-button");
       addButton.addEventListener("click", (e) => {
         e.preventDefault();
-        console.log(this.toolBoxManager.newServiceEvent)
         this.toolBoxManager.newServiceEvent()
       });
       searchBox.appendChild(addButton);
