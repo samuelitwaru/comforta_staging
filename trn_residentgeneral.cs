@@ -1501,30 +1501,30 @@ namespace GeneXus.Programs {
          Gx_mode = "DSP";
          AssignAttri(sPrefix, false, "Gx_mode", Gx_mode);
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV6WWPContext) ;
-         GXt_char1 = AV16Combo_DataJson;
-         new trn_residentloaddvcombo(context ).execute(  "ResidentCountry",  "GET_DSC",  false,  A62ResidentId,  A29LocationId,  A11OrganisationId,  "", out  AV17ComboSelectedValue, out  AV15ResidentCountry_Description, out  GXt_char1) ;
+         GXt_objcol_SdtDVB_SDTComboData_Item1 = AV21Combo_Data;
+         new trn_residentloaddvcombo(context ).execute(  "ResidentCountry",  "GET_DSC",  A62ResidentId,  A29LocationId,  A11OrganisationId, out  AV17ComboSelectedValue, out  AV15ResidentCountry_Description, out  GXt_objcol_SdtDVB_SDTComboData_Item1) ;
          AssignAttri(sPrefix, false, "AV15ResidentCountry_Description", AV15ResidentCountry_Description);
-         AV16Combo_DataJson = GXt_char1;
-         GXt_char1 = AV16Combo_DataJson;
-         new trn_residentloaddvcombo(context ).execute(  "ResidentCountry",  "GET_DSC",  false,  A62ResidentId,  A29LocationId,  A11OrganisationId,  "", out  AV17ComboSelectedValue, out  AV15ResidentCountry_Description, out  GXt_char1) ;
+         AV21Combo_Data = GXt_objcol_SdtDVB_SDTComboData_Item1;
+         GXt_objcol_SdtDVB_SDTComboData_Item1 = AV21Combo_Data;
+         new trn_residentloaddvcombo(context ).execute(  "ResidentCountry",  "GET_DSC",  A62ResidentId,  A29LocationId,  A11OrganisationId, out  AV17ComboSelectedValue, out  AV15ResidentCountry_Description, out  GXt_objcol_SdtDVB_SDTComboData_Item1) ;
          AssignAttri(sPrefix, false, "AV15ResidentCountry_Description", AV15ResidentCountry_Description);
-         AV16Combo_DataJson = GXt_char1;
-         GXt_char1 = AV16Combo_DataJson;
-         new trn_residentloaddvcombo(context ).execute(  "ResidentHomePhoneCode",  "GET_DSC",  false,  A62ResidentId,  A29LocationId,  A11OrganisationId,  "", out  AV17ComboSelectedValue, out  AV19ResidentHomePhoneCode_Description, out  GXt_char1) ;
+         AV21Combo_Data = GXt_objcol_SdtDVB_SDTComboData_Item1;
+         GXt_objcol_SdtDVB_SDTComboData_Item1 = AV21Combo_Data;
+         new trn_residentloaddvcombo(context ).execute(  "ResidentHomePhoneCode",  "GET_DSC",  A62ResidentId,  A29LocationId,  A11OrganisationId, out  AV17ComboSelectedValue, out  AV19ResidentHomePhoneCode_Description, out  GXt_objcol_SdtDVB_SDTComboData_Item1) ;
          AssignAttri(sPrefix, false, "AV19ResidentHomePhoneCode_Description", AV19ResidentHomePhoneCode_Description);
-         AV16Combo_DataJson = GXt_char1;
-         GXt_char1 = AV16Combo_DataJson;
-         new trn_residentloaddvcombo(context ).execute(  "ResidentHomePhoneCode",  "GET_DSC",  false,  A62ResidentId,  A29LocationId,  A11OrganisationId,  "", out  AV17ComboSelectedValue, out  AV19ResidentHomePhoneCode_Description, out  GXt_char1) ;
+         AV21Combo_Data = GXt_objcol_SdtDVB_SDTComboData_Item1;
+         GXt_objcol_SdtDVB_SDTComboData_Item1 = AV21Combo_Data;
+         new trn_residentloaddvcombo(context ).execute(  "ResidentHomePhoneCode",  "GET_DSC",  A62ResidentId,  A29LocationId,  A11OrganisationId, out  AV17ComboSelectedValue, out  AV19ResidentHomePhoneCode_Description, out  GXt_objcol_SdtDVB_SDTComboData_Item1) ;
          AssignAttri(sPrefix, false, "AV19ResidentHomePhoneCode_Description", AV19ResidentHomePhoneCode_Description);
-         AV16Combo_DataJson = GXt_char1;
-         GXt_char1 = AV16Combo_DataJson;
-         new trn_residentloaddvcombo(context ).execute(  "ResidentPhoneCode",  "GET_DSC",  false,  A62ResidentId,  A29LocationId,  A11OrganisationId,  "", out  AV17ComboSelectedValue, out  AV18ResidentPhoneCode_Description, out  GXt_char1) ;
+         AV21Combo_Data = GXt_objcol_SdtDVB_SDTComboData_Item1;
+         GXt_objcol_SdtDVB_SDTComboData_Item1 = AV21Combo_Data;
+         new trn_residentloaddvcombo(context ).execute(  "ResidentPhoneCode",  "GET_DSC",  A62ResidentId,  A29LocationId,  A11OrganisationId, out  AV17ComboSelectedValue, out  AV18ResidentPhoneCode_Description, out  GXt_objcol_SdtDVB_SDTComboData_Item1) ;
          AssignAttri(sPrefix, false, "AV18ResidentPhoneCode_Description", AV18ResidentPhoneCode_Description);
-         AV16Combo_DataJson = GXt_char1;
-         GXt_char1 = AV16Combo_DataJson;
-         new trn_residentloaddvcombo(context ).execute(  "ResidentPhoneCode",  "GET_DSC",  false,  A62ResidentId,  A29LocationId,  A11OrganisationId,  "", out  AV17ComboSelectedValue, out  AV18ResidentPhoneCode_Description, out  GXt_char1) ;
+         AV21Combo_Data = GXt_objcol_SdtDVB_SDTComboData_Item1;
+         GXt_objcol_SdtDVB_SDTComboData_Item1 = AV21Combo_Data;
+         new trn_residentloaddvcombo(context ).execute(  "ResidentPhoneCode",  "GET_DSC",  A62ResidentId,  A29LocationId,  A11OrganisationId, out  AV17ComboSelectedValue, out  AV18ResidentPhoneCode_Description, out  GXt_objcol_SdtDVB_SDTComboData_Item1) ;
          AssignAttri(sPrefix, false, "AV18ResidentPhoneCode_Description", AV18ResidentPhoneCode_Description);
-         AV16Combo_DataJson = GXt_char1;
+         AV21Combo_Data = GXt_objcol_SdtDVB_SDTComboData_Item1;
          /* Execute user subroutine: 'PREPARETRANSACTION' */
          S112 ();
          if ( returnInSub )
@@ -1916,7 +1916,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20252611365556", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521310353710", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1932,7 +1932,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_residentgeneral.js", "?20252611365557", false, true);
+         context.AddJavascriptSource("trn_residentgeneral.js", "?202521310353711", false, true);
          /* End function include_jscripts */
       }
 
@@ -2203,9 +2203,9 @@ namespace GeneXus.Programs {
          A96ResidentTypeId = Guid.Empty;
          Gx_mode = "";
          AV6WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
-         AV16Combo_DataJson = "";
+         AV21Combo_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
          AV17ComboSelectedValue = "";
-         GXt_char1 = "";
+         GXt_objcol_SdtDVB_SDTComboData_Item1 = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
          AV8TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV11HTTPRequest = new GxHttpRequest( context);
          AV10Session = context.GetSession();
@@ -2380,7 +2380,6 @@ namespace GeneXus.Programs {
       private string sEvtType ;
       private string GXDecQS ;
       private string Gx_mode ;
-      private string GXt_char1 ;
       private string sCtrlA62ResidentId ;
       private string sCtrlA29LocationId ;
       private string sCtrlA11OrganisationId ;
@@ -2398,7 +2397,6 @@ namespace GeneXus.Programs {
       private bool returnInSub ;
       private bool AV14TempBoolean ;
       private bool GXt_boolean2 ;
-      private string AV16Combo_DataJson ;
       private string A64ResidentGivenName ;
       private string A65ResidentLastName ;
       private string A68ResidentGender ;
@@ -2459,6 +2457,8 @@ namespace GeneXus.Programs {
       private string[] H00672_A64ResidentGivenName ;
       private string[] H00672_A72ResidentSalutation ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV6WWPContext ;
+      private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> AV21Combo_Data ;
+      private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> GXt_objcol_SdtDVB_SDTComboData_Item1 ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV8TrnContext ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;

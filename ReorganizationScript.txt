@@ -1,11 +1,3 @@
-ALTER TABLE Trn_Resident DROP CONSTRAINT ITRN_RESIDENT2;
-ALTER TABLE Trn_Resident ALTER COLUMN ResidentTypeId DROP NOT NULL;
-
-DROP TABLE Trn_ResidentNetworkCompany CASCADE;
-
-DROP TABLE Trn_ResidentNetworkIndividual CASCADE;
-
-ALTER TABLE Trn_Resident ADD CONSTRAINT ITRN_RESIDENT3 FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId);
-ALTER TABLE Trn_Resident ADD CONSTRAINT ITRN_RESIDENT2 FOREIGN KEY (ResidentTypeId) REFERENCES Trn_ResidentType (ResidentTypeId);
-ALTER TABLE Trn_Resident ADD CONSTRAINT ITRN_RESIDENT1 FOREIGN KEY (MedicalIndicationId) REFERENCES Trn_MedicalIndication (MedicalIndicationId);
+ALTER TABLE Trn_Page ADD PageIsDynamicForm BOOLEAN NOT NULL DEFAULT FALSE;
+ALTER TABLE Trn_Page ALTER COLUMN PageIsDynamicForm DROP DEFAULT;
 

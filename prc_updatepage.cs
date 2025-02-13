@@ -135,6 +135,10 @@ namespace GeneXus.Programs {
             if ( ! (Guid.Empty==AV9BC_Trn_Page.gxTpr_Trn_pageid) )
             {
                AV9BC_Trn_Page.gxTpr_Pagegjsjson = AV11PageGJSJson;
+               if ( AV9BC_Trn_Page.gxTpr_Pageisdynamicform )
+               {
+                  AV9BC_Trn_Page.gxTpr_Pagegjsjson = "";
+               }
                if ( AV17PageIsPublished )
                {
                   AV9BC_Trn_Page.gxTpr_Pagejsoncontent = AV12PageJsonContent;
@@ -152,7 +156,6 @@ namespace GeneXus.Programs {
                      AV25NotificationMessage = context.GetMessage( "The latest updates have been published and are now live! Open the app to explore the changes", "");
                      AV23Metadata = new SdtSDT_OneSignalCustomData(context);
                      AV23Metadata.gxTpr_Notificationcategory = "Toolbox";
-                     new prc_logtofile(context ).execute(  context.GetMessage( "Meta Data is: ", "")+AV23Metadata.ToJSonString(false, true)) ;
                   }
                }
                else

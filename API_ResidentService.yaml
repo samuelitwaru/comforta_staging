@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250212071757"
+  version: "20250213103106"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/api
 paths:
@@ -722,6 +722,31 @@ paths:
         404:
           description: "Not found"
 
+  /toolbox/create-dynamic-form-page:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.CreateDynamicFormPage"
+      summary: "Create Dynamic Form Page"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateDynamicFormPageInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateDynamicFormPageOutput"
+        404:
+          description: "Not found"
+
   /toolbox/save-page:
     post:
       tags:
@@ -875,6 +900,25 @@ paths:
         404:
           description: "Not found"
 
+  /toolbox/services:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.GetServices"
+      summary: "Get Pages"
+      security: 
+        - oAuthGXGAM: []
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetServicesOutput"
+        404:
+          description: "Not found"
+
   /location-theme:
     get:
       tags:
@@ -1019,6 +1063,15 @@ components:
           description: "SDT_Error"
           $ref: "#/components/schemas/SDT_Error"
 
+    CreateDynamicFormPageOutput:
+      properties:
+        SDT_Page:
+          description: "SDT_Page"
+          $ref: "#/components/schemas/SDT_Page"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
 
     UpdatePageOutput:
       properties:
@@ -1058,6 +1111,17 @@ components:
         SDT_ProductService:
           description: "SDT_Product Service"
           $ref: "#/components/schemas/SDT_ProductService"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+    GetServicesOutput:
+      properties:
+        SDT_ProductServiceCollection:
+          description: "SDT_Product Service"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_ProductService"
         error:
           description: "SDT_Error"
           $ref: "#/components/schemas/SDT_Error"
@@ -1131,6 +1195,8 @@ components:
           type: "string"
         message:
           type: "string"
+        userId:
+          type: "string"
 
 
 
@@ -1168,6 +1234,14 @@ components:
         PageId:
           type: "string"
           format: "uuid"
+
+    CreateDynamicFormPageInput:  
+      properties:
+        FormId:
+          type: "string"
+          format: "uuid"
+        PageName:
+          type: "string"
 
     SavePageInput:  
       properties:
@@ -1226,6 +1300,7 @@ components:
         ThemeId:
           type: "string"
           format: "uuid"
+
 
 
 
@@ -1588,6 +1663,13 @@ components:
         PageJsonContent:
           description: "Page Json Content"
           type: "string"
+        PageIsDynamicForm:
+          description: "Page Is Dynamic Form"
+          type: "boolean"
+        WWPFormId:
+          description: "WWPForm Id"
+          type: "integer"
+          format: "int32"
         PageChildren:
           description: "SDT_Page Children"
           type: array

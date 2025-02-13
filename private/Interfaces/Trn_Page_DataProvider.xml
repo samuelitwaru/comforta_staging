@@ -2,7 +2,7 @@
 <CallableObject guid="4c2bcf57-7379-7e16-bbe7-d8e1d893d8c0" name="Trn_Page_DataProvider" description="Trn_Page_Data Provider" namespace="GeneXus.Programs">
   <Signature name="parm">
     <Parameter name="ReturnValue" accessor="out" collection="true">
-      <Field name="Trn_Page" description="Trn_Page">
+      <Field name="Trn_Page" description="App builder pages">
         <Fields>
           <Field name="Trn_PageId" description="Trn_Page Id">
             <Properties>
@@ -85,6 +85,14 @@
             </Properties>
           </Field>
           <Field name="PageIsContentPage" description="Page Is Content Page">
+            <Properties>
+              <Property>
+                <Name>Type</Name>
+                <Value>Boolean</Value>
+              </Property>
+            </Properties>
+          </Field>
+          <Field name="PageIsDynamicForm" description="Page Is Dynamic Form">
             <Properties>
               <Property>
                 <Name>Type</Name>

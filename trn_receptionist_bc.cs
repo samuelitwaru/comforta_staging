@@ -139,6 +139,9 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          AV25TrnContext.FromXml(AV28WebSession.Get("TrnContext"), null, "", "");
+         if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
+         {
+         }
       }
 
       protected void E110C2( )

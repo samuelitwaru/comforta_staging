@@ -77,6 +77,9 @@ namespace GeneXus.Programs
 			{
 				AddObjectProperty("data", gxTv_SdtSDT_OneSignalCustomBody_Data, false);
 			}
+
+			AddObjectProperty("content_available", gxTpr_Content_available, false);
+
 			return;
 		}
 		#endregion
@@ -257,6 +260,22 @@ namespace GeneXus.Programs
 
 		}
 
+
+		[SoapElement(ElementName="content_available")]
+		[XmlElement(ElementName="content_available")]
+		public bool gxTpr_Content_available
+		{
+			get {
+				return gxTv_SdtSDT_OneSignalCustomBody_Content_available; 
+			}
+			set {
+				gxTv_SdtSDT_OneSignalCustomBody_Content_available = value;
+				SetDirty("Content_available");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -291,6 +310,7 @@ namespace GeneXus.Programs
 
 			gxTv_SdtSDT_OneSignalCustomBody_Data_N = true;
 
+
 			return  ;
 		}
 
@@ -313,6 +333,9 @@ namespace GeneXus.Programs
 
 		protected GeneXus.Programs.SdtSDT_OneSignalCustomData gxTv_SdtSDT_OneSignalCustomBody_Data = null;
 		protected bool gxTv_SdtSDT_OneSignalCustomBody_Data_N;
+		 
+
+		protected bool gxTv_SdtSDT_OneSignalCustomBody_Content_available;
 		 
 
 
@@ -405,6 +428,18 @@ namespace GeneXus.Programs
 			}
 			set { 
 				sdt.gxTpr_Data = value.sdt;
+			}
+		}
+
+		[DataMember(Name="content_available", Order=5)]
+		public bool gxTpr_Content_available
+		{
+			get { 
+				return sdt.gxTpr_Content_available;
+
+			}
+			set { 
+				sdt.gxTpr_Content_available = value;
 			}
 		}
 

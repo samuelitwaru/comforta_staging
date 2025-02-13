@@ -103,7 +103,11 @@ namespace GeneXus.Programs {
                AV9BC_Trn_Page.Load(AV28SDT_Page.gxTpr_Pageid, AV28SDT_Page.gxTpr_Pagename, new prc_getuserlocationid(context).executeUdp( ));
                if ( ! (Guid.Empty==AV9BC_Trn_Page.gxTpr_Trn_pageid) )
                {
-                  AV9BC_Trn_Page.gxTpr_Pagegjsjson = AV28SDT_Page.gxTpr_Pagegjsjson;
+                  AV9BC_Trn_Page.gxTpr_Pagegjsjson = AV19PageGJSJson;
+                  if ( AV9BC_Trn_Page.gxTpr_Pageisdynamicform )
+                  {
+                     AV9BC_Trn_Page.gxTpr_Pagegjsjson = "";
+                  }
                   if ( AV28SDT_Page.gxTpr_Pageispublished )
                   {
                      AV9BC_Trn_Page.gxTpr_Pagejsoncontent = AV28SDT_Page.gxTpr_Pagejsoncontent;
@@ -165,6 +169,7 @@ namespace GeneXus.Programs {
          AV10Error = new SdtSDT_Error(context);
          AV28SDT_Page = new SdtSDT_PublishPage(context);
          AV9BC_Trn_Page = new SdtTrn_Page(context);
+         AV19PageGJSJson = "";
          AV15MetadataToolboxDetails = new SdtSDT_OneSignalCustomData_toolboxDetailsItem(context);
          AV14Metadata = new SdtSDT_OneSignalCustomData(context);
          AV8Title = "";
@@ -191,6 +196,7 @@ namespace GeneXus.Programs {
       private int AV32GXV3 ;
       private bool AV11IsNotifyResidents ;
       private string AV27Response ;
+      private string AV19PageGJSJson ;
       private string AV8Title ;
       private string AV16NotificationMessage ;
       private IGxDataStore dsDataStore1 ;

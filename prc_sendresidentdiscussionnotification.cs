@@ -97,7 +97,7 @@ namespace GeneXus.Programs {
                pr_default.readNext(0);
             }
             pr_default.close(0);
-            new prc_sendonesignalnotification(context ).execute(  AV20DeviceTokenCollection,  AV10title,  AV9message,  AV28Metadata, out  AV13OutMessages, out  AV14IsSuccessful) ;
+            new prc_sendonesignalnotification(context ).execute(  AV20DeviceTokenCollection,  AV10title,  AV9message,  AV28Metadata,  false, out  AV13OutMessages, out  AV14IsSuccessful) ;
          }
          cleanup();
       }

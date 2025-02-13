@@ -92,6 +92,12 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("PageJsonContent", gxTpr_Pagejsoncontent, false);
 
+
+			AddObjectProperty("PageIsDynamicForm", gxTpr_Pageisdynamicform, false);
+
+
+			AddObjectProperty("WWPFormId", gxTpr_Wwpformid, false);
+
 			if (gxTv_SdtSDT_Page_Pagechildren != null)
 			{
 				AddObjectProperty("PageChildren", gxTv_SdtSDT_Page_Pagechildren, false);
@@ -269,6 +275,38 @@ namespace GeneXus.Programs
 
 
 
+		[SoapElement(ElementName="PageIsDynamicForm")]
+		[XmlElement(ElementName="PageIsDynamicForm")]
+		public bool gxTpr_Pageisdynamicform
+		{
+			get {
+				return gxTv_SdtSDT_Page_Pageisdynamicform; 
+			}
+			set {
+				gxTv_SdtSDT_Page_Pageisdynamicform = value;
+				SetDirty("Pageisdynamicform");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="WWPFormId")]
+		[XmlElement(ElementName="WWPFormId")]
+		public short gxTpr_Wwpformid
+		{
+			get {
+				return gxTv_SdtSDT_Page_Wwpformid; 
+			}
+			set {
+				gxTv_SdtSDT_Page_Wwpformid = value;
+				SetDirty("Wwpformid");
+			}
+		}
+
+
+
+
 		[SoapElement(ElementName="PageChildren" )]
 		[XmlArray(ElementName="PageChildren"  )]
 		[XmlArrayItemAttribute(ElementName="Item" , IsNullable=false )]
@@ -421,6 +459,8 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_Page_Pagegjsjson = "";
 			gxTv_SdtSDT_Page_Pagegjshtml = "";
 			gxTv_SdtSDT_Page_Pagejsoncontent = "";
+			gxTv_SdtSDT_Page_Pageisdynamicform = false;
+
 
 			gxTv_SdtSDT_Page_Pagechildren_N = true;
 
@@ -463,6 +503,12 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_Page_Pagejsoncontent;
+		 
+
+		protected bool gxTv_SdtSDT_Page_Pageisdynamicform;
+		 
+
+		protected short gxTv_SdtSDT_Page_Wwpformid;
 		 
 		protected bool gxTv_SdtSDT_Page_Pagechildren_N;
 		protected GXBaseCollection<GeneXus.Programs.SdtSDT_PageChildren> gxTv_SdtSDT_Page_Pagechildren = null;  
@@ -600,7 +646,31 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="PageChildren", Order=9, EmitDefaultValue=false)]
+		[DataMember(Name="PageIsDynamicForm", Order=9)]
+		public bool gxTpr_Pageisdynamicform
+		{
+			get { 
+				return sdt.gxTpr_Pageisdynamicform;
+
+			}
+			set { 
+				sdt.gxTpr_Pageisdynamicform = value;
+			}
+		}
+
+		[DataMember(Name="WWPFormId", Order=10)]
+		public short gxTpr_Wwpformid
+		{
+			get { 
+				return sdt.gxTpr_Wwpformid;
+
+			}
+			set { 
+				sdt.gxTpr_Wwpformid = value;
+			}
+		}
+
+		[DataMember(Name="PageChildren", Order=11, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.SdtSDT_PageChildren_RESTInterface> gxTpr_Pagechildren
 		{
 			get { 
@@ -615,7 +685,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="LocationId", Order=10)]
+		[DataMember(Name="LocationId", Order=12)]
 		public Guid gxTpr_Locationid
 		{
 			get { 
@@ -627,7 +697,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="Row", Order=11, EmitDefaultValue=false)]
+		[DataMember(Name="Row", Order=13, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.SdtSDT_Row_RESTInterface> gxTpr_Row
 		{
 			get { 

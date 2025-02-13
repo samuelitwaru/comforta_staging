@@ -23,6 +23,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPage_ContentItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPage_CtaItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Country_SDT_CountryItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_DynamicForms.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Error.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ErrorResponse.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Location.cs" />

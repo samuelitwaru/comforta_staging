@@ -40,28 +40,31 @@ namespace GeneXus.Programs {
                            string aP1_title ,
                            string aP2_message ,
                            SdtSDT_OneSignalCustomData aP3_NotificationMetadata ,
-                           out string aP4_OutMessage ,
-                           out bool aP5_IsSuccessful )
+                           bool aP4_isSilentNotification ,
+                           out string aP5_OutMessage ,
+                           out bool aP6_IsSuccessful )
       {
          this.AV10DeviceTokenCollection = aP0_DeviceTokenCollection;
          this.AV26title = aP1_title;
          this.AV23message = aP2_message;
          this.AV24NotificationMetadata = aP3_NotificationMetadata;
+         this.AV27isSilentNotification = aP4_isSilentNotification;
          this.AV25OutMessage = "" ;
          this.AV22IsSuccessful = false ;
          initialize();
          ExecuteImpl();
-         aP4_OutMessage=this.AV25OutMessage;
-         aP5_IsSuccessful=this.AV22IsSuccessful;
+         aP5_OutMessage=this.AV25OutMessage;
+         aP6_IsSuccessful=this.AV22IsSuccessful;
       }
 
       public bool executeUdp( GxSimpleCollection<string> aP0_DeviceTokenCollection ,
                               string aP1_title ,
                               string aP2_message ,
                               SdtSDT_OneSignalCustomData aP3_NotificationMetadata ,
-                              out string aP4_OutMessage )
+                              bool aP4_isSilentNotification ,
+                              out string aP5_OutMessage )
       {
-         execute(aP0_DeviceTokenCollection, aP1_title, aP2_message, aP3_NotificationMetadata, out aP4_OutMessage, out aP5_IsSuccessful);
+         execute(aP0_DeviceTokenCollection, aP1_title, aP2_message, aP3_NotificationMetadata, aP4_isSilentNotification, out aP5_OutMessage, out aP6_IsSuccessful);
          return AV22IsSuccessful ;
       }
 
@@ -69,18 +72,20 @@ namespace GeneXus.Programs {
                                  string aP1_title ,
                                  string aP2_message ,
                                  SdtSDT_OneSignalCustomData aP3_NotificationMetadata ,
-                                 out string aP4_OutMessage ,
-                                 out bool aP5_IsSuccessful )
+                                 bool aP4_isSilentNotification ,
+                                 out string aP5_OutMessage ,
+                                 out bool aP6_IsSuccessful )
       {
          this.AV10DeviceTokenCollection = aP0_DeviceTokenCollection;
          this.AV26title = aP1_title;
          this.AV23message = aP2_message;
          this.AV24NotificationMetadata = aP3_NotificationMetadata;
+         this.AV27isSilentNotification = aP4_isSilentNotification;
          this.AV25OutMessage = "" ;
          this.AV22IsSuccessful = false ;
          SubmitImpl();
-         aP4_OutMessage=this.AV25OutMessage;
-         aP5_IsSuccessful=this.AV22IsSuccessful;
+         aP5_OutMessage=this.AV25OutMessage;
+         aP6_IsSuccessful=this.AV22IsSuccessful;
       }
 
       protected override void ExecutePrivate( )
@@ -94,15 +99,22 @@ namespace GeneXus.Programs {
          AV11HttpClient.AddHeader("Content-Type", "application/json");
          AV15SDT_OneSignalCustomBody = new SdtSDT_OneSignalCustomBody(context);
          AV15SDT_OneSignalCustomBody.gxTpr_App_id = context.GetMessage( "04453574-cfee-45bc-adef-888ecdaa0707", "");
-         AV27GXV1 = 1;
-         while ( AV27GXV1 <= AV10DeviceTokenCollection.Count )
+         AV28GXV1 = 1;
+         while ( AV28GXV1 <= AV10DeviceTokenCollection.Count )
          {
-            AV9DeviceToken = AV10DeviceTokenCollection.GetString(AV27GXV1);
+            AV9DeviceToken = AV10DeviceTokenCollection.GetString(AV28GXV1);
             AV15SDT_OneSignalCustomBody.gxTpr_Include_player_ids.Add(AV9DeviceToken, 0);
-            AV27GXV1 = (int)(AV27GXV1+1);
+            AV28GXV1 = (int)(AV28GXV1+1);
          }
          AV15SDT_OneSignalCustomBody.gxTpr_Headings.gxTpr_En = AV26title;
-         AV15SDT_OneSignalCustomBody.gxTpr_Contents.gxTpr_En = AV23message;
+         if ( AV27isSilentNotification )
+         {
+            AV15SDT_OneSignalCustomBody.gxTpr_Content_available = true;
+         }
+         else
+         {
+            AV15SDT_OneSignalCustomBody.gxTpr_Contents.gxTpr_En = AV23message;
+         }
          AV15SDT_OneSignalCustomBody.gxTpr_Data = AV24NotificationMetadata;
          AV8body = AV15SDT_OneSignalCustomBody.ToJSonString(false, true);
          AV11HttpClient.AddString(AV8body);
@@ -140,8 +152,9 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV27GXV1 ;
+      private int AV28GXV1 ;
       private string AV9DeviceToken ;
+      private bool AV27isSilentNotification ;
       private bool AV22IsSuccessful ;
       private string AV25OutMessage ;
       private string AV8body ;
@@ -151,8 +164,8 @@ namespace GeneXus.Programs {
       private GxSimpleCollection<string> AV10DeviceTokenCollection ;
       private SdtSDT_OneSignalCustomData AV24NotificationMetadata ;
       private SdtSDT_OneSignalCustomBody AV15SDT_OneSignalCustomBody ;
-      private string aP4_OutMessage ;
-      private bool aP5_IsSuccessful ;
+      private string aP5_OutMessage ;
+      private bool aP6_IsSuccessful ;
    }
 
 }

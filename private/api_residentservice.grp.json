@@ -266,6 +266,16 @@
 },
 {
 "Verb":"POST",
+"PathRegexp":"toolbox/create-dynamic-form-page",
+"Path":"toolbox/create-dynamic-form-page",
+"Name":"createdynamicformpage",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_createdynamicformpage",
+"Implementation":"Prc_CreateDynamicFormPage"
+},
+{
+"Verb":"POST",
 "PathRegexp":"toolbox/save-page",
 "Path":"toolbox/save-page",
 "Name":"savepage",
@@ -322,6 +332,16 @@
 "VariableAlias": [],
 "ServiceMethod":"gxep_productserviceapi",
 "Implementation":"Prc_ProductServiceAPI",
+"Verb":"GET"
+},
+{
+"PathRegexp":"toolbox/services",
+"Path":"toolbox/services",
+"Name":"getservices",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_getservices",
+"Implementation":"Prc_GetServices",
 "Verb":"GET"
 },
 {

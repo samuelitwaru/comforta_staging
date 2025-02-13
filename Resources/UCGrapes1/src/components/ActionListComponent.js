@@ -24,6 +24,11 @@ class ActionListComponent {
         options: [],
       },
       {
+        name: "Dynamic Forms",
+        label: this.currentLanguage.getTranslation("category_dynamic_form"),
+        options: [],
+      },
+      {
         name: "Predefined Page",
         label: this.currentLanguage.getTranslation("category_predefined_page"),
         options: [],
@@ -32,41 +37,48 @@ class ActionListComponent {
     this.init();
   }
 
-  init() {
-    this.dataManager
-      .getPages()
-      .then((res) => {
-        if (this.toolBoxManager.checkIfNotAuthenticated(res)) {
-          return;
-        }
+  
 
-        this.pageOptions = res.SDT_PageCollection.filter(
-          (page) => !page.PageIsContentPage && !page.PageIsPredefined
-        );
-        this.predefinedPageOptions = res.SDT_PageCollection.filter(
-          (page) => page.PageIsPredefined && page.PageName != "Home"
-        );
-        this.servicePageOptions = this.dataManager.services.map((service) => {
-          return {
-            PageId: service.ProductServiceId,
-            PageName: service.ProductServiceName,
-          };
-        });
-        this.categoryData.forEach((category) => {
-          if (category.name === "Page") {
-            category.options = this.pageOptions;
-          } else if (category.name == "Service/Product Page") {
-            category.options = this.servicePageOptions;
-          } else if (category.name == "Predefined Page") {
-            category.options = this.predefinedPageOptions;
-          }
-        });
+  async init() {
+    await this.dataManager.getPages();
+    await this.dataManager.getServices();
 
-        this.populateDropdownMenu();
-      })
-      .catch((error) => {
-        console.error("Error fetching pages:", error);
-      });
+
+    this.pageOptions = this.dataManager.pages.SDT_PageCollection.filter(
+      (page) => !page.PageIsContentPage && !page.PageIsPredefined
+    );
+    this.predefinedPageOptions = this.dataManager.pages.SDT_PageCollection.filter(
+      (page) => page.PageIsPredefined && page.PageName != "Home"
+    );
+
+    this.servicePageOptions = this.dataManager.services.map((service) => {
+      console.log(service)
+      return {
+        PageId: service.ProductServiceId,
+        PageName: service.ProductServiceName,
+      };
+    });
+
+    this.dynamicForms = this.dataManager.forms.map((form) => {
+      return {
+        PageId: form.FormId,
+        PageName: form.ReferenceName,
+      };
+    });
+
+    this.categoryData.forEach((category) => {
+      if (category.name === "Page") {
+        category.options = this.pageOptions;
+      } else if (category.name == "Service/Product Page") {
+        category.options = this.servicePageOptions;
+      } else if (category.name == "Dynamic Forms") {
+        category.options = this.dynamicForms;
+      } else if (category.name == "Predefined Page") {
+        category.options = this.predefinedPageOptions;
+      }
+    });
+
+    this.populateDropdownMenu();
   }
 
   mapPageNamesToOptions(pages) {
@@ -103,8 +115,24 @@ class ActionListComponent {
 
     const searchBox = document.createElement("div");
     searchBox.classList.add("search-container");
-    searchBox.innerHTML = `<i class="fas fa-search search-icon"></i><input type="text" placeholder="Search" class="search-input" />`;
+    searchBox.innerHTML = `
+      <i class="fas fa-search search-icon">
+      </i>
+      <input type="text" placeholder="Search" class="search-input" /> 
+      `;
     categoryElement.appendChild(searchBox);
+
+    if (category.name === "Service/Product Page") {
+      const addButton = document.createElement("button");
+      addButton.textContent = "+";
+      addButton.classList.add("add-button");
+      addButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log(this.toolBoxManager.newServiceEvent)
+        this.toolBoxManager.newServiceEvent()
+      });
+      searchBox.appendChild(addButton);
+    }
 
     const categoryContent = document.createElement("ul");
     categoryContent.classList.add("category-content");
@@ -130,14 +158,15 @@ class ActionListComponent {
   setupDropdownHeader() {
     const dropdownHeader = document.getElementById("selectedOption");
     const dropdownMenu = document.getElementById("dropdownMenu");
-
+    
     if (!this.added) {
       dropdownHeader.removeEventListener("click", (e) => {});
       dropdownHeader.addEventListener("click", (e) => {
+        this.init();
         dropdownMenu.style.display =
           dropdownMenu.style.display === "block" ? "none" : "block";
         dropdownHeader.querySelector("i").classList.toggle("fa-angle-up");
-        dropdownHeader.querySelector("i").classList.toggle("fa-angle-down");
+        dropdownHeader.querySelector("i").classList.toggle("fa-angle-down");        
       });
     }
 
@@ -221,6 +250,9 @@ class ActionListComponent {
 
             if (category == "Service/Product Page") {
               this.createContentPage(item.id, editorContainerId);
+            }else if (category == "Dynamic Forms") {
+              $(editorContainerId).nextAll().remove();
+              this.createDynamicFormPage(item.id, item.textContent)
             }else{
               $(editorContainerId).nextAll().remove();
               this.editorManager.createChildEditor((this.editorManager.getPage(item.id)))
@@ -277,6 +309,19 @@ class ActionListComponent {
       this.dataManager.getPages().then(res=>{
         $(editorContainerId).nextAll().remove();
         this.editorManager.createChildEditor(this.editorManager.getPage(pageId))
+      })
+    });
+  }
+
+  createDynamicFormPage(formId, formName, editorContainerId) {
+    this.dataManager.createDynamicFormPage(formId, formName).then((res) => {
+      if (this.toolBoxManager.checkIfNotAuthenticated(res)) {
+        return;
+      }
+      
+      this.dataManager.getPages().then(res=>{
+        $(editorContainerId).nextAll().remove();
+        this.editorManager.createChildEditor(this.editorManager.getPage(formId))
       })
     });
   }

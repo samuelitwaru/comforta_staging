@@ -1248,14 +1248,17 @@ namespace GeneXus.Programs {
          AssignProp("", false, edtReceptionistInitials_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtReceptionistInitials_Visible), 5, 0), true);
          edtReceptionistGAMGUID_Visible = 0;
          AssignProp("", false, edtReceptionistGAMGUID_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtReceptionistGAMGUID_Visible), 5, 0), true);
-         AV32defaultCountryPhoneCode = "+31";
-         AssignAttri("", false, "AV32defaultCountryPhoneCode", AV32defaultCountryPhoneCode);
-         Combo_receptionistphonecode_Selectedtext_set = AV32defaultCountryPhoneCode;
-         ucCombo_receptionistphonecode.SendProperty(context, "", false, Combo_receptionistphonecode_Internalname, "SelectedText_set", Combo_receptionistphonecode_Selectedtext_set);
-         Combo_receptionistphonecode_Selectedvalue_set = AV32defaultCountryPhoneCode;
-         ucCombo_receptionistphonecode.SendProperty(context, "", false, Combo_receptionistphonecode_Internalname, "SelectedValue_set", Combo_receptionistphonecode_Selectedvalue_set);
-         AV31ComboReceptionistPhoneCode = AV32defaultCountryPhoneCode;
-         AssignAttri("", false, "AV31ComboReceptionistPhoneCode", AV31ComboReceptionistPhoneCode);
+         if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
+         {
+            AV32defaultCountryPhoneCode = "+31";
+            AssignAttri("", false, "AV32defaultCountryPhoneCode", AV32defaultCountryPhoneCode);
+            Combo_receptionistphonecode_Selectedtext_set = AV32defaultCountryPhoneCode;
+            ucCombo_receptionistphonecode.SendProperty(context, "", false, Combo_receptionistphonecode_Internalname, "SelectedText_set", Combo_receptionistphonecode_Selectedtext_set);
+            Combo_receptionistphonecode_Selectedvalue_set = AV32defaultCountryPhoneCode;
+            ucCombo_receptionistphonecode.SendProperty(context, "", false, Combo_receptionistphonecode_Internalname, "SelectedValue_set", Combo_receptionistphonecode_Selectedvalue_set);
+            AV31ComboReceptionistPhoneCode = AV32defaultCountryPhoneCode;
+            AssignAttri("", false, "AV31ComboReceptionistPhoneCode", AV31ComboReceptionistPhoneCode);
+         }
       }
 
       protected void E120C2( )
@@ -2736,7 +2739,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512220595820", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20252131036597", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2752,7 +2755,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_receptionist.js", "?202512220595823", false, true);
+         context.AddJavascriptSource("trn_receptionist.js", "?20252131036599", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

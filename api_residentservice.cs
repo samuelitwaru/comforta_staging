@@ -101,7 +101,7 @@ namespace GeneXus.Programs {
          }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_pagesapi") == 0 )
          {
-            return GAMSecurityLevel.SecurityNone ;
+            return GAMSecurityLevel.SecurityLow ;
          }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_pageapi") == 0 )
          {
@@ -109,7 +109,7 @@ namespace GeneXus.Programs {
          }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_contentpagesapi") == 0 )
          {
-            return GAMSecurityLevel.SecurityNone ;
+            return GAMSecurityLevel.SecurityLow ;
          }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_contentpageapi") == 0 )
          {
@@ -135,6 +135,10 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityNone ;
          }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_createdynamicformpage") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_savepage") == 0 )
          {
             return GAMSecurityLevel.SecurityNone ;
@@ -156,6 +160,10 @@ namespace GeneXus.Programs {
             return GAMSecurityLevel.SecurityNone ;
          }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_productserviceapi") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getservices") == 0 )
          {
             return GAMSecurityLevel.SecurityNone ;
          }
@@ -486,14 +494,16 @@ namespace GeneXus.Programs {
 
       public void gxep_sendnotification( string aP0_title ,
                                          string aP1_message ,
-                                         out string aP2_result )
+                                         string aP2_userId ,
+                                         out string aP3_result )
       {
          this.AV19title = aP0_title;
          this.AV13message = aP1_message;
+         this.AV8userId = aP2_userId;
          initialize();
          /* SendNotification Constructor */
-         new prc_sendnotification(context ).execute(  AV19title,  AV13message, out  AV17result) ;
-         aP2_result=this.AV17result;
+         new prc_sendnotification(context ).execute(  AV19title,  AV13message,  AV8userId, out  AV17result) ;
+         aP3_result=this.AV17result;
       }
 
       public void gxep_agendalocation( string aP0_ResidentId ,
@@ -694,6 +704,22 @@ namespace GeneXus.Programs {
          aP2_error=this.AV91error;
       }
 
+      public void gxep_createdynamicformpage( Guid aP0_FormId ,
+                                              string aP1_PageName ,
+                                              out SdtSDT_Page aP2_SDT_Page ,
+                                              out SdtSDT_Error aP3_error )
+      {
+         this.AV100FormId = aP0_FormId;
+         this.AV60PageName = aP1_PageName;
+         AV55SDT_Page = new SdtSDT_Page(context);
+         AV91error = new SdtSDT_Error(context);
+         initialize();
+         /* CreateDynamicFormPage Constructor */
+         new prc_createdynamicformpage(context ).execute(  AV100FormId,  AV60PageName, out  AV55SDT_Page, out  AV91error) ;
+         aP2_SDT_Page=this.AV55SDT_Page;
+         aP3_error=this.AV91error;
+      }
+
       public void gxep_savepage( Guid aP0_PageId ,
                                  string aP1_PageJsonContent ,
                                  string aP2_PageGJSHtml ,
@@ -793,6 +819,17 @@ namespace GeneXus.Programs {
          aP2_error=this.AV91error;
       }
 
+      public void gxep_getservices( out GXBaseCollection<SdtSDT_ProductService> aP0_SDT_ProductServiceCollection ,
+                                    out SdtSDT_Error aP1_error )
+      {
+         AV91error = new SdtSDT_Error(context);
+         initialize();
+         /* GetServices Constructor */
+         new prc_getservices(context ).execute(  AV101SDT_ProductServiceCollection, out  AV91error) ;
+         aP0_SDT_ProductServiceCollection=this.AV101SDT_ProductServiceCollection;
+         aP1_error=this.AV91error;
+      }
+
       public void gxep_getlocationtheme( Guid aP0_locationId ,
                                          Guid aP1_organisationId ,
                                          out SdtSDT_LocationTheme aP2_SDT_LocationTheme )
@@ -845,6 +882,7 @@ namespace GeneXus.Programs {
          AV64SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2");
          AV72SDT_Theme = new SdtSDT_Theme(context);
          AV67SDT_ProductService = new SdtSDT_ProductService(context);
+         AV101SDT_ProductServiceCollection = new GXBaseCollection<SdtSDT_ProductService>( context, "SDT_ProductService", "Comforta_version2");
          AV83SDT_LocationTheme = new SdtSDT_LocationTheme(context);
          /* GeneXus formulas. */
       }
@@ -883,6 +921,7 @@ namespace GeneXus.Programs {
       protected Guid AV12locationId ;
       protected Guid AV46MediaId ;
       protected Guid AV54PageId ;
+      protected Guid AV100FormId ;
       protected Guid AV61ParentPageId ;
       protected Guid AV62ChildPageId ;
       protected Guid AV71ThemeId ;
@@ -908,6 +947,7 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_ResidentNotification> aP1_SDT_ResidentNotification ;
       protected string aP2_result ;
       protected string aP6_result ;
+      protected string aP3_result ;
       protected GXBaseCollection<SdtSDT_AgendaLocation> aP3_SDT_AgendaLocation ;
       protected string aP0_result ;
       protected SdtTrn_Media AV50BC_Trn_Media ;
@@ -934,6 +974,7 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_PageStructure> AV64SDT_PageStructureCollection ;
       protected GXBaseCollection<SdtSDT_PageStructure> aP0_SDT_PageStructureCollection ;
       protected SdtSDT_Error aP3_error ;
+      protected SdtSDT_Page aP2_SDT_Page ;
       protected string aP5_result ;
       protected string aP7_result ;
       protected SdtSDT_Error aP8_error ;
@@ -942,6 +983,8 @@ namespace GeneXus.Programs {
       protected SdtSDT_Theme aP1_SDT_Theme ;
       protected SdtSDT_ProductService AV67SDT_ProductService ;
       protected SdtSDT_ProductService aP1_SDT_ProductService ;
+      protected GXBaseCollection<SdtSDT_ProductService> AV101SDT_ProductServiceCollection ;
+      protected GXBaseCollection<SdtSDT_ProductService> aP0_SDT_ProductServiceCollection ;
       protected SdtSDT_LocationTheme AV83SDT_LocationTheme ;
       protected SdtSDT_LocationTheme aP2_SDT_LocationTheme ;
       protected SdtSDT_LocationTheme aP0_SDT_LocationTheme ;

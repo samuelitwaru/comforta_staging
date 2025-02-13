@@ -523,6 +523,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, sPrefix+"COMBO_PHONECODE_Htmltemplate", StringUtil.RTrim( Combo_phonecode_Htmltemplate));
          GxWebStd.gx_hidden_field( context, sPrefix+"COMBO_LOCATIONDYNAMICFORMID_Cls", StringUtil.RTrim( Combo_locationdynamicformid_Cls));
          GxWebStd.gx_hidden_field( context, sPrefix+"COMBO_LOCATIONDYNAMICFORMID_Selectedvalue_set", StringUtil.RTrim( Combo_locationdynamicformid_Selectedvalue_set));
+         GxWebStd.gx_hidden_field( context, sPrefix+"COMBO_LOCATIONDYNAMICFORMID_Selectedtext_set", StringUtil.RTrim( Combo_locationdynamicformid_Selectedtext_set));
          GxWebStd.gx_hidden_field( context, sPrefix+"COMBO_LOCATIONDYNAMICFORMID_Emptyitem", StringUtil.BoolToStr( Combo_locationdynamicformid_Emptyitem));
          GxWebStd.gx_hidden_field( context, sPrefix+"GRIDSDT_CALLTOACTIONSPAGINATIONBAR_Class", StringUtil.RTrim( Gridsdt_calltoactionspaginationbar_Class));
          GxWebStd.gx_hidden_field( context, sPrefix+"GRIDSDT_CALLTOACTIONSPAGINATIONBAR_Showfirst", StringUtil.BoolToStr( Gridsdt_calltoactionspaginationbar_Showfirst));
@@ -1861,6 +1862,7 @@ namespace GeneXus.Programs {
             Combo_phonecode_Htmltemplate = cgiGet( sPrefix+"COMBO_PHONECODE_Htmltemplate");
             Combo_locationdynamicformid_Cls = cgiGet( sPrefix+"COMBO_LOCATIONDYNAMICFORMID_Cls");
             Combo_locationdynamicformid_Selectedvalue_set = cgiGet( sPrefix+"COMBO_LOCATIONDYNAMICFORMID_Selectedvalue_set");
+            Combo_locationdynamicformid_Selectedtext_set = cgiGet( sPrefix+"COMBO_LOCATIONDYNAMICFORMID_Selectedtext_set");
             Combo_locationdynamicformid_Emptyitem = StringUtil.StrToBool( cgiGet( sPrefix+"COMBO_LOCATIONDYNAMICFORMID_Emptyitem"));
             Gridsdt_calltoactionspaginationbar_Class = cgiGet( sPrefix+"GRIDSDT_CALLTOACTIONSPAGINATIONBAR_Class");
             Gridsdt_calltoactionspaginationbar_Showfirst = StringUtil.StrToBool( cgiGet( sPrefix+"GRIDSDT_CALLTOACTIONSPAGINATIONBAR_Showfirst"));
@@ -2006,6 +2008,20 @@ namespace GeneXus.Programs {
          ucCombo_phonecode.SendProperty(context, sPrefix, false, Combo_phonecode_Internalname, "SelectedText_set", Combo_phonecode_Selectedtext_set);
          Combo_phonecode_Selectedvalue_set = AV79PhoneCode;
          ucCombo_phonecode.SendProperty(context, sPrefix, false, Combo_phonecode_Internalname, "SelectedValue_set", Combo_phonecode_Selectedvalue_set);
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV52CallToActionType)) )
+         {
+            edtavCalltoactionname_Invitemessage = context.GetMessage( "Call Us", "");
+            AssignProp(sPrefix, false, edtavCalltoactionname_Internalname, "Invitemessage", edtavCalltoactionname_Invitemessage, true);
+            AV52CallToActionType = "Phone";
+            AssignAttri(sPrefix, false, "AV52CallToActionType", AV52CallToActionType);
+            AV53CallToActionName = AV52CallToActionType;
+            AssignAttri(sPrefix, false, "AV53CallToActionName", AV53CallToActionName);
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV53CallToActionName)) )
+         {
+            AV53CallToActionName = AV52CallToActionType;
+            AssignAttri(sPrefix, false, "AV53CallToActionName", AV53CallToActionName);
+         }
          GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 = AV32DDO_TitleSettingsIcons;
          new GeneXus.Programs.wwpbaseobjects.getwwptitlesettingsicons(context ).execute( out  GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1) ;
          AV32DDO_TitleSettingsIcons = GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1;
@@ -2263,6 +2279,7 @@ namespace GeneXus.Programs {
             if ( StringUtil.StrCmp(AV52CallToActionType, "Phone") != 0 )
             {
                AV62Trn_CallToAction.gxTpr_Calltoactionphone = "";
+               AV62Trn_CallToAction.gxTpr_Calltoactionphonecode = "";
             }
             if ( (Guid.Empty==AV51CallToActionId) )
             {
@@ -2320,8 +2337,6 @@ namespace GeneXus.Programs {
             context.DoAjaxRefreshCmp(sPrefix);
          }
          /*  Sending Event outputs  */
-         cmbavCalltoactiontype.CurrentValue = StringUtil.RTrim( AV52CallToActionType);
-         AssignProp(sPrefix, false, cmbavCalltoactiontype_Internalname, "Values", cmbavCalltoactiontype.ToJavascriptSource(), true);
          if ( gx_BV98 )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV68SDT_CallToAction", AV68SDT_CallToAction);
@@ -2387,6 +2402,20 @@ namespace GeneXus.Programs {
          AssignAttri(sPrefix, false, "AV55CallToActionEmail", AV55CallToActionEmail);
          AV52CallToActionType = ((SdtSDT_CallToAction_SDT_CallToActionItem)(AV68SDT_CallToAction.CurrentItem)).gxTpr_Calltoactiontype;
          AssignAttri(sPrefix, false, "AV52CallToActionType", AV52CallToActionType);
+         if ( ! (Guid.Empty==AV56LocationDynamicFormId) )
+         {
+            Combo_locationdynamicformid_Selectedtext_set = AV54WWPFormReferenceName;
+            ucCombo_locationdynamicformid.SendProperty(context, sPrefix, false, Combo_locationdynamicformid_Internalname, "SelectedText_set", Combo_locationdynamicformid_Selectedtext_set);
+            Combo_locationdynamicformid_Selectedvalue_set = AV56LocationDynamicFormId.ToString();
+            ucCombo_locationdynamicformid.SendProperty(context, sPrefix, false, Combo_locationdynamicformid_Internalname, "SelectedValue_set", Combo_locationdynamicformid_Selectedvalue_set);
+         }
+         else
+         {
+            Combo_locationdynamicformid_Selectedtext_set = "";
+            ucCombo_locationdynamicformid.SendProperty(context, sPrefix, false, Combo_locationdynamicformid_Internalname, "SelectedText_set", Combo_locationdynamicformid_Selectedtext_set);
+            Combo_locationdynamicformid_Selectedvalue_set = "";
+            ucCombo_locationdynamicformid.SendProperty(context, sPrefix, false, Combo_locationdynamicformid_Internalname, "SelectedValue_set", Combo_locationdynamicformid_Selectedvalue_set);
+         }
          /* Execute user subroutine: 'SET VISIBLE' */
          S142 ();
          if (returnInSub) return;
@@ -2531,21 +2560,19 @@ namespace GeneXus.Programs {
          returnInSub = false;
          AV51CallToActionId = Guid.Empty;
          AssignAttri(sPrefix, false, "AV51CallToActionId", AV51CallToActionId.ToString());
-         AV53CallToActionName = "";
-         AssignAttri(sPrefix, false, "AV53CallToActionName", AV53CallToActionName);
          AV57CallToActionPhone = "";
-         AV79PhoneCode = "";
-         AssignAttri(sPrefix, false, "AV79PhoneCode", AV79PhoneCode);
          AV78PhoneNumber = "";
          AssignAttri(sPrefix, false, "AV78PhoneNumber", AV78PhoneNumber);
          AV58CallToActionUrl = "";
          AssignAttri(sPrefix, false, "AV58CallToActionUrl", AV58CallToActionUrl);
          AV56LocationDynamicFormId = Guid.Empty;
          AssignAttri(sPrefix, false, "AV56LocationDynamicFormId", AV56LocationDynamicFormId.ToString());
+         Combo_locationdynamicformid_Selectedtext_set = "";
+         ucCombo_locationdynamicformid.SendProperty(context, sPrefix, false, Combo_locationdynamicformid_Internalname, "SelectedText_set", Combo_locationdynamicformid_Selectedtext_set);
+         Combo_locationdynamicformid_Selectedvalue_set = "";
+         ucCombo_locationdynamicformid.SendProperty(context, sPrefix, false, Combo_locationdynamicformid_Internalname, "SelectedValue_set", Combo_locationdynamicformid_Selectedvalue_set);
          AV55CallToActionEmail = "";
          AssignAttri(sPrefix, false, "AV55CallToActionEmail", AV55CallToActionEmail);
-         AV52CallToActionType = "";
-         AssignAttri(sPrefix, false, "AV52CallToActionType", AV52CallToActionType);
       }
 
       protected void S142( )
@@ -2570,6 +2597,10 @@ namespace GeneXus.Programs {
             AssignAttri(sPrefix, false, "AV55CallToActionEmail", AV55CallToActionEmail);
             AV56LocationDynamicFormId = Guid.Empty;
             AssignAttri(sPrefix, false, "AV56LocationDynamicFormId", AV56LocationDynamicFormId.ToString());
+            Combo_locationdynamicformid_Selectedtext_set = "";
+            ucCombo_locationdynamicformid.SendProperty(context, sPrefix, false, Combo_locationdynamicformid_Internalname, "SelectedText_set", Combo_locationdynamicformid_Selectedtext_set);
+            Combo_locationdynamicformid_Selectedvalue_set = "";
+            ucCombo_locationdynamicformid.SendProperty(context, sPrefix, false, Combo_locationdynamicformid_Internalname, "SelectedValue_set", Combo_locationdynamicformid_Selectedvalue_set);
             AV54WWPFormReferenceName = "";
             AssignAttri(sPrefix, false, "AV54WWPFormReferenceName", AV54WWPFormReferenceName);
          }
@@ -2588,12 +2619,14 @@ namespace GeneXus.Programs {
             AV58CallToActionUrl = "";
             AssignAttri(sPrefix, false, "AV58CallToActionUrl", AV58CallToActionUrl);
             AV57CallToActionPhone = "";
-            AV79PhoneCode = "";
-            AssignAttri(sPrefix, false, "AV79PhoneCode", AV79PhoneCode);
             AV78PhoneNumber = "";
             AssignAttri(sPrefix, false, "AV78PhoneNumber", AV78PhoneNumber);
             AV56LocationDynamicFormId = Guid.Empty;
             AssignAttri(sPrefix, false, "AV56LocationDynamicFormId", AV56LocationDynamicFormId.ToString());
+            Combo_locationdynamicformid_Selectedtext_set = "";
+            ucCombo_locationdynamicformid.SendProperty(context, sPrefix, false, Combo_locationdynamicformid_Internalname, "SelectedText_set", Combo_locationdynamicformid_Selectedtext_set);
+            Combo_locationdynamicformid_Selectedvalue_set = "";
+            ucCombo_locationdynamicformid.SendProperty(context, sPrefix, false, Combo_locationdynamicformid_Internalname, "SelectedValue_set", Combo_locationdynamicformid_Selectedvalue_set);
             AV54WWPFormReferenceName = "";
             AssignAttri(sPrefix, false, "AV54WWPFormReferenceName", AV54WWPFormReferenceName);
          }
@@ -2612,8 +2645,6 @@ namespace GeneXus.Programs {
             AV58CallToActionUrl = "";
             AssignAttri(sPrefix, false, "AV58CallToActionUrl", AV58CallToActionUrl);
             AV57CallToActionPhone = "";
-            AV79PhoneCode = "";
-            AssignAttri(sPrefix, false, "AV79PhoneCode", AV79PhoneCode);
             AV78PhoneNumber = "";
             AssignAttri(sPrefix, false, "AV78PhoneNumber", AV78PhoneNumber);
             AV55CallToActionEmail = "";
@@ -2634,12 +2665,14 @@ namespace GeneXus.Programs {
             AV55CallToActionEmail = "";
             AssignAttri(sPrefix, false, "AV55CallToActionEmail", AV55CallToActionEmail);
             AV57CallToActionPhone = "";
-            AV79PhoneCode = "";
-            AssignAttri(sPrefix, false, "AV79PhoneCode", AV79PhoneCode);
             AV78PhoneNumber = "";
             AssignAttri(sPrefix, false, "AV78PhoneNumber", AV78PhoneNumber);
             AV56LocationDynamicFormId = Guid.Empty;
             AssignAttri(sPrefix, false, "AV56LocationDynamicFormId", AV56LocationDynamicFormId.ToString());
+            Combo_locationdynamicformid_Selectedtext_set = "";
+            ucCombo_locationdynamicformid.SendProperty(context, sPrefix, false, Combo_locationdynamicformid_Internalname, "SelectedText_set", Combo_locationdynamicformid_Selectedtext_set);
+            Combo_locationdynamicformid_Selectedvalue_set = "";
+            ucCombo_locationdynamicformid.SendProperty(context, sPrefix, false, Combo_locationdynamicformid_Internalname, "SelectedValue_set", Combo_locationdynamicformid_Selectedvalue_set);
             AV54WWPFormReferenceName = "";
             AssignAttri(sPrefix, false, "AV54WWPFormReferenceName", AV54WWPFormReferenceName);
          }
@@ -2926,7 +2959,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512913141493", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521310352971", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2942,7 +2975,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_calltoaction.js", "?202512913141493", false, true);
+         context.AddJavascriptSource("wc_calltoaction.js", "?202521310352972", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3626,14 +3659,14 @@ namespace GeneXus.Programs {
          setEventMetadata("GRIDSDT_CALLTOACTIONSPAGINATIONBAR.CHANGEROWSPERPAGE",""","oparms":[{"av":"subGridsdt_calltoactions_Rows","ctrl":"GRIDSDT_CALLTOACTIONS","prop":"Rows"}]}""");
          setEventMetadata("'DOUSERACTIONINSERT'","""{"handler":"E11751","iparms":[]""");
          setEventMetadata("'DOUSERACTIONINSERT'",""","oparms":[{"av":"divTableinsert_Visible","ctrl":"TABLEINSERT","prop":"Visible"}]}""");
-         setEventMetadata("VGRIDACTIONGROUP1.CLICK","""{"handler":"E21752","iparms":[{"av":"cmbavGridactiongroup1"},{"av":"AV76GridActionGroup1","fld":"vGRIDACTIONGROUP1","pic":"ZZZ9"},{"av":"AV68SDT_CallToAction","fld":"vSDT_CALLTOACTION","grid":98,"hsh":true},{"av":"nGXsfl_98_idx","ctrl":"GRID","prop":"GridCurrRow","grid":98},{"av":"GRIDSDT_CALLTOACTIONS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_98","ctrl":"GRIDSDT_CALLTOACTIONS","prop":"GridRC","grid":98},{"av":"cmbavCalltoactiontype"},{"av":"AV52CallToActionType","fld":"vCALLTOACTIONTYPE"}]""");
-         setEventMetadata("VGRIDACTIONGROUP1.CLICK",""","oparms":[{"av":"cmbavGridactiongroup1"},{"av":"AV76GridActionGroup1","fld":"vGRIDACTIONGROUP1","pic":"ZZZ9"},{"av":"divTableinsert_Visible","ctrl":"TABLEINSERT","prop":"Visible"},{"av":"AV51CallToActionId","fld":"vCALLTOACTIONID"},{"av":"AV53CallToActionName","fld":"vCALLTOACTIONNAME"},{"av":"AV79PhoneCode","fld":"vPHONECODE"},{"av":"Combo_phonecode_Selectedtext_set","ctrl":"COMBO_PHONECODE","prop":"SelectedText_set"},{"av":"Combo_phonecode_Selectedvalue_set","ctrl":"COMBO_PHONECODE","prop":"SelectedValue_set"},{"av":"AV78PhoneNumber","fld":"vPHONENUMBER"},{"av":"AV58CallToActionUrl","fld":"vCALLTOACTIONURL"},{"av":"AV56LocationDynamicFormId","fld":"vLOCATIONDYNAMICFORMID"},{"av":"AV55CallToActionEmail","fld":"vCALLTOACTIONEMAIL"},{"av":"cmbavCalltoactiontype"},{"av":"AV52CallToActionType","fld":"vCALLTOACTIONTYPE"},{"ctrl":"BTNUSERACTIONADD","prop":"Caption"},{"av":"edtavCalltoactionname_Invitemessage","ctrl":"vCALLTOACTIONNAME","prop":"Invitemessage"},{"av":"divTableurl_Visible","ctrl":"TABLEURL","prop":"Visible"},{"av":"divTableemail_Visible","ctrl":"TABLEEMAIL","prop":"Visible"},{"av":"divTableform_Visible","ctrl":"TABLEFORM","prop":"Visible"},{"av":"divTablephone_Visible","ctrl":"TABLEPHONE","prop":"Visible"},{"av":"AV54WWPFormReferenceName","fld":"vWWPFORMREFERENCENAME"}]}""");
+         setEventMetadata("VGRIDACTIONGROUP1.CLICK","""{"handler":"E21752","iparms":[{"av":"cmbavGridactiongroup1"},{"av":"AV76GridActionGroup1","fld":"vGRIDACTIONGROUP1","pic":"ZZZ9"},{"av":"AV68SDT_CallToAction","fld":"vSDT_CALLTOACTION","grid":98,"hsh":true},{"av":"nGXsfl_98_idx","ctrl":"GRID","prop":"GridCurrRow","grid":98},{"av":"GRIDSDT_CALLTOACTIONS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_98","ctrl":"GRIDSDT_CALLTOACTIONS","prop":"GridRC","grid":98},{"av":"AV54WWPFormReferenceName","fld":"vWWPFORMREFERENCENAME"},{"av":"cmbavCalltoactiontype"},{"av":"AV52CallToActionType","fld":"vCALLTOACTIONTYPE"}]""");
+         setEventMetadata("VGRIDACTIONGROUP1.CLICK",""","oparms":[{"av":"cmbavGridactiongroup1"},{"av":"AV76GridActionGroup1","fld":"vGRIDACTIONGROUP1","pic":"ZZZ9"},{"av":"divTableinsert_Visible","ctrl":"TABLEINSERT","prop":"Visible"},{"av":"AV51CallToActionId","fld":"vCALLTOACTIONID"},{"av":"AV53CallToActionName","fld":"vCALLTOACTIONNAME"},{"av":"AV79PhoneCode","fld":"vPHONECODE"},{"av":"Combo_phonecode_Selectedtext_set","ctrl":"COMBO_PHONECODE","prop":"SelectedText_set"},{"av":"Combo_phonecode_Selectedvalue_set","ctrl":"COMBO_PHONECODE","prop":"SelectedValue_set"},{"av":"AV78PhoneNumber","fld":"vPHONENUMBER"},{"av":"AV58CallToActionUrl","fld":"vCALLTOACTIONURL"},{"av":"AV56LocationDynamicFormId","fld":"vLOCATIONDYNAMICFORMID"},{"av":"AV55CallToActionEmail","fld":"vCALLTOACTIONEMAIL"},{"av":"cmbavCalltoactiontype"},{"av":"AV52CallToActionType","fld":"vCALLTOACTIONTYPE"},{"av":"Combo_locationdynamicformid_Selectedtext_set","ctrl":"COMBO_LOCATIONDYNAMICFORMID","prop":"SelectedText_set"},{"av":"Combo_locationdynamicformid_Selectedvalue_set","ctrl":"COMBO_LOCATIONDYNAMICFORMID","prop":"SelectedValue_set"},{"ctrl":"BTNUSERACTIONADD","prop":"Caption"},{"av":"edtavCalltoactionname_Invitemessage","ctrl":"vCALLTOACTIONNAME","prop":"Invitemessage"},{"av":"divTableurl_Visible","ctrl":"TABLEURL","prop":"Visible"},{"av":"divTableemail_Visible","ctrl":"TABLEEMAIL","prop":"Visible"},{"av":"divTableform_Visible","ctrl":"TABLEFORM","prop":"Visible"},{"av":"divTablephone_Visible","ctrl":"TABLEPHONE","prop":"Visible"},{"av":"AV54WWPFormReferenceName","fld":"vWWPFORMREFERENCENAME"}]}""");
          setEventMetadata("DVELOP_CONFIRMPANEL_USERACTIONDELETE.CLOSE","""{"handler":"E16752","iparms":[{"av":"Dvelop_confirmpanel_useractiondelete_Result","ctrl":"DVELOP_CONFIRMPANEL_USERACTIONDELETE","prop":"Result"},{"av":"GRIDSDT_CALLTOACTIONS_nFirstRecordOnPage"},{"av":"GRIDSDT_CALLTOACTIONS_nEOF"},{"av":"subGridsdt_calltoactions_Rows","ctrl":"GRIDSDT_CALLTOACTIONS","prop":"Rows"},{"av":"A58ProductServiceId","fld":"PRODUCTSERVICEID"},{"av":"AV67ProductServiceId","fld":"vPRODUCTSERVICEID"},{"av":"A367CallToActionId","fld":"CALLTOACTIONID"},{"av":"A397CallToActionName","fld":"CALLTOACTIONNAME"},{"av":"A370CallToActionPhone","fld":"CALLTOACTIONPHONE"},{"av":"A511CallToActionPhoneCode","fld":"CALLTOACTIONPHONECODE"},{"av":"A512CallToActionPhoneNumber","fld":"CALLTOACTIONPHONENUMBER"},{"av":"A369CallToActionEmail","fld":"CALLTOACTIONEMAIL"},{"av":"A368CallToActionType","fld":"CALLTOACTIONTYPE"},{"av":"A396CallToActionUrl","fld":"CALLTOACTIONURL"},{"av":"A395LocationDynamicFormId","fld":"LOCATIONDYNAMICFORMID"},{"av":"A208WWPFormReferenceName","fld":"WWPFORMREFERENCENAME"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"AV68SDT_CallToAction","fld":"vSDT_CALLTOACTION","grid":98,"hsh":true},{"av":"nGXsfl_98_idx","ctrl":"GRID","prop":"GridCurrRow","grid":98},{"av":"nRC_GXsfl_98","ctrl":"GRIDSDT_CALLTOACTIONS","prop":"GridRC","grid":98},{"av":"sPrefix"}]""");
          setEventMetadata("DVELOP_CONFIRMPANEL_USERACTIONDELETE.CLOSE",""","oparms":[{"av":"AV68SDT_CallToAction","fld":"vSDT_CALLTOACTION","grid":98,"hsh":true},{"av":"nGXsfl_98_idx","ctrl":"GRID","prop":"GridCurrRow","grid":98},{"av":"GRIDSDT_CALLTOACTIONS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_98","ctrl":"GRIDSDT_CALLTOACTIONS","prop":"GridRC","grid":98},{"av":"AV70GridSDT_CallToActionsCurrentPage","fld":"vGRIDSDT_CALLTOACTIONSCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV71GridSDT_CallToActionsPageCount","fld":"vGRIDSDT_CALLTOACTIONSPAGECOUNT","pic":"ZZZZZZZZZ9"}]}""");
          setEventMetadata("'DOUSERACTIONADD'","""{"handler":"E17752","iparms":[{"av":"GRIDSDT_CALLTOACTIONS_nFirstRecordOnPage"},{"av":"GRIDSDT_CALLTOACTIONS_nEOF"},{"av":"subGridsdt_calltoactions_Rows","ctrl":"GRIDSDT_CALLTOACTIONS","prop":"Rows"},{"av":"A58ProductServiceId","fld":"PRODUCTSERVICEID"},{"av":"AV67ProductServiceId","fld":"vPRODUCTSERVICEID"},{"av":"A367CallToActionId","fld":"CALLTOACTIONID"},{"av":"A397CallToActionName","fld":"CALLTOACTIONNAME"},{"av":"A370CallToActionPhone","fld":"CALLTOACTIONPHONE"},{"av":"A511CallToActionPhoneCode","fld":"CALLTOACTIONPHONECODE"},{"av":"A512CallToActionPhoneNumber","fld":"CALLTOACTIONPHONENUMBER"},{"av":"A369CallToActionEmail","fld":"CALLTOACTIONEMAIL"},{"av":"A368CallToActionType","fld":"CALLTOACTIONTYPE"},{"av":"A396CallToActionUrl","fld":"CALLTOACTIONURL"},{"av":"A395LocationDynamicFormId","fld":"LOCATIONDYNAMICFORMID"},{"av":"A208WWPFormReferenceName","fld":"WWPFORMREFERENCENAME"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"AV68SDT_CallToAction","fld":"vSDT_CALLTOACTION","grid":98,"hsh":true},{"av":"nGXsfl_98_idx","ctrl":"GRID","prop":"GridCurrRow","grid":98},{"av":"nRC_GXsfl_98","ctrl":"GRIDSDT_CALLTOACTIONS","prop":"GridRC","grid":98},{"av":"sPrefix"},{"av":"AV77CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"cmbavCalltoactiontype"},{"av":"AV52CallToActionType","fld":"vCALLTOACTIONTYPE"},{"av":"AV51CallToActionId","fld":"vCALLTOACTIONID"},{"av":"AV53CallToActionName","fld":"vCALLTOACTIONNAME"},{"av":"AV55CallToActionEmail","fld":"vCALLTOACTIONEMAIL"},{"av":"AV78PhoneNumber","fld":"vPHONENUMBER"},{"av":"AV79PhoneCode","fld":"vPHONECODE"},{"av":"AV58CallToActionUrl","fld":"vCALLTOACTIONURL"},{"av":"AV65OrganisationId","fld":"vORGANISATIONID"},{"av":"AV66LocationId","fld":"vLOCATIONID"},{"av":"AV56LocationDynamicFormId","fld":"vLOCATIONDYNAMICFORMID"},{"av":"Combo_locationdynamicformid_Ddointernalname","ctrl":"COMBO_LOCATIONDYNAMICFORMID","prop":"DDOInternalName"}]""");
-         setEventMetadata("'DOUSERACTIONADD'",""","oparms":[{"ctrl":"BTNUSERACTIONADD","prop":"Caption"},{"av":"AV77CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV51CallToActionId","fld":"vCALLTOACTIONID"},{"av":"AV53CallToActionName","fld":"vCALLTOACTIONNAME"},{"av":"AV79PhoneCode","fld":"vPHONECODE"},{"av":"AV78PhoneNumber","fld":"vPHONENUMBER"},{"av":"AV58CallToActionUrl","fld":"vCALLTOACTIONURL"},{"av":"AV56LocationDynamicFormId","fld":"vLOCATIONDYNAMICFORMID"},{"av":"AV55CallToActionEmail","fld":"vCALLTOACTIONEMAIL"},{"av":"cmbavCalltoactiontype"},{"av":"AV52CallToActionType","fld":"vCALLTOACTIONTYPE"},{"av":"AV68SDT_CallToAction","fld":"vSDT_CALLTOACTION","grid":98,"hsh":true},{"av":"nGXsfl_98_idx","ctrl":"GRID","prop":"GridCurrRow","grid":98},{"av":"GRIDSDT_CALLTOACTIONS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_98","ctrl":"GRIDSDT_CALLTOACTIONS","prop":"GridRC","grid":98},{"av":"AV70GridSDT_CallToActionsCurrentPage","fld":"vGRIDSDT_CALLTOACTIONSCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV71GridSDT_CallToActionsPageCount","fld":"vGRIDSDT_CALLTOACTIONSPAGECOUNT","pic":"ZZZZZZZZZ9"}]}""");
+         setEventMetadata("'DOUSERACTIONADD'",""","oparms":[{"ctrl":"BTNUSERACTIONADD","prop":"Caption"},{"av":"AV77CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV51CallToActionId","fld":"vCALLTOACTIONID"},{"av":"AV78PhoneNumber","fld":"vPHONENUMBER"},{"av":"AV58CallToActionUrl","fld":"vCALLTOACTIONURL"},{"av":"AV56LocationDynamicFormId","fld":"vLOCATIONDYNAMICFORMID"},{"av":"Combo_locationdynamicformid_Selectedtext_set","ctrl":"COMBO_LOCATIONDYNAMICFORMID","prop":"SelectedText_set"},{"av":"Combo_locationdynamicformid_Selectedvalue_set","ctrl":"COMBO_LOCATIONDYNAMICFORMID","prop":"SelectedValue_set"},{"av":"AV55CallToActionEmail","fld":"vCALLTOACTIONEMAIL"},{"av":"AV68SDT_CallToAction","fld":"vSDT_CALLTOACTION","grid":98,"hsh":true},{"av":"nGXsfl_98_idx","ctrl":"GRID","prop":"GridCurrRow","grid":98},{"av":"GRIDSDT_CALLTOACTIONS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_98","ctrl":"GRIDSDT_CALLTOACTIONS","prop":"GridRC","grid":98},{"av":"AV70GridSDT_CallToActionsCurrentPage","fld":"vGRIDSDT_CALLTOACTIONSCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV71GridSDT_CallToActionsPageCount","fld":"vGRIDSDT_CALLTOACTIONSPAGECOUNT","pic":"ZZZZZZZZZ9"}]}""");
          setEventMetadata("'DOUSERACTIONCANCEL'","""{"handler":"E12751","iparms":[]""");
-         setEventMetadata("'DOUSERACTIONCANCEL'",""","oparms":[{"av":"AV51CallToActionId","fld":"vCALLTOACTIONID"},{"av":"AV53CallToActionName","fld":"vCALLTOACTIONNAME"},{"av":"AV79PhoneCode","fld":"vPHONECODE"},{"av":"AV78PhoneNumber","fld":"vPHONENUMBER"},{"av":"AV58CallToActionUrl","fld":"vCALLTOACTIONURL"},{"av":"AV56LocationDynamicFormId","fld":"vLOCATIONDYNAMICFORMID"},{"av":"AV55CallToActionEmail","fld":"vCALLTOACTIONEMAIL"},{"av":"cmbavCalltoactiontype"},{"av":"AV52CallToActionType","fld":"vCALLTOACTIONTYPE"}]}""");
+         setEventMetadata("'DOUSERACTIONCANCEL'",""","oparms":[{"av":"AV51CallToActionId","fld":"vCALLTOACTIONID"},{"av":"AV78PhoneNumber","fld":"vPHONENUMBER"},{"av":"AV58CallToActionUrl","fld":"vCALLTOACTIONURL"},{"av":"AV56LocationDynamicFormId","fld":"vLOCATIONDYNAMICFORMID"},{"av":"Combo_locationdynamicformid_Selectedtext_set","ctrl":"COMBO_LOCATIONDYNAMICFORMID","prop":"SelectedText_set"},{"av":"Combo_locationdynamicformid_Selectedvalue_set","ctrl":"COMBO_LOCATIONDYNAMICFORMID","prop":"SelectedValue_set"},{"av":"AV55CallToActionEmail","fld":"vCALLTOACTIONEMAIL"}]}""");
          setEventMetadata("COMBO_LOCATIONDYNAMICFORMID.ONOPTIONCLICKED","""{"handler":"E13752","iparms":[{"av":"Combo_locationdynamicformid_Selectedvalue_get","ctrl":"COMBO_LOCATIONDYNAMICFORMID","prop":"SelectedValue_get"}]""");
          setEventMetadata("COMBO_LOCATIONDYNAMICFORMID.ONOPTIONCLICKED",""","oparms":[{"av":"AV56LocationDynamicFormId","fld":"vLOCATIONDYNAMICFORMID"}]}""");
          setEventMetadata("VALIDV_CALLTOACTIONTYPE","""{"handler":"Validv_Calltoactiontype","iparms":[]}""");
@@ -3702,6 +3735,7 @@ namespace GeneXus.Programs {
          Combo_phonecode_Selectedvalue_set = "";
          Combo_phonecode_Selectedtext_set = "";
          Combo_locationdynamicformid_Selectedvalue_set = "";
+         Combo_locationdynamicformid_Selectedtext_set = "";
          Gridsdt_calltoactions_empowerer_Gridinternalname = "";
          GX_FocusControl = "";
          ClassString = "";
@@ -3921,6 +3955,7 @@ namespace GeneXus.Programs {
       private string Combo_phonecode_Htmltemplate ;
       private string Combo_locationdynamicformid_Cls ;
       private string Combo_locationdynamicformid_Selectedvalue_set ;
+      private string Combo_locationdynamicformid_Selectedtext_set ;
       private string Gridsdt_calltoactionspaginationbar_Class ;
       private string Gridsdt_calltoactionspaginationbar_Pagingbuttonsposition ;
       private string Gridsdt_calltoactionspaginationbar_Pagingcaptionposition ;

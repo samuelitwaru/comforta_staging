@@ -376,7 +376,8 @@ namespace GeneXus.Programs {
 
       public void gxep_sendnotification( string aP0_title ,
                                          string aP1_message ,
-                                         out string aP2_result )
+                                         string aP2_userId ,
+                                         out string aP3_result )
       {
          restCliSendNotification = new GXRestAPIClient();
          if ( restLocation == null )
@@ -388,17 +389,18 @@ namespace GeneXus.Programs {
          restCliSendNotification.HttpMethod = "POST";
          restCliSendNotification.AddBodyVar("title", (string)(aP0_title));
          restCliSendNotification.AddBodyVar("message", (string)(aP1_message));
+         restCliSendNotification.AddBodyVar("userId", (string)(aP2_userId));
          restCliSendNotification.RestExecute();
          if ( restCliSendNotification.ErrorCode != 0 )
          {
             gxProperties.ErrorCode = restCliSendNotification.ErrorCode;
             gxProperties.ErrorMessage = restCliSendNotification.ErrorMessage;
             gxProperties.StatusCode = restCliSendNotification.StatusCode;
-            aP2_result = "";
+            aP3_result = "";
          }
          else
          {
-            aP2_result = restCliSendNotification.GetBodyString("result");
+            aP3_result = restCliSendNotification.GetBodyString("result");
          }
          /* SendNotification Constructor */
       }
@@ -848,6 +850,38 @@ namespace GeneXus.Programs {
          /* CreateContentPage Constructor */
       }
 
+      public void gxep_createdynamicformpage( Guid aP0_FormId ,
+                                              string aP1_PageName ,
+                                              out SdtSDT_Page aP2_SDT_Page ,
+                                              out SdtSDT_Error aP3_error )
+      {
+         restCliCreateDynamicFormPage = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/create-dynamic-form-page";
+         restCliCreateDynamicFormPage.Location = restLocation;
+         restCliCreateDynamicFormPage.HttpMethod = "POST";
+         restCliCreateDynamicFormPage.AddBodyVar("FormId", (Guid)(aP0_FormId));
+         restCliCreateDynamicFormPage.AddBodyVar("PageName", (string)(aP1_PageName));
+         restCliCreateDynamicFormPage.RestExecute();
+         if ( restCliCreateDynamicFormPage.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliCreateDynamicFormPage.ErrorCode;
+            gxProperties.ErrorMessage = restCliCreateDynamicFormPage.ErrorMessage;
+            gxProperties.StatusCode = restCliCreateDynamicFormPage.StatusCode;
+            aP2_SDT_Page = new SdtSDT_Page();
+            aP3_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP2_SDT_Page = restCliCreateDynamicFormPage.GetBodySdt<SdtSDT_Page>("SDT_Page");
+            aP3_error = restCliCreateDynamicFormPage.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* CreateDynamicFormPage Constructor */
+      }
+
       public void gxep_savepage( Guid aP0_PageId ,
                                  string aP1_PageJsonContent ,
                                  string aP2_PageGJSHtml ,
@@ -1049,6 +1083,34 @@ namespace GeneXus.Programs {
          /* ProductServiceAPI Constructor */
       }
 
+      public void gxep_getservices( out GXBaseCollection<SdtSDT_ProductService> aP0_SDT_ProductServiceCollection ,
+                                    out SdtSDT_Error aP1_error )
+      {
+         restCliGetServices = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/services";
+         restCliGetServices.Location = restLocation;
+         restCliGetServices.HttpMethod = "GET";
+         restCliGetServices.RestExecute();
+         if ( restCliGetServices.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliGetServices.ErrorCode;
+            gxProperties.ErrorMessage = restCliGetServices.ErrorMessage;
+            gxProperties.StatusCode = restCliGetServices.StatusCode;
+            aP0_SDT_ProductServiceCollection = new GXBaseCollection<SdtSDT_ProductService>();
+            aP1_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP0_SDT_ProductServiceCollection = restCliGetServices.GetBodySdtCollection<SdtSDT_ProductService>("SDT_ProductServiceCollection");
+            aP1_error = restCliGetServices.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* GetServices Constructor */
+      }
+
       public void gxep_getlocationtheme( Guid aP0_locationId ,
                                          Guid aP1_organisationId ,
                                          out SdtSDT_LocationTheme aP2_SDT_LocationTheme )
@@ -1134,6 +1196,7 @@ namespace GeneXus.Programs {
          restCliRegisterDevice = new GXRestAPIClient();
          aP6_result = "";
          restCliSendNotification = new GXRestAPIClient();
+         aP3_result = "";
          restCliAgendaLocation = new GXRestAPIClient();
          aP3_SDT_AgendaLocation = new GXBaseCollection<SdtSDT_AgendaLocation>();
          restCliSendDynamicForm = new GXRestAPIClient();
@@ -1165,6 +1228,8 @@ namespace GeneXus.Programs {
          restCliCreatePage = new GXRestAPIClient();
          aP3_error = new SdtSDT_Error();
          restCliCreateContentPage = new GXRestAPIClient();
+         restCliCreateDynamicFormPage = new GXRestAPIClient();
+         aP2_SDT_Page = new SdtSDT_Page();
          restCliSavePage = new GXRestAPIClient();
          aP5_result = "";
          restCliUpdatePage = new GXRestAPIClient();
@@ -1176,6 +1241,8 @@ namespace GeneXus.Programs {
          aP1_SDT_Theme = new SdtSDT_Theme();
          restCliProductServiceAPI = new GXRestAPIClient();
          aP1_SDT_ProductService = new SdtSDT_ProductService();
+         restCliGetServices = new GXRestAPIClient();
+         aP0_SDT_ProductServiceCollection = new GXBaseCollection<SdtSDT_ProductService>();
          restCliGetLocationTheme = new GXRestAPIClient();
          aP2_SDT_LocationTheme = new SdtSDT_LocationTheme();
          restCliToolboxGetLocationTheme = new GXRestAPIClient();
@@ -1210,12 +1277,14 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliListPages ;
       protected GXRestAPIClient restCliCreatePage ;
       protected GXRestAPIClient restCliCreateContentPage ;
+      protected GXRestAPIClient restCliCreateDynamicFormPage ;
       protected GXRestAPIClient restCliSavePage ;
       protected GXRestAPIClient restCliUpdatePage ;
       protected GXRestAPIClient restCliUpdatePageBatch ;
       protected GXRestAPIClient restCliAddPageCildren ;
       protected GXRestAPIClient restCliUpdateLocationTheme ;
       protected GXRestAPIClient restCliProductServiceAPI ;
+      protected GXRestAPIClient restCliGetServices ;
       protected GXRestAPIClient restCliGetLocationTheme ;
       protected GXRestAPIClient restCliToolboxGetLocationTheme ;
       protected GxLocation restLocation ;
@@ -1232,6 +1301,7 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_ResidentNotification> aP1_SDT_ResidentNotification ;
       protected string aP2_result ;
       protected string aP6_result ;
+      protected string aP3_result ;
       protected GXBaseCollection<SdtSDT_AgendaLocation> aP3_SDT_AgendaLocation ;
       protected string aP0_result ;
       protected SdtTrn_Media aP4_BC_Trn_Media ;
@@ -1248,11 +1318,13 @@ namespace GeneXus.Programs {
       protected SdtSDT_Page aP1_SDT_Page ;
       protected GXBaseCollection<SdtSDT_PageStructure> aP0_SDT_PageStructureCollection ;
       protected SdtSDT_Error aP3_error ;
+      protected SdtSDT_Page aP2_SDT_Page ;
       protected string aP5_result ;
       protected string aP7_result ;
       protected SdtSDT_Error aP8_error ;
       protected SdtSDT_Theme aP1_SDT_Theme ;
       protected SdtSDT_ProductService aP1_SDT_ProductService ;
+      protected GXBaseCollection<SdtSDT_ProductService> aP0_SDT_ProductServiceCollection ;
       protected SdtSDT_LocationTheme aP2_SDT_LocationTheme ;
       protected SdtSDT_LocationTheme aP0_SDT_LocationTheme ;
    }

@@ -39,9 +39,6 @@ namespace GeneXus.Programs {
          obj = new SdtTrn_NetworkIndividual(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
-         obj = new SdtTrn_Receptionist(context);
-         trn = obj.getTransaction();
-         result = trn.Reindex();
          obj = new SdtTrn_ResidentType(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
@@ -117,9 +114,6 @@ namespace GeneXus.Programs {
          obj = new SdtTrn_LocationDynamicForm(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
-         obj = new SdtTrn_Page(context);
-         trn = obj.getTransaction();
-         result = trn.Reindex();
          obj = new SdtTrn_CallToAction(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
@@ -156,10 +150,16 @@ namespace GeneXus.Programs {
          obj = new SdtTrn_SupplierAgb(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
-         obj = new SdtTrn_Resident(context);
+         obj = new SdtTrn_Page(context);
+         trn = obj.getTransaction();
+         result = trn.Reindex();
+         obj = new SdtTrn_Receptionist(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
          obj = new SdtTrn_ProductService(context);
+         trn = obj.getTransaction();
+         result = trn.Reindex();
+         obj = new SdtTrn_Resident(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
          return 1 ;

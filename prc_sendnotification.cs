@@ -46,32 +46,37 @@ namespace GeneXus.Programs {
 
       public void execute( string aP0_title ,
                            string aP1_message ,
-                           out string aP2_response )
+                           string aP2_ResidentId ,
+                           out string aP3_response )
       {
          this.AV10title = aP0_title;
          this.AV9message = aP1_message;
+         this.AV29ResidentId = aP2_ResidentId;
          this.AV8response = "" ;
          initialize();
          ExecuteImpl();
-         aP2_response=this.AV8response;
+         aP3_response=this.AV8response;
       }
 
       public string executeUdp( string aP0_title ,
-                                string aP1_message )
+                                string aP1_message ,
+                                string aP2_ResidentId )
       {
-         execute(aP0_title, aP1_message, out aP2_response);
+         execute(aP0_title, aP1_message, aP2_ResidentId, out aP3_response);
          return AV8response ;
       }
 
       public void executeSubmit( string aP0_title ,
                                  string aP1_message ,
-                                 out string aP2_response )
+                                 string aP2_ResidentId ,
+                                 out string aP3_response )
       {
          this.AV10title = aP0_title;
          this.AV9message = aP1_message;
+         this.AV29ResidentId = aP2_ResidentId;
          this.AV8response = "" ;
          SubmitImpl();
-         aP2_response=this.AV8response;
+         aP3_response=this.AV8response;
       }
 
       protected override void ExecutePrivate( )
@@ -85,9 +90,10 @@ namespace GeneXus.Programs {
          else
          {
             /* Using cursor P007U2 */
-            pr_default.execute(0);
+            pr_default.execute(0, new Object[] {AV29ResidentId});
             while ( (pr_default.getStatus(0) != 101) )
             {
+               A365DeviceUserId = P007U2_A365DeviceUserId[0];
                A363DeviceToken = P007U2_A363DeviceToken[0];
                A361DeviceId = P007U2_A361DeviceId[0];
                AV26Token = "";
@@ -106,7 +112,7 @@ namespace GeneXus.Programs {
             {
                AV27Metadata = new SdtSDT_OneSignalCustomData(context);
                AV27Metadata.gxTpr_Notificationcategory = "General";
-               new prc_sendonesignalnotification(context ).execute(  AV24DeviceTokenCollection,  AV10title,  AV9message,  AV27Metadata, out  AV13OutMessages, out  AV14IsSuccessful) ;
+               new prc_sendonesignalnotification(context ).execute(  AV24DeviceTokenCollection,  AV10title,  AV9message,  AV27Metadata,  false, out  AV13OutMessages, out  AV14IsSuccessful) ;
             }
             if ( AV14IsSuccessful )
             {
@@ -133,8 +139,10 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV8response = "";
+         P007U2_A365DeviceUserId = new string[] {""} ;
          P007U2_A363DeviceToken = new string[] {""} ;
          P007U2_A361DeviceId = new string[] {""} ;
+         A365DeviceUserId = "";
          A363DeviceToken = "";
          A361DeviceId = "";
          AV26Token = "";
@@ -145,7 +153,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_sendnotification__default(),
             new Object[][] {
                 new Object[] {
-               P007U2_A363DeviceToken, P007U2_A361DeviceId
+               P007U2_A365DeviceUserId, P007U2_A363DeviceToken, P007U2_A361DeviceId
                }
             }
          );
@@ -160,16 +168,19 @@ namespace GeneXus.Programs {
       private string AV13OutMessages ;
       private string AV10title ;
       private string AV9message ;
+      private string AV29ResidentId ;
+      private string A365DeviceUserId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
+      private string[] P007U2_A365DeviceUserId ;
       private string[] P007U2_A363DeviceToken ;
       private string[] P007U2_A361DeviceId ;
       private SdtSDT_OneSignalRegistration AV25SDT_OneSignalRegistration ;
       private GxSimpleCollection<string> AV24DeviceTokenCollection ;
       private SdtSDT_OneSignalCustomData AV27Metadata ;
-      private string aP2_response ;
+      private string aP3_response ;
    }
 
    public class prc_sendnotification__default : DataStoreHelperBase, IDataStoreHelper
@@ -189,9 +200,10 @@ namespace GeneXus.Programs {
        {
           Object[] prmP007U2;
           prmP007U2 = new Object[] {
+          new ParDef("AV29ResidentId",GXType.VarChar,100,60)
           };
           def= new CursorDef[] {
-              new CursorDef("P007U2", "SELECT DeviceToken, DeviceId FROM Trn_Device ORDER BY DeviceId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007U2,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P007U2", "SELECT DeviceUserId, DeviceToken, DeviceId FROM Trn_Device WHERE DeviceUserId = ( :AV29ResidentId) ORDER BY DeviceId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007U2,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
@@ -203,8 +215,9 @@ namespace GeneXus.Programs {
        switch ( cursor )
        {
              case 0 :
-                ((string[]) buf[0])[0] = rslt.getString(1, 1000);
-                ((string[]) buf[1])[0] = rslt.getString(2, 128);
+                ((string[]) buf[0])[0] = rslt.getVarchar(1);
+                ((string[]) buf[1])[0] = rslt.getString(2, 1000);
+                ((string[]) buf[2])[0] = rslt.getString(3, 128);
                 return;
        }
     }

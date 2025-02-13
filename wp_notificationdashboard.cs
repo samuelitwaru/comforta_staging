@@ -1117,7 +1117,7 @@ namespace GeneXus.Programs {
          /* Start Routine */
          returnInSub = false;
          AV38NumberOfUnRead = "-";
-         AV37NotificationTypes = "All";
+         AV37NotificationTypes = "UnRead";
          AssignAttri("", false, "AV37NotificationTypes", AV37NotificationTypes);
          AV28CurrentNotficationGroupFilter = "";
          AssignAttri("", false, "AV28CurrentNotficationGroupFilter", AV28CurrentNotficationGroupFilter);
@@ -1127,6 +1127,22 @@ namespace GeneXus.Programs {
          new dp_getusernotifications(context ).execute(  "",  AV35NotificationDefinitionIdEmptyCollection, out  GXt_objcol_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem1) ;
          AV39UserNotificationsData = GXt_objcol_SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem1;
          AV25WWP_SDTNotificationsData = AV39UserNotificationsData;
+         if ( StringUtil.StrCmp(AV37NotificationTypes, "UnRead") == 0 )
+         {
+            AV32isFilterByRead = false;
+            AssignAttri("", false, "AV32isFilterByRead", AV32isFilterByRead);
+            AV25WWP_SDTNotificationsData = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>( context, "WWP_SDTNotificationsDataItem", "Comforta_version2");
+            AV47GXV1 = 1;
+            while ( AV47GXV1 <= AV39UserNotificationsData.Count )
+            {
+               AV36NotificationListItem = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)AV39UserNotificationsData.Item(AV47GXV1));
+               if ( ! AV36NotificationListItem.gxTpr_Notificationisread )
+               {
+                  AV25WWP_SDTNotificationsData.Add(AV36NotificationListItem, 0);
+               }
+               AV47GXV1 = (int)(AV47GXV1+1);
+            }
+         }
          /* Execute user subroutine: 'GETNUMBEROFUNREADNOTIFICATIONS' */
          S112 ();
          if (returnInSub) return;
@@ -1186,15 +1202,15 @@ namespace GeneXus.Programs {
          S132 ();
          if (returnInSub) return;
          AV25WWP_SDTNotificationsData = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>( context, "WWP_SDTNotificationsDataItem", "Comforta_version2");
-         AV47GXV1 = 1;
-         while ( AV47GXV1 <= AV39UserNotificationsData.Count )
+         AV48GXV2 = 1;
+         while ( AV48GXV2 <= AV39UserNotificationsData.Count )
          {
-            AV36NotificationListItem = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)AV39UserNotificationsData.Item(AV47GXV1));
+            AV36NotificationListItem = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)AV39UserNotificationsData.Item(AV48GXV2));
             if ( (AV33MentionDefinitions.IndexOf(AV36NotificationListItem.gxTpr_Notificationdefinitionid)>0) )
             {
                AV25WWP_SDTNotificationsData.Add(AV36NotificationListItem, 0);
             }
-            AV47GXV1 = (int)(AV47GXV1+1);
+            AV48GXV2 = (int)(AV48GXV2+1);
          }
          /* Execute user subroutine: 'REFRESHNOTIFICATIONCOMPONENT' */
          S142 ();
@@ -1220,15 +1236,15 @@ namespace GeneXus.Programs {
          S132 ();
          if (returnInSub) return;
          AV25WWP_SDTNotificationsData = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>( context, "WWP_SDTNotificationsDataItem", "Comforta_version2");
-         AV48GXV2 = 1;
-         while ( AV48GXV2 <= AV39UserNotificationsData.Count )
+         AV49GXV3 = 1;
+         while ( AV49GXV3 <= AV39UserNotificationsData.Count )
          {
-            AV36NotificationListItem = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)AV39UserNotificationsData.Item(AV48GXV2));
+            AV36NotificationListItem = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)AV39UserNotificationsData.Item(AV49GXV3));
             if ( (AV29DiscussionDefinitions.IndexOf(AV36NotificationListItem.gxTpr_Notificationdefinitionid)>0) )
             {
                AV25WWP_SDTNotificationsData.Add(AV36NotificationListItem, 0);
             }
-            AV48GXV2 = (int)(AV48GXV2+1);
+            AV49GXV3 = (int)(AV49GXV3+1);
          }
          /* Execute user subroutine: 'REFRESHNOTIFICATIONCOMPONENT' */
          S142 ();
@@ -1254,15 +1270,15 @@ namespace GeneXus.Programs {
          S132 ();
          if (returnInSub) return;
          AV25WWP_SDTNotificationsData = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>( context, "WWP_SDTNotificationsDataItem", "Comforta_version2");
-         AV49GXV3 = 1;
-         while ( AV49GXV3 <= AV39UserNotificationsData.Count )
+         AV50GXV4 = 1;
+         while ( AV50GXV4 <= AV39UserNotificationsData.Count )
          {
-            AV36NotificationListItem = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)AV39UserNotificationsData.Item(AV49GXV3));
+            AV36NotificationListItem = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)AV39UserNotificationsData.Item(AV50GXV4));
             if ( (AV31FormDefinitions.IndexOf(AV36NotificationListItem.gxTpr_Notificationdefinitionid)>0) )
             {
                AV25WWP_SDTNotificationsData.Add(AV36NotificationListItem, 0);
             }
-            AV49GXV3 = (int)(AV49GXV3+1);
+            AV50GXV4 = (int)(AV50GXV4+1);
          }
          /* Execute user subroutine: 'REFRESHNOTIFICATIONCOMPONENT' */
          S142 ();
@@ -1288,15 +1304,15 @@ namespace GeneXus.Programs {
          S132 ();
          if (returnInSub) return;
          AV25WWP_SDTNotificationsData = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>( context, "WWP_SDTNotificationsDataItem", "Comforta_version2");
-         AV50GXV4 = 1;
-         while ( AV50GXV4 <= AV39UserNotificationsData.Count )
+         AV51GXV5 = 1;
+         while ( AV51GXV5 <= AV39UserNotificationsData.Count )
          {
-            AV36NotificationListItem = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)AV39UserNotificationsData.Item(AV50GXV4));
+            AV36NotificationListItem = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)AV39UserNotificationsData.Item(AV51GXV5));
             if ( (AV27AgendaDefinitions.IndexOf(AV36NotificationListItem.gxTpr_Notificationdefinitionid)>0) )
             {
                AV25WWP_SDTNotificationsData.Add(AV36NotificationListItem, 0);
             }
-            AV50GXV4 = (int)(AV50GXV4+1);
+            AV51GXV5 = (int)(AV51GXV5+1);
          }
          /* Execute user subroutine: 'REFRESHNOTIFICATIONCOMPONENT' */
          S142 ();
@@ -1314,7 +1330,7 @@ namespace GeneXus.Programs {
       {
          /* 'DoClearFilters' Routine */
          returnInSub = false;
-         AV37NotificationTypes = "All";
+         AV37NotificationTypes = "UnRead";
          AssignAttri("", false, "AV37NotificationTypes", AV37NotificationTypes);
          AV32isFilterByRead = false;
          AssignAttri("", false, "AV32isFilterByRead", AV32isFilterByRead);
@@ -1358,15 +1374,15 @@ namespace GeneXus.Programs {
             AV32isFilterByRead = true;
             AssignAttri("", false, "AV32isFilterByRead", AV32isFilterByRead);
             AV25WWP_SDTNotificationsData = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>( context, "WWP_SDTNotificationsDataItem", "Comforta_version2");
-            AV51GXV5 = 1;
-            while ( AV51GXV5 <= AV39UserNotificationsData.Count )
+            AV52GXV6 = 1;
+            while ( AV52GXV6 <= AV39UserNotificationsData.Count )
             {
-               AV36NotificationListItem = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)AV39UserNotificationsData.Item(AV51GXV5));
+               AV36NotificationListItem = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)AV39UserNotificationsData.Item(AV52GXV6));
                if ( AV36NotificationListItem.gxTpr_Notificationisread )
                {
                   AV25WWP_SDTNotificationsData.Add(AV36NotificationListItem, 0);
                }
-               AV51GXV5 = (int)(AV51GXV5+1);
+               AV52GXV6 = (int)(AV52GXV6+1);
             }
          }
          else if ( StringUtil.StrCmp(AV37NotificationTypes, "UnRead") == 0 )
@@ -1374,15 +1390,15 @@ namespace GeneXus.Programs {
             AV32isFilterByRead = false;
             AssignAttri("", false, "AV32isFilterByRead", AV32isFilterByRead);
             AV25WWP_SDTNotificationsData = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>( context, "WWP_SDTNotificationsDataItem", "Comforta_version2");
-            AV52GXV6 = 1;
-            while ( AV52GXV6 <= AV39UserNotificationsData.Count )
+            AV53GXV7 = 1;
+            while ( AV53GXV7 <= AV39UserNotificationsData.Count )
             {
-               AV36NotificationListItem = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)AV39UserNotificationsData.Item(AV52GXV6));
+               AV36NotificationListItem = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)AV39UserNotificationsData.Item(AV53GXV7));
                if ( ! AV36NotificationListItem.gxTpr_Notificationisread )
                {
                   AV25WWP_SDTNotificationsData.Add(AV36NotificationListItem, 0);
                }
-               AV52GXV6 = (int)(AV52GXV6+1);
+               AV53GXV7 = (int)(AV53GXV7+1);
             }
          }
          else
@@ -1484,15 +1500,15 @@ namespace GeneXus.Programs {
             AV28CurrentNotficationGroupFilter = StringUtil.Lower( AV41SearchKey);
             AssignAttri("", false, "AV28CurrentNotficationGroupFilter", AV28CurrentNotficationGroupFilter);
             AV25WWP_SDTNotificationsData = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>( context, "WWP_SDTNotificationsDataItem", "Comforta_version2");
-            AV53GXV7 = 1;
-            while ( AV53GXV7 <= AV39UserNotificationsData.Count )
+            AV54GXV8 = 1;
+            while ( AV54GXV8 <= AV39UserNotificationsData.Count )
             {
-               AV36NotificationListItem = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)AV39UserNotificationsData.Item(AV53GXV7));
+               AV36NotificationListItem = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)AV39UserNotificationsData.Item(AV54GXV8));
                if ( StringUtil.Contains( StringUtil.Lower( AV36NotificationListItem.gxTpr_Notificationdescription), AV28CurrentNotficationGroupFilter) || StringUtil.Contains( StringUtil.Lower( AV36NotificationListItem.gxTpr_Notificationtitle), AV28CurrentNotficationGroupFilter) )
                {
                   AV25WWP_SDTNotificationsData.Add(AV36NotificationListItem, 0);
                }
-               AV53GXV7 = (int)(AV53GXV7+1);
+               AV54GXV8 = (int)(AV54GXV8+1);
             }
          }
          else
@@ -1626,15 +1642,15 @@ namespace GeneXus.Programs {
       {
          /* 'FILTERFORREADORUNREADMESSAGES' Routine */
          returnInSub = false;
-         AV54GXV8 = 1;
-         while ( AV54GXV8 <= AV39UserNotificationsData.Count )
+         AV55GXV9 = 1;
+         while ( AV55GXV9 <= AV39UserNotificationsData.Count )
          {
-            AV36NotificationListItem = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)AV39UserNotificationsData.Item(AV54GXV8));
+            AV36NotificationListItem = ((GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem)AV39UserNotificationsData.Item(AV55GXV9));
             if ( AV36NotificationListItem.gxTpr_Notificationisread == AV32isFilterByRead )
             {
                AV25WWP_SDTNotificationsData.Add(AV36NotificationListItem, 0);
             }
-            AV54GXV8 = (int)(AV54GXV8+1);
+            AV55GXV9 = (int)(AV55GXV9+1);
          }
       }
 
@@ -1701,7 +1717,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20252313333596", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521313122885", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1717,7 +1733,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_notificationdashboard.js", "?20252313333596", false, true);
+         context.AddJavascriptSource("wp_notificationdashboard.js", "?202521313122885", false, true);
          /* End function include_jscripts */
       }
 
@@ -1725,9 +1741,9 @@ namespace GeneXus.Programs {
       {
          radavNotificationtypes.Name = "vNOTIFICATIONTYPES";
          radavNotificationtypes.WebTags = "";
-         radavNotificationtypes.addItem("All", context.GetMessage( "All", ""), 0);
-         radavNotificationtypes.addItem("Read", context.GetMessage( "Read", ""), 0);
          radavNotificationtypes.addItem("UnRead", context.GetMessage( "UnRead", ""), 0);
+         radavNotificationtypes.addItem("Read", context.GetMessage( "Read", ""), 0);
+         radavNotificationtypes.addItem("All", context.GetMessage( "All", ""), 0);
          /* End function init_web_controls */
       }
 
@@ -1897,6 +1913,7 @@ namespace GeneXus.Programs {
       private int AV52GXV6 ;
       private int AV53GXV7 ;
       private int AV54GXV8 ;
+      private int AV55GXV9 ;
       private int idxLst ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
