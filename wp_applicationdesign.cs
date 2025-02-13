@@ -244,7 +244,7 @@ namespace GeneXus.Programs {
          {
             disableOutput();
          }
-         FormProcess = ((nGXWrapped==0) ? " data-HasEnter=\"false\" data-Skiponenter=\"false\"" : "");
+         FormProcess = " data-HasEnter=\"false\" data-Skiponenter=\"false\"";
          context.WriteHtmlText( "<body ") ;
          if ( StringUtil.StrCmp(context.GetLanguageProperty( "rtl"), "true") == 0 )
          {
@@ -262,17 +262,14 @@ namespace GeneXus.Programs {
          context.WriteHtmlText( " "+"class=\"form-horizontal Form\""+" "+ "style='"+bodyStyle+"'") ;
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
-         if ( nGXWrapped != 1 )
-         {
-            GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "wp_applicationdesign.aspx"+UrlEncode(AV16Trn_PageId.ToString());
-            context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wp_applicationdesign.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
-            GxWebStd.gx_hidden_field( context, "_EventName", "");
-            GxWebStd.gx_hidden_field( context, "_EventGridId", "");
-            GxWebStd.gx_hidden_field( context, "_EventRowId", "");
-            context.WriteHtmlText( "<div style=\"height:0;overflow:hidden\"><input type=\"submit\" title=\"submit\"  disabled></div>") ;
-            AssignProp("", false, "FORM", "Class", "form-horizontal Form", true);
-         }
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "wp_applicationdesign.aspx"+UrlEncode(AV16Trn_PageId.ToString());
+         context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wp_applicationdesign.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
+         GxWebStd.gx_hidden_field( context, "_EventName", "");
+         GxWebStd.gx_hidden_field( context, "_EventGridId", "");
+         GxWebStd.gx_hidden_field( context, "_EventRowId", "");
+         context.WriteHtmlText( "<div style=\"height:0;overflow:hidden\"><input type=\"submit\" title=\"submit\"  disabled></div>") ;
+         AssignProp("", false, "FORM", "Class", "form-horizontal Form", true);
          toggleJsOutput = isJsOutputEnabled( );
          if ( context.isSpaRequest( ) )
          {
@@ -365,10 +362,7 @@ namespace GeneXus.Programs {
          {
             disableOutput();
          }
-         if ( nGXWrapped != 1 )
-         {
-            context.WriteHtmlTextNl( "</form>") ;
-         }
+         context.WriteHtmlTextNl( "</form>") ;
          if ( context.isSpaRequest( ) )
          {
             enableOutput();
@@ -555,19 +549,26 @@ namespace GeneXus.Programs {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "APPTOOLBOX1.ADDSERVICEBUTTONEVENT") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: Apptoolbox1.Addservicebuttonevent */
+                              E11472 ();
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "START") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Start */
-                              E11472 ();
+                              E12472 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LOAD") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E12472 ();
+                              E13472 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
@@ -730,7 +731,7 @@ namespace GeneXus.Programs {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E12472 ();
+            E13472 ();
             WB470( ) ;
          }
       }
@@ -751,7 +752,7 @@ namespace GeneXus.Programs {
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E11472 ();
+         E12472 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
@@ -782,11 +783,11 @@ namespace GeneXus.Programs {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E11472 ();
+         E12472 ();
          if (returnInSub) return;
       }
 
-      protected void E11472( )
+      protected void E12472( )
       {
          /* Start Routine */
          returnInSub = false;
@@ -905,11 +906,20 @@ namespace GeneXus.Programs {
          ucApptoolbox1.SendProperty(context, "", false, Apptoolbox1_Internalname, "Current_Language", Apptoolbox1_Current_language);
       }
 
+      protected void E11472( )
+      {
+         /* Apptoolbox1_Addservicebuttonevent Routine */
+         returnInSub = false;
+         GXKey = Crypto.GetSiteKey( );
+         GXEncryptionTmp = "wp_productservice.aspx"+UrlEncode(StringUtil.RTrim("")) + "," + UrlEncode(StringUtil.RTrim("")) + "," + UrlEncode(StringUtil.BoolToStr(false));
+         context.PopUp(formatLink("wp_productservice.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {});
+      }
+
       protected void nextLoad( )
       {
       }
 
-      protected void E12472( )
+      protected void E13472( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -956,7 +966,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521314101688", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521314555583", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -971,12 +981,9 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         if ( nGXWrapped != 1 )
-         {
-            context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wp_applicationdesign.js", "?202521314101688", false, true);
-            context.AddJavascriptSource("UserControls/UC_AppToolBoxRender.js", "", false, true);
-         }
+         context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
+         context.AddJavascriptSource("wp_applicationdesign.js", "?202521314555584", false, true);
+         context.AddJavascriptSource("UserControls/UC_AppToolBoxRender.js", "", false, true);
          /* End function include_jscripts */
       }
 
@@ -1025,6 +1032,7 @@ namespace GeneXus.Programs {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
+         setEventMetadata("APPTOOLBOX1.ADDSERVICEBUTTONEVENT","""{"handler":"E11472","iparms":[]}""");
          return  ;
       }
 
@@ -1160,12 +1168,12 @@ namespace GeneXus.Programs {
       private short nGotPars ;
       private short GxWebError ;
       private short gxajaxcallmode ;
-      private short nGXWrapped ;
       private short wbEnd ;
       private short wbStart ;
       private short nDonePA ;
       private short A206WWPFormId ;
       private short A207WWPFormVersionNumber ;
+      private short nGXWrapped ;
       private int idxLst ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;

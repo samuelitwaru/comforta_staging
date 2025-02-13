@@ -753,7 +753,7 @@ class EditorManager {
   async loadDynamicFormContent(editor, page) {
     try {
       editor.DomComponents.clear();
-
+      alert(`${baseURL}/utoolboxdynamicform.aspx?WWPFormId=${page.WWPFormId}&WWPDynamicFormMode=DSP&DefaultFormType=&WWPFormType=0`)
       editor.DomComponents.addType("iframe", {
         model: {
           defaults: {
@@ -767,7 +767,7 @@ class EditorManager {
               seamless: "seamless",
               loading: "lazy",
               sandbox: "allow-scripts allow-same-origin",
-              src: `http://localhost:8082/ComfortaKBDevelopmentNETSQLServer/utoolboxdynamicform.aspx?WWPFormId=${page.WWPFormId}&WWPDynamicFormMode=DSP&DefaultFormType=&WWPFormType=0`,
+              src: `${baseURL}/utoolboxdynamicform.aspx?WWPFormId=${page.WWPFormId}&WWPDynamicFormMode=DSP&DefaultFormType=&WWPFormType=0`,
             },
             // Define styles separately from attributes
             style: {
