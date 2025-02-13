@@ -1,3 +1,4 @@
+
 class EditorManager {
   editors = {};
   pages = [];
@@ -190,6 +191,8 @@ class EditorManager {
     try {
       const pageData = JSON.parse(page.PageGJSJson);
 
+      console.log("PageData: ", pageData);
+
       if (page.PageIsPredefined && page.PageName === "Location") {
         await this.handleLocationPage(editor, pageData);
       } else if (page.PageIsPredefined && page.PageName === "Reception") {
@@ -206,12 +209,27 @@ class EditorManager {
   }
 
   async handleLocationPage(editor, pageData) {
-    pageData.pages[0].frames[0].component.components[0].components[0].components[0].components[0].components[0].components[0].attributes.src =
-      this.dataManager.Location.LocationImage_GXI;
-    pageData.pages[0].frames[0].component.components[0].components[0].components[0].components[0].components[0].components[1].components[0].content =
-      this.dataManager.Location.LocationDescription;
-    editor.DomComponents.clear();
-    editor.loadProjectData(pageData);
+
+    // if (this.toolsSection.checkIfNotAuthenticated(locationData)) return;
+
+    const locationData = this.dataManager.Location;
+
+    
+    const dataComponents = pageData.pages[0].frames[0].component.components[0].components[0].components[0].components[0].components[0].components
+    
+    if (dataComponents.length) {
+      const imgComponent = dataComponents.find((component) => component.attributes.src);
+      const descriptionComponent = dataComponents.find((component) =>  component.type=="product-service-description");
+      if (imgComponent) {
+        imgComponent.attributes.src = locationData.LocationImage_GXI;
+      }
+      if (descriptionComponent) {
+        descriptionComponent.components[0].content = locationData.LocationDescription;
+      }
+      editor.DomComponents.clear();
+      editor.loadProjectData(pageData);
+    }
+    
   }
 
   async handleContentPage(editor, page) {
