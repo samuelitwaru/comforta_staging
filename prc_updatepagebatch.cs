@@ -5,8 +5,6 @@ using GeneXus.Resources;
 using GeneXus.Application;
 using GeneXus.Metadata;
 using GeneXus.Cryptography;
-using System.Data;
-using GeneXus.Data;
 using com.genexus;
 using GeneXus.Data.ADO;
 using GeneXus.Data.NTier;
@@ -28,9 +26,6 @@ namespace GeneXus.Programs {
       {
          context = new GxContext(  );
          DataStoreUtil.LoadDataStores( context);
-         dsDataStore1 = context.GetDataStore("DataStore1");
-         dsGAM = context.GetDataStore("GAM");
-         dsDefault = context.GetDataStore("Default");
          IsMain = true;
          context.SetDefaultTheme("WorkWithPlusDS", true);
       }
@@ -39,9 +34,6 @@ namespace GeneXus.Programs {
       {
          this.context = context;
          IsMain = false;
-         dsDataStore1 = context.GetDataStore("DataStore1");
-         dsGAM = context.GetDataStore("GAM");
-         dsDefault = context.GetDataStore("Default");
       }
 
       public void execute( ref GXBaseCollection<SdtSDT_PublishPage> aP0_PagesList ,
@@ -103,7 +95,6 @@ namespace GeneXus.Programs {
                AV9BC_Trn_Page.Load(AV28SDT_Page.gxTpr_Pageid, AV28SDT_Page.gxTpr_Pagename, new prc_getuserlocationid(context).executeUdp( ));
                if ( ! (Guid.Empty==AV9BC_Trn_Page.gxTpr_Trn_pageid) )
                {
-                  AV9BC_Trn_Page.gxTpr_Pagegjsjson = AV19PageGJSJson;
                   if ( AV9BC_Trn_Page.gxTpr_Pageisdynamicform )
                   {
                      AV9BC_Trn_Page.gxTpr_Pagegjsjson = "";
@@ -129,7 +120,6 @@ namespace GeneXus.Programs {
             if ( AV9BC_Trn_Page.Success() )
             {
                AV27Response = context.GetMessage( "Pages Save Successfully", "");
-               context.CommitDataStores("prc_updatepagebatch",pr_default);
                if ( AV11IsNotifyResidents )
                {
                   AV8Title = context.GetMessage( "New Updates Available", "");
@@ -169,7 +159,6 @@ namespace GeneXus.Programs {
          AV10Error = new SdtSDT_Error(context);
          AV28SDT_Page = new SdtSDT_PublishPage(context);
          AV9BC_Trn_Page = new SdtTrn_Page(context);
-         AV19PageGJSJson = "";
          AV15MetadataToolboxDetails = new SdtSDT_OneSignalCustomData_toolboxDetailsItem(context);
          AV14Metadata = new SdtSDT_OneSignalCustomData(context);
          AV8Title = "";
@@ -177,18 +166,6 @@ namespace GeneXus.Programs {
          AV26ResidentIdCollectionEmpty = new GxSimpleCollection<Guid>();
          AV31GXV2 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV13Message = new GeneXus.Utils.SdtMessages_Message(context);
-         pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_updatepagebatch__datastore1(),
-            new Object[][] {
-            }
-         );
-         pr_gam = new DataStoreProvider(context, new GeneXus.Programs.prc_updatepagebatch__gam(),
-            new Object[][] {
-            }
-         );
-         pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_updatepagebatch__default(),
-            new Object[][] {
-            }
-         );
          /* GeneXus formulas. */
       }
 
@@ -196,12 +173,8 @@ namespace GeneXus.Programs {
       private int AV32GXV3 ;
       private bool AV11IsNotifyResidents ;
       private string AV27Response ;
-      private string AV19PageGJSJson ;
       private string AV8Title ;
       private string AV16NotificationMessage ;
-      private IGxDataStore dsDataStore1 ;
-      private IGxDataStore dsGAM ;
-      private IGxDataStore dsDefault ;
       private GXBaseCollection<SdtSDT_PublishPage> AV25PagesList ;
       private GXBaseCollection<SdtSDT_PublishPage> aP0_PagesList ;
       private bool aP1_IsNotifyResidents ;
@@ -210,105 +183,11 @@ namespace GeneXus.Programs {
       private SdtTrn_Page AV9BC_Trn_Page ;
       private SdtSDT_OneSignalCustomData_toolboxDetailsItem AV15MetadataToolboxDetails ;
       private SdtSDT_OneSignalCustomData AV14Metadata ;
-      private IDataStoreProvider pr_default ;
       private GxSimpleCollection<Guid> AV26ResidentIdCollectionEmpty ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV31GXV2 ;
       private GeneXus.Utils.SdtMessages_Message AV13Message ;
       private string aP2_Response ;
       private SdtSDT_Error aP3_Error ;
-      private IDataStoreProvider pr_datastore1 ;
-      private IDataStoreProvider pr_gam ;
    }
-
-   public class prc_updatepagebatch__datastore1 : DataStoreHelperBase, IDataStoreHelper
-   {
-      public ICursor[] getCursors( )
-      {
-         cursorDefinitions();
-         return new Cursor[] {
-       };
-    }
-
-    private static CursorDef[] def;
-    private void cursorDefinitions( )
-    {
-       if ( def == null )
-       {
-          def= new CursorDef[] {
-          };
-       }
-    }
-
-    public void getResults( int cursor ,
-                            IFieldGetter rslt ,
-                            Object[] buf )
-    {
-    }
-
-    public override string getDataStoreName( )
-    {
-       return "DATASTORE1";
-    }
-
- }
-
- public class prc_updatepagebatch__gam : DataStoreHelperBase, IDataStoreHelper
- {
-    public ICursor[] getCursors( )
-    {
-       cursorDefinitions();
-       return new Cursor[] {
-     };
-  }
-
-  private static CursorDef[] def;
-  private void cursorDefinitions( )
-  {
-     if ( def == null )
-     {
-        def= new CursorDef[] {
-        };
-     }
-  }
-
-  public void getResults( int cursor ,
-                          IFieldGetter rslt ,
-                          Object[] buf )
-  {
-  }
-
-  public override string getDataStoreName( )
-  {
-     return "GAM";
-  }
-
-}
-
-public class prc_updatepagebatch__default : DataStoreHelperBase, IDataStoreHelper
-{
-   public ICursor[] getCursors( )
-   {
-      cursorDefinitions();
-      return new Cursor[] {
-    };
- }
-
- private static CursorDef[] def;
- private void cursorDefinitions( )
- {
-    if ( def == null )
-    {
-       def= new CursorDef[] {
-       };
-    }
- }
-
- public void getResults( int cursor ,
-                         IFieldGetter rslt ,
-                         Object[] buf )
- {
- }
-
-}
 
 }

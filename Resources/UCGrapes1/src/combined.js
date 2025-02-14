@@ -15,7 +15,7 @@ class Clock {
       const timeString = `${hours}:${minutes} ${ampm}`;
       document.getElementById(this.pageId).textContent = timeString;
     }
-  }
+}
 
 
 // Content from classes/Locale.js
@@ -2102,6 +2102,9 @@ class ToolBoxManager {
     const editors = Object.values(this.editorManager.editors);
     if (editors && editors.length) {
       const pageDataList = this.preparePageDataList(editors);
+
+      console.log(pageDataList)
+
       if (pageDataList.length) {
         this.sendPageUpdateRequest(pageDataList, isNotifyResidents);
       }
