@@ -1375,12 +1375,15 @@ namespace GeneXus.Programs {
          AssignProp("", false, edtLocationId_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtLocationId_Visible), 5, 0), true);
          edtOrganisationId_Visible = 0;
          AssignProp("", false, edtOrganisationId_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtOrganisationId_Visible), 5, 0), true);
-         AV20defaultCountryPhoneCode = "+31";
-         AssignAttri("", false, "AV20defaultCountryPhoneCode", AV20defaultCountryPhoneCode);
-         Combo_locationphonecode_Selectedtext_set = AV20defaultCountryPhoneCode;
-         ucCombo_locationphonecode.SendProperty(context, "", false, Combo_locationphonecode_Internalname, "SelectedText_set", Combo_locationphonecode_Selectedtext_set);
-         Combo_locationphonecode_Selectedvalue_set = AV20defaultCountryPhoneCode;
-         ucCombo_locationphonecode.SendProperty(context, "", false, Combo_locationphonecode_Internalname, "SelectedValue_set", Combo_locationphonecode_Selectedvalue_set);
+         if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
+         {
+            AV20defaultCountryPhoneCode = "+31";
+            AssignAttri("", false, "AV20defaultCountryPhoneCode", AV20defaultCountryPhoneCode);
+            Combo_locationphonecode_Selectedtext_set = AV20defaultCountryPhoneCode;
+            ucCombo_locationphonecode.SendProperty(context, "", false, Combo_locationphonecode_Internalname, "SelectedText_set", Combo_locationphonecode_Selectedtext_set);
+            Combo_locationphonecode_Selectedvalue_set = AV20defaultCountryPhoneCode;
+            ucCombo_locationphonecode.SendProperty(context, "", false, Combo_locationphonecode_Internalname, "SelectedValue_set", Combo_locationphonecode_Selectedvalue_set);
+         }
       }
 
       protected void E12042( )
@@ -2955,7 +2958,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251241055443", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521416344059", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2971,7 +2974,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_location.js", "?20251241055446", false, true);
+         context.AddJavascriptSource("trn_location.js", "?202521416344061", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

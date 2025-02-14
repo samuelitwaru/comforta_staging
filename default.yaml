@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250214131348"
+  version: "20250214143230"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -1215,10 +1215,11 @@ components:
       properties:
         SelectedValue:
           type: "string"
-        SelectedText:
-          type: "string"
-        Combo_DataJson:
-          type: "string"
+        Combo_Data:
+          description: "DVB_SDTCombo Data"
+          type: array
+          items:
+            $ref: "#/components/schemas/WWPBaseObjects.DVB_SDTComboData_Item"
     Trn_ProductServiceWWGetFilterDataOutput:
       properties:
         OptionsJson:
@@ -1567,8 +1568,6 @@ components:
           type: "string"
         TrnMode:
           type: "string"
-        IsDynamicCall:
-          type: "boolean"
         ProductServiceId:
           type: "string"
           format: "uuid"
@@ -1578,8 +1577,6 @@ components:
         OrganisationId:
           type: "string"
           format: "uuid"
-        SearchTxtParms:
-          type: "string"
     Trn_ProductServiceWWGetFilterDataInput:  
       properties:
         DDOName:

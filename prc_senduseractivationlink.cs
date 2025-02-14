@@ -92,9 +92,7 @@ namespace GeneXus.Programs {
          /* GeneXus formulas */
          /* Output device settings */
          AV16Repository = new GeneXus.Programs.genexussecurity.SdtGAMRepository(context).get();
-         GXt_SdtGAMUser1 = AV27GAMLoggedInUser;
-         new prc_getloggedinuser(context ).execute( out  GXt_SdtGAMUser1) ;
-         AV27GAMLoggedInUser = GXt_SdtGAMUser1;
+         AV28language = context.GetLanguage( );
          if ( StringUtil.StrCmp(AV16Repository.gxTpr_Useractivationmethod, "U") == 0 )
          {
             AV12GAMUser.load( AV18UserGAMGUID);
@@ -114,12 +112,12 @@ namespace GeneXus.Programs {
                   AV17SMTPSession.Sender.Name = "Comforta Software";
                   AV8MailRecipient.Address = AV12GAMUser.gxTpr_Email;
                   AV8MailRecipient.Name = AV19Username;
-                  if ( StringUtil.StrCmp(AV27GAMLoggedInUser.gxTpr_Language, "English") == 0 )
+                  if ( StringUtil.StrCmp(AV28language, "English") == 0 )
                   {
                      AV15MailMessage.Subject = "Welcome to Comforta";
                      AV15MailMessage.HTMLText = "<div style=\"max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; border: 1px solid #e0e0e0; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\">"+context.GetMessage( "<div style=\"background-color: #008080; color: #ffffff; text-align: center; padding: 20px 0;\"><h2>Comforta Software</h2></div><div style=\"padding: 20px; line-height: 1.5;\"><p>Dear ", "")+AV19Username+context.GetMessage( ",</p><p>Welcome to Comforta Software! We are thrilled to have you on board.</p><p>To get started, we need to verify your email address. Please click the button below to activate your account:</p>", "")+context.GetMessage( "</b></p><a href=\"", "")+AV23baseUrl+context.GetMessage( "WP_UserActivation.aspx?ActivationKey=", "")+AV9ActivactionKey+context.GetMessage( "&GamGuid=", "")+AV12GAMUser.gxTpr_Guid+context.GetMessage( "\" style=\"display: block; padding: 10px 20px; width: 150px;  margin: 20px auto; background-color: #008080; text-align: center; border-radius: 8px; color: white; font-weight: bold; line-height: 30px; text-decoration: none;\">Verify Email</a>", "")+context.GetMessage( "<p>Please note that the link expires in 36 hours.</p>", "")+context.GetMessage( "<p>Once you have activated your account and set a password, you will gain access to the platform.</p>", "")+context.GetMessage( "<br><p>Many thanks and kind regards,</p><p>Comforta Software</p></div></div>", "");
                   }
-                  else if ( StringUtil.StrCmp(AV27GAMLoggedInUser.gxTpr_Language, "Dutch") == 0 )
+                  else if ( StringUtil.StrCmp(AV28language, "Dutch") == 0 )
                   {
                      AV15MailMessage.Subject = "Welkom bij Comforta";
                      AV15MailMessage.HTMLText = "<div style=\"max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; border: 1px solid #e0e0e0; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\">"+context.GetMessage( "<div style=\"background-color: #008080; color: #ffffff; text-align: center; padding: 20px 0;\"><h2>Comforta Software</h2></div><div style=\"padding: 20px; line-height: 1.5;\"><p>Beste ", "")+AV19Username+context.GetMessage( ",</p><p>Welkom bij Comforta Software! We kijken ernaar uit om u van dienst te zijn.</p><p>Om te beginnen verifiëren we uw e-mailadres. Klik op de knop hieronder om uw account te activeren:</p>", "")+context.GetMessage( "</b></p><a href=\"", "")+AV23baseUrl+context.GetMessage( "WP_UserActivation.aspx?ActivationKey=", "")+AV9ActivactionKey+context.GetMessage( "&GamGuid=", "")+AV12GAMUser.gxTpr_Guid+context.GetMessage( "\" style=\"display: block; padding: 10px 20px; width: 150px;  margin: 20px auto; background-color: #008080; text-align: center; border-radius: 8px; color: white; font-weight: bold; line-height: 30px; text-decoration: none;\">Email verifiëren</a>", "")+context.GetMessage( "<p>Houd er rekening mee dat de link over 36 uur verloopt.</p>", "")+context.GetMessage( "<p>Zodra u uw account heeft geactiveerd en een wachtwoord heeft ingesteld, krijgt u toegang tot het platform.</p>", "")+context.GetMessage( "<br><p>Hartelijk dank en groeten,</p><p>Comforta Software</p></div></div>", "");
@@ -141,12 +139,12 @@ namespace GeneXus.Programs {
                else
                {
                   AV26ErrDescription = context.GetMessage( "Sending activation email failed - ", "");
-                  AV28GXV1 = 1;
-                  while ( AV28GXV1 <= AV11GAMErrors.Count )
+                  AV31GXV1 = 1;
+                  while ( AV31GXV1 <= AV11GAMErrors.Count )
                   {
-                     AV25GAMErrorItem = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV11GAMErrors.Item(AV28GXV1));
+                     AV25GAMErrorItem = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV11GAMErrors.Item(AV31GXV1));
                      AV26ErrDescription += AV25GAMErrorItem.gxTpr_Message + " ";
-                     AV28GXV1 = (int)(AV28GXV1+1);
+                     AV31GXV1 = (int)(AV31GXV1+1);
                   }
                   AV14isSuccessful = false;
                }
@@ -178,8 +176,7 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV16Repository = new GeneXus.Programs.genexussecurity.SdtGAMRepository(context);
-         AV27GAMLoggedInUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
-         GXt_SdtGAMUser1 = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
+         AV28language = "";
          AV12GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          AV19Username = "";
          AV17SMTPSession = new GeneXus.Mail.GXSMTPSession(context.GetPhysicalPath());
@@ -189,12 +186,13 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV28GXV1 ;
+      private int AV31GXV1 ;
       private string AV9ActivactionKey ;
       private string AV26ErrDescription ;
       private bool AV14isSuccessful ;
       private string AV18UserGAMGUID ;
       private string AV23baseUrl ;
+      private string AV28language ;
       private string AV19Username ;
       private GeneXus.Mail.GXMailMessage AV15MailMessage ;
       private GeneXus.Mail.GXMailRecipient AV8MailRecipient ;
@@ -204,8 +202,6 @@ namespace GeneXus.Programs {
       private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV11GAMErrors ;
       private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> aP5_GAMErrors ;
       private GeneXus.Programs.genexussecurity.SdtGAMRepository AV16Repository ;
-      private GeneXus.Programs.genexussecurity.SdtGAMUser AV27GAMLoggedInUser ;
-      private GeneXus.Programs.genexussecurity.SdtGAMUser GXt_SdtGAMUser1 ;
       private GeneXus.Programs.genexussecurity.SdtGAMUser AV12GAMUser ;
       private GeneXus.Programs.genexussecurity.SdtGAMError AV25GAMErrorItem ;
    }

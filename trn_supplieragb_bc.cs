@@ -147,6 +147,9 @@ namespace GeneXus.Programs {
                AV32GXV1 = (int)(AV32GXV1+1);
             }
          }
+         if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
+         {
+         }
       }
 
       protected void E11072( )

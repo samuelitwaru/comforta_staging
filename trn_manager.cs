@@ -165,7 +165,7 @@ namespace GeneXus.Programs {
             GX16ASAISGAMACTIVE035( A28ManagerGAMGUID) ;
             return  ;
          }
-         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_40") == 0 )
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_41") == 0 )
          {
             A11OrganisationId = StringUtil.StrToGuid( GetPar( "OrganisationId"));
             AssignAttri("", false, "A11OrganisationId", A11OrganisationId.ToString());
@@ -175,7 +175,7 @@ namespace GeneXus.Programs {
                GxWebError = 1;
                return  ;
             }
-            gxLoad_40( A11OrganisationId) ;
+            gxLoad_41( A11OrganisationId) ;
             return  ;
          }
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxEvt") == 0 )
@@ -1225,14 +1225,17 @@ namespace GeneXus.Programs {
          AssignProp("", false, edtManagerInitials_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtManagerInitials_Visible), 5, 0), true);
          edtManagerGAMGUID_Visible = 0;
          AssignProp("", false, edtManagerGAMGUID_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtManagerGAMGUID_Visible), 5, 0), true);
-         AV26defaultCountryPhoneCode = "+31";
-         AssignAttri("", false, "AV26defaultCountryPhoneCode", AV26defaultCountryPhoneCode);
-         Combo_managerphonecode_Selectedtext_set = AV26defaultCountryPhoneCode;
-         ucCombo_managerphonecode.SendProperty(context, "", false, Combo_managerphonecode_Internalname, "SelectedText_set", Combo_managerphonecode_Selectedtext_set);
-         Combo_managerphonecode_Selectedvalue_set = AV26defaultCountryPhoneCode;
-         ucCombo_managerphonecode.SendProperty(context, "", false, Combo_managerphonecode_Internalname, "SelectedValue_set", Combo_managerphonecode_Selectedvalue_set);
-         AV25ComboManagerPhoneCode = AV26defaultCountryPhoneCode;
-         AssignAttri("", false, "AV25ComboManagerPhoneCode", AV25ComboManagerPhoneCode);
+         if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
+         {
+            AV26defaultCountryPhoneCode = "+31";
+            AssignAttri("", false, "AV26defaultCountryPhoneCode", AV26defaultCountryPhoneCode);
+            Combo_managerphonecode_Selectedtext_set = AV26defaultCountryPhoneCode;
+            ucCombo_managerphonecode.SendProperty(context, "", false, Combo_managerphonecode_Internalname, "SelectedText_set", Combo_managerphonecode_Selectedtext_set);
+            Combo_managerphonecode_Selectedvalue_set = AV26defaultCountryPhoneCode;
+            ucCombo_managerphonecode.SendProperty(context, "", false, Combo_managerphonecode_Internalname, "SelectedValue_set", Combo_managerphonecode_Selectedvalue_set);
+            AV25ComboManagerPhoneCode = AV26defaultCountryPhoneCode;
+            AssignAttri("", false, "AV25ComboManagerPhoneCode", AV25ComboManagerPhoneCode);
+         }
       }
 
       protected void E12032( )
@@ -1300,7 +1303,7 @@ namespace GeneXus.Programs {
 
       protected void ZM035( short GX_JID )
       {
-         if ( ( GX_JID == 39 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 40 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
@@ -1331,7 +1334,7 @@ namespace GeneXus.Programs {
                Z394ManagerIsActive = A394ManagerIsActive;
             }
          }
-         if ( GX_JID == -39 )
+         if ( GX_JID == -40 )
          {
             Z21ManagerId = A21ManagerId;
             Z385ManagerPhoneCode = A385ManagerPhoneCode;
@@ -1496,7 +1499,7 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "A394ManagerIsActive", A394ManagerIsActive);
             A40000ManagerImage_GXI = T00035_A40000ManagerImage_GXI[0];
             A458ManagerImage = T00035_A458ManagerImage[0];
-            ZM035( -39) ;
+            ZM035( -40) ;
          }
          pr_default.close(3);
          OnLoadActions035( ) ;
@@ -1561,6 +1564,13 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
          pr_default.close(2);
+         if ( ! ( new prc_mainmanagerscount(context).executeUdp(  A11OrganisationId) > 1 ) && ( ( ! A360ManagerIsMainManager && IsUpd( )  ) || IsDlt( )  ) )
+         {
+            GX_msglist.addItem(context.GetMessage( "Organisation must have atleast on main Manager", ""), 1, "MANAGERISMAINMANAGER");
+            AnyError = 1;
+            GX_FocusControl = chkManagerIsMainManager_Internalname;
+            AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
+         }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A22ManagerGivenName)) )
          {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Manager Given Name", ""), "", "", "", "", "", "", "", ""), 1, "MANAGERGIVENNAME");
@@ -1656,7 +1666,7 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void gxLoad_40( Guid A11OrganisationId )
+      protected void gxLoad_41( Guid A11OrganisationId )
       {
          /* Using cursor T00036 */
          pr_default.execute(4, new Object[] {A11OrganisationId});
@@ -1700,7 +1710,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A21ManagerId, A11OrganisationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM035( 39) ;
+            ZM035( 40) ;
             RcdFound5 = 1;
             A21ManagerId = T00033_A21ManagerId[0];
             AssignAttri("", false, "A21ManagerId", A21ManagerId.ToString());
@@ -2231,6 +2241,13 @@ namespace GeneXus.Programs {
          if ( AnyError == 0 )
          {
             /* Delete mode formulas */
+            if ( ! ( new prc_mainmanagerscount(context).executeUdp(  A11OrganisationId) > 1 ) && ( ( ! A360ManagerIsMainManager && IsUpd( )  ) || IsDlt( )  ) )
+            {
+               GX_msglist.addItem(context.GetMessage( "Organisation must have atleast on main Manager", ""), 1, "MANAGERISMAINMANAGER");
+               AnyError = 1;
+               GX_FocusControl = chkManagerIsMainManager_Internalname;
+               AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
+            }
             GXt_char2 = "";
             new prc_getloggedinuserid(context ).execute( out  GXt_char2) ;
             if ( StringUtil.StrCmp(A28ManagerGAMGUID, GXt_char2) != 0 )
@@ -2777,7 +2794,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512410552451", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521416342276", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2793,7 +2810,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_manager.js", "?202512410552454", false, true);
+         context.AddJavascriptSource("trn_manager.js", "?202521416342280", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3210,6 +3227,18 @@ namespace GeneXus.Programs {
          AssignAttri("", false, "A26ManagerPhone", StringUtil.RTrim( A26ManagerPhone));
       }
 
+      public void Valid_Managerismainmanager( )
+      {
+         if ( ! ( new prc_mainmanagerscount(context).executeUdp(  A11OrganisationId) > 1 ) && ( ( ! A360ManagerIsMainManager && IsUpd( )  ) || IsDlt( )  ) )
+         {
+            GX_msglist.addItem(context.GetMessage( "Organisation must have atleast on main Manager", ""), 1, "MANAGERISMAINMANAGER");
+            AnyError = 1;
+            GX_FocusControl = chkManagerIsMainManager_Internalname;
+         }
+         dynload_actions( ) ;
+         /*  Sending validation outputs */
+      }
+
       public void Valid_Managergamguid( )
       {
          GXt_char2 = "";
@@ -3281,6 +3310,8 @@ namespace GeneXus.Programs {
          setEventMetadata("VALID_MANAGERPHONECODE",""","oparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
          setEventMetadata("VALID_MANAGERPHONENUMBER","""{"handler":"Valid_Managerphonenumber","iparms":[{"av":"A385ManagerPhoneCode","fld":"MANAGERPHONECODE"},{"av":"A386ManagerPhoneNumber","fld":"MANAGERPHONENUMBER"},{"av":"A26ManagerPhone","fld":"MANAGERPHONE"},{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
          setEventMetadata("VALID_MANAGERPHONENUMBER",""","oparms":[{"av":"A26ManagerPhone","fld":"MANAGERPHONE"},{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
+         setEventMetadata("VALID_MANAGERISMAINMANAGER","""{"handler":"Valid_Managerismainmanager","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
+         setEventMetadata("VALID_MANAGERISMAINMANAGER",""","oparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
          setEventMetadata("VALID_MANAGERISACTIVE","""{"handler":"Valid_Managerisactive","iparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");
          setEventMetadata("VALID_MANAGERISACTIVE",""","oparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]}""");
          setEventMetadata("VALIDV_COMBOMANAGERPHONECODE","""{"handler":"Validv_Combomanagerphonecode","iparms":[{"av":"A360ManagerIsMainManager","fld":"MANAGERISMAINMANAGER"},{"av":"A394ManagerIsActive","fld":"MANAGERISACTIVE"}]""");

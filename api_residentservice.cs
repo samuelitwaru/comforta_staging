@@ -101,11 +101,11 @@ namespace GeneXus.Programs {
          }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_pagesapi") == 0 )
          {
-            return GAMSecurityLevel.SecurityLow ;
+            return GAMSecurityLevel.SecurityNone ;
          }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_pageapi") == 0 )
          {
-            return GAMSecurityLevel.SecurityNone ;
+            return GAMSecurityLevel.SecurityLow ;
          }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_contentpagesapi") == 0 )
          {

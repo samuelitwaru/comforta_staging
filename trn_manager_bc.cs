@@ -110,7 +110,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable035( ) ;
                if ( AnyError == 0 )
                {
-                  ZM035( 27) ;
+                  ZM035( 28) ;
                }
                CloseExtendedTableCursors035( ) ;
             }
@@ -133,6 +133,9 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          AV12TrnContext.FromXml(AV13WebSession.Get("TrnContext"), null, "", "");
+         if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
+         {
+         }
       }
 
       protected void E11032( )
@@ -162,7 +165,7 @@ namespace GeneXus.Programs {
 
       protected void ZM035( short GX_JID )
       {
-         if ( ( GX_JID == 26 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 27 ) || ( GX_JID == 0 ) )
          {
             Z24ManagerInitials = A24ManagerInitials;
             Z26ManagerPhone = A26ManagerPhone;
@@ -176,10 +179,10 @@ namespace GeneXus.Programs {
             Z360ManagerIsMainManager = A360ManagerIsMainManager;
             Z394ManagerIsActive = A394ManagerIsActive;
          }
-         if ( ( GX_JID == 27 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 28 ) || ( GX_JID == 0 ) )
          {
          }
-         if ( GX_JID == -26 )
+         if ( GX_JID == -27 )
          {
             Z21ManagerId = A21ManagerId;
             Z24ManagerInitials = A24ManagerInitials;
@@ -240,7 +243,7 @@ namespace GeneXus.Programs {
             A394ManagerIsActive = BC00035_A394ManagerIsActive[0];
             A40000ManagerImage_GXI = BC00035_A40000ManagerImage_GXI[0];
             A458ManagerImage = BC00035_A458ManagerImage[0];
-            ZM035( -26) ;
+            ZM035( -27) ;
          }
          pr_default.close(3);
          OnLoadActions035( ) ;
@@ -267,6 +270,11 @@ namespace GeneXus.Programs {
             AnyError = 1;
          }
          pr_default.close(2);
+         if ( ! ( new prc_mainmanagerscount(context).executeUdp(  A11OrganisationId) > 1 ) && ( ( ! A360ManagerIsMainManager && IsUpd( )  ) || IsDlt( )  ) )
+         {
+            GX_msglist.addItem(context.GetMessage( "Organisation must have atleast on main Manager", ""), 1, "");
+            AnyError = 1;
+         }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A22ManagerGivenName)) )
          {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Manager Given Name", ""), "", "", "", "", "", "", "", ""), 1, "");
@@ -336,7 +344,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A21ManagerId, A11OrganisationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM035( 26) ;
+            ZM035( 27) ;
             RcdFound5 = 1;
             A21ManagerId = BC00033_A21ManagerId[0];
             A24ManagerInitials = BC00033_A24ManagerInitials[0];
@@ -608,6 +616,11 @@ namespace GeneXus.Programs {
          if ( AnyError == 0 )
          {
             /* Delete mode formulas */
+            if ( ! ( new prc_mainmanagerscount(context).executeUdp(  A11OrganisationId) > 1 ) && ( ( ! A360ManagerIsMainManager && IsUpd( )  ) || IsDlt( )  ) )
+            {
+               GX_msglist.addItem(context.GetMessage( "Organisation must have atleast on main Manager", ""), 1, "");
+               AnyError = 1;
+            }
             GXt_boolean2 = AV31IsGAMActive;
             new prc_checkgamuseractivationstatus(context ).execute(  A28ManagerGAMGUID, out  GXt_boolean2) ;
             AV31IsGAMActive = GXt_boolean2;
@@ -971,7 +984,7 @@ namespace GeneXus.Programs {
             Z21ManagerId = A21ManagerId;
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM035( -26) ;
+         ZM035( -27) ;
          OnLoadActions035( ) ;
          AddRow035( ) ;
          ScanKeyEnd035( ) ;
@@ -1009,7 +1022,7 @@ namespace GeneXus.Programs {
             Z21ManagerId = A21ManagerId;
             Z11OrganisationId = A11OrganisationId;
          }
-         ZM035( -26) ;
+         ZM035( -27) ;
          OnLoadActions035( ) ;
          AddRow035( ) ;
          ScanKeyEnd035( ) ;

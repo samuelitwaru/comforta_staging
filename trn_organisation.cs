@@ -1362,14 +1362,17 @@ namespace GeneXus.Programs {
          }
          edtOrganisationId_Visible = 0;
          AssignProp("", false, edtOrganisationId_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtOrganisationId_Visible), 5, 0), true);
-         AV29defaultCountryPhoneCode = "+31";
-         AssignAttri("", false, "AV29defaultCountryPhoneCode", AV29defaultCountryPhoneCode);
-         Combo_organisationphonecode_Selectedtext_set = AV29defaultCountryPhoneCode;
-         ucCombo_organisationphonecode.SendProperty(context, "", false, Combo_organisationphonecode_Internalname, "SelectedText_set", Combo_organisationphonecode_Selectedtext_set);
-         Combo_organisationphonecode_Selectedvalue_set = AV29defaultCountryPhoneCode;
-         ucCombo_organisationphonecode.SendProperty(context, "", false, Combo_organisationphonecode_Internalname, "SelectedValue_set", Combo_organisationphonecode_Selectedvalue_set);
-         AV28ComboOrganisationPhoneCode = AV29defaultCountryPhoneCode;
-         AssignAttri("", false, "AV28ComboOrganisationPhoneCode", AV28ComboOrganisationPhoneCode);
+         if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
+         {
+            AV29defaultCountryPhoneCode = "+31";
+            AssignAttri("", false, "AV29defaultCountryPhoneCode", AV29defaultCountryPhoneCode);
+            Combo_organisationphonecode_Selectedtext_set = AV29defaultCountryPhoneCode;
+            ucCombo_organisationphonecode.SendProperty(context, "", false, Combo_organisationphonecode_Internalname, "SelectedText_set", Combo_organisationphonecode_Selectedtext_set);
+            Combo_organisationphonecode_Selectedvalue_set = AV29defaultCountryPhoneCode;
+            ucCombo_organisationphonecode.SendProperty(context, "", false, Combo_organisationphonecode_Internalname, "SelectedValue_set", Combo_organisationphonecode_Selectedvalue_set);
+            AV28ComboOrganisationPhoneCode = AV29defaultCountryPhoneCode;
+            AssignAttri("", false, "AV28ComboOrganisationPhoneCode", AV28ComboOrganisationPhoneCode);
+         }
       }
 
       protected void E13012( )
@@ -2869,7 +2872,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251222057253", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521416342494", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2885,7 +2888,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_organisation.js", "?20251222057257", false, true);
+         context.AddJavascriptSource("trn_organisation.js", "?202521416342496", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

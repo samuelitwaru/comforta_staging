@@ -1459,15 +1459,15 @@ namespace GeneXus.Programs {
             ucCombo_suppliergenaddresscountry.SendProperty(context, "", false, Combo_suppliergenaddresscountry_Internalname, "SelectedText_set", Combo_suppliergenaddresscountry_Selectedtext_set);
             Combo_suppliergenaddresscountry_Selectedvalue_set = "Netherlands";
             ucCombo_suppliergenaddresscountry.SendProperty(context, "", false, Combo_suppliergenaddresscountry_Internalname, "SelectedValue_set", Combo_suppliergenaddresscountry_Selectedvalue_set);
+            AV26defaultCountryPhoneCode = "+31";
+            AssignAttri("", false, "AV26defaultCountryPhoneCode", AV26defaultCountryPhoneCode);
+            Combo_suppliergenphonecode_Selectedtext_set = AV26defaultCountryPhoneCode;
+            ucCombo_suppliergenphonecode.SendProperty(context, "", false, Combo_suppliergenphonecode_Internalname, "SelectedText_set", Combo_suppliergenphonecode_Selectedtext_set);
+            Combo_suppliergenphonecode_Selectedvalue_set = AV26defaultCountryPhoneCode;
+            ucCombo_suppliergenphonecode.SendProperty(context, "", false, Combo_suppliergenphonecode_Internalname, "SelectedValue_set", Combo_suppliergenphonecode_Selectedvalue_set);
+            AV25ComboSupplierGenPhoneCode = AV26defaultCountryPhoneCode;
+            AssignAttri("", false, "AV25ComboSupplierGenPhoneCode", AV25ComboSupplierGenPhoneCode);
          }
-         AV26defaultCountryPhoneCode = "+31";
-         AssignAttri("", false, "AV26defaultCountryPhoneCode", AV26defaultCountryPhoneCode);
-         Combo_suppliergenphonecode_Selectedtext_set = AV26defaultCountryPhoneCode;
-         ucCombo_suppliergenphonecode.SendProperty(context, "", false, Combo_suppliergenphonecode_Internalname, "SelectedText_set", Combo_suppliergenphonecode_Selectedtext_set);
-         Combo_suppliergenphonecode_Selectedvalue_set = AV26defaultCountryPhoneCode;
-         ucCombo_suppliergenphonecode.SendProperty(context, "", false, Combo_suppliergenphonecode_Internalname, "SelectedValue_set", Combo_suppliergenphonecode_Selectedvalue_set);
-         AV25ComboSupplierGenPhoneCode = AV26defaultCountryPhoneCode;
-         AssignAttri("", false, "AV25ComboSupplierGenPhoneCode", AV25ComboSupplierGenPhoneCode);
          GXt_guid3 = AV30OrganisationId;
          new prc_getuserorganisationid(context ).execute( out  GXt_guid3) ;
          AV30OrganisationId = GXt_guid3;
@@ -3125,7 +3125,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512410553210", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521416343190", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3141,7 +3141,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_suppliergen.js", "?202512410553212", false, true);
+         context.AddJavascriptSource("trn_suppliergen.js", "?202521416343193", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

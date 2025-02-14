@@ -1432,15 +1432,15 @@ namespace GeneXus.Programs {
             ucCombo_supplieragbaddresscountry.SendProperty(context, "", false, Combo_supplieragbaddresscountry_Internalname, "SelectedValue_set", Combo_supplieragbaddresscountry_Selectedvalue_set);
             Combo_supplieragbaddresscountry_Selectedtext_set = "Netherlands";
             ucCombo_supplieragbaddresscountry.SendProperty(context, "", false, Combo_supplieragbaddresscountry_Internalname, "SelectedText_set", Combo_supplieragbaddresscountry_Selectedtext_set);
+            AV26defaultCountryPhoneCode = "+31";
+            AssignAttri("", false, "AV26defaultCountryPhoneCode", AV26defaultCountryPhoneCode);
+            Combo_supplieragbphonecode_Selectedtext_set = AV26defaultCountryPhoneCode;
+            ucCombo_supplieragbphonecode.SendProperty(context, "", false, Combo_supplieragbphonecode_Internalname, "SelectedText_set", Combo_supplieragbphonecode_Selectedtext_set);
+            Combo_supplieragbphonecode_Selectedvalue_set = AV26defaultCountryPhoneCode;
+            ucCombo_supplieragbphonecode.SendProperty(context, "", false, Combo_supplieragbphonecode_Internalname, "SelectedValue_set", Combo_supplieragbphonecode_Selectedvalue_set);
+            AV25ComboSupplierAgbPhoneCode = AV26defaultCountryPhoneCode;
+            AssignAttri("", false, "AV25ComboSupplierAgbPhoneCode", AV25ComboSupplierAgbPhoneCode);
          }
-         AV26defaultCountryPhoneCode = "+31";
-         AssignAttri("", false, "AV26defaultCountryPhoneCode", AV26defaultCountryPhoneCode);
-         Combo_supplieragbphonecode_Selectedtext_set = AV26defaultCountryPhoneCode;
-         ucCombo_supplieragbphonecode.SendProperty(context, "", false, Combo_supplieragbphonecode_Internalname, "SelectedText_set", Combo_supplieragbphonecode_Selectedtext_set);
-         Combo_supplieragbphonecode_Selectedvalue_set = AV26defaultCountryPhoneCode;
-         ucCombo_supplieragbphonecode.SendProperty(context, "", false, Combo_supplieragbphonecode_Internalname, "SelectedValue_set", Combo_supplieragbphonecode_Selectedvalue_set);
-         AV25ComboSupplierAgbPhoneCode = AV26defaultCountryPhoneCode;
-         AssignAttri("", false, "AV25ComboSupplierAgbPhoneCode", AV25ComboSupplierAgbPhoneCode);
       }
 
       protected void E13072( )
@@ -3036,7 +3036,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512410553359", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521416344792", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3052,7 +3052,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_supplieragb.js", "?202512410553362", false, true);
+         context.AddJavascriptSource("trn_supplieragb.js", "?202521416344795", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
