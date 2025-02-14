@@ -91,9 +91,9 @@ namespace GeneXus.Programs {
             A60ProductServiceDescription = P00B02_A60ProductServiceDescription[0];
             A61ProductServiceImage = P00B02_A61ProductServiceImage[0];
             AV13BC_Trn_ProductService = new SdtTrn_ProductService(context);
+            AV8SDT_ProductService = new SdtSDT_ProductService(context);
             AV13BC_Trn_ProductService.Load(A58ProductServiceId, AV14LocationId, AV15OrganisationId);
             AV8SDT_ProductService.FromJSonString(AV13BC_Trn_ProductService.ToJSonString(true, true), null);
-            AV8SDT_ProductService = new SdtSDT_ProductService(context);
             AV8SDT_ProductService.gxTpr_Productserviceid = A58ProductServiceId;
             AV8SDT_ProductService.gxTpr_Productservicename = A59ProductServiceName;
             AV8SDT_ProductService.gxTpr_Productserviceimage = A61ProductServiceImage;

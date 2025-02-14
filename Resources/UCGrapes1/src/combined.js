@@ -315,6 +315,7 @@ class DataManager {
 
   async getServices() {
     const services = await this.fetchAPI('/api/toolbox/services', {}, true);
+    console.log(services)
     this.services = services.SDT_ProductServiceCollection;
     return this.services;
   }
@@ -4117,6 +4118,8 @@ class ActionListComponent {
   async init() {
     await this.dataManager.getPages();
     await this.dataManager.getServices();
+
+    console.log(this.dataManager.services.map((service) => service.ProductServiceName))
 
 
     this.pageOptions = this.dataManager.pages.SDT_PageCollection.filter(

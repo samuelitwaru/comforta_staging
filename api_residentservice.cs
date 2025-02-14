@@ -310,6 +310,13 @@ namespace GeneXus.Programs {
          }
       }
 
+      protected void E20012( )
+      {
+         /* Getservices_After Routine */
+         returnInSub = false;
+         new prc_logtofile(context ).execute(  ">>"+StringUtil.Str( (decimal)(AV101SDT_ProductServiceCollection.Count), 9, 0)) ;
+      }
+
       public void gxep_loginwithqrcode( string aP0_secretKey ,
                                         out SdtSDT_LoginResidentResponse aP1_loginResult )
       {
@@ -822,10 +829,19 @@ namespace GeneXus.Programs {
       public void gxep_getservices( out GXBaseCollection<SdtSDT_ProductService> aP0_SDT_ProductServiceCollection ,
                                     out SdtSDT_Error aP1_error )
       {
+         AV101SDT_ProductServiceCollection = new GXBaseCollection<SdtSDT_ProductService>( context, "SDT_ProductService", "Comforta_version2");
          AV91error = new SdtSDT_Error(context);
          initialize();
          /* GetServices Constructor */
          new prc_getservices(context ).execute(  AV101SDT_ProductServiceCollection, out  AV91error) ;
+         /* Execute user event: Getservices.After */
+         E20012 ();
+         if ( returnInSub )
+         {
+            aP0_SDT_ProductServiceCollection=this.AV101SDT_ProductServiceCollection;
+            aP1_error=this.AV91error;
+            return;
+         }
          aP0_SDT_ProductServiceCollection=this.AV101SDT_ProductServiceCollection;
          aP1_error=this.AV91error;
       }
@@ -871,6 +887,7 @@ namespace GeneXus.Programs {
          AV18SDT_Location = new SdtSDT_Location(context);
          AV59SDT_AgendaLocation = new GXBaseCollection<SdtSDT_AgendaLocation>( context, "SDT_AgendaLocation", "Comforta_version2");
          AV80SDT_ResidentNotification = new GXBaseCollection<SdtSDT_ResidentNotification>( context, "SDT_ResidentNotification", "Comforta_version2");
+         AV101SDT_ProductServiceCollection = new GXBaseCollection<SdtSDT_ProductService>( context, "SDT_ProductService", "Comforta_version2");
          AV50BC_Trn_Media = new SdtTrn_Media(context);
          AV91error = new SdtSDT_Error(context);
          AV85SDT_MediaCollection = new GXBaseCollection<SdtSDT_Media>( context, "SDT_Media", "Comforta_version2");
@@ -882,7 +899,6 @@ namespace GeneXus.Programs {
          AV64SDT_PageStructureCollection = new GXBaseCollection<SdtSDT_PageStructure>( context, "SDT_PageStructure", "Comforta_version2");
          AV72SDT_Theme = new SdtSDT_Theme(context);
          AV67SDT_ProductService = new SdtSDT_ProductService(context);
-         AV101SDT_ProductServiceCollection = new GXBaseCollection<SdtSDT_ProductService>( context, "SDT_ProductService", "Comforta_version2");
          AV83SDT_LocationTheme = new SdtSDT_LocationTheme(context);
          /* GeneXus formulas. */
       }
@@ -938,6 +954,7 @@ namespace GeneXus.Programs {
       protected SdtSDT_Location AV18SDT_Location ;
       protected GXBaseCollection<SdtSDT_AgendaLocation> AV59SDT_AgendaLocation ;
       protected GXBaseCollection<SdtSDT_ResidentNotification> AV80SDT_ResidentNotification ;
+      protected GXBaseCollection<SdtSDT_ProductService> AV101SDT_ProductServiceCollection ;
       protected SdtSDT_LoginResidentResponse aP1_loginResult ;
       protected SdtSDT_LoginResidentResponse aP2_loginResult ;
       protected SdtSDT_ChangeYourPassword aP3_ChangeYourPasswordResult ;
@@ -983,7 +1000,6 @@ namespace GeneXus.Programs {
       protected SdtSDT_Theme aP1_SDT_Theme ;
       protected SdtSDT_ProductService AV67SDT_ProductService ;
       protected SdtSDT_ProductService aP1_SDT_ProductService ;
-      protected GXBaseCollection<SdtSDT_ProductService> AV101SDT_ProductServiceCollection ;
       protected GXBaseCollection<SdtSDT_ProductService> aP0_SDT_ProductServiceCollection ;
       protected SdtSDT_LocationTheme AV83SDT_LocationTheme ;
       protected SdtSDT_LocationTheme aP2_SDT_LocationTheme ;
