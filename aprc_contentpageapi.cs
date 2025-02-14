@@ -132,6 +132,7 @@ namespace GeneXus.Programs {
             A431PageJsonContent = P009L2_A431PageJsonContent[0];
             n431PageJsonContent = P009L2_n431PageJsonContent[0];
             A318Trn_PageName = P009L2_A318Trn_PageName[0];
+            A504PageIsPredefined = P009L2_A504PageIsPredefined[0];
             A40000ProductServiceImage_GXI = P009L2_A40000ProductServiceImage_GXI[0];
             A60ProductServiceDescription = P009L2_A60ProductServiceDescription[0];
             AV14SDT_ContentPage = new SdtSDT_ContentPage(context);
@@ -140,63 +141,66 @@ namespace GeneXus.Programs {
             AV25Res_SDT_ContentPage.gxTpr_Pageid = A310Trn_PageId;
             AV25Res_SDT_ContentPage.gxTpr_Pagename = A318Trn_PageName;
             AV25Res_SDT_ContentPage.gxTpr_Content = AV14SDT_ContentPage.gxTpr_Content;
-            if ( AV25Res_SDT_ContentPage.gxTpr_Content.Count == 0 )
+            if ( ! A504PageIsPredefined )
             {
-               /* Using cursor P009L3 */
-               pr_default.execute(1, new Object[] {A310Trn_PageId, A29LocationId, A11OrganisationId});
-               while ( (pr_default.getStatus(1) != 101) )
+               if ( AV25Res_SDT_ContentPage.gxTpr_Content.Count == 0 )
                {
-                  A58ProductServiceId = P009L3_A58ProductServiceId[0];
-                  n58ProductServiceId = P009L3_n58ProductServiceId[0];
-                  AV26ContentItem = new SdtSDT_ContentPage_ContentItem(context);
-                  AV26ContentItem.gxTpr_Contenttype = context.GetMessage( "Image", "");
-                  AV26ContentItem.gxTpr_Contentvalue = A40000ProductServiceImage_GXI;
-                  AV25Res_SDT_ContentPage.gxTpr_Content.Add(AV26ContentItem, 0);
-                  AV26ContentItem = new SdtSDT_ContentPage_ContentItem(context);
-                  AV26ContentItem.gxTpr_Contenttype = context.GetMessage( "Description", "");
-                  AV26ContentItem.gxTpr_Contentvalue = A60ProductServiceDescription;
-                  AV25Res_SDT_ContentPage.gxTpr_Content.Add(AV26ContentItem, 0);
-                  /* Exiting from a For First loop. */
-                  if (true) break;
+                  /* Using cursor P009L3 */
+                  pr_default.execute(1, new Object[] {A310Trn_PageId, A29LocationId, A11OrganisationId});
+                  while ( (pr_default.getStatus(1) != 101) )
+                  {
+                     A58ProductServiceId = P009L3_A58ProductServiceId[0];
+                     n58ProductServiceId = P009L3_n58ProductServiceId[0];
+                     AV26ContentItem = new SdtSDT_ContentPage_ContentItem(context);
+                     AV26ContentItem.gxTpr_Contenttype = context.GetMessage( "Image", "");
+                     AV26ContentItem.gxTpr_Contentvalue = A40000ProductServiceImage_GXI;
+                     AV25Res_SDT_ContentPage.gxTpr_Content.Add(AV26ContentItem, 0);
+                     AV26ContentItem = new SdtSDT_ContentPage_ContentItem(context);
+                     AV26ContentItem.gxTpr_Contenttype = context.GetMessage( "Description", "");
+                     AV26ContentItem.gxTpr_Contentvalue = A60ProductServiceDescription;
+                     AV25Res_SDT_ContentPage.gxTpr_Content.Add(AV26ContentItem, 0);
+                     /* Exiting from a For First loop. */
+                     if (true) break;
+                  }
+                  pr_default.close(1);
                }
-               pr_default.close(1);
-            }
-            AV29GXV1 = 1;
-            while ( AV29GXV1 <= AV14SDT_ContentPage.gxTpr_Cta.Count )
-            {
-               AV21CtaItem = ((SdtSDT_ContentPage_CtaItem)AV14SDT_ContentPage.gxTpr_Cta.Item(AV29GXV1));
-               /* Using cursor P009L4 */
-               pr_default.execute(2, new Object[] {n58ProductServiceId, A58ProductServiceId, A29LocationId, A11OrganisationId, AV21CtaItem.gxTpr_Ctaid});
-               while ( (pr_default.getStatus(2) != 101) )
+               AV29GXV1 = 1;
+               while ( AV29GXV1 <= AV14SDT_ContentPage.gxTpr_Cta.Count )
                {
-                  A367CallToActionId = P009L4_A367CallToActionId[0];
-                  A512CallToActionPhoneNumber = P009L4_A512CallToActionPhoneNumber[0];
-                  A396CallToActionUrl = P009L4_A396CallToActionUrl[0];
-                  A369CallToActionEmail = P009L4_A369CallToActionEmail[0];
-                  if ( StringUtil.StrCmp(AV21CtaItem.gxTpr_Ctatype, "Phone") == 0 )
+                  AV21CtaItem = ((SdtSDT_ContentPage_CtaItem)AV14SDT_ContentPage.gxTpr_Cta.Item(AV29GXV1));
+                  /* Using cursor P009L4 */
+                  pr_default.execute(2, new Object[] {n58ProductServiceId, A58ProductServiceId, A29LocationId, A11OrganisationId, AV21CtaItem.gxTpr_Ctaid});
+                  while ( (pr_default.getStatus(2) != 101) )
                   {
-                     AV21CtaItem.gxTpr_Ctaaction = A512CallToActionPhoneNumber;
+                     A367CallToActionId = P009L4_A367CallToActionId[0];
+                     A512CallToActionPhoneNumber = P009L4_A512CallToActionPhoneNumber[0];
+                     A396CallToActionUrl = P009L4_A396CallToActionUrl[0];
+                     A369CallToActionEmail = P009L4_A369CallToActionEmail[0];
+                     if ( StringUtil.StrCmp(AV21CtaItem.gxTpr_Ctatype, "Phone") == 0 )
+                     {
+                        AV21CtaItem.gxTpr_Ctaaction = A512CallToActionPhoneNumber;
+                     }
+                     else if ( StringUtil.StrCmp(AV21CtaItem.gxTpr_Ctatype, "Form") == 0 )
+                     {
+                        AV21CtaItem.gxTpr_Ctaaction = A396CallToActionUrl;
+                     }
+                     else if ( StringUtil.StrCmp(AV21CtaItem.gxTpr_Ctatype, "SiteUrl") == 0 )
+                     {
+                        AV21CtaItem.gxTpr_Ctaaction = A396CallToActionUrl;
+                     }
+                     else if ( StringUtil.StrCmp(AV21CtaItem.gxTpr_Ctatype, "Email") == 0 )
+                     {
+                        AV21CtaItem.gxTpr_Ctaaction = A369CallToActionEmail;
+                     }
+                     else
+                     {
+                     }
+                     AV25Res_SDT_ContentPage.gxTpr_Cta.Add(AV21CtaItem, 0);
+                     pr_default.readNext(2);
                   }
-                  else if ( StringUtil.StrCmp(AV21CtaItem.gxTpr_Ctatype, "Form") == 0 )
-                  {
-                     AV21CtaItem.gxTpr_Ctaaction = A396CallToActionUrl;
-                  }
-                  else if ( StringUtil.StrCmp(AV21CtaItem.gxTpr_Ctatype, "SiteUrl") == 0 )
-                  {
-                     AV21CtaItem.gxTpr_Ctaaction = A396CallToActionUrl;
-                  }
-                  else if ( StringUtil.StrCmp(AV21CtaItem.gxTpr_Ctatype, "Email") == 0 )
-                  {
-                     AV21CtaItem.gxTpr_Ctaaction = A369CallToActionEmail;
-                  }
-                  else
-                  {
-                  }
-                  AV25Res_SDT_ContentPage.gxTpr_Cta.Add(AV21CtaItem, 0);
-                  pr_default.readNext(2);
+                  pr_default.close(2);
+                  AV29GXV1 = (int)(AV29GXV1+1);
                }
-               pr_default.close(2);
-               AV29GXV1 = (int)(AV29GXV1+1);
             }
             pr_default.readNext(0);
          }
@@ -229,6 +233,7 @@ namespace GeneXus.Programs {
          P009L2_A431PageJsonContent = new string[] {""} ;
          P009L2_n431PageJsonContent = new bool[] {false} ;
          P009L2_A318Trn_PageName = new string[] {""} ;
+         P009L2_A504PageIsPredefined = new bool[] {false} ;
          A58ProductServiceId = Guid.Empty;
          A11OrganisationId = Guid.Empty;
          A29LocationId = Guid.Empty;
@@ -260,7 +265,7 @@ namespace GeneXus.Programs {
             new Object[][] {
                 new Object[] {
                P009L2_A58ProductServiceId, P009L2_n58ProductServiceId, P009L2_A11OrganisationId, P009L2_A29LocationId, P009L2_A310Trn_PageId, P009L2_A40000ProductServiceImage_GXI, P009L2_A60ProductServiceDescription, P009L2_A439PageIsContentPage, P009L2_n439PageIsContentPage, P009L2_A431PageJsonContent,
-               P009L2_n431PageJsonContent, P009L2_A318Trn_PageName
+               P009L2_n431PageJsonContent, P009L2_A318Trn_PageName, P009L2_A504PageIsPredefined
                }
                , new Object[] {
                P009L3_A29LocationId, P009L3_A11OrganisationId, P009L3_A58ProductServiceId
@@ -278,6 +283,7 @@ namespace GeneXus.Programs {
       private bool A439PageIsContentPage ;
       private bool n439PageIsContentPage ;
       private bool n431PageJsonContent ;
+      private bool A504PageIsPredefined ;
       private string A60ProductServiceDescription ;
       private string A431PageJsonContent ;
       private string A40000ProductServiceImage_GXI ;
@@ -310,6 +316,7 @@ namespace GeneXus.Programs {
       private string[] P009L2_A431PageJsonContent ;
       private bool[] P009L2_n431PageJsonContent ;
       private string[] P009L2_A318Trn_PageName ;
+      private bool[] P009L2_A504PageIsPredefined ;
       private SdtSDT_ContentPage AV14SDT_ContentPage ;
       private Guid[] P009L3_A29LocationId ;
       private Guid[] P009L3_A11OrganisationId ;
@@ -365,7 +372,7 @@ namespace GeneXus.Programs {
           new ParDef("AV21CtaItem__Ctaid",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P009L2", "SELECT T1.ProductServiceId, T1.OrganisationId, T1.LocationId, T1.Trn_PageId, T2.ProductServiceImage_GXI, T2.ProductServiceDescription, T1.PageIsContentPage, T1.PageJsonContent, T1.Trn_PageName FROM (Trn_Page T1 LEFT JOIN Trn_ProductService T2 ON T2.ProductServiceId = T1.ProductServiceId AND T2.LocationId = T1.LocationId AND T2.OrganisationId = T1.OrganisationId) WHERE (T1.Trn_PageId = :AV23PageId) AND (T1.LocationId = :AV8LocationId) AND (T1.OrganisationId = :AV9OrganisationId) AND (T1.PageIsContentPage = TRUE) ORDER BY T1.Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009L2,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P009L2", "SELECT T1.ProductServiceId, T1.OrganisationId, T1.LocationId, T1.Trn_PageId, T2.ProductServiceImage_GXI, T2.ProductServiceDescription, T1.PageIsContentPage, T1.PageJsonContent, T1.Trn_PageName, T1.PageIsPredefined FROM (Trn_Page T1 LEFT JOIN Trn_ProductService T2 ON T2.ProductServiceId = T1.ProductServiceId AND T2.LocationId = T1.LocationId AND T2.OrganisationId = T1.OrganisationId) WHERE (T1.Trn_PageId = :AV23PageId) AND (T1.LocationId = :AV8LocationId) AND (T1.OrganisationId = :AV9OrganisationId) AND (T1.PageIsContentPage = TRUE) ORDER BY T1.Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009L2,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("P009L3", "SELECT LocationId, OrganisationId, ProductServiceId FROM Trn_ProductService WHERE ProductServiceId = :Trn_PageId and LocationId = :LocationId and OrganisationId = :OrganisationId ORDER BY ProductServiceId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009L3,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P009L4", "SELECT ProductServiceId, OrganisationId, LocationId, CallToActionId, CallToActionPhoneNumber, CallToActionUrl, CallToActionEmail FROM Trn_CallToAction WHERE (ProductServiceId = :ProductServiceId and LocationId = :LocationId and OrganisationId = :OrganisationId) AND (CallToActionId = :AV21CtaItem__Ctaid) ORDER BY ProductServiceId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009L4,100, GxCacheFrequency.OFF ,false,false )
           };
@@ -391,6 +398,7 @@ namespace GeneXus.Programs {
                 ((string[]) buf[9])[0] = rslt.getLongVarchar(8);
                 ((bool[]) buf[10])[0] = rslt.wasNull(8);
                 ((string[]) buf[11])[0] = rslt.getVarchar(9);
+                ((bool[]) buf[12])[0] = rslt.getBool(10);
                 return;
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
