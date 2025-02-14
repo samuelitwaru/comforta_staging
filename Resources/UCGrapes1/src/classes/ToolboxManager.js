@@ -105,7 +105,9 @@ class ToolBoxManager {
   }
 
   preparePageDataList(editors) {
-    return this.dataManager.pages.SDT_PageCollection.map(page=>{
+    return this.dataManager.pages.SDT_PageCollection
+    .filter(page=>!(page.PageName=="Mailbox" || page.PageName=="Calendar"))
+    .map(page=>{
       let projectData;
       try {
         projectData = JSON.parse(page.PageGJSJson)
