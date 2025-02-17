@@ -32,6 +32,8 @@ namespace GeneXus.Programs
 			/* Constructor for serialization */
 			gxTv_SdtSDT_DynamicForms_Referencename = "";
 
+			gxTv_SdtSDT_DynamicForms_Formurl = "";
+
 		}
 
 		public SdtSDT_DynamicForms(IGxContext context)
@@ -63,6 +65,9 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("ReferenceName", gxTpr_Referencename, false);
+
+
+			AddObjectProperty("FormUrl", gxTpr_Formurl, false);
 
 			return;
 		}
@@ -101,6 +106,22 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="FormUrl")]
+		[XmlElement(ElementName="FormUrl")]
+		public string gxTpr_Formurl
+		{
+			get {
+				return gxTv_SdtSDT_DynamicForms_Formurl; 
+			}
+			set {
+				gxTv_SdtSDT_DynamicForms_Formurl = value;
+				SetDirty("Formurl");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -123,6 +144,7 @@ namespace GeneXus.Programs
 		public void initialize( )
 		{
 			gxTv_SdtSDT_DynamicForms_Referencename = "";
+			gxTv_SdtSDT_DynamicForms_Formurl = "";
 			return  ;
 		}
 
@@ -136,6 +158,9 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_DynamicForms_Referencename;
+		 
+
+		protected string gxTv_SdtSDT_DynamicForms_Formurl;
 		 
 
 
@@ -176,6 +201,18 @@ namespace GeneXus.Programs
 			}
 			set { 
 				 sdt.gxTpr_Referencename = value;
+			}
+		}
+
+		[DataMember(Name="FormUrl", Order=2)]
+		public  string gxTpr_Formurl
+		{
+			get { 
+				return sdt.gxTpr_Formurl;
+
+			}
+			set { 
+				 sdt.gxTpr_Formurl = value;
 			}
 		}
 

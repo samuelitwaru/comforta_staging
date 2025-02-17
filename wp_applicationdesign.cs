@@ -855,6 +855,11 @@ namespace GeneXus.Programs {
             AV46SDT_DynamicForms = new SdtSDT_DynamicForms(context);
             AV46SDT_DynamicForms.gxTpr_Formid = A395LocationDynamicFormId;
             AV46SDT_DynamicForms.gxTpr_Referencename = A208WWPFormReferenceName;
+            GXt_char1 = "";
+            GXt_char3 = "Form";
+            new prc_getcalltoactionformurl(context ).execute( ref  GXt_char3, ref  A208WWPFormReferenceName, out  GXt_char1) ;
+            AssignAttri("", false, "A208WWPFormReferenceName", A208WWPFormReferenceName);
+            AV46SDT_DynamicForms.gxTpr_Formurl = GXt_char1;
             AV47SDT_DynamicFormsCollection.Add(AV46SDT_DynamicForms, 0);
             pr_default.readNext(2);
          }
@@ -966,7 +971,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521314555583", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20252171142333", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -982,7 +987,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_applicationdesign.js", "?202521314555584", false, true);
+         context.AddJavascriptSource("wp_applicationdesign.js", "?20252171142334", false, true);
          context.AddJavascriptSource("UserControls/UC_AppToolBoxRender.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -1074,7 +1079,6 @@ namespace GeneXus.Programs {
          sEvtType = "";
          GXDecQS = "";
          AV40UserName = "";
-         GXt_char1 = "";
          AV41LocationId = Guid.Empty;
          AV42OrganisationId = Guid.Empty;
          GXt_guid2 = Guid.Empty;
@@ -1107,6 +1111,8 @@ namespace GeneXus.Programs {
          A395LocationDynamicFormId = Guid.Empty;
          A208WWPFormReferenceName = "";
          AV46SDT_DynamicForms = new SdtSDT_DynamicForms(context);
+         GXt_char1 = "";
+         GXt_char3 = "";
          H00475_A29LocationId = new Guid[] {Guid.Empty} ;
          H00475_A409MediaId = new Guid[] {Guid.Empty} ;
          A409MediaId = Guid.Empty;
@@ -1198,8 +1204,9 @@ namespace GeneXus.Programs {
       private string EvtRowId ;
       private string sEvtType ;
       private string GXDecQS ;
-      private string GXt_char1 ;
       private string A301ProductServiceTileName ;
+      private string GXt_char1 ;
+      private string GXt_char3 ;
       private string AV38Current_Language ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
@@ -1324,7 +1331,7 @@ namespace GeneXus.Programs {
           def= new CursorDef[] {
               new CursorDef("H00472", "SELECT Trn_TemplateId FROM Trn_Template ORDER BY Trn_TemplateId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00472,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H00473", "SELECT OrganisationId, LocationId, ProductServiceImage_GXI, ProductServiceId, ProductServiceName, ProductServiceTileName, ProductServiceImage FROM Trn_ProductService WHERE LocationId = :AV50Udparg1 and OrganisationId = :AV51Udparg2 ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00473,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("H00474", "SELECT T1.WWPFormId, T1.WWPFormVersionNumber, T1.OrganisationId, T1.LocationId, T1.LocationDynamicFormId, T2.WWPFormReferenceName FROM (Trn_LocationDynamicForm T1 INNER JOIN WWP_Form T2 ON T2.WWPFormId = T1.WWPFormId AND T2.WWPFormVersionNumber = T1.WWPFormVersionNumber) WHERE T1.LocationId = :AV50Udparg1 and T1.OrganisationId = :AV51Udparg2 ORDER BY T1.LocationId, T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00474,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("H00474", "SELECT T1.WWPFormId, T1.WWPFormVersionNumber, T1.OrganisationId, T1.LocationId, T1.LocationDynamicFormId, T2.WWPFormReferenceName FROM (Trn_LocationDynamicForm T1 INNER JOIN WWP_Form T2 ON T2.WWPFormId = T1.WWPFormId AND T2.WWPFormVersionNumber = T1.WWPFormVersionNumber) WHERE T1.LocationId = :AV50Udparg1 and T1.OrganisationId = :AV51Udparg2 ORDER BY T1.LocationId, T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00474,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H00475", "SELECT LocationId, MediaId FROM Trn_Media WHERE LocationId = :AV50Udparg1 ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00475,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H00476", "SELECT Trn_ThemeName, Trn_ThemeId FROM Trn_Theme WHERE Not (char_length(trim(trailing ' ' from RTRIM(LTRIM(Trn_ThemeName))))=0) ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00476,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("H00477", "SELECT LocationId, Trn_PageId, Trn_PageName, PageChildren FROM Trn_Page ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00477,100, GxCacheFrequency.OFF ,false,false )

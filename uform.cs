@@ -192,7 +192,7 @@ namespace GeneXus.Programs {
                Form.Meta.addItem("generator", "GeneXus .NET 18_0_10-184260", 0) ;
             }
          }
-         Form.Meta.addItem("description", context.GetMessage( "UForm", ""), 0) ;
+         Form.Meta.addItem("description", context.GetMessage( "General Dynamic Form", ""), 0) ;
          context.wjLoc = "";
          context.nUserReturn = 0;
          context.wbHandled = 0;
@@ -3417,7 +3417,7 @@ namespace GeneXus.Programs {
 
       public override string GetPgmdesc( )
       {
-         return context.GetMessage( "UForm", "") ;
+         return context.GetMessage( "General Dynamic Form", "") ;
       }
 
       protected void InitializeNonKey1K40( )
@@ -3517,7 +3517,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251222123418", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521710382686", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3533,7 +3533,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("uform.js", "?20251222123419", false, true);
+         context.AddJavascriptSource("uform.js", "?202521710382686", false, true);
          /* End function include_jscripts */
       }
 
@@ -3653,7 +3653,7 @@ namespace GeneXus.Programs {
          Form.Background = "";
          Form.Textcolor = 0;
          Form.Backcolor = (int)(0xFFFFFF);
-         Form.Caption = context.GetMessage( "UForm", "");
+         Form.Caption = context.GetMessage( "General Dynamic Form", "");
          cmbWWPFormElementCaption_Jsonclick = "";
          edtWWPFormElementMetadata_Jsonclick = "";
          cmbWWPFormElementParentType_Jsonclick = "";

@@ -113,7 +113,7 @@ namespace GeneXus.Programs {
          }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_contentpageapi") == 0 )
          {
-            return GAMSecurityLevel.SecurityLow ;
+            return GAMSecurityLevel.SecurityNone ;
          }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_getsinglepage") == 0 )
          {

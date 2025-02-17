@@ -9,7 +9,7 @@
   --card-bg-color: #ffffff; 
   --card-text-color: #333333;
   --accent-color: #333333;
-  --font-family: "Arial", sans-serif;
+  --font-family: "Segoe UI", sans-serif;
 }
 
 * {
@@ -256,7 +256,6 @@ button {
   font-size: 0.8rem;
   text-transform: uppercase;
   font-weight: 400;
-  color: #ffffff;
 }
 
 .tile-close-icon {
