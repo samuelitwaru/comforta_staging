@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250217090549"
+  version: "20250217150106"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/api
 paths:
@@ -1813,9 +1813,6 @@ components:
         PageName:
           description: "Page Name"
           type: "string"
-        Theme:
-          description: "SDT_Theme"
-          $ref: "#/components/schemas/SDT_Theme"
         PageIsPublished:
           description: "Page Is Published"
           type: "boolean"
@@ -1834,10 +1831,6 @@ components:
         PageJsonContent:
           description: "Page Json Content"
           type: "string"
-        LocationId:
-          description: "Location Id"
-          type: "string"
-          format: "uuid"
         SDT_Page:
           description: "SDT_Page"
           $ref: "#/components/schemas/SDT_Page"
@@ -2243,6 +2236,9 @@ components:
           description: "Object Id"
           type: "string"
           format: "uuid"
+        ObjectUrl:
+          description: "Object Url"
+          type: "string"
 
 
 

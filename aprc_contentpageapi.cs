@@ -166,7 +166,6 @@ namespace GeneXus.Programs {
                {
                   AV21CtaItem = ((SdtSDT_ContentPage_CtaItem)AV14SDT_ContentPage.gxTpr_Cta.Item(AV32GXV1));
                   AV29BC_Trn_CallToAction.Load(AV21CtaItem.gxTpr_Ctaid);
-                  new prc_logtoserver(context ).execute(  AV29BC_Trn_CallToAction.ToJSonString(true, true)) ;
                   if ( StringUtil.StrCmp(AV29BC_Trn_CallToAction.gxTpr_Calltoactiontype, "Phone") == 0 )
                   {
                      AV21CtaItem.gxTpr_Ctaaction = AV29BC_Trn_CallToAction.gxTpr_Calltoactionphonenumber;

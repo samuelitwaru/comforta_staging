@@ -70,10 +70,6 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("PageName", gxTpr_Pagename, false);
 
-			if (gxTv_SdtSDT_PublishPage_Theme != null)
-			{
-				AddObjectProperty("Theme", gxTv_SdtSDT_PublishPage_Theme, false);
-			}
 
 			AddObjectProperty("PageIsPublished", gxTpr_Pageispublished, false);
 
@@ -91,9 +87,6 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("PageJsonContent", gxTpr_Pagejsoncontent, false);
-
-
-			AddObjectProperty("LocationId", gxTpr_Locationid, false);
 
 			if (gxTv_SdtSDT_PublishPage_Sdt_page != null)
 			{
@@ -135,38 +128,6 @@ namespace GeneXus.Programs
 		}
 
 
-
-		[SoapElement(ElementName="Theme")]
-		[XmlElement(ElementName="Theme")]
-		public GeneXus.Programs.SdtSDT_Theme gxTpr_Theme
-		{
-			get {
-				if ( gxTv_SdtSDT_PublishPage_Theme == null )
-				{
-					gxTv_SdtSDT_PublishPage_Theme = new GeneXus.Programs.SdtSDT_Theme(context);
-				}
-				return gxTv_SdtSDT_PublishPage_Theme; 
-			}
-			set {
-				gxTv_SdtSDT_PublishPage_Theme = value;
-				SetDirty("Theme");
-			}
-		}
-		public void gxTv_SdtSDT_PublishPage_Theme_SetNull()
-		{
-			gxTv_SdtSDT_PublishPage_Theme_N = true;
-			gxTv_SdtSDT_PublishPage_Theme = null;
-		}
-
-		public bool gxTv_SdtSDT_PublishPage_Theme_IsNull()
-		{
-			return gxTv_SdtSDT_PublishPage_Theme == null;
-		}
-		public bool ShouldSerializegxTpr_Theme_Json()
-		{
-			return gxTv_SdtSDT_PublishPage_Theme != null;
-
-		}
 
 
 		[SoapElement(ElementName="PageIsPublished")]
@@ -264,22 +225,6 @@ namespace GeneXus.Programs
 
 
 
-
-		[SoapElement(ElementName="LocationId")]
-		[XmlElement(ElementName="LocationId")]
-		public Guid gxTpr_Locationid
-		{
-			get {
-				return gxTv_SdtSDT_PublishPage_Locationid; 
-			}
-			set {
-				gxTv_SdtSDT_PublishPage_Locationid = value;
-				SetDirty("Locationid");
-			}
-		}
-
-
-
 		[SoapElement(ElementName="SDT_Page")]
 		[XmlElement(ElementName="SDT_Page")]
 		public GeneXus.Programs.SdtSDT_Page gxTpr_Sdt_page
@@ -334,16 +279,12 @@ namespace GeneXus.Programs
 		public void initialize( )
 		{
 			gxTv_SdtSDT_PublishPage_Pagename = "";
-
-			gxTv_SdtSDT_PublishPage_Theme_N = true;
-
 			gxTv_SdtSDT_PublishPage_Pageispublished = false;
 			gxTv_SdtSDT_PublishPage_Pageiscontentpage = false;
 			gxTv_SdtSDT_PublishPage_Pageispredefined = false;
 			gxTv_SdtSDT_PublishPage_Pagegjsjson = "";
 			gxTv_SdtSDT_PublishPage_Pagegjshtml = "";
 			gxTv_SdtSDT_PublishPage_Pagejsoncontent = "";
-
 
 			gxTv_SdtSDT_PublishPage_Sdt_page_N = true;
 
@@ -362,10 +303,6 @@ namespace GeneXus.Programs
 		protected string gxTv_SdtSDT_PublishPage_Pagename;
 		 
 
-		protected GeneXus.Programs.SdtSDT_Theme gxTv_SdtSDT_PublishPage_Theme = null;
-		protected bool gxTv_SdtSDT_PublishPage_Theme_N;
-		 
-
 		protected bool gxTv_SdtSDT_PublishPage_Pageispublished;
 		 
 
@@ -382,9 +319,6 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtSDT_PublishPage_Pagejsoncontent;
-		 
-
-		protected Guid gxTv_SdtSDT_PublishPage_Locationid;
 		 
 
 		protected GeneXus.Programs.SdtSDT_Page gxTv_SdtSDT_PublishPage_Sdt_page = null;
@@ -432,22 +366,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="Theme", Order=2, EmitDefaultValue=false)]
-		public GeneXus.Programs.SdtSDT_Theme_RESTInterface gxTpr_Theme
-		{
-			get { 
-				if (sdt.ShouldSerializegxTpr_Theme_Json())
-					return new GeneXus.Programs.SdtSDT_Theme_RESTInterface(sdt.gxTpr_Theme);
-				else
-					return null;
-
-			}
-			set { 
-				sdt.gxTpr_Theme = value.sdt;
-			}
-		}
-
-		[DataMember(Name="PageIsPublished", Order=3)]
+		[DataMember(Name="PageIsPublished", Order=2)]
 		public bool gxTpr_Pageispublished
 		{
 			get { 
@@ -459,7 +378,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="PageIsContentPage", Order=4)]
+		[DataMember(Name="PageIsContentPage", Order=3)]
 		public bool gxTpr_Pageiscontentpage
 		{
 			get { 
@@ -471,7 +390,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="PageIsPredefined", Order=5)]
+		[DataMember(Name="PageIsPredefined", Order=4)]
 		public bool gxTpr_Pageispredefined
 		{
 			get { 
@@ -483,7 +402,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="PageGJSJson", Order=6)]
+		[DataMember(Name="PageGJSJson", Order=5)]
 		public  string gxTpr_Pagegjsjson
 		{
 			get { 
@@ -495,7 +414,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="PageGJSHtml", Order=7)]
+		[DataMember(Name="PageGJSHtml", Order=6)]
 		public  string gxTpr_Pagegjshtml
 		{
 			get { 
@@ -507,7 +426,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="PageJsonContent", Order=8)]
+		[DataMember(Name="PageJsonContent", Order=7)]
 		public  string gxTpr_Pagejsoncontent
 		{
 			get { 
@@ -519,19 +438,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="LocationId", Order=9)]
-		public Guid gxTpr_Locationid
-		{
-			get { 
-				return sdt.gxTpr_Locationid;
-
-			}
-			set { 
-				sdt.gxTpr_Locationid = value;
-			}
-		}
-
-		[DataMember(Name="SDT_Page", Order=10, EmitDefaultValue=false)]
+		[DataMember(Name="SDT_Page", Order=8, EmitDefaultValue=false)]
 		public GeneXus.Programs.SdtSDT_Page_RESTInterface gxTpr_Sdt_page
 		{
 			get { 

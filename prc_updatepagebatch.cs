@@ -81,6 +81,7 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         new prc_logtofile(context ).execute(  AV25PagesList.ToJSonString(false)) ;
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
             AV10Error.gxTpr_Status = context.GetMessage( "Error", "");
@@ -88,6 +89,7 @@ namespace GeneXus.Programs {
          }
          else
          {
+            new prc_logtofile(context ).execute(  AV25PagesList.ToJSonString(false)) ;
             AV30GXV1 = 1;
             while ( AV30GXV1 <= AV25PagesList.Count )
             {

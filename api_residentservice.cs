@@ -113,7 +113,7 @@ namespace GeneXus.Programs {
          }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_contentpageapi") == 0 )
          {
-            return GAMSecurityLevel.SecurityNone ;
+            return GAMSecurityLevel.SecurityLow ;
          }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_getsinglepage") == 0 )
          {
@@ -315,6 +315,13 @@ namespace GeneXus.Programs {
          /* Getservices_After Routine */
          returnInSub = false;
          new prc_logtofile(context ).execute(  ">>"+StringUtil.Str( (decimal)(AV101SDT_ProductServiceCollection.Count), 9, 0)) ;
+      }
+
+      protected void E21012( )
+      {
+         /* Updatepagebatch_Before Routine */
+         returnInSub = false;
+         new prc_logtofile(context ).execute(  ">>>>>>>>>>>>>>"+AV92PagesList.ToJSonString(false)) ;
       }
 
       public void gxep_loginwithqrcode( string aP0_secretKey ,
@@ -779,6 +786,22 @@ namespace GeneXus.Programs {
          this.AV88IsNotifyResidents = aP1_IsNotifyResidents;
          AV91error = new SdtSDT_Error(context);
          initialize();
+         /* Execute user event: Updatepagebatch.Before */
+         E21012 ();
+         if ( returnInSub )
+         {
+            if ( this.AV17result == null )
+            {
+               this.AV17result="";
+            }
+            aP2_result=this.AV17result;
+            if ( this.AV91error == null )
+            {
+               this.AV91error=new SdtSDT_Error();
+            }
+            aP3_error=this.AV91error;
+            return;
+         }
          /* UpdatePageBatch Constructor */
          new prc_updatepagebatch(context ).execute( ref  AV92PagesList, ref  AV88IsNotifyResidents, out  AV17result, out  AV91error) ;
          aP2_result=this.AV17result;
@@ -955,6 +978,7 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_AgendaLocation> AV59SDT_AgendaLocation ;
       protected GXBaseCollection<SdtSDT_ResidentNotification> AV80SDT_ResidentNotification ;
       protected GXBaseCollection<SdtSDT_ProductService> AV101SDT_ProductServiceCollection ;
+      protected GXBaseCollection<SdtSDT_PublishPage> AV92PagesList ;
       protected SdtSDT_LoginResidentResponse aP1_loginResult ;
       protected SdtSDT_LoginResidentResponse aP2_loginResult ;
       protected SdtSDT_ChangeYourPassword aP3_ChangeYourPasswordResult ;
@@ -995,7 +1019,6 @@ namespace GeneXus.Programs {
       protected string aP5_result ;
       protected string aP7_result ;
       protected SdtSDT_Error aP8_error ;
-      protected GXBaseCollection<SdtSDT_PublishPage> AV92PagesList ;
       protected SdtSDT_Theme AV72SDT_Theme ;
       protected SdtSDT_Theme aP1_SDT_Theme ;
       protected SdtSDT_ProductService AV67SDT_ProductService ;

@@ -32,6 +32,8 @@ namespace GeneXus.Programs
 			/* Constructor for serialization */
 			gxTv_SdtSDT_TileAction_Objecttype = "";
 
+			gxTv_SdtSDT_TileAction_Objecturl = "";
+
 		}
 
 		public SdtSDT_TileAction(IGxContext context)
@@ -63,6 +65,9 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("ObjectId", gxTpr_Objectid, false);
+
+
+			AddObjectProperty("ObjectUrl", gxTpr_Objecturl, false);
 
 			return;
 		}
@@ -101,6 +106,22 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="ObjectUrl")]
+		[XmlElement(ElementName="ObjectUrl")]
+		public string gxTpr_Objecturl
+		{
+			get {
+				return gxTv_SdtSDT_TileAction_Objecturl; 
+			}
+			set {
+				gxTv_SdtSDT_TileAction_Objecturl = value;
+				SetDirty("Objecturl");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -124,6 +145,7 @@ namespace GeneXus.Programs
 		{
 			gxTv_SdtSDT_TileAction_Objecttype = "";
 
+			gxTv_SdtSDT_TileAction_Objecturl = "";
 			return  ;
 		}
 
@@ -137,6 +159,9 @@ namespace GeneXus.Programs
 		 
 
 		protected Guid gxTv_SdtSDT_TileAction_Objectid;
+		 
+
+		protected string gxTv_SdtSDT_TileAction_Objecturl;
 		 
 
 
@@ -177,6 +202,18 @@ namespace GeneXus.Programs
 			}
 			set { 
 				sdt.gxTpr_Objectid = value;
+			}
+		}
+
+		[DataMember(Name="ObjectUrl", Order=2)]
+		public  string gxTpr_Objecturl
+		{
+			get { 
+				return sdt.gxTpr_Objecturl;
+
+			}
+			set { 
+				 sdt.gxTpr_Objecturl = value;
 			}
 		}
 
