@@ -918,7 +918,7 @@ namespace GeneXus.Programs {
          AV50NewProductServiceId = Guid.NewGuid( );
          GXKey = Crypto.GetSiteKey( );
          GXEncryptionTmp = "wp_productservice.aspx"+UrlEncode(StringUtil.RTrim("")) + "," + UrlEncode(StringUtil.RTrim("")) + "," + UrlEncode(StringUtil.BoolToStr(false)) + "," + UrlEncode(StringUtil.BoolToStr(true)) + "," + UrlEncode(AV50NewProductServiceId.ToString());
-         context.PopUp(formatLink("wp_productservice.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {"AV50NewProductServiceId"});
+         context.PopUp(formatLink("wp_productservice.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey), new Object[] {"","AV50NewProductServiceId"});
          this.executeUsercontrolMethod("", false, "APPTOOLBOX1Container", "SetProductToTile", "", new Object[] {(Guid)AV50NewProductServiceId});
       }
 
@@ -973,7 +973,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521815544496", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521817354127", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -989,7 +989,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_applicationdesign.js", "?202521815544497", false, true);
+         context.AddJavascriptSource("wp_applicationdesign.js", "?202521817354128", false, true);
          context.AddJavascriptSource("UserControls/UC_AppToolBoxRender.js", "", false, true);
          /* End function include_jscripts */
       }

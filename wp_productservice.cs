@@ -44,12 +44,18 @@ namespace GeneXus.Programs {
 
       public void execute( string aP0_PreviousStep ,
                            string aP1_CurrentStep ,
-                           bool aP2_GoingBack )
+                           bool aP2_GoingBack ,
+                           ref bool aP3_IsPopup ,
+                           ref Guid aP4_FromToolBox_ProductServiceId )
       {
          this.AV10PreviousStep = aP0_PreviousStep;
          this.AV11CurrentStep = aP1_CurrentStep;
          this.AV9GoingBack = aP2_GoingBack;
+         this.AV17IsPopup = aP3_IsPopup;
+         this.AV19FromToolBox_ProductServiceId = aP4_FromToolBox_ProductServiceId;
          ExecuteImpl();
+         aP3_IsPopup=this.AV17IsPopup;
+         aP4_FromToolBox_ProductServiceId=this.AV19FromToolBox_ProductServiceId;
       }
 
       protected override void ExecutePrivate( )
@@ -265,7 +271,7 @@ namespace GeneXus.Programs {
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
          GXKey = Crypto.GetSiteKey( );
-         GXEncryptionTmp = "wp_productservice.aspx"+UrlEncode(StringUtil.RTrim(AV10PreviousStep)) + "," + UrlEncode(StringUtil.RTrim(AV11CurrentStep)) + "," + UrlEncode(StringUtil.BoolToStr(AV9GoingBack));
+         GXEncryptionTmp = "wp_productservice.aspx"+UrlEncode(StringUtil.RTrim(AV10PreviousStep)) + "," + UrlEncode(StringUtil.RTrim(AV11CurrentStep)) + "," + UrlEncode(StringUtil.BoolToStr(AV9GoingBack)) + "," + UrlEncode(StringUtil.BoolToStr(AV17IsPopup)) + "," + UrlEncode(AV19FromToolBox_ProductServiceId.ToString());
          context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wp_productservice.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
@@ -323,6 +329,8 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vCURRENTSTEP", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV11CurrentStep, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, "vGOINGBACK", AV9GoingBack);
          GxWebStd.gx_hidden_field( context, "gxhash_vGOINGBACK", GetSecureSignedToken( "", AV9GoingBack, context));
+         GxWebStd.gx_boolean_hidden_field( context, "vISPOPUP", AV17IsPopup);
+         GxWebStd.gx_hidden_field( context, "vFROMTOOLBOX_PRODUCTSERVICEID", AV19FromToolBox_ProductServiceId.ToString());
       }
 
       public override void RenderHtmlCloseForm( )
@@ -397,7 +405,7 @@ namespace GeneXus.Programs {
       public override string GetSelfLink( )
       {
          GXKey = Crypto.GetSiteKey( );
-         GXEncryptionTmp = "wp_productservice.aspx"+UrlEncode(StringUtil.RTrim(AV10PreviousStep)) + "," + UrlEncode(StringUtil.RTrim(AV11CurrentStep)) + "," + UrlEncode(StringUtil.BoolToStr(AV9GoingBack));
+         GXEncryptionTmp = "wp_productservice.aspx"+UrlEncode(StringUtil.RTrim(AV10PreviousStep)) + "," + UrlEncode(StringUtil.RTrim(AV11CurrentStep)) + "," + UrlEncode(StringUtil.BoolToStr(AV9GoingBack)) + "," + UrlEncode(StringUtil.BoolToStr(AV17IsPopup)) + "," + UrlEncode(AV19FromToolBox_ProductServiceId.ToString());
          return formatLink("wp_productservice.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey) ;
       }
 
@@ -725,6 +733,10 @@ namespace GeneXus.Programs {
                         AV9GoingBack = StringUtil.StrToBool( GetPar( "GoingBack"));
                         AssignAttri("", false, "AV9GoingBack", AV9GoingBack);
                         GxWebStd.gx_hidden_field( context, "gxhash_vGOINGBACK", GetSecureSignedToken( "", AV9GoingBack, context));
+                        AV17IsPopup = StringUtil.StrToBool( GetPar( "IsPopup"));
+                        AssignAttri("", false, "AV17IsPopup", AV17IsPopup);
+                        AV19FromToolBox_ProductServiceId = StringUtil.StrToGuid( GetPar( "FromToolBox_ProductServiceId"));
+                        AssignAttri("", false, "AV19FromToolBox_ProductServiceId", AV19FromToolBox_ProductServiceId.ToString());
                      }
                   }
                   if ( toggleJsOutput )
@@ -888,8 +900,6 @@ namespace GeneXus.Programs {
       {
          /* Start Routine */
          returnInSub = false;
-         new prc_logtofile(context ).execute(  context.GetMessage( "Parsed on wp_productservice >>> ", "")) ;
-         new prc_logtofile(context ).execute(  context.GetMessage( "Parsed on wp_productservice >>> ", "")) ;
          GXt_guid1 = AV16OrganisationId;
          new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
          AV16OrganisationId = GXt_guid1;
@@ -944,7 +954,6 @@ namespace GeneXus.Programs {
       {
          /* 'LOADWIZARDSTEPWC' Routine */
          returnInSub = false;
-         new prc_logtofile(context ).execute(  AV10PreviousStep+", "+StringUtil.BoolToStr( AV9GoingBack)+", "+StringUtil.BoolToStr( AV17IsPopup)+", "+AV19FromToolBox_ProductServiceId.ToString()) ;
          if ( StringUtil.StrCmp(AV12CurrentStepAux, "Step1") == 0 )
          {
             /* Object Property */
@@ -962,8 +971,8 @@ namespace GeneXus.Programs {
             if ( StringUtil.Len( WebComp_Wizardstepwc_Component) != 0 )
             {
                WebComp_Wizardstepwc.setjustcreated();
-               WebComp_Wizardstepwc.componentprepare(new Object[] {(string)"W0018",(string)"",(string)AV20Pgmname+"_Data",(string)AV10PreviousStep,(bool)AV9GoingBack});
-               WebComp_Wizardstepwc.componentbind(new Object[] {(string)""+""+"",(string)"",(string)""});
+               WebComp_Wizardstepwc.componentprepare(new Object[] {(string)"W0018",(string)"",(string)AV20Pgmname+"_Data",(string)AV10PreviousStep,(bool)AV9GoingBack,(bool)AV17IsPopup,(Guid)AV19FromToolBox_ProductServiceId});
+               WebComp_Wizardstepwc.componentbind(new Object[] {(string)""+""+"",(string)"",(string)"",(string)"",(string)""});
             }
             if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wizardstepwc )
             {
@@ -989,8 +998,8 @@ namespace GeneXus.Programs {
             if ( StringUtil.Len( WebComp_Wizardstepwc_Component) != 0 )
             {
                WebComp_Wizardstepwc.setjustcreated();
-               WebComp_Wizardstepwc.componentprepare(new Object[] {(string)"W0018",(string)"",(string)AV20Pgmname+"_Data",(string)AV10PreviousStep,(bool)AV9GoingBack});
-               WebComp_Wizardstepwc.componentbind(new Object[] {(string)""+""+"",(string)"",(string)""});
+               WebComp_Wizardstepwc.componentprepare(new Object[] {(string)"W0018",(string)"",(string)AV20Pgmname+"_Data",(string)AV10PreviousStep,(bool)AV9GoingBack,(bool)AV17IsPopup,(Guid)AV19FromToolBox_ProductServiceId});
+               WebComp_Wizardstepwc.componentbind(new Object[] {(string)""+""+"",(string)"",(string)"",(string)"",(string)""});
             }
             if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wizardstepwc )
             {
@@ -1052,6 +1061,10 @@ namespace GeneXus.Programs {
          AV9GoingBack = (bool)getParm(obj,2);
          AssignAttri("", false, "AV9GoingBack", AV9GoingBack);
          GxWebStd.gx_hidden_field( context, "gxhash_vGOINGBACK", GetSecureSignedToken( "", AV9GoingBack, context));
+         AV17IsPopup = (bool)getParm(obj,3);
+         AssignAttri("", false, "AV17IsPopup", AV17IsPopup);
+         AV19FromToolBox_ProductServiceId = (Guid)getParm(obj,4);
+         AssignAttri("", false, "AV19FromToolBox_ProductServiceId", AV19FromToolBox_ProductServiceId.ToString());
       }
 
       public override string getresponse( string sGXDynURL )
@@ -1101,7 +1114,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521815541396", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521818133690", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1117,7 +1130,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_productservice.js", "?202521815541396", false, true);
+         context.AddJavascriptSource("wp_productservice.js", "?202521818133690", false, true);
          /* End function include_jscripts */
       }
 
@@ -1180,6 +1193,7 @@ namespace GeneXus.Programs {
       {
          wcpOAV10PreviousStep = "";
          wcpOAV11CurrentStep = "";
+         wcpOAV19FromToolBox_ProductServiceId = Guid.Empty;
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          sDynURL = "";
@@ -1207,8 +1221,6 @@ namespace GeneXus.Programs {
          GXt_guid1 = Guid.Empty;
          AV14WizardStep = new GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem(context);
          AV7WebSession = context.GetSession();
-         AV17IsPopup = false;
-         AV19FromToolBox_ProductServiceId = Guid.Empty;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          WebComp_Steptitles = new GeneXus.Http.GXNullWebComponent();
@@ -1255,7 +1267,9 @@ namespace GeneXus.Programs {
       private string GXDecQS ;
       private string AV20Pgmname ;
       private bool AV9GoingBack ;
+      private bool AV17IsPopup ;
       private bool wcpOAV9GoingBack ;
+      private bool wcpOAV17IsPopup ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool wbLoad ;
@@ -1264,16 +1278,16 @@ namespace GeneXus.Programs {
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
       private bool bDynCreated_Steptitles ;
-      private bool AV17IsPopup ;
       private bool bDynCreated_Wizardstepwc ;
       private string AV10PreviousStep ;
       private string AV11CurrentStep ;
       private string wcpOAV10PreviousStep ;
       private string wcpOAV11CurrentStep ;
       private string AV12CurrentStepAux ;
+      private Guid AV19FromToolBox_ProductServiceId ;
+      private Guid wcpOAV19FromToolBox_ProductServiceId ;
       private Guid AV16OrganisationId ;
       private Guid GXt_guid1 ;
-      private Guid AV19FromToolBox_ProductServiceId ;
       private GXWebComponent WebComp_Steptitles ;
       private GXWebComponent WebComp_Wizardstepwc ;
       private IGxSession AV7WebSession ;
@@ -1281,6 +1295,8 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
+      private bool aP3_IsPopup ;
+      private Guid aP4_FromToolBox_ProductServiceId ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem> AV13WizardSteps ;
       private GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem AV14WizardStep ;
       private msglist BackMsgLst ;

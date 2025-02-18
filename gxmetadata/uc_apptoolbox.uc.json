@@ -105,7 +105,7 @@
 		"Public": [
 			{
 				"Name": "SetProductToTile",
-				"Source": "				try {			this.toolBox.setServiceToSelectedTile(ProductServiceId)				}catch (e) {			console.error(e)		}			",
+				"Source": "		try {			this.toolBox.setServiceToSelectedTile(ProductServiceId)				}catch (e) {			console.error(e)		}			",
 				"Return": "",
 				"Parameters": [
 					 {
