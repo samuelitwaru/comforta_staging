@@ -77,7 +77,9 @@ namespace GeneXus.Programs {
          /* Output device settings */
          if ( StringUtil.StrCmp(AV11CallToActionType, context.GetMessage( "Form", "")) == 0 )
          {
-            AV8Url = AV9HttpRequest.BaseURL + "wp_residentdynamicform.aspx?WWPFormReferenceName=" + AV10WWPFormReferenceName + "&WWPFormInstanceId=0&WWPDynamicFormMode=INS";
+            AV12GAMApplication = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context).get();
+            AV13baseUrl = AV12GAMApplication.gxTpr_Environment.gxTpr_Url;
+            AV8Url = AV13baseUrl + "wp_residentdynamicform.aspx?WWPFormReferenceName=" + AV10WWPFormReferenceName + "&WWPFormInstanceId=0&WWPDynamicFormMode=INS";
             if ( StringUtil.StartsWith( AV9HttpRequest.BaseURL, context.GetMessage( "http://localhost", "")) )
             {
             }
@@ -102,6 +104,8 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV8Url = "";
+         AV12GAMApplication = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context);
+         AV13baseUrl = "";
          AV9HttpRequest = new GxHttpRequest( context);
          /* GeneXus formulas. */
       }
@@ -109,9 +113,11 @@ namespace GeneXus.Programs {
       private string AV11CallToActionType ;
       private string AV10WWPFormReferenceName ;
       private string AV8Url ;
+      private string AV13baseUrl ;
       private GxHttpRequest AV9HttpRequest ;
       private string aP0_CallToActionType ;
       private string aP1_WWPFormReferenceName ;
+      private GeneXus.Programs.genexussecurity.SdtGAMApplication AV12GAMApplication ;
       private string aP2_Url ;
    }
 

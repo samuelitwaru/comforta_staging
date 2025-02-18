@@ -98,7 +98,7 @@ namespace GeneXus.Programs {
          Gxm2rootcol.Add(Gxm1trn_theme, 0);
          Gxm1trn_theme.gxTpr_Trn_themeid = StringUtil.StrToGuid( context.GetMessage( "05b80e4f-effe-4d46-afbd-7c72da5a4afc", ""));
          Gxm1trn_theme.gxTpr_Trn_themename = context.GetMessage( "Minimalistic", "");
-         Gxm1trn_theme.gxTpr_Trn_themefontfamily = context.GetMessage( "Merriweather serif", "");
+         Gxm1trn_theme.gxTpr_Trn_themefontfamily = context.GetMessage( "Inter", "");
          Gxm1trn_theme.gxTpr_Trn_themefontsize = 10;
          Gxm3trn_theme_color = new SdtTrn_Theme_Color(context);
          Gxm1trn_theme.gxTpr_Color.Add(Gxm3trn_theme_color, 0);
@@ -114,11 +114,11 @@ namespace GeneXus.Programs {
          Gxm3trn_theme_color.gxTpr_Colorcode = "#c8653e";
          Gxm3trn_theme_color = new SdtTrn_Theme_Color(context);
          Gxm1trn_theme.gxTpr_Color.Add(Gxm3trn_theme_color, 0);
-         Gxm3trn_theme_color.gxTpr_Colorname = context.GetMessage( "buttonTextColor", "");
+         Gxm3trn_theme_color.gxTpr_Colorname = context.GetMessage( "buttonBGColor", "");
          Gxm3trn_theme_color.gxTpr_Colorcode = "#b3783e";
          Gxm3trn_theme_color = new SdtTrn_Theme_Color(context);
          Gxm1trn_theme.gxTpr_Color.Add(Gxm3trn_theme_color, 0);
-         Gxm3trn_theme_color.gxTpr_Colorname = context.GetMessage( "cardBgColor", "");
+         Gxm3trn_theme_color.gxTpr_Colorname = context.GetMessage( "buttonTextColor", "");
          Gxm3trn_theme_color.gxTpr_Colorcode = "#d99e80";
          Gxm3trn_theme_color = new SdtTrn_Theme_Color(context);
          Gxm1trn_theme.gxTpr_Color.Add(Gxm3trn_theme_color, 0);
@@ -144,7 +144,7 @@ namespace GeneXus.Programs {
          Gxm2rootcol.Add(Gxm1trn_theme, 0);
          Gxm1trn_theme.gxTpr_Trn_themeid = StringUtil.StrToGuid( context.GetMessage( "4ddc1f46-d08a-4c11-9280-0695be8b833f", ""));
          Gxm1trn_theme.gxTpr_Trn_themename = context.GetMessage( "Modern", "");
-         Gxm1trn_theme.gxTpr_Trn_themefontfamily = context.GetMessage( "Helvetica", "");
+         Gxm1trn_theme.gxTpr_Trn_themefontfamily = context.GetMessage( "Segoe UI", "");
          Gxm1trn_theme.gxTpr_Trn_themefontsize = 10;
          Gxm3trn_theme_color = new SdtTrn_Theme_Color(context);
          Gxm1trn_theme.gxTpr_Color.Add(Gxm3trn_theme_color, 0);
@@ -160,11 +160,11 @@ namespace GeneXus.Programs {
          Gxm3trn_theme_color.gxTpr_Colorcode = "#986b5d";
          Gxm3trn_theme_color = new SdtTrn_Theme_Color(context);
          Gxm1trn_theme.gxTpr_Color.Add(Gxm3trn_theme_color, 0);
-         Gxm3trn_theme_color.gxTpr_Colorname = context.GetMessage( "buttonTextColor", "");
+         Gxm3trn_theme_color.gxTpr_Colorname = context.GetMessage( "buttonBGColor", "");
          Gxm3trn_theme_color.gxTpr_Colorcode = "#20639b";
          Gxm3trn_theme_color = new SdtTrn_Theme_Color(context);
          Gxm1trn_theme.gxTpr_Color.Add(Gxm3trn_theme_color, 0);
-         Gxm3trn_theme_color.gxTpr_Colorname = context.GetMessage( "cardBgColor", "");
+         Gxm3trn_theme_color.gxTpr_Colorname = context.GetMessage( "buttonTextColor", "");
          Gxm3trn_theme_color.gxTpr_Colorcode = "#758a71";
          Gxm3trn_theme_color = new SdtTrn_Theme_Color(context);
          Gxm1trn_theme.gxTpr_Color.Add(Gxm3trn_theme_color, 0);
@@ -190,7 +190,7 @@ namespace GeneXus.Programs {
          Gxm2rootcol.Add(Gxm1trn_theme, 0);
          Gxm1trn_theme.gxTpr_Trn_themeid = StringUtil.StrToGuid( context.GetMessage( "2db8770b-2e22-4522-870f-d0d8b3ea0ed3", ""));
          Gxm1trn_theme.gxTpr_Trn_themename = context.GetMessage( "Retro", "");
-         Gxm1trn_theme.gxTpr_Trn_themefontfamily = context.GetMessage( "Arial", "");
+         Gxm1trn_theme.gxTpr_Trn_themefontfamily = context.GetMessage( "Roboto", "");
          Gxm1trn_theme.gxTpr_Trn_themefontsize = 10;
          Gxm3trn_theme_color = new SdtTrn_Theme_Color(context);
          Gxm1trn_theme.gxTpr_Color.Add(Gxm3trn_theme_color, 0);
@@ -206,11 +206,11 @@ namespace GeneXus.Programs {
          Gxm3trn_theme_color.gxTpr_Colorcode = "#18668b";
          Gxm3trn_theme_color = new SdtTrn_Theme_Color(context);
          Gxm1trn_theme.gxTpr_Color.Add(Gxm3trn_theme_color, 0);
-         Gxm3trn_theme_color.gxTpr_Colorname = context.GetMessage( "buttonTextColor", "");
+         Gxm3trn_theme_color.gxTpr_Colorname = context.GetMessage( "buttonBGColor", "");
          Gxm3trn_theme_color.gxTpr_Colorcode = "#126e68";
          Gxm3trn_theme_color = new SdtTrn_Theme_Color(context);
          Gxm1trn_theme.gxTpr_Color.Add(Gxm3trn_theme_color, 0);
-         Gxm3trn_theme_color.gxTpr_Colorname = context.GetMessage( "cardBgColor", "");
+         Gxm3trn_theme_color.gxTpr_Colorname = context.GetMessage( "buttonTextColor", "");
          Gxm3trn_theme_color.gxTpr_Colorcode = "#ead1b5";
          Gxm3trn_theme_color = new SdtTrn_Theme_Color(context);
          Gxm1trn_theme.gxTpr_Color.Add(Gxm3trn_theme_color, 0);

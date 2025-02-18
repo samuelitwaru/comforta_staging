@@ -1092,7 +1092,7 @@ namespace GeneXus.Programs {
                                  }
                               }
                            }
-                           else if ( StringUtil.StrCmp(sEvt, "VPRODUCTSERVICEGROUP.CONTROLVALUECHANGED") == 0 )
+                           else if ( StringUtil.StrCmp(sEvt, "'DOUSERACTION1'") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
@@ -1104,11 +1104,12 @@ namespace GeneXus.Programs {
                                  if ( ! wbErr )
                                  {
                                     dynload_actions( ) ;
+                                    /* Execute user event: 'DoUserAction1' */
                                     E17722 ();
                                  }
                               }
                            }
-                           else if ( StringUtil.StrCmp(sEvt, "VNOFILTERGEN.CONTROLVALUECHANGED") == 0 )
+                           else if ( StringUtil.StrCmp(sEvt, "VPRODUCTSERVICEGROUP.CONTROLVALUECHANGED") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
@@ -1124,7 +1125,7 @@ namespace GeneXus.Programs {
                                  }
                               }
                            }
-                           else if ( StringUtil.StrCmp(sEvt, "VNOFILTERAGB.CONTROLVALUECHANGED") == 0 )
+                           else if ( StringUtil.StrCmp(sEvt, "VNOFILTERGEN.CONTROLVALUECHANGED") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
@@ -1140,7 +1141,7 @@ namespace GeneXus.Programs {
                                  }
                               }
                            }
-                           else if ( StringUtil.StrCmp(sEvt, "GLOBALEVENTS.REFRESHPREFERREDSUPPLIER") == 0 )
+                           else if ( StringUtil.StrCmp(sEvt, "VNOFILTERAGB.CONTROLVALUECHANGED") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
@@ -1153,6 +1154,22 @@ namespace GeneXus.Programs {
                                  {
                                     dynload_actions( ) ;
                                     E20722 ();
+                                 }
+                              }
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "GLOBALEVENTS.REFRESHPREFERREDSUPPLIER") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP720( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    E21722 ();
                                  }
                               }
                            }
@@ -1169,7 +1186,7 @@ namespace GeneXus.Programs {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: Load */
-                                    E21722 ();
+                                    E22722 ();
                                  }
                               }
                               /* No code required for Cancel button. It is implemented as the Reset button. */
@@ -1504,7 +1521,7 @@ namespace GeneXus.Programs {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E21722 ();
+            E22722 ();
             WB720( ) ;
          }
       }
@@ -2081,6 +2098,18 @@ namespace GeneXus.Programs {
 
       protected void E17722( )
       {
+         /* 'DoUserAction1' Routine */
+         returnInSub = false;
+         context.setWebReturnParms(new Object[] {});
+         context.setWebReturnParmsMetadata(new Object[] {});
+         context.wjLocDisableFrm = 1;
+         context.nUserReturn = 1;
+         returnInSub = true;
+         if (true) return;
+      }
+
+      protected void E18722( )
+      {
          /* Productservicegroup_Controlvaluechanged Routine */
          returnInSub = false;
          AV46noFilterAgb = true;
@@ -2124,7 +2153,7 @@ namespace GeneXus.Programs {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV31SupplierGenId_Data", AV31SupplierGenId_Data);
       }
 
-      protected void E18722( )
+      protected void E19722( )
       {
          /* Nofiltergen_Controlvaluechanged Routine */
          returnInSub = false;
@@ -2136,7 +2165,7 @@ namespace GeneXus.Programs {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV31SupplierGenId_Data", AV31SupplierGenId_Data);
       }
 
-      protected void E19722( )
+      protected void E20722( )
       {
          /* Nofilteragb_Controlvaluechanged Routine */
          returnInSub = false;
@@ -2148,7 +2177,7 @@ namespace GeneXus.Programs {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV31SupplierGenId_Data", AV31SupplierGenId_Data);
       }
 
-      protected void E20722( )
+      protected void E21722( )
       {
          /* General\GlobalEvents_Refreshpreferredsupplier Routine */
          returnInSub = false;
@@ -2283,7 +2312,7 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void E21722( )
+      protected void E22722( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -2403,7 +2432,7 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblUseractiondelete_Internalname, context.GetMessage( "<i class=\"fas fa-trash-can\"></i>", ""), "", "", lblUseractiondelete_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+"e22721_client"+"'", "", "TextBlock", 7, "", lblUseractiondelete_Visible, 1, 0, 1, "HLP_WP_ProductServiceStep1.htm");
+            GxWebStd.gx_label_ctrl( context, lblUseractiondelete_Internalname, context.GetMessage( "<i class=\"fas fa-trash-can\"></i>", ""), "", "", lblUseractiondelete_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+"e23721_client"+"'", "", "TextBlock", 7, "", lblUseractiondelete_Visible, 1, 0, 1, "HLP_WP_ProductServiceStep1.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -2662,7 +2691,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20252131593990", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521815531775", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2678,7 +2707,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_productservicestep1.js", "?20252131593992", false, true);
+         context.AddJavascriptSource("wp_productservicestep1.js", "?202521815531778", false, true);
          context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
@@ -2855,19 +2884,20 @@ namespace GeneXus.Programs {
          setEventMetadata("ENTER","""{"handler":"E15722","iparms":[{"av":"AV5CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV15HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"dynavLocationid"},{"av":"AV16LocationId","fld":"vLOCATIONID"},{"av":"AV26ProductServiceName","fld":"vPRODUCTSERVICENAME"},{"av":"AV27ProductServiceTileName","fld":"vPRODUCTSERVICETILENAME"},{"av":"cmbavProductserviceclass"},{"av":"AV39ProductServiceClass","fld":"vPRODUCTSERVICECLASS"},{"av":"AV34UploadedFiles","fld":"vUPLOADEDFILES"},{"av":"AV25ProductServiceImageVar","fld":"vPRODUCTSERVICEIMAGEVAR"},{"av":"AV10FileName","fld":"vFILENAME"},{"av":"AV11FileType","fld":"vFILETYPE"},{"av":"dynavProductservicegroup"},{"av":"AV22ProductServiceGroup","fld":"vPRODUCTSERVICEGROUP"},{"av":"AV37WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV21ProductServiceDescription","fld":"vPRODUCTSERVICEDESCRIPTION"},{"av":"AV30SupplierGenId","fld":"vSUPPLIERGENID"},{"av":"AV47noFilterGen","fld":"vNOFILTERGEN"},{"av":"AV28SupplierAgbId","fld":"vSUPPLIERAGBID"},{"av":"AV46noFilterAgb","fld":"vNOFILTERAGB"}]""");
          setEventMetadata("ENTER",""","oparms":[{"av":"AV5CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV11FileType","fld":"vFILETYPE"},{"av":"AV25ProductServiceImageVar","fld":"vPRODUCTSERVICEIMAGEVAR"},{"av":"AV10FileName","fld":"vFILENAME"},{"av":"AV28SupplierAgbId","fld":"vSUPPLIERAGBID"},{"av":"AV30SupplierGenId","fld":"vSUPPLIERGENID"},{"av":"AV23ProductServiceId","fld":"vPRODUCTSERVICEID"}]}""");
          setEventMetadata("'WIZARDPREVIOUS'","""{"handler":"E16722","iparms":[]}""");
-         setEventMetadata("'DOUSERACTIONDELETE'","""{"handler":"E22721","iparms":[]""");
+         setEventMetadata("'DOUSERACTIONDELETE'","""{"handler":"E23721","iparms":[]""");
          setEventMetadata("'DOUSERACTIONDELETE'",""","oparms":[{"av":"AV25ProductServiceImageVar","fld":"vPRODUCTSERVICEIMAGEVAR"},{"av":"AV10FileName","fld":"vFILENAME"},{"av":"lblUseractiondelete_Visible","ctrl":"USERACTIONDELETE","prop":"Visible"}]}""");
          setEventMetadata("COMBO_SUPPLIERGENID.ONOPTIONCLICKED","""{"handler":"E12722","iparms":[{"av":"Combo_suppliergenid_Selectedvalue_get","ctrl":"COMBO_SUPPLIERGENID","prop":"SelectedValue_get"},{"av":"AV30SupplierGenId","fld":"vSUPPLIERGENID"},{"av":"A44SupplierGenCompanyName","fld":"SUPPLIERGENCOMPANYNAME"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"AV19OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A42SupplierGenId","fld":"SUPPLIERGENID"}]""");
          setEventMetadata("COMBO_SUPPLIERGENID.ONOPTIONCLICKED",""","oparms":[{"av":"AV28SupplierAgbId","fld":"vSUPPLIERAGBID"},{"av":"Combo_suppliergenid_Selectedvalue_set","ctrl":"COMBO_SUPPLIERGENID","prop":"SelectedValue_set"},{"av":"AV30SupplierGenId","fld":"vSUPPLIERGENID"},{"av":"AV31SupplierGenId_Data","fld":"vSUPPLIERGENID_DATA"},{"av":"Combo_suppliergenid_Includeaddnewoption","ctrl":"COMBO_SUPPLIERGENID","prop":"IncludeAddNewOption"}]}""");
          setEventMetadata("COMBO_SUPPLIERAGBID.ONOPTIONCLICKED","""{"handler":"E11722","iparms":[{"av":"Combo_supplieragbid_Selectedvalue_get","ctrl":"COMBO_SUPPLIERAGBID","prop":"SelectedValue_get"}]""");
          setEventMetadata("COMBO_SUPPLIERAGBID.ONOPTIONCLICKED",""","oparms":[{"av":"AV30SupplierGenId","fld":"vSUPPLIERGENID"},{"av":"AV28SupplierAgbId","fld":"vSUPPLIERAGBID"}]}""");
-         setEventMetadata("VPRODUCTSERVICEGROUP.CONTROLVALUECHANGED","""{"handler":"E17722","iparms":[{"av":"dynavProductservicegroup"},{"av":"AV22ProductServiceGroup","fld":"vPRODUCTSERVICEGROUP"},{"av":"AV46noFilterAgb","fld":"vNOFILTERAGB"},{"av":"A51SupplierAgbName","fld":"SUPPLIERAGBNAME"},{"av":"A49SupplierAgbId","fld":"SUPPLIERAGBID"},{"av":"AV28SupplierAgbId","fld":"vSUPPLIERAGBID"},{"av":"AV43PreferredAgbSuppliers","fld":"vPREFERREDAGBSUPPLIERS","hsh":true},{"av":"AV49isStart","fld":"vISSTART"},{"av":"AV47noFilterGen","fld":"vNOFILTERGEN"},{"av":"A44SupplierGenCompanyName","fld":"SUPPLIERGENCOMPANYNAME"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"AV19OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A42SupplierGenId","fld":"SUPPLIERGENID"},{"av":"AV44PreferredGenSuppliers","fld":"vPREFERREDGENSUPPLIERS"},{"av":"AV30SupplierGenId","fld":"vSUPPLIERGENID"}]""");
+         setEventMetadata("'DOUSERACTION1'","""{"handler":"E17722","iparms":[]}""");
+         setEventMetadata("VPRODUCTSERVICEGROUP.CONTROLVALUECHANGED","""{"handler":"E18722","iparms":[{"av":"dynavProductservicegroup"},{"av":"AV22ProductServiceGroup","fld":"vPRODUCTSERVICEGROUP"},{"av":"AV46noFilterAgb","fld":"vNOFILTERAGB"},{"av":"A51SupplierAgbName","fld":"SUPPLIERAGBNAME"},{"av":"A49SupplierAgbId","fld":"SUPPLIERAGBID"},{"av":"AV28SupplierAgbId","fld":"vSUPPLIERAGBID"},{"av":"AV43PreferredAgbSuppliers","fld":"vPREFERREDAGBSUPPLIERS","hsh":true},{"av":"AV49isStart","fld":"vISSTART"},{"av":"AV47noFilterGen","fld":"vNOFILTERGEN"},{"av":"A44SupplierGenCompanyName","fld":"SUPPLIERGENCOMPANYNAME"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"AV19OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A42SupplierGenId","fld":"SUPPLIERGENID"},{"av":"AV44PreferredGenSuppliers","fld":"vPREFERREDGENSUPPLIERS"},{"av":"AV30SupplierGenId","fld":"vSUPPLIERGENID"}]""");
          setEventMetadata("VPRODUCTSERVICEGROUP.CONTROLVALUECHANGED",""","oparms":[{"av":"AV46noFilterAgb","fld":"vNOFILTERAGB"},{"av":"AV47noFilterGen","fld":"vNOFILTERGEN"},{"av":"AV30SupplierGenId","fld":"vSUPPLIERGENID"},{"av":"AV28SupplierAgbId","fld":"vSUPPLIERAGBID"},{"av":"divTablesupplieragb_Visible","ctrl":"TABLESUPPLIERAGB","prop":"Visible"},{"av":"divTablesuppliergen_Visible","ctrl":"TABLESUPPLIERGEN","prop":"Visible"},{"av":"AV29SupplierAgbId_Data","fld":"vSUPPLIERAGBID_DATA"},{"av":"AV31SupplierGenId_Data","fld":"vSUPPLIERGENID_DATA"},{"av":"Combo_supplieragbid_Selectedvalue_set","ctrl":"COMBO_SUPPLIERAGBID","prop":"SelectedValue_set"},{"av":"Combo_suppliergenid_Selectedvalue_set","ctrl":"COMBO_SUPPLIERGENID","prop":"SelectedValue_set"},{"av":"AV49isStart","fld":"vISSTART"}]}""");
-         setEventMetadata("VNOFILTERGEN.CONTROLVALUECHANGED","""{"handler":"E18722","iparms":[{"av":"AV46noFilterAgb","fld":"vNOFILTERAGB"},{"av":"dynavProductservicegroup"},{"av":"AV22ProductServiceGroup","fld":"vPRODUCTSERVICEGROUP"},{"av":"A51SupplierAgbName","fld":"SUPPLIERAGBNAME"},{"av":"A49SupplierAgbId","fld":"SUPPLIERAGBID"},{"av":"AV28SupplierAgbId","fld":"vSUPPLIERAGBID"},{"av":"AV43PreferredAgbSuppliers","fld":"vPREFERREDAGBSUPPLIERS","hsh":true},{"av":"AV49isStart","fld":"vISSTART"},{"av":"AV47noFilterGen","fld":"vNOFILTERGEN"},{"av":"A44SupplierGenCompanyName","fld":"SUPPLIERGENCOMPANYNAME"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"AV19OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A42SupplierGenId","fld":"SUPPLIERGENID"},{"av":"AV44PreferredGenSuppliers","fld":"vPREFERREDGENSUPPLIERS"},{"av":"AV30SupplierGenId","fld":"vSUPPLIERGENID"}]""");
+         setEventMetadata("VNOFILTERGEN.CONTROLVALUECHANGED","""{"handler":"E19722","iparms":[{"av":"AV46noFilterAgb","fld":"vNOFILTERAGB"},{"av":"dynavProductservicegroup"},{"av":"AV22ProductServiceGroup","fld":"vPRODUCTSERVICEGROUP"},{"av":"A51SupplierAgbName","fld":"SUPPLIERAGBNAME"},{"av":"A49SupplierAgbId","fld":"SUPPLIERAGBID"},{"av":"AV28SupplierAgbId","fld":"vSUPPLIERAGBID"},{"av":"AV43PreferredAgbSuppliers","fld":"vPREFERREDAGBSUPPLIERS","hsh":true},{"av":"AV49isStart","fld":"vISSTART"},{"av":"AV47noFilterGen","fld":"vNOFILTERGEN"},{"av":"A44SupplierGenCompanyName","fld":"SUPPLIERGENCOMPANYNAME"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"AV19OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A42SupplierGenId","fld":"SUPPLIERGENID"},{"av":"AV44PreferredGenSuppliers","fld":"vPREFERREDGENSUPPLIERS"},{"av":"AV30SupplierGenId","fld":"vSUPPLIERGENID"}]""");
          setEventMetadata("VNOFILTERGEN.CONTROLVALUECHANGED",""","oparms":[{"av":"AV29SupplierAgbId_Data","fld":"vSUPPLIERAGBID_DATA"},{"av":"AV31SupplierGenId_Data","fld":"vSUPPLIERGENID_DATA"},{"av":"Combo_supplieragbid_Selectedvalue_set","ctrl":"COMBO_SUPPLIERAGBID","prop":"SelectedValue_set"},{"av":"AV28SupplierAgbId","fld":"vSUPPLIERAGBID"},{"av":"Combo_suppliergenid_Selectedvalue_set","ctrl":"COMBO_SUPPLIERGENID","prop":"SelectedValue_set"},{"av":"AV30SupplierGenId","fld":"vSUPPLIERGENID"},{"av":"AV49isStart","fld":"vISSTART"}]}""");
-         setEventMetadata("VNOFILTERAGB.CONTROLVALUECHANGED","""{"handler":"E19722","iparms":[{"av":"AV46noFilterAgb","fld":"vNOFILTERAGB"},{"av":"dynavProductservicegroup"},{"av":"AV22ProductServiceGroup","fld":"vPRODUCTSERVICEGROUP"},{"av":"A51SupplierAgbName","fld":"SUPPLIERAGBNAME"},{"av":"A49SupplierAgbId","fld":"SUPPLIERAGBID"},{"av":"AV28SupplierAgbId","fld":"vSUPPLIERAGBID"},{"av":"AV43PreferredAgbSuppliers","fld":"vPREFERREDAGBSUPPLIERS","hsh":true},{"av":"AV49isStart","fld":"vISSTART"},{"av":"AV47noFilterGen","fld":"vNOFILTERGEN"},{"av":"A44SupplierGenCompanyName","fld":"SUPPLIERGENCOMPANYNAME"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"AV19OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A42SupplierGenId","fld":"SUPPLIERGENID"},{"av":"AV44PreferredGenSuppliers","fld":"vPREFERREDGENSUPPLIERS"},{"av":"AV30SupplierGenId","fld":"vSUPPLIERGENID"}]""");
+         setEventMetadata("VNOFILTERAGB.CONTROLVALUECHANGED","""{"handler":"E20722","iparms":[{"av":"AV46noFilterAgb","fld":"vNOFILTERAGB"},{"av":"dynavProductservicegroup"},{"av":"AV22ProductServiceGroup","fld":"vPRODUCTSERVICEGROUP"},{"av":"A51SupplierAgbName","fld":"SUPPLIERAGBNAME"},{"av":"A49SupplierAgbId","fld":"SUPPLIERAGBID"},{"av":"AV28SupplierAgbId","fld":"vSUPPLIERAGBID"},{"av":"AV43PreferredAgbSuppliers","fld":"vPREFERREDAGBSUPPLIERS","hsh":true},{"av":"AV49isStart","fld":"vISSTART"},{"av":"AV47noFilterGen","fld":"vNOFILTERGEN"},{"av":"A44SupplierGenCompanyName","fld":"SUPPLIERGENCOMPANYNAME"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"AV19OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A42SupplierGenId","fld":"SUPPLIERGENID"},{"av":"AV44PreferredGenSuppliers","fld":"vPREFERREDGENSUPPLIERS"},{"av":"AV30SupplierGenId","fld":"vSUPPLIERGENID"}]""");
          setEventMetadata("VNOFILTERAGB.CONTROLVALUECHANGED",""","oparms":[{"av":"AV29SupplierAgbId_Data","fld":"vSUPPLIERAGBID_DATA"},{"av":"AV31SupplierGenId_Data","fld":"vSUPPLIERGENID_DATA"},{"av":"Combo_supplieragbid_Selectedvalue_set","ctrl":"COMBO_SUPPLIERAGBID","prop":"SelectedValue_set"},{"av":"AV28SupplierAgbId","fld":"vSUPPLIERAGBID"},{"av":"Combo_suppliergenid_Selectedvalue_set","ctrl":"COMBO_SUPPLIERGENID","prop":"SelectedValue_set"},{"av":"AV30SupplierGenId","fld":"vSUPPLIERGENID"},{"av":"AV49isStart","fld":"vISSTART"}]}""");
-         setEventMetadata("GLOBALEVENTS.REFRESHPREFERREDSUPPLIER","""{"handler":"E20722","iparms":[{"av":"AV46noFilterAgb","fld":"vNOFILTERAGB"},{"av":"dynavProductservicegroup"},{"av":"AV22ProductServiceGroup","fld":"vPRODUCTSERVICEGROUP"},{"av":"A51SupplierAgbName","fld":"SUPPLIERAGBNAME"},{"av":"A49SupplierAgbId","fld":"SUPPLIERAGBID"},{"av":"AV28SupplierAgbId","fld":"vSUPPLIERAGBID"},{"av":"AV43PreferredAgbSuppliers","fld":"vPREFERREDAGBSUPPLIERS","hsh":true},{"av":"AV49isStart","fld":"vISSTART"},{"av":"AV47noFilterGen","fld":"vNOFILTERGEN"},{"av":"A44SupplierGenCompanyName","fld":"SUPPLIERGENCOMPANYNAME"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"AV19OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A42SupplierGenId","fld":"SUPPLIERGENID"},{"av":"AV44PreferredGenSuppliers","fld":"vPREFERREDGENSUPPLIERS"},{"av":"AV30SupplierGenId","fld":"vSUPPLIERGENID"}]""");
+         setEventMetadata("GLOBALEVENTS.REFRESHPREFERREDSUPPLIER","""{"handler":"E21722","iparms":[{"av":"AV46noFilterAgb","fld":"vNOFILTERAGB"},{"av":"dynavProductservicegroup"},{"av":"AV22ProductServiceGroup","fld":"vPRODUCTSERVICEGROUP"},{"av":"A51SupplierAgbName","fld":"SUPPLIERAGBNAME"},{"av":"A49SupplierAgbId","fld":"SUPPLIERAGBID"},{"av":"AV28SupplierAgbId","fld":"vSUPPLIERAGBID"},{"av":"AV43PreferredAgbSuppliers","fld":"vPREFERREDAGBSUPPLIERS","hsh":true},{"av":"AV49isStart","fld":"vISSTART"},{"av":"AV47noFilterGen","fld":"vNOFILTERGEN"},{"av":"A44SupplierGenCompanyName","fld":"SUPPLIERGENCOMPANYNAME"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"AV19OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"A42SupplierGenId","fld":"SUPPLIERGENID"},{"av":"AV44PreferredGenSuppliers","fld":"vPREFERREDGENSUPPLIERS"},{"av":"AV30SupplierGenId","fld":"vSUPPLIERGENID"}]""");
          setEventMetadata("GLOBALEVENTS.REFRESHPREFERREDSUPPLIER",""","oparms":[{"av":"AV44PreferredGenSuppliers","fld":"vPREFERREDGENSUPPLIERS"},{"av":"AV29SupplierAgbId_Data","fld":"vSUPPLIERAGBID_DATA"},{"av":"AV31SupplierGenId_Data","fld":"vSUPPLIERGENID_DATA"},{"av":"Combo_supplieragbid_Selectedvalue_set","ctrl":"COMBO_SUPPLIERAGBID","prop":"SelectedValue_set"},{"av":"AV28SupplierAgbId","fld":"vSUPPLIERAGBID"},{"av":"Combo_suppliergenid_Selectedvalue_set","ctrl":"COMBO_SUPPLIERGENID","prop":"SelectedValue_set"},{"av":"AV30SupplierGenId","fld":"vSUPPLIERGENID"},{"av":"AV49isStart","fld":"vISSTART"}]}""");
          setEventMetadata("VALIDV_LOCATIONID","""{"handler":"Validv_Locationid","iparms":[]}""");
          setEventMetadata("VALIDV_SUPPLIERAGBID","""{"handler":"Validv_Supplieragbid","iparms":[]}""");

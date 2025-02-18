@@ -337,16 +337,6 @@ namespace GeneXus.Programs {
          AV5id = (short)(AV5id+1);
          Gxm3dvelop_menu_subitems.gxTpr_Id = StringUtil.Str( (decimal)(AV5id), 4, 0);
          Gxm3dvelop_menu_subitems.gxTpr_Tooltip = "";
-         Gxm3dvelop_menu_subitems.gxTpr_Link = formatLink("wp_discussion.aspx") ;
-         Gxm3dvelop_menu_subitems.gxTpr_Linktarget = "";
-         Gxm3dvelop_menu_subitems.gxTpr_Iconclass = "";
-         Gxm3dvelop_menu_subitems.gxTpr_Caption = context.GetMessage( "Chat", "");
-         Gxm3dvelop_menu_subitems.gxTpr_Authorizationkey = context.GetMessage( "wp_discussion_Execute", "");
-         Gxm3dvelop_menu_subitems = new GeneXus.Programs.wwpbaseobjects.SdtDVelop_Menu_Item(context);
-         Gxm1dvelop_menu.gxTpr_Subitems.Add(Gxm3dvelop_menu_subitems, 0);
-         AV5id = (short)(AV5id+1);
-         Gxm3dvelop_menu_subitems.gxTpr_Id = StringUtil.Str( (decimal)(AV5id), 4, 0);
-         Gxm3dvelop_menu_subitems.gxTpr_Tooltip = "";
          Gxm3dvelop_menu_subitems.gxTpr_Link = formatLink("wp_notificationpanel.aspx") ;
          Gxm3dvelop_menu_subitems.gxTpr_Linktarget = "";
          Gxm3dvelop_menu_subitems.gxTpr_Iconclass = "";

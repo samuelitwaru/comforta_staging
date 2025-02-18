@@ -87,7 +87,8 @@ function mapTemplateToPageData(templateData, page) {
 
               TileAction: {
                   ObjectType: attributes['tile-action-object'],
-                  ObjectId: (tileActionObjectId == "") ? null : tileActionObjectId
+                  ObjectId: (tileActionObjectId == "") ? null : tileActionObjectId,
+                  OjectUrl: attributes['tile-action-object-url'],
               }
           };
           return col;

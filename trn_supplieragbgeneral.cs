@@ -323,10 +323,6 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
-         GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISAUTHORIZED_UPDATE", AV12IsAuthorized_Update);
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_UPDATE", GetSecureSignedToken( sPrefix, AV12IsAuthorized_Update, context));
-         GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISAUTHORIZED_DELETE", AV13IsAuthorized_Delete);
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_DELETE", GetSecureSignedToken( sPrefix, AV13IsAuthorized_Delete, context));
          GXKey = Crypto.GetSiteKey( );
       }
 
@@ -336,10 +332,6 @@ namespace GeneXus.Programs {
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOA49SupplierAgbId", wcpOA49SupplierAgbId.ToString());
-         GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISAUTHORIZED_UPDATE", AV12IsAuthorized_Update);
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_UPDATE", GetSecureSignedToken( sPrefix, AV12IsAuthorized_Update, context));
-         GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISAUTHORIZED_DELETE", AV13IsAuthorized_Delete);
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_DELETE", GetSecureSignedToken( sPrefix, AV13IsAuthorized_Delete, context));
       }
 
       protected void RenderHtmlCloseForm572( )
@@ -748,16 +740,9 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 104,'" + sPrefix + "',false,'',0)\"";
-            ClassString = "ButtonMaterial";
-            StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnupdate_Internalname, "", context.GetMessage( "GXM_update", ""), bttBtnupdate_Jsonclick, 5, context.GetMessage( "GXM_update", ""), "", StyleString, ClassString, bttBtnupdate_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'DOUPDATE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_SupplierAgbGeneral.htm");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 106,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtndelete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtndelete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtndelete_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'DODELETE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_SupplierAgbGeneral.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtncancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_SupplierAgbGeneral.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -900,40 +885,6 @@ namespace GeneXus.Programs {
                                     dynload_actions( ) ;
                                     /* Execute user event: Load */
                                     E12572 ();
-                                 }
-                              }
-                           }
-                           else if ( StringUtil.StrCmp(sEvt, "'DOUPDATE'") == 0 )
-                           {
-                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
-                              {
-                                 STRUP570( ) ;
-                              }
-                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
-                              {
-                                 context.wbHandled = 1;
-                                 if ( ! wbErr )
-                                 {
-                                    dynload_actions( ) ;
-                                    /* Execute user event: 'DoUpdate' */
-                                    E13572 ();
-                                 }
-                              }
-                           }
-                           else if ( StringUtil.StrCmp(sEvt, "'DODELETE'") == 0 )
-                           {
-                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
-                              {
-                                 STRUP570( ) ;
-                              }
-                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
-                              {
-                                 context.wbHandled = 1;
-                                 if ( ! wbErr )
-                                 {
-                                    dynload_actions( ) ;
-                                    /* Execute user event: 'DoDelete' */
-                                    E14572 ();
                                  }
                               }
                            }
@@ -1179,10 +1130,6 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_lvl_hashes572( )
       {
-         GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISAUTHORIZED_UPDATE", AV12IsAuthorized_Update);
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_UPDATE", GetSecureSignedToken( sPrefix, AV12IsAuthorized_Update, context));
-         GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISAUTHORIZED_DELETE", AV13IsAuthorized_Delete);
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_DELETE", GetSecureSignedToken( sPrefix, AV13IsAuthorized_Delete, context));
       }
 
       protected void before_start_formulas( )
@@ -1334,26 +1281,6 @@ namespace GeneXus.Programs {
          returnInSub = false;
          edtSupplierAgbId_Visible = 0;
          AssignProp(sPrefix, false, edtSupplierAgbId_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtSupplierAgbId_Visible), 5, 0), true);
-         GXt_boolean2 = AV12IsAuthorized_Update;
-         new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_supplieragb_Update", out  GXt_boolean2) ;
-         AV12IsAuthorized_Update = GXt_boolean2;
-         AssignAttri(sPrefix, false, "AV12IsAuthorized_Update", AV12IsAuthorized_Update);
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_UPDATE", GetSecureSignedToken( sPrefix, AV12IsAuthorized_Update, context));
-         if ( ! ( AV12IsAuthorized_Update ) )
-         {
-            bttBtnupdate_Visible = 0;
-            AssignProp(sPrefix, false, bttBtnupdate_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnupdate_Visible), 5, 0), true);
-         }
-         GXt_boolean2 = AV13IsAuthorized_Delete;
-         new GeneXus.Programs.wwpbaseobjects.secgamisauthbyfunctionalitykey(context ).execute(  "trn_supplieragb_Delete", out  GXt_boolean2) ;
-         AV13IsAuthorized_Delete = GXt_boolean2;
-         AssignAttri(sPrefix, false, "AV13IsAuthorized_Delete", AV13IsAuthorized_Delete);
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_DELETE", GetSecureSignedToken( sPrefix, AV13IsAuthorized_Delete, context));
-         if ( ! ( AV13IsAuthorized_Delete ) )
-         {
-            bttBtndelete_Visible = 0;
-            AssignProp(sPrefix, false, bttBtndelete_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtndelete_Visible), 5, 0), true);
-         }
          if ( ! ( ( StringUtil.StrCmp(Gx_mode, "DSP") == 0 ) || ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 ) ) )
          {
             edtSupplierAgbPhone_Visible = 0;
@@ -1370,46 +1297,6 @@ namespace GeneXus.Programs {
          }
          divTransactiondetail_phonenumbertable_Visible = (((StringUtil.StrCmp(Gx_mode, "INS")==0)||(StringUtil.StrCmp(Gx_mode, "UPD")==0)) ? 1 : 0);
          AssignProp(sPrefix, false, divTransactiondetail_phonenumbertable_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divTransactiondetail_phonenumbertable_Visible), 5, 0), true);
-      }
-
-      protected void E13572( )
-      {
-         /* 'DoUpdate' Routine */
-         returnInSub = false;
-         if ( AV12IsAuthorized_Update )
-         {
-            GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "trn_supplieragb.aspx"+UrlEncode(StringUtil.RTrim("UPD")) + "," + UrlEncode(A49SupplierAgbId.ToString());
-            CallWebObject(formatLink("trn_supplieragb.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
-            context.wjLocDisableFrm = 1;
-         }
-         else
-         {
-            GX_msglist.addItem(context.GetMessage( "WWP_ActionNoLongerAvailable", ""));
-            bttBtnupdate_Visible = 0;
-            AssignProp(sPrefix, false, bttBtnupdate_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnupdate_Visible), 5, 0), true);
-         }
-         /*  Sending Event outputs  */
-      }
-
-      protected void E14572( )
-      {
-         /* 'DoDelete' Routine */
-         returnInSub = false;
-         if ( AV13IsAuthorized_Delete )
-         {
-            GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "trn_supplieragb.aspx"+UrlEncode(StringUtil.RTrim("DLT")) + "," + UrlEncode(A49SupplierAgbId.ToString());
-            CallWebObject(formatLink("trn_supplieragb.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
-            context.wjLocDisableFrm = 1;
-         }
-         else
-         {
-            GX_msglist.addItem(context.GetMessage( "WWP_ActionNoLongerAvailable", ""));
-            bttBtndelete_Visible = 0;
-            AssignProp(sPrefix, false, bttBtndelete_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtndelete_Visible), 5, 0), true);
-         }
-         /*  Sending Event outputs  */
       }
 
       protected void S112( )
@@ -1625,7 +1512,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512220571524", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521815533869", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1641,7 +1528,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_supplieragbgeneral.js", "?202512220571524", false, true);
+         context.AddJavascriptSource("trn_supplieragbgeneral.js", "?202521815533870", false, true);
          /* End function include_jscripts */
       }
 
@@ -1677,8 +1564,7 @@ namespace GeneXus.Programs {
          divUnnamedtable3_Internalname = sPrefix+"UNNAMEDTABLE3";
          grpUnnamedgroup4_Internalname = sPrefix+"UNNAMEDGROUP4";
          divTransactiondetail_tableattributes_Internalname = sPrefix+"TRANSACTIONDETAIL_TABLEATTRIBUTES";
-         bttBtnupdate_Internalname = sPrefix+"BTNUPDATE";
-         bttBtndelete_Internalname = sPrefix+"BTNDELETE";
+         bttBtncancel_Internalname = sPrefix+"BTNCANCEL";
          divTable_Internalname = sPrefix+"TABLE";
          edtSupplierAgbId_Internalname = sPrefix+"SUPPLIERAGBID";
          divHtml_bottomauxiliarcontrols_Internalname = sPrefix+"HTML_BOTTOMAUXILIARCONTROLS";
@@ -1703,8 +1589,6 @@ namespace GeneXus.Programs {
          edtSupplierAgbId_Enabled = 0;
          edtSupplierAgbId_Jsonclick = "";
          edtSupplierAgbId_Visible = 1;
-         bttBtndelete_Visible = 1;
-         bttBtnupdate_Visible = 1;
          edtavSupplieragbaddresscountry_description_Jsonclick = "";
          edtavSupplieragbaddresscountry_description_Enabled = 1;
          edtSupplierAgbAddressZipCode_Jsonclick = "";
@@ -1754,11 +1638,7 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"A49SupplierAgbId","fld":"SUPPLIERAGBID"},{"av":"AV12IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV13IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true}]}""");
-         setEventMetadata("'DOUPDATE'","""{"handler":"E13572","iparms":[{"av":"AV12IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"A49SupplierAgbId","fld":"SUPPLIERAGBID"}]""");
-         setEventMetadata("'DOUPDATE'",""","oparms":[{"ctrl":"BTNUPDATE","prop":"Visible"}]}""");
-         setEventMetadata("'DODELETE'","""{"handler":"E14572","iparms":[{"av":"AV13IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"A49SupplierAgbId","fld":"SUPPLIERAGBID"}]""");
-         setEventMetadata("'DODELETE'",""","oparms":[{"ctrl":"BTNDELETE","prop":"Visible"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"A49SupplierAgbId","fld":"SUPPLIERAGBID"}]}""");
          setEventMetadata("VALID_SUPPLIERAGBID","""{"handler":"Valid_Supplieragbid","iparms":[]}""");
          return  ;
       }
@@ -1805,8 +1685,7 @@ namespace GeneXus.Programs {
          AV14SupplierAGBAddressCountry_Description = "";
          ClassString = "";
          StyleString = "";
-         bttBtnupdate_Jsonclick = "";
-         bttBtndelete_Jsonclick = "";
+         bttBtncancel_Jsonclick = "";
          Form = new GXWebForm();
          sXEvt = "";
          sEvt = "";
@@ -1882,8 +1761,6 @@ namespace GeneXus.Programs {
       private int edtSupplierAgbAddressLine2_Enabled ;
       private int edtSupplierAgbAddressCity_Enabled ;
       private int edtSupplierAgbAddressZipCode_Enabled ;
-      private int bttBtnupdate_Visible ;
-      private int bttBtndelete_Visible ;
       private int edtSupplierAgbId_Visible ;
       private int edtSupplierAgbId_Enabled ;
       private int idxLst ;
@@ -1948,10 +1825,8 @@ namespace GeneXus.Programs {
       private string edtavSupplieragbaddresscountry_description_Jsonclick ;
       private string ClassString ;
       private string StyleString ;
-      private string bttBtnupdate_Internalname ;
-      private string bttBtnupdate_Jsonclick ;
-      private string bttBtndelete_Internalname ;
-      private string bttBtndelete_Jsonclick ;
+      private string bttBtncancel_Internalname ;
+      private string bttBtncancel_Jsonclick ;
       private string divHtml_bottomauxiliarcontrols_Internalname ;
       private string edtSupplierAgbId_Internalname ;
       private string edtSupplierAgbId_Jsonclick ;
@@ -1965,14 +1840,11 @@ namespace GeneXus.Programs {
       private string sCtrlA49SupplierAgbId ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
-      private bool AV12IsAuthorized_Update ;
-      private bool AV13IsAuthorized_Delete ;
       private bool wbLoad ;
       private bool Rfr0gs ;
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
-      private bool GXt_boolean2 ;
       private string A291SupplierAgbTypeName ;
       private string A50SupplierAgbNumber ;
       private string A51SupplierAgbName ;

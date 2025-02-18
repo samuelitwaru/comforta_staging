@@ -222,7 +222,7 @@ namespace GeneXus.Programs {
             AV12AuditingObjectRecordItem.gxTpr_Attribute.Add(AV13AuditingObjectRecordItemAttributeItem, 0);
             AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name = "ProductServiceId";
-            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = context.GetMessage( "Product/Service", "");
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = context.GetMessage( "Services", "");
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = false;
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Isdescriptionattribute = false;
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Oldvalue = A58ProductServiceId.ToString();
@@ -354,7 +354,7 @@ namespace GeneXus.Programs {
                AV12AuditingObjectRecordItem.gxTpr_Attribute.Add(AV13AuditingObjectRecordItemAttributeItem, 0);
                AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name = "ProductServiceId";
-               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = context.GetMessage( "Product/Service", "");
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = context.GetMessage( "Services", "");
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = false;
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Isdescriptionattribute = false;
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue = A58ProductServiceId.ToString();

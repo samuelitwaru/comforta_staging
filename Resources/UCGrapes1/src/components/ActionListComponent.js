@@ -235,7 +235,6 @@ class ActionListComponent {
 
     document.querySelectorAll(".category-content li").forEach((item) => {
       item.addEventListener("click", () => {
-        console.log(item.dataset)
         this.selectedObject = item.dataset.category
         dropdownHeader.textContent = `${
           item.closest(".category").dataset.category
