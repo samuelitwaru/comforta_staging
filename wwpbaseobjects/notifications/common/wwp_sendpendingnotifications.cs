@@ -60,13 +60,6 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         /* Execute user subroutine: 'SENDPENDINGMAILS' */
-         S111 ();
-         if ( returnInSub )
-         {
-            cleanup();
-            if (true) return;
-         }
          /* Execute user subroutine: 'SENDPENDINGSMS' */
          S121 ();
          if ( returnInSub )
@@ -83,6 +76,13 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          }
          /* Execute user subroutine: 'SENDPENDINGMOBILENOTIFICATIONS' */
          S141 ();
+         if ( returnInSub )
+         {
+            cleanup();
+            if (true) return;
+         }
+         /* Execute user subroutine: 'SENDPENDINGMAILS' */
+         S111 ();
          if ( returnInSub )
          {
             cleanup();
@@ -117,6 +117,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             pr_default.execute(0);
             while ( (pr_default.getStatus(0) != 101) )
             {
+               A196WWPMailCreated = P003M2_A196WWPMailCreated[0];
                A186WWPMailStatus = P003M2_A186WWPMailStatus[0];
                A185WWPMailId = P003M2_A185WWPMailId[0];
                GXt_int2 = AV14StatusCode;
@@ -188,8 +189,10 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          GXt_SdtWWP_SMTPParametersSDT1 = new GeneXus.Programs.wwpbaseobjects.mail.SdtWWP_SMTPParametersSDT(context);
          AV9SmtpSession = new GeneXus.Mail.GXSMTPSession(context.GetPhysicalPath());
          AV15Pgmname = "";
+         P003M2_A196WWPMailCreated = new DateTime[] {DateTime.MinValue} ;
          P003M2_A186WWPMailStatus = new short[1] ;
          P003M2_A185WWPMailId = new long[1] ;
+         A196WWPMailCreated = (DateTime)(DateTime.MinValue);
          AV10SMSParametersSDT = new GeneXus.Programs.wwpbaseobjects.sms.SdtWWP_SMSParametersSDT(context);
          GXt_SdtWWP_SMSParametersSDT3 = new GeneXus.Programs.wwpbaseobjects.sms.SdtWWP_SMSParametersSDT(context);
          P003M3_A139WWPSMSStatus = new short[1] ;
@@ -200,7 +203,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendpendingnotifications__default(),
             new Object[][] {
                 new Object[] {
-               P003M2_A186WWPMailStatus, P003M2_A185WWPMailId
+               P003M2_A196WWPMailCreated, P003M2_A186WWPMailStatus, P003M2_A185WWPMailId
                }
                , new Object[] {
                P003M3_A139WWPSMSStatus, P003M3_A138WWPSMSId
@@ -225,6 +228,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       private long A138WWPSMSId ;
       private long A152WWPWebNotificationId ;
       private string AV15Pgmname ;
+      private DateTime A196WWPMailCreated ;
       private bool returnInSub ;
       private bool AV12Success ;
       private GeneXus.Mail.GXSMTPSession AV9SmtpSession ;
@@ -234,6 +238,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
       private GeneXus.Programs.wwpbaseobjects.mail.SdtWWP_SMTPParametersSDT AV8SMTPParametersSDT ;
       private GeneXus.Programs.wwpbaseobjects.mail.SdtWWP_SMTPParametersSDT GXt_SdtWWP_SMTPParametersSDT1 ;
       private IDataStoreProvider pr_default ;
+      private DateTime[] P003M2_A196WWPMailCreated ;
       private short[] P003M2_A186WWPMailStatus ;
       private long[] P003M2_A185WWPMailId ;
       private GeneXus.Programs.wwpbaseobjects.sms.SdtWWP_SMSParametersSDT AV10SMSParametersSDT ;
@@ -272,7 +277,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
           prmP003M4 = new Object[] {
           };
           def= new CursorDef[] {
-              new CursorDef("P003M2", "SELECT WWPMailStatus, WWPMailId FROM WWP_Mail WHERE WWPMailStatus = 1 ORDER BY WWPMailId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP003M2,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P003M2", "SELECT WWPMailCreated, WWPMailStatus, WWPMailId FROM WWP_Mail WHERE ((WWPMailCreated + CAST (86400 * CAST(( 1) AS NUMERIC(15,10)) || ' SECOND' AS INTERVAL)) > timezone('UTC', NOW())) AND (WWPMailStatus = 1) ORDER BY WWPMailId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP003M2,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("P003M3", "SELECT WWPSMSStatus, WWPSMSId FROM WWP_SMS WHERE WWPSMSStatus = 1 ORDER BY WWPSMSId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP003M3,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("P003M4", "SELECT WWPWebNotificationStatus, WWPWebNotificationId FROM WWP_WebNotification WHERE WWPWebNotificationStatus = 1 ORDER BY WWPWebNotificationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP003M4,100, GxCacheFrequency.OFF ,true,false )
           };
@@ -286,8 +291,9 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
        switch ( cursor )
        {
              case 0 :
-                ((short[]) buf[0])[0] = rslt.getShort(1);
-                ((long[]) buf[1])[0] = rslt.getLong(2);
+                ((DateTime[]) buf[0])[0] = rslt.getGXDateTime(1, true);
+                ((short[]) buf[1])[0] = rslt.getShort(2);
+                ((long[]) buf[2])[0] = rslt.getLong(3);
                 return;
              case 1 :
                 ((short[]) buf[0])[0] = rslt.getShort(1);

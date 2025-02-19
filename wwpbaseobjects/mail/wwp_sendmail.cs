@@ -86,12 +86,14 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          if ( AV13Mail.Fail() )
          {
             new GeneXus.Programs.wwpbaseobjects.wwp_logger(context ).gxep_error(  AV21Pgmname,  "Mail not found with id: "+StringUtil.Str( (decimal)(AV14MailId), 10, 0)) ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "Mail not found with id: ", "")+StringUtil.Str( (decimal)(AV14MailId), 10, 0)) ;
             cleanup();
             if (true) return;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13Mail.gxTpr_Wwpmailsenderaddress)) || String.IsNullOrEmpty(StringUtil.RTrim( AV13Mail.gxTpr_Wwpmailsendername)) )
          {
             new GeneXus.Programs.wwpbaseobjects.wwp_logger(context ).gxep_error(  AV21Pgmname,  "Sender address/name cannot be empty: "+StringUtil.Str( (decimal)(AV14MailId), 10, 0)) ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "Sender address/name cannot be empty: ", "")+StringUtil.Str( (decimal)(AV14MailId), 10, 0)) ;
             new GeneXus.Programs.wwpbaseobjects.mail.wwp_updatemailstatus(context ).execute(  AV14MailId,  3,  "Sender address/name cannot be empty") ;
             cleanup();
             if (true) return;
@@ -99,6 +101,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13Mail.gxTpr_Wwpmailsubject)) || String.IsNullOrEmpty(StringUtil.RTrim( AV13Mail.gxTpr_Wwpmailbody)) )
          {
             new GeneXus.Programs.wwpbaseobjects.wwp_logger(context ).gxep_error(  AV21Pgmname,  "Mail subject/body cannot be empty: "+StringUtil.Str( (decimal)(AV14MailId), 10, 0)) ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "Mail subject/body cannot be empty: ", "")+StringUtil.Str( (decimal)(AV14MailId), 10, 0)) ;
             new GeneXus.Programs.wwpbaseobjects.mail.wwp_updatemailstatus(context ).execute(  AV14MailId,  3,  "Mail subject/body cannot be empty") ;
             cleanup();
             if (true) return;
@@ -106,6 +109,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV13Mail.gxTpr_Wwpmailto)) && String.IsNullOrEmpty(StringUtil.RTrim( AV13Mail.gxTpr_Wwpmailcc)) && String.IsNullOrEmpty(StringUtil.RTrim( AV13Mail.gxTpr_Wwpmailbcc)) )
          {
             new GeneXus.Programs.wwpbaseobjects.wwp_logger(context ).gxep_error(  AV21Pgmname,  "Mail recipient cannot be empty: "+StringUtil.Str( (decimal)(AV14MailId), 10, 0)) ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "Mail recipient cannot be empty: ", "")+StringUtil.Str( (decimal)(AV14MailId), 10, 0)) ;
             new GeneXus.Programs.wwpbaseobjects.mail.wwp_updatemailstatus(context ).execute(  AV14MailId,  3,  "Mail recipient cannot be empty") ;
             cleanup();
             if (true) return;
@@ -116,6 +120,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13Mail.gxTpr_Wwpmailto)) && ( AV20ToAddressList.Count == 0 ) )
          {
             new GeneXus.Programs.wwpbaseobjects.wwp_logger(context ).gxep_error(  AV21Pgmname,  "Mail recipient is not valid address list: "+StringUtil.Str( (decimal)(AV14MailId), 10, 0)) ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "Mail recipient is not valid address list: ", "")+StringUtil.Str( (decimal)(AV14MailId), 10, 0)) ;
             new GeneXus.Programs.wwpbaseobjects.mail.wwp_updatemailstatus(context ).execute(  AV14MailId,  3,  "Mail To is invalid") ;
             cleanup();
             if (true) return;
@@ -126,6 +131,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13Mail.gxTpr_Wwpmailcc)) && ( AV11CCAddressList.Count == 0 ) )
          {
             new GeneXus.Programs.wwpbaseobjects.wwp_logger(context ).gxep_error(  AV21Pgmname,  "Mail recipient is not valid address list: "+StringUtil.Str( (decimal)(AV14MailId), 10, 0)) ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "Mail recipient is not valid address list: ", "")+StringUtil.Str( (decimal)(AV14MailId), 10, 0)) ;
             new GeneXus.Programs.wwpbaseobjects.mail.wwp_updatemailstatus(context ).execute(  AV14MailId,  3,  "Mail CC is invalid") ;
             cleanup();
             if (true) return;
@@ -136,6 +142,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV13Mail.gxTpr_Wwpmailbcc)) && ( AV10BCCAddressList.Count == 0 ) )
          {
             new GeneXus.Programs.wwpbaseobjects.wwp_logger(context ).gxep_error(  AV21Pgmname,  "Mail recipient is not valid address list: "+StringUtil.Str( (decimal)(AV14MailId), 10, 0)) ;
+            new prc_logtofile(context ).execute(  context.GetMessage( "Mail recipient is not valid address list: ", "")+StringUtil.Str( (decimal)(AV14MailId), 10, 0)) ;
             new GeneXus.Programs.wwpbaseobjects.mail.wwp_updatemailstatus(context ).execute(  AV14MailId,  3,  "Mail BCC is invalid") ;
             cleanup();
             if (true) return;
@@ -148,6 +155,7 @@ namespace GeneXus.Programs.wwpbaseobjects.mail {
             if ( ! AV12FileExists )
             {
                new GeneXus.Programs.wwpbaseobjects.wwp_logger(context ).gxep_error(  AV21Pgmname,  "Attachment is not a valid file: "+AV9Attachment.gxTpr_Wwpmailattachmentfile) ;
+               new prc_logtofile(context ).execute(  context.GetMessage( "Attachment is not a valid file: ", "")+AV9Attachment.gxTpr_Wwpmailattachmentfile) ;
                new GeneXus.Programs.wwpbaseobjects.mail.wwp_updatemailstatus(context ).execute(  AV14MailId,  3,  "Attachment invalid") ;
                cleanup();
                if (true) return;

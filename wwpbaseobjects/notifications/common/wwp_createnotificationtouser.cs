@@ -208,7 +208,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
          AV22MailBody = StringUtil.StringReplace( AV22MailBody, "[BASE_URL]", AV26Notification_BaseUrl);
          AV19Mail.gxTpr_Wwpmailbody = AV22MailBody;
          AV19Mail.gxTpr_Wwpmailto = AV28WWPUserExtendedEmail;
-         AV19Mail.gxTpr_Wwpmailsubject = AV11WWPNotificationDefinitionTitle;
+         AV19Mail.gxTpr_Wwpmailsubject = context.GetMessage( "Comforta - ", "")+AV11WWPNotificationDefinitionTitle;
          AV19Mail.Save();
       }
 

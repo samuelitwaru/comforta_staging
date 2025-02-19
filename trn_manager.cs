@@ -1573,9 +1573,9 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
          pr_default.close(2);
-         if ( ! ( new prc_mainmanagerscount(context).executeUdp(  A11OrganisationId) > 1 ) && ( ( ! A360ManagerIsMainManager && IsUpd( )  ) || IsDlt( )  ) )
+         if ( ! ( new prc_mainmanagerscount(context).executeUdp(  A11OrganisationId) > 0 ) && ( ( ! A360ManagerIsMainManager && IsUpd( )  ) || IsDlt( )  ) )
          {
-            GX_msglist.addItem(context.GetMessage( "Organisation must have atleast on main Manager", ""), 1, "MANAGERISMAINMANAGER");
+            GX_msglist.addItem(context.GetMessage( "Organisation must have atleast one main Manager", ""), 1, "MANAGERISMAINMANAGER");
             AnyError = 1;
             GX_FocusControl = chkManagerIsMainManager_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -2250,9 +2250,9 @@ namespace GeneXus.Programs {
          if ( AnyError == 0 )
          {
             /* Delete mode formulas */
-            if ( ! ( new prc_mainmanagerscount(context).executeUdp(  A11OrganisationId) > 1 ) && ( ( ! A360ManagerIsMainManager && IsUpd( )  ) || IsDlt( )  ) )
+            if ( ! ( new prc_mainmanagerscount(context).executeUdp(  A11OrganisationId) > 0 ) && ( ( ! A360ManagerIsMainManager && IsUpd( )  ) || IsDlt( )  ) )
             {
-               GX_msglist.addItem(context.GetMessage( "Organisation must have atleast on main Manager", ""), 1, "MANAGERISMAINMANAGER");
+               GX_msglist.addItem(context.GetMessage( "Organisation must have atleast one main Manager", ""), 1, "MANAGERISMAINMANAGER");
                AnyError = 1;
                GX_FocusControl = chkManagerIsMainManager_Internalname;
                AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
@@ -2803,7 +2803,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521911444328", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521916214018", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2819,7 +2819,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_manager.js", "?202521911444331", false, true);
+         context.AddJavascriptSource("trn_manager.js", "?202521916214021", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3238,9 +3238,9 @@ namespace GeneXus.Programs {
 
       public void Valid_Managerismainmanager( )
       {
-         if ( ! ( new prc_mainmanagerscount(context).executeUdp(  A11OrganisationId) > 1 ) && ( ( ! A360ManagerIsMainManager && IsUpd( )  ) || IsDlt( )  ) )
+         if ( ! ( new prc_mainmanagerscount(context).executeUdp(  A11OrganisationId) > 0 ) && ( ( ! A360ManagerIsMainManager && IsUpd( )  ) || IsDlt( )  ) )
          {
-            GX_msglist.addItem(context.GetMessage( "Organisation must have atleast on main Manager", ""), 1, "MANAGERISMAINMANAGER");
+            GX_msglist.addItem(context.GetMessage( "Organisation must have atleast one main Manager", ""), 1, "MANAGERISMAINMANAGER");
             AnyError = 1;
             GX_FocusControl = chkManagerIsMainManager_Internalname;
          }

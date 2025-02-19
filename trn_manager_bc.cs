@@ -261,9 +261,9 @@ namespace GeneXus.Programs {
             AnyError = 1;
          }
          pr_default.close(2);
-         if ( ! ( new prc_mainmanagerscount(context).executeUdp(  A11OrganisationId) > 1 ) && ( ( ! A360ManagerIsMainManager && IsUpd( )  ) || IsDlt( )  ) )
+         if ( ! ( new prc_mainmanagerscount(context).executeUdp(  A11OrganisationId) > 0 ) && ( ( ! A360ManagerIsMainManager && IsUpd( )  ) || IsDlt( )  ) )
          {
-            GX_msglist.addItem(context.GetMessage( "Organisation must have atleast on main Manager", ""), 1, "");
+            GX_msglist.addItem(context.GetMessage( "Organisation must have atleast one main Manager", ""), 1, "");
             AnyError = 1;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( A22ManagerGivenName)) )
@@ -607,9 +607,9 @@ namespace GeneXus.Programs {
          if ( AnyError == 0 )
          {
             /* Delete mode formulas */
-            if ( ! ( new prc_mainmanagerscount(context).executeUdp(  A11OrganisationId) > 1 ) && ( ( ! A360ManagerIsMainManager && IsUpd( )  ) || IsDlt( )  ) )
+            if ( ! ( new prc_mainmanagerscount(context).executeUdp(  A11OrganisationId) > 0 ) && ( ( ! A360ManagerIsMainManager && IsUpd( )  ) || IsDlt( )  ) )
             {
-               GX_msglist.addItem(context.GetMessage( "Organisation must have atleast on main Manager", ""), 1, "");
+               GX_msglist.addItem(context.GetMessage( "Organisation must have atleast one main Manager", ""), 1, "");
                AnyError = 1;
             }
             GXt_boolean2 = AV31IsGAMActive;

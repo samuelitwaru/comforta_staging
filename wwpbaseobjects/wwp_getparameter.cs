@@ -96,11 +96,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          }
          else if ( StringUtil.StrCmp(AV14ParameterName, "Sender_Name") == 0 )
          {
-            AV15TextParameter = "smtp.gmail.com";
+            AV15TextParameter = "Comforta Software";
          }
          else if ( StringUtil.StrCmp(AV14ParameterName, "Sender_Address") == 0 )
          {
-            AV15TextParameter = "samplemail@gmail.com";
+            AV15TextParameter = "no-reply@comforta.yukon.software";
          }
          else if ( StringUtil.StrCmp(AV14ParameterName, "Notification_BaseURL") == 0 )
          {
@@ -120,11 +120,11 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Integer Constructor */
          if ( StringUtil.StrCmp(AV14ParameterName, "SMTP_Port") == 0 )
          {
-            AV13IntegerParameter = 587;
+            AV13IntegerParameter = 465;
          }
          else if ( StringUtil.StrCmp(AV14ParameterName, "SMTP_Timeout") == 0 )
          {
-            AV13IntegerParameter = 30;
+            AV13IntegerParameter = 60;
          }
          ExecuteImpl();
          aP1_IntegerParameter=this.AV13IntegerParameter;

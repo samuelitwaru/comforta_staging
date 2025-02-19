@@ -182,6 +182,7 @@ namespace GeneXus.Programs {
                   pr_default.close(2);
                   if ( AV21DeviceTokenCollection.Count > 0 )
                   {
+                     AV30isToolboxNotification = false;
                      new prc_sendonesignalnotification(context ).execute(  AV21DeviceTokenCollection,  AV10title,  AV9message,  AV28Metadata,  AV30isToolboxNotification, out  AV13OutMessages, out  AV14IsSuccessful) ;
                   }
                }
