@@ -47,6 +47,7 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+wp_residentpasswordresetcomplete
 wc_productservice
 utoolboxdynamicform
 wp_residentactivationcomplete
@@ -67,7 +68,6 @@ uformww
 wc_childnotifications
 wc_notificationgrouping
 wc_notificationfilteredlist
-trn_productservicetrn_pagewc
 trn_supplieragbtrn_productservicewc
 trn_suppliergentrn_productservicewc
 trn_organisationtrn_managerwc
@@ -160,7 +160,6 @@ wc_calltoaction
 editreceptionists
 wp_productservicestep2
 wp_productservicestep1
-trn_productservicetrn_calltoactionwc
 wp_locationdynamicform
 wp_productservice
 wc_description
@@ -348,7 +347,6 @@ aprc_createotpevents
 aprc_handleotpevents
 ufilledoutformsgetfilterdata
 aprc_changeuserpassword
-aprc_recoverpasswordstep1
 uformwwgetfilterdata
 aprc_getlocationreceptioniststonotify
 aprc_createpermissions

@@ -230,6 +230,9 @@ namespace GeneXus.Programs {
             AV58NotificationDescription = StringUtil.Format( context.GetMessage( "%1 deleted by %2 %3", ""), A59ProductServiceName, AV59RoleName, GXt_char4, "", "", "", "", "", "");
             new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "DeleteRecord",  "Trn_ProductService",  "",  context.GetMessage( "far fa-trash-alt NotificationFontIconDanger", ""),  context.GetMessage( "Service Deleted", ""),  AV58NotificationDescription,  AV58NotificationDescription,  "",  AV62WWPNotificationMetadataSDT.ToJSonString(false, true),  "",  AV53IsWeb) ;
          }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( Gx_mode)) )
+         {
+         }
       }
 
       protected void S112( )

@@ -96,17 +96,18 @@ namespace GeneXus.Programs {
                if ( AV12BC_Trn_Location.Success() )
                {
                   context.CommitDataStores("prc_updatelocationtheme",pr_default);
+                  AV19websession.Remove(context.GetMessage( "NotificationMessage", ""));
                   new prc_logtofile(context ).execute(  context.GetMessage( "Saved", "")) ;
                }
                else
                {
-                  AV20GXV2 = 1;
-                  AV19GXV1 = AV12BC_Trn_Location.GetMessages();
-                  while ( AV20GXV2 <= AV19GXV1.Count )
+                  AV21GXV2 = 1;
+                  AV20GXV1 = AV12BC_Trn_Location.GetMessages();
+                  while ( AV21GXV2 <= AV20GXV1.Count )
                   {
-                     AV13Message = ((GeneXus.Utils.SdtMessages_Message)AV19GXV1.Item(AV20GXV2));
+                     AV13Message = ((GeneXus.Utils.SdtMessages_Message)AV20GXV1.Item(AV21GXV2));
                      new prc_logtofile(context ).execute(  context.GetMessage( "Not saved: ", "")+AV13Message.gxTpr_Description) ;
-                     AV20GXV2 = (int)(AV20GXV2+1);
+                     AV21GXV2 = (int)(AV21GXV2+1);
                   }
                }
             }
@@ -129,7 +130,8 @@ namespace GeneXus.Programs {
          AV11SDT_Theme = new SdtSDT_Theme(context);
          AV18Error = new SdtSDT_Error(context);
          AV12BC_Trn_Location = new SdtTrn_Location(context);
-         AV19GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV19websession = context.GetSession();
+         AV20GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV13Message = new GeneXus.Utils.SdtMessages_Message(context);
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_updatelocationtheme__datastore1(),
             new Object[][] {
@@ -146,8 +148,9 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV20GXV2 ;
+      private int AV21GXV2 ;
       private Guid AV8ThemeId ;
+      private IGxSession AV19websession ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
@@ -155,7 +158,7 @@ namespace GeneXus.Programs {
       private SdtSDT_Error AV18Error ;
       private SdtTrn_Location AV12BC_Trn_Location ;
       private IDataStoreProvider pr_default ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV19GXV1 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV20GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV13Message ;
       private SdtSDT_Theme aP1_SDT_Theme ;
       private SdtSDT_Error aP2_Error ;

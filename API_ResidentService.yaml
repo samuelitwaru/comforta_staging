@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250218125753"
+  version: "20250219095703"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/api
 paths:
@@ -54,6 +54,32 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SDT_LoginResidentResponse"  
+
+        404:
+          description: "Not found"
+
+  /auth/resident-recover-password-step1:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.RecoverPasswordStep1"
+      summary: "recover password step1"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RecoverPasswordStep1Input"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_RecoverPasswordStep1"  
 
         404:
           description: "Not found"
@@ -1148,6 +1174,11 @@ components:
         password:
           type: "string"
 
+    RecoverPasswordStep1Input:  
+      properties:
+        username:
+          type: "string"
+
     ChangeUserPasswordInput:  
       properties:
         userId:
@@ -1325,6 +1356,17 @@ components:
           type: "string"
         user_guid:
           description: "user_guid"
+          type: "string"
+        error:
+          description: "SDT_Error Response"
+          $ref: "#/components/schemas/SDT_ErrorResponse"
+
+
+
+    SDT_RecoverPasswordStep1:
+      properties:
+        success_message:
+          description: "success_message"
           type: "string"
         error:
           description: "SDT_Error Response"

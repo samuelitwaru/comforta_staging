@@ -153,6 +153,9 @@ namespace GeneXus.Programs {
       {
          /* After Trn Routine */
          returnInSub = false;
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( Gx_mode)) )
+         {
+         }
       }
 
       protected void S112( )

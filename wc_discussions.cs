@@ -581,7 +581,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, divUnnamedtable1_Internalname, 1, 0, "px", 0, "px", "Flex", "start", "top", " "+"data-gx-flex"+" ", "", "div");
+            GxWebStd.gx_div_start( context, divUnnamedtable1_Internalname, divUnnamedtable1_Visible, 0, "px", 0, "px", "Flex", "start", "top", " "+"data-gx-flex"+" ", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;", "div");
             /* Text block */
@@ -1565,6 +1565,13 @@ namespace GeneXus.Programs {
          Ucmentions_Itemhtmltemplate = GXt_char1;
          ucUcmentions.SendProperty(context, sPrefix, false, Ucmentions_Internalname, "ItemHtmlTemplate", Ucmentions_Itemhtmltemplate);
          this.executeUsercontrolMethod(sPrefix, false, "UCMENTIONSContainer", "Attach", "", new Object[] {(string)"@",(string)edtavMessage_Internalname});
+         /* Execute user subroutine: 'ATTRIBUTESSECURITYCODE' */
+         S112 ();
+         if ( returnInSub )
+         {
+            returnInSub = true;
+            if (true) return;
+         }
          chkavIsdiscussionanswerswcloaded.Visible = 0;
          AssignProp(sPrefix, false, chkavIsdiscussionanswerswcloaded_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavIsdiscussionanswerswcloaded.Visible), 5, 0), !bGXsfl_16_Refreshing);
          edtWWPDiscussionMessageId_Visible = 0;
@@ -1574,14 +1581,14 @@ namespace GeneXus.Programs {
          edtWWPDiscussionMessageEntityReco_Visible = 0;
          AssignProp(sPrefix, false, edtWWPDiscussionMessageEntityReco_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtWWPDiscussionMessageEntityReco_Visible), 5, 0), true);
          /* Execute user subroutine: 'PREPARETRANSACTION' */
-         S112 ();
+         S122 ();
          if ( returnInSub )
          {
             returnInSub = true;
             if (true) return;
          }
          /* Execute user subroutine: 'LOADGRIDSTATE' */
-         S122 ();
+         S132 ();
          if ( returnInSub )
          {
             returnInSub = true;
@@ -1605,7 +1612,7 @@ namespace GeneXus.Programs {
          returnInSub = false;
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV20WWPContext) ;
          /* Execute user subroutine: 'SAVEGRIDSTATE' */
-         S132 ();
+         S142 ();
          if ( returnInSub )
          {
             returnInSub = true;
@@ -1803,7 +1810,7 @@ namespace GeneXus.Programs {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV31NotificationInfo", AV31NotificationInfo);
       }
 
-      protected void S122( )
+      protected void S132( )
       {
          /* 'LOADGRIDSTATE' Routine */
          returnInSub = false;
@@ -1823,7 +1830,7 @@ namespace GeneXus.Programs {
          subgrid_gotopage( AV7GridState.gxTpr_Currentpage) ;
       }
 
-      protected void S132( )
+      protected void S142( )
       {
          /* 'SAVEGRIDSTATE' Routine */
          returnInSub = false;
@@ -1833,7 +1840,7 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV36Pgmname+"GridState",  AV7GridState.ToXml(false, true, "", "")) ;
       }
 
-      protected void S112( )
+      protected void S122( )
       {
          /* 'PREPARETRANSACTION' Routine */
          returnInSub = false;
@@ -1847,6 +1854,14 @@ namespace GeneXus.Programs {
          AV17TrnContextAtt.gxTpr_Attributevalue = AV22WWPDiscussionMessageEntityRecordId;
          AV16TrnContext.gxTpr_Attributes.Add(AV17TrnContextAtt, 0);
          AV15Session.Set("TrnContext", AV16TrnContext.ToXml(false, true, "", ""));
+      }
+
+      protected void S112( )
+      {
+         /* 'ATTRIBUTESSECURITYCODE' Routine */
+         returnInSub = false;
+         divUnnamedtable1_Visible = (((1==0)) ? 1 : 0);
+         AssignProp(sPrefix, false, divUnnamedtable1_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divUnnamedtable1_Visible), 5, 0), true);
       }
 
       public override void setparameters( Object[] obj )
@@ -2143,7 +2158,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521815533332", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521911442833", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2159,7 +2174,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_discussions.js", "?202521815533334", false, true);
+         context.AddJavascriptSource("wc_discussions.js", "?202521911442837", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Suggest/SuggestRender.js", "", false, true);
          /* End function include_jscripts */
@@ -2775,6 +2790,7 @@ namespace GeneXus.Programs {
          divNewthreadcell_Visible = 1;
          divGridcell_Visible = 1;
          lblNewthread_Visible = 1;
+         divUnnamedtable1_Visible = 1;
          Ucmentions_Itemhtmltemplate = "";
          Ucmentions_Datalistproc = "WWPBaseObjects.Discussions.WWP_GetUsersForDiscussionMentions";
          edtWWPDiscussionMessageId_Visible = 1;
@@ -2964,6 +2980,7 @@ namespace GeneXus.Programs {
       private int nRC_GXsfl_16 ;
       private int nGXsfl_16_idx=1 ;
       private int divNewthreadcell_Visible ;
+      private int divUnnamedtable1_Visible ;
       private int lblNewthread_Visible ;
       private int divGridcell_Visible ;
       private int edtavMessage_Enabled ;

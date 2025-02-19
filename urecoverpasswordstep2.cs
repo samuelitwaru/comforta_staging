@@ -788,34 +788,42 @@ namespace GeneXus.Programs {
                {
                   context.CommitDataStores("urecoverpasswordstep2",pr_default);
                   AV16AdditionalParameter.gxTpr_Authenticationtypename = context.GetMessage( "local", "");
-                  AV17isLoggedIn = new GeneXus.Programs.genexussecurity.SdtGAMRepository(context).login(AV11GAMUser.gxTpr_Email, AV7UserPassword, AV16AdditionalParameter, out  AV23GAMErrorCollection);
-                  if ( AV17isLoggedIn )
+                  if ( AV11GAMUser.checkrole("Resident") )
                   {
-                     new prc_loadwwpcontext(context ).execute( ref  AV20WWPContext) ;
-                     if ( AV11GAMUser.checkrole("Comforta Admin") || AV11GAMUser.checkrole("Root Admin") )
+                     CallWebObject(formatLink("wp_residentpasswordresetcomplete.aspx") );
+                     context.wjLocDisableFrm = 1;
+                  }
+                  else
+                  {
+                     AV17isLoggedIn = new GeneXus.Programs.genexussecurity.SdtGAMRepository(context).login(AV11GAMUser.gxTpr_Email, AV7UserPassword, AV16AdditionalParameter, out  AV23GAMErrorCollection);
+                     if ( AV17isLoggedIn )
                      {
-                        CallWebObject(formatLink("trn_organisationww.aspx") );
-                        context.wjLocDisableFrm = 1;
-                     }
-                     else
-                     {
-                        if ( AV11GAMUser.checkrole("Receptionist") )
+                        new prc_loadwwpcontext(context ).execute( ref  AV20WWPContext) ;
+                        if ( AV11GAMUser.checkrole("Comforta Admin") || AV11GAMUser.checkrole("Root Admin") )
                         {
-                           CallWebObject(formatLink("wp_notificationdashboard.aspx") );
+                           CallWebObject(formatLink("trn_organisationww.aspx") );
                            context.wjLocDisableFrm = 1;
                         }
                         else
                         {
-                           CallWebObject(formatLink("uhome.aspx") );
-                           context.wjLocDisableFrm = 1;
+                           if ( AV11GAMUser.checkrole("Receptionist") )
+                           {
+                              CallWebObject(formatLink("wp_notificationdashboard.aspx") );
+                              context.wjLocDisableFrm = 1;
+                           }
+                           else
+                           {
+                              CallWebObject(formatLink("uhome.aspx") );
+                              context.wjLocDisableFrm = 1;
+                           }
                         }
                      }
-                  }
-                  else
-                  {
-                     /* Execute user subroutine: 'DISPLAYMESSAGES' */
-                     S122 ();
-                     if (returnInSub) return;
+                     else
+                     {
+                        /* Execute user subroutine: 'DISPLAYMESSAGES' */
+                        S122 ();
+                        if (returnInSub) return;
+                     }
                   }
                }
                else
@@ -872,12 +880,12 @@ namespace GeneXus.Programs {
       {
          /* 'DISPLAYMESSAGES' Routine */
          returnInSub = false;
-         AV26GXV1 = 1;
-         while ( AV26GXV1 <= AV23GAMErrorCollection.Count )
+         AV24GXV1 = 1;
+         while ( AV24GXV1 <= AV23GAMErrorCollection.Count )
          {
-            AV14Error = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV23GAMErrorCollection.Item(AV26GXV1));
+            AV14Error = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV23GAMErrorCollection.Item(AV24GXV1));
             GX_msglist.addItem(AV14Error.gxTpr_Message);
-            AV26GXV1 = (int)(AV26GXV1+1);
+            AV24GXV1 = (int)(AV24GXV1+1);
          }
       }
 
@@ -959,7 +967,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251317145938", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20252191132038", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -975,7 +983,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("urecoverpasswordstep2.js", "?20251317145940", false, true);
+         context.AddJavascriptSource("urecoverpasswordstep2.js", "?20252191132041", false, true);
          /* End function include_jscripts */
       }
 
@@ -1109,7 +1117,7 @@ namespace GeneXus.Programs {
       private short nGXWrapped ;
       private int edtavUserpassword_Enabled ;
       private int edtavUserpasswordcomfirmation_Enabled ;
-      private int AV26GXV1 ;
+      private int AV24GXV1 ;
       private int idxLst ;
       private string AV21UserGAMGUID ;
       private string AV22KeyToChangePassword ;

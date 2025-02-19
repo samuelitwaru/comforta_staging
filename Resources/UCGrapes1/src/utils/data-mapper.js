@@ -68,9 +68,10 @@ function mapTemplateToPageData(templateData, page) {
           const titleText = titleSpan?.components?.[0]?.content || "";
 
           // Create tile object
-
+          console.log('attr', attributes['tile-action-object-url'])
           let tileActionObjectId = attributes["tile-action-object-id"]
           const tileBG = addOpacityToHex(attributes["tile-bgcolor"], attributes["tile-bg-image-opacity"])
+
           col.Tile = {
               TileName: titleText.toUpperCase(),
               TileText: titleText.toUpperCase(),
@@ -88,9 +89,11 @@ function mapTemplateToPageData(templateData, page) {
               TileAction: {
                   ObjectType: attributes['tile-action-object'],
                   ObjectId: (tileActionObjectId == "") ? null : tileActionObjectId,
-                  OjectUrl: attributes['tile-action-object-url'],
+                  ObjectUrl: attributes['tile-action-object-url'],
               }
-          };
+
+            };
+          console.log('>>>',col.Tile)
           return col;
       });
 

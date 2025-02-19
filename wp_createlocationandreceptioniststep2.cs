@@ -2180,8 +2180,11 @@ namespace GeneXus.Programs {
          AV24Trn_Location = new SdtTrn_Location(context);
          AV24Trn_Location.gxTpr_Locationid = AV11WizardData.gxTpr_Step1.gxTpr_Locationid;
          AV24Trn_Location.gxTpr_Locationname = AV11WizardData.gxTpr_Step1.gxTpr_Locationname;
-         AV24Trn_Location.gxTpr_Locationimage = AV61ImageFile2;
-         AV24Trn_Location.gxTpr_Locationimage_gxi = GXDbFile.GetUriFromFile( "", "", AV61ImageFile2);
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV61ImageFile2)) )
+         {
+            AV24Trn_Location.gxTpr_Locationimage = AV61ImageFile2;
+            AV24Trn_Location.gxTpr_Locationimage_gxi = GXDbFile.GetUriFromFile( "", "", AV61ImageFile2);
+         }
          AV24Trn_Location.gxTpr_Locationemail = AV11WizardData.gxTpr_Step1.gxTpr_Locationemail;
          AV24Trn_Location.gxTpr_Locationphone = AV11WizardData.gxTpr_Step1.gxTpr_Locationphone;
          AV24Trn_Location.gxTpr_Locationphonecode = AV11WizardData.gxTpr_Step1.gxTpr_Locationphonecode;
@@ -2749,7 +2752,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251286501087", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521911461116", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2765,7 +2768,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createlocationandreceptioniststep2.js", "?20251286501088", false, true);
+         context.AddJavascriptSource("wp_createlocationandreceptioniststep2.js", "?202521911461118", false, true);
          context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);

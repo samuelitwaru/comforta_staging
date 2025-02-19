@@ -26,6 +26,16 @@
 },
 {
 "Verb":"POST",
+"PathRegexp":"auth/resident-recover-password-step1",
+"Path":"auth/resident-recover-password-step1",
+"Name":"recoverpasswordstep1",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_recoverpasswordstep1",
+"Implementation":"Prc_RecoverPasswordStep1"
+},
+{
+"Verb":"POST",
 "PathRegexp":"auth/resident-change-password",
 "Path":"auth/resident-change-password",
 "Name":"changeuserpassword",

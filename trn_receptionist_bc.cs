@@ -149,20 +149,6 @@ namespace GeneXus.Programs {
          /* After Trn Routine */
          returnInSub = false;
          new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV36AuditingObject,  AV42Pgmname) ;
-         if ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 )
-         {
-            AV38Session.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Receptionist Updated successfully", ""));
-         }
-         if ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 )
-         {
-            AV38Session.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Receptionist Deleted successfully", ""));
-            CallWebObject(formatLink("wp_locationreceptionists.aspx") );
-            context.wjLocDisableFrm = 1;
-         }
-         if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
-         {
-            AV38Session.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Receptionist Inserted successfully", ""));
-         }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( Gx_mode)) )
          {
             new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV36AuditingObject,  AV42Pgmname) ;
@@ -1401,7 +1387,6 @@ namespace GeneXus.Programs {
          AV28WebSession = context.GetSession();
          AV36AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
          AV42Pgmname = "";
-         AV38Session = context.GetSession();
          Z92ReceptionistInitials = "";
          A92ReceptionistInitials = "";
          Z94ReceptionistPhone = "";
@@ -1590,7 +1575,6 @@ namespace GeneXus.Programs {
       private Guid AV21OrganisationId ;
       private Guid GXt_guid1 ;
       private IGxSession AV28WebSession ;
-      private IGxSession AV38Session ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;

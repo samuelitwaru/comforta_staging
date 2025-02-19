@@ -119,34 +119,32 @@ namespace GeneXus.Programs {
             A11OrganisationId = P00A42_A11OrganisationId[0];
             A29LocationId = P00A42_A29LocationId[0];
             A310Trn_PageId = P00A42_A310Trn_PageId[0];
-            if ( StringUtil.StrCmp(A318Trn_PageName, context.GetMessage( "Home", "")) == 0 )
-            {
-               AV32GXLvl13 = 1;
-               AV28HomePageId = A310Trn_PageId;
-            }
-            pr_default.readNext(0);
+            AV32GXLvl13 = 1;
+            AV28HomePageId = A310Trn_PageId;
+            /* Exiting from a For First loop. */
+            if (true) break;
          }
          pr_default.close(0);
          if ( AV32GXLvl13 == 0 )
          {
             new prc_logtofile(context ).execute(  context.GetMessage( "creating home page..", "")) ;
             AV15File = new GxFile(context.GetPhysicalPath());
-            AV15File.Source = AV25Folder+context.GetMessage( "DefaultHome.json", "");
+            AV15File.Source = AV25Folder+"DefaultHome.json";
             AV13PageGJSJson = AV15File.ReadAllText("");
             AV15File = new GxFile(context.GetPhysicalPath());
-            AV15File.Source = AV25Folder+context.GetMessage( "PublishedHome.json", "");
+            AV15File.Source = AV25Folder+"PublishedHome.json";
             AV22PageJsonContent = AV15File.ReadAllText("");
-            AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{LocationPageId}}", ""), AV26LocationPageId.ToString());
-            AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{ReceptionPageId}}", ""), AV23ReceptionPageId.ToString());
-            AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{CalendarPageId}}", ""), AV24CalendarPageId.ToString());
-            AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{MailboxPageId}}", ""), AV27MailboxPageId.ToString());
-            AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, context.GetMessage( "{{LocationPageId}}", ""), AV26LocationPageId.ToString());
-            AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, context.GetMessage( "{{ReceptionPageId}}", ""), AV23ReceptionPageId.ToString());
-            AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, context.GetMessage( "{{CalendarPageId}}", ""), AV24CalendarPageId.ToString());
-            AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, context.GetMessage( "{{MailboxPageId}}", ""), AV27MailboxPageId.ToString());
+            AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, "{{LocationPageId}}", AV26LocationPageId.ToString());
+            AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, "{{ReceptionPageId}}", AV23ReceptionPageId.ToString());
+            AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, "{{CalendarPageId}}", AV24CalendarPageId.ToString());
+            AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, "{{MailboxPageId}}", AV27MailboxPageId.ToString());
+            AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, "{{LocationPageId}}", AV26LocationPageId.ToString());
+            AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, "{{ReceptionPageId}}", AV23ReceptionPageId.ToString());
+            AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, "{{CalendarPageId}}", AV24CalendarPageId.ToString());
+            AV13PageGJSJson = StringUtil.StringReplace( AV13PageGJSJson, "{{MailboxPageId}}", AV27MailboxPageId.ToString());
             AV18BC_Trn_Page = new SdtTrn_Page(context);
             AV18BC_Trn_Page.gxTpr_Trn_pageid = Guid.NewGuid( );
-            AV18BC_Trn_Page.gxTpr_Trn_pagename = context.GetMessage( "Home", "");
+            AV18BC_Trn_Page.gxTpr_Trn_pagename = "Home";
             AV18BC_Trn_Page.gxTpr_Pageiscontentpage = false;
             AV18BC_Trn_Page.gxTpr_Pageispredefined = true;
             AV18BC_Trn_Page.gxTpr_Locationid = AV14BC_Trn_Location.gxTpr_Locationid;
@@ -188,26 +186,24 @@ namespace GeneXus.Programs {
             A11OrganisationId = P00A43_A11OrganisationId[0];
             A29LocationId = P00A43_A29LocationId[0];
             A310Trn_PageId = P00A43_A310Trn_PageId[0];
-            if ( StringUtil.StrCmp(A318Trn_PageName, context.GetMessage( "Reception", "")) == 0 )
-            {
-               AV35GXLvl62 = 1;
-               AV23ReceptionPageId = A310Trn_PageId;
-            }
-            pr_default.readNext(1);
+            AV35GXLvl62 = 1;
+            AV23ReceptionPageId = A310Trn_PageId;
+            /* Exiting from a For First loop. */
+            if (true) break;
          }
          pr_default.close(1);
          if ( AV35GXLvl62 == 0 )
          {
             new prc_logtofile(context ).execute(  context.GetMessage( "Creating reception...", "")) ;
             AV15File = new GxFile(context.GetPhysicalPath());
-            AV15File.Source = AV25Folder+context.GetMessage( "DefaultReception.json", "");
+            AV15File.Source = AV25Folder+"DefaultReception.json";
             AV13PageGJSJson = AV15File.ReadAllText("");
             AV15File = new GxFile(context.GetPhysicalPath());
-            AV15File.Source = AV25Folder+context.GetMessage( "PublishedReception.json", "");
+            AV15File.Source = AV25Folder+"PublishedReception.json";
             AV22PageJsonContent = AV15File.ReadAllText("");
             AV18BC_Trn_Page = new SdtTrn_Page(context);
             AV18BC_Trn_Page.gxTpr_Trn_pageid = Guid.NewGuid( );
-            AV18BC_Trn_Page.gxTpr_Trn_pagename = context.GetMessage( "Reception", "");
+            AV18BC_Trn_Page.gxTpr_Trn_pagename = "Reception";
             AV18BC_Trn_Page.gxTpr_Pageiscontentpage = true;
             AV18BC_Trn_Page.gxTpr_Pageispredefined = true;
             AV18BC_Trn_Page.gxTpr_Locationid = AV8LocationId;
@@ -262,14 +258,14 @@ namespace GeneXus.Programs {
          {
             new prc_logtofile(context ).execute(  context.GetMessage( "Creating calendar...", "")) ;
             AV15File = new GxFile(context.GetPhysicalPath());
-            AV15File.Source = AV25Folder+context.GetMessage( "DefaultCalendar.json", "");
+            AV15File.Source = AV25Folder+"DefaultCalendar.json";
             AV13PageGJSJson = AV15File.ReadAllText("");
             AV15File = new GxFile(context.GetPhysicalPath());
-            AV15File.Source = AV25Folder+context.GetMessage( "PublishedCalendar.json", "");
+            AV15File.Source = AV25Folder+"PublishedCalendar.json";
             AV22PageJsonContent = AV15File.ReadAllText("");
             AV18BC_Trn_Page = new SdtTrn_Page(context);
             AV18BC_Trn_Page.gxTpr_Trn_pageid = Guid.NewGuid( );
-            AV18BC_Trn_Page.gxTpr_Trn_pagename = context.GetMessage( "Calendar", "");
+            AV18BC_Trn_Page.gxTpr_Trn_pagename = "Calendar";
             AV18BC_Trn_Page.gxTpr_Pageiscontentpage = true;
             AV18BC_Trn_Page.gxTpr_Pageispredefined = true;
             AV18BC_Trn_Page.gxTpr_Locationid = AV14BC_Trn_Location.gxTpr_Locationid;
@@ -312,30 +308,28 @@ namespace GeneXus.Programs {
             A11OrganisationId = P00A45_A11OrganisationId[0];
             A29LocationId = P00A45_A29LocationId[0];
             A310Trn_PageId = P00A45_A310Trn_PageId[0];
-            if ( StringUtil.StrCmp(A318Trn_PageName, context.GetMessage( "Location", "")) == 0 )
-            {
-               AV41GXLvl142 = 1;
-               AV26LocationPageId = A310Trn_PageId;
-            }
-            pr_default.readNext(3);
+            AV41GXLvl142 = 1;
+            AV26LocationPageId = A310Trn_PageId;
+            /* Exiting from a For First loop. */
+            if (true) break;
          }
          pr_default.close(3);
          if ( AV41GXLvl142 == 0 )
          {
             new prc_logtofile(context ).execute(  context.GetMessage( "Creating location...", "")) ;
             AV15File = new GxFile(context.GetPhysicalPath());
-            AV15File.Source = AV25Folder+context.GetMessage( "DefaultLocation.json", "");
+            AV15File.Source = AV25Folder+"DefaultLocation.json";
             AV13PageGJSJson = AV15File.ReadAllText("");
             AV15File = new GxFile(context.GetPhysicalPath());
-            AV15File.Source = AV25Folder+context.GetMessage( "PublishedLocation.json", "");
+            AV15File.Source = AV25Folder+"PublishedLocation.json";
             AV22PageJsonContent = AV15File.ReadAllText("");
-            AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{LocationImage}}", ""), AV14BC_Trn_Location.gxTpr_Locationimage_gxi);
-            AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{LocationDescription}}", ""), AV14BC_Trn_Location.gxTpr_Locationdescription);
-            AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{LocationTelephone}}", ""), AV14BC_Trn_Location.gxTpr_Locationphone);
-            AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, context.GetMessage( "{{LocationEmail}}", ""), AV14BC_Trn_Location.gxTpr_Locationemail);
+            AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, "{{LocationImage}}", AV14BC_Trn_Location.gxTpr_Locationimage_gxi);
+            AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, "{{LocationDescription}}", AV14BC_Trn_Location.gxTpr_Locationdescription);
+            AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, "{{LocationTelephone}}", AV14BC_Trn_Location.gxTpr_Locationphone);
+            AV22PageJsonContent = StringUtil.StringReplace( AV22PageJsonContent, "{{LocationEmail}}", AV14BC_Trn_Location.gxTpr_Locationemail);
             AV18BC_Trn_Page = new SdtTrn_Page(context);
             AV18BC_Trn_Page.gxTpr_Trn_pageid = Guid.NewGuid( );
-            AV18BC_Trn_Page.gxTpr_Trn_pagename = context.GetMessage( "Location", "");
+            AV18BC_Trn_Page.gxTpr_Trn_pagename = "Location";
             AV18BC_Trn_Page.gxTpr_Pageiscontentpage = true;
             AV18BC_Trn_Page.gxTpr_Pageispredefined = true;
             AV18BC_Trn_Page.gxTpr_Locationid = AV14BC_Trn_Location.gxTpr_Locationid;
@@ -378,26 +372,24 @@ namespace GeneXus.Programs {
             A11OrganisationId = P00A46_A11OrganisationId[0];
             A29LocationId = P00A46_A29LocationId[0];
             A310Trn_PageId = P00A46_A310Trn_PageId[0];
-            if ( StringUtil.StrCmp(A318Trn_PageName, context.GetMessage( "Mailbox", "")) == 0 )
-            {
-               AV44GXLvl186 = 1;
-               AV27MailboxPageId = A310Trn_PageId;
-            }
-            pr_default.readNext(4);
+            AV44GXLvl186 = 1;
+            AV27MailboxPageId = A310Trn_PageId;
+            /* Exiting from a For First loop. */
+            if (true) break;
          }
          pr_default.close(4);
          if ( AV44GXLvl186 == 0 )
          {
             new prc_logtofile(context ).execute(  context.GetMessage( "Creating mailbox...", "")) ;
             AV15File = new GxFile(context.GetPhysicalPath());
-            AV15File.Source = AV25Folder+context.GetMessage( "DefaultMailbox.json", "");
+            AV15File.Source = AV25Folder+"DefaultMailbox.json";
             AV13PageGJSJson = AV15File.ReadAllText("");
             AV15File = new GxFile(context.GetPhysicalPath());
-            AV15File.Source = AV25Folder+context.GetMessage( "PublishedMailbox.json", "");
+            AV15File.Source = AV25Folder+"PublishedMailbox.json";
             AV22PageJsonContent = AV15File.ReadAllText("");
             AV18BC_Trn_Page = new SdtTrn_Page(context);
             AV18BC_Trn_Page.gxTpr_Trn_pageid = Guid.NewGuid( );
-            AV18BC_Trn_Page.gxTpr_Trn_pagename = context.GetMessage( "Mailbox", "");
+            AV18BC_Trn_Page.gxTpr_Trn_pagename = "Mailbox";
             AV18BC_Trn_Page.gxTpr_Pageiscontentpage = true;
             AV18BC_Trn_Page.gxTpr_Pageispredefined = true;
             AV18BC_Trn_Page.gxTpr_Locationid = AV14BC_Trn_Location.gxTpr_Locationid;
@@ -691,11 +683,11 @@ public class prc_initlocationpages__default : DataStoreHelperBase, IDataStoreHel
        new ParDef("AV12OrganisationId",GXType.UniqueIdentifier,36,0)
        };
        def= new CursorDef[] {
-           new CursorDef("P00A42", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A42,100, GxCacheFrequency.OFF ,false,false )
-          ,new CursorDef("P00A43", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A43,100, GxCacheFrequency.OFF ,false,false )
+           new CursorDef("P00A42", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (Trn_PageName = ( 'Home') and LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A42,1, GxCacheFrequency.OFF ,false,true )
+          ,new CursorDef("P00A43", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (Trn_PageName = ( 'Reception') and LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A43,1, GxCacheFrequency.OFF ,false,true )
           ,new CursorDef("P00A44", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A44,100, GxCacheFrequency.OFF ,false,false )
-          ,new CursorDef("P00A45", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A45,100, GxCacheFrequency.OFF ,false,false )
-          ,new CursorDef("P00A46", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A46,100, GxCacheFrequency.OFF ,false,false )
+          ,new CursorDef("P00A45", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (Trn_PageName = ( 'Location') and LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A45,1, GxCacheFrequency.OFF ,false,true )
+          ,new CursorDef("P00A46", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (Trn_PageName = ( 'Mailbox') and LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A46,1, GxCacheFrequency.OFF ,false,true )
        };
     }
  }

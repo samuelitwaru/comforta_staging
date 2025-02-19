@@ -56,6 +56,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ReceivedNotification.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Receptionist.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Receptionists_SDT_ReceptionistsItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_RecoverPasswordStep1.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_RecurringEventType_SDT_RecurringEventTypeItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Resident.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ResidentAddressBook_SDT_ResidentAddressBookItem.cs" />

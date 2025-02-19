@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250218125753"
+  version: "20250219095703"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -2397,6 +2397,14 @@ components:
         SDT_Page:
           description: "SDT_Page"
           $ref: "#/components/schemas/SDT_Page"
+    SDT_RecoverPasswordStep1:
+      properties:
+        success_message:
+          description: "success_message"
+          type: "string"
+        error:
+          description: "SDT_Error Response"
+          $ref: "#/components/schemas/SDT_ErrorResponse"
     SDT_Resident:
       properties:
         ResidentId:
