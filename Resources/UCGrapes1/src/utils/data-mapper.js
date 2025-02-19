@@ -93,7 +93,6 @@ function mapTemplateToPageData(templateData, page) {
               }
 
             };
-          console.log('>>>',col.Tile)
           return col;
       });
 
