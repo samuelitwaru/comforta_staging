@@ -47,6 +47,18 @@
 			"Default": ""
 		} ,
 		{
+			"Id": "LocationLogo",
+			"Name": "LocationLogo",
+			"Type": "string",
+			"Default": ""
+		} ,
+		{
+			"Id": "LocationProfileImage",
+			"Name": "LocationProfileImage",
+			"Type": "string",
+			"Default": ""
+		} ,
+		{
 			"Id": "SDT_ProductServiceCollection",
 			"Name": "SDT_ProductServiceCollection",
 			"Type": "sdt",
@@ -122,7 +134,7 @@
 		"AfterShow": [
 			{
 				"Name": "Start",
-				"Source": "      	const mapping = this.SDT_Pages		const templates = this.BC_Trn_TemplateCollection.map(temp => {			let res = {				id: temp.Trn_TemplateId,				label: temp.Trn_TemplateName, 				media: temp.Trn_TemplateMedia,				content: temp.Trn_TemplateContent.split(\',\').map(i=>parseInt(i))			}			return res		})	  	      	const themes = this.BC_Trn_ThemeCollection.map(theme => {			let res = {				ThemeId: theme.Trn_ThemeId,				ThemeName: theme.Trn_ThemeName, 				ThemeFontFamily: theme.Trn_ThemeFontFamily,				ThemeColors: {},				ThemeIcons: theme.Icon			}			theme.Color.forEach(color => {				res.ThemeColors[color.ColorName] = color.ColorCode				})			return res      	})		      	const currentLanguage = this.Current_Language.toLowerCase();      	let locale;		(async () => {			locale = new Locale(currentLanguage);			await locale.loadTranslations(); 			locale.setLanguage();			locale.translateUCStrings();		})();			const dataManager = new DataManager(this.SDT_ProductServiceCollection, this.SDT_DynamicFormsCollection, this.BC_Trn_MediaCollection);		dataManager.LocationId = this.LocationId		dataManager.OrganisationId = this.OrganisationId		dataManager.Location = this.BC_Trn_Location				const editorManager = new EditorManager(dataManager, locale)		const toolBox = new ToolBoxManager(			editorManager, 			dataManager, 			themes, 			iconsData, 			templates, 			mapping, 			this.BC_Trn_MediaCollection, 			locale,			this.addServiceButtonEvent		);				editorManager.setToolsSection(toolBox)		editorManager.editorManager = editorManager		toolBox.editorManager = editorManager		this.toolBox = toolBox   ",
+				"Source": "      	const mapping = this.SDT_Pages		const templates = this.BC_Trn_TemplateCollection.map(temp => {			let res = {				id: temp.Trn_TemplateId,				label: temp.Trn_TemplateName, 				media: temp.Trn_TemplateMedia,				content: temp.Trn_TemplateContent.split(\',\').map(i=>parseInt(i))			}			return res		})	  	      	const themes = this.BC_Trn_ThemeCollection.map(theme => {			let res = {				ThemeId: theme.Trn_ThemeId,				ThemeName: theme.Trn_ThemeName, 				ThemeFontFamily: theme.Trn_ThemeFontFamily,				ThemeColors: {},				ThemeIcons: theme.Icon			}			theme.Color.forEach(color => {				res.ThemeColors[color.ColorName] = color.ColorCode				})			return res      	})						console.log(\"Themes:\", themes)      	const currentLanguage = this.Current_Language.toLowerCase();      	let locale;		(async () => {			locale = new Locale(currentLanguage);			await locale.loadTranslations(); 			locale.setLanguage();			locale.translateUCStrings();		})();			const dataManager = new DataManager(this.SDT_ProductServiceCollection, this.SDT_DynamicFormsCollection, this.BC_Trn_MediaCollection);		dataManager.LocationId = this.LocationId		dataManager.OrganisationId = this.OrganisationId		dataManager.Location = this.BC_Trn_Location				const editorManager = new EditorManager(dataManager, locale, this.LocationLogo, this.LocationProfileImage)		const toolBox = new ToolBoxManager(			editorManager, 			dataManager, 			themes, 			iconsData, 			templates, 			mapping, 			this.BC_Trn_MediaCollection, 			locale,			this.addServiceButtonEvent		);				editorManager.setToolsSection(toolBox)		editorManager.editorManager = editorManager		toolBox.editorManager = editorManager		this.toolBox = toolBox   ",
 				"AngularLocation": ""
 			} 
 		],

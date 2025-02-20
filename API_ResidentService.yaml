@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250219095703"
+  version: "20250220061659"
 servers:
-  - url: https://staging.comforta.yukon.software/api
+  - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/api
 paths:
   /auth/resident-login:
     post:
@@ -456,6 +456,58 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GetMediaOutput"
+        404:
+          description: "Not found"
+
+  /media/upload/logo:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.UploadLogo"
+      summary: "UploadLogo"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UploadLogoInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Error"  
+
+        404:
+          description: "Not found"
+
+  /media/upload/profile:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.UploadProfileImage"
+      summary: "UploadProfileImage"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UploadProfileImageInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Error"  
+
         404:
           description: "Not found"
 
@@ -1004,7 +1056,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: https://staging.comforta.yukon.software/oauth/gam/v2.0/access_token
+          tokenUrl: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
 
@@ -1036,6 +1088,8 @@ components:
         error:
           description: "SDT_Error"
           $ref: "#/components/schemas/SDT_Error"
+
+
 
     GetPagesOutput:
       properties:
@@ -1244,6 +1298,16 @@ components:
           type: "string"
 
 
+
+    UploadLogoInput:  
+      properties:
+        LogoUrl:
+          type: "string"
+
+    UploadProfileImageInput:  
+      properties:
+        ProfileImageUrl:
+          type: "string"
 
 
 

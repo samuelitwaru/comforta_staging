@@ -309,7 +309,6 @@ class DataManager {
   // Pages API methods
   async getPages() {
     this.pages = await this.fetchAPI('/api/toolbox/pages/list', {}, true);
-    console.log("Pages: ",this.pages.SDT_PageCollection.find(page=>page.PageName=="Location"));
     return this.pages;
   }
 
@@ -354,7 +353,6 @@ class DataManager {
   }
 
   async updatePagesBatch(payload) {
-    console.log("Payload: ", payload)
     return await this.fetchAPI('/api/toolbox/update-pages-batch', {
       method: 'POST',
       body: JSON.stringify(payload),
@@ -429,6 +427,20 @@ class DataManager {
     }, true);
   }
 
+  async uploadLogo(logoUrl) {
+    return await this.fetchAPI('/api/media/upload/logo', {
+      method: 'POST',
+      body: JSON.stringify({ LogoUrl: logoUrl }),
+    });
+  }
+
+  async uploadProfileImage(profileImageUrl) {
+    return await this.fetchAPI('/api/media/upload/profile', {
+      method: 'POST',
+      body: JSON.stringify({ ProfileImageUrl: profileImageUrl }),
+    });
+  }
+
   // Content API methods
   async getContentPageData(productServiceId) {
     return await this.fetchAPI(`/api/productservice?Productserviceid=${productServiceId}`);
@@ -437,7 +449,6 @@ class DataManager {
 
 
 // Content from classes/EditorManager.js
-
 class EditorManager {
   editors = {};
   pages = [];
@@ -448,9 +459,16 @@ class EditorManager {
   selectedComponent = null;
   container = document.getElementById("child-container");
 
-  constructor(dataManager, currentLanguage) {
+  constructor(
+    dataManager,
+    currentLanguage,
+    LocationLogo,
+    LocationProfileImage
+  ) {
     this.dataManager = dataManager;
     this.currentLanguage = currentLanguage;
+    this.LocationLogo = LocationLogo;
+    this.LocationProfileImage = LocationProfileImage;
     this.templateManager = new TemplateManager(this.currentLanguage, this);
     this.editorEventManager = new EditorEventManager(
       this,
@@ -528,8 +546,8 @@ class EditorManager {
 
   generateEditorHTML(page, editorId) {
     const appBar = this.shouldShowAppBar(page)
-      ? this.createAppBarHTML(page.PageName, page.PageId)
-      : "";
+      ? this.createContentPageAppBar(page.PageName, page.PageId)
+      : this.createHomePageAppBar();
 
     return `
       <div class="header">
@@ -560,7 +578,7 @@ class EditorManager {
     return page.PageIsContentPage || page.PageName !== "Home";
   }
 
-  createAppBarHTML(pageName, pageId) {
+  createContentPageAppBar(pageName, pageId) {
     return `
       <div class="app-bar">
           <svg id="back-button-${pageId}" class="content-back-button" xmlns="http://www.w3.org/2000/svg" id="Group_14" data-name="Group 14" width="47" height="47" viewBox="0 0 47 47">
@@ -575,6 +593,39 @@ class EditorManager {
     `;
   }
 
+  createHomePageAppBar() {
+    return `
+      <div class="home-app-bar">
+        <div id="add-logo" class="logo-section" style="display: ${this.LocationLogo ? 'none' : 'flex'}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" viewBox="0 0 28.5 20.065">
+            <path id="Path_1329" data-name="Path 1329" d="M17.693,11.025a2.4,2.4,0,0,0-2.285,2.508,2.4,2.4,0,0,0,2.285,2.508,2.4,2.4,0,0,0,2.285-2.508A2.4,2.4,0,0,0,17.693,11.025Zm10.283,7.524-8,10.032-5.713-6.27L8.044,31.09h28.5Z" transform="translate(-8.044 -11.025)" fill="#fff"/>
+          </svg>
+          Logo 
+          <span id="appbar-add-logo" class="appbar-add-logo"><i class="fa fa-plus"></i></span> 
+        </div>
+
+        <div id="added-logo" class="logo-added" style="display: ${!this.LocationLogo ? 'none' : 'flex'}">
+          <img id="toolbox-logo" src="${this.LocationLogo}" alt="logo" /> 
+          <span id="appbar-edit-logo" class="appbar-edit-logo"><i class="fa fa-pencil"></i></span> 
+        </div>
+
+        <div id="add-profile-image" class="profile-section" style="display: ${this.LocationProfileImage ? 'none' : 'flex'}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 19.422 21.363">
+            <path id="Path_1327" data-name="Path 1327" d="M15.711,5a6.8,6.8,0,0,0-3.793,12.442A9.739,9.739,0,0,0,6,26.364H7.942a7.769,7.769,0,1,1,15.537,0h1.942A9.739,9.739,0,0,0,19.5,17.442,6.8,6.8,0,0,0,15.711,5Zm0,1.942A4.855,4.855,0,1,1,10.855,11.8,4.841,4.841,0,0,1,15.711,6.942Z" transform="translate(-6 -5)" fill="#fff"/>
+          </svg>
+          <span id="appbar-add-profile" class="appbar-add-profile"><i class="fa fa-plus"></i></span> 
+        </div>
+
+        <div id="profile-image-added" class="profile-section profile-img" style="display: ${!this.LocationProfileImage ? 'none' : 'flex'}">
+          <img id="profile-img" src="${
+            this.LocationProfileImage
+          }" alt="profile" />
+          <span id="appbar-edit-profile" class="appbar-edit-profile"><i class="fa fa-pencil"></i></span>
+        </div>
+      </div>
+    `;
+  }
+
   initializeGrapesEditor(editorId) {
     return grapesjs.init({
       container: `#${editorId}`,
@@ -583,9 +634,9 @@ class EditorManager {
       width: "auto",
       canvas: {
         styles: [
-          "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css",
           "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css",
-          "https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Roboto:wght@400;500&display=swap",
+          "/DVelop/Bootstrap/Shared/fontawesome_vlatest/css/all.min.css?202521714271081",
+          "https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap",
           "/Resources/UCGrapes1/src/css/toolbox.css",
         ],
       },
@@ -607,8 +658,6 @@ class EditorManager {
     this.dataManager.pages.SDT_PageCollection.map((p) => {
       if (p.PageId == page.PageId) {
         p.PageGJSJson = JSON.stringify(PageGJSJson);
-        console.log("Update event triggered", p.PageName);
-        console.log(PageGJSJson);
       }
       return p;
     });
@@ -630,8 +679,6 @@ class EditorManager {
     try {
       const pageData = JSON.parse(page.PageGJSJson);
 
-      console.log("PageData: ", pageData);
-
       if (page.PageIsPredefined && page.PageName === "Location") {
         await this.handleLocationPage(editor, pageData);
       } else if (page.PageIsPredefined && page.PageName === "Reception") {
@@ -648,27 +695,31 @@ class EditorManager {
   }
 
   async handleLocationPage(editor, pageData) {
-
     // if (this.toolsSection.checkIfNotAuthenticated(locationData)) return;
 
     const locationData = this.dataManager.Location;
 
-    
-    const dataComponents = pageData.pages[0].frames[0].component.components[0].components[0].components[0].components[0].components[0].components
-    
+    const dataComponents =
+      pageData.pages[0].frames[0].component.components[0].components[0]
+        .components[0].components[0].components[0].components;
+
     if (dataComponents.length) {
-      const imgComponent = dataComponents.find((component) => component.attributes.src);
-      const descriptionComponent = dataComponents.find((component) =>  component.type=="product-service-description");
+      const imgComponent = dataComponents.find(
+        (component) => component.attributes.src
+      );
+      const descriptionComponent = dataComponents.find(
+        (component) => component.type == "product-service-description"
+      );
       if (imgComponent) {
         imgComponent.attributes.src = locationData.LocationImage_GXI;
       }
       if (descriptionComponent) {
-        descriptionComponent.components[0].content = locationData.LocationDescription;
+        descriptionComponent.components[0].content =
+          locationData.LocationDescription;
       }
       editor.DomComponents.clear();
       editor.loadProjectData(pageData);
     }
-    
   }
 
   async handleContentPage(editor, page) {
@@ -800,8 +851,8 @@ class EditorManager {
               height: "300vh",
               border: "none",
               overflow: "hidden",
-              '-ms-overflow-style': 'none',
-              'scrollbar-width': 'none',
+              "-ms-overflow-style": "none",
+              "scrollbar-width": "none",
             },
           },
 
@@ -909,12 +960,12 @@ class EditorManager {
 
   setupEditorLayout(editor, page, containerId) {
     if (this.shouldShowAppBar(page)) {
-      const canvas = editor.Canvas.getElement();
-      if (canvas) {
-        canvas.style.setProperty("height", "calc(100% - 100px)", "important");
-      }
-      this.backButtonAction(containerId, page.PageId);
     }
+    const canvas = editor.Canvas.getElement();
+    if (canvas) {
+      canvas.style.setProperty("height", "calc(100% - 100px)", "important");
+    }
+    this.backButtonAction(containerId, page.PageId);
   }
 
   finalizeEditorSetup(editor, page, editorDetails) {
@@ -1009,6 +1060,7 @@ class EditorEventManager {
     this.editorOnSelected(editor);
     this.setupKeyboardBindings(editor);
     this.editorOnUpdate(editor, page);
+    this.setupAppBarEvents();
   }
 
   setupKeyboardBindings(editor) {
@@ -1044,8 +1096,6 @@ class EditorEventManager {
   }
 
   loadTheme() {
-    globalVar = this.editorManager.toolsSection
-    console.log('theme',this.editorManager.toolsSection)
     this.editorManager.toolsSection.themeManager.setTheme(
       this.editorManager.theme.ThemeName
     );
@@ -1146,9 +1196,12 @@ class EditorEventManager {
         editor.UndoManager.undo();
       }
 
-      editor.getWrapper().find(".container-row").forEach((component) => {
-        this.templateManager.updateRightButtons(component);
-      });
+      editor
+        .getWrapper()
+        .find(".container-row")
+        .forEach((component) => {
+          this.templateManager.updateRightButtons(component);
+        });
     });
   }
 
@@ -1282,6 +1335,27 @@ class EditorEventManager {
       redoBtn.disabled = !undoRedoManager.canRedo();
       redoBtn.onclick = () => undoRedoManager.redo();
     }
+  }
+
+  setupAppBarEvents() {
+    const buttonConfigs = [
+      { id: "appbar-add-logo", type: "logo" },
+      { id: "appbar-add-profile", type: "profile-image" },
+      { id: "appbar-edit-logo", type: "logo" },
+      { id: "appbar-edit-profile", type: "profile-image" },
+    ];
+
+    const toolboxManager = this.editorManager.toolsSection;
+
+    buttonConfigs.forEach(({ id, type }) => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.addEventListener("click", (e) => {
+          e.preventDefault();
+          toolboxManager.openFileManager(type);
+        });
+      }
+    });
   }
 }
 
@@ -1771,19 +1845,20 @@ class TemplateManager {
     if (!containerRow) return;
 
     const tileComponent = templateComponent.find(".template-block")[0];
-    const tileActionActionId = tileComponent.getAttributes()?.["tile-action-object-id"]
-    
+    const tileActionActionId =
+      tileComponent.getAttributes()?.["tile-action-object-id"];
+
     if (tileActionActionId) {
-      const editors = Object.entries(this.editorManager.editors); 
-    
+      const editors = Object.entries(this.editorManager.editors);
+
       editors.forEach(([key, element]) => {
         if (element.pageId === tileActionActionId) {
-          const frameId = key.replace('#', '');
+          const frameId = key.replace("#", "");
           this.editorManager.removePageOnTileDelete(frameId);
         }
       });
     }
-    
+
     templateComponent.remove();
 
     const templates = containerRow.components();
@@ -1852,30 +1927,72 @@ class TemplateManager {
   updateRightButtons(containerRow) {
     if (!containerRow) return;
 
+    const styleConfigs = {
+      1: {
+        title: { "letter-spacing": "1.1px", "font-size": "16px" },
+        template: { "justify-content": "start" },
+        rightButton: { display: "flex" },
+        titleSection: { "text-align": "left" },
+      },
+      2: {
+        title: { "letter-spacing": "0.9px", "font-size": "14px" },
+        template: { "justify-content": "start" },
+        rightButton: { display: "flex" },
+        titleSection: { "text-align": "left" },
+      },
+      3: {
+        title: { "letter-spacing": "0.9px", "font-size": "12px" },
+        template: { "justify-content": "center" },
+        rightButton: { display: "none" },
+        titleSection: { "text-align": "center" },
+      },
+    };
+
     const templates = containerRow.components();
+    if (!templates.length || !styleConfigs[templates.length]) return;
 
-    templates.forEach((template) => {
-      if (!template || !template.view || !template.view.el) return;
+    const config = styleConfigs[templates.length];
 
-      const rightButton = template.view.el.querySelector(".add-button-right");
-      if (!rightButton) return;
-      const rightButtonComponent = template.find(".add-button-right")[0];
+    const titles = containerRow.find(".tile-title");
+    const templateBlocks = containerRow.find(".template-block");
+    const titleSections = containerRow.find(".tile-title-section");
 
-      if (templates.length >= 3) {
-        rightButtonComponent.addStyle({
-          display: "none",
-        });
+    titles.forEach((title) => {
+      title.addStyle(config.title);
+
+      if (templates.length === 3) {
+        let words = title.getEl().innerText.split(" ");
+        if (words.length > 1) {
+          title.getEl().innerHTML =
+            words.slice(0, -1).join(" ") + "<br>" + words[words.length - 1];
+        }
       } else {
-        rightButtonComponent.addStyle({
-          display: "flex",
-        });
+        title.getEl().innerHTML = title.getEl().innerText.replace("<br>", "")
       }
     });
+
+    templateBlocks.forEach((template) => {
+      const templateStyles = { ...config.template };
+      templateStyles.height = template
+        .getClasses()
+        ?.includes("high-priority-template")
+        ? "7rem"
+        : "5.5rem";
+      template.addStyle(templateStyles);
+    });
+
+    templates.forEach((template) => {
+      if (!template?.view?.el) return;
+      const rightButton = template.find(".add-button-right")[0];
+      if (rightButton) rightButton.addStyle(config.rightButton);
+    });
+
+    if (titleSections.length) {
+      titleSections.forEach((section) => section.addStyle(config.titleSection));
+    }
   }
 
-
   initialContentPageTemplate(contentPageData) {
-    console.log("initialContentPageTemplate", contentPageData);
     return `
         <div
             class="content-frame-container test"
@@ -1993,7 +2110,7 @@ class TemplateManager {
               ""
             );
             $("#tile-title").val("");
-            component.addStyle({display: "none"});
+            component.addStyle({ display: "none" });
           } else if (sectionSelector === ".tile-icon-section") {
             const component =
               this.editorManager.selectedComponent.find(".tile-icon")[0];
@@ -2002,7 +2119,7 @@ class TemplateManager {
               "tile-icon",
               ""
             );
-            component.addStyle({display: "none"});
+            component.addStyle({ display: "none" });
           }
         };
       }
@@ -2056,7 +2173,6 @@ class ToolBoxManager {
   }
 
   async initializeManagers() {
-    
     await this.dataManager.getPages().then((res) => {
       if (this.checkIfNotAuthenticated(res)) {
         return;
@@ -2102,7 +2218,6 @@ class ToolBoxManager {
       }
       this.ui.updateTileTitle(e.target.value);
     });
-
   }
 
   publishPages(isNotifyResidents) {
@@ -2110,7 +2225,7 @@ class ToolBoxManager {
     if (editors && editors.length) {
       const pageDataList = this.preparePageDataList(editors);
 
-      console.log(pageDataList)
+      console.log(pageDataList);
 
       if (pageDataList.length) {
         this.sendPageUpdateRequest(pageDataList, isNotifyResidents);
@@ -2119,18 +2234,18 @@ class ToolBoxManager {
   }
 
   preparePageDataList(editors) {
-    return this.dataManager.pages.SDT_PageCollection
-    .filter(page=>!(page.PageName=="Mailbox" || page.PageName=="Calendar"))
-    .map(page=>{
+    return this.dataManager.pages.SDT_PageCollection.filter(
+      (page) => !(page.PageName == "Mailbox" || page.PageName == "Calendar")
+    ).map((page) => {
       let projectData;
       try {
-        projectData = JSON.parse(page.PageGJSJson)
+        projectData = JSON.parse(page.PageGJSJson);
       } catch (error) {
-        projectData = {}
+        projectData = {};
       }
       const jsonData = page.PageIsContentPage
-          ? mapContentToPageData(projectData, page)
-          : mapTemplateToPageData(projectData, page);
+        ? mapContentToPageData(projectData, page)
+        : mapTemplateToPageData(projectData, page);
       return {
         PageId: page.PageId,
         PageName: page.PageName,
@@ -2140,7 +2255,7 @@ class ToolBoxManager {
         SDT_Page: jsonData,
         PageIsPublished: true,
       };
-    })
+    });
   }
 
   async sendPageUpdateRequest(pageDataList, isNotifyResidents) {
@@ -2220,7 +2335,6 @@ class ToolBoxManager {
 
   checkIfNotAuthenticated(res) {
     if (res.error.Status === "Error") {
-
       this.ui.displayAlertMessage(
         this.currentLanguage.getTranslation("not_authenticated_message"),
         "error"
@@ -2244,20 +2358,19 @@ class ToolBoxManager {
     }
   }
 
-  checkTileBgImage () {
+  checkTileBgImage() {
     if (this.editorManager.selectedTemplateWrapper) {
-      const templateBlock =
-        this.editorManager.selectedComponent;
+      const templateBlock = this.editorManager.selectedComponent;
 
       if (templateBlock) {
         const tileImgContainer = document.getElementById("tile-img-container");
         // first check if templateBlock has a background image
         if (templateBlock.getStyle()["background-image"]) {
           const currentBgImage = templateBlock
-          .getStyle()
-          ["background-image"].match(/url\((.*?)\)/)[1];
+            .getStyle()
+            ["background-image"].match(/url\((.*?)\)/)[1];
 
-          if( currentBgImage) {
+          if (currentBgImage) {
             if (tileImgContainer) {
               const tileImg = tileImgContainer.querySelector("img");
               if (tileImg) {
@@ -2272,18 +2385,15 @@ class ToolBoxManager {
                     delete currentStyles["background-image"];
                     templateBlock.setStyle(currentStyles);
                     tileImgContainer.style.display = "none";
-                    this.setAttributeToSelected(
-                      "tile-bg-image-url",
-                      "",
-                    );
-                  }
+                    this.setAttributeToSelected("tile-bg-image-url", "");
+                  };
                 }
-              }            
+              }
             }
           }
         } else {
           tileImgContainer.style.display = "none";
-        }       
+        }
       }
     }
   }
@@ -2319,8 +2429,18 @@ class ToolBoxManager {
     });
 
   }
-}
 
+  openFileManager(type) {
+    const fileInputField = this.mediaComponent.createFileInputField();
+    const modal = this.mediaComponent.openFileUploadModal();
+
+    let allUploadedFiles = [];
+
+    const isTile = false;
+
+    this.mediaComponent.handleModalOpen(modal, fileInputField, allUploadedFiles, isTile, type);
+  }
+}
 
 
 // Content from classes/EventListenerManager.js
@@ -2626,6 +2746,10 @@ class EventListenerManager {
 
           templateBlock.addAttributes({
             "tile-bg-image-opacity": value,
+          })
+
+          templateBlock.addAttributes({
+            "tile-bgcolor": bgColor,
           })
         }
       }
@@ -3006,23 +3130,37 @@ class ThemeManager {
       colorBox.onclick = () => {
         if (this.toolBoxManager.editorManager.selectedComponent) {
           const selectedComponent = this.toolBoxManager.editorManager.selectedComponent;
-
+          const currentColor = selectedComponent
+                                      .getAttributes()?.["tile-bgcolor"];
           const currentTileOpacity = selectedComponent
                                       .getAttributes()?.["tile-bg-image-opacity"];
 
-          selectedComponent.addStyle({
-            "background-color": addOpacityToHex(colorValue, currentTileOpacity),
-          });
+          if (currentColor === colorValue) {
+            selectedComponent.addStyle({
+              "background-color": "#FFFFFF"
+            });
+      
+            this.toolBoxManager.setAttributeToSelected("tile-bgcolor", null);
+            this.toolBoxManager.setAttributeToSelected("tile-bgcolor-name", null);
 
-          this.toolBoxManager.setAttributeToSelected(
-            "tile-bgcolor",
-            colorValue
-          );
+            radioInput.checked = false;
+            alignItem.style.border = "none";
+          }else {
+            selectedComponent.addStyle({
+              "background-color": addOpacityToHex(colorValue, currentTileOpacity),
+            });
 
-          this.toolBoxManager.setAttributeToSelected(
-            "tile-bgcolor-name",
-            colorName
-          );
+            this.toolBoxManager.setAttributeToSelected(
+              "tile-bgcolor",
+              colorValue
+            );
+
+            this.toolBoxManager.setAttributeToSelected(
+              "tile-bgcolor-name",
+              colorName
+            );
+            alignItem.removeAttribute("style");
+          }
 
         } else {
           const message = this.toolBoxManager.currentLanguage.getTranslation(
@@ -3350,10 +3488,12 @@ class ThemeManager {
             : icon.IconName;
         })();
 
-        iconItem.innerHTML = `
-                    ${icon.IconSVG}
-                    <span class="icon-title">${displayName}</span>
-                `;
+        // iconItem.innerHTML = `
+        //             ${icon.IconSVG}
+        //             <span class="icon-title">${displayName}</span>
+        //         `;
+        
+        iconItem.innerHTML = `${icon.IconSVG}`;
 
         iconItem.onclick = () => {
           if (this.toolBoxManager.editorManager.selectedTemplateWrapper) {
@@ -3671,18 +3811,22 @@ class ToolBoxUI {
       Phone: {
         icon: "fas fa-phone-alt",
         iconList: ".fas.fa-phone-alt",
+        iconBgColor: "#4c9155",
       },
       Email: {
         icon: "fas fa-envelope",
         iconList: ".fas.fa-envelope",
+        iconBgColor: "#eea622",
       },
       SiteUrl: {
         icon: "fas fa-link",
         iconList: ".fas.fa-link",
+        iconBgColor: "#ff6c37",
       },
       Form: {
         icon: "fas fa-file",
         iconList: ".fas.fa-file",
+        iconBgColor: "#5068a8",
       },
     };
 
@@ -3690,11 +3834,12 @@ class ToolBoxUI {
       ctaTypeMap[type] || {
         icon: "fas fa-question",
         iconList: ".fas.fa-question",
+        iconBgColor: "#5068a8",
       }
     );
   }
 
-  generateCtaComponent(cta, backgroundColor = "#5068a8") {
+  generateCtaComponent(cta, backgroundColor) {
     const ctaType = this.getCtaType(cta.CallToActionType);
     return `
       <div class="cta-container-child cta-child" 
@@ -3714,9 +3859,9 @@ class ToolBoxUI {
               cta.CallToActionEmail ||
               cta.CallToActionUrl
             }"
-            cta-background-color="#5068a8"
+          cta-background-color="${ctaType.iconBgColor}"
           >
-            <div class="cta-button" ${defaultConstraints} style="background-color: #5068a8;">
+            <div class="cta-button" ${defaultConstraints} style="background-color: ${backgroundColor || ctaType.iconBgColor};">
               <i class="${ctaType.icon}" ${defaultConstraints}></i>
               <div class="cta-badge" ${defaultConstraints}><i class="fa fa-minus" ${defaultConstraints}></i></div>
             </div>
@@ -4181,10 +4326,6 @@ class ActionListComponent {
   async init() {
     await this.dataManager.getPages();
     // await this.dataManager.getServices();
-
-    console.log(this.dataManager.services.map((service) => service.ProductServiceName))
-
-
     this.pageOptions = this.dataManager.pages.SDT_PageCollection.filter(
       (page) => {
         page.PageTileName = page.PageName;
@@ -5177,8 +5318,14 @@ class MediaComponent {
     return fileInputField;
   }
 
-  handleModalOpen(modal, fileInputField, allUploadedFiles) {
-    if (!this.editorManager.selectedComponent) {
+  handleModalOpen(
+    modal,
+    fileInputField,
+    allUploadedFiles,
+    isTile = true,
+    type = ""
+  ) {
+    if (isTile && !this.editorManager.selectedComponent) {
       this.toolBoxManager.ui.displayAlertMessage(
         `${this.currentLanguage.getTranslation(
           "no_tile_selected_error_message"
@@ -5186,6 +5333,9 @@ class MediaComponent {
         "error"
       );
       return;
+    } else {
+      this.isTile = isTile;
+      this.type = type;
     }
 
     $(".delete-media").on("click", (e) => {
@@ -5300,7 +5450,21 @@ class MediaComponent {
     };
 
     saveBtn.onclick = () => {
-      this.saveSelectedFile(modal, fileInputField);
+      if (!this.isTile) {
+        if (this.selectedFile?.MediaUrl) {
+          const safeMediaUrl = encodeURI(this.selectedFile.MediaUrl);
+          this.closeModal(modal, fileInputField);
+          if (this.type === "logo") {
+            this.changeLogo(safeMediaUrl);
+          } else if (this.type === "profile-image") {
+            this.changeProfile(safeMediaUrl);
+          }
+        }
+
+        this.closeModal(modal, fileInputField);
+      } else {
+        this.saveSelectedFile(modal, fileInputField);
+      }
     };
 
     modal.style.display = "flex";
@@ -5333,7 +5497,7 @@ class MediaComponent {
         reader.readAsDataURL(resizedBlob);
       });
 
-      const cleanImageName = imageName.replace(/'/g, '');
+      const cleanImageName = imageName.replace(/'/g, "");
 
       const response = await this.dataManager.uploadFile(
         dataUrl,
@@ -5535,7 +5699,7 @@ class MediaComponent {
     // Find and set selected file
     this.selectedFile = this.dataManager.media.find(
       (file) => file.MediaId == fileItem.dataset.mediaid
-    )
+    );
   }
 
   deleteMedia(mediaId) {
@@ -5624,6 +5788,42 @@ class MediaComponent {
     } else {
       modalActions.style.display = "flex";
     }
+  }
+
+  changeLogo(logoUrl) {
+    this.dataManager.uploadLogo(logoUrl).then((res) => {
+      const logoAddedSection = document.getElementById("added-logo");
+      const addLogoSection = document.getElementById("add-logo");
+
+      if (logoAddedSection && addLogoSection) {
+        logoAddedSection.style.display = "block"; // Show added logo section
+        addLogoSection.style.display = "none"; // Hide add logo section
+
+        const logo = logoAddedSection.querySelector("#toolbox-logo");
+        if (logo) {
+          logo.setAttribute("src", logoUrl);
+        }
+      }
+    });
+  }
+
+  changeProfile(profileImageUrl) {
+    this.dataManager.uploadProfileImage(profileImageUrl).then((res) => {
+      const profileAddedSection = document.getElementById(
+        "profile-image-added"
+      );
+      const addProfileSection = document.getElementById("add-profile-image");
+
+      if (profileAddedSection && addProfileSection) {
+        profileAddedSection.style.display = "block"; // Show added profile section
+        addProfileSection.style.display = "none"; // Hide add profile section
+
+        const profileImg = profileAddedSection.querySelector("#profile-img");
+        if (profileImg) {
+          profileImg.setAttribute("src", profileImageUrl);
+        }
+      }
+    });
   }
 }
 
@@ -5805,50 +6005,6 @@ const iconsData = [
 let globalVar = null
 
 // Content from utils/helper.js
-// function hexToRgb(hex) {
-//   hex = hex.replace(/^#/, "");
-//   let r, g, b;
-
-//   if (hex.length === 3) {
-//     r = parseInt(hex[0] + hex[0], 16);
-//     g = parseInt(hex[1] + hex[1], 16);
-//     b = parseInt(hex[2] + hex[2], 16);
-//   } else {
-//     r = parseInt(hex.substring(0, 2), 16);
-//     g = parseInt(hex.substring(2, 4), 16);
-//     b = parseInt(hex.substring(4, 6), 16);
-//   }
-
-//   return `${r}, ${g}, ${b}`;
-// }
-
-// function rgbaToHex(rgba) {
-//   // Extract the RGBA values using regex
-//   const rgbaMatch = rgba.match(
-//     /rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d*\.?\d+))?\)/
-//   );
-
-//   if (!rgbaMatch) {
-//     throw new Error("Invalid RGBA format");
-//   }
-
-//   // Convert the RGB values to hex
-//   const r = parseInt(rgbaMatch[1]).toString(16).padStart(2, "0");
-//   const g = parseInt(rgbaMatch[2]).toString(16).padStart(2, "0");
-//   const b = parseInt(rgbaMatch[3]).toString(16).padStart(2, "0");
-
-//   // Convert alpha to hex if it exists
-//   let a = "";
-//   if (rgbaMatch[4] !== undefined) {
-//     // Convert alpha from 0-1 to 0-255 and then to hex
-//     a = Math.round(parseFloat(rgbaMatch[4]) * 255)
-//       .toString(16)
-//       .padStart(2, "0");
-//   }
-
-//   return `#${r}${g}${b}${a}`;
-// }
-
 function addOpacityToHex(hexColor, opacityPercent=100) {
   hexColor = hexColor.replace('#', '');
   if (!/^[0-9A-Fa-f]{6}$/.test(hexColor)) {

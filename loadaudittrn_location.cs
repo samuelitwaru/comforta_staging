@@ -126,6 +126,10 @@ namespace GeneXus.Programs {
             A384LocationPhoneNumber = P008E2_A384LocationPhoneNumber[0];
             A35LocationPhone = P008E2_A35LocationPhone[0];
             A36LocationDescription = P008E2_A36LocationDescription[0];
+            A517ToolBoxDefaultLogo = P008E2_A517ToolBoxDefaultLogo[0];
+            n517ToolBoxDefaultLogo = P008E2_n517ToolBoxDefaultLogo[0];
+            A518ToolBoxDefaultProfileImage = P008E2_A518ToolBoxDefaultProfileImage[0];
+            n518ToolBoxDefaultProfileImage = P008E2_n518ToolBoxDefaultProfileImage[0];
             A247Trn_ThemeId = P008E2_A247Trn_ThemeId[0];
             n247Trn_ThemeId = P008E2_n247Trn_ThemeId[0];
             AV11AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
@@ -226,6 +230,20 @@ namespace GeneXus.Programs {
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Oldvalue = A36LocationDescription;
             AV12AuditingObjectRecordItem.gxTpr_Attribute.Add(AV13AuditingObjectRecordItemAttributeItem, 0);
             AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name = "ToolBoxDefaultLogo";
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = context.GetMessage( "Tool Box Default Logo", "");
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = false;
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Isdescriptionattribute = false;
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Oldvalue = A517ToolBoxDefaultLogo;
+            AV12AuditingObjectRecordItem.gxTpr_Attribute.Add(AV13AuditingObjectRecordItemAttributeItem, 0);
+            AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name = "ToolBoxDefaultProfileImage";
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = context.GetMessage( "Tool Box Default Profile Image", "");
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = false;
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Isdescriptionattribute = false;
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Oldvalue = A518ToolBoxDefaultProfileImage;
+            AV12AuditingObjectRecordItem.gxTpr_Attribute.Add(AV13AuditingObjectRecordItemAttributeItem, 0);
+            AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name = "Trn_ThemeId";
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = context.GetMessage( "Trn_Theme Id", "");
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = false;
@@ -259,6 +277,10 @@ namespace GeneXus.Programs {
             A384LocationPhoneNumber = P008E3_A384LocationPhoneNumber[0];
             A35LocationPhone = P008E3_A35LocationPhone[0];
             A36LocationDescription = P008E3_A36LocationDescription[0];
+            A517ToolBoxDefaultLogo = P008E3_A517ToolBoxDefaultLogo[0];
+            n517ToolBoxDefaultLogo = P008E3_n517ToolBoxDefaultLogo[0];
+            A518ToolBoxDefaultProfileImage = P008E3_A518ToolBoxDefaultProfileImage[0];
+            n518ToolBoxDefaultProfileImage = P008E3_n518ToolBoxDefaultProfileImage[0];
             A247Trn_ThemeId = P008E3_A247Trn_ThemeId[0];
             n247Trn_ThemeId = P008E3_n247Trn_ThemeId[0];
             if ( StringUtil.StrCmp(AV15ActualMode, "INS") == 0 )
@@ -360,6 +382,20 @@ namespace GeneXus.Programs {
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue = A36LocationDescription;
                AV12AuditingObjectRecordItem.gxTpr_Attribute.Add(AV13AuditingObjectRecordItemAttributeItem, 0);
                AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name = "ToolBoxDefaultLogo";
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = context.GetMessage( "Tool Box Default Logo", "");
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = false;
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Isdescriptionattribute = false;
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue = A517ToolBoxDefaultLogo;
+               AV12AuditingObjectRecordItem.gxTpr_Attribute.Add(AV13AuditingObjectRecordItemAttributeItem, 0);
+               AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name = "ToolBoxDefaultProfileImage";
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = context.GetMessage( "Tool Box Default Profile Image", "");
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = false;
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Isdescriptionattribute = false;
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue = A518ToolBoxDefaultProfileImage;
+               AV12AuditingObjectRecordItem.gxTpr_Attribute.Add(AV13AuditingObjectRecordItemAttributeItem, 0);
+               AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name = "Trn_ThemeId";
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = context.GetMessage( "Trn_Theme Id", "");
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = false;
@@ -429,6 +465,14 @@ namespace GeneXus.Programs {
                      {
                         AV13AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue = A36LocationDescription;
                      }
+                     else if ( StringUtil.StrCmp(AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name, "ToolBoxDefaultLogo") == 0 )
+                     {
+                        AV13AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue = A517ToolBoxDefaultLogo;
+                     }
+                     else if ( StringUtil.StrCmp(AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name, "ToolBoxDefaultProfileImage") == 0 )
+                     {
+                        AV13AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue = A518ToolBoxDefaultProfileImage;
+                     }
                      else if ( StringUtil.StrCmp(AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name, "Trn_ThemeId") == 0 )
                      {
                         AV13AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue = A247Trn_ThemeId.ToString();
@@ -469,6 +513,10 @@ namespace GeneXus.Programs {
          P008E2_A384LocationPhoneNumber = new string[] {""} ;
          P008E2_A35LocationPhone = new string[] {""} ;
          P008E2_A36LocationDescription = new string[] {""} ;
+         P008E2_A517ToolBoxDefaultLogo = new string[] {""} ;
+         P008E2_n517ToolBoxDefaultLogo = new bool[] {false} ;
+         P008E2_A518ToolBoxDefaultProfileImage = new string[] {""} ;
+         P008E2_n518ToolBoxDefaultProfileImage = new bool[] {false} ;
          P008E2_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          P008E2_n247Trn_ThemeId = new bool[] {false} ;
          A11OrganisationId = Guid.Empty;
@@ -484,6 +532,8 @@ namespace GeneXus.Programs {
          A384LocationPhoneNumber = "";
          A35LocationPhone = "";
          A36LocationDescription = "";
+         A517ToolBoxDefaultLogo = "";
+         A518ToolBoxDefaultProfileImage = "";
          A247Trn_ThemeId = Guid.Empty;
          AV12AuditingObjectRecordItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem(context);
          AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
@@ -500,17 +550,21 @@ namespace GeneXus.Programs {
          P008E3_A384LocationPhoneNumber = new string[] {""} ;
          P008E3_A35LocationPhone = new string[] {""} ;
          P008E3_A36LocationDescription = new string[] {""} ;
+         P008E3_A517ToolBoxDefaultLogo = new string[] {""} ;
+         P008E3_n517ToolBoxDefaultLogo = new bool[] {false} ;
+         P008E3_A518ToolBoxDefaultProfileImage = new string[] {""} ;
+         P008E3_n518ToolBoxDefaultProfileImage = new bool[] {false} ;
          P008E3_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          P008E3_n247Trn_ThemeId = new bool[] {false} ;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.loadaudittrn_location__default(),
             new Object[][] {
                 new Object[] {
                P008E2_A11OrganisationId, P008E2_A29LocationId, P008E2_A31LocationName, P008E2_A359LocationCountry, P008E2_A338LocationCity, P008E2_A339LocationZipCode, P008E2_A340LocationAddressLine1, P008E2_A341LocationAddressLine2, P008E2_A34LocationEmail, P008E2_A383LocationPhoneCode,
-               P008E2_A384LocationPhoneNumber, P008E2_A35LocationPhone, P008E2_A36LocationDescription, P008E2_A247Trn_ThemeId, P008E2_n247Trn_ThemeId
+               P008E2_A384LocationPhoneNumber, P008E2_A35LocationPhone, P008E2_A36LocationDescription, P008E2_A517ToolBoxDefaultLogo, P008E2_n517ToolBoxDefaultLogo, P008E2_A518ToolBoxDefaultProfileImage, P008E2_n518ToolBoxDefaultProfileImage, P008E2_A247Trn_ThemeId, P008E2_n247Trn_ThemeId
                }
                , new Object[] {
                P008E3_A11OrganisationId, P008E3_A29LocationId, P008E3_A31LocationName, P008E3_A359LocationCountry, P008E3_A338LocationCity, P008E3_A339LocationZipCode, P008E3_A340LocationAddressLine1, P008E3_A341LocationAddressLine2, P008E3_A34LocationEmail, P008E3_A383LocationPhoneCode,
-               P008E3_A384LocationPhoneNumber, P008E3_A35LocationPhone, P008E3_A36LocationDescription, P008E3_A247Trn_ThemeId, P008E3_n247Trn_ThemeId
+               P008E3_A384LocationPhoneNumber, P008E3_A35LocationPhone, P008E3_A36LocationDescription, P008E3_A517ToolBoxDefaultLogo, P008E3_n517ToolBoxDefaultLogo, P008E3_A518ToolBoxDefaultProfileImage, P008E3_n518ToolBoxDefaultProfileImage, P008E3_A247Trn_ThemeId, P008E3_n247Trn_ThemeId
                }
             }
          );
@@ -523,6 +577,8 @@ namespace GeneXus.Programs {
       private string AV15ActualMode ;
       private string A35LocationPhone ;
       private bool returnInSub ;
+      private bool n517ToolBoxDefaultLogo ;
+      private bool n518ToolBoxDefaultProfileImage ;
       private bool n247Trn_ThemeId ;
       private string A36LocationDescription ;
       private string A31LocationName ;
@@ -534,6 +590,8 @@ namespace GeneXus.Programs {
       private string A34LocationEmail ;
       private string A383LocationPhoneCode ;
       private string A384LocationPhoneNumber ;
+      private string A517ToolBoxDefaultLogo ;
+      private string A518ToolBoxDefaultProfileImage ;
       private Guid AV17LocationId ;
       private Guid AV18OrganisationId ;
       private Guid A11OrganisationId ;
@@ -558,6 +616,10 @@ namespace GeneXus.Programs {
       private string[] P008E2_A384LocationPhoneNumber ;
       private string[] P008E2_A35LocationPhone ;
       private string[] P008E2_A36LocationDescription ;
+      private string[] P008E2_A517ToolBoxDefaultLogo ;
+      private bool[] P008E2_n517ToolBoxDefaultLogo ;
+      private string[] P008E2_A518ToolBoxDefaultProfileImage ;
+      private bool[] P008E2_n518ToolBoxDefaultProfileImage ;
       private Guid[] P008E2_A247Trn_ThemeId ;
       private bool[] P008E2_n247Trn_ThemeId ;
       private GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem AV12AuditingObjectRecordItem ;
@@ -575,6 +637,10 @@ namespace GeneXus.Programs {
       private string[] P008E3_A384LocationPhoneNumber ;
       private string[] P008E3_A35LocationPhone ;
       private string[] P008E3_A36LocationDescription ;
+      private string[] P008E3_A517ToolBoxDefaultLogo ;
+      private bool[] P008E3_n517ToolBoxDefaultLogo ;
+      private string[] P008E3_A518ToolBoxDefaultProfileImage ;
+      private bool[] P008E3_n518ToolBoxDefaultProfileImage ;
       private Guid[] P008E3_A247Trn_ThemeId ;
       private bool[] P008E3_n247Trn_ThemeId ;
    }
@@ -606,8 +672,8 @@ namespace GeneXus.Programs {
           new ParDef("AV18OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P008E2", "SELECT OrganisationId, LocationId, LocationName, LocationCountry, LocationCity, LocationZipCode, LocationAddressLine1, LocationAddressLine2, LocationEmail, LocationPhoneCode, LocationPhoneNumber, LocationPhone, LocationDescription, Trn_ThemeId FROM Trn_Location WHERE LocationId = :AV17LocationId and OrganisationId = :AV18OrganisationId ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008E2,1, GxCacheFrequency.OFF ,false,true )
-             ,new CursorDef("P008E3", "SELECT OrganisationId, LocationId, LocationName, LocationCountry, LocationCity, LocationZipCode, LocationAddressLine1, LocationAddressLine2, LocationEmail, LocationPhoneCode, LocationPhoneNumber, LocationPhone, LocationDescription, Trn_ThemeId FROM Trn_Location WHERE LocationId = :AV17LocationId and OrganisationId = :AV18OrganisationId ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008E3,1, GxCacheFrequency.OFF ,false,true )
+              new CursorDef("P008E2", "SELECT OrganisationId, LocationId, LocationName, LocationCountry, LocationCity, LocationZipCode, LocationAddressLine1, LocationAddressLine2, LocationEmail, LocationPhoneCode, LocationPhoneNumber, LocationPhone, LocationDescription, ToolBoxDefaultLogo, ToolBoxDefaultProfileImage, Trn_ThemeId FROM Trn_Location WHERE LocationId = :AV17LocationId and OrganisationId = :AV18OrganisationId ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008E2,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("P008E3", "SELECT OrganisationId, LocationId, LocationName, LocationCountry, LocationCity, LocationZipCode, LocationAddressLine1, LocationAddressLine2, LocationEmail, LocationPhoneCode, LocationPhoneNumber, LocationPhone, LocationDescription, ToolBoxDefaultLogo, ToolBoxDefaultProfileImage, Trn_ThemeId FROM Trn_Location WHERE LocationId = :AV17LocationId and OrganisationId = :AV18OrganisationId ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008E3,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }
@@ -632,8 +698,12 @@ namespace GeneXus.Programs {
                 ((string[]) buf[10])[0] = rslt.getVarchar(11);
                 ((string[]) buf[11])[0] = rslt.getString(12, 20);
                 ((string[]) buf[12])[0] = rslt.getLongVarchar(13);
-                ((Guid[]) buf[13])[0] = rslt.getGuid(14);
+                ((string[]) buf[13])[0] = rslt.getVarchar(14);
                 ((bool[]) buf[14])[0] = rslt.wasNull(14);
+                ((string[]) buf[15])[0] = rslt.getVarchar(15);
+                ((bool[]) buf[16])[0] = rslt.wasNull(15);
+                ((Guid[]) buf[17])[0] = rslt.getGuid(16);
+                ((bool[]) buf[18])[0] = rslt.wasNull(16);
                 return;
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -649,8 +719,12 @@ namespace GeneXus.Programs {
                 ((string[]) buf[10])[0] = rslt.getVarchar(11);
                 ((string[]) buf[11])[0] = rslt.getString(12, 20);
                 ((string[]) buf[12])[0] = rslt.getLongVarchar(13);
-                ((Guid[]) buf[13])[0] = rslt.getGuid(14);
+                ((string[]) buf[13])[0] = rslt.getVarchar(14);
                 ((bool[]) buf[14])[0] = rslt.wasNull(14);
+                ((string[]) buf[15])[0] = rslt.getVarchar(15);
+                ((bool[]) buf[16])[0] = rslt.wasNull(15);
+                ((Guid[]) buf[17])[0] = rslt.getGuid(16);
+                ((bool[]) buf[18])[0] = rslt.wasNull(16);
                 return;
        }
     }

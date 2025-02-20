@@ -175,6 +175,26 @@
 "Verb":"GET"
 },
 {
+"Verb":"POST",
+"PathRegexp":"media/upload/logo",
+"Path":"media/upload/logo",
+"Name":"uploadlogo",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_uploadlogo",
+"Implementation":"Prc_UploadLogo"
+},
+{
+"Verb":"POST",
+"PathRegexp":"media/upload/profile",
+"Path":"media/upload/profile",
+"Name":"uploadprofileimage",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_uploadprofileimage",
+"Implementation":"Prc_UploadProfileImage"
+},
+{
 "PathRegexp":"toolbox/pages/list",
 "Path":"toolbox/pages/list",
 "Name":"getpages",

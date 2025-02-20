@@ -582,6 +582,60 @@ namespace GeneXus.Programs {
          /* GetMedia Constructor */
       }
 
+      public void gxep_uploadlogo( string aP0_LogoUrl ,
+                                   out SdtSDT_Error aP1_error )
+      {
+         restCliUploadLogo = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/media/upload/logo";
+         restCliUploadLogo.Location = restLocation;
+         restCliUploadLogo.HttpMethod = "POST";
+         restCliUploadLogo.AddBodyVar("LogoUrl", (string)(aP0_LogoUrl));
+         restCliUploadLogo.RestExecute();
+         if ( restCliUploadLogo.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliUploadLogo.ErrorCode;
+            gxProperties.ErrorMessage = restCliUploadLogo.ErrorMessage;
+            gxProperties.StatusCode = restCliUploadLogo.StatusCode;
+            aP1_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP1_error = restCliUploadLogo.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* UploadLogo Constructor */
+      }
+
+      public void gxep_uploadprofileimage( string aP0_ProfileImageUrl ,
+                                           out SdtSDT_Error aP1_error )
+      {
+         restCliUploadProfileImage = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/media/upload/profile";
+         restCliUploadProfileImage.Location = restLocation;
+         restCliUploadProfileImage.HttpMethod = "POST";
+         restCliUploadProfileImage.AddBodyVar("ProfileImageUrl", (string)(aP0_ProfileImageUrl));
+         restCliUploadProfileImage.RestExecute();
+         if ( restCliUploadProfileImage.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliUploadProfileImage.ErrorCode;
+            gxProperties.ErrorMessage = restCliUploadProfileImage.ErrorMessage;
+            gxProperties.StatusCode = restCliUploadProfileImage.StatusCode;
+            aP1_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP1_error = restCliUploadProfileImage.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* UploadProfileImage Constructor */
+      }
+
       public void gxep_getpages( out GXBaseCollection<SdtSDT_Page> aP0_SDT_PageCollection ,
                                  out SdtSDT_Error aP1_error )
       {
@@ -1239,6 +1293,8 @@ namespace GeneXus.Programs {
          restCliGetMedia = new GXRestAPIClient();
          aP0_SDT_MediaCollection = new GXBaseCollection<SdtSDT_Media>();
          aP1_error = new SdtSDT_Error();
+         restCliUploadLogo = new GXRestAPIClient();
+         restCliUploadProfileImage = new GXRestAPIClient();
          restCliGetPages = new GXRestAPIClient();
          aP0_SDT_PageCollection = new GXBaseCollection<SdtSDT_Page>();
          restCliPagesAPI = new GXRestAPIClient();
@@ -1297,6 +1353,8 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliUploadMedia ;
       protected GXRestAPIClient restCliDeleteMedia ;
       protected GXRestAPIClient restCliGetMedia ;
+      protected GXRestAPIClient restCliUploadLogo ;
+      protected GXRestAPIClient restCliUploadProfileImage ;
       protected GXRestAPIClient restCliGetPages ;
       protected GXRestAPIClient restCliPagesAPI ;
       protected GXRestAPIClient restCliPageAPI ;

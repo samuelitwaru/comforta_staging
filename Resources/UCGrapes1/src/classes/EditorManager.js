@@ -1,4 +1,3 @@
-
 class EditorManager {
   editors = {};
   pages = [];
@@ -9,9 +8,16 @@ class EditorManager {
   selectedComponent = null;
   container = document.getElementById("child-container");
 
-  constructor(dataManager, currentLanguage) {
+  constructor(
+    dataManager,
+    currentLanguage,
+    LocationLogo,
+    LocationProfileImage
+  ) {
     this.dataManager = dataManager;
     this.currentLanguage = currentLanguage;
+    this.LocationLogo = LocationLogo;
+    this.LocationProfileImage = LocationProfileImage;
     this.templateManager = new TemplateManager(this.currentLanguage, this);
     this.editorEventManager = new EditorEventManager(
       this,
@@ -89,8 +95,8 @@ class EditorManager {
 
   generateEditorHTML(page, editorId) {
     const appBar = this.shouldShowAppBar(page)
-      ? this.createAppBarHTML(page.PageName, page.PageId)
-      : "";
+      ? this.createContentPageAppBar(page.PageName, page.PageId)
+      : this.createHomePageAppBar();
 
     return `
       <div class="header">
@@ -121,7 +127,7 @@ class EditorManager {
     return page.PageIsContentPage || page.PageName !== "Home";
   }
 
-  createAppBarHTML(pageName, pageId) {
+  createContentPageAppBar(pageName, pageId) {
     return `
       <div class="app-bar">
           <svg id="back-button-${pageId}" class="content-back-button" xmlns="http://www.w3.org/2000/svg" id="Group_14" data-name="Group 14" width="47" height="47" viewBox="0 0 47 47">
@@ -136,6 +142,39 @@ class EditorManager {
     `;
   }
 
+  createHomePageAppBar() {
+    return `
+      <div class="home-app-bar">
+        <div id="add-logo" class="logo-section" style="display: ${this.LocationLogo ? 'none' : 'flex'}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" viewBox="0 0 28.5 20.065">
+            <path id="Path_1329" data-name="Path 1329" d="M17.693,11.025a2.4,2.4,0,0,0-2.285,2.508,2.4,2.4,0,0,0,2.285,2.508,2.4,2.4,0,0,0,2.285-2.508A2.4,2.4,0,0,0,17.693,11.025Zm10.283,7.524-8,10.032-5.713-6.27L8.044,31.09h28.5Z" transform="translate(-8.044 -11.025)" fill="#fff"/>
+          </svg>
+          Logo 
+          <span id="appbar-add-logo" class="appbar-add-logo"><i class="fa fa-plus"></i></span> 
+        </div>
+
+        <div id="added-logo" class="logo-added" style="display: ${!this.LocationLogo ? 'none' : 'flex'}">
+          <img id="toolbox-logo" src="${this.LocationLogo}" alt="logo" /> 
+          <span id="appbar-edit-logo" class="appbar-edit-logo"><i class="fa fa-pencil"></i></span> 
+        </div>
+
+        <div id="add-profile-image" class="profile-section" style="display: ${this.LocationProfileImage ? 'none' : 'flex'}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 19.422 21.363">
+            <path id="Path_1327" data-name="Path 1327" d="M15.711,5a6.8,6.8,0,0,0-3.793,12.442A9.739,9.739,0,0,0,6,26.364H7.942a7.769,7.769,0,1,1,15.537,0h1.942A9.739,9.739,0,0,0,19.5,17.442,6.8,6.8,0,0,0,15.711,5Zm0,1.942A4.855,4.855,0,1,1,10.855,11.8,4.841,4.841,0,0,1,15.711,6.942Z" transform="translate(-6 -5)" fill="#fff"/>
+          </svg>
+          <span id="appbar-add-profile" class="appbar-add-profile"><i class="fa fa-plus"></i></span> 
+        </div>
+
+        <div id="profile-image-added" class="profile-section profile-img" style="display: ${!this.LocationProfileImage ? 'none' : 'flex'}">
+          <img id="profile-img" src="${
+            this.LocationProfileImage
+          }" alt="profile" />
+          <span id="appbar-edit-profile" class="appbar-edit-profile"><i class="fa fa-pencil"></i></span>
+        </div>
+      </div>
+    `;
+  }
+
   initializeGrapesEditor(editorId) {
     return grapesjs.init({
       container: `#${editorId}`,
@@ -144,9 +183,9 @@ class EditorManager {
       width: "auto",
       canvas: {
         styles: [
-          "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css",
           "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css",
-          "https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Roboto:wght@400;500&display=swap",
+          "/DVelop/Bootstrap/Shared/fontawesome_vlatest/css/all.min.css?202521714271081",
+          "https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap",
           "/Resources/UCGrapes1/src/css/toolbox.css",
         ],
       },
@@ -168,8 +207,6 @@ class EditorManager {
     this.dataManager.pages.SDT_PageCollection.map((p) => {
       if (p.PageId == page.PageId) {
         p.PageGJSJson = JSON.stringify(PageGJSJson);
-        console.log("Update event triggered", p.PageName);
-        console.log(PageGJSJson);
       }
       return p;
     });
@@ -191,8 +228,6 @@ class EditorManager {
     try {
       const pageData = JSON.parse(page.PageGJSJson);
 
-      console.log("PageData: ", pageData);
-
       if (page.PageIsPredefined && page.PageName === "Location") {
         await this.handleLocationPage(editor, pageData);
       } else if (page.PageIsPredefined && page.PageName === "Reception") {
@@ -209,27 +244,31 @@ class EditorManager {
   }
 
   async handleLocationPage(editor, pageData) {
-
     // if (this.toolsSection.checkIfNotAuthenticated(locationData)) return;
 
     const locationData = this.dataManager.Location;
 
-    
-    const dataComponents = pageData.pages[0].frames[0].component.components[0].components[0].components[0].components[0].components[0].components
-    
+    const dataComponents =
+      pageData.pages[0].frames[0].component.components[0].components[0]
+        .components[0].components[0].components[0].components;
+
     if (dataComponents.length) {
-      const imgComponent = dataComponents.find((component) => component.attributes.src);
-      const descriptionComponent = dataComponents.find((component) =>  component.type=="product-service-description");
+      const imgComponent = dataComponents.find(
+        (component) => component.attributes.src
+      );
+      const descriptionComponent = dataComponents.find(
+        (component) => component.type == "product-service-description"
+      );
       if (imgComponent) {
         imgComponent.attributes.src = locationData.LocationImage_GXI;
       }
       if (descriptionComponent) {
-        descriptionComponent.components[0].content = locationData.LocationDescription;
+        descriptionComponent.components[0].content =
+          locationData.LocationDescription;
       }
       editor.DomComponents.clear();
       editor.loadProjectData(pageData);
     }
-    
   }
 
   async handleContentPage(editor, page) {
@@ -361,8 +400,8 @@ class EditorManager {
               height: "300vh",
               border: "none",
               overflow: "hidden",
-              '-ms-overflow-style': 'none',
-              'scrollbar-width': 'none',
+              "-ms-overflow-style": "none",
+              "scrollbar-width": "none",
             },
           },
 
@@ -470,12 +509,12 @@ class EditorManager {
 
   setupEditorLayout(editor, page, containerId) {
     if (this.shouldShowAppBar(page)) {
-      const canvas = editor.Canvas.getElement();
-      if (canvas) {
-        canvas.style.setProperty("height", "calc(100% - 100px)", "important");
-      }
-      this.backButtonAction(containerId, page.PageId);
     }
+    const canvas = editor.Canvas.getElement();
+    if (canvas) {
+      canvas.style.setProperty("height", "calc(100% - 100px)", "important");
+    }
+    this.backButtonAction(containerId, page.PageId);
   }
 
   finalizeEditorSetup(editor, page, editorDetails) {

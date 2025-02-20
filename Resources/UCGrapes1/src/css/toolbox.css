@@ -5,8 +5,8 @@
   --background-color: #f5f5f5;
   --text-color: #333333;
   --button-bg-color: #3498db;
-  --button-text-color: #ffffff; 
-  --card-bg-color: #ffffff; 
+  --button-text-color: #ffffff;
+  --card-bg-color: #ffffff;
   --card-text-color: #333333;
   --accent-color: #333333;
   --font-family: "Segoe UI", sans-serif;
@@ -41,7 +41,7 @@ button {
 .frame-container,
 .content-frame-container,
 .form-frame-container {
-  min-height: 100vh;
+  max-height: 100vh;
   padding: 1em;
   display: flex;
   flex-direction: column;
@@ -49,7 +49,25 @@ button {
   width: 100%;
   background-color: #fdfdfd;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow-y: auto; /* Adds vertical scrolling */
+  /* scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1; */
+}
+
+.frame-container::-webkit-scrollbar,
+.content-frame-container::-webkit-scrollbar,
+.form-frame-container::-webkit-scrollbar {
+  width: 2px;
+}
+
+.frame-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.frame-container::-webkit-scrollbar-thumb,
+.content-frame-container::-webkit-scrollbar-thumb,
+.form-frame-container::-webkit-scrollbar-thumb {
+  background: #222f54a4;
 }
 
 .form-frame-container {
@@ -90,11 +108,12 @@ button {
   border: 2px dashed #4c53577d;
   border-radius: 8px;
   height: 7rem;
-  padding: 1rem;
+  padding: 0.4rem;
   background-color: transparent;
   display: flex;
   flex-direction: column;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: move;
 }
 
 .template-block:hover {
@@ -110,7 +129,7 @@ button {
 
 .content-page-block {
   border-radius: 13px;
-  width: 100% !important; 
+  width: 100% !important;
   background-color: transparent;
   display: flex;
   flex-direction: column;
@@ -240,6 +259,7 @@ button {
   margin-bottom: 0.5rem;
   border: 2px dashed #4c53577d;
   display: none;
+  cursor: default;
 }
 
 .template-wrapper:hover .tile-icon {
@@ -254,8 +274,10 @@ button {
 
 .tile-title {
   font-size: 0.8rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-weight: 400;
+  cursor: default;
+  overflow-wrap: anywhere;
 }
 
 .tile-close-icon {
@@ -284,14 +306,12 @@ button {
 .tile-title-section {
   position: relative;
   width: -webkit-fill-available;
-  overflow: clip;
 }
 
 .tile-icon-section {
   position: relative;
   width: fit-content;
 }
-
 
 .tile-title-section:hover {
   border: 2px dashed #4c53577d;
@@ -362,6 +382,8 @@ button {
   display: flex;
   flex-direction: column;
   margin: 0.5rem;
+  margin-right: 1.1rem;
+  text-transform: uppercase;
 }
 
 .cta-button {
@@ -506,6 +528,6 @@ button {
 }
 
 @font-face {
-  font-family: 'Segoe UI';
-  src: url('../fonts/segoeui.ttf') format('truetype');
+  font-family: "Segoe UI";
+  src: url("../fonts/segoeui.ttf") format("truetype");
 }

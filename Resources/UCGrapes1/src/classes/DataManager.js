@@ -48,7 +48,6 @@ class DataManager {
   // Pages API methods
   async getPages() {
     this.pages = await this.fetchAPI('/api/toolbox/pages/list', {}, true);
-    console.log("Pages: ",this.pages.SDT_PageCollection.find(page=>page.PageName=="Location"));
     return this.pages;
   }
 
@@ -93,7 +92,6 @@ class DataManager {
   }
 
   async updatePagesBatch(payload) {
-    console.log("Payload: ", payload)
     return await this.fetchAPI('/api/toolbox/update-pages-batch', {
       method: 'POST',
       body: JSON.stringify(payload),
@@ -166,6 +164,20 @@ class DataManager {
         MediaType: fileType,
       }),
     }, true);
+  }
+
+  async uploadLogo(logoUrl) {
+    return await this.fetchAPI('/api/media/upload/logo', {
+      method: 'POST',
+      body: JSON.stringify({ LogoUrl: logoUrl }),
+    });
+  }
+
+  async uploadProfileImage(profileImageUrl) {
+    return await this.fetchAPI('/api/media/upload/profile', {
+      method: 'POST',
+      body: JSON.stringify({ ProfileImageUrl: profileImageUrl }),
+    });
   }
 
   // Content API methods

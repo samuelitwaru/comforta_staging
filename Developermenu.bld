@@ -342,6 +342,8 @@ gx0040
 gx0030
 general\ui\masterprompt
 general\ui\masterunanimosidebar
+aprc_uploadprofileimage
+aprc_uploadlogo
 aprc_createdynamicformpage
 aprc_createotpevents
 aprc_handleotpevents
