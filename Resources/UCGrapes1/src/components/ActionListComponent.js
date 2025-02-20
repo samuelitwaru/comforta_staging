@@ -194,6 +194,11 @@ class ActionListComponent {
         dropdownMenu.style.display = "none";
         dropdownHeader.querySelector("i")?.classList.remove("fa-angle-up");
         dropdownHeader.querySelector("i")?.classList.add("fa-angle-down");
+        const detailsElements = document.getElementsByClassName('category');
+  
+        Array.from(detailsElements).forEach(details => {
+          details.open = false;
+        });
       }
     });
   }

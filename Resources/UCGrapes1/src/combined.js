@@ -1314,7 +1314,7 @@ class TemplateManager {
                   data-gjs-resizable="false"
                   data-gjs-hoverable="false">
               <div class="template-block"
-                style="background-color:${tileBgColor}"
+                style="background-color:${tileBgColor}; color:#FFFFFF"
                 tile-bgcolor="${tileBgColor}"
                 tile-bgcolor-name="accentColor"
                 ${defaultTileAttrs} 
@@ -1535,7 +1535,7 @@ class TemplateManager {
 
       wrappers += `
                 <div class="template-wrapper"
-                          style="flex: 0 0 ${columnWidth}%); background: ${tileBgColor}"
+                          style="flex: 0 0 ${columnWidth}%); background: ${tileBgColor}; color:#ffffff"
                           data-gjs-type="tile-wrapper"
                           data-gjs-selectable="false"
                           data-gjs-droppable="false">
@@ -4331,6 +4331,11 @@ class ActionListComponent {
         dropdownMenu.style.display = "none";
         dropdownHeader.querySelector("i")?.classList.remove("fa-angle-up");
         dropdownHeader.querySelector("i")?.classList.add("fa-angle-down");
+        const detailsElements = document.getElementsByClassName('category');
+  
+        Array.from(detailsElements).forEach(details => {
+          details.open = false;
+        });
       }
     });
   }
@@ -5771,11 +5776,11 @@ const iconsData = [
   
   const defaultTileAttrs = `
     tile-text="Tile"
-    tile-text-color="#FFFFFF"
+    tile-text-color="#ffffff"
     tile-text-align="left"
   
     tile-icon=""
-    tile-icon-color="#FFFFFF"
+    tile-icon-color="#ffffff"
     tile-icon-align="left"
   
     tile-bg-image=""

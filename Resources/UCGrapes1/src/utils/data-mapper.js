@@ -275,12 +275,15 @@ function generateNewPage(theme) {
                                     "classes": [
                                       "template-block"
                                     ],
+                                    style: {
+                                      'color': '#ffffff'
+                                    },
                                     "attributes": {
                                       "tile-text": "Tile",
-                                      "tile-text-color": "#000000",
+                                      "tile-text-color": "#ffffff",
                                       "tile-text-align": "left",
                                       "tile-icon": "icon-name",
-                                      "tile-icon-color": "#000000",
+                                      "tile-icon-color": "#ffffff",
                                       "tile-icon-align": "left",
                                       "tile-bgcolor": `${theme.ThemeColors.accentColor}`,
                                       "tile-bgcolor-name": "accentColor",
