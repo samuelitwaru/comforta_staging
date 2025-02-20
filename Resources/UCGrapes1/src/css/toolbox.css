@@ -298,7 +298,7 @@ button {
   cursor: pointer;
 }
 
-.tile-icon-section:hover .tile-close-icon {
+.gjs-selected .tile-icon-section:hover .tile-close-icon {
   opacity: 1;
   visibility: visible;
 }
@@ -319,6 +319,10 @@ button {
 .tile-title-section:hover .tile-close-icon {
   opacity: 1;
   visibility: visible;
+}
+
+.template-block.high-priority-template .tile-title {
+  text-transform: uppercase !important;
 }
 
 .top-left {

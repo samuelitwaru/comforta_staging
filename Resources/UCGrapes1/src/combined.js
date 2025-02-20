@@ -309,7 +309,6 @@ class DataManager {
   // Pages API methods
   async getPages() {
     this.pages = await this.fetchAPI('/api/toolbox/pages/list', {}, true);
-    console.log("Pages: ",this.pages.SDT_PageCollection.find(page=>page.PageName=="Location"));
     return this.pages;
   }
 
@@ -1044,7 +1043,7 @@ class EditorEventManager {
     this.editorOnSelected(editor);
     this.setupKeyboardBindings(editor);
     this.editorOnUpdate(editor, page);
-    this.setupAppBarEvents();
+    // this.setupAppBarEvents();
   }
 
   setupKeyboardBindings(editor) {
@@ -1321,26 +1320,26 @@ class EditorEventManager {
     }
   }
 
-  setupAppBarEvents() {
-    const buttonConfigs = [
-      { id: "appbar-add-logo", type: "logo" },
-      { id: "appbar-add-profile", type: "profile-image" },
-      { id: "appbar-edit-logo", type: "logo" },
-      { id: "appbar-edit-profile", type: "profile-image" },
-    ];
+  // setupAppBarEvents() {
+  //   const buttonConfigs = [
+  //     { id: "appbar-add-logo", type: "logo" },
+  //     { id: "appbar-add-profile", type: "profile-image" },
+  //     { id: "appbar-edit-logo", type: "logo" },
+  //     { id: "appbar-edit-profile", type: "profile-image" },
+  //   ];
 
-    const toolboxManager = this.editorManager.toolsSection;
+  //   const toolboxManager = this.editorManager.toolsSection;
 
-    buttonConfigs.forEach(({ id, type }) => {
-      const element = document.getElementById(id);
-      if (element) {
-        element.addEventListener("click", (e) => {
-          e.preventDefault();
-          toolboxManager.openFileManager(type);
-        });
-      }
-    });
-  }
+  //   buttonConfigs.forEach(({ id, type }) => {
+  //     const element = document.getElementById(id);
+  //     if (element) {
+  //       element.addEventListener("click", (e) => {
+  //         e.preventDefault();
+  //         toolboxManager.openFileManager(type);
+  //       });
+  //     }
+  //   });
+  // }
 }
 
 
@@ -1600,7 +1599,11 @@ class TemplateManager {
                           data-gjs-selectable="false"
                           data-gjs-droppable="false">
 
-                          <div class="template-block"
+                          <div class="template-block ${
+                            isFirstTileOfFirstRow
+                              ? "high-priority-template"
+                              : ""
+                          }"
                             tile-bgcolor="${tileBgColor}"
                             tile-bgcolor-name="accentColor"
                             ${defaultTileAttrs}
@@ -1937,6 +1940,8 @@ class TemplateManager {
 
     const config = styleConfigs[templates.length];
 
+    const isTemplateOne = templates.length == 1;
+
     const titles = containerRow.find(".tile-title");
     const templateBlocks = containerRow.find(".template-block");
     const titleSections = containerRow.find(".tile-title-section");
@@ -1947,21 +1952,22 @@ class TemplateManager {
       if (templates.length === 3) {
         let words = title.getEl().innerText.split(" ");
         if (words.length > 1) {
-          title.getEl().innerHTML =
-            words.slice(0, -1).join(" ") + "<br>" + words[words.length - 1];
+          const newContent = words.slice(0, -1).join(" ") + "<br>" + words[words.length - 1];
+          title.components(newContent);
         }
       } else {
-        title.getEl().innerHTML = title.getEl().innerText.replace("<br>", "")
+        const newContent = title.getEl().innerText.replace("<br>", "");
+        title.components(newContent);
       }
     });
 
     templateBlocks.forEach((template) => {
-      const templateStyles = { ...config.template };
-      templateStyles.height = template
-        .getClasses()
-        ?.includes("high-priority-template")
-        ? "7rem"
-        : "5.5rem";
+      const isPriority = template.getClasses()?.includes("high-priority-template");
+      const templateStyles = {
+        ...config.template,
+        height: isPriority && isTemplateOne ? "7rem" : "5.5rem",
+        textTransform: isPriority && isTemplateOne ? "uppercase" : "capitalize",
+      };
       template.addStyle(templateStyles);
     });
 
@@ -4332,7 +4338,6 @@ class ActionListComponent {
     });
 
     this.dynamicForms = this.dataManager.forms.map((form) => {
-      console.log('form', form)
       return {
         PageId: form.FormId,
         PageName: form.ReferenceName,
@@ -4515,7 +4520,7 @@ class ActionListComponent {
         if (editor.getSelected()) {
           const titleComponent = editor.getSelected().find(".tile-title")[0];
           const currentPageId = localStorage.getItem("pageId");
-          const tileTitle = truncateText(item.dataset.tileName.toUpperCase(), 12);
+          const tileTitle = truncateText(item.dataset.tileName, 12);
           if (currentPageId !== undefined) {
             this.toolBoxManager.setAttributeToSelected(
               "tile-action-object-id",
@@ -4551,7 +4556,8 @@ class ActionListComponent {
 
             const sidebarInputTitle = document.getElementById("tile-title");
             if (sidebarInputTitle) {
-              sidebarInputTitle.textContent = tileTitle;
+              console.log(tileTitle);
+              sidebarInputTitle.value = tileTitle;
             }
           }
         }
