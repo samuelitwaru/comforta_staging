@@ -68,7 +68,6 @@ function mapTemplateToPageData(templateData, page) {
           const titleText = titleSpan?.components?.[0]?.content || "";
 
           // Create tile object
-          console.log('attr', attributes['tile-action-object-url'])
           let tileActionObjectId = attributes["tile-action-object-id"]
           const tileBG = addOpacityToHex(attributes["tile-bgcolor"], attributes["tile-bg-image-opacity"])
 
@@ -104,8 +103,6 @@ function mapTemplateToPageData(templateData, page) {
 function mapContentToPageData(templateData, page) {
   console.log("Publishing page: ", page.PageName);
   const pages = templateData.pages;
-  console.log(page.PageName)
-  console.log(templateData)
   const output = {
       PageId: page.PageId,
       PageName: page.PageName,
@@ -172,7 +169,6 @@ function mapContentToPageData(templateData, page) {
         }
     });
   }
-  console.log(output)
   return output;
 }
 
