@@ -335,6 +335,33 @@ namespace GeneXus.Programs {
          /* GetResidentNotificationHistory Constructor */
       }
 
+      public void gxep_getresidentfilledforms( string aP0_ResidentId ,
+                                               out GXBaseCollection<SdtSDT_ApiResidentFilledForms> aP1_SDT_ApiResidentFilledForms )
+      {
+         restCliGetResidentFilledForms = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/resident/filled-forms";
+         restCliGetResidentFilledForms.Location = restLocation;
+         restCliGetResidentFilledForms.HttpMethod = "GET";
+         restCliGetResidentFilledForms.AddQueryVar("Residentid", (string)(aP0_ResidentId));
+         restCliGetResidentFilledForms.RestExecute();
+         if ( restCliGetResidentFilledForms.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliGetResidentFilledForms.ErrorCode;
+            gxProperties.ErrorMessage = restCliGetResidentFilledForms.ErrorMessage;
+            gxProperties.StatusCode = restCliGetResidentFilledForms.StatusCode;
+            aP1_SDT_ApiResidentFilledForms = new GXBaseCollection<SdtSDT_ApiResidentFilledForms>();
+         }
+         else
+         {
+            aP1_SDT_ApiResidentFilledForms = restCliGetResidentFilledForms.GetBodySdtCollection<SdtSDT_ApiResidentFilledForms>("SDT_ApiResidentFilledForms");
+         }
+         /* GetResidentFilledForms Constructor */
+      }
+
       public void gxep_updateresidentavatar( string aP0_Base64Image ,
                                              string aP1_ResidentId ,
                                              out string aP2_result )
@@ -722,37 +749,6 @@ namespace GeneXus.Programs {
             aP3_SDT_MobilePage = restCliPageAPI.GetBodySdt<SdtSDT_MobilePage>("SDT_MobilePage");
          }
          /* PageAPI Constructor */
-      }
-
-      public void gxep_pageapi2( Guid aP0_PageId ,
-                                 Guid aP1_locationId ,
-                                 Guid aP2_organisationId ,
-                                 out SdtSDT_MobilePage aP3_SDT_MobilePage )
-      {
-         restCliPageAPI2 = new GXRestAPIClient();
-         if ( restLocation == null )
-         {
-            InitLocation();
-         }
-         restLocation.ResourceName = "/toolbox/page2";
-         restCliPageAPI2.Location = restLocation;
-         restCliPageAPI2.HttpMethod = "GET";
-         restCliPageAPI2.AddQueryVar("Pageid", (Guid)(aP0_PageId));
-         restCliPageAPI2.AddQueryVar("Locationid", (Guid)(aP1_locationId));
-         restCliPageAPI2.AddQueryVar("Organisationid", (Guid)(aP2_organisationId));
-         restCliPageAPI2.RestExecute();
-         if ( restCliPageAPI2.ErrorCode != 0 )
-         {
-            gxProperties.ErrorCode = restCliPageAPI2.ErrorCode;
-            gxProperties.ErrorMessage = restCliPageAPI2.ErrorMessage;
-            gxProperties.StatusCode = restCliPageAPI2.StatusCode;
-            aP3_SDT_MobilePage = new SdtSDT_MobilePage();
-         }
-         else
-         {
-            aP3_SDT_MobilePage = restCliPageAPI2.GetBodySdt<SdtSDT_MobilePage>("SDT_MobilePage");
-         }
-         /* PageAPI2 Constructor */
       }
 
       public void gxep_contentpagesapi( Guid aP0_locationId ,
@@ -1305,6 +1301,8 @@ namespace GeneXus.Programs {
          aP1_SDT_Location = new SdtSDT_Location();
          restCliGetResidentNotificationHistory = new GXRestAPIClient();
          aP1_SDT_ResidentNotification = new GXBaseCollection<SdtSDT_ResidentNotification>();
+         restCliGetResidentFilledForms = new GXRestAPIClient();
+         aP1_SDT_ApiResidentFilledForms = new GXBaseCollection<SdtSDT_ApiResidentFilledForms>();
          restCliUpdateResidentAvatar = new GXRestAPIClient();
          aP2_result = "";
          restCliRegisterDevice = new GXRestAPIClient();
@@ -1332,7 +1330,6 @@ namespace GeneXus.Programs {
          aP2_SDT_MobilePageCollection = new GXBaseCollection<SdtSDT_MobilePage>();
          restCliPageAPI = new GXRestAPIClient();
          aP3_SDT_MobilePage = new SdtSDT_MobilePage();
-         restCliPageAPI2 = new GXRestAPIClient();
          restCliContentPagesAPI = new GXRestAPIClient();
          aP2_SDT_ContentPageCollection = new GXBaseCollection<SdtSDT_ContentPage>();
          restCliContentPageAPI = new GXRestAPIClient();
@@ -1377,6 +1374,7 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliGetOrganisationInformation ;
       protected GXRestAPIClient restCliGetLocationInformation ;
       protected GXRestAPIClient restCliGetResidentNotificationHistory ;
+      protected GXRestAPIClient restCliGetResidentFilledForms ;
       protected GXRestAPIClient restCliUpdateResidentAvatar ;
       protected GXRestAPIClient restCliRegisterDevice ;
       protected GXRestAPIClient restCliSendNotification ;
@@ -1390,7 +1388,6 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliGetPages ;
       protected GXRestAPIClient restCliPagesAPI ;
       protected GXRestAPIClient restCliPageAPI ;
-      protected GXRestAPIClient restCliPageAPI2 ;
       protected GXRestAPIClient restCliContentPagesAPI ;
       protected GXRestAPIClient restCliContentPageAPI ;
       protected GXRestAPIClient restCliGetSinglePage ;
@@ -1421,6 +1418,7 @@ namespace GeneXus.Programs {
       protected SdtSDT_Organisation aP1_SDT_Organisation ;
       protected SdtSDT_Location aP1_SDT_Location ;
       protected GXBaseCollection<SdtSDT_ResidentNotification> aP1_SDT_ResidentNotification ;
+      protected GXBaseCollection<SdtSDT_ApiResidentFilledForms> aP1_SDT_ApiResidentFilledForms ;
       protected string aP2_result ;
       protected string aP6_result ;
       protected string aP3_result ;

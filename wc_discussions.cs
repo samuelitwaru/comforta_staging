@@ -653,7 +653,7 @@ namespace GeneXus.Programs {
             StyleString = "";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_html_textarea( context, edtavMessage_Internalname, AV13Message, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,64);\"", 0, 1, edtavMessage_Enabled, 0, 80, "chr", 5, "row", 0, StyleString, ClassString, "", "", "400", -1, 0, "", context.GetMessage( "Type a message to create a new thread...", ""), -1, true, "", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_WC_Discussions.htm");
+            GxWebStd.gx_html_textarea( context, edtavMessage_Internalname, AV13Message, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,64);\"", 0, 1, edtavMessage_Enabled, 0, 80, "chr", 5, "row", 0, StyleString, ClassString, "", "", "400", -1, 0, "", context.GetMessage( "Type a message...", ""), -1, true, "", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_WC_Discussions.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
@@ -1668,6 +1668,8 @@ namespace GeneXus.Programs {
       {
          /* Grid_Load Routine */
          returnInSub = false;
+         tblTablemergedwwpuserextendedfullname_Class = context.GetMessage( "TableMerged TableMaginBottom", "");
+         AssignProp(sPrefix, false, tblTablemergedwwpuserextendedfullname_Internalname, "Class", tblTablemergedwwpuserextendedfullname_Class, !bGXsfl_16_Refreshing);
          if ( AV12IsFirstDiscussionRecord )
          {
             AV12IsFirstDiscussionRecord = false;
@@ -2158,7 +2160,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521911442833", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522118213453", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2174,7 +2176,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_discussions.js", "?202521911442837", false, true);
+         context.AddJavascriptSource("wc_discussions.js", "?202522118213454", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Suggest/SuggestRender.js", "", false, true);
          /* End function include_jscripts */
@@ -2300,7 +2302,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GridRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)"col-xs-12",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
             /* Table start */
-            GridRow.AddColumnProperties("table", -1, isAjaxCallMode( ), new Object[] {(string)tblTablemergedwwpuserextendedfullname_Internalname+"_"+sGXsfl_16_idx,(short)1,(string)"TableMerged",(string)"",(string)"",(string)"",(string)"",(string)"",(string)"",(short)0,(short)0,(string)"",(string)"",(string)"",(string)"px",(string)"px",(string)""});
+            GridRow.AddColumnProperties("table", -1, isAjaxCallMode( ), new Object[] {(string)tblTablemergedwwpuserextendedfullname_Internalname+"_"+sGXsfl_16_idx,(short)1,(string)tblTablemergedwwpuserextendedfullname_Class,(string)"",(string)"",(string)"",(string)"",(string)"",(string)"",(short)0,(short)0,(string)"",(string)"",(string)"",(string)"px",(string)"px",(string)""});
             GridRow.AddColumnProperties("row", -1, isAjaxCallMode( ), new Object[] {(string)"",(string)"",(string)""});
             GridRow.AddColumnProperties("cell", -1, isAjaxCallMode( ), new Object[] {(string)"",(string)"",(string)"MergeDataCell"});
             /* Div Control */
@@ -2778,6 +2780,7 @@ namespace GeneXus.Programs {
          edtWWPUserExtendedFullName_Jsonclick = "";
          edtavUserextendedphoto_gximage = "";
          subGrid_Class = "FreeStyleGrid";
+         tblTablemergedwwpuserextendedfullname_Class = "TableMerged";
          edtWWPDiscussionMessageEntityReco_Enabled = 0;
          edtWWPDiscussionMessageId_Enabled = 0;
          edtWWPDiscussionMessageMessage_Enabled = 0;
@@ -2815,7 +2818,7 @@ namespace GeneXus.Programs {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"chkavIsdiscussionanswerswcloaded.Visible","ctrl":"vISDISCUSSIONANSWERSWCLOADED","prop":"Visible"},{"av":"edtWWPDiscussionMessageId_Visible","ctrl":"WWPDISCUSSIONMESSAGEID","prop":"Visible"},{"av":"AV26WWPSubscriptionEntityRecordDescription","fld":"vWWPSUBSCRIPTIONENTITYRECORDDESCRIPTION"},{"av":"AV25WWPNotificationLink","fld":"vWWPNOTIFICATIONLINK"},{"av":"sPrefix"},{"av":"A200WWPDiscussionMessageId","fld":"WWPDISCUSSIONMESSAGEID","pic":"ZZZZZZZZZ9","hsh":true},{"av":"A125WWPEntityId","fld":"WWPENTITYID","pic":"ZZZZZZZZZ9"},{"av":"AV6WWPEntityId","fld":"vWWPENTITYID","pic":"ZZZZZZZZZ9"},{"av":"AV22WWPDiscussionMessageEntityRecordId","fld":"vWWPDISCUSSIONMESSAGEENTITYRECORDID"},{"av":"A199WWPDiscussionMessageThreadId","fld":"WWPDISCUSSIONMESSAGETHREADID","pic":"ZZZZZZZZZ9"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV36Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV12IsFirstDiscussionRecord","fld":"vISFIRSTDISCUSSIONRECORD","hsh":true},{"av":"AV29DiscussionResidentId","fld":"vDISCUSSIONRESIDENTID","hsh":true},{"av":"AV23WWPDiscussionMessageIdToExpand","fld":"vWWPDISCUSSIONMESSAGEIDTOEXPAND","pic":"ZZZZZZZZZ9","hsh":true},{"av":"AV5WWPDiscussionMessage","fld":"vWWPDISCUSSIONMESSAGE","hsh":true},{"av":"A205WWPDiscussionMessageEntityReco","fld":"WWPDISCUSSIONMESSAGEENTITYRECO","hsh":true}]""");
          setEventMetadata("REFRESH",""","oparms":[{"av":"divWcdiscussionsonethreadcell_Visible","ctrl":"WCDISCUSSIONSONETHREADCELL","prop":"Visible"},{"av":"AV12IsFirstDiscussionRecord","fld":"vISFIRSTDISCUSSIONRECORD","hsh":true},{"av":"AV23WWPDiscussionMessageIdToExpand","fld":"vWWPDISCUSSIONMESSAGEIDTOEXPAND","pic":"ZZZZZZZZZ9","hsh":true},{"av":"divGridcell_Visible","ctrl":"GRIDCELL","prop":"Visible"},{"av":"AV11IsDiscussionAnswersWCLoaded","fld":"vISDISCUSSIONANSWERSWCLOADED"},{"av":"lblNewthread_Visible","ctrl":"NEWTHREAD","prop":"Visible"}]}""");
          setEventMetadata("GRID.LOAD","""{"handler":"E157Z2","iparms":[{"av":"AV12IsFirstDiscussionRecord","fld":"vISFIRSTDISCUSSIONRECORD","hsh":true},{"av":"AV29DiscussionResidentId","fld":"vDISCUSSIONRESIDENTID","hsh":true},{"av":"A40000WWPUserExtendedPhoto_GXI","fld":"WWPUSEREXTENDEDPHOTO_GXI"},{"av":"A200WWPDiscussionMessageId","fld":"WWPDISCUSSIONMESSAGEID","pic":"ZZZZZZZZZ9","hsh":true},{"av":"AV23WWPDiscussionMessageIdToExpand","fld":"vWWPDISCUSSIONMESSAGEIDTOEXPAND","pic":"ZZZZZZZZZ9","hsh":true},{"av":"AV26WWPSubscriptionEntityRecordDescription","fld":"vWWPSUBSCRIPTIONENTITYRECORDDESCRIPTION"},{"av":"AV25WWPNotificationLink","fld":"vWWPNOTIFICATIONLINK"}]""");
-         setEventMetadata("GRID.LOAD",""","oparms":[{"av":"AV12IsFirstDiscussionRecord","fld":"vISFIRSTDISCUSSIONRECORD","hsh":true},{"av":"divNewthreadcell_Visible","ctrl":"NEWTHREADCELL","prop":"Visible"},{"av":"divGridcell_Visible","ctrl":"GRIDCELL","prop":"Visible"},{"av":"lblNewthread_Visible","ctrl":"NEWTHREAD","prop":"Visible"},{"av":"AV18UserExtendedPhoto","fld":"vUSEREXTENDEDPHOTO"},{"ctrl":"DISCUSSIONSONETHREADCOLLAPSEDWC"},{"ctrl":"WCDISCUSSIONSONETHREADWC"},{"av":"AV11IsDiscussionAnswersWCLoaded","fld":"vISDISCUSSIONANSWERSWCLOADED"},{"av":"divWcdiscussionsonethreadcell_Visible","ctrl":"WCDISCUSSIONSONETHREADCELL","prop":"Visible"},{"av":"divDiscussionsonethreadcollapsedwccell_Visible","ctrl":"DISCUSSIONSONETHREADCOLLAPSEDWCCELL","prop":"Visible"}]}""");
+         setEventMetadata("GRID.LOAD",""","oparms":[{"av":"tblTablemergedwwpuserextendedfullname_Class","ctrl":"TABLEMERGEDWWPUSEREXTENDEDFULLNAME","prop":"Class"},{"av":"AV12IsFirstDiscussionRecord","fld":"vISFIRSTDISCUSSIONRECORD","hsh":true},{"av":"divNewthreadcell_Visible","ctrl":"NEWTHREADCELL","prop":"Visible"},{"av":"divGridcell_Visible","ctrl":"GRIDCELL","prop":"Visible"},{"av":"lblNewthread_Visible","ctrl":"NEWTHREAD","prop":"Visible"},{"av":"AV18UserExtendedPhoto","fld":"vUSEREXTENDEDPHOTO"},{"ctrl":"DISCUSSIONSONETHREADCOLLAPSEDWC"},{"ctrl":"WCDISCUSSIONSONETHREADWC"},{"av":"AV11IsDiscussionAnswersWCLoaded","fld":"vISDISCUSSIONANSWERSWCLOADED"},{"av":"divWcdiscussionsonethreadcell_Visible","ctrl":"WCDISCUSSIONSONETHREADCELL","prop":"Visible"},{"av":"divDiscussionsonethreadcollapsedwccell_Visible","ctrl":"DISCUSSIONSONETHREADCOLLAPSEDWCCELL","prop":"Visible"}]}""");
          setEventMetadata("ENTER","""{"handler":"E127Z2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV22WWPDiscussionMessageEntityRecordId","fld":"vWWPDISCUSSIONMESSAGEENTITYRECORDID"},{"av":"AV6WWPEntityId","fld":"vWWPENTITYID","pic":"ZZZZZZZZZ9"},{"av":"AV36Pgmname","fld":"vPGMNAME","hsh":true},{"av":"chkavIsdiscussionanswerswcloaded.Visible","ctrl":"vISDISCUSSIONANSWERSWCLOADED","prop":"Visible"},{"av":"edtWWPDiscussionMessageId_Visible","ctrl":"WWPDISCUSSIONMESSAGEID","prop":"Visible"},{"av":"AV12IsFirstDiscussionRecord","fld":"vISFIRSTDISCUSSIONRECORD","hsh":true},{"av":"AV29DiscussionResidentId","fld":"vDISCUSSIONRESIDENTID","hsh":true},{"av":"AV23WWPDiscussionMessageIdToExpand","fld":"vWWPDISCUSSIONMESSAGEIDTOEXPAND","pic":"ZZZZZZZZZ9","hsh":true},{"av":"AV26WWPSubscriptionEntityRecordDescription","fld":"vWWPSUBSCRIPTIONENTITYRECORDDESCRIPTION"},{"av":"AV25WWPNotificationLink","fld":"vWWPNOTIFICATIONLINK"},{"av":"AV5WWPDiscussionMessage","fld":"vWWPDISCUSSIONMESSAGE","hsh":true},{"av":"A205WWPDiscussionMessageEntityReco","fld":"WWPDISCUSSIONMESSAGEENTITYRECO","hsh":true},{"av":"sPrefix"},{"av":"AV13Message","fld":"vMESSAGE"},{"av":"AV24WWPEntityName","fld":"vWWPENTITYNAME"},{"av":"Ucmentions_Selecteditemsjson","ctrl":"UCMENTIONS","prop":"SelectedItemsJson"},{"av":"A200WWPDiscussionMessageId","fld":"WWPDISCUSSIONMESSAGEID","pic":"ZZZZZZZZZ9","hsh":true},{"av":"A125WWPEntityId","fld":"WWPENTITYID","pic":"ZZZZZZZZZ9"},{"av":"A199WWPDiscussionMessageThreadId","fld":"WWPDISCUSSIONMESSAGETHREADID","pic":"ZZZZZZZZZ9"}]""");
          setEventMetadata("ENTER",""","oparms":[{"av":"AV6WWPEntityId","fld":"vWWPENTITYID","pic":"ZZZZZZZZZ9"},{"av":"AV31NotificationInfo","fld":"vNOTIFICATIONINFO"},{"av":"AV13Message","fld":"vMESSAGE"},{"av":"divNewthreadcell_Visible","ctrl":"NEWTHREADCELL","prop":"Visible"},{"av":"divWcdiscussionsonethreadcell_Visible","ctrl":"WCDISCUSSIONSONETHREADCELL","prop":"Visible"},{"av":"AV12IsFirstDiscussionRecord","fld":"vISFIRSTDISCUSSIONRECORD","hsh":true},{"av":"AV23WWPDiscussionMessageIdToExpand","fld":"vWWPDISCUSSIONMESSAGEIDTOEXPAND","pic":"ZZZZZZZZZ9","hsh":true},{"av":"divGridcell_Visible","ctrl":"GRIDCELL","prop":"Visible"},{"av":"AV11IsDiscussionAnswersWCLoaded","fld":"vISDISCUSSIONANSWERSWCLOADED"},{"av":"lblNewthread_Visible","ctrl":"NEWTHREAD","prop":"Visible"}]}""");
          setEventMetadata("NEWTHREAD.CLICK","""{"handler":"E117Z1","iparms":[{"av":"AV13Message","fld":"vMESSAGE"}]""");
@@ -3073,6 +3076,8 @@ namespace GeneXus.Programs {
       private string hsh ;
       private string GXt_char1 ;
       private string divWcdiscussionsonethreadcell_Internalname ;
+      private string tblTablemergedwwpuserextendedfullname_Class ;
+      private string tblTablemergedwwpuserextendedfullname_Internalname ;
       private string edtavUserextendedphoto_gximage ;
       private string divDiscussionsonethreadcollapsedwccell_Internalname ;
       private string sCtrlAV24WWPEntityName ;
@@ -3088,7 +3093,6 @@ namespace GeneXus.Programs {
       private string divTablecard_Internalname ;
       private string sImgUrl ;
       private string divTabletitle_Internalname ;
-      private string tblTablemergedwwpuserextendedfullname_Internalname ;
       private string ROClassString ;
       private string edtWWPUserExtendedFullName_Jsonclick ;
       private string edtWWPDiscussionMessageDate_Jsonclick ;

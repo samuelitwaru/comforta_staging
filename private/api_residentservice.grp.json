@@ -95,6 +95,16 @@
 "Verb":"GET"
 },
 {
+"PathRegexp":"resident/filled-forms",
+"Path":"resident/filled-forms",
+"Name":"getresidentfilledforms",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_getresidentfilledforms",
+"Implementation":"Prc_GetResidentFilledForms",
+"Verb":"GET"
+},
+{
 "PathRegexp":"resident/update-avatar",
 "Path":"resident/update-avatar",
 "Verb":"POST",
@@ -221,16 +231,6 @@
 "Bodystyle":"Wrapped",
 "VariableAlias": [],
 "ServiceMethod":"gxep_pageapi",
-"Implementation":"Prc_PageAPI",
-"Verb":"GET"
-},
-{
-"PathRegexp":"toolbox/page2",
-"Path":"toolbox/page2",
-"Name":"pageapi2",
-"Bodystyle":"Wrapped",
-"VariableAlias": [],
-"ServiceMethod":"gxep_pageapi2",
 "Implementation":"Prc_PageAPI",
 "Verb":"GET"
 },

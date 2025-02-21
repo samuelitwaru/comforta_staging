@@ -1416,6 +1416,8 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          /* Grid_Load Routine */
          returnInSub = false;
+         tblTablemergedwwpuserextendedfullname_Class = context.GetMessage( "TableMerged TableMaginBottom", "");
+         AssignProp(sPrefix, false, tblTablemergedwwpuserextendedfullname_Internalname, "Class", tblTablemergedwwpuserextendedfullname_Class, !bGXsfl_12_Refreshing);
          subGrid_Visible = 1;
          AssignProp(sPrefix, false, sPrefix+"GridContainerDiv", "Visible", StringUtil.LTrimStr( (decimal)(subGrid_Visible), 5, 0), true);
          if ( StringUtil.StrCmp(A40000WWPUserExtendedPhoto_GXI, "") == 0 )
@@ -1777,7 +1779,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522112313146", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522118212961", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1793,7 +1795,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionsonethreadwc.js", "?202522112313150", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionsonethreadwc.js", "?202522118212963", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Suggest/SuggestRender.js", "", false, true);
          /* End function include_jscripts */
@@ -1933,7 +1935,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             /* Div Control */
             GridRow.AddColumnProperties("div_start", -1, isAjaxCallMode( ), new Object[] {(string)"",(short)1,(short)0,(string)"px",(short)0,(string)"px",(string)"col-xs-12",(string)"start",(string)"top",(string)"",(string)"",(string)"div"});
             /* Table start */
-            GridRow.AddColumnProperties("table", -1, isAjaxCallMode( ), new Object[] {(string)tblTablemergedwwpuserextendedfullname_Internalname+"_"+sGXsfl_12_idx,(short)1,(string)"TableMerged",(string)"",(string)"",(string)"",(string)"",(string)"",(string)"",(short)0,(short)0,(string)"",(string)"",(string)"",(string)"px",(string)"px",(string)""});
+            GridRow.AddColumnProperties("table", -1, isAjaxCallMode( ), new Object[] {(string)tblTablemergedwwpuserextendedfullname_Internalname+"_"+sGXsfl_12_idx,(short)1,(string)tblTablemergedwwpuserextendedfullname_Class,(string)"",(string)"",(string)"",(string)"",(string)"",(string)"",(short)0,(short)0,(string)"",(string)"",(string)"",(string)"px",(string)"px",(string)""});
             GridRow.AddColumnProperties("row", -1, isAjaxCallMode( ), new Object[] {(string)"",(string)"",(string)""});
             GridRow.AddColumnProperties("cell", -1, isAjaxCallMode( ), new Object[] {(string)"",(string)"",(string)"MergeDataCell"});
             /* Div Control */
@@ -2194,6 +2196,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          edtavUserextendedphoto_Class = "AttributeDiscussionImage";
          edtWWPDiscussionMessageId_Jsonclick = "";
          subGrid_Class = "FreeStyleGrid";
+         tblTablemergedwwpuserextendedfullname_Class = "TableMerged";
          edtWWPDiscussionMessageThreadId_Enabled = 0;
          edtWWPDiscussionMessageMessage_Enabled = 0;
          edtWWPDiscussionMessageDate_Enabled = 0;
@@ -2227,7 +2230,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"AV15WWPDiscussionMessageThreadId","fld":"vWWPDISCUSSIONMESSAGETHREADID","pic":"ZZZZZZZZZ9"},{"av":"edtWWPDiscussionMessageId_Visible","ctrl":"WWPDISCUSSIONMESSAGEID","prop":"Visible"},{"av":"sPrefix"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV34Pgmname","fld":"vPGMNAME","hsh":true}]}""");
          setEventMetadata("GRID.LOAD","""{"handler":"E141U2","iparms":[{"av":"A40000WWPUserExtendedPhoto_GXI","fld":"WWPUSEREXTENDEDPHOTO_GXI"}]""");
-         setEventMetadata("GRID.LOAD",""","oparms":[{"av":"subGrid_Visible","ctrl":"GRID","prop":"Visible"},{"av":"edtavUserextendedphoto_Class","ctrl":"vUSEREXTENDEDPHOTO","prop":"Class"},{"av":"AV13UserExtendedPhoto","fld":"vUSEREXTENDEDPHOTO"}]}""");
+         setEventMetadata("GRID.LOAD",""","oparms":[{"av":"tblTablemergedwwpuserextendedfullname_Class","ctrl":"TABLEMERGEDWWPUSEREXTENDEDFULLNAME","prop":"Class"},{"av":"subGrid_Visible","ctrl":"GRID","prop":"Visible"},{"av":"edtavUserextendedphoto_Class","ctrl":"vUSEREXTENDEDPHOTO","prop":"Class"},{"av":"AV13UserExtendedPhoto","fld":"vUSEREXTENDEDPHOTO"}]}""");
          setEventMetadata("ENTER","""{"handler":"E111U2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV15WWPDiscussionMessageThreadId","fld":"vWWPDISCUSSIONMESSAGETHREADID","pic":"ZZZZZZZZZ9"},{"av":"AV34Pgmname","fld":"vPGMNAME","hsh":true},{"av":"edtWWPDiscussionMessageId_Visible","ctrl":"WWPDISCUSSIONMESSAGEID","prop":"Visible"},{"av":"sPrefix"},{"av":"AV16Message","fld":"vMESSAGE"},{"av":"AV22WWPNotificationLink","fld":"vWWPNOTIFICATIONLINK"},{"av":"AV21WWPSubscriptionEntityRecordDescription","fld":"vWWPSUBSCRIPTIONENTITYRECORDDESCRIPTION"},{"av":"Ucmentions_Selecteditemsjson","ctrl":"UCMENTIONS","prop":"SelectedItemsJson"}]""");
          setEventMetadata("ENTER",""","oparms":[{"av":"AV24NotificationInfo","fld":"vNOTIFICATIONINFO"},{"av":"AV16Message","fld":"vMESSAGE"}]}""");
          setEventMetadata("GRID_FIRSTPAGE","""{"handler":"subgrid_firstpage","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"AV15WWPDiscussionMessageThreadId","fld":"vWWPDISCUSSIONMESSAGETHREADID","pic":"ZZZZZZZZZ9"},{"av":"edtWWPDiscussionMessageId_Visible","ctrl":"WWPDISCUSSIONMESSAGEID","prop":"Visible"},{"av":"sPrefix"},{"av":"AV34Pgmname","fld":"vPGMNAME","hsh":true},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"}]}""");
@@ -2421,6 +2424,8 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private string GXDecQS ;
       private string A112WWPUserExtendedId ;
       private string GXt_char1 ;
+      private string tblTablemergedwwpuserextendedfullname_Class ;
+      private string tblTablemergedwwpuserextendedfullname_Internalname ;
       private string edtavUserextendedphoto_gximage ;
       private string edtavUserextendedphoto_Class ;
       private string sCtrlAV15WWPDiscussionMessageThreadId ;
@@ -2435,7 +2440,6 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private string edtWWPDiscussionMessageId_Jsonclick ;
       private string sImgUrl ;
       private string divTabletitle_Internalname ;
-      private string tblTablemergedwwpuserextendedfullname_Internalname ;
       private string edtWWPUserExtendedFullName_Jsonclick ;
       private string edtWWPDiscussionMessageDate_Jsonclick ;
       private string subGrid_Header ;

@@ -1,2 +1,2 @@
-ALTER TABLE Trn_Location ADD ToolBoxDefaultLogo VARCHAR(200) , ADD ToolBoxDefaultProfileImage VARCHAR(200);
+ALTER TABLE Trn_SupplierGen ALTER COLUMN SupplierGenWebsite TYPE VARCHAR(150);
 

@@ -683,7 +683,7 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 69,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenwebsite_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenwebsite, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenwebsite, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,69);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenwebsite_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenwebsite_Enabled, 1, "text", "", 50, "chr", 1, "row", 50, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
+            GxWebStd.gx_single_line_edit( context, edtavTrn_suppliergen_suppliergenwebsite_Internalname, AV7Trn_SupplierGen.gxTpr_Suppliergenwebsite, StringUtil.RTrim( context.localUtil.Format( AV7Trn_SupplierGen.gxTpr_Suppliergenwebsite, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,69);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavTrn_suppliergen_suppliergenwebsite_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavTrn_suppliergen_suppliergenwebsite_Enabled, 1, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateNewGeneralSupplier.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1637,7 +1637,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025122216212", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522118213567", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1653,7 +1653,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_createnewgeneralsupplier.js", "?2025122216213", false, true);
+         context.AddJavascriptSource("wp_createnewgeneralsupplier.js", "?202522118213567", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

@@ -375,7 +375,7 @@ namespace GeneXus.Programs {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "Invalid email pattern", ""), context.GetMessage( "Email", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
          }
-         if ( ! GxRegex.IsMatch(A441SupplierGenWebsite,context.GetMessage( "^(https?:\\/\\/)?(www\\.)?[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,})(\\/[^\\s]*)?$", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( A441SupplierGenWebsite)) )
+         if ( ! GxRegex.IsMatch(A441SupplierGenWebsite,context.GetMessage( "(?:https?://|www\\.)[^\\s/$.?#].[^\\s]*", "")) && ! String.IsNullOrEmpty(StringUtil.RTrim( A441SupplierGenWebsite)) )
          {
             GX_msglist.addItem(context.GetMessage( "Invalid website format", ""), 1, "");
             AnyError = 1;
@@ -1931,7 +1931,7 @@ public class trn_suppliergen_bc__default : DataStoreHelperBase, IDataStoreHelper
        new ParDef("SupplierGenPhoneCode",GXType.VarChar,40,0) ,
        new ParDef("SupplierGenPhoneNumber",GXType.VarChar,9,0) ,
        new ParDef("SupplierGenEmail",GXType.VarChar,100,0) ,
-       new ParDef("SupplierGenWebsite",GXType.VarChar,50,0) ,
+       new ParDef("SupplierGenWebsite",GXType.VarChar,150,0) ,
        new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
@@ -1949,7 +1949,7 @@ public class trn_suppliergen_bc__default : DataStoreHelperBase, IDataStoreHelper
        new ParDef("SupplierGenPhoneCode",GXType.VarChar,40,0) ,
        new ParDef("SupplierGenPhoneNumber",GXType.VarChar,9,0) ,
        new ParDef("SupplierGenEmail",GXType.VarChar,100,0) ,
-       new ParDef("SupplierGenWebsite",GXType.VarChar,50,0) ,
+       new ParDef("SupplierGenWebsite",GXType.VarChar,150,0) ,
        new ParDef("SupplierGenTypeId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("SupplierGenId",GXType.UniqueIdentifier,36,0){Nullable=true}

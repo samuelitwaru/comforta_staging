@@ -15,6 +15,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtGxMap_Line_Point.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtGxMap_RoutePoint.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_AgendaLocation.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_ApiResidentFilledForms.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_AvatarUpload.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_CallToAction_SDT_CallToActionItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ChangeYourPassword.cs" />

@@ -67,6 +67,10 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityLow ;
          }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getresidentfilledforms") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_updateresidentavatar") == 0 )
          {
             return GAMSecurityLevel.SecurityLow ;
@@ -118,10 +122,6 @@ namespace GeneXus.Programs {
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_pageapi") == 0 )
          {
             return GAMSecurityLevel.SecurityLow ;
-         }
-         else if ( StringUtil.StrCmp(permissionMethod, "gxep_pageapi2") == 0 )
-         {
-            return GAMSecurityLevel.SecurityNone ;
          }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_contentpagesapi") == 0 )
          {
@@ -336,6 +336,18 @@ namespace GeneXus.Programs {
          }
       }
 
+      protected void E21012( )
+      {
+         /* Getresidentfilledforms_After Routine */
+         returnInSub = false;
+         if ( AV106SDT_ApiResidentFilledForms.FromJSonString(AV17result, null) )
+         {
+         }
+         else
+         {
+         }
+      }
+
       public void gxep_loginwithqrcode( string aP0_secretKey ,
                                         out SdtSDT_LoginResidentResponse aP1_loginResult )
       {
@@ -502,6 +514,24 @@ namespace GeneXus.Programs {
             return;
          }
          aP1_SDT_ResidentNotification=this.AV80SDT_ResidentNotification;
+      }
+
+      public void gxep_getresidentfilledforms( string aP0_ResidentId ,
+                                               out GXBaseCollection<SdtSDT_ApiResidentFilledForms> aP1_SDT_ApiResidentFilledForms )
+      {
+         this.AV74ResidentId = aP0_ResidentId;
+         AV106SDT_ApiResidentFilledForms = new GXBaseCollection<SdtSDT_ApiResidentFilledForms>( context, "SDT_ApiResidentFilledForms", "Comforta_version2");
+         initialize();
+         /* GetResidentFilledForms Constructor */
+         new prc_getresidentfilledforms(context ).execute(  AV74ResidentId, out  AV17result) ;
+         /* Execute user event: Getresidentfilledforms.After */
+         E21012 ();
+         if ( returnInSub )
+         {
+            aP1_SDT_ApiResidentFilledForms=this.AV106SDT_ApiResidentFilledForms;
+            return;
+         }
+         aP1_SDT_ApiResidentFilledForms=this.AV106SDT_ApiResidentFilledForms;
       }
 
       public void gxep_updateresidentavatar( string aP0_Base64Image ,
@@ -677,21 +707,6 @@ namespace GeneXus.Programs {
          this.AV16organisationId = aP2_organisationId;
          initialize();
          /* PageAPI Constructor */
-         new prc_pageapi(context ).execute(  AV54PageId,  AV12locationId,  AV16organisationId, out  AV75SDT_MobilePage) ;
-         aP3_SDT_MobilePage=this.AV75SDT_MobilePage;
-      }
-
-      public void gxep_pageapi2( Guid aP0_PageId ,
-                                 Guid aP1_locationId ,
-                                 Guid aP2_organisationId ,
-                                 out SdtSDT_MobilePage aP3_SDT_MobilePage )
-      {
-         this.AV54PageId = aP0_PageId;
-         this.AV12locationId = aP1_locationId;
-         this.AV16organisationId = aP2_organisationId;
-         AV75SDT_MobilePage = new SdtSDT_MobilePage(context);
-         initialize();
-         /* PageAPI2 Constructor */
          new prc_pageapi(context ).execute(  AV54PageId,  AV12locationId,  AV16organisationId, out  AV75SDT_MobilePage) ;
          aP3_SDT_MobilePage=this.AV75SDT_MobilePage;
       }
@@ -954,6 +969,7 @@ namespace GeneXus.Programs {
          AV18SDT_Location = new SdtSDT_Location(context);
          AV59SDT_AgendaLocation = new GXBaseCollection<SdtSDT_AgendaLocation>( context, "SDT_AgendaLocation", "Comforta_version2");
          AV80SDT_ResidentNotification = new GXBaseCollection<SdtSDT_ResidentNotification>( context, "SDT_ResidentNotification", "Comforta_version2");
+         AV106SDT_ApiResidentFilledForms = new GXBaseCollection<SdtSDT_ApiResidentFilledForms>( context, "SDT_ApiResidentFilledForms", "Comforta_version2");
          AV50BC_Trn_Media = new SdtTrn_Media(context);
          AV91error = new SdtSDT_Error(context);
          AV85SDT_MediaCollection = new GXBaseCollection<SdtSDT_Media>( context, "SDT_Media", "Comforta_version2");
@@ -1025,6 +1041,7 @@ namespace GeneXus.Programs {
       protected SdtSDT_Location AV18SDT_Location ;
       protected GXBaseCollection<SdtSDT_AgendaLocation> AV59SDT_AgendaLocation ;
       protected GXBaseCollection<SdtSDT_ResidentNotification> AV80SDT_ResidentNotification ;
+      protected GXBaseCollection<SdtSDT_ApiResidentFilledForms> AV106SDT_ApiResidentFilledForms ;
       protected SdtSDT_LoginResidentResponse aP1_loginResult ;
       protected SdtSDT_LoginResidentResponse aP2_loginResult ;
       protected SdtSDT_RecoverPasswordStep1 aP1_RecoverPasswordStep1Result ;
@@ -1033,6 +1050,7 @@ namespace GeneXus.Programs {
       protected SdtSDT_Organisation aP1_SDT_Organisation ;
       protected SdtSDT_Location aP1_SDT_Location ;
       protected GXBaseCollection<SdtSDT_ResidentNotification> aP1_SDT_ResidentNotification ;
+      protected GXBaseCollection<SdtSDT_ApiResidentFilledForms> aP1_SDT_ApiResidentFilledForms ;
       protected string aP2_result ;
       protected string aP6_result ;
       protected string aP3_result ;

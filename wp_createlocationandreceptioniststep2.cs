@@ -333,6 +333,9 @@ namespace GeneXus.Programs {
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Bootstrap/ConfirmPanel/BootstrapConfirmPanelRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/GridEmpowerer/GridEmpowererRender.js", "", false, true);
          if ( StringUtil.Len( sPrefix) == 0 )
@@ -468,11 +471,6 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV6WebSessionKey", wcpOAV6WebSessionKey);
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV8PreviousStep", wcpOAV8PreviousStep);
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"wcpOAV7GoingBack", wcpOAV7GoingBack);
-         GxWebStd.gx_hidden_field( context, sPrefix+"vWEBSESSIONKEY", AV6WebSessionKey);
-         GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vCHECKREQUIREDFIELDSRESULT", AV18CheckRequiredFieldsResult);
-         GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vHASVALIDATIONERRORS", AV10HasValidationErrors);
-         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vHASVALIDATIONERRORS", GetSecureSignedToken( sPrefix, AV10HasValidationErrors, context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vFILETYPE", AV46FileType);
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vSDT_RECEPTIONISTS", AV19SDT_Receptionists);
@@ -481,6 +479,11 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vSDT_RECEPTIONISTS", AV19SDT_Receptionists);
          }
+         GxWebStd.gx_hidden_field( context, sPrefix+"vWEBSESSIONKEY", AV6WebSessionKey);
+         GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vCHECKREQUIREDFIELDSRESULT", AV18CheckRequiredFieldsResult);
+         GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vHASVALIDATIONERRORS", AV10HasValidationErrors);
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vHASVALIDATIONERRORS", GetSecureSignedToken( sPrefix, AV10HasValidationErrors, context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vFILETYPE", AV46FileType);
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vWIZARDDATA", AV11WizardData);
@@ -531,7 +534,9 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, sPrefix+"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage), 15, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"GRIDSDT_RECEPTIONISTSS_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDSDT_RECEPTIONISTSS_nEOF), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"GRIDSDT_RECEPTIONISTSS_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridsdt_receptionistss_Rows), 6, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"DVELOP_CONFIRMPANEL_BTNUSERACTION1_Result", StringUtil.RTrim( Dvelop_confirmpanel_btnuseraction1_Result));
          GxWebStd.gx_hidden_field( context, sPrefix+"COMBO_RECEPTIONISTPHONECODE_Selectedvalue_get", StringUtil.RTrim( Combo_receptionistphonecode_Selectedvalue_get));
+         GxWebStd.gx_hidden_field( context, sPrefix+"DVELOP_CONFIRMPANEL_BTNUSERACTION1_Result", StringUtil.RTrim( Dvelop_confirmpanel_btnuseraction1_Result));
       }
 
       protected void RenderHtmlCloseForm6U2( )
@@ -613,6 +618,9 @@ namespace GeneXus.Programs {
                context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
                context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
                context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
+               context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
+               context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
+               context.AddJavascriptSource("DVelop/Bootstrap/ConfirmPanel/BootstrapConfirmPanelRender.js", "", false, true);
                context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
                context.AddJavascriptSource("DVelop/GridEmpowerer/GridEmpowererRender.js", "", false, true);
             }
@@ -914,6 +922,16 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 107,'" + sPrefix + "',false,'',0)\"";
+            ClassString = "ButtonMaterial";
+            StyleString = "";
+            GxWebStd.gx_button_ctrl( context, bttBtnuseraction1_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(83), 2, 0)+","+"null"+");", context.GetMessage( "Proceed ", ""), bttBtnuseraction1_Jsonclick, 7, context.GetMessage( "Proceed ", ""), "", StyleString, ClassString, bttBtnuseraction1_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+"e116u1_client"+"'", TempTags, "", 2, "HLP_WP_CreateLocationAndReceptionistStep2.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -924,14 +942,27 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, divHtml_bottomauxiliarcontrols_Internalname, 1, 0, "px", 0, "px", "Section", "start", "top", "", "", "div");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 108,'" + sPrefix + "',false,'" + sGXsfl_83_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavReceptionistphonecode_Internalname, AV35ReceptionistPhoneCode, StringUtil.RTrim( context.localUtil.Format( AV35ReceptionistPhoneCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,108);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavReceptionistphonecode_Jsonclick, 0, "Attribute", "", "", "", "", edtavReceptionistphonecode_Visible, 1, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateLocationAndReceptionistStep2.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 111,'" + sPrefix + "',false,'" + sGXsfl_83_idx + "',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavReceptionistphonecode_Internalname, AV35ReceptionistPhoneCode, StringUtil.RTrim( context.localUtil.Format( AV35ReceptionistPhoneCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,111);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavReceptionistphonecode_Jsonclick, 0, "Attribute", "", "", "", "", edtavReceptionistphonecode_Visible, 1, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_CreateLocationAndReceptionistStep2.htm");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 109,'" + sPrefix + "',false,'" + sGXsfl_83_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavReceptionistphone_Internalname, StringUtil.RTrim( AV17ReceptionistPhone), StringUtil.RTrim( context.localUtil.Format( AV17ReceptionistPhone, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,109);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavReceptionistphone_Jsonclick, 0, "Attribute", "", "", "", "", edtavReceptionistphone_Visible, 1, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, 0, true, "", "start", true, "", "HLP_WP_CreateLocationAndReceptionistStep2.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 112,'" + sPrefix + "',false,'" + sGXsfl_83_idx + "',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavReceptionistphone_Internalname, StringUtil.RTrim( AV17ReceptionistPhone), StringUtil.RTrim( context.localUtil.Format( AV17ReceptionistPhone, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,112);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavReceptionistphone_Jsonclick, 0, "Attribute", "", "", "", "", edtavReceptionistphone_Visible, 1, 0, "text", "", 20, "chr", 1, "row", 20, 0, 0, 0, 0, -1, 0, true, "", "start", true, "", "HLP_WP_CreateLocationAndReceptionistStep2.htm");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 110,'" + sPrefix + "',false,'" + sGXsfl_83_idx + "',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavReceptionistid_Internalname, AV13ReceptionistId.ToString(), AV13ReceptionistId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,110);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavReceptionistid_Jsonclick, 0, "Attribute", "", "", "", "", edtavReceptionistid_Visible, 1, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "", "", false, "", "HLP_WP_CreateLocationAndReceptionistStep2.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 113,'" + sPrefix + "',false,'" + sGXsfl_83_idx + "',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavReceptionistid_Internalname, AV13ReceptionistId.ToString(), AV13ReceptionistId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,113);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavReceptionistid_Jsonclick, 0, "Attribute", "", "", "", "", edtavReceptionistid_Visible, 1, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "", "", false, "", "HLP_WP_CreateLocationAndReceptionistStep2.htm");
+            wb_table2_114_6U2( true) ;
+         }
+         else
+         {
+            wb_table2_114_6U2( false) ;
+         }
+         return  ;
+      }
+
+      protected void wb_table2_114_6U2e( bool wbgen )
+      {
+         if ( wbgen )
+         {
             /* User Defined Control */
             ucGridsdt_receptionistss_empowerer.Render(context, "wwp.gridempowerer", Gridsdt_receptionistss_empowerer_Internalname, sPrefix+"GRIDSDT_RECEPTIONISTSS_EMPOWERERContainer");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1076,7 +1107,24 @@ namespace GeneXus.Programs {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: Usercontrol1.Uploadcomplete */
-                                    E116U2 ();
+                                    E126U2 ();
+                                 }
+                              }
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "DVELOP_CONFIRMPANEL_BTNUSERACTION1.CLOSE") == 0 )
+                           {
+                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
+                              {
+                                 STRUP6U0( ) ;
+                              }
+                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                              {
+                                 context.wbHandled = 1;
+                                 if ( ! wbErr )
+                                 {
+                                    dynload_actions( ) ;
+                                    /* Execute user event: Dvelop_confirmpanel_btnuseraction1.Close */
+                                    E136U2 ();
                                  }
                               }
                            }
@@ -1097,7 +1145,7 @@ namespace GeneXus.Programs {
                                        if ( ! Rfr0gs )
                                        {
                                           /* Execute user event: Enter */
-                                          E126U2 ();
+                                          E146U2 ();
                                        }
                                        dynload_actions( ) ;
                                     }
@@ -1117,7 +1165,7 @@ namespace GeneXus.Programs {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'WizardPrevious' */
-                                    E136U2 ();
+                                    E156U2 ();
                                  }
                               }
                            }
@@ -1134,7 +1182,7 @@ namespace GeneXus.Programs {
                                  {
                                     dynload_actions( ) ;
                                     /* Execute user event: 'DoUInsert' */
-                                    E146U2 ();
+                                    E166U2 ();
                                  }
                               }
                            }
@@ -1150,7 +1198,7 @@ namespace GeneXus.Programs {
                                  if ( ! wbErr )
                                  {
                                     dynload_actions( ) ;
-                                    E156U2 ();
+                                    E176U2 ();
                                  }
                               }
                            }
@@ -1166,7 +1214,7 @@ namespace GeneXus.Programs {
                                  if ( ! wbErr )
                                  {
                                     dynload_actions( ) ;
-                                    E166U2 ();
+                                    E186U2 ();
                                  }
                               }
                            }
@@ -1218,7 +1266,7 @@ namespace GeneXus.Programs {
                         {
                            sEvtType = StringUtil.Right( sEvt, 4);
                            sEvt = StringUtil.Left( sEvt, (short)(StringUtil.Len( sEvt)-4));
-                           if ( ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "START") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 27), "GRIDSDT_RECEPTIONISTSS.LOAD") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 23), "VGRIDACTIONGROUP1.CLICK") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 6), "CANCEL") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 23), "VGRIDACTIONGROUP1.CLICK") == 0 ) )
+                           if ( ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "START") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 7), "REFRESH") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 27), "GRIDSDT_RECEPTIONISTSS.LOAD") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 23), "VGRIDACTIONGROUP1.CLICK") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 6), "CANCEL") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 23), "VGRIDACTIONGROUP1.CLICK") == 0 ) )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
@@ -1251,7 +1299,22 @@ namespace GeneXus.Programs {
                                           GX_FocusControl = edtavSdt_receptionists__receptionistid_Internalname;
                                           AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
                                           /* Execute user event: Start */
-                                          E176U2 ();
+                                          E196U2 ();
+                                       }
+                                    }
+                                 }
+                                 else if ( StringUtil.StrCmp(sEvt, "REFRESH") == 0 )
+                                 {
+                                    if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
+                                    {
+                                       context.wbHandled = 1;
+                                       if ( ! wbErr )
+                                       {
+                                          dynload_actions( ) ;
+                                          GX_FocusControl = edtavSdt_receptionists__receptionistid_Internalname;
+                                          AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
+                                          /* Execute user event: Refresh */
+                                          E206U2 ();
                                        }
                                     }
                                  }
@@ -1266,7 +1329,7 @@ namespace GeneXus.Programs {
                                           GX_FocusControl = edtavSdt_receptionists__receptionistid_Internalname;
                                           AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
                                           /* Execute user event: Gridsdt_receptionistss.Load */
-                                          E186U2 ();
+                                          E216U2 ();
                                        }
                                     }
                                  }
@@ -1280,7 +1343,7 @@ namespace GeneXus.Programs {
                                           dynload_actions( ) ;
                                           GX_FocusControl = edtavSdt_receptionists__receptionistid_Internalname;
                                           AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
-                                          E196U2 ();
+                                          E226U2 ();
                                        }
                                     }
                                     /* No code required for Cancel button. It is implemented as the Reset button. */
@@ -1499,6 +1562,8 @@ namespace GeneXus.Programs {
             Gridsdt_receptionistssContainer.ClearRows();
          }
          wbStart = 83;
+         /* Execute user event: Refresh */
+         E206U2 ();
          nGXsfl_83_idx = 1;
          sGXsfl_83_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_83_idx), 4, 0), 4, "0");
          SubsflControlProps_832( ) ;
@@ -1518,14 +1583,14 @@ namespace GeneXus.Programs {
          {
             SubsflControlProps_832( ) ;
             /* Execute user event: Gridsdt_receptionistss.Load */
-            E186U2 ();
+            E216U2 ();
             if ( ( subGridsdt_receptionistss_Islastpage == 0 ) && ( GRIDSDT_RECEPTIONISTSS_nCurrentRecord > 0 ) && ( GRIDSDT_RECEPTIONISTSS_nGridOutOfScope == 0 ) && ( nGXsfl_83_idx == 1 ) )
             {
                GRIDSDT_RECEPTIONISTSS_nCurrentRecord = 0;
                GRIDSDT_RECEPTIONISTSS_nGridOutOfScope = 1;
                subgridsdt_receptionistss_firstpage( ) ;
                /* Execute user event: Gridsdt_receptionistss.Load */
-               E186U2 ();
+               E216U2 ();
             }
             wbEnd = 83;
             WB6U0( ) ;
@@ -1704,7 +1769,7 @@ namespace GeneXus.Programs {
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E176U2 ();
+         E196U2 ();
          context.wbGlbDoneStart = 1;
          nDoneStart = 1;
          /* After Start, stand alone formulas. */
@@ -1727,6 +1792,7 @@ namespace GeneXus.Programs {
             GRIDSDT_RECEPTIONISTSS_nEOF = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"GRIDSDT_RECEPTIONISTSS_nEOF"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             subGridsdt_receptionistss_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"GRIDSDT_RECEPTIONISTSS_Rows"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             GxWebStd.gx_hidden_field( context, sPrefix+"GRIDSDT_RECEPTIONISTSS_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridsdt_receptionistss_Rows), 6, 0, ".", "")));
+            Dvelop_confirmpanel_btnuseraction1_Result = cgiGet( sPrefix+"DVELOP_CONFIRMPANEL_BTNUSERACTION1_Result");
             nRC_GXsfl_83 = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"nRC_GXsfl_83"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             nGXsfl_83_fel_idx = 0;
             while ( nGXsfl_83_fel_idx < nRC_GXsfl_83 )
@@ -1801,11 +1867,11 @@ namespace GeneXus.Programs {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E176U2 ();
+         E196U2 ();
          if (returnInSub) return;
       }
 
-      protected void E176U2( )
+      protected void E196U2( )
       {
          /* Start Routine */
          returnInSub = false;
@@ -1854,7 +1920,22 @@ namespace GeneXus.Programs {
          }
       }
 
-      private void E186U2( )
+      protected void E206U2( )
+      {
+         if ( gx_refresh_fired )
+         {
+            return  ;
+         }
+         gx_refresh_fired = true;
+         /* Refresh Routine */
+         returnInSub = false;
+         /* Execute user subroutine: 'CHECKSECURITYFORACTIONS' */
+         S142 ();
+         if (returnInSub) return;
+         /*  Sending Event outputs  */
+      }
+
+      private void E216U2( )
       {
          /* Gridsdt_receptionistss_Load Routine */
          returnInSub = false;
@@ -1891,11 +1972,11 @@ namespace GeneXus.Programs {
       public void GXEnter( )
       {
          /* Execute user event: Enter */
-         E126U2 ();
+         E146U2 ();
          if (returnInSub) return;
       }
 
-      protected void E126U2( )
+      protected void E146U2( )
       {
          AV63GXV1 = (int)(nGXsfl_83_idx+GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage);
          if ( ( AV63GXV1 > 0 ) && ( AV19SDT_Receptionists.Count >= AV63GXV1 ) )
@@ -1907,25 +1988,32 @@ namespace GeneXus.Programs {
          if ( true )
          {
             /* Execute user subroutine: 'SAVEVARIABLESTOWIZARDDATA' */
-            S142 ();
-            if (returnInSub) return;
-            /* Execute user subroutine: 'FINISHWIZARD' */
             S152 ();
             if (returnInSub) return;
-            AV5WebSession.Remove(AV6WebSessionKey);
+            if ( AV19SDT_Receptionists.Count == 0 )
+            {
+               this.executeUsercontrolMethod(sPrefix, false, "DVELOP_CONFIRMPANEL_BTNUSERACTION1Container", "Confirm", "", new Object[] {});
+            }
+            else
+            {
+               /* Execute user subroutine: 'FINISHWIZARD' */
+               S162 ();
+               if (returnInSub) return;
+               AV5WebSession.Remove(AV6WebSessionKey);
+            }
          }
          else
          {
             /* Execute user subroutine: 'CHECKREQUIREDFIELDS' */
-            S162 ();
+            S172 ();
             if (returnInSub) return;
             if ( AV18CheckRequiredFieldsResult && ! AV10HasValidationErrors )
             {
                /* Execute user subroutine: 'SAVEVARIABLESTOWIZARDDATA' */
-               S142 ();
+               S152 ();
                if (returnInSub) return;
                /* Execute user subroutine: 'FINISHWIZARD' */
-               S152 ();
+               S162 ();
                if (returnInSub) return;
                AV5WebSession.Remove(AV6WebSessionKey);
             }
@@ -1943,7 +2031,7 @@ namespace GeneXus.Programs {
          SubsflControlProps_832( ) ;
       }
 
-      protected void E136U2( )
+      protected void E156U2( )
       {
          AV63GXV1 = (int)(nGXsfl_83_idx+GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage);
          if ( ( AV63GXV1 > 0 ) && ( AV19SDT_Receptionists.Count >= AV63GXV1 ) )
@@ -1953,7 +2041,7 @@ namespace GeneXus.Programs {
          /* 'WizardPrevious' Routine */
          returnInSub = false;
          /* Execute user subroutine: 'SAVEVARIABLESTOWIZARDDATA' */
-         S142 ();
+         S152 ();
          if (returnInSub) return;
          GXKey = Crypto.GetSiteKey( );
          GXEncryptionTmp = "wp_createlocationandreceptionist.aspx"+UrlEncode(StringUtil.RTrim("Step2")) + "," + UrlEncode(StringUtil.RTrim("Step1")) + "," + UrlEncode(StringUtil.BoolToStr(true));
@@ -1963,7 +2051,7 @@ namespace GeneXus.Programs {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV11WizardData", AV11WizardData);
       }
 
-      protected void E146U2( )
+      protected void E166U2( )
       {
          AV63GXV1 = (int)(nGXsfl_83_idx+GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage);
          if ( ( AV63GXV1 > 0 ) && ( AV19SDT_Receptionists.Count >= AV63GXV1 ) )
@@ -1973,7 +2061,7 @@ namespace GeneXus.Programs {
          /* 'DoUInsert' Routine */
          returnInSub = false;
          /* Execute user subroutine: 'CHECKREQUIREDFIELDS' */
-         S162 ();
+         S172 ();
          if (returnInSub) return;
          if ( AV18CheckRequiredFieldsResult && ! AV10HasValidationErrors )
          {
@@ -2038,7 +2126,7 @@ namespace GeneXus.Programs {
                   AV19SDT_Receptionists = AV11WizardData.gxTpr_Step2.gxTpr_Sdt_receptionists;
                   gx_BV83 = true;
                   /* Execute user subroutine: 'CLEARFORMVALUES' */
-                  S172 ();
+                  S182 ();
                   if (returnInSub) return;
                }
             }
@@ -2053,7 +2141,35 @@ namespace GeneXus.Programs {
          SubsflControlProps_832( ) ;
       }
 
-      protected void E196U2( )
+      protected void E136U2( )
+      {
+         AV63GXV1 = (int)(nGXsfl_83_idx+GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage);
+         if ( ( AV63GXV1 > 0 ) && ( AV19SDT_Receptionists.Count >= AV63GXV1 ) )
+         {
+            AV19SDT_Receptionists.CurrentItem = ((SdtSDT_Receptionists_SDT_ReceptionistsItem)AV19SDT_Receptionists.Item(AV63GXV1));
+         }
+         /* Dvelop_confirmpanel_btnuseraction1_Close Routine */
+         returnInSub = false;
+         if ( StringUtil.StrCmp(Dvelop_confirmpanel_btnuseraction1_Result, "Yes") == 0 )
+         {
+            /* Execute user subroutine: 'FINISHWIZARD' */
+            S162 ();
+            if (returnInSub) return;
+            AV5WebSession.Remove(AV6WebSessionKey);
+         }
+         /*  Sending Event outputs  */
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV23ErrorMessages", AV23ErrorMessages);
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV24Trn_Location", AV24Trn_Location);
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV26Trn_Receptionist", AV26Trn_Receptionist);
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV19SDT_Receptionists", AV19SDT_Receptionists);
+         nGXsfl_83_bak_idx = nGXsfl_83_idx;
+         gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, sPrefix) ;
+         nGXsfl_83_idx = nGXsfl_83_bak_idx;
+         sGXsfl_83_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_83_idx), 4, 0), 4, "0");
+         SubsflControlProps_832( ) ;
+      }
+
+      protected void E226U2( )
       {
          AV63GXV1 = (int)(nGXsfl_83_idx+GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage);
          if ( ( AV63GXV1 > 0 ) && ( AV19SDT_Receptionists.Count >= AV63GXV1 ) )
@@ -2065,13 +2181,13 @@ namespace GeneXus.Programs {
          if ( AV60GridActionGroup1 == 1 )
          {
             /* Execute user subroutine: 'DO UUPDATE' */
-            S182 ();
+            S192 ();
             if (returnInSub) return;
          }
          else if ( AV60GridActionGroup1 == 2 )
          {
             /* Execute user subroutine: 'DO UDELETE' */
-            S192 ();
+            S202 ();
             if (returnInSub) return;
          }
          AV60GridActionGroup1 = 0;
@@ -2086,6 +2202,17 @@ namespace GeneXus.Programs {
          sGXsfl_83_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_83_idx), 4, 0), 4, "0");
          SubsflControlProps_832( ) ;
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV11WizardData", AV11WizardData);
+      }
+
+      protected void S142( )
+      {
+         /* 'CHECKSECURITYFORACTIONS' Routine */
+         returnInSub = false;
+         if ( ! ( ( 1 == 0 ) ) )
+         {
+            bttBtnuseraction1_Visible = 0;
+            AssignProp(sPrefix, false, bttBtnuseraction1_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(bttBtnuseraction1_Visible), 5, 0), true);
+         }
       }
 
       protected void S112( )
@@ -2115,7 +2242,7 @@ namespace GeneXus.Programs {
          gx_BV83 = true;
       }
 
-      protected void S142( )
+      protected void S152( )
       {
          /* 'SAVEVARIABLESTOWIZARDDATA' Routine */
          returnInSub = false;
@@ -2158,10 +2285,12 @@ namespace GeneXus.Programs {
          AV5WebSession.Set(AV6WebSessionKey, AV11WizardData.ToJSonString(false, true));
       }
 
-      protected void S152( )
+      protected void S162( )
       {
          /* 'FINISHWIZARD' Routine */
          returnInSub = false;
+         GX_msglist.addItem(context.GetMessage( "You are creating a location with a receptionist", ""));
+         GX_msglist.addItem(context.GetMessage( "You are creating a location without a receptionist", ""));
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV11WizardData.gxTpr_Step1.gxTpr_Locationimagevar)) )
          {
             AV61ImageFile2=context.FileFromBase64( AV11WizardData.gxTpr_Step1.gxTpr_Locationimagevar) ;
@@ -2253,7 +2382,7 @@ namespace GeneXus.Programs {
             {
                context.RollbackDataStores("wp_createlocationandreceptioniststep2",pr_default);
                /* Execute user subroutine: 'DISPLAYMESSAGES' */
-               S202 ();
+               S212 ();
                if (returnInSub) return;
             }
             else
@@ -2262,7 +2391,7 @@ namespace GeneXus.Programs {
                AV19SDT_Receptionists.Clear();
                gx_BV83 = true;
                /* Execute user subroutine: 'CLEARFORMVALUES' */
-               S172 ();
+               S182 ();
                if (returnInSub) return;
                CallWebObject(formatLink("trn_locationww.aspx") );
                context.wjLocDisableFrm = 1;
@@ -2272,12 +2401,12 @@ namespace GeneXus.Programs {
          {
             AV23ErrorMessages = AV24Trn_Location.GetMessages();
             /* Execute user subroutine: 'DISPLAYMESSAGES' */
-            S202 ();
+            S212 ();
             if (returnInSub) return;
          }
       }
 
-      protected void S182( )
+      protected void S192( )
       {
          /* 'DO UUPDATE' Routine */
          returnInSub = false;
@@ -2308,7 +2437,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void S192( )
+      protected void S202( )
       {
          /* 'DO UDELETE' Routine */
          returnInSub = false;
@@ -2317,7 +2446,7 @@ namespace GeneXus.Programs {
          AV11WizardData.gxTpr_Step2.gxTpr_Sdt_receptionists = AV19SDT_Receptionists;
       }
 
-      protected void S162( )
+      protected void S172( )
       {
          /* 'CHECKREQUIREDFIELDS' Routine */
          returnInSub = false;
@@ -2392,7 +2521,7 @@ namespace GeneXus.Programs {
          ucCombo_receptionistphonecode.SendProperty(context, sPrefix, false, Combo_receptionistphonecode_Internalname, "SelectedValue_set", Combo_receptionistphonecode_Selectedvalue_set);
       }
 
-      protected void E156U2( )
+      protected void E176U2( )
       {
          /* Receptionistemail_Controlvaluechanged Routine */
          returnInSub = false;
@@ -2405,7 +2534,7 @@ namespace GeneXus.Programs {
          /*  Sending Event outputs  */
       }
 
-      protected void E166U2( )
+      protected void E186U2( )
       {
          /* Receptionistphonenumber_Controlvaluechanged Routine */
          returnInSub = false;
@@ -2418,7 +2547,7 @@ namespace GeneXus.Programs {
          /*  Sending Event outputs  */
       }
 
-      protected void E116U2( )
+      protected void E126U2( )
       {
          /* Usercontrol1_Uploadcomplete Routine */
          returnInSub = false;
@@ -2427,7 +2556,7 @@ namespace GeneXus.Programs {
          /*  Sending Event outputs  */
       }
 
-      protected void S172( )
+      protected void S182( )
       {
          /* 'CLEARFORMVALUES' Routine */
          returnInSub = false;
@@ -2445,7 +2574,7 @@ namespace GeneXus.Programs {
          AssignAttri(sPrefix, false, "AV13ReceptionistId", AV13ReceptionistId.ToString());
       }
 
-      protected void S202( )
+      protected void S212( )
       {
          /* 'DISPLAYMESSAGES' Routine */
          returnInSub = false;
@@ -2455,6 +2584,40 @@ namespace GeneXus.Programs {
             AV28Error = ((GeneXus.Utils.SdtMessages_Message)AV23ErrorMessages.Item(AV85GXV22));
             GX_msglist.addItem(context.GetMessage( "Error: ", "")+AV28Error.gxTpr_Description);
             AV85GXV22 = (int)(AV85GXV22+1);
+         }
+      }
+
+      protected void wb_table2_114_6U2( bool wbgen )
+      {
+         if ( wbgen )
+         {
+            /* Table start */
+            sStyleString = "";
+            GxWebStd.gx_table_start( context, tblTabledvelop_confirmpanel_btnuseraction1_Internalname, tblTabledvelop_confirmpanel_btnuseraction1_Internalname, "", "Table", 0, "", "", 1, 2, sStyleString, "", "", 0);
+            context.WriteHtmlText( "<tbody>") ;
+            context.WriteHtmlText( "<tr>") ;
+            context.WriteHtmlText( "<td data-align=\"center\"  style=\""+CSSHelper.Prettify( "text-align:-khtml-center;text-align:-moz-center;text-align:-webkit-center")+"\">") ;
+            /* User Defined Control */
+            ucDvelop_confirmpanel_btnuseraction1.SetProperty("Title", Dvelop_confirmpanel_btnuseraction1_Title);
+            ucDvelop_confirmpanel_btnuseraction1.SetProperty("ConfirmationText", Dvelop_confirmpanel_btnuseraction1_Confirmationtext);
+            ucDvelop_confirmpanel_btnuseraction1.SetProperty("YesButtonCaption", Dvelop_confirmpanel_btnuseraction1_Yesbuttoncaption);
+            ucDvelop_confirmpanel_btnuseraction1.SetProperty("NoButtonCaption", Dvelop_confirmpanel_btnuseraction1_Nobuttoncaption);
+            ucDvelop_confirmpanel_btnuseraction1.SetProperty("CancelButtonCaption", Dvelop_confirmpanel_btnuseraction1_Cancelbuttoncaption);
+            ucDvelop_confirmpanel_btnuseraction1.SetProperty("YesButtonPosition", Dvelop_confirmpanel_btnuseraction1_Yesbuttonposition);
+            ucDvelop_confirmpanel_btnuseraction1.SetProperty("ConfirmType", Dvelop_confirmpanel_btnuseraction1_Confirmtype);
+            ucDvelop_confirmpanel_btnuseraction1.Render(context, "dvelop.gxbootstrap.confirmpanel", Dvelop_confirmpanel_btnuseraction1_Internalname, sPrefix+"DVELOP_CONFIRMPANEL_BTNUSERACTION1Container");
+            context.WriteHtmlText( "<div class=\"gx_usercontrol_child\" id=\""+sPrefix+"DVELOP_CONFIRMPANEL_BTNUSERACTION1Container"+"Body"+"\" style=\"display:none;\">") ;
+            context.WriteHtmlText( "</div>") ;
+            context.WriteHtmlText( "</td>") ;
+            context.WriteHtmlText( "</tr>") ;
+            context.WriteHtmlText( "</tbody>") ;
+            /* End of table */
+            context.WriteHtmlText( "</table>") ;
+            wb_table2_114_6U2e( true) ;
+         }
+         else
+         {
+            wb_table2_114_6U2e( false) ;
          }
       }
 
@@ -2493,7 +2656,7 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "<td>") ;
             /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblUseractiondelete_Internalname, context.GetMessage( "<i class=\"fas fa-trash-can\"></i>", ""), "", "", lblUseractiondelete_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+"e206u1_client"+"'", "", "TextBlock", 7, "", 1, 1, 0, 1, "HLP_WP_CreateLocationAndReceptionistStep2.htm");
+            GxWebStd.gx_label_ctrl( context, lblUseractiondelete_Internalname, context.GetMessage( "<i class=\"fas fa-trash-can\"></i>", ""), "", "", lblUseractiondelete_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+"e236u1_client"+"'", "", "TextBlock", 7, "", 1, 1, 0, 1, "HLP_WP_CreateLocationAndReceptionistStep2.htm");
             context.WriteHtmlText( "</td>") ;
             context.WriteHtmlText( "</tr>") ;
             /* End of table */
@@ -2743,6 +2906,7 @@ namespace GeneXus.Programs {
       protected void define_styles( )
       {
          AddStyleSheetFile("FileUpload/fileupload.min.css", "");
+         AddStyleSheetFile("DVelop/Bootstrap/Shared/DVelopBootstrap.css", "");
          AddThemeStyleSheetFile("", context.GetTheme( )+".css", "?"+GetCacheInvalidationToken( ));
          bool outputEnabled = isOutputEnabled( );
          if ( context.isSpaRequest( ) )
@@ -2752,7 +2916,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522112311923", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20252211821523", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2768,13 +2932,16 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createlocationandreceptioniststep2.js", "?202522112311927", false, true);
+         context.AddJavascriptSource("wp_createlocationandreceptioniststep2.js", "?20252211821525", false, true);
          context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Bootstrap/ConfirmPanel/BootstrapConfirmPanelRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/GridEmpowerer/GridEmpowererRender.js", "", false, true);
          /* End function include_jscripts */
@@ -3236,10 +3403,13 @@ namespace GeneXus.Programs {
          Btnwizardprevious_Internalname = sPrefix+"BTNWIZARDPREVIOUS";
          Btnwizardlastnext_Internalname = sPrefix+"BTNWIZARDLASTNEXT";
          divTableactions_Internalname = sPrefix+"TABLEACTIONS";
+         bttBtnuseraction1_Internalname = sPrefix+"BTNUSERACTION1";
          divTablemain_Internalname = sPrefix+"TABLEMAIN";
          edtavReceptionistphonecode_Internalname = sPrefix+"vRECEPTIONISTPHONECODE";
          edtavReceptionistphone_Internalname = sPrefix+"vRECEPTIONISTPHONE";
          edtavReceptionistid_Internalname = sPrefix+"vRECEPTIONISTID";
+         Dvelop_confirmpanel_btnuseraction1_Internalname = sPrefix+"DVELOP_CONFIRMPANEL_BTNUSERACTION1";
+         tblTabledvelop_confirmpanel_btnuseraction1_Internalname = sPrefix+"TABLEDVELOP_CONFIRMPANEL_BTNUSERACTION1";
          Gridsdt_receptionistss_empowerer_Internalname = sPrefix+"GRIDSDT_RECEPTIONISTSS_EMPOWERER";
          divHtml_bottomauxiliarcontrols_Internalname = sPrefix+"HTML_BOTTOMAUXILIARCONTROLS";
          divLayoutmaintable_Internalname = sPrefix+"LAYOUTMAINTABLE";
@@ -3303,6 +3473,13 @@ namespace GeneXus.Programs {
          Usercontrol1_Tooltiptext = "";
          Usercontrol1_Hideadditionalbuttons = Convert.ToBoolean( -1);
          Usercontrol1_Autoupload = Convert.ToBoolean( -1);
+         Dvelop_confirmpanel_btnuseraction1_Confirmtype = "1";
+         Dvelop_confirmpanel_btnuseraction1_Yesbuttonposition = "left";
+         Dvelop_confirmpanel_btnuseraction1_Cancelbuttoncaption = "WWP_ConfirmTextCancel";
+         Dvelop_confirmpanel_btnuseraction1_Nobuttoncaption = "WWP_ConfirmTextNo";
+         Dvelop_confirmpanel_btnuseraction1_Yesbuttoncaption = "WWP_ConfirmTextYes";
+         Dvelop_confirmpanel_btnuseraction1_Confirmationtext = "Proceed to create Location without Receptionist?";
+         Dvelop_confirmpanel_btnuseraction1_Title = "";
          Combo_receptionistphonecode_Htmltemplate = "";
          edtavReceptionistid_Jsonclick = "";
          edtavReceptionistid_Visible = 1;
@@ -3310,6 +3487,7 @@ namespace GeneXus.Programs {
          edtavReceptionistphone_Visible = 1;
          edtavReceptionistphonecode_Jsonclick = "";
          edtavReceptionistphonecode_Visible = 1;
+         bttBtnuseraction1_Visible = 1;
          Btnwizardlastnext_Class = "ButtonMaterial ButtonWizard";
          Btnwizardlastnext_Caption = context.GetMessage( "WWP_WizardFinishCaption", "");
          Btnwizardlastnext_Tooltiptext = "";
@@ -3359,28 +3537,36 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true}]}""");
-         setEventMetadata("GRIDSDT_RECEPTIONISTSS.LOAD","""{"handler":"E186U2","iparms":[]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true}]""");
+         setEventMetadata("REFRESH",""","oparms":[{"ctrl":"BTNUSERACTION1","prop":"Visible"}]}""");
+         setEventMetadata("GRIDSDT_RECEPTIONISTSS.LOAD","""{"handler":"E216U2","iparms":[]""");
          setEventMetadata("GRIDSDT_RECEPTIONISTSS.LOAD",""","oparms":[{"av":"cmbavGridactiongroup1"},{"av":"AV60GridActionGroup1","fld":"vGRIDACTIONGROUP1","pic":"ZZZ9"}]}""");
-         setEventMetadata("ENTER","""{"handler":"E126U2","iparms":[{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV56UploadedFiles","fld":"vUPLOADEDFILES"},{"av":"AV54ReceptionistImageVar","fld":"vRECEPTIONISTIMAGEVAR"},{"av":"AV45FileName","fld":"vFILENAME"},{"av":"AV46FileType","fld":"vFILETYPE"},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV17ReceptionistPhone","fld":"vRECEPTIONISTPHONE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"AV35ReceptionistPhoneCode","fld":"vRECEPTIONISTPHONECODE"},{"av":"AV13ReceptionistId","fld":"vRECEPTIONISTID"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"AV61ImageFile2","fld":"vIMAGEFILE2"},{"av":"AV26Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV51ImageFile","fld":"vIMAGEFILE"},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"AV42isSuccessful","fld":"vISSUCCESSFUL"},{"av":"AV23ErrorMessages","fld":"vERRORMESSAGES"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"sPrefix"}]""");
+         setEventMetadata("ENTER","""{"handler":"E146U2","iparms":[{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV56UploadedFiles","fld":"vUPLOADEDFILES"},{"av":"AV54ReceptionistImageVar","fld":"vRECEPTIONISTIMAGEVAR"},{"av":"AV45FileName","fld":"vFILENAME"},{"av":"AV46FileType","fld":"vFILETYPE"},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV17ReceptionistPhone","fld":"vRECEPTIONISTPHONE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"AV35ReceptionistPhoneCode","fld":"vRECEPTIONISTPHONECODE"},{"av":"AV13ReceptionistId","fld":"vRECEPTIONISTID"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"AV61ImageFile2","fld":"vIMAGEFILE2"},{"av":"AV26Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV51ImageFile","fld":"vIMAGEFILE"},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"AV42isSuccessful","fld":"vISSUCCESSFUL"},{"av":"AV23ErrorMessages","fld":"vERRORMESSAGES"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"sPrefix"}]""");
          setEventMetadata("ENTER",""","oparms":[{"av":"AV46FileType","fld":"vFILETYPE"},{"av":"AV54ReceptionistImageVar","fld":"vRECEPTIONISTIMAGEVAR"},{"av":"AV45FileName","fld":"vFILENAME"},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"AV61ImageFile2","fld":"vIMAGEFILE2"},{"av":"AV51ImageFile","fld":"vIMAGEFILE"},{"av":"AV23ErrorMessages","fld":"vERRORMESSAGES"},{"av":"AV24Trn_Location","fld":"vTRN_LOCATION"},{"av":"AV26Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV42isSuccessful","fld":"vISSUCCESSFUL"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV17ReceptionistPhone","fld":"vRECEPTIONISTPHONE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"AV13ReceptionistId","fld":"vRECEPTIONISTID"}]}""");
-         setEventMetadata("'WIZARDPREVIOUS'","""{"handler":"E136U2","iparms":[{"av":"AV56UploadedFiles","fld":"vUPLOADEDFILES"},{"av":"AV54ReceptionistImageVar","fld":"vRECEPTIONISTIMAGEVAR"},{"av":"AV45FileName","fld":"vFILENAME"},{"av":"AV46FileType","fld":"vFILETYPE"},{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV17ReceptionistPhone","fld":"vRECEPTIONISTPHONE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"AV35ReceptionistPhoneCode","fld":"vRECEPTIONISTPHONECODE"},{"av":"AV13ReceptionistId","fld":"vRECEPTIONISTID"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83}]""");
+         setEventMetadata("'WIZARDPREVIOUS'","""{"handler":"E156U2","iparms":[{"av":"AV56UploadedFiles","fld":"vUPLOADEDFILES"},{"av":"AV54ReceptionistImageVar","fld":"vRECEPTIONISTIMAGEVAR"},{"av":"AV45FileName","fld":"vFILENAME"},{"av":"AV46FileType","fld":"vFILETYPE"},{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV17ReceptionistPhone","fld":"vRECEPTIONISTPHONE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"AV35ReceptionistPhoneCode","fld":"vRECEPTIONISTPHONECODE"},{"av":"AV13ReceptionistId","fld":"vRECEPTIONISTID"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83}]""");
          setEventMetadata("'WIZARDPREVIOUS'",""","oparms":[{"av":"AV46FileType","fld":"vFILETYPE"},{"av":"AV54ReceptionistImageVar","fld":"vRECEPTIONISTIMAGEVAR"},{"av":"AV45FileName","fld":"vFILENAME"},{"av":"AV11WizardData","fld":"vWIZARDDATA"}]}""");
-         setEventMetadata("'DOUINSERT'","""{"handler":"E146U2","iparms":[{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"A93ReceptionistEmail","fld":"RECEPTIONISTEMAIL"},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"AV54ReceptionistImageVar","fld":"vRECEPTIONISTIMAGEVAR"},{"av":"AV24Trn_Location","fld":"vTRN_LOCATION"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV35ReceptionistPhoneCode","fld":"vRECEPTIONISTPHONECODE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true}]""");
+         setEventMetadata("'DOUINSERT'","""{"handler":"E166U2","iparms":[{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"A93ReceptionistEmail","fld":"RECEPTIONISTEMAIL"},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"AV54ReceptionistImageVar","fld":"vRECEPTIONISTIMAGEVAR"},{"av":"AV24Trn_Location","fld":"vTRN_LOCATION"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV35ReceptionistPhoneCode","fld":"vRECEPTIONISTPHONECODE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true}]""");
          setEventMetadata("'DOUINSERT'",""","oparms":[{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV17ReceptionistPhone","fld":"vRECEPTIONISTPHONE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"AV13ReceptionistId","fld":"vRECEPTIONISTID"}]}""");
-         setEventMetadata("VGRIDACTIONGROUP1.CLICK","""{"handler":"E196U2","iparms":[{"av":"cmbavGridactiongroup1"},{"av":"AV60GridActionGroup1","fld":"vGRIDACTIONGROUP1","pic":"ZZZ9"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true}]""");
+         setEventMetadata("'DOUSERACTION1'","""{"handler":"E116U1","iparms":[]}""");
+         setEventMetadata("DVELOP_CONFIRMPANEL_BTNUSERACTION1.CLOSE","""{"handler":"E136U2","iparms":[{"av":"Dvelop_confirmpanel_btnuseraction1_Result","ctrl":"DVELOP_CONFIRMPANEL_BTNUSERACTION1","prop":"Result"},{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"AV61ImageFile2","fld":"vIMAGEFILE2"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV26Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV51ImageFile","fld":"vIMAGEFILE"},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"AV42isSuccessful","fld":"vISSUCCESSFUL"},{"av":"AV23ErrorMessages","fld":"vERRORMESSAGES"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true}]""");
+         setEventMetadata("DVELOP_CONFIRMPANEL_BTNUSERACTION1.CLOSE",""","oparms":[{"av":"AV61ImageFile2","fld":"vIMAGEFILE2"},{"av":"AV51ImageFile","fld":"vIMAGEFILE"},{"av":"AV23ErrorMessages","fld":"vERRORMESSAGES"},{"av":"AV24Trn_Location","fld":"vTRN_LOCATION"},{"av":"AV26Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV42isSuccessful","fld":"vISSUCCESSFUL"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV17ReceptionistPhone","fld":"vRECEPTIONISTPHONE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"AV13ReceptionistId","fld":"vRECEPTIONISTID"}]}""");
+         setEventMetadata("VGRIDACTIONGROUP1.CLICK","""{"handler":"E226U2","iparms":[{"av":"cmbavGridactiongroup1"},{"av":"AV60GridActionGroup1","fld":"vGRIDACTIONGROUP1","pic":"ZZZ9"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true}]""");
          setEventMetadata("VGRIDACTIONGROUP1.CLICK",""","oparms":[{"av":"cmbavGridactiongroup1"},{"av":"AV60GridActionGroup1","fld":"vGRIDACTIONGROUP1","pic":"ZZZ9"},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV17ReceptionistPhone","fld":"vRECEPTIONISTPHONE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"AV13ReceptionistId","fld":"vRECEPTIONISTID"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV11WizardData","fld":"vWIZARDDATA"}]}""");
-         setEventMetadata("'DOUSERACTIONDELETE'","""{"handler":"E206U1","iparms":[]}""");
-         setEventMetadata("VRECEPTIONISTEMAIL.CONTROLVALUECHANGED","""{"handler":"E156U2","iparms":[{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"}]""");
+         setEventMetadata("'DOUSERACTIONDELETE'","""{"handler":"E236U1","iparms":[]}""");
+         setEventMetadata("VRECEPTIONISTEMAIL.CONTROLVALUECHANGED","""{"handler":"E176U2","iparms":[{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"}]""");
          setEventMetadata("VRECEPTIONISTEMAIL.CONTROLVALUECHANGED",""","oparms":[{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
-         setEventMetadata("VRECEPTIONISTPHONENUMBER.CONTROLVALUECHANGED","""{"handler":"E166U2","iparms":[{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"}]""");
+         setEventMetadata("VRECEPTIONISTPHONENUMBER.CONTROLVALUECHANGED","""{"handler":"E186U2","iparms":[{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"}]""");
          setEventMetadata("VRECEPTIONISTPHONENUMBER.CONTROLVALUECHANGED",""","oparms":[{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
-         setEventMetadata("USERCONTROL1.UPLOADCOMPLETE","""{"handler":"E116U2","iparms":[{"av":"AV56UploadedFiles","fld":"vUPLOADEDFILES"}]""");
+         setEventMetadata("USERCONTROL1.UPLOADCOMPLETE","""{"handler":"E126U2","iparms":[{"av":"AV56UploadedFiles","fld":"vUPLOADEDFILES"}]""");
          setEventMetadata("USERCONTROL1.UPLOADCOMPLETE",""","oparms":[{"av":"AV54ReceptionistImageVar","fld":"vRECEPTIONISTIMAGEVAR"}]}""");
-         setEventMetadata("GRIDSDT_RECEPTIONISTSS_FIRSTPAGE","""{"handler":"subgridsdt_receptionistss_firstpage","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"sPrefix"}]}""");
-         setEventMetadata("GRIDSDT_RECEPTIONISTSS_PREVPAGE","""{"handler":"subgridsdt_receptionistss_previouspage","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"sPrefix"}]}""");
-         setEventMetadata("GRIDSDT_RECEPTIONISTSS_NEXTPAGE","""{"handler":"subgridsdt_receptionistss_nextpage","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"sPrefix"}]}""");
-         setEventMetadata("GRIDSDT_RECEPTIONISTSS_LASTPAGE","""{"handler":"subgridsdt_receptionistss_lastpage","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"sPrefix"}]}""");
+         setEventMetadata("GRIDSDT_RECEPTIONISTSS_FIRSTPAGE","""{"handler":"subgridsdt_receptionistss_firstpage","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"sPrefix"}]""");
+         setEventMetadata("GRIDSDT_RECEPTIONISTSS_FIRSTPAGE",""","oparms":[{"ctrl":"BTNUSERACTION1","prop":"Visible"}]}""");
+         setEventMetadata("GRIDSDT_RECEPTIONISTSS_PREVPAGE","""{"handler":"subgridsdt_receptionistss_previouspage","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"sPrefix"}]""");
+         setEventMetadata("GRIDSDT_RECEPTIONISTSS_PREVPAGE",""","oparms":[{"ctrl":"BTNUSERACTION1","prop":"Visible"}]}""");
+         setEventMetadata("GRIDSDT_RECEPTIONISTSS_NEXTPAGE","""{"handler":"subgridsdt_receptionistss_nextpage","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"sPrefix"}]""");
+         setEventMetadata("GRIDSDT_RECEPTIONISTSS_NEXTPAGE",""","oparms":[{"ctrl":"BTNUSERACTION1","prop":"Visible"}]}""");
+         setEventMetadata("GRIDSDT_RECEPTIONISTSS_LASTPAGE","""{"handler":"subgridsdt_receptionistss_lastpage","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"sPrefix"}]""");
+         setEventMetadata("GRIDSDT_RECEPTIONISTSS_LASTPAGE",""","oparms":[{"ctrl":"BTNUSERACTION1","prop":"Visible"}]}""");
          setEventMetadata("VALIDV_RECEPTIONISTEMAIL","""{"handler":"Validv_Receptionistemail","iparms":[]}""");
          setEventMetadata("VALIDV_RECEPTIONISTID","""{"handler":"Validv_Receptionistid","iparms":[]}""");
          setEventMetadata("VALIDV_GXV2","""{"handler":"Validv_Gxv2","iparms":[]}""");
@@ -3409,6 +3595,7 @@ namespace GeneXus.Programs {
       {
          wcpOAV6WebSessionKey = "";
          wcpOAV8PreviousStep = "";
+         Dvelop_confirmpanel_btnuseraction1_Result = "";
          Combo_receptionistphonecode_Selectedvalue_get = "";
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
@@ -3449,6 +3636,7 @@ namespace GeneXus.Programs {
          sStyleString = "";
          ucBtnwizardprevious = new GXUserControl();
          ucBtnwizardlastnext = new GXUserControl();
+         bttBtnuseraction1_Jsonclick = "";
          AV35ReceptionistPhoneCode = "";
          AV17ReceptionistPhone = "";
          AV13ReceptionistId = Guid.Empty;
@@ -3485,6 +3673,7 @@ namespace GeneXus.Programs {
          AV37ReceptionistPhoneCode_DPItem = new SdtSDT_Country_SDT_CountryItem(context);
          AV29Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
          AV31ComboTitles = new GxSimpleCollection<string>();
+         ucDvelop_confirmpanel_btnuseraction1 = new GXUserControl();
          ucUsercontrol1 = new GXUserControl();
          lblUseractiondelete_Jsonclick = "";
          BackMsgLst = new msglist();
@@ -3571,6 +3760,7 @@ namespace GeneXus.Programs {
       private int edtavReceptionistemail_Enabled ;
       private int edtavReceptionistphonenumber_Enabled ;
       private int AV63GXV1 ;
+      private int bttBtnuseraction1_Visible ;
       private int edtavReceptionistphonecode_Visible ;
       private int edtavReceptionistphone_Visible ;
       private int edtavReceptionistid_Visible ;
@@ -3596,6 +3786,7 @@ namespace GeneXus.Programs {
       private long GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage ;
       private long GRIDSDT_RECEPTIONISTSS_nCurrentRecord ;
       private long GRIDSDT_RECEPTIONISTSS_nRecordCount ;
+      private string Dvelop_confirmpanel_btnuseraction1_Result ;
       private string Combo_receptionistphonecode_Selectedvalue_get ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
@@ -3667,6 +3858,8 @@ namespace GeneXus.Programs {
       private string Btnwizardlastnext_Caption ;
       private string Btnwizardlastnext_Class ;
       private string Btnwizardlastnext_Internalname ;
+      private string bttBtnuseraction1_Internalname ;
+      private string bttBtnuseraction1_Jsonclick ;
       private string divHtml_bottomauxiliarcontrols_Internalname ;
       private string edtavReceptionistphonecode_Internalname ;
       private string edtavReceptionistphonecode_Jsonclick ;
@@ -3689,6 +3882,15 @@ namespace GeneXus.Programs {
       private string Combo_receptionistphonecode_Selectedtext_set ;
       private string Combo_receptionistphonecode_Selectedvalue_set ;
       private string GXt_char2 ;
+      private string tblTabledvelop_confirmpanel_btnuseraction1_Internalname ;
+      private string Dvelop_confirmpanel_btnuseraction1_Title ;
+      private string Dvelop_confirmpanel_btnuseraction1_Confirmationtext ;
+      private string Dvelop_confirmpanel_btnuseraction1_Yesbuttoncaption ;
+      private string Dvelop_confirmpanel_btnuseraction1_Nobuttoncaption ;
+      private string Dvelop_confirmpanel_btnuseraction1_Cancelbuttoncaption ;
+      private string Dvelop_confirmpanel_btnuseraction1_Yesbuttonposition ;
+      private string Dvelop_confirmpanel_btnuseraction1_Confirmtype ;
+      private string Dvelop_confirmpanel_btnuseraction1_Internalname ;
       private string tblTablemergedusercontrol1_Internalname ;
       private string Usercontrol1_Tooltiptext ;
       private string Usercontrol1_Acceptedfiletypes ;
@@ -3733,6 +3935,7 @@ namespace GeneXus.Programs {
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
+      private bool gx_refresh_fired ;
       private bool AV20isAlreadyAdded ;
       private bool AV58isAlreadyExistingInGAM ;
       private bool AV22isAlreadyRegistered ;
@@ -3770,6 +3973,7 @@ namespace GeneXus.Programs {
       private GXUserControl ucBtnwizardprevious ;
       private GXUserControl ucBtnwizardlastnext ;
       private GXUserControl ucGridsdt_receptionistss_empowerer ;
+      private GXUserControl ucDvelop_confirmpanel_btnuseraction1 ;
       private GXUserControl ucUsercontrol1 ;
       private GXWebForm Form ;
       private IGxDataStore dsDataStore1 ;

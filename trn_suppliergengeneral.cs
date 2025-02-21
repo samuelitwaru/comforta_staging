@@ -608,7 +608,7 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* Single line edit */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 66,'" + sPrefix + "',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtSupplierGenWebsite_Internalname, A441SupplierGenWebsite, StringUtil.RTrim( context.localUtil.Format( A441SupplierGenWebsite, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,66);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtSupplierGenWebsite_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtSupplierGenWebsite_Enabled, 0, "text", "", 50, "chr", 1, "row", 50, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_SupplierGenGeneral.htm");
+            GxWebStd.gx_single_line_edit( context, edtSupplierGenWebsite_Internalname, A441SupplierGenWebsite, StringUtil.RTrim( context.localUtil.Format( A441SupplierGenWebsite, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,66);\"", "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "", "", "", edtSupplierGenWebsite_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtSupplierGenWebsite_Enabled, 0, "text", "", 80, "chr", 1, "row", 150, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_SupplierGenGeneral.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1489,7 +1489,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521815533130", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522118212018", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1505,7 +1505,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_suppliergengeneral.js", "?202521815533130", false, true);
+         context.AddJavascriptSource("trn_suppliergengeneral.js", "?202522118212018", false, true);
          /* End function include_jscripts */
       }
 

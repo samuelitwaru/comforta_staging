@@ -2624,7 +2624,7 @@ namespace GeneXus.Programs {
       {
          /* Calltoactionurl_Controlvaluechanged Routine */
          returnInSub = false;
-         if ( ! GxRegex.IsMatch(AV10CallToActionUrl,context.GetMessage( "https?:\\/\\/(?:www\\.)?[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}(?:\\/[\\w.-]*)*(?:\\?[^\\s]*)?(?:#[^\\s]*)?", "")) )
+         if ( ! GxRegex.IsMatch(AV10CallToActionUrl,context.GetMessage( "(?:https?://|www\\.)[^\\s/$.?#].[^\\s]*", "")) )
          {
             GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error!",  context.GetMessage( "url is incorrect", ""),  "error",  edtavCalltoactionurl_Internalname,  "true",  ""));
             AV22HasValidationErrors = true;
@@ -3074,7 +3074,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522112312315", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522118215212", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3090,7 +3090,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_productservicestep2.js", "?202522112312320", false, true);
+         context.AddJavascriptSource("wp_productservicestep2.js", "?202522118215214", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
