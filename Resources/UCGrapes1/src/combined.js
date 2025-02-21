@@ -1160,7 +1160,7 @@ class EditorEventManager {
       if(model.get('type') === 'tile-wrapper') {
         model.addStyle({'background':'#00000000'})
         // const tileMapper = new TileMapper(model.components().first())
-        tileMapper.setTileAttributes()
+        // tileMapper.setTileAttributes()
       }
     });
   }
