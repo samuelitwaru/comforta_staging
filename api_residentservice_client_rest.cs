@@ -724,6 +724,37 @@ namespace GeneXus.Programs {
          /* PageAPI Constructor */
       }
 
+      public void gxep_pageapi2( Guid aP0_PageId ,
+                                 Guid aP1_locationId ,
+                                 Guid aP2_organisationId ,
+                                 out SdtSDT_MobilePage aP3_SDT_MobilePage )
+      {
+         restCliPageAPI2 = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/page2";
+         restCliPageAPI2.Location = restLocation;
+         restCliPageAPI2.HttpMethod = "GET";
+         restCliPageAPI2.AddQueryVar("Pageid", (Guid)(aP0_PageId));
+         restCliPageAPI2.AddQueryVar("Locationid", (Guid)(aP1_locationId));
+         restCliPageAPI2.AddQueryVar("Organisationid", (Guid)(aP2_organisationId));
+         restCliPageAPI2.RestExecute();
+         if ( restCliPageAPI2.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliPageAPI2.ErrorCode;
+            gxProperties.ErrorMessage = restCliPageAPI2.ErrorMessage;
+            gxProperties.StatusCode = restCliPageAPI2.StatusCode;
+            aP3_SDT_MobilePage = new SdtSDT_MobilePage();
+         }
+         else
+         {
+            aP3_SDT_MobilePage = restCliPageAPI2.GetBodySdt<SdtSDT_MobilePage>("SDT_MobilePage");
+         }
+         /* PageAPI2 Constructor */
+      }
+
       public void gxep_contentpagesapi( Guid aP0_locationId ,
                                         Guid aP1_organisationId ,
                                         out GXBaseCollection<SdtSDT_ContentPage> aP2_SDT_ContentPageCollection )
@@ -1301,6 +1332,7 @@ namespace GeneXus.Programs {
          aP2_SDT_MobilePageCollection = new GXBaseCollection<SdtSDT_MobilePage>();
          restCliPageAPI = new GXRestAPIClient();
          aP3_SDT_MobilePage = new SdtSDT_MobilePage();
+         restCliPageAPI2 = new GXRestAPIClient();
          restCliContentPagesAPI = new GXRestAPIClient();
          aP2_SDT_ContentPageCollection = new GXBaseCollection<SdtSDT_ContentPage>();
          restCliContentPageAPI = new GXRestAPIClient();
@@ -1358,6 +1390,7 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliGetPages ;
       protected GXRestAPIClient restCliPagesAPI ;
       protected GXRestAPIClient restCliPageAPI ;
+      protected GXRestAPIClient restCliPageAPI2 ;
       protected GXRestAPIClient restCliContentPagesAPI ;
       protected GXRestAPIClient restCliContentPageAPI ;
       protected GXRestAPIClient restCliGetSinglePage ;

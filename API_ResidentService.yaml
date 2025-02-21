@@ -2,9 +2,9 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250220061659"
+  version: "20250221093452"
 servers:
-  - url: https://staging.comforta.yukon.software/api
+  - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/api
 paths:
   /auth/resident-login:
     post:
@@ -570,7 +570,46 @@ paths:
       tags:
         - API_ResidentService  
       operationId: "API_ResidentService.PageAPI"
-      summary: "Pages API"
+      summary: "Page API"
+      security: 
+        - oAuthGXGAM: []
+      parameters:
+        - name: "Pageid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "Locationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "Organisationid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_MobilePage"  
+
+        404:
+          description: "Not found"
+
+  /toolbox/page2:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.PageAPI2"
+      summary: "Page API2"
       security: 
         - oAuthGXGAM: []
       parameters:
@@ -1056,7 +1095,7 @@ components:
       description: GAM OAuth 2
       flows:
         password:          
-          tokenUrl: https://staging.comforta.yukon.software/oauth/gam/v2.0/access_token
+          tokenUrl: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/oauth/gam/v2.0/access_token
           scopes: 
             fullcontrol: Full access
 
@@ -1101,6 +1140,7 @@ components:
         error:
           description: "SDT_Error"
           $ref: "#/components/schemas/SDT_Error"
+
 
 
 
@@ -1308,6 +1348,7 @@ components:
       properties:
         ProfileImageUrl:
           type: "string"
+
 
 
 

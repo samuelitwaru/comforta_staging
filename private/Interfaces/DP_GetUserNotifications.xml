@@ -29,6 +29,20 @@
         </Properties>
       </Field>
     </Parameter>
+    <Parameter name="searchKey">
+      <Field>
+        <Properties>
+          <Property>
+            <Name>Type</Name>
+            <Value>VarChar</Value>
+          </Property>
+          <Property>
+            <Name>Length</Name>
+            <Value>40</Value>
+          </Property>
+        </Properties>
+      </Field>
+    </Parameter>
     <Parameter name="ReturnValue" accessor="out">
       <Field name="WWP_SDTNotificationsData" description="WWP_SDTNotifications Data" collection="true">
         <Fields>

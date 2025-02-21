@@ -30,6 +30,8 @@ namespace GeneXus.Programs
 		public SdtSDT_Receptionists_SDT_ReceptionistsItem( )
 		{
 			/* Constructor for serialization */
+			gxTv_SdtSDT_Receptionists_SDT_ReceptionistsItem_Locationname = "";
+
 			gxTv_SdtSDT_Receptionists_SDT_ReceptionistsItem_Receptionistgivenname = "";
 
 			gxTv_SdtSDT_Receptionists_SDT_ReceptionistsItem_Receptionistlastname = "";
@@ -82,6 +84,9 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("LocationId", gxTpr_Locationid, false);
+
+
+			AddObjectProperty("LocationName", gxTpr_Locationname, false);
 
 
 			AddObjectProperty("ReceptionistGivenName", gxTpr_Receptionistgivenname, false);
@@ -163,6 +168,22 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtSDT_Receptionists_SDT_ReceptionistsItem_Locationid = value;
 				SetDirty("Locationid");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="LocationName")]
+		[XmlElement(ElementName="LocationName")]
+		public string gxTpr_Locationname
+		{
+			get {
+				return gxTv_SdtSDT_Receptionists_SDT_ReceptionistsItem_Locationname; 
+			}
+			set {
+				gxTv_SdtSDT_Receptionists_SDT_ReceptionistsItem_Locationname = value;
+				SetDirty("Locationname");
 			}
 		}
 
@@ -362,6 +383,7 @@ namespace GeneXus.Programs
 
 		public void initialize( )
 		{
+			gxTv_SdtSDT_Receptionists_SDT_ReceptionistsItem_Locationname = "";
 			gxTv_SdtSDT_Receptionists_SDT_ReceptionistsItem_Receptionistgivenname = "";
 			gxTv_SdtSDT_Receptionists_SDT_ReceptionistsItem_Receptionistlastname = "";
 			gxTv_SdtSDT_Receptionists_SDT_ReceptionistsItem_Receptionistemail = "";
@@ -388,6 +410,9 @@ namespace GeneXus.Programs
 		 
 
 		protected Guid gxTv_SdtSDT_Receptionists_SDT_ReceptionistsItem_Locationid;
+		 
+
+		protected string gxTv_SdtSDT_Receptionists_SDT_ReceptionistsItem_Locationname;
 		 
 
 		protected string gxTv_SdtSDT_Receptionists_SDT_ReceptionistsItem_Receptionistgivenname;
@@ -473,7 +498,19 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ReceptionistGivenName", Order=3)]
+		[DataMember(Name="LocationName", Order=3)]
+		public  string gxTpr_Locationname
+		{
+			get { 
+				return sdt.gxTpr_Locationname;
+
+			}
+			set { 
+				 sdt.gxTpr_Locationname = value;
+			}
+		}
+
+		[DataMember(Name="ReceptionistGivenName", Order=4)]
 		public  string gxTpr_Receptionistgivenname
 		{
 			get { 
@@ -485,7 +522,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ReceptionistLastName", Order=4)]
+		[DataMember(Name="ReceptionistLastName", Order=5)]
 		public  string gxTpr_Receptionistlastname
 		{
 			get { 
@@ -497,7 +534,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ReceptionistEmail", Order=5)]
+		[DataMember(Name="ReceptionistEmail", Order=6)]
 		public  string gxTpr_Receptionistemail
 		{
 			get { 
@@ -509,7 +546,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ReceptionistPhone", Order=6)]
+		[DataMember(Name="ReceptionistPhone", Order=7)]
 		public  string gxTpr_Receptionistphone
 		{
 			get { 
@@ -521,7 +558,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ReceptionistPhoneCode", Order=7)]
+		[DataMember(Name="ReceptionistPhoneCode", Order=8)]
 		public  string gxTpr_Receptionistphonecode
 		{
 			get { 
@@ -533,7 +570,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ReceptionistPhoneNumber", Order=8)]
+		[DataMember(Name="ReceptionistPhoneNumber", Order=9)]
 		public  string gxTpr_Receptionistphonenumber
 		{
 			get { 
@@ -545,7 +582,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ReceptionistStatus", Order=9)]
+		[DataMember(Name="ReceptionistStatus", Order=10)]
 		public  string gxTpr_Receptioniststatus
 		{
 			get { 
@@ -557,7 +594,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ReceptionistIsActive", Order=10)]
+		[DataMember(Name="ReceptionistIsActive", Order=11)]
 		public bool gxTpr_Receptionistisactive
 		{
 			get { 
@@ -569,7 +606,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ReceptionistGAMGUID", Order=11)]
+		[DataMember(Name="ReceptionistGAMGUID", Order=12)]
 		public  string gxTpr_Receptionistgamguid
 		{
 			get { 
@@ -581,7 +618,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ReceptionistImage", Order=12)]
+		[DataMember(Name="ReceptionistImage", Order=13)]
 		[GxUpload()]
 		public  string gxTpr_Receptionistimage
 		{

@@ -96,10 +96,19 @@ namespace GeneXus.Programs {
                A62ResidentId = P00932_A62ResidentId[0];
                A40000ResidentImage_GXI = P00932_A40000ResidentImage_GXI[0];
                n40000ResidentImage_GXI = P00932_n40000ResidentImage_GXI[0];
+               A446ResidentHomePhoneNumber = P00932_A446ResidentHomePhoneNumber[0];
+               A445ResidentHomePhoneCode = P00932_A445ResidentHomePhoneCode[0];
                AV17OrganisationId = A11OrganisationId;
                AV10LocationId = A29LocationId;
                AV18WWPContext.gxTpr_Residentid = A62ResidentId;
                AV18WWPContext.gxTpr_Profileurl = A40000ResidentImage_GXI;
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV18WWPContext.gxTpr_Gamuserphone)) )
+               {
+                  if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A445ResidentHomePhoneCode)) && ! String.IsNullOrEmpty(StringUtil.RTrim( A446ResidentHomePhoneNumber)) )
+                  {
+                     AV18WWPContext.gxTpr_Gamuserphone = A445ResidentHomePhoneCode+"~"+A446ResidentHomePhoneNumber;
+                  }
+               }
                pr_default.readNext(0);
             }
             pr_default.close(0);
@@ -123,12 +132,21 @@ namespace GeneXus.Programs {
                A360ManagerIsMainManager = P00933_A360ManagerIsMainManager[0];
                A394ManagerIsActive = P00933_A394ManagerIsActive[0];
                A40001ManagerImage_GXI = P00933_A40001ManagerImage_GXI[0];
+               A386ManagerPhoneNumber = P00933_A386ManagerPhoneNumber[0];
+               A385ManagerPhoneCode = P00933_A385ManagerPhoneCode[0];
                AV17OrganisationId = A11OrganisationId;
                AV10LocationId = A29LocationId;
                AV18WWPContext.gxTpr_Managerid = A21ManagerId;
                AV18WWPContext.gxTpr_Managerismainmanager = A360ManagerIsMainManager;
                AV18WWPContext.gxTpr_Managerisactive = A394ManagerIsActive;
                AV18WWPContext.gxTpr_Profileurl = A40001ManagerImage_GXI;
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV18WWPContext.gxTpr_Gamuserphone)) )
+               {
+                  if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A385ManagerPhoneCode)) && ! String.IsNullOrEmpty(StringUtil.RTrim( A386ManagerPhoneNumber)) )
+                  {
+                     AV18WWPContext.gxTpr_Gamuserphone = A385ManagerPhoneCode+"~"+A386ManagerPhoneNumber;
+                  }
+               }
                pr_default.readNext(1);
             }
             pr_default.close(1);
@@ -147,10 +165,19 @@ namespace GeneXus.Programs {
                A29LocationId = P00934_A29LocationId[0];
                A89ReceptionistId = P00934_A89ReceptionistId[0];
                A40002ReceptionistImage_GXI = P00934_A40002ReceptionistImage_GXI[0];
+               A374ReceptionistPhoneNumber = P00934_A374ReceptionistPhoneNumber[0];
+               A373ReceptionistPhoneCode = P00934_A373ReceptionistPhoneCode[0];
                AV17OrganisationId = A11OrganisationId;
                AV10LocationId = A29LocationId;
                AV18WWPContext.gxTpr_Receptionistid = A89ReceptionistId;
                AV18WWPContext.gxTpr_Profileurl = A40002ReceptionistImage_GXI;
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV18WWPContext.gxTpr_Gamuserphone)) )
+               {
+                  if ( ! String.IsNullOrEmpty(StringUtil.RTrim( A373ReceptionistPhoneCode)) && ! String.IsNullOrEmpty(StringUtil.RTrim( A374ReceptionistPhoneNumber)) )
+                  {
+                     AV18WWPContext.gxTpr_Gamuserphone = A373ReceptionistPhoneCode+"~"+A374ReceptionistPhoneNumber;
+                  }
+               }
                pr_default.readNext(2);
             }
             pr_default.close(2);
@@ -179,7 +206,7 @@ namespace GeneXus.Programs {
             pr_default.readNext(4);
          }
          pr_default.close(4);
-         AV24GXLvl79 = 0;
+         AV24GXLvl93 = 0;
          /* Using cursor P00937 */
          pr_default.execute(5, new Object[] {AV17OrganisationId});
          while ( (pr_default.getStatus(5) != 101) )
@@ -193,7 +220,7 @@ namespace GeneXus.Programs {
             A105OrganisationSettingLanguage = P00937_A105OrganisationSettingLanguage[0];
             A101OrganisationSettingLogo = P00937_A101OrganisationSettingLogo[0];
             A102OrganisationSettingFavicon = P00937_A102OrganisationSettingFavicon[0];
-            AV24GXLvl79 = 1;
+            AV24GXLvl93 = 1;
             AV18WWPContext.gxTpr_Organisationsettingid = A100OrganisationSettingid;
             AV18WWPContext.gxTpr_Organisationsettinglogo = A101OrganisationSettingLogo;
             AV18WWPContext.gxTpr_Organisationsettinglogo_gxi = A40003OrganisationSettingLogo_GXI;
@@ -206,7 +233,7 @@ namespace GeneXus.Programs {
             pr_default.readNext(5);
          }
          pr_default.close(5);
-         if ( AV24GXLvl79 == 0 )
+         if ( AV24GXLvl93 == 0 )
          {
             AV18WWPContext.gxTpr_Organisationsettingbasecolor = "Teal";
             AV18WWPContext.gxTpr_Organisationsettingfontsize = "Medium";
@@ -273,11 +300,15 @@ namespace GeneXus.Programs {
          P00932_A62ResidentId = new Guid[] {Guid.Empty} ;
          P00932_A40000ResidentImage_GXI = new string[] {""} ;
          P00932_n40000ResidentImage_GXI = new bool[] {false} ;
+         P00932_A446ResidentHomePhoneNumber = new string[] {""} ;
+         P00932_A445ResidentHomePhoneCode = new string[] {""} ;
          A71ResidentGUID = "";
          A11OrganisationId = Guid.Empty;
          A29LocationId = Guid.Empty;
          A62ResidentId = Guid.Empty;
          A40000ResidentImage_GXI = "";
+         A446ResidentHomePhoneNumber = "";
+         A445ResidentHomePhoneCode = "";
          AV17OrganisationId = Guid.Empty;
          AV10LocationId = Guid.Empty;
          P00933_A25ManagerEmail = new string[] {""} ;
@@ -287,20 +318,28 @@ namespace GeneXus.Programs {
          P00933_A360ManagerIsMainManager = new bool[] {false} ;
          P00933_A394ManagerIsActive = new bool[] {false} ;
          P00933_A40001ManagerImage_GXI = new string[] {""} ;
+         P00933_A386ManagerPhoneNumber = new string[] {""} ;
+         P00933_A385ManagerPhoneCode = new string[] {""} ;
          A25ManagerEmail = "";
          A28ManagerGAMGUID = "";
          A21ManagerId = Guid.Empty;
          A40001ManagerImage_GXI = "";
+         A386ManagerPhoneNumber = "";
+         A385ManagerPhoneCode = "";
          P00934_A93ReceptionistEmail = new string[] {""} ;
          P00934_A95ReceptionistGAMGUID = new string[] {""} ;
          P00934_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P00934_A29LocationId = new Guid[] {Guid.Empty} ;
          P00934_A89ReceptionistId = new Guid[] {Guid.Empty} ;
          P00934_A40002ReceptionistImage_GXI = new string[] {""} ;
+         P00934_A374ReceptionistPhoneNumber = new string[] {""} ;
+         P00934_A373ReceptionistPhoneCode = new string[] {""} ;
          A93ReceptionistEmail = "";
          A95ReceptionistGAMGUID = "";
          A89ReceptionistId = Guid.Empty;
          A40002ReceptionistImage_GXI = "";
+         A374ReceptionistPhoneNumber = "";
+         A373ReceptionistPhoneCode = "";
          P00935_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P00935_A13OrganisationName = new string[] {""} ;
          A13OrganisationName = "";
@@ -333,13 +372,13 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_loadwwpcontext__default(),
             new Object[][] {
                 new Object[] {
-               P00932_A71ResidentGUID, P00932_A11OrganisationId, P00932_A29LocationId, P00932_A62ResidentId, P00932_A40000ResidentImage_GXI, P00932_n40000ResidentImage_GXI
+               P00932_A71ResidentGUID, P00932_A11OrganisationId, P00932_A29LocationId, P00932_A62ResidentId, P00932_A40000ResidentImage_GXI, P00932_n40000ResidentImage_GXI, P00932_A446ResidentHomePhoneNumber, P00932_A445ResidentHomePhoneCode
                }
                , new Object[] {
-               P00933_A25ManagerEmail, P00933_A28ManagerGAMGUID, P00933_A11OrganisationId, P00933_A21ManagerId, P00933_A360ManagerIsMainManager, P00933_A394ManagerIsActive, P00933_A40001ManagerImage_GXI
+               P00933_A25ManagerEmail, P00933_A28ManagerGAMGUID, P00933_A11OrganisationId, P00933_A21ManagerId, P00933_A360ManagerIsMainManager, P00933_A394ManagerIsActive, P00933_A40001ManagerImage_GXI, P00933_A386ManagerPhoneNumber, P00933_A385ManagerPhoneCode
                }
                , new Object[] {
-               P00934_A93ReceptionistEmail, P00934_A95ReceptionistGAMGUID, P00934_A11OrganisationId, P00934_A29LocationId, P00934_A89ReceptionistId, P00934_A40002ReceptionistImage_GXI
+               P00934_A93ReceptionistEmail, P00934_A95ReceptionistGAMGUID, P00934_A11OrganisationId, P00934_A29LocationId, P00934_A89ReceptionistId, P00934_A40002ReceptionistImage_GXI, P00934_A374ReceptionistPhoneNumber, P00934_A373ReceptionistPhoneCode
                }
                , new Object[] {
                P00935_A11OrganisationId, P00935_A13OrganisationName
@@ -355,7 +394,7 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private short AV24GXLvl79 ;
+      private short AV24GXLvl93 ;
       private int AV25GXV1 ;
       private bool n40000ResidentImage_GXI ;
       private bool A360ManagerIsMainManager ;
@@ -364,12 +403,18 @@ namespace GeneXus.Programs {
       private string AV11UserRoleName ;
       private string A71ResidentGUID ;
       private string A40000ResidentImage_GXI ;
+      private string A446ResidentHomePhoneNumber ;
+      private string A445ResidentHomePhoneCode ;
       private string A25ManagerEmail ;
       private string A28ManagerGAMGUID ;
       private string A40001ManagerImage_GXI ;
+      private string A386ManagerPhoneNumber ;
+      private string A385ManagerPhoneCode ;
       private string A93ReceptionistEmail ;
       private string A95ReceptionistGAMGUID ;
       private string A40002ReceptionistImage_GXI ;
+      private string A374ReceptionistPhoneNumber ;
+      private string A373ReceptionistPhoneCode ;
       private string A13OrganisationName ;
       private string A31LocationName ;
       private string A40003OrganisationSettingLogo_GXI ;
@@ -402,6 +447,8 @@ namespace GeneXus.Programs {
       private Guid[] P00932_A62ResidentId ;
       private string[] P00932_A40000ResidentImage_GXI ;
       private bool[] P00932_n40000ResidentImage_GXI ;
+      private string[] P00932_A446ResidentHomePhoneNumber ;
+      private string[] P00932_A445ResidentHomePhoneCode ;
       private string[] P00933_A25ManagerEmail ;
       private string[] P00933_A28ManagerGAMGUID ;
       private Guid[] P00933_A11OrganisationId ;
@@ -409,12 +456,16 @@ namespace GeneXus.Programs {
       private bool[] P00933_A360ManagerIsMainManager ;
       private bool[] P00933_A394ManagerIsActive ;
       private string[] P00933_A40001ManagerImage_GXI ;
+      private string[] P00933_A386ManagerPhoneNumber ;
+      private string[] P00933_A385ManagerPhoneCode ;
       private string[] P00934_A93ReceptionistEmail ;
       private string[] P00934_A95ReceptionistGAMGUID ;
       private Guid[] P00934_A11OrganisationId ;
       private Guid[] P00934_A29LocationId ;
       private Guid[] P00934_A89ReceptionistId ;
       private string[] P00934_A40002ReceptionistImage_GXI ;
+      private string[] P00934_A374ReceptionistPhoneNumber ;
+      private string[] P00934_A373ReceptionistPhoneCode ;
       private Guid[] P00935_A11OrganisationId ;
       private string[] P00935_A13OrganisationName ;
       private Guid[] P00936_A29LocationId ;
@@ -482,9 +533,9 @@ namespace GeneXus.Programs {
           new ParDef("AV17OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P00932", "SELECT ResidentGUID, OrganisationId, LocationId, ResidentId, ResidentImage_GXI FROM Trn_Resident WHERE ResidentGUID = ( :AV9GAMUser__Guid) ORDER BY ResidentId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00932,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P00933", "SELECT ManagerEmail, ManagerGAMGUID, OrganisationId, ManagerId, ManagerIsMainManager, ManagerIsActive, ManagerImage_GXI FROM Trn_Manager WHERE (LOWER(ManagerEmail) = ( :AV9GAMUser__Email)) AND (ManagerGAMGUID = ( :AV9GAMUser__Guid)) ORDER BY ManagerId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00933,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P00934", "SELECT ReceptionistEmail, ReceptionistGAMGUID, OrganisationId, LocationId, ReceptionistId, ReceptionistImage_GXI FROM Trn_Receptionist WHERE (LOWER(ReceptionistEmail) = ( :AV9GAMUser__Email)) AND (ReceptionistGAMGUID = ( :AV9GAMUser__Guid)) ORDER BY ReceptionistId, OrganisationId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00934,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P00932", "SELECT ResidentGUID, OrganisationId, LocationId, ResidentId, ResidentImage_GXI, ResidentHomePhoneNumber, ResidentHomePhoneCode FROM Trn_Resident WHERE ResidentGUID = ( :AV9GAMUser__Guid) ORDER BY ResidentId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00932,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("P00933", "SELECT ManagerEmail, ManagerGAMGUID, OrganisationId, ManagerId, ManagerIsMainManager, ManagerIsActive, ManagerImage_GXI, ManagerPhoneNumber, ManagerPhoneCode FROM Trn_Manager WHERE (LOWER(ManagerEmail) = ( :AV9GAMUser__Email)) AND (ManagerGAMGUID = ( :AV9GAMUser__Guid)) ORDER BY ManagerId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00933,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("P00934", "SELECT ReceptionistEmail, ReceptionistGAMGUID, OrganisationId, LocationId, ReceptionistId, ReceptionistImage_GXI, ReceptionistPhoneNumber, ReceptionistPhoneCode FROM Trn_Receptionist WHERE (LOWER(ReceptionistEmail) = ( :AV9GAMUser__Email)) AND (ReceptionistGAMGUID = ( :AV9GAMUser__Guid)) ORDER BY ReceptionistId, OrganisationId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00934,100, GxCacheFrequency.OFF ,false,false )
              ,new CursorDef("P00935", "SELECT OrganisationId, OrganisationName FROM Trn_Organisation WHERE OrganisationId = :AV17OrganisationId ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00935,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P00936", "SELECT LocationId, LocationName, OrganisationId FROM Trn_Location WHERE LocationId = :AV10LocationId ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00936,100, GxCacheFrequency.OFF ,false,false )
              ,new CursorDef("P00937", "SELECT OrganisationId, OrganisationSettingLogo_GXI, OrganisationSettingFavicon_GXI, OrganisationSettingid, OrganisationSettingBaseColor, OrganisationSettingFontSize, OrganisationSettingLanguage, OrganisationSettingLogo, OrganisationSettingFavicon FROM Trn_OrganisationSetting WHERE OrganisationId = :AV17OrganisationId ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00937,100, GxCacheFrequency.OFF ,false,false )
@@ -505,6 +556,8 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[3])[0] = rslt.getGuid(4);
                 ((string[]) buf[4])[0] = rslt.getMultimediaUri(5);
                 ((bool[]) buf[5])[0] = rslt.wasNull(5);
+                ((string[]) buf[6])[0] = rslt.getVarchar(6);
+                ((string[]) buf[7])[0] = rslt.getVarchar(7);
                 return;
              case 1 :
                 ((string[]) buf[0])[0] = rslt.getVarchar(1);
@@ -514,6 +567,8 @@ namespace GeneXus.Programs {
                 ((bool[]) buf[4])[0] = rslt.getBool(5);
                 ((bool[]) buf[5])[0] = rslt.getBool(6);
                 ((string[]) buf[6])[0] = rslt.getMultimediaUri(7);
+                ((string[]) buf[7])[0] = rslt.getVarchar(8);
+                ((string[]) buf[8])[0] = rslt.getVarchar(9);
                 return;
              case 2 :
                 ((string[]) buf[0])[0] = rslt.getVarchar(1);
@@ -522,6 +577,8 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[3])[0] = rslt.getGuid(4);
                 ((Guid[]) buf[4])[0] = rslt.getGuid(5);
                 ((string[]) buf[5])[0] = rslt.getMultimediaUri(6);
+                ((string[]) buf[6])[0] = rslt.getVarchar(7);
+                ((string[]) buf[7])[0] = rslt.getVarchar(8);
                 return;
              case 3 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);

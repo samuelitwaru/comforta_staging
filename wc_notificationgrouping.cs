@@ -46,11 +46,8 @@ namespace GeneXus.Programs {
          dsDefault = context.GetDataStore("Default");
       }
 
-      public void execute( GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem> aP0_SDT_NotificationGroup ,
-                           GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem> aP1_SDT_NotificationGroupCollection )
+      public void execute( )
       {
-         this.AV36SDT_NotificationGroup = aP0_SDT_NotificationGroup;
-         this.AV38SDT_NotificationGroupCollection = aP1_SDT_NotificationGroupCollection;
          ExecuteImpl();
       }
 
@@ -79,7 +76,7 @@ namespace GeneXus.Programs {
             if ( nGotPars == 0 )
             {
                entryPointCalled = false;
-               gxfirstwebparm = GetFirstPar( "SDT_NotificationGroup");
+               gxfirstwebparm = GetNextPar( );
                gxfirstwebparm_bkp = gxfirstwebparm;
                gxfirstwebparm = DecryptAjaxCall( gxfirstwebparm);
                toggleJsOutput = isJsOutputEnabled( );
@@ -109,10 +106,8 @@ namespace GeneXus.Programs {
                   nDynComponent = 1;
                   sCompPrefix = GetPar( "sCompPrefix");
                   sSFPrefix = GetPar( "sSFPrefix");
-                  ajax_req_read_hidden_sdt(GetNextPar( ), AV36SDT_NotificationGroup);
-                  ajax_req_read_hidden_sdt(GetNextPar( ), AV38SDT_NotificationGroupCollection);
                   setjustcreated();
-                  componentprepare(new Object[] {(string)sCompPrefix,(string)sSFPrefix,(GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>)AV36SDT_NotificationGroup,(GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>)AV38SDT_NotificationGroupCollection});
+                  componentprepare(new Object[] {(string)sCompPrefix,(string)sSFPrefix});
                   componentstart();
                   context.httpAjaxContext.ajax_rspStartCmp(sPrefix);
                   componentdraw();
@@ -127,7 +122,7 @@ namespace GeneXus.Programs {
                      GxWebError = 1;
                      return  ;
                   }
-                  gxfirstwebparm = GetFirstPar( "SDT_NotificationGroup");
+                  gxfirstwebparm = GetNextPar( );
                }
                else if ( StringUtil.StrCmp(gxfirstwebparm, "gxfullajaxEvt") == 0 )
                {
@@ -136,7 +131,7 @@ namespace GeneXus.Programs {
                      GxWebError = 1;
                      return  ;
                   }
-                  gxfirstwebparm = GetFirstPar( "SDT_NotificationGroup");
+                  gxfirstwebparm = GetNextPar( );
                }
                else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxNewRow_"+"Grid") == 0 )
                {
@@ -196,6 +191,7 @@ namespace GeneXus.Programs {
          subGrid_Rows = (int)(Math.Round(NumberUtil.Val( GetPar( "subGrid_Rows"), "."), 18, MidpointRounding.ToEven));
          AV60Pgmname = GetPar( "Pgmname");
          ajax_req_read_hidden_sdt(GetNextPar( ), AV36SDT_NotificationGroup);
+         ajax_req_read_hidden_sdt(GetNextPar( ), AV38SDT_NotificationGroupCollection);
          sPrefix = GetPar( "sPrefix");
          init_default_properties( ) ;
          setAjaxCallMode();
@@ -204,7 +200,7 @@ namespace GeneXus.Programs {
             GxWebError = 1;
             return  ;
          }
-         gxgrGrid_refresh( subGrid_Rows, AV60Pgmname, AV36SDT_NotificationGroup, sPrefix) ;
+         gxgrGrid_refresh( subGrid_Rows, AV60Pgmname, AV36SDT_NotificationGroup, AV38SDT_NotificationGroupCollection, sPrefix) ;
          AddString( context.getJSONResponse( )) ;
          /* End function gxgrGrid_refresh_invoke */
       }
@@ -413,6 +409,24 @@ namespace GeneXus.Programs {
       {
          GxWebStd.gx_hidden_field( context, sPrefix+"vPGMNAME", StringUtil.RTrim( AV60Pgmname));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vPGMNAME", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV60Pgmname, "")), context));
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vSDT_NOTIFICATIONGROUP", AV36SDT_NotificationGroup);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vSDT_NOTIFICATIONGROUP", AV36SDT_NotificationGroup);
+         }
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vSDT_NOTIFICATIONGROUP", GetSecureSignedToken( sPrefix, AV36SDT_NotificationGroup, context));
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vSDT_NOTIFICATIONGROUPCOLLECTION", AV38SDT_NotificationGroupCollection);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vSDT_NOTIFICATIONGROUPCOLLECTION", AV38SDT_NotificationGroupCollection);
+         }
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vSDT_NOTIFICATIONGROUPCOLLECTION", GetSecureSignedToken( sPrefix, AV38SDT_NotificationGroupCollection, context));
          GXKey = Decrypt64( context.GetCookie( "GX_SESSION_ID"), Crypto.GetServerKey( ));
       }
 
@@ -429,6 +443,7 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"Sdt_notificationgroup", AV36SDT_NotificationGroup);
          }
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_Sdt_notificationgroup", GetSecureSignedToken( sPrefix, AV36SDT_NotificationGroup, context));
          GxWebStd.gx_hidden_field( context, sPrefix+"nRC_GXsfl_12", StringUtil.LTrim( StringUtil.NToC( (decimal)(nRC_GXsfl_12), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"vGRIDCURRENTPAGE", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV16GridCurrentPage), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"vGRIDPAGECOUNT", StringUtil.LTrim( StringUtil.NToC( (decimal)(AV17GridPageCount), 10, 0, context.GetLanguageProperty( "decimal_point"), "")));
@@ -443,6 +458,7 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vSDT_NOTIFICATIONGROUP", AV36SDT_NotificationGroup);
          }
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vSDT_NOTIFICATIONGROUP", GetSecureSignedToken( sPrefix, AV36SDT_NotificationGroup, context));
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vSDT_NOTIFICATIONGROUPCOLLECTION", AV38SDT_NotificationGroupCollection);
@@ -451,6 +467,7 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vSDT_NOTIFICATIONGROUPCOLLECTION", AV38SDT_NotificationGroupCollection);
          }
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vSDT_NOTIFICATIONGROUPCOLLECTION", GetSecureSignedToken( sPrefix, AV38SDT_NotificationGroupCollection, context));
          GxWebStd.gx_hidden_field( context, sPrefix+"GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"GRID_nEOF", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nEOF), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
@@ -1105,6 +1122,7 @@ namespace GeneXus.Programs {
       protected void gxgrGrid_refresh( int subGrid_Rows ,
                                        string AV60Pgmname ,
                                        GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem> AV36SDT_NotificationGroup ,
+                                       GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem> AV38SDT_NotificationGroupCollection ,
                                        string sPrefix )
       {
          initialize_formulas( ) ;
@@ -1220,6 +1238,24 @@ namespace GeneXus.Programs {
       {
          GxWebStd.gx_hidden_field( context, sPrefix+"vPGMNAME", StringUtil.RTrim( AV60Pgmname));
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vPGMNAME", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV60Pgmname, "")), context));
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vSDT_NOTIFICATIONGROUP", AV36SDT_NotificationGroup);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vSDT_NOTIFICATIONGROUP", AV36SDT_NotificationGroup);
+         }
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vSDT_NOTIFICATIONGROUP", GetSecureSignedToken( sPrefix, AV36SDT_NotificationGroup, context));
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vSDT_NOTIFICATIONGROUPCOLLECTION", AV38SDT_NotificationGroupCollection);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vSDT_NOTIFICATIONGROUPCOLLECTION", AV38SDT_NotificationGroupCollection);
+         }
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vSDT_NOTIFICATIONGROUPCOLLECTION", GetSecureSignedToken( sPrefix, AV38SDT_NotificationGroupCollection, context));
       }
 
       protected int subGrid_fnc_Pagecount( )
@@ -1260,7 +1296,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, sPrefix+"GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV60Pgmname, AV36SDT_NotificationGroup, sPrefix) ;
+            gxgrGrid_refresh( subGrid_Rows, AV60Pgmname, AV36SDT_NotificationGroup, AV38SDT_NotificationGroupCollection, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1281,7 +1317,7 @@ namespace GeneXus.Programs {
          GridContainer.AddObjectProperty("GRID_nFirstRecordOnPage", GRID_nFirstRecordOnPage);
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV60Pgmname, AV36SDT_NotificationGroup, sPrefix) ;
+            gxgrGrid_refresh( subGrid_Rows, AV60Pgmname, AV36SDT_NotificationGroup, AV38SDT_NotificationGroupCollection, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return (short)(((GRID_nEOF==0) ? 0 : 2)) ;
@@ -1300,7 +1336,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, sPrefix+"GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV60Pgmname, AV36SDT_NotificationGroup, sPrefix) ;
+            gxgrGrid_refresh( subGrid_Rows, AV60Pgmname, AV36SDT_NotificationGroup, AV38SDT_NotificationGroupCollection, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1327,7 +1363,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, sPrefix+"GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV60Pgmname, AV36SDT_NotificationGroup, sPrefix) ;
+            gxgrGrid_refresh( subGrid_Rows, AV60Pgmname, AV36SDT_NotificationGroup, AV38SDT_NotificationGroupCollection, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1346,7 +1382,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, sPrefix+"GRID_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRID_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGrid_refresh( subGrid_Rows, AV60Pgmname, AV36SDT_NotificationGroup, sPrefix) ;
+            gxgrGrid_refresh( subGrid_Rows, AV60Pgmname, AV36SDT_NotificationGroup, AV38SDT_NotificationGroupCollection, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return (int)(0) ;
@@ -1530,6 +1566,8 @@ namespace GeneXus.Programs {
          AV15GridAppliedFilters = GXt_char1;
          AssignAttri(sPrefix, false, "AV15GridAppliedFilters", AV15GridAppliedFilters);
          /*  Sending Event outputs  */
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV38SDT_NotificationGroupCollection", AV38SDT_NotificationGroupCollection);
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV36SDT_NotificationGroup", AV36SDT_NotificationGroup);
       }
 
       protected void E119Y2( )
@@ -1640,6 +1678,8 @@ namespace GeneXus.Programs {
       {
          /* 'LOADGRIDSDT' Routine */
          returnInSub = false;
+         new prc_getnotificationgrouping(context ).execute( out  AV36SDT_NotificationGroup, out  AV38SDT_NotificationGroupCollection) ;
+         gx_BV12 = true;
       }
 
       protected void S152( )
@@ -1694,8 +1734,6 @@ namespace GeneXus.Programs {
       {
          createObjects();
          initialize();
-         AV36SDT_NotificationGroup = (GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>)getParm(obj,0);
-         AV38SDT_NotificationGroupCollection = (GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>)getParm(obj,1);
       }
 
       public override string getresponse( string sGXDynURL )
@@ -1727,8 +1765,6 @@ namespace GeneXus.Programs {
          {
             return  ;
          }
-         sCtrlAV36SDT_NotificationGroup = (string)((string)getParm(obj,0));
-         sCtrlAV38SDT_NotificationGroupCollection = (string)((string)getParm(obj,1));
       }
 
       public override void componentrestorestate( string sPPrefix ,
@@ -1762,32 +1798,12 @@ namespace GeneXus.Programs {
          }
          else
          {
-            AV36SDT_NotificationGroup = (GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>)getParm(obj,2);
-            AV38SDT_NotificationGroupCollection = (GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>)getParm(obj,3);
          }
       }
 
       protected void WCParametersGet( )
       {
          /* Read Component Parameters. */
-         sCtrlAV36SDT_NotificationGroup = cgiGet( sPrefix+"AV36SDT_NotificationGroup_CTRL");
-         if ( StringUtil.Len( sCtrlAV36SDT_NotificationGroup) > 0 )
-         {
-            AV36SDT_NotificationGroup = new GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>();
-         }
-         else
-         {
-            ajax_req_read_hidden_sdt(cgiGet( sPrefix+"AV36SDT_NotificationGroup_PARM"), AV36SDT_NotificationGroup);
-         }
-         sCtrlAV38SDT_NotificationGroupCollection = cgiGet( sPrefix+"AV38SDT_NotificationGroupCollection_CTRL");
-         if ( StringUtil.Len( sCtrlAV38SDT_NotificationGroupCollection) > 0 )
-         {
-            AV38SDT_NotificationGroupCollection = new GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>();
-         }
-         else
-         {
-            ajax_req_read_hidden_sdt(cgiGet( sPrefix+"AV38SDT_NotificationGroupCollection_PARM"), AV38SDT_NotificationGroupCollection);
-         }
       }
 
       public override void componentprocess( string sPPrefix ,
@@ -1833,30 +1849,6 @@ namespace GeneXus.Programs {
 
       protected void WCParametersSet( )
       {
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"AV36SDT_NotificationGroup_PARM", AV36SDT_NotificationGroup);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"AV36SDT_NotificationGroup_PARM", AV36SDT_NotificationGroup);
-         }
-         if ( StringUtil.Len( StringUtil.RTrim( sCtrlAV36SDT_NotificationGroup)) > 0 )
-         {
-            GxWebStd.gx_hidden_field( context, sPrefix+"AV36SDT_NotificationGroup_CTRL", StringUtil.RTrim( sCtrlAV36SDT_NotificationGroup));
-         }
-         if ( context.isAjaxRequest( ) )
-         {
-            context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"AV38SDT_NotificationGroupCollection_PARM", AV38SDT_NotificationGroupCollection);
-         }
-         else
-         {
-            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"AV38SDT_NotificationGroupCollection_PARM", AV38SDT_NotificationGroupCollection);
-         }
-         if ( StringUtil.Len( StringUtil.RTrim( sCtrlAV38SDT_NotificationGroupCollection)) > 0 )
-         {
-            GxWebStd.gx_hidden_field( context, sPrefix+"AV38SDT_NotificationGroupCollection_CTRL", StringUtil.RTrim( sCtrlAV38SDT_NotificationGroupCollection));
-         }
       }
 
       public override void componentdraw( )
@@ -1924,7 +1916,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025130953560", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522112294210", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1940,7 +1932,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_notificationgrouping.js", "?2025130953560", false, true);
+         context.AddJavascriptSource("wc_notificationgrouping.js", "?202522112294211", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DVPaginationBar/DVPaginationBarRender.js", "", false, true);
@@ -2446,16 +2438,16 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"AV36SDT_NotificationGroup","fld":"vSDT_NOTIFICATIONGROUP","grid":12},{"av":"nGXsfl_12_idx","ctrl":"GRID","prop":"GridCurrRow","grid":12},{"av":"nRC_GXsfl_12","ctrl":"GRID","prop":"GridRC","grid":12},{"av":"sPrefix"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV60Pgmname","fld":"vPGMNAME","hsh":true}]""");
-         setEventMetadata("REFRESH",""","oparms":[{"av":"AV16GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV17GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV15GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"}]}""");
-         setEventMetadata("GRIDPAGINATIONBAR.CHANGEPAGE","""{"handler":"E119Y2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV60Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV36SDT_NotificationGroup","fld":"vSDT_NOTIFICATIONGROUP","grid":12},{"av":"nGXsfl_12_idx","ctrl":"GRID","prop":"GridCurrRow","grid":12},{"av":"nRC_GXsfl_12","ctrl":"GRID","prop":"GridRC","grid":12},{"av":"sPrefix"},{"av":"Gridpaginationbar_Selectedpage","ctrl":"GRIDPAGINATIONBAR","prop":"SelectedPage"}]}""");
-         setEventMetadata("GRIDPAGINATIONBAR.CHANGEROWSPERPAGE","""{"handler":"E129Y2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV60Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV36SDT_NotificationGroup","fld":"vSDT_NOTIFICATIONGROUP","grid":12},{"av":"nGXsfl_12_idx","ctrl":"GRID","prop":"GridCurrRow","grid":12},{"av":"nRC_GXsfl_12","ctrl":"GRID","prop":"GridRC","grid":12},{"av":"sPrefix"},{"av":"Gridpaginationbar_Rowsperpageselectedvalue","ctrl":"GRIDPAGINATIONBAR","prop":"RowsPerPageSelectedValue"}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"sPrefix"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV60Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV36SDT_NotificationGroup","fld":"vSDT_NOTIFICATIONGROUP","grid":12,"hsh":true},{"av":"nGXsfl_12_idx","ctrl":"GRID","prop":"GridCurrRow","grid":12},{"av":"nRC_GXsfl_12","ctrl":"GRID","prop":"GridRC","grid":12},{"av":"AV38SDT_NotificationGroupCollection","fld":"vSDT_NOTIFICATIONGROUPCOLLECTION","hsh":true}]""");
+         setEventMetadata("REFRESH",""","oparms":[{"av":"AV16GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV17GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV15GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV38SDT_NotificationGroupCollection","fld":"vSDT_NOTIFICATIONGROUPCOLLECTION","hsh":true},{"av":"AV36SDT_NotificationGroup","fld":"vSDT_NOTIFICATIONGROUP","grid":12,"hsh":true},{"av":"nGXsfl_12_idx","ctrl":"GRID","prop":"GridCurrRow","grid":12},{"av":"GRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_12","ctrl":"GRID","prop":"GridRC","grid":12}]}""");
+         setEventMetadata("GRIDPAGINATIONBAR.CHANGEPAGE","""{"handler":"E119Y2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV60Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV36SDT_NotificationGroup","fld":"vSDT_NOTIFICATIONGROUP","grid":12,"hsh":true},{"av":"nGXsfl_12_idx","ctrl":"GRID","prop":"GridCurrRow","grid":12},{"av":"nRC_GXsfl_12","ctrl":"GRID","prop":"GridRC","grid":12},{"av":"AV38SDT_NotificationGroupCollection","fld":"vSDT_NOTIFICATIONGROUPCOLLECTION","hsh":true},{"av":"sPrefix"},{"av":"Gridpaginationbar_Selectedpage","ctrl":"GRIDPAGINATIONBAR","prop":"SelectedPage"}]}""");
+         setEventMetadata("GRIDPAGINATIONBAR.CHANGEROWSPERPAGE","""{"handler":"E129Y2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV60Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV36SDT_NotificationGroup","fld":"vSDT_NOTIFICATIONGROUP","grid":12,"hsh":true},{"av":"nGXsfl_12_idx","ctrl":"GRID","prop":"GridCurrRow","grid":12},{"av":"nRC_GXsfl_12","ctrl":"GRID","prop":"GridRC","grid":12},{"av":"AV38SDT_NotificationGroupCollection","fld":"vSDT_NOTIFICATIONGROUPCOLLECTION","hsh":true},{"av":"sPrefix"},{"av":"Gridpaginationbar_Rowsperpageselectedvalue","ctrl":"GRIDPAGINATIONBAR","prop":"RowsPerPageSelectedValue"}]""");
          setEventMetadata("GRIDPAGINATIONBAR.CHANGEROWSPERPAGE",""","oparms":[{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"}]}""");
-         setEventMetadata("GRID.LOAD","""{"handler":"E159Y2","iparms":[{"av":"AV36SDT_NotificationGroup","fld":"vSDT_NOTIFICATIONGROUP","grid":12},{"av":"nGXsfl_12_idx","ctrl":"GRID","prop":"GridCurrRow","grid":12},{"av":"GRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_12","ctrl":"GRID","prop":"GridRC","grid":12}]""");
+         setEventMetadata("GRID.LOAD","""{"handler":"E159Y2","iparms":[{"av":"AV36SDT_NotificationGroup","fld":"vSDT_NOTIFICATIONGROUP","grid":12,"hsh":true},{"av":"nGXsfl_12_idx","ctrl":"GRID","prop":"GridCurrRow","grid":12},{"av":"GRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_12","ctrl":"GRID","prop":"GridRC","grid":12}]""");
          setEventMetadata("GRID.LOAD",""","oparms":[{"av":"cmbavActiongroup"},{"av":"AV6ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"AV13DetailWebComponent","fld":"vDETAILWEBCOMPONENT"},{"av":"edtavNotificationicon_Format","ctrl":"vNOTIFICATIONICON","prop":"Format"},{"av":"AV29NotificationIcon","fld":"vNOTIFICATIONICON"}]}""");
          setEventMetadata("VACTIONGROUP.CLICK","""{"handler":"E179Y2","iparms":[{"av":"cmbavActiongroup"},{"av":"AV6ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"}]""");
          setEventMetadata("VACTIONGROUP.CLICK",""","oparms":[{"av":"cmbavActiongroup"},{"av":"AV6ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"}]}""");
-         setEventMetadata("VDETAILWEBCOMPONENT.CLICK","""{"handler":"E169Y2","iparms":[{"av":"AV36SDT_NotificationGroup","fld":"vSDT_NOTIFICATIONGROUP","grid":12},{"av":"nGXsfl_12_idx","ctrl":"GRID","prop":"GridCurrRow","grid":12},{"av":"GRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_12","ctrl":"GRID","prop":"GridRC","grid":12},{"av":"AV38SDT_NotificationGroupCollection","fld":"vSDT_NOTIFICATIONGROUPCOLLECTION"}]""");
+         setEventMetadata("VDETAILWEBCOMPONENT.CLICK","""{"handler":"E169Y2","iparms":[{"av":"AV36SDT_NotificationGroup","fld":"vSDT_NOTIFICATIONGROUP","grid":12,"hsh":true},{"av":"nGXsfl_12_idx","ctrl":"GRID","prop":"GridCurrRow","grid":12},{"av":"GRID_nFirstRecordOnPage"},{"av":"nRC_GXsfl_12","ctrl":"GRID","prop":"GridRC","grid":12},{"av":"AV38SDT_NotificationGroupCollection","fld":"vSDT_NOTIFICATIONGROUPCOLLECTION","hsh":true}]""");
          setEventMetadata("VDETAILWEBCOMPONENT.CLICK",""","oparms":[{"ctrl":"GRID_DWC"}]}""");
          setEventMetadata("VALIDV_GXV7","""{"handler":"Validv_Gxv7","iparms":[]}""");
          setEventMetadata("NULL","""{"handler":"Validv_Detailwebcomponent","iparms":[]}""");
@@ -2473,13 +2465,13 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV36SDT_NotificationGroup = new GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>( context, "SDT_NotificationGroupItem", "Comforta_version2");
-         AV38SDT_NotificationGroupCollection = new GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>( context, "SDT_NotificationGroupItem", "Comforta_version2");
          Gridpaginationbar_Selectedpage = "";
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          sPrefix = "";
          AV60Pgmname = "";
+         AV36SDT_NotificationGroup = new GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>( context, "SDT_NotificationGroupItem", "Comforta_version2");
+         AV38SDT_NotificationGroupCollection = new GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem>( context, "SDT_NotificationGroupItem", "Comforta_version2");
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
@@ -2508,8 +2500,6 @@ namespace GeneXus.Programs {
          AV18GridState = new GeneXus.Programs.wwpbaseobjects.SdtWWPGridState(context);
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
-         sCtrlAV36SDT_NotificationGroup = "";
-         sCtrlAV38SDT_NotificationGroupCollection = "";
          subGrid_Linesclass = "";
          ROClassString = "";
          TempTags = "";
@@ -2643,8 +2633,6 @@ namespace GeneXus.Programs {
       private string AV13DetailWebComponent ;
       private string sGXsfl_12_fel_idx="0001" ;
       private string GXt_char1 ;
-      private string sCtrlAV36SDT_NotificationGroup ;
-      private string sCtrlAV38SDT_NotificationGroupCollection ;
       private string subGrid_Class ;
       private string subGrid_Linesclass ;
       private string ROClassString ;
@@ -2679,6 +2667,7 @@ namespace GeneXus.Programs {
       private bool returnInSub ;
       private bool gx_refresh_fired ;
       private bool bDynCreated_Grid_dwc ;
+      private bool gx_BV12 ;
       private string AV15GridAppliedFilters ;
       private string AV29NotificationIcon ;
       private IGxSession AV42Session ;
@@ -2692,10 +2681,10 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem> AV36SDT_NotificationGroup ;
-      private GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem> AV38SDT_NotificationGroupCollection ;
       private GXCheckbox chkavSdt_notificationgroup__isparent ;
       private GXCombobox cmbavActiongroup ;
+      private GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem> AV36SDT_NotificationGroup ;
+      private GXBaseCollection<SdtSDT_NotificationGroup_SDT_NotificationGroupItem> AV38SDT_NotificationGroupCollection ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV49WWPContext ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState AV18GridState ;
       private msglist BackMsgLst ;

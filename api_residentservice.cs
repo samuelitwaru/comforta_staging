@@ -119,6 +119,10 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityLow ;
          }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_pageapi2") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_contentpagesapi") == 0 )
          {
             return GAMSecurityLevel.SecurityNone ;
@@ -673,6 +677,21 @@ namespace GeneXus.Programs {
          this.AV16organisationId = aP2_organisationId;
          initialize();
          /* PageAPI Constructor */
+         new prc_pageapi(context ).execute(  AV54PageId,  AV12locationId,  AV16organisationId, out  AV75SDT_MobilePage) ;
+         aP3_SDT_MobilePage=this.AV75SDT_MobilePage;
+      }
+
+      public void gxep_pageapi2( Guid aP0_PageId ,
+                                 Guid aP1_locationId ,
+                                 Guid aP2_organisationId ,
+                                 out SdtSDT_MobilePage aP3_SDT_MobilePage )
+      {
+         this.AV54PageId = aP0_PageId;
+         this.AV12locationId = aP1_locationId;
+         this.AV16organisationId = aP2_organisationId;
+         AV75SDT_MobilePage = new SdtSDT_MobilePage(context);
+         initialize();
+         /* PageAPI2 Constructor */
          new prc_pageapi(context ).execute(  AV54PageId,  AV12locationId,  AV16organisationId, out  AV75SDT_MobilePage) ;
          aP3_SDT_MobilePage=this.AV75SDT_MobilePage;
       }

@@ -595,7 +595,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 TableDynFormAddElementCell", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, divTableactions_Internalname, divTableactions_Visible, 0, "px", 0, "px", divTableactions_Class, "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, divTableactions_Internalname, 1, 0, "px", 0, "px", divTableactions_Class, "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
@@ -1466,8 +1466,6 @@ namespace GeneXus.Programs {
             GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vALLOWDELETION", GetSecureSignedToken( sPrefix, AV5AllowDeletion, context));
             Btnsettings_Caption = context.GetMessage( "WWP_DF_FormSettings", "");
             ucBtnsettings.SendProperty(context, sPrefix, false, Btnsettings_Internalname, "Caption", Btnsettings_Caption);
-            divTableactions_Visible = 0;
-            AssignProp(sPrefix, false, divTableactions_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divTableactions_Visible), 5, 0), true);
          }
          else
          {
@@ -1504,7 +1502,7 @@ namespace GeneXus.Programs {
                AV5AllowDeletion = false;
                AssignAttri(sPrefix, false, "AV5AllowDeletion", AV5AllowDeletion);
                GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vALLOWDELETION", GetSecureSignedToken( sPrefix, AV5AllowDeletion, context));
-               Btnsettings_Caption = context.GetMessage( "WWP_DF_FormSettings", "");
+               Btnsettings_Caption = StringUtil.Format( context.GetMessage( "WWP_DF_ElementSettings", ""), context.GetMessage( "WWP_DF_Container", ""), "", "", "", "", "", "", "", "");
                ucBtnsettings.SendProperty(context, sPrefix, false, Btnsettings_Internalname, "Caption", Btnsettings_Caption);
                Btndeleteelement_Caption = StringUtil.Format( context.GetMessage( "WWP_DF_DeleteElement", ""), context.GetMessage( "WWP_DF_Container", ""), "", "", "", "", "", "", "", "");
                ucBtndeleteelement.SendProperty(context, sPrefix, false, Btndeleteelement_Internalname, "Caption", Btndeleteelement_Caption);
@@ -2721,7 +2719,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512913135787", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522112293749", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2737,7 +2735,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("udfc_fs_wc.js", "?202512913135787", false, true);
+         context.AddJavascriptSource("udfc_fs_wc.js", "?202522112293750", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
@@ -3009,7 +3007,6 @@ namespace GeneXus.Programs {
          Btnsettings_Caption = context.GetMessage( "WWP_DF_Settings", "");
          subFsgrid_Backcolorstyle = 0;
          divTableactions_Class = "TableDynFormAddElement";
-         divTableactions_Visible = 1;
          divFsgridcell_Class = "col-xs-12";
          divTablemain_Class = "Table";
          divLayoutmaintable_Class = "Table";
@@ -3158,7 +3155,6 @@ namespace GeneXus.Programs {
       private int nRC_GXsfl_9 ;
       private int subFsgrid_Recordcount ;
       private int nGXsfl_9_idx=1 ;
-      private int divTableactions_Visible ;
       private int nGXsfl_9_webc_idx=0 ;
       private int subFsgrid_Islastpage ;
       private int AV28GXV1 ;

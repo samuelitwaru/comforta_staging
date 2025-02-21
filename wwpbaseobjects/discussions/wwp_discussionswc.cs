@@ -485,14 +485,10 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          GxWebStd.gx_hidden_field( context, sPrefix+"UCMENTIONS_Itemhtmltemplate", StringUtil.RTrim( Ucmentions_Itemhtmltemplate));
          GxWebStd.gx_hidden_field( context, sPrefix+"GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"UCMENTIONS_Selecteditemsjson", StringUtil.RTrim( Ucmentions_Selecteditemsjson));
-         GxWebStd.gx_hidden_field( context, sPrefix+"WCDISCUSSIONSONETHREADCELL_Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(divWcdiscussionsonethreadcell_Visible), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"DISCUSSIONSONETHREADCOLLAPSEDWCCELL_Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(divDiscussionsonethreadcollapsedwccell_Visible), 5, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"vISDISCUSSIONANSWERSWCLOADED_Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(chkavIsdiscussionanswerswcloaded.Visible), 5, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"WWPDISCUSSIONMESSAGEID_Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtWWPDiscussionMessageId_Visible), 5, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
          GxWebStd.gx_hidden_field( context, sPrefix+"UCMENTIONS_Selecteditemsjson", StringUtil.RTrim( Ucmentions_Selecteditemsjson));
-         GxWebStd.gx_hidden_field( context, sPrefix+"WCDISCUSSIONSONETHREADCELL_Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(divWcdiscussionsonethreadcell_Visible), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, sPrefix+"DISCUSSIONSONETHREADCOLLAPSEDWCCELL_Visible", StringUtil.LTrim( StringUtil.NToC( (decimal)(divDiscussionsonethreadcollapsedwccell_Visible), 5, 0, ".", "")));
       }
 
       protected void RenderHtmlCloseForm1S2( )
@@ -607,7 +603,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, divUnnamedtable1_Internalname, 1, 0, "px", 0, "px", "Flex", "start", "top", " "+"data-gx-flex"+" ", "", "div");
+            GxWebStd.gx_div_start( context, divUnnamedtable1_Internalname, divUnnamedtable1_Visible, 0, "px", 0, "px", "Flex", "start", "top", " "+"data-gx-flex"+" ", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;", "div");
             /* Text block */
@@ -862,23 +858,6 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                                  }
                               }
                            }
-                           else if ( StringUtil.StrCmp(sEvt, "DISCUSSIONCARD.CLICK") == 0 )
-                           {
-                              if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
-                              {
-                                 STRUP1S0( ) ;
-                              }
-                              if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
-                              {
-                                 context.wbHandled = 1;
-                                 if ( ! wbErr )
-                                 {
-                                    dynload_actions( ) ;
-                                    /* Execute user event: Discussioncard.Click */
-                                    E131S2 ();
-                                 }
-                              }
-                           }
                            else if ( StringUtil.StrCmp(sEvt, "LSCR") == 0 )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
@@ -927,7 +906,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                         {
                            sEvtType = StringUtil.Right( sEvt, 4);
                            sEvt = StringUtil.Left( sEvt, (short)(StringUtil.Len( sEvt)-4));
-                           if ( ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "START") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 7), "REFRESH") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 9), "GRID.LOAD") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 20), "DISCUSSIONCARD.CLICK") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 6), "CANCEL") == 0 ) )
+                           if ( ( StringUtil.StrCmp(StringUtil.Left( sEvt, 5), "START") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 7), "REFRESH") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 9), "GRID.LOAD") == 0 ) || ( StringUtil.StrCmp(StringUtil.Left( sEvt, 6), "CANCEL") == 0 ) )
                            {
                               if ( ( StringUtil.Len( sPrefix) != 0 ) && ( nDoneStart == 0 ) )
                               {
@@ -960,7 +939,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                                           GX_FocusControl = chkavIsdiscussionanswerswcloaded_Internalname;
                                           AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
                                           /* Execute user event: Start */
-                                          E141S2 ();
+                                          E131S2 ();
                                        }
                                     }
                                  }
@@ -975,7 +954,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                                           GX_FocusControl = chkavIsdiscussionanswerswcloaded_Internalname;
                                           AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
                                           /* Execute user event: Refresh */
-                                          E151S2 ();
+                                          E141S2 ();
                                        }
                                     }
                                  }
@@ -990,22 +969,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                                           GX_FocusControl = chkavIsdiscussionanswerswcloaded_Internalname;
                                           AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
                                           /* Execute user event: Grid.Load */
-                                          E161S2 ();
-                                       }
-                                    }
-                                 }
-                                 else if ( StringUtil.StrCmp(sEvt, "DISCUSSIONCARD.CLICK") == 0 )
-                                 {
-                                    if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
-                                    {
-                                       context.wbHandled = 1;
-                                       if ( ! wbErr )
-                                       {
-                                          dynload_actions( ) ;
-                                          GX_FocusControl = chkavIsdiscussionanswerswcloaded_Internalname;
-                                          AssignAttri(sPrefix, false, "GX_FocusControl", GX_FocusControl);
-                                          /* Execute user event: Discussioncard.Click */
-                                          E131S2 ();
+                                          E151S2 ();
                                        }
                                     }
                                     /* No code required for Cancel button. It is implemented as the Reset button. */
@@ -1288,7 +1252,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          }
          wbStart = 16;
          /* Execute user event: Refresh */
-         E151S2 ();
+         E141S2 ();
          nGXsfl_16_idx = 1;
          sGXsfl_16_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_16_idx), 4, 0), 4, "0");
          SubsflControlProps_162( ) ;
@@ -1362,7 +1326,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
                A40000WWPUserExtendedPhoto_GXI = H001S2_A40000WWPUserExtendedPhoto_GXI[0];
                A113WWPUserExtendedFullName = H001S2_A113WWPUserExtendedFullName[0];
                /* Execute user event: Grid.Load */
-               E161S2 ();
+               E151S2 ();
                pr_default.readNext(0);
             }
             GRID_nEOF = (short)(((pr_default.getStatus(0) == 101) ? 1 : 0));
@@ -1547,7 +1511,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E141S2 ();
+         E131S2 ();
          context.wbGlbDoneStart = 1;
          nDoneStart = 1;
          /* After Start, stand alone formulas. */
@@ -1571,8 +1535,6 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             subGrid_Rows = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"GRID_Rows"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             GxWebStd.gx_hidden_field( context, sPrefix+"GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
             Ucmentions_Selecteditemsjson = cgiGet( sPrefix+"UCMENTIONS_Selecteditemsjson");
-            divWcdiscussionsonethreadcell_Visible = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"WCDISCUSSIONSONETHREADCELL_Visible"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-            divDiscussionsonethreadcollapsedwccell_Visible = (int)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"DISCUSSIONSONETHREADCOLLAPSEDWCCELL_Visible"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             /* Read variables values. */
             AV15Message = cgiGet( edtavMessage_Internalname);
             AssignAttri(sPrefix, false, "AV15Message", AV15Message);
@@ -1611,7 +1573,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E141S2 ();
+         E131S2 ();
          if ( returnInSub )
          {
             returnInSub = true;
@@ -1619,7 +1581,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          }
       }
 
-      protected void E141S2( )
+      protected void E131S2( )
       {
          /* Start Routine */
          returnInSub = false;
@@ -1631,6 +1593,13 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          Ucmentions_Itemhtmltemplate = GXt_char1;
          ucUcmentions.SendProperty(context, sPrefix, false, Ucmentions_Internalname, "ItemHtmlTemplate", Ucmentions_Itemhtmltemplate);
          this.executeUsercontrolMethod(sPrefix, false, "UCMENTIONSContainer", "Attach", "", new Object[] {(string)"@",(string)edtavMessage_Internalname});
+         /* Execute user subroutine: 'ATTRIBUTESSECURITYCODE' */
+         S112 ();
+         if ( returnInSub )
+         {
+            returnInSub = true;
+            if (true) return;
+         }
          chkavIsdiscussionanswerswcloaded.Visible = 0;
          AssignProp(sPrefix, false, chkavIsdiscussionanswerswcloaded_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavIsdiscussionanswerswcloaded.Visible), 5, 0), !bGXsfl_16_Refreshing);
          edtWWPDiscussionMessageId_Visible = 0;
@@ -1640,14 +1609,14 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          edtWWPDiscussionMessageEntityReco_Visible = 0;
          AssignProp(sPrefix, false, edtWWPDiscussionMessageEntityReco_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtWWPDiscussionMessageEntityReco_Visible), 5, 0), true);
          /* Execute user subroutine: 'PREPARETRANSACTION' */
-         S112 ();
+         S122 ();
          if ( returnInSub )
          {
             returnInSub = true;
             if (true) return;
          }
          /* Execute user subroutine: 'LOADGRIDSTATE' */
-         S122 ();
+         S132 ();
          if ( returnInSub )
          {
             returnInSub = true;
@@ -1660,7 +1629,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          this.executeExternalObjectMethod(sPrefix, false, "WWPActions", "Textarea_EnterBehaviourToAction", new Object[] {(string)edtavMessage_Internalname,(string)lblEnter_Internalname}, false);
       }
 
-      protected void E151S2( )
+      protected void E141S2( )
       {
          if ( gx_refresh_fired )
          {
@@ -1671,7 +1640,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          returnInSub = false;
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV22WWPContext) ;
          /* Execute user subroutine: 'SAVEGRIDSTATE' */
-         S132 ();
+         S142 ();
          if ( returnInSub )
          {
             returnInSub = true;
@@ -1723,7 +1692,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /*  Sending Event outputs  */
       }
 
-      private void E161S2( )
+      private void E151S2( )
       {
          /* Grid_Load Routine */
          returnInSub = false;
@@ -1857,7 +1826,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          /*  Sending Event outputs  */
       }
 
-      protected void S122( )
+      protected void S132( )
       {
          /* 'LOADGRIDSTATE' Routine */
          returnInSub = false;
@@ -1877,7 +1846,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          subgrid_gotopage( AV9GridState.gxTpr_Currentpage) ;
       }
 
-      protected void S132( )
+      protected void S142( )
       {
          /* 'SAVEGRIDSTATE' Routine */
          returnInSub = false;
@@ -1887,7 +1856,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV33Pgmname+"GridState",  AV9GridState.ToXml(false, true, "", "")) ;
       }
 
-      protected void S112( )
+      protected void S122( )
       {
          /* 'PREPARETRANSACTION' Routine */
          returnInSub = false;
@@ -1903,65 +1872,12 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          AV17Session.Set("TrnContext", AV18TrnContext.ToXml(false, true, "", ""));
       }
 
-      protected void E131S2( )
+      protected void S112( )
       {
-         /* Discussioncard_Click Routine */
+         /* 'ATTRIBUTESSECURITYCODE' Routine */
          returnInSub = false;
-         if ( divWcdiscussionsonethreadcell_Visible != 0 )
-         {
-            divWcdiscussionsonethreadcell_Visible = 0;
-            AssignProp(sPrefix, false, divWcdiscussionsonethreadcell_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divWcdiscussionsonethreadcell_Visible), 5, 0), !bGXsfl_16_Refreshing);
-         }
-         else
-         {
-            divWcdiscussionsonethreadcell_Visible = 1;
-            AssignProp(sPrefix, false, divWcdiscussionsonethreadcell_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divWcdiscussionsonethreadcell_Visible), 5, 0), !bGXsfl_16_Refreshing);
-         }
-         if ( divDiscussionsonethreadcollapsedwccell_Visible != 0 )
-         {
-            divDiscussionsonethreadcollapsedwccell_Visible = 0;
-            AssignProp(sPrefix, false, divDiscussionsonethreadcollapsedwccell_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divDiscussionsonethreadcollapsedwccell_Visible), 5, 0), !bGXsfl_16_Refreshing);
-            if ( AV13IsDiscussionAnswersWCLoaded )
-            {
-               context.DoAjaxRefreshCmp(sPrefix+"W0045"+sGXsfl_16_idx);
-            }
-            else
-            {
-               /* Object Property */
-               if ( StringUtil.Len( sPrefix) == 0 )
-               {
-                  bDynCreated_Wcdiscussionsonethreadwc = true;
-               }
-               if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Wcdiscussionsonethreadwc_Component), StringUtil.Lower( "WWPBaseObjects.Discussions.WWP_DiscussionsOneThreadWC")) != 0 )
-               {
-                  WebComp_Wcdiscussionsonethreadwc = getWebComponent(GetType(), "GeneXus.Programs", "wwpbaseobjects.discussions.wwp_discussionsonethreadwc", new Object[] {context} );
-                  WebComp_Wcdiscussionsonethreadwc.ComponentInit();
-                  WebComp_Wcdiscussionsonethreadwc.Name = "WWPBaseObjects.Discussions.WWP_DiscussionsOneThreadWC";
-                  WebComp_Wcdiscussionsonethreadwc_Component = "WWPBaseObjects.Discussions.WWP_DiscussionsOneThreadWC";
-               }
-               if ( StringUtil.Len( WebComp_Wcdiscussionsonethreadwc_Component) != 0 )
-               {
-                  WebComp_Wcdiscussionsonethreadwc.setjustcreated();
-                  WebComp_Wcdiscussionsonethreadwc.componentprepare(new Object[] {(string)sPrefix+"W0045",(string)sGXsfl_16_idx,(long)A200WWPDiscussionMessageId,(string)AV28WWPSubscriptionEntityRecordDescription,(string)AV27WWPNotificationLink});
-                  WebComp_Wcdiscussionsonethreadwc.componentbind(new Object[] {(string)"",(string)"",(string)""});
-               }
-               if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wcdiscussionsonethreadwc )
-               {
-                  context.httpAjaxContext.ajax_rspStartCmp(sPrefix+"gxHTMLWrpW0045"+sGXsfl_16_idx);
-                  WebComp_Wcdiscussionsonethreadwc.componentdraw();
-                  context.httpAjaxContext.ajax_rspEndCmp();
-               }
-               AV13IsDiscussionAnswersWCLoaded = true;
-               AssignAttri(sPrefix, false, chkavIsdiscussionanswerswcloaded_Internalname, AV13IsDiscussionAnswersWCLoaded);
-            }
-         }
-         else
-         {
-            divDiscussionsonethreadcollapsedwccell_Visible = 1;
-            AssignProp(sPrefix, false, divDiscussionsonethreadcollapsedwccell_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divDiscussionsonethreadcollapsedwccell_Visible), 5, 0), !bGXsfl_16_Refreshing);
-            context.DoAjaxRefreshCmp(sPrefix+"W0048"+sGXsfl_16_idx);
-         }
-         /*  Sending Event outputs  */
+         divUnnamedtable1_Visible = (((1==0)) ? 1 : 0);
+         AssignProp(sPrefix, false, divUnnamedtable1_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divUnnamedtable1_Visible), 5, 0), true);
       }
 
       public override void setparameters( Object[] obj )
@@ -2261,7 +2177,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20251222111112", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20252211231474", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2278,7 +2194,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionswc.js", "?20251222111116", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionswc.js", "?20252211231477", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Suggest/SuggestRender.js", "", false, true);
          /* End function include_jscripts */
@@ -2894,6 +2810,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          divNewthreadcell_Visible = 1;
          divGridcell_Visible = 1;
          lblNewthread_Visible = 1;
+         divUnnamedtable1_Visible = 1;
          Ucmentions_Itemhtmltemplate = "";
          Ucmentions_Datalistproc = "WWPBaseObjects.Discussions.WWP_GetUsersForDiscussionMentions";
          edtWWPDiscussionMessageId_Visible = 1;
@@ -2917,12 +2834,10 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"chkavIsdiscussionanswerswcloaded.Visible","ctrl":"vISDISCUSSIONANSWERSWCLOADED","prop":"Visible"},{"av":"edtWWPDiscussionMessageId_Visible","ctrl":"WWPDISCUSSIONMESSAGEID","prop":"Visible"},{"av":"AV28WWPSubscriptionEntityRecordDescription","fld":"vWWPSUBSCRIPTIONENTITYRECORDDESCRIPTION"},{"av":"AV27WWPNotificationLink","fld":"vWWPNOTIFICATIONLINK"},{"av":"sPrefix"},{"av":"A200WWPDiscussionMessageId","fld":"WWPDISCUSSIONMESSAGEID","pic":"ZZZZZZZZZ9","hsh":true},{"av":"A125WWPEntityId","fld":"WWPENTITYID","pic":"ZZZZZZZZZ9"},{"av":"AV8WWPEntityId","fld":"vWWPENTITYID","pic":"ZZZZZZZZZ9"},{"av":"AV24WWPDiscussionMessageEntityRecordId","fld":"vWWPDISCUSSIONMESSAGEENTITYRECORDID"},{"av":"A199WWPDiscussionMessageThreadId","fld":"WWPDISCUSSIONMESSAGETHREADID","pic":"ZZZZZZZZZ9"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV33Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV14IsFirstDiscussionRecord","fld":"vISFIRSTDISCUSSIONRECORD","hsh":true},{"av":"AV25WWPDiscussionMessageIdToExpand","fld":"vWWPDISCUSSIONMESSAGEIDTOEXPAND","pic":"ZZZZZZZZZ9","hsh":true},{"av":"AV7WWPDiscussionMessage","fld":"vWWPDISCUSSIONMESSAGE","hsh":true},{"av":"A205WWPDiscussionMessageEntityReco","fld":"WWPDISCUSSIONMESSAGEENTITYRECO","hsh":true}]""");
          setEventMetadata("REFRESH",""","oparms":[{"av":"divWcdiscussionsonethreadcell_Visible","ctrl":"WCDISCUSSIONSONETHREADCELL","prop":"Visible"},{"av":"AV14IsFirstDiscussionRecord","fld":"vISFIRSTDISCUSSIONRECORD","hsh":true},{"av":"AV25WWPDiscussionMessageIdToExpand","fld":"vWWPDISCUSSIONMESSAGEIDTOEXPAND","pic":"ZZZZZZZZZ9","hsh":true},{"av":"divGridcell_Visible","ctrl":"GRIDCELL","prop":"Visible"},{"av":"AV13IsDiscussionAnswersWCLoaded","fld":"vISDISCUSSIONANSWERSWCLOADED"},{"av":"lblNewthread_Visible","ctrl":"NEWTHREAD","prop":"Visible"}]}""");
-         setEventMetadata("GRID.LOAD","""{"handler":"E161S2","iparms":[{"av":"AV14IsFirstDiscussionRecord","fld":"vISFIRSTDISCUSSIONRECORD","hsh":true},{"av":"A40000WWPUserExtendedPhoto_GXI","fld":"WWPUSEREXTENDEDPHOTO_GXI"},{"av":"A200WWPDiscussionMessageId","fld":"WWPDISCUSSIONMESSAGEID","pic":"ZZZZZZZZZ9","hsh":true},{"av":"AV25WWPDiscussionMessageIdToExpand","fld":"vWWPDISCUSSIONMESSAGEIDTOEXPAND","pic":"ZZZZZZZZZ9","hsh":true},{"av":"AV28WWPSubscriptionEntityRecordDescription","fld":"vWWPSUBSCRIPTIONENTITYRECORDDESCRIPTION"},{"av":"AV27WWPNotificationLink","fld":"vWWPNOTIFICATIONLINK"}]""");
+         setEventMetadata("GRID.LOAD","""{"handler":"E151S2","iparms":[{"av":"AV14IsFirstDiscussionRecord","fld":"vISFIRSTDISCUSSIONRECORD","hsh":true},{"av":"A40000WWPUserExtendedPhoto_GXI","fld":"WWPUSEREXTENDEDPHOTO_GXI"},{"av":"A200WWPDiscussionMessageId","fld":"WWPDISCUSSIONMESSAGEID","pic":"ZZZZZZZZZ9","hsh":true},{"av":"AV25WWPDiscussionMessageIdToExpand","fld":"vWWPDISCUSSIONMESSAGEIDTOEXPAND","pic":"ZZZZZZZZZ9","hsh":true},{"av":"AV28WWPSubscriptionEntityRecordDescription","fld":"vWWPSUBSCRIPTIONENTITYRECORDDESCRIPTION"},{"av":"AV27WWPNotificationLink","fld":"vWWPNOTIFICATIONLINK"}]""");
          setEventMetadata("GRID.LOAD",""","oparms":[{"av":"AV14IsFirstDiscussionRecord","fld":"vISFIRSTDISCUSSIONRECORD","hsh":true},{"av":"divNewthreadcell_Visible","ctrl":"NEWTHREADCELL","prop":"Visible"},{"av":"divGridcell_Visible","ctrl":"GRIDCELL","prop":"Visible"},{"av":"lblNewthread_Visible","ctrl":"NEWTHREAD","prop":"Visible"},{"av":"AV20UserExtendedPhoto","fld":"vUSEREXTENDEDPHOTO"},{"ctrl":"DISCUSSIONSONETHREADCOLLAPSEDWC"},{"ctrl":"WCDISCUSSIONSONETHREADWC"},{"av":"AV13IsDiscussionAnswersWCLoaded","fld":"vISDISCUSSIONANSWERSWCLOADED"},{"av":"divWcdiscussionsonethreadcell_Visible","ctrl":"WCDISCUSSIONSONETHREADCELL","prop":"Visible"},{"av":"divDiscussionsonethreadcollapsedwccell_Visible","ctrl":"DISCUSSIONSONETHREADCOLLAPSEDWCCELL","prop":"Visible"}]}""");
          setEventMetadata("ENTER","""{"handler":"E121S2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV24WWPDiscussionMessageEntityRecordId","fld":"vWWPDISCUSSIONMESSAGEENTITYRECORDID"},{"av":"AV8WWPEntityId","fld":"vWWPENTITYID","pic":"ZZZZZZZZZ9"},{"av":"AV33Pgmname","fld":"vPGMNAME","hsh":true},{"av":"chkavIsdiscussionanswerswcloaded.Visible","ctrl":"vISDISCUSSIONANSWERSWCLOADED","prop":"Visible"},{"av":"edtWWPDiscussionMessageId_Visible","ctrl":"WWPDISCUSSIONMESSAGEID","prop":"Visible"},{"av":"AV14IsFirstDiscussionRecord","fld":"vISFIRSTDISCUSSIONRECORD","hsh":true},{"av":"AV25WWPDiscussionMessageIdToExpand","fld":"vWWPDISCUSSIONMESSAGEIDTOEXPAND","pic":"ZZZZZZZZZ9","hsh":true},{"av":"AV28WWPSubscriptionEntityRecordDescription","fld":"vWWPSUBSCRIPTIONENTITYRECORDDESCRIPTION"},{"av":"AV27WWPNotificationLink","fld":"vWWPNOTIFICATIONLINK"},{"av":"AV7WWPDiscussionMessage","fld":"vWWPDISCUSSIONMESSAGE","hsh":true},{"av":"A205WWPDiscussionMessageEntityReco","fld":"WWPDISCUSSIONMESSAGEENTITYRECO","hsh":true},{"av":"sPrefix"},{"av":"AV15Message","fld":"vMESSAGE"},{"av":"AV26WWPEntityName","fld":"vWWPENTITYNAME"},{"av":"Ucmentions_Selecteditemsjson","ctrl":"UCMENTIONS","prop":"SelectedItemsJson"},{"av":"A200WWPDiscussionMessageId","fld":"WWPDISCUSSIONMESSAGEID","pic":"ZZZZZZZZZ9","hsh":true},{"av":"A125WWPEntityId","fld":"WWPENTITYID","pic":"ZZZZZZZZZ9"},{"av":"A199WWPDiscussionMessageThreadId","fld":"WWPDISCUSSIONMESSAGETHREADID","pic":"ZZZZZZZZZ9"}]""");
          setEventMetadata("ENTER",""","oparms":[{"av":"AV8WWPEntityId","fld":"vWWPENTITYID","pic":"ZZZZZZZZZ9"},{"av":"AV15Message","fld":"vMESSAGE"},{"av":"divNewthreadcell_Visible","ctrl":"NEWTHREADCELL","prop":"Visible"},{"av":"divWcdiscussionsonethreadcell_Visible","ctrl":"WCDISCUSSIONSONETHREADCELL","prop":"Visible"},{"av":"AV14IsFirstDiscussionRecord","fld":"vISFIRSTDISCUSSIONRECORD","hsh":true},{"av":"AV25WWPDiscussionMessageIdToExpand","fld":"vWWPDISCUSSIONMESSAGEIDTOEXPAND","pic":"ZZZZZZZZZ9","hsh":true},{"av":"divGridcell_Visible","ctrl":"GRIDCELL","prop":"Visible"},{"av":"AV13IsDiscussionAnswersWCLoaded","fld":"vISDISCUSSIONANSWERSWCLOADED"},{"av":"lblNewthread_Visible","ctrl":"NEWTHREAD","prop":"Visible"}]}""");
-         setEventMetadata("DISCUSSIONCARD.CLICK","""{"handler":"E131S2","iparms":[{"av":"divWcdiscussionsonethreadcell_Visible","ctrl":"WCDISCUSSIONSONETHREADCELL","prop":"Visible"},{"av":"divDiscussionsonethreadcollapsedwccell_Visible","ctrl":"DISCUSSIONSONETHREADCOLLAPSEDWCCELL","prop":"Visible"},{"av":"AV13IsDiscussionAnswersWCLoaded","fld":"vISDISCUSSIONANSWERSWCLOADED"},{"av":"A200WWPDiscussionMessageId","fld":"WWPDISCUSSIONMESSAGEID","pic":"ZZZZZZZZZ9","hsh":true},{"av":"AV28WWPSubscriptionEntityRecordDescription","fld":"vWWPSUBSCRIPTIONENTITYRECORDDESCRIPTION"},{"av":"AV27WWPNotificationLink","fld":"vWWPNOTIFICATIONLINK"}]""");
-         setEventMetadata("DISCUSSIONCARD.CLICK",""","oparms":[{"av":"divWcdiscussionsonethreadcell_Visible","ctrl":"WCDISCUSSIONSONETHREADCELL","prop":"Visible"},{"ctrl":"WCDISCUSSIONSONETHREADWC"},{"av":"AV13IsDiscussionAnswersWCLoaded","fld":"vISDISCUSSIONANSWERSWCLOADED"},{"av":"divDiscussionsonethreadcollapsedwccell_Visible","ctrl":"DISCUSSIONSONETHREADCOLLAPSEDWCCELL","prop":"Visible"}]}""");
          setEventMetadata("NEWTHREAD.CLICK","""{"handler":"E111S1","iparms":[{"av":"AV15Message","fld":"vMESSAGE"}]""");
          setEventMetadata("NEWTHREAD.CLICK",""","oparms":[{"av":"divWcdiscussionsonethreadcell_Visible","ctrl":"WCDISCUSSIONSONETHREADCELL","prop":"Visible"},{"av":"divDiscussionsonethreadcollapsedwccell_Visible","ctrl":"DISCUSSIONSONETHREADCOLLAPSEDWCCELL","prop":"Visible"},{"av":"divNewthreadcell_Visible","ctrl":"NEWTHREADCELL","prop":"Visible"}]}""");
          setEventMetadata("GRID_FIRSTPAGE","""{"handler":"subgrid_firstpage","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"chkavIsdiscussionanswerswcloaded.Visible","ctrl":"vISDISCUSSIONANSWERSWCLOADED","prop":"Visible"},{"av":"edtWWPDiscussionMessageId_Visible","ctrl":"WWPDISCUSSIONMESSAGEID","prop":"Visible"},{"av":"AV14IsFirstDiscussionRecord","fld":"vISFIRSTDISCUSSIONRECORD","hsh":true},{"av":"AV25WWPDiscussionMessageIdToExpand","fld":"vWWPDISCUSSIONMESSAGEIDTOEXPAND","pic":"ZZZZZZZZZ9","hsh":true},{"av":"AV28WWPSubscriptionEntityRecordDescription","fld":"vWWPSUBSCRIPTIONENTITYRECORDDESCRIPTION"},{"av":"AV27WWPNotificationLink","fld":"vWWPNOTIFICATIONLINK"},{"av":"AV7WWPDiscussionMessage","fld":"vWWPDISCUSSIONMESSAGE","hsh":true},{"av":"sPrefix"},{"av":"A200WWPDiscussionMessageId","fld":"WWPDISCUSSIONMESSAGEID","pic":"ZZZZZZZZZ9","hsh":true},{"av":"A125WWPEntityId","fld":"WWPENTITYID","pic":"ZZZZZZZZZ9"},{"av":"AV8WWPEntityId","fld":"vWWPENTITYID","pic":"ZZZZZZZZZ9"},{"av":"A205WWPDiscussionMessageEntityReco","fld":"WWPDISCUSSIONMESSAGEENTITYRECO","hsh":true},{"av":"AV24WWPDiscussionMessageEntityRecordId","fld":"vWWPDISCUSSIONMESSAGEENTITYRECORDID"},{"av":"A199WWPDiscussionMessageThreadId","fld":"WWPDISCUSSIONMESSAGETHREADID","pic":"ZZZZZZZZZ9"},{"av":"AV33Pgmname","fld":"vPGMNAME","hsh":true},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"}]""");
@@ -3079,10 +2994,9 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private short subGrid_Collapsed ;
       private int edtWWPDiscussionMessageId_Visible ;
       private int subGrid_Rows ;
-      private int divWcdiscussionsonethreadcell_Visible ;
-      private int divDiscussionsonethreadcollapsedwccell_Visible ;
       private int nRC_GXsfl_16 ;
       private int nGXsfl_16_idx=1 ;
+      private int divUnnamedtable1_Visible ;
       private int lblNewthread_Visible ;
       private int divGridcell_Visible ;
       private int divNewthreadcell_Visible ;
@@ -3097,6 +3011,8 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private int edtWWPDiscussionMessageMessage_Enabled ;
       private int edtWWPDiscussionMessageId_Enabled ;
       private int edtWWPDiscussionMessageEntityReco_Enabled ;
+      private int divWcdiscussionsonethreadcell_Visible ;
+      private int divDiscussionsonethreadcollapsedwccell_Visible ;
       private int idxLst ;
       private int subGrid_Backcolor ;
       private int subGrid_Allbackcolor ;

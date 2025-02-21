@@ -1546,6 +1546,7 @@ namespace GeneXus.Programs {
             AV53Trn_Receptionist.gxTpr_Receptionistlastname = AV30LastNameValue;
             AV53Trn_Receptionist.gxTpr_Receptionistphonecode = AV34PhoneCode;
             AV53Trn_Receptionist.gxTpr_Receptionistphonenumber = AV38PhoneNumber;
+            AV53Trn_Receptionist.gxTpr_Receptionistisactive = true;
             if ( AV53Trn_Receptionist.Update() )
             {
                context.CommitDataStores("wp_userprofile",pr_default);
@@ -1572,6 +1573,7 @@ namespace GeneXus.Programs {
             AV52Trn_Manager.gxTpr_Managerlastname = AV30LastNameValue;
             AV52Trn_Manager.gxTpr_Managerphonecode = AV34PhoneCode;
             AV52Trn_Manager.gxTpr_Managerphonenumber = AV38PhoneNumber;
+            AV52Trn_Manager.gxTpr_Managerisactive = true;
             if ( AV52Trn_Manager.Update() )
             {
                context.CommitDataStores("wp_userprofile",pr_default);
@@ -1701,7 +1703,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512221113920", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522112332810", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1717,7 +1719,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_userprofile.js", "?202512221113924", false, true);
+         context.AddJavascriptSource("wp_userprofile.js", "?202522112332814", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -1853,7 +1855,7 @@ namespace GeneXus.Programs {
          Dvpanel_profileextendedinfo1_tablemaininfo_Collapsed = Convert.ToBoolean( 0);
          Dvpanel_profileextendedinfo1_tablemaininfo_Collapsible = Convert.ToBoolean( 0);
          Dvpanel_profileextendedinfo1_tablemaininfo_Title = context.GetMessage( "My Profile", "");
-         Dvpanel_profileextendedinfo1_tablemaininfo_Cls = "PanelCard_GrayTitle";
+         Dvpanel_profileextendedinfo1_tablemaininfo_Cls = "PanelCard_GrayTitle ProfilePaddingBottom20";
          Dvpanel_profileextendedinfo1_tablemaininfo_Autoheight = Convert.ToBoolean( -1);
          Dvpanel_profileextendedinfo1_tablemaininfo_Autowidth = Convert.ToBoolean( 0);
          Dvpanel_profileextendedinfo1_tablemaininfo_Width = "100%";

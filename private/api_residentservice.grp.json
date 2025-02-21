@@ -225,6 +225,16 @@
 "Verb":"GET"
 },
 {
+"PathRegexp":"toolbox/page2",
+"Path":"toolbox/page2",
+"Name":"pageapi2",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_pageapi2",
+"Implementation":"Prc_PageAPI",
+"Verb":"GET"
+},
+{
 "PathRegexp":"toolbox/content-pages",
 "Path":"toolbox/content-pages",
 "Name":"contentpagesapi",

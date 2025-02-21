@@ -1035,7 +1035,7 @@ namespace GeneXus.Programs {
          AV14Message = AV13WebSession.Get(context.GetMessage( "FormFilledMessage", ""));
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14Message)) )
          {
-            GX_msglist.addItem(AV14Message);
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Success",  AV14Message,  "success",  "",  "true",  ""));
             AV13WebSession.Remove(context.GetMessage( "FormFilledMessage", ""));
          }
          new prc_getuseridfromaccesstoken(context ).execute(  AV6AccessToken, out  AV8ResidentId, out  AV15isTokenValid) ;
@@ -1292,7 +1292,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521916213233", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522112322552", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1310,7 +1310,7 @@ namespace GeneXus.Programs {
          if ( nGXWrapped != 1 )
          {
             context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-            context.AddJavascriptSource("wp_residentfilledforms.js", "?202521916213234", false, true);
+            context.AddJavascriptSource("wp_residentfilledforms.js", "?202522112322553", false, true);
          }
          /* End function include_jscripts */
       }
