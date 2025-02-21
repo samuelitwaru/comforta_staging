@@ -1159,7 +1159,7 @@ class EditorEventManager {
       }
       if(model.get('type') === 'tile-wrapper') {
         model.addStyle({'background':'#00000000'})
-        const tileMapper = new TileMapper(model.components().first())
+        // const tileMapper = new TileMapper(model.components().first())
         tileMapper.setTileAttributes()
       }
     });
@@ -2217,7 +2217,7 @@ class ToolBoxManager {
 
     const sidebarInputTitle = document.getElementById("tile-title");
     sidebarInputTitle.addEventListener("input", (e) => {
-      if (e.target.value.length > 10) {
+      if (e.target.value.length > 12) {
         e.target.value = truncateText(e.target.value, 12);
       }
       this.ui.updateTileTitle(e.target.value);
