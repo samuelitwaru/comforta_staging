@@ -153,7 +153,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context.AddJavascriptSource("DVelop/Shared/daterangepicker/daterangepicker.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DatePicker/DatePickerRender.js", "", false, true);
-         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpageempty.js", "?20251222125522", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpageempty.js", "?202522220343776", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -585,6 +585,8 @@ namespace GeneXus.Programs.wwpbaseobjects {
          /* Start Routine */
          returnInSub = false;
          (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Headerrawhtml = "<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\""+context.convertURL( (string)(context.GetImagePath( "cceab8ff-208f-4395-99fd-7fe799e0d69c", "", context.GetTheme( ))))+"\">";
+         (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Meta.removeItem("viewport") ;
+         (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Meta.addItem("viewport", "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no", 0) ;
          if ( StringUtil.StrCmp(AV8Httprequest.Method, "GET") == 0 )
          {
             GXt_SdtWWP_DesignSystemSettings1 = AV5WWP_DesignSystemSettings;
@@ -657,7 +659,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?20251222125580", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?202522220343848", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -674,7 +676,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
       {
          if ( nGXWrapped != 1 )
          {
-            context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpageempty.js", "?20251222125580", false, true);
+            context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpageempty.js", "?202522220343848", false, true);
             context.AddJavascriptSource("DVelop/DVMessage/pnotify.custom.js", "", false, true);
             context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
             context.AddJavascriptSource("DVelop/DVMessage/DVMessageRender.js", "", false, true);

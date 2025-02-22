@@ -88,7 +88,6 @@ namespace GeneXus.Programs {
             A208WWPFormReferenceName = P00B72_A208WWPFormReferenceName[0];
             A209WWPFormTitle = P00B72_A209WWPFormTitle[0];
             AV17SDT_ResidentFilledFormsItem = new SdtSDT_ApiResidentFilledForms(context);
-            AV17SDT_ResidentFilledFormsItem.gxTpr_Formfilledby = A112WWPUserExtendedId;
             AV17SDT_ResidentFilledFormsItem.gxTpr_Formfilleddate = A239WWPFormInstanceDate;
             AV17SDT_ResidentFilledFormsItem.gxTpr_Forminstanceid = (short)(A214WWPFormInstanceId);
             AV17SDT_ResidentFilledFormsItem.gxTpr_Formid = A206WWPFormId;
