@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250222173608"
+  version: "20250224052924"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -2291,6 +2291,9 @@ components:
           type: "string"
         PageIsDynamicForm:
           description: "Page Is Dynamic Form"
+          type: "boolean"
+        PageIsWebLinkPage:
+          description: "Page Is Web Link Page"
           type: "boolean"
         WWPFormId:
           description: "WWPForm Id"

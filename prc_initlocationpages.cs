@@ -102,6 +102,13 @@ namespace GeneXus.Programs {
             cleanup();
             if (true) return;
          }
+         /* Execute user subroutine: 'CREATEWEBLINKPAGE' */
+         S161 ();
+         if ( returnInSub )
+         {
+            cleanup();
+            if (true) return;
+         }
          cleanup();
       }
 
@@ -109,7 +116,7 @@ namespace GeneXus.Programs {
       {
          /* 'CREATEHOMEPAGE' Routine */
          returnInSub = false;
-         AV32GXLvl13 = 0;
+         AV33GXLvl14 = 0;
          /* Using cursor P00A42 */
          pr_default.execute(0, new Object[] {AV8LocationId, AV12OrganisationId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -119,13 +126,13 @@ namespace GeneXus.Programs {
             A11OrganisationId = P00A42_A11OrganisationId[0];
             A29LocationId = P00A42_A29LocationId[0];
             A310Trn_PageId = P00A42_A310Trn_PageId[0];
-            AV32GXLvl13 = 1;
+            AV33GXLvl14 = 1;
             AV28HomePageId = A310Trn_PageId;
             /* Exiting from a For First loop. */
             if (true) break;
          }
          pr_default.close(0);
-         if ( AV32GXLvl13 == 0 )
+         if ( AV33GXLvl14 == 0 )
          {
             new prc_logtofile(context ).execute(  context.GetMessage( "creating home page..", "")) ;
             AV15File = new GxFile(context.GetPhysicalPath());
@@ -160,13 +167,13 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV34GXV2 = 1;
-               AV33GXV1 = AV18BC_Trn_Page.GetMessages();
-               while ( AV34GXV2 <= AV33GXV1.Count )
+               AV35GXV2 = 1;
+               AV34GXV1 = AV18BC_Trn_Page.GetMessages();
+               while ( AV35GXV2 <= AV34GXV1.Count )
                {
-                  AV19Message = ((GeneXus.Utils.SdtMessages_Message)AV33GXV1.Item(AV34GXV2));
+                  AV19Message = ((GeneXus.Utils.SdtMessages_Message)AV34GXV1.Item(AV35GXV2));
                   new prc_logtofile(context ).execute(  ">>>"+AV19Message.gxTpr_Description) ;
-                  AV34GXV2 = (int)(AV34GXV2+1);
+                  AV35GXV2 = (int)(AV35GXV2+1);
                }
             }
          }
@@ -176,7 +183,7 @@ namespace GeneXus.Programs {
       {
          /* 'CREATERECEPTIONPAGE' Routine */
          returnInSub = false;
-         AV35GXLvl62 = 0;
+         AV36GXLvl63 = 0;
          /* Using cursor P00A43 */
          pr_default.execute(1, new Object[] {AV8LocationId, AV12OrganisationId});
          while ( (pr_default.getStatus(1) != 101) )
@@ -186,13 +193,13 @@ namespace GeneXus.Programs {
             A11OrganisationId = P00A43_A11OrganisationId[0];
             A29LocationId = P00A43_A29LocationId[0];
             A310Trn_PageId = P00A43_A310Trn_PageId[0];
-            AV35GXLvl62 = 1;
+            AV36GXLvl63 = 1;
             AV23ReceptionPageId = A310Trn_PageId;
             /* Exiting from a For First loop. */
             if (true) break;
          }
          pr_default.close(1);
-         if ( AV35GXLvl62 == 0 )
+         if ( AV36GXLvl63 == 0 )
          {
             new prc_logtofile(context ).execute(  context.GetMessage( "Creating reception...", "")) ;
             AV15File = new GxFile(context.GetPhysicalPath());
@@ -220,13 +227,13 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV37GXV4 = 1;
-               AV36GXV3 = AV18BC_Trn_Page.GetMessages();
-               while ( AV37GXV4 <= AV36GXV3.Count )
+               AV38GXV4 = 1;
+               AV37GXV3 = AV18BC_Trn_Page.GetMessages();
+               while ( AV38GXV4 <= AV37GXV3.Count )
                {
-                  AV19Message = ((GeneXus.Utils.SdtMessages_Message)AV36GXV3.Item(AV37GXV4));
+                  AV19Message = ((GeneXus.Utils.SdtMessages_Message)AV37GXV3.Item(AV38GXV4));
                   new prc_logtofile(context ).execute(  AV19Message.gxTpr_Description) ;
-                  AV37GXV4 = (int)(AV37GXV4+1);
+                  AV38GXV4 = (int)(AV38GXV4+1);
                }
             }
          }
@@ -236,7 +243,7 @@ namespace GeneXus.Programs {
       {
          /* 'CREATECALENDARPAGE' Routine */
          returnInSub = false;
-         AV38GXLvl102 = 0;
+         AV39GXLvl103 = 0;
          /* Using cursor P00A44 */
          pr_default.execute(2, new Object[] {AV8LocationId, AV12OrganisationId});
          while ( (pr_default.getStatus(2) != 101) )
@@ -248,13 +255,13 @@ namespace GeneXus.Programs {
             A310Trn_PageId = P00A44_A310Trn_PageId[0];
             if ( StringUtil.StrCmp(A318Trn_PageName, context.GetMessage( "Calendar", "")) == 0 )
             {
-               AV38GXLvl102 = 1;
+               AV39GXLvl103 = 1;
                AV24CalendarPageId = A310Trn_PageId;
             }
             pr_default.readNext(2);
          }
          pr_default.close(2);
-         if ( AV38GXLvl102 == 0 )
+         if ( AV39GXLvl103 == 0 )
          {
             new prc_logtofile(context ).execute(  context.GetMessage( "Creating calendar...", "")) ;
             AV15File = new GxFile(context.GetPhysicalPath());
@@ -282,13 +289,13 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV40GXV6 = 1;
-               AV39GXV5 = AV18BC_Trn_Page.GetMessages();
-               while ( AV40GXV6 <= AV39GXV5.Count )
+               AV41GXV6 = 1;
+               AV40GXV5 = AV18BC_Trn_Page.GetMessages();
+               while ( AV41GXV6 <= AV40GXV5.Count )
                {
-                  AV19Message = ((GeneXus.Utils.SdtMessages_Message)AV39GXV5.Item(AV40GXV6));
+                  AV19Message = ((GeneXus.Utils.SdtMessages_Message)AV40GXV5.Item(AV41GXV6));
                   new prc_logtofile(context ).execute(  AV19Message.gxTpr_Description) ;
-                  AV40GXV6 = (int)(AV40GXV6+1);
+                  AV41GXV6 = (int)(AV41GXV6+1);
                }
             }
          }
@@ -298,7 +305,7 @@ namespace GeneXus.Programs {
       {
          /* 'CREATELOCATIONPAGE' Routine */
          returnInSub = false;
-         AV41GXLvl142 = 0;
+         AV42GXLvl143 = 0;
          /* Using cursor P00A45 */
          pr_default.execute(3, new Object[] {AV8LocationId, AV12OrganisationId});
          while ( (pr_default.getStatus(3) != 101) )
@@ -308,13 +315,13 @@ namespace GeneXus.Programs {
             A11OrganisationId = P00A45_A11OrganisationId[0];
             A29LocationId = P00A45_A29LocationId[0];
             A310Trn_PageId = P00A45_A310Trn_PageId[0];
-            AV41GXLvl142 = 1;
+            AV42GXLvl143 = 1;
             AV26LocationPageId = A310Trn_PageId;
             /* Exiting from a For First loop. */
             if (true) break;
          }
          pr_default.close(3);
-         if ( AV41GXLvl142 == 0 )
+         if ( AV42GXLvl143 == 0 )
          {
             new prc_logtofile(context ).execute(  context.GetMessage( "Creating location...", "")) ;
             AV15File = new GxFile(context.GetPhysicalPath());
@@ -346,13 +353,13 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV43GXV8 = 1;
-               AV42GXV7 = AV18BC_Trn_Page.GetMessages();
-               while ( AV43GXV8 <= AV42GXV7.Count )
+               AV44GXV8 = 1;
+               AV43GXV7 = AV18BC_Trn_Page.GetMessages();
+               while ( AV44GXV8 <= AV43GXV7.Count )
                {
-                  AV19Message = ((GeneXus.Utils.SdtMessages_Message)AV42GXV7.Item(AV43GXV8));
+                  AV19Message = ((GeneXus.Utils.SdtMessages_Message)AV43GXV7.Item(AV44GXV8));
                   new prc_logtofile(context ).execute(  AV19Message.gxTpr_Description) ;
-                  AV43GXV8 = (int)(AV43GXV8+1);
+                  AV44GXV8 = (int)(AV44GXV8+1);
                }
             }
          }
@@ -362,7 +369,7 @@ namespace GeneXus.Programs {
       {
          /* 'CREATEMAILBOXPAGE' Routine */
          returnInSub = false;
-         AV44GXLvl186 = 0;
+         AV45GXLvl187 = 0;
          /* Using cursor P00A46 */
          pr_default.execute(4, new Object[] {AV8LocationId, AV12OrganisationId});
          while ( (pr_default.getStatus(4) != 101) )
@@ -372,13 +379,13 @@ namespace GeneXus.Programs {
             A11OrganisationId = P00A46_A11OrganisationId[0];
             A29LocationId = P00A46_A29LocationId[0];
             A310Trn_PageId = P00A46_A310Trn_PageId[0];
-            AV44GXLvl186 = 1;
+            AV45GXLvl187 = 1;
             AV27MailboxPageId = A310Trn_PageId;
             /* Exiting from a For First loop. */
             if (true) break;
          }
          pr_default.close(4);
-         if ( AV44GXLvl186 == 0 )
+         if ( AV45GXLvl187 == 0 )
          {
             new prc_logtofile(context ).execute(  context.GetMessage( "Creating mailbox...", "")) ;
             AV15File = new GxFile(context.GetPhysicalPath());
@@ -389,7 +396,7 @@ namespace GeneXus.Programs {
             AV22PageJsonContent = AV15File.ReadAllText("");
             AV18BC_Trn_Page = new SdtTrn_Page(context);
             AV18BC_Trn_Page.gxTpr_Trn_pageid = Guid.NewGuid( );
-            AV18BC_Trn_Page.gxTpr_Trn_pagename = "Mailbox";
+            AV18BC_Trn_Page.gxTpr_Trn_pagename = "My Activity";
             AV18BC_Trn_Page.gxTpr_Pageiscontentpage = true;
             AV18BC_Trn_Page.gxTpr_Pageispredefined = true;
             AV18BC_Trn_Page.gxTpr_Locationid = AV14BC_Trn_Location.gxTpr_Locationid;
@@ -406,13 +413,65 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV46GXV10 = 1;
-               AV45GXV9 = AV18BC_Trn_Page.GetMessages();
-               while ( AV46GXV10 <= AV45GXV9.Count )
+               AV47GXV10 = 1;
+               AV46GXV9 = AV18BC_Trn_Page.GetMessages();
+               while ( AV47GXV10 <= AV46GXV9.Count )
                {
-                  AV19Message = ((GeneXus.Utils.SdtMessages_Message)AV45GXV9.Item(AV46GXV10));
+                  AV19Message = ((GeneXus.Utils.SdtMessages_Message)AV46GXV9.Item(AV47GXV10));
                   new prc_logtofile(context ).execute(  AV19Message.gxTpr_Description) ;
-                  AV46GXV10 = (int)(AV46GXV10+1);
+                  AV47GXV10 = (int)(AV47GXV10+1);
+               }
+            }
+         }
+      }
+
+      protected void S161( )
+      {
+         /* 'CREATEWEBLINKPAGE' Routine */
+         returnInSub = false;
+         AV48GXLvl227 = 0;
+         /* Using cursor P00A47 */
+         pr_default.execute(5, new Object[] {AV8LocationId, AV12OrganisationId});
+         while ( (pr_default.getStatus(5) != 101) )
+         {
+            A318Trn_PageName = P00A47_A318Trn_PageName[0];
+            A519PageIsWebLinkPage = P00A47_A519PageIsWebLinkPage[0];
+            A11OrganisationId = P00A47_A11OrganisationId[0];
+            A29LocationId = P00A47_A29LocationId[0];
+            A310Trn_PageId = P00A47_A310Trn_PageId[0];
+            AV48GXLvl227 = 1;
+            AV32WebLinkPageId = A310Trn_PageId;
+            /* Exiting from a For First loop. */
+            if (true) break;
+         }
+         pr_default.close(5);
+         if ( AV48GXLvl227 == 0 )
+         {
+            AV18BC_Trn_Page = new SdtTrn_Page(context);
+            AV18BC_Trn_Page.gxTpr_Trn_pageid = Guid.NewGuid( );
+            AV18BC_Trn_Page.gxTpr_Trn_pagename = "Web Link";
+            AV18BC_Trn_Page.gxTpr_Pageisweblinkpage = true;
+            AV18BC_Trn_Page.gxTpr_Pageispredefined = false;
+            AV18BC_Trn_Page.gxTpr_Locationid = AV14BC_Trn_Location.gxTpr_Locationid;
+            AV18BC_Trn_Page.gxTpr_Organisationid = AV14BC_Trn_Location.gxTpr_Organisationid;
+            AV18BC_Trn_Page.gxTpr_Pagegjsjson = "";
+            AV18BC_Trn_Page.gxTpr_Pagejsoncontent = "";
+            AV18BC_Trn_Page.gxTpr_Pageispublished = true;
+            AV18BC_Trn_Page.Save();
+            if ( AV18BC_Trn_Page.Success() )
+            {
+               context.CommitDataStores("prc_initlocationpages",pr_default);
+               AV32WebLinkPageId = AV18BC_Trn_Page.gxTpr_Trn_pageid;
+            }
+            else
+            {
+               AV50GXV12 = 1;
+               AV49GXV11 = AV18BC_Trn_Page.GetMessages();
+               while ( AV50GXV12 <= AV49GXV11.Count )
+               {
+                  AV19Message = ((GeneXus.Utils.SdtMessages_Message)AV49GXV11.Item(AV50GXV12));
+                  new prc_logtofile(context ).execute(  AV19Message.gxTpr_Description) ;
+                  AV50GXV12 = (int)(AV50GXV12+1);
                }
             }
          }
@@ -450,32 +509,39 @@ namespace GeneXus.Programs {
          AV24CalendarPageId = Guid.Empty;
          AV27MailboxPageId = Guid.Empty;
          AV18BC_Trn_Page = new SdtTrn_Page(context);
-         AV33GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV34GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV19Message = new GeneXus.Utils.SdtMessages_Message(context);
          P00A43_A318Trn_PageName = new string[] {""} ;
          P00A43_A504PageIsPredefined = new bool[] {false} ;
          P00A43_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P00A43_A29LocationId = new Guid[] {Guid.Empty} ;
          P00A43_A310Trn_PageId = new Guid[] {Guid.Empty} ;
-         AV36GXV3 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV37GXV3 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          P00A44_A318Trn_PageName = new string[] {""} ;
          P00A44_A504PageIsPredefined = new bool[] {false} ;
          P00A44_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P00A44_A29LocationId = new Guid[] {Guid.Empty} ;
          P00A44_A310Trn_PageId = new Guid[] {Guid.Empty} ;
-         AV39GXV5 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV40GXV5 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          P00A45_A318Trn_PageName = new string[] {""} ;
          P00A45_A504PageIsPredefined = new bool[] {false} ;
          P00A45_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P00A45_A29LocationId = new Guid[] {Guid.Empty} ;
          P00A45_A310Trn_PageId = new Guid[] {Guid.Empty} ;
-         AV42GXV7 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV43GXV7 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          P00A46_A318Trn_PageName = new string[] {""} ;
          P00A46_A504PageIsPredefined = new bool[] {false} ;
          P00A46_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P00A46_A29LocationId = new Guid[] {Guid.Empty} ;
          P00A46_A310Trn_PageId = new Guid[] {Guid.Empty} ;
-         AV45GXV9 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV46GXV9 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         P00A47_A318Trn_PageName = new string[] {""} ;
+         P00A47_A519PageIsWebLinkPage = new bool[] {false} ;
+         P00A47_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         P00A47_A29LocationId = new Guid[] {Guid.Empty} ;
+         P00A47_A310Trn_PageId = new Guid[] {Guid.Empty} ;
+         AV32WebLinkPageId = Guid.Empty;
+         AV49GXV11 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_initlocationpages__datastore1(),
             new Object[][] {
             }
@@ -501,23 +567,29 @@ namespace GeneXus.Programs {
                , new Object[] {
                P00A46_A318Trn_PageName, P00A46_A504PageIsPredefined, P00A46_A11OrganisationId, P00A46_A29LocationId, P00A46_A310Trn_PageId
                }
+               , new Object[] {
+               P00A47_A318Trn_PageName, P00A47_A519PageIsWebLinkPage, P00A47_A11OrganisationId, P00A47_A29LocationId, P00A47_A310Trn_PageId
+               }
             }
          );
          /* GeneXus formulas. */
       }
 
-      private short AV32GXLvl13 ;
-      private short AV35GXLvl62 ;
-      private short AV38GXLvl102 ;
-      private short AV41GXLvl142 ;
-      private short AV44GXLvl186 ;
-      private int AV34GXV2 ;
-      private int AV37GXV4 ;
-      private int AV40GXV6 ;
-      private int AV43GXV8 ;
-      private int AV46GXV10 ;
+      private short AV33GXLvl14 ;
+      private short AV36GXLvl63 ;
+      private short AV39GXLvl103 ;
+      private short AV42GXLvl143 ;
+      private short AV45GXLvl187 ;
+      private short AV48GXLvl227 ;
+      private int AV35GXV2 ;
+      private int AV38GXV4 ;
+      private int AV41GXV6 ;
+      private int AV44GXV8 ;
+      private int AV47GXV10 ;
+      private int AV50GXV12 ;
       private bool returnInSub ;
       private bool A504PageIsPredefined ;
+      private bool A519PageIsWebLinkPage ;
       private string AV13PageGJSJson ;
       private string AV22PageJsonContent ;
       private string AV25Folder ;
@@ -532,6 +604,7 @@ namespace GeneXus.Programs {
       private Guid AV23ReceptionPageId ;
       private Guid AV24CalendarPageId ;
       private Guid AV27MailboxPageId ;
+      private Guid AV32WebLinkPageId ;
       private GxFile AV15File ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
@@ -544,32 +617,38 @@ namespace GeneXus.Programs {
       private Guid[] P00A42_A29LocationId ;
       private Guid[] P00A42_A310Trn_PageId ;
       private SdtTrn_Page AV18BC_Trn_Page ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV33GXV1 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV34GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV19Message ;
       private string[] P00A43_A318Trn_PageName ;
       private bool[] P00A43_A504PageIsPredefined ;
       private Guid[] P00A43_A11OrganisationId ;
       private Guid[] P00A43_A29LocationId ;
       private Guid[] P00A43_A310Trn_PageId ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV36GXV3 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV37GXV3 ;
       private string[] P00A44_A318Trn_PageName ;
       private bool[] P00A44_A504PageIsPredefined ;
       private Guid[] P00A44_A11OrganisationId ;
       private Guid[] P00A44_A29LocationId ;
       private Guid[] P00A44_A310Trn_PageId ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV39GXV5 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV40GXV5 ;
       private string[] P00A45_A318Trn_PageName ;
       private bool[] P00A45_A504PageIsPredefined ;
       private Guid[] P00A45_A11OrganisationId ;
       private Guid[] P00A45_A29LocationId ;
       private Guid[] P00A45_A310Trn_PageId ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV42GXV7 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV43GXV7 ;
       private string[] P00A46_A318Trn_PageName ;
       private bool[] P00A46_A504PageIsPredefined ;
       private Guid[] P00A46_A11OrganisationId ;
       private Guid[] P00A46_A29LocationId ;
       private Guid[] P00A46_A310Trn_PageId ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV45GXV9 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV46GXV9 ;
+      private string[] P00A47_A318Trn_PageName ;
+      private bool[] P00A47_A519PageIsWebLinkPage ;
+      private Guid[] P00A47_A11OrganisationId ;
+      private Guid[] P00A47_A29LocationId ;
+      private Guid[] P00A47_A310Trn_PageId ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV49GXV11 ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
@@ -649,6 +728,7 @@ public class prc_initlocationpages__default : DataStoreHelperBase, IDataStoreHel
       ,new ForEachCursor(def[2])
       ,new ForEachCursor(def[3])
       ,new ForEachCursor(def[4])
+      ,new ForEachCursor(def[5])
     };
  }
 
@@ -682,12 +762,18 @@ public class prc_initlocationpages__default : DataStoreHelperBase, IDataStoreHel
        new ParDef("AV8LocationId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("AV12OrganisationId",GXType.UniqueIdentifier,36,0)
        };
+       Object[] prmP00A47;
+       prmP00A47 = new Object[] {
+       new ParDef("AV8LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("AV12OrganisationId",GXType.UniqueIdentifier,36,0)
+       };
        def= new CursorDef[] {
            new CursorDef("P00A42", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (Trn_PageName = ( 'Home') and LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A42,1, GxCacheFrequency.OFF ,false,true )
           ,new CursorDef("P00A43", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (Trn_PageName = ( 'Reception') and LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A43,1, GxCacheFrequency.OFF ,false,true )
           ,new CursorDef("P00A44", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A44,100, GxCacheFrequency.OFF ,false,false )
           ,new CursorDef("P00A45", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (Trn_PageName = ( 'Location') and LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A45,1, GxCacheFrequency.OFF ,false,true )
-          ,new CursorDef("P00A46", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (Trn_PageName = ( 'Mailbox') and LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A46,1, GxCacheFrequency.OFF ,false,true )
+          ,new CursorDef("P00A46", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (Trn_PageName = ( 'My Activity') and LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A46,1, GxCacheFrequency.OFF ,false,true )
+          ,new CursorDef("P00A47", "SELECT Trn_PageName, PageIsWebLinkPage, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (Trn_PageName = ( 'Web Link') and LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsWebLinkPage = TRUE) ORDER BY Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A47,1, GxCacheFrequency.OFF ,false,true )
        };
     }
  }
@@ -727,6 +813,13 @@ public class prc_initlocationpages__default : DataStoreHelperBase, IDataStoreHel
              ((Guid[]) buf[4])[0] = rslt.getGuid(5);
              return;
           case 4 :
+             ((string[]) buf[0])[0] = rslt.getVarchar(1);
+             ((bool[]) buf[1])[0] = rslt.getBool(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             ((Guid[]) buf[3])[0] = rslt.getGuid(4);
+             ((Guid[]) buf[4])[0] = rslt.getGuid(5);
+             return;
+          case 5 :
              ((string[]) buf[0])[0] = rslt.getVarchar(1);
              ((bool[]) buf[1])[0] = rslt.getBool(2);
              ((Guid[]) buf[2])[0] = rslt.getGuid(3);

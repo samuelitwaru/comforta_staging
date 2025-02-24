@@ -110,7 +110,7 @@ namespace GeneXus.Programs {
                CheckExtendedTable0C74( ) ;
                if ( AnyError == 0 )
                {
-                  ZM0C74( 27) ;
+                  ZM0C74( 30) ;
                }
                CloseExtendedTableCursors0C74( ) ;
             }
@@ -163,7 +163,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0C74( short GX_JID )
       {
-         if ( ( GX_JID == 26 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 29 ) || ( GX_JID == 0 ) )
          {
             Z92ReceptionistInitials = A92ReceptionistInitials;
             Z94ReceptionistPhone = A94ReceptionistPhone;
@@ -175,10 +175,10 @@ namespace GeneXus.Programs {
             Z95ReceptionistGAMGUID = A95ReceptionistGAMGUID;
             Z398ReceptionistIsActive = A398ReceptionistIsActive;
          }
-         if ( ( GX_JID == 27 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 30 ) || ( GX_JID == 0 ) )
          {
          }
-         if ( GX_JID == -26 )
+         if ( GX_JID == -29 )
          {
             Z89ReceptionistId = A89ReceptionistId;
             Z92ReceptionistInitials = A92ReceptionistInitials;
@@ -234,7 +234,7 @@ namespace GeneXus.Programs {
             A398ReceptionistIsActive = BC000C5_A398ReceptionistIsActive[0];
             A40000ReceptionistImage_GXI = BC000C5_A40000ReceptionistImage_GXI[0];
             A459ReceptionistImage = BC000C5_A459ReceptionistImage[0];
-            ZM0C74( -26) ;
+            ZM0C74( -29) ;
          }
          pr_default.close(3);
          OnLoadActions0C74( ) ;
@@ -329,7 +329,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A89ReceptionistId, A11OrganisationId, A29LocationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0C74( 26) ;
+            ZM0C74( 29) ;
             RcdFound74 = 1;
             A89ReceptionistId = BC000C3_A89ReceptionistId[0];
             A92ReceptionistInitials = BC000C3_A92ReceptionistInitials[0];
@@ -702,6 +702,7 @@ namespace GeneXus.Programs {
       protected void BeforeInsert0C74( )
       {
          /* Before Insert Rules */
+         AV14GAMErrorResponse = "";
          new prc_getnameinitials(context ).execute(  A90ReceptionistGivenName,  A91ReceptionistLastName, out  A92ReceptionistInitials) ;
          if ( ( StringUtil.StrCmp(Gx_mode, context.GetMessage( "INS", "")) == 0 ) && String.IsNullOrEmpty(StringUtil.RTrim( A95ReceptionistGAMGUID)) )
          {
@@ -717,6 +718,7 @@ namespace GeneXus.Programs {
       protected void BeforeUpdate0C74( )
       {
          /* Before Update Rules */
+         AV14GAMErrorResponse = "";
          new loadaudittrn_receptionist(context ).execute(  "Y", ref  AV36AuditingObject,  A89ReceptionistId,  A11OrganisationId,  A29LocationId,  Gx_mode) ;
          if ( IsUpd( )  )
          {
@@ -732,6 +734,7 @@ namespace GeneXus.Programs {
       protected void BeforeDelete0C74( )
       {
          /* Before Delete Rules */
+         AV14GAMErrorResponse = "";
          new loadaudittrn_receptionist(context ).execute(  "Y", ref  AV36AuditingObject,  A89ReceptionistId,  A11OrganisationId,  A29LocationId,  Gx_mode) ;
          if ( IsDlt( )  )
          {
@@ -949,7 +952,7 @@ namespace GeneXus.Programs {
             Z11OrganisationId = A11OrganisationId;
             Z29LocationId = A29LocationId;
          }
-         ZM0C74( -26) ;
+         ZM0C74( -29) ;
          OnLoadActions0C74( ) ;
          AddRow0C74( ) ;
          ScanKeyEnd0C74( ) ;
@@ -988,7 +991,7 @@ namespace GeneXus.Programs {
             Z11OrganisationId = A11OrganisationId;
             Z29LocationId = A29LocationId;
          }
-         ZM0C74( -26) ;
+         ZM0C74( -29) ;
          OnLoadActions0C74( ) ;
          AddRow0C74( ) ;
          ScanKeyEnd0C74( ) ;

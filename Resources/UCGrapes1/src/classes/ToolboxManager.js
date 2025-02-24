@@ -82,8 +82,8 @@ class ToolBoxManager {
 
     const sidebarInputTitle = document.getElementById("tile-title");
     sidebarInputTitle.addEventListener("input", (e) => {
-      if (e.target.value.length > 12) {
-        e.target.value = truncateText(e.target.value, 12);
+      if (e.target.value.length > 30) {
+        e.target.value = truncateText(e.target.value, 35);
       }
       this.ui.updateTileTitle(e.target.value);
     });
@@ -94,8 +94,6 @@ class ToolBoxManager {
     if (editors && editors.length) {
       const pageDataList = this.preparePageDataList(editors);
 
-      console.log(pageDataList);
-
       if (pageDataList.length) {
         this.sendPageUpdateRequest(pageDataList, isNotifyResidents);
       }
@@ -103,8 +101,9 @@ class ToolBoxManager {
   }
 
   preparePageDataList(editors) {
+    let skipPages = ["Mailbox", "Calendar", "My Activity"];
     return this.dataManager.pages.SDT_PageCollection.filter(
-      (page) => !(page.PageName == "Mailbox" || page.PageName == "Calendar")
+      (page) => !(skipPages.includes(page.PageName))
     ).map((page) => {
       let projectData;
       try {

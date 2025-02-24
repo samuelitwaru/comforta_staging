@@ -100,6 +100,14 @@
               </Property>
             </Properties>
           </Field>
+          <Field name="PageIsWebLinkPage" description="Page Is Web Link Page">
+            <Properties>
+              <Property>
+                <Name>Type</Name>
+                <Value>Boolean</Value>
+              </Property>
+            </Properties>
+          </Field>
           <Field name="PageChildren" description="Page Children">
             <Properties>
               <Property>

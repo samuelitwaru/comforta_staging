@@ -95,7 +95,7 @@ namespace GeneXus.Programs {
                AV9BC_Trn_Page.Load(AV28SDT_Page.gxTpr_Pageid, AV28SDT_Page.gxTpr_Pagename, new prc_getuserlocationid(context).executeUdp( ));
                if ( ! (Guid.Empty==AV9BC_Trn_Page.gxTpr_Trn_pageid) )
                {
-                  if ( AV9BC_Trn_Page.gxTpr_Pageisdynamicform )
+                  if ( AV9BC_Trn_Page.gxTpr_Pageisdynamicform || AV9BC_Trn_Page.gxTpr_Pageisweblinkpage )
                   {
                      AV9BC_Trn_Page.gxTpr_Pagegjsjson = "";
                   }

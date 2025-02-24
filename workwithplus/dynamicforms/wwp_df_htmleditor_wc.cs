@@ -410,6 +410,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vHASREFERENCEID", GetSecureSignedToken( sPrefix, AV13HasReferenceId, context));
          GxWebStd.gx_hidden_field( context, sPrefix+"vWWPDYNAMICFORMMODE", StringUtil.RTrim( AV25WWPDynamicFormMode));
          GxWebStd.gx_hidden_field( context, sPrefix+"DATA_Enabled", StringUtil.BoolToStr( Data_Enabled));
+         GxWebStd.gx_hidden_field( context, sPrefix+"DATA_Width", StringUtil.RTrim( Data_Width));
+         GxWebStd.gx_hidden_field( context, sPrefix+"DATA_Toolbar", StringUtil.RTrim( Data_Toolbar));
          GxWebStd.gx_hidden_field( context, sPrefix+"DATA_Captionclass", StringUtil.RTrim( Data_Captionclass));
          GxWebStd.gx_hidden_field( context, sPrefix+"DATA_Captionstyle", StringUtil.RTrim( Data_Captionstyle));
          GxWebStd.gx_hidden_field( context, sPrefix+"DATA_Captionposition", StringUtil.RTrim( Data_Captionposition));
@@ -964,6 +966,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             wcpOAV31WWPFormInstanceElementId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV31WWPFormInstanceElementId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             wcpOAV19SessionId = (short)(Math.Round(context.localUtil.CToN( cgiGet( sPrefix+"wcpOAV19SessionId"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
             Data_Enabled = StringUtil.StrToBool( cgiGet( sPrefix+"DATA_Enabled"));
+            Data_Width = cgiGet( sPrefix+"DATA_Width");
+            Data_Toolbar = cgiGet( sPrefix+"DATA_Toolbar");
             Data_Captionclass = cgiGet( sPrefix+"DATA_Captionclass");
             Data_Captionstyle = cgiGet( sPrefix+"DATA_Captionstyle");
             Data_Captionposition = cgiGet( sPrefix+"DATA_Captionposition");
@@ -1282,7 +1286,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* User Defined Control */
+            ucData.SetProperty("Width", Data_Width);
             ucData.SetProperty("Attribute", AV8Data);
+            ucData.SetProperty("Toolbar", Data_Toolbar);
             ucData.SetProperty("CaptionClass", Data_Captionclass);
             ucData.SetProperty("CaptionStyle", Data_Captionstyle);
             ucData.SetProperty("CaptionPosition", Data_Captionposition);
@@ -1595,7 +1601,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512220535831", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025224826531", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1611,7 +1617,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_df_htmleditor_wc.js", "?202512220535832", false, true);
+         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_df_htmleditor_wc.js", "?2025224826531", false, true);
          context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
          context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
          /* End function include_jscripts */
@@ -1665,6 +1671,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          Data_Captionposition = "None";
          Data_Captionstyle = "width: 25%;";
          Data_Captionclass = "gx-form-item AttributeLabel";
+         Data_Toolbar = "Basic";
+         Data_Width = "100%";
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             if ( context.isSpaRequest( ) )
@@ -1786,6 +1794,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string bodyStyle ;
       private string GXKey ;
       private string GXEncryptionTmp ;
+      private string Data_Width ;
+      private string Data_Toolbar ;
       private string Data_Captionclass ;
       private string Data_Captionstyle ;
       private string Data_Captionposition ;

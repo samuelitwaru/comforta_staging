@@ -132,6 +132,7 @@ namespace GeneXus.Programs {
             A439PageIsContentPage = P00B12_A439PageIsContentPage[0];
             n439PageIsContentPage = P00B12_n439PageIsContentPage[0];
             A514PageIsDynamicForm = P00B12_A514PageIsDynamicForm[0];
+            A519PageIsWebLinkPage = P00B12_A519PageIsWebLinkPage[0];
             A437PageChildren = P00B12_A437PageChildren[0];
             n437PageChildren = P00B12_n437PageChildren[0];
             A58ProductServiceId = P00B12_A58ProductServiceId[0];
@@ -214,6 +215,13 @@ namespace GeneXus.Programs {
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Oldvalue = StringUtil.BoolToStr( A514PageIsDynamicForm);
             AV12AuditingObjectRecordItem.gxTpr_Attribute.Add(AV13AuditingObjectRecordItemAttributeItem, 0);
             AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name = "PageIsWebLinkPage";
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = context.GetMessage( "Page Is Web Link Page", "");
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = false;
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Isdescriptionattribute = false;
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Oldvalue = StringUtil.BoolToStr( A519PageIsWebLinkPage);
+            AV12AuditingObjectRecordItem.gxTpr_Attribute.Add(AV13AuditingObjectRecordItemAttributeItem, 0);
+            AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name = "PageChildren";
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = context.GetMessage( "Children", "");
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = false;
@@ -263,6 +271,7 @@ namespace GeneXus.Programs {
             A439PageIsContentPage = P00B13_A439PageIsContentPage[0];
             n439PageIsContentPage = P00B13_n439PageIsContentPage[0];
             A514PageIsDynamicForm = P00B13_A514PageIsDynamicForm[0];
+            A519PageIsWebLinkPage = P00B13_A519PageIsWebLinkPage[0];
             A437PageChildren = P00B13_A437PageChildren[0];
             n437PageChildren = P00B13_n437PageChildren[0];
             A58ProductServiceId = P00B13_A58ProductServiceId[0];
@@ -346,6 +355,13 @@ namespace GeneXus.Programs {
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue = StringUtil.BoolToStr( A514PageIsDynamicForm);
                AV12AuditingObjectRecordItem.gxTpr_Attribute.Add(AV13AuditingObjectRecordItemAttributeItem, 0);
                AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name = "PageIsWebLinkPage";
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = context.GetMessage( "Page Is Web Link Page", "");
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = false;
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Isdescriptionattribute = false;
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue = StringUtil.BoolToStr( A519PageIsWebLinkPage);
+               AV12AuditingObjectRecordItem.gxTpr_Attribute.Add(AV13AuditingObjectRecordItemAttributeItem, 0);
+               AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name = "PageChildren";
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = context.GetMessage( "Children", "");
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = false;
@@ -417,6 +433,10 @@ namespace GeneXus.Programs {
                      {
                         AV13AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue = StringUtil.BoolToStr( A514PageIsDynamicForm);
                      }
+                     else if ( StringUtil.StrCmp(AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name, "PageIsWebLinkPage") == 0 )
+                     {
+                        AV13AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue = StringUtil.BoolToStr( A519PageIsWebLinkPage);
+                     }
                      else if ( StringUtil.StrCmp(AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name, "PageChildren") == 0 )
                      {
                         AV13AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue = A437PageChildren;
@@ -467,6 +487,7 @@ namespace GeneXus.Programs {
          P00B12_A439PageIsContentPage = new bool[] {false} ;
          P00B12_n439PageIsContentPage = new bool[] {false} ;
          P00B12_A514PageIsDynamicForm = new bool[] {false} ;
+         P00B12_A519PageIsWebLinkPage = new bool[] {false} ;
          P00B12_A437PageChildren = new string[] {""} ;
          P00B12_n437PageChildren = new bool[] {false} ;
          P00B12_A58ProductServiceId = new Guid[] {Guid.Empty} ;
@@ -498,6 +519,7 @@ namespace GeneXus.Programs {
          P00B13_A439PageIsContentPage = new bool[] {false} ;
          P00B13_n439PageIsContentPage = new bool[] {false} ;
          P00B13_A514PageIsDynamicForm = new bool[] {false} ;
+         P00B13_A519PageIsWebLinkPage = new bool[] {false} ;
          P00B13_A437PageChildren = new string[] {""} ;
          P00B13_n437PageChildren = new bool[] {false} ;
          P00B13_A58ProductServiceId = new Guid[] {Guid.Empty} ;
@@ -507,11 +529,13 @@ namespace GeneXus.Programs {
             new Object[][] {
                 new Object[] {
                P00B12_A29LocationId, P00B12_A318Trn_PageName, P00B12_A310Trn_PageId, P00B12_A431PageJsonContent, P00B12_n431PageJsonContent, P00B12_A432PageGJSHtml, P00B12_n432PageGJSHtml, P00B12_A433PageGJSJson, P00B12_n433PageGJSJson, P00B12_A434PageIsPublished,
-               P00B12_n434PageIsPublished, P00B12_A504PageIsPredefined, P00B12_A439PageIsContentPage, P00B12_n439PageIsContentPage, P00B12_A514PageIsDynamicForm, P00B12_A437PageChildren, P00B12_n437PageChildren, P00B12_A58ProductServiceId, P00B12_n58ProductServiceId, P00B12_A11OrganisationId
+               P00B12_n434PageIsPublished, P00B12_A504PageIsPredefined, P00B12_A439PageIsContentPage, P00B12_n439PageIsContentPage, P00B12_A514PageIsDynamicForm, P00B12_A519PageIsWebLinkPage, P00B12_A437PageChildren, P00B12_n437PageChildren, P00B12_A58ProductServiceId, P00B12_n58ProductServiceId,
+               P00B12_A11OrganisationId
                }
                , new Object[] {
                P00B13_A29LocationId, P00B13_A318Trn_PageName, P00B13_A310Trn_PageId, P00B13_A431PageJsonContent, P00B13_n431PageJsonContent, P00B13_A432PageGJSHtml, P00B13_n432PageGJSHtml, P00B13_A433PageGJSJson, P00B13_n433PageGJSJson, P00B13_A434PageIsPublished,
-               P00B13_n434PageIsPublished, P00B13_A504PageIsPredefined, P00B13_A439PageIsContentPage, P00B13_n439PageIsContentPage, P00B13_A514PageIsDynamicForm, P00B13_A437PageChildren, P00B13_n437PageChildren, P00B13_A58ProductServiceId, P00B13_n58ProductServiceId, P00B13_A11OrganisationId
+               P00B13_n434PageIsPublished, P00B13_A504PageIsPredefined, P00B13_A439PageIsContentPage, P00B13_n439PageIsContentPage, P00B13_A514PageIsDynamicForm, P00B13_A519PageIsWebLinkPage, P00B13_A437PageChildren, P00B13_n437PageChildren, P00B13_A58ProductServiceId, P00B13_n58ProductServiceId,
+               P00B13_A11OrganisationId
                }
             }
          );
@@ -532,6 +556,7 @@ namespace GeneXus.Programs {
       private bool A439PageIsContentPage ;
       private bool n439PageIsContentPage ;
       private bool A514PageIsDynamicForm ;
+      private bool A519PageIsWebLinkPage ;
       private bool n437PageChildren ;
       private bool n58ProductServiceId ;
       private string A431PageJsonContent ;
@@ -567,6 +592,7 @@ namespace GeneXus.Programs {
       private bool[] P00B12_A439PageIsContentPage ;
       private bool[] P00B12_n439PageIsContentPage ;
       private bool[] P00B12_A514PageIsDynamicForm ;
+      private bool[] P00B12_A519PageIsWebLinkPage ;
       private string[] P00B12_A437PageChildren ;
       private bool[] P00B12_n437PageChildren ;
       private Guid[] P00B12_A58ProductServiceId ;
@@ -589,6 +615,7 @@ namespace GeneXus.Programs {
       private bool[] P00B13_A439PageIsContentPage ;
       private bool[] P00B13_n439PageIsContentPage ;
       private bool[] P00B13_A514PageIsDynamicForm ;
+      private bool[] P00B13_A519PageIsWebLinkPage ;
       private string[] P00B13_A437PageChildren ;
       private bool[] P00B13_n437PageChildren ;
       private Guid[] P00B13_A58ProductServiceId ;
@@ -625,8 +652,8 @@ namespace GeneXus.Programs {
           new ParDef("AV19LocationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P00B12", "SELECT LocationId, Trn_PageName, Trn_PageId, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsPredefined, PageIsContentPage, PageIsDynamicForm, PageChildren, ProductServiceId, OrganisationId FROM Trn_Page WHERE Trn_PageId = :AV17Trn_PageId and Trn_PageName = ( :AV18Trn_PageName) and LocationId = :AV19LocationId ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00B12,1, GxCacheFrequency.OFF ,false,true )
-             ,new CursorDef("P00B13", "SELECT LocationId, Trn_PageName, Trn_PageId, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsPredefined, PageIsContentPage, PageIsDynamicForm, PageChildren, ProductServiceId, OrganisationId FROM Trn_Page WHERE Trn_PageId = :AV17Trn_PageId and Trn_PageName = ( :AV18Trn_PageName) and LocationId = :AV19LocationId ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00B13,1, GxCacheFrequency.OFF ,false,true )
+              new CursorDef("P00B12", "SELECT LocationId, Trn_PageName, Trn_PageId, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsPredefined, PageIsContentPage, PageIsDynamicForm, PageIsWebLinkPage, PageChildren, ProductServiceId, OrganisationId FROM Trn_Page WHERE Trn_PageId = :AV17Trn_PageId and Trn_PageName = ( :AV18Trn_PageName) and LocationId = :AV19LocationId ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00B12,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("P00B13", "SELECT LocationId, Trn_PageName, Trn_PageId, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsPredefined, PageIsContentPage, PageIsDynamicForm, PageIsWebLinkPage, PageChildren, ProductServiceId, OrganisationId FROM Trn_Page WHERE Trn_PageId = :AV17Trn_PageId and Trn_PageName = ( :AV18Trn_PageName) and LocationId = :AV19LocationId ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00B13,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }
@@ -653,11 +680,12 @@ namespace GeneXus.Programs {
                 ((bool[]) buf[12])[0] = rslt.getBool(9);
                 ((bool[]) buf[13])[0] = rslt.wasNull(9);
                 ((bool[]) buf[14])[0] = rslt.getBool(10);
-                ((string[]) buf[15])[0] = rslt.getLongVarchar(11);
-                ((bool[]) buf[16])[0] = rslt.wasNull(11);
-                ((Guid[]) buf[17])[0] = rslt.getGuid(12);
-                ((bool[]) buf[18])[0] = rslt.wasNull(12);
-                ((Guid[]) buf[19])[0] = rslt.getGuid(13);
+                ((bool[]) buf[15])[0] = rslt.getBool(11);
+                ((string[]) buf[16])[0] = rslt.getLongVarchar(12);
+                ((bool[]) buf[17])[0] = rslt.wasNull(12);
+                ((Guid[]) buf[18])[0] = rslt.getGuid(13);
+                ((bool[]) buf[19])[0] = rslt.wasNull(13);
+                ((Guid[]) buf[20])[0] = rslt.getGuid(14);
                 return;
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -675,11 +703,12 @@ namespace GeneXus.Programs {
                 ((bool[]) buf[12])[0] = rslt.getBool(9);
                 ((bool[]) buf[13])[0] = rslt.wasNull(9);
                 ((bool[]) buf[14])[0] = rslt.getBool(10);
-                ((string[]) buf[15])[0] = rslt.getLongVarchar(11);
-                ((bool[]) buf[16])[0] = rslt.wasNull(11);
-                ((Guid[]) buf[17])[0] = rslt.getGuid(12);
-                ((bool[]) buf[18])[0] = rslt.wasNull(12);
-                ((Guid[]) buf[19])[0] = rslt.getGuid(13);
+                ((bool[]) buf[15])[0] = rslt.getBool(11);
+                ((string[]) buf[16])[0] = rslt.getLongVarchar(12);
+                ((bool[]) buf[17])[0] = rslt.wasNull(12);
+                ((Guid[]) buf[18])[0] = rslt.getGuid(13);
+                ((bool[]) buf[19])[0] = rslt.wasNull(13);
+                ((Guid[]) buf[20])[0] = rslt.getGuid(14);
                 return;
        }
     }

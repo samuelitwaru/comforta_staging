@@ -1505,7 +1505,9 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* User Defined Control */
+            ucData.SetProperty("Width", Data_Width);
             ucData.SetProperty("Attribute", AV5Data);
+            ucData.SetProperty("Toolbar", Data_Toolbar);
             ucData.SetProperty("CaptionClass", Data_Captionclass);
             ucData.SetProperty("CaptionStyle", Data_Captionstyle);
             ucData.SetProperty("CaptionPosition", Data_Captionposition);
@@ -1809,7 +1811,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202512913135336", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20252248261164", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1825,7 +1827,7 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_dfc_htmleditor_wc.js", "?202512913135336", false, true);
+         context.AddJavascriptSource("workwithplus/dynamicforms/wwp_dfc_htmleditor_wc.js", "?20252248261164", false, true);
          context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
          context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
@@ -1889,6 +1891,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
          Data_Captionposition = "None";
          Data_Captionstyle = "width: 25%;";
          Data_Captionclass = "gx-form-item AttributeLabel";
+         Data_Toolbar = "Basic";
+         Data_Width = "100%";
          Data_Enabled = Convert.ToBoolean( 1);
          Btnsettings_Class = "ButtonGray";
          Btnsettings_Beforeiconclass = "fas fa-gear";
@@ -2109,6 +2113,8 @@ namespace GeneXus.Programs.workwithplus.dynamicforms {
       private string Btnsettings_Beforeiconclass ;
       private string Btnsettings_Class ;
       private string tblTablemergeddata_Internalname ;
+      private string Data_Width ;
+      private string Data_Toolbar ;
       private string Data_Captionclass ;
       private string Data_Captionstyle ;
       private string Data_Captionposition ;

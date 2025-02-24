@@ -263,7 +263,7 @@ namespace GeneXus.Programs {
           new ParDef("PageIsDynamicForm",GXType.Boolean,4,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P008B2", "SAVEPOINT gxupdate;INSERT INTO Trn_Page(Trn_PageId, Trn_PageName, LocationId, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsContentPage, PageIsPredefined, PageIsDynamicForm, PageChildren, ProductServiceId, OrganisationId) VALUES(:Trn_PageId, :Trn_PageName, :LocationId, :PageJsonContent, :PageGJSHtml, :PageGJSJson, :PageIsPublished, :PageIsContentPage, :PageIsPredefined, :PageIsDynamicForm, '', '00000000-0000-0000-0000-000000000000', '00000000-0000-0000-0000-000000000000');RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_MASKLOOPLOCK,prmP008B2)
+              new CursorDef("P008B2", "SAVEPOINT gxupdate;INSERT INTO Trn_Page(Trn_PageId, Trn_PageName, LocationId, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsContentPage, PageIsPredefined, PageIsDynamicForm, PageChildren, ProductServiceId, OrganisationId, PageIsWebLinkPage) VALUES(:Trn_PageId, :Trn_PageName, :LocationId, :PageJsonContent, :PageGJSHtml, :PageGJSJson, :PageIsPublished, :PageIsContentPage, :PageIsPredefined, :PageIsDynamicForm, '', '00000000-0000-0000-0000-000000000000', '00000000-0000-0000-0000-000000000000', FALSE);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_MASKLOOPLOCK,prmP008B2)
           };
        }
     }

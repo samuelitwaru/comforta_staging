@@ -76,9 +76,9 @@ namespace GeneXus.Programs {
          }
          else
          {
-            AV15Udparg1 = new prc_getuserlocationid(context).executeUdp( );
+            AV17Udparg1 = new prc_getuserlocationid(context).executeUdp( );
             /* Using cursor P009Y2 */
-            pr_default.execute(0, new Object[] {AV15Udparg1});
+            pr_default.execute(0, new Object[] {AV17Udparg1});
             while ( (pr_default.getStatus(0) != 101) )
             {
                A29LocationId = P009Y2_A29LocationId[0];
@@ -99,7 +99,14 @@ namespace GeneXus.Programs {
                AV8SDT_Media.gxTpr_Mediasize = A413MediaSize;
                AV8SDT_Media.gxTpr_Mediatype = A414MediaType;
                AV8SDT_Media.gxTpr_Mediaurl = A412MediaUrl;
-               AV9SDT_MediaCollection.Add(AV8SDT_Media, 0);
+               AV15MediaPath = context.GetMessage( "media/", "") + A410MediaName;
+               AV14File = new GxFile(context.GetPhysicalPath());
+               AV14File.Source = context.GetMessage( "media/", "")+A410MediaName;
+               new prc_logtofile(context ).execute(  context.GetMessage( "Media: ", "")+AV15MediaPath+" "+StringUtil.BoolToStr( AV14File.Exists())) ;
+               if ( AV14File.Exists() )
+               {
+                  AV9SDT_MediaCollection.Add(AV8SDT_Media, 0);
+               }
                pr_default.readNext(0);
             }
             pr_default.close(0);
@@ -121,7 +128,7 @@ namespace GeneXus.Programs {
       {
          AV9SDT_MediaCollection = new GXBaseCollection<SdtSDT_Media>( context, "SDT_Media", "Comforta_version2");
          AV13Error = new SdtSDT_Error(context);
-         AV15Udparg1 = Guid.Empty;
+         AV17Udparg1 = Guid.Empty;
          P009Y2_A29LocationId = new Guid[] {Guid.Empty} ;
          P009Y2_A40000MediaImage_GXI = new string[] {""} ;
          P009Y2_n40000MediaImage_GXI = new bool[] {false} ;
@@ -140,6 +147,8 @@ namespace GeneXus.Programs {
          A412MediaUrl = "";
          A411MediaImage = "";
          AV8SDT_Media = new SdtSDT_Media(context);
+         AV15MediaPath = "";
+         AV14File = new GxFile(context.GetPhysicalPath());
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_getmedia__default(),
             new Object[][] {
                 new Object[] {
@@ -157,10 +166,12 @@ namespace GeneXus.Programs {
       private string A40000MediaImage_GXI ;
       private string A410MediaName ;
       private string A412MediaUrl ;
+      private string AV15MediaPath ;
       private string A411MediaImage ;
-      private Guid AV15Udparg1 ;
+      private Guid AV17Udparg1 ;
       private Guid A29LocationId ;
       private Guid A409MediaId ;
+      private GxFile AV14File ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
@@ -198,10 +209,10 @@ namespace GeneXus.Programs {
        {
           Object[] prmP009Y2;
           prmP009Y2 = new Object[] {
-          new ParDef("AV15Udparg1",GXType.UniqueIdentifier,36,0)
+          new ParDef("AV17Udparg1",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P009Y2", "SELECT LocationId, MediaImage_GXI, MediaId, MediaName, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE LocationId = :AV15Udparg1 ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Y2,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P009Y2", "SELECT LocationId, MediaImage_GXI, MediaId, MediaName, MediaSize, MediaType, MediaUrl, MediaImage FROM Trn_Media WHERE LocationId = :AV17Udparg1 ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Y2,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }

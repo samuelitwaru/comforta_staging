@@ -78,6 +78,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Pageispredefined_Z");
          state.Add("gxTpr_Pageiscontentpage_Z");
          state.Add("gxTpr_Pageisdynamicform_Z");
+         state.Add("gxTpr_Pageisweblinkpage_Z");
          state.Add("gxTpr_Productserviceid_Z");
          state.Add("gxTpr_Organisationid_Z");
          state.Add("gxTpr_Pagejsoncontent_N");
@@ -104,6 +105,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Page_Pageispredefined = sdt.gxTv_SdtTrn_Page_Pageispredefined ;
          gxTv_SdtTrn_Page_Pageiscontentpage = sdt.gxTv_SdtTrn_Page_Pageiscontentpage ;
          gxTv_SdtTrn_Page_Pageisdynamicform = sdt.gxTv_SdtTrn_Page_Pageisdynamicform ;
+         gxTv_SdtTrn_Page_Pageisweblinkpage = sdt.gxTv_SdtTrn_Page_Pageisweblinkpage ;
          gxTv_SdtTrn_Page_Pagechildren = sdt.gxTv_SdtTrn_Page_Pagechildren ;
          gxTv_SdtTrn_Page_Productserviceid = sdt.gxTv_SdtTrn_Page_Productserviceid ;
          gxTv_SdtTrn_Page_Organisationid = sdt.gxTv_SdtTrn_Page_Organisationid ;
@@ -116,6 +118,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Page_Pageispredefined_Z = sdt.gxTv_SdtTrn_Page_Pageispredefined_Z ;
          gxTv_SdtTrn_Page_Pageiscontentpage_Z = sdt.gxTv_SdtTrn_Page_Pageiscontentpage_Z ;
          gxTv_SdtTrn_Page_Pageisdynamicform_Z = sdt.gxTv_SdtTrn_Page_Pageisdynamicform_Z ;
+         gxTv_SdtTrn_Page_Pageisweblinkpage_Z = sdt.gxTv_SdtTrn_Page_Pageisweblinkpage_Z ;
          gxTv_SdtTrn_Page_Productserviceid_Z = sdt.gxTv_SdtTrn_Page_Productserviceid_Z ;
          gxTv_SdtTrn_Page_Organisationid_Z = sdt.gxTv_SdtTrn_Page_Organisationid_Z ;
          gxTv_SdtTrn_Page_Pagejsoncontent_N = sdt.gxTv_SdtTrn_Page_Pagejsoncontent_N ;
@@ -158,6 +161,7 @@ namespace GeneXus.Programs {
          AddObjectProperty("PageIsContentPage", gxTv_SdtTrn_Page_Pageiscontentpage, false, includeNonInitialized);
          AddObjectProperty("PageIsContentPage_N", gxTv_SdtTrn_Page_Pageiscontentpage_N, false, includeNonInitialized);
          AddObjectProperty("PageIsDynamicForm", gxTv_SdtTrn_Page_Pageisdynamicform, false, includeNonInitialized);
+         AddObjectProperty("PageIsWebLinkPage", gxTv_SdtTrn_Page_Pageisweblinkpage, false, includeNonInitialized);
          AddObjectProperty("PageChildren", gxTv_SdtTrn_Page_Pagechildren, false, includeNonInitialized);
          AddObjectProperty("PageChildren_N", gxTv_SdtTrn_Page_Pagechildren_N, false, includeNonInitialized);
          AddObjectProperty("ProductServiceId", gxTv_SdtTrn_Page_Productserviceid, false, includeNonInitialized);
@@ -174,6 +178,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("PageIsPredefined_Z", gxTv_SdtTrn_Page_Pageispredefined_Z, false, includeNonInitialized);
             AddObjectProperty("PageIsContentPage_Z", gxTv_SdtTrn_Page_Pageiscontentpage_Z, false, includeNonInitialized);
             AddObjectProperty("PageIsDynamicForm_Z", gxTv_SdtTrn_Page_Pageisdynamicform_Z, false, includeNonInitialized);
+            AddObjectProperty("PageIsWebLinkPage_Z", gxTv_SdtTrn_Page_Pageisweblinkpage_Z, false, includeNonInitialized);
             AddObjectProperty("ProductServiceId_Z", gxTv_SdtTrn_Page_Productserviceid_Z, false, includeNonInitialized);
             AddObjectProperty("OrganisationId_Z", gxTv_SdtTrn_Page_Organisationid_Z, false, includeNonInitialized);
             AddObjectProperty("PageJsonContent_N", gxTv_SdtTrn_Page_Pagejsoncontent_N, false, includeNonInitialized);
@@ -244,6 +249,11 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Page_Pageisdynamicform = sdt.gxTv_SdtTrn_Page_Pageisdynamicform ;
          }
+         if ( sdt.IsDirty("PageIsWebLinkPage") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Page_Pageisweblinkpage = sdt.gxTv_SdtTrn_Page_Pageisweblinkpage ;
+         }
          if ( sdt.IsDirty("PageChildren") )
          {
             gxTv_SdtTrn_Page_Pagechildren_N = (short)(sdt.gxTv_SdtTrn_Page_Pagechildren_N);
@@ -284,6 +294,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Page_Pageispredefined_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Pageiscontentpage_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Pageisdynamicform_Z_SetNull( );
+               this.gxTv_SdtTrn_Page_Pageisweblinkpage_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Productserviceid_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Organisationid_Z_SetNull( );
             }
@@ -313,6 +324,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Page_Pageispredefined_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Pageiscontentpage_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Pageisdynamicform_Z_SetNull( );
+               this.gxTv_SdtTrn_Page_Pageisweblinkpage_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Productserviceid_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Organisationid_Z_SetNull( );
             }
@@ -342,6 +354,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_Page_Pageispredefined_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Pageiscontentpage_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Pageisdynamicform_Z_SetNull( );
+               this.gxTv_SdtTrn_Page_Pageisweblinkpage_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Productserviceid_Z_SetNull( );
                this.gxTv_SdtTrn_Page_Organisationid_Z_SetNull( );
             }
@@ -529,6 +542,22 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_Page_Pageisdynamicform = value;
             SetDirty("Pageisdynamicform");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "PageIsWebLinkPage" )]
+      [  XmlElement( ElementName = "PageIsWebLinkPage"   )]
+      public bool gxTpr_Pageisweblinkpage
+      {
+         get {
+            return gxTv_SdtTrn_Page_Pageisweblinkpage ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Page_Pageisweblinkpage = value;
+            SetDirty("Pageisweblinkpage");
          }
 
       }
@@ -861,6 +890,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "PageIsWebLinkPage_Z" )]
+      [  XmlElement( ElementName = "PageIsWebLinkPage_Z"   )]
+      public bool gxTpr_Pageisweblinkpage_Z
+      {
+         get {
+            return gxTv_SdtTrn_Page_Pageisweblinkpage_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Page_Pageisweblinkpage_Z = value;
+            SetDirty("Pageisweblinkpage_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Page_Pageisweblinkpage_Z_SetNull( )
+      {
+         gxTv_SdtTrn_Page_Pageisweblinkpage_Z = false;
+         SetDirty("Pageisweblinkpage_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Page_Pageisweblinkpage_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "ProductServiceId_Z" )]
       [  XmlElement( ElementName = "ProductServiceId_Z"   )]
       public Guid gxTpr_Productserviceid_Z
@@ -1177,10 +1234,12 @@ namespace GeneXus.Programs {
       private bool gxTv_SdtTrn_Page_Pageispredefined ;
       private bool gxTv_SdtTrn_Page_Pageiscontentpage ;
       private bool gxTv_SdtTrn_Page_Pageisdynamicform ;
+      private bool gxTv_SdtTrn_Page_Pageisweblinkpage ;
       private bool gxTv_SdtTrn_Page_Pageispublished_Z ;
       private bool gxTv_SdtTrn_Page_Pageispredefined_Z ;
       private bool gxTv_SdtTrn_Page_Pageiscontentpage_Z ;
       private bool gxTv_SdtTrn_Page_Pageisdynamicform_Z ;
+      private bool gxTv_SdtTrn_Page_Pageisweblinkpage_Z ;
       private string gxTv_SdtTrn_Page_Pagejsoncontent ;
       private string gxTv_SdtTrn_Page_Pagegjshtml ;
       private string gxTv_SdtTrn_Page_Pagegjsjson ;
@@ -1346,7 +1405,21 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "PageChildren" , Order = 10 )]
+      [DataMember( Name = "PageIsWebLinkPage" , Order = 10 )]
+      [GxSeudo()]
+      public bool gxTpr_Pageisweblinkpage
+      {
+         get {
+            return sdt.gxTpr_Pageisweblinkpage ;
+         }
+
+         set {
+            sdt.gxTpr_Pageisweblinkpage = value;
+         }
+
+      }
+
+      [DataMember( Name = "PageChildren" , Order = 11 )]
       public string gxTpr_Pagechildren
       {
          get {
@@ -1359,7 +1432,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "ProductServiceId" , Order = 11 )]
+      [DataMember( Name = "ProductServiceId" , Order = 12 )]
       [GxSeudo()]
       public Guid gxTpr_Productserviceid
       {
@@ -1373,7 +1446,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "OrganisationId" , Order = 12 )]
+      [DataMember( Name = "OrganisationId" , Order = 13 )]
       [GxSeudo()]
       public Guid gxTpr_Organisationid
       {
@@ -1408,7 +1481,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 13 )]
+      [DataMember( Name = "gx_md5_hash", Order = 14 )]
       public string Hash
       {
          get {

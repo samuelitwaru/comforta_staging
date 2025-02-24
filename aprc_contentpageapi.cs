@@ -168,7 +168,7 @@ namespace GeneXus.Programs {
                   AV29BC_Trn_CallToAction.Load(AV21CtaItem.gxTpr_Ctaid);
                   if ( StringUtil.StrCmp(AV29BC_Trn_CallToAction.gxTpr_Calltoactiontype, "Phone") == 0 )
                   {
-                     AV21CtaItem.gxTpr_Ctaaction = AV29BC_Trn_CallToAction.gxTpr_Calltoactionphonenumber;
+                     AV21CtaItem.gxTpr_Ctaaction = AV29BC_Trn_CallToAction.gxTpr_Calltoactionphone;
                   }
                   else if ( StringUtil.StrCmp(AV29BC_Trn_CallToAction.gxTpr_Calltoactiontype, "Form") == 0 )
                   {
