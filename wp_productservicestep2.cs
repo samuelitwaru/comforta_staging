@@ -2377,6 +2377,7 @@ namespace GeneXus.Programs {
             }
             else
             {
+               AV47WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "service Inserted successfully", ""));
                CallWebObject(formatLink("trn_productserviceww.aspx") );
                context.wjLocDisableFrm = 1;
             }
@@ -3074,7 +3075,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522316264142", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522516551544", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3090,7 +3091,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_productservicestep2.js", "?202522316264144", false, true);
+         context.AddJavascriptSource("wp_productservicestep2.js", "?202522516551548", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

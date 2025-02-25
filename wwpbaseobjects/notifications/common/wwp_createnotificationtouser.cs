@@ -124,7 +124,7 @@ namespace GeneXus.Programs.wwpbaseobjects.notifications.common {
             new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_cleannotificationurl(context ).execute( ref  AV30SmsAndMailUrl) ;
             new GeneXus.Programs.wwpbaseobjects.wwp_getparameter(context ).gxep_text(  context.GetMessage( "Notification_BaseURL", ""), ref  AV26Notification_BaseUrl) ;
             AV30SmsAndMailUrl = StringUtil.Format( "%1%2", AV26Notification_BaseUrl, AV30SmsAndMailUrl, "", "", "", "", "", "", "");
-            if ( A116WWPUserExtendedEmaiNotif )
+            if ( A116WWPUserExtendedEmaiNotif && ( StringUtil.Contains( AV11WWPNotificationDefinitionTitle, context.GetMessage( "Meldingen Helmweg", "")) || StringUtil.Contains( AV11WWPNotificationDefinitionTitle, context.GetMessage( "eTicket", "")) || StringUtil.Contains( AV11WWPNotificationDefinitionTitle, context.GetMessage( "E-Ticket", "")) ) )
             {
                AV28WWPUserExtendedEmail = A114WWPUserExtendedEmail;
                /* Execute user subroutine: 'CREATEMAIL' */

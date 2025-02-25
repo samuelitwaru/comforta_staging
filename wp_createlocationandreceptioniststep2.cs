@@ -201,6 +201,7 @@ namespace GeneXus.Programs {
          subGridsdt_receptionistss_Rows = (int)(Math.Round(NumberUtil.Val( GetPar( "subGridsdt_receptionistss_Rows"), "."), 18, MidpointRounding.ToEven));
          AV10HasValidationErrors = StringUtil.StrToBool( GetPar( "HasValidationErrors"));
          ajax_req_read_hidden_sdt(GetNextPar( ), AV43Trn_Manager);
+         AV45FileName = GetPar( "FileName");
          sPrefix = GetPar( "sPrefix");
          init_default_properties( ) ;
          setAjaxCallMode();
@@ -209,7 +210,7 @@ namespace GeneXus.Programs {
             GxWebError = 1;
             return  ;
          }
-         gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, sPrefix) ;
+         gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, AV45FileName, sPrefix) ;
          AddString( context.getJSONResponse( )) ;
          /* End function gxgrGridsdt_receptionistss_refresh_invoke */
       }
@@ -419,7 +420,13 @@ namespace GeneXus.Programs {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vTRN_MANAGER", AV43Trn_Manager);
          }
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vTRN_MANAGER", GetSecureSignedToken( sPrefix, AV43Trn_Manager, context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vFILENAME", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV45FileName, "")), context));
          GXKey = Crypto.GetSiteKey( );
+         forbiddenHiddens = new GXProperties();
+         forbiddenHiddens.Add("hshsalt", sPrefix+"hsh"+"WP_CreateLocationAndReceptionistStep2");
+         forbiddenHiddens.Add("FileName", StringUtil.RTrim( context.localUtil.Format( AV45FileName, "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"hsh", GetEncryptedHash( forbiddenHiddens.ToString(), GXKey));
+         GXUtil.WriteLogInfo("wp_createlocationandreceptioniststep2:[ SendSecurityCheck value for]"+forbiddenHiddens.ToJSonString());
       }
 
       protected void SendCloseFormHiddens( )
@@ -483,7 +490,6 @@ namespace GeneXus.Programs {
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vCHECKREQUIREDFIELDSRESULT", AV18CheckRequiredFieldsResult);
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vHASVALIDATIONERRORS", AV10HasValidationErrors);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vHASVALIDATIONERRORS", GetSecureSignedToken( sPrefix, AV10HasValidationErrors, context));
-         GxWebStd.gx_hidden_field( context, sPrefix+"vFILETYPE", AV46FileType);
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, sPrefix+"vWIZARDDATA", AV11WizardData);
@@ -1495,6 +1501,7 @@ namespace GeneXus.Programs {
       protected void gxgrGridsdt_receptionistss_refresh( int subGridsdt_receptionistss_Rows ,
                                                          bool AV10HasValidationErrors ,
                                                          SdtTrn_Manager AV43Trn_Manager ,
+                                                         string AV45FileName ,
                                                          string sPrefix )
       {
          initialize_formulas( ) ;
@@ -1504,6 +1511,11 @@ namespace GeneXus.Programs {
          GXKey = Crypto.GetSiteKey( );
          send_integrity_footer_hashes( ) ;
          GXKey = Crypto.GetSiteKey( );
+         forbiddenHiddens = new GXProperties();
+         forbiddenHiddens.Add("hshsalt", sPrefix+"hsh"+"WP_CreateLocationAndReceptionistStep2");
+         forbiddenHiddens.Add("FileName", StringUtil.RTrim( context.localUtil.Format( AV45FileName, "")));
+         GxWebStd.gx_hidden_field( context, sPrefix+"hsh", GetEncryptedHash( forbiddenHiddens.ToString(), GXKey));
+         GXUtil.WriteLogInfo("wp_createlocationandreceptioniststep2:[ SendSecurityCheck value for]"+forbiddenHiddens.ToJSonString());
          /* End function gxgrGridsdt_receptionistss_refresh */
       }
 
@@ -1651,7 +1663,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, sPrefix+"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, sPrefix) ;
+            gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, AV45FileName, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1672,7 +1684,7 @@ namespace GeneXus.Programs {
          Gridsdt_receptionistssContainer.AddObjectProperty("GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage", GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage);
          if ( isFullAjaxMode( ) )
          {
-            gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, sPrefix) ;
+            gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, AV45FileName, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return (short)(((GRIDSDT_RECEPTIONISTSS_nEOF==0) ? 0 : 2)) ;
@@ -1691,7 +1703,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, sPrefix+"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, sPrefix) ;
+            gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, AV45FileName, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1718,7 +1730,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, sPrefix+"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, sPrefix) ;
+            gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, AV45FileName, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return 0 ;
@@ -1737,7 +1749,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, sPrefix+"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage", StringUtil.LTrim( StringUtil.NToC( (decimal)(GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage), 15, 0, ".", "")));
          if ( isFullAjaxMode( ) )
          {
-            gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, sPrefix) ;
+            gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, AV45FileName, sPrefix) ;
          }
          send_integrity_footer_hashes( ) ;
          return (int)(0) ;
@@ -1823,6 +1835,7 @@ namespace GeneXus.Programs {
             AssignAttri(sPrefix, false, "AV15ReceptionistLastName", AV15ReceptionistLastName);
             AV45FileName = cgiGet( edtavFilename_Internalname);
             AssignAttri(sPrefix, false, "AV45FileName", AV45FileName);
+            GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vFILENAME", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV45FileName, "")), context));
             AV54ReceptionistImageVar = cgiGet( edtavReceptionistimagevar_Internalname);
             AssignAttri(sPrefix, false, "AV54ReceptionistImageVar", AV54ReceptionistImageVar);
             AV16ReceptionistEmail = cgiGet( edtavReceptionistemail_Internalname);
@@ -1856,6 +1869,24 @@ namespace GeneXus.Programs {
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Crypto.GetSiteKey( );
+            forbiddenHiddens = new GXProperties();
+            forbiddenHiddens.Add("hshsalt", sPrefix+"hsh"+"WP_CreateLocationAndReceptionistStep2");
+            AV45FileName = cgiGet( edtavFilename_Internalname);
+            AssignAttri(sPrefix, false, "AV45FileName", AV45FileName);
+            GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vFILENAME", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV45FileName, "")), context));
+            forbiddenHiddens.Add("FileName", StringUtil.RTrim( context.localUtil.Format( AV45FileName, "")));
+            hsh = cgiGet( sPrefix+"hsh");
+            if ( ! GXUtil.CheckEncryptedHash( forbiddenHiddens.ToString(), hsh, GXKey) )
+            {
+               GXUtil.WriteLogError("wp_createlocationandreceptioniststep2:[ SecurityCheckFailed (403 Forbidden) value for]"+forbiddenHiddens.ToJSonString());
+               GxWebError = 1;
+               context.HttpContext.Response.StatusCode = 403;
+               context.WriteHtmlText( "<title>403 Forbidden</title>") ;
+               context.WriteHtmlText( "<h1>403 Forbidden</h1>") ;
+               context.WriteHtmlText( "<p /><hr />") ;
+               GXUtil.WriteLog("send_http_error_code " + 403.ToString());
+               return  ;
+            }
             /* Check if conditions changed and reset current page numbers */
          }
          else
@@ -2025,7 +2056,7 @@ namespace GeneXus.Programs {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV26Trn_Receptionist", AV26Trn_Receptionist);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV19SDT_Receptionists", AV19SDT_Receptionists);
          nGXsfl_83_bak_idx = nGXsfl_83_idx;
-         gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, sPrefix) ;
+         gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, AV45FileName, sPrefix) ;
          nGXsfl_83_idx = nGXsfl_83_bak_idx;
          sGXsfl_83_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_83_idx), 4, 0), 4, "0");
          SubsflControlProps_832( ) ;
@@ -2135,7 +2166,7 @@ namespace GeneXus.Programs {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV11WizardData", AV11WizardData);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV19SDT_Receptionists", AV19SDT_Receptionists);
          nGXsfl_83_bak_idx = nGXsfl_83_idx;
-         gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, sPrefix) ;
+         gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, AV45FileName, sPrefix) ;
          nGXsfl_83_idx = nGXsfl_83_bak_idx;
          sGXsfl_83_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_83_idx), 4, 0), 4, "0");
          SubsflControlProps_832( ) ;
@@ -2163,7 +2194,7 @@ namespace GeneXus.Programs {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV26Trn_Receptionist", AV26Trn_Receptionist);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV19SDT_Receptionists", AV19SDT_Receptionists);
          nGXsfl_83_bak_idx = nGXsfl_83_idx;
-         gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, sPrefix) ;
+         gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, AV45FileName, sPrefix) ;
          nGXsfl_83_idx = nGXsfl_83_bak_idx;
          sGXsfl_83_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_83_idx), 4, 0), 4, "0");
          SubsflControlProps_832( ) ;
@@ -2197,7 +2228,7 @@ namespace GeneXus.Programs {
          AssignProp(sPrefix, false, cmbavGridactiongroup1_Internalname, "Values", cmbavGridactiongroup1.ToJavascriptSource(), true);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV19SDT_Receptionists", AV19SDT_Receptionists);
          nGXsfl_83_bak_idx = nGXsfl_83_idx;
-         gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, sPrefix) ;
+         gxgrGridsdt_receptionistss_refresh( subGridsdt_receptionistss_Rows, AV10HasValidationErrors, AV43Trn_Manager, AV45FileName, sPrefix) ;
          nGXsfl_83_idx = nGXsfl_83_bak_idx;
          sGXsfl_83_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_83_idx), 4, 0), 4, "0");
          SubsflControlProps_832( ) ;
@@ -2236,6 +2267,7 @@ namespace GeneXus.Programs {
          AssignAttri(sPrefix, false, "AV15ReceptionistLastName", AV15ReceptionistLastName);
          AV45FileName = AV11WizardData.gxTpr_Step2.gxTpr_Filename;
          AssignAttri(sPrefix, false, "AV45FileName", AV45FileName);
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vFILENAME", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV45FileName, "")), context));
          AV54ReceptionistImageVar = AV11WizardData.gxTpr_Step2.gxTpr_Receptionistimagevar;
          AssignAttri(sPrefix, false, "AV54ReceptionistImageVar", AV54ReceptionistImageVar);
          AV19SDT_Receptionists = AV11WizardData.gxTpr_Step2.gxTpr_Sdt_receptionists;
@@ -2246,31 +2278,6 @@ namespace GeneXus.Programs {
       {
          /* 'SAVEVARIABLESTOWIZARDDATA' Routine */
          returnInSub = false;
-         if ( AV56UploadedFiles.Count > 0 )
-         {
-            AV54ReceptionistImageVar = context.FileToBase64( ((SdtFileUploadData)AV56UploadedFiles.Item(1)).gxTpr_File);
-            AssignAttri(sPrefix, false, "AV54ReceptionistImageVar", AV54ReceptionistImageVar);
-            AV45FileName = ((SdtFileUploadData)AV56UploadedFiles.Item(1)).gxTpr_Fullname;
-            AssignAttri(sPrefix, false, "AV45FileName", AV45FileName);
-            AV46FileType = ((SdtFileUploadData)AV56UploadedFiles.Item(1)).gxTpr_Extension;
-            AssignAttri(sPrefix, false, "AV46FileType", AV46FileType);
-         }
-         else
-         {
-            if ( String.IsNullOrEmpty(StringUtil.RTrim( AV54ReceptionistImageVar)) )
-            {
-               AV54ReceptionistImageVar = "";
-               AssignAttri(sPrefix, false, "AV54ReceptionistImageVar", AV54ReceptionistImageVar);
-               AV45FileName = "";
-               AssignAttri(sPrefix, false, "AV45FileName", AV45FileName);
-            }
-            else
-            {
-               AssignAttri(sPrefix, false, "AV54ReceptionistImageVar", AV54ReceptionistImageVar);
-               AssignAttri(sPrefix, false, "AV45FileName", AV45FileName);
-               AssignAttri(sPrefix, false, "AV46FileType", AV46FileType);
-            }
-         }
          AV11WizardData.FromJSonString(AV5WebSession.Get(AV6WebSessionKey), null);
          AV11WizardData.gxTpr_Step2.gxTpr_Receptionistemail = AV16ReceptionistEmail;
          AV11WizardData.gxTpr_Step2.gxTpr_Receptionistphone = AV17ReceptionistPhone;
@@ -2393,6 +2400,7 @@ namespace GeneXus.Programs {
                /* Execute user subroutine: 'CLEARFORMVALUES' */
                S182 ();
                if (returnInSub) return;
+               AV5WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Location Inserted successfully", ""));
                CallWebObject(formatLink("trn_locationww.aspx") );
                context.wjLocDisableFrm = 1;
             }
@@ -2916,7 +2924,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20252211821523", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522516555363", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2932,7 +2940,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createlocationandreceptioniststep2.js", "?20252211821525", false, true);
+         context.AddJavascriptSource("wp_createlocationandreceptioniststep2.js", "?202522516555366", false, true);
          context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
@@ -3537,20 +3545,20 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"AV45FileName","fld":"vFILENAME","hsh":true}]""");
          setEventMetadata("REFRESH",""","oparms":[{"ctrl":"BTNUSERACTION1","prop":"Visible"}]}""");
          setEventMetadata("GRIDSDT_RECEPTIONISTSS.LOAD","""{"handler":"E216U2","iparms":[]""");
          setEventMetadata("GRIDSDT_RECEPTIONISTSS.LOAD",""","oparms":[{"av":"cmbavGridactiongroup1"},{"av":"AV60GridActionGroup1","fld":"vGRIDACTIONGROUP1","pic":"ZZZ9"}]}""");
-         setEventMetadata("ENTER","""{"handler":"E146U2","iparms":[{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV56UploadedFiles","fld":"vUPLOADEDFILES"},{"av":"AV54ReceptionistImageVar","fld":"vRECEPTIONISTIMAGEVAR"},{"av":"AV45FileName","fld":"vFILENAME"},{"av":"AV46FileType","fld":"vFILETYPE"},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV17ReceptionistPhone","fld":"vRECEPTIONISTPHONE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"AV35ReceptionistPhoneCode","fld":"vRECEPTIONISTPHONECODE"},{"av":"AV13ReceptionistId","fld":"vRECEPTIONISTID"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"AV61ImageFile2","fld":"vIMAGEFILE2"},{"av":"AV26Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV51ImageFile","fld":"vIMAGEFILE"},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"AV42isSuccessful","fld":"vISSUCCESSFUL"},{"av":"AV23ErrorMessages","fld":"vERRORMESSAGES"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"sPrefix"}]""");
-         setEventMetadata("ENTER",""","oparms":[{"av":"AV46FileType","fld":"vFILETYPE"},{"av":"AV54ReceptionistImageVar","fld":"vRECEPTIONISTIMAGEVAR"},{"av":"AV45FileName","fld":"vFILENAME"},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"AV61ImageFile2","fld":"vIMAGEFILE2"},{"av":"AV51ImageFile","fld":"vIMAGEFILE"},{"av":"AV23ErrorMessages","fld":"vERRORMESSAGES"},{"av":"AV24Trn_Location","fld":"vTRN_LOCATION"},{"av":"AV26Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV42isSuccessful","fld":"vISSUCCESSFUL"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV17ReceptionistPhone","fld":"vRECEPTIONISTPHONE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"AV13ReceptionistId","fld":"vRECEPTIONISTID"}]}""");
-         setEventMetadata("'WIZARDPREVIOUS'","""{"handler":"E156U2","iparms":[{"av":"AV56UploadedFiles","fld":"vUPLOADEDFILES"},{"av":"AV54ReceptionistImageVar","fld":"vRECEPTIONISTIMAGEVAR"},{"av":"AV45FileName","fld":"vFILENAME"},{"av":"AV46FileType","fld":"vFILETYPE"},{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV17ReceptionistPhone","fld":"vRECEPTIONISTPHONE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"AV35ReceptionistPhoneCode","fld":"vRECEPTIONISTPHONECODE"},{"av":"AV13ReceptionistId","fld":"vRECEPTIONISTID"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83}]""");
-         setEventMetadata("'WIZARDPREVIOUS'",""","oparms":[{"av":"AV46FileType","fld":"vFILETYPE"},{"av":"AV54ReceptionistImageVar","fld":"vRECEPTIONISTIMAGEVAR"},{"av":"AV45FileName","fld":"vFILENAME"},{"av":"AV11WizardData","fld":"vWIZARDDATA"}]}""");
-         setEventMetadata("'DOUINSERT'","""{"handler":"E166U2","iparms":[{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"A93ReceptionistEmail","fld":"RECEPTIONISTEMAIL"},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"AV54ReceptionistImageVar","fld":"vRECEPTIONISTIMAGEVAR"},{"av":"AV24Trn_Location","fld":"vTRN_LOCATION"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV35ReceptionistPhoneCode","fld":"vRECEPTIONISTPHONECODE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true}]""");
+         setEventMetadata("ENTER","""{"handler":"E146U2","iparms":[{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV17ReceptionistPhone","fld":"vRECEPTIONISTPHONE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"AV35ReceptionistPhoneCode","fld":"vRECEPTIONISTPHONECODE"},{"av":"AV13ReceptionistId","fld":"vRECEPTIONISTID"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV45FileName","fld":"vFILENAME","hsh":true},{"av":"AV54ReceptionistImageVar","fld":"vRECEPTIONISTIMAGEVAR"},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"AV61ImageFile2","fld":"vIMAGEFILE2"},{"av":"AV26Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV51ImageFile","fld":"vIMAGEFILE"},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"AV42isSuccessful","fld":"vISSUCCESSFUL"},{"av":"AV23ErrorMessages","fld":"vERRORMESSAGES"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"sPrefix"}]""");
+         setEventMetadata("ENTER",""","oparms":[{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"AV61ImageFile2","fld":"vIMAGEFILE2"},{"av":"AV51ImageFile","fld":"vIMAGEFILE"},{"av":"AV23ErrorMessages","fld":"vERRORMESSAGES"},{"av":"AV24Trn_Location","fld":"vTRN_LOCATION"},{"av":"AV26Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV42isSuccessful","fld":"vISSUCCESSFUL"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV17ReceptionistPhone","fld":"vRECEPTIONISTPHONE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"AV13ReceptionistId","fld":"vRECEPTIONISTID"}]}""");
+         setEventMetadata("'WIZARDPREVIOUS'","""{"handler":"E156U2","iparms":[{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV17ReceptionistPhone","fld":"vRECEPTIONISTPHONE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"AV35ReceptionistPhoneCode","fld":"vRECEPTIONISTPHONECODE"},{"av":"AV13ReceptionistId","fld":"vRECEPTIONISTID"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV45FileName","fld":"vFILENAME","hsh":true},{"av":"AV54ReceptionistImageVar","fld":"vRECEPTIONISTIMAGEVAR"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83}]""");
+         setEventMetadata("'WIZARDPREVIOUS'",""","oparms":[{"av":"AV11WizardData","fld":"vWIZARDDATA"}]}""");
+         setEventMetadata("'DOUINSERT'","""{"handler":"E166U2","iparms":[{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"A93ReceptionistEmail","fld":"RECEPTIONISTEMAIL"},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"AV54ReceptionistImageVar","fld":"vRECEPTIONISTIMAGEVAR"},{"av":"AV24Trn_Location","fld":"vTRN_LOCATION"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV35ReceptionistPhoneCode","fld":"vRECEPTIONISTPHONECODE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"AV45FileName","fld":"vFILENAME","hsh":true}]""");
          setEventMetadata("'DOUINSERT'",""","oparms":[{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV17ReceptionistPhone","fld":"vRECEPTIONISTPHONE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"AV13ReceptionistId","fld":"vRECEPTIONISTID"}]}""");
          setEventMetadata("'DOUSERACTION1'","""{"handler":"E116U1","iparms":[]}""");
-         setEventMetadata("DVELOP_CONFIRMPANEL_BTNUSERACTION1.CLOSE","""{"handler":"E136U2","iparms":[{"av":"Dvelop_confirmpanel_btnuseraction1_Result","ctrl":"DVELOP_CONFIRMPANEL_BTNUSERACTION1","prop":"Result"},{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"AV61ImageFile2","fld":"vIMAGEFILE2"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV26Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV51ImageFile","fld":"vIMAGEFILE"},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"AV42isSuccessful","fld":"vISSUCCESSFUL"},{"av":"AV23ErrorMessages","fld":"vERRORMESSAGES"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true}]""");
+         setEventMetadata("DVELOP_CONFIRMPANEL_BTNUSERACTION1.CLOSE","""{"handler":"E136U2","iparms":[{"av":"Dvelop_confirmpanel_btnuseraction1_Result","ctrl":"DVELOP_CONFIRMPANEL_BTNUSERACTION1","prop":"Result"},{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"AV61ImageFile2","fld":"vIMAGEFILE2"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV26Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV51ImageFile","fld":"vIMAGEFILE"},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"AV42isSuccessful","fld":"vISSUCCESSFUL"},{"av":"AV23ErrorMessages","fld":"vERRORMESSAGES"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV45FileName","fld":"vFILENAME","hsh":true}]""");
          setEventMetadata("DVELOP_CONFIRMPANEL_BTNUSERACTION1.CLOSE",""","oparms":[{"av":"AV61ImageFile2","fld":"vIMAGEFILE2"},{"av":"AV51ImageFile","fld":"vIMAGEFILE"},{"av":"AV23ErrorMessages","fld":"vERRORMESSAGES"},{"av":"AV24Trn_Location","fld":"vTRN_LOCATION"},{"av":"AV26Trn_Receptionist","fld":"vTRN_RECEPTIONIST"},{"av":"AV42isSuccessful","fld":"vISSUCCESSFUL"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV17ReceptionistPhone","fld":"vRECEPTIONISTPHONE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"AV13ReceptionistId","fld":"vRECEPTIONISTID"}]}""");
-         setEventMetadata("VGRIDACTIONGROUP1.CLICK","""{"handler":"E226U2","iparms":[{"av":"cmbavGridactiongroup1"},{"av":"AV60GridActionGroup1","fld":"vGRIDACTIONGROUP1","pic":"ZZZ9"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true}]""");
+         setEventMetadata("VGRIDACTIONGROUP1.CLICK","""{"handler":"E226U2","iparms":[{"av":"cmbavGridactiongroup1"},{"av":"AV60GridActionGroup1","fld":"vGRIDACTIONGROUP1","pic":"ZZZ9"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV11WizardData","fld":"vWIZARDDATA"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"sPrefix"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"AV45FileName","fld":"vFILENAME","hsh":true}]""");
          setEventMetadata("VGRIDACTIONGROUP1.CLICK",""","oparms":[{"av":"cmbavGridactiongroup1"},{"av":"AV60GridActionGroup1","fld":"vGRIDACTIONGROUP1","pic":"ZZZ9"},{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"},{"av":"AV14ReceptionistGivenName","fld":"vRECEPTIONISTGIVENNAME"},{"av":"AV15ReceptionistLastName","fld":"vRECEPTIONISTLASTNAME"},{"av":"AV17ReceptionistPhone","fld":"vRECEPTIONISTPHONE"},{"av":"AV38ReceptionistPhoneNumber","fld":"vRECEPTIONISTPHONENUMBER"},{"av":"AV13ReceptionistId","fld":"vRECEPTIONISTID"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"AV11WizardData","fld":"vWIZARDDATA"}]}""");
          setEventMetadata("'DOUSERACTIONDELETE'","""{"handler":"E236U1","iparms":[]}""");
          setEventMetadata("VRECEPTIONISTEMAIL.CONTROLVALUECHANGED","""{"handler":"E176U2","iparms":[{"av":"AV16ReceptionistEmail","fld":"vRECEPTIONISTEMAIL"}]""");
@@ -3559,13 +3567,13 @@ namespace GeneXus.Programs {
          setEventMetadata("VRECEPTIONISTPHONENUMBER.CONTROLVALUECHANGED",""","oparms":[{"av":"AV18CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"}]}""");
          setEventMetadata("USERCONTROL1.UPLOADCOMPLETE","""{"handler":"E126U2","iparms":[{"av":"AV56UploadedFiles","fld":"vUPLOADEDFILES"}]""");
          setEventMetadata("USERCONTROL1.UPLOADCOMPLETE",""","oparms":[{"av":"AV54ReceptionistImageVar","fld":"vRECEPTIONISTIMAGEVAR"}]}""");
-         setEventMetadata("GRIDSDT_RECEPTIONISTSS_FIRSTPAGE","""{"handler":"subgridsdt_receptionistss_firstpage","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"sPrefix"}]""");
+         setEventMetadata("GRIDSDT_RECEPTIONISTSS_FIRSTPAGE","""{"handler":"subgridsdt_receptionistss_firstpage","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"AV45FileName","fld":"vFILENAME","hsh":true},{"av":"sPrefix"}]""");
          setEventMetadata("GRIDSDT_RECEPTIONISTSS_FIRSTPAGE",""","oparms":[{"ctrl":"BTNUSERACTION1","prop":"Visible"}]}""");
-         setEventMetadata("GRIDSDT_RECEPTIONISTSS_PREVPAGE","""{"handler":"subgridsdt_receptionistss_previouspage","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"sPrefix"}]""");
+         setEventMetadata("GRIDSDT_RECEPTIONISTSS_PREVPAGE","""{"handler":"subgridsdt_receptionistss_previouspage","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"AV45FileName","fld":"vFILENAME","hsh":true},{"av":"sPrefix"}]""");
          setEventMetadata("GRIDSDT_RECEPTIONISTSS_PREVPAGE",""","oparms":[{"ctrl":"BTNUSERACTION1","prop":"Visible"}]}""");
-         setEventMetadata("GRIDSDT_RECEPTIONISTSS_NEXTPAGE","""{"handler":"subgridsdt_receptionistss_nextpage","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"sPrefix"}]""");
+         setEventMetadata("GRIDSDT_RECEPTIONISTSS_NEXTPAGE","""{"handler":"subgridsdt_receptionistss_nextpage","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"AV45FileName","fld":"vFILENAME","hsh":true},{"av":"sPrefix"}]""");
          setEventMetadata("GRIDSDT_RECEPTIONISTSS_NEXTPAGE",""","oparms":[{"ctrl":"BTNUSERACTION1","prop":"Visible"}]}""");
-         setEventMetadata("GRIDSDT_RECEPTIONISTSS_LASTPAGE","""{"handler":"subgridsdt_receptionistss_lastpage","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"sPrefix"}]""");
+         setEventMetadata("GRIDSDT_RECEPTIONISTSS_LASTPAGE","""{"handler":"subgridsdt_receptionistss_lastpage","iparms":[{"av":"GRIDSDT_RECEPTIONISTSS_nFirstRecordOnPage"},{"av":"GRIDSDT_RECEPTIONISTSS_nEOF"},{"av":"AV19SDT_Receptionists","fld":"vSDT_RECEPTIONISTS","grid":83},{"av":"nGXsfl_83_idx","ctrl":"GRID","prop":"GridCurrRow","grid":83},{"av":"nRC_GXsfl_83","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"GridRC","grid":83},{"av":"subGridsdt_receptionistss_Rows","ctrl":"GRIDSDT_RECEPTIONISTSS","prop":"Rows"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV43Trn_Manager","fld":"vTRN_MANAGER","hsh":true},{"av":"AV45FileName","fld":"vFILENAME","hsh":true},{"av":"sPrefix"}]""");
          setEventMetadata("GRIDSDT_RECEPTIONISTSS_LASTPAGE",""","oparms":[{"ctrl":"BTNUSERACTION1","prop":"Visible"}]}""");
          setEventMetadata("VALIDV_RECEPTIONISTEMAIL","""{"handler":"Validv_Receptionistemail","iparms":[]}""");
          setEventMetadata("VALIDV_RECEPTIONISTID","""{"handler":"Validv_Receptionistid","iparms":[]}""");
@@ -3601,17 +3609,18 @@ namespace GeneXus.Programs {
          gxfirstwebparm_bkp = "";
          sPrefix = "";
          AV43Trn_Manager = new SdtTrn_Manager(context);
+         AV45FileName = "";
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
          GXKey = "";
          GXEncryptionTmp = "";
+         forbiddenHiddens = new GXProperties();
          AV19SDT_Receptionists = new GXBaseCollection<SdtSDT_Receptionists_SDT_ReceptionistsItem>( context, "SDT_ReceptionistsItem", "Comforta_version2");
          AV56UploadedFiles = new GXBaseCollection<SdtFileUploadData>( context, "FileUploadData", "Comforta_version2");
          AV44FailedFiles = new GXBaseCollection<SdtFileUploadData>( context, "FileUploadData", "Comforta_version2");
          AV32DDO_TitleSettingsIcons = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
          AV36ReceptionistPhoneCode_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
-         AV46FileType = "";
          AV11WizardData = new SdtWP_CreateLocationAndReceptionistData(context);
          AV61ImageFile2 = "";
          AV26Trn_Receptionist = new SdtTrn_Receptionist(context);
@@ -3648,7 +3657,7 @@ namespace GeneXus.Programs {
          EvtRowId = "";
          sEvtType = "";
          GXDecQS = "";
-         AV45FileName = "";
+         hsh = "";
          AV5WebSession = context.GetSession();
          GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons(context);
          Gridsdt_receptionistss_empowerer_Gridinternalname = "";
@@ -3877,6 +3886,7 @@ namespace GeneXus.Programs {
       private string cmbavGridactiongroup1_Internalname ;
       private string GXDecQS ;
       private string sGXsfl_83_fel_idx="0001" ;
+      private string hsh ;
       private string Combo_receptionistphonecode_Htmltemplate ;
       private string Gridsdt_receptionistss_empowerer_Gridinternalname ;
       private string Combo_receptionistphonecode_Selectedtext_set ;
@@ -3947,25 +3957,25 @@ namespace GeneXus.Programs {
       private bool Usercontrol1_Enableuploadedfilecanceling ;
       private bool Usercontrol1_Disableimageresize ;
       private bool Usercontrol1_Autodisableaddingfiles ;
-      private string AV46FileType ;
       private string AV54ReceptionistImageVar ;
       private string AV6WebSessionKey ;
       private string AV8PreviousStep ;
       private string wcpOAV6WebSessionKey ;
       private string wcpOAV8PreviousStep ;
+      private string AV45FileName ;
       private string A93ReceptionistEmail ;
       private string AV14ReceptionistGivenName ;
       private string AV15ReceptionistLastName ;
       private string AV16ReceptionistEmail ;
       private string AV38ReceptionistPhoneNumber ;
       private string AV35ReceptionistPhoneCode ;
-      private string AV45FileName ;
       private string AV33defaultCountryPhoneCode ;
       private Guid AV13ReceptionistId ;
       private string AV61ImageFile2 ;
       private string AV51ImageFile ;
       private string AV50Image ;
       private IGxSession AV5WebSession ;
+      private GXProperties forbiddenHiddens ;
       private GXWebGrid Gridsdt_receptionistssContainer ;
       private GXWebRow Gridsdt_receptionistssRow ;
       private GXWebColumn Gridsdt_receptionistssColumn ;

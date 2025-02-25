@@ -50,6 +50,10 @@ namespace GeneXus.Programs
 
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphone = "";
 
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationlogovar = "";
+
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Filename = "";
+
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphonenumber = "";
 
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphonecode = "";
@@ -115,6 +119,12 @@ namespace GeneXus.Programs
 
 
 			AddObjectProperty("OrganisationPhone", gxTpr_Organisationphone, false);
+
+
+			AddObjectProperty("OrganisationLogoVar", gxTpr_Organisationlogovar, false);
+
+
+			AddObjectProperty("FileName", gxTpr_Filename, false);
 
 
 			AddObjectProperty("OrganisationPhoneNumber", gxTpr_Organisationphonenumber, false);
@@ -320,6 +330,38 @@ namespace GeneXus.Programs
 
 
 
+		[SoapElement(ElementName="OrganisationLogoVar")]
+		[XmlElement(ElementName="OrganisationLogoVar")]
+		public string gxTpr_Organisationlogovar
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationlogovar; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationlogovar = value;
+				SetDirty("Organisationlogovar");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="FileName")]
+		[XmlElement(ElementName="FileName")]
+		public string gxTpr_Filename
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Filename; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Filename = value;
+				SetDirty("Filename");
+			}
+		}
+
+
+
+
 		[SoapElement(ElementName="OrganisationPhoneNumber")]
 		[XmlElement(ElementName="OrganisationPhoneNumber")]
 		public string gxTpr_Organisationphonenumber
@@ -384,6 +426,8 @@ namespace GeneXus.Programs
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationvatnumber = "";
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationemail = "";
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphone = "";
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationlogovar = "";
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Filename = "";
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphonenumber = "";
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphonecode = "";
 			return  ;
@@ -429,6 +473,12 @@ namespace GeneXus.Programs
 		 
 
 		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphone;
+		 
+
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationlogovar;
+		 
+
+		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Filename;
 		 
 
 		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step1_Organisationphonenumber;
@@ -598,7 +648,31 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="OrganisationPhoneNumber", Order=12)]
+		[DataMember(Name="OrganisationLogoVar", Order=12)]
+		public  string gxTpr_Organisationlogovar
+		{
+			get { 
+				return sdt.gxTpr_Organisationlogovar;
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationlogovar = value;
+			}
+		}
+
+		[DataMember(Name="FileName", Order=13)]
+		public  string gxTpr_Filename
+		{
+			get { 
+				return sdt.gxTpr_Filename;
+
+			}
+			set { 
+				 sdt.gxTpr_Filename = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationPhoneNumber", Order=14)]
 		public  string gxTpr_Organisationphonenumber
 		{
 			get { 
@@ -610,7 +684,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="OrganisationPhoneCode", Order=13)]
+		[DataMember(Name="OrganisationPhoneCode", Order=15)]
 		public  string gxTpr_Organisationphonecode
 		{
 			get { 

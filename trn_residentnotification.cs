@@ -385,14 +385,110 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 form__cell", "start", "top", "", "", "div");
          /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtAppNotificationDate_Internalname+"\"", "", "div");
+         /* Attribute/Variable Label */
+         GxWebStd.gx_label_element( context, edtAppNotificationDate_Internalname, context.GetMessage( "App Notification Date", ""), "col-sm-3 AttributeLabel", 1, true, "");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+         /* Single line edit */
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 44,'',false,'',0)\"";
+         context.WriteHtmlText( "<div id=\""+edtAppNotificationDate_Internalname+"_dp_container\" class=\"dp_container\" style=\"white-space:nowrap;display:inline;\">") ;
+         GxWebStd.gx_single_line_edit( context, edtAppNotificationDate_Internalname, context.localUtil.TToC( A501AppNotificationDate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "), context.localUtil.Format( A501AppNotificationDate, "99/99/9999 99:99"), TempTags+" onchange=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onchange(this, event)\" "+" onblur=\""+"gx.date.valid_date(this, 10,'"+context.GetLanguageProperty( "date_fmt")+"',5,"+context.GetLanguageProperty( "time_fmt")+",'"+context.GetLanguageProperty( "code")+"',false,0);"+";gx.evt.onblur(this,44);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtAppNotificationDate_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtAppNotificationDate_Enabled, 0, "text", "", 19, "chr", 1, "row", 19, 0, 0, 0, 0, -1, 0, true, "", "end", false, "", "HLP_Trn_ResidentNotification.htm");
+         GxWebStd.gx_bitmap( context, edtAppNotificationDate_Internalname+"_dp_trigger", context.GetImagePath( "61b9b5d3-dff6-4d59-9b00-da61bc2cbe93", "", context.GetTheme( )), "", "", "", "", ((1==0)||(edtAppNotificationDate_Enabled==0) ? 0 : 1), 0, "Date selector", "Date selector", 0, 1, 0, "", 0, "", 0, 0, 0, "", "", "cursor: pointer;", "", "", "", "", "", "", "", "", 1, false, false, "", "HLP_Trn_ResidentNotification.htm");
+         context.WriteHtmlTextNl( "</div>") ;
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 form__cell", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtAppNotificationTitle_Internalname+"\"", "", "div");
+         /* Attribute/Variable Label */
+         GxWebStd.gx_label_element( context, edtAppNotificationTitle_Internalname, context.GetMessage( "App Notification Title", ""), "col-sm-3 AttributeLabel", 1, true, "");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+         /* Single line edit */
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 49,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtAppNotificationTitle_Internalname, A499AppNotificationTitle, StringUtil.RTrim( context.localUtil.Format( A499AppNotificationTitle, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,49);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtAppNotificationTitle_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtAppNotificationTitle_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "GeneXusUnanimo\\Title", "start", true, "", "HLP_Trn_ResidentNotification.htm");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 form__cell", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtAppNotificationDescription_Internalname+"\"", "", "div");
+         /* Attribute/Variable Label */
+         GxWebStd.gx_label_element( context, edtAppNotificationDescription_Internalname, context.GetMessage( "App Notification Description", ""), "col-sm-3 AttributeLabel", 1, true, "");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+         /* Multiple line edit */
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 54,'',false,'',0)\"";
+         ClassString = "Attribute";
+         StyleString = "";
+         ClassString = "Attribute";
+         StyleString = "";
+         GxWebStd.gx_html_textarea( context, edtAppNotificationDescription_Internalname, A500AppNotificationDescription, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,54);\"", 0, 1, edtAppNotificationDescription_Enabled, 0, 80, "chr", 3, "row", 0, StyleString, ClassString, "", "", "200", -1, 0, "", "", -1, true, "GeneXusUnanimo\\Description", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Trn_ResidentNotification.htm");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 form__cell", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtAppNotificationTopic_Internalname+"\"", "", "div");
+         /* Attribute/Variable Label */
+         GxWebStd.gx_label_element( context, edtAppNotificationTopic_Internalname, context.GetMessage( "App Notification Topic", ""), "col-sm-3 AttributeLabel", 1, true, "");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+         /* Single line edit */
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 59,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtAppNotificationTopic_Internalname, A502AppNotificationTopic, StringUtil.RTrim( context.localUtil.Format( A502AppNotificationTopic, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,59);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtAppNotificationTopic_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtAppNotificationTopic_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_ResidentNotification.htm");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 form__cell", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtAppNotificationMetadata_Internalname+"\"", "", "div");
+         /* Attribute/Variable Label */
+         GxWebStd.gx_label_element( context, edtAppNotificationMetadata_Internalname, context.GetMessage( "App Notification Metadata", ""), "col-sm-3 AttributeLabel", 1, true, "");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
+         /* Multiple line edit */
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 64,'',false,'',0)\"";
+         ClassString = "Attribute";
+         StyleString = "";
+         ClassString = "Attribute";
+         StyleString = "";
+         GxWebStd.gx_html_textarea( context, edtAppNotificationMetadata_Internalname, A510AppNotificationMetadata, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,64);\"", 0, 1, edtAppNotificationMetadata_Enabled, 0, 80, "chr", 10, "row", 0, StyleString, ClassString, "", "", "2097152", -1, 0, "", "", -1, true, "", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Trn_ResidentNotification.htm");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 form__cell", "start", "top", "", "", "div");
+         /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtResidentId_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
          GxWebStd.gx_label_element( context, edtResidentId_Internalname, context.GetMessage( "Id", ""), "col-sm-3 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-9 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 44,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtResidentId_Internalname, A62ResidentId.ToString(), A62ResidentId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,44);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtResidentId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtResidentId_Enabled, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_ResidentNotification.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 69,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtResidentId_Internalname, A62ResidentId.ToString(), A62ResidentId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,69);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtResidentId_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtResidentId_Enabled, 0, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_ResidentNotification.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -408,21 +504,21 @@ namespace GeneXus.Programs {
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 49,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 74,'',false,'',0)\"";
          ClassString = "Button button-primary";
          StyleString = "";
          GxWebStd.gx_button_ctrl( context, bttBtn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtn_enter_Visible, bttBtn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_ResidentNotification.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 51,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 76,'',false,'',0)\"";
          ClassString = "Button button-tertiary";
          StyleString = "";
          GxWebStd.gx_button_ctrl( context, bttBtn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_ResidentNotification.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 53,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 78,'',false,'',0)\"";
          ClassString = "Button button-tertiary";
          StyleString = "";
          GxWebStd.gx_button_ctrl( context, bttBtn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtn_delete_Visible, bttBtn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_ResidentNotification.htm");
@@ -514,6 +610,17 @@ namespace GeneXus.Programs {
                   wbErr = true;
                }
             }
+            A501AppNotificationDate = context.localUtil.CToT( cgiGet( edtAppNotificationDate_Internalname));
+            AssignAttri("", false, "A501AppNotificationDate", context.localUtil.TToC( A501AppNotificationDate, 10, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+            A499AppNotificationTitle = cgiGet( edtAppNotificationTitle_Internalname);
+            AssignAttri("", false, "A499AppNotificationTitle", A499AppNotificationTitle);
+            A500AppNotificationDescription = cgiGet( edtAppNotificationDescription_Internalname);
+            AssignAttri("", false, "A500AppNotificationDescription", A500AppNotificationDescription);
+            A502AppNotificationTopic = cgiGet( edtAppNotificationTopic_Internalname);
+            AssignAttri("", false, "A502AppNotificationTopic", A502AppNotificationTopic);
+            A510AppNotificationMetadata = cgiGet( edtAppNotificationMetadata_Internalname);
+            n510AppNotificationMetadata = false;
+            AssignAttri("", false, "A510AppNotificationMetadata", A510AppNotificationMetadata);
             if ( StringUtil.StrCmp(cgiGet( edtResidentId_Internalname), "") == 0 )
             {
                A62ResidentId = Guid.Empty;
@@ -744,6 +851,11 @@ namespace GeneXus.Programs {
             Z497ResidentNotificationId = A497ResidentNotificationId;
             Z62ResidentId = A62ResidentId;
             Z498AppNotificationId = A498AppNotificationId;
+            Z501AppNotificationDate = A501AppNotificationDate;
+            Z499AppNotificationTitle = A499AppNotificationTitle;
+            Z500AppNotificationDescription = A500AppNotificationDescription;
+            Z502AppNotificationTopic = A502AppNotificationTopic;
+            Z510AppNotificationMetadata = A510AppNotificationMetadata;
          }
       }
 
@@ -797,6 +909,17 @@ namespace GeneXus.Programs {
          if ( (pr_default.getStatus(3) != 101) )
          {
             RcdFound96 = 1;
+            A501AppNotificationDate = T001J5_A501AppNotificationDate[0];
+            AssignAttri("", false, "A501AppNotificationDate", context.localUtil.TToC( A501AppNotificationDate, 10, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+            A499AppNotificationTitle = T001J5_A499AppNotificationTitle[0];
+            AssignAttri("", false, "A499AppNotificationTitle", A499AppNotificationTitle);
+            A500AppNotificationDescription = T001J5_A500AppNotificationDescription[0];
+            AssignAttri("", false, "A500AppNotificationDescription", A500AppNotificationDescription);
+            A502AppNotificationTopic = T001J5_A502AppNotificationTopic[0];
+            AssignAttri("", false, "A502AppNotificationTopic", A502AppNotificationTopic);
+            A510AppNotificationMetadata = T001J5_A510AppNotificationMetadata[0];
+            n510AppNotificationMetadata = T001J5_n510AppNotificationMetadata[0];
+            AssignAttri("", false, "A510AppNotificationMetadata", A510AppNotificationMetadata);
             A62ResidentId = T001J5_A62ResidentId[0];
             AssignAttri("", false, "A62ResidentId", A62ResidentId.ToString());
             A498AppNotificationId = T001J5_A498AppNotificationId[0];
@@ -825,6 +948,17 @@ namespace GeneXus.Programs {
             GX_FocusControl = edtAppNotificationId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
+         A501AppNotificationDate = T001J4_A501AppNotificationDate[0];
+         AssignAttri("", false, "A501AppNotificationDate", context.localUtil.TToC( A501AppNotificationDate, 10, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+         A499AppNotificationTitle = T001J4_A499AppNotificationTitle[0];
+         AssignAttri("", false, "A499AppNotificationTitle", A499AppNotificationTitle);
+         A500AppNotificationDescription = T001J4_A500AppNotificationDescription[0];
+         AssignAttri("", false, "A500AppNotificationDescription", A500AppNotificationDescription);
+         A502AppNotificationTopic = T001J4_A502AppNotificationTopic[0];
+         AssignAttri("", false, "A502AppNotificationTopic", A502AppNotificationTopic);
+         A510AppNotificationMetadata = T001J4_A510AppNotificationMetadata[0];
+         n510AppNotificationMetadata = T001J4_n510AppNotificationMetadata[0];
+         AssignAttri("", false, "A510AppNotificationMetadata", A510AppNotificationMetadata);
          pr_default.close(2);
       }
 
@@ -848,8 +982,20 @@ namespace GeneXus.Programs {
             GX_FocusControl = edtAppNotificationId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
+         A501AppNotificationDate = T001J6_A501AppNotificationDate[0];
+         AssignAttri("", false, "A501AppNotificationDate", context.localUtil.TToC( A501AppNotificationDate, 10, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+         A499AppNotificationTitle = T001J6_A499AppNotificationTitle[0];
+         AssignAttri("", false, "A499AppNotificationTitle", A499AppNotificationTitle);
+         A500AppNotificationDescription = T001J6_A500AppNotificationDescription[0];
+         AssignAttri("", false, "A500AppNotificationDescription", A500AppNotificationDescription);
+         A502AppNotificationTopic = T001J6_A502AppNotificationTopic[0];
+         AssignAttri("", false, "A502AppNotificationTopic", A502AppNotificationTopic);
+         A510AppNotificationMetadata = T001J6_A510AppNotificationMetadata[0];
+         n510AppNotificationMetadata = T001J6_n510AppNotificationMetadata[0];
+         AssignAttri("", false, "A510AppNotificationMetadata", A510AppNotificationMetadata);
          GxWebStd.set_html_headers( context, 0, "", "");
          AddString( "[[") ;
+         AddString( "\""+GXUtil.EncodeJSConstant( context.localUtil.TToC( A501AppNotificationDate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "))+"\""+","+"\""+GXUtil.EncodeJSConstant( A499AppNotificationTitle)+"\""+","+"\""+GXUtil.EncodeJSConstant( A500AppNotificationDescription)+"\""+","+"\""+GXUtil.EncodeJSConstant( A502AppNotificationTopic)+"\""+","+"\""+GXUtil.EncodeJSConstant( A510AppNotificationMetadata)+"\"") ;
          AddString( "]") ;
          if ( (pr_default.getStatus(4) == 101) )
          {
@@ -1445,7 +1591,24 @@ namespace GeneXus.Programs {
       protected void OnDeleteControls1J96( )
       {
          standaloneModal( ) ;
-         /* No delete mode formulas found. */
+         if ( AnyError == 0 )
+         {
+            /* Delete mode formulas */
+            /* Using cursor T001J13 */
+            pr_default.execute(11, new Object[] {A498AppNotificationId});
+            A501AppNotificationDate = T001J13_A501AppNotificationDate[0];
+            AssignAttri("", false, "A501AppNotificationDate", context.localUtil.TToC( A501AppNotificationDate, 10, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+            A499AppNotificationTitle = T001J13_A499AppNotificationTitle[0];
+            AssignAttri("", false, "A499AppNotificationTitle", A499AppNotificationTitle);
+            A500AppNotificationDescription = T001J13_A500AppNotificationDescription[0];
+            AssignAttri("", false, "A500AppNotificationDescription", A500AppNotificationDescription);
+            A502AppNotificationTopic = T001J13_A502AppNotificationTopic[0];
+            AssignAttri("", false, "A502AppNotificationTopic", A502AppNotificationTopic);
+            A510AppNotificationMetadata = T001J13_A510AppNotificationMetadata[0];
+            n510AppNotificationMetadata = T001J13_n510AppNotificationMetadata[0];
+            AssignAttri("", false, "A510AppNotificationMetadata", A510AppNotificationMetadata);
+            pr_default.close(11);
+         }
       }
 
       protected void EndLevel1J96( )
@@ -1483,13 +1646,13 @@ namespace GeneXus.Programs {
 
       public void ScanStart1J96( )
       {
-         /* Using cursor T001J13 */
-         pr_default.execute(11);
+         /* Using cursor T001J14 */
+         pr_default.execute(12);
          RcdFound96 = 0;
-         if ( (pr_default.getStatus(11) != 101) )
+         if ( (pr_default.getStatus(12) != 101) )
          {
             RcdFound96 = 1;
-            A497ResidentNotificationId = T001J13_A497ResidentNotificationId[0];
+            A497ResidentNotificationId = T001J14_A497ResidentNotificationId[0];
             AssignAttri("", false, "A497ResidentNotificationId", A497ResidentNotificationId.ToString());
          }
          /* Load Subordinate Levels */
@@ -1498,19 +1661,19 @@ namespace GeneXus.Programs {
       protected void ScanNext1J96( )
       {
          /* Scan next routine */
-         pr_default.readNext(11);
+         pr_default.readNext(12);
          RcdFound96 = 0;
-         if ( (pr_default.getStatus(11) != 101) )
+         if ( (pr_default.getStatus(12) != 101) )
          {
             RcdFound96 = 1;
-            A497ResidentNotificationId = T001J13_A497ResidentNotificationId[0];
+            A497ResidentNotificationId = T001J14_A497ResidentNotificationId[0];
             AssignAttri("", false, "A497ResidentNotificationId", A497ResidentNotificationId.ToString());
          }
       }
 
       protected void ScanEnd1J96( )
       {
-         pr_default.close(11);
+         pr_default.close(12);
       }
 
       protected void AfterConfirm1J96( )
@@ -1549,6 +1712,16 @@ namespace GeneXus.Programs {
          AssignProp("", false, edtResidentNotificationId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtResidentNotificationId_Enabled), 5, 0), true);
          edtAppNotificationId_Enabled = 0;
          AssignProp("", false, edtAppNotificationId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtAppNotificationId_Enabled), 5, 0), true);
+         edtAppNotificationDate_Enabled = 0;
+         AssignProp("", false, edtAppNotificationDate_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtAppNotificationDate_Enabled), 5, 0), true);
+         edtAppNotificationTitle_Enabled = 0;
+         AssignProp("", false, edtAppNotificationTitle_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtAppNotificationTitle_Enabled), 5, 0), true);
+         edtAppNotificationDescription_Enabled = 0;
+         AssignProp("", false, edtAppNotificationDescription_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtAppNotificationDescription_Enabled), 5, 0), true);
+         edtAppNotificationTopic_Enabled = 0;
+         AssignProp("", false, edtAppNotificationTopic_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtAppNotificationTopic_Enabled), 5, 0), true);
+         edtAppNotificationMetadata_Enabled = 0;
+         AssignProp("", false, edtAppNotificationMetadata_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtAppNotificationMetadata_Enabled), 5, 0), true);
          edtResidentId_Enabled = 0;
          AssignProp("", false, edtResidentId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtResidentId_Enabled), 5, 0), true);
       }
@@ -1601,6 +1774,9 @@ namespace GeneXus.Programs {
          {
             enableOutput();
          }
+         context.AddJavascriptSource("calendar.js", "?"+context.GetBuildNumber( 1918140), false, true);
+         context.AddJavascriptSource("calendar-setup.js", "?"+context.GetBuildNumber( 1918140), false, true);
+         context.AddJavascriptSource("calendar-"+StringUtil.Substring( context.GetLanguageProperty( "culture"), 1, 2)+".js", "?"+context.GetBuildNumber( 1918140), false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -1737,6 +1913,17 @@ namespace GeneXus.Programs {
       {
          A498AppNotificationId = Guid.Empty;
          AssignAttri("", false, "A498AppNotificationId", A498AppNotificationId.ToString());
+         A501AppNotificationDate = (DateTime)(DateTime.MinValue);
+         AssignAttri("", false, "A501AppNotificationDate", context.localUtil.TToC( A501AppNotificationDate, 10, 5, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+         A499AppNotificationTitle = "";
+         AssignAttri("", false, "A499AppNotificationTitle", A499AppNotificationTitle);
+         A500AppNotificationDescription = "";
+         AssignAttri("", false, "A500AppNotificationDescription", A500AppNotificationDescription);
+         A502AppNotificationTopic = "";
+         AssignAttri("", false, "A502AppNotificationTopic", A502AppNotificationTopic);
+         A510AppNotificationMetadata = "";
+         n510AppNotificationMetadata = false;
+         AssignAttri("", false, "A510AppNotificationMetadata", A510AppNotificationMetadata);
          A62ResidentId = Guid.NewGuid( );
          AssignAttri("", false, "A62ResidentId", A62ResidentId.ToString());
          Z62ResidentId = Guid.Empty;
@@ -1758,6 +1945,7 @@ namespace GeneXus.Programs {
 
       protected void define_styles( )
       {
+         AddStyleSheetFile("calendar-system.css", "");
          AddThemeStyleSheetFile("", context.GetTheme( )+".css", "?"+GetCacheInvalidationToken( ));
          bool outputEnabled = isOutputEnabled( );
          if ( context.isSpaRequest( ) )
@@ -1767,7 +1955,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025122212389", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20252251657051", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1783,7 +1971,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_residentnotification.js", "?2025122212389", false, true);
+         context.AddJavascriptSource("trn_residentnotification.js", "?20252251657051", false, true);
          /* End function include_jscripts */
       }
 
@@ -1799,6 +1987,11 @@ namespace GeneXus.Programs {
          divToolbarcell_Internalname = "TOOLBARCELL";
          edtResidentNotificationId_Internalname = "RESIDENTNOTIFICATIONID";
          edtAppNotificationId_Internalname = "APPNOTIFICATIONID";
+         edtAppNotificationDate_Internalname = "APPNOTIFICATIONDATE";
+         edtAppNotificationTitle_Internalname = "APPNOTIFICATIONTITLE";
+         edtAppNotificationDescription_Internalname = "APPNOTIFICATIONDESCRIPTION";
+         edtAppNotificationTopic_Internalname = "APPNOTIFICATIONTOPIC";
+         edtAppNotificationMetadata_Internalname = "APPNOTIFICATIONMETADATA";
          edtResidentId_Internalname = "RESIDENTID";
          divFormcontainer_Internalname = "FORMCONTAINER";
          bttBtn_enter_Internalname = "BTN_ENTER";
@@ -1828,6 +2021,14 @@ namespace GeneXus.Programs {
          bttBtn_enter_Visible = 1;
          edtResidentId_Jsonclick = "";
          edtResidentId_Enabled = 1;
+         edtAppNotificationMetadata_Enabled = 0;
+         edtAppNotificationTopic_Jsonclick = "";
+         edtAppNotificationTopic_Enabled = 0;
+         edtAppNotificationDescription_Enabled = 0;
+         edtAppNotificationTitle_Jsonclick = "";
+         edtAppNotificationTitle_Enabled = 0;
+         edtAppNotificationDate_Jsonclick = "";
+         edtAppNotificationDate_Enabled = 0;
          edtAppNotificationId_Jsonclick = "";
          edtAppNotificationId_Enabled = 1;
          edtResidentNotificationId_Jsonclick = "";
@@ -1896,10 +2097,20 @@ namespace GeneXus.Programs {
          /*  Sending validation outputs */
          AssignAttri("", false, "A498AppNotificationId", A498AppNotificationId.ToString());
          AssignAttri("", false, "A62ResidentId", A62ResidentId.ToString());
+         AssignAttri("", false, "A501AppNotificationDate", context.localUtil.TToC( A501AppNotificationDate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+         AssignAttri("", false, "A499AppNotificationTitle", A499AppNotificationTitle);
+         AssignAttri("", false, "A500AppNotificationDescription", A500AppNotificationDescription);
+         AssignAttri("", false, "A502AppNotificationTopic", A502AppNotificationTopic);
+         AssignAttri("", false, "A510AppNotificationMetadata", A510AppNotificationMetadata);
          AssignAttri("", false, "Gx_mode", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "Z497ResidentNotificationId", Z497ResidentNotificationId.ToString());
          GxWebStd.gx_hidden_field( context, "Z498AppNotificationId", Z498AppNotificationId.ToString());
          GxWebStd.gx_hidden_field( context, "Z62ResidentId", Z62ResidentId.ToString());
+         GxWebStd.gx_hidden_field( context, "Z501AppNotificationDate", context.localUtil.TToC( Z501AppNotificationDate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+         GxWebStd.gx_hidden_field( context, "Z499AppNotificationTitle", Z499AppNotificationTitle);
+         GxWebStd.gx_hidden_field( context, "Z500AppNotificationDescription", Z500AppNotificationDescription);
+         GxWebStd.gx_hidden_field( context, "Z502AppNotificationTopic", Z502AppNotificationTopic);
+         GxWebStd.gx_hidden_field( context, "Z510AppNotificationMetadata", Z510AppNotificationMetadata);
          AssignProp("", false, bttBtn_delete_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(bttBtn_delete_Enabled), 5, 0), true);
          AssignProp("", false, bttBtn_enter_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(bttBtn_enter_Enabled), 5, 0), true);
          SendCloseFormHiddens( ) ;
@@ -1907,17 +2118,29 @@ namespace GeneXus.Programs {
 
       public void Valid_Appnotificationid( )
       {
-         /* Using cursor T001J14 */
-         pr_default.execute(12, new Object[] {A498AppNotificationId});
-         if ( (pr_default.getStatus(12) == 101) )
+         n510AppNotificationMetadata = false;
+         /* Using cursor T001J13 */
+         pr_default.execute(11, new Object[] {A498AppNotificationId});
+         if ( (pr_default.getStatus(11) == 101) )
          {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "App Notifications", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "APPNOTIFICATIONID");
             AnyError = 1;
             GX_FocusControl = edtAppNotificationId_Internalname;
          }
-         pr_default.close(12);
+         A501AppNotificationDate = T001J13_A501AppNotificationDate[0];
+         A499AppNotificationTitle = T001J13_A499AppNotificationTitle[0];
+         A500AppNotificationDescription = T001J13_A500AppNotificationDescription[0];
+         A502AppNotificationTopic = T001J13_A502AppNotificationTopic[0];
+         A510AppNotificationMetadata = T001J13_A510AppNotificationMetadata[0];
+         n510AppNotificationMetadata = T001J13_n510AppNotificationMetadata[0];
+         pr_default.close(11);
          dynload_actions( ) ;
          /*  Sending validation outputs */
+         AssignAttri("", false, "A501AppNotificationDate", context.localUtil.TToC( A501AppNotificationDate, 10, 8, (short)(((StringUtil.StrCmp(context.GetLanguageProperty( "time_fmt"), "12")==0) ? 1 : 0)), (short)(DateTimeUtil.MapDateTimeFormat( context.GetLanguageProperty( "date_fmt"))), "/", ":", " "));
+         AssignAttri("", false, "A499AppNotificationTitle", A499AppNotificationTitle);
+         AssignAttri("", false, "A500AppNotificationDescription", A500AppNotificationDescription);
+         AssignAttri("", false, "A502AppNotificationTopic", A502AppNotificationTopic);
+         AssignAttri("", false, "A510AppNotificationMetadata", A510AppNotificationMetadata);
       }
 
       public override bool SupportAjaxEvent( )
@@ -1930,8 +2153,9 @@ namespace GeneXus.Programs {
          setEventMetadata("ENTER","""{"handler":"UserMainFullajax","iparms":[{"postForm":true}]}""");
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[]}""");
          setEventMetadata("VALID_RESIDENTNOTIFICATIONID","""{"handler":"Valid_Residentnotificationid","iparms":[{"av":"A497ResidentNotificationId","fld":"RESIDENTNOTIFICATIONID"},{"av":"Gx_BScreen","fld":"vGXBSCREEN","pic":"9"},{"av":"Gx_mode","fld":"vMODE","pic":"@!"},{"av":"A62ResidentId","fld":"RESIDENTID"}]""");
-         setEventMetadata("VALID_RESIDENTNOTIFICATIONID",""","oparms":[{"av":"A498AppNotificationId","fld":"APPNOTIFICATIONID"},{"av":"A62ResidentId","fld":"RESIDENTID"},{"av":"Gx_mode","fld":"vMODE","pic":"@!"},{"av":"Z497ResidentNotificationId"},{"av":"Z498AppNotificationId"},{"av":"Z62ResidentId"},{"ctrl":"BTN_DELETE","prop":"Enabled"},{"ctrl":"BTN_ENTER","prop":"Enabled"}]}""");
-         setEventMetadata("VALID_APPNOTIFICATIONID","""{"handler":"Valid_Appnotificationid","iparms":[{"av":"A498AppNotificationId","fld":"APPNOTIFICATIONID"}]}""");
+         setEventMetadata("VALID_RESIDENTNOTIFICATIONID",""","oparms":[{"av":"A498AppNotificationId","fld":"APPNOTIFICATIONID"},{"av":"A62ResidentId","fld":"RESIDENTID"},{"av":"A501AppNotificationDate","fld":"APPNOTIFICATIONDATE","pic":"99/99/9999 99:99"},{"av":"A499AppNotificationTitle","fld":"APPNOTIFICATIONTITLE"},{"av":"A500AppNotificationDescription","fld":"APPNOTIFICATIONDESCRIPTION"},{"av":"A502AppNotificationTopic","fld":"APPNOTIFICATIONTOPIC"},{"av":"A510AppNotificationMetadata","fld":"APPNOTIFICATIONMETADATA"},{"av":"Gx_mode","fld":"vMODE","pic":"@!"},{"av":"Z497ResidentNotificationId"},{"av":"Z498AppNotificationId"},{"av":"Z62ResidentId"},{"av":"Z501AppNotificationDate"},{"av":"Z499AppNotificationTitle"},{"av":"Z500AppNotificationDescription"},{"av":"Z502AppNotificationTopic"},{"av":"Z510AppNotificationMetadata"},{"ctrl":"BTN_DELETE","prop":"Enabled"},{"ctrl":"BTN_ENTER","prop":"Enabled"}]}""");
+         setEventMetadata("VALID_APPNOTIFICATIONID","""{"handler":"Valid_Appnotificationid","iparms":[{"av":"A498AppNotificationId","fld":"APPNOTIFICATIONID"},{"av":"A501AppNotificationDate","fld":"APPNOTIFICATIONDATE","pic":"99/99/9999 99:99"},{"av":"A499AppNotificationTitle","fld":"APPNOTIFICATIONTITLE"},{"av":"A500AppNotificationDescription","fld":"APPNOTIFICATIONDESCRIPTION"},{"av":"A502AppNotificationTopic","fld":"APPNOTIFICATIONTOPIC"},{"av":"A510AppNotificationMetadata","fld":"APPNOTIFICATIONMETADATA"}]""");
+         setEventMetadata("VALID_APPNOTIFICATIONID",""","oparms":[{"av":"A501AppNotificationDate","fld":"APPNOTIFICATIONDATE","pic":"99/99/9999 99:99"},{"av":"A499AppNotificationTitle","fld":"APPNOTIFICATIONTITLE"},{"av":"A500AppNotificationDescription","fld":"APPNOTIFICATIONDESCRIPTION"},{"av":"A502AppNotificationTopic","fld":"APPNOTIFICATIONTOPIC"},{"av":"A510AppNotificationMetadata","fld":"APPNOTIFICATIONMETADATA"}]}""");
          setEventMetadata("VALID_RESIDENTID","""{"handler":"Valid_Residentid","iparms":[]}""");
          return  ;
       }
@@ -1948,7 +2172,7 @@ namespace GeneXus.Programs {
       protected override void CloseCursors( )
       {
          pr_default.close(1);
-         pr_default.close(12);
+         pr_default.close(11);
       }
 
       public override void initialize( )
@@ -1975,6 +2199,11 @@ namespace GeneXus.Programs {
          bttBtn_last_Jsonclick = "";
          bttBtn_select_Jsonclick = "";
          A497ResidentNotificationId = Guid.Empty;
+         A501AppNotificationDate = (DateTime)(DateTime.MinValue);
+         A499AppNotificationTitle = "";
+         A500AppNotificationDescription = "";
+         A502AppNotificationTopic = "";
+         A510AppNotificationMetadata = "";
          A62ResidentId = Guid.Empty;
          bttBtn_enter_Jsonclick = "";
          bttBtn_cancel_Jsonclick = "";
@@ -1986,11 +2215,32 @@ namespace GeneXus.Programs {
          sEvtType = "";
          endTrnMsgTxt = "";
          endTrnMsgCod = "";
+         Z501AppNotificationDate = (DateTime)(DateTime.MinValue);
+         Z499AppNotificationTitle = "";
+         Z500AppNotificationDescription = "";
+         Z502AppNotificationTopic = "";
+         Z510AppNotificationMetadata = "";
          T001J5_A497ResidentNotificationId = new Guid[] {Guid.Empty} ;
+         T001J5_A501AppNotificationDate = new DateTime[] {DateTime.MinValue} ;
+         T001J5_A499AppNotificationTitle = new string[] {""} ;
+         T001J5_A500AppNotificationDescription = new string[] {""} ;
+         T001J5_A502AppNotificationTopic = new string[] {""} ;
+         T001J5_A510AppNotificationMetadata = new string[] {""} ;
+         T001J5_n510AppNotificationMetadata = new bool[] {false} ;
          T001J5_A62ResidentId = new Guid[] {Guid.Empty} ;
          T001J5_A498AppNotificationId = new Guid[] {Guid.Empty} ;
-         T001J4_A498AppNotificationId = new Guid[] {Guid.Empty} ;
-         T001J6_A498AppNotificationId = new Guid[] {Guid.Empty} ;
+         T001J4_A501AppNotificationDate = new DateTime[] {DateTime.MinValue} ;
+         T001J4_A499AppNotificationTitle = new string[] {""} ;
+         T001J4_A500AppNotificationDescription = new string[] {""} ;
+         T001J4_A502AppNotificationTopic = new string[] {""} ;
+         T001J4_A510AppNotificationMetadata = new string[] {""} ;
+         T001J4_n510AppNotificationMetadata = new bool[] {false} ;
+         T001J6_A501AppNotificationDate = new DateTime[] {DateTime.MinValue} ;
+         T001J6_A499AppNotificationTitle = new string[] {""} ;
+         T001J6_A500AppNotificationDescription = new string[] {""} ;
+         T001J6_A502AppNotificationTopic = new string[] {""} ;
+         T001J6_A510AppNotificationMetadata = new string[] {""} ;
+         T001J6_n510AppNotificationMetadata = new bool[] {false} ;
          T001J7_A497ResidentNotificationId = new Guid[] {Guid.Empty} ;
          T001J3_A497ResidentNotificationId = new Guid[] {Guid.Empty} ;
          T001J3_A62ResidentId = new Guid[] {Guid.Empty} ;
@@ -2001,7 +2251,13 @@ namespace GeneXus.Programs {
          T001J2_A497ResidentNotificationId = new Guid[] {Guid.Empty} ;
          T001J2_A62ResidentId = new Guid[] {Guid.Empty} ;
          T001J2_A498AppNotificationId = new Guid[] {Guid.Empty} ;
-         T001J13_A497ResidentNotificationId = new Guid[] {Guid.Empty} ;
+         T001J13_A501AppNotificationDate = new DateTime[] {DateTime.MinValue} ;
+         T001J13_A499AppNotificationTitle = new string[] {""} ;
+         T001J13_A500AppNotificationDescription = new string[] {""} ;
+         T001J13_A502AppNotificationTopic = new string[] {""} ;
+         T001J13_A510AppNotificationMetadata = new string[] {""} ;
+         T001J13_n510AppNotificationMetadata = new bool[] {false} ;
+         T001J14_A497ResidentNotificationId = new Guid[] {Guid.Empty} ;
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
@@ -2009,7 +2265,11 @@ namespace GeneXus.Programs {
          ZZ497ResidentNotificationId = Guid.Empty;
          ZZ498AppNotificationId = Guid.Empty;
          ZZ62ResidentId = Guid.Empty;
-         T001J14_A498AppNotificationId = new Guid[] {Guid.Empty} ;
+         ZZ501AppNotificationDate = (DateTime)(DateTime.MinValue);
+         ZZ499AppNotificationTitle = "";
+         ZZ500AppNotificationDescription = "";
+         ZZ502AppNotificationTopic = "";
+         ZZ510AppNotificationMetadata = "";
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_residentnotification__datastore1(),
             new Object[][] {
             }
@@ -2027,13 +2287,13 @@ namespace GeneXus.Programs {
                T001J3_A497ResidentNotificationId, T001J3_A62ResidentId, T001J3_A498AppNotificationId
                }
                , new Object[] {
-               T001J4_A498AppNotificationId
+               T001J4_A501AppNotificationDate, T001J4_A499AppNotificationTitle, T001J4_A500AppNotificationDescription, T001J4_A502AppNotificationTopic, T001J4_A510AppNotificationMetadata, T001J4_n510AppNotificationMetadata
                }
                , new Object[] {
-               T001J5_A497ResidentNotificationId, T001J5_A62ResidentId, T001J5_A498AppNotificationId
+               T001J5_A497ResidentNotificationId, T001J5_A501AppNotificationDate, T001J5_A499AppNotificationTitle, T001J5_A500AppNotificationDescription, T001J5_A502AppNotificationTopic, T001J5_A510AppNotificationMetadata, T001J5_n510AppNotificationMetadata, T001J5_A62ResidentId, T001J5_A498AppNotificationId
                }
                , new Object[] {
-               T001J6_A498AppNotificationId
+               T001J6_A501AppNotificationDate, T001J6_A499AppNotificationTitle, T001J6_A500AppNotificationDescription, T001J6_A502AppNotificationTopic, T001J6_A510AppNotificationMetadata, T001J6_n510AppNotificationMetadata
                }
                , new Object[] {
                T001J7_A497ResidentNotificationId
@@ -2051,10 +2311,10 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               T001J13_A497ResidentNotificationId
+               T001J13_A501AppNotificationDate, T001J13_A499AppNotificationTitle, T001J13_A500AppNotificationDescription, T001J13_A502AppNotificationTopic, T001J13_A510AppNotificationMetadata, T001J13_n510AppNotificationMetadata
                }
                , new Object[] {
-               T001J14_A498AppNotificationId
+               T001J14_A497ResidentNotificationId
                }
             }
          );
@@ -2081,6 +2341,11 @@ namespace GeneXus.Programs {
       private int bttBtn_select_Visible ;
       private int edtResidentNotificationId_Enabled ;
       private int edtAppNotificationId_Enabled ;
+      private int edtAppNotificationDate_Enabled ;
+      private int edtAppNotificationTitle_Enabled ;
+      private int edtAppNotificationDescription_Enabled ;
+      private int edtAppNotificationTopic_Enabled ;
+      private int edtAppNotificationMetadata_Enabled ;
       private int edtResidentId_Enabled ;
       private int bttBtn_enter_Visible ;
       private int bttBtn_enter_Enabled ;
@@ -2118,6 +2383,14 @@ namespace GeneXus.Programs {
       private string edtResidentNotificationId_Jsonclick ;
       private string edtAppNotificationId_Internalname ;
       private string edtAppNotificationId_Jsonclick ;
+      private string edtAppNotificationDate_Internalname ;
+      private string edtAppNotificationDate_Jsonclick ;
+      private string edtAppNotificationTitle_Internalname ;
+      private string edtAppNotificationTitle_Jsonclick ;
+      private string edtAppNotificationDescription_Internalname ;
+      private string edtAppNotificationTopic_Internalname ;
+      private string edtAppNotificationTopic_Jsonclick ;
+      private string edtAppNotificationMetadata_Internalname ;
       private string edtResidentId_Internalname ;
       private string edtResidentId_Jsonclick ;
       private string bttBtn_enter_Internalname ;
@@ -2137,9 +2410,25 @@ namespace GeneXus.Programs {
       private string sDynURL ;
       private string FormProcess ;
       private string bodyStyle ;
+      private DateTime A501AppNotificationDate ;
+      private DateTime Z501AppNotificationDate ;
+      private DateTime ZZ501AppNotificationDate ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool wbErr ;
+      private bool n510AppNotificationMetadata ;
+      private string A510AppNotificationMetadata ;
+      private string Z510AppNotificationMetadata ;
+      private string ZZ510AppNotificationMetadata ;
+      private string A499AppNotificationTitle ;
+      private string A500AppNotificationDescription ;
+      private string A502AppNotificationTopic ;
+      private string Z499AppNotificationTitle ;
+      private string Z500AppNotificationDescription ;
+      private string Z502AppNotificationTopic ;
+      private string ZZ499AppNotificationTitle ;
+      private string ZZ500AppNotificationDescription ;
+      private string ZZ502AppNotificationTopic ;
       private Guid Z497ResidentNotificationId ;
       private Guid Z62ResidentId ;
       private Guid Z498AppNotificationId ;
@@ -2156,10 +2445,26 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
       private Guid[] T001J5_A497ResidentNotificationId ;
+      private DateTime[] T001J5_A501AppNotificationDate ;
+      private string[] T001J5_A499AppNotificationTitle ;
+      private string[] T001J5_A500AppNotificationDescription ;
+      private string[] T001J5_A502AppNotificationTopic ;
+      private string[] T001J5_A510AppNotificationMetadata ;
+      private bool[] T001J5_n510AppNotificationMetadata ;
       private Guid[] T001J5_A62ResidentId ;
       private Guid[] T001J5_A498AppNotificationId ;
-      private Guid[] T001J4_A498AppNotificationId ;
-      private Guid[] T001J6_A498AppNotificationId ;
+      private DateTime[] T001J4_A501AppNotificationDate ;
+      private string[] T001J4_A499AppNotificationTitle ;
+      private string[] T001J4_A500AppNotificationDescription ;
+      private string[] T001J4_A502AppNotificationTopic ;
+      private string[] T001J4_A510AppNotificationMetadata ;
+      private bool[] T001J4_n510AppNotificationMetadata ;
+      private DateTime[] T001J6_A501AppNotificationDate ;
+      private string[] T001J6_A499AppNotificationTitle ;
+      private string[] T001J6_A500AppNotificationDescription ;
+      private string[] T001J6_A502AppNotificationTopic ;
+      private string[] T001J6_A510AppNotificationMetadata ;
+      private bool[] T001J6_n510AppNotificationMetadata ;
       private Guid[] T001J7_A497ResidentNotificationId ;
       private Guid[] T001J3_A497ResidentNotificationId ;
       private Guid[] T001J3_A62ResidentId ;
@@ -2169,8 +2474,13 @@ namespace GeneXus.Programs {
       private Guid[] T001J2_A497ResidentNotificationId ;
       private Guid[] T001J2_A62ResidentId ;
       private Guid[] T001J2_A498AppNotificationId ;
-      private Guid[] T001J13_A497ResidentNotificationId ;
-      private Guid[] T001J14_A498AppNotificationId ;
+      private DateTime[] T001J13_A501AppNotificationDate ;
+      private string[] T001J13_A499AppNotificationTitle ;
+      private string[] T001J13_A500AppNotificationDescription ;
+      private string[] T001J13_A502AppNotificationTopic ;
+      private string[] T001J13_A510AppNotificationMetadata ;
+      private bool[] T001J13_n510AppNotificationMetadata ;
+      private Guid[] T001J14_A497ResidentNotificationId ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
@@ -2316,25 +2626,25 @@ public class trn_residentnotification__default : DataStoreHelperBase, IDataStore
        };
        Object[] prmT001J13;
        prmT001J13 = new Object[] {
+       new ParDef("AppNotificationId",GXType.UniqueIdentifier,36,0)
        };
        Object[] prmT001J14;
        prmT001J14 = new Object[] {
-       new ParDef("AppNotificationId",GXType.UniqueIdentifier,36,0)
        };
        def= new CursorDef[] {
            new CursorDef("T001J2", "SELECT ResidentNotificationId, ResidentId, AppNotificationId FROM Trn_ResidentNotification WHERE ResidentNotificationId = :ResidentNotificationId  FOR UPDATE OF Trn_ResidentNotification NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT001J2,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T001J3", "SELECT ResidentNotificationId, ResidentId, AppNotificationId FROM Trn_ResidentNotification WHERE ResidentNotificationId = :ResidentNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001J3,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T001J4", "SELECT AppNotificationId FROM Trn_AppNotification WHERE AppNotificationId = :AppNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001J4,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T001J5", "SELECT TM1.ResidentNotificationId, TM1.ResidentId, TM1.AppNotificationId FROM Trn_ResidentNotification TM1 WHERE TM1.ResidentNotificationId = :ResidentNotificationId ORDER BY TM1.ResidentNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001J5,100, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T001J6", "SELECT AppNotificationId FROM Trn_AppNotification WHERE AppNotificationId = :AppNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001J6,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T001J4", "SELECT AppNotificationDate, AppNotificationTitle, AppNotificationDescription, AppNotificationTopic, AppNotificationMetadata FROM Trn_AppNotification WHERE AppNotificationId = :AppNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001J4,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T001J5", "SELECT TM1.ResidentNotificationId, T2.AppNotificationDate, T2.AppNotificationTitle, T2.AppNotificationDescription, T2.AppNotificationTopic, T2.AppNotificationMetadata, TM1.ResidentId, TM1.AppNotificationId FROM (Trn_ResidentNotification TM1 INNER JOIN Trn_AppNotification T2 ON T2.AppNotificationId = TM1.AppNotificationId) WHERE TM1.ResidentNotificationId = :ResidentNotificationId ORDER BY TM1.ResidentNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001J5,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T001J6", "SELECT AppNotificationDate, AppNotificationTitle, AppNotificationDescription, AppNotificationTopic, AppNotificationMetadata FROM Trn_AppNotification WHERE AppNotificationId = :AppNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001J6,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T001J7", "SELECT ResidentNotificationId FROM Trn_ResidentNotification WHERE ResidentNotificationId = :ResidentNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001J7,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T001J8", "SELECT ResidentNotificationId FROM Trn_ResidentNotification WHERE ( ResidentNotificationId > :ResidentNotificationId) ORDER BY ResidentNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001J8,1, GxCacheFrequency.OFF ,true,true )
           ,new CursorDef("T001J9", "SELECT ResidentNotificationId FROM Trn_ResidentNotification WHERE ( ResidentNotificationId < :ResidentNotificationId) ORDER BY ResidentNotificationId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT001J9,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("T001J10", "SAVEPOINT gxupdate;INSERT INTO Trn_ResidentNotification(ResidentNotificationId, ResidentId, AppNotificationId) VALUES(:ResidentNotificationId, :ResidentId, :AppNotificationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001J10)
+          ,new CursorDef("T001J10", "SAVEPOINT gxupdate;INSERT INTO Trn_ResidentNotification(ResidentNotificationId, ResidentId, AppNotificationId) VALUES(:ResidentNotificationId, :ResidentId, :AppNotificationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT001J10)
           ,new CursorDef("T001J11", "SAVEPOINT gxupdate;UPDATE Trn_ResidentNotification SET ResidentId=:ResidentId, AppNotificationId=:AppNotificationId  WHERE ResidentNotificationId = :ResidentNotificationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001J11)
           ,new CursorDef("T001J12", "SAVEPOINT gxupdate;DELETE FROM Trn_ResidentNotification  WHERE ResidentNotificationId = :ResidentNotificationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT001J12)
-          ,new CursorDef("T001J13", "SELECT ResidentNotificationId FROM Trn_ResidentNotification ORDER BY ResidentNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001J13,100, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T001J14", "SELECT AppNotificationId FROM Trn_AppNotification WHERE AppNotificationId = :AppNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001J14,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T001J13", "SELECT AppNotificationDate, AppNotificationTitle, AppNotificationDescription, AppNotificationTopic, AppNotificationMetadata FROM Trn_AppNotification WHERE AppNotificationId = :AppNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001J13,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T001J14", "SELECT ResidentNotificationId FROM Trn_ResidentNotification ORDER BY ResidentNotificationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT001J14,100, GxCacheFrequency.OFF ,true,false )
        };
     }
  }
@@ -2356,15 +2666,31 @@ public class trn_residentnotification__default : DataStoreHelperBase, IDataStore
              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
              return;
           case 2 :
-             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((DateTime[]) buf[0])[0] = rslt.getGXDateTime(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
+             ((bool[]) buf[5])[0] = rslt.wasNull(5);
              return;
           case 3 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getVarchar(5);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+             ((bool[]) buf[6])[0] = rslt.wasNull(6);
+             ((Guid[]) buf[7])[0] = rslt.getGuid(7);
+             ((Guid[]) buf[8])[0] = rslt.getGuid(8);
              return;
           case 4 :
-             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((DateTime[]) buf[0])[0] = rslt.getGXDateTime(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
+             ((bool[]) buf[5])[0] = rslt.wasNull(5);
              return;
           case 5 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -2376,7 +2702,12 @@ public class trn_residentnotification__default : DataStoreHelperBase, IDataStore
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              return;
           case 11 :
-             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((DateTime[]) buf[0])[0] = rslt.getGXDateTime(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
+             ((bool[]) buf[5])[0] = rslt.wasNull(5);
              return;
           case 12 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);

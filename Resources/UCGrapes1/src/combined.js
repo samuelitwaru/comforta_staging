@@ -1588,6 +1588,7 @@ class TemplateManager {
   createTemplateHTML(isDefault = false) {
     let tileBgColor =
       this.editorManager.toolsSection.currentTheme.ThemeColors.accentColor;
+    tileBgColor = '#ffffff'
     return `
             <div class="template-wrapper ${
               isDefault ? "default-template" : ""
@@ -4014,6 +4015,7 @@ class ToolBoxUI {
       selectComponent?.getAttributes()?.["tile-action-object"];
     const currentActionId =
       selectComponent?.getAttributes()?.["tile-action-object-id"];
+
     const propertySection = document.getElementById("selectedOption");
     const selectedOptionElement = document.getElementById(currentActionId);
 
@@ -4028,7 +4030,8 @@ class ToolBoxUI {
                   </span>
                   <i class="fa fa-angle-down">
                   </i>`;
-    if (currentActionName && currentActionId) {
+    const targetPage = this.manager.dataManager.pages.SDT_PageCollection.find((page) => page.PageId == currentActionId)
+    if (currentActionName && currentActionId && targetPage) {
       propertySection.textContent = currentActionName;
       propertySection.innerHTML += ' <i class="fa fa-angle-down"></i>';
       if (selectedOptionElement) {
@@ -5007,7 +5010,7 @@ class ActionListComponent {
     categoryElement.setAttribute("data-category", category.label);
 
     const summaryElement = document.createElement("summary");
-    summaryElement.innerHTML = `${category.label}${
+    summaryElement.innerHTML = `${category.displayName}${
       category.isWebLink ? "" : ' <i class="fa fa-angle-right"></i>'
     }`;
     categoryElement.appendChild(summaryElement);
