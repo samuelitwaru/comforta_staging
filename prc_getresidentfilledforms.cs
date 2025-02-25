@@ -45,48 +45,87 @@ namespace GeneXus.Programs {
       }
 
       public void execute( string aP0_ResidentGUID ,
-                           out string aP1_result )
+                           short aP1_PageSize ,
+                           short aP2_PageNumber ,
+                           out string aP3_result )
       {
          this.AV8ResidentGUID = aP0_ResidentGUID;
+         this.AV18PageSize = aP1_PageSize;
+         this.AV19PageNumber = aP2_PageNumber;
          this.AV11result = "" ;
          initialize();
          ExecuteImpl();
-         aP1_result=this.AV11result;
+         aP3_result=this.AV11result;
       }
 
-      public string executeUdp( string aP0_ResidentGUID )
+      public string executeUdp( string aP0_ResidentGUID ,
+                                short aP1_PageSize ,
+                                short aP2_PageNumber )
       {
-         execute(aP0_ResidentGUID, out aP1_result);
+         execute(aP0_ResidentGUID, aP1_PageSize, aP2_PageNumber, out aP3_result);
          return AV11result ;
       }
 
       public void executeSubmit( string aP0_ResidentGUID ,
-                                 out string aP1_result )
+                                 short aP1_PageSize ,
+                                 short aP2_PageNumber ,
+                                 out string aP3_result )
       {
          this.AV8ResidentGUID = aP0_ResidentGUID;
+         this.AV18PageSize = aP1_PageSize;
+         this.AV19PageNumber = aP2_PageNumber;
          this.AV11result = "" ;
          SubmitImpl();
-         aP1_result=this.AV11result;
+         aP3_result=this.AV11result;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV16SDT_ApiResidentFilledForms = new GXBaseCollection<SdtSDT_ApiResidentFilledForms>( context, "SDT_ApiResidentFilledForms", "Comforta_version2");
-         /* Using cursor P00B72 */
+         /* Using cursor P00B73 */
          pr_default.execute(0, new Object[] {AV8ResidentGUID});
-         while ( (pr_default.getStatus(0) != 101) )
+         if ( (pr_default.getStatus(0) != 101) )
          {
-            A112WWPUserExtendedId = P00B72_A112WWPUserExtendedId[0];
-            A239WWPFormInstanceDate = P00B72_A239WWPFormInstanceDate[0];
-            A206WWPFormId = P00B72_A206WWPFormId[0];
-            A208WWPFormReferenceName = P00B72_A208WWPFormReferenceName[0];
-            A207WWPFormVersionNumber = P00B72_A207WWPFormVersionNumber[0];
-            A209WWPFormTitle = P00B72_A209WWPFormTitle[0];
-            A214WWPFormInstanceId = P00B72_A214WWPFormInstanceId[0];
-            A208WWPFormReferenceName = P00B72_A208WWPFormReferenceName[0];
-            A209WWPFormTitle = P00B72_A209WWPFormTitle[0];
+            A40000GXC1 = P00B73_A40000GXC1[0];
+            n40000GXC1 = P00B73_n40000GXC1[0];
+         }
+         else
+         {
+            A40000GXC1 = 0;
+            n40000GXC1 = false;
+         }
+         pr_default.close(0);
+         AV16SDT_ApiResidentFilledForms = new GXBaseCollection<SdtSDT_ApiResidentFilledForms>( context, "SDT_ApiResidentFilledForms", "Comforta_version2");
+         AV24SDT_ApiListResponse = new SdtSDT_ApiListResponse(context);
+         if ( ( AV18PageSize < 1 ) || ( AV19PageNumber < 1 ) )
+         {
+            AV20RecordsToSkip = 0;
+            AV25defaultPageNumber = 1;
+            AV21RecordsPerPage = 100;
+         }
+         else
+         {
+            AV21RecordsPerPage = AV18PageSize;
+            AV25defaultPageNumber = AV19PageNumber;
+            AV20RecordsToSkip = (short)(AV18PageSize*(AV19PageNumber-1));
+         }
+         AV22TotalRecords = (short)(A40000GXC1);
+         GXPagingFrom2 = AV20RecordsToSkip;
+         GXPagingTo2 = AV21RecordsPerPage;
+         /* Using cursor P00B74 */
+         pr_default.execute(1, new Object[] {AV8ResidentGUID, GXPagingFrom2, GXPagingTo2});
+         while ( (pr_default.getStatus(1) != 101) )
+         {
+            A112WWPUserExtendedId = P00B74_A112WWPUserExtendedId[0];
+            A239WWPFormInstanceDate = P00B74_A239WWPFormInstanceDate[0];
+            A206WWPFormId = P00B74_A206WWPFormId[0];
+            A208WWPFormReferenceName = P00B74_A208WWPFormReferenceName[0];
+            A207WWPFormVersionNumber = P00B74_A207WWPFormVersionNumber[0];
+            A209WWPFormTitle = P00B74_A209WWPFormTitle[0];
+            A214WWPFormInstanceId = P00B74_A214WWPFormInstanceId[0];
+            A208WWPFormReferenceName = P00B74_A208WWPFormReferenceName[0];
+            A209WWPFormTitle = P00B74_A209WWPFormTitle[0];
             AV17SDT_ResidentFilledFormsItem = new SdtSDT_ApiResidentFilledForms(context);
             AV17SDT_ResidentFilledFormsItem.gxTpr_Formfilleddate = A239WWPFormInstanceDate;
             AV17SDT_ResidentFilledFormsItem.gxTpr_Forminstanceid = (short)(A214WWPFormInstanceId);
@@ -95,10 +134,15 @@ namespace GeneXus.Programs {
             AV17SDT_ResidentFilledFormsItem.gxTpr_Formversionnumber = A207WWPFormVersionNumber;
             AV17SDT_ResidentFilledFormsItem.gxTpr_Formtitle = A209WWPFormTitle;
             AV16SDT_ApiResidentFilledForms.Add(AV17SDT_ResidentFilledFormsItem, 0);
-            pr_default.readNext(0);
+            pr_default.readNext(1);
          }
-         pr_default.close(0);
-         AV11result = AV16SDT_ApiResidentFilledForms.ToJSonString(false);
+         pr_default.close(1);
+         AV23TotalPages = (short)((AV22TotalRecords+AV21RecordsPerPage-1)/ (decimal)(AV21RecordsPerPage));
+         AV24SDT_ApiListResponse.gxTpr_Numberofpages = AV23TotalPages;
+         AV24SDT_ApiListResponse.gxTpr_Pagenumber = AV25defaultPageNumber;
+         AV24SDT_ApiListResponse.gxTpr_Pagesize = AV21RecordsPerPage;
+         AV24SDT_ApiListResponse.gxTpr_Filledforms = AV16SDT_ApiResidentFilledForms;
+         AV11result = AV24SDT_ApiListResponse.ToJSonString(false, true);
          cleanup();
       }
 
@@ -112,17 +156,24 @@ namespace GeneXus.Programs {
          ExitApp();
       }
 
+      protected override void CloseCursors( )
+      {
+      }
+
       public override void initialize( )
       {
          AV11result = "";
+         P00B73_A40000GXC1 = new int[1] ;
+         P00B73_n40000GXC1 = new bool[] {false} ;
          AV16SDT_ApiResidentFilledForms = new GXBaseCollection<SdtSDT_ApiResidentFilledForms>( context, "SDT_ApiResidentFilledForms", "Comforta_version2");
-         P00B72_A112WWPUserExtendedId = new string[] {""} ;
-         P00B72_A239WWPFormInstanceDate = new DateTime[] {DateTime.MinValue} ;
-         P00B72_A206WWPFormId = new short[1] ;
-         P00B72_A208WWPFormReferenceName = new string[] {""} ;
-         P00B72_A207WWPFormVersionNumber = new short[1] ;
-         P00B72_A209WWPFormTitle = new string[] {""} ;
-         P00B72_A214WWPFormInstanceId = new int[1] ;
+         AV24SDT_ApiListResponse = new SdtSDT_ApiListResponse(context);
+         P00B74_A112WWPUserExtendedId = new string[] {""} ;
+         P00B74_A239WWPFormInstanceDate = new DateTime[] {DateTime.MinValue} ;
+         P00B74_A206WWPFormId = new short[1] ;
+         P00B74_A208WWPFormReferenceName = new string[] {""} ;
+         P00B74_A207WWPFormVersionNumber = new short[1] ;
+         P00B74_A209WWPFormTitle = new string[] {""} ;
+         P00B74_A214WWPFormInstanceId = new int[1] ;
          A112WWPUserExtendedId = "";
          A239WWPFormInstanceDate = (DateTime)(DateTime.MinValue);
          A208WWPFormReferenceName = "";
@@ -131,18 +182,32 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_getresidentfilledforms__default(),
             new Object[][] {
                 new Object[] {
-               P00B72_A112WWPUserExtendedId, P00B72_A239WWPFormInstanceDate, P00B72_A206WWPFormId, P00B72_A208WWPFormReferenceName, P00B72_A207WWPFormVersionNumber, P00B72_A209WWPFormTitle, P00B72_A214WWPFormInstanceId
+               P00B73_A40000GXC1, P00B73_n40000GXC1
+               }
+               , new Object[] {
+               P00B74_A112WWPUserExtendedId, P00B74_A239WWPFormInstanceDate, P00B74_A206WWPFormId, P00B74_A208WWPFormReferenceName, P00B74_A207WWPFormVersionNumber, P00B74_A209WWPFormTitle, P00B74_A214WWPFormInstanceId
                }
             }
          );
          /* GeneXus formulas. */
       }
 
+      private short AV18PageSize ;
+      private short AV19PageNumber ;
+      private short AV20RecordsToSkip ;
+      private short AV25defaultPageNumber ;
+      private short AV21RecordsPerPage ;
+      private short AV22TotalRecords ;
       private short A206WWPFormId ;
       private short A207WWPFormVersionNumber ;
+      private short AV23TotalPages ;
+      private int A40000GXC1 ;
+      private int GXPagingFrom2 ;
+      private int GXPagingTo2 ;
       private int A214WWPFormInstanceId ;
       private string A112WWPUserExtendedId ;
       private DateTime A239WWPFormInstanceDate ;
+      private bool n40000GXC1 ;
       private string AV11result ;
       private string AV8ResidentGUID ;
       private string A208WWPFormReferenceName ;
@@ -150,17 +215,20 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private GXBaseCollection<SdtSDT_ApiResidentFilledForms> AV16SDT_ApiResidentFilledForms ;
       private IDataStoreProvider pr_default ;
-      private string[] P00B72_A112WWPUserExtendedId ;
-      private DateTime[] P00B72_A239WWPFormInstanceDate ;
-      private short[] P00B72_A206WWPFormId ;
-      private string[] P00B72_A208WWPFormReferenceName ;
-      private short[] P00B72_A207WWPFormVersionNumber ;
-      private string[] P00B72_A209WWPFormTitle ;
-      private int[] P00B72_A214WWPFormInstanceId ;
+      private int[] P00B73_A40000GXC1 ;
+      private bool[] P00B73_n40000GXC1 ;
+      private GXBaseCollection<SdtSDT_ApiResidentFilledForms> AV16SDT_ApiResidentFilledForms ;
+      private SdtSDT_ApiListResponse AV24SDT_ApiListResponse ;
+      private string[] P00B74_A112WWPUserExtendedId ;
+      private DateTime[] P00B74_A239WWPFormInstanceDate ;
+      private short[] P00B74_A206WWPFormId ;
+      private string[] P00B74_A208WWPFormReferenceName ;
+      private short[] P00B74_A207WWPFormVersionNumber ;
+      private string[] P00B74_A209WWPFormTitle ;
+      private int[] P00B74_A214WWPFormInstanceId ;
       private SdtSDT_ApiResidentFilledForms AV17SDT_ResidentFilledFormsItem ;
-      private string aP1_result ;
+      private string aP3_result ;
    }
 
    public class prc_getresidentfilledforms__default : DataStoreHelperBase, IDataStoreHelper
@@ -170,6 +238,7 @@ namespace GeneXus.Programs {
          cursorDefinitions();
          return new Cursor[] {
           new ForEachCursor(def[0])
+         ,new ForEachCursor(def[1])
        };
     }
 
@@ -178,12 +247,19 @@ namespace GeneXus.Programs {
     {
        if ( def == null )
        {
-          Object[] prmP00B72;
-          prmP00B72 = new Object[] {
+          Object[] prmP00B73;
+          prmP00B73 = new Object[] {
           new ParDef("AV8ResidentGUID",GXType.VarChar,100,60)
           };
+          Object[] prmP00B74;
+          prmP00B74 = new Object[] {
+          new ParDef("AV8ResidentGUID",GXType.VarChar,100,60) ,
+          new ParDef("GXPagingFrom2",GXType.Int32,9,0) ,
+          new ParDef("GXPagingTo2",GXType.Int32,9,0)
+          };
           def= new CursorDef[] {
-              new CursorDef("P00B72", "SELECT T1.WWPUserExtendedId, T1.WWPFormInstanceDate, T1.WWPFormId, T2.WWPFormReferenceName, T1.WWPFormVersionNumber, T2.WWPFormTitle, T1.WWPFormInstanceId FROM (WWP_FormInstance T1 INNER JOIN WWP_Form T2 ON T2.WWPFormId = T1.WWPFormId AND T2.WWPFormVersionNumber = T1.WWPFormVersionNumber) WHERE T1.WWPUserExtendedId = ( :AV8ResidentGUID) ORDER BY T1.WWPFormInstanceId DESC ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00B72,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P00B73", "SELECT COALESCE( T1.GXC1, 0) AS GXC1 FROM (SELECT COUNT(*) AS GXC1 FROM WWP_FormInstance WHERE WWPUserExtendedId = ( :AV8ResidentGUID) ) T1 ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00B73,1, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("P00B74", "SELECT T1.WWPUserExtendedId, T1.WWPFormInstanceDate, T1.WWPFormId, T2.WWPFormReferenceName, T1.WWPFormVersionNumber, T2.WWPFormTitle, T1.WWPFormInstanceId FROM (WWP_FormInstance T1 INNER JOIN WWP_Form T2 ON T2.WWPFormId = T1.WWPFormId AND T2.WWPFormVersionNumber = T1.WWPFormVersionNumber) WHERE T1.WWPUserExtendedId = ( :AV8ResidentGUID) ORDER BY T1.WWPFormInstanceId DESC  OFFSET :GXPagingFrom2 LIMIT CASE WHEN :GXPagingTo2 > 0 THEN :GXPagingTo2 ELSE 1e9 END",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00B74,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
@@ -195,6 +271,10 @@ namespace GeneXus.Programs {
        switch ( cursor )
        {
              case 0 :
+                ((int[]) buf[0])[0] = rslt.getInt(1);
+                ((bool[]) buf[1])[0] = rslt.wasNull(1);
+                return;
+             case 1 :
                 ((string[]) buf[0])[0] = rslt.getString(1, 40);
                 ((DateTime[]) buf[1])[0] = rslt.getGXDateTime(2);
                 ((short[]) buf[2])[0] = rslt.getShort(3);
