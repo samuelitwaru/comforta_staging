@@ -85,6 +85,7 @@ class TileMapper {
 }
 
 function mapTemplateToPageData(templateData, page) {
+  console.log(page.PageName)
   // Create the base page structure
   const pageData = {
     PageId: page.PageId,
@@ -174,7 +175,6 @@ function mapTemplateToPageData(templateData, page) {
           ObjectUrl: attributes["tile-action-object-url"] || "",
         },
       };
-      console.log(col.Tile.TileAction);
       return col;
     });
 
