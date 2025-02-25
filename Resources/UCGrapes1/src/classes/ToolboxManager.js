@@ -288,8 +288,12 @@ class ToolBoxManager {
           "tile-action-object",
           `${categoryName}, ${service.ProductServiceName}`
         );
-
         const editor = this.editorManager.getCurrentEditor();
+        const titleComponent = editor.getSelected().find(".tile-title")[0];
+        if (titleComponent) {
+          titleComponent.components(service.ProductServiceTileName);
+          titleComponent.addStyle({ display: "block" });
+        }
         const editorId = editor.getConfig().container;
         const editorContainerId = `${editorId}-frame`;
         this.actionList.createContentPage(service.ProductServiceId, editorContainerId);

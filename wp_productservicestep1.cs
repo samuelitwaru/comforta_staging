@@ -2361,6 +2361,32 @@ namespace GeneXus.Programs {
       {
          /* 'CHECKREQUIREDFIELDS2' Routine */
          returnInSub = false;
+         AV5CheckRequiredFieldsResult = true;
+         AssignAttri(sPrefix, false, "AV5CheckRequiredFieldsResult", AV5CheckRequiredFieldsResult);
+         if ( ( AV50GAMUser.checkrole("Organisation Manager") || AV50GAMUser.checkrole("Root Admin") ) && (Guid.Empty==AV16LocationId) )
+         {
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Location", ""), "", "", "", "", "", "", "", ""));
+            AV5CheckRequiredFieldsResult = false;
+            AssignAttri(sPrefix, false, "AV5CheckRequiredFieldsResult", AV5CheckRequiredFieldsResult);
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV26ProductServiceName)) )
+         {
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Name", ""), "", "", "", "", "", "", "", ""));
+            AV5CheckRequiredFieldsResult = false;
+            AssignAttri(sPrefix, false, "AV5CheckRequiredFieldsResult", AV5CheckRequiredFieldsResult);
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV27ProductServiceTileName)) )
+         {
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "App Tile Name", ""), "", "", "", "", "", "", "", ""));
+            AV5CheckRequiredFieldsResult = false;
+            AssignAttri(sPrefix, false, "AV5CheckRequiredFieldsResult", AV5CheckRequiredFieldsResult);
+         }
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV39ProductServiceClass)) )
+         {
+            GX_msglist.addItem(StringUtil.Format( context.GetMessage( "WWP_RequiredAttribute", ""), context.GetMessage( "Category", ""), "", "", "", "", "", "", "", ""));
+            AV5CheckRequiredFieldsResult = false;
+            AssignAttri(sPrefix, false, "AV5CheckRequiredFieldsResult", AV5CheckRequiredFieldsResult);
+         }
       }
 
       protected void nextLoad( )
@@ -2790,7 +2816,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20252211231348", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025225851157", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2806,7 +2832,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_productservicestep1.js", "?20252211231352", false, true);
+         context.AddJavascriptSource("wp_productservicestep1.js", "?2025225851158", false, true);
          context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
