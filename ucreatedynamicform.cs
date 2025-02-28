@@ -338,6 +338,14 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "WWPFORMDATE", context.localUtil.TToC( A231WWPFormDate, 10, 8, 0, 0, "/", ":", " "));
          if ( context.isAjaxRequest( ) )
          {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vNEWWWPFORM", AV30NewWWPForm);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vNEWWWPFORM", AV30NewWWPForm);
+         }
+         if ( context.isAjaxRequest( ) )
+         {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vMESSAGES", AV11Messages);
          }
          else
@@ -1524,6 +1532,37 @@ namespace GeneXus.Programs {
                      if ( AV27WWPForm.Success() )
                      {
                         context.CommitDataStores("ucreatedynamicform",pr_default);
+                        GXt_guid4 = AV48LocationId;
+                        new prc_getuserlocationid(context ).execute( out  GXt_guid4) ;
+                        AV48LocationId = GXt_guid4;
+                        GXt_guid4 = AV49OrganisationId;
+                        new prc_getuserorganisationid(context ).execute( out  GXt_guid4) ;
+                        AV49OrganisationId = GXt_guid4;
+                        if ( AV29FormWasInstantiated && ! (Guid.Empty==AV48LocationId) )
+                        {
+                           AV50Trn_LocationDynamicForm = new SdtTrn_LocationDynamicForm(context);
+                           AV50Trn_LocationDynamicForm.gxTpr_Locationdynamicformid = Guid.NewGuid( );
+                           AV50Trn_LocationDynamicForm.gxTpr_Locationid = AV48LocationId;
+                           AV50Trn_LocationDynamicForm.gxTpr_Organisationid = AV49OrganisationId;
+                           AV50Trn_LocationDynamicForm.gxTpr_Wwpformid = AV30NewWWPForm.gxTpr_Wwpformid;
+                           AV50Trn_LocationDynamicForm.gxTpr_Wwpformversionnumber = AV30NewWWPForm.gxTpr_Wwpformversionnumber;
+                           AV50Trn_LocationDynamicForm.Save();
+                           if ( AV50Trn_LocationDynamicForm.Success() )
+                           {
+                              context.CommitDataStores("ucreatedynamicform",pr_default);
+                           }
+                           else
+                           {
+                              AV61GXV6 = 1;
+                              AV60GXV5 = AV50Trn_LocationDynamicForm.GetMessages();
+                              while ( AV61GXV6 <= AV60GXV5.Count )
+                              {
+                                 AV10Message = ((GeneXus.Utils.SdtMessages_Message)AV60GXV5.Item(AV61GXV6));
+                                 GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  AV10Message.gxTpr_Description,  "error",  "",  "false",  ""));
+                                 AV61GXV6 = (int)(AV61GXV6+1);
+                              }
+                           }
+                        }
                      }
                      else
                      {
@@ -1535,12 +1574,12 @@ namespace GeneXus.Programs {
          }
          if ( AV11Messages.Count > 0 )
          {
-            AV60GXV5 = 1;
-            while ( AV60GXV5 <= AV11Messages.Count )
+            AV62GXV7 = 1;
+            while ( AV62GXV7 <= AV11Messages.Count )
             {
-               AV10Message = ((GeneXus.Utils.SdtMessages_Message)AV11Messages.Item(AV60GXV5));
+               AV10Message = ((GeneXus.Utils.SdtMessages_Message)AV11Messages.Item(AV62GXV7));
                GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  AV10Message.gxTpr_Description,  "error",  "",  "true",  ""));
-               AV60GXV5 = (int)(AV60GXV5+1);
+               AV62GXV7 = (int)(AV62GXV7+1);
             }
          }
          else
@@ -1556,6 +1595,7 @@ namespace GeneXus.Programs {
          /*  Sending Event outputs  */
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV11Messages", AV11Messages);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV27WWPForm", AV27WWPForm);
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV30NewWWPForm", AV30NewWWPForm);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV7Element", AV7Element);
       }
 
@@ -1627,10 +1667,10 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_getavailablevariables(context ).execute(  AV13SessionId,  false,  0,  9999,  "", out  GXt_char3) ;
          AV35VarCharAux = GXt_char3;
          AV34AllReferenceIds.FromJSonString(StringUtil.Lower( AV35VarCharAux), null);
-         AV61GXV6 = 1;
-         while ( AV61GXV6 <= AV27WWPForm.gxTpr_Element.Count )
+         AV63GXV8 = 1;
+         while ( AV63GXV8 <= AV27WWPForm.gxTpr_Element.Count )
          {
-            AV7Element = ((GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form_Element)AV27WWPForm.gxTpr_Element.Item(AV61GXV6));
+            AV7Element = ((GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form_Element)AV27WWPForm.gxTpr_Element.Item(AV63GXV8));
             if ( ! AV8HasDeletedElements || ! StringUtil.Contains( AV7Element.ToJSonString(true, true), "\"Mode\":\"DLT\"") )
             {
                AV15VisibleCondition = new WorkWithPlus.workwithplus_dynamicforms.SdtWWP_DF_ConditionExpression(context);
@@ -1724,10 +1764,10 @@ namespace GeneXus.Programs {
                   }
                   if ( ( AV11Messages.Count == 0 ) && ( AV14Validations.Count > 0 ) )
                   {
-                     AV62GXV7 = 1;
-                     while ( AV62GXV7 <= AV14Validations.Count )
+                     AV64GXV9 = 1;
+                     while ( AV64GXV9 <= AV14Validations.Count )
                      {
-                        AV40Validation = ((WorkWithPlus.workwithplus_dynamicforms.SdtWWP_DF_Validation)AV14Validations.Item(AV62GXV7));
+                        AV40Validation = ((WorkWithPlus.workwithplus_dynamicforms.SdtWWP_DF_Validation)AV14Validations.Item(AV64GXV9));
                         new GeneXus.Programs.workwithplus.dynamicforms.wwp_df_getconditionmentionsandvalidate(context ).execute(  AV27WWPForm,  AV40Validation.gxTpr_Condition.gxTpr_Expression,  true,  false,  AV7Element.gxTpr_Wwpformelementreferenceid,  AV7Element.gxTpr_Wwpformelementdatatype, ref  AV36AllPossibleReferenceIds, out  AV41VarCharList, out  AV38ConditionError) ;
                         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV38ConditionError)) )
                         {
@@ -1741,12 +1781,12 @@ namespace GeneXus.Programs {
                            AV10Message.gxTpr_Description = StringUtil.Format( context.GetMessage( "WWP_DF_SomeValidationNotValid", ""), AV39ElementTitle, AV38ConditionError, "", "", "", "", "", "", "");
                            AV11Messages.Add(AV10Message, 0);
                         }
-                        AV62GXV7 = (int)(AV62GXV7+1);
+                        AV64GXV9 = (int)(AV64GXV9+1);
                      }
                   }
                }
             }
-            AV61GXV6 = (int)(AV61GXV6+1);
+            AV63GXV8 = (int)(AV63GXV8+1);
          }
       }
 
@@ -1857,7 +1897,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522112325572", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20252271194490", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1873,7 +1913,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("ucreatedynamicform.js", "?202522112325573", false, true);
+         context.AddJavascriptSource("ucreatedynamicform.js", "?20252271194491", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);
@@ -1976,8 +2016,8 @@ namespace GeneXus.Programs {
          setEventMetadata("SETTINGS_MODAL.ONLOADCOMPONENT",""","oparms":[{"ctrl":"WWPAUX_WC"}]}""");
          setEventMetadata("'DOREFRESHGRID'","""{"handler":"E15A32","iparms":[{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"}]""");
          setEventMetadata("'DOREFRESHGRID'",""","oparms":[{"av":"AV27WWPForm","fld":"vWWPFORM"},{"av":"AV12RefreshMasterTitle","fld":"vREFRESHMASTERTITLE"},{"av":"AV5AddedStepIndex","fld":"vADDEDSTEPINDEX","pic":"ZZZ9"}]}""");
-         setEventMetadata("ENTER","""{"handler":"E17A32","iparms":[{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"},{"av":"AV26WWPDynamicFormMode","fld":"vWWPDYNAMICFORMMODE","hsh":true},{"av":"AV7Element","fld":"vELEMENT"},{"av":"A206WWPFormId","fld":"WWPFORMID","pic":"ZZZ9"},{"av":"AV33WWPFormVersionNumber","fld":"vWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"A207WWPFormVersionNumber","fld":"WWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV32WWPFormId","fld":"vWWPFORMID","pic":"ZZZ9","hsh":true},{"av":"A234WWPFormInstantiated","fld":"WWPFORMINSTANTIATED"},{"av":"A231WWPFormDate","fld":"WWPFORMDATE","pic":"99/99/99 99:99"},{"av":"AV27WWPForm","fld":"vWWPFORM"},{"av":"AV11Messages","fld":"vMESSAGES"}]""");
-         setEventMetadata("ENTER",""","oparms":[{"av":"AV11Messages","fld":"vMESSAGES"},{"av":"AV27WWPForm","fld":"vWWPFORM"},{"av":"AV33WWPFormVersionNumber","fld":"vWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV7Element","fld":"vELEMENT"}]}""");
+         setEventMetadata("ENTER","""{"handler":"E17A32","iparms":[{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"},{"av":"AV26WWPDynamicFormMode","fld":"vWWPDYNAMICFORMMODE","hsh":true},{"av":"AV7Element","fld":"vELEMENT"},{"av":"A206WWPFormId","fld":"WWPFORMID","pic":"ZZZ9"},{"av":"AV33WWPFormVersionNumber","fld":"vWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"A207WWPFormVersionNumber","fld":"WWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV32WWPFormId","fld":"vWWPFORMID","pic":"ZZZ9","hsh":true},{"av":"A234WWPFormInstantiated","fld":"WWPFORMINSTANTIATED"},{"av":"A231WWPFormDate","fld":"WWPFORMDATE","pic":"99/99/99 99:99"},{"av":"AV30NewWWPForm","fld":"vNEWWWPFORM"},{"av":"AV27WWPForm","fld":"vWWPFORM"},{"av":"AV11Messages","fld":"vMESSAGES"}]""");
+         setEventMetadata("ENTER",""","oparms":[{"av":"AV11Messages","fld":"vMESSAGES"},{"av":"AV27WWPForm","fld":"vWWPFORM"},{"av":"AV33WWPFormVersionNumber","fld":"vWWPFORMVERSIONNUMBER","pic":"ZZZ9"},{"av":"AV30NewWWPForm","fld":"vNEWWWPFORM"},{"av":"AV7Element","fld":"vELEMENT"}]}""");
          setEventMetadata("VDYNAMICSECTIONTOUPDATE.CLICK","""{"handler":"E18A32","iparms":[{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"},{"av":"AV26WWPDynamicFormMode","fld":"vWWPDYNAMICFORMMODE","hsh":true},{"av":"cmbavDynamicsectiontoupdate"},{"av":"AV28DynamicSectionToUpdate","fld":"vDYNAMICSECTIONTOUPDATE","pic":"ZZZ9"}]""");
          setEventMetadata("VDYNAMICSECTIONTOUPDATE.CLICK",""","oparms":[{"av":"AV27WWPForm","fld":"vWWPFORM"},{"ctrl":"WCWWP_DYNAMICFORMFS_WC"}]}""");
          setEventMetadata("SETTINGS_MODAL.CLOSE","""{"handler":"E12A32","iparms":[{"av":"Settings_modal_Result","ctrl":"SETTINGS_MODAL","prop":"Result"},{"av":"AV13SessionId","fld":"vSESSIONID","pic":"ZZZ9"}]""");
@@ -2009,6 +2049,7 @@ namespace GeneXus.Programs {
          GXEncryptionTmp = "";
          AV7Element = new GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form_Element(context);
          A231WWPFormDate = (DateTime)(DateTime.MinValue);
+         AV30NewWWPForm = new GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form(context);
          AV11Messages = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          GX_FocusControl = "";
          Form = new GXWebForm();
@@ -2042,7 +2083,6 @@ namespace GeneXus.Programs {
          H00A33_A206WWPFormId = new short[1] ;
          AV48LocationId = Guid.Empty;
          AV49OrganisationId = Guid.Empty;
-         GXt_guid4 = Guid.Empty;
          AV50Trn_LocationDynamicForm = new SdtTrn_LocationDynamicForm(context);
          AV56GXV2 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          H00A34_A206WWPFormId = new short[1] ;
@@ -2050,7 +2090,8 @@ namespace GeneXus.Programs {
          H00A34_A231WWPFormDate = new DateTime[] {DateTime.MinValue} ;
          H00A34_A207WWPFormVersionNumber = new short[1] ;
          AV31WWPFormDate = (DateTime)(DateTime.MinValue);
-         AV30NewWWPForm = new GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form(context);
+         GXt_guid4 = Guid.Empty;
+         AV60GXV5 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          GXt_SdtWWP_Form1 = new GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form(context);
          AV35VarCharAux = "";
          AV34AllReferenceIds = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtWWPSuggestDataItem>( context, "WWPSuggestDataItem", "Comforta_version2");
@@ -2137,9 +2178,10 @@ namespace GeneXus.Programs {
       private int AV54GXV1 ;
       private int AV57GXV3 ;
       private int AV59GXV4 ;
-      private int AV60GXV5 ;
       private int AV61GXV6 ;
       private int AV62GXV7 ;
+      private int AV63GXV8 ;
+      private int AV64GXV9 ;
       private int idxLst ;
       private string AV26WWPDynamicFormMode ;
       private string wcpOAV26WWPDynamicFormMode ;
@@ -2246,6 +2288,7 @@ namespace GeneXus.Programs {
       private GXCombobox cmbavDynamicsectiontoupdate ;
       private GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form AV27WWPForm ;
       private GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form_Element AV7Element ;
+      private GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form AV30NewWWPForm ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV11Messages ;
       private IDataStoreProvider pr_default ;
       private short[] H00A32_A206WWPFormId ;
@@ -2260,7 +2303,7 @@ namespace GeneXus.Programs {
       private bool[] H00A34_A234WWPFormInstantiated ;
       private DateTime[] H00A34_A231WWPFormDate ;
       private short[] H00A34_A207WWPFormVersionNumber ;
-      private GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form AV30NewWWPForm ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV60GXV5 ;
       private GeneXus.Programs.workwithplus.dynamicforms.SdtWWP_Form GXt_SdtWWP_Form1 ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtWWPSuggestDataItem> AV34AllReferenceIds ;
       private WorkWithPlus.workwithplus_dynamicforms.SdtWWP_DF_ConditionExpression AV15VisibleCondition ;

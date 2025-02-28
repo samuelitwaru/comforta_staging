@@ -675,13 +675,15 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
             StyleString = "";
             ClassString = "Attribute";
             StyleString = "";
-            GxWebStd.gx_html_textarea( context, edtavMessage_Internalname, AV15Message, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,64);\"", 0, 1, edtavMessage_Enabled, 0, 80, "chr", 5, "row", 0, StyleString, ClassString, "", "", "400", -1, 0, "", context.GetMessage( "Type a message to create a new thread...", ""), -1, true, "", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_WWPBaseObjects/Discussions/WWP_DiscussionsWC.htm");
+            GxWebStd.gx_html_textarea( context, edtavMessage_Internalname, AV15Message, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,64);\"", 0, 1, edtavMessage_Enabled, 0, 80, "chr", 5, "row", 0, StyleString, ClassString, "", "", "400", -1, 0, "", context.GetMessage( "Type a message...", ""), -1, true, "", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_WWPBaseObjects/Discussions/WWP_DiscussionsWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "align-self:flex-end;", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblEnter_Internalname, context.GetMessage( "<i class=\"fas fa-paper-plane DiscussionsSendIcon\"></i>", ""), "", "", lblEnter_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", "", "TextBlock", 5, context.GetMessage( "GX_BtnEnter", ""), 1, 1, 0, 1, "HLP_WWPBaseObjects/Discussions/WWP_DiscussionsWC.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 66,'" + sPrefix + "',false,'',0)\"";
+            ClassString = "ButtonLogin CellMarginTop10";
+            StyleString = "";
+            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(16), 2, 0)+","+"null"+");", context.GetMessage( "Send", ""), bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WWPBaseObjects/Discussions/WWP_DiscussionsWC.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1585,6 +1587,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       {
          /* Start Routine */
          returnInSub = false;
+         GX_msglist.addItem(context.GetMessage( "Am here....", ""));
          AV30GAMSession = new GeneXus.Programs.genexussecurity.SdtGAMSession(context).get(out  AV29GAMErrors);
          Ucmentions_Gamoauthtoken = AV30GAMSession.gxTpr_Token;
          ucUcmentions.SendProperty(context, sPrefix, false, Ucmentions_Internalname, "GAMOAuthToken", Ucmentions_Gamoauthtoken);
@@ -1626,7 +1629,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          new GeneXus.Programs.wwpbaseobjects.wwp_getentitybyname(context ).execute(  AV26WWPEntityName, out  GXt_int2) ;
          AV8WWPEntityId = GXt_int2;
          AssignAttri(sPrefix, false, "AV8WWPEntityId", StringUtil.LTrimStr( (decimal)(AV8WWPEntityId), 10, 0));
-         this.executeExternalObjectMethod(sPrefix, false, "WWPActions", "Textarea_EnterBehaviourToAction", new Object[] {(string)edtavMessage_Internalname,(string)lblEnter_Internalname}, false);
+         this.executeExternalObjectMethod(sPrefix, false, "WWPActions", "Textarea_EnterBehaviourToAction", new Object[] {(string)edtavMessage_Internalname,(string)bttBtnenter_Internalname}, false);
       }
 
       protected void E141S2( )
@@ -2177,7 +2180,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20252211231474", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025228352417", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2194,7 +2197,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionswc.js", "?20252211231477", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/discussions/wwp_discussionswc.js", "?2025228352419", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Suggest/SuggestRender.js", "", false, true);
          /* End function include_jscripts */
@@ -2763,7 +2766,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          divUnnamedtablefsgrid_Internalname = sPrefix+"UNNAMEDTABLEFSGRID";
          divGridcell_Internalname = sPrefix+"GRIDCELL";
          edtavMessage_Internalname = sPrefix+"vMESSAGE";
-         lblEnter_Internalname = sPrefix+"ENTER";
+         bttBtnenter_Internalname = sPrefix+"BTNENTER";
          divTablenewthread_Internalname = sPrefix+"TABLENEWTHREAD";
          divNewthreadcell_Internalname = sPrefix+"NEWTHREADCELL";
          Ucmentions_Internalname = sPrefix+"UCMENTIONS";
@@ -2891,7 +2894,7 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
          ClassString = "";
          StyleString = "";
          AV15Message = "";
-         lblEnter_Jsonclick = "";
+         bttBtnenter_Jsonclick = "";
          ucUcmentions = new GXUserControl();
          Form = new GXWebForm();
          sXEvt = "";
@@ -3063,8 +3066,8 @@ namespace GeneXus.Programs.wwpbaseobjects.discussions {
       private string TempTags ;
       private string ClassString ;
       private string StyleString ;
-      private string lblEnter_Internalname ;
-      private string lblEnter_Jsonclick ;
+      private string bttBtnenter_Internalname ;
+      private string bttBtnenter_Jsonclick ;
       private string Ucmentions_Internalname ;
       private string divHtml_bottomauxiliarcontrols_Internalname ;
       private string edtWWPDiscussionMessageEntityReco_Internalname ;

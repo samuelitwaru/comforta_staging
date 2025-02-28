@@ -494,8 +494,10 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, divTableright_Internalname, divTableright_Visible, 0, "px", 0, "px", "Flex", "start", "top", " "+"data-gx-flex"+" ", "justify-content:flex-end;align-items:flex-end;", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblOpendiscussion_Internalname, context.GetMessage( "<i class=\"MobileDiscussionIcon far fa-comment-dots\"></i>", ""), "", "", lblOpendiscussion_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+"e117w1_client"+"'", "", "TextBlock", 7, "", 1, 1, 0, 1, "HLP_WC_ResidentDynamicForm.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 14,'" + sPrefix + "',false,'',0)\"";
+            ClassString = "ButtonLogin";
+            StyleString = "";
+            GxWebStd.gx_button_ctrl( context, bttBtnopendiscussion_Internalname, "", context.GetMessage( "Discussion", ""), bttBtnopendiscussion_Jsonclick, 7, context.GetMessage( "Discussion", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+"e117w1_client"+"'", TempTags, "", 2, "HLP_WC_ResidentDynamicForm.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1817,7 +1819,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522220351293", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20252271194443", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1833,7 +1835,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_residentdynamicform.js", "?202522220351295", false, true);
+         context.AddJavascriptSource("wc_residentdynamicform.js", "?20252271194444", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/ConfirmPanel/BootstrapConfirmPanelRender.js", "", false, true);
@@ -1847,7 +1849,7 @@ namespace GeneXus.Programs {
 
       protected void init_default_properties( )
       {
-         lblOpendiscussion_Internalname = sPrefix+"OPENDISCUSSION";
+         bttBtnopendiscussion_Internalname = sPrefix+"BTNOPENDISCUSSION";
          divTableright_Internalname = sPrefix+"TABLERIGHT";
          divTablecontent_Internalname = sPrefix+"TABLECONTENT";
          bttBtnenter_Internalname = sPrefix+"BTNENTER";
@@ -1952,10 +1954,10 @@ namespace GeneXus.Programs {
          GX_FocusControl = "";
          ClassString = "";
          StyleString = "";
-         lblOpendiscussion_Jsonclick = "";
+         TempTags = "";
+         bttBtnopendiscussion_Jsonclick = "";
          WebComp_Wcwwp_dynamicformfs_wc_Component = "";
          OldWcwwp_dynamicformfs_wc = "";
-         TempTags = "";
          bttBtnenter_Jsonclick = "";
          bttBtncancel_Jsonclick = "";
          bttBtnuaresume_Jsonclick = "";
@@ -2089,12 +2091,12 @@ namespace GeneXus.Programs {
       private string ClassString ;
       private string StyleString ;
       private string divTableright_Internalname ;
-      private string lblOpendiscussion_Internalname ;
-      private string lblOpendiscussion_Jsonclick ;
+      private string TempTags ;
+      private string bttBtnopendiscussion_Internalname ;
+      private string bttBtnopendiscussion_Jsonclick ;
       private string divTablecontent_Internalname ;
       private string WebComp_Wcwwp_dynamicformfs_wc_Component ;
       private string OldWcwwp_dynamicformfs_wc ;
-      private string TempTags ;
       private string bttBtnenter_Internalname ;
       private string bttBtnenter_Jsonclick ;
       private string bttBtncancel_Internalname ;

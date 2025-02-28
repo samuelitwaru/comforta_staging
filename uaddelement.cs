@@ -4627,8 +4627,6 @@ namespace GeneXus.Programs {
          }
          edtavWwpformelementtitle_Height = 34;
          AssignProp(sPrefix, false, edtavWwpformelementtitle_Internalname, "Height", StringUtil.LTrimStr( (decimal)(edtavWwpformelementtitle_Height), 9, 0), true);
-         this.executeUsercontrolMethod(sPrefix, false, "GXUITABSPANEL_TABS1Container", "HideTab", "", new Object[] {(short)2});
-         this.executeUsercontrolMethod(sPrefix, false, "GXUITABSPANEL_TABS1Container", "HideTab", "", new Object[] {(short)3});
       }
 
       protected void E14A62( )
@@ -6048,7 +6046,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522112331656", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522711114854", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -6064,7 +6062,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("uaddelement.js", "?202522112331661", false, true);
+         context.AddJavascriptSource("uaddelement.js", "?202522711114856", false, true);
          context.AddJavascriptSource("shared/HistoryManager/HistoryManager.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/json2005.js", "", false, true);
          context.AddJavascriptSource("shared/HistoryManager/rsh/rsh.js", "", false, true);

@@ -193,7 +193,7 @@ namespace GeneXus.Programs {
           prmP00712 = new Object[] {
           };
           def= new CursorDef[] {
-              new CursorDef("P00712", "SELECT Trn_PageName, Trn_PageId, LocationId FROM Trn_Page ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00712,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P00712", "SELECT Trn_PageName, Trn_PageId, LocationId FROM Trn_Page ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00712,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }

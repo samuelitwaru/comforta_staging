@@ -658,8 +658,10 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "align-self:flex-end;", "div");
-            /* Text block */
-            GxWebStd.gx_label_ctrl( context, lblEnter_Internalname, context.GetMessage( "<i class=\"fas fa-paper-plane DiscussionsSendIcon\"></i>", ""), "", "", lblEnter_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", "", "TextBlock", 5, context.GetMessage( "GX_BtnEnter", ""), 1, 1, 0, 1, "HLP_WC_Discussions.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 66,'" + sPrefix + "',false,'',0)\"";
+            ClassString = "ButtonLogin CellMarginTop10";
+            StyleString = "";
+            GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "gx.evt.setGridEvt("+StringUtil.Str( (decimal)(16), 2, 0)+","+"null"+");", context.GetMessage( "Send", ""), bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WC_Discussions.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1598,7 +1600,7 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.wwp_getentitybyname(context ).execute(  AV24WWPEntityName, out  GXt_int2) ;
          AV6WWPEntityId = GXt_int2;
          AssignAttri(sPrefix, false, "AV6WWPEntityId", StringUtil.LTrimStr( (decimal)(AV6WWPEntityId), 10, 0));
-         this.executeExternalObjectMethod(sPrefix, false, "WWPActions", "Textarea_EnterBehaviourToAction", new Object[] {(string)edtavMessage_Internalname,(string)lblEnter_Internalname}, false);
+         this.executeExternalObjectMethod(sPrefix, false, "WWPActions", "Textarea_EnterBehaviourToAction", new Object[] {(string)edtavMessage_Internalname,(string)bttBtnenter_Internalname}, false);
       }
 
       protected void E147Z2( )
@@ -2160,7 +2162,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522118213453", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20252289403979", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2176,7 +2178,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wc_discussions.js", "?202522118213454", false, true);
+         context.AddJavascriptSource("wc_discussions.js", "?20252289403982", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Suggest/SuggestRender.js", "", false, true);
          /* End function include_jscripts */
@@ -2745,7 +2747,7 @@ namespace GeneXus.Programs {
          divUnnamedtablefsgrid_Internalname = sPrefix+"UNNAMEDTABLEFSGRID";
          divGridcell_Internalname = sPrefix+"GRIDCELL";
          edtavMessage_Internalname = sPrefix+"vMESSAGE";
-         lblEnter_Internalname = sPrefix+"ENTER";
+         bttBtnenter_Internalname = sPrefix+"BTNENTER";
          divTablenewthread_Internalname = sPrefix+"TABLENEWTHREAD";
          divNewthreadcell_Internalname = sPrefix+"NEWTHREADCELL";
          Ucmentions_Internalname = sPrefix+"UCMENTIONS";
@@ -2876,7 +2878,7 @@ namespace GeneXus.Programs {
          ClassString = "";
          StyleString = "";
          AV13Message = "";
-         lblEnter_Jsonclick = "";
+         bttBtnenter_Jsonclick = "";
          ucUcmentions = new GXUserControl();
          Form = new GXWebForm();
          sXEvt = "";
@@ -3049,8 +3051,8 @@ namespace GeneXus.Programs {
       private string TempTags ;
       private string ClassString ;
       private string StyleString ;
-      private string lblEnter_Internalname ;
-      private string lblEnter_Jsonclick ;
+      private string bttBtnenter_Internalname ;
+      private string bttBtnenter_Jsonclick ;
       private string Ucmentions_Internalname ;
       private string divHtml_bottomauxiliarcontrols_Internalname ;
       private string edtWWPDiscussionMessageEntityReco_Internalname ;

@@ -106,7 +106,8 @@ namespace GeneXus.Programs {
                AV8SDT_MobilePage.gxTpr_Pageispublished = A434PageIsPublished;
                AV8SDT_MobilePage.gxTpr_Pageiscontentpage = A439PageIsContentPage;
             }
-            pr_default.readNext(0);
+            /* Exiting from a For First loop. */
+            if (true) break;
          }
          pr_default.close(0);
          cleanup();
@@ -203,7 +204,7 @@ namespace GeneXus.Programs {
           new ParDef("AV9OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P009C2", "SELECT OrganisationId, LocationId, Trn_PageId, PageJsonContent, Trn_PageName, PageIsPublished, PageIsContentPage FROM Trn_Page WHERE (Trn_PageId = :AV11PageId) AND (LocationId = :AV10LocationId) AND (OrganisationId = :AV9OrganisationId) ORDER BY Trn_PageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009C2,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P009C2", "SELECT OrganisationId, LocationId, Trn_PageId, PageJsonContent, Trn_PageName, PageIsPublished, PageIsContentPage FROM Trn_Page WHERE (Trn_PageId = :AV11PageId and LocationId = :AV10LocationId) AND (OrganisationId = :AV9OrganisationId) ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009C2,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }

@@ -2313,7 +2313,7 @@ namespace GeneXus.Programs {
          if ( AV35IsAuthorized_Insert )
          {
             GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "trn_page.aspx"+UrlEncode(StringUtil.RTrim("INS")) + "," + UrlEncode(Guid.Empty.ToString()) + "," + UrlEncode(StringUtil.RTrim("")) + "," + UrlEncode(Guid.Empty.ToString());
+            GXEncryptionTmp = "trn_page.aspx"+UrlEncode(StringUtil.RTrim("INS")) + "," + UrlEncode(Guid.Empty.ToString()) + "," + UrlEncode(Guid.Empty.ToString());
             CallWebObject(formatLink("trn_page.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
@@ -2499,7 +2499,7 @@ namespace GeneXus.Programs {
          if ( AV32IsAuthorized_Update )
          {
             GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "trn_page.aspx"+UrlEncode(StringUtil.RTrim("UPD")) + "," + UrlEncode(A310Trn_PageId.ToString()) + "," + UrlEncode(StringUtil.RTrim(A318Trn_PageName)) + "," + UrlEncode(A29LocationId.ToString());
+            GXEncryptionTmp = "trn_page.aspx"+UrlEncode(StringUtil.RTrim("UPD")) + "," + UrlEncode(A310Trn_PageId.ToString()) + "," + UrlEncode(A29LocationId.ToString());
             CallWebObject(formatLink("trn_page.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
@@ -2517,7 +2517,7 @@ namespace GeneXus.Programs {
          if ( AV34IsAuthorized_Delete )
          {
             GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "trn_page.aspx"+UrlEncode(StringUtil.RTrim("DLT")) + "," + UrlEncode(A310Trn_PageId.ToString()) + "," + UrlEncode(StringUtil.RTrim(A318Trn_PageName)) + "," + UrlEncode(A29LocationId.ToString());
+            GXEncryptionTmp = "trn_page.aspx"+UrlEncode(StringUtil.RTrim("DLT")) + "," + UrlEncode(A310Trn_PageId.ToString()) + "," + UrlEncode(A29LocationId.ToString());
             CallWebObject(formatLink("trn_page.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
@@ -2747,7 +2747,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521911475858", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522714301937", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2763,7 +2763,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_pageww.js", "?202521911475861", false, true);
+         context.AddJavascriptSource("trn_pageww.js", "?202522714301939", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3379,7 +3379,7 @@ namespace GeneXus.Programs {
          setEventMetadata("DDO_MANAGEFILTERS.ONOPTIONCLICKED",""","oparms":[{"av":"AV18ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV11GridState","fld":"vGRIDSTATE"},{"av":"AV41OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV13OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV14FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19TFTrn_PageName","fld":"vTFTRN_PAGENAME"},{"av":"AV20TFTrn_PageName_Sel","fld":"vTFTRN_PAGENAME_SEL"},{"av":"AV42TFPageJsonContent","fld":"vTFPAGEJSONCONTENT"},{"av":"AV43TFPageJsonContent_Sel","fld":"vTFPAGEJSONCONTENT_SEL"},{"av":"AV44TFPageGJSHtml","fld":"vTFPAGEGJSHTML"},{"av":"AV45TFPageGJSHtml_Sel","fld":"vTFPAGEGJSHTML_SEL"},{"av":"AV46TFPageGJSJson","fld":"vTFPAGEGJSJSON"},{"av":"AV47TFPageGJSJson_Sel","fld":"vTFPAGEGJSJSON_SEL"},{"av":"AV55TFPageIsPublished_Sel","fld":"vTFPAGEISPUBLISHED_SEL","pic":"9"},{"av":"AV49TFPageIsContentPage_Sel","fld":"vTFPAGEISCONTENTPAGE_SEL","pic":"9"},{"av":"AV56TFPageChildren","fld":"vTFPAGECHILDREN"},{"av":"AV57TFPageChildren_Sel","fld":"vTFPAGECHILDREN_SEL"},{"av":"Ddo_grid_Selectedvalue_set","ctrl":"DDO_GRID","prop":"SelectedValue_set"},{"av":"Ddo_grid_Filteredtext_set","ctrl":"DDO_GRID","prop":"FilteredText_set"},{"av":"Ddo_grid_Sortedstatus","ctrl":"DDO_GRID","prop":"SortedStatus"},{"av":"AV53ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"edtTrn_PageId_Visible","ctrl":"TRN_PAGEID","prop":"Visible"},{"av":"edtTrn_PageName_Visible","ctrl":"TRN_PAGENAME","prop":"Visible"},{"av":"edtLocationId_Visible","ctrl":"LOCATIONID","prop":"Visible"},{"av":"edtPageJsonContent_Visible","ctrl":"PAGEJSONCONTENT","prop":"Visible"},{"av":"edtPageGJSHtml_Visible","ctrl":"PAGEGJSHTML","prop":"Visible"},{"av":"edtPageGJSJson_Visible","ctrl":"PAGEGJSJSON","prop":"Visible"},{"av":"chkPageIsPublished.Visible","ctrl":"PAGEISPUBLISHED","prop":"Visible"},{"av":"cmbPageIsContentPage"},{"av":"edtPageChildren_Visible","ctrl":"PAGECHILDREN","prop":"Visible"},{"av":"edtProductServiceId_Visible","ctrl":"PRODUCTSERVICEID","prop":"Visible"},{"av":"edtOrganisationId_Visible","ctrl":"ORGANISATIONID","prop":"Visible"},{"av":"AV25GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV26GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV27GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV30IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV32IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV34IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV35IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV16ManageFiltersData","fld":"vMANAGEFILTERSDATA"}]}""");
          setEventMetadata("VACTIONGROUP.CLICK","""{"handler":"E215M2","iparms":[{"av":"cmbavActiongroup"},{"av":"AV48ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV41OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV13OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV18ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV53ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV59Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV14FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19TFTrn_PageName","fld":"vTFTRN_PAGENAME"},{"av":"AV20TFTrn_PageName_Sel","fld":"vTFTRN_PAGENAME_SEL"},{"av":"AV42TFPageJsonContent","fld":"vTFPAGEJSONCONTENT"},{"av":"AV43TFPageJsonContent_Sel","fld":"vTFPAGEJSONCONTENT_SEL"},{"av":"AV44TFPageGJSHtml","fld":"vTFPAGEGJSHTML"},{"av":"AV45TFPageGJSHtml_Sel","fld":"vTFPAGEGJSHTML_SEL"},{"av":"AV46TFPageGJSJson","fld":"vTFPAGEGJSJSON"},{"av":"AV47TFPageGJSJson_Sel","fld":"vTFPAGEGJSJSON_SEL"},{"av":"AV55TFPageIsPublished_Sel","fld":"vTFPAGEISPUBLISHED_SEL","pic":"9"},{"av":"AV49TFPageIsContentPage_Sel","fld":"vTFPAGEISCONTENTPAGE_SEL","pic":"9"},{"av":"AV56TFPageChildren","fld":"vTFPAGECHILDREN"},{"av":"AV57TFPageChildren_Sel","fld":"vTFPAGECHILDREN_SEL"},{"av":"AV30IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV32IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV34IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV35IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"A310Trn_PageId","fld":"TRN_PAGEID","hsh":true},{"av":"A318Trn_PageName","fld":"TRN_PAGENAME","hsh":true},{"av":"A29LocationId","fld":"LOCATIONID","hsh":true}]""");
          setEventMetadata("VACTIONGROUP.CLICK",""","oparms":[{"av":"cmbavActiongroup"},{"av":"AV48ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"AV18ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV53ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"edtTrn_PageId_Visible","ctrl":"TRN_PAGEID","prop":"Visible"},{"av":"edtTrn_PageName_Visible","ctrl":"TRN_PAGENAME","prop":"Visible"},{"av":"edtLocationId_Visible","ctrl":"LOCATIONID","prop":"Visible"},{"av":"edtPageJsonContent_Visible","ctrl":"PAGEJSONCONTENT","prop":"Visible"},{"av":"edtPageGJSHtml_Visible","ctrl":"PAGEGJSHTML","prop":"Visible"},{"av":"edtPageGJSJson_Visible","ctrl":"PAGEGJSJSON","prop":"Visible"},{"av":"chkPageIsPublished.Visible","ctrl":"PAGEISPUBLISHED","prop":"Visible"},{"av":"cmbPageIsContentPage"},{"av":"edtPageChildren_Visible","ctrl":"PAGECHILDREN","prop":"Visible"},{"av":"edtProductServiceId_Visible","ctrl":"PRODUCTSERVICEID","prop":"Visible"},{"av":"edtOrganisationId_Visible","ctrl":"ORGANISATIONID","prop":"Visible"},{"av":"AV25GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV26GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV27GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV30IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV32IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV34IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV35IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV16ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
-         setEventMetadata("'DOINSERT'","""{"handler":"E175M2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV41OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV13OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV18ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV53ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV59Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV14FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19TFTrn_PageName","fld":"vTFTRN_PAGENAME"},{"av":"AV20TFTrn_PageName_Sel","fld":"vTFTRN_PAGENAME_SEL"},{"av":"AV42TFPageJsonContent","fld":"vTFPAGEJSONCONTENT"},{"av":"AV43TFPageJsonContent_Sel","fld":"vTFPAGEJSONCONTENT_SEL"},{"av":"AV44TFPageGJSHtml","fld":"vTFPAGEGJSHTML"},{"av":"AV45TFPageGJSHtml_Sel","fld":"vTFPAGEGJSHTML_SEL"},{"av":"AV46TFPageGJSJson","fld":"vTFPAGEGJSJSON"},{"av":"AV47TFPageGJSJson_Sel","fld":"vTFPAGEGJSJSON_SEL"},{"av":"AV55TFPageIsPublished_Sel","fld":"vTFPAGEISPUBLISHED_SEL","pic":"9"},{"av":"AV49TFPageIsContentPage_Sel","fld":"vTFPAGEISCONTENTPAGE_SEL","pic":"9"},{"av":"AV56TFPageChildren","fld":"vTFPAGECHILDREN"},{"av":"AV57TFPageChildren_Sel","fld":"vTFPAGECHILDREN_SEL"},{"av":"AV30IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV32IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV34IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV35IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"A310Trn_PageId","fld":"TRN_PAGEID","hsh":true},{"av":"A318Trn_PageName","fld":"TRN_PAGENAME","hsh":true},{"av":"A29LocationId","fld":"LOCATIONID","hsh":true}]""");
+         setEventMetadata("'DOINSERT'","""{"handler":"E175M2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV41OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV13OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV18ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV53ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV59Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV14FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19TFTrn_PageName","fld":"vTFTRN_PAGENAME"},{"av":"AV20TFTrn_PageName_Sel","fld":"vTFTRN_PAGENAME_SEL"},{"av":"AV42TFPageJsonContent","fld":"vTFPAGEJSONCONTENT"},{"av":"AV43TFPageJsonContent_Sel","fld":"vTFPAGEJSONCONTENT_SEL"},{"av":"AV44TFPageGJSHtml","fld":"vTFPAGEGJSHTML"},{"av":"AV45TFPageGJSHtml_Sel","fld":"vTFPAGEGJSHTML_SEL"},{"av":"AV46TFPageGJSJson","fld":"vTFPAGEGJSJSON"},{"av":"AV47TFPageGJSJson_Sel","fld":"vTFPAGEGJSJSON_SEL"},{"av":"AV55TFPageIsPublished_Sel","fld":"vTFPAGEISPUBLISHED_SEL","pic":"9"},{"av":"AV49TFPageIsContentPage_Sel","fld":"vTFPAGEISCONTENTPAGE_SEL","pic":"9"},{"av":"AV56TFPageChildren","fld":"vTFPAGECHILDREN"},{"av":"AV57TFPageChildren_Sel","fld":"vTFPAGECHILDREN_SEL"},{"av":"AV30IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV32IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV34IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV35IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"A310Trn_PageId","fld":"TRN_PAGEID","hsh":true},{"av":"A29LocationId","fld":"LOCATIONID","hsh":true}]""");
          setEventMetadata("'DOINSERT'",""","oparms":[{"av":"AV18ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV53ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"edtTrn_PageId_Visible","ctrl":"TRN_PAGEID","prop":"Visible"},{"av":"edtTrn_PageName_Visible","ctrl":"TRN_PAGENAME","prop":"Visible"},{"av":"edtLocationId_Visible","ctrl":"LOCATIONID","prop":"Visible"},{"av":"edtPageJsonContent_Visible","ctrl":"PAGEJSONCONTENT","prop":"Visible"},{"av":"edtPageGJSHtml_Visible","ctrl":"PAGEGJSHTML","prop":"Visible"},{"av":"edtPageGJSJson_Visible","ctrl":"PAGEGJSJSON","prop":"Visible"},{"av":"chkPageIsPublished.Visible","ctrl":"PAGEISPUBLISHED","prop":"Visible"},{"av":"cmbPageIsContentPage"},{"av":"edtPageChildren_Visible","ctrl":"PAGECHILDREN","prop":"Visible"},{"av":"edtProductServiceId_Visible","ctrl":"PRODUCTSERVICEID","prop":"Visible"},{"av":"edtOrganisationId_Visible","ctrl":"ORGANISATIONID","prop":"Visible"},{"av":"AV25GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV26GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV27GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV30IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV32IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV34IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV35IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV16ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
          setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT","""{"handler":"E145M2","iparms":[]""");
          setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT",""","oparms":[{"ctrl":"WWPAUX_WC"}]}""");
@@ -4065,19 +4065,19 @@ namespace GeneXus.Programs {
          scmdbuf += sWhereString;
          if ( ( AV41OrderedBy == 1 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY PageIsPublished, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageIsPublished, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 1 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY PageIsPublished DESC, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageIsPublished DESC, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 2 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 2 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY Trn_PageId DESC, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY Trn_PageId DESC, LocationId";
          }
          else if ( ( AV41OrderedBy == 3 ) && ! AV13OrderedDsc )
          {
@@ -4089,67 +4089,67 @@ namespace GeneXus.Programs {
          }
          else if ( ( AV41OrderedBy == 4 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY LocationId, Trn_PageId, Trn_PageName";
+            scmdbuf += " ORDER BY LocationId, Trn_PageId";
          }
          else if ( ( AV41OrderedBy == 4 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY LocationId DESC, Trn_PageId, Trn_PageName";
+            scmdbuf += " ORDER BY LocationId DESC, Trn_PageId";
          }
          else if ( ( AV41OrderedBy == 5 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY PageJsonContent, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageJsonContent, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 5 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY PageJsonContent DESC, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageJsonContent DESC, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 6 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY PageGJSHtml, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageGJSHtml, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 6 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY PageGJSHtml DESC, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageGJSHtml DESC, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 7 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY PageGJSJson, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageGJSJson, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 7 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY PageGJSJson DESC, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageGJSJson DESC, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 8 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY PageIsContentPage, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageIsContentPage, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 8 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY PageIsContentPage DESC, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageIsContentPage DESC, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 9 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY PageChildren, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageChildren, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 9 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY PageChildren DESC, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageChildren DESC, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 10 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY ProductServiceId, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY ProductServiceId, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 10 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY ProductServiceId DESC, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY ProductServiceId DESC, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 11 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY OrganisationId, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY OrganisationId, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 11 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY OrganisationId DESC, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY OrganisationId DESC, Trn_PageId, LocationId";
          }
          GXv_Object10[0] = scmdbuf;
          GXv_Object10[1] = GXv_int9;
@@ -4304,19 +4304,19 @@ namespace GeneXus.Programs {
          scmdbuf += sWhereString;
          if ( ( AV41OrderedBy == 1 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY PageIsPublished, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageIsPublished, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 1 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY PageIsPublished DESC, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageIsPublished DESC, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 2 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 2 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY Trn_PageId DESC, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY Trn_PageId DESC, LocationId";
          }
          else if ( ( AV41OrderedBy == 3 ) && ! AV13OrderedDsc )
          {
@@ -4328,67 +4328,67 @@ namespace GeneXus.Programs {
          }
          else if ( ( AV41OrderedBy == 4 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY LocationId, Trn_PageId, Trn_PageName";
+            scmdbuf += " ORDER BY LocationId, Trn_PageId";
          }
          else if ( ( AV41OrderedBy == 4 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY LocationId DESC, Trn_PageId, Trn_PageName";
+            scmdbuf += " ORDER BY LocationId DESC, Trn_PageId";
          }
          else if ( ( AV41OrderedBy == 5 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY PageJsonContent, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageJsonContent, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 5 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY PageJsonContent DESC, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageJsonContent DESC, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 6 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY PageGJSHtml, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageGJSHtml, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 6 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY PageGJSHtml DESC, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageGJSHtml DESC, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 7 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY PageGJSJson, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageGJSJson, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 7 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY PageGJSJson DESC, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageGJSJson DESC, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 8 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY PageIsContentPage, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageIsContentPage, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 8 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY PageIsContentPage DESC, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageIsContentPage DESC, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 9 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY PageChildren, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageChildren, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 9 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY PageChildren DESC, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY PageChildren DESC, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 10 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY ProductServiceId, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY ProductServiceId, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 10 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY ProductServiceId DESC, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY ProductServiceId DESC, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 11 ) && ! AV13OrderedDsc )
          {
-            scmdbuf += " ORDER BY OrganisationId, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY OrganisationId, Trn_PageId, LocationId";
          }
          else if ( ( AV41OrderedBy == 11 ) && ( AV13OrderedDsc ) )
          {
-            scmdbuf += " ORDER BY OrganisationId DESC, Trn_PageId, Trn_PageName, LocationId";
+            scmdbuf += " ORDER BY OrganisationId DESC, Trn_PageId, LocationId";
          }
          GXv_Object12[0] = scmdbuf;
          GXv_Object12[1] = GXv_int11;

@@ -47,16 +47,14 @@ namespace GeneXus.Programs {
       public void execute( string aP0_SaveOldValues ,
                            ref GeneXus.Programs.wwpbaseobjects.SdtAuditingObject aP1_AuditingObject ,
                            Guid aP2_Trn_PageId ,
-                           string aP3_Trn_PageName ,
-                           Guid aP4_LocationId ,
-                           string aP5_ActualMode )
+                           Guid aP3_LocationId ,
+                           string aP4_ActualMode )
       {
          this.AV14SaveOldValues = aP0_SaveOldValues;
          this.AV11AuditingObject = aP1_AuditingObject;
          this.AV17Trn_PageId = aP2_Trn_PageId;
-         this.AV18Trn_PageName = aP3_Trn_PageName;
-         this.AV19LocationId = aP4_LocationId;
-         this.AV15ActualMode = aP5_ActualMode;
+         this.AV19LocationId = aP3_LocationId;
+         this.AV15ActualMode = aP4_ActualMode;
          initialize();
          ExecuteImpl();
          aP1_AuditingObject=this.AV11AuditingObject;
@@ -65,16 +63,14 @@ namespace GeneXus.Programs {
       public void executeSubmit( string aP0_SaveOldValues ,
                                  ref GeneXus.Programs.wwpbaseobjects.SdtAuditingObject aP1_AuditingObject ,
                                  Guid aP2_Trn_PageId ,
-                                 string aP3_Trn_PageName ,
-                                 Guid aP4_LocationId ,
-                                 string aP5_ActualMode )
+                                 Guid aP3_LocationId ,
+                                 string aP4_ActualMode )
       {
          this.AV14SaveOldValues = aP0_SaveOldValues;
          this.AV11AuditingObject = aP1_AuditingObject;
          this.AV17Trn_PageId = aP2_Trn_PageId;
-         this.AV18Trn_PageName = aP3_Trn_PageName;
-         this.AV19LocationId = aP4_LocationId;
-         this.AV15ActualMode = aP5_ActualMode;
+         this.AV19LocationId = aP3_LocationId;
+         this.AV15ActualMode = aP4_ActualMode;
          SubmitImpl();
          aP1_AuditingObject=this.AV11AuditingObject;
       }
@@ -114,12 +110,12 @@ namespace GeneXus.Programs {
          /* 'LOADOLDVALUES' Routine */
          returnInSub = false;
          /* Using cursor P00B12 */
-         pr_default.execute(0, new Object[] {AV17Trn_PageId, AV18Trn_PageName, AV19LocationId});
+         pr_default.execute(0, new Object[] {AV17Trn_PageId, AV19LocationId});
          while ( (pr_default.getStatus(0) != 101) )
          {
             A29LocationId = P00B12_A29LocationId[0];
-            A318Trn_PageName = P00B12_A318Trn_PageName[0];
             A310Trn_PageId = P00B12_A310Trn_PageId[0];
+            A318Trn_PageName = P00B12_A318Trn_PageName[0];
             A431PageJsonContent = P00B12_A431PageJsonContent[0];
             n431PageJsonContent = P00B12_n431PageJsonContent[0];
             A432PageGJSHtml = P00B12_A432PageGJSHtml[0];
@@ -154,8 +150,8 @@ namespace GeneXus.Programs {
             AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name = "Trn_PageName";
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = context.GetMessage( "Name", "");
-            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = true;
-            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Isdescriptionattribute = false;
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = false;
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Isdescriptionattribute = true;
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Oldvalue = A318Trn_PageName;
             AV12AuditingObjectRecordItem.gxTpr_Attribute.Add(AV13AuditingObjectRecordItemAttributeItem, 0);
             AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
@@ -190,7 +186,7 @@ namespace GeneXus.Programs {
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name = "PageIsPublished";
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = context.GetMessage( "Is Published", "");
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = false;
-            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Isdescriptionattribute = true;
+            AV13AuditingObjectRecordItemAttributeItem.gxTpr_Isdescriptionattribute = false;
             AV13AuditingObjectRecordItemAttributeItem.gxTpr_Oldvalue = StringUtil.BoolToStr( A434PageIsPublished);
             AV12AuditingObjectRecordItem.gxTpr_Attribute.Add(AV13AuditingObjectRecordItemAttributeItem, 0);
             AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
@@ -253,12 +249,12 @@ namespace GeneXus.Programs {
          /* 'LOADNEWVALUES' Routine */
          returnInSub = false;
          /* Using cursor P00B13 */
-         pr_default.execute(1, new Object[] {AV17Trn_PageId, AV18Trn_PageName, AV19LocationId});
+         pr_default.execute(1, new Object[] {AV17Trn_PageId, AV19LocationId});
          while ( (pr_default.getStatus(1) != 101) )
          {
             A29LocationId = P00B13_A29LocationId[0];
-            A318Trn_PageName = P00B13_A318Trn_PageName[0];
             A310Trn_PageId = P00B13_A310Trn_PageId[0];
+            A318Trn_PageName = P00B13_A318Trn_PageName[0];
             A431PageJsonContent = P00B13_A431PageJsonContent[0];
             n431PageJsonContent = P00B13_n431PageJsonContent[0];
             A432PageGJSHtml = P00B13_A432PageGJSHtml[0];
@@ -294,8 +290,8 @@ namespace GeneXus.Programs {
                AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name = "Trn_PageName";
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = context.GetMessage( "Name", "");
-               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = true;
-               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Isdescriptionattribute = false;
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = false;
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Isdescriptionattribute = true;
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue = A318Trn_PageName;
                AV12AuditingObjectRecordItem.gxTpr_Attribute.Add(AV13AuditingObjectRecordItemAttributeItem, 0);
                AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
@@ -330,7 +326,7 @@ namespace GeneXus.Programs {
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Name = "PageIsPublished";
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Description = context.GetMessage( "Is Published", "");
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Ispartofkey = false;
-               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Isdescriptionattribute = true;
+               AV13AuditingObjectRecordItemAttributeItem.gxTpr_Isdescriptionattribute = false;
                AV13AuditingObjectRecordItemAttributeItem.gxTpr_Newvalue = StringUtil.BoolToStr( A434PageIsPublished);
                AV12AuditingObjectRecordItem.gxTpr_Attribute.Add(AV13AuditingObjectRecordItemAttributeItem, 0);
                AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
@@ -473,8 +469,8 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          P00B12_A29LocationId = new Guid[] {Guid.Empty} ;
-         P00B12_A318Trn_PageName = new string[] {""} ;
          P00B12_A310Trn_PageId = new Guid[] {Guid.Empty} ;
+         P00B12_A318Trn_PageName = new string[] {""} ;
          P00B12_A431PageJsonContent = new string[] {""} ;
          P00B12_n431PageJsonContent = new bool[] {false} ;
          P00B12_A432PageGJSHtml = new string[] {""} ;
@@ -494,8 +490,8 @@ namespace GeneXus.Programs {
          P00B12_n58ProductServiceId = new bool[] {false} ;
          P00B12_A11OrganisationId = new Guid[] {Guid.Empty} ;
          A29LocationId = Guid.Empty;
-         A318Trn_PageName = "";
          A310Trn_PageId = Guid.Empty;
+         A318Trn_PageName = "";
          A431PageJsonContent = "";
          A432PageGJSHtml = "";
          A433PageGJSJson = "";
@@ -505,8 +501,8 @@ namespace GeneXus.Programs {
          AV12AuditingObjectRecordItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem(context);
          AV13AuditingObjectRecordItemAttributeItem = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem(context);
          P00B13_A29LocationId = new Guid[] {Guid.Empty} ;
-         P00B13_A318Trn_PageName = new string[] {""} ;
          P00B13_A310Trn_PageId = new Guid[] {Guid.Empty} ;
+         P00B13_A318Trn_PageName = new string[] {""} ;
          P00B13_A431PageJsonContent = new string[] {""} ;
          P00B13_n431PageJsonContent = new bool[] {false} ;
          P00B13_A432PageGJSHtml = new string[] {""} ;
@@ -528,12 +524,12 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.loadaudittrn_page__default(),
             new Object[][] {
                 new Object[] {
-               P00B12_A29LocationId, P00B12_A318Trn_PageName, P00B12_A310Trn_PageId, P00B12_A431PageJsonContent, P00B12_n431PageJsonContent, P00B12_A432PageGJSHtml, P00B12_n432PageGJSHtml, P00B12_A433PageGJSJson, P00B12_n433PageGJSJson, P00B12_A434PageIsPublished,
+               P00B12_A29LocationId, P00B12_A310Trn_PageId, P00B12_A318Trn_PageName, P00B12_A431PageJsonContent, P00B12_n431PageJsonContent, P00B12_A432PageGJSHtml, P00B12_n432PageGJSHtml, P00B12_A433PageGJSJson, P00B12_n433PageGJSJson, P00B12_A434PageIsPublished,
                P00B12_n434PageIsPublished, P00B12_A504PageIsPredefined, P00B12_A439PageIsContentPage, P00B12_n439PageIsContentPage, P00B12_A514PageIsDynamicForm, P00B12_A519PageIsWebLinkPage, P00B12_A437PageChildren, P00B12_n437PageChildren, P00B12_A58ProductServiceId, P00B12_n58ProductServiceId,
                P00B12_A11OrganisationId
                }
                , new Object[] {
-               P00B13_A29LocationId, P00B13_A318Trn_PageName, P00B13_A310Trn_PageId, P00B13_A431PageJsonContent, P00B13_n431PageJsonContent, P00B13_A432PageGJSHtml, P00B13_n432PageGJSHtml, P00B13_A433PageGJSJson, P00B13_n433PageGJSJson, P00B13_A434PageIsPublished,
+               P00B13_A29LocationId, P00B13_A310Trn_PageId, P00B13_A318Trn_PageName, P00B13_A431PageJsonContent, P00B13_n431PageJsonContent, P00B13_A432PageGJSHtml, P00B13_n432PageGJSHtml, P00B13_A433PageGJSJson, P00B13_n433PageGJSJson, P00B13_A434PageIsPublished,
                P00B13_n434PageIsPublished, P00B13_A504PageIsPredefined, P00B13_A439PageIsContentPage, P00B13_n439PageIsContentPage, P00B13_A514PageIsDynamicForm, P00B13_A519PageIsWebLinkPage, P00B13_A437PageChildren, P00B13_n437PageChildren, P00B13_A58ProductServiceId, P00B13_n58ProductServiceId,
                P00B13_A11OrganisationId
                }
@@ -563,7 +559,6 @@ namespace GeneXus.Programs {
       private string A432PageGJSHtml ;
       private string A433PageGJSJson ;
       private string A437PageChildren ;
-      private string AV18Trn_PageName ;
       private string A318Trn_PageName ;
       private Guid AV17Trn_PageId ;
       private Guid AV19LocationId ;
@@ -578,8 +573,8 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtAuditingObject aP1_AuditingObject ;
       private IDataStoreProvider pr_default ;
       private Guid[] P00B12_A29LocationId ;
-      private string[] P00B12_A318Trn_PageName ;
       private Guid[] P00B12_A310Trn_PageId ;
+      private string[] P00B12_A318Trn_PageName ;
       private string[] P00B12_A431PageJsonContent ;
       private bool[] P00B12_n431PageJsonContent ;
       private string[] P00B12_A432PageGJSHtml ;
@@ -601,8 +596,8 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem AV12AuditingObjectRecordItem ;
       private GeneXus.Programs.wwpbaseobjects.SdtAuditingObject_RecordItem_AttributeItem AV13AuditingObjectRecordItemAttributeItem ;
       private Guid[] P00B13_A29LocationId ;
-      private string[] P00B13_A318Trn_PageName ;
       private Guid[] P00B13_A310Trn_PageId ;
+      private string[] P00B13_A318Trn_PageName ;
       private string[] P00B13_A431PageJsonContent ;
       private bool[] P00B13_n431PageJsonContent ;
       private string[] P00B13_A432PageGJSHtml ;
@@ -642,18 +637,16 @@ namespace GeneXus.Programs {
           Object[] prmP00B12;
           prmP00B12 = new Object[] {
           new ParDef("AV17Trn_PageId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("AV18Trn_PageName",GXType.VarChar,100,0) ,
           new ParDef("AV19LocationId",GXType.UniqueIdentifier,36,0)
           };
           Object[] prmP00B13;
           prmP00B13 = new Object[] {
           new ParDef("AV17Trn_PageId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("AV18Trn_PageName",GXType.VarChar,100,0) ,
           new ParDef("AV19LocationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P00B12", "SELECT LocationId, Trn_PageName, Trn_PageId, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsPredefined, PageIsContentPage, PageIsDynamicForm, PageIsWebLinkPage, PageChildren, ProductServiceId, OrganisationId FROM Trn_Page WHERE Trn_PageId = :AV17Trn_PageId and Trn_PageName = ( :AV18Trn_PageName) and LocationId = :AV19LocationId ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00B12,1, GxCacheFrequency.OFF ,false,true )
-             ,new CursorDef("P00B13", "SELECT LocationId, Trn_PageName, Trn_PageId, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsPredefined, PageIsContentPage, PageIsDynamicForm, PageIsWebLinkPage, PageChildren, ProductServiceId, OrganisationId FROM Trn_Page WHERE Trn_PageId = :AV17Trn_PageId and Trn_PageName = ( :AV18Trn_PageName) and LocationId = :AV19LocationId ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00B13,1, GxCacheFrequency.OFF ,false,true )
+              new CursorDef("P00B12", "SELECT LocationId, Trn_PageId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsPredefined, PageIsContentPage, PageIsDynamicForm, PageIsWebLinkPage, PageChildren, ProductServiceId, OrganisationId FROM Trn_Page WHERE Trn_PageId = :AV17Trn_PageId and LocationId = :AV19LocationId ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00B12,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("P00B13", "SELECT LocationId, Trn_PageId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsPredefined, PageIsContentPage, PageIsDynamicForm, PageIsWebLinkPage, PageChildren, ProductServiceId, OrganisationId FROM Trn_Page WHERE Trn_PageId = :AV17Trn_PageId and LocationId = :AV19LocationId ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00B13,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }
@@ -666,8 +659,8 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+                ((string[]) buf[2])[0] = rslt.getVarchar(3);
                 ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
                 ((bool[]) buf[4])[0] = rslt.wasNull(4);
                 ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
@@ -689,8 +682,8 @@ namespace GeneXus.Programs {
                 return;
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+                ((string[]) buf[2])[0] = rslt.getVarchar(3);
                 ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
                 ((bool[]) buf[4])[0] = rslt.wasNull(4);
                 ((string[]) buf[5])[0] = rslt.getLongVarchar(5);

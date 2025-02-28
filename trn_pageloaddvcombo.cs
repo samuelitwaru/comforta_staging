@@ -72,47 +72,44 @@ namespace GeneXus.Programs {
                            string aP1_TrnMode ,
                            bool aP2_IsDynamicCall ,
                            Guid aP3_Trn_PageId ,
-                           string aP4_Trn_PageName ,
-                           Guid aP5_LocationId ,
-                           Guid aP6_Cond_OrganisationId ,
-                           Guid aP7_Cond_LocationId ,
-                           string aP8_SearchTxtParms ,
-                           out string aP9_SelectedValue ,
-                           out string aP10_SelectedText ,
-                           out string aP11_Combo_DataJson )
+                           Guid aP4_LocationId ,
+                           Guid aP5_Cond_OrganisationId ,
+                           Guid aP6_Cond_LocationId ,
+                           string aP7_SearchTxtParms ,
+                           out string aP8_SelectedValue ,
+                           out string aP9_SelectedText ,
+                           out string aP10_Combo_DataJson )
       {
          this.AV17ComboName = aP0_ComboName;
          this.AV18TrnMode = aP1_TrnMode;
          this.AV19IsDynamicCall = aP2_IsDynamicCall;
          this.AV20Trn_PageId = aP3_Trn_PageId;
-         this.AV21Trn_PageName = aP4_Trn_PageName;
-         this.AV22LocationId = aP5_LocationId;
-         this.AV32Cond_OrganisationId = aP6_Cond_OrganisationId;
-         this.AV33Cond_LocationId = aP7_Cond_LocationId;
-         this.AV23SearchTxtParms = aP8_SearchTxtParms;
+         this.AV22LocationId = aP4_LocationId;
+         this.AV32Cond_OrganisationId = aP5_Cond_OrganisationId;
+         this.AV33Cond_LocationId = aP6_Cond_LocationId;
+         this.AV23SearchTxtParms = aP7_SearchTxtParms;
          this.AV24SelectedValue = "" ;
          this.AV25SelectedText = "" ;
          this.AV26Combo_DataJson = "" ;
          initialize();
          ExecuteImpl();
-         aP9_SelectedValue=this.AV24SelectedValue;
-         aP10_SelectedText=this.AV25SelectedText;
-         aP11_Combo_DataJson=this.AV26Combo_DataJson;
+         aP8_SelectedValue=this.AV24SelectedValue;
+         aP9_SelectedText=this.AV25SelectedText;
+         aP10_Combo_DataJson=this.AV26Combo_DataJson;
       }
 
       public string executeUdp( string aP0_ComboName ,
                                 string aP1_TrnMode ,
                                 bool aP2_IsDynamicCall ,
                                 Guid aP3_Trn_PageId ,
-                                string aP4_Trn_PageName ,
-                                Guid aP5_LocationId ,
-                                Guid aP6_Cond_OrganisationId ,
-                                Guid aP7_Cond_LocationId ,
-                                string aP8_SearchTxtParms ,
-                                out string aP9_SelectedValue ,
-                                out string aP10_SelectedText )
+                                Guid aP4_LocationId ,
+                                Guid aP5_Cond_OrganisationId ,
+                                Guid aP6_Cond_LocationId ,
+                                string aP7_SearchTxtParms ,
+                                out string aP8_SelectedValue ,
+                                out string aP9_SelectedText )
       {
-         execute(aP0_ComboName, aP1_TrnMode, aP2_IsDynamicCall, aP3_Trn_PageId, aP4_Trn_PageName, aP5_LocationId, aP6_Cond_OrganisationId, aP7_Cond_LocationId, aP8_SearchTxtParms, out aP9_SelectedValue, out aP10_SelectedText, out aP11_Combo_DataJson);
+         execute(aP0_ComboName, aP1_TrnMode, aP2_IsDynamicCall, aP3_Trn_PageId, aP4_LocationId, aP5_Cond_OrganisationId, aP6_Cond_LocationId, aP7_SearchTxtParms, out aP8_SelectedValue, out aP9_SelectedText, out aP10_Combo_DataJson);
          return AV26Combo_DataJson ;
       }
 
@@ -120,31 +117,29 @@ namespace GeneXus.Programs {
                                  string aP1_TrnMode ,
                                  bool aP2_IsDynamicCall ,
                                  Guid aP3_Trn_PageId ,
-                                 string aP4_Trn_PageName ,
-                                 Guid aP5_LocationId ,
-                                 Guid aP6_Cond_OrganisationId ,
-                                 Guid aP7_Cond_LocationId ,
-                                 string aP8_SearchTxtParms ,
-                                 out string aP9_SelectedValue ,
-                                 out string aP10_SelectedText ,
-                                 out string aP11_Combo_DataJson )
+                                 Guid aP4_LocationId ,
+                                 Guid aP5_Cond_OrganisationId ,
+                                 Guid aP6_Cond_LocationId ,
+                                 string aP7_SearchTxtParms ,
+                                 out string aP8_SelectedValue ,
+                                 out string aP9_SelectedText ,
+                                 out string aP10_Combo_DataJson )
       {
          this.AV17ComboName = aP0_ComboName;
          this.AV18TrnMode = aP1_TrnMode;
          this.AV19IsDynamicCall = aP2_IsDynamicCall;
          this.AV20Trn_PageId = aP3_Trn_PageId;
-         this.AV21Trn_PageName = aP4_Trn_PageName;
-         this.AV22LocationId = aP5_LocationId;
-         this.AV32Cond_OrganisationId = aP6_Cond_OrganisationId;
-         this.AV33Cond_LocationId = aP7_Cond_LocationId;
-         this.AV23SearchTxtParms = aP8_SearchTxtParms;
+         this.AV22LocationId = aP4_LocationId;
+         this.AV32Cond_OrganisationId = aP5_Cond_OrganisationId;
+         this.AV33Cond_LocationId = aP6_Cond_LocationId;
+         this.AV23SearchTxtParms = aP7_SearchTxtParms;
          this.AV24SelectedValue = "" ;
          this.AV25SelectedText = "" ;
          this.AV26Combo_DataJson = "" ;
          SubmitImpl();
-         aP9_SelectedValue=this.AV24SelectedValue;
-         aP10_SelectedText=this.AV25SelectedText;
-         aP11_Combo_DataJson=this.AV26Combo_DataJson;
+         aP8_SelectedValue=this.AV24SelectedValue;
+         aP9_SelectedText=this.AV25SelectedText;
+         aP10_Combo_DataJson=this.AV26Combo_DataJson;
       }
 
       protected override void ExecutePrivate( )
@@ -232,12 +227,11 @@ namespace GeneXus.Programs {
             if ( StringUtil.StrCmp(AV18TrnMode, "INS") != 0 )
             {
                /* Using cursor P009Q3 */
-               pr_default.execute(1, new Object[] {AV20Trn_PageId, AV21Trn_PageName, AV22LocationId});
+               pr_default.execute(1, new Object[] {AV20Trn_PageId, AV22LocationId});
                while ( (pr_default.getStatus(1) != 101) )
                {
                   A11OrganisationId = P009Q3_A11OrganisationId[0];
                   A29LocationId = P009Q3_A29LocationId[0];
-                  A318Trn_PageName = P009Q3_A318Trn_PageName[0];
                   A310Trn_PageId = P009Q3_A310Trn_PageId[0];
                   A31LocationName = P009Q3_A31LocationName[0];
                   A31LocationName = P009Q3_A31LocationName[0];
@@ -321,12 +315,11 @@ namespace GeneXus.Programs {
                if ( StringUtil.StrCmp(AV18TrnMode, "GET") != 0 )
                {
                   /* Using cursor P009Q6 */
-                  pr_default.execute(4, new Object[] {AV20Trn_PageId, AV21Trn_PageName, AV22LocationId});
+                  pr_default.execute(4, new Object[] {AV20Trn_PageId, AV22LocationId});
                   while ( (pr_default.getStatus(4) != 101) )
                   {
                      A11OrganisationId = P009Q6_A11OrganisationId[0];
                      A29LocationId = P009Q6_A29LocationId[0];
-                     A318Trn_PageName = P009Q6_A318Trn_PageName[0];
                      A310Trn_PageId = P009Q6_A310Trn_PageId[0];
                      A58ProductServiceId = P009Q6_A58ProductServiceId[0];
                      n58ProductServiceId = P009Q6_n58ProductServiceId[0];
@@ -405,11 +398,10 @@ namespace GeneXus.Programs {
                if ( StringUtil.StrCmp(AV18TrnMode, "GET") != 0 )
                {
                   /* Using cursor P009Q9 */
-                  pr_default.execute(7, new Object[] {AV20Trn_PageId, AV21Trn_PageName, AV22LocationId});
+                  pr_default.execute(7, new Object[] {AV20Trn_PageId, AV22LocationId});
                   while ( (pr_default.getStatus(7) != 101) )
                   {
                      A29LocationId = P009Q9_A29LocationId[0];
-                     A318Trn_PageName = P009Q9_A318Trn_PageName[0];
                      A310Trn_PageId = P009Q9_A310Trn_PageId[0];
                      A11OrganisationId = P009Q9_A11OrganisationId[0];
                      A13OrganisationName = P009Q9_A13OrganisationName[0];
@@ -470,10 +462,8 @@ namespace GeneXus.Programs {
          AV15Combo_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
          P009Q3_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P009Q3_A29LocationId = new Guid[] {Guid.Empty} ;
-         P009Q3_A318Trn_PageName = new string[] {""} ;
          P009Q3_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          P009Q3_A31LocationName = new string[] {""} ;
-         A318Trn_PageName = "";
          A310Trn_PageId = Guid.Empty;
          P009Q4_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P009Q4_A29LocationId = new Guid[] {Guid.Empty} ;
@@ -487,7 +477,6 @@ namespace GeneXus.Programs {
          A58ProductServiceId = Guid.Empty;
          P009Q6_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P009Q6_A29LocationId = new Guid[] {Guid.Empty} ;
-         P009Q6_A318Trn_PageName = new string[] {""} ;
          P009Q6_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          P009Q6_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          P009Q6_n58ProductServiceId = new bool[] {false} ;
@@ -502,7 +491,6 @@ namespace GeneXus.Programs {
          P009Q8_A13OrganisationName = new string[] {""} ;
          P009Q8_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P009Q9_A29LocationId = new Guid[] {Guid.Empty} ;
-         P009Q9_A318Trn_PageName = new string[] {""} ;
          P009Q9_A310Trn_PageId = new Guid[] {Guid.Empty} ;
          P009Q9_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P009Q9_A13OrganisationName = new string[] {""} ;
@@ -515,7 +503,7 @@ namespace GeneXus.Programs {
                P009Q2_A11OrganisationId, P009Q2_A31LocationName, P009Q2_A29LocationId
                }
                , new Object[] {
-               P009Q3_A11OrganisationId, P009Q3_A29LocationId, P009Q3_A318Trn_PageName, P009Q3_A310Trn_PageId, P009Q3_A31LocationName
+               P009Q3_A11OrganisationId, P009Q3_A29LocationId, P009Q3_A310Trn_PageId, P009Q3_A31LocationName
                }
                , new Object[] {
                P009Q4_A11OrganisationId, P009Q4_A29LocationId, P009Q4_A31LocationName
@@ -524,7 +512,7 @@ namespace GeneXus.Programs {
                P009Q5_A29LocationId, P009Q5_A11OrganisationId, P009Q5_A59ProductServiceName, P009Q5_A58ProductServiceId
                }
                , new Object[] {
-               P009Q6_A11OrganisationId, P009Q6_A29LocationId, P009Q6_A318Trn_PageName, P009Q6_A310Trn_PageId, P009Q6_A58ProductServiceId, P009Q6_n58ProductServiceId, P009Q6_A59ProductServiceName
+               P009Q6_A11OrganisationId, P009Q6_A29LocationId, P009Q6_A310Trn_PageId, P009Q6_A58ProductServiceId, P009Q6_n58ProductServiceId, P009Q6_A59ProductServiceName
                }
                , new Object[] {
                P009Q7_A11OrganisationId, P009Q7_A29LocationId, P009Q7_A58ProductServiceId, P009Q7_A59ProductServiceName
@@ -533,7 +521,7 @@ namespace GeneXus.Programs {
                P009Q8_A13OrganisationName, P009Q8_A11OrganisationId
                }
                , new Object[] {
-               P009Q9_A29LocationId, P009Q9_A318Trn_PageName, P009Q9_A310Trn_PageId, P009Q9_A11OrganisationId, P009Q9_A13OrganisationName
+               P009Q9_A29LocationId, P009Q9_A310Trn_PageId, P009Q9_A11OrganisationId, P009Q9_A13OrganisationName
                }
                , new Object[] {
                P009Q10_A11OrganisationId, P009Q10_A13OrganisationName
@@ -558,14 +546,12 @@ namespace GeneXus.Programs {
       private bool n58ProductServiceId ;
       private string AV26Combo_DataJson ;
       private string AV17ComboName ;
-      private string AV21Trn_PageName ;
       private string AV23SearchTxtParms ;
       private string AV24SelectedValue ;
       private string AV25SelectedText ;
       private string AV14SearchTxt ;
       private string lV14SearchTxt ;
       private string A31LocationName ;
-      private string A318Trn_PageName ;
       private string A59ProductServiceName ;
       private string A13OrganisationName ;
       private Guid AV20Trn_PageId ;
@@ -590,7 +576,6 @@ namespace GeneXus.Programs {
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> AV15Combo_Data ;
       private Guid[] P009Q3_A11OrganisationId ;
       private Guid[] P009Q3_A29LocationId ;
-      private string[] P009Q3_A318Trn_PageName ;
       private Guid[] P009Q3_A310Trn_PageId ;
       private string[] P009Q3_A31LocationName ;
       private Guid[] P009Q4_A11OrganisationId ;
@@ -603,7 +588,6 @@ namespace GeneXus.Programs {
       private bool[] P009Q5_n58ProductServiceId ;
       private Guid[] P009Q6_A11OrganisationId ;
       private Guid[] P009Q6_A29LocationId ;
-      private string[] P009Q6_A318Trn_PageName ;
       private Guid[] P009Q6_A310Trn_PageId ;
       private Guid[] P009Q6_A58ProductServiceId ;
       private bool[] P009Q6_n58ProductServiceId ;
@@ -616,15 +600,14 @@ namespace GeneXus.Programs {
       private string[] P009Q8_A13OrganisationName ;
       private Guid[] P009Q8_A11OrganisationId ;
       private Guid[] P009Q9_A29LocationId ;
-      private string[] P009Q9_A318Trn_PageName ;
       private Guid[] P009Q9_A310Trn_PageId ;
       private Guid[] P009Q9_A11OrganisationId ;
       private string[] P009Q9_A13OrganisationName ;
       private Guid[] P009Q10_A11OrganisationId ;
       private string[] P009Q10_A13OrganisationName ;
-      private string aP9_SelectedValue ;
-      private string aP10_SelectedText ;
-      private string aP11_Combo_DataJson ;
+      private string aP8_SelectedValue ;
+      private string aP9_SelectedText ;
+      private string aP10_Combo_DataJson ;
    }
 
    public class trn_pageloaddvcombo__default : DataStoreHelperBase, IDataStoreHelper
@@ -765,7 +748,6 @@ namespace GeneXus.Programs {
           Object[] prmP009Q3;
           prmP009Q3 = new Object[] {
           new ParDef("AV20Trn_PageId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("AV21Trn_PageName",GXType.VarChar,100,0) ,
           new ParDef("AV22LocationId",GXType.UniqueIdentifier,36,0)
           };
           Object[] prmP009Q4;
@@ -776,7 +758,6 @@ namespace GeneXus.Programs {
           Object[] prmP009Q6;
           prmP009Q6 = new Object[] {
           new ParDef("AV20Trn_PageId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("AV21Trn_PageName",GXType.VarChar,100,0) ,
           new ParDef("AV22LocationId",GXType.UniqueIdentifier,36,0)
           };
           Object[] prmP009Q7;
@@ -788,7 +769,6 @@ namespace GeneXus.Programs {
           Object[] prmP009Q9;
           prmP009Q9 = new Object[] {
           new ParDef("AV20Trn_PageId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("AV21Trn_PageName",GXType.VarChar,100,0) ,
           new ParDef("AV22LocationId",GXType.UniqueIdentifier,36,0)
           };
           Object[] prmP009Q10;
@@ -821,13 +801,13 @@ namespace GeneXus.Programs {
           };
           def= new CursorDef[] {
               new CursorDef("P009Q2", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Q2,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P009Q3", "SELECT T1.OrganisationId, T1.LocationId, T1.Trn_PageName, T1.Trn_PageId, T2.LocationName FROM (Trn_Page T1 INNER JOIN Trn_Location T2 ON T2.LocationId = T1.LocationId AND T2.OrganisationId = T1.OrganisationId) WHERE T1.Trn_PageId = :AV20Trn_PageId and T1.Trn_PageName = ( :AV21Trn_PageName) and T1.LocationId = :AV22LocationId ORDER BY T1.Trn_PageId, T1.Trn_PageName, T1.LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Q3,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("P009Q3", "SELECT T1.OrganisationId, T1.LocationId, T1.Trn_PageId, T2.LocationName FROM (Trn_Page T1 INNER JOIN Trn_Location T2 ON T2.LocationId = T1.LocationId AND T2.OrganisationId = T1.OrganisationId) WHERE T1.Trn_PageId = :AV20Trn_PageId and T1.LocationId = :AV22LocationId ORDER BY T1.Trn_PageId, T1.LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Q3,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P009Q4", "SELECT OrganisationId, LocationId, LocationName FROM Trn_Location WHERE LocationId = :AV22LocationId and OrganisationId = :AV32Cond_OrganisationId ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Q4,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P009Q5", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Q5,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P009Q6", "SELECT T1.OrganisationId, T1.LocationId, T1.Trn_PageName, T1.Trn_PageId, T1.ProductServiceId, T2.ProductServiceName FROM (Trn_Page T1 LEFT JOIN Trn_ProductService T2 ON T2.ProductServiceId = T1.ProductServiceId AND T2.LocationId = T1.LocationId AND T2.OrganisationId = T1.OrganisationId) WHERE T1.Trn_PageId = :AV20Trn_PageId and T1.Trn_PageName = ( :AV21Trn_PageName) and T1.LocationId = :AV22LocationId ORDER BY T1.Trn_PageId, T1.Trn_PageName, T1.LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Q6,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("P009Q6", "SELECT T1.OrganisationId, T1.LocationId, T1.Trn_PageId, T1.ProductServiceId, T2.ProductServiceName FROM (Trn_Page T1 LEFT JOIN Trn_ProductService T2 ON T2.ProductServiceId = T1.ProductServiceId AND T2.LocationId = T1.LocationId AND T2.OrganisationId = T1.OrganisationId) WHERE T1.Trn_PageId = :AV20Trn_PageId and T1.LocationId = :AV22LocationId ORDER BY T1.Trn_PageId, T1.LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Q6,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P009Q7", "SELECT OrganisationId, LocationId, ProductServiceId, ProductServiceName FROM Trn_ProductService WHERE ProductServiceId = :AV30ProductServiceId and LocationId = :AV33Cond_LocationId and OrganisationId = :AV32Cond_OrganisationId ORDER BY ProductServiceId, LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Q7,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P009Q8", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Q8,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P009Q9", "SELECT T1.LocationId, T1.Trn_PageName, T1.Trn_PageId, T1.OrganisationId, T2.OrganisationName FROM (Trn_Page T1 INNER JOIN Trn_Organisation T2 ON T2.OrganisationId = T1.OrganisationId) WHERE T1.Trn_PageId = :AV20Trn_PageId and T1.Trn_PageName = ( :AV21Trn_PageName) and T1.LocationId = :AV22LocationId ORDER BY T1.Trn_PageId, T1.Trn_PageName, T1.LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Q9,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("P009Q9", "SELECT T1.LocationId, T1.Trn_PageId, T1.OrganisationId, T2.OrganisationName FROM (Trn_Page T1 INNER JOIN Trn_Organisation T2 ON T2.OrganisationId = T1.OrganisationId) WHERE T1.Trn_PageId = :AV20Trn_PageId and T1.LocationId = :AV22LocationId ORDER BY T1.Trn_PageId, T1.LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Q9,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P009Q10", "SELECT OrganisationId, OrganisationName FROM Trn_Organisation WHERE OrganisationId = :AV31OrganisationId ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP009Q10,1, GxCacheFrequency.OFF ,false,true )
           };
        }
@@ -847,9 +827,8 @@ namespace GeneXus.Programs {
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((string[]) buf[2])[0] = rslt.getVarchar(3);
-                ((Guid[]) buf[3])[0] = rslt.getGuid(4);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
+                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+                ((string[]) buf[3])[0] = rslt.getVarchar(4);
                 return;
              case 2 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -865,11 +844,10 @@ namespace GeneXus.Programs {
              case 4 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((string[]) buf[2])[0] = rslt.getVarchar(3);
+                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
                 ((Guid[]) buf[3])[0] = rslt.getGuid(4);
-                ((Guid[]) buf[4])[0] = rslt.getGuid(5);
-                ((bool[]) buf[5])[0] = rslt.wasNull(5);
-                ((string[]) buf[6])[0] = rslt.getVarchar(6);
+                ((bool[]) buf[4])[0] = rslt.wasNull(4);
+                ((string[]) buf[5])[0] = rslt.getVarchar(5);
                 return;
              case 5 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -883,10 +861,9 @@ namespace GeneXus.Programs {
                 return;
              case 7 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
+                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 ((Guid[]) buf[2])[0] = rslt.getGuid(3);
-                ((Guid[]) buf[3])[0] = rslt.getGuid(4);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
+                ((string[]) buf[3])[0] = rslt.getVarchar(4);
                 return;
              case 8 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);

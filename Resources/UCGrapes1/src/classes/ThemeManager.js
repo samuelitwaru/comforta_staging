@@ -18,7 +18,7 @@ class ThemeManager {
 
     const select = document.querySelector(".tb-custom-theme-selection");
     select.querySelector(".selected-theme-value").textContent = themeName;
-    
+
     if (!theme) {
       return false;
     }
@@ -39,7 +39,9 @@ class ThemeManager {
     this.themeColorPalette(this.toolBoxManager.currentTheme.ThemeColors);
     localStorage.setItem("selectedTheme", themeName);
 
-    const page = this.toolBoxManager.editorManager.getPage(this.toolBoxManager.editorManager.currentPageId);
+    const page = this.toolBoxManager.editorManager.getPage(
+      this.toolBoxManager.editorManager.currentPageId
+    );
     this.toolBoxManager.ui.updateTileProperties(
       this.toolBoxManager.editorManager.selectedComponent,
       page
@@ -60,18 +62,60 @@ class ThemeManager {
     iframes.forEach((iframe) => {
       const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 
-      this.updateRootStyle(iframeDoc, "primary-color", this.toolBoxManager.currentTheme.ThemeColors.primaryColor);
-      this.updateRootStyle(iframeDoc, "secondary-color", this.toolBoxManager.currentTheme.ThemeColors.secondaryColor);
-      this.updateRootStyle(iframeDoc, "background-color", this.toolBoxManager.currentTheme.ThemeColors.backgroundColor);
-      this.updateRootStyle(iframeDoc, "text-color", this.toolBoxManager.currentTheme.ThemeColors.textColor);
-      this.updateRootStyle(iframeDoc, "button-bg-color", this.toolBoxManager.currentTheme.ThemeColors.buttonBgColor);
-      this.updateRootStyle(iframeDoc, "button-text-color", this.toolBoxManager.currentTheme.ThemeColors.buttonTextColor);
-      this.updateRootStyle(iframeDoc, "card-bg-color", this.toolBoxManager.currentTheme.ThemeColors.cardBgColor);
-      this.updateRootStyle(iframeDoc, "card-text-color", this.toolBoxManager.currentTheme.ThemeColors.cardTextColor);
-      this.updateRootStyle(iframeDoc, "accent-color", this.toolBoxManager.currentTheme.ThemeColors.accentColor);
-      this.updateRootStyle(iframeDoc, "font-family", this.toolBoxManager.currentTheme.ThemeFontFamily);
+      this.updateRootStyle(
+        iframeDoc,
+        "primary-color",
+        this.toolBoxManager.currentTheme.ThemeColors.primaryColor
+      );
+      this.updateRootStyle(
+        iframeDoc,
+        "secondary-color",
+        this.toolBoxManager.currentTheme.ThemeColors.secondaryColor
+      );
+      this.updateRootStyle(
+        iframeDoc,
+        "background-color",
+        this.toolBoxManager.currentTheme.ThemeColors.backgroundColor
+      );
+      this.updateRootStyle(
+        iframeDoc,
+        "text-color",
+        this.toolBoxManager.currentTheme.ThemeColors.textColor
+      );
+      this.updateRootStyle(
+        iframeDoc,
+        "button-bg-color",
+        this.toolBoxManager.currentTheme.ThemeColors.buttonBgColor
+      );
+      this.updateRootStyle(
+        iframeDoc,
+        "button-text-color",
+        this.toolBoxManager.currentTheme.ThemeColors.buttonTextColor
+      );
+      this.updateRootStyle(
+        iframeDoc,
+        "card-bg-color",
+        this.toolBoxManager.currentTheme.ThemeColors.cardBgColor
+      );
+      this.updateRootStyle(
+        iframeDoc,
+        "card-text-color",
+        this.toolBoxManager.currentTheme.ThemeColors.cardTextColor
+      );
+      this.updateRootStyle(
+        iframeDoc,
+        "accent-color",
+        this.toolBoxManager.currentTheme.ThemeColors.accentColor
+      );
+      this.updateRootStyle(
+        iframeDoc,
+        "font-family",
+        this.toolBoxManager.currentTheme.ThemeFontFamily
+      );
 
-      this.updatePageTitleFontFamily(this.toolBoxManager.currentTheme.ThemeFontFamily);
+      this.updatePageTitleFontFamily(
+        this.toolBoxManager.currentTheme.ThemeFontFamily
+      );
     });
   }
 
@@ -163,8 +207,10 @@ class ThemeManager {
 
             const currentTileBgColorName =
               tile.getAttributes()?.["tile-bgcolor-name"];
+
             if (currentTileBgColorName && theme.ThemeColors) {
-              const matchingColorCode = theme.ThemeColors[currentTileBgColorName];
+              const matchingColorCode =
+                theme.ThemeColors[currentTileBgColorName];
 
               if (matchingColorCode) {
                 tile.addAttributes({
@@ -172,11 +218,12 @@ class ThemeManager {
                   "tile-bgcolor": matchingColorCode,
                 });
 
-                const currentTileOpacity = tile.getAttributes()?.["tile-bg-image-opacity"];
-
-                tile.addStyle({
-                  "background-color": addOpacityToHex(matchingColorCode, currentTileOpacity),
-                });
+                const tileStyle = tile.getStyle();
+                if (!tileStyle["background-image"]) {
+                  tile.addStyle({
+                    "background-color": matchingColorCode,
+                  });
+                }
               } else {
                 console.warn(
                   `No matching color found for: ${currentTileBgColorName}`
@@ -234,25 +281,34 @@ class ThemeManager {
 
       colorBox.onclick = () => {
         if (this.toolBoxManager.editorManager.selectedComponent) {
-          const selectedComponent = this.toolBoxManager.editorManager.selectedComponent;
-          const currentColor = selectedComponent
-                                      .getAttributes()?.["tile-bgcolor"];
-          const currentTileOpacity = selectedComponent
-                                      .getAttributes()?.["tile-bg-image-opacity"];
+          const selectedComponent =
+            this.toolBoxManager.editorManager.selectedComponent;
+          const currentColor =
+            selectedComponent.getAttributes()?.["tile-bgcolor"];
 
           if (currentColor === colorValue) {
             selectedComponent.addStyle({
-              "background-color": "transparent"
+              "background-color": "transparent",
             });
-      
+
             this.toolBoxManager.setAttributeToSelected("tile-bgcolor", null);
-            this.toolBoxManager.setAttributeToSelected("tile-bgcolor-name", null);
+            this.toolBoxManager.setAttributeToSelected(
+              "tile-bgcolor-name",
+              null
+            );
+
+            this.toolBoxManager.setAttributeToSelected(
+              "tile-bg-image-opacity",
+              0
+            );
+
+            this.toolBoxManager.ui.updateTileOpacityProperties(selectedComponent);
 
             radioInput.checked = false;
             alignItem.style.border = "none";
-          }else {
+          } else {
             selectedComponent.addStyle({
-              "background-color": addOpacityToHex(colorValue, currentTileOpacity),
+              "background-color": colorValue
             });
 
             this.toolBoxManager.setAttributeToSelected(
@@ -266,7 +322,6 @@ class ThemeManager {
             );
             alignItem.removeAttribute("style");
           }
-
         } else {
           const message = this.toolBoxManager.currentLanguage.getTranslation(
             "no_tile_selected_error_message"
@@ -280,8 +335,6 @@ class ThemeManager {
   colorPalette() {
     const textColorPaletteContainer =
       document.getElementById("text-color-palette");
-    const iconColorPaletteContainer =
-      document.getElementById("icon-color-palette");
 
     // Fixed color values
     const colorValues = {
@@ -303,7 +356,7 @@ class ThemeManager {
       colorBox.className = "color-box";
       colorBox.setAttribute("for", `text-color-${colorName}`);
       colorBox.style.backgroundColor = colorValue;
-      colorBox.setAttribute("data-tile-text-color", colorValue);
+      colorBox.setAttribute("data-tile-color", colorValue);
 
       alignItem.appendChild(radioInput);
       alignItem.appendChild(colorBox);
@@ -317,44 +370,10 @@ class ThemeManager {
             color: colorValue,
           });
           this.toolBoxManager.setAttributeToSelected(
-            "tile-text-color",
+            "tile-color",
             colorValue
           );
-        } else {
-          const message = this.toolBoxManager.currentLanguage.getTranslation(
-            "no_tile_selected_error_message"
-          );
-          this.toolBoxManager.ui.displayAlertMessage(message, "error");
-        }
-      };
-    });
 
-    // Create options for icon color palette
-    Object.entries(colorValues).forEach(([colorName, colorValue]) => {
-      const alignItem = document.createElement("div");
-      alignItem.className = "color-item";
-
-      const radioInput = document.createElement("input");
-      radioInput.type = "radio";
-      radioInput.id = `icon-color-${colorName}`;
-      radioInput.name = "icon-color";
-      radioInput.value = colorName;
-
-      const colorBox = document.createElement("label");
-      colorBox.className = "color-box";
-      colorBox.setAttribute("for", `icon-color-${colorName}`);
-      colorBox.style.backgroundColor = colorValue;
-      colorBox.setAttribute("data-tile-icon-color", colorValue);
-
-      alignItem.appendChild(radioInput);
-      alignItem.appendChild(colorBox);
-      iconColorPaletteContainer.appendChild(alignItem);
-
-      radioInput.onclick = () => {
-        const selectedComponent =
-          this.toolBoxManager.editorManager.selectedComponent;
-
-        if (selectedComponent) {
           const svgIcon = selectedComponent.find(".tile-icon path")[0];
           if (svgIcon) {
             svgIcon.removeAttributes("fill");
@@ -365,11 +384,6 @@ class ThemeManager {
               "tile-icon-color",
               colorValue
             );
-          } else {
-            const message = this.toolBoxManager.currentLanguage.getTranslation(
-              "no_icon_selected_error_message"
-            );
-            this.toolBoxManager.ui.displayAlertMessage(message, "error");
           }
         } else {
           const message = this.toolBoxManager.currentLanguage.getTranslation(
@@ -385,10 +399,10 @@ class ThemeManager {
     const ctaColorPaletteContainer =
       document.getElementById("cta-color-palette");
     const colorValues = {
-      color1: "#4C9155",
-      color2: "#5068A8",
-      color3: "#EEA622",
-      color4: "#FF6C37",
+      color1: "#2c405a",
+      color2: "#d4a76a",
+      color3: "#b2b997",
+      color4: "#c4a082",
     };
 
     Object.entries(colorValues).forEach(([colorName, colorValue]) => {
@@ -510,13 +524,17 @@ class ThemeManager {
 
         // Update theme selection
         this.toolBoxManager.dataManager.selectedTheme =
-          this.toolBoxManager.themes.find((t) => t.ThemeName === theme.ThemeName);
+          this.toolBoxManager.themes.find(
+            (t) => t.ThemeName === theme.ThemeName
+          );
 
         this.toolBoxManager.dataManager.updateLocationTheme().then((res) => {
           if (this.toolBoxManager.checkIfNotAuthenticated(res)) return;
 
           if (this.setTheme(theme.ThemeName)) {
-            this.themeColorPalette(this.toolBoxManager.currentTheme.ThemeColors);
+            this.themeColorPalette(
+              this.toolBoxManager.currentTheme.ThemeColors
+            );
             localStorage.setItem("selectedTheme", theme.ThemeName);
             this.toolBoxManager.editorManager.theme = theme;
 
@@ -618,15 +636,15 @@ class ThemeManager {
         //             ${icon.IconSVG}
         //             <span class="icon-title">${displayName}</span>
         //         `;
-        
+
         iconItem.innerHTML = `${icon.IconSVG}`;
 
         iconItem.onclick = () => {
           if (this.toolBoxManager.editorManager.selectedTemplateWrapper) {
             const iconComponent =
-            this.toolBoxManager.editorManager.selectedComponent.find(
-              ".tile-icon"
-            )[0];
+              this.toolBoxManager.editorManager.selectedComponent.find(
+                ".tile-icon"
+              )[0];
 
             if (iconComponent) {
               const iconSvgComponent = icon.IconSVG;
@@ -634,7 +652,8 @@ class ThemeManager {
                 'fill="#7c8791"',
                 'fill="white"'
               );
-              iconComponent.addStyle({display: "block"});
+              iconComponent.addStyle({ display: "block" });
+              iconComponent.addAttributes({ "is-hidden": "false" });
               iconComponent.components(whiteIconSvg);
               this.toolBoxManager.setAttributeToSelected(
                 "tile-icon",

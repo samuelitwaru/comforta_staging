@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250225152140"
+  version: "20250228075512"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -1541,8 +1541,6 @@ components:
         Trn_PageId:
           type: "string"
           format: "uuid"
-        Trn_PageName:
-          type: "string"
         LocationId:
           type: "string"
           format: "uuid"
@@ -2620,20 +2618,14 @@ components:
         TileText:
           description: "Tile Text"
           type: "string"
-        TileTextColor:
-          description: "Tile Text Color"
+        TileColor:
+          description: "Tile Color"
           type: "string"
-        TileTextAlignment:
-          description: "Tile Text Alignment"
+        TileAlignment:
+          description: "Tile Alignment"
           type: "string"
         TileIcon:
           description: "Tile Icon"
-          type: "string"
-        TileIconColor:
-          description: "Tile Icon Color"
-          type: "string"
-        TileIconAlignment:
-          description: "Tile Icon Alignment"
           type: "string"
         TileBGColor:
           description: "Tile BGColor"

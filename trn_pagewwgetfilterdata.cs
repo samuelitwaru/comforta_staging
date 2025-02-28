@@ -445,7 +445,6 @@ namespace GeneXus.Programs {
                while ( (pr_default.getStatus(1) != 101) && ( StringUtil.StrCmp(P006Y3_A431PageJsonContent[0], A431PageJsonContent) == 0 ) )
                {
                   BRK6Y4 = false;
-                  A318Trn_PageName = P006Y3_A318Trn_PageName[0];
                   A310Trn_PageId = P006Y3_A310Trn_PageId[0];
                   A29LocationId = P006Y3_A29LocationId[0];
                   AV23count = (long)(AV23count+1);
@@ -552,7 +551,6 @@ namespace GeneXus.Programs {
                while ( (pr_default.getStatus(2) != 101) && ( StringUtil.StrCmp(P006Y4_A432PageGJSHtml[0], A432PageGJSHtml) == 0 ) )
                {
                   BRK6Y6 = false;
-                  A318Trn_PageName = P006Y4_A318Trn_PageName[0];
                   A310Trn_PageId = P006Y4_A310Trn_PageId[0];
                   A29LocationId = P006Y4_A29LocationId[0];
                   AV23count = (long)(AV23count+1);
@@ -659,7 +657,6 @@ namespace GeneXus.Programs {
                while ( (pr_default.getStatus(3) != 101) && ( StringUtil.StrCmp(P006Y5_A433PageGJSJson[0], A433PageGJSJson) == 0 ) )
                {
                   BRK6Y8 = false;
-                  A318Trn_PageName = P006Y5_A318Trn_PageName[0];
                   A310Trn_PageId = P006Y5_A310Trn_PageId[0];
                   A29LocationId = P006Y5_A29LocationId[0];
                   AV23count = (long)(AV23count+1);
@@ -766,7 +763,6 @@ namespace GeneXus.Programs {
                while ( (pr_default.getStatus(4) != 101) && ( StringUtil.StrCmp(P006Y6_A437PageChildren[0], A437PageChildren) == 0 ) )
                {
                   BRK6Y10 = false;
-                  A318Trn_PageName = P006Y6_A318Trn_PageName[0];
                   A310Trn_PageId = P006Y6_A310Trn_PageId[0];
                   A29LocationId = P006Y6_A29LocationId[0];
                   AV23count = (long)(AV23count+1);

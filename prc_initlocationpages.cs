@@ -128,8 +128,7 @@ namespace GeneXus.Programs {
             A310Trn_PageId = P00A42_A310Trn_PageId[0];
             AV33GXLvl14 = 1;
             AV28HomePageId = A310Trn_PageId;
-            /* Exiting from a For First loop. */
-            if (true) break;
+            pr_default.readNext(0);
          }
          pr_default.close(0);
          if ( AV33GXLvl14 == 0 )
@@ -195,8 +194,7 @@ namespace GeneXus.Programs {
             A310Trn_PageId = P00A43_A310Trn_PageId[0];
             AV36GXLvl63 = 1;
             AV23ReceptionPageId = A310Trn_PageId;
-            /* Exiting from a For First loop. */
-            if (true) break;
+            pr_default.readNext(1);
          }
          pr_default.close(1);
          if ( AV36GXLvl63 == 0 )
@@ -317,8 +315,7 @@ namespace GeneXus.Programs {
             A310Trn_PageId = P00A45_A310Trn_PageId[0];
             AV42GXLvl143 = 1;
             AV26LocationPageId = A310Trn_PageId;
-            /* Exiting from a For First loop. */
-            if (true) break;
+            pr_default.readNext(3);
          }
          pr_default.close(3);
          if ( AV42GXLvl143 == 0 )
@@ -381,8 +378,7 @@ namespace GeneXus.Programs {
             A310Trn_PageId = P00A46_A310Trn_PageId[0];
             AV45GXLvl187 = 1;
             AV27MailboxPageId = A310Trn_PageId;
-            /* Exiting from a For First loop. */
-            if (true) break;
+            pr_default.readNext(4);
          }
          pr_default.close(4);
          if ( AV45GXLvl187 == 0 )
@@ -441,8 +437,7 @@ namespace GeneXus.Programs {
             A310Trn_PageId = P00A47_A310Trn_PageId[0];
             AV48GXLvl227 = 1;
             AV32WebLinkPageId = A310Trn_PageId;
-            /* Exiting from a For First loop. */
-            if (true) break;
+            pr_default.readNext(5);
          }
          pr_default.close(5);
          if ( AV48GXLvl227 == 0 )
@@ -768,12 +763,12 @@ public class prc_initlocationpages__default : DataStoreHelperBase, IDataStoreHel
        new ParDef("AV12OrganisationId",GXType.UniqueIdentifier,36,0)
        };
        def= new CursorDef[] {
-           new CursorDef("P00A42", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (Trn_PageName = ( 'Home') and LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A42,1, GxCacheFrequency.OFF ,false,true )
-          ,new CursorDef("P00A43", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (Trn_PageName = ( 'Reception') and LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A43,1, GxCacheFrequency.OFF ,false,true )
-          ,new CursorDef("P00A44", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A44,100, GxCacheFrequency.OFF ,false,false )
-          ,new CursorDef("P00A45", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (Trn_PageName = ( 'Location') and LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A45,1, GxCacheFrequency.OFF ,false,true )
-          ,new CursorDef("P00A46", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (Trn_PageName = ( 'My Activity') and LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A46,1, GxCacheFrequency.OFF ,false,true )
-          ,new CursorDef("P00A47", "SELECT Trn_PageName, PageIsWebLinkPage, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (Trn_PageName = ( 'Web Link') and LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsWebLinkPage = TRUE) ORDER BY Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A47,1, GxCacheFrequency.OFF ,false,true )
+           new CursorDef("P00A42", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) AND (Trn_PageName = ( 'Home')) ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A42,100, GxCacheFrequency.OFF ,false,false )
+          ,new CursorDef("P00A43", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) AND (Trn_PageName = ( 'Reception')) ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A43,100, GxCacheFrequency.OFF ,false,false )
+          ,new CursorDef("P00A44", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A44,100, GxCacheFrequency.OFF ,false,false )
+          ,new CursorDef("P00A45", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) AND (Trn_PageName = ( 'Location')) ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A45,100, GxCacheFrequency.OFF ,false,false )
+          ,new CursorDef("P00A46", "SELECT Trn_PageName, PageIsPredefined, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsPredefined = TRUE) AND (Trn_PageName = ( 'My Activity')) ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A46,100, GxCacheFrequency.OFF ,false,false )
+          ,new CursorDef("P00A47", "SELECT Trn_PageName, PageIsWebLinkPage, OrganisationId, LocationId, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV8LocationId) AND (OrganisationId = :AV12OrganisationId) AND (PageIsWebLinkPage = TRUE) AND (Trn_PageName = ( 'Web Link')) ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00A47,100, GxCacheFrequency.OFF ,false,false )
        };
     }
  }

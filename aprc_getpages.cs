@@ -325,7 +325,7 @@ namespace GeneXus.Programs {
           new ParDef("LocationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P008Y2", "SELECT LocationId, OrganisationId, Trn_PageId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsContentPage, PageIsPublished, PageIsPredefined, PageIsDynamicForm, PageIsWebLinkPage, PageChildren FROM Trn_Page WHERE (LocationId = :AV15LocationId) AND (OrganisationId = :AV16OrganisationId) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008Y2,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P008Y2", "SELECT LocationId, OrganisationId, Trn_PageId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsContentPage, PageIsPublished, PageIsPredefined, PageIsDynamicForm, PageIsWebLinkPage, PageChildren FROM Trn_Page WHERE (LocationId = :AV15LocationId) AND (OrganisationId = :AV16OrganisationId) ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008Y2,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("P008Y3", "SELECT OrganisationId, LocationId, LocationDynamicFormId, WWPFormId FROM Trn_LocationDynamicForm WHERE LocationDynamicFormId = :Trn_PageId and OrganisationId = :OrganisationId and LocationId = :LocationId ORDER BY LocationDynamicFormId, OrganisationId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008Y3,1, GxCacheFrequency.OFF ,false,true )
           };
        }

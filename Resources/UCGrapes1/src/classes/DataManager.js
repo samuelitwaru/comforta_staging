@@ -85,6 +85,7 @@ class DataManager {
   }
 
   async updatePagesBatch(payload) {
+    console.log('Publish:', payload);
     return await this.fetchAPI('/api/toolbox/update-pages-batch', {
       method: 'POST',
       body: JSON.stringify(payload),

@@ -68,6 +68,8 @@ namespace GeneXus.Programs {
          /* GeneXus formulas */
          /* Output device settings */
          AV15GAMUser.load( AV23UserGAMGUID);
+         AV39GAMApplication = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context).get();
+         AV11baseUrl = AV39GAMApplication.gxTpr_Environment.gxTpr_Url;
          if ( AV15GAMUser.success() )
          {
             AV28KeyToChangePassword = AV15GAMUser.recoverpasswordbykey(out  AV30GAMErrorCollection);
@@ -77,6 +79,11 @@ namespace GeneXus.Programs {
             AV24Username = AV15GAMUser.gxTpr_Firstname + " " + AV15GAMUser.gxTpr_Lastname;
             if ( AV30GAMErrorCollection.Count == 0 )
             {
+               AV31MailTemplate.Load("MailActivation");
+               if ( AV31MailTemplate.Success() )
+               {
+                  AV32MailTemplateBody = AV31MailTemplate.gxTpr_Wwpmailtemplatebody;
+               }
                AV22SMTPSession.Host = context.GetMessage( "comforta.yukon.software", "");
                AV22SMTPSession.Port = 465;
                AV22SMTPSession.Secure = 1;
@@ -89,7 +96,30 @@ namespace GeneXus.Programs {
                AV9MailRecipient.Address = AV15GAMUser.gxTpr_Email;
                AV9MailRecipient.Name = AV24Username;
                AV20MailMessage.Subject = "Password reset";
-               AV20MailMessage.HTMLText = "<div style=\"max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; border: 1px solid #e0e0e0; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\">"+context.GetMessage( "<div style=\"background-color: #222F54; color: #ffffff; text-align: center; padding: 20px 0;\"><h2>Comforta Software</h2></div><div style=\"padding: 20px; line-height: 1.5;\"><p>Dear ", "")+AV24Username+context.GetMessage( ",</p><p>You are recieving this email because you requested for password reset.</p><p>Please click the button below to reset your paassword:</p>", "")+context.GetMessage( "</b></p><a href=\"", "")+AV27LinkURL+context.GetMessage( "\" style=\"display: block; padding: 10px 20px; width: 150px;  margin: 20px auto; background-color: #222F54; text-align: center; border-radius: 8px; color: white; font-weight: bold; line-height: 30px; text-decoration: none;\">Reset Password</a>", "")+context.GetMessage( "<p>Please note that the link expires in 2 hours.</p>", "")+context.GetMessage( "</div></div>", "");
+               if ( String.IsNullOrEmpty(StringUtil.RTrim( AV32MailTemplateBody)) )
+               {
+                  AV20MailMessage.HTMLText = "<div style=\"max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; border: 1px solid #e0e0e0; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\">"+context.GetMessage( "<div style=\"background-color: #222F54; color: #ffffff; text-align: center; padding: 20px 0;\"><h2>Comforta Software</h2></div><div style=\"padding: 20px; line-height: 1.5;\"><p>Dear ", "")+AV24Username+context.GetMessage( ",</p><p>You are recieving this email because you requested for password reset.</p><p>Please click the button below to reset your password:</p>", "")+context.GetMessage( "</b></p><a href=\"", "")+AV27LinkURL+context.GetMessage( "\" style=\"display: block; padding: 10px 20px; width: 150px;  margin: 20px auto; background-color: #222F54; text-align: center; border-radius: 8px; color: white; font-weight: bold; line-height: 30px; text-decoration: none;\">Reset Password</a>", "")+context.GetMessage( "<p>Please note that the link expires in 2 hours.</p>", "")+context.GetMessage( "</div></div>", "");
+               }
+               else
+               {
+                  AV34Dear_Username = "Dear " + AV24Username;
+                  AV40Welcome_message = "You are recieving this email because you requested for a password reset.";
+                  AV38Instruction_Message = "Please click the button below to reset your password:";
+                  AV33Button_Text = "Reset Password";
+                  AV35Expiration_Message = "Please note that the link expires in 2 hours.";
+                  AV36FollowUp_Message = "Once you have reset your password, you can login into the platform once again.";
+                  AV37Footer_Message = "Many thanks and kind regards";
+                  AV32MailTemplateBody = StringUtil.StringReplace( AV32MailTemplateBody, "[DEAR_USERNAME]", AV34Dear_Username);
+                  AV32MailTemplateBody = StringUtil.StringReplace( AV32MailTemplateBody, "[WELCOME_MESSAGE]", AV40Welcome_message);
+                  AV32MailTemplateBody = StringUtil.StringReplace( AV32MailTemplateBody, "[INSTRUCTION_MESSAGE]", AV38Instruction_Message);
+                  AV32MailTemplateBody = StringUtil.StringReplace( AV32MailTemplateBody, "[BUTTON_TEXT]", AV33Button_Text);
+                  AV32MailTemplateBody = StringUtil.StringReplace( AV32MailTemplateBody, "[EXPIRATION_MESSAGE]", AV35Expiration_Message);
+                  AV32MailTemplateBody = StringUtil.StringReplace( AV32MailTemplateBody, "[FOLLOWUP_INSTRUCTION]", AV36FollowUp_Message);
+                  AV32MailTemplateBody = StringUtil.StringReplace( AV32MailTemplateBody, "[FOOTER_MESSAGE]", AV37Footer_Message);
+                  AV32MailTemplateBody = StringUtil.StringReplace( AV32MailTemplateBody, "[LINK]", AV27LinkURL);
+                  AV32MailTemplateBody = StringUtil.StringReplace( AV32MailTemplateBody, "[BASE_URL]", AV11baseUrl);
+                  AV20MailMessage.HTMLText = AV32MailTemplateBody;
+               }
                AV20MailMessage.To.Add(AV9MailRecipient);
                AV22SMTPSession.Login();
                AV22SMTPSession.Send(AV20MailMessage);
@@ -106,12 +136,12 @@ namespace GeneXus.Programs {
             }
             else
             {
-               AV31GXV1 = 1;
-               while ( AV31GXV1 <= AV30GAMErrorCollection.Count )
+               AV41GXV1 = 1;
+               while ( AV41GXV1 <= AV30GAMErrorCollection.Count )
                {
-                  AV8GAMErrorItem = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV30GAMErrorCollection.Item(AV31GXV1));
+                  AV8GAMErrorItem = ((GeneXus.Programs.genexussecurity.SdtGAMError)AV30GAMErrorCollection.Item(AV41GXV1));
                   AV12ErrDescription += AV8GAMErrorItem.gxTpr_Message + " ";
-                  AV31GXV1 = (int)(AV31GXV1+1);
+                  AV41GXV1 = (int)(AV41GXV1+1);
                }
                AV19isSuccessful = false;
             }
@@ -137,32 +167,54 @@ namespace GeneXus.Programs {
       public override void initialize( )
       {
          AV15GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
+         AV39GAMApplication = new GeneXus.Programs.genexussecurity.SdtGAMApplication(context);
+         AV11baseUrl = "";
          AV28KeyToChangePassword = "";
          AV30GAMErrorCollection = new GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError>( context, "GeneXus.Programs.genexussecurity.SdtGAMError", "GeneXus.Programs");
          AV27LinkURL = "";
          GXt_char1 = "";
          AV24Username = "";
+         AV31MailTemplate = new GeneXus.Programs.wwpbaseobjects.mail.SdtWWP_MailTemplate(context);
+         AV32MailTemplateBody = "";
          AV22SMTPSession = new GeneXus.Mail.GXSMTPSession(context.GetPhysicalPath());
          AV9MailRecipient = new GeneXus.Mail.GXMailRecipient();
          AV20MailMessage = new GeneXus.Mail.GXMailMessage();
+         AV34Dear_Username = "";
+         AV40Welcome_message = "";
+         AV38Instruction_Message = "";
+         AV33Button_Text = "";
+         AV35Expiration_Message = "";
+         AV36FollowUp_Message = "";
+         AV37Footer_Message = "";
          AV12ErrDescription = "";
          AV8GAMErrorItem = new GeneXus.Programs.genexussecurity.SdtGAMError(context);
          /* GeneXus formulas. */
       }
 
-      private int AV31GXV1 ;
+      private int AV41GXV1 ;
       private string AV28KeyToChangePassword ;
       private string GXt_char1 ;
+      private string AV40Welcome_message ;
       private string AV12ErrDescription ;
       private bool AV19isSuccessful ;
+      private string AV32MailTemplateBody ;
       private string AV23UserGAMGUID ;
+      private string AV11baseUrl ;
       private string AV27LinkURL ;
       private string AV24Username ;
+      private string AV34Dear_Username ;
+      private string AV38Instruction_Message ;
+      private string AV33Button_Text ;
+      private string AV35Expiration_Message ;
+      private string AV36FollowUp_Message ;
+      private string AV37Footer_Message ;
       private GeneXus.Mail.GXMailMessage AV20MailMessage ;
       private GeneXus.Mail.GXMailRecipient AV9MailRecipient ;
       private GeneXus.Mail.GXSMTPSession AV22SMTPSession ;
       private GeneXus.Programs.genexussecurity.SdtGAMUser AV15GAMUser ;
+      private GeneXus.Programs.genexussecurity.SdtGAMApplication AV39GAMApplication ;
       private GXExternalCollection<GeneXus.Programs.genexussecurity.SdtGAMError> AV30GAMErrorCollection ;
+      private GeneXus.Programs.wwpbaseobjects.mail.SdtWWP_MailTemplate AV31MailTemplate ;
       private GeneXus.Programs.genexussecurity.SdtGAMError AV8GAMErrorItem ;
       private bool aP1_isSuccessful ;
    }

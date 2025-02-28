@@ -219,7 +219,7 @@ namespace GeneXus.Programs {
           new ParDef("AV19OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P00902", "SELECT PageIsContentPage, OrganisationId, LocationId, Trn_PageId, Trn_PageName, PageJsonContent FROM Trn_Page WHERE (LocationId = :AV20LocationId) AND (OrganisationId = :AV19OrganisationId) AND (PageIsContentPage = TRUE) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00902,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P00902", "SELECT PageIsContentPage, OrganisationId, LocationId, Trn_PageId, Trn_PageName, PageJsonContent FROM Trn_Page WHERE (LocationId = :AV20LocationId) AND (OrganisationId = :AV19OrganisationId) AND (PageIsContentPage = TRUE) ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00902,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }

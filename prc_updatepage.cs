@@ -131,9 +131,10 @@ namespace GeneXus.Programs {
          }
          else
          {
-            AV9BC_Trn_Page.Load(AV8PageId, AV18PageName, new prc_getuserlocationid(context).executeUdp( ));
+            AV9BC_Trn_Page.Load(AV8PageId, new prc_getuserlocationid(context).executeUdp( ));
             if ( ! (Guid.Empty==AV9BC_Trn_Page.gxTpr_Trn_pageid) )
             {
+               AV9BC_Trn_Page.gxTpr_Trn_pagename = AV18PageName;
                AV9BC_Trn_Page.gxTpr_Pagegjsjson = AV11PageGJSJson;
                if ( AV9BC_Trn_Page.gxTpr_Pageisdynamicform || AV9BC_Trn_Page.gxTpr_Pageisweblinkpage )
                {

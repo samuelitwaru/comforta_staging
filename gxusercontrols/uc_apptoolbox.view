@@ -89,10 +89,10 @@
 						id="bg-opacity"
 						min="0" 
 						max="100" 
-						value="76"
+						value="80"
 						oninput="document.getElementById('valueDisplay').textContent = this.value + ' %'"
 					>
-						<span class="value-display" id="valueDisplay">50 %</span>
+						<span class="value-display" id="valueDisplay">0 %</span>
 				    </div>
                         </div>
                         <div class="tile-img-container" id="tile-img-container">
@@ -109,21 +109,15 @@
                         </div>
                         <div class="text-alignment">
                            <div class="align-item">
-                              <input type="radio" id="text-align-left" name="alignment" value="left"
+                              <input type="radio" id="tile-left" name="alignment" value="left"
                                  />
-                              <label for="text-align-left" class="fas fa-align-left">
+                              <label for="tile-left" class="fas fa-align-left">
                               </label>
                            </div>
                            <div class="align-item">
-                              <input type="radio" id="text-align-center" name="alignment" value="center"
+                              <input type="radio" id="tile-center" name="alignment" value="center"
                                  />
-                              <label for="text-align-center" class="fas fa-align-center">
-                              </label>
-                           </div>
-                           <div class="align-item">
-                              <input type="radio" id="text-align-right" name="alignment" value="right"
-                                 />
-                              <label for="text-align-right" class="fas fa-align-right">
+                              <label for="tile-center" class="fas fa-plus">
                               </label>
                            </div>
                         </div>
@@ -151,30 +145,6 @@
                      </div>
                      <div id="icons-list" class="icons-list">
                      </div>
-                     <div class="title-style">
-                        <div class="text-color-palette icon-colors" id="icon-color-palette">
-                        </div>
-                        <div class="text-alignment">
-                           <div class="align-item">
-                              <input type="radio" id="icon-align-left" name="icon-alignment" value="left"
-                                 />
-                              <label for="icon-align-left" class="fas fa-align-left">
-                              </label>
-                           </div>
-                           <div class="align-item">
-                              <input type="radio" id="icon-align-center" name="icon-alignment" value="center"
-                                 />
-                              <label for="icon-align-center" class="fas fa-align-center">
-                              </label>
-                           </div>
-                           <div class="align-item">
-                              <input type="radio" id="icon-align-right" name="icon-alignment" value="right"
-                                 />
-                              <label for="icon-align-right" class="fas fa-align-right">
-                              </label>
-                           </div>
-                        </div>
-                     </div>
                   </div>
                </div>
                <div class="sidebar-section content-page-section" id="content-page-section"
@@ -196,7 +166,7 @@
                   <div class="cta-style" id="cta-style">
                      <div class="text-color-palette text-colors" id="cta-color-palette">
                      </div>
-                     <div class="text-alignment">
+                     <!--<div class="text-alignment">
                         <div class="align-item">
                            <input type="radio" id="cta-align-left" name="alignment" value="left"
                               />
@@ -215,9 +185,10 @@
                            <label for="cta-align-right" class="fas fa-align-right">
                            </label>
                         </div>
-                     </div>
+                     </div>-->
                   </div>
                   <p id="no-cta-message"" style="display: none; color: #6b6969; text-align: center; font-style: italic;">No CTA section found for this service.</p>
+			<div id="cta-selected-actions"></div>
                </div>
             </div>
             <div class="tb-tab-content" id="templates-content">

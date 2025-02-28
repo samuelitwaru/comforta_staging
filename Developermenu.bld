@@ -47,6 +47,7 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+wc_calltoactiondetails
 wc_locationreceptionistswithinsert
 wp_residentpasswordresetcomplete
 wc_productservice

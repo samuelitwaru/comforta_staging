@@ -366,6 +366,7 @@ class DataManager {
   }
 
   async updatePagesBatch(payload) {
+    console.log('Publish:', payload);
     return await this.fetchAPI('/api/toolbox/update-pages-batch', {
       method: 'POST',
       body: JSON.stringify(payload),
@@ -814,16 +815,9 @@ class EditorManager {
           }
         });
       }
-
-      const ctaRoundButtons = ctaContainer.find(".cta-container-child");
-
-      if (ctaRoundButtons.length > 0) {
-        ctaRoundButtons.forEach(button => {
-          const windowWidth = window.innerWidth;
-          button.getEl().style.marginRight = windowWidth <= 1440 ? "0.5rem" : "1.1rem";
-        })
-        
-      }
+      const windowWidth = window.innerWidth;
+      ctaContainer.getEl().style.gap = windowWidth <= 1440 ? "0.2rem" : "1.4rem";
+      console.log("ctaContainer");
     }
   }
 
@@ -849,130 +843,23 @@ class EditorManager {
   async loadDynamicFormContent(editor, page) {
     try {
       editor.DomComponents.clear();
-      editor.DomComponents.addType("iframe", {
-        model: {
-          defaults: {
-            tagName: "iframe",
-            void: true,
-            draggable: false,
-            selectable: false,
-            attributes: {
-              frameborder: "0",
-              seamless: "seamless",
-              loading: "lazy",
-              sandbox: "allow-scripts allow-same-origin",
-              src: `${baseURL}/utoolboxdynamicform.aspx?WWPFormId=${page.WWPFormId}&WWPDynamicFormMode=DSP&DefaultFormType=&WWPFormType=0`,
-            },
-            // Define styles separately from attributes
-            style: {
-              width: "100%",
-              height: "300vh",
-              border: "none",
-              overflow: "hidden",
-              "-ms-overflow-style": "none",
-              "scrollbar-width": "none",
-            },
-          },
-
-          init() {
-            this.set("tagName", "iframe");
-
-            // Ensure src is set in attributes if not already present
-            const attrs = this.getAttributes();
-            if (!attrs.src) {
-              this.set("attributes", {
-                ...attrs,
-                src: this.defaults.attributes.src,
-              });
-            }
-          },
-
-          isValidUrl(url) {
-            try {
-              new URL(url);
-              return true;
-            } catch {
-              return false;
-            }
-          },
-        },
-
-        view: {
-          tagName: "iframe",
-
-          events: {
-            load: "onLoad",
-            error: "onError",
-          },
-
-          init() {
-            try {
-              this.listenTo(
-                this.model,
-                "change:attributes",
-                this.updateAttributes
-              );
-            } catch (error) {
-              console.error("Error initializing iframe view:", error);
-            }
-          },
-
-          onLoad() {
-            console.log("IFrame loaded successfully");
-          },
-
-          onError() {
-            console.error("Error loading iframe content");
-          },
-
-          updateAttributes() {
-            try {
-              const attributes = this.model.getAttributes();
-              Object.entries(attributes).forEach(([key, value]) => {
-                if (key !== "style") {
-                  this.el.setAttribute(key, value);
-                }
-              });
-            } catch (error) {
-              console.error("Error updating iframe attributes:", error);
-            }
-          },
-
-          render() {
-            try {
-              // Set all attributes except style
-              const attributes = this.model.getAttributes();
-              Object.entries(attributes).forEach(([key, value]) => {
-                if (key !== "style") {
-                  this.el.setAttribute(key, value);
-                }
-              });
-
-              // Apply styles correctly
-              const styles = this.model.get("style");
-              if (styles) {
-                Object.entries(styles).forEach(([prop, value]) => {
-                  this.el.style[prop] = value;
-                });
-              }
-
-              return this;
-            } catch (error) {
-              console.error("Error rendering iframe:", error);
-              return this;
-            }
-          },
-        },
-      });
-
-      // Add the component to the editor
+      // Add the component to the editor with preloader in a wrapper
       editor.setComponents(`
         <div class="form-frame-container" id="frame-container" ${defaultConstraints}>
-          <iframe ${defaultConstraints}></iframe>
+          <div class="preloader-wrapper" ${defaultConstraints}>
+            <div class="preloader" ${defaultConstraints}></div>
+          </div>
+          <object 
+            data="${baseURL}/utoolboxdynamicform.aspx?WWPFormId=${page.WWPFormId}&WWPDynamicFormMode=DSP&DefaultFormType=&WWPFormType=0"
+            type="text/html"
+            width="100%"
+            height="800px"
+            fallbackMessage="Unable to load the content. Please try opening it in a new window." ${defaultConstraints}>
+          </object>
         </div>
       `);
     } catch (error) {
-      console.error("Error setting up iframe component:", error.message);
+      console.error("Error setting up object component:", error.message);
     }
   }
 
@@ -1255,17 +1142,42 @@ class EditorEventManager {
   }
 
   updateEditorAfterLoad(editor) {
-    
     const titles = editor.DomComponents.getWrapper().find(".tile-title");
     titles.forEach((title) => {
       if (!title.getAttributes()?.["title"]) {
-        title.addAttributes({"title": title.getEl().textContent});
+        title.addAttributes({ title: title.getEl().textContent });
+      }
+
+      if (!title.getAttributes()?.["is-hidden"]) {
+        console.log("Hello world");
+        title.addAttributes({ "is-hidden": "false" });
       }
     });
 
-    const rowContainers = editor.DomComponents.getWrapper().find(".container-row");
-    rowContainers.forEach((rowContainer) => {
-      this.templateManager.updateRightButtons(rowContainer);
+    const tileIcons = editor.DomComponents.getWrapper().find(".tile-icon");
+    tileIcons.forEach((icon) => {
+      if (!icon.getAttributes()?.["is-hidden"]) {
+        icon.addAttributes({ "is-hidden": "true" });
+      }
+    });
+
+    const templateBlocks =
+      editor.DomComponents.getWrapper().find(".template-block");
+    templateBlocks.forEach((block) => {
+      const isPriority = block.getClasses()?.includes("high-priority-template");
+      const screenWidth = window.innerWidth;
+
+      const blockHeight =
+        screenWidth <= 1440
+          ? isPriority
+            ? "6.0rem"
+            : "4.5em"
+          : isPriority
+          ? "7rem"
+          : "5rem";
+      block.addStyle({
+        height: blockHeight,
+      });
     });
   }
 
@@ -1348,70 +1260,45 @@ class EditorEventManager {
     editor.on("component:selected", (component) =>
       this.handleComponentSelected(component)
     );
-    this.editorOnComponentAdd(editor)
+    this.editorOnComponentAdd(editor);
   }
 
   editorOnComponentAdd(editor) {
-    editor.on('component:mount', (model) => {
-      if (model.get('type') === 'svg') {
-        model.set({selectable:false})
+    editor.on("component:mount", (model) => {
+      if (model.get("type") === "svg") {
+        model.set({ selectable: false });
       }
-      if(model.get('type') === 'tile-wrapper') {
-        model.addStyle({'background':'#00000000'})
+      if (model.get("type") === "tile-wrapper") {
+        model.addStyle({ background: "#00000000" });
         // const tileMapper = new TileMapper(model.components().first())
         // tileMapper.setTileAttributes()
       }
     });
   }
 
-  editorOnUpdate(editor) {
-    editor.on("component:update", (updatedComponent) => {
-      const templateRow = updatedComponent.getEl().closest(".container-row");
-      if (templateRow) {
-        const templateRowId = templateRow.getAttribute("id");
-
-        const wrapper = editor.getWrapper();
-        const component = wrapper.find(`#${templateRowId}`)[0];
-        
-        if (component) {
-          this.templateManager.updateRightButtons(component);
-        } else {
-          console.log("Component corresponding to container-row not found");
-        }
-      } else {
-        // console.log("No container-row found");
-      }
-    });
-  }
-
   editorOnDragDrop(editor) {
-    editor.on("component:add", (model) => {
-      const component = model.get ? model : editor.getSelected();
-      if (!component) return;
+    let startDragComponent;
+    editor.on("component:drag:start", (model) => {
+      startDragComponent = model.parent;
+    });
 
-      const parent = component.parent();
-      if (!parent) return;
-
-      const parentEl = parent.getEl();
+    editor.on("component:drag:end", (model) => {
+      const parentEl = model.parent.getEl();
       if (!parentEl || !parentEl.classList.contains("container-row")) return;
 
-      const tileWrappers = parent.components().filter((comp) => {
+      const tileWrappers = model.parent.components().filter((comp) => {
         const type = comp.get("type");
         return type === "tile-wrapper";
       });
-
       if (tileWrappers.length > 3) {
-        component.remove();
+        model.target.remove();
 
         editor.UndoManager.undo();
       }
-
-      editor
-        .getWrapper()
-        .find(".container-row")
-        .forEach((component) => {
-          this.templateManager.updateRightButtons(component);
-        });
+      this.templateManager.templateUpdate.updateRightButtons(model.parent);
+      this.templateManager.templateUpdate.updateRightButtons(
+        startDragComponent
+      );
     });
   }
 
@@ -1583,12 +1470,11 @@ class TemplateManager {
       droppable: false,
       hoverable: false,
     };
+    this.templateUpdate = new TemplateUpdate(this);
   }
 
   createTemplateHTML(isDefault = false) {
-    let tileBgColor =
-      this.editorManager.toolsSection.currentTheme.ThemeColors.accentColor;
-    tileBgColor = '#ffffff'
+    let tileBgColor = '#ffffff'
     return `
             <div class="template-wrapper ${
               isDefault ? "default-template" : ""
@@ -1601,9 +1487,9 @@ class TemplateManager {
                   data-gjs-resizable="false"
                   data-gjs-hoverable="false">
               <div class="template-block"
-                style="background-color:${tileBgColor}; color:#FFFFFF"
+                style="background-color:${tileBgColor}; color:#333333"
                 tile-bgcolor="${tileBgColor}"
-                tile-bgcolor-name="accentColor"
+                tile-bgcolor-name=""
                 ${defaultTileAttrs} 
                  data-gjs-draggable="false"
                  data-gjs-selectable="true"
@@ -1633,6 +1519,7 @@ class TemplateManager {
                       >&times;</span>
                     <span 
                       class="tile-icon"
+                      is-hidden = "true"
                       data-gjs-draggable="false"
                       data-gjs-selectable="false"
                       data-gjs-editable="false"
@@ -1661,6 +1548,7 @@ class TemplateManager {
                       >&times;</span>
                     <span 
                       class="tile-title"
+                      is-hidden = "false"
                       data-gjs-draggable="false"
                       data-gjs-selectable="false"
                       data-gjs-editable="false"
@@ -1777,7 +1665,7 @@ class TemplateManager {
 
   generateTemplateRow(columns, rowIndex) {
     let tileBgColor =
-      this.editorManager.toolsSection.currentTheme.ThemeColors.accentColor;
+      "#ffffff";
     let columnWidth = 100 / columns;
     if (columns === 1) {
       columnWidth = 100;
@@ -1822,7 +1710,7 @@ class TemplateManager {
 
       wrappers += `
                 <div class="template-wrapper"
-                          style="flex: 0 0 ${columnWidth}%); background: ${tileBgColor}; color:#ffffff"
+                          style="flex: 0 0 ${columnWidth}%); background: ${tileBgColor}; color:#333333"
                           data-gjs-type="tile-wrapper"
                           data-gjs-selectable="false"
                           data-gjs-droppable="false">
@@ -1833,7 +1721,7 @@ class TemplateManager {
                               : ""
                           }"
                             tile-bgcolor="${tileBgColor}"
-                            tile-bgcolor-name="accentColor"
+                            tile-bgcolor-name=""
                             ${defaultTileAttrs}
                             data-gjs-draggable="false"
                             data-gjs-selectable="true"
@@ -1863,6 +1751,7 @@ class TemplateManager {
                                   >&times;</span>
                                 <span 
                                   class="tile-icon"
+                                  is-hidden = "true"
                                   data-gjs-draggable="false"
                                   data-gjs-selectable="false"
                                   data-gjs-editable="false"
@@ -1891,6 +1780,7 @@ class TemplateManager {
                                   >&times;</span>
                                 <span 
                                   class="tile-title"
+                                  is-hidden = "false"
                                   data-gjs-draggable="false"
                                   data-gjs-selectable="false"
                                   data-gjs-editable="false"
@@ -2085,7 +1975,7 @@ class TemplateManager {
       }
     });
 
-    this.updateRightButtons(containerRow);
+    this.templateUpdate.updateRightButtons(containerRow);
   }
 
   addTemplateRight(templateComponent, editorInstance) {
@@ -2110,7 +2000,7 @@ class TemplateManager {
       });
     });
 
-    this.updateRightButtons(containerRow);
+    this.templateUpdate.updateRightButtons(containerRow);
   }
 
   addTemplateBottom(templateComponent, editorInstance) {
@@ -2137,116 +2027,6 @@ class TemplateManager {
       at: index + 1,
     });
   }
-
-  updateRightButtons(containerRow) {
-    if (!containerRow) return;
-  
-    const styleConfigs = {
-      1: {
-        title: { "letter-spacing": "1.1px", "font-size": "16px" },
-        template: { "justify-content": "start" },
-        rightButton: { display: "flex" },
-        titleSection: { "text-align": "left" },
-      },
-      2: {
-        title: { "letter-spacing": "0.9px", "font-size": "14px" },
-        template: { "justify-content": "start" },
-        rightButton: { display: "flex" },
-        titleSection: { "text-align": "left" },
-      },
-      3: {
-        title: { "letter-spacing": "0.9px", "font-size": "12px" },
-        template: { "justify-content": "center" },
-        rightButton: { display: "none" },
-        titleSection: { "text-align": "center" },
-      },
-    };
-  
-    const templates = containerRow.components();
-    if (!templates.length || !styleConfigs[templates.length]) return;
-
-    const screenWidth = window.innerWidth;
-  
-    const config = styleConfigs[templates.length];
-  
-    const isTemplateOne = templates.length == 1;
-  
-    const titles = containerRow.find(".tile-title");
-    const templateBlocks = containerRow.find(".template-block");
-    const titleSections = containerRow.find(".tile-title-section");
-  
-    titles.forEach((title) => {
-      title.addStyle(config.title);
-  
-      let tileTitle =
-        title.getEl().getAttribute("title") || title.getEl().innerText;
-      if (templates.length === 3) {
-        let words = tileTitle.split(" ");
-        if (words.length > 2) {
-          tileTitle = words.slice(0, 2).join(" ");
-        }
-  
-        if (tileTitle.length > 13) {
-          tileTitle = tileTitle.substring(0, 13).trim();
-        }
-  
-        let truncatedWords = tileTitle.split(" ");
-        if (truncatedWords.length > 1) {
-          tileTitle =
-            truncatedWords.slice(0, 1).join(" ") + "<br>" + truncatedWords[1];
-        }
-      } else {
-        tileTitle = tileTitle.replace("<br>", "");
-      }
-  
-      if (templates.length === 2) {
-        tileTitle = truncateText(tileTitle, screenWidth <= 1440 ? 11 : 13);
-      }
-  
-      if (templates.length === 1) {
-        tileTitle = truncateText(tileTitle, screenWidth <= 1440 ? 20 : 24);
-      }
-  
-      title.components(tileTitle);
-    });
-  
-    templateBlocks.forEach((template) => {
-      const isPriority = template
-        .getClasses()
-        ?.includes("high-priority-template");
-      
-      // Check the screen width and adjust heights accordingly
-      
-      const templateHeight = screenWidth <= 1440 ? 
-        (isPriority && isTemplateOne ? "6.0rem" : "4.5em") : 
-        (isPriority && isTemplateOne ? "7rem" : "5.5rem");
-  
-      const templateStyles = {
-        ...config.template,
-        height: templateHeight,
-        textTransform: isPriority && isTemplateOne ? "uppercase" : "capitalize",
-      };
-      template.addStyle(templateStyles);
-    });
-  
-    templates.forEach((template) => {
-      if (!template?.view?.el) return;
-      const rightButton = template.find(".add-button-right")[0];
-      if (rightButton) rightButton.addStyle(config.rightButton);
-  
-      if (templates.length === 3) {
-        template.addAttributes({
-          "tile-icon-align": "center",
-          "tile-text-align": "center",
-        });
-      }
-    });
-  
-    if (titleSections.length) {
-      titleSections.forEach((section) => section.addStyle(config.titleSection));
-    }
-  }
-  
 
   initialContentPageTemplate(contentPageData) {
     return `
@@ -2322,7 +2102,7 @@ class TemplateManager {
                               contentPageData.ProductServiceDescription
                                 ? `
                                 <p
-                                    style="flex: 1; padding: 0; margin: 0; height: auto;"
+                                    style="flex: 1; padding: 0; margin: 0; height: auto; white-space: pre-wrap;"
                                     class="content-page-block"
                                     data-gjs-draggable="true"
                                     data-gjs-selectable="false"
@@ -2352,14 +2132,20 @@ class TemplateManager {
       this.editorManager.selectedComponent?.find(targetSelector)[0];
     if (closeSection) {
       const closeEl = closeSection.getEl();
+      const selectedComponent =
+              this.editorManager.selectedComponent;
       if (closeEl) {
         closeEl.onclick = () => {
-          // const component = this.editorManager.selectedComponent
-          // .find(sectionSelector)[0]
-          //   .remove();
+          if (!this.checkIfTileHasTitleOrIcon(selectedComponent)) {
+            const message = this.currentLanguage.getTranslation(
+              "tile_must_have_title_or_icon"
+            );
+            this.editorManager.toolsSection.ui.displayAlertMessage(message, "error");
+            return;
+          }
           if (sectionSelector === ".tile-title-section") {
             const component =
-              this.editorManager.selectedComponent.find(".tile-title")[0];
+              selectedComponent.find(".tile-title")[0];
             component.components("");
             this.editorManager.toolsSection.setAttributeToSelected(
               "TileText",
@@ -2367,19 +2153,197 @@ class TemplateManager {
             );
             $("#tile-title").val("");
             component.addStyle({ display: "none" });
+            component.addAttributes({"title": ""});
+            component.addAttributes({"is-hidden": "true"});
           } else if (sectionSelector === ".tile-icon-section") {
             const component =
-              this.editorManager.selectedComponent.find(".tile-icon")[0];
+              selectedComponent.find(".tile-icon")[0];
             component.components("");
             this.editorManager.toolsSection.setAttributeToSelected(
               "tile-icon",
               ""
             );
             component.addStyle({ display: "none" });
+            component.addAttributes({"is-hidden": "true"});
           }
         };
       }
     }
+  }
+
+  checkIfTileHasTitleOrIcon(selectedComponent) {
+    const isIconHidden = selectedComponent.find(".tile-icon")[0]?.getAttributes()?.["is-hidden"] === "false";
+    const isTitleHidden = selectedComponent.find(".tile-title")[0]?.getAttributes()?.["is-hidden"] === "false";
+    
+    // Return true if both elements are hidden
+    return isIconHidden && isTitleHidden;
+  }
+
+}
+
+
+// Content from classes/TemplateUpdate.js
+class TemplateUpdate {
+  constructor(templateManager) {
+    this.templateManager = templateManager;
+  }
+
+  updateRightButtons(containerRow) {
+    if (!containerRow) return;
+
+    const templates = containerRow.components();
+    if (!templates.length) return;
+
+    const count = templates.length;
+    const styleConfig = this.getStyleConfig(count);
+    if (!styleConfig) return;
+
+    const screenWidth = window.innerWidth;
+    const isTemplateOne = count === 1;
+
+    this.updateTitleElements(containerRow, count, screenWidth, styleConfig);
+    this.updateTemplateElements(
+      containerRow,
+      templates,
+      count,
+      screenWidth,
+      isTemplateOne,
+      styleConfig
+    );
+  }
+
+  getStyleConfig(count) {
+    const styleConfigs = {
+      1: {
+        title: { "letter-spacing": "1.1px", "font-size": "16px" },
+        template: { "justify-content": "start", "align-items": "start" },
+        rightButton: { display: "flex" },
+        titleSection: { "text-align": "left" },
+        attributes: { "tile-align": "left" },
+      },
+      2: {
+        title: { "letter-spacing": "0.9px", "font-size": "14px" },
+        template: { "justify-content": "start", "align-items": "start" },
+        rightButton: { display: "flex" },
+        titleSection: { "text-align": "left" },
+        attributes: { "tile-align": "left" },
+      },
+      3: {
+        title: { "letter-spacing": "0.9px", "font-size": "12px" },
+        template: { "justify-content": "center", "align-items": "center" },
+        rightButton: { display: "none" },
+        titleSection: { "text-align": "center" },
+        attributes: { "tile-align": "center" },
+      },
+    };
+
+    return styleConfigs[count] || null;
+  }
+
+  updateTitleElements(containerRow, count, screenWidth, styleConfig) {
+    // Update titles
+    const titles = containerRow.find(".tile-title");
+    titles.forEach((title) => {
+      title.addStyle({
+        ...styleConfig.title,
+        "text-align": count === 3 ? "center" : "left",
+      });
+      let tileTitle =
+        title.getEl().getAttribute("title") || title.getEl().innerText;
+
+      if (count === 3) {
+        // Format title for three templates
+        let words = tileTitle.split(" ");
+        if (words.length > 2) {
+          tileTitle = words.slice(0, 2).join(" ");
+        }
+
+        if (tileTitle.length > 13) {
+          tileTitle = tileTitle.substring(0, 13).trim() + "..";
+        }
+
+        let truncatedWords = tileTitle.split(" ");
+        if (truncatedWords.length > 1) {
+          tileTitle =
+            truncatedWords.slice(0, 1).join(" ") + "<br>" + truncatedWords[1];
+        }
+
+        title.parent().addStyle({ textAlign: "center" });
+      } else {
+        tileTitle = tileTitle.replace("<br>", "");
+
+        // Handle title length based on template count and screen width
+        if (count === 2) {
+          if (tileTitle.length > (screenWidth <= 1440 ? 11 : 13)) {
+            tileTitle =
+              tileTitle.substring(0, screenWidth <= 1440 ? 11 : 13).trim() +
+              "...";
+          }
+        }
+
+        if (count === 1) {
+          if (tileTitle.length > (screenWidth <= 1440 ? 20 : 24)) {
+            tileTitle =
+              tileTitle.substring(0, screenWidth <= 1440 ? 20 : 24).trim() +
+              "...";
+          }
+        }
+      }
+
+      title.components(tileTitle);
+    });
+
+    // Update title sections
+    const titleSections = containerRow.find(".tile-title-section");
+    if (titleSections.length) {
+      titleSections.forEach((section) =>
+        section.addStyle(styleConfig.titleSection)
+      );
+    }
+  }
+
+  updateTemplateElements(
+    containerRow,
+    templates,
+    count,
+    screenWidth,
+    isTemplateOne,
+    styleConfig
+  ) {
+    // Update template blocks
+    const templateBlocks = containerRow.find(".template-block");
+    templateBlocks.forEach((template) => {
+      const isPriority = template
+        .getClasses()
+        ?.includes("high-priority-template");
+
+      const templateHeight =
+        screenWidth <= 1440
+          ? isPriority && isTemplateOne
+            ? "6.0rem"
+            : "4.5em"
+          : isPriority && isTemplateOne
+          ? "7rem"
+          : "5rem";
+
+      const templateStyles = {
+        ...styleConfig.template,
+        height: templateHeight,
+        "text-transform":
+          isPriority && isTemplateOne ? "uppercase" : "capitalize",
+      };
+
+      template.addStyle(templateStyles);
+      template.addAttributes(styleConfig.attributes);
+    });
+
+    // Update right buttons and template attributes
+    templates.forEach((template) => {
+      if (!template?.view?.el) return;
+
+      const rightButton = template.find(".add-button-right")[0];
+      if (rightButton) rightButton.addStyle(styleConfig.rightButton);
+    });
   }
 }
 
@@ -2469,10 +2433,22 @@ class ToolBoxManager {
 
     const sidebarInputTitle = document.getElementById("tile-title");
     sidebarInputTitle.addEventListener("input", (e) => {
-      if (e.target.value.length > 30) {
-        e.target.value = truncateText(e.target.value, 35);
+      let inputValue = e.target.value;
+
+      if (inputValue.length > 30) {
+        inputValue = truncateText(inputValue, 35);
+        e.target.value = inputValue; 
       }
-      this.ui.updateTileTitle(e.target.value);
+
+      if (inputValue.trim() === "") {
+        const titleComponent =
+        this.editorManager.selectedComponent.find(".tile-title")[0];
+        if (titleComponent) {
+          titleComponent.getEl().innerHTML = "";
+        }
+      }
+
+      this.ui.updateTileTitle(inputValue);
     });
   }
 
@@ -2490,7 +2466,7 @@ class ToolBoxManager {
   preparePageDataList(editors) {
     let skipPages = ["Mailbox", "Calendar", "My Activity"];
     return this.dataManager.pages.SDT_PageCollection.filter(
-      (page) => !(skipPages.includes(page.PageName))
+      (page) => !skipPages.includes(page.PageName)
     ).map((page) => {
       let projectData;
       try {
@@ -2638,9 +2614,12 @@ class ToolBoxManager {
                     e.preventDefault();
                     const currentStyles = templateBlock.getStyle() || {};
                     delete currentStyles["background-image"];
+                    currentStyles["background-color"] = templateBlock.getAttributes()?.["tile-bgcolor"];
                     templateBlock.setStyle(currentStyles);
                     tileImgContainer.style.display = "none";
                     this.setAttributeToSelected("tile-bg-image-url", "");
+                    this.setAttributeToSelected("tile-bg-image-opacity", 0);
+                    this.ui.updateTileOpacityProperties(templateBlock);
                   };
                 }
               }
@@ -2653,8 +2632,8 @@ class ToolBoxManager {
     }
   }
 
-  setServiceToSelectedTile (serviceId) {
-    const categoryName = "Service/Product Page"
+  setServiceToSelectedTile(serviceId) {
+    const categoryName = "Service/Product Page";
     this.dataManager.getServices().then((services) => {
       const service = services.find(
         (service) => service.ProductServiceId == serviceId
@@ -2666,27 +2645,22 @@ class ToolBoxManager {
           "tile-action-object": `${categoryName}, ${service.ProductServiceName}`,
         });
 
-        this.setAttributeToSelected(
-          "tile-action-object-id",
-          serviceId
-        );
-       
+        this.setAttributeToSelected("tile-action-object-id", serviceId);
+
         this.setAttributeToSelected(
           "tile-action-object",
           `${categoryName}, ${service.ProductServiceName}`
         );
+
         const editor = this.editorManager.getCurrentEditor();
-        const titleComponent = editor.getSelected().find(".tile-title")[0];
-        if (titleComponent) {
-          titleComponent.components(service.ProductServiceTileName);
-          titleComponent.addStyle({ display: "block" });
-        }
         const editorId = editor.getConfig().container;
         const editorContainerId = `${editorId}-frame`;
-        this.actionList.createContentPage(service.ProductServiceId, editorContainerId);
+        this.actionList.createContentPage(
+          service.ProductServiceId,
+          editorContainerId
+        );
       }
     });
-
   }
 
   openFileManager(type) {
@@ -2697,7 +2671,13 @@ class ToolBoxManager {
 
     const isTile = false;
 
-    this.mediaComponent.handleModalOpen(modal, fileInputField, allUploadedFiles, isTile, type);
+    this.mediaComponent.handleModalOpen(
+      modal,
+      fileInputField,
+      allUploadedFiles,
+      isTile,
+      type
+    );
   }
 }
 
@@ -2821,24 +2801,27 @@ class EventListenerManager {
   }
 
   setupAlignmentListeners() {
-    const leftAlign = document.getElementById("text-align-left");
-    const centerAlign = document.getElementById("text-align-center");
-    const rightAlign = document.getElementById("text-align-right");
+    const leftAlign = document.getElementById("tile-left");
+    const centerAlign = document.getElementById("tile-center");
 
     leftAlign.addEventListener("click", () => {
       if (this.toolBoxManager.editorManager.selectedTemplateWrapper) {
         const templateBlock =
-          this.toolBoxManager.editorManager.selectedComponent.find(
-            ".tile-title-section"
-          )[0];
+          this.toolBoxManager.editorManager.selectedComponent;
 
         if (templateBlock) {
-          templateBlock.setStyle({
-            // display: "flex",
-            // "align-self": "start",
-            "text-align": "left",
+          templateBlock.addStyle({
+            "align-items": "start",
+            "justify-content": "start",
           });
-          this.toolBoxManager.setAttributeToSelected("tile-text-align", "left");
+
+          const tileTitle = templateBlock.find(".tile-title")[0];
+          if (tileTitle) {
+            tileTitle.addStyle({
+              "text-align": "left",
+            })
+          }
+          this.toolBoxManager.setAttributeToSelected("tile-align", "left");
         }
       } else {
         const message = this.toolBoxManager.currentLanguage.getTranslation(
@@ -2851,18 +2834,22 @@ class EventListenerManager {
     centerAlign.addEventListener("click", () => {
       if (this.toolBoxManager.editorManager.selectedTemplateWrapper) {
         const templateBlock =
-          this.toolBoxManager.editorManager.selectedComponent.find(
-            ".tile-title-section"
-          )[0];
-
+          this.toolBoxManager.editorManager.selectedComponent;
         if (templateBlock) {
-          templateBlock.setStyle({
-            // display: "flex",
-            // "align-self": "center",
-            "text-align": "center",
+          templateBlock.addStyle({
+            "align-items": "center",
+            "justify-content": "center",
           });
+
+          const tileTitle = templateBlock.find(".tile-title")[0];
+          if (tileTitle) {
+            tileTitle.addStyle({
+              "text-align": "center",
+            })
+          }
+
           this.toolBoxManager.setAttributeToSelected(
-            "tile-text-align",
+            "tile-align",
             "center"
           );
         }
@@ -2874,141 +2861,29 @@ class EventListenerManager {
       }
     });
 
-    rightAlign.addEventListener("click", () => {
-      if (this.toolBoxManager.editorManager.selectedTemplateWrapper) {
-        const templateBlock =
-          this.toolBoxManager.editorManager.selectedComponent.find(
-            ".tile-title-section"
-          )[0];
-
-        if (templateBlock) {
-          templateBlock.setStyle({
-            // display: "flex",
-            // "align-self": "end",
-            "text-align": "right",
-          });
-          this.toolBoxManager.setAttributeToSelected(
-            "tile-text-align",
-            "right"
-          );
-        }
-      } else {
-        const message = this.toolBoxManager.currentLanguage.getTranslation(
-          "no_tile_selected_error_message"
-        );
-        this.toolBoxManager.ui.displayAlertMessage(message, "error");
-      }
-    });
-
-    const iconLeftAlign = document.getElementById("icon-align-left");
-    const iconCenterAlign = document.getElementById("icon-align-center");
-    const iconRightAlign = document.getElementById("icon-align-right");
-
-    iconLeftAlign.addEventListener("click", () => {
-      if (this.toolBoxManager.editorManager.selectedTemplateWrapper) {
-        const templateBlock =
-          this.toolBoxManager.editorManager.selectedComponent.find(
-            ".tile-icon-section"
-          )[0];
-        if (templateBlock) {
-          templateBlock.setStyle({
-            display: "flex",
-            "align-self": "start",
-          });
-          this.toolBoxManager.setAttributeToSelected("tile-icon-align", "left");
-        }
-      } else {
-        const message = this.toolBoxManager.currentLanguage.getTranslation(
-          "no_tile_selected_error_message"
-        );
-        this.toolBoxManager.ui.displayAlertMessage(message, "error");
-      }
-    });
-
-    iconCenterAlign.addEventListener("click", () => {
-      if (this.toolBoxManager.editorManager.selectedTemplateWrapper) {
-        const templateBlock =
-          this.toolBoxManager.editorManager.selectedComponent.find(
-            ".tile-icon-section"
-          )[0];
-
-        if (templateBlock) {
-          templateBlock.setStyle({
-            display: "flex",
-            "align-self": "center",
-          });
-          this.toolBoxManager.setAttributeToSelected(
-            "tile-icon-align",
-            "center"
-          );
-        }
-      } else {
-        const message = this.toolBoxManager.currentLanguage.getTranslation(
-          "no_tile_selected_error_message"
-        );
-        this.toolBoxManager.ui.displayAlertMessage(message, "error");
-      }
-    });
-
-    iconRightAlign.addEventListener("click", () => {
-      if (this.toolBoxManager.editorManager.selectedTemplateWrapper) {
-        const templateBlock =
-          this.toolBoxManager.editorManager.selectedComponent.find(
-            ".tile-icon-section"
-          )[0];
-
-        if (templateBlock) {
-          templateBlock.setStyle({
-            display: "flex",
-            "align-self": "end",
-          });
-          this.toolBoxManager.setAttributeToSelected(
-            "tile-icon-align",
-            "right"
-          );
-        } else {
-        }
-      } else {
-        const message = this.toolBoxManager.currentLanguage.getTranslation(
-          "no_tile_selected_error_message"
-        );
-        this.toolBoxManager.ui.displayAlertMessage(message, "error");
-      }
-    });
   }
 
   setupOpacityListener() {
     const imageOpacity = document.getElementById("bg-opacity");
-
+    
     imageOpacity.addEventListener("input", (event) => {
       const value = event.target.value;
-
-      if (this.toolBoxManager.editorManager.selectedTemplateWrapper) {
+      const selectedComponent = this.toolBoxManager.editorManager.selectedComponent;
+      if (selectedComponent) {
         const templateBlock =
           this.toolBoxManager.editorManager.selectedComponent;
 
         if (templateBlock) {
-          const currentBgStyle = templateBlock.getStyle()["background-color"];
-          let currentBgColor;
-          
-          if (currentBgStyle.length > 7) {
-            currentBgColor = currentBgStyle.substring(0, 7);
-          } else {
-            currentBgColor = currentBgStyle;
-          }
+          const hasBgImage = selectedComponent.getStyle()["background-image"];
 
-          const bgColor = addOpacityToHex(currentBgColor, value)
+          if (!hasBgImage) return;
 
           templateBlock.addStyle({
-            "background-color": bgColor,
+            "background-color": `rgba(0,0,0, ${value / 100})`,
           });
 
           templateBlock.addAttributes({
             "tile-bg-image-opacity": value,
-          })
-
-          templateBlock.addAttributes({
-            "tile-bgcolor": bgColor,
           })
         }
       }
@@ -3172,7 +3047,7 @@ class ThemeManager {
 
     const select = document.querySelector(".tb-custom-theme-selection");
     select.querySelector(".selected-theme-value").textContent = themeName;
-    
+
     if (!theme) {
       return false;
     }
@@ -3193,7 +3068,9 @@ class ThemeManager {
     this.themeColorPalette(this.toolBoxManager.currentTheme.ThemeColors);
     localStorage.setItem("selectedTheme", themeName);
 
-    const page = this.toolBoxManager.editorManager.getPage(this.toolBoxManager.editorManager.currentPageId);
+    const page = this.toolBoxManager.editorManager.getPage(
+      this.toolBoxManager.editorManager.currentPageId
+    );
     this.toolBoxManager.ui.updateTileProperties(
       this.toolBoxManager.editorManager.selectedComponent,
       page
@@ -3214,18 +3091,60 @@ class ThemeManager {
     iframes.forEach((iframe) => {
       const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 
-      this.updateRootStyle(iframeDoc, "primary-color", this.toolBoxManager.currentTheme.ThemeColors.primaryColor);
-      this.updateRootStyle(iframeDoc, "secondary-color", this.toolBoxManager.currentTheme.ThemeColors.secondaryColor);
-      this.updateRootStyle(iframeDoc, "background-color", this.toolBoxManager.currentTheme.ThemeColors.backgroundColor);
-      this.updateRootStyle(iframeDoc, "text-color", this.toolBoxManager.currentTheme.ThemeColors.textColor);
-      this.updateRootStyle(iframeDoc, "button-bg-color", this.toolBoxManager.currentTheme.ThemeColors.buttonBgColor);
-      this.updateRootStyle(iframeDoc, "button-text-color", this.toolBoxManager.currentTheme.ThemeColors.buttonTextColor);
-      this.updateRootStyle(iframeDoc, "card-bg-color", this.toolBoxManager.currentTheme.ThemeColors.cardBgColor);
-      this.updateRootStyle(iframeDoc, "card-text-color", this.toolBoxManager.currentTheme.ThemeColors.cardTextColor);
-      this.updateRootStyle(iframeDoc, "accent-color", this.toolBoxManager.currentTheme.ThemeColors.accentColor);
-      this.updateRootStyle(iframeDoc, "font-family", this.toolBoxManager.currentTheme.ThemeFontFamily);
+      this.updateRootStyle(
+        iframeDoc,
+        "primary-color",
+        this.toolBoxManager.currentTheme.ThemeColors.primaryColor
+      );
+      this.updateRootStyle(
+        iframeDoc,
+        "secondary-color",
+        this.toolBoxManager.currentTheme.ThemeColors.secondaryColor
+      );
+      this.updateRootStyle(
+        iframeDoc,
+        "background-color",
+        this.toolBoxManager.currentTheme.ThemeColors.backgroundColor
+      );
+      this.updateRootStyle(
+        iframeDoc,
+        "text-color",
+        this.toolBoxManager.currentTheme.ThemeColors.textColor
+      );
+      this.updateRootStyle(
+        iframeDoc,
+        "button-bg-color",
+        this.toolBoxManager.currentTheme.ThemeColors.buttonBgColor
+      );
+      this.updateRootStyle(
+        iframeDoc,
+        "button-text-color",
+        this.toolBoxManager.currentTheme.ThemeColors.buttonTextColor
+      );
+      this.updateRootStyle(
+        iframeDoc,
+        "card-bg-color",
+        this.toolBoxManager.currentTheme.ThemeColors.cardBgColor
+      );
+      this.updateRootStyle(
+        iframeDoc,
+        "card-text-color",
+        this.toolBoxManager.currentTheme.ThemeColors.cardTextColor
+      );
+      this.updateRootStyle(
+        iframeDoc,
+        "accent-color",
+        this.toolBoxManager.currentTheme.ThemeColors.accentColor
+      );
+      this.updateRootStyle(
+        iframeDoc,
+        "font-family",
+        this.toolBoxManager.currentTheme.ThemeFontFamily
+      );
 
-      this.updatePageTitleFontFamily(this.toolBoxManager.currentTheme.ThemeFontFamily);
+      this.updatePageTitleFontFamily(
+        this.toolBoxManager.currentTheme.ThemeFontFamily
+      );
     });
   }
 
@@ -3317,8 +3236,10 @@ class ThemeManager {
 
             const currentTileBgColorName =
               tile.getAttributes()?.["tile-bgcolor-name"];
+
             if (currentTileBgColorName && theme.ThemeColors) {
-              const matchingColorCode = theme.ThemeColors[currentTileBgColorName];
+              const matchingColorCode =
+                theme.ThemeColors[currentTileBgColorName];
 
               if (matchingColorCode) {
                 tile.addAttributes({
@@ -3326,11 +3247,12 @@ class ThemeManager {
                   "tile-bgcolor": matchingColorCode,
                 });
 
-                const currentTileOpacity = tile.getAttributes()?.["tile-bg-image-opacity"];
-
-                tile.addStyle({
-                  "background-color": addOpacityToHex(matchingColorCode, currentTileOpacity),
-                });
+                const tileStyle = tile.getStyle();
+                if (!tileStyle["background-image"]) {
+                  tile.addStyle({
+                    "background-color": matchingColorCode,
+                  });
+                }
               } else {
                 console.warn(
                   `No matching color found for: ${currentTileBgColorName}`
@@ -3388,25 +3310,34 @@ class ThemeManager {
 
       colorBox.onclick = () => {
         if (this.toolBoxManager.editorManager.selectedComponent) {
-          const selectedComponent = this.toolBoxManager.editorManager.selectedComponent;
-          const currentColor = selectedComponent
-                                      .getAttributes()?.["tile-bgcolor"];
-          const currentTileOpacity = selectedComponent
-                                      .getAttributes()?.["tile-bg-image-opacity"];
+          const selectedComponent =
+            this.toolBoxManager.editorManager.selectedComponent;
+          const currentColor =
+            selectedComponent.getAttributes()?.["tile-bgcolor"];
 
           if (currentColor === colorValue) {
             selectedComponent.addStyle({
-              "background-color": "transparent"
+              "background-color": "transparent",
             });
-      
+
             this.toolBoxManager.setAttributeToSelected("tile-bgcolor", null);
-            this.toolBoxManager.setAttributeToSelected("tile-bgcolor-name", null);
+            this.toolBoxManager.setAttributeToSelected(
+              "tile-bgcolor-name",
+              null
+            );
+
+            this.toolBoxManager.setAttributeToSelected(
+              "tile-bg-image-opacity",
+              0
+            );
+
+            this.toolBoxManager.ui.updateTileOpacityProperties(selectedComponent);
 
             radioInput.checked = false;
             alignItem.style.border = "none";
-          }else {
+          } else {
             selectedComponent.addStyle({
-              "background-color": addOpacityToHex(colorValue, currentTileOpacity),
+              "background-color": colorValue
             });
 
             this.toolBoxManager.setAttributeToSelected(
@@ -3420,7 +3351,6 @@ class ThemeManager {
             );
             alignItem.removeAttribute("style");
           }
-
         } else {
           const message = this.toolBoxManager.currentLanguage.getTranslation(
             "no_tile_selected_error_message"
@@ -3434,8 +3364,6 @@ class ThemeManager {
   colorPalette() {
     const textColorPaletteContainer =
       document.getElementById("text-color-palette");
-    const iconColorPaletteContainer =
-      document.getElementById("icon-color-palette");
 
     // Fixed color values
     const colorValues = {
@@ -3457,7 +3385,7 @@ class ThemeManager {
       colorBox.className = "color-box";
       colorBox.setAttribute("for", `text-color-${colorName}`);
       colorBox.style.backgroundColor = colorValue;
-      colorBox.setAttribute("data-tile-text-color", colorValue);
+      colorBox.setAttribute("data-tile-color", colorValue);
 
       alignItem.appendChild(radioInput);
       alignItem.appendChild(colorBox);
@@ -3471,44 +3399,10 @@ class ThemeManager {
             color: colorValue,
           });
           this.toolBoxManager.setAttributeToSelected(
-            "tile-text-color",
+            "tile-color",
             colorValue
           );
-        } else {
-          const message = this.toolBoxManager.currentLanguage.getTranslation(
-            "no_tile_selected_error_message"
-          );
-          this.toolBoxManager.ui.displayAlertMessage(message, "error");
-        }
-      };
-    });
 
-    // Create options for icon color palette
-    Object.entries(colorValues).forEach(([colorName, colorValue]) => {
-      const alignItem = document.createElement("div");
-      alignItem.className = "color-item";
-
-      const radioInput = document.createElement("input");
-      radioInput.type = "radio";
-      radioInput.id = `icon-color-${colorName}`;
-      radioInput.name = "icon-color";
-      radioInput.value = colorName;
-
-      const colorBox = document.createElement("label");
-      colorBox.className = "color-box";
-      colorBox.setAttribute("for", `icon-color-${colorName}`);
-      colorBox.style.backgroundColor = colorValue;
-      colorBox.setAttribute("data-tile-icon-color", colorValue);
-
-      alignItem.appendChild(radioInput);
-      alignItem.appendChild(colorBox);
-      iconColorPaletteContainer.appendChild(alignItem);
-
-      radioInput.onclick = () => {
-        const selectedComponent =
-          this.toolBoxManager.editorManager.selectedComponent;
-
-        if (selectedComponent) {
           const svgIcon = selectedComponent.find(".tile-icon path")[0];
           if (svgIcon) {
             svgIcon.removeAttributes("fill");
@@ -3519,11 +3413,6 @@ class ThemeManager {
               "tile-icon-color",
               colorValue
             );
-          } else {
-            const message = this.toolBoxManager.currentLanguage.getTranslation(
-              "no_icon_selected_error_message"
-            );
-            this.toolBoxManager.ui.displayAlertMessage(message, "error");
           }
         } else {
           const message = this.toolBoxManager.currentLanguage.getTranslation(
@@ -3539,10 +3428,10 @@ class ThemeManager {
     const ctaColorPaletteContainer =
       document.getElementById("cta-color-palette");
     const colorValues = {
-      color1: "#4C9155",
-      color2: "#5068A8",
-      color3: "#EEA622",
-      color4: "#FF6C37",
+      color1: "#2c405a",
+      color2: "#d4a76a",
+      color3: "#b2b997",
+      color4: "#c4a082",
     };
 
     Object.entries(colorValues).forEach(([colorName, colorValue]) => {
@@ -3664,13 +3553,17 @@ class ThemeManager {
 
         // Update theme selection
         this.toolBoxManager.dataManager.selectedTheme =
-          this.toolBoxManager.themes.find((t) => t.ThemeName === theme.ThemeName);
+          this.toolBoxManager.themes.find(
+            (t) => t.ThemeName === theme.ThemeName
+          );
 
         this.toolBoxManager.dataManager.updateLocationTheme().then((res) => {
           if (this.toolBoxManager.checkIfNotAuthenticated(res)) return;
 
           if (this.setTheme(theme.ThemeName)) {
-            this.themeColorPalette(this.toolBoxManager.currentTheme.ThemeColors);
+            this.themeColorPalette(
+              this.toolBoxManager.currentTheme.ThemeColors
+            );
             localStorage.setItem("selectedTheme", theme.ThemeName);
             this.toolBoxManager.editorManager.theme = theme;
 
@@ -3772,15 +3665,15 @@ class ThemeManager {
         //             ${icon.IconSVG}
         //             <span class="icon-title">${displayName}</span>
         //         `;
-        
+
         iconItem.innerHTML = `${icon.IconSVG}`;
 
         iconItem.onclick = () => {
           if (this.toolBoxManager.editorManager.selectedTemplateWrapper) {
             const iconComponent =
-            this.toolBoxManager.editorManager.selectedComponent.find(
-              ".tile-icon"
-            )[0];
+              this.toolBoxManager.editorManager.selectedComponent.find(
+                ".tile-icon"
+              )[0];
 
             if (iconComponent) {
               const iconSvgComponent = icon.IconSVG;
@@ -3788,7 +3681,8 @@ class ThemeManager {
                 'fill="#7c8791"',
                 'fill="white"'
               );
-              iconComponent.addStyle({display: "block"});
+              iconComponent.addStyle({ display: "block" });
+              iconComponent.addAttributes({ "is-hidden": "false" });
               iconComponent.components(whiteIconSvg);
               this.toolBoxManager.setAttributeToSelected(
                 "tile-icon",
@@ -3831,16 +3725,21 @@ class ToolBoxUI {
   }
 
   updateTileTitle(inputTitle) {
-    if (this.manager.editorManager.selectedTemplateWrapper) {
-      const titleComponent =
-        this.manager.editorManager.selectedComponent.find(".tile-title")[0];
+    const selectedComponent = this.manager.editorManager.selectedComponent;
+    if (selectedComponent) {
+      const titleComponent = selectedComponent.find(".tile-title")[0];
       if (titleComponent) {
         titleComponent.addAttributes({ title: inputTitle });
+        titleComponent.addAttributes({ "is-hidden": "false" });
+
         // titleComponent.components(inputTitle);
         titleComponent.addStyle({ display: "block" });
-        this.manager.editorManager.editorEventManager.editorOnUpdate(
-          this.manager.editorManager.getCurrentEditor()
-        );
+        const rowContainer = selectedComponent.closest(".container-row");
+        if (rowContainer) {
+          this.manager.editorManager.templateManager.templateUpdate.updateRightButtons(
+            rowContainer
+          );
+        }
       }
     }
   }
@@ -3933,6 +3832,14 @@ class ToolBoxUI {
           currentCtaBgColor.toUpperCase();
       });
     }
+
+    const ctaSelectedAction = document.getElementById("cta-selected-actions");
+
+    const attributes = selectComponent?.getAttributes();
+    ctaSelectedAction.innerHTML = `
+        <span><strong>Type:</strong> ${attributes?.["cta-button-type"]}</span>
+        <span><strong>Action:</strong> ${attributes?.["cta-button-action"]}</span>
+      `;
   }
 
   updateTemplatePageProperties(selectComponent) {
@@ -3944,27 +3851,21 @@ class ToolBoxUI {
 
   updateTileOpacityProperties(selectComponent) {
     const tileOpacity =
-      selectComponent?.getAttributes()?.["tile-bg-image-opacity"];
-
-    if (tileOpacity) {
+      selectComponent?.getAttributes()?.["tile-bg-image-opacity"] || 0;
       document.getElementById("bg-opacity").value = tileOpacity;
       document.getElementById("valueDisplay").textContent = tileOpacity + " %";
-    }
   }
 
   updateAlignmentProperties(selectComponent) {
-    const alignmentTypes = [
-      { type: "text", attribute: "tile-text-align" },
-      { type: "icon", attribute: "tile-icon-align" },
-    ];
-
-    alignmentTypes.forEach(({ type, attribute }) => {
-      const currentAlign = selectComponent?.getAttributes()?.[attribute];
-      ["left", "center", "right"].forEach((align) => {
-        document.getElementById(`${type}-align-${align}`).checked =
-          currentAlign === align;
+    const currentAlign = selectComponent?.getAttributes()?.["tile-align"];
+    if (currentAlign) {
+      ["center", "left"].forEach((align) => {
+        const alignElement = document.getElementById(`tile-${align}`);
+        if (alignElement) {
+          alignElement.checked = currentAlign === align;
+        }
       });
-    });
+    }
   }
 
   updateColorProperties(selectComponent) {
@@ -3976,19 +3877,7 @@ class ToolBoxUI {
     textColorRadios.forEach((radio) => {
       const colorBox = radio.nextElementSibling;
       radio.checked =
-        colorBox.getAttribute("data-tile-text-color") === currentTextColor;
-    });
-
-    // Update icon color
-    const currentIconColor =
-      selectComponent?.getAttributes()?.["tile-icon-color"];
-    const iconColorRadios = document.querySelectorAll(
-      '.text-color-palette.icon-colors .color-item input[type="radio"]'
-    );
-    iconColorRadios.forEach((radio) => {
-      const colorBox = radio.nextElementSibling;
-      radio.checked =
-        colorBox.getAttribute("data-tile-icon-color") === currentIconColor;
+        colorBox.getAttribute("data-tile-color") === currentTextColor;
     });
 
     // Update background color
@@ -4015,7 +3904,6 @@ class ToolBoxUI {
       selectComponent?.getAttributes()?.["tile-action-object"];
     const currentActionId =
       selectComponent?.getAttributes()?.["tile-action-object-id"];
-
     const propertySection = document.getElementById("selectedOption");
     const selectedOptionElement = document.getElementById(currentActionId);
 
@@ -4030,8 +3918,7 @@ class ToolBoxUI {
                   </span>
                   <i class="fa fa-angle-down">
                   </i>`;
-    const targetPage = this.manager.dataManager.pages.SDT_PageCollection.find((page) => page.PageId == currentActionId)
-    if (currentActionName && currentActionId && targetPage) {
+    if (currentActionName && currentActionId) {
       propertySection.textContent = currentActionName;
       propertySection.innerHTML += ' <i class="fa fa-angle-down"></i>';
       if (selectedOptionElement) {
@@ -4071,7 +3958,7 @@ class ToolBoxUI {
     ctaItem.setAttribute("data-cta-id", cta.CallToActionId);
 
     const ctaType = this.getCtaType(cta.CallToActionType);
-    ctaItem.innerHTML = `<i class="${ctaType.icon}"></i>`;
+    ctaItem.innerHTML = `${ctaType.icon}`;
 
     return ctaItem;
   }
@@ -4079,24 +3966,32 @@ class ToolBoxUI {
   getCtaType(type) {
     const ctaTypeMap = {
       Phone: {
-        icon: "fas fa-phone-alt",
+        icon: `<svg ${defaultConstraints} xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 49.417 49.418">
+                <path ${defaultConstraints} id="call" d="M29.782,3a2.149,2.149,0,1,0,0,4.3A19.3,19.3,0,0,1,49.119,26.634a2.149,2.149,0,1,0,4.3,0A23.667,23.667,0,0,0,29.782,3ZM12.032,7.305a2.548,2.548,0,0,0-.818.067,8.342,8.342,0,0,0-3.9,2.342C2.775,14.254.366,21.907,17.437,38.98S42.16,53.643,46.7,49.1a8.348,8.348,0,0,0,2.346-3.907,2.524,2.524,0,0,0-1.179-2.786c-2.424-1.418-7.654-4.484-10.08-5.9a2.523,2.523,0,0,0-2.568.012l-4.012,2.392a2.517,2.517,0,0,1-2.845-.168,65.811,65.811,0,0,1-5.711-4.981,65.07,65.07,0,0,1-4.981-5.711A2.512,2.512,0,0,1,17.5,25.2L19.9,21.191a2.533,2.533,0,0,0,.008-2.577L14.012,8.556A2.543,2.543,0,0,0,12.032,7.305Zm17.751,4.289a2.149,2.149,0,1,0,0,4.3A10.709,10.709,0,0,1,40.525,26.634a2.149,2.149,0,1,0,4.3,0A15.072,15.072,0,0,0,29.782,11.594Zm0,8.594a2.149,2.149,0,1,0,0,4.3,2.114,2.114,0,0,1,2.149,2.148,2.149,2.149,0,1,0,4.3,0A6.479,6.479,0,0,0,29.782,20.188Z" transform="translate(-4 -3)" fill="#fff"></path>
+              </svg>`,
         iconList: ".fas.fa-phone-alt",
-        iconBgColor: "#4c9155",
+        iconBgColor: "#2c405a",
       },
       Email: {
-        icon: "fas fa-envelope",
+        icon: `<svg ${defaultConstraints} xmlns="http://www.w3.org/2000/svg" width="32" height="28" viewBox="0 0 41 32.8">
+            <path ${defaultConstraints} id="Path_1218" data-name="Path 1218" d="M6.1,4A4.068,4.068,0,0,0,2.789,5.7a1.5,1.5,0,0,0,.444,2.126l18,11.219a2.387,2.387,0,0,0,2.531,0L41.691,7.732a1.5,1.5,0,0,0,.384-2.2A4.063,4.063,0,0,0,38.9,4Zm35.907,8.376a.963.963,0,0,0-.508.152L23.765,23.711a2.392,2.392,0,0,1-2.531,0L3.5,12.656a.98.98,0,0,0-1.5.833V32.7a4.1,4.1,0,0,0,4.1,4.1H38.9A4.1,4.1,0,0,0,43,32.7V13.357A.981.981,0,0,0,42.007,12.376Z" transform="translate(-2 -4)" fill="#fff"/>
+          </svg>`,
         iconList: ".fas.fa-envelope",
-        iconBgColor: "#eea622",
+        iconBgColor: "#d4a76a",
       },
       SiteUrl: {
-        icon: "fas fa-link",
+        icon: `<svg ${defaultConstraints} xmlns="http://www.w3.org/2000/svg" width="26" height="30" viewBox="0 0 9.552 9.552">
+              <path ${defaultConstraints} id="Path_1213" data-name="Path 1213" d="M11.064,4A2.485,2.485,0,0,0,9.3,4.734l-.585.585A2.488,2.488,0,0,0,7.98,7.084a2.45,2.45,0,0,0,.174.908L8.8,7.346a1.706,1.706,0,0,1,.473-1.468l.585-.585a1.7,1.7,0,0,1,1.206-.5,1.675,1.675,0,0,1,1.194.5,1.7,1.7,0,0,1,0,2.4l-.585.585a1.7,1.7,0,0,1-1.206.5,1.456,1.456,0,0,1-.261-.025L9.559,9.4a2.45,2.45,0,0,0,.908.174,2.486,2.486,0,0,0,1.766-.734l.585-.585a2.488,2.488,0,0,0,.734-1.766A2.506,2.506,0,0,0,11.064,4Zm-.983,2.9L6.9,10.082l.572.572L10.654,7.47Zm-3,1.082a2.485,2.485,0,0,0-1.766.734L4.734,9.3A2.488,2.488,0,0,0,4,11.064a2.506,2.506,0,0,0,2.487,2.487,2.486,2.486,0,0,0,1.766-.734l.585-.585a2.488,2.488,0,0,0,.734-1.766A2.45,2.45,0,0,0,9.4,9.559l-.647.647a1.706,1.706,0,0,1-.473,1.468l-.585.585a1.7,1.7,0,0,1-1.206.5,1.675,1.675,0,0,1-1.194-.5,1.7,1.7,0,0,1,0-2.4l.585-.585a1.7,1.7,0,0,1,1.206-.5,1.457,1.457,0,0,1,.261.025l.647-.647A2.45,2.45,0,0,0,7.084,7.98Z" transform="translate(-4 -4)" fill="#fff"/>
+            </svg>`,
         iconList: ".fas.fa-link",
-        iconBgColor: "#ff6c37",
+        iconBgColor: "#b2b997",
       },
       Form: {
-        icon: "fas fa-file",
+        icon: `<svg ${defaultConstraints} xmlns="http://www.w3.org/2000/svg" width="26" height="30" viewBox="0 0 13 16">
+            <path ${defaultConstraints} id="Path_1209" data-name="Path 1209" d="M9.828,4A1.823,1.823,0,0,0,8,5.8V18.2A1.823,1.823,0,0,0,9.828,20h9.344A1.823,1.823,0,0,0,21,18.2V9.8a.6.6,0,0,0-.179-.424l-.006-.006L15.54,4.176A.614.614,0,0,0,15.109,4Zm0,1.2H14.5V8.6a1.823,1.823,0,0,0,1.828,1.8h3.453v7.8a.6.6,0,0,1-.609.6H9.828a.6.6,0,0,1-.609-.6V5.8A.6.6,0,0,1,9.828,5.2Zm5.891.848L18.92,9.2H16.328a.6.6,0,0,1-.609-.6Z" transform="translate(-8 -4)" fill="#fff"/>
+          </svg>`,
         iconList: ".fas.fa-file",
-        iconBgColor: "#5068a8",
+        iconBgColor: "#c4a082",
       },
     };
 
@@ -4104,14 +3999,13 @@ class ToolBoxUI {
       ctaTypeMap[type] || {
         icon: "fas fa-question",
         iconList: ".fas.fa-question",
-        iconBgColor: "#5068a8",
+        iconBgColor: "#c4a082",
       }
     );
   }
 
   generateCtaComponent(cta, backgroundColor) {
     const ctaType = this.getCtaType(cta.CallToActionType);
-    const windowWidth = window.innerWidth;
     return `
       <div class="cta-container-child cta-child" 
             id="id-${cta.CallToActionId}"
@@ -4131,12 +4025,11 @@ class ToolBoxUI {
               cta.CallToActionUrl
             }"
           cta-background-color="${ctaType.iconBgColor}"
-          style="margin-right: ${windowWidth <= 1440 ? "0.5rem" : "1.1rem"}"
           >
             <div class="cta-button" ${defaultConstraints} style="background-color: ${
-      backgroundColor || ctaType.iconBgColor
-    };">
-              <i class="${ctaType.icon}" ${defaultConstraints}></i>
+              backgroundColor || ctaType.iconBgColor
+            };">
+              ${ctaType.icon}
               <div class="cta-badge" ${defaultConstraints}><i class="fa fa-minus" ${defaultConstraints}></i></div>
             </div>
             <div class="cta-label" ${defaultConstraints}>${
@@ -4232,10 +4125,18 @@ class ToolBoxUI {
   // Get icon based on CTA type
   getCtaTypeIcon(ctaType) {
     const iconMap = {
-      Phone: "fas fa-phone-alt",
-      Email: "fas fa-envelope",
-      SiteUrl: "fas fa-link",
-      Form: "fas fa-file",
+      Phone: `<svg ${defaultConstraints} xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 49.417 49.418">
+                <path ${defaultConstraints} id="call" d="M29.782,3a2.149,2.149,0,1,0,0,4.3A19.3,19.3,0,0,1,49.119,26.634a2.149,2.149,0,1,0,4.3,0A23.667,23.667,0,0,0,29.782,3ZM12.032,7.305a2.548,2.548,0,0,0-.818.067,8.342,8.342,0,0,0-3.9,2.342C2.775,14.254.366,21.907,17.437,38.98S42.16,53.643,46.7,49.1a8.348,8.348,0,0,0,2.346-3.907,2.524,2.524,0,0,0-1.179-2.786c-2.424-1.418-7.654-4.484-10.08-5.9a2.523,2.523,0,0,0-2.568.012l-4.012,2.392a2.517,2.517,0,0,1-2.845-.168,65.811,65.811,0,0,1-5.711-4.981,65.07,65.07,0,0,1-4.981-5.711A2.512,2.512,0,0,1,17.5,25.2L19.9,21.191a2.533,2.533,0,0,0,.008-2.577L14.012,8.556A2.543,2.543,0,0,0,12.032,7.305Zm17.751,4.289a2.149,2.149,0,1,0,0,4.3A10.709,10.709,0,0,1,40.525,26.634a2.149,2.149,0,1,0,4.3,0A15.072,15.072,0,0,0,29.782,11.594Zm0,8.594a2.149,2.149,0,1,0,0,4.3,2.114,2.114,0,0,1,2.149,2.148,2.149,2.149,0,1,0,4.3,0A6.479,6.479,0,0,0,29.782,20.188Z" transform="translate(-4 -3)" fill="#fff"></path>
+              </svg>`,
+      Email: `<svg ${defaultConstraints} xmlns="http://www.w3.org/2000/svg" width="32" height="28" viewBox="0 0 41 32.8">
+            <path ${defaultConstraints} id="Path_1218" data-name="Path 1218" d="M6.1,4A4.068,4.068,0,0,0,2.789,5.7a1.5,1.5,0,0,0,.444,2.126l18,11.219a2.387,2.387,0,0,0,2.531,0L41.691,7.732a1.5,1.5,0,0,0,.384-2.2A4.063,4.063,0,0,0,38.9,4Zm35.907,8.376a.963.963,0,0,0-.508.152L23.765,23.711a2.392,2.392,0,0,1-2.531,0L3.5,12.656a.98.98,0,0,0-1.5.833V32.7a4.1,4.1,0,0,0,4.1,4.1H38.9A4.1,4.1,0,0,0,43,32.7V13.357A.981.981,0,0,0,42.007,12.376Z" transform="translate(-2 -4)" fill="#fff"/>
+          </svg>`,
+      SiteUrl: `<svg ${defaultConstraints} xmlns="http://www.w3.org/2000/svg" width="26" height="30" viewBox="0 0 9.552 9.552">
+              <path ${defaultConstraints} id="Path_1213" data-name="Path 1213" d="M11.064,4A2.485,2.485,0,0,0,9.3,4.734l-.585.585A2.488,2.488,0,0,0,7.98,7.084a2.45,2.45,0,0,0,.174.908L8.8,7.346a1.706,1.706,0,0,1,.473-1.468l.585-.585a1.7,1.7,0,0,1,1.206-.5,1.675,1.675,0,0,1,1.194.5,1.7,1.7,0,0,1,0,2.4l-.585.585a1.7,1.7,0,0,1-1.206.5,1.456,1.456,0,0,1-.261-.025L9.559,9.4a2.45,2.45,0,0,0,.908.174,2.486,2.486,0,0,0,1.766-.734l.585-.585a2.488,2.488,0,0,0,.734-1.766A2.506,2.506,0,0,0,11.064,4Zm-.983,2.9L6.9,10.082l.572.572L10.654,7.47Zm-3,1.082a2.485,2.485,0,0,0-1.766.734L4.734,9.3A2.488,2.488,0,0,0,4,11.064a2.506,2.506,0,0,0,2.487,2.487,2.486,2.486,0,0,0,1.766-.734l.585-.585a2.488,2.488,0,0,0,.734-1.766A2.45,2.45,0,0,0,9.4,9.559l-.647.647a1.706,1.706,0,0,1-.473,1.468l-.585.585a1.7,1.7,0,0,1-1.206.5,1.675,1.675,0,0,1-1.194-.5,1.7,1.7,0,0,1,0-2.4l.585-.585a1.7,1.7,0,0,1,1.206-.5,1.457,1.457,0,0,1,.261.025l.647-.647A2.45,2.45,0,0,0,7.084,7.98Z" transform="translate(-4 -4)" fill="#fff"/>
+            </svg>`,
+      Form: `<svg ${defaultConstraints} xmlns="http://www.w3.org/2000/svg" width="26" height="30" viewBox="0 0 13 16">
+            <path ${defaultConstraints} id="Path_1209" data-name="Path 1209" d="M9.828,4A1.823,1.823,0,0,0,8,5.8V18.2A1.823,1.823,0,0,0,9.828,20h9.344A1.823,1.823,0,0,0,21,18.2V9.8a.6.6,0,0,0-.179-.424l-.006-.006L15.54,4.176A.614.614,0,0,0,15.109,4Zm0,1.2H14.5V8.6a1.823,1.823,0,0,0,1.828,1.8h3.453v7.8a.6.6,0,0,1-.609.6H9.828a.6.6,0,0,1-.609-.6V5.8A.6.6,0,0,1,9.828,5.2Zm5.891.848L18.92,9.2H16.328a.6.6,0,0,1-.609-.6Z" transform="translate(-8 -4)" fill="#fff"/>
+          </svg>`,
     };
     return iconMap[ctaType] || "fas fa-question";
   }
@@ -4290,7 +4191,7 @@ class ToolBoxUI {
       )}>
         <div style="background-color: ${ctaButtonBgColor}; border-color: ${ctaButtonBgColor};" 
              class="img-button" ${defaultConstraints}>
-          <i class="${icon} img-button-icon" ${defaultConstraints}></i>
+          <span class="img-button-icon" ${defaultConstraints}>${icon}</span>
           <div class="cta-badge" ${defaultConstraints}>
             <i class="fa fa-minus" ${defaultConstraints}></i>
           </div>
@@ -4414,7 +4315,6 @@ class ToolBoxUI {
     }
   }
 }
-
 
 // Content from classes/UndoRedoManager.js
 class UndoRedoManager {
@@ -4548,6 +4448,84 @@ class UndoRedoManager {
     canRedo() {
         // Can redo if redo stack is not empty
         return this.redoStack.length > 0;
+    }
+}
+
+// Content from components/FormPopupModal.js
+class FormPopupModal {
+    title = ""
+    htmlBody = ""
+    popup = null
+    constructor (popupId, title, htmlBody) {
+        this.title = title
+        this.htmlBody = htmlBody
+        this.popupId = popupId
+        this.popup = this.createPopup()
+    }
+
+    init(){}
+
+    show() {
+        document.body.appendChild(this.popup);
+        this.popup.style.display = "flex";
+        this.addEventListeners()
+    }
+
+    closePopup() {
+        this.popup.remove()
+        this.popup.style.display = "flex";
+    }
+
+    createPopup () {
+        const popup = document.createElement("div");
+        popup.className = "popup-modal";
+        popup.innerHTML = `
+                <div id="${this.popupId}" class="popup">
+                <div class="popup-header">
+                    <span>${this.title}</span>
+                    <button class="close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 21 21">
+                        <path id="Icon_material-close" data-name="Icon material-close" d="M28.5,9.615,26.385,7.5,18,15.885,9.615,7.5,7.5,9.615,15.885,18,7.5,26.385,9.615,28.5,18,20.115,26.385,28.5,28.5,26.385,20.115,18Z" transform="translate(-7.5 -7.5)" fill="#6a747f" opacity="0.54"/>
+                    </svg>
+                    </button>
+                </div>
+                <hr>
+                <div class="popup-body" id="confirmation_modal_message">
+                    ${this.htmlBody}
+                </div>
+                <div class="popup-footer">
+                    <button id="confirm_button" class="tb-btn tb-btn-primary">
+                    Confirm
+                    </button>
+                    <button id="close_popup" class="tb-btn tb-btn-outline">
+                    Cancel
+                    </button>
+                </div>
+                </div>
+            `;
+
+        return popup;
+    }
+
+    onConfirm (event) {
+        alert('add your confirm function')
+    }
+
+    addEventListeners () {
+        this.cancelButton = document.querySelector(`#close_popup`)
+        this.cancelButton.addEventListener("click", (event) => {
+            this.closePopup()
+        })
+
+        this.closeButton = document.querySelector(`.close`)
+        this.closeButton.addEventListener("click", (event) => {
+            this.closePopup()
+        })
+
+        this.confirmButton = document.querySelector(`#confirm_button`)
+        this.confirmButton.addEventListener("click", (event) => {
+            this.onConfirm(event)
+        })
     }
 }
 
@@ -5364,6 +5342,8 @@ class MappingComponent {
   init() {
     this.setupEventListeners();
     this.listPagesListener();
+    document.getElementById("list-all-pages").style.display = "block";
+    document.getElementById("hide-pages").style.display = "none";
     this.homePage = this.dataManager.pages.SDT_PageCollection.find(
       (page) => page.PageName == "Home"
     );
@@ -5668,14 +5648,26 @@ class MappingComponent {
       const deleteIcon = document.createElement("i");
       deleteIcon.classList.add("fa-regular", "fa-trash-can", "tb-delete-icon");
 
+      const updateIcon = document.createElement("i");
+      updateIcon.classList.add("fa-regular", "fa-edit", "tb-update-icon");
+
       if (item.PageName === "Home" || item.PageName === "Web Link") {
         deleteIcon.style.display = "none";
+        updateIcon.style.display = "none";
       }
 
+      const iconDiv = document.createElement('div')
+      iconDiv.classList.add("tb-menu-icons-container")
+
       deleteIcon.setAttribute("data-id", item.Id);
+      updateIcon.setAttribute("data-id", item.Id);
 
       deleteIcon.addEventListener("click", (event) =>
         handleDelete(event, item.PageId, listItem)
+      );
+
+      updateIcon.addEventListener("click", (event) =>
+       this.handleUpdate(item.PageId)
       );
 
       menuItem.appendChild(toggle);
@@ -5683,7 +5675,9 @@ class MappingComponent {
         menuItem.style.display = "none";
       }
       if (item.Name !== "Home") {
-        menuItem.appendChild(deleteIcon);
+        iconDiv.append(updateIcon)
+        iconDiv.append(deleteIcon)
+        menuItem.appendChild(iconDiv)
       }
       listItem.appendChild(menuItem);
 
@@ -5764,6 +5758,41 @@ class MappingComponent {
     });
 
     return container;
+  }
+
+  handleUpdate(PageId) {
+    const page = this.getPage(PageId)
+    if (page) {
+      const htmlBody = `
+      <input required class="tb-form-control" type="text" id="pageName" placeholder="" value="${page.PageName}"/>
+      <small id="error_pageName" style="display:none">Error</small>
+      `
+      const formPopup = new FormPopupModal(
+        "update-page-popup",
+        "Update Page",
+        htmlBody
+      )
+      formPopup.onConfirm = (event) => {
+        const input = document.querySelector(`#update-page-popup #pageName`)
+        const errorLabel = document.querySelector(`#update-page-popup #error_pageName`)
+
+        if (input.value) {
+          page.PageName = input.value
+          console.log(page)
+          this.dataManager.updatePage(page).then(res => {
+            if(res.result) {
+              this.toolBoxManager.ui.displayAlertMessage(res.result, "success");
+              formPopup.closePopup()
+              this.init()
+            }
+          })
+        }else{
+          errorLabel.content = "This field is required"
+          errorLabel.style.display = "block"
+        }
+      }
+      formPopup.show()
+    }
   }
 
   popupModal(title, message) {
@@ -6391,6 +6420,7 @@ class MediaComponent {
           "background-size": "cover",
           "background-position": "center",
           "background-blend-mode": "overlay",
+          "background-color": "",
         });
       } else {
         console.error("MediaUrl is missing or undefined", this.selectedFile);
@@ -6399,6 +6429,11 @@ class MediaComponent {
       this.toolBoxManager.setAttributeToSelected(
         "tile-bg-image-url",
         this.selectedFile.MediaUrl
+      );
+
+      this.toolBoxManager.setAttributeToSelected(
+        "tile-bg-image-opacity",
+        0
       );
 
       this.toolBoxManager.checkTileBgImage();
@@ -6713,15 +6748,16 @@ const iconsData = [
   
   const defaultTileAttrs = `
     tile-text="Tile"
-    tile-text-color="#ffffff"
+    tile-text-color="#333333"
     tile-text-align="left"
   
     tile-icon=""
-    tile-icon-color="#ffffff"
+    tile-icon-color="#333333"
     tile-icon-align="left"
+    tile-align="left"
   
     tile-bg-image=""
-    tile-bg-image-opacity=100
+    tile-bg-image-opacity=0
   
     tile-action-object="Page"
     tile-action-object-id=""

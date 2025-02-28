@@ -150,7 +150,7 @@ namespace GeneXus.Programs {
          A504PageIsPredefined = false;
          A514PageIsDynamicForm = false;
          /* Using cursor P008B2 */
-         pr_default.execute(0, new Object[] {A310Trn_PageId, A318Trn_PageName, A29LocationId, n431PageJsonContent, A431PageJsonContent, n432PageGJSHtml, A432PageGJSHtml, n433PageGJSJson, A433PageGJSJson, n434PageIsPublished, A434PageIsPublished, n439PageIsContentPage, A439PageIsContentPage, A504PageIsPredefined, A514PageIsDynamicForm});
+         pr_default.execute(0, new Object[] {A310Trn_PageId, A29LocationId, A318Trn_PageName, n431PageJsonContent, A431PageJsonContent, n432PageGJSHtml, A432PageGJSHtml, n433PageGJSJson, A433PageGJSJson, n434PageIsPublished, A434PageIsPublished, A504PageIsPredefined, n439PageIsContentPage, A439PageIsContentPage, A514PageIsDynamicForm});
          pr_default.close(0);
          pr_default.SmartCacheProvider.SetUpdated("Trn_Page");
          if ( (pr_default.getStatus(0) == 1) )
@@ -201,7 +201,7 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int GX_INS98 ;
+      private int GX_INS100 ;
       private string Gx_emsg ;
       private bool n431PageJsonContent ;
       private bool n432PageGJSHtml ;
@@ -252,18 +252,18 @@ namespace GeneXus.Programs {
           Object[] prmP008B2;
           prmP008B2 = new Object[] {
           new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("Trn_PageName",GXType.VarChar,100,0) ,
           new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+          new ParDef("Trn_PageName",GXType.VarChar,100,0) ,
           new ParDef("PageJsonContent",GXType.LongVarChar,2097152,0){Nullable=true} ,
           new ParDef("PageGJSHtml",GXType.LongVarChar,2097152,0){Nullable=true} ,
           new ParDef("PageGJSJson",GXType.LongVarChar,2097152,0){Nullable=true} ,
           new ParDef("PageIsPublished",GXType.Boolean,4,0){Nullable=true} ,
-          new ParDef("PageIsContentPage",GXType.Boolean,4,0){Nullable=true} ,
           new ParDef("PageIsPredefined",GXType.Boolean,4,0) ,
+          new ParDef("PageIsContentPage",GXType.Boolean,4,0){Nullable=true} ,
           new ParDef("PageIsDynamicForm",GXType.Boolean,4,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P008B2", "SAVEPOINT gxupdate;INSERT INTO Trn_Page(Trn_PageId, Trn_PageName, LocationId, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsContentPage, PageIsPredefined, PageIsDynamicForm, PageChildren, ProductServiceId, OrganisationId, PageIsWebLinkPage) VALUES(:Trn_PageId, :Trn_PageName, :LocationId, :PageJsonContent, :PageGJSHtml, :PageGJSJson, :PageIsPublished, :PageIsContentPage, :PageIsPredefined, :PageIsDynamicForm, '', '00000000-0000-0000-0000-000000000000', '00000000-0000-0000-0000-000000000000', FALSE);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_MASKLOOPLOCK,prmP008B2)
+              new CursorDef("P008B2", "SAVEPOINT gxupdate;INSERT INTO Trn_Page(Trn_PageId, LocationId, Trn_PageName, PageJsonContent, PageGJSHtml, PageGJSJson, PageIsPublished, PageIsPredefined, PageIsContentPage, PageIsDynamicForm, PageIsWebLinkPage, PageChildren, ProductServiceId, OrganisationId) VALUES(:Trn_PageId, :LocationId, :Trn_PageName, :PageJsonContent, :PageGJSHtml, :PageGJSJson, :PageIsPublished, :PageIsPredefined, :PageIsContentPage, :PageIsDynamicForm, FALSE, '', '00000000-0000-0000-0000-000000000000', '00000000-0000-0000-0000-000000000000');RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_MASKLOOPLOCK,prmP008B2)
           };
        }
     }

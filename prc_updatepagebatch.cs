@@ -92,7 +92,7 @@ namespace GeneXus.Programs {
             while ( AV30GXV1 <= AV25PagesList.Count )
             {
                AV28SDT_Page = ((SdtSDT_PublishPage)AV25PagesList.Item(AV30GXV1));
-               AV9BC_Trn_Page.Load(AV28SDT_Page.gxTpr_Pageid, AV28SDT_Page.gxTpr_Pagename, new prc_getuserlocationid(context).executeUdp( ));
+               AV9BC_Trn_Page.Load(AV28SDT_Page.gxTpr_Pageid, new prc_getuserlocationid(context).executeUdp( ));
                if ( ! (Guid.Empty==AV9BC_Trn_Page.gxTpr_Trn_pageid) )
                {
                   if ( AV9BC_Trn_Page.gxTpr_Pageisdynamicform || AV9BC_Trn_Page.gxTpr_Pageisweblinkpage )

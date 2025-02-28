@@ -1043,7 +1043,7 @@ namespace GeneXus.Programs {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Using cursor H005N2 */
-            pr_default.execute(0, new Object[] {A310Trn_PageId, A318Trn_PageName, A29LocationId});
+            pr_default.execute(0, new Object[] {A310Trn_PageId, A29LocationId, A318Trn_PageName});
             while ( (pr_default.getStatus(0) != 101) )
             {
                A11OrganisationId = H005N2_A11OrganisationId[0];
@@ -1272,7 +1272,7 @@ namespace GeneXus.Programs {
          if ( AV12IsAuthorized_Update )
          {
             GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "trn_page.aspx"+UrlEncode(StringUtil.RTrim("UPD")) + "," + UrlEncode(A310Trn_PageId.ToString()) + "," + UrlEncode(StringUtil.RTrim(A318Trn_PageName)) + "," + UrlEncode(A29LocationId.ToString());
+            GXEncryptionTmp = "trn_page.aspx"+UrlEncode(StringUtil.RTrim("UPD")) + "," + UrlEncode(A310Trn_PageId.ToString()) + "," + UrlEncode(A29LocationId.ToString());
             CallWebObject(formatLink("trn_page.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
@@ -1292,7 +1292,7 @@ namespace GeneXus.Programs {
          if ( AV13IsAuthorized_Delete )
          {
             GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "trn_page.aspx"+UrlEncode(StringUtil.RTrim("DLT")) + "," + UrlEncode(A310Trn_PageId.ToString()) + "," + UrlEncode(StringUtil.RTrim(A318Trn_PageName)) + "," + UrlEncode(A29LocationId.ToString());
+            GXEncryptionTmp = "trn_page.aspx"+UrlEncode(StringUtil.RTrim("DLT")) + "," + UrlEncode(A310Trn_PageId.ToString()) + "," + UrlEncode(A29LocationId.ToString());
             CallWebObject(formatLink("trn_page.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
@@ -1562,7 +1562,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522516541359", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522714294622", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1578,7 +1578,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_pagegeneral.js", "?202522516541360", false, true);
+         context.AddJavascriptSource("trn_pagegeneral.js", "?202522714294622", false, true);
          /* End function include_jscripts */
       }
 
@@ -1673,13 +1673,12 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"A310Trn_PageId","fld":"TRN_PAGEID"},{"av":"A318Trn_PageName","fld":"TRN_PAGENAME"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A434PageIsPublished","fld":"PAGEISPUBLISHED"},{"av":"AV12IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV13IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true}]}""");
-         setEventMetadata("'DOUPDATE'","""{"handler":"E135N2","iparms":[{"av":"AV12IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"A310Trn_PageId","fld":"TRN_PAGEID"},{"av":"A318Trn_PageName","fld":"TRN_PAGENAME"},{"av":"A29LocationId","fld":"LOCATIONID"}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"A310Trn_PageId","fld":"TRN_PAGEID"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A318Trn_PageName","fld":"TRN_PAGENAME"},{"av":"A434PageIsPublished","fld":"PAGEISPUBLISHED"},{"av":"AV12IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV13IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true}]}""");
+         setEventMetadata("'DOUPDATE'","""{"handler":"E135N2","iparms":[{"av":"AV12IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"A310Trn_PageId","fld":"TRN_PAGEID"},{"av":"A29LocationId","fld":"LOCATIONID"}]""");
          setEventMetadata("'DOUPDATE'",""","oparms":[{"ctrl":"BTNUPDATE","prop":"Visible"}]}""");
-         setEventMetadata("'DODELETE'","""{"handler":"E145N2","iparms":[{"av":"AV13IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"A310Trn_PageId","fld":"TRN_PAGEID"},{"av":"A318Trn_PageName","fld":"TRN_PAGENAME"},{"av":"A29LocationId","fld":"LOCATIONID"}]""");
+         setEventMetadata("'DODELETE'","""{"handler":"E145N2","iparms":[{"av":"AV13IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"A310Trn_PageId","fld":"TRN_PAGEID"},{"av":"A29LocationId","fld":"LOCATIONID"}]""");
          setEventMetadata("'DODELETE'",""","oparms":[{"ctrl":"BTNDELETE","prop":"Visible"}]}""");
          setEventMetadata("VALID_TRN_PAGEID","""{"handler":"Valid_Trn_pageid","iparms":[]}""");
-         setEventMetadata("VALID_TRN_PAGENAME","""{"handler":"Valid_Trn_pagename","iparms":[]}""");
          return  ;
       }
 
@@ -1727,8 +1726,8 @@ namespace GeneXus.Programs {
          sEvtType = "";
          GXDecQS = "";
          H005N2_A310Trn_PageId = new Guid[] {Guid.Empty} ;
-         H005N2_A318Trn_PageName = new string[] {""} ;
          H005N2_A29LocationId = new Guid[] {Guid.Empty} ;
+         H005N2_A318Trn_PageName = new string[] {""} ;
          H005N2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          H005N2_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          H005N2_n58ProductServiceId = new bool[] {false} ;
@@ -1761,7 +1760,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_pagegeneral__default(),
             new Object[][] {
                 new Object[] {
-               H005N2_A310Trn_PageId, H005N2_A318Trn_PageName, H005N2_A29LocationId, H005N2_A11OrganisationId, H005N2_A58ProductServiceId, H005N2_n58ProductServiceId, H005N2_A13OrganisationName, H005N2_A59ProductServiceName, H005N2_A437PageChildren, H005N2_n437PageChildren,
+               H005N2_A310Trn_PageId, H005N2_A29LocationId, H005N2_A318Trn_PageName, H005N2_A11OrganisationId, H005N2_A58ProductServiceId, H005N2_n58ProductServiceId, H005N2_A13OrganisationName, H005N2_A59ProductServiceName, H005N2_A437PageChildren, H005N2_n437PageChildren,
                H005N2_A439PageIsContentPage, H005N2_n439PageIsContentPage, H005N2_A434PageIsPublished, H005N2_n434PageIsPublished, H005N2_A433PageGJSJson, H005N2_n433PageGJSJson, H005N2_A432PageGJSHtml, H005N2_n432PageGJSHtml, H005N2_A431PageJsonContent, H005N2_n431PageJsonContent,
                H005N2_A31LocationName
                }
@@ -1889,8 +1888,8 @@ namespace GeneXus.Programs {
       private GXCombobox cmbPageIsContentPage ;
       private IDataStoreProvider pr_default ;
       private Guid[] H005N2_A310Trn_PageId ;
-      private string[] H005N2_A318Trn_PageName ;
       private Guid[] H005N2_A29LocationId ;
+      private string[] H005N2_A318Trn_PageName ;
       private Guid[] H005N2_A11OrganisationId ;
       private Guid[] H005N2_A58ProductServiceId ;
       private bool[] H005N2_n58ProductServiceId ;
@@ -1933,11 +1932,11 @@ namespace GeneXus.Programs {
           Object[] prmH005N2;
           prmH005N2 = new Object[] {
           new ParDef("Trn_PageId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("Trn_PageName",GXType.VarChar,100,0) ,
-          new ParDef("LocationId",GXType.UniqueIdentifier,36,0)
+          new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+          new ParDef("Trn_PageName",GXType.VarChar,100,0)
           };
           def= new CursorDef[] {
-              new CursorDef("H005N2", "SELECT T1.Trn_PageId, T1.Trn_PageName, T1.LocationId, T1.OrganisationId, T1.ProductServiceId, T2.OrganisationName, T4.ProductServiceName, T1.PageChildren, T1.PageIsContentPage, T1.PageIsPublished, T1.PageGJSJson, T1.PageGJSHtml, T1.PageJsonContent, T3.LocationName FROM (((Trn_Page T1 INNER JOIN Trn_Organisation T2 ON T2.OrganisationId = T1.OrganisationId) INNER JOIN Trn_Location T3 ON T3.LocationId = T1.LocationId AND T3.OrganisationId = T1.OrganisationId) LEFT JOIN Trn_ProductService T4 ON T4.ProductServiceId = T1.ProductServiceId AND T4.LocationId = T1.LocationId AND T4.OrganisationId = T1.OrganisationId) WHERE T1.Trn_PageId = :Trn_PageId and T1.Trn_PageName = ( :Trn_PageName) and T1.LocationId = :LocationId ORDER BY T1.Trn_PageId, T1.Trn_PageName, T1.LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005N2,1, GxCacheFrequency.OFF ,true,true )
+              new CursorDef("H005N2", "SELECT T1.Trn_PageId, T1.LocationId, T1.Trn_PageName, T1.OrganisationId, T1.ProductServiceId, T2.OrganisationName, T4.ProductServiceName, T1.PageChildren, T1.PageIsContentPage, T1.PageIsPublished, T1.PageGJSJson, T1.PageGJSHtml, T1.PageJsonContent, T3.LocationName FROM (((Trn_Page T1 INNER JOIN Trn_Organisation T2 ON T2.OrganisationId = T1.OrganisationId) INNER JOIN Trn_Location T3 ON T3.LocationId = T1.LocationId AND T3.OrganisationId = T1.OrganisationId) LEFT JOIN Trn_ProductService T4 ON T4.ProductServiceId = T1.ProductServiceId AND T4.LocationId = T1.LocationId AND T4.OrganisationId = T1.OrganisationId) WHERE (T1.Trn_PageId = :Trn_PageId and T1.LocationId = :LocationId) AND (T1.Trn_PageName = ( :Trn_PageName)) ORDER BY T1.Trn_PageId, T1.LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH005N2,1, GxCacheFrequency.OFF ,true,true )
           };
        }
     }
@@ -1950,8 +1949,8 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+                ((string[]) buf[2])[0] = rslt.getVarchar(3);
                 ((Guid[]) buf[3])[0] = rslt.getGuid(4);
                 ((Guid[]) buf[4])[0] = rslt.getGuid(5);
                 ((bool[]) buf[5])[0] = rslt.wasNull(5);

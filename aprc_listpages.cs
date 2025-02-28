@@ -141,7 +141,7 @@ namespace GeneXus.Programs {
                         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objecttype))) )
                         {
                            AV25BC_Trn_Page = new SdtTrn_Page(context);
-                           AV25BC_Trn_Page.Load(AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objectid, AV11SDT_Col.gxTpr_Tile.gxTpr_Tilename, new prc_getuserlocationid(context).executeUdp( ));
+                           AV25BC_Trn_Page.Load(AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objectid, new prc_getuserlocationid(context).executeUdp( ));
                            if ( ! (Guid.Empty==AV25BC_Trn_Page.gxTpr_Trn_pageid) )
                            {
                               AV15SDT_PageStructure = new SdtSDT_PageStructure(context);
@@ -162,7 +162,7 @@ namespace GeneXus.Programs {
                                        if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objecttype))) )
                                        {
                                           AV25BC_Trn_Page = new SdtTrn_Page(context);
-                                          AV25BC_Trn_Page.Load(AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objectid, AV11SDT_Col.gxTpr_Tile.gxTpr_Tilename, new prc_getuserlocationid(context).executeUdp( ));
+                                          AV25BC_Trn_Page.Load(AV11SDT_Col.gxTpr_Tile.gxTpr_Tileaction.gxTpr_Objectid, new prc_getuserlocationid(context).executeUdp( ));
                                           if ( ! (Guid.Empty==AV25BC_Trn_Page.gxTpr_Trn_pageid) )
                                           {
                                              AV19SDT_PageChild = new SdtSDT_PageStructure_ChildrenItem(context);
@@ -289,7 +289,7 @@ namespace GeneXus.Programs {
           new ParDef("AV34Udparg2",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P008W2", "SELECT Trn_PageName, OrganisationId, LocationId, PageJsonContent, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV33Udparg1) AND (OrganisationId = :AV34Udparg2) ORDER BY Trn_PageId, Trn_PageName, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008W2,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P008W2", "SELECT Trn_PageName, OrganisationId, LocationId, PageJsonContent, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV33Udparg1) AND (OrganisationId = :AV34Udparg2) ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008W2,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }

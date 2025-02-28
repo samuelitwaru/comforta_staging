@@ -116,24 +116,27 @@ class EventListenerManager {
   }
 
   setupAlignmentListeners() {
-    const leftAlign = document.getElementById("text-align-left");
-    const centerAlign = document.getElementById("text-align-center");
-    const rightAlign = document.getElementById("text-align-right");
+    const leftAlign = document.getElementById("tile-left");
+    const centerAlign = document.getElementById("tile-center");
 
     leftAlign.addEventListener("click", () => {
       if (this.toolBoxManager.editorManager.selectedTemplateWrapper) {
         const templateBlock =
-          this.toolBoxManager.editorManager.selectedComponent.find(
-            ".tile-title-section"
-          )[0];
+          this.toolBoxManager.editorManager.selectedComponent;
 
         if (templateBlock) {
-          templateBlock.setStyle({
-            // display: "flex",
-            // "align-self": "start",
-            "text-align": "left",
+          templateBlock.addStyle({
+            "align-items": "start",
+            "justify-content": "start",
           });
-          this.toolBoxManager.setAttributeToSelected("tile-text-align", "left");
+
+          const tileTitle = templateBlock.find(".tile-title")[0];
+          if (tileTitle) {
+            tileTitle.addStyle({
+              "text-align": "left",
+            })
+          }
+          this.toolBoxManager.setAttributeToSelected("tile-align", "left");
         }
       } else {
         const message = this.toolBoxManager.currentLanguage.getTranslation(
@@ -146,18 +149,22 @@ class EventListenerManager {
     centerAlign.addEventListener("click", () => {
       if (this.toolBoxManager.editorManager.selectedTemplateWrapper) {
         const templateBlock =
-          this.toolBoxManager.editorManager.selectedComponent.find(
-            ".tile-title-section"
-          )[0];
-
+          this.toolBoxManager.editorManager.selectedComponent;
         if (templateBlock) {
-          templateBlock.setStyle({
-            // display: "flex",
-            // "align-self": "center",
-            "text-align": "center",
+          templateBlock.addStyle({
+            "align-items": "center",
+            "justify-content": "center",
           });
+
+          const tileTitle = templateBlock.find(".tile-title")[0];
+          if (tileTitle) {
+            tileTitle.addStyle({
+              "text-align": "center",
+            })
+          }
+
           this.toolBoxManager.setAttributeToSelected(
-            "tile-text-align",
+            "tile-align",
             "center"
           );
         }
@@ -169,141 +176,29 @@ class EventListenerManager {
       }
     });
 
-    rightAlign.addEventListener("click", () => {
-      if (this.toolBoxManager.editorManager.selectedTemplateWrapper) {
-        const templateBlock =
-          this.toolBoxManager.editorManager.selectedComponent.find(
-            ".tile-title-section"
-          )[0];
-
-        if (templateBlock) {
-          templateBlock.setStyle({
-            // display: "flex",
-            // "align-self": "end",
-            "text-align": "right",
-          });
-          this.toolBoxManager.setAttributeToSelected(
-            "tile-text-align",
-            "right"
-          );
-        }
-      } else {
-        const message = this.toolBoxManager.currentLanguage.getTranslation(
-          "no_tile_selected_error_message"
-        );
-        this.toolBoxManager.ui.displayAlertMessage(message, "error");
-      }
-    });
-
-    const iconLeftAlign = document.getElementById("icon-align-left");
-    const iconCenterAlign = document.getElementById("icon-align-center");
-    const iconRightAlign = document.getElementById("icon-align-right");
-
-    iconLeftAlign.addEventListener("click", () => {
-      if (this.toolBoxManager.editorManager.selectedTemplateWrapper) {
-        const templateBlock =
-          this.toolBoxManager.editorManager.selectedComponent.find(
-            ".tile-icon-section"
-          )[0];
-        if (templateBlock) {
-          templateBlock.setStyle({
-            display: "flex",
-            "align-self": "start",
-          });
-          this.toolBoxManager.setAttributeToSelected("tile-icon-align", "left");
-        }
-      } else {
-        const message = this.toolBoxManager.currentLanguage.getTranslation(
-          "no_tile_selected_error_message"
-        );
-        this.toolBoxManager.ui.displayAlertMessage(message, "error");
-      }
-    });
-
-    iconCenterAlign.addEventListener("click", () => {
-      if (this.toolBoxManager.editorManager.selectedTemplateWrapper) {
-        const templateBlock =
-          this.toolBoxManager.editorManager.selectedComponent.find(
-            ".tile-icon-section"
-          )[0];
-
-        if (templateBlock) {
-          templateBlock.setStyle({
-            display: "flex",
-            "align-self": "center",
-          });
-          this.toolBoxManager.setAttributeToSelected(
-            "tile-icon-align",
-            "center"
-          );
-        }
-      } else {
-        const message = this.toolBoxManager.currentLanguage.getTranslation(
-          "no_tile_selected_error_message"
-        );
-        this.toolBoxManager.ui.displayAlertMessage(message, "error");
-      }
-    });
-
-    iconRightAlign.addEventListener("click", () => {
-      if (this.toolBoxManager.editorManager.selectedTemplateWrapper) {
-        const templateBlock =
-          this.toolBoxManager.editorManager.selectedComponent.find(
-            ".tile-icon-section"
-          )[0];
-
-        if (templateBlock) {
-          templateBlock.setStyle({
-            display: "flex",
-            "align-self": "end",
-          });
-          this.toolBoxManager.setAttributeToSelected(
-            "tile-icon-align",
-            "right"
-          );
-        } else {
-        }
-      } else {
-        const message = this.toolBoxManager.currentLanguage.getTranslation(
-          "no_tile_selected_error_message"
-        );
-        this.toolBoxManager.ui.displayAlertMessage(message, "error");
-      }
-    });
   }
 
   setupOpacityListener() {
     const imageOpacity = document.getElementById("bg-opacity");
-
+    
     imageOpacity.addEventListener("input", (event) => {
       const value = event.target.value;
-
-      if (this.toolBoxManager.editorManager.selectedTemplateWrapper) {
+      const selectedComponent = this.toolBoxManager.editorManager.selectedComponent;
+      if (selectedComponent) {
         const templateBlock =
           this.toolBoxManager.editorManager.selectedComponent;
 
         if (templateBlock) {
-          const currentBgStyle = templateBlock.getStyle()["background-color"];
-          let currentBgColor;
-          
-          if (currentBgStyle.length > 7) {
-            currentBgColor = currentBgStyle.substring(0, 7);
-          } else {
-            currentBgColor = currentBgStyle;
-          }
+          const hasBgImage = selectedComponent.getStyle()["background-image"];
 
-          const bgColor = addOpacityToHex(currentBgColor, value)
+          if (!hasBgImage) return;
 
           templateBlock.addStyle({
-            "background-color": bgColor,
+            "background-color": `rgba(0,0,0, ${value / 100})`,
           });
 
           templateBlock.addAttributes({
             "tile-bg-image-opacity": value,
-          })
-
-          templateBlock.addAttributes({
-            "tile-bgcolor": bgColor,
           })
         }
       }

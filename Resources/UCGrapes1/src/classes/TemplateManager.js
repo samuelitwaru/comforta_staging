@@ -10,12 +10,11 @@ class TemplateManager {
       droppable: false,
       hoverable: false,
     };
+    this.templateUpdate = new TemplateUpdate(this);
   }
 
   createTemplateHTML(isDefault = false) {
-    let tileBgColor =
-      this.editorManager.toolsSection.currentTheme.ThemeColors.accentColor;
-    tileBgColor = '#ffffff'
+    let tileBgColor = '#ffffff'
     return `
             <div class="template-wrapper ${
               isDefault ? "default-template" : ""
@@ -28,9 +27,9 @@ class TemplateManager {
                   data-gjs-resizable="false"
                   data-gjs-hoverable="false">
               <div class="template-block"
-                style="background-color:${tileBgColor}; color:#FFFFFF"
+                style="background-color:${tileBgColor}; color:#333333"
                 tile-bgcolor="${tileBgColor}"
-                tile-bgcolor-name="accentColor"
+                tile-bgcolor-name=""
                 ${defaultTileAttrs} 
                  data-gjs-draggable="false"
                  data-gjs-selectable="true"
@@ -60,6 +59,7 @@ class TemplateManager {
                       >&times;</span>
                     <span 
                       class="tile-icon"
+                      is-hidden = "true"
                       data-gjs-draggable="false"
                       data-gjs-selectable="false"
                       data-gjs-editable="false"
@@ -88,6 +88,7 @@ class TemplateManager {
                       >&times;</span>
                     <span 
                       class="tile-title"
+                      is-hidden = "false"
                       data-gjs-draggable="false"
                       data-gjs-selectable="false"
                       data-gjs-editable="false"
@@ -204,7 +205,7 @@ class TemplateManager {
 
   generateTemplateRow(columns, rowIndex) {
     let tileBgColor =
-      this.editorManager.toolsSection.currentTheme.ThemeColors.accentColor;
+      "#ffffff";
     let columnWidth = 100 / columns;
     if (columns === 1) {
       columnWidth = 100;
@@ -249,7 +250,7 @@ class TemplateManager {
 
       wrappers += `
                 <div class="template-wrapper"
-                          style="flex: 0 0 ${columnWidth}%); background: ${tileBgColor}; color:#ffffff"
+                          style="flex: 0 0 ${columnWidth}%); background: ${tileBgColor}; color:#333333"
                           data-gjs-type="tile-wrapper"
                           data-gjs-selectable="false"
                           data-gjs-droppable="false">
@@ -260,7 +261,7 @@ class TemplateManager {
                               : ""
                           }"
                             tile-bgcolor="${tileBgColor}"
-                            tile-bgcolor-name="accentColor"
+                            tile-bgcolor-name=""
                             ${defaultTileAttrs}
                             data-gjs-draggable="false"
                             data-gjs-selectable="true"
@@ -290,6 +291,7 @@ class TemplateManager {
                                   >&times;</span>
                                 <span 
                                   class="tile-icon"
+                                  is-hidden = "true"
                                   data-gjs-draggable="false"
                                   data-gjs-selectable="false"
                                   data-gjs-editable="false"
@@ -318,6 +320,7 @@ class TemplateManager {
                                   >&times;</span>
                                 <span 
                                   class="tile-title"
+                                  is-hidden = "false"
                                   data-gjs-draggable="false"
                                   data-gjs-selectable="false"
                                   data-gjs-editable="false"
@@ -512,7 +515,7 @@ class TemplateManager {
       }
     });
 
-    this.updateRightButtons(containerRow);
+    this.templateUpdate.updateRightButtons(containerRow);
   }
 
   addTemplateRight(templateComponent, editorInstance) {
@@ -537,7 +540,7 @@ class TemplateManager {
       });
     });
 
-    this.updateRightButtons(containerRow);
+    this.templateUpdate.updateRightButtons(containerRow);
   }
 
   addTemplateBottom(templateComponent, editorInstance) {
@@ -564,116 +567,6 @@ class TemplateManager {
       at: index + 1,
     });
   }
-
-  updateRightButtons(containerRow) {
-    if (!containerRow) return;
-  
-    const styleConfigs = {
-      1: {
-        title: { "letter-spacing": "1.1px", "font-size": "16px" },
-        template: { "justify-content": "start" },
-        rightButton: { display: "flex" },
-        titleSection: { "text-align": "left" },
-      },
-      2: {
-        title: { "letter-spacing": "0.9px", "font-size": "14px" },
-        template: { "justify-content": "start" },
-        rightButton: { display: "flex" },
-        titleSection: { "text-align": "left" },
-      },
-      3: {
-        title: { "letter-spacing": "0.9px", "font-size": "12px" },
-        template: { "justify-content": "center" },
-        rightButton: { display: "none" },
-        titleSection: { "text-align": "center" },
-      },
-    };
-  
-    const templates = containerRow.components();
-    if (!templates.length || !styleConfigs[templates.length]) return;
-
-    const screenWidth = window.innerWidth;
-  
-    const config = styleConfigs[templates.length];
-  
-    const isTemplateOne = templates.length == 1;
-  
-    const titles = containerRow.find(".tile-title");
-    const templateBlocks = containerRow.find(".template-block");
-    const titleSections = containerRow.find(".tile-title-section");
-  
-    titles.forEach((title) => {
-      title.addStyle(config.title);
-  
-      let tileTitle =
-        title.getEl().getAttribute("title") || title.getEl().innerText;
-      if (templates.length === 3) {
-        let words = tileTitle.split(" ");
-        if (words.length > 2) {
-          tileTitle = words.slice(0, 2).join(" ");
-        }
-  
-        if (tileTitle.length > 13) {
-          tileTitle = tileTitle.substring(0, 13).trim();
-        }
-  
-        let truncatedWords = tileTitle.split(" ");
-        if (truncatedWords.length > 1) {
-          tileTitle =
-            truncatedWords.slice(0, 1).join(" ") + "<br>" + truncatedWords[1];
-        }
-      } else {
-        tileTitle = tileTitle.replace("<br>", "");
-      }
-  
-      if (templates.length === 2) {
-        tileTitle = truncateText(tileTitle, screenWidth <= 1440 ? 11 : 13);
-      }
-  
-      if (templates.length === 1) {
-        tileTitle = truncateText(tileTitle, screenWidth <= 1440 ? 20 : 24);
-      }
-  
-      title.components(tileTitle);
-    });
-  
-    templateBlocks.forEach((template) => {
-      const isPriority = template
-        .getClasses()
-        ?.includes("high-priority-template");
-      
-      // Check the screen width and adjust heights accordingly
-      
-      const templateHeight = screenWidth <= 1440 ? 
-        (isPriority && isTemplateOne ? "6.0rem" : "4.5em") : 
-        (isPriority && isTemplateOne ? "7rem" : "5.5rem");
-  
-      const templateStyles = {
-        ...config.template,
-        height: templateHeight,
-        textTransform: isPriority && isTemplateOne ? "uppercase" : "capitalize",
-      };
-      template.addStyle(templateStyles);
-    });
-  
-    templates.forEach((template) => {
-      if (!template?.view?.el) return;
-      const rightButton = template.find(".add-button-right")[0];
-      if (rightButton) rightButton.addStyle(config.rightButton);
-  
-      if (templates.length === 3) {
-        template.addAttributes({
-          "tile-icon-align": "center",
-          "tile-text-align": "center",
-        });
-      }
-    });
-  
-    if (titleSections.length) {
-      titleSections.forEach((section) => section.addStyle(config.titleSection));
-    }
-  }
-  
 
   initialContentPageTemplate(contentPageData) {
     return `
@@ -749,7 +642,7 @@ class TemplateManager {
                               contentPageData.ProductServiceDescription
                                 ? `
                                 <p
-                                    style="flex: 1; padding: 0; margin: 0; height: auto;"
+                                    style="flex: 1; padding: 0; margin: 0; height: auto; white-space: pre-wrap;"
                                     class="content-page-block"
                                     data-gjs-draggable="true"
                                     data-gjs-selectable="false"
@@ -779,14 +672,20 @@ class TemplateManager {
       this.editorManager.selectedComponent?.find(targetSelector)[0];
     if (closeSection) {
       const closeEl = closeSection.getEl();
+      const selectedComponent =
+              this.editorManager.selectedComponent;
       if (closeEl) {
         closeEl.onclick = () => {
-          // const component = this.editorManager.selectedComponent
-          // .find(sectionSelector)[0]
-          //   .remove();
+          if (!this.checkIfTileHasTitleOrIcon(selectedComponent)) {
+            const message = this.currentLanguage.getTranslation(
+              "tile_must_have_title_or_icon"
+            );
+            this.editorManager.toolsSection.ui.displayAlertMessage(message, "error");
+            return;
+          }
           if (sectionSelector === ".tile-title-section") {
             const component =
-              this.editorManager.selectedComponent.find(".tile-title")[0];
+              selectedComponent.find(".tile-title")[0];
             component.components("");
             this.editorManager.toolsSection.setAttributeToSelected(
               "TileText",
@@ -794,18 +693,30 @@ class TemplateManager {
             );
             $("#tile-title").val("");
             component.addStyle({ display: "none" });
+            component.addAttributes({"title": ""});
+            component.addAttributes({"is-hidden": "true"});
           } else if (sectionSelector === ".tile-icon-section") {
             const component =
-              this.editorManager.selectedComponent.find(".tile-icon")[0];
+              selectedComponent.find(".tile-icon")[0];
             component.components("");
             this.editorManager.toolsSection.setAttributeToSelected(
               "tile-icon",
               ""
             );
             component.addStyle({ display: "none" });
+            component.addAttributes({"is-hidden": "true"});
           }
         };
       }
     }
   }
+
+  checkIfTileHasTitleOrIcon(selectedComponent) {
+    const isIconHidden = selectedComponent.find(".tile-icon")[0]?.getAttributes()?.["is-hidden"] === "false";
+    const isTitleHidden = selectedComponent.find(".tile-title")[0]?.getAttributes()?.["is-hidden"] === "false";
+    
+    // Return true if both elements are hidden
+    return isIconHidden && isTitleHidden;
+  }
+
 }

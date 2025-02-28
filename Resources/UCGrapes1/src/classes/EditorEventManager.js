@@ -45,17 +45,42 @@ class EditorEventManager {
   }
 
   updateEditorAfterLoad(editor) {
-    
     const titles = editor.DomComponents.getWrapper().find(".tile-title");
     titles.forEach((title) => {
       if (!title.getAttributes()?.["title"]) {
-        title.addAttributes({"title": title.getEl().textContent});
+        title.addAttributes({ title: title.getEl().textContent });
+      }
+
+      if (!title.getAttributes()?.["is-hidden"]) {
+        console.log("Hello world");
+        title.addAttributes({ "is-hidden": "false" });
       }
     });
 
-    const rowContainers = editor.DomComponents.getWrapper().find(".container-row");
-    rowContainers.forEach((rowContainer) => {
-      this.templateManager.updateRightButtons(rowContainer);
+    const tileIcons = editor.DomComponents.getWrapper().find(".tile-icon");
+    tileIcons.forEach((icon) => {
+      if (!icon.getAttributes()?.["is-hidden"]) {
+        icon.addAttributes({ "is-hidden": "true" });
+      }
+    });
+
+    const templateBlocks =
+      editor.DomComponents.getWrapper().find(".template-block");
+    templateBlocks.forEach((block) => {
+      const isPriority = block.getClasses()?.includes("high-priority-template");
+      const screenWidth = window.innerWidth;
+
+      const blockHeight =
+        screenWidth <= 1440
+          ? isPriority
+            ? "6.0rem"
+            : "4.5em"
+          : isPriority
+          ? "7rem"
+          : "5rem";
+      block.addStyle({
+        height: blockHeight,
+      });
     });
   }
 
@@ -138,70 +163,45 @@ class EditorEventManager {
     editor.on("component:selected", (component) =>
       this.handleComponentSelected(component)
     );
-    this.editorOnComponentAdd(editor)
+    this.editorOnComponentAdd(editor);
   }
 
   editorOnComponentAdd(editor) {
-    editor.on('component:mount', (model) => {
-      if (model.get('type') === 'svg') {
-        model.set({selectable:false})
+    editor.on("component:mount", (model) => {
+      if (model.get("type") === "svg") {
+        model.set({ selectable: false });
       }
-      if(model.get('type') === 'tile-wrapper') {
-        model.addStyle({'background':'#00000000'})
+      if (model.get("type") === "tile-wrapper") {
+        model.addStyle({ background: "#00000000" });
         // const tileMapper = new TileMapper(model.components().first())
         // tileMapper.setTileAttributes()
       }
     });
   }
 
-  editorOnUpdate(editor) {
-    editor.on("component:update", (updatedComponent) => {
-      const templateRow = updatedComponent.getEl().closest(".container-row");
-      if (templateRow) {
-        const templateRowId = templateRow.getAttribute("id");
-
-        const wrapper = editor.getWrapper();
-        const component = wrapper.find(`#${templateRowId}`)[0];
-        
-        if (component) {
-          this.templateManager.updateRightButtons(component);
-        } else {
-          console.log("Component corresponding to container-row not found");
-        }
-      } else {
-        // console.log("No container-row found");
-      }
-    });
-  }
-
   editorOnDragDrop(editor) {
-    editor.on("component:add", (model) => {
-      const component = model.get ? model : editor.getSelected();
-      if (!component) return;
+    let startDragComponent;
+    editor.on("component:drag:start", (model) => {
+      startDragComponent = model.parent;
+    });
 
-      const parent = component.parent();
-      if (!parent) return;
-
-      const parentEl = parent.getEl();
+    editor.on("component:drag:end", (model) => {
+      const parentEl = model.parent.getEl();
       if (!parentEl || !parentEl.classList.contains("container-row")) return;
 
-      const tileWrappers = parent.components().filter((comp) => {
+      const tileWrappers = model.parent.components().filter((comp) => {
         const type = comp.get("type");
         return type === "tile-wrapper";
       });
-
       if (tileWrappers.length > 3) {
-        component.remove();
+        model.target.remove();
 
         editor.UndoManager.undo();
       }
-
-      editor
-        .getWrapper()
-        .find(".container-row")
-        .forEach((component) => {
-          this.templateManager.updateRightButtons(component);
-        });
+      this.templateManager.templateUpdate.updateRightButtons(model.parent);
+      this.templateManager.templateUpdate.updateRightButtons(
+        startDragComponent
+      );
     });
   }
 

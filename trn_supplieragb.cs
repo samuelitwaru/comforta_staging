@@ -653,14 +653,14 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 RequiredDataContentCell", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtSupplierAgbAddressCity_Internalname+"\"", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtSupplierAgbAddressZipCode_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtSupplierAgbAddressCity_Internalname, context.GetMessage( "City", ""), "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtSupplierAgbAddressZipCode_Internalname, context.GetMessage( "Zip Code", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 107,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtSupplierAgbAddressCity_Internalname, A299SupplierAgbAddressCity, StringUtil.RTrim( context.localUtil.Format( A299SupplierAgbAddressCity, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,107);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtSupplierAgbAddressCity_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtSupplierAgbAddressCity_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_SupplierAgb.htm");
+         GxWebStd.gx_single_line_edit( context, edtSupplierAgbAddressZipCode_Internalname, A298SupplierAgbAddressZipCode, StringUtil.RTrim( context.localUtil.Format( A298SupplierAgbAddressZipCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,107);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtSupplierAgbAddressZipCode_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtSupplierAgbAddressZipCode_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_SupplierAgb.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -670,14 +670,14 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 RequiredDataContentCell", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtSupplierAgbAddressZipCode_Internalname+"\"", "", "div");
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtSupplierAgbAddressCity_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtSupplierAgbAddressZipCode_Internalname, context.GetMessage( "Zip Code", ""), "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, edtSupplierAgbAddressCity_Internalname, context.GetMessage( "City", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
          /* Single line edit */
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 112,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtSupplierAgbAddressZipCode_Internalname, A298SupplierAgbAddressZipCode, StringUtil.RTrim( context.localUtil.Format( A298SupplierAgbAddressZipCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,112);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtSupplierAgbAddressZipCode_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtSupplierAgbAddressZipCode_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_SupplierAgb.htm");
+         GxWebStd.gx_single_line_edit( context, edtSupplierAgbAddressCity_Internalname, A299SupplierAgbAddressCity, StringUtil.RTrim( context.localUtil.Format( A299SupplierAgbAddressCity, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,112);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtSupplierAgbAddressCity_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtSupplierAgbAddressCity_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_SupplierAgb.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1029,10 +1029,10 @@ namespace GeneXus.Programs {
                AssignAttri("", false, "A333SupplierAgbAddressLine1", A333SupplierAgbAddressLine1);
                A334SupplierAgbAddressLine2 = cgiGet( edtSupplierAgbAddressLine2_Internalname);
                AssignAttri("", false, "A334SupplierAgbAddressLine2", A334SupplierAgbAddressLine2);
-               A299SupplierAgbAddressCity = cgiGet( edtSupplierAgbAddressCity_Internalname);
-               AssignAttri("", false, "A299SupplierAgbAddressCity", A299SupplierAgbAddressCity);
                A298SupplierAgbAddressZipCode = cgiGet( edtSupplierAgbAddressZipCode_Internalname);
                AssignAttri("", false, "A298SupplierAgbAddressZipCode", A298SupplierAgbAddressZipCode);
+               A299SupplierAgbAddressCity = cgiGet( edtSupplierAgbAddressCity_Internalname);
+               AssignAttri("", false, "A299SupplierAgbAddressCity", A299SupplierAgbAddressCity);
                A332SupplierAGBAddressCountry = cgiGet( edtSupplierAGBAddressCountry_Internalname);
                AssignAttri("", false, "A332SupplierAGBAddressCountry", A332SupplierAGBAddressCountry);
                AV20ComboSupplierAgbTypeId = StringUtil.StrToGuid( cgiGet( edtavCombosupplieragbtypeid_Internalname));
@@ -2665,10 +2665,10 @@ namespace GeneXus.Programs {
          AssignProp("", false, edtSupplierAgbAddressLine1_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtSupplierAgbAddressLine1_Enabled), 5, 0), true);
          edtSupplierAgbAddressLine2_Enabled = 0;
          AssignProp("", false, edtSupplierAgbAddressLine2_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtSupplierAgbAddressLine2_Enabled), 5, 0), true);
-         edtSupplierAgbAddressCity_Enabled = 0;
-         AssignProp("", false, edtSupplierAgbAddressCity_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtSupplierAgbAddressCity_Enabled), 5, 0), true);
          edtSupplierAgbAddressZipCode_Enabled = 0;
          AssignProp("", false, edtSupplierAgbAddressZipCode_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtSupplierAgbAddressZipCode_Enabled), 5, 0), true);
+         edtSupplierAgbAddressCity_Enabled = 0;
+         AssignProp("", false, edtSupplierAgbAddressCity_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtSupplierAgbAddressCity_Enabled), 5, 0), true);
          edtSupplierAGBAddressCountry_Enabled = 0;
          AssignProp("", false, edtSupplierAGBAddressCountry_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtSupplierAGBAddressCountry_Enabled), 5, 0), true);
          edtavCombosupplieragbtypeid_Enabled = 0;
@@ -3036,7 +3036,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521416344792", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20252261313486", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3052,7 +3052,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_supplieragb.js", "?202521416344795", false, true);
+         context.AddJavascriptSource("trn_supplieragb.js", "?20252261313488", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3091,8 +3091,8 @@ namespace GeneXus.Programs {
          grpUnnamedgroup2_Internalname = "UNNAMEDGROUP2";
          edtSupplierAgbAddressLine1_Internalname = "SUPPLIERAGBADDRESSLINE1";
          edtSupplierAgbAddressLine2_Internalname = "SUPPLIERAGBADDRESSLINE2";
-         edtSupplierAgbAddressCity_Internalname = "SUPPLIERAGBADDRESSCITY";
          edtSupplierAgbAddressZipCode_Internalname = "SUPPLIERAGBADDRESSZIPCODE";
+         edtSupplierAgbAddressCity_Internalname = "SUPPLIERAGBADDRESSCITY";
          lblTextblocksupplieragbaddresscountry_Internalname = "TEXTBLOCKSUPPLIERAGBADDRESSCOUNTRY";
          Combo_supplieragbaddresscountry_Internalname = "COMBO_SUPPLIERAGBADDRESSCOUNTRY";
          edtSupplierAGBAddressCountry_Internalname = "SUPPLIERAGBADDRESSCOUNTRY";
@@ -3156,10 +3156,10 @@ namespace GeneXus.Programs {
          Combo_supplieragbaddresscountry_Cls = "ExtendedCombo Attribute ExtendedComboWithImage";
          Combo_supplieragbaddresscountry_Caption = "";
          Combo_supplieragbaddresscountry_Enabled = Convert.ToBoolean( -1);
-         edtSupplierAgbAddressZipCode_Jsonclick = "";
-         edtSupplierAgbAddressZipCode_Enabled = 1;
          edtSupplierAgbAddressCity_Jsonclick = "";
          edtSupplierAgbAddressCity_Enabled = 1;
+         edtSupplierAgbAddressZipCode_Jsonclick = "";
+         edtSupplierAgbAddressZipCode_Enabled = 1;
          edtSupplierAgbAddressLine2_Jsonclick = "";
          edtSupplierAgbAddressLine2_Enabled = 1;
          edtSupplierAgbAddressLine1_Jsonclick = "";
@@ -3317,8 +3317,8 @@ namespace GeneXus.Programs {
          setEventMetadata("VALID_SUPPLIERAGBEMAIL","""{"handler":"Valid_Supplieragbemail","iparms":[]}""");
          setEventMetadata("VALID_SUPPLIERAGBWEBSITE","""{"handler":"Valid_Supplieragbwebsite","iparms":[]}""");
          setEventMetadata("VALID_SUPPLIERAGBADDRESSLINE1","""{"handler":"Valid_Supplieragbaddressline1","iparms":[]}""");
-         setEventMetadata("VALID_SUPPLIERAGBADDRESSCITY","""{"handler":"Valid_Supplieragbaddresscity","iparms":[]}""");
          setEventMetadata("VALID_SUPPLIERAGBADDRESSZIPCODE","""{"handler":"Valid_Supplieragbaddresszipcode","iparms":[]}""");
+         setEventMetadata("VALID_SUPPLIERAGBADDRESSCITY","""{"handler":"Valid_Supplieragbaddresscity","iparms":[]}""");
          setEventMetadata("VALID_SUPPLIERAGBADDRESSCOUNTRY","""{"handler":"Valid_Supplieragbaddresscountry","iparms":[]}""");
          setEventMetadata("VALIDV_COMBOSUPPLIERAGBTYPEID","""{"handler":"Validv_Combosupplieragbtypeid","iparms":[]}""");
          setEventMetadata("VALIDV_COMBOSUPPLIERAGBPHONECODE","""{"handler":"Validv_Combosupplieragbphonecode","iparms":[]}""");
@@ -3400,8 +3400,8 @@ namespace GeneXus.Programs {
          A440SupplierAgbWebsite = "";
          A333SupplierAgbAddressLine1 = "";
          A334SupplierAgbAddressLine2 = "";
-         A299SupplierAgbAddressCity = "";
          A298SupplierAgbAddressZipCode = "";
+         A299SupplierAgbAddressCity = "";
          lblTextblocksupplieragbaddresscountry_Jsonclick = "";
          ucCombo_supplieragbaddresscountry = new GXUserControl();
          AV23SupplierAGBAddressCountry_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
@@ -3671,8 +3671,8 @@ namespace GeneXus.Programs {
       private int edtSupplierAgbWebsite_Enabled ;
       private int edtSupplierAgbAddressLine1_Enabled ;
       private int edtSupplierAgbAddressLine2_Enabled ;
-      private int edtSupplierAgbAddressCity_Enabled ;
       private int edtSupplierAgbAddressZipCode_Enabled ;
+      private int edtSupplierAgbAddressCity_Enabled ;
       private int edtSupplierAGBAddressCountry_Visible ;
       private int edtSupplierAGBAddressCountry_Enabled ;
       private int bttBtntrn_enter_Visible ;
@@ -3767,10 +3767,10 @@ namespace GeneXus.Programs {
       private string edtSupplierAgbAddressLine1_Jsonclick ;
       private string edtSupplierAgbAddressLine2_Internalname ;
       private string edtSupplierAgbAddressLine2_Jsonclick ;
-      private string edtSupplierAgbAddressCity_Internalname ;
-      private string edtSupplierAgbAddressCity_Jsonclick ;
       private string edtSupplierAgbAddressZipCode_Internalname ;
       private string edtSupplierAgbAddressZipCode_Jsonclick ;
+      private string edtSupplierAgbAddressCity_Internalname ;
+      private string edtSupplierAgbAddressCity_Jsonclick ;
       private string divTablesplittedsupplieragbaddresscountry_Internalname ;
       private string lblTextblocksupplieragbaddresscountry_Internalname ;
       private string lblTextblocksupplieragbaddresscountry_Jsonclick ;
@@ -3948,8 +3948,8 @@ namespace GeneXus.Programs {
       private string A440SupplierAgbWebsite ;
       private string A333SupplierAgbAddressLine1 ;
       private string A334SupplierAgbAddressLine2 ;
-      private string A299SupplierAgbAddressCity ;
       private string A298SupplierAgbAddressZipCode ;
+      private string A299SupplierAgbAddressCity ;
       private string A332SupplierAGBAddressCountry ;
       private string AV25ComboSupplierAgbPhoneCode ;
       private string AV24ComboSupplierAGBAddressCountry ;

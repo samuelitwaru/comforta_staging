@@ -34,15 +34,11 @@ namespace GeneXus.Programs
 
 			gxTv_SdtSDT_Tile_Tiletext = "";
 
-			gxTv_SdtSDT_Tile_Tiletextcolor = "";
+			gxTv_SdtSDT_Tile_Tilecolor = "";
 
-			gxTv_SdtSDT_Tile_Tiletextalignment = "";
+			gxTv_SdtSDT_Tile_Tilealignment = "";
 
 			gxTv_SdtSDT_Tile_Tileicon = "";
-
-			gxTv_SdtSDT_Tile_Tileiconcolor = "";
-
-			gxTv_SdtSDT_Tile_Tileiconalignment = "";
 
 			gxTv_SdtSDT_Tile_Tilebgcolor = "";
 
@@ -84,19 +80,13 @@ namespace GeneXus.Programs
 			AddObjectProperty("TileText", gxTpr_Tiletext, false);
 
 
-			AddObjectProperty("TileTextColor", gxTpr_Tiletextcolor, false);
+			AddObjectProperty("TileColor", gxTpr_Tilecolor, false);
 
 
-			AddObjectProperty("TileTextAlignment", gxTpr_Tiletextalignment, false);
+			AddObjectProperty("TileAlignment", gxTpr_Tilealignment, false);
 
 
 			AddObjectProperty("TileIcon", gxTpr_Tileicon, false);
-
-
-			AddObjectProperty("TileIconColor", gxTpr_Tileiconcolor, false);
-
-
-			AddObjectProperty("TileIconAlignment", gxTpr_Tileiconalignment, false);
 
 
 			AddObjectProperty("TileBGColor", gxTpr_Tilebgcolor, false);
@@ -165,32 +155,32 @@ namespace GeneXus.Programs
 
 
 
-		[SoapElement(ElementName="TileTextColor")]
-		[XmlElement(ElementName="TileTextColor")]
-		public string gxTpr_Tiletextcolor
+		[SoapElement(ElementName="TileColor")]
+		[XmlElement(ElementName="TileColor")]
+		public string gxTpr_Tilecolor
 		{
 			get {
-				return gxTv_SdtSDT_Tile_Tiletextcolor; 
+				return gxTv_SdtSDT_Tile_Tilecolor; 
 			}
 			set {
-				gxTv_SdtSDT_Tile_Tiletextcolor = value;
-				SetDirty("Tiletextcolor");
+				gxTv_SdtSDT_Tile_Tilecolor = value;
+				SetDirty("Tilecolor");
 			}
 		}
 
 
 
 
-		[SoapElement(ElementName="TileTextAlignment")]
-		[XmlElement(ElementName="TileTextAlignment")]
-		public string gxTpr_Tiletextalignment
+		[SoapElement(ElementName="TileAlignment")]
+		[XmlElement(ElementName="TileAlignment")]
+		public string gxTpr_Tilealignment
 		{
 			get {
-				return gxTv_SdtSDT_Tile_Tiletextalignment; 
+				return gxTv_SdtSDT_Tile_Tilealignment; 
 			}
 			set {
-				gxTv_SdtSDT_Tile_Tiletextalignment = value;
-				SetDirty("Tiletextalignment");
+				gxTv_SdtSDT_Tile_Tilealignment = value;
+				SetDirty("Tilealignment");
 			}
 		}
 
@@ -207,38 +197,6 @@ namespace GeneXus.Programs
 			set {
 				gxTv_SdtSDT_Tile_Tileicon = value;
 				SetDirty("Tileicon");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="TileIconColor")]
-		[XmlElement(ElementName="TileIconColor")]
-		public string gxTpr_Tileiconcolor
-		{
-			get {
-				return gxTv_SdtSDT_Tile_Tileiconcolor; 
-			}
-			set {
-				gxTv_SdtSDT_Tile_Tileiconcolor = value;
-				SetDirty("Tileiconcolor");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="TileIconAlignment")]
-		[XmlElement(ElementName="TileIconAlignment")]
-		public string gxTpr_Tileiconalignment
-		{
-			get {
-				return gxTv_SdtSDT_Tile_Tileiconalignment; 
-			}
-			set {
-				gxTv_SdtSDT_Tile_Tileiconalignment = value;
-				SetDirty("Tileiconalignment");
 			}
 		}
 
@@ -347,11 +305,9 @@ namespace GeneXus.Programs
 		{
 			gxTv_SdtSDT_Tile_Tilename = "";
 			gxTv_SdtSDT_Tile_Tiletext = "";
-			gxTv_SdtSDT_Tile_Tiletextcolor = "";
-			gxTv_SdtSDT_Tile_Tiletextalignment = "";
+			gxTv_SdtSDT_Tile_Tilecolor = "";
+			gxTv_SdtSDT_Tile_Tilealignment = "";
 			gxTv_SdtSDT_Tile_Tileicon = "";
-			gxTv_SdtSDT_Tile_Tileiconcolor = "";
-			gxTv_SdtSDT_Tile_Tileiconalignment = "";
 			gxTv_SdtSDT_Tile_Tilebgcolor = "";
 			gxTv_SdtSDT_Tile_Tilebgimageurl = "";
 
@@ -376,19 +332,13 @@ namespace GeneXus.Programs
 		protected string gxTv_SdtSDT_Tile_Tiletext;
 		 
 
-		protected string gxTv_SdtSDT_Tile_Tiletextcolor;
+		protected string gxTv_SdtSDT_Tile_Tilecolor;
 		 
 
-		protected string gxTv_SdtSDT_Tile_Tiletextalignment;
+		protected string gxTv_SdtSDT_Tile_Tilealignment;
 		 
 
 		protected string gxTv_SdtSDT_Tile_Tileicon;
-		 
-
-		protected string gxTv_SdtSDT_Tile_Tileiconcolor;
-		 
-
-		protected string gxTv_SdtSDT_Tile_Tileiconalignment;
 		 
 
 		protected string gxTv_SdtSDT_Tile_Tilebgcolor;
@@ -457,27 +407,27 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="TileTextColor", Order=3)]
-		public  string gxTpr_Tiletextcolor
+		[DataMember(Name="TileColor", Order=3)]
+		public  string gxTpr_Tilecolor
 		{
 			get { 
-				return StringUtil.RTrim( sdt.gxTpr_Tiletextcolor);
+				return sdt.gxTpr_Tilecolor;
 
 			}
 			set { 
-				 sdt.gxTpr_Tiletextcolor = value;
+				 sdt.gxTpr_Tilecolor = value;
 			}
 		}
 
-		[DataMember(Name="TileTextAlignment", Order=4)]
-		public  string gxTpr_Tiletextalignment
+		[DataMember(Name="TileAlignment", Order=4)]
+		public  string gxTpr_Tilealignment
 		{
 			get { 
-				return StringUtil.RTrim( sdt.gxTpr_Tiletextalignment);
+				return sdt.gxTpr_Tilealignment;
 
 			}
 			set { 
-				 sdt.gxTpr_Tiletextalignment = value;
+				 sdt.gxTpr_Tilealignment = value;
 			}
 		}
 
@@ -493,31 +443,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="TileIconColor", Order=6)]
-		public  string gxTpr_Tileiconcolor
-		{
-			get { 
-				return StringUtil.RTrim( sdt.gxTpr_Tileiconcolor);
-
-			}
-			set { 
-				 sdt.gxTpr_Tileiconcolor = value;
-			}
-		}
-
-		[DataMember(Name="TileIconAlignment", Order=7)]
-		public  string gxTpr_Tileiconalignment
-		{
-			get { 
-				return StringUtil.RTrim( sdt.gxTpr_Tileiconalignment);
-
-			}
-			set { 
-				 sdt.gxTpr_Tileiconalignment = value;
-			}
-		}
-
-		[DataMember(Name="TileBGColor", Order=8)]
+		[DataMember(Name="TileBGColor", Order=6)]
 		public  string gxTpr_Tilebgcolor
 		{
 			get { 
@@ -529,7 +455,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="TileBGImageUrl", Order=9)]
+		[DataMember(Name="TileBGImageUrl", Order=7)]
 		public  string gxTpr_Tilebgimageurl
 		{
 			get { 
@@ -541,7 +467,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="TileBGImageOpacity", Order=10)]
+		[DataMember(Name="TileBGImageOpacity", Order=8)]
 		public short gxTpr_Tilebgimageopacity
 		{
 			get { 
@@ -553,7 +479,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="TileAction", Order=11, EmitDefaultValue=false)]
+		[DataMember(Name="TileAction", Order=9, EmitDefaultValue=false)]
 		public GeneXus.Programs.SdtSDT_TileAction_RESTInterface gxTpr_Tileaction
 		{
 			get { 

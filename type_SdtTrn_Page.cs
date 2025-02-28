@@ -38,18 +38,17 @@ namespace GeneXus.Programs {
       }
 
       public void Load( Guid AV310Trn_PageId ,
-                        string AV318Trn_PageName ,
                         Guid AV29LocationId )
       {
          IGxSilentTrn obj;
          obj = getTransaction();
-         obj.LoadKey(new Object[] {(Guid)AV310Trn_PageId,(string)AV318Trn_PageName,(Guid)AV29LocationId});
+         obj.LoadKey(new Object[] {(Guid)AV310Trn_PageId,(Guid)AV29LocationId});
          return  ;
       }
 
       public override Object[][] GetBCKey( )
       {
-         return (Object[][])(new Object[][]{new Object[]{"Trn_PageId", typeof(Guid)}, new Object[]{"Trn_PageName", typeof(string)}, new Object[]{"LocationId", typeof(Guid)}}) ;
+         return (Object[][])(new Object[][]{new Object[]{"Trn_PageId", typeof(Guid)}, new Object[]{"LocationId", typeof(Guid)}}) ;
       }
 
       public override GXProperties GetMetadata( )
@@ -57,7 +56,7 @@ namespace GeneXus.Programs {
          GXProperties metadata = new GXProperties();
          metadata.Set("Name", "Trn_Page");
          metadata.Set("BT", "Trn_Page");
-         metadata.Set("PK", "[ \"Trn_PageId\",\"Trn_PageName\",\"LocationId\" ]");
+         metadata.Set("PK", "[ \"Trn_PageId\",\"LocationId\" ]");
          metadata.Set("PKAssigned", "[ \"Trn_PageId\" ]");
          metadata.Set("FKList", "[ { \"FK\":[ \"LocationId\",\"OrganisationId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"ProductServiceId\",\"LocationId\",\"OrganisationId\" ],\"FKMap\":[  ] } ]");
          metadata.Set("AllowInsert", "True");
@@ -314,20 +313,6 @@ namespace GeneXus.Programs {
 
          set {
             sdtIsNull = 0;
-            if ( StringUtil.StrCmp(gxTv_SdtTrn_Page_Trn_pagename, value) != 0 )
-            {
-               gxTv_SdtTrn_Page_Mode = "INS";
-               this.gxTv_SdtTrn_Page_Trn_pageid_Z_SetNull( );
-               this.gxTv_SdtTrn_Page_Trn_pagename_Z_SetNull( );
-               this.gxTv_SdtTrn_Page_Locationid_Z_SetNull( );
-               this.gxTv_SdtTrn_Page_Pageispublished_Z_SetNull( );
-               this.gxTv_SdtTrn_Page_Pageispredefined_Z_SetNull( );
-               this.gxTv_SdtTrn_Page_Pageiscontentpage_Z_SetNull( );
-               this.gxTv_SdtTrn_Page_Pageisdynamicform_Z_SetNull( );
-               this.gxTv_SdtTrn_Page_Pageisweblinkpage_Z_SetNull( );
-               this.gxTv_SdtTrn_Page_Productserviceid_Z_SetNull( );
-               this.gxTv_SdtTrn_Page_Organisationid_Z_SetNull( );
-            }
             gxTv_SdtTrn_Page_Trn_pagename = value;
             SetDirty("Trn_pagename");
          }
@@ -1513,16 +1498,16 @@ namespace GeneXus.Programs {
       {
       }
 
-      [DataMember( Name = "PageIsPublished" , Order = 0 )]
+      [DataMember( Name = "Trn_PageName" , Order = 0 )]
       [GxSeudo()]
-      public bool gxTpr_Pageispublished
+      public string gxTpr_Trn_pagename
       {
          get {
-            return sdt.gxTpr_Pageispublished ;
+            return sdt.gxTpr_Trn_pagename ;
          }
 
          set {
-            sdt.gxTpr_Pageispublished = value;
+            sdt.gxTpr_Trn_pagename = value;
          }
 
       }

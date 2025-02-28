@@ -60,37 +60,19 @@ namespace GeneXus.Programs {
          /* Load data into tables. */
       }
 
-      public void ReorganizeTrn_Organisation( )
+      public void ReorganizeTrn_Page( )
       {
          string cmdBuffer = "";
-         /* Indices for table Trn_Organisation */
-         cmdBuffer=" ALTER TABLE Trn_Organisation ADD OrganisationLogo BYTEA NOT NULL DEFAULT '', ADD OrganisationLogo_GXI VARCHAR(2048) NOT NULL DEFAULT '' "
+         /* Indices for table Trn_Page */
+         cmdBuffer=" ALTER TABLE Trn_Page ALTER COLUMN Trn_PageId DROP DEFAULT "
          ;
          RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
          RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
          RGZ.ExecuteStmt() ;
          RGZ.Drop();
-         cmdBuffer=" ALTER TABLE Trn_Organisation ALTER COLUMN OrganisationLogo DROP DEFAULT "
-         ;
-         RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
-         RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
-         RGZ.ExecuteStmt() ;
-         RGZ.Drop();
-         cmdBuffer=" ALTER TABLE Trn_Organisation ALTER COLUMN OrganisationLogo_GXI DROP DEFAULT "
-         ;
-         RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
-         RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
-         RGZ.ExecuteStmt() ;
-         RGZ.Drop();
-      }
-
-      public void ReorganizeTrn_AppNotification( )
-      {
-         string cmdBuffer = "";
-         /* Indices for table Trn_AppNotification */
          try
          {
-            cmdBuffer=" CREATE INDEX UTRN_APPNOTIFICATION ON Trn_AppNotification (AppNotificationDate DESC) "
+            cmdBuffer=" CREATE TABLE GXA0100 (Trn_PageId CHAR(36) NOT NULL , LocationId CHAR(36) NOT NULL , Trn_PageName VARCHAR(100) NOT NULL , PageJsonContent TEXT , PageGJSHtml TEXT , PageGJSJson TEXT , PageIsPublished BOOLEAN , PageIsPredefined BOOLEAN NOT NULL , PageIsContentPage BOOLEAN , PageIsDynamicForm BOOLEAN NOT NULL , PageIsWebLinkPage BOOLEAN NOT NULL , PageChildren TEXT , ProductServiceId CHAR(36) , OrganisationId CHAR(36) NOT NULL )  "
             ;
             RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
             RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
@@ -99,13 +81,200 @@ namespace GeneXus.Programs {
          }
          catch
          {
-            cmdBuffer=" DROP INDEX UTRN_APPNOTIFICATION "
+            try
+            {
+               cmdBuffer=" DROP TABLE GXA0100 CASCADE "
+               ;
+               RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+               RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+               RGZ.ExecuteStmt() ;
+               RGZ.Drop();
+            }
+            catch
+            {
+               try
+               {
+                  cmdBuffer=" DROP VIEW GXA0100 CASCADE "
+                  ;
+                  RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+                  RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+                  RGZ.ExecuteStmt() ;
+                  RGZ.Drop();
+               }
+               catch
+               {
+                  try
+                  {
+                     cmdBuffer=" DROP FUNCTION GXA0100 CASCADE "
+                     ;
+                     RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+                     RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
+                     RGZ.ExecuteStmt() ;
+                     RGZ.Drop();
+                  }
+                  catch
+                  {
+                  }
+               }
+            }
+            cmdBuffer=" CREATE TABLE GXA0100 (Trn_PageId CHAR(36) NOT NULL , LocationId CHAR(36) NOT NULL , Trn_PageName VARCHAR(100) NOT NULL , PageJsonContent TEXT , PageGJSHtml TEXT , PageGJSJson TEXT , PageIsPublished BOOLEAN , PageIsPredefined BOOLEAN NOT NULL , PageIsContentPage BOOLEAN , PageIsDynamicForm BOOLEAN NOT NULL , PageIsWebLinkPage BOOLEAN NOT NULL , PageChildren TEXT , ProductServiceId CHAR(36) , OrganisationId CHAR(36) NOT NULL )  "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+         }
+         try
+         {
+            cmdBuffer=" CREATE UNIQUE INDEX Trn_PageGXI ON GXA0100 (Trn_PageId ,LocationId ) "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+         }
+         catch
+         {
+            cmdBuffer=" DROP INDEX Trn_PageGXI "
             ;
             RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
             RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
             RGZ.ExecuteStmt() ;
             RGZ.Drop();
-            cmdBuffer=" CREATE INDEX UTRN_APPNOTIFICATION ON Trn_AppNotification (AppNotificationDate DESC) "
+            cmdBuffer=" CREATE UNIQUE INDEX Trn_PageGXI ON GXA0100 (Trn_PageId ,LocationId ) "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+         }
+         /* API remote call */
+         new trn_pageconversion(context ).execute( ) ;
+         cmdBuffer=" DROP INDEX Trn_PageGXI "
+         ;
+         RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+         RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
+         RGZ.ExecuteStmt() ;
+         RGZ.Drop();
+         try
+         {
+            try
+            {
+               cmdBuffer=" DROP TABLE Trn_Page CASCADE "
+               ;
+               RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+               RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+               RGZ.ExecuteStmt() ;
+               RGZ.Drop();
+            }
+            catch
+            {
+               try
+               {
+                  cmdBuffer=" DROP VIEW Trn_Page CASCADE "
+                  ;
+                  RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+                  RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+                  RGZ.ExecuteStmt() ;
+                  RGZ.Drop();
+               }
+               catch
+               {
+                  try
+                  {
+                     cmdBuffer=" DROP FUNCTION Trn_Page CASCADE "
+                     ;
+                     RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+                     RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
+                     RGZ.ExecuteStmt() ;
+                     RGZ.Drop();
+                  }
+                  catch
+                  {
+                  }
+               }
+            }
+         }
+         catch ( Exception ex )
+         {
+            GXReorganization.AddExecutedStatement(cmdBuffer);
+         }
+         cmdBuffer=" ALTER TABLE GXA0100 RENAME TO Trn_Page "
+         ;
+         RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+         RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+         RGZ.ExecuteStmt() ;
+         RGZ.Drop();
+         cmdBuffer=" ALTER TABLE Trn_Page ADD CONSTRAINT Trn_Page_pkey PRIMARY KEY(Trn_PageId, LocationId) "
+         ;
+         RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+         RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+         RGZ.ExecuteStmt() ;
+         RGZ.Drop();
+      }
+
+      public void RITrn_PageTrn_Location( )
+      {
+         string cmdBuffer;
+         try
+         {
+            cmdBuffer=" ALTER TABLE Trn_Page ADD CONSTRAINT GX_002S000B000T FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId) "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+         }
+         catch
+         {
+            try
+            {
+               cmdBuffer=" ALTER TABLE Trn_Page DROP CONSTRAINT GX_002S000B000T "
+               ;
+               RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+               RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
+               RGZ.ExecuteStmt() ;
+               RGZ.Drop();
+            }
+            catch
+            {
+            }
+            cmdBuffer=" ALTER TABLE Trn_Page ADD CONSTRAINT GX_002S000B000T FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId) "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+         }
+      }
+
+      public void RITrn_PageTrn_ProductService( )
+      {
+         string cmdBuffer;
+         try
+         {
+            cmdBuffer=" ALTER TABLE Trn_Page ADD CONSTRAINT ITRN_PAGE1 FOREIGN KEY (ProductServiceId, LocationId, OrganisationId) REFERENCES Trn_ProductService (ProductServiceId, LocationId, OrganisationId) "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+         }
+         catch
+         {
+            try
+            {
+               cmdBuffer=" ALTER TABLE Trn_Page DROP CONSTRAINT ITRN_PAGE1 "
+               ;
+               RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+               RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
+               RGZ.ExecuteStmt() ;
+               RGZ.Drop();
+            }
+            catch
+            {
+            }
+            cmdBuffer=" ALTER TABLE Trn_Page ADD CONSTRAINT ITRN_PAGE1 FOREIGN KEY (ProductServiceId, LocationId, OrganisationId) REFERENCES Trn_ProductService (ProductServiceId, LocationId, OrganisationId) "
             ;
             RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
             RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
@@ -116,19 +285,6 @@ namespace GeneXus.Programs {
 
       private void TablesCount( )
       {
-         if ( ! IsResumeMode( ) )
-         {
-            /* Using cursor P00012 */
-            pr_default.execute(0);
-            Trn_OrganisationCount = P00012_ATrn_OrganisationCount[0];
-            pr_default.close(0);
-            PrintRecordCount ( "Trn_Organisation" ,  Trn_OrganisationCount );
-            /* Using cursor P00023 */
-            pr_default.execute(1);
-            Trn_AppNotificationCount = P00023_ATrn_AppNotificationCount[0];
-            pr_default.close(1);
-            PrintRecordCount ( "Trn_AppNotification" ,  Trn_AppNotificationCount );
-         }
       }
 
       private bool PreviousCheck( )
@@ -138,16 +294,6 @@ namespace GeneXus.Programs {
             return true ;
          }
          sSchemaVar = GXUtil.UserId( "Server", context, pr_default);
-         if ( ColumnExist("Trn_Organisation",sSchemaVar,"OrganisationLogo") )
-         {
-            SetCheckError ( GXResourceManager.GetMessage("GXM_column_exist", new   object[]  {"OrganisationLogo", "Trn_Organisation"}) ) ;
-            return false ;
-         }
-         if ( ColumnExist("Trn_Organisation",sSchemaVar,"OrganisationLogo_GXI") )
-         {
-            SetCheckError ( GXResourceManager.GetMessage("GXM_column_exist", new   object[]  {"OrganisationLogo_GXI", "Trn_Organisation"}) ) ;
-            return false ;
-         }
          return true ;
       }
 
@@ -157,37 +303,38 @@ namespace GeneXus.Programs {
       {
          bool result;
          result = false;
-         /* Using cursor P00034 */
-         pr_default.execute(2, new Object[] {sTableName, sMySchemaName, sMyColumnName});
-         while ( (pr_default.getStatus(2) != 101) )
+         /* Using cursor P00012 */
+         pr_default.execute(0, new Object[] {sTableName, sMySchemaName, sMyColumnName});
+         while ( (pr_default.getStatus(0) != 101) )
          {
-            tablename = P00034_Atablename[0];
-            ntablename = P00034_ntablename[0];
-            schemaname = P00034_Aschemaname[0];
-            nschemaname = P00034_nschemaname[0];
-            columnname = P00034_Acolumnname[0];
-            ncolumnname = P00034_ncolumnname[0];
-            attrelid = P00034_Aattrelid[0];
-            nattrelid = P00034_nattrelid[0];
-            oid = P00034_Aoid[0];
-            noid = P00034_noid[0];
-            relname = P00034_Arelname[0];
-            nrelname = P00034_nrelname[0];
+            tablename = P00012_Atablename[0];
+            ntablename = P00012_ntablename[0];
+            schemaname = P00012_Aschemaname[0];
+            nschemaname = P00012_nschemaname[0];
+            columnname = P00012_Acolumnname[0];
+            ncolumnname = P00012_ncolumnname[0];
+            attrelid = P00012_Aattrelid[0];
+            nattrelid = P00012_nattrelid[0];
+            oid = P00012_Aoid[0];
+            noid = P00012_noid[0];
+            relname = P00012_Arelname[0];
+            nrelname = P00012_nrelname[0];
             result = true;
-            pr_default.readNext(2);
+            pr_default.readNext(0);
          }
-         pr_default.close(2);
+         pr_default.close(0);
          return result ;
       }
 
       private void ExecuteOnlyTablesReorganization( )
       {
-         ReorgExecute.RegisterBlockForSubmit( 1 ,  "ReorganizeTrn_Organisation" , new Object[]{ });
-         ReorgExecute.RegisterBlockForSubmit( 2 ,  "ReorganizeTrn_AppNotification" , new Object[]{ });
+         ReorgExecute.RegisterBlockForSubmit( 1 ,  "ReorganizeTrn_Page" , new Object[]{ });
       }
 
       private void ExecuteOnlyRisReorganization( )
       {
+         ReorgExecute.RegisterBlockForSubmit( 2 ,  "RITrn_PageTrn_Location" , new Object[]{ });
+         ReorgExecute.RegisterBlockForSubmit( 3 ,  "RITrn_PageTrn_ProductService" , new Object[]{ });
       }
 
       private void ExecuteTablesReorganization( )
@@ -205,12 +352,15 @@ namespace GeneXus.Programs {
 
       private void SetPrecedencetables( )
       {
-         GXReorganization.SetMsg( 1 ,  GXResourceManager.GetMessage("GXM_fileupdate", new   object[]  {"Trn_Organisation", ""}) );
-         GXReorganization.SetMsg( 2 ,  GXResourceManager.GetMessage("GXM_fileupdate", new   object[]  {"Trn_AppNotification", ""}) );
+         GXReorganization.SetMsg( 1 ,  GXResourceManager.GetMessage("GXM_fileupdate", new   object[]  {"Trn_Page", ""}) );
       }
 
       private void SetPrecedenceris( )
       {
+         GXReorganization.SetMsg( 2 ,  GXResourceManager.GetMessage("GXM_refintcrea", new   object[]  {"GX_002S000B000T"}) );
+         ReorgExecute.RegisterPrecedence( "RITrn_PageTrn_Location" ,  "ReorganizeTrn_Page" );
+         GXReorganization.SetMsg( 3 ,  GXResourceManager.GetMessage("GXM_refintcrea", new   object[]  {"ITRN_PAGE1"}) );
+         ReorgExecute.RegisterPrecedence( "RITrn_PageTrn_ProductService" ,  "ReorganizeTrn_Page" );
       }
 
       private void ExecuteReorganization( )
@@ -239,8 +389,6 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         P00012_ATrn_OrganisationCount = new int[1] ;
-         P00023_ATrn_AppNotificationCount = new int[1] ;
          sSchemaVar = "";
          sTableName = "";
          sMySchemaName = "";
@@ -257,28 +405,22 @@ namespace GeneXus.Programs {
          noid = false;
          relname = "";
          nrelname = false;
-         P00034_Atablename = new string[] {""} ;
-         P00034_ntablename = new bool[] {false} ;
-         P00034_Aschemaname = new string[] {""} ;
-         P00034_nschemaname = new bool[] {false} ;
-         P00034_Acolumnname = new string[] {""} ;
-         P00034_ncolumnname = new bool[] {false} ;
-         P00034_Aattrelid = new string[] {""} ;
-         P00034_nattrelid = new bool[] {false} ;
-         P00034_Aoid = new string[] {""} ;
-         P00034_noid = new bool[] {false} ;
-         P00034_Arelname = new string[] {""} ;
-         P00034_nrelname = new bool[] {false} ;
+         P00012_Atablename = new string[] {""} ;
+         P00012_ntablename = new bool[] {false} ;
+         P00012_Aschemaname = new string[] {""} ;
+         P00012_nschemaname = new bool[] {false} ;
+         P00012_Acolumnname = new string[] {""} ;
+         P00012_ncolumnname = new bool[] {false} ;
+         P00012_Aattrelid = new string[] {""} ;
+         P00012_nattrelid = new bool[] {false} ;
+         P00012_Aoid = new string[] {""} ;
+         P00012_noid = new bool[] {false} ;
+         P00012_Arelname = new string[] {""} ;
+         P00012_nrelname = new bool[] {false} ;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.reorg__default(),
             new Object[][] {
                 new Object[] {
-               P00012_ATrn_OrganisationCount
-               }
-               , new Object[] {
-               P00023_ATrn_AppNotificationCount
-               }
-               , new Object[] {
-               P00034_Atablename, P00034_Aschemaname, P00034_Acolumnname, P00034_Aattrelid, P00034_Aoid, P00034_Arelname
+               P00012_Atablename, P00012_Aschemaname, P00012_Acolumnname, P00012_Aattrelid, P00012_Aoid, P00012_Arelname
                }
             }
          );
@@ -286,8 +428,6 @@ namespace GeneXus.Programs {
       }
 
       protected short ErrCode ;
-      protected int Trn_OrganisationCount ;
-      protected int Trn_AppNotificationCount ;
       protected string sSchemaVar ;
       protected string sTableName ;
       protected string sMySchemaName ;
@@ -309,20 +449,18 @@ namespace GeneXus.Programs {
       protected IGxDataStore dsDefault ;
       protected GxCommand RGZ ;
       protected IDataStoreProvider pr_default ;
-      protected int[] P00012_ATrn_OrganisationCount ;
-      protected int[] P00023_ATrn_AppNotificationCount ;
-      protected string[] P00034_Atablename ;
-      protected bool[] P00034_ntablename ;
-      protected string[] P00034_Aschemaname ;
-      protected bool[] P00034_nschemaname ;
-      protected string[] P00034_Acolumnname ;
-      protected bool[] P00034_ncolumnname ;
-      protected string[] P00034_Aattrelid ;
-      protected bool[] P00034_nattrelid ;
-      protected string[] P00034_Aoid ;
-      protected bool[] P00034_noid ;
-      protected string[] P00034_Arelname ;
-      protected bool[] P00034_nrelname ;
+      protected string[] P00012_Atablename ;
+      protected bool[] P00012_ntablename ;
+      protected string[] P00012_Aschemaname ;
+      protected bool[] P00012_nschemaname ;
+      protected string[] P00012_Acolumnname ;
+      protected bool[] P00012_ncolumnname ;
+      protected string[] P00012_Aattrelid ;
+      protected bool[] P00012_nattrelid ;
+      protected string[] P00012_Aoid ;
+      protected bool[] P00012_noid ;
+      protected string[] P00012_Arelname ;
+      protected bool[] P00012_nrelname ;
    }
 
    public class reorg__default : DataStoreHelperBase, IDataStoreHelper
@@ -332,8 +470,6 @@ namespace GeneXus.Programs {
          cursorDefinitions();
          return new Cursor[] {
           new ForEachCursor(def[0])
-         ,new ForEachCursor(def[1])
-         ,new ForEachCursor(def[2])
        };
     }
 
@@ -344,20 +480,12 @@ namespace GeneXus.Programs {
        {
           Object[] prmP00012;
           prmP00012 = new Object[] {
-          };
-          Object[] prmP00023;
-          prmP00023 = new Object[] {
-          };
-          Object[] prmP00034;
-          prmP00034 = new Object[] {
           new ParDef("sTableName",GXType.Char,255,0) ,
           new ParDef("sMySchemaName",GXType.Char,255,0) ,
           new ParDef("sMyColumnName",GXType.Char,255,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P00012", "SELECT COUNT(*) FROM Trn_Organisation ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00012,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P00023", "SELECT COUNT(*) FROM Trn_AppNotification ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00023,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P00034", "SELECT T.TABLENAME, T.TABLEOWNER, T1.ATTNAME, T1.ATTRELID, T2.OID, T2.RELNAME FROM PG_TABLES T, PG_ATTRIBUTE T1, PG_CLASS T2 WHERE (UPPER(T.TABLENAME) = ( UPPER(:sTableName))) AND (UPPER(T.TABLEOWNER) = ( UPPER(:sMySchemaName))) AND (UPPER(T1.ATTNAME) = ( UPPER(:sMyColumnName))) AND (T2.OID = ( T1.ATTRELID)) AND (T2.RELNAME = ( T.TABLENAME)) ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00034,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P00012", "SELECT T.TABLENAME, T.TABLEOWNER, T1.ATTNAME, T1.ATTRELID, T2.OID, T2.RELNAME FROM PG_TABLES T, PG_ATTRIBUTE T1, PG_CLASS T2 WHERE (UPPER(T.TABLENAME) = ( UPPER(:sTableName))) AND (UPPER(T.TABLEOWNER) = ( UPPER(:sMySchemaName))) AND (UPPER(T1.ATTNAME) = ( UPPER(:sMyColumnName))) AND (T2.OID = ( T1.ATTRELID)) AND (T2.RELNAME = ( T.TABLENAME)) ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00012,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }
@@ -369,12 +497,6 @@ namespace GeneXus.Programs {
        switch ( cursor )
        {
              case 0 :
-                ((int[]) buf[0])[0] = rslt.getInt(1);
-                return;
-             case 1 :
-                ((int[]) buf[0])[0] = rslt.getInt(1);
-                return;
-             case 2 :
                 ((string[]) buf[0])[0] = rslt.getVarchar(1);
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
                 ((string[]) buf[2])[0] = rslt.getVarchar(3);
