@@ -124,7 +124,13 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         new prc_logtofile(context ).execute(  AV11PageGJSJson) ;
+         AV28ReservedPageNameCollection.FromJSonString(context.GetMessage( "[\"Home\",\"Reception\",\"Calendar\",\"My Activity\",\"Location\"]", ""), null);
+         if ( (AV28ReservedPageNameCollection.IndexOf(StringUtil.RTrim( AV18PageName))>0) )
+         {
+            AV27Error.gxTpr_Message = context.GetMessage( "Reserved page name", "");
+            cleanup();
+            if (true) return;
+         }
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
             AV27Error.gxTpr_Status = context.GetMessage( "Error", "");
@@ -162,13 +168,13 @@ namespace GeneXus.Programs {
                }
                else
                {
-                  AV29GXV2 = 1;
-                  AV28GXV1 = AV9BC_Trn_Page.GetMessages();
-                  while ( AV29GXV2 <= AV28GXV1.Count )
+                  AV30GXV2 = 1;
+                  AV29GXV1 = AV9BC_Trn_Page.GetMessages();
+                  while ( AV30GXV2 <= AV29GXV1.Count )
                   {
-                     AV14Message = ((GeneXus.Utils.SdtMessages_Message)AV28GXV1.Item(AV29GXV2));
+                     AV14Message = ((GeneXus.Utils.SdtMessages_Message)AV29GXV1.Item(AV30GXV2));
                      new prc_logtofile(context ).execute(  AV14Message.gxTpr_Description) ;
-                     AV29GXV2 = (int)(AV29GXV2+1);
+                     AV30GXV2 = (int)(AV30GXV2+1);
                   }
                }
             }
@@ -194,11 +200,12 @@ namespace GeneXus.Programs {
       {
          AV10Response = "";
          AV27Error = new SdtSDT_Error(context);
+         AV28ReservedPageNameCollection = new GxSimpleCollection<string>();
          AV9BC_Trn_Page = new SdtTrn_Page(context);
          AV24Title = "";
          AV25NotificationMessage = "";
          AV23Metadata = new SdtSDT_OneSignalCustomData(context);
-         AV28GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV29GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV14Message = new GeneXus.Utils.SdtMessages_Message(context);
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_updatepage__datastore1(),
             new Object[][] {
@@ -215,7 +222,7 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV29GXV2 ;
+      private int AV30GXV2 ;
       private bool AV17PageIsPublished ;
       private bool AV22IsNotifyResidents ;
       private string AV12PageJsonContent ;
@@ -237,10 +244,11 @@ namespace GeneXus.Programs {
       private bool aP5_PageIsPublished ;
       private bool aP6_IsNotifyResidents ;
       private SdtSDT_Error AV27Error ;
+      private GxSimpleCollection<string> AV28ReservedPageNameCollection ;
       private SdtTrn_Page AV9BC_Trn_Page ;
       private IDataStoreProvider pr_default ;
       private SdtSDT_OneSignalCustomData AV23Metadata ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV28GXV1 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV29GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV14Message ;
       private string aP7_Response ;
       private SdtSDT_Error aP8_Error ;

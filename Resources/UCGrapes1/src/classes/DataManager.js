@@ -78,7 +78,6 @@ class DataManager {
   }
 
   async updatePage(data) {
-    console.log('data',data)
     return await this.fetchAPI('/api/toolbox/update-page', {
       method: 'POST',
       body: JSON.stringify(data),

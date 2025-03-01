@@ -449,12 +449,13 @@ class MappingComponent {
 
         if (input.value) {
           page.PageName = input.value
-          console.log(page)
           this.dataManager.updatePage(page).then(res => {
             if(res.result) {
               this.toolBoxManager.ui.displayAlertMessage(res.result, "success");
               formPopup.closePopup()
               this.init()
+            }else{
+              this.toolBoxManager.ui.displayAlertMessage(res.error.Message, "error");
             }
           })
         }else{

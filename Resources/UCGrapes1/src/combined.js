@@ -359,7 +359,6 @@ class DataManager {
   }
 
   async updatePage(data) {
-    console.log('data',data)
     return await this.fetchAPI('/api/toolbox/update-page', {
       method: 'POST',
       body: JSON.stringify(data),
@@ -574,7 +573,6 @@ class ToolBoxManager {
       const pageDataList = this.preparePageDataList(editors);
 
       if (pageDataList.length) {
-        console.log('pages to publish', pageDataList.find(page => page.PageName === 'Home'));
         this.sendPageUpdateRequest(pageDataList, isNotifyResidents);
       }
     }
@@ -635,7 +633,6 @@ class ToolBoxManager {
     );
 
     if (pageId) {
-      console.log('auto save', editor.getProjectData())
       const data = {
         PageId: pageId,
         PageName: page.PageName,
@@ -647,8 +644,6 @@ class ToolBoxManager {
         if (this.checkIfNotAuthenticated(res)) {
           return;
         }
-
-        console.log("Page saved successfully", res);
 
         this.dataManager.getPages().then((pages) => {
           this.editorManager.pages = pages.SDT_PageCollection;
@@ -1437,7 +1432,6 @@ class EditorEventManager {
   constructor(editorManager, templateManager) {
     this.editorManager = editorManager;
     this.templateManager = templateManager;
-    
   }
 
   addEditorEventListeners(editor, page) {
@@ -1456,13 +1450,15 @@ class EditorEventManager {
   }
 
   editorOnLoad(editor) {
-    editor.on("load", () => this.handleEditorLoad(editor));
+    editor.on("load", () => {
+      this.handleEditorLoad(editor);
+      this.updateEditorAfterLoad(editor);
+    });
   }
 
   handleEditorLoad(editor) {
     this.loadTheme();
     const wrapper = editor.getWrapper();
-    this.updateEditorAfterLoad(editor);
     this.editorManager.toolsSection.currentLanguage.translateTilesTitles(
       editor
     );
@@ -1501,20 +1497,36 @@ class EditorEventManager {
 
     const templateBlocks =
       editor.DomComponents.getWrapper().find(".template-block");
+
     templateBlocks.forEach((block) => {
       const isPriority = block.getClasses()?.includes("high-priority-template");
       const screenWidth = window.innerWidth;
 
+      const parent = block.closest(".container-row");
+
+      const siblingBlocks = parent.find(".template-block").length;
+      const isAloneInParent = siblingBlocks === 1;
+
       const blockHeight =
         screenWidth <= 1440
-          ? isPriority
+          ? isPriority && isAloneInParent
             ? "6.0rem"
             : "4.5em"
-          : isPriority
+          : isPriority && isAloneInParent
           ? "7rem"
           : "5rem";
-      block.addStyle({
-        height: blockHeight,
+
+      const currentStyles = block.getStyle();
+
+      if (currentStyles["height"]) {
+        delete currentStyles["height"];
+      }
+      
+      delete currentStyles["textTransform"];
+
+      block.setStyle({
+        ...currentStyles,
+        height: blockHeight+" !important",
       });
     });
   }
@@ -1682,7 +1694,7 @@ class EditorEventManager {
 
     this.updateUIState();
 
-    this.activateOpacitySlider(this.editorManager.selectedComponent)
+    this.activateOpacitySlider(this.editorManager.selectedComponent);
   }
 
   activateOpacitySlider(selectedComponent) {
@@ -1692,7 +1704,9 @@ class EditorEventManager {
       opacityEl.style.display = "flex";
       const opacityInput = opacityEl.querySelector("#bg-opacity");
       opacityInput.disabled = false;
-      this.editorManager.toolsSection.ui.updateTileOpacityProperties(selectedComponent);
+      this.editorManager.toolsSection.ui.updateTileOpacityProperties(
+        selectedComponent
+      );
     } else {
       opacityEl.style.display = "none";
     }
@@ -1826,6 +1840,7 @@ class TemplateManager {
       hoverable: false,
     };
     this.templateUpdate = new TemplateUpdate(this);
+    this.screenWidth = window.innerWidth;
   }
 
   createTemplateHTML(isDefault = false) {
@@ -1842,7 +1857,7 @@ class TemplateManager {
                   data-gjs-resizable="false"
                   data-gjs-hoverable="false">
               <div class="template-block"
-                style="background-color:${tileBgColor}; color:#333333; height:100%"
+                style="background-color:${tileBgColor}; color:#333333; height: ${this.screenWidth <= 1440 ? "4.5rem" : "5rem"}"
                 tile-bgcolor="${tileBgColor}"
                 tile-bgcolor-name=""
                 ${defaultTileAttrs} 
@@ -2065,7 +2080,7 @@ class TemplateManager {
 
       wrappers += `
                 <div class="template-wrapper"
-                          style="flex: 0 0 ${columnWidth}%); background: ${tileBgColor}; color:#333333"
+                          style="flex: 0 0 ${columnWidth}%); background: ${tileBgColor}; color:#333333; height: ${this.screenWidth <= 1440 ? "4.5rem" : "5rem"}"
                           data-gjs-type="tile-wrapper"
                           data-gjs-selectable="false"
                           data-gjs-droppable="false">
@@ -2681,9 +2696,12 @@ class TemplateUpdate {
           ? "7rem"
           : "5rem";
 
+      const previousStyles = template.getStyle();
+      delete previousStyles["height"];
+
       const templateStyles = {
         ...styleConfig.template,
-        height: templateHeight,
+        height: templateHeight + "!important",
         "text-transform":
           isPriority && isTemplateOne ? "uppercase" : "capitalize",
       };
@@ -2743,7 +2761,8 @@ class EventListenerManager {
 
       toolsSection.style.display =
         toolsSection.style.display === "none" ? "block" : "none";
-
+        
+      
       mappingSection.style.display =
         mappingSection.style.display === "block" ? "none" : "block";
 
@@ -5864,6 +5883,9 @@ class MappingComponent {
               this.toolBoxManager.ui.displayAlertMessage(res.result, "success");
               formPopup.closePopup()
               this.init()
+            }else{
+              console.log(res)
+              this.toolBoxManager.ui.displayAlertMessage(res.error.Message, "error");
             }
           })
         }else{

@@ -121,7 +121,7 @@ class ToolBoxManager {
 
         pageDataList.push(data);
       });
-      
+
       if (pageDataList.length) {
         const payload = {
           IsNotifyResidents: isNotifyResidents, // Universal field
