@@ -153,13 +153,13 @@ namespace GeneXus.Programs {
          obj = new SdtTrn_ProductService(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
-         obj = new SdtTrn_Theme(context);
-         trn = obj.getTransaction();
-         result = trn.Reindex();
          obj = new SdtTrn_Page(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
          obj = new SdtTrn_CallToAction(context);
+         trn = obj.getTransaction();
+         result = trn.Reindex();
+         obj = new SdtTrn_Theme(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
          return 1 ;
