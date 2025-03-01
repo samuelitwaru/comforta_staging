@@ -200,6 +200,7 @@ class EditorEventManager {
               console.log(res)
               if (!res) {
                 tileComponent.addAttributes({ "tile-bg-image-url": "" });
+                tileComponent.addStyle({"background-image": ""});
               }
             })
           }
