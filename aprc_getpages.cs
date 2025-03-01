@@ -113,7 +113,6 @@ namespace GeneXus.Programs {
          GXt_guid1 = AV16OrganisationId;
          new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
          AV16OrganisationId = GXt_guid1;
-         new prc_initlocationpages(context ).execute(  AV15LocationId,  AV16OrganisationId) ;
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
             AV18Error.gxTpr_Status = context.GetMessage( "Error", "");

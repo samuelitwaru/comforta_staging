@@ -124,13 +124,6 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV28ReservedPageNameCollection.FromJSonString(context.GetMessage( "[\"Home\",\"Reception\",\"Calendar\",\"My Activity\",\"Location\"]", ""), null);
-         if ( (AV28ReservedPageNameCollection.IndexOf(StringUtil.RTrim( AV18PageName))>0) )
-         {
-            AV27Error.gxTpr_Message = context.GetMessage( "Reserved page name", "");
-            cleanup();
-            if (true) return;
-         }
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
             AV27Error.gxTpr_Status = context.GetMessage( "Error", "");
@@ -200,7 +193,6 @@ namespace GeneXus.Programs {
       {
          AV10Response = "";
          AV27Error = new SdtSDT_Error(context);
-         AV28ReservedPageNameCollection = new GxSimpleCollection<string>();
          AV9BC_Trn_Page = new SdtTrn_Page(context);
          AV24Title = "";
          AV25NotificationMessage = "";
@@ -244,7 +236,6 @@ namespace GeneXus.Programs {
       private bool aP5_PageIsPublished ;
       private bool aP6_IsNotifyResidents ;
       private SdtSDT_Error AV27Error ;
-      private GxSimpleCollection<string> AV28ReservedPageNameCollection ;
       private SdtTrn_Page AV9BC_Trn_Page ;
       private IDataStoreProvider pr_default ;
       private SdtSDT_OneSignalCustomData AV23Metadata ;
