@@ -511,15 +511,15 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, divTableheader_Internalname, 1, 0, "px", 0, "px", "Flex", "start", "top", " "+"data-gx-flex"+" ", "flex-direction:column;", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;align-self:stretch;", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, divTableheadercontent_Internalname, 1, 0, "px", 0, "px", "Flex", "start", "top", " "+"data-gx-flex"+" ", "flex-wrap:wrap;", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;align-self:flex-end;", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, divTableactions_Internalname, 1, 0, "px", 0, "px", "Flex", "start", "top", " "+"data-gx-flex"+" ", "", "div");
+            GxWebStd.gx_div_start( context, divTableactions_Internalname, 1, 0, "px", 0, "px", "Flex", "start", "top", " "+"data-gx-flex"+" ", "justify-content:flex-end;", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;align-self:flex-start;", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
@@ -532,7 +532,7 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "align-self:flex-start;", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group ActionGroup", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
             /* Div Control */
@@ -575,24 +575,18 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "align-self:center;", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;align-self:flex-start;", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, divTablerightheader_Internalname, 1, 0, "px", 0, "px", "Flex", "start", "top", " "+"data-gx-flex"+" ", "", "div");
+            GxWebStd.gx_div_start( context, divTablerightheader_Internalname, 1, 0, "px", 0, "px", "Flex", "start", "top", " "+"data-gx-flex"+" ", "flex-direction:column;justify-content:flex-end;align-items:flex-start;", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;align-self:center;", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, divTablefilters_Internalname, 1, 0, "px", 0, "px", "TableFilters", "start", "top", " "+"data-gx-flex"+" ", "", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;align-self:flex-end;", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
             GxWebStd.gx_label_element( context, edtavSearchkey_Internalname, context.GetMessage( "Search Key", ""), "gx-form-item AttributeLabel", 0, true, "width: 25%;");
             /* Single line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 35,'',false,'',0)\"";
-            GxWebStd.gx_single_line_edit( context, edtavSearchkey_Internalname, AV41SearchKey, StringUtil.RTrim( context.localUtil.Format( AV41SearchKey, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,35);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", context.GetMessage( "WWP_Search", ""), edtavSearchkey_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSearchkey_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_NotificationDashboard.htm");
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 33,'',false,'',0)\"";
+            GxWebStd.gx_single_line_edit( context, edtavSearchkey_Internalname, AV41SearchKey, StringUtil.RTrim( context.localUtil.Format( AV41SearchKey, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,33);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", context.GetMessage( "WWP_Search", ""), edtavSearchkey_Jsonclick, 0, "Attribute", "", "", "", "", 1, edtavSearchkey_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_WP_NotificationDashboard.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -638,16 +632,16 @@ namespace GeneXus.Programs {
             if ( ! isFullAjaxMode( ) )
             {
                /* WebComponent */
-               GxWebStd.gx_hidden_field( context, "W0049"+"", StringUtil.RTrim( WebComp_Wcwc_notificationgrouping_Component));
+               GxWebStd.gx_hidden_field( context, "W0047"+"", StringUtil.RTrim( WebComp_Wcwc_notificationgrouping_Component));
                context.WriteHtmlText( "<div") ;
                GxWebStd.ClassAttribute( context, "gxwebcomponent");
-               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0049"+""+"\""+"") ;
+               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0047"+""+"\""+"") ;
                context.WriteHtmlText( ">") ;
                if ( StringUtil.Len( WebComp_Wcwc_notificationgrouping_Component) != 0 )
                {
                   if ( StringUtil.StrCmp(StringUtil.Lower( OldWcwc_notificationgrouping), StringUtil.Lower( WebComp_Wcwc_notificationgrouping_Component)) != 0 )
                   {
-                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0049"+"");
+                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0047"+"");
                   }
                   WebComp_Wcwc_notificationgrouping.componentdraw();
                   if ( StringUtil.StrCmp(StringUtil.Lower( OldWcwc_notificationgrouping), StringUtil.Lower( WebComp_Wcwc_notificationgrouping_Component)) != 0 )
@@ -675,16 +669,16 @@ namespace GeneXus.Programs {
             if ( ! isFullAjaxMode( ) )
             {
                /* WebComponent */
-               GxWebStd.gx_hidden_field( context, "W0055"+"", StringUtil.RTrim( WebComp_Wcwc_notificationfilteredlist_Component));
+               GxWebStd.gx_hidden_field( context, "W0053"+"", StringUtil.RTrim( WebComp_Wcwc_notificationfilteredlist_Component));
                context.WriteHtmlText( "<div") ;
                GxWebStd.ClassAttribute( context, "gxwebcomponent");
-               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0055"+""+"\""+"") ;
+               context.WriteHtmlText( " id=\""+"gxHTMLWrpW0053"+""+"\""+"") ;
                context.WriteHtmlText( ">") ;
                if ( StringUtil.Len( WebComp_Wcwc_notificationfilteredlist_Component) != 0 )
                {
                   if ( StringUtil.StrCmp(StringUtil.Lower( OldWcwc_notificationfilteredlist), StringUtil.Lower( WebComp_Wcwc_notificationfilteredlist_Component)) != 0 )
                   {
-                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0055"+"");
+                     context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0053"+"");
                   }
                   WebComp_Wcwc_notificationfilteredlist.componentdraw();
                   if ( StringUtil.StrCmp(StringUtil.Lower( OldWcwc_notificationfilteredlist), StringUtil.Lower( WebComp_Wcwc_notificationfilteredlist_Component)) != 0 )
@@ -868,9 +862,9 @@ namespace GeneXus.Programs {
                         sEvtType = StringUtil.Left( sEvt, 4);
                         sEvt = StringUtil.Right( sEvt, (short)(StringUtil.Len( sEvt)-4));
                         nCmpId = (short)(Math.Round(NumberUtil.Val( sEvtType, "."), 18, MidpointRounding.ToEven));
-                        if ( nCmpId == 49 )
+                        if ( nCmpId == 47 )
                         {
-                           OldWcwc_notificationgrouping = cgiGet( "W0049");
+                           OldWcwc_notificationgrouping = cgiGet( "W0047");
                            if ( ( StringUtil.Len( OldWcwc_notificationgrouping) == 0 ) || ( StringUtil.StrCmp(OldWcwc_notificationgrouping, WebComp_Wcwc_notificationgrouping_Component) != 0 ) )
                            {
                               WebComp_Wcwc_notificationgrouping = getWebComponent(GetType(), "GeneXus.Programs", OldWcwc_notificationgrouping, new Object[] {context} );
@@ -880,13 +874,13 @@ namespace GeneXus.Programs {
                            }
                            if ( StringUtil.Len( WebComp_Wcwc_notificationgrouping_Component) != 0 )
                            {
-                              WebComp_Wcwc_notificationgrouping.componentprocess("W0049", "", sEvt);
+                              WebComp_Wcwc_notificationgrouping.componentprocess("W0047", "", sEvt);
                            }
                            WebComp_Wcwc_notificationgrouping_Component = OldWcwc_notificationgrouping;
                         }
-                        else if ( nCmpId == 55 )
+                        else if ( nCmpId == 53 )
                         {
-                           OldWcwc_notificationfilteredlist = cgiGet( "W0055");
+                           OldWcwc_notificationfilteredlist = cgiGet( "W0053");
                            if ( ( StringUtil.Len( OldWcwc_notificationfilteredlist) == 0 ) || ( StringUtil.StrCmp(OldWcwc_notificationfilteredlist, WebComp_Wcwc_notificationfilteredlist_Component) != 0 ) )
                            {
                               WebComp_Wcwc_notificationfilteredlist = getWebComponent(GetType(), "GeneXus.Programs", OldWcwc_notificationfilteredlist, new Object[] {context} );
@@ -896,7 +890,7 @@ namespace GeneXus.Programs {
                            }
                            if ( StringUtil.Len( WebComp_Wcwc_notificationfilteredlist_Component) != 0 )
                            {
-                              WebComp_Wcwc_notificationfilteredlist.componentprocess("W0055", "", sEvt);
+                              WebComp_Wcwc_notificationfilteredlist.componentprocess("W0053", "", sEvt);
                            }
                            WebComp_Wcwc_notificationfilteredlist_Component = OldWcwc_notificationfilteredlist;
                         }
@@ -1145,7 +1139,7 @@ namespace GeneXus.Programs {
          if ( StringUtil.Len( WebComp_Wcwc_notificationfilteredlist_Component) != 0 )
          {
             WebComp_Wcwc_notificationfilteredlist.setjustcreated();
-            WebComp_Wcwc_notificationfilteredlist.componentprepare(new Object[] {(string)"W0055",(string)"",(GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>)AV25WWP_SDTNotificationsData});
+            WebComp_Wcwc_notificationfilteredlist.componentprepare(new Object[] {(string)"W0053",(string)"",(GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>)AV25WWP_SDTNotificationsData});
             WebComp_Wcwc_notificationfilteredlist.componentbind(new Object[] {(string)""});
          }
          /* Object Property */
@@ -1163,7 +1157,7 @@ namespace GeneXus.Programs {
          if ( StringUtil.Len( WebComp_Wcwc_notificationgrouping_Component) != 0 )
          {
             WebComp_Wcwc_notificationgrouping.setjustcreated();
-            WebComp_Wcwc_notificationgrouping.componentprepare(new Object[] {(string)"W0049",(string)""});
+            WebComp_Wcwc_notificationgrouping.componentprepare(new Object[] {(string)"W0047",(string)""});
             WebComp_Wcwc_notificationgrouping.componentbind(new Object[] {});
          }
          /* Execute user subroutine: 'SETACTIVEFILTER' */
@@ -1390,7 +1384,7 @@ namespace GeneXus.Programs {
             else
             {
                AV32isFilterByRead = false;
-               context.DoAjaxRefreshCmp("W0049"+"");
+               context.DoAjaxRefreshCmp("W0047"+"");
             }
             /* Execute user subroutine: 'ATTRIBUTESSECURITYCODE' */
             S122 ();
@@ -1533,12 +1527,12 @@ namespace GeneXus.Programs {
             if ( StringUtil.Len( WebComp_Wcwc_notificationfilteredlist_Component) != 0 )
             {
                WebComp_Wcwc_notificationfilteredlist.setjustcreated();
-               WebComp_Wcwc_notificationfilteredlist.componentprepare(new Object[] {(string)"W0055",(string)"",(GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>)AV46DataOfNotifications});
+               WebComp_Wcwc_notificationfilteredlist.componentprepare(new Object[] {(string)"W0053",(string)"",(GXBaseCollection<GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationsData_WWP_SDTNotificationsDataItem>)AV46DataOfNotifications});
                WebComp_Wcwc_notificationfilteredlist.componentbind(new Object[] {(string)""});
             }
             if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wcwc_notificationfilteredlist )
             {
-               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0055"+"");
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0053"+"");
                WebComp_Wcwc_notificationfilteredlist.componentdraw();
                context.httpAjaxContext.ajax_rspEndCmp();
             }
@@ -1608,7 +1602,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522112322436", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522813103465", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1624,7 +1618,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_notificationdashboard.js", "?202522112322437", false, true);
+         context.AddJavascriptSource("wp_notificationdashboard.js", "?202522813103465", false, true);
          /* End function include_jscripts */
       }
 
@@ -1647,7 +1641,6 @@ namespace GeneXus.Programs {
          bttBtnfilterbyagenda_Internalname = "BTNFILTERBYAGENDA";
          bttBtnclearfilters_Internalname = "BTNCLEARFILTERS";
          divTableactions_Internalname = "TABLEACTIONS";
-         divTablefilters_Internalname = "TABLEFILTERS";
          edtavSearchkey_Internalname = "vSEARCHKEY";
          divTablerightheader_Internalname = "TABLERIGHTHEADER";
          divTableheadercontent_Internalname = "TABLEHEADERCONTENT";
@@ -1823,7 +1816,6 @@ namespace GeneXus.Programs {
       private string bttBtnclearfilters_Internalname ;
       private string bttBtnclearfilters_Jsonclick ;
       private string divTablerightheader_Internalname ;
-      private string divTablefilters_Internalname ;
       private string edtavSearchkey_Internalname ;
       private string edtavSearchkey_Jsonclick ;
       private string divAdvancedfilterscontainer_Internalname ;

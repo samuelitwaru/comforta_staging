@@ -77,7 +77,7 @@ namespace GeneXus.Programs
 
 		[SoapElement(ElementName="FormId")]
 		[XmlElement(ElementName="FormId")]
-		public Guid gxTpr_Formid
+		public short gxTpr_Formid
 		{
 			get {
 				return gxTv_SdtSDT_DynamicForms_Formid; 
@@ -154,7 +154,7 @@ namespace GeneXus.Programs
 
 		#region Declaration
 
-		protected Guid gxTv_SdtSDT_DynamicForms_Formid;
+		protected short gxTv_SdtSDT_DynamicForms_Formid;
 		 
 
 		protected string gxTv_SdtSDT_DynamicForms_Referencename;
@@ -181,7 +181,7 @@ namespace GeneXus.Programs
 
 		#region Rest Properties
 		[DataMember(Name="FormId", Order=0)]
-		public Guid gxTpr_Formid
+		public short gxTpr_Formid
 		{
 			get { 
 				return sdt.gxTpr_Formid;

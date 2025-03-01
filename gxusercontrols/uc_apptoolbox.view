@@ -83,7 +83,7 @@
                            </i>
                            </span>
                            </button>
-                           <div class="slider-wrapper">
+                           <div class="slider-wrapper" id="slider-wrapper">
 					<input 
 						type="range" 
 						id="bg-opacity"
@@ -91,6 +91,7 @@
 						max="100" 
 						value="80"
 						oninput="document.getElementById('valueDisplay').textContent = this.value + ' %'"
+						disabled
 					>
 						<span class="value-display" id="valueDisplay">0 %</span>
 				    </div>
@@ -144,7 +145,6 @@
                         </button>
                      </div>
                      <div id="icons-list" class="icons-list">
-                     </div>
                   </div>
                </div>
                <div class="sidebar-section content-page-section" id="content-page-section"

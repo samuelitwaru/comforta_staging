@@ -283,7 +283,7 @@ namespace GeneXus.Programs {
             AnyError = 1;
          }
          pr_default.close(2);
-         if ( ( StringUtil.StrCmp(A318Trn_PageName, context.GetMessage( "Home", "")) == 0 ) && new prc_islocationhomepagecreated(context).executeUdp( ) )
+         if ( ( StringUtil.StrCmp(A318Trn_PageName, context.GetMessage( "Home", "")) == 0 ) && new prc_islocationhomepagecreated(context).executeUdp( ) && IsIns( )  )
          {
             GX_msglist.addItem(context.GetMessage( "Reserved page name.", ""), 1, "");
             AnyError = 1;
@@ -602,7 +602,15 @@ namespace GeneXus.Programs {
       protected void OnDeleteControls17100( )
       {
          standaloneModal( ) ;
-         /* No delete mode formulas found. */
+         if ( AnyError == 0 )
+         {
+            /* Delete mode formulas */
+            if ( ( StringUtil.StrCmp(A318Trn_PageName, context.GetMessage( "Home", "")) == 0 ) && new prc_islocationhomepagecreated(context).executeUdp( ) && IsIns( )  )
+            {
+               GX_msglist.addItem(context.GetMessage( "Reserved page name.", ""), 1, "");
+               AnyError = 1;
+            }
+         }
       }
 
       protected void EndLevel17100( )

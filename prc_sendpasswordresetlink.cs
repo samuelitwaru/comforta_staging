@@ -108,7 +108,7 @@ namespace GeneXus.Programs {
                   AV33Button_Text = "Reset Password";
                   AV35Expiration_Message = "Please note that the link expires in 2 hours.";
                   AV36FollowUp_Message = "Once you have reset your password, you can login into the platform once again.";
-                  AV37Footer_Message = "Many thanks and kind regards";
+                  AV37Footer_Message = "All the best!";
                   AV32MailTemplateBody = StringUtil.StringReplace( AV32MailTemplateBody, "[DEAR_USERNAME]", AV34Dear_Username);
                   AV32MailTemplateBody = StringUtil.StringReplace( AV32MailTemplateBody, "[WELCOME_MESSAGE]", AV40Welcome_message);
                   AV32MailTemplateBody = StringUtil.StringReplace( AV32MailTemplateBody, "[INSTRUCTION_MESSAGE]", AV38Instruction_Message);

@@ -124,6 +124,7 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
+         new prc_logtofile(context ).execute(  AV11PageGJSJson) ;
          if ( ! new prc_isauthenticated(context).executeUdp( ) )
          {
             AV27Error.gxTpr_Status = context.GetMessage( "Error", "");

@@ -1913,7 +1913,7 @@ namespace GeneXus.Programs {
             }
          }
          pr_default.close(3);
-         if ( ( StringUtil.StrCmp(A318Trn_PageName, context.GetMessage( "Home", "")) == 0 ) && new prc_islocationhomepagecreated(context).executeUdp( ) )
+         if ( ( StringUtil.StrCmp(A318Trn_PageName, context.GetMessage( "Home", "")) == 0 ) && new prc_islocationhomepagecreated(context).executeUdp( ) && IsIns( )  )
          {
             GX_msglist.addItem(context.GetMessage( "Reserved page name.", ""), 1, "TRN_PAGENAME");
             AnyError = 1;
@@ -2508,7 +2508,17 @@ namespace GeneXus.Programs {
       protected void OnDeleteControls17100( )
       {
          standaloneModal( ) ;
-         /* No delete mode formulas found. */
+         if ( AnyError == 0 )
+         {
+            /* Delete mode formulas */
+            if ( ( StringUtil.StrCmp(A318Trn_PageName, context.GetMessage( "Home", "")) == 0 ) && new prc_islocationhomepagecreated(context).executeUdp( ) && IsIns( )  )
+            {
+               GX_msglist.addItem(context.GetMessage( "Reserved page name.", ""), 1, "TRN_PAGENAME");
+               AnyError = 1;
+               GX_FocusControl = edtTrn_PageName_Internalname;
+               AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
+            }
+         }
       }
 
       protected void EndLevel17100( )
@@ -3035,7 +3045,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522714301767", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531854379", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3051,7 +3061,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_page.js", "?202522714301769", false, true);
+         context.AddJavascriptSource("trn_page.js", "?202531854381", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3316,7 +3326,7 @@ namespace GeneXus.Programs {
             AnyError = 1;
             GX_FocusControl = edtTrn_PageName_Internalname;
          }
-         if ( ( StringUtil.StrCmp(A318Trn_PageName, context.GetMessage( "Home", "")) == 0 ) && new prc_islocationhomepagecreated(context).executeUdp( ) )
+         if ( ( StringUtil.StrCmp(A318Trn_PageName, context.GetMessage( "Home", "")) == 0 ) && new prc_islocationhomepagecreated(context).executeUdp( ) && IsIns( )  )
          {
             GX_msglist.addItem(context.GetMessage( "Reserved page name.", ""), 1, "TRN_PAGENAME");
             AnyError = 1;
@@ -3375,7 +3385,7 @@ namespace GeneXus.Programs {
          setEventMetadata("COMBO_LOCATIONID.ONOPTIONCLICKED",""","oparms":[{"av":"AV25ComboLocationId","fld":"vCOMBOLOCATIONID"},{"av":"AV30ComboProductServiceId","fld":"vCOMBOPRODUCTSERVICEID"},{"av":"Combo_productserviceid_Selectedvalue_set","ctrl":"COMBO_PRODUCTSERVICEID","prop":"SelectedValue_set"},{"av":"Combo_productserviceid_Selectedtext_set","ctrl":"COMBO_PRODUCTSERVICEID","prop":"SelectedText_set"},{"av":"A434PageIsPublished","fld":"PAGEISPUBLISHED"}]}""");
          setEventMetadata("VALID_TRN_PAGEID","""{"handler":"Valid_Trn_pageid","iparms":[{"av":"A434PageIsPublished","fld":"PAGEISPUBLISHED"}]""");
          setEventMetadata("VALID_TRN_PAGEID",""","oparms":[{"av":"A434PageIsPublished","fld":"PAGEISPUBLISHED"}]}""");
-         setEventMetadata("VALID_TRN_PAGENAME","""{"handler":"Valid_Trn_pagename","iparms":[{"av":"A318Trn_PageName","fld":"TRN_PAGENAME"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A434PageIsPublished","fld":"PAGEISPUBLISHED"}]""");
+         setEventMetadata("VALID_TRN_PAGENAME","""{"handler":"Valid_Trn_pagename","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"A318Trn_PageName","fld":"TRN_PAGENAME"},{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A434PageIsPublished","fld":"PAGEISPUBLISHED"}]""");
          setEventMetadata("VALID_TRN_PAGENAME",""","oparms":[{"av":"A434PageIsPublished","fld":"PAGEISPUBLISHED"}]}""");
          setEventMetadata("VALID_LOCATIONID","""{"handler":"Valid_Locationid","iparms":[{"av":"A434PageIsPublished","fld":"PAGEISPUBLISHED"}]""");
          setEventMetadata("VALID_LOCATIONID",""","oparms":[{"av":"A434PageIsPublished","fld":"PAGEISPUBLISHED"}]}""");

@@ -36,6 +36,7 @@ class ToolBoxManager {
       await this.initializeManagers();
       await this.setupComponents();
       this.setupEventListeners();
+      console.log("Toolbox initialized successfully", this.themes);
     } catch (error) {
       console.error("Failed to initialize toolbox:", error);
     }
@@ -107,6 +108,7 @@ class ToolBoxManager {
       const pageDataList = this.preparePageDataList(editors);
 
       if (pageDataList.length) {
+        console.log('pages to publish', pageDataList.find(page => page.PageName === 'Home'));
         this.sendPageUpdateRequest(pageDataList, isNotifyResidents);
       }
     }
@@ -167,6 +169,7 @@ class ToolBoxManager {
     );
 
     if (pageId) {
+      console.log('auto save', editor.getProjectData())
       const data = {
         PageId: pageId,
         PageName: page.PageName,
@@ -178,6 +181,8 @@ class ToolBoxManager {
         if (this.checkIfNotAuthenticated(res)) {
           return;
         }
+
+        console.log("Page saved successfully", res);
 
         this.dataManager.getPages().then((pages) => {
           this.editorManager.pages = pages.SDT_PageCollection;

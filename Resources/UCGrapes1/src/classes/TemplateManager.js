@@ -27,7 +27,7 @@ class TemplateManager {
                   data-gjs-resizable="false"
                   data-gjs-hoverable="false">
               <div class="template-block"
-                style="background-color:${tileBgColor}; color:#333333"
+                style="background-color:${tileBgColor}; color:#333333; height:100%"
                 tile-bgcolor="${tileBgColor}"
                 tile-bgcolor-name=""
                 ${defaultTileAttrs} 
