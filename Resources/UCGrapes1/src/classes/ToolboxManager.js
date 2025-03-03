@@ -247,7 +247,7 @@ class ToolBoxManager {
       );
     }
   }
-
+ 
   checkTileBgImage() {
     if (this.editorManager.selectedTemplateWrapper) {
       const templateBlock = this.editorManager.selectedComponent;
@@ -279,6 +279,7 @@ class ToolBoxManager {
                     this.setAttributeToSelected("tile-bg-image-url", "");
                     this.setAttributeToSelected("tile-bg-image-opacity", 0);
                     this.ui.updateTileOpacityProperties(templateBlock);
+                    this.editorManager.editorEventManager.activateOpacitySlider(templateBlock);
                   };
                 }
               }
@@ -312,6 +313,11 @@ class ToolBoxManager {
         );
 
         const editor = this.editorManager.getCurrentEditor();
+        const titleComponent = editor.getSelected().find(".tile-title")[0];
+        if (titleComponent) {
+          titleComponent.components(service.ProductServiceTileName);
+          titleComponent.addStyle({ display: "block" });
+        }
         const editorId = editor.getConfig().container;
         const editorContainerId = `${editorId}-frame`;
         this.actionList.createContentPage(
