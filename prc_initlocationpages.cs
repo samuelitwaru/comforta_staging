@@ -396,7 +396,7 @@ namespace GeneXus.Programs {
             AV22PageJsonContent = AV15File.ReadAllText("");
             AV18BC_Trn_Page = new SdtTrn_Page(context);
             AV18BC_Trn_Page.gxTpr_Trn_pageid = Guid.NewGuid( );
-            AV18BC_Trn_Page.gxTpr_Trn_pagename = "Mailbox";
+            AV18BC_Trn_Page.gxTpr_Trn_pagename = "My Activity";
             AV18BC_Trn_Page.gxTpr_Pageiscontentpage = true;
             AV18BC_Trn_Page.gxTpr_Pageispredefined = true;
             AV18BC_Trn_Page.gxTpr_Locationid = AV14BC_Trn_Location.gxTpr_Locationid;

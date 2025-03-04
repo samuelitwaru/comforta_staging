@@ -1,6 +1,2 @@
-CREATE TABLE Trn_ContentPageCTA (PageId CHAR(36) NOT NULL , CTAId CHAR(36) NOT NULL , CTALabel smallint NOT NULL , CTAType VARCHAR(100) NOT NULL , CTAAction VARCHAR(200) NOT NULL , PRIMARY KEY(PageId, CTAId));
-
-CREATE TABLE Trn_ContentPage (PageId CHAR(36) NOT NULL , PageName VARCHAR(100) NOT NULL , PageStructure TEXT NOT NULL , PRIMARY KEY(PageId));
-
-ALTER TABLE Trn_ContentPageCTA ADD CONSTRAINT ITRN_CONTENTPAGECTA1 FOREIGN KEY (PageId) REFERENCES Trn_ContentPage (PageId);
+CREATE TABLE Trn_GJSComponent (GJSComponentId CHAR(36) NOT NULL , GJSComponentType VARCHAR(40) NOT NULL , GJSComponentClasses VARCHAR(1000) NOT NULL , GJSComponentContent TEXT NOT NULL , GJSComponentSyle TEXT NOT NULL , GJSComponentAttrbutes smallint NOT NULL , GJSComponentTraits TEXT NOT NULL , GJSComponentSelectable BOOLEAN NOT NULL , GJSComponentDroppable TEXT NOT NULL , GJSComponentCopyable BOOLEAN NOT NULL , GJSComponentEditable BOOLEAN NOT NULL , GJSComponentRemovable BOOLEAN NOT NULL , GJSComponentHighlightable BOOLEAN NOT NULL , GJSComponentHoverable BOOLEAN NOT NULL , PRIMARY KEY(GJSComponentId));
 

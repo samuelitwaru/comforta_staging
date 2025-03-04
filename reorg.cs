@@ -60,13 +60,13 @@ namespace GeneXus.Programs {
          /* Load data into tables. */
       }
 
-      public void CreateTrn_ContentPageCTA( )
+      public void CreateTrn_GJSComponent( )
       {
          string cmdBuffer = "";
-         /* Indices for table Trn_ContentPageCTA */
+         /* Indices for table Trn_GJSComponent */
          try
          {
-            cmdBuffer=" CREATE TABLE Trn_ContentPageCTA (PageId CHAR(36) NOT NULL , CTAId CHAR(36) NOT NULL , CTALabel smallint NOT NULL , CTAType VARCHAR(100) NOT NULL , CTAAction VARCHAR(200) NOT NULL , PRIMARY KEY(PageId, CTAId))  "
+            cmdBuffer=" CREATE TABLE Trn_GJSComponent (GJSComponentId CHAR(36) NOT NULL , GJSComponentType VARCHAR(40) NOT NULL , GJSComponentClasses VARCHAR(1000) NOT NULL , GJSComponentContent TEXT NOT NULL , GJSComponentSyle TEXT NOT NULL , GJSComponentAttrbutes smallint NOT NULL , GJSComponentTraits TEXT NOT NULL , GJSComponentSelectable BOOLEAN NOT NULL , GJSComponentDroppable TEXT NOT NULL , GJSComponentCopyable BOOLEAN NOT NULL , GJSComponentEditable BOOLEAN NOT NULL , GJSComponentRemovable BOOLEAN NOT NULL , GJSComponentHighlightable BOOLEAN NOT NULL , GJSComponentHoverable BOOLEAN NOT NULL , PRIMARY KEY(GJSComponentId))  "
             ;
             RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
             RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
@@ -77,7 +77,7 @@ namespace GeneXus.Programs {
          {
             try
             {
-               cmdBuffer=" DROP TABLE Trn_ContentPageCTA CASCADE "
+               cmdBuffer=" DROP TABLE Trn_GJSComponent CASCADE "
                ;
                RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
                RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
@@ -88,7 +88,7 @@ namespace GeneXus.Programs {
             {
                try
                {
-                  cmdBuffer=" DROP VIEW Trn_ContentPageCTA CASCADE "
+                  cmdBuffer=" DROP VIEW Trn_GJSComponent CASCADE "
                   ;
                   RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
                   RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
@@ -99,7 +99,7 @@ namespace GeneXus.Programs {
                {
                   try
                   {
-                     cmdBuffer=" DROP FUNCTION Trn_ContentPageCTA CASCADE "
+                     cmdBuffer=" DROP FUNCTION Trn_GJSComponent CASCADE "
                      ;
                      RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
                      RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
@@ -111,102 +111,7 @@ namespace GeneXus.Programs {
                   }
                }
             }
-            cmdBuffer=" CREATE TABLE Trn_ContentPageCTA (PageId CHAR(36) NOT NULL , CTAId CHAR(36) NOT NULL , CTALabel smallint NOT NULL , CTAType VARCHAR(100) NOT NULL , CTAAction VARCHAR(200) NOT NULL , PRIMARY KEY(PageId, CTAId))  "
-            ;
-            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
-            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
-            RGZ.ExecuteStmt() ;
-            RGZ.Drop();
-         }
-      }
-
-      public void CreateTrn_ContentPage( )
-      {
-         string cmdBuffer = "";
-         /* Indices for table Trn_ContentPage */
-         try
-         {
-            cmdBuffer=" CREATE TABLE Trn_ContentPage (PageId CHAR(36) NOT NULL , PageName VARCHAR(100) NOT NULL , PageStructure TEXT NOT NULL , PRIMARY KEY(PageId))  "
-            ;
-            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
-            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
-            RGZ.ExecuteStmt() ;
-            RGZ.Drop();
-         }
-         catch
-         {
-            try
-            {
-               cmdBuffer=" DROP TABLE Trn_ContentPage CASCADE "
-               ;
-               RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
-               RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
-               RGZ.ExecuteStmt() ;
-               RGZ.Drop();
-            }
-            catch
-            {
-               try
-               {
-                  cmdBuffer=" DROP VIEW Trn_ContentPage CASCADE "
-                  ;
-                  RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
-                  RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
-                  RGZ.ExecuteStmt() ;
-                  RGZ.Drop();
-               }
-               catch
-               {
-                  try
-                  {
-                     cmdBuffer=" DROP FUNCTION Trn_ContentPage CASCADE "
-                     ;
-                     RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
-                     RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
-                     RGZ.ExecuteStmt() ;
-                     RGZ.Drop();
-                  }
-                  catch
-                  {
-                  }
-               }
-            }
-            cmdBuffer=" CREATE TABLE Trn_ContentPage (PageId CHAR(36) NOT NULL , PageName VARCHAR(100) NOT NULL , PageStructure TEXT NOT NULL , PRIMARY KEY(PageId))  "
-            ;
-            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
-            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
-            RGZ.ExecuteStmt() ;
-            RGZ.Drop();
-         }
-      }
-
-      public void RITrn_ContentPageCTATrn_ContentPage( )
-      {
-         string cmdBuffer;
-         try
-         {
-            cmdBuffer=" ALTER TABLE Trn_ContentPageCTA ADD CONSTRAINT ITRN_CONTENTPAGECTA1 FOREIGN KEY (PageId) REFERENCES Trn_ContentPage (PageId) "
-            ;
-            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
-            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
-            RGZ.ExecuteStmt() ;
-            RGZ.Drop();
-         }
-         catch
-         {
-            try
-            {
-               cmdBuffer=" ALTER TABLE Trn_ContentPageCTA DROP CONSTRAINT ITRN_CONTENTPAGECTA1 "
-               ;
-               RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
-               RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
-               RGZ.ExecuteStmt() ;
-               RGZ.Drop();
-            }
-            catch
-            {
-            }
-            cmdBuffer=" ALTER TABLE Trn_ContentPageCTA ADD CONSTRAINT ITRN_CONTENTPAGECTA1 FOREIGN KEY (PageId) REFERENCES Trn_ContentPage (PageId) "
+            cmdBuffer=" CREATE TABLE Trn_GJSComponent (GJSComponentId CHAR(36) NOT NULL , GJSComponentType VARCHAR(40) NOT NULL , GJSComponentClasses VARCHAR(1000) NOT NULL , GJSComponentContent TEXT NOT NULL , GJSComponentSyle TEXT NOT NULL , GJSComponentAttrbutes smallint NOT NULL , GJSComponentTraits TEXT NOT NULL , GJSComponentSelectable BOOLEAN NOT NULL , GJSComponentDroppable TEXT NOT NULL , GJSComponentCopyable BOOLEAN NOT NULL , GJSComponentEditable BOOLEAN NOT NULL , GJSComponentRemovable BOOLEAN NOT NULL , GJSComponentHighlightable BOOLEAN NOT NULL , GJSComponentHoverable BOOLEAN NOT NULL , PRIMARY KEY(GJSComponentId))  "
             ;
             RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
             RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
@@ -226,14 +131,9 @@ namespace GeneXus.Programs {
             return true ;
          }
          sSchemaVar = GXUtil.UserId( "Server", context, pr_default);
-         if ( tableexist("Trn_ContentPageCTA",sSchemaVar) )
+         if ( tableexist("Trn_GJSComponent",sSchemaVar) )
          {
-            SetCheckError ( GXResourceManager.GetMessage("GXM_table_exist", new   object[]  {"Trn_ContentPageCTA"}) ) ;
-            return false ;
-         }
-         if ( tableexist("Trn_ContentPage",sSchemaVar) )
-         {
-            SetCheckError ( GXResourceManager.GetMessage("GXM_table_exist", new   object[]  {"Trn_ContentPage"}) ) ;
+            SetCheckError ( GXResourceManager.GetMessage("GXM_table_exist", new   object[]  {"Trn_GJSComponent"}) ) ;
             return false ;
          }
          return true ;
@@ -273,13 +173,11 @@ namespace GeneXus.Programs {
 
       private void ExecuteOnlyTablesReorganization( )
       {
-         ReorgExecute.RegisterBlockForSubmit( 1 ,  "CreateTrn_ContentPageCTA" , new Object[]{ });
-         ReorgExecute.RegisterBlockForSubmit( 2 ,  "CreateTrn_ContentPage" , new Object[]{ });
+         ReorgExecute.RegisterBlockForSubmit( 1 ,  "CreateTrn_GJSComponent" , new Object[]{ });
       }
 
       private void ExecuteOnlyRisReorganization( )
       {
-         ReorgExecute.RegisterBlockForSubmit( 3 ,  "RITrn_ContentPageCTATrn_ContentPage" , new Object[]{ });
       }
 
       private void ExecuteTablesReorganization( )
@@ -297,16 +195,11 @@ namespace GeneXus.Programs {
 
       private void SetPrecedencetables( )
       {
-         GXReorganization.SetMsg( 1 ,  GXResourceManager.GetMessage("GXM_filecrea", new   object[]  {"Trn_ContentPageCTA", ""}) );
-         ReorgExecute.RegisterPrecedence( "CreateTrn_ContentPageCTA" ,  "CreateTrn_ContentPage" );
-         GXReorganization.SetMsg( 2 ,  GXResourceManager.GetMessage("GXM_filecrea", new   object[]  {"Trn_ContentPage", ""}) );
+         GXReorganization.SetMsg( 1 ,  GXResourceManager.GetMessage("GXM_filecrea", new   object[]  {"Trn_GJSComponent", ""}) );
       }
 
       private void SetPrecedenceris( )
       {
-         GXReorganization.SetMsg( 3 ,  GXResourceManager.GetMessage("GXM_refintcrea", new   object[]  {"ITRN_CONTENTPAGECTA1"}) );
-         ReorgExecute.RegisterPrecedence( "RITrn_ContentPageCTATrn_ContentPage" ,  "CreateTrn_ContentPageCTA" );
-         ReorgExecute.RegisterPrecedence( "RITrn_ContentPageCTATrn_ContentPage" ,  "CreateTrn_ContentPage" );
       }
 
       private void ExecuteReorganization( )
