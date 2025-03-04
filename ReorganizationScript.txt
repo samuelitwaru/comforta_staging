@@ -1,11 +1,6 @@
-ALTER TABLE Trn_Page ALTER COLUMN Trn_PageId DROP DEFAULT;
-CREATE TABLE GXA0100 (Trn_PageId CHAR(36) NOT NULL , LocationId CHAR(36) NOT NULL , Trn_PageName VARCHAR(100) NOT NULL , PageJsonContent TEXT , PageGJSHtml TEXT , PageGJSJson TEXT , PageIsPublished BOOLEAN , PageIsPredefined BOOLEAN NOT NULL , PageIsContentPage BOOLEAN , PageIsDynamicForm BOOLEAN NOT NULL , PageIsWebLinkPage BOOLEAN NOT NULL , PageChildren TEXT , ProductServiceId CHAR(36) , OrganisationId CHAR(36) NOT NULL );
-CREATE UNIQUE INDEX Trn_PageGXI ON GXA0100 (Trn_PageId ,LocationId );
-Run conversion program for table Trn_Page;
-DROP INDEX Trn_PageGXI;
-ALTER TABLE GXA0100 RENAME TO Trn_Page;
-ALTER TABLE Trn_Page ADD CONSTRAINT Trn_Page_pkey PRIMARY KEY(Trn_PageId, LocationId);
+CREATE TABLE Trn_ContentPageCTA (PageId CHAR(36) NOT NULL , CTAId CHAR(36) NOT NULL , CTALabel smallint NOT NULL , CTAType VARCHAR(100) NOT NULL , CTAAction VARCHAR(200) NOT NULL , PRIMARY KEY(PageId, CTAId));
 
-ALTER TABLE Trn_Page ADD CONSTRAINT GX_002S000B000T FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId);
-ALTER TABLE Trn_Page ADD CONSTRAINT ITRN_PAGE1 FOREIGN KEY (ProductServiceId, LocationId, OrganisationId) REFERENCES Trn_ProductService (ProductServiceId, LocationId, OrganisationId);
+CREATE TABLE Trn_ContentPage (PageId CHAR(36) NOT NULL , PageName VARCHAR(100) NOT NULL , PageStructure TEXT NOT NULL , PRIMARY KEY(PageId));
+
+ALTER TABLE Trn_ContentPageCTA ADD CONSTRAINT ITRN_CONTENTPAGECTA1 FOREIGN KEY (PageId) REFERENCES Trn_ContentPage (PageId);
 
