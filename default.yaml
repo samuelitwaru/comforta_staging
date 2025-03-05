@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250228075512"
+  version: "20250305051114"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -898,6 +898,29 @@ paths:
                 $ref: "#/components/schemas/WP_OrganisationAGBSuppliersGetFilterDataOutput"
         404:
           description: "Not found"
+  /WP_OrganisationDynamicFormGetFilterData:
+    post:
+      tags:
+        - WP_OrganisationDynamicFormGetFilterData
+      operationId: "WP_OrganisationDynamicFormGetFilterData"
+      summary: "WP_Organisation Dynamic Form Get Filter Data"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WP_OrganisationDynamicFormGetFilterDataInput"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WP_OrganisationDynamicFormGetFilterDataOutput"
+        404:
+          description: "Not found"
   /WP_OrganisationGeneralSuppliersGetFilterData:
     post:
       tags:
@@ -1406,6 +1429,14 @@ components:
           type: "string"
         OptionIndexesJson:
           type: "string"
+    WP_OrganisationDynamicFormGetFilterDataOutput:
+      properties:
+        OptionsJson:
+          type: "string"
+        OptionsDescJson:
+          type: "string"
+        OptionIndexesJson:
+          type: "string"
     WP_OrganisationGeneralSuppliersGetFilterDataOutput:
       properties:
         OptionsJson:
@@ -1781,6 +1812,14 @@ components:
         SearchTxtTo:
           type: "string"
     WP_OrganisationAGBSuppliersGetFilterDataInput:  
+      properties:
+        DDOName:
+          type: "string"
+        SearchTxtParms:
+          type: "string"
+        SearchTxtTo:
+          type: "string"
+    WP_OrganisationDynamicFormGetFilterDataInput:  
       properties:
         DDOName:
           type: "string"

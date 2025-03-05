@@ -141,12 +141,12 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          AV16TrnContext.FromXml(AV18WebSession.Get("TrnContext"), null, "", "");
-         if ( ( StringUtil.StrCmp(AV16TrnContext.gxTpr_Transactionname, AV64Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         if ( ( StringUtil.StrCmp(AV16TrnContext.gxTpr_Transactionname, AV65Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
          {
-            AV65GXV1 = 1;
-            while ( AV65GXV1 <= AV16TrnContext.gxTpr_Attributes.Count )
+            AV66GXV1 = 1;
+            while ( AV66GXV1 <= AV16TrnContext.gxTpr_Attributes.Count )
             {
-               AV17TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV16TrnContext.gxTpr_Attributes.Item(AV65GXV1));
+               AV17TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV16TrnContext.gxTpr_Attributes.Item(AV66GXV1));
                if ( StringUtil.StrCmp(AV17TrnContextAtt.gxTpr_Attributename, "SupplierGenId") == 0 )
                {
                   AV10Insert_SupplierGenId = StringUtil.StrToGuid( AV17TrnContextAtt.gxTpr_Attributevalue);
@@ -155,13 +155,17 @@ namespace GeneXus.Programs {
                {
                   AV9Insert_SupplierAgbId = StringUtil.StrToGuid( AV17TrnContextAtt.gxTpr_Attributevalue);
                }
-               AV65GXV1 = (int)(AV65GXV1+1);
+               AV66GXV1 = (int)(AV66GXV1+1);
             }
          }
-         GXt_SdtGAMUser2 = AV56GAMUser;
-         new prc_getloggedinuser(context ).execute( out  GXt_SdtGAMUser2) ;
-         AV56GAMUser = GXt_SdtGAMUser2;
-         AV57isManager = (bool)(AV56GAMUser.checkrole("Organisation Manager")||AV56GAMUser.checkrole("Root Admin"));
+         /* Execute user subroutine: 'SETSTATEOFSUPPLIER' */
+         S122 ();
+         if ( returnInSub )
+         {
+            returnInSub = true;
+            if (true) return;
+         }
+         AV57isManager = (bool)(AV19WWPContext.gxTpr_Isorganisationmanager||AV19WWPContext.gxTpr_Isrootadmin);
       }
 
       protected void E11082( )
@@ -185,11 +189,11 @@ namespace GeneXus.Programs {
             AV61SDT_NotificationMetadata.gxTpr_Notificationorigin = "Product/Service";
             AV62WWPNotificationMetadataSDT = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationMetadata(context);
             AV62WWPNotificationMetadataSDT.gxTpr_Custommetadata = AV61SDT_NotificationMetadata;
+            GXt_char2 = AV58NotificationDescription;
             GXt_char3 = AV58NotificationDescription;
-            GXt_char4 = AV58NotificationDescription;
-            new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context ).execute( out  GXt_char4) ;
-            new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context ).execute(  GXt_char4, out  GXt_char3) ;
-            AV58NotificationDescription = StringUtil.Format( context.GetMessage( "%1 added by %2 %3", ""), A59ProductServiceName, AV59RoleName, GXt_char3, "", "", "", "", "", "");
+            new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context ).execute( out  GXt_char3) ;
+            new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context ).execute(  GXt_char3, out  GXt_char2) ;
+            AV58NotificationDescription = StringUtil.Format( context.GetMessage( "%1 added by %2 %3", ""), A59ProductServiceName, AV59RoleName, GXt_char2, "", "", "", "", "", "");
             GXKey = Crypto.GetSiteKey( );
             GXEncryptionTmp = "trn_productserviceview.aspx"+UrlEncode(A58ProductServiceId.ToString()) + "," + UrlEncode(A29LocationId.ToString()) + "," + UrlEncode(A11OrganisationId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
             AV55NotificationLink = formatLink("trn_productserviceview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
@@ -204,11 +208,11 @@ namespace GeneXus.Programs {
             AV61SDT_NotificationMetadata.gxTpr_Notificationorigin = "Product/Service";
             AV62WWPNotificationMetadataSDT = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationMetadata(context);
             AV62WWPNotificationMetadataSDT.gxTpr_Custommetadata = AV61SDT_NotificationMetadata;
-            GXt_char4 = AV58NotificationDescription;
             GXt_char3 = AV58NotificationDescription;
-            new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context ).execute( out  GXt_char3) ;
-            new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context ).execute(  GXt_char3, out  GXt_char4) ;
-            AV58NotificationDescription = StringUtil.Format( context.GetMessage( "%1 updated by %2 %3", ""), A59ProductServiceName, AV59RoleName, GXt_char4, "", "", "", "", "", "");
+            GXt_char2 = AV58NotificationDescription;
+            new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context ).execute( out  GXt_char2) ;
+            new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context ).execute(  GXt_char2, out  GXt_char3) ;
+            AV58NotificationDescription = StringUtil.Format( context.GetMessage( "%1 updated by %2 %3", ""), A59ProductServiceName, AV59RoleName, GXt_char3, "", "", "", "", "", "");
             GXKey = Crypto.GetSiteKey( );
             GXEncryptionTmp = "trn_productserviceview.aspx"+UrlEncode(A58ProductServiceId.ToString()) + "," + UrlEncode(A29LocationId.ToString()) + "," + UrlEncode(A11OrganisationId.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
             AV55NotificationLink = formatLink("trn_productserviceview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey);
@@ -223,11 +227,11 @@ namespace GeneXus.Programs {
             AV61SDT_NotificationMetadata.gxTpr_Notificationorigin = "Product/Service";
             AV62WWPNotificationMetadataSDT = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationMetadata(context);
             AV62WWPNotificationMetadataSDT.gxTpr_Custommetadata = AV61SDT_NotificationMetadata;
-            GXt_char4 = AV58NotificationDescription;
             GXt_char3 = AV58NotificationDescription;
-            new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context ).execute( out  GXt_char3) ;
-            new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context ).execute(  GXt_char3, out  GXt_char4) ;
-            AV58NotificationDescription = StringUtil.Format( context.GetMessage( "%1 deleted by %2 %3", ""), A59ProductServiceName, AV59RoleName, GXt_char4, "", "", "", "", "", "");
+            GXt_char2 = AV58NotificationDescription;
+            new GeneXus.Programs.wwpbaseobjects.wwp_getloggeduserid(context ).execute( out  GXt_char2) ;
+            new GeneXus.Programs.wwpbaseobjects.wwp_getuserfullname(context ).execute(  GXt_char2, out  GXt_char3) ;
+            AV58NotificationDescription = StringUtil.Format( context.GetMessage( "%1 deleted by %2 %3", ""), A59ProductServiceName, AV59RoleName, GXt_char3, "", "", "", "", "", "");
             new GeneXus.Programs.wwpbaseobjects.notifications.common.wwp_sendnotification(context ).execute(  "DeleteRecord",  "Trn_ProductService",  "",  context.GetMessage( "far fa-trash-alt NotificationFontIconDanger", ""),  context.GetMessage( "Service Deleted", ""),  AV58NotificationDescription,  AV58NotificationDescription,  "",  AV62WWPNotificationMetadataSDT.ToJSonString(false, true),  "",  AV53IsWeb) ;
          }
          if ( String.IsNullOrEmpty(StringUtil.RTrim( Gx_mode)) )
@@ -264,28 +268,12 @@ namespace GeneXus.Programs {
       {
          /* Listgen_Controlvaluechanged Routine */
          returnInSub = false;
-         if ( AV43ListGen )
-         {
-            AV51ListGenPre = true;
-         }
-         else if ( ! AV43ListGen )
-         {
-            AV51ListGenPre = false;
-         }
       }
 
       protected void E15082( )
       {
          /* Listgenpre_Controlvaluechanged Routine */
          returnInSub = false;
-         if ( AV51ListGenPre )
-         {
-            AV43ListGen = true;
-         }
-         else if ( ! AV51ListGenPre )
-         {
-            AV43ListGen = false;
-         }
       }
 
       protected void E16082( )
@@ -314,6 +302,12 @@ namespace GeneXus.Programs {
          {
             AV42ListAgb = false;
          }
+      }
+
+      protected void S122( )
+      {
+         /* 'SETSTATEOFSUPPLIER' Routine */
+         returnInSub = false;
       }
 
       protected void ZM0875( short GX_JID )
@@ -359,7 +353,7 @@ namespace GeneXus.Programs {
 
       protected void standaloneNotModal( )
       {
-         AV64Pgmname = "Trn_ProductService_BC";
+         AV65Pgmname = "Trn_ProductService_BC";
          Gx_BScreen = 0;
       }
 
@@ -1551,12 +1545,10 @@ namespace GeneXus.Programs {
          AV19WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV16TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV18WebSession = context.GetSession();
-         AV64Pgmname = "";
+         AV65Pgmname = "";
          AV17TrnContextAtt = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute(context);
          AV10Insert_SupplierGenId = Guid.Empty;
          AV9Insert_SupplierAgbId = Guid.Empty;
-         AV56GAMUser = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
-         GXt_SdtGAMUser2 = new GeneXus.Programs.genexussecurity.SdtGAMUser(context);
          AV59RoleName = "";
          AV61SDT_NotificationMetadata = new SdtSDT_NotificationMetadata(context);
          AV62WWPNotificationMetadataSDT = new GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationMetadata(context);
@@ -1565,8 +1557,8 @@ namespace GeneXus.Programs {
          AV55NotificationLink = "";
          GXKey = "";
          GXEncryptionTmp = "";
-         GXt_char4 = "";
          GXt_char3 = "";
+         GXt_char2 = "";
          A366ProductServiceGroup = "";
          AV26ComboSupplierGenId = Guid.Empty;
          AV30ComboSupplierAgbId = Guid.Empty;
@@ -1738,7 +1730,7 @@ namespace GeneXus.Programs {
          n58ProductServiceId = false;
          A58ProductServiceId = Guid.NewGuid( );
          n58ProductServiceId = false;
-         AV64Pgmname = "Trn_ProductService_BC";
+         AV65Pgmname = "Trn_ProductService_BC";
          A366ProductServiceGroup = "Location";
          Z366ProductServiceGroup = "Location";
          i366ProductServiceGroup = "Location";
@@ -1753,23 +1745,21 @@ namespace GeneXus.Programs {
       private short Gx_BScreen ;
       private short RcdFound75 ;
       private int trnEnded ;
-      private int AV65GXV1 ;
+      private int AV66GXV1 ;
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
-      private string AV64Pgmname ;
+      private string AV65Pgmname ;
       private string GXKey ;
       private string GXEncryptionTmp ;
-      private string GXt_char4 ;
       private string GXt_char3 ;
+      private string GXt_char2 ;
       private string Z301ProductServiceTileName ;
       private string A301ProductServiceTileName ;
       private string sMode75 ;
       private bool returnInSub ;
       private bool AV57isManager ;
       private bool AV53IsWeb ;
-      private bool AV43ListGen ;
-      private bool AV51ListGenPre ;
       private bool AV42ListAgb ;
       private bool AV52ListAgbPre ;
       private bool n58ProductServiceId ;
@@ -1820,8 +1810,6 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV19WWPContext ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV16TrnContext ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute AV17TrnContextAtt ;
-      private GeneXus.Programs.genexussecurity.SdtGAMUser AV56GAMUser ;
-      private GeneXus.Programs.genexussecurity.SdtGAMUser GXt_SdtGAMUser2 ;
       private SdtSDT_NotificationMetadata AV61SDT_NotificationMetadata ;
       private GeneXus.Programs.wwpbaseobjects.notifications.common.SdtWWP_SDTNotificationMetadata AV62WWPNotificationMetadataSDT ;
       private IDataStoreProvider pr_default ;

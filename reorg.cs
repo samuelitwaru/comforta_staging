@@ -60,13 +60,13 @@ namespace GeneXus.Programs {
          /* Load data into tables. */
       }
 
-      public void CreateTrn_GJSComponent( )
+      public void CreateTrn_OrganisationDynamicForm( )
       {
          string cmdBuffer = "";
-         /* Indices for table Trn_GJSComponent */
+         /* Indices for table Trn_OrganisationDynamicForm */
          try
          {
-            cmdBuffer=" CREATE TABLE Trn_GJSComponent (GJSComponentId CHAR(36) NOT NULL , GJSComponentType VARCHAR(40) NOT NULL , GJSComponentClasses VARCHAR(1000) NOT NULL , GJSComponentContent TEXT NOT NULL , GJSComponentSyle TEXT NOT NULL , GJSComponentAttrbutes smallint NOT NULL , GJSComponentTraits TEXT NOT NULL , GJSComponentSelectable BOOLEAN NOT NULL , GJSComponentDroppable TEXT NOT NULL , GJSComponentCopyable BOOLEAN NOT NULL , GJSComponentEditable BOOLEAN NOT NULL , GJSComponentRemovable BOOLEAN NOT NULL , GJSComponentHighlightable BOOLEAN NOT NULL , GJSComponentHoverable BOOLEAN NOT NULL , PRIMARY KEY(GJSComponentId))  "
+            cmdBuffer=" CREATE TABLE Trn_OrganisationDynamicForm (OrganisationDynamicFormId CHAR(36) NOT NULL , OrganisationId CHAR(36) NOT NULL , WWPFormId smallint NOT NULL , WWPFormVersionNumber smallint NOT NULL , PRIMARY KEY(OrganisationDynamicFormId, OrganisationId))  "
             ;
             RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
             RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
@@ -77,7 +77,7 @@ namespace GeneXus.Programs {
          {
             try
             {
-               cmdBuffer=" DROP TABLE Trn_GJSComponent CASCADE "
+               cmdBuffer=" DROP TABLE Trn_OrganisationDynamicForm CASCADE "
                ;
                RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
                RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
@@ -88,7 +88,7 @@ namespace GeneXus.Programs {
             {
                try
                {
-                  cmdBuffer=" DROP VIEW Trn_GJSComponent CASCADE "
+                  cmdBuffer=" DROP VIEW Trn_OrganisationDynamicForm CASCADE "
                   ;
                   RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
                   RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
@@ -99,7 +99,7 @@ namespace GeneXus.Programs {
                {
                   try
                   {
-                     cmdBuffer=" DROP FUNCTION Trn_GJSComponent CASCADE "
+                     cmdBuffer=" DROP FUNCTION Trn_OrganisationDynamicForm CASCADE "
                      ;
                      RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
                      RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
@@ -111,7 +111,125 @@ namespace GeneXus.Programs {
                   }
                }
             }
-            cmdBuffer=" CREATE TABLE Trn_GJSComponent (GJSComponentId CHAR(36) NOT NULL , GJSComponentType VARCHAR(40) NOT NULL , GJSComponentClasses VARCHAR(1000) NOT NULL , GJSComponentContent TEXT NOT NULL , GJSComponentSyle TEXT NOT NULL , GJSComponentAttrbutes smallint NOT NULL , GJSComponentTraits TEXT NOT NULL , GJSComponentSelectable BOOLEAN NOT NULL , GJSComponentDroppable TEXT NOT NULL , GJSComponentCopyable BOOLEAN NOT NULL , GJSComponentEditable BOOLEAN NOT NULL , GJSComponentRemovable BOOLEAN NOT NULL , GJSComponentHighlightable BOOLEAN NOT NULL , GJSComponentHoverable BOOLEAN NOT NULL , PRIMARY KEY(GJSComponentId))  "
+            cmdBuffer=" CREATE TABLE Trn_OrganisationDynamicForm (OrganisationDynamicFormId CHAR(36) NOT NULL , OrganisationId CHAR(36) NOT NULL , WWPFormId smallint NOT NULL , WWPFormVersionNumber smallint NOT NULL , PRIMARY KEY(OrganisationDynamicFormId, OrganisationId))  "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+         }
+         try
+         {
+            cmdBuffer=" CREATE INDEX ITRN_ORGANISATIONDYNAMICFORM1 ON Trn_OrganisationDynamicForm (WWPFormId ,WWPFormVersionNumber ) "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+         }
+         catch
+         {
+            cmdBuffer=" DROP INDEX ITRN_ORGANISATIONDYNAMICFORM1 "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+            cmdBuffer=" CREATE INDEX ITRN_ORGANISATIONDYNAMICFORM1 ON Trn_OrganisationDynamicForm (WWPFormId ,WWPFormVersionNumber ) "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+         }
+         try
+         {
+            cmdBuffer=" CREATE INDEX ITRN_ORGANISATIONDYNAMICFORM2 ON Trn_OrganisationDynamicForm (OrganisationId ) "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+         }
+         catch
+         {
+            cmdBuffer=" DROP INDEX ITRN_ORGANISATIONDYNAMICFORM2 "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+            cmdBuffer=" CREATE INDEX ITRN_ORGANISATIONDYNAMICFORM2 ON Trn_OrganisationDynamicForm (OrganisationId ) "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+         }
+      }
+
+      public void RITrn_OrganisationDynamicFormTrn_Organisation( )
+      {
+         string cmdBuffer;
+         try
+         {
+            cmdBuffer=" ALTER TABLE Trn_OrganisationDynamicForm ADD CONSTRAINT ITRN_ORGANISATIONDYNAMICFORM2 FOREIGN KEY (OrganisationId) REFERENCES Trn_Organisation (OrganisationId) "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+         }
+         catch
+         {
+            try
+            {
+               cmdBuffer=" ALTER TABLE Trn_OrganisationDynamicForm DROP CONSTRAINT ITRN_ORGANISATIONDYNAMICFORM2 "
+               ;
+               RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+               RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
+               RGZ.ExecuteStmt() ;
+               RGZ.Drop();
+            }
+            catch
+            {
+            }
+            cmdBuffer=" ALTER TABLE Trn_OrganisationDynamicForm ADD CONSTRAINT ITRN_ORGANISATIONDYNAMICFORM2 FOREIGN KEY (OrganisationId) REFERENCES Trn_Organisation (OrganisationId) "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+         }
+      }
+
+      public void RITrn_OrganisationDynamicFormWWP_Form( )
+      {
+         string cmdBuffer;
+         try
+         {
+            cmdBuffer=" ALTER TABLE Trn_OrganisationDynamicForm ADD CONSTRAINT ITRN_ORGANISATIONDYNAMICFORM1 FOREIGN KEY (WWPFormId, WWPFormVersionNumber) REFERENCES WWP_Form (WWPFormId, WWPFormVersionNumber) "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+         }
+         catch
+         {
+            try
+            {
+               cmdBuffer=" ALTER TABLE Trn_OrganisationDynamicForm DROP CONSTRAINT ITRN_ORGANISATIONDYNAMICFORM1 "
+               ;
+               RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+               RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
+               RGZ.ExecuteStmt() ;
+               RGZ.Drop();
+            }
+            catch
+            {
+            }
+            cmdBuffer=" ALTER TABLE Trn_OrganisationDynamicForm ADD CONSTRAINT ITRN_ORGANISATIONDYNAMICFORM1 FOREIGN KEY (WWPFormId, WWPFormVersionNumber) REFERENCES WWP_Form (WWPFormId, WWPFormVersionNumber) "
             ;
             RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
             RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
@@ -131,9 +249,9 @@ namespace GeneXus.Programs {
             return true ;
          }
          sSchemaVar = GXUtil.UserId( "Server", context, pr_default);
-         if ( tableexist("Trn_GJSComponent",sSchemaVar) )
+         if ( tableexist("Trn_OrganisationDynamicForm",sSchemaVar) )
          {
-            SetCheckError ( GXResourceManager.GetMessage("GXM_table_exist", new   object[]  {"Trn_GJSComponent"}) ) ;
+            SetCheckError ( GXResourceManager.GetMessage("GXM_table_exist", new   object[]  {"Trn_OrganisationDynamicForm"}) ) ;
             return false ;
          }
          return true ;
@@ -173,11 +291,13 @@ namespace GeneXus.Programs {
 
       private void ExecuteOnlyTablesReorganization( )
       {
-         ReorgExecute.RegisterBlockForSubmit( 1 ,  "CreateTrn_GJSComponent" , new Object[]{ });
+         ReorgExecute.RegisterBlockForSubmit( 1 ,  "CreateTrn_OrganisationDynamicForm" , new Object[]{ });
       }
 
       private void ExecuteOnlyRisReorganization( )
       {
+         ReorgExecute.RegisterBlockForSubmit( 2 ,  "RITrn_OrganisationDynamicFormTrn_Organisation" , new Object[]{ });
+         ReorgExecute.RegisterBlockForSubmit( 3 ,  "RITrn_OrganisationDynamicFormWWP_Form" , new Object[]{ });
       }
 
       private void ExecuteTablesReorganization( )
@@ -195,11 +315,15 @@ namespace GeneXus.Programs {
 
       private void SetPrecedencetables( )
       {
-         GXReorganization.SetMsg( 1 ,  GXResourceManager.GetMessage("GXM_filecrea", new   object[]  {"Trn_GJSComponent", ""}) );
+         GXReorganization.SetMsg( 1 ,  GXResourceManager.GetMessage("GXM_filecrea", new   object[]  {"Trn_OrganisationDynamicForm", ""}) );
       }
 
       private void SetPrecedenceris( )
       {
+         GXReorganization.SetMsg( 2 ,  GXResourceManager.GetMessage("GXM_refintcrea", new   object[]  {"ITRN_ORGANISATIONDYNAMICFORM2"}) );
+         ReorgExecute.RegisterPrecedence( "RITrn_OrganisationDynamicFormTrn_Organisation" ,  "CreateTrn_OrganisationDynamicForm" );
+         GXReorganization.SetMsg( 3 ,  GXResourceManager.GetMessage("GXM_refintcrea", new   object[]  {"ITRN_ORGANISATIONDYNAMICFORM1"}) );
+         ReorgExecute.RegisterPrecedence( "RITrn_OrganisationDynamicFormWWP_Form" ,  "CreateTrn_OrganisationDynamicForm" );
       }
 
       private void ExecuteReorganization( )

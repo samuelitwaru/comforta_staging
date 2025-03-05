@@ -1,2 +1,7 @@
-CREATE TABLE Trn_GJSComponent (GJSComponentId CHAR(36) NOT NULL , GJSComponentType VARCHAR(40) NOT NULL , GJSComponentClasses VARCHAR(1000) NOT NULL , GJSComponentContent TEXT NOT NULL , GJSComponentSyle TEXT NOT NULL , GJSComponentAttrbutes smallint NOT NULL , GJSComponentTraits TEXT NOT NULL , GJSComponentSelectable BOOLEAN NOT NULL , GJSComponentDroppable TEXT NOT NULL , GJSComponentCopyable BOOLEAN NOT NULL , GJSComponentEditable BOOLEAN NOT NULL , GJSComponentRemovable BOOLEAN NOT NULL , GJSComponentHighlightable BOOLEAN NOT NULL , GJSComponentHoverable BOOLEAN NOT NULL , PRIMARY KEY(GJSComponentId));
+CREATE TABLE Trn_OrganisationDynamicForm (OrganisationDynamicFormId CHAR(36) NOT NULL , OrganisationId CHAR(36) NOT NULL , WWPFormId smallint NOT NULL , WWPFormVersionNumber smallint NOT NULL , PRIMARY KEY(OrganisationDynamicFormId, OrganisationId));
+CREATE INDEX ITRN_ORGANISATIONDYNAMICFORM1 ON Trn_OrganisationDynamicForm (WWPFormId ,WWPFormVersionNumber );
+CREATE INDEX ITRN_ORGANISATIONDYNAMICFORM2 ON Trn_OrganisationDynamicForm (OrganisationId );
+
+ALTER TABLE Trn_OrganisationDynamicForm ADD CONSTRAINT ITRN_ORGANISATIONDYNAMICFORM2 FOREIGN KEY (OrganisationId) REFERENCES Trn_Organisation (OrganisationId);
+ALTER TABLE Trn_OrganisationDynamicForm ADD CONSTRAINT ITRN_ORGANISATIONDYNAMICFORM1 FOREIGN KEY (WWPFormId, WWPFormVersionNumber) REFERENCES WWP_Form (WWPFormId, WWPFormVersionNumber);
 
