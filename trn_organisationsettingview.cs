@@ -288,6 +288,8 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_footer_hashes( )
       {
+         GxWebStd.gx_hidden_field( context, "ORGANISATIONID", A11OrganisationId.ToString());
+         GxWebStd.gx_hidden_field( context, "gxhash_ORGANISATIONID", GetSecureSignedToken( "", A11OrganisationId, context));
          GxWebStd.gx_hidden_field( context, "vRECORDDESCRIPTION", AV14RecordDescription);
          GxWebStd.gx_hidden_field( context, "gxhash_vRECORDDESCRIPTION", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV14RecordDescription, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DISCUSSIONS", AV16IsAuthorized_Discussions);
@@ -303,6 +305,8 @@ namespace GeneXus.Programs {
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
          GxWebStd.gx_hidden_field( context, "ORGANISATIONSETTINGID", A100OrganisationSettingid.ToString());
+         GxWebStd.gx_hidden_field( context, "ORGANISATIONID", A11OrganisationId.ToString());
+         GxWebStd.gx_hidden_field( context, "gxhash_ORGANISATIONID", GetSecureSignedToken( "", A11OrganisationId, context));
          GxWebStd.gx_hidden_field( context, "vRECORDDESCRIPTION", AV14RecordDescription);
          GxWebStd.gx_hidden_field( context, "gxhash_vRECORDDESCRIPTION", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV14RecordDescription, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DISCUSSIONS", AV16IsAuthorized_Discussions);
@@ -891,11 +895,11 @@ namespace GeneXus.Programs {
             pr_default.execute(0, new Object[] {AV10OrganisationSettingid});
             while ( (pr_default.getStatus(0) != 101) )
             {
+               A11OrganisationId = H003W2_A11OrganisationId[0];
                A100OrganisationSettingid = H003W2_A100OrganisationSettingid[0];
                /* Execute user event: Load */
                E153W2 ();
-               /* Exiting from a For First loop. */
-               if (true) break;
+               pr_default.readNext(0);
             }
             pr_default.close(0);
             WB3W0( ) ;
@@ -904,6 +908,8 @@ namespace GeneXus.Programs {
 
       protected void send_integrity_lvl_hashes3W2( )
       {
+         GxWebStd.gx_hidden_field( context, "ORGANISATIONID", A11OrganisationId.ToString());
+         GxWebStd.gx_hidden_field( context, "gxhash_ORGANISATIONID", GetSecureSignedToken( "", A11OrganisationId, context));
          GxWebStd.gx_hidden_field( context, "vRECORDDESCRIPTION", AV14RecordDescription);
          GxWebStd.gx_hidden_field( context, "gxhash_vRECORDDESCRIPTION", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV14RecordDescription, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_DISCUSSIONS", AV16IsAuthorized_Discussions);
@@ -989,8 +995,7 @@ namespace GeneXus.Programs {
             Form.Caption = A103OrganisationSettingBaseColor;
             AssignProp("", false, "FORM", "Caption", Form.Caption, true);
             AV9Exists = true;
-            /* Exiting from a For First loop. */
-            if (true) break;
+            pr_default.readNext(1);
          }
          pr_default.close(1);
          if ( AV17GXLvl9 == 0 )
@@ -1022,7 +1027,7 @@ namespace GeneXus.Programs {
       {
          /* Refresh Routine */
          returnInSub = false;
-         if ( ! new GeneXus.Programs.wwpbaseobjects.discussions.wwp_hasdiscussionmessages(context).executeUdp(  "Trn_OrganisationSetting",  StringUtil.Trim( A100OrganisationSettingid.ToString())) )
+         if ( ! new GeneXus.Programs.wwpbaseobjects.discussions.wwp_hasdiscussionmessages(context).executeUdp(  "Trn_OrganisationSetting",  StringUtil.Trim( A100OrganisationSettingid.ToString())+";"+StringUtil.Trim( A11OrganisationId.ToString())) )
          {
             Ddc_discussions_Icon = context.GetMessage( "far fa-comment", "");
             ucDdc_discussions.SendProperty(context, "", false, Ddc_discussions_Internalname, "Icon", Ddc_discussions_Icon);
@@ -1084,8 +1089,8 @@ namespace GeneXus.Programs {
          if ( StringUtil.Len( WebComp_Wwpaux_wc_Component) != 0 )
          {
             WebComp_Wwpaux_wc.setjustcreated();
-            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"W0028",(string)"",(string)"Trn_OrganisationSetting",(short)2,StringUtil.Trim( A100OrganisationSettingid.ToString()),(string)AV14RecordDescription});
-            WebComp_Wwpaux_wc.componentbind(new Object[] {(string)"",(string)"",(string)""+""+""+""+"",(string)""});
+            WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"W0028",(string)"",(string)"Trn_OrganisationSetting",(short)2,StringUtil.Trim( A100OrganisationSettingid.ToString())+";"+StringUtil.Trim( A11OrganisationId.ToString()),(string)AV14RecordDescription});
+            WebComp_Wwpaux_wc.componentbind(new Object[] {(string)"",(string)"",(string)""+""+""+""+""+""+""+""+""+""+""+""+"",(string)""});
          }
          if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wwpaux_wc )
          {
@@ -1119,8 +1124,8 @@ namespace GeneXus.Programs {
                WebComp_Wwpaux_wc.setjustcreated();
                GXKey = Crypto.GetSiteKey( );
                GXEncryptionTmp = "trn_organisationsettingview.aspx"+UrlEncode(A100OrganisationSettingid.ToString()) + "," + UrlEncode(StringUtil.RTrim(""));
-               WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"W0028",(string)"",(string)"Trn_OrganisationSetting",StringUtil.Trim( A100OrganisationSettingid.ToString()),(string)AV14RecordDescription,formatLink("trn_organisationsettingview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)});
-               WebComp_Wwpaux_wc.componentbind(new Object[] {(string)"",(string)""+""+""+""+"",(string)"",(string)""+"",(string)"",(string)""+""});
+               WebComp_Wwpaux_wc.componentprepare(new Object[] {(string)"W0028",(string)"",(string)"Trn_OrganisationSetting",StringUtil.Trim( A100OrganisationSettingid.ToString())+";"+StringUtil.Trim( A11OrganisationId.ToString()),(string)AV14RecordDescription,formatLink("trn_organisationsettingview.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)});
+               WebComp_Wwpaux_wc.componentbind(new Object[] {(string)"",(string)""+""+""+""+""+""+""+""+""+""+""+""+"",(string)"",(string)""+"",(string)"",(string)""+""});
             }
             if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wwpaux_wc )
             {
@@ -1225,7 +1230,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521911461116", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025361112352", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1241,7 +1246,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_organisationsettingview.js", "?202521911461116", false, true);
+         context.AddJavascriptSource("trn_organisationsettingview.js", "?2025361112353", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -1324,11 +1329,11 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID"},{"av":"AV14RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true},{"av":"AV16IsAuthorized_Discussions","fld":"vISAUTHORIZED_DISCUSSIONS","hsh":true},{"av":"AV10OrganisationSettingid","fld":"vORGANISATIONSETTINGID","hsh":true}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID"},{"av":"AV14RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true},{"av":"AV16IsAuthorized_Discussions","fld":"vISAUTHORIZED_DISCUSSIONS","hsh":true},{"av":"AV10OrganisationSettingid","fld":"vORGANISATIONSETTINGID","hsh":true},{"av":"A11OrganisationId","fld":"ORGANISATIONID","hsh":true}]""");
          setEventMetadata("REFRESH",""","oparms":[{"av":"Ddc_discussions_Icon","ctrl":"DDC_DISCUSSIONS","prop":"Icon"},{"av":"Ddc_subscriptions_Visible","ctrl":"DDC_SUBSCRIPTIONS","prop":"Visible"},{"av":"AV16IsAuthorized_Discussions","fld":"vISAUTHORIZED_DISCUSSIONS","hsh":true},{"av":"Ddc_discussions_Visible","ctrl":"DDC_DISCUSSIONS","prop":"Visible"}]}""");
-         setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT","""{"handler":"E113W2","iparms":[{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID"},{"av":"AV14RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true}]""");
+         setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT","""{"handler":"E113W2","iparms":[{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID"},{"av":"A11OrganisationId","fld":"ORGANISATIONID","hsh":true},{"av":"AV14RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true}]""");
          setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT",""","oparms":[{"ctrl":"WWPAUX_WC"}]}""");
-         setEventMetadata("DDC_DISCUSSIONS.ONLOADCOMPONENT","""{"handler":"E123W2","iparms":[{"av":"AV16IsAuthorized_Discussions","fld":"vISAUTHORIZED_DISCUSSIONS","hsh":true},{"av":"AV14RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true},{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID"}]""");
+         setEventMetadata("DDC_DISCUSSIONS.ONLOADCOMPONENT","""{"handler":"E123W2","iparms":[{"av":"AV16IsAuthorized_Discussions","fld":"vISAUTHORIZED_DISCUSSIONS","hsh":true},{"av":"A11OrganisationId","fld":"ORGANISATIONID","hsh":true},{"av":"AV14RecordDescription","fld":"vRECORDDESCRIPTION","hsh":true},{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID"}]""");
          setEventMetadata("DDC_DISCUSSIONS.ONLOADCOMPONENT",""","oparms":[{"ctrl":"WWPAUX_WC"}]}""");
          return  ;
       }
@@ -1353,6 +1358,7 @@ namespace GeneXus.Programs {
          bodyStyle = "";
          GXKey = "";
          GXEncryptionTmp = "";
+         A11OrganisationId = Guid.Empty;
          AV14RecordDescription = "";
          A100OrganisationSettingid = Guid.Empty;
          GX_FocusControl = "";
@@ -1371,8 +1377,10 @@ namespace GeneXus.Programs {
          EvtRowId = "";
          sEvtType = "";
          GXDecQS = "";
+         H003W2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          H003W2_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
          AV6WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
+         H003W3_A11OrganisationId = new Guid[] {Guid.Empty} ;
          H003W3_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
          H003W3_A103OrganisationSettingBaseColor = new string[] {""} ;
          A103OrganisationSettingBaseColor = "";
@@ -1382,10 +1390,10 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_organisationsettingview__default(),
             new Object[][] {
                 new Object[] {
-               H003W2_A100OrganisationSettingid
+               H003W2_A11OrganisationId, H003W2_A100OrganisationSettingid
                }
                , new Object[] {
-               H003W3_A100OrganisationSettingid, H003W3_A103OrganisationSettingBaseColor
+               H003W3_A11OrganisationId, H003W3_A100OrganisationSettingid, H003W3_A103OrganisationSettingBaseColor
                }
             }
          );
@@ -1477,6 +1485,7 @@ namespace GeneXus.Programs {
       private string A103OrganisationSettingBaseColor ;
       private Guid AV10OrganisationSettingid ;
       private Guid wcpOAV10OrganisationSettingid ;
+      private Guid A11OrganisationId ;
       private Guid A100OrganisationSettingid ;
       private IGxSession AV15Session ;
       private GXWebComponent WebComp_Webcomponent_general ;
@@ -1489,8 +1498,10 @@ namespace GeneXus.Programs {
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
       private IDataStoreProvider pr_default ;
+      private Guid[] H003W2_A11OrganisationId ;
       private Guid[] H003W2_A100OrganisationSettingid ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV6WWPContext ;
+      private Guid[] H003W3_A11OrganisationId ;
       private Guid[] H003W3_A100OrganisationSettingid ;
       private string[] H003W3_A103OrganisationSettingBaseColor ;
       private msglist BackMsgLst ;
@@ -1522,8 +1533,8 @@ namespace GeneXus.Programs {
           new ParDef("AV10OrganisationSettingid",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("H003W2", "SELECT OrganisationSettingid FROM Trn_OrganisationSetting WHERE OrganisationSettingid = :AV10OrganisationSettingid ORDER BY OrganisationSettingid ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH003W2,1, GxCacheFrequency.OFF ,true,true )
-             ,new CursorDef("H003W3", "SELECT OrganisationSettingid, OrganisationSettingBaseColor FROM Trn_OrganisationSetting WHERE OrganisationSettingid = :AV10OrganisationSettingid ORDER BY OrganisationSettingid ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH003W3,1, GxCacheFrequency.OFF ,false,true )
+              new CursorDef("H003W2", "SELECT OrganisationId, OrganisationSettingid FROM Trn_OrganisationSetting WHERE OrganisationSettingid = :AV10OrganisationSettingid ORDER BY OrganisationSettingid ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH003W2,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("H003W3", "SELECT OrganisationId, OrganisationSettingid, OrganisationSettingBaseColor FROM Trn_OrganisationSetting WHERE OrganisationSettingid = :AV10OrganisationSettingid ORDER BY OrganisationSettingid ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH003W3,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
@@ -1536,10 +1547,12 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
                 return;
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
+                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+                ((string[]) buf[2])[0] = rslt.getVarchar(3);
                 return;
        }
     }

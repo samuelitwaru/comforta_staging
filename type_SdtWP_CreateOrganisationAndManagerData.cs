@@ -65,6 +65,10 @@ namespace GeneXus.Programs
 			{
 				AddObjectProperty("Step2", gxTv_SdtWP_CreateOrganisationAndManagerData_Step2, false);
 			}
+			if (gxTv_SdtWP_CreateOrganisationAndManagerData_Step3 != null)
+			{
+				AddObjectProperty("Step3", gxTv_SdtWP_CreateOrganisationAndManagerData_Step3, false);
+			}
 			if (gxTv_SdtWP_CreateOrganisationAndManagerData_Auxiliardata != null)
 			{
 				AddObjectProperty("AuxiliarData", gxTv_SdtWP_CreateOrganisationAndManagerData_Auxiliardata, false);
@@ -149,6 +153,43 @@ namespace GeneXus.Programs
 		}
 
 
+		[SoapElement(ElementName="Step3" )]
+		[XmlElement(ElementName="Step3" )]
+		public SdtWP_CreateOrganisationAndManagerData_Step3 gxTpr_Step3
+		{
+			get {
+				if ( gxTv_SdtWP_CreateOrganisationAndManagerData_Step3 == null )
+				{
+					gxTv_SdtWP_CreateOrganisationAndManagerData_Step3 = new SdtWP_CreateOrganisationAndManagerData_Step3(context);
+				}
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_N = false;
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step3;
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_N = false;
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step3 = value;
+				SetDirty("Step3");
+			}
+
+		}
+
+		public void gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_SetNull()
+		{
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_N = true;
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step3 = null;
+		}
+
+		public bool gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_IsNull()
+		{
+			return gxTv_SdtWP_CreateOrganisationAndManagerData_Step3 == null;
+		}
+		public bool ShouldSerializegxTpr_Step3_Json()
+		{
+				return (gxTv_SdtWP_CreateOrganisationAndManagerData_Step3 != null && gxTv_SdtWP_CreateOrganisationAndManagerData_Step3.ShouldSerializeSdtJson());
+
+		}
+
+
 
 		[SoapElement(ElementName="AuxiliarData" )]
 		[XmlArray(ElementName="AuxiliarData"  )]
@@ -207,6 +248,7 @@ namespace GeneXus.Programs
 			return (
 				ShouldSerializegxTpr_Step1_Json() ||
 				ShouldSerializegxTpr_Step2_Json() ||
+				ShouldSerializegxTpr_Step3_Json() ||
 				 ShouldSerializegxTpr_Auxiliardata_GXBaseCollection_Json()||  
 				false);
 		}
@@ -233,6 +275,9 @@ namespace GeneXus.Programs
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_N = true;
 
 
+			gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_N = true;
+
+
 			gxTv_SdtWP_CreateOrganisationAndManagerData_Auxiliardata_N = true;
 
 			return  ;
@@ -249,6 +294,9 @@ namespace GeneXus.Programs
 
 		protected bool gxTv_SdtWP_CreateOrganisationAndManagerData_Step2_N;
 		protected SdtWP_CreateOrganisationAndManagerData_Step2 gxTv_SdtWP_CreateOrganisationAndManagerData_Step2 = null; 
+
+		protected bool gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_N;
+		protected SdtWP_CreateOrganisationAndManagerData_Step3 gxTv_SdtWP_CreateOrganisationAndManagerData_Step3 = null; 
 
 		protected bool gxTv_SdtWP_CreateOrganisationAndManagerData_Auxiliardata_N;
 		protected GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtWizardAuxiliarData_WizardAuxiliarDataItem> gxTv_SdtWP_CreateOrganisationAndManagerData_Auxiliardata = null;  
@@ -304,7 +352,24 @@ namespace GeneXus.Programs
 
 		}
 
-		[DataMember(Name="AuxiliarData", Order=2, EmitDefaultValue=false)]
+		[DataMember(Name="Step3", Order=2, EmitDefaultValue=false)]
+		public SdtWP_CreateOrganisationAndManagerData_Step3_RESTInterface gxTpr_Step3
+		{
+			get {
+				if (sdt.ShouldSerializegxTpr_Step3_Json())
+					return new SdtWP_CreateOrganisationAndManagerData_Step3_RESTInterface(sdt.gxTpr_Step3);
+				else
+					return null;
+
+			}
+
+			set {
+				sdt.gxTpr_Step3 = value.sdt;
+			}
+
+		}
+
+		[DataMember(Name="AuxiliarData", Order=3, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.wwpbaseobjects.SdtWizardAuxiliarData_WizardAuxiliarDataItem_RESTInterface> gxTpr_Auxiliardata
 		{
 			get { 

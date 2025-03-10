@@ -324,12 +324,14 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vORGANISATIONSETTINGLANGUAGE_DESCRIPTION", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV14OrganisationSettingLanguage_Description, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISAUTHORIZED_UPDATE", AV12IsAuthorized_Update);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_UPDATE", GetSecureSignedToken( sPrefix, AV12IsAuthorized_Update, context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_ORGANISATIONID", GetSecureSignedToken( sPrefix, A11OrganisationId, context));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISAUTHORIZED_DELETE", AV13IsAuthorized_Delete);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_DELETE", GetSecureSignedToken( sPrefix, AV13IsAuthorized_Delete, context));
          GXKey = Crypto.GetSiteKey( );
          forbiddenHiddens = new GXProperties();
          forbiddenHiddens.Add("hshsalt", sPrefix+"hsh"+"Trn_OrganisationSettingGeneral");
          forbiddenHiddens.Add("OrganisationSettingLanguage_Description", StringUtil.RTrim( context.localUtil.Format( AV14OrganisationSettingLanguage_Description, "")));
+         forbiddenHiddens.Add("OrganisationId", A11OrganisationId.ToString());
          GxWebStd.gx_hidden_field( context, sPrefix+"hsh", GetEncryptedHash( forbiddenHiddens.ToString(), GXKey));
          GXUtil.WriteLogInfo("trn_organisationsettinggeneral:[ SendSecurityCheck value for]"+forbiddenHiddens.ToJSonString());
       }
@@ -535,7 +537,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 38,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
-            GxWebStd.gx_button_ctrl( context, bttBtnupdate_Internalname, "", context.GetMessage( "GXM_update", ""), bttBtnupdate_Jsonclick, 5, context.GetMessage( "GXM_update", ""), "", StyleString, ClassString, bttBtnupdate_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'DOUPDATE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_OrganisationSettingGeneral.htm");
+            GxWebStd.gx_button_ctrl( context, bttBtnupdate_Internalname, "", context.GetMessage( "Edit", ""), bttBtnupdate_Jsonclick, 5, context.GetMessage( "Edit", ""), "", StyleString, ClassString, bttBtnupdate_Visible, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"E\\'DOUPDATE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_OrganisationSettingGeneral.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
@@ -932,6 +934,7 @@ namespace GeneXus.Programs {
                AssignAttri(sPrefix, false, "A103OrganisationSettingBaseColor", A103OrganisationSettingBaseColor);
                A11OrganisationId = H00462_A11OrganisationId[0];
                AssignAttri(sPrefix, false, "A11OrganisationId", A11OrganisationId.ToString());
+               GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_ORGANISATIONID", GetSecureSignedToken( sPrefix, A11OrganisationId, context));
                A104OrganisationSettingFontSize = H00462_A104OrganisationSettingFontSize[0];
                AssignAttri(sPrefix, false, "A104OrganisationSettingFontSize", A104OrganisationSettingFontSize);
                A40001OrganisationSettingFavicon_GXI = H00462_A40001OrganisationSettingFavicon_GXI[0];
@@ -950,8 +953,7 @@ namespace GeneXus.Programs {
                AssignProp(sPrefix, false, imgOrganisationSettingLogo_Internalname, "SrcSet", context.GetImageSrcSet( A101OrganisationSettingLogo), true);
                /* Execute user event: Load */
                E12462 ();
-               /* Exiting from a For First loop. */
-               if (true) break;
+               pr_default.readNext(0);
             }
             pr_default.close(0);
             WB460( ) ;
@@ -963,6 +965,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vORGANISATIONSETTINGLANGUAGE_DESCRIPTION", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV14OrganisationSettingLanguage_Description, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISAUTHORIZED_UPDATE", AV12IsAuthorized_Update);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_UPDATE", GetSecureSignedToken( sPrefix, AV12IsAuthorized_Update, context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_ORGANISATIONID", GetSecureSignedToken( sPrefix, A11OrganisationId, context));
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vISAUTHORIZED_DELETE", AV13IsAuthorized_Delete);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vISAUTHORIZED_DELETE", GetSecureSignedToken( sPrefix, AV13IsAuthorized_Delete, context));
       }
@@ -1016,6 +1019,7 @@ namespace GeneXus.Programs {
             AssignAttri(sPrefix, false, "A104OrganisationSettingFontSize", A104OrganisationSettingFontSize);
             A11OrganisationId = StringUtil.StrToGuid( cgiGet( edtOrganisationId_Internalname));
             AssignAttri(sPrefix, false, "A11OrganisationId", A11OrganisationId.ToString());
+            GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_ORGANISATIONID", GetSecureSignedToken( sPrefix, A11OrganisationId, context));
             A103OrganisationSettingBaseColor = cgiGet( edtOrganisationSettingBaseColor_Internalname);
             AssignAttri(sPrefix, false, "A103OrganisationSettingBaseColor", A103OrganisationSettingBaseColor);
             /* Read subfile selected row values. */
@@ -1027,6 +1031,10 @@ namespace GeneXus.Programs {
             AssignAttri(sPrefix, false, "AV14OrganisationSettingLanguage_Description", AV14OrganisationSettingLanguage_Description);
             GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vORGANISATIONSETTINGLANGUAGE_DESCRIPTION", GetSecureSignedToken( sPrefix, StringUtil.RTrim( context.localUtil.Format( AV14OrganisationSettingLanguage_Description, "")), context));
             forbiddenHiddens.Add("OrganisationSettingLanguage_Description", StringUtil.RTrim( context.localUtil.Format( AV14OrganisationSettingLanguage_Description, "")));
+            A11OrganisationId = StringUtil.StrToGuid( cgiGet( edtOrganisationId_Internalname));
+            AssignAttri(sPrefix, false, "A11OrganisationId", A11OrganisationId.ToString());
+            GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_ORGANISATIONID", GetSecureSignedToken( sPrefix, A11OrganisationId, context));
+            forbiddenHiddens.Add("OrganisationId", A11OrganisationId.ToString());
             hsh = cgiGet( sPrefix+"hsh");
             if ( ! GXUtil.CheckEncryptedHash( forbiddenHiddens.ToString(), hsh, GXKey) )
             {
@@ -1142,7 +1150,7 @@ namespace GeneXus.Programs {
          if ( AV12IsAuthorized_Update )
          {
             GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "trn_organisationsetting.aspx"+UrlEncode(StringUtil.RTrim("UPD")) + "," + UrlEncode(A100OrganisationSettingid.ToString());
+            GXEncryptionTmp = "trn_organisationsetting.aspx"+UrlEncode(StringUtil.RTrim("UPD")) + "," + UrlEncode(A100OrganisationSettingid.ToString()) + "," + UrlEncode(A11OrganisationId.ToString());
             CallWebObject(formatLink("trn_organisationsetting.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
@@ -1162,7 +1170,7 @@ namespace GeneXus.Programs {
          if ( AV13IsAuthorized_Delete )
          {
             GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "trn_organisationsetting.aspx"+UrlEncode(StringUtil.RTrim("DLT")) + "," + UrlEncode(A100OrganisationSettingid.ToString());
+            GXEncryptionTmp = "trn_organisationsetting.aspx"+UrlEncode(StringUtil.RTrim("DLT")) + "," + UrlEncode(A100OrganisationSettingid.ToString()) + "," + UrlEncode(A11OrganisationId.ToString());
             CallWebObject(formatLink("trn_organisationsetting.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
@@ -1388,7 +1396,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202521911452310", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253611105071", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1404,7 +1412,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_organisationsettinggeneral.js", "?202521911452310", false, true);
+         context.AddJavascriptSource("trn_organisationsettinggeneral.js", "?20253611105071", false, true);
          /* End function include_jscripts */
       }
 
@@ -1482,10 +1490,10 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID"},{"av":"AV12IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV13IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV14OrganisationSettingLanguage_Description","fld":"vORGANISATIONSETTINGLANGUAGE_DESCRIPTION","hsh":true}]}""");
-         setEventMetadata("'DOUPDATE'","""{"handler":"E13462","iparms":[{"av":"AV12IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID"}]""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID"},{"av":"AV12IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV13IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV14OrganisationSettingLanguage_Description","fld":"vORGANISATIONSETTINGLANGUAGE_DESCRIPTION","hsh":true},{"av":"A11OrganisationId","fld":"ORGANISATIONID","hsh":true}]}""");
+         setEventMetadata("'DOUPDATE'","""{"handler":"E13462","iparms":[{"av":"AV12IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID"},{"av":"A11OrganisationId","fld":"ORGANISATIONID","hsh":true}]""");
          setEventMetadata("'DOUPDATE'",""","oparms":[{"ctrl":"BTNUPDATE","prop":"Visible"}]}""");
-         setEventMetadata("'DODELETE'","""{"handler":"E14462","iparms":[{"av":"AV13IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID"}]""");
+         setEventMetadata("'DODELETE'","""{"handler":"E14462","iparms":[{"av":"AV13IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID"},{"av":"A11OrganisationId","fld":"ORGANISATIONID","hsh":true}]""");
          setEventMetadata("'DODELETE'",""","oparms":[{"ctrl":"BTNDELETE","prop":"Visible"}]}""");
          setEventMetadata("VALID_ORGANISATIONSETTINGID","""{"handler":"Valid_Organisationsettingid","iparms":[]}""");
          return  ;
@@ -1513,6 +1521,7 @@ namespace GeneXus.Programs {
          GXKey = "";
          GXEncryptionTmp = "";
          AV14OrganisationSettingLanguage_Description = "";
+         A11OrganisationId = Guid.Empty;
          forbiddenHiddens = new GXProperties();
          GX_FocusControl = "";
          ClassString = "";
@@ -1526,7 +1535,6 @@ namespace GeneXus.Programs {
          bttBtnupdate_Jsonclick = "";
          bttBtndelete_Jsonclick = "";
          A104OrganisationSettingFontSize = "";
-         A11OrganisationId = Guid.Empty;
          A103OrganisationSettingBaseColor = "";
          Form = new GXWebForm();
          sXEvt = "";
@@ -1707,7 +1715,7 @@ namespace GeneXus.Programs {
           new ParDef("OrganisationSettingid",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("H00462", "SELECT OrganisationSettingid, OrganisationSettingLanguage, OrganisationSettingBaseColor, OrganisationId, OrganisationSettingFontSize, OrganisationSettingFavicon_GXI, OrganisationSettingLogo_GXI, OrganisationSettingFavicon, OrganisationSettingLogo FROM Trn_OrganisationSetting WHERE OrganisationSettingid = :OrganisationSettingid ORDER BY OrganisationSettingid ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00462,1, GxCacheFrequency.OFF ,true,true )
+              new CursorDef("H00462", "SELECT OrganisationSettingid, OrganisationSettingLanguage, OrganisationSettingBaseColor, OrganisationId, OrganisationSettingFontSize, OrganisationSettingFavicon_GXI, OrganisationSettingLogo_GXI, OrganisationSettingFavicon, OrganisationSettingLogo FROM Trn_OrganisationSetting WHERE OrganisationSettingid = :OrganisationSettingid ORDER BY OrganisationSettingid ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00462,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }

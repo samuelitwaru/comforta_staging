@@ -1246,6 +1246,8 @@ namespace GeneXus.Programs {
       {
          GxWebStd.gx_hidden_field( context, "gxhash_ORGANISATIONSETTINGID", GetSecureSignedToken( "", A100OrganisationSettingid, context));
          GxWebStd.gx_hidden_field( context, "ORGANISATIONSETTINGID", A100OrganisationSettingid.ToString());
+         GxWebStd.gx_hidden_field( context, "gxhash_ORGANISATIONID", GetSecureSignedToken( "", A11OrganisationId, context));
+         GxWebStd.gx_hidden_field( context, "ORGANISATIONID", A11OrganisationId.ToString());
       }
 
       protected void clear_multi_value_controls( )
@@ -1392,6 +1394,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR", AV33IsAuthorized_OrganisationSettingBaseColor);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR", GetSecureSignedToken( "", AV33IsAuthorized_OrganisationSettingBaseColor, context));
          GxWebStd.gx_hidden_field( context, "gxhash_ORGANISATIONSETTINGID"+"_"+sGXsfl_39_idx, GetSecureSignedToken( sGXsfl_39_idx, A100OrganisationSettingid, context));
+         GxWebStd.gx_hidden_field( context, "gxhash_ORGANISATIONID"+"_"+sGXsfl_39_idx, GetSecureSignedToken( sGXsfl_39_idx, A11OrganisationId, context));
          GxWebStd.gx_boolean_hidden_field( context, "vISAUTHORIZED_INSERT", AV40IsAuthorized_Insert);
          GxWebStd.gx_hidden_field( context, "gxhash_vISAUTHORIZED_INSERT", GetSecureSignedToken( "", AV40IsAuthorized_Insert, context));
       }
@@ -2208,7 +2211,7 @@ namespace GeneXus.Programs {
          if ( AV40IsAuthorized_Insert )
          {
             GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "trn_organisationsetting.aspx"+UrlEncode(StringUtil.RTrim("INS")) + "," + UrlEncode(Guid.Empty.ToString());
+            GXEncryptionTmp = "trn_organisationsetting.aspx"+UrlEncode(StringUtil.RTrim("INS")) + "," + UrlEncode(Guid.Empty.ToString()) + "," + UrlEncode(Guid.Empty.ToString());
             CallWebObject(formatLink("trn_organisationsetting.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
@@ -2378,7 +2381,7 @@ namespace GeneXus.Programs {
          if ( AV37IsAuthorized_Update )
          {
             GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "trn_organisationsetting.aspx"+UrlEncode(StringUtil.RTrim("UPD")) + "," + UrlEncode(A100OrganisationSettingid.ToString());
+            GXEncryptionTmp = "trn_organisationsetting.aspx"+UrlEncode(StringUtil.RTrim("UPD")) + "," + UrlEncode(A100OrganisationSettingid.ToString()) + "," + UrlEncode(A11OrganisationId.ToString());
             CallWebObject(formatLink("trn_organisationsetting.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
@@ -2396,7 +2399,7 @@ namespace GeneXus.Programs {
          if ( AV39IsAuthorized_Delete )
          {
             GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "trn_organisationsetting.aspx"+UrlEncode(StringUtil.RTrim("DLT")) + "," + UrlEncode(A100OrganisationSettingid.ToString());
+            GXEncryptionTmp = "trn_organisationsetting.aspx"+UrlEncode(StringUtil.RTrim("DLT")) + "," + UrlEncode(A100OrganisationSettingid.ToString()) + "," + UrlEncode(A11OrganisationId.ToString());
             CallWebObject(formatLink("trn_organisationsetting.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
@@ -2590,7 +2593,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20252191146578", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253611131381", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2606,7 +2609,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_organisationsettingww.js", "?202521911465712", false, true);
+         context.AddJavascriptSource("trn_organisationsettingww.js", "?20253611131384", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3114,9 +3117,9 @@ namespace GeneXus.Programs {
          setEventMetadata("DDO_GRIDCOLUMNSSELECTOR.ONCOLUMNSCHANGED",""","oparms":[{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"edtOrganisationSettingid_Visible","ctrl":"ORGANISATIONSETTINGID","prop":"Visible"},{"av":"edtOrganisationId_Visible","ctrl":"ORGANISATIONID","prop":"Visible"},{"av":"edtOrganisationSettingLogo_Visible","ctrl":"ORGANISATIONSETTINGLOGO","prop":"Visible"},{"av":"edtOrganisationSettingFavicon_Visible","ctrl":"ORGANISATIONSETTINGFAVICON","prop":"Visible"},{"av":"edtOrganisationSettingBaseColor_Visible","ctrl":"ORGANISATIONSETTINGBASECOLOR","prop":"Visible"},{"av":"edtOrganisationSettingFontSize_Visible","ctrl":"ORGANISATIONSETTINGFONTSIZE","prop":"Visible"},{"av":"edtOrganisationSettingLanguage_Visible","ctrl":"ORGANISATIONSETTINGLANGUAGE","prop":"Visible"},{"av":"AV30GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV31GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV32GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
          setEventMetadata("DDO_MANAGEFILTERS.ONOPTIONCLICKED","""{"handler":"E113X2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV49Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV33IsAuthorized_OrganisationSettingBaseColor","fld":"vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"Ddo_managefilters_Activeeventkey","ctrl":"DDO_MANAGEFILTERS","prop":"ActiveEventKey"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]""");
          setEventMetadata("DDO_MANAGEFILTERS.ONOPTIONCLICKED",""","oparms":[{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV11GridState","fld":"vGRIDSTATE"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"Ddo_grid_Selectedvalue_set","ctrl":"DDO_GRID","prop":"SelectedValue_set"},{"av":"Ddo_grid_Filteredtext_set","ctrl":"DDO_GRID","prop":"FilteredText_set"},{"av":"Ddo_grid_Sortedstatus","ctrl":"DDO_GRID","prop":"SortedStatus"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"edtOrganisationSettingid_Visible","ctrl":"ORGANISATIONSETTINGID","prop":"Visible"},{"av":"edtOrganisationId_Visible","ctrl":"ORGANISATIONID","prop":"Visible"},{"av":"edtOrganisationSettingLogo_Visible","ctrl":"ORGANISATIONSETTINGLOGO","prop":"Visible"},{"av":"edtOrganisationSettingFavicon_Visible","ctrl":"ORGANISATIONSETTINGFAVICON","prop":"Visible"},{"av":"edtOrganisationSettingBaseColor_Visible","ctrl":"ORGANISATIONSETTINGBASECOLOR","prop":"Visible"},{"av":"edtOrganisationSettingFontSize_Visible","ctrl":"ORGANISATIONSETTINGFONTSIZE","prop":"Visible"},{"av":"edtOrganisationSettingLanguage_Visible","ctrl":"ORGANISATIONSETTINGLANGUAGE","prop":"Visible"},{"av":"AV30GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV31GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV32GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"}]}""");
-         setEventMetadata("VACTIONGROUP.CLICK","""{"handler":"E213X2","iparms":[{"av":"cmbavActiongroup"},{"av":"AV43ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV49Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV33IsAuthorized_OrganisationSettingBaseColor","fld":"vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID","hsh":true}]""");
+         setEventMetadata("VACTIONGROUP.CLICK","""{"handler":"E213X2","iparms":[{"av":"cmbavActiongroup"},{"av":"AV43ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV49Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV33IsAuthorized_OrganisationSettingBaseColor","fld":"vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID","hsh":true},{"av":"A11OrganisationId","fld":"ORGANISATIONID","hsh":true}]""");
          setEventMetadata("VACTIONGROUP.CLICK",""","oparms":[{"av":"cmbavActiongroup"},{"av":"AV43ActionGroup","fld":"vACTIONGROUP","pic":"ZZZ9"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"edtOrganisationSettingid_Visible","ctrl":"ORGANISATIONSETTINGID","prop":"Visible"},{"av":"edtOrganisationId_Visible","ctrl":"ORGANISATIONID","prop":"Visible"},{"av":"edtOrganisationSettingLogo_Visible","ctrl":"ORGANISATIONSETTINGLOGO","prop":"Visible"},{"av":"edtOrganisationSettingFavicon_Visible","ctrl":"ORGANISATIONSETTINGFAVICON","prop":"Visible"},{"av":"edtOrganisationSettingBaseColor_Visible","ctrl":"ORGANISATIONSETTINGBASECOLOR","prop":"Visible"},{"av":"edtOrganisationSettingFontSize_Visible","ctrl":"ORGANISATIONSETTINGFONTSIZE","prop":"Visible"},{"av":"edtOrganisationSettingLanguage_Visible","ctrl":"ORGANISATIONSETTINGLANGUAGE","prop":"Visible"},{"av":"AV30GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV31GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV32GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
-         setEventMetadata("'DOINSERT'","""{"handler":"E173X2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV49Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV33IsAuthorized_OrganisationSettingBaseColor","fld":"vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID","hsh":true}]""");
+         setEventMetadata("'DOINSERT'","""{"handler":"E173X2","iparms":[{"av":"GRID_nFirstRecordOnPage"},{"av":"GRID_nEOF"},{"av":"subGrid_Rows","ctrl":"GRID","prop":"Rows"},{"av":"AV13OrderedBy","fld":"vORDEREDBY","pic":"ZZZ9"},{"av":"AV14OrderedDsc","fld":"vORDEREDDSC"},{"av":"AV15FilterFullText","fld":"vFILTERFULLTEXT"},{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"AV49Pgmname","fld":"vPGMNAME","hsh":true},{"av":"AV20TFOrganisationSettingBaseColor","fld":"vTFORGANISATIONSETTINGBASECOLOR"},{"av":"AV21TFOrganisationSettingBaseColor_Sel","fld":"vTFORGANISATIONSETTINGBASECOLOR_SEL"},{"av":"AV22TFOrganisationSettingFontSize","fld":"vTFORGANISATIONSETTINGFONTSIZE"},{"av":"AV23TFOrganisationSettingFontSize_Sel","fld":"vTFORGANISATIONSETTINGFONTSIZE_SEL"},{"av":"AV24TFOrganisationSettingLanguage","fld":"vTFORGANISATIONSETTINGLANGUAGE"},{"av":"AV25TFOrganisationSettingLanguage_Sel","fld":"vTFORGANISATIONSETTINGLANGUAGE_SEL"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV33IsAuthorized_OrganisationSettingBaseColor","fld":"vISAUTHORIZED_ORGANISATIONSETTINGBASECOLOR","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"av":"A100OrganisationSettingid","fld":"ORGANISATIONSETTINGID","hsh":true},{"av":"A11OrganisationId","fld":"ORGANISATIONID","hsh":true}]""");
          setEventMetadata("'DOINSERT'",""","oparms":[{"av":"AV19ManageFiltersExecutionStep","fld":"vMANAGEFILTERSEXECUTIONSTEP","pic":"9"},{"av":"AV47ColumnsSelector","fld":"vCOLUMNSSELECTOR"},{"av":"edtOrganisationSettingid_Visible","ctrl":"ORGANISATIONSETTINGID","prop":"Visible"},{"av":"edtOrganisationId_Visible","ctrl":"ORGANISATIONID","prop":"Visible"},{"av":"edtOrganisationSettingLogo_Visible","ctrl":"ORGANISATIONSETTINGLOGO","prop":"Visible"},{"av":"edtOrganisationSettingFavicon_Visible","ctrl":"ORGANISATIONSETTINGFAVICON","prop":"Visible"},{"av":"edtOrganisationSettingBaseColor_Visible","ctrl":"ORGANISATIONSETTINGBASECOLOR","prop":"Visible"},{"av":"edtOrganisationSettingFontSize_Visible","ctrl":"ORGANISATIONSETTINGFONTSIZE","prop":"Visible"},{"av":"edtOrganisationSettingLanguage_Visible","ctrl":"ORGANISATIONSETTINGLANGUAGE","prop":"Visible"},{"av":"AV30GridCurrentPage","fld":"vGRIDCURRENTPAGE","pic":"ZZZZZZZZZ9"},{"av":"AV31GridPageCount","fld":"vGRIDPAGECOUNT","pic":"ZZZZZZZZZ9"},{"av":"AV32GridAppliedFilters","fld":"vGRIDAPPLIEDFILTERS"},{"av":"AV35IsAuthorized_Display","fld":"vISAUTHORIZED_DISPLAY","hsh":true},{"av":"AV37IsAuthorized_Update","fld":"vISAUTHORIZED_UPDATE","hsh":true},{"av":"AV39IsAuthorized_Delete","fld":"vISAUTHORIZED_DELETE","hsh":true},{"av":"AV40IsAuthorized_Insert","fld":"vISAUTHORIZED_INSERT","hsh":true},{"ctrl":"BTNINSERT","prop":"Visible"},{"ctrl":"BTNSUBSCRIPTIONS","prop":"Visible"},{"av":"AV17ManageFiltersData","fld":"vMANAGEFILTERSDATA"},{"av":"AV11GridState","fld":"vGRIDSTATE"}]}""");
          setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT","""{"handler":"E143X2","iparms":[]""");
          setEventMetadata("DDC_SUBSCRIPTIONS.ONLOADCOMPONENT",""","oparms":[{"ctrl":"WWPAUX_WC"}]}""");
@@ -3659,19 +3662,19 @@ namespace GeneXus.Programs {
          }
          if ( ( AV13OrderedBy == 1 ) && ! AV14OrderedDsc )
          {
-            sOrderString += " ORDER BY OrganisationSettingBaseColor, OrganisationSettingid";
+            sOrderString += " ORDER BY OrganisationSettingBaseColor, OrganisationSettingid, OrganisationId";
          }
          else if ( ( AV13OrderedBy == 1 ) && ( AV14OrderedDsc ) )
          {
-            sOrderString += " ORDER BY OrganisationSettingBaseColor DESC, OrganisationSettingid";
+            sOrderString += " ORDER BY OrganisationSettingBaseColor DESC, OrganisationSettingid, OrganisationId";
          }
          else if ( ( AV13OrderedBy == 2 ) && ! AV14OrderedDsc )
          {
-            sOrderString += " ORDER BY OrganisationSettingid";
+            sOrderString += " ORDER BY OrganisationSettingid, OrganisationId";
          }
          else if ( ( AV13OrderedBy == 2 ) && ( AV14OrderedDsc ) )
          {
-            sOrderString += " ORDER BY OrganisationSettingid DESC";
+            sOrderString += " ORDER BY OrganisationSettingid DESC, OrganisationId";
          }
          else if ( ( AV13OrderedBy == 3 ) && ! AV14OrderedDsc )
          {
@@ -3683,23 +3686,23 @@ namespace GeneXus.Programs {
          }
          else if ( ( AV13OrderedBy == 4 ) && ! AV14OrderedDsc )
          {
-            sOrderString += " ORDER BY OrganisationSettingFontSize, OrganisationSettingid";
+            sOrderString += " ORDER BY OrganisationSettingFontSize, OrganisationSettingid, OrganisationId";
          }
          else if ( ( AV13OrderedBy == 4 ) && ( AV14OrderedDsc ) )
          {
-            sOrderString += " ORDER BY OrganisationSettingFontSize DESC, OrganisationSettingid";
+            sOrderString += " ORDER BY OrganisationSettingFontSize DESC, OrganisationSettingid, OrganisationId";
          }
          else if ( ( AV13OrderedBy == 5 ) && ! AV14OrderedDsc )
          {
-            sOrderString += " ORDER BY OrganisationSettingLanguage, OrganisationSettingid";
+            sOrderString += " ORDER BY OrganisationSettingLanguage, OrganisationSettingid, OrganisationId";
          }
          else if ( ( AV13OrderedBy == 5 ) && ( AV14OrderedDsc ) )
          {
-            sOrderString += " ORDER BY OrganisationSettingLanguage DESC, OrganisationSettingid";
+            sOrderString += " ORDER BY OrganisationSettingLanguage DESC, OrganisationSettingid, OrganisationId";
          }
          else if ( true )
          {
-            sOrderString += " ORDER BY OrganisationSettingid";
+            sOrderString += " ORDER BY OrganisationSettingid, OrganisationId";
          }
          scmdbuf = "SELECT " + sSelectString + sFromString + sWhereString + sOrderString + "" + " OFFSET " + ":GXPagingFrom2" + " LIMIT CASE WHEN " + ":GXPagingTo2" + " > 0 THEN " + ":GXPagingTo2" + " ELSE 1e9 END";
          GXv_Object8[0] = scmdbuf;

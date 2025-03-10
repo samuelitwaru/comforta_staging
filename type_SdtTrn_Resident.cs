@@ -140,6 +140,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Resident_Residenthomephonenumber = sdt.gxTv_SdtTrn_Resident_Residenthomephonenumber ;
          gxTv_SdtTrn_Resident_Residentimage = sdt.gxTv_SdtTrn_Resident_Residentimage ;
          gxTv_SdtTrn_Resident_Residentimage_gxi = sdt.gxTv_SdtTrn_Resident_Residentimage_gxi ;
+         gxTv_SdtTrn_Resident_Residentservicecategory = sdt.gxTv_SdtTrn_Resident_Residentservicecategory ;
          gxTv_SdtTrn_Resident_Mode = sdt.gxTv_SdtTrn_Resident_Mode ;
          gxTv_SdtTrn_Resident_Initialized = sdt.gxTv_SdtTrn_Resident_Initialized ;
          gxTv_SdtTrn_Resident_Residentid_Z = sdt.gxTv_SdtTrn_Resident_Residentid_Z ;
@@ -232,6 +233,7 @@ namespace GeneXus.Programs {
          AddObjectProperty("ResidentHomePhoneNumber", gxTv_SdtTrn_Resident_Residenthomephonenumber, false, includeNonInitialized);
          AddObjectProperty("ResidentImage", gxTv_SdtTrn_Resident_Residentimage, false, includeNonInitialized);
          AddObjectProperty("ResidentImage_N", gxTv_SdtTrn_Resident_Residentimage_N, false, includeNonInitialized);
+         AddObjectProperty("ResidentServiceCategory", gxTv_SdtTrn_Resident_Residentservicecategory, false, includeNonInitialized);
          if ( includeState )
          {
             AddObjectProperty("ResidentImage_GXI", gxTv_SdtTrn_Resident_Residentimage_gxi, false, includeNonInitialized);
@@ -432,6 +434,11 @@ namespace GeneXus.Programs {
             gxTv_SdtTrn_Resident_Residentimage_gxi_N = (short)(sdt.gxTv_SdtTrn_Resident_Residentimage_gxi_N);
             sdtIsNull = 0;
             gxTv_SdtTrn_Resident_Residentimage_gxi = sdt.gxTv_SdtTrn_Resident_Residentimage_gxi ;
+         }
+         if ( sdt.IsDirty("ResidentServiceCategory") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Resident_Residentservicecategory = sdt.gxTv_SdtTrn_Resident_Residentservicecategory ;
          }
          return  ;
       }
@@ -1070,6 +1077,22 @@ namespace GeneXus.Programs {
       public bool gxTv_SdtTrn_Resident_Residentimage_gxi_IsNull( )
       {
          return (gxTv_SdtTrn_Resident_Residentimage_gxi_N==1) ;
+      }
+
+      [  SoapElement( ElementName = "ResidentServiceCategory" )]
+      [  XmlElement( ElementName = "ResidentServiceCategory"   )]
+      public string gxTpr_Residentservicecategory
+      {
+         get {
+            return gxTv_SdtTrn_Resident_Residentservicecategory ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Resident_Residentservicecategory = value;
+            SetDirty("Residentservicecategory");
+         }
+
       }
 
       [  SoapElement( ElementName = "Mode" )]
@@ -2089,6 +2112,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Resident_Residenthomephonenumber = "";
          gxTv_SdtTrn_Resident_Residentimage = "";
          gxTv_SdtTrn_Resident_Residentimage_gxi = "";
+         gxTv_SdtTrn_Resident_Residentservicecategory = "";
          gxTv_SdtTrn_Resident_Mode = "";
          gxTv_SdtTrn_Resident_Residentid_Z = Guid.Empty;
          gxTv_SdtTrn_Resident_Locationid_Z = Guid.Empty;
@@ -2153,6 +2177,7 @@ namespace GeneXus.Programs {
       private string sNumToPad ;
       private DateTime gxTv_SdtTrn_Resident_Residentbirthdate ;
       private DateTime gxTv_SdtTrn_Resident_Residentbirthdate_Z ;
+      private string gxTv_SdtTrn_Resident_Residentservicecategory ;
       private string gxTv_SdtTrn_Resident_Residentbsnnumber ;
       private string gxTv_SdtTrn_Resident_Residentgivenname ;
       private string gxTv_SdtTrn_Resident_Residentlastname ;
@@ -2606,6 +2631,19 @@ namespace GeneXus.Programs {
 
       }
 
+      [DataMember( Name = "ResidentServiceCategory" , Order = 28 )]
+      public string gxTpr_Residentservicecategory
+      {
+         get {
+            return sdt.gxTpr_Residentservicecategory ;
+         }
+
+         set {
+            sdt.gxTpr_Residentservicecategory = value;
+         }
+
+      }
+
       public SdtTrn_Resident sdt
       {
          get {
@@ -2627,7 +2665,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 28 )]
+      [DataMember( Name = "gx_md5_hash", Order = 29 )]
       public string Hash
       {
          get {

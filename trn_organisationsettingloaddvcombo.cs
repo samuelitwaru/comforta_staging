@@ -71,43 +71,48 @@ namespace GeneXus.Programs {
       public void execute( string aP0_ComboName ,
                            string aP1_TrnMode ,
                            Guid aP2_OrganisationSettingid ,
-                           out string aP3_SelectedValue ,
-                           out GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> aP4_Combo_Data )
+                           Guid aP3_OrganisationId ,
+                           out string aP4_SelectedValue ,
+                           out GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> aP5_Combo_Data )
       {
          this.AV17ComboName = aP0_ComboName;
          this.AV18TrnMode = aP1_TrnMode;
          this.AV20OrganisationSettingid = aP2_OrganisationSettingid;
+         this.AV28OrganisationId = aP3_OrganisationId;
          this.AV22SelectedValue = "" ;
          this.AV15Combo_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "") ;
          initialize();
          ExecuteImpl();
-         aP3_SelectedValue=this.AV22SelectedValue;
-         aP4_Combo_Data=this.AV15Combo_Data;
+         aP4_SelectedValue=this.AV22SelectedValue;
+         aP5_Combo_Data=this.AV15Combo_Data;
       }
 
       public GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> executeUdp( string aP0_ComboName ,
                                                                                                     string aP1_TrnMode ,
                                                                                                     Guid aP2_OrganisationSettingid ,
-                                                                                                    out string aP3_SelectedValue )
+                                                                                                    Guid aP3_OrganisationId ,
+                                                                                                    out string aP4_SelectedValue )
       {
-         execute(aP0_ComboName, aP1_TrnMode, aP2_OrganisationSettingid, out aP3_SelectedValue, out aP4_Combo_Data);
+         execute(aP0_ComboName, aP1_TrnMode, aP2_OrganisationSettingid, aP3_OrganisationId, out aP4_SelectedValue, out aP5_Combo_Data);
          return AV15Combo_Data ;
       }
 
       public void executeSubmit( string aP0_ComboName ,
                                  string aP1_TrnMode ,
                                  Guid aP2_OrganisationSettingid ,
-                                 out string aP3_SelectedValue ,
-                                 out GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> aP4_Combo_Data )
+                                 Guid aP3_OrganisationId ,
+                                 out string aP4_SelectedValue ,
+                                 out GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> aP5_Combo_Data )
       {
          this.AV17ComboName = aP0_ComboName;
          this.AV18TrnMode = aP1_TrnMode;
          this.AV20OrganisationSettingid = aP2_OrganisationSettingid;
+         this.AV28OrganisationId = aP3_OrganisationId;
          this.AV22SelectedValue = "" ;
          this.AV15Combo_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "") ;
          SubmitImpl();
-         aP3_SelectedValue=this.AV22SelectedValue;
-         aP4_Combo_Data=this.AV15Combo_Data;
+         aP4_SelectedValue=this.AV22SelectedValue;
+         aP5_Combo_Data=this.AV15Combo_Data;
       }
 
       protected override void ExecutePrivate( )
@@ -135,9 +140,10 @@ namespace GeneXus.Programs {
          if ( StringUtil.StrCmp(AV18TrnMode, "INS") != 0 )
          {
             /* Using cursor P00672 */
-            pr_default.execute(0, new Object[] {AV20OrganisationSettingid});
+            pr_default.execute(0, new Object[] {AV20OrganisationSettingid, AV28OrganisationId});
             while ( (pr_default.getStatus(0) != 101) )
             {
+               A11OrganisationId = P00672_A11OrganisationId[0];
                A100OrganisationSettingid = P00672_A100OrganisationSettingid[0];
                A105OrganisationSettingLanguage = P00672_A105OrganisationSettingLanguage[0];
                AV22SelectedValue = A105OrganisationSettingLanguage;
@@ -163,14 +169,16 @@ namespace GeneXus.Programs {
          AV22SelectedValue = "";
          AV15Combo_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
          AV9WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
+         P00672_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P00672_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
          P00672_A105OrganisationSettingLanguage = new string[] {""} ;
+         A11OrganisationId = Guid.Empty;
          A100OrganisationSettingid = Guid.Empty;
          A105OrganisationSettingLanguage = "";
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_organisationsettingloaddvcombo__default(),
             new Object[][] {
                 new Object[] {
-               P00672_A100OrganisationSettingid, P00672_A105OrganisationSettingLanguage
+               P00672_A11OrganisationId, P00672_A100OrganisationSettingid, P00672_A105OrganisationSettingLanguage
                }
             }
          );
@@ -183,6 +191,8 @@ namespace GeneXus.Programs {
       private string AV17ComboName ;
       private string AV22SelectedValue ;
       private Guid AV20OrganisationSettingid ;
+      private Guid AV28OrganisationId ;
+      private Guid A11OrganisationId ;
       private Guid A100OrganisationSettingid ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
@@ -190,10 +200,11 @@ namespace GeneXus.Programs {
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> AV15Combo_Data ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV9WWPContext ;
       private IDataStoreProvider pr_default ;
+      private Guid[] P00672_A11OrganisationId ;
       private Guid[] P00672_A100OrganisationSettingid ;
       private string[] P00672_A105OrganisationSettingLanguage ;
-      private string aP3_SelectedValue ;
-      private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> aP4_Combo_Data ;
+      private string aP4_SelectedValue ;
+      private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> aP5_Combo_Data ;
    }
 
    public class trn_organisationsettingloaddvcombo__default : DataStoreHelperBase, IDataStoreHelper
@@ -213,10 +224,11 @@ namespace GeneXus.Programs {
        {
           Object[] prmP00672;
           prmP00672 = new Object[] {
-          new ParDef("AV20OrganisationSettingid",GXType.UniqueIdentifier,36,0)
+          new ParDef("AV20OrganisationSettingid",GXType.UniqueIdentifier,36,0) ,
+          new ParDef("AV28OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P00672", "SELECT OrganisationSettingid, OrganisationSettingLanguage FROM Trn_OrganisationSetting WHERE OrganisationSettingid = :AV20OrganisationSettingid ORDER BY OrganisationSettingid ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00672,1, GxCacheFrequency.OFF ,false,true )
+              new CursorDef("P00672", "SELECT OrganisationId, OrganisationSettingid, OrganisationSettingLanguage FROM Trn_OrganisationSetting WHERE OrganisationSettingid = :AV20OrganisationSettingid and OrganisationId = :AV28OrganisationId ORDER BY OrganisationSettingid, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00672,1, GxCacheFrequency.OFF ,false,true )
           };
        }
     }
@@ -229,7 +241,8 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getLongVarchar(2);
+                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+                ((string[]) buf[2])[0] = rslt.getLongVarchar(3);
                 return;
        }
     }

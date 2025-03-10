@@ -245,6 +245,30 @@ namespace GeneXus.Programs {
          returnInSub = false;
       }
 
+      protected void S132( )
+      {
+         /* 'LOADCOMBOSUPPLIERAGB_ID' Routine */
+         returnInSub = false;
+      }
+
+      protected void S142( )
+      {
+         /* 'LOADCOMBOSUPPLIERAGBID' Routine */
+         returnInSub = false;
+      }
+
+      protected void S152( )
+      {
+         /* 'LOADCOMBOSUPPLIERGEN_ID' Routine */
+         returnInSub = false;
+      }
+
+      protected void S162( )
+      {
+         /* 'LOADCOMBOSUPPLIERGENID' Routine */
+         returnInSub = false;
+      }
+
       protected void E13082( )
       {
          /* ProductServiceGroup_Controlvaluechanged Routine */
@@ -266,18 +290,6 @@ namespace GeneXus.Programs {
 
       protected void E14082( )
       {
-         /* Listgen_Controlvaluechanged Routine */
-         returnInSub = false;
-      }
-
-      protected void E15082( )
-      {
-         /* Listgenpre_Controlvaluechanged Routine */
-         returnInSub = false;
-      }
-
-      protected void E16082( )
-      {
          /* Listagb_Controlvaluechanged Routine */
          returnInSub = false;
          if ( AV42ListAgb )
@@ -290,7 +302,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void E17082( )
+      protected void E15082( )
       {
          /* Listagbpre_Controlvaluechanged Routine */
          returnInSub = false;

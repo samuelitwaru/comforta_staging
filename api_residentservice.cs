@@ -191,6 +191,10 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityNone ;
          }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getthemes") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
          return GAMSecurityLevel.SecurityLow ;
       }
 
@@ -960,6 +964,17 @@ namespace GeneXus.Programs {
          aP1_error=this.AV91error;
       }
 
+      public void gxep_getthemes( out GXBaseCollection<SdtSDT_Theme> aP0_SDT_ThemeCollection ,
+                                  out SdtSDT_Error aP1_error )
+      {
+         AV91error = new SdtSDT_Error(context);
+         initialize();
+         /* GetThemes Constructor */
+         new prc_getthemes(context ).execute( out  AV111SDT_ThemeCollection, out  AV91error) ;
+         aP0_SDT_ThemeCollection=this.AV111SDT_ThemeCollection;
+         aP1_error=this.AV91error;
+      }
+
       public override void cleanup( )
       {
          CloseCursors();
@@ -992,6 +1007,7 @@ namespace GeneXus.Programs {
          AV67SDT_ProductService = new SdtSDT_ProductService(context);
          AV101SDT_ProductServiceCollection = new GXBaseCollection<SdtSDT_ProductService>( context, "SDT_ProductService", "Comforta_version2");
          AV83SDT_LocationTheme = new SdtSDT_LocationTheme(context);
+         AV111SDT_ThemeCollection = new GXBaseCollection<SdtSDT_Theme>( context, "SDT_Theme", "Comforta_version2");
          /* GeneXus formulas. */
       }
 
@@ -1103,6 +1119,8 @@ namespace GeneXus.Programs {
       protected SdtSDT_LocationTheme AV83SDT_LocationTheme ;
       protected SdtSDT_LocationTheme aP2_SDT_LocationTheme ;
       protected SdtSDT_LocationTheme aP0_SDT_LocationTheme ;
+      protected GXBaseCollection<SdtSDT_Theme> AV111SDT_ThemeCollection ;
+      protected GXBaseCollection<SdtSDT_Theme> aP0_SDT_ThemeCollection ;
    }
 
 }

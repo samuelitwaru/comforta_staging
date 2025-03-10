@@ -37,17 +37,18 @@ namespace GeneXus.Programs {
          return (string)mapper[value]; ;
       }
 
-      public void Load( Guid AV100OrganisationSettingid )
+      public void Load( Guid AV100OrganisationSettingid ,
+                        Guid AV11OrganisationId )
       {
          IGxSilentTrn obj;
          obj = getTransaction();
-         obj.LoadKey(new Object[] {(Guid)AV100OrganisationSettingid});
+         obj.LoadKey(new Object[] {(Guid)AV100OrganisationSettingid,(Guid)AV11OrganisationId});
          return  ;
       }
 
       public override Object[][] GetBCKey( )
       {
-         return (Object[][])(new Object[][]{new Object[]{"OrganisationSettingid", typeof(Guid)}}) ;
+         return (Object[][])(new Object[][]{new Object[]{"OrganisationSettingid", typeof(Guid)}, new Object[]{"OrganisationId", typeof(Guid)}}) ;
       }
 
       public override GXProperties GetMetadata( )
@@ -55,7 +56,7 @@ namespace GeneXus.Programs {
          GXProperties metadata = new GXProperties();
          metadata.Set("Name", "Trn_OrganisationSetting");
          metadata.Set("BT", "Trn_OrganisationSetting");
-         metadata.Set("PK", "[ \"OrganisationSettingid\" ]");
+         metadata.Set("PK", "[ \"OrganisationSettingid\",\"OrganisationId\" ]");
          metadata.Set("PKAssigned", "[ \"OrganisationSettingid\" ]");
          metadata.Set("FKList", "[ { \"FK\":[ \"OrganisationId\" ],\"FKMap\":[  ] } ]");
          metadata.Set("AllowInsert", "True");
@@ -75,6 +76,10 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Organisationid_Z");
          state.Add("gxTpr_Organisationsettingbasecolor_Z");
          state.Add("gxTpr_Organisationsettingfontsize_Z");
+         state.Add("gxTpr_Organisationhasmycare_Z");
+         state.Add("gxTpr_Organisationhasmyliving_Z");
+         state.Add("gxTpr_Organisationhasmyservices_Z");
+         state.Add("gxTpr_Organisationhasdynamicforms_Z");
          state.Add("gxTpr_Organisationsettinglogo_gxi_Z");
          state.Add("gxTpr_Organisationsettingfavicon_gxi_Z");
          return state ;
@@ -93,12 +98,22 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_OrganisationSetting_Organisationsettingbasecolor = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationsettingbasecolor ;
          gxTv_SdtTrn_OrganisationSetting_Organisationsettingfontsize = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationsettingfontsize ;
          gxTv_SdtTrn_OrganisationSetting_Organisationsettinglanguage = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationsettinglanguage ;
+         gxTv_SdtTrn_OrganisationSetting_Organisationhasmycare = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationhasmycare ;
+         gxTv_SdtTrn_OrganisationSetting_Organisationhasmyliving = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationhasmyliving ;
+         gxTv_SdtTrn_OrganisationSetting_Organisationhasmyservices = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationhasmyservices ;
+         gxTv_SdtTrn_OrganisationSetting_Organisationhasdynamicforms = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationhasdynamicforms ;
+         gxTv_SdtTrn_OrganisationSetting_Organisationbrandtheme = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationbrandtheme ;
+         gxTv_SdtTrn_OrganisationSetting_Organisationctatheme = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationctatheme ;
          gxTv_SdtTrn_OrganisationSetting_Mode = sdt.gxTv_SdtTrn_OrganisationSetting_Mode ;
          gxTv_SdtTrn_OrganisationSetting_Initialized = sdt.gxTv_SdtTrn_OrganisationSetting_Initialized ;
          gxTv_SdtTrn_OrganisationSetting_Organisationsettingid_Z = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationsettingid_Z ;
          gxTv_SdtTrn_OrganisationSetting_Organisationid_Z = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationid_Z ;
          gxTv_SdtTrn_OrganisationSetting_Organisationsettingbasecolor_Z = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationsettingbasecolor_Z ;
          gxTv_SdtTrn_OrganisationSetting_Organisationsettingfontsize_Z = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationsettingfontsize_Z ;
+         gxTv_SdtTrn_OrganisationSetting_Organisationhasmycare_Z = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationhasmycare_Z ;
+         gxTv_SdtTrn_OrganisationSetting_Organisationhasmyliving_Z = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationhasmyliving_Z ;
+         gxTv_SdtTrn_OrganisationSetting_Organisationhasmyservices_Z = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationhasmyservices_Z ;
+         gxTv_SdtTrn_OrganisationSetting_Organisationhasdynamicforms_Z = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationhasdynamicforms_Z ;
          gxTv_SdtTrn_OrganisationSetting_Organisationsettinglogo_gxi_Z = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationsettinglogo_gxi_Z ;
          gxTv_SdtTrn_OrganisationSetting_Organisationsettingfavicon_gxi_Z = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationsettingfavicon_gxi_Z ;
          return  ;
@@ -126,6 +141,12 @@ namespace GeneXus.Programs {
          AddObjectProperty("OrganisationSettingBaseColor", gxTv_SdtTrn_OrganisationSetting_Organisationsettingbasecolor, false, includeNonInitialized);
          AddObjectProperty("OrganisationSettingFontSize", gxTv_SdtTrn_OrganisationSetting_Organisationsettingfontsize, false, includeNonInitialized);
          AddObjectProperty("OrganisationSettingLanguage", gxTv_SdtTrn_OrganisationSetting_Organisationsettinglanguage, false, includeNonInitialized);
+         AddObjectProperty("OrganisationHasMyCare", gxTv_SdtTrn_OrganisationSetting_Organisationhasmycare, false, includeNonInitialized);
+         AddObjectProperty("OrganisationHasMyLiving", gxTv_SdtTrn_OrganisationSetting_Organisationhasmyliving, false, includeNonInitialized);
+         AddObjectProperty("OrganisationHasMyServices", gxTv_SdtTrn_OrganisationSetting_Organisationhasmyservices, false, includeNonInitialized);
+         AddObjectProperty("OrganisationHasDynamicForms", gxTv_SdtTrn_OrganisationSetting_Organisationhasdynamicforms, false, includeNonInitialized);
+         AddObjectProperty("OrganisationBrandTheme", gxTv_SdtTrn_OrganisationSetting_Organisationbrandtheme, false, includeNonInitialized);
+         AddObjectProperty("OrganisationCtaTheme", gxTv_SdtTrn_OrganisationSetting_Organisationctatheme, false, includeNonInitialized);
          if ( includeState )
          {
             AddObjectProperty("OrganisationSettingLogo_GXI", gxTv_SdtTrn_OrganisationSetting_Organisationsettinglogo_gxi, false, includeNonInitialized);
@@ -136,6 +157,10 @@ namespace GeneXus.Programs {
             AddObjectProperty("OrganisationId_Z", gxTv_SdtTrn_OrganisationSetting_Organisationid_Z, false, includeNonInitialized);
             AddObjectProperty("OrganisationSettingBaseColor_Z", gxTv_SdtTrn_OrganisationSetting_Organisationsettingbasecolor_Z, false, includeNonInitialized);
             AddObjectProperty("OrganisationSettingFontSize_Z", gxTv_SdtTrn_OrganisationSetting_Organisationsettingfontsize_Z, false, includeNonInitialized);
+            AddObjectProperty("OrganisationHasMyCare_Z", gxTv_SdtTrn_OrganisationSetting_Organisationhasmycare_Z, false, includeNonInitialized);
+            AddObjectProperty("OrganisationHasMyLiving_Z", gxTv_SdtTrn_OrganisationSetting_Organisationhasmyliving_Z, false, includeNonInitialized);
+            AddObjectProperty("OrganisationHasMyServices_Z", gxTv_SdtTrn_OrganisationSetting_Organisationhasmyservices_Z, false, includeNonInitialized);
+            AddObjectProperty("OrganisationHasDynamicForms_Z", gxTv_SdtTrn_OrganisationSetting_Organisationhasdynamicforms_Z, false, includeNonInitialized);
             AddObjectProperty("OrganisationSettingLogo_GXI_Z", gxTv_SdtTrn_OrganisationSetting_Organisationsettinglogo_gxi_Z, false, includeNonInitialized);
             AddObjectProperty("OrganisationSettingFavicon_GXI_Z", gxTv_SdtTrn_OrganisationSetting_Organisationsettingfavicon_gxi_Z, false, includeNonInitialized);
          }
@@ -189,6 +214,36 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_OrganisationSetting_Organisationsettinglanguage = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationsettinglanguage ;
          }
+         if ( sdt.IsDirty("OrganisationHasMyCare") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_OrganisationSetting_Organisationhasmycare = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationhasmycare ;
+         }
+         if ( sdt.IsDirty("OrganisationHasMyLiving") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_OrganisationSetting_Organisationhasmyliving = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationhasmyliving ;
+         }
+         if ( sdt.IsDirty("OrganisationHasMyServices") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_OrganisationSetting_Organisationhasmyservices = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationhasmyservices ;
+         }
+         if ( sdt.IsDirty("OrganisationHasDynamicForms") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_OrganisationSetting_Organisationhasdynamicforms = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationhasdynamicforms ;
+         }
+         if ( sdt.IsDirty("OrganisationBrandTheme") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_OrganisationSetting_Organisationbrandtheme = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationbrandtheme ;
+         }
+         if ( sdt.IsDirty("OrganisationCtaTheme") )
+         {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_OrganisationSetting_Organisationctatheme = sdt.gxTv_SdtTrn_OrganisationSetting_Organisationctatheme ;
+         }
          return  ;
       }
 
@@ -209,6 +264,10 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_OrganisationSetting_Organisationid_Z_SetNull( );
                this.gxTv_SdtTrn_OrganisationSetting_Organisationsettingbasecolor_Z_SetNull( );
                this.gxTv_SdtTrn_OrganisationSetting_Organisationsettingfontsize_Z_SetNull( );
+               this.gxTv_SdtTrn_OrganisationSetting_Organisationhasmycare_Z_SetNull( );
+               this.gxTv_SdtTrn_OrganisationSetting_Organisationhasmyliving_Z_SetNull( );
+               this.gxTv_SdtTrn_OrganisationSetting_Organisationhasmyservices_Z_SetNull( );
+               this.gxTv_SdtTrn_OrganisationSetting_Organisationhasdynamicforms_Z_SetNull( );
                this.gxTv_SdtTrn_OrganisationSetting_Organisationsettinglogo_gxi_Z_SetNull( );
                this.gxTv_SdtTrn_OrganisationSetting_Organisationsettingfavicon_gxi_Z_SetNull( );
             }
@@ -228,6 +287,20 @@ namespace GeneXus.Programs {
 
          set {
             sdtIsNull = 0;
+            if ( gxTv_SdtTrn_OrganisationSetting_Organisationid != value )
+            {
+               gxTv_SdtTrn_OrganisationSetting_Mode = "INS";
+               this.gxTv_SdtTrn_OrganisationSetting_Organisationsettingid_Z_SetNull( );
+               this.gxTv_SdtTrn_OrganisationSetting_Organisationid_Z_SetNull( );
+               this.gxTv_SdtTrn_OrganisationSetting_Organisationsettingbasecolor_Z_SetNull( );
+               this.gxTv_SdtTrn_OrganisationSetting_Organisationsettingfontsize_Z_SetNull( );
+               this.gxTv_SdtTrn_OrganisationSetting_Organisationhasmycare_Z_SetNull( );
+               this.gxTv_SdtTrn_OrganisationSetting_Organisationhasmyliving_Z_SetNull( );
+               this.gxTv_SdtTrn_OrganisationSetting_Organisationhasmyservices_Z_SetNull( );
+               this.gxTv_SdtTrn_OrganisationSetting_Organisationhasdynamicforms_Z_SetNull( );
+               this.gxTv_SdtTrn_OrganisationSetting_Organisationsettinglogo_gxi_Z_SetNull( );
+               this.gxTv_SdtTrn_OrganisationSetting_Organisationsettingfavicon_gxi_Z_SetNull( );
+            }
             gxTv_SdtTrn_OrganisationSetting_Organisationid = value;
             SetDirty("Organisationid");
          }
@@ -344,6 +417,102 @@ namespace GeneXus.Programs {
             sdtIsNull = 0;
             gxTv_SdtTrn_OrganisationSetting_Organisationsettinglanguage = value;
             SetDirty("Organisationsettinglanguage");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "OrganisationHasMyCare" )]
+      [  XmlElement( ElementName = "OrganisationHasMyCare"   )]
+      public bool gxTpr_Organisationhasmycare
+      {
+         get {
+            return gxTv_SdtTrn_OrganisationSetting_Organisationhasmycare ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_OrganisationSetting_Organisationhasmycare = value;
+            SetDirty("Organisationhasmycare");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "OrganisationHasMyLiving" )]
+      [  XmlElement( ElementName = "OrganisationHasMyLiving"   )]
+      public bool gxTpr_Organisationhasmyliving
+      {
+         get {
+            return gxTv_SdtTrn_OrganisationSetting_Organisationhasmyliving ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_OrganisationSetting_Organisationhasmyliving = value;
+            SetDirty("Organisationhasmyliving");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "OrganisationHasMyServices" )]
+      [  XmlElement( ElementName = "OrganisationHasMyServices"   )]
+      public bool gxTpr_Organisationhasmyservices
+      {
+         get {
+            return gxTv_SdtTrn_OrganisationSetting_Organisationhasmyservices ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_OrganisationSetting_Organisationhasmyservices = value;
+            SetDirty("Organisationhasmyservices");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "OrganisationHasDynamicForms" )]
+      [  XmlElement( ElementName = "OrganisationHasDynamicForms"   )]
+      public bool gxTpr_Organisationhasdynamicforms
+      {
+         get {
+            return gxTv_SdtTrn_OrganisationSetting_Organisationhasdynamicforms ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_OrganisationSetting_Organisationhasdynamicforms = value;
+            SetDirty("Organisationhasdynamicforms");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "OrganisationBrandTheme" )]
+      [  XmlElement( ElementName = "OrganisationBrandTheme"   )]
+      public string gxTpr_Organisationbrandtheme
+      {
+         get {
+            return gxTv_SdtTrn_OrganisationSetting_Organisationbrandtheme ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_OrganisationSetting_Organisationbrandtheme = value;
+            SetDirty("Organisationbrandtheme");
+         }
+
+      }
+
+      [  SoapElement( ElementName = "OrganisationCtaTheme" )]
+      [  XmlElement( ElementName = "OrganisationCtaTheme"   )]
+      public string gxTpr_Organisationctatheme
+      {
+         get {
+            return gxTv_SdtTrn_OrganisationSetting_Organisationctatheme ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_OrganisationSetting_Organisationctatheme = value;
+            SetDirty("Organisationctatheme");
          }
 
       }
@@ -516,6 +685,118 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "OrganisationHasMyCare_Z" )]
+      [  XmlElement( ElementName = "OrganisationHasMyCare_Z"   )]
+      public bool gxTpr_Organisationhasmycare_Z
+      {
+         get {
+            return gxTv_SdtTrn_OrganisationSetting_Organisationhasmycare_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_OrganisationSetting_Organisationhasmycare_Z = value;
+            SetDirty("Organisationhasmycare_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_OrganisationSetting_Organisationhasmycare_Z_SetNull( )
+      {
+         gxTv_SdtTrn_OrganisationSetting_Organisationhasmycare_Z = false;
+         SetDirty("Organisationhasmycare_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_OrganisationSetting_Organisationhasmycare_Z_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "OrganisationHasMyLiving_Z" )]
+      [  XmlElement( ElementName = "OrganisationHasMyLiving_Z"   )]
+      public bool gxTpr_Organisationhasmyliving_Z
+      {
+         get {
+            return gxTv_SdtTrn_OrganisationSetting_Organisationhasmyliving_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_OrganisationSetting_Organisationhasmyliving_Z = value;
+            SetDirty("Organisationhasmyliving_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_OrganisationSetting_Organisationhasmyliving_Z_SetNull( )
+      {
+         gxTv_SdtTrn_OrganisationSetting_Organisationhasmyliving_Z = false;
+         SetDirty("Organisationhasmyliving_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_OrganisationSetting_Organisationhasmyliving_Z_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "OrganisationHasMyServices_Z" )]
+      [  XmlElement( ElementName = "OrganisationHasMyServices_Z"   )]
+      public bool gxTpr_Organisationhasmyservices_Z
+      {
+         get {
+            return gxTv_SdtTrn_OrganisationSetting_Organisationhasmyservices_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_OrganisationSetting_Organisationhasmyservices_Z = value;
+            SetDirty("Organisationhasmyservices_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_OrganisationSetting_Organisationhasmyservices_Z_SetNull( )
+      {
+         gxTv_SdtTrn_OrganisationSetting_Organisationhasmyservices_Z = false;
+         SetDirty("Organisationhasmyservices_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_OrganisationSetting_Organisationhasmyservices_Z_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "OrganisationHasDynamicForms_Z" )]
+      [  XmlElement( ElementName = "OrganisationHasDynamicForms_Z"   )]
+      public bool gxTpr_Organisationhasdynamicforms_Z
+      {
+         get {
+            return gxTv_SdtTrn_OrganisationSetting_Organisationhasdynamicforms_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_OrganisationSetting_Organisationhasdynamicforms_Z = value;
+            SetDirty("Organisationhasdynamicforms_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_OrganisationSetting_Organisationhasdynamicforms_Z_SetNull( )
+      {
+         gxTv_SdtTrn_OrganisationSetting_Organisationhasdynamicforms_Z = false;
+         SetDirty("Organisationhasdynamicforms_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_OrganisationSetting_Organisationhasdynamicforms_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "OrganisationSettingLogo_GXI_Z" )]
       [  XmlElement( ElementName = "OrganisationSettingLogo_GXI_Z"   )]
       public string gxTpr_Organisationsettinglogo_gxi_Z
@@ -598,6 +879,8 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_OrganisationSetting_Organisationsettingbasecolor = "";
          gxTv_SdtTrn_OrganisationSetting_Organisationsettingfontsize = "";
          gxTv_SdtTrn_OrganisationSetting_Organisationsettinglanguage = "";
+         gxTv_SdtTrn_OrganisationSetting_Organisationbrandtheme = "";
+         gxTv_SdtTrn_OrganisationSetting_Organisationctatheme = "";
          gxTv_SdtTrn_OrganisationSetting_Mode = "";
          gxTv_SdtTrn_OrganisationSetting_Organisationsettingid_Z = Guid.Empty;
          gxTv_SdtTrn_OrganisationSetting_Organisationid_Z = Guid.Empty;
@@ -622,7 +905,17 @@ namespace GeneXus.Programs {
       private short sdtIsNull ;
       private short gxTv_SdtTrn_OrganisationSetting_Initialized ;
       private string gxTv_SdtTrn_OrganisationSetting_Mode ;
+      private bool gxTv_SdtTrn_OrganisationSetting_Organisationhasmycare ;
+      private bool gxTv_SdtTrn_OrganisationSetting_Organisationhasmyliving ;
+      private bool gxTv_SdtTrn_OrganisationSetting_Organisationhasmyservices ;
+      private bool gxTv_SdtTrn_OrganisationSetting_Organisationhasdynamicforms ;
+      private bool gxTv_SdtTrn_OrganisationSetting_Organisationhasmycare_Z ;
+      private bool gxTv_SdtTrn_OrganisationSetting_Organisationhasmyliving_Z ;
+      private bool gxTv_SdtTrn_OrganisationSetting_Organisationhasmyservices_Z ;
+      private bool gxTv_SdtTrn_OrganisationSetting_Organisationhasdynamicforms_Z ;
       private string gxTv_SdtTrn_OrganisationSetting_Organisationsettinglanguage ;
+      private string gxTv_SdtTrn_OrganisationSetting_Organisationbrandtheme ;
+      private string gxTv_SdtTrn_OrganisationSetting_Organisationctatheme ;
       private string gxTv_SdtTrn_OrganisationSetting_Organisationsettinglogo_gxi ;
       private string gxTv_SdtTrn_OrganisationSetting_Organisationsettingfavicon_gxi ;
       private string gxTv_SdtTrn_OrganisationSetting_Organisationsettingbasecolor ;
@@ -748,6 +1041,88 @@ namespace GeneXus.Programs {
 
       }
 
+      [DataMember( Name = "OrganisationHasMyCare" , Order = 7 )]
+      [GxSeudo()]
+      public bool gxTpr_Organisationhasmycare
+      {
+         get {
+            return sdt.gxTpr_Organisationhasmycare ;
+         }
+
+         set {
+            sdt.gxTpr_Organisationhasmycare = value;
+         }
+
+      }
+
+      [DataMember( Name = "OrganisationHasMyLiving" , Order = 8 )]
+      [GxSeudo()]
+      public bool gxTpr_Organisationhasmyliving
+      {
+         get {
+            return sdt.gxTpr_Organisationhasmyliving ;
+         }
+
+         set {
+            sdt.gxTpr_Organisationhasmyliving = value;
+         }
+
+      }
+
+      [DataMember( Name = "OrganisationHasMyServices" , Order = 9 )]
+      [GxSeudo()]
+      public bool gxTpr_Organisationhasmyservices
+      {
+         get {
+            return sdt.gxTpr_Organisationhasmyservices ;
+         }
+
+         set {
+            sdt.gxTpr_Organisationhasmyservices = value;
+         }
+
+      }
+
+      [DataMember( Name = "OrganisationHasDynamicForms" , Order = 10 )]
+      [GxSeudo()]
+      public bool gxTpr_Organisationhasdynamicforms
+      {
+         get {
+            return sdt.gxTpr_Organisationhasdynamicforms ;
+         }
+
+         set {
+            sdt.gxTpr_Organisationhasdynamicforms = value;
+         }
+
+      }
+
+      [DataMember( Name = "OrganisationBrandTheme" , Order = 11 )]
+      public string gxTpr_Organisationbrandtheme
+      {
+         get {
+            return sdt.gxTpr_Organisationbrandtheme ;
+         }
+
+         set {
+            sdt.gxTpr_Organisationbrandtheme = value;
+         }
+
+      }
+
+      [DataMember( Name = "OrganisationCtaTheme" , Order = 12 )]
+      public string gxTpr_Organisationctatheme
+      {
+         get {
+            return sdt.gxTpr_Organisationctatheme ;
+         }
+
+         set {
+            sdt.gxTpr_Organisationctatheme = value;
+         }
+
+      }
+
       public SdtTrn_OrganisationSetting sdt
       {
          get {
@@ -769,7 +1144,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 7 )]
+      [DataMember( Name = "gx_md5_hash", Order = 13 )]
       public string Hash
       {
          get {

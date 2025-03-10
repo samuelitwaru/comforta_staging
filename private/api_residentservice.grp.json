@@ -403,4 +403,14 @@
 "ServiceMethod":"gxep_toolboxgetlocationtheme",
 "Implementation":"Prc_ToolboxGetLocationTheme",
 "Verb":"GET"
+},
+{
+"PathRegexp":"toolbox/themes",
+"Path":"toolbox/themes",
+"Name":"getthemes",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_getthemes",
+"Implementation":"Prc_GetThemes",
+"Verb":"GET"
 }]}

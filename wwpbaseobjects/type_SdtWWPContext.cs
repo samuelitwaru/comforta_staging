@@ -58,6 +58,10 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 			gxTv_SdtWWPContext_Organisationsettingtrnmode = "";
 
+			gxTv_SdtWWPContext_Organisationbrandtheme = "";
+
+			gxTv_SdtWWPContext_Organisationctatheme = "";
+
 			gxTv_SdtWWPContext_Footertext = "";
 
 			gxTv_SdtWWPContext_Profileurl = "";
@@ -160,6 +164,24 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 
 			AddObjectProperty("OrganisationSettingTrnMode", gxTpr_Organisationsettingtrnmode, false);
+
+
+			AddObjectProperty("OrganisationHasMyCare", gxTpr_Organisationhasmycare, false);
+
+
+			AddObjectProperty("OrganisationHasMyServices", gxTpr_Organisationhasmyservices, false);
+
+
+			AddObjectProperty("OrganisationHasDynamicForms", gxTpr_Organisationhasdynamicforms, false);
+
+
+			AddObjectProperty("OrganisationHasMyLiving", gxTpr_Organisationhasmyliving, false);
+
+
+			AddObjectProperty("OrganisationBrandTheme", gxTpr_Organisationbrandtheme, false);
+
+
+			AddObjectProperty("OrganisationCtaTheme", gxTpr_Organisationctatheme, false);
 
 
 			AddObjectProperty("ManagerId", gxTpr_Managerid, false);
@@ -592,6 +614,102 @@ namespace GeneXus.Programs.wwpbaseobjects
 
 
 
+		[SoapElement(ElementName="OrganisationHasMyCare")]
+		[XmlElement(ElementName="OrganisationHasMyCare")]
+		public bool gxTpr_Organisationhasmycare
+		{
+			get {
+				return gxTv_SdtWWPContext_Organisationhasmycare; 
+			}
+			set {
+				gxTv_SdtWWPContext_Organisationhasmycare = value;
+				SetDirty("Organisationhasmycare");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationHasMyServices")]
+		[XmlElement(ElementName="OrganisationHasMyServices")]
+		public bool gxTpr_Organisationhasmyservices
+		{
+			get {
+				return gxTv_SdtWWPContext_Organisationhasmyservices; 
+			}
+			set {
+				gxTv_SdtWWPContext_Organisationhasmyservices = value;
+				SetDirty("Organisationhasmyservices");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationHasDynamicForms")]
+		[XmlElement(ElementName="OrganisationHasDynamicForms")]
+		public bool gxTpr_Organisationhasdynamicforms
+		{
+			get {
+				return gxTv_SdtWWPContext_Organisationhasdynamicforms; 
+			}
+			set {
+				gxTv_SdtWWPContext_Organisationhasdynamicforms = value;
+				SetDirty("Organisationhasdynamicforms");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationHasMyLiving")]
+		[XmlElement(ElementName="OrganisationHasMyLiving")]
+		public bool gxTpr_Organisationhasmyliving
+		{
+			get {
+				return gxTv_SdtWWPContext_Organisationhasmyliving; 
+			}
+			set {
+				gxTv_SdtWWPContext_Organisationhasmyliving = value;
+				SetDirty("Organisationhasmyliving");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationBrandTheme")]
+		[XmlElement(ElementName="OrganisationBrandTheme")]
+		public string gxTpr_Organisationbrandtheme
+		{
+			get {
+				return gxTv_SdtWWPContext_Organisationbrandtheme; 
+			}
+			set {
+				gxTv_SdtWWPContext_Organisationbrandtheme = value;
+				SetDirty("Organisationbrandtheme");
+			}
+		}
+
+
+
+
+		[SoapElement(ElementName="OrganisationCtaTheme")]
+		[XmlElement(ElementName="OrganisationCtaTheme")]
+		public string gxTpr_Organisationctatheme
+		{
+			get {
+				return gxTv_SdtWWPContext_Organisationctatheme; 
+			}
+			set {
+				gxTv_SdtWWPContext_Organisationctatheme = value;
+				SetDirty("Organisationctatheme");
+			}
+		}
+
+
+
+
 		[SoapElement(ElementName="ManagerId")]
 		[XmlElement(ElementName="ManagerId")]
 		public Guid gxTpr_Managerid
@@ -833,6 +951,12 @@ namespace GeneXus.Programs.wwpbaseobjects
 			gxTv_SdtWWPContext_Organisationsettinglanguage = "";
 			gxTv_SdtWWPContext_Organisationsettingtrnmode = "";
 
+
+
+
+			gxTv_SdtWWPContext_Organisationbrandtheme = "";
+			gxTv_SdtWWPContext_Organisationctatheme = "";
+
 			gxTv_SdtWWPContext_Managerismainmanager = false;
 
 
@@ -920,6 +1044,24 @@ namespace GeneXus.Programs.wwpbaseobjects
 		 
 
 		protected string gxTv_SdtWWPContext_Organisationsettingtrnmode;
+		 
+
+		protected bool gxTv_SdtWWPContext_Organisationhasmycare;
+		 
+
+		protected bool gxTv_SdtWWPContext_Organisationhasmyservices;
+		 
+
+		protected bool gxTv_SdtWWPContext_Organisationhasdynamicforms;
+		 
+
+		protected bool gxTv_SdtWWPContext_Organisationhasmyliving;
+		 
+
+		protected string gxTv_SdtWWPContext_Organisationbrandtheme;
+		 
+
+		protected string gxTv_SdtWWPContext_Organisationctatheme;
 		 
 
 		protected Guid gxTv_SdtWWPContext_Managerid;
@@ -1246,7 +1388,79 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="ManagerId", Order=23)]
+		[DataMember(Name="OrganisationHasMyCare", Order=23)]
+		public bool gxTpr_Organisationhasmycare
+		{
+			get { 
+				return sdt.gxTpr_Organisationhasmycare;
+
+			}
+			set { 
+				sdt.gxTpr_Organisationhasmycare = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationHasMyServices", Order=24)]
+		public bool gxTpr_Organisationhasmyservices
+		{
+			get { 
+				return sdt.gxTpr_Organisationhasmyservices;
+
+			}
+			set { 
+				sdt.gxTpr_Organisationhasmyservices = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationHasDynamicForms", Order=25)]
+		public bool gxTpr_Organisationhasdynamicforms
+		{
+			get { 
+				return sdt.gxTpr_Organisationhasdynamicforms;
+
+			}
+			set { 
+				sdt.gxTpr_Organisationhasdynamicforms = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationHasMyLiving", Order=26)]
+		public bool gxTpr_Organisationhasmyliving
+		{
+			get { 
+				return sdt.gxTpr_Organisationhasmyliving;
+
+			}
+			set { 
+				sdt.gxTpr_Organisationhasmyliving = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationBrandTheme", Order=27)]
+		public  string gxTpr_Organisationbrandtheme
+		{
+			get { 
+				return sdt.gxTpr_Organisationbrandtheme;
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationbrandtheme = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationCtaTheme", Order=28)]
+		public  string gxTpr_Organisationctatheme
+		{
+			get { 
+				return sdt.gxTpr_Organisationctatheme;
+
+			}
+			set { 
+				 sdt.gxTpr_Organisationctatheme = value;
+			}
+		}
+
+		[DataMember(Name="ManagerId", Order=29)]
 		public Guid gxTpr_Managerid
 		{
 			get { 
@@ -1258,7 +1472,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="ManagerIsMainManager", Order=24)]
+		[DataMember(Name="ManagerIsMainManager", Order=30)]
 		public bool gxTpr_Managerismainmanager
 		{
 			get { 
@@ -1270,7 +1484,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="ManagerIsActive", Order=25)]
+		[DataMember(Name="ManagerIsActive", Order=31)]
 		public bool gxTpr_Managerisactive
 		{
 			get { 
@@ -1282,7 +1496,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="ReceptionistId", Order=26)]
+		[DataMember(Name="ReceptionistId", Order=32)]
 		public Guid gxTpr_Receptionistid
 		{
 			get { 
@@ -1294,7 +1508,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="ReceptionistIsActive", Order=27)]
+		[DataMember(Name="ReceptionistIsActive", Order=33)]
 		public bool gxTpr_Receptionistisactive
 		{
 			get { 
@@ -1306,7 +1520,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="ResidentId", Order=28)]
+		[DataMember(Name="ResidentId", Order=34)]
 		public Guid gxTpr_Residentid
 		{
 			get { 
@@ -1318,7 +1532,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="FilteredDashboardItems", Order=29, EmitDefaultValue=false)]
+		[DataMember(Name="FilteredDashboardItems", Order=35, EmitDefaultValue=false)]
 		public  GxGenericCollection<GeneXus.Programs.SdtUHomeModulesSDT_UHomeModulesSDTItem_RESTInterface> gxTpr_Filtereddashboarditems
 		{
 			get { 
@@ -1333,7 +1547,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="FooterText", Order=30)]
+		[DataMember(Name="FooterText", Order=36)]
 		public  string gxTpr_Footertext
 		{
 			get { 
@@ -1345,7 +1559,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="IsContextSet", Order=31)]
+		[DataMember(Name="IsContextSet", Order=37)]
 		public bool gxTpr_Iscontextset
 		{
 			get { 
@@ -1357,7 +1571,7 @@ namespace GeneXus.Programs.wwpbaseobjects
 			}
 		}
 
-		[DataMember(Name="ProfileUrl", Order=32)]
+		[DataMember(Name="ProfileUrl", Order=38)]
 		public  string gxTpr_Profileurl
 		{
 			get { 

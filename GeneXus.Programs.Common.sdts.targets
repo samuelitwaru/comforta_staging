@@ -18,6 +18,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ApiListResponse.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ApiResidentFilledForms.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_AvatarUpload.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_BrandThemeColors.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_CallToAction_SDT_CallToActionItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ChangeYourPassword.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Col.cs" />
@@ -25,6 +26,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPage_ContentItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPage_CtaItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Country_SDT_CountryItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_CtaThemeColors.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_DynamicForms.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Error.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ErrorResponse.cs" />
@@ -64,6 +66,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ResidentAddressBook_SDT_ResidentAddressBookItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ResidentFilledForms_SDT_ResidentFilledFormsItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ResidentNotification.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_ResidentProvisioning_SDT_ResidentProvisioningItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Row.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Theme.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Theme_IconsItem.cs" />
@@ -81,6 +84,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtWP_CreateOrganisationAndManagerData.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtWP_CreateOrganisationAndManagerData_Step1.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtWP_CreateOrganisationAndManagerData_Step2.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtWP_CreateOrganisationAndManagerData_Step3.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtWP_ProductServiceData.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtWP_ProductServiceData_Step1.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtWP_ProductServiceData_Step2.cs" />

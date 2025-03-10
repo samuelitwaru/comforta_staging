@@ -1,7 +1,3 @@
-CREATE TABLE Trn_OrganisationDynamicForm (OrganisationDynamicFormId CHAR(36) NOT NULL , OrganisationId CHAR(36) NOT NULL , WWPFormId smallint NOT NULL , WWPFormVersionNumber smallint NOT NULL , PRIMARY KEY(OrganisationDynamicFormId, OrganisationId));
-CREATE INDEX ITRN_ORGANISATIONDYNAMICFORM1 ON Trn_OrganisationDynamicForm (WWPFormId ,WWPFormVersionNumber );
-CREATE INDEX ITRN_ORGANISATIONDYNAMICFORM2 ON Trn_OrganisationDynamicForm (OrganisationId );
-
-ALTER TABLE Trn_OrganisationDynamicForm ADD CONSTRAINT ITRN_ORGANISATIONDYNAMICFORM2 FOREIGN KEY (OrganisationId) REFERENCES Trn_Organisation (OrganisationId);
-ALTER TABLE Trn_OrganisationDynamicForm ADD CONSTRAINT ITRN_ORGANISATIONDYNAMICFORM1 FOREIGN KEY (WWPFormId, WWPFormVersionNumber) REFERENCES WWP_Form (WWPFormId, WWPFormVersionNumber);
+ALTER TABLE Trn_Resident ADD ResidentServiceCategory TEXT NOT NULL DEFAULT '';
+ALTER TABLE Trn_Resident ALTER COLUMN ResidentServiceCategory DROP DEFAULT;
 

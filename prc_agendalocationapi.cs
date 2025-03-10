@@ -160,8 +160,8 @@ namespace GeneXus.Programs {
                   AV10SDT_AgendaLocation.gxTpr_Agendacalendarid = A303AgendaCalendarId;
                   AV10SDT_AgendaLocation.gxTpr_Agendacalendartitle = A304AgendaCalendarTitle;
                   AV10SDT_AgendaLocation.gxTpr_Agendacalendartype = A454AgendaCalendarType;
-                  AV10SDT_AgendaLocation.gxTpr_Agendacalendarstartdate = A305AgendaCalendarStartDate;
-                  AV10SDT_AgendaLocation.gxTpr_Agendacalendarenddate = A306AgendaCalendarEndDate;
+                  AV10SDT_AgendaLocation.gxTpr_Agendacalendarstartdate = DateTimeUtil.TAdd( A305AgendaCalendarStartDate, 3600*(3));
+                  AV10SDT_AgendaLocation.gxTpr_Agendacalendarenddate = DateTimeUtil.TAdd( A306AgendaCalendarEndDate, 3600*(3));
                   AV10SDT_AgendaLocation.gxTpr_Agendacalendarallday = A307AgendaCalendarAllDay;
                   AV10SDT_AgendaLocation.gxTpr_Agendacalendarrecurring = A450AgendaCalendarRecurring;
                   AV10SDT_AgendaLocation.gxTpr_Agendacalendarrecurringtype = A451AgendaCalendarRecurringType;

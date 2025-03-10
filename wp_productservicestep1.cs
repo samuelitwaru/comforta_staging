@@ -303,6 +303,8 @@ namespace GeneXus.Programs {
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
+         context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
+         context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          if ( StringUtil.Len( sPrefix) == 0 )
@@ -428,6 +430,7 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(sPrefix+"vSUPPLIERGENID_DATA", AV31SupplierGenId_Data);
          }
+         GxWebStd.gx_hidden_field( context, sPrefix+"vPRODUCTSERVICEDESCRIPTION", AV21ProductServiceDescription);
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV37WebSessionKey", wcpOAV37WebSessionKey);
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV20PreviousStep", wcpOAV20PreviousStep);
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"wcpOAV14GoingBack", wcpOAV14GoingBack);
@@ -553,6 +556,8 @@ namespace GeneXus.Programs {
                context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
                context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
                context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
+               context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
+               context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
                context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
                context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
             }
@@ -823,18 +828,25 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtavProductservicedescription_Internalname+"\"", "", "div");
+            GxWebStd.gx_div_start( context, "", -1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+Productservicedescription_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtavProductservicedescription_Internalname, context.GetMessage( "Description", ""), "col-sm-4 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, Productservicedescription_Internalname, context.GetMessage( "Description", ""), "col-sm-4 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
-            /* Multiple line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 104,'" + sPrefix + "',false,'',0)\"";
-            ClassString = "Attribute";
-            StyleString = "";
-            ClassString = "Attribute";
-            StyleString = "";
-            GxWebStd.gx_html_textarea( context, edtavProductservicedescription_Internalname, AV21ProductServiceDescription, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,104);\"", 0, 1, edtavProductservicedescription_Enabled, 0, 40, "chr", 5, "row", 0, StyleString, ClassString, "", "", "2097152", 1, 0, "", "", -1, true, "", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_WP_ProductServiceStep1.htm");
+            /* User Defined Control */
+            ucProductservicedescription.SetProperty("Width", Productservicedescription_Width);
+            ucProductservicedescription.SetProperty("Height", Productservicedescription_Height);
+            ucProductservicedescription.SetProperty("Attribute", AV21ProductServiceDescription);
+            ucProductservicedescription.SetProperty("Skin", Productservicedescription_Skin);
+            ucProductservicedescription.SetProperty("Toolbar", Productservicedescription_Toolbar);
+            ucProductservicedescription.SetProperty("CustomToolbar", Productservicedescription_Customtoolbar);
+            ucProductservicedescription.SetProperty("CustomConfiguration", Productservicedescription_Customconfiguration);
+            ucProductservicedescription.SetProperty("ToolbarCanCollapse", Productservicedescription_Toolbarcancollapse);
+            ucProductservicedescription.SetProperty("ToolbarExpanded", Productservicedescription_Toolbarexpanded);
+            ucProductservicedescription.SetProperty("CaptionClass", Productservicedescription_Captionclass);
+            ucProductservicedescription.SetProperty("CaptionStyle", Productservicedescription_Captionstyle);
+            ucProductservicedescription.SetProperty("CaptionPosition", Productservicedescription_Captionposition);
+            ucProductservicedescription.Render(context, "fckeditor", Productservicedescription_Internalname, sPrefix+"PRODUCTSERVICEDESCRIPTIONContainer");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -1586,6 +1598,7 @@ namespace GeneXus.Programs {
             ajax_req_read_hidden_sdt(cgiGet( sPrefix+"vSUPPLIERAGBID_DATA"), AV29SupplierAgbId_Data);
             ajax_req_read_hidden_sdt(cgiGet( sPrefix+"vSUPPLIERGENID_DATA"), AV31SupplierGenId_Data);
             /* Read saved values. */
+            AV21ProductServiceDescription = cgiGet( sPrefix+"vPRODUCTSERVICEDESCRIPTION");
             wcpOAV37WebSessionKey = cgiGet( sPrefix+"wcpOAV37WebSessionKey");
             wcpOAV20PreviousStep = cgiGet( sPrefix+"wcpOAV20PreviousStep");
             wcpOAV14GoingBack = StringUtil.StrToBool( cgiGet( sPrefix+"wcpOAV14GoingBack"));
@@ -1613,8 +1626,6 @@ namespace GeneXus.Programs {
             AssignAttri(sPrefix, false, "AV46noFilterAgb", AV46noFilterAgb);
             AV47noFilterGen = StringUtil.StrToBool( cgiGet( chkavNofiltergen_Internalname));
             AssignAttri(sPrefix, false, "AV47noFilterGen", AV47noFilterGen);
-            AV21ProductServiceDescription = cgiGet( edtavProductservicedescription_Internalname);
-            AssignAttri(sPrefix, false, "AV21ProductServiceDescription", AV21ProductServiceDescription);
             if ( StringUtil.StrCmp(cgiGet( edtavSupplieragbid_Internalname), "") == 0 )
             {
                AV28SupplierAgbId = Guid.Empty;
@@ -2826,7 +2837,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253314173650", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253713514521", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2842,7 +2853,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_productservicestep1.js", "?20253314173653", false, true);
+         context.AddJavascriptSource("wp_productservicestep1.js", "?20253713514524", false, true);
          context.AddJavascriptSource("FileUpload/fileupload.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
@@ -2850,6 +2861,8 @@ namespace GeneXus.Programs {
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
+         context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
+         context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/WWP_IconButtonRender.js", "", false, true);
          /* End function include_jscripts */
@@ -2912,7 +2925,7 @@ namespace GeneXus.Programs {
          divTablesplittedsuppliergenid_Internalname = sPrefix+"TABLESPLITTEDSUPPLIERGENID";
          divTablesuppliergen_Internalname = sPrefix+"TABLESUPPLIERGEN";
          divUnnamedtable4_Internalname = sPrefix+"UNNAMEDTABLE4";
-         edtavProductservicedescription_Internalname = sPrefix+"vPRODUCTSERVICEDESCRIPTION";
+         Productservicedescription_Internalname = sPrefix+"PRODUCTSERVICEDESCRIPTION";
          divUnnamedtable3_Internalname = sPrefix+"UNNAMEDTABLE3";
          divTableattributes_Internalname = sPrefix+"TABLEATTRIBUTES";
          grpUnnamedgroup1_Internalname = sPrefix+"UNNAMEDGROUP1";
@@ -2982,7 +2995,18 @@ namespace GeneXus.Programs {
          Btnwizardfirstprevious_Caption = context.GetMessage( "GX_BtnCancel", "");
          Btnwizardfirstprevious_Beforeiconclass = "fas fa-arrow-left";
          Btnwizardfirstprevious_Tooltiptext = "";
-         edtavProductservicedescription_Enabled = 1;
+         Productservicedescription_Captionposition = "Left";
+         Productservicedescription_Captionstyle = "";
+         Productservicedescription_Captionclass = "col-sm-4 AttributeLabel";
+         Productservicedescription_Toolbarexpanded = Convert.ToBoolean( -1);
+         Productservicedescription_Toolbarcancollapse = Convert.ToBoolean( -1);
+         Productservicedescription_Customconfiguration = "myconfig.js";
+         Productservicedescription_Customtoolbar = "myToolbar";
+         Productservicedescription_Toolbar = "Custom";
+         Productservicedescription_Skin = "default";
+         Productservicedescription_Height = "250";
+         Productservicedescription_Width = "100%";
+         Productservicedescription_Enabled = Convert.ToBoolean( 1);
          divTablesuppliergen_Visible = 1;
          divTablesupplieragb_Visible = 1;
          dynavProductservicegroup_Jsonclick = "";
@@ -3077,6 +3101,7 @@ namespace GeneXus.Programs {
          AV9FailedFiles = new GXBaseCollection<SdtFileUploadData>( context, "FileUploadData", "Comforta_version2");
          AV29SupplierAgbId_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
          AV31SupplierGenId_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
+         AV21ProductServiceDescription = "";
          AV11FileType = "";
          A44SupplierGenCompanyName = "";
          A11OrganisationId = Guid.Empty;
@@ -3096,7 +3121,7 @@ namespace GeneXus.Programs {
          AV22ProductServiceGroup = "";
          lblTextblockcombo_supplieragbid_Jsonclick = "";
          lblTextblockcombo_suppliergenid_Jsonclick = "";
-         AV21ProductServiceDescription = "";
+         ucProductservicedescription = new GXUserControl();
          ucBtnwizardfirstprevious = new GXUserControl();
          ucBtnwizardnext = new GXUserControl();
          AV28SupplierAgbId = Guid.Empty;
@@ -3215,7 +3240,6 @@ namespace GeneXus.Programs {
       private int edtavProductservicetilename_Enabled ;
       private int divTablesupplieragb_Visible ;
       private int divTablesuppliergen_Visible ;
-      private int edtavProductservicedescription_Enabled ;
       private int edtavSupplieragbid_Visible ;
       private int edtavSuppliergenid_Visible ;
       private int edtavProductserviceid_Visible ;
@@ -3276,7 +3300,16 @@ namespace GeneXus.Programs {
       private string divTablesplittedsuppliergenid_Internalname ;
       private string lblTextblockcombo_suppliergenid_Internalname ;
       private string lblTextblockcombo_suppliergenid_Jsonclick ;
-      private string edtavProductservicedescription_Internalname ;
+      private string Productservicedescription_Internalname ;
+      private string Productservicedescription_Width ;
+      private string Productservicedescription_Height ;
+      private string Productservicedescription_Skin ;
+      private string Productservicedescription_Toolbar ;
+      private string Productservicedescription_Customtoolbar ;
+      private string Productservicedescription_Customconfiguration ;
+      private string Productservicedescription_Captionclass ;
+      private string Productservicedescription_Captionstyle ;
+      private string Productservicedescription_Captionposition ;
       private string divTableactions_Internalname ;
       private string Btnwizardfirstprevious_Tooltiptext ;
       private string Btnwizardfirstprevious_Beforeiconclass ;
@@ -3338,6 +3371,8 @@ namespace GeneXus.Programs {
       private bool AV5CheckRequiredFieldsResult ;
       private bool AV49isStart ;
       private bool wbLoad ;
+      private bool Productservicedescription_Toolbarcancollapse ;
+      private bool Productservicedescription_Toolbarexpanded ;
       private bool Rfr0gs ;
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
@@ -3355,6 +3390,7 @@ namespace GeneXus.Programs {
       private bool Usercontrol1_Enableuploadedfilecanceling ;
       private bool Usercontrol1_Disableimageresize ;
       private bool Usercontrol1_Autodisableaddingfiles ;
+      private bool Productservicedescription_Enabled ;
       private string AV21ProductServiceDescription ;
       private string AV25ProductServiceImageVar ;
       private string AV37WebSessionKey ;
@@ -3384,6 +3420,7 @@ namespace GeneXus.Programs {
       private IGxSession AV36WebSession ;
       private GeneXus.Utils.GxStringCollection gxdynajaxctrlcodr ;
       private GeneXus.Utils.GxStringCollection gxdynajaxctrldescr ;
+      private GXUserControl ucProductservicedescription ;
       private GXUserControl ucBtnwizardfirstprevious ;
       private GXUserControl ucBtnwizardnext ;
       private GXUserControl ucCombo_suppliergenid ;

@@ -218,6 +218,12 @@ namespace GeneXus.Programs {
             A103OrganisationSettingBaseColor = P00937_A103OrganisationSettingBaseColor[0];
             A104OrganisationSettingFontSize = P00937_A104OrganisationSettingFontSize[0];
             A105OrganisationSettingLanguage = P00937_A105OrganisationSettingLanguage[0];
+            A546OrganisationHasMyCare = P00937_A546OrganisationHasMyCare[0];
+            A547OrganisationHasMyLiving = P00937_A547OrganisationHasMyLiving[0];
+            A548OrganisationHasMyServices = P00937_A548OrganisationHasMyServices[0];
+            A549OrganisationHasDynamicForms = P00937_A549OrganisationHasDynamicForms[0];
+            A550OrganisationBrandTheme = P00937_A550OrganisationBrandTheme[0];
+            A551OrganisationCtaTheme = P00937_A551OrganisationCtaTheme[0];
             A101OrganisationSettingLogo = P00937_A101OrganisationSettingLogo[0];
             A102OrganisationSettingFavicon = P00937_A102OrganisationSettingFavicon[0];
             AV24GXLvl93 = 1;
@@ -230,6 +236,12 @@ namespace GeneXus.Programs {
             AV18WWPContext.gxTpr_Organisationsettingfontsize = A104OrganisationSettingFontSize;
             AV18WWPContext.gxTpr_Organisationsettinglanguage = A105OrganisationSettingLanguage;
             AV18WWPContext.gxTpr_Organisationsettingtrnmode = "UPD";
+            AV18WWPContext.gxTpr_Organisationhasmycare = A546OrganisationHasMyCare;
+            AV18WWPContext.gxTpr_Organisationhasmyliving = A547OrganisationHasMyLiving;
+            AV18WWPContext.gxTpr_Organisationhasmyservices = A548OrganisationHasMyServices;
+            AV18WWPContext.gxTpr_Organisationhasdynamicforms = A549OrganisationHasDynamicForms;
+            AV18WWPContext.gxTpr_Organisationbrandtheme = A550OrganisationBrandTheme;
+            AV18WWPContext.gxTpr_Organisationctatheme = A551OrganisationCtaTheme;
             pr_default.readNext(5);
          }
          pr_default.close(5);
@@ -354,6 +366,12 @@ namespace GeneXus.Programs {
          P00937_A103OrganisationSettingBaseColor = new string[] {""} ;
          P00937_A104OrganisationSettingFontSize = new string[] {""} ;
          P00937_A105OrganisationSettingLanguage = new string[] {""} ;
+         P00937_A546OrganisationHasMyCare = new bool[] {false} ;
+         P00937_A547OrganisationHasMyLiving = new bool[] {false} ;
+         P00937_A548OrganisationHasMyServices = new bool[] {false} ;
+         P00937_A549OrganisationHasDynamicForms = new bool[] {false} ;
+         P00937_A550OrganisationBrandTheme = new string[] {""} ;
+         P00937_A551OrganisationCtaTheme = new string[] {""} ;
          P00937_A101OrganisationSettingLogo = new string[] {""} ;
          P00937_A102OrganisationSettingFavicon = new string[] {""} ;
          A40003OrganisationSettingLogo_GXI = "";
@@ -362,6 +380,8 @@ namespace GeneXus.Programs {
          A103OrganisationSettingBaseColor = "";
          A104OrganisationSettingFontSize = "";
          A105OrganisationSettingLanguage = "";
+         A550OrganisationBrandTheme = "";
+         A551OrganisationCtaTheme = "";
          A101OrganisationSettingLogo = "";
          A102OrganisationSettingFavicon = "";
          AV13DashboardItems = new GXBaseCollection<SdtUHomeModulesSDT_UHomeModulesSDTItem>( context, "UHomeModulesSDTItem", "Comforta_version2");
@@ -387,7 +407,8 @@ namespace GeneXus.Programs {
                P00936_A29LocationId, P00936_A31LocationName, P00936_A11OrganisationId
                }
                , new Object[] {
-               P00937_A11OrganisationId, P00937_A40003OrganisationSettingLogo_GXI, P00937_A40004OrganisationSettingFavicon_GXI, P00937_A100OrganisationSettingid, P00937_A103OrganisationSettingBaseColor, P00937_A104OrganisationSettingFontSize, P00937_A105OrganisationSettingLanguage, P00937_A101OrganisationSettingLogo, P00937_A102OrganisationSettingFavicon
+               P00937_A11OrganisationId, P00937_A40003OrganisationSettingLogo_GXI, P00937_A40004OrganisationSettingFavicon_GXI, P00937_A100OrganisationSettingid, P00937_A103OrganisationSettingBaseColor, P00937_A104OrganisationSettingFontSize, P00937_A105OrganisationSettingLanguage, P00937_A546OrganisationHasMyCare, P00937_A547OrganisationHasMyLiving, P00937_A548OrganisationHasMyServices,
+               P00937_A549OrganisationHasDynamicForms, P00937_A550OrganisationBrandTheme, P00937_A551OrganisationCtaTheme, P00937_A101OrganisationSettingLogo, P00937_A102OrganisationSettingFavicon
                }
             }
          );
@@ -399,7 +420,13 @@ namespace GeneXus.Programs {
       private bool n40000ResidentImage_GXI ;
       private bool A360ManagerIsMainManager ;
       private bool A394ManagerIsActive ;
+      private bool A546OrganisationHasMyCare ;
+      private bool A547OrganisationHasMyLiving ;
+      private bool A548OrganisationHasMyServices ;
+      private bool A549OrganisationHasDynamicForms ;
       private string A105OrganisationSettingLanguage ;
+      private string A550OrganisationBrandTheme ;
+      private string A551OrganisationCtaTheme ;
       private string AV11UserRoleName ;
       private string A71ResidentGUID ;
       private string A40000ResidentImage_GXI ;
@@ -478,6 +505,12 @@ namespace GeneXus.Programs {
       private string[] P00937_A103OrganisationSettingBaseColor ;
       private string[] P00937_A104OrganisationSettingFontSize ;
       private string[] P00937_A105OrganisationSettingLanguage ;
+      private bool[] P00937_A546OrganisationHasMyCare ;
+      private bool[] P00937_A547OrganisationHasMyLiving ;
+      private bool[] P00937_A548OrganisationHasMyServices ;
+      private bool[] P00937_A549OrganisationHasDynamicForms ;
+      private string[] P00937_A550OrganisationBrandTheme ;
+      private string[] P00937_A551OrganisationCtaTheme ;
       private string[] P00937_A101OrganisationSettingLogo ;
       private string[] P00937_A102OrganisationSettingFavicon ;
       private GXBaseCollection<SdtUHomeModulesSDT_UHomeModulesSDTItem> AV13DashboardItems ;
@@ -538,7 +571,7 @@ namespace GeneXus.Programs {
              ,new CursorDef("P00934", "SELECT ReceptionistEmail, ReceptionistGAMGUID, OrganisationId, LocationId, ReceptionistId, ReceptionistImage_GXI, ReceptionistPhoneNumber, ReceptionistPhoneCode FROM Trn_Receptionist WHERE (LOWER(ReceptionistEmail) = ( :AV9GAMUser__Email)) AND (ReceptionistGAMGUID = ( :AV9GAMUser__Guid)) ORDER BY ReceptionistId, OrganisationId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00934,100, GxCacheFrequency.OFF ,false,false )
              ,new CursorDef("P00935", "SELECT OrganisationId, OrganisationName FROM Trn_Organisation WHERE OrganisationId = :AV17OrganisationId ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00935,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P00936", "SELECT LocationId, LocationName, OrganisationId FROM Trn_Location WHERE LocationId = :AV10LocationId ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00936,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P00937", "SELECT OrganisationId, OrganisationSettingLogo_GXI, OrganisationSettingFavicon_GXI, OrganisationSettingid, OrganisationSettingBaseColor, OrganisationSettingFontSize, OrganisationSettingLanguage, OrganisationSettingLogo, OrganisationSettingFavicon FROM Trn_OrganisationSetting WHERE OrganisationId = :AV17OrganisationId ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00937,100, GxCacheFrequency.OFF ,false,false )
+             ,new CursorDef("P00937", "SELECT OrganisationId, OrganisationSettingLogo_GXI, OrganisationSettingFavicon_GXI, OrganisationSettingid, OrganisationSettingBaseColor, OrganisationSettingFontSize, OrganisationSettingLanguage, OrganisationHasMyCare, OrganisationHasMyLiving, OrganisationHasMyServices, OrganisationHasDynamicForms, OrganisationBrandTheme, OrganisationCtaTheme, OrganisationSettingLogo, OrganisationSettingFavicon FROM Trn_OrganisationSetting WHERE OrganisationId = :AV17OrganisationId ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00937,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
@@ -597,8 +630,14 @@ namespace GeneXus.Programs {
                 ((string[]) buf[4])[0] = rslt.getVarchar(5);
                 ((string[]) buf[5])[0] = rslt.getVarchar(6);
                 ((string[]) buf[6])[0] = rslt.getLongVarchar(7);
-                ((string[]) buf[7])[0] = rslt.getMultimediaFile(8, rslt.getVarchar(2));
-                ((string[]) buf[8])[0] = rslt.getMultimediaFile(9, rslt.getVarchar(3));
+                ((bool[]) buf[7])[0] = rslt.getBool(8);
+                ((bool[]) buf[8])[0] = rslt.getBool(9);
+                ((bool[]) buf[9])[0] = rslt.getBool(10);
+                ((bool[]) buf[10])[0] = rslt.getBool(11);
+                ((string[]) buf[11])[0] = rslt.getLongVarchar(12);
+                ((string[]) buf[12])[0] = rslt.getLongVarchar(13);
+                ((string[]) buf[13])[0] = rslt.getMultimediaFile(14, rslt.getVarchar(2));
+                ((string[]) buf[14])[0] = rslt.getMultimediaFile(15, rslt.getVarchar(3));
                 return;
        }
     }

@@ -1,7 +1,5 @@
+trn_appversion
 trn_organisationdynamicform
-trn_gjscomponent
-trn_contentpage
-trn_tile
 uform
 trn_residentnotification
 trn_appnotification
@@ -50,6 +48,8 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+wp_createorganisationandmanagerstep3
+wp_manageorganisationprovisioning
 wp_organisationdynamicform
 wc_calltoactiondetails
 wc_locationreceptionistswithinsert
@@ -334,7 +334,6 @@ gamhome
 gamnotauthorized
 gamexamplelogin
 gamexamplelogin
-gx00p0
 gx00o0
 gx00m0
 gx00h0

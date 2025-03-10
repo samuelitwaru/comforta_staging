@@ -1284,6 +1284,34 @@ namespace GeneXus.Programs {
          /* ToolboxGetLocationTheme Constructor */
       }
 
+      public void gxep_getthemes( out GXBaseCollection<SdtSDT_Theme> aP0_SDT_ThemeCollection ,
+                                  out SdtSDT_Error aP1_error )
+      {
+         restCliGetThemes = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/themes";
+         restCliGetThemes.Location = restLocation;
+         restCliGetThemes.HttpMethod = "GET";
+         restCliGetThemes.RestExecute();
+         if ( restCliGetThemes.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliGetThemes.ErrorCode;
+            gxProperties.ErrorMessage = restCliGetThemes.ErrorMessage;
+            gxProperties.StatusCode = restCliGetThemes.StatusCode;
+            aP0_SDT_ThemeCollection = new GXBaseCollection<SdtSDT_Theme>();
+            aP1_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP0_SDT_ThemeCollection = restCliGetThemes.GetBodySdtCollection<SdtSDT_Theme>("SDT_ThemeCollection");
+            aP1_error = restCliGetThemes.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* GetThemes Constructor */
+      }
+
       public override void cleanup( )
       {
          CloseCursors();
@@ -1368,6 +1396,8 @@ namespace GeneXus.Programs {
          aP2_SDT_LocationTheme = new SdtSDT_LocationTheme();
          restCliToolboxGetLocationTheme = new GXRestAPIClient();
          aP0_SDT_LocationTheme = new SdtSDT_LocationTheme();
+         restCliGetThemes = new GXRestAPIClient();
+         aP0_SDT_ThemeCollection = new GXBaseCollection<SdtSDT_Theme>();
          /* GeneXus formulas. */
       }
 
@@ -1412,6 +1442,7 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliGetServices ;
       protected GXRestAPIClient restCliGetLocationTheme ;
       protected GXRestAPIClient restCliToolboxGetLocationTheme ;
+      protected GXRestAPIClient restCliGetThemes ;
       protected GxLocation restLocation ;
       protected GxObjectProperties gxProperties ;
       protected IGxDataStore dsDataStore1 ;
@@ -1453,6 +1484,7 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_ProductService> aP0_SDT_ProductServiceCollection ;
       protected SdtSDT_LocationTheme aP2_SDT_LocationTheme ;
       protected SdtSDT_LocationTheme aP0_SDT_LocationTheme ;
+      protected GXBaseCollection<SdtSDT_Theme> aP0_SDT_ThemeCollection ;
    }
 
 }

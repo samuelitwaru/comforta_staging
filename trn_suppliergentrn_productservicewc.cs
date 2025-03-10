@@ -2120,9 +2120,7 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( AV19IsAuthorized_Insert )
          {
-            GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "trn_productservice.aspx"+UrlEncode(StringUtil.RTrim("INS")) + "," + UrlEncode(Guid.Empty.ToString()) + "," + UrlEncode(Guid.Empty.ToString()) + "," + UrlEncode(Guid.Empty.ToString());
-            CallWebObject(formatLink("trn_productservice.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
+            CallWebObject(formatLink("trn_productservice.aspx", new object[] {UrlEncode(StringUtil.RTrim("INS")),UrlEncode(Guid.Empty.ToString()),UrlEncode(Guid.Empty.ToString()),UrlEncode(Guid.Empty.ToString())}, new string[] {"Mode","ProductServiceId","LocationId","OrganisationId"}) );
             context.wjLocDisableFrm = 1;
          }
          else
@@ -2215,9 +2213,7 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( AV22IsAuthorized_Update )
          {
-            GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "trn_productservice.aspx"+UrlEncode(StringUtil.RTrim("UPD")) + "," + UrlEncode(A58ProductServiceId.ToString()) + "," + UrlEncode(A29LocationId.ToString()) + "," + UrlEncode(A11OrganisationId.ToString());
-            CallWebObject(formatLink("trn_productservice.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
+            CallWebObject(formatLink("trn_productservice.aspx", new object[] {UrlEncode(StringUtil.RTrim("UPD")),UrlEncode(A58ProductServiceId.ToString()),UrlEncode(A29LocationId.ToString()),UrlEncode(A11OrganisationId.ToString())}, new string[] {"Mode","ProductServiceId","LocationId","OrganisationId"}) );
             context.wjLocDisableFrm = 1;
          }
          else
@@ -2233,9 +2229,7 @@ namespace GeneXus.Programs {
          returnInSub = false;
          if ( AV17IsAuthorized_Delete )
          {
-            GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "trn_productservice.aspx"+UrlEncode(StringUtil.RTrim("DLT")) + "," + UrlEncode(A58ProductServiceId.ToString()) + "," + UrlEncode(A29LocationId.ToString()) + "," + UrlEncode(A11OrganisationId.ToString());
-            CallWebObject(formatLink("trn_productservice.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
+            CallWebObject(formatLink("trn_productservice.aspx", new object[] {UrlEncode(StringUtil.RTrim("DLT")),UrlEncode(A58ProductServiceId.ToString()),UrlEncode(A29LocationId.ToString()),UrlEncode(A11OrganisationId.ToString())}, new string[] {"Mode","ProductServiceId","LocationId","OrganisationId"}) );
             context.wjLocDisableFrm = 1;
          }
          else
@@ -2538,7 +2532,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202522118211649", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025371351927", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2554,7 +2548,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_suppliergentrn_productservicewc.js", "?202522118211649", false, true);
+         context.AddJavascriptSource("trn_suppliergentrn_productservicewc.js", "?2025371351927", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

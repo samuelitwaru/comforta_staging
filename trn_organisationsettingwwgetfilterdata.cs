@@ -262,11 +262,13 @@ namespace GeneXus.Programs {
             A105OrganisationSettingLanguage = P00682_A105OrganisationSettingLanguage[0];
             A104OrganisationSettingFontSize = P00682_A104OrganisationSettingFontSize[0];
             A100OrganisationSettingid = P00682_A100OrganisationSettingid[0];
+            A11OrganisationId = P00682_A11OrganisationId[0];
             AV27count = 0;
             while ( (pr_default.getStatus(0) != 101) && ( StringUtil.StrCmp(P00682_A103OrganisationSettingBaseColor[0], A103OrganisationSettingBaseColor) == 0 ) )
             {
                BRK682 = false;
                A100OrganisationSettingid = P00682_A100OrganisationSettingid[0];
+               A11OrganisationId = P00682_A11OrganisationId[0];
                AV27count = (long)(AV27count+1);
                BRK682 = true;
                pr_default.readNext(0);
@@ -337,11 +339,13 @@ namespace GeneXus.Programs {
             A105OrganisationSettingLanguage = P00683_A105OrganisationSettingLanguage[0];
             A103OrganisationSettingBaseColor = P00683_A103OrganisationSettingBaseColor[0];
             A100OrganisationSettingid = P00683_A100OrganisationSettingid[0];
+            A11OrganisationId = P00683_A11OrganisationId[0];
             AV27count = 0;
             while ( (pr_default.getStatus(1) != 101) && ( StringUtil.StrCmp(P00683_A104OrganisationSettingFontSize[0], A104OrganisationSettingFontSize) == 0 ) )
             {
                BRK684 = false;
                A100OrganisationSettingid = P00683_A100OrganisationSettingid[0];
+               A11OrganisationId = P00683_A11OrganisationId[0];
                AV27count = (long)(AV27count+1);
                BRK684 = true;
                pr_default.readNext(1);
@@ -412,11 +416,13 @@ namespace GeneXus.Programs {
             A104OrganisationSettingFontSize = P00684_A104OrganisationSettingFontSize[0];
             A103OrganisationSettingBaseColor = P00684_A103OrganisationSettingBaseColor[0];
             A100OrganisationSettingid = P00684_A100OrganisationSettingid[0];
+            A11OrganisationId = P00684_A11OrganisationId[0];
             AV27count = 0;
             while ( (pr_default.getStatus(2) != 101) && ( StringUtil.StrCmp(P00684_A105OrganisationSettingLanguage[0], A105OrganisationSettingLanguage) == 0 ) )
             {
                BRK686 = false;
                A100OrganisationSettingid = P00684_A100OrganisationSettingid[0];
+               A11OrganisationId = P00684_A11OrganisationId[0];
                AV27count = (long)(AV27count+1);
                BRK686 = true;
                pr_default.readNext(2);
@@ -493,26 +499,30 @@ namespace GeneXus.Programs {
          P00682_A105OrganisationSettingLanguage = new string[] {""} ;
          P00682_A104OrganisationSettingFontSize = new string[] {""} ;
          P00682_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
+         P00682_A11OrganisationId = new Guid[] {Guid.Empty} ;
          A100OrganisationSettingid = Guid.Empty;
+         A11OrganisationId = Guid.Empty;
          AV22Option = "";
          P00683_A104OrganisationSettingFontSize = new string[] {""} ;
          P00683_A105OrganisationSettingLanguage = new string[] {""} ;
          P00683_A103OrganisationSettingBaseColor = new string[] {""} ;
          P00683_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
+         P00683_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P00684_A105OrganisationSettingLanguage = new string[] {""} ;
          P00684_A104OrganisationSettingFontSize = new string[] {""} ;
          P00684_A103OrganisationSettingBaseColor = new string[] {""} ;
          P00684_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
+         P00684_A11OrganisationId = new Guid[] {Guid.Empty} ;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_organisationsettingwwgetfilterdata__default(),
             new Object[][] {
                 new Object[] {
-               P00682_A103OrganisationSettingBaseColor, P00682_A105OrganisationSettingLanguage, P00682_A104OrganisationSettingFontSize, P00682_A100OrganisationSettingid
+               P00682_A103OrganisationSettingBaseColor, P00682_A105OrganisationSettingLanguage, P00682_A104OrganisationSettingFontSize, P00682_A100OrganisationSettingid, P00682_A11OrganisationId
                }
                , new Object[] {
-               P00683_A104OrganisationSettingFontSize, P00683_A105OrganisationSettingLanguage, P00683_A103OrganisationSettingBaseColor, P00683_A100OrganisationSettingid
+               P00683_A104OrganisationSettingFontSize, P00683_A105OrganisationSettingLanguage, P00683_A103OrganisationSettingBaseColor, P00683_A100OrganisationSettingid, P00683_A11OrganisationId
                }
                , new Object[] {
-               P00684_A105OrganisationSettingLanguage, P00684_A104OrganisationSettingFontSize, P00684_A103OrganisationSettingBaseColor, P00684_A100OrganisationSettingid
+               P00684_A105OrganisationSettingLanguage, P00684_A104OrganisationSettingFontSize, P00684_A103OrganisationSettingBaseColor, P00684_A100OrganisationSettingid, P00684_A11OrganisationId
                }
             }
          );
@@ -558,6 +568,7 @@ namespace GeneXus.Programs {
       private string A104OrganisationSettingFontSize ;
       private string AV22Option ;
       private Guid A100OrganisationSettingid ;
+      private Guid A11OrganisationId ;
       private IGxSession AV28Session ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
@@ -573,14 +584,17 @@ namespace GeneXus.Programs {
       private string[] P00682_A105OrganisationSettingLanguage ;
       private string[] P00682_A104OrganisationSettingFontSize ;
       private Guid[] P00682_A100OrganisationSettingid ;
+      private Guid[] P00682_A11OrganisationId ;
       private string[] P00683_A104OrganisationSettingFontSize ;
       private string[] P00683_A105OrganisationSettingLanguage ;
       private string[] P00683_A103OrganisationSettingBaseColor ;
       private Guid[] P00683_A100OrganisationSettingid ;
+      private Guid[] P00683_A11OrganisationId ;
       private string[] P00684_A105OrganisationSettingLanguage ;
       private string[] P00684_A104OrganisationSettingFontSize ;
       private string[] P00684_A103OrganisationSettingBaseColor ;
       private Guid[] P00684_A100OrganisationSettingid ;
+      private Guid[] P00684_A11OrganisationId ;
       private string aP3_OptionsJson ;
       private string aP4_OptionsDescJson ;
       private string aP5_OptionIndexesJson ;
@@ -604,7 +618,7 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int1 = new short[9];
          Object[] GXv_Object2 = new Object[2];
-         scmdbuf = "SELECT OrganisationSettingBaseColor, OrganisationSettingLanguage, OrganisationSettingFontSize, OrganisationSettingid FROM Trn_OrganisationSetting";
+         scmdbuf = "SELECT OrganisationSettingBaseColor, OrganisationSettingLanguage, OrganisationSettingFontSize, OrganisationSettingid, OrganisationId FROM Trn_OrganisationSetting";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_organisationsettingwwds_1_filterfulltext)) )
          {
             AddWhere(sWhereString, "(( LOWER(OrganisationSettingBaseColor) like '%' || LOWER(:lV42Trn_organisationsettingwwds_1_filterfulltext)) or ( LOWER(OrganisationSettingFontSize) like '%' || LOWER(:lV42Trn_organisationsettingwwds_1_filterfulltext)) or ( LOWER(OrganisationSettingLanguage) like '%' || LOWER(:lV42Trn_organisationsettingwwds_1_filterfulltext)))");
@@ -698,7 +712,7 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int3 = new short[9];
          Object[] GXv_Object4 = new Object[2];
-         scmdbuf = "SELECT OrganisationSettingFontSize, OrganisationSettingLanguage, OrganisationSettingBaseColor, OrganisationSettingid FROM Trn_OrganisationSetting";
+         scmdbuf = "SELECT OrganisationSettingFontSize, OrganisationSettingLanguage, OrganisationSettingBaseColor, OrganisationSettingid, OrganisationId FROM Trn_OrganisationSetting";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_organisationsettingwwds_1_filterfulltext)) )
          {
             AddWhere(sWhereString, "(( LOWER(OrganisationSettingBaseColor) like '%' || LOWER(:lV42Trn_organisationsettingwwds_1_filterfulltext)) or ( LOWER(OrganisationSettingFontSize) like '%' || LOWER(:lV42Trn_organisationsettingwwds_1_filterfulltext)) or ( LOWER(OrganisationSettingLanguage) like '%' || LOWER(:lV42Trn_organisationsettingwwds_1_filterfulltext)))");
@@ -792,7 +806,7 @@ namespace GeneXus.Programs {
          string scmdbuf;
          short[] GXv_int5 = new short[9];
          Object[] GXv_Object6 = new Object[2];
-         scmdbuf = "SELECT OrganisationSettingLanguage, OrganisationSettingFontSize, OrganisationSettingBaseColor, OrganisationSettingid FROM Trn_OrganisationSetting";
+         scmdbuf = "SELECT OrganisationSettingLanguage, OrganisationSettingFontSize, OrganisationSettingBaseColor, OrganisationSettingid, OrganisationId FROM Trn_OrganisationSetting";
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV42Trn_organisationsettingwwds_1_filterfulltext)) )
          {
             AddWhere(sWhereString, "(( LOWER(OrganisationSettingBaseColor) like '%' || LOWER(:lV42Trn_organisationsettingwwds_1_filterfulltext)) or ( LOWER(OrganisationSettingFontSize) like '%' || LOWER(:lV42Trn_organisationsettingwwds_1_filterfulltext)) or ( LOWER(OrganisationSettingLanguage) like '%' || LOWER(:lV42Trn_organisationsettingwwds_1_filterfulltext)))");
@@ -956,18 +970,21 @@ namespace GeneXus.Programs {
                 ((string[]) buf[1])[0] = rslt.getLongVarchar(2);
                 ((string[]) buf[2])[0] = rslt.getVarchar(3);
                 ((Guid[]) buf[3])[0] = rslt.getGuid(4);
+                ((Guid[]) buf[4])[0] = rslt.getGuid(5);
                 return;
              case 1 :
                 ((string[]) buf[0])[0] = rslt.getVarchar(1);
                 ((string[]) buf[1])[0] = rslt.getLongVarchar(2);
                 ((string[]) buf[2])[0] = rslt.getVarchar(3);
                 ((Guid[]) buf[3])[0] = rslt.getGuid(4);
+                ((Guid[]) buf[4])[0] = rslt.getGuid(5);
                 return;
              case 2 :
                 ((string[]) buf[0])[0] = rslt.getLongVarchar(1);
                 ((string[]) buf[1])[0] = rslt.getVarchar(2);
                 ((string[]) buf[2])[0] = rslt.getVarchar(3);
                 ((Guid[]) buf[3])[0] = rslt.getGuid(4);
+                ((Guid[]) buf[4])[0] = rslt.getGuid(5);
                 return;
        }
     }

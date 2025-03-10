@@ -849,6 +849,11 @@ namespace GeneXus.Programs {
          AV14WizardStep.gxTpr_Title = context.GetMessage( "Manager", "");
          AV14WizardStep.gxTpr_Description = context.GetMessage( "Manager", "");
          AV13WizardSteps.Add(AV14WizardStep, 0);
+         AV14WizardStep = new GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem(context);
+         AV14WizardStep.gxTpr_Code = "Step3";
+         AV14WizardStep.gxTpr_Title = context.GetMessage( "Provisioning", "");
+         AV14WizardStep.gxTpr_Description = context.GetMessage( "Provisioning", "");
+         AV13WizardSteps.Add(AV14WizardStep, 0);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11CurrentStep)) )
          {
             AV12CurrentStepAux = "Step1";
@@ -941,6 +946,33 @@ namespace GeneXus.Programs {
                context.httpAjaxContext.ajax_rspEndCmp();
             }
          }
+         else if ( StringUtil.StrCmp(AV12CurrentStepAux, "Step3") == 0 )
+         {
+            /* Object Property */
+            if ( true )
+            {
+               bDynCreated_Wizardstepwc = true;
+            }
+            if ( StringUtil.StrCmp(StringUtil.Lower( WebComp_Wizardstepwc_Component), StringUtil.Lower( "WP_CreateOrganisationAndManagerStep3")) != 0 )
+            {
+               WebComp_Wizardstepwc = getWebComponent(GetType(), "GeneXus.Programs", "wp_createorganisationandmanagerstep3", new Object[] {context} );
+               WebComp_Wizardstepwc.ComponentInit();
+               WebComp_Wizardstepwc.Name = "WP_CreateOrganisationAndManagerStep3";
+               WebComp_Wizardstepwc_Component = "WP_CreateOrganisationAndManagerStep3";
+            }
+            if ( StringUtil.Len( WebComp_Wizardstepwc_Component) != 0 )
+            {
+               WebComp_Wizardstepwc.setjustcreated();
+               WebComp_Wizardstepwc.componentprepare(new Object[] {(string)"W0015",(string)"",(string)AV16Pgmname+"_Data",(string)AV10PreviousStep,(bool)AV9GoingBack});
+               WebComp_Wizardstepwc.componentbind(new Object[] {(string)""+""+"",(string)"",(string)""});
+            }
+            if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wizardstepwc )
+            {
+               context.httpAjaxContext.ajax_rspStartCmp("gxHTMLWrpW0015"+"");
+               WebComp_Wizardstepwc.componentdraw();
+               context.httpAjaxContext.ajax_rspEndCmp();
+            }
+         }
       }
 
       protected void nextLoad( )
@@ -1015,7 +1047,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025128649402", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253611123597", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1031,7 +1063,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_createorganisationandmanager.js", "?2025128649402", false, true);
+         context.AddJavascriptSource("wp_createorganisationandmanager.js", "?20253611123597", false, true);
          /* End function include_jscripts */
       }
 

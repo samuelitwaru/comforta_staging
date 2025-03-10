@@ -1011,7 +1011,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025347314314", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253101036488", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1027,7 +1027,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_applicationdesign.js", "?2025347314315", false, true);
+         context.AddJavascriptSource("wp_applicationdesign.js", "?20253101036489", false, true);
          context.AddJavascriptSource("UserControls/UC_AppToolBoxRender.js", "", false, true);
          /* End function include_jscripts */
       }
@@ -1478,7 +1478,7 @@ public class wp_applicationdesign__default : DataStoreHelperBase, IDataStoreHelp
           ,new CursorDef("H00474", "SELECT OrganisationId, LocationId, ProductServiceImage_GXI, ProductServiceId, ProductServiceName, ProductServiceTileName, ProductServiceImage FROM Trn_ProductService WHERE LocationId = :AV60Udparg1 and OrganisationId = :AV61Udparg2 ORDER BY LocationId, OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00474,100, GxCacheFrequency.OFF ,false,false )
           ,new CursorDef("H00475", "SELECT T1.LocationDynamicFormId, T1.WWPFormVersionNumber, T1.OrganisationId, T1.LocationId, T1.WWPFormId, T2.WWPFormReferenceName FROM (Trn_LocationDynamicForm T1 INNER JOIN WWP_Form T2 ON T2.WWPFormId = T1.WWPFormId AND T2.WWPFormVersionNumber = T1.WWPFormVersionNumber) WHERE T1.LocationId = :AV60Udparg1 and T1.OrganisationId = :AV61Udparg2 ORDER BY T1.LocationId, T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00475,100, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("H00476", "SELECT LocationId, MediaId, MediaName FROM Trn_Media WHERE LocationId = :AV60Udparg1 ORDER BY MediaId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00476,100, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("H00477", "SELECT Trn_ThemeName, Trn_ThemeId FROM Trn_Theme WHERE Not (char_length(trim(trailing ' ' from RTRIM(LTRIM(Trn_ThemeName))))=0) ORDER BY Trn_ThemeId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00477,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("H00477", "SELECT Trn_ThemeName, Trn_ThemeId FROM Trn_Theme WHERE Not (char_length(trim(trailing ' ' from RTRIM(LTRIM(Trn_ThemeName))))=0) ORDER BY Trn_ThemeName ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00477,100, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("H00478", "SELECT LocationId, Trn_PageId, Trn_PageName, PageChildren FROM Trn_Page ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00478,100, GxCacheFrequency.OFF ,false,false )
        };
     }

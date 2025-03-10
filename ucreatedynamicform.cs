@@ -1597,8 +1597,8 @@ namespace GeneXus.Programs {
                               AV53Trn_OrganisationDynamicForm = new SdtTrn_OrganisationDynamicForm(context);
                               AV53Trn_OrganisationDynamicForm.gxTpr_Organisationdynamicformid = Guid.NewGuid( );
                               AV53Trn_OrganisationDynamicForm.gxTpr_Organisationid = AV49OrganisationId;
-                              AV53Trn_OrganisationDynamicForm.gxTpr_Wwpformid = AV27WWPForm.gxTpr_Wwpformid;
-                              AV53Trn_OrganisationDynamicForm.gxTpr_Wwpformversionnumber = AV27WWPForm.gxTpr_Wwpformversionnumber;
+                              AV53Trn_OrganisationDynamicForm.gxTpr_Wwpformid = AV30NewWWPForm.gxTpr_Wwpformid;
+                              AV53Trn_OrganisationDynamicForm.gxTpr_Wwpformversionnumber = AV30NewWWPForm.gxTpr_Wwpformversionnumber;
                               AV53Trn_OrganisationDynamicForm.Save();
                               if ( AV53Trn_OrganisationDynamicForm.Success() )
                               {
@@ -1951,7 +1951,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202535881633", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025361245241", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1967,7 +1967,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("ucreatedynamicform.js", "?202535881634", false, true);
+         context.AddJavascriptSource("ucreatedynamicform.js", "?2025361245241", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Panel/BootstrapPanelRender.js", "", false, true);

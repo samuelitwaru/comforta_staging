@@ -66,4 +66,7 @@
   <Object name="UMenuOptionsData" id="28" type="DataProvider" IntegratedSecurityLevel="SecurityHigh" PermissionPrefix="MenuOptionsData" xmlns="qv">
     <DefaultOutput type="OutputTypePivotTable" xmlns="qv" />
   </Object>
+  <Object name="DP_ResidentProvisioning" id="29" type="DataProvider" IntegratedSecurityLevel="SecurityHigh" PermissionPrefix="DP_ResidentProvisioning" xmlns="qv">
+    <DefaultOutput type="OutputTypePivotTable" xmlns="qv" />
+  </Object>
 </Objects>

@@ -291,6 +291,8 @@ namespace GeneXus.Programs {
          {
             enableOutput();
          }
+         context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
+         context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             context.CloseHtmlHeader();
@@ -384,9 +386,21 @@ namespace GeneXus.Programs {
          /* Send hidden variables. */
          /* Send saved values. */
          send_integrity_footer_hashes( ) ;
+         GxWebStd.gx_hidden_field( context, sPrefix+"PRODUCTSERVICEDESCRIPTION", A60ProductServiceDescription);
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOA58ProductServiceId", wcpOA58ProductServiceId.ToString());
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOA29LocationId", wcpOA29LocationId.ToString());
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOA11OrganisationId", wcpOA11OrganisationId.ToString());
+         GxWebStd.gx_hidden_field( context, sPrefix+"PRODUCTSERVICEDESCRIPTION_Enabled", StringUtil.BoolToStr( Productservicedescription_Enabled));
+         GxWebStd.gx_hidden_field( context, sPrefix+"PRODUCTSERVICEDESCRIPTION_Width", StringUtil.RTrim( Productservicedescription_Width));
+         GxWebStd.gx_hidden_field( context, sPrefix+"PRODUCTSERVICEDESCRIPTION_Height", StringUtil.RTrim( Productservicedescription_Height));
+         GxWebStd.gx_hidden_field( context, sPrefix+"PRODUCTSERVICEDESCRIPTION_Skin", StringUtil.RTrim( Productservicedescription_Skin));
+         GxWebStd.gx_hidden_field( context, sPrefix+"PRODUCTSERVICEDESCRIPTION_Toolbar", StringUtil.RTrim( Productservicedescription_Toolbar));
+         GxWebStd.gx_hidden_field( context, sPrefix+"PRODUCTSERVICEDESCRIPTION_Customtoolbar", StringUtil.RTrim( Productservicedescription_Customtoolbar));
+         GxWebStd.gx_hidden_field( context, sPrefix+"PRODUCTSERVICEDESCRIPTION_Customconfiguration", StringUtil.RTrim( Productservicedescription_Customconfiguration));
+         GxWebStd.gx_hidden_field( context, sPrefix+"PRODUCTSERVICEDESCRIPTION_Captionclass", StringUtil.RTrim( Productservicedescription_Captionclass));
+         GxWebStd.gx_hidden_field( context, sPrefix+"PRODUCTSERVICEDESCRIPTION_Captionstyle", StringUtil.RTrim( Productservicedescription_Captionstyle));
+         GxWebStd.gx_hidden_field( context, sPrefix+"PRODUCTSERVICEDESCRIPTION_Captionposition", StringUtil.RTrim( Productservicedescription_Captionposition));
+         GxWebStd.gx_hidden_field( context, sPrefix+"PRODUCTSERVICEDESCRIPTION_Visible", StringUtil.BoolToStr( Productservicedescription_Visible));
       }
 
       protected void RenderHtmlCloseForm5C2( )
@@ -462,6 +476,8 @@ namespace GeneXus.Programs {
             if ( StringUtil.Len( sPrefix) != 0 )
             {
                GxWebStd.gx_hidden_field( context, sPrefix+"_CMPPGM", "trn_productservicegeneral.aspx");
+               context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
+               context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
             }
             GxWebStd.gx_msg_list( context, "", context.GX_msglist.DisplayMode, "", "", sPrefix, "false");
             /* Div Control */
@@ -824,20 +840,53 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, divProductservicedescription_cell_Internalname, 1, 0, "px", 0, "px", divProductservicedescription_cell_Class, "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtProductServiceDescription_Internalname+"\"", "", "div");
+            GxWebStd.gx_div_start( context, "", -1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+Productservicedescription_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, edtProductServiceDescription_Internalname, context.GetMessage( "Description", ""), "col-sm-4 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, Productservicedescription_Internalname, context.GetMessage( "Description", ""), "col-sm-4 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
-            /* Multiple line edit */
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 135,'" + sPrefix + "',false,'',0)\"";
-            ClassString = "Attribute";
-            StyleString = "";
-            ClassString = "Attribute";
-            StyleString = "";
-            GxWebStd.gx_html_textarea( context, edtProductServiceDescription_Internalname, A60ProductServiceDescription, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,135);\"", 0, 1, edtProductServiceDescription_Enabled, 0, 40, "chr", 5, "row", 0, StyleString, ClassString, "", "", "2097152", 1, 0, "", "", -1, true, "LongDescription", "'"+sPrefix+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Trn_ProductServiceGeneral.htm");
+            /* User Defined Control */
+            ucProductservicedescription.SetProperty("Width", Productservicedescription_Width);
+            ucProductservicedescription.SetProperty("Height", Productservicedescription_Height);
+            ucProductservicedescription.SetProperty("Attribute", ProductServiceDescription);
+            ucProductservicedescription.SetProperty("Skin", Productservicedescription_Skin);
+            ucProductservicedescription.SetProperty("Toolbar", Productservicedescription_Toolbar);
+            ucProductservicedescription.SetProperty("CustomToolbar", Productservicedescription_Customtoolbar);
+            ucProductservicedescription.SetProperty("CustomConfiguration", Productservicedescription_Customconfiguration);
+            ucProductservicedescription.SetProperty("CaptionClass", Productservicedescription_Captionclass);
+            ucProductservicedescription.SetProperty("CaptionStyle", Productservicedescription_Captionstyle);
+            ucProductservicedescription.SetProperty("CaptionPosition", Productservicedescription_Captionposition);
+            ucProductservicedescription.Render(context, "fckeditor", Productservicedescription_Internalname, sPrefix+"PRODUCTSERVICEDESCRIPTIONContainer");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divTransactiondetail_descriptiontexttable_Internalname, divTransactiondetail_descriptiontexttable_Visible, 0, "px", 0, "px", "CellMarginBottom10", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-4 gx-label AttributeLabel control-label", "start", "top", "", "", "div");
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblTransactiondetail_descriptionlabel_Internalname, context.GetMessage( "Description", ""), "", "", lblTransactiondetail_descriptionlabel_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "TextBlock AttributeWeightBold", 0, "", 1, 1, 0, 0, "HLP_Trn_ProductServiceGeneral.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-8", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divTransactiondetail_tabledescriptiontext_Internalname, 1, 0, "px", 0, "px", "HTMLTextOverfow", "start", "top", " "+"data-gx-flex"+" ", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divDatareadonlycell_Internalname, 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;", "div");
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblTransactiondetail_productservicedescriptiontext_Internalname, lblTransactiondetail_productservicedescriptiontext_Caption, "", "", lblTransactiondetail_productservicedescriptiontext_Jsonclick, "'"+sPrefix+"'"+",false,"+"'"+""+"'", "", "DynamicFormHTMLEditor", 0, "", 1, 1, 0, 1, "HLP_Trn_ProductServiceGeneral.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -856,7 +905,7 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group CellMarginTop10", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 140,'" + sPrefix + "',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 150,'" + sPrefix + "',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtncancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+sPrefix+"'"+",false,"+"'"+sPrefix+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_ProductServiceGeneral.htm");
@@ -1317,7 +1366,6 @@ namespace GeneXus.Programs {
                A42SupplierGenId = H005C3_A42SupplierGenId[0];
                n42SupplierGenId = H005C3_n42SupplierGenId[0];
                A60ProductServiceDescription = H005C3_A60ProductServiceDescription[0];
-               AssignAttri(sPrefix, false, "A60ProductServiceDescription", A60ProductServiceDescription);
                A51SupplierAgbName = H005C3_A51SupplierAgbName[0];
                AssignAttri(sPrefix, false, "A51SupplierAgbName", A51SupplierAgbName);
                A44SupplierGenCompanyName = H005C3_A44SupplierGenCompanyName[0];
@@ -1392,8 +1440,6 @@ namespace GeneXus.Programs {
          AssignProp(sPrefix, false, edtSupplierGenCompanyName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtSupplierGenCompanyName_Enabled), 5, 0), true);
          edtSupplierAgbName_Enabled = 0;
          AssignProp(sPrefix, false, edtSupplierAgbName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtSupplierAgbName_Enabled), 5, 0), true);
-         edtProductServiceDescription_Enabled = 0;
-         AssignProp(sPrefix, false, edtProductServiceDescription_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtProductServiceDescription_Enabled), 5, 0), true);
          edtProductServiceId_Enabled = 0;
          AssignProp(sPrefix, false, edtProductServiceId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtProductServiceId_Enabled), 5, 0), true);
          edtOrganisationId_Enabled = 0;
@@ -1417,9 +1463,21 @@ namespace GeneXus.Programs {
          {
             /* Read saved SDTs. */
             /* Read saved values. */
+            A60ProductServiceDescription = cgiGet( sPrefix+"PRODUCTSERVICEDESCRIPTION");
             wcpOA58ProductServiceId = StringUtil.StrToGuid( cgiGet( sPrefix+"wcpOA58ProductServiceId"));
             wcpOA29LocationId = StringUtil.StrToGuid( cgiGet( sPrefix+"wcpOA29LocationId"));
             wcpOA11OrganisationId = StringUtil.StrToGuid( cgiGet( sPrefix+"wcpOA11OrganisationId"));
+            Productservicedescription_Enabled = StringUtil.StrToBool( cgiGet( sPrefix+"PRODUCTSERVICEDESCRIPTION_Enabled"));
+            Productservicedescription_Width = cgiGet( sPrefix+"PRODUCTSERVICEDESCRIPTION_Width");
+            Productservicedescription_Height = cgiGet( sPrefix+"PRODUCTSERVICEDESCRIPTION_Height");
+            Productservicedescription_Skin = cgiGet( sPrefix+"PRODUCTSERVICEDESCRIPTION_Skin");
+            Productservicedescription_Toolbar = cgiGet( sPrefix+"PRODUCTSERVICEDESCRIPTION_Toolbar");
+            Productservicedescription_Customtoolbar = cgiGet( sPrefix+"PRODUCTSERVICEDESCRIPTION_Customtoolbar");
+            Productservicedescription_Customconfiguration = cgiGet( sPrefix+"PRODUCTSERVICEDESCRIPTION_Customconfiguration");
+            Productservicedescription_Captionclass = cgiGet( sPrefix+"PRODUCTSERVICEDESCRIPTION_Captionclass");
+            Productservicedescription_Captionstyle = cgiGet( sPrefix+"PRODUCTSERVICEDESCRIPTION_Captionstyle");
+            Productservicedescription_Captionposition = cgiGet( sPrefix+"PRODUCTSERVICEDESCRIPTION_Captionposition");
+            Productservicedescription_Visible = StringUtil.StrToBool( cgiGet( sPrefix+"PRODUCTSERVICEDESCRIPTION_Visible"));
             /* Read variables values. */
             A59ProductServiceName = cgiGet( edtProductServiceName_Internalname);
             AssignAttri(sPrefix, false, "A59ProductServiceName", A59ProductServiceName);
@@ -1452,8 +1510,6 @@ namespace GeneXus.Programs {
             AssignAttri(sPrefix, false, "AV24SupplierAgb_Id", AV24SupplierAgb_Id);
             AV27ListAgbPre = StringUtil.StrToBool( cgiGet( chkavListagbpre_Internalname));
             AssignAttri(sPrefix, false, "AV27ListAgbPre", AV27ListAgbPre);
-            A60ProductServiceDescription = cgiGet( edtProductServiceDescription_Internalname);
-            AssignAttri(sPrefix, false, "A60ProductServiceDescription", A60ProductServiceDescription);
             /* Read subfile selected row values. */
             /* Read hidden variables. */
             GXKey = Crypto.GetSiteKey( );
@@ -1551,6 +1607,8 @@ namespace GeneXus.Programs {
          returnInSub = false;
          Gx_mode = "DSP";
          AssignAttri(sPrefix, false, "Gx_mode", Gx_mode);
+         lblTransactiondetail_productservicedescriptiontext_Caption = A60ProductServiceDescription;
+         AssignProp(sPrefix, false, lblTransactiondetail_productservicedescriptiontext_Internalname, "Caption", lblTransactiondetail_productservicedescriptiontext_Caption, true);
          GXt_char1 = AV29SupplierLocation;
          new prc_getsupplierlocationname(context ).execute(  A366ProductServiceGroup, out  GXt_char1) ;
          AV29SupplierLocation = GXt_char1;
@@ -1592,6 +1650,20 @@ namespace GeneXus.Programs {
             AssignProp(sPrefix, false, edtavSupplierlocation_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavSupplierlocation_Visible), 5, 0), true);
             divSupplierlocation_cell_Class = "col-xs-12 DataContentCell";
             AssignProp(sPrefix, false, divSupplierlocation_cell_Internalname, "Class", divSupplierlocation_cell_Class, true);
+         }
+         if ( ! ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) || ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 ) ) )
+         {
+            Productservicedescription_Visible = false;
+            AssignProp(sPrefix, false, Productservicedescription_Internalname, "Visible", StringUtil.BoolToStr( Productservicedescription_Visible), true);
+            divProductservicedescription_cell_Class = "Invisible";
+            AssignProp(sPrefix, false, divProductservicedescription_cell_Internalname, "Class", divProductservicedescription_cell_Class, true);
+         }
+         else
+         {
+            Productservicedescription_Visible = true;
+            AssignProp(sPrefix, false, Productservicedescription_Internalname, "Visible", StringUtil.BoolToStr( Productservicedescription_Visible), true);
+            divProductservicedescription_cell_Class = "col-xs-12 DataContentCell";
+            AssignProp(sPrefix, false, divProductservicedescription_cell_Internalname, "Class", divProductservicedescription_cell_Class, true);
          }
          if ( ! ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) || ( StringUtil.StrCmp(Gx_mode, "UPD") == 0 ) ) )
          {
@@ -1663,6 +1735,8 @@ namespace GeneXus.Programs {
             divLocationid_cell_Class = "col-xs-12 DataContentCell";
             AssignProp(sPrefix, false, divLocationid_cell_Internalname, "Class", divLocationid_cell_Class, true);
          }
+         divTransactiondetail_descriptiontexttable_Visible = (((StringUtil.StrCmp(Gx_mode, "DSP")==0)) ? 1 : 0);
+         AssignProp(sPrefix, false, divTransactiondetail_descriptiontexttable_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divTransactiondetail_descriptiontexttable_Visible), 5, 0), true);
          divTransactiondetail_tablegen_Visible = (((StringUtil.StrCmp(A366ProductServiceGroup, "General Supplier")==0)) ? 1 : 0);
          AssignProp(sPrefix, false, divTransactiondetail_tablegen_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divTransactiondetail_tablegen_Visible), 5, 0), true);
          divTransactiondetail_tableagb_Visible = (((StringUtil.StrCmp(A366ProductServiceGroup, " AGB Supplier")==0)) ? 1 : 0);
@@ -2112,7 +2186,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025358868", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253713504638", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2128,7 +2202,9 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_productservicegeneral.js", "?2025358868", false, true);
+         context.AddJavascriptSource("trn_productservicegeneral.js", "?20253713504638", false, true);
+         context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
+         context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
          /* End function include_jscripts */
       }
 
@@ -2211,7 +2287,13 @@ namespace GeneXus.Programs {
          divTransactiondetail_supplieragbpre_Internalname = sPrefix+"TRANSACTIONDETAIL_SUPPLIERAGBPRE";
          divTransactiondetail_tableagb_Internalname = sPrefix+"TRANSACTIONDETAIL_TABLEAGB";
          divUnnamedtable3_Internalname = sPrefix+"UNNAMEDTABLE3";
-         edtProductServiceDescription_Internalname = sPrefix+"PRODUCTSERVICEDESCRIPTION";
+         Productservicedescription_Internalname = sPrefix+"PRODUCTSERVICEDESCRIPTION";
+         divProductservicedescription_cell_Internalname = sPrefix+"PRODUCTSERVICEDESCRIPTION_CELL";
+         lblTransactiondetail_descriptionlabel_Internalname = sPrefix+"TRANSACTIONDETAIL_DESCRIPTIONLABEL";
+         lblTransactiondetail_productservicedescriptiontext_Internalname = sPrefix+"TRANSACTIONDETAIL_PRODUCTSERVICEDESCRIPTIONTEXT";
+         divDatareadonlycell_Internalname = sPrefix+"DATAREADONLYCELL";
+         divTransactiondetail_tabledescriptiontext_Internalname = sPrefix+"TRANSACTIONDETAIL_TABLEDESCRIPTIONTEXT";
+         divTransactiondetail_descriptiontexttable_Internalname = sPrefix+"TRANSACTIONDETAIL_DESCRIPTIONTEXTTABLE";
          divUnnamedtable2_Internalname = sPrefix+"UNNAMEDTABLE2";
          divTransactiondetail_tableattributes_Internalname = sPrefix+"TRANSACTIONDETAIL_TABLEATTRIBUTES";
          bttBtncancel_Internalname = sPrefix+"BTNCANCEL";
@@ -2274,7 +2356,10 @@ namespace GeneXus.Programs {
          edtOrganisationId_Visible = 1;
          edtProductServiceId_Jsonclick = "";
          edtProductServiceId_Visible = 1;
-         edtProductServiceDescription_Enabled = 0;
+         lblTransactiondetail_productservicedescriptiontext_Caption = context.GetMessage( "DescriptionText To Display", "");
+         divTransactiondetail_descriptiontexttable_Visible = 1;
+         Productservicedescription_Enabled = Convert.ToBoolean( 0);
+         divProductservicedescription_cell_Class = "col-xs-12";
          divTransactiondetail_supplieragbpre_Visible = 1;
          divTransactiondetail_supplieragb_Visible = 1;
          divTransactiondetail_tableagb_Visible = 1;
@@ -2296,6 +2381,16 @@ namespace GeneXus.Programs {
          dynLocationId.Enabled = 0;
          dynLocationId.Visible = 1;
          divLocationid_cell_Class = "col-xs-12";
+         Productservicedescription_Visible = Convert.ToBoolean( -1);
+         Productservicedescription_Captionposition = "Left";
+         Productservicedescription_Captionstyle = "";
+         Productservicedescription_Captionclass = "col-sm-4 AttributeLabel";
+         Productservicedescription_Customconfiguration = "myconfig.js";
+         Productservicedescription_Customtoolbar = "myToolbar";
+         Productservicedescription_Toolbar = "Custom";
+         Productservicedescription_Skin = "silver";
+         Productservicedescription_Height = "250";
+         Productservicedescription_Width = "100%";
          if ( StringUtil.Len( sPrefix) == 0 )
          {
             if ( context.isSpaRequest( ) )
@@ -2364,6 +2459,7 @@ namespace GeneXus.Programs {
          GXEncryptionTmp = "";
          forbiddenHiddens = new GXProperties();
          A366ProductServiceGroup = "";
+         A60ProductServiceDescription = "";
          GX_FocusControl = "";
          TempTags = "";
          A59ProductServiceName = "";
@@ -2379,7 +2475,10 @@ namespace GeneXus.Programs {
          lblTextblocksuppliergen_id_Jsonclick = "";
          lblTextblocksupplieragbname_Jsonclick = "";
          lblTextblocksupplieragb_id_Jsonclick = "";
-         A60ProductServiceDescription = "";
+         ucProductservicedescription = new GXUserControl();
+         ProductServiceDescription = "";
+         lblTransactiondetail_descriptionlabel_Jsonclick = "";
+         lblTransactiondetail_productservicedescriptiontext_Jsonclick = "";
          bttBtncancel_Jsonclick = "";
          Form = new GXWebForm();
          sXEvt = "";
@@ -2476,7 +2575,7 @@ namespace GeneXus.Programs {
       private int divTransactiondetail_tableagb_Visible ;
       private int divTransactiondetail_supplieragb_Visible ;
       private int divTransactiondetail_supplieragbpre_Visible ;
-      private int edtProductServiceDescription_Enabled ;
+      private int divTransactiondetail_descriptiontexttable_Visible ;
       private int edtProductServiceId_Visible ;
       private int edtOrganisationId_Visible ;
       private int gxdynajaxindex ;
@@ -2504,6 +2603,15 @@ namespace GeneXus.Programs {
       private string bodyStyle ;
       private string GXKey ;
       private string GXEncryptionTmp ;
+      private string Productservicedescription_Width ;
+      private string Productservicedescription_Height ;
+      private string Productservicedescription_Skin ;
+      private string Productservicedescription_Toolbar ;
+      private string Productservicedescription_Customtoolbar ;
+      private string Productservicedescription_Customconfiguration ;
+      private string Productservicedescription_Captionclass ;
+      private string Productservicedescription_Captionstyle ;
+      private string Productservicedescription_Captionposition ;
       private string GX_FocusControl ;
       private string divLayoutmaintable_Internalname ;
       private string divTable_Internalname ;
@@ -2548,7 +2656,17 @@ namespace GeneXus.Programs {
       private string divTablesplittedsupplieragb_id_Internalname ;
       private string lblTextblocksupplieragb_id_Internalname ;
       private string lblTextblocksupplieragb_id_Jsonclick ;
-      private string edtProductServiceDescription_Internalname ;
+      private string divProductservicedescription_cell_Internalname ;
+      private string divProductservicedescription_cell_Class ;
+      private string Productservicedescription_Internalname ;
+      private string divTransactiondetail_descriptiontexttable_Internalname ;
+      private string lblTransactiondetail_descriptionlabel_Internalname ;
+      private string lblTransactiondetail_descriptionlabel_Jsonclick ;
+      private string divTransactiondetail_tabledescriptiontext_Internalname ;
+      private string divDatareadonlycell_Internalname ;
+      private string lblTransactiondetail_productservicedescriptiontext_Internalname ;
+      private string lblTransactiondetail_productservicedescriptiontext_Caption ;
+      private string lblTransactiondetail_productservicedescriptiontext_Jsonclick ;
       private string bttBtncancel_Internalname ;
       private string bttBtncancel_Jsonclick ;
       private string divHtml_bottomauxiliarcontrols_Internalname ;
@@ -2598,6 +2716,8 @@ namespace GeneXus.Programs {
       private bool toggleJsOutput ;
       private bool AV22ListAgb ;
       private bool AV23ListGen ;
+      private bool Productservicedescription_Enabled ;
+      private bool Productservicedescription_Visible ;
       private bool wbLoad ;
       private bool A61ProductServiceImage_IsBlob ;
       private bool Rfr0gs ;
@@ -2612,6 +2732,7 @@ namespace GeneXus.Programs {
       private bool GXt_boolean2 ;
       private bool AV28isManager ;
       private string A60ProductServiceDescription ;
+      private string ProductServiceDescription ;
       private string A366ProductServiceGroup ;
       private string A59ProductServiceName ;
       private string A40000ProductServiceImage_GXI ;
@@ -2634,6 +2755,7 @@ namespace GeneXus.Programs {
       private GeneXus.Utils.GxStringCollection gxdynajaxctrlcodr ;
       private GeneXus.Utils.GxStringCollection gxdynajaxctrldescr ;
       private GXProperties forbiddenHiddens ;
+      private GXUserControl ucProductservicedescription ;
       private GXWebForm Form ;
       private GxHttpRequest AV11HTTPRequest ;
       private IGxSession AV10Session ;

@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250305051114"
+  version: "20250308083544"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/api
 paths:
@@ -1098,6 +1098,25 @@ paths:
         404:
           description: "Not found"
 
+  /toolbox/themes:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.GetThemes"
+      summary: "Get Themes"
+      security: 
+        - oAuthGXGAM: []
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetThemesOutput"
+        404:
+          description: "Not found"
+
 components:
   securitySchemes:
     oAuthGXGAM:
@@ -1261,6 +1280,17 @@ components:
         SDT_LocationTheme:
           description: "SDT_Location Theme"
           $ref: "#/components/schemas/SDT_LocationTheme"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+    GetThemesOutput:
+      properties:
+        SDT_ThemeCollection:
+          description: "SDT_Theme"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_Theme"
         error:
           description: "SDT_Error"
           $ref: "#/components/schemas/SDT_Error"
@@ -1445,6 +1475,7 @@ components:
         ThemeId:
           type: "string"
           format: "uuid"
+
 
 
 
