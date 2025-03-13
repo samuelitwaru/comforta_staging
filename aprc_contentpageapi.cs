@@ -160,7 +160,7 @@ namespace GeneXus.Programs {
                   }
                   AV32GXV1 = (int)(AV32GXV1+1);
                }
-               new prc_logtoserver(context ).execute(  "2>>>"+AV14SDT_ContentPage.gxTpr_Content.ToJSonString(false)) ;
+               new prc_logtoserver(context ).execute(  "2>>>"+AV14SDT_ContentPage.gxTpr_Cta.ToJSonString(false)) ;
                AV33GXV2 = 1;
                while ( AV33GXV2 <= AV14SDT_ContentPage.gxTpr_Cta.Count )
                {
@@ -185,7 +185,6 @@ namespace GeneXus.Programs {
                   else
                   {
                   }
-                  AV14SDT_ContentPage.gxTpr_Cta.Add(AV21CtaItem, 0);
                   AV33GXV2 = (int)(AV33GXV2+1);
                }
                new prc_logtoserver(context ).execute(  "3>>>"+AV14SDT_ContentPage.gxTpr_Content.ToJSonString(false)) ;
