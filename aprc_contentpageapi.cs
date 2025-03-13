@@ -139,11 +139,7 @@ namespace GeneXus.Programs {
             AV14SDT_ContentPage.FromJSonString(A431PageJsonContent, null);
             AV25Res_SDT_ContentPage = new SdtSDT_ContentPageV1(context);
             AV25Res_SDT_ContentPage = AV14SDT_ContentPage;
-            new prc_logtoserver(context ).execute(  context.GetMessage( "Is predefined: ", "")+StringUtil.BoolToStr( A504PageIsPredefined)) ;
-            new prc_logtoserver(context ).execute(  context.GetMessage( "Product Service: ", "")+AV23PageId.ToString()) ;
-            new prc_logtoserver(context ).execute(  AV25Res_SDT_ContentPage.gxTpr_Content.ToJSonString(false)) ;
             AV10BC_Trn_ProductService.Load(AV23PageId, AV8LocationId, AV9OrganisationId);
-            new prc_logtoserver(context ).execute(  StringUtil.BoolToStr( (Guid.Empty==AV10BC_Trn_ProductService.gxTpr_Productserviceid))) ;
             if ( ! A504PageIsPredefined )
             {
                AV32GXV1 = 1;
