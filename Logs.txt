@@ -8,3 +8,4 @@
 2>>>[{"CtaId":"974eb7d0-2eed-495d-8fd9-350391dda2e8","CtaType":"SiteUrl","CtaLabel":"SiteUrl","CtaAction":"https://mail.google.com/mail/u/0/#inbox","CtaBGColor":"#b2b997","IsFullWidth":false,"IsImageButton":false}]
 3>>>[{"ContentType":"Image","ContentValue":"multimedia-file.tmp"},{"ContentType":"Description","ContentValue":"Best food ever"}]
 {"PageId":"e19ee11e-42f5-4add-8885-857d5d6c0100","PageName":"Food Delivery","Content":[{"ContentType":"Image","ContentValue":"multimedia-file.tmp"},{"ContentType":"Description","ContentValue":"Best food ever"}],"Cta":[{"CtaId":"974eb7d0-2eed-495d-8fd9-350391dda2e8","CtaType":"SiteUrl","CtaLabel":"SiteUrl","CtaAction":"https://mail.google.com/mail/u/0/#inbox","CtaBGColor":"#b2b997","IsFullWidth":false,"IsImageButton":false}]}
+Token: 
