@@ -17,6 +17,8 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_AgendaLocation.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ApiListResponse.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ApiResidentFilledForms.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_AppVersion.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_AppVersion_PageItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_AvatarUpload.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_BrandThemeColors.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_CallToAction_SDT_CallToActionItem.cs" />
@@ -25,6 +27,9 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPage.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPage_ContentItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPage_CtaItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPageV1.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPageV1_ContentItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_ContentPageV1_CtaItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Country_SDT_CountryItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_CtaThemeColors.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_DynamicForms.cs" />
@@ -36,6 +41,10 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_LoginResidentResponse.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Managers_SDT_ManagersItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Media.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_MenuPage.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_MenuPage_RowsItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_MenuPage_RowsItem_TilesItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_MenuPage_RowsItem_TilesItem_Action.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_MobilePage.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_NotificationGroup_SDT_NotificationGroupItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_NotificationMetadata.cs" />
@@ -54,6 +63,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_PageChildren.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_PageStructure.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_PageStructure_ChildrenItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_PageV2.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ProductService.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ProductServiceSupplierGroup_SDT_ProductServiceSupplierGroupItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_PublishPage.cs" />

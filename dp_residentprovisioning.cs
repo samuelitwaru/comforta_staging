@@ -60,35 +60,34 @@ namespace GeneXus.Programs {
          dsDefault = context.GetDataStore("Default");
       }
 
-      public void execute( Guid aP0_OrganisationId ,
-                           out GXBaseCollection<SdtSDT_ResidentProvisioning_SDT_ResidentProvisioningItem> aP1_Gxm2rootcol )
+      public void execute( out GXBaseCollection<SdtSDT_ResidentProvisioning_SDT_ResidentProvisioningItem> aP0_Gxm2rootcol )
       {
-         this.AV5OrganisationId = aP0_OrganisationId;
          this.Gxm2rootcol = new GXBaseCollection<SdtSDT_ResidentProvisioning_SDT_ResidentProvisioningItem>( context, "SDT_ResidentProvisioningItem", "Comforta_version2") ;
          initialize();
          ExecuteImpl();
-         aP1_Gxm2rootcol=this.Gxm2rootcol;
+         aP0_Gxm2rootcol=this.Gxm2rootcol;
       }
 
-      public GXBaseCollection<SdtSDT_ResidentProvisioning_SDT_ResidentProvisioningItem> executeUdp( Guid aP0_OrganisationId )
+      public GXBaseCollection<SdtSDT_ResidentProvisioning_SDT_ResidentProvisioningItem> executeUdp( )
       {
-         execute(aP0_OrganisationId, out aP1_Gxm2rootcol);
+         execute(out aP0_Gxm2rootcol);
          return Gxm2rootcol ;
       }
 
-      public void executeSubmit( Guid aP0_OrganisationId ,
-                                 out GXBaseCollection<SdtSDT_ResidentProvisioning_SDT_ResidentProvisioningItem> aP1_Gxm2rootcol )
+      public void executeSubmit( out GXBaseCollection<SdtSDT_ResidentProvisioning_SDT_ResidentProvisioningItem> aP0_Gxm2rootcol )
       {
-         this.AV5OrganisationId = aP0_OrganisationId;
          this.Gxm2rootcol = new GXBaseCollection<SdtSDT_ResidentProvisioning_SDT_ResidentProvisioningItem>( context, "SDT_ResidentProvisioningItem", "Comforta_version2") ;
          SubmitImpl();
-         aP1_Gxm2rootcol=this.Gxm2rootcol;
+         aP0_Gxm2rootcol=this.Gxm2rootcol;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
+         GXt_guid1 = AV5OrganisationId;
+         new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
+         AV5OrganisationId = GXt_guid1;
          /* Using cursor P000T2 */
          pr_default.execute(0, new Object[] {AV5OrganisationId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -146,6 +145,8 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
+         AV5OrganisationId = Guid.Empty;
+         GXt_guid1 = Guid.Empty;
          P000T2_A546OrganisationHasMyCare = new bool[] {false} ;
          P000T2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          P000T2_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
@@ -178,6 +179,7 @@ namespace GeneXus.Programs {
       private bool A547OrganisationHasMyLiving ;
       private bool A548OrganisationHasMyServices ;
       private Guid AV5OrganisationId ;
+      private Guid GXt_guid1 ;
       private Guid A11OrganisationId ;
       private Guid A100OrganisationSettingid ;
       private IGxDataStore dsDataStore1 ;
@@ -195,7 +197,7 @@ namespace GeneXus.Programs {
       private bool[] P000T4_A548OrganisationHasMyServices ;
       private Guid[] P000T4_A11OrganisationId ;
       private Guid[] P000T4_A100OrganisationSettingid ;
-      private GXBaseCollection<SdtSDT_ResidentProvisioning_SDT_ResidentProvisioningItem> aP1_Gxm2rootcol ;
+      private GXBaseCollection<SdtSDT_ResidentProvisioning_SDT_ResidentProvisioningItem> aP0_Gxm2rootcol ;
    }
 
    public class dp_residentprovisioning__default : DataStoreHelperBase, IDataStoreHelper

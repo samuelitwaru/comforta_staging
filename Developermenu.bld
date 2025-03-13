@@ -1,3 +1,4 @@
+trn_residentpackage
 trn_appversion
 trn_organisationdynamicform
 uform
@@ -48,6 +49,11 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+trn_residentappaccessrightgeneral
+trn_residentpackagetrn_residentwc
+trn_residentpackagegeneral
+trn_residentpackageww
+trn_residentpackageview
 wp_createorganisationandmanagerstep3
 wp_manageorganisationprovisioning
 wp_organisationdynamicform
@@ -346,6 +352,7 @@ gx0040
 gx0030
 general\ui\masterprompt
 general\ui\masterunanimosidebar
+trn_residentpackagewwgetfilterdata
 wp_organisationdynamicformgetfilterdata
 aprc_uploadprofileimage
 aprc_uploadlogo

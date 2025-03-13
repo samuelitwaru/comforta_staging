@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250308083543"
+  version: "20250313090100"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -440,6 +440,29 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Trn_ResidentLoadDVComboOutput"
+        404:
+          description: "Not found"
+  /Trn_ResidentPackageWWGetFilterData:
+    post:
+      tags:
+        - Trn_ResidentPackageWWGetFilterData
+      operationId: "Trn_ResidentPackageWWGetFilterData"
+      summary: "Trn_Resident Package WWGet Filter Data"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Trn_ResidentPackageWWGetFilterDataInput"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Trn_ResidentPackageWWGetFilterDataOutput"
         404:
           description: "Not found"
   /Trn_ResidentTypeWWGetFilterData:
@@ -1301,6 +1324,14 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/WWPBaseObjects.DVB_SDTComboData_Item"
+    Trn_ResidentPackageWWGetFilterDataOutput:
+      properties:
+        OptionsJson:
+          type: "string"
+        OptionsDescJson:
+          type: "string"
+        OptionIndexesJson:
+          type: "string"
     Trn_ResidentTypeWWGetFilterDataOutput:
       properties:
         OptionsJson:
@@ -1581,6 +1612,9 @@ components:
         OrganisationSettingid:
           type: "string"
           format: "uuid"
+        OrganisationId:
+          type: "string"
+          format: "uuid"
     Trn_OrganisationSettingWWGetFilterDataInput:  
       properties:
         DDOName:
@@ -1681,6 +1715,14 @@ components:
         OrganisationId:
           type: "string"
           format: "uuid"
+    Trn_ResidentPackageWWGetFilterDataInput:  
+      properties:
+        DDOName:
+          type: "string"
+        SearchTxtParms:
+          type: "string"
+        SearchTxtTo:
+          type: "string"
     Trn_ResidentTypeWWGetFilterDataInput:  
       properties:
         DDOName:
@@ -1974,6 +2016,46 @@ components:
         FormFilledBy:
           description: "Form Filled By"
           type: "string"
+    SDT_AppVersion:
+      properties:
+        AppVersionId:
+          description: "App Version Id"
+          type: "string"
+          format: "uuid"
+        AppVersionName:
+          description: "App Version Name"
+          type: "string"
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
+        Page:
+          type: array
+          items:
+            description: PageItem
+            $ref: "#/components/schemas/SDT_AppVersion.Page_PageItem"
+    SDT_AppVersion.Page_PageItem:
+      properties:
+        PageId:
+          description: "Page Id"
+          type: "string"
+          format: "uuid"
+        PageName:
+          description: "Page Name"
+          type: "string"
+        PageStructure:
+          description: "Page Structure"
+          type: "string"
+        PageType:
+          description: "Page Type"
+          type: "string"
+        PageMenuStructure:
+          description: "SDT_Menu Page"
+          $ref: "#/components/schemas/SDT_MenuPage"
+        PageContentStructure:
+          description: "SDT_Content Page"
+          $ref: "#/components/schemas/SDT_ContentPage"
+      x-gx-level: "SDT_AppVersion"
     SDT_CallToAction_SDT_CallToActionItem:
       properties:
         CallToActionId:
@@ -2080,13 +2162,6 @@ components:
           $ref: "#/components/schemas/SDT_Tile"
     SDT_ContentPage:
       properties:
-        PageName:
-          description: "Page Name"
-          type: "string"
-        PageId:
-          description: "Page Id"
-          type: "string"
-          format: "uuid"
         Content:
           type: array
           items:
@@ -2131,6 +2206,59 @@ components:
           description: "Is Image Button"
           type: "boolean"
       x-gx-level: "SDT_ContentPage"
+    SDT_ContentPageV1:
+      properties:
+        PageId:
+          description: "Page Id"
+          type: "string"
+          format: "uuid"
+        PageName:
+          description: "Page Name"
+          type: "string"
+        Content:
+          type: array
+          items:
+            description: ContentItem
+            $ref: "#/components/schemas/SDT_ContentPageV1.Content_ContentItem"
+        Cta:
+          type: array
+          items:
+            description: CtaItem
+            $ref: "#/components/schemas/SDT_ContentPageV1.Cta_CtaItem"
+    SDT_ContentPageV1.Content_ContentItem:
+      properties:
+        ContentType:
+          description: "Content Type"
+          type: "string"
+        ContentValue:
+          description: "Content Value"
+          type: "string"
+      x-gx-level: "SDT_ContentPageV1"
+    SDT_ContentPageV1.Cta_CtaItem:
+      properties:
+        CtaId:
+          description: "Cta Id"
+          type: "string"
+          format: "uuid"
+        CtaType:
+          description: "Cta Type"
+          type: "string"
+        CtaLabel:
+          description: "Cta Label"
+          type: "string"
+        CtaAction:
+          description: "Cta Action"
+          type: "string"
+        CtaBGColor:
+          description: "Cta BGColor"
+          type: "string"
+        IsFullWidth:
+          description: "Is Full Width"
+          type: "boolean"
+        IsImageButton:
+          description: "Is Image Button"
+          type: "boolean"
+      x-gx-level: "SDT_ContentPageV1"
     SDT_Error:
       properties:
         Status:
@@ -2246,6 +2374,74 @@ components:
         MediaUrl:
           description: "Media Url"
           type: "string"
+    SDT_MenuPage:
+      properties:
+        Rows:
+          type: array
+          items:
+            description: RowsItem
+            $ref: "#/components/schemas/SDT_MenuPage.Rows_RowsItem"
+    SDT_MenuPage.Rows_RowsItem:
+      properties:
+        Id:
+          description: "Id"
+          type: "string"
+        Tiles:
+          type: array
+          items:
+            description: TilesItem
+            $ref: "#/components/schemas/SDT_MenuPage.Rows.Tiles_TilesItem"
+      x-gx-level: "SDT_MenuPage"
+    SDT_MenuPage.Rows.Tiles_TilesItem:
+      properties:
+        Id:
+          description: "Id"
+          type: "string"
+        Name:
+          description: "Name"
+          type: "string"
+        Text:
+          description: "Text"
+          type: "string"
+        Color:
+          description: "Color"
+          type: "string"
+        Align:
+          description: "Align"
+          type: "string"
+        Icon:
+          description: "Icon"
+          type: "string"
+        BGColor:
+          description: "BGColor"
+          type: "string"
+        BGImageUrl:
+          description: "BGImage Url"
+          type: "string"
+        Opacity:
+          description: "Opacity"
+          type: "integer"
+          format: "int32"
+        Permissions:
+          description: "Permissions"
+          type: array
+          items:
+            type: "string"
+        Action:
+          $ref: "#/components/schemas/SDT_MenuPage.Rows.Tiles.Action"
+      x-gx-level: "SDT_MenuPage.Rows"
+    SDT_MenuPage.Rows.Tiles.Action:
+      properties:
+        ObjectType:
+          description: "Object Type"
+          type: "string"
+        ObjectId:
+          description: "Object Id"
+          type: "string"
+        ObjectUrl:
+          description: "Object Url"
+          type: "string"
+      x-gx-level: "SDT_MenuPage.Rows.Tiles"
     SDT_MobilePage:
       properties:
         PageId:

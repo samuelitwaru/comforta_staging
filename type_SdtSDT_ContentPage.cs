@@ -30,8 +30,6 @@ namespace GeneXus.Programs
 		public SdtSDT_ContentPage( )
 		{
 			/* Constructor for serialization */
-			gxTv_SdtSDT_ContentPage_Pagename = "";
-
 		}
 
 		public SdtSDT_ContentPage(IGxContext context)
@@ -59,11 +57,6 @@ namespace GeneXus.Programs
 
 		public override void ToJSON(bool includeState)
 		{
-			AddObjectProperty("PageName", gxTpr_Pagename, false);
-
-
-			AddObjectProperty("PageId", gxTpr_Pageid, false);
-
 			if (gxTv_SdtSDT_ContentPage_Content != null)
 			{
 				AddObjectProperty("Content", gxTv_SdtSDT_ContentPage_Content, false);
@@ -77,38 +70,6 @@ namespace GeneXus.Programs
 		#endregion
 
 		#region Properties
-
-		[SoapElement(ElementName="PageName")]
-		[XmlElement(ElementName="PageName")]
-		public string gxTpr_Pagename
-		{
-			get {
-				return gxTv_SdtSDT_ContentPage_Pagename; 
-			}
-			set {
-				gxTv_SdtSDT_ContentPage_Pagename = value;
-				SetDirty("Pagename");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="PageId")]
-		[XmlElement(ElementName="PageId")]
-		public Guid gxTpr_Pageid
-		{
-			get {
-				return gxTv_SdtSDT_ContentPage_Pageid; 
-			}
-			set {
-				gxTv_SdtSDT_ContentPage_Pageid = value;
-				SetDirty("Pageid");
-			}
-		}
-
-
-
 
 		[SoapElement(ElementName="Content" )]
 		[XmlArray(ElementName="Content"  )]
@@ -185,7 +146,10 @@ namespace GeneXus.Programs
 
 		public override bool ShouldSerializeSdtJson()
 		{
-			return true;
+			return (
+				ShouldSerializegxTpr_Content_GxSimpleCollection_Json() ||
+				ShouldSerializegxTpr_Cta_GxSimpleCollection_Json() || 
+				false);
 		}
 
 
@@ -204,9 +168,6 @@ namespace GeneXus.Programs
 
 		public void initialize( )
 		{
-			gxTv_SdtSDT_ContentPage_Pagename = "";
-
-
 			gxTv_SdtSDT_ContentPage_Content_N = true;
 
 
@@ -221,11 +182,6 @@ namespace GeneXus.Programs
 
 		#region Declaration
 
-		protected string gxTv_SdtSDT_ContentPage_Pagename;
-		 
-
-		protected Guid gxTv_SdtSDT_ContentPage_Pageid;
-		 
 		protected bool gxTv_SdtSDT_ContentPage_Content_N;
 		protected GXBaseCollection<SdtSDT_ContentPage_ContentItem> gxTv_SdtSDT_ContentPage_Content = null; 
 
@@ -250,31 +206,7 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
-		[DataMember(Name="PageName", Order=0)]
-		public  string gxTpr_Pagename
-		{
-			get { 
-				return sdt.gxTpr_Pagename;
-
-			}
-			set { 
-				 sdt.gxTpr_Pagename = value;
-			}
-		}
-
-		[DataMember(Name="PageId", Order=1)]
-		public Guid gxTpr_Pageid
-		{
-			get { 
-				return sdt.gxTpr_Pageid;
-
-			}
-			set { 
-				sdt.gxTpr_Pageid = value;
-			}
-		}
-
-		[DataMember(Name="Content", Order=2, EmitDefaultValue=false)]
+		[DataMember(Name="Content", Order=0, EmitDefaultValue=false)]
 		public GxGenericCollection<SdtSDT_ContentPage_ContentItem_RESTInterface> gxTpr_Content
 		{
 			get {
@@ -289,7 +221,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="Cta", Order=3, EmitDefaultValue=false)]
+		[DataMember(Name="Cta", Order=1, EmitDefaultValue=false)]
 		public GxGenericCollection<SdtSDT_ContentPage_CtaItem_RESTInterface> gxTpr_Cta
 		{
 			get {

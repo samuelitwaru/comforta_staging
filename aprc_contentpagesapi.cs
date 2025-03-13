@@ -123,11 +123,11 @@ namespace GeneXus.Programs {
             A318Trn_PageName = P00902_A318Trn_PageName[0];
             A431PageJsonContent = P00902_A431PageJsonContent[0];
             n431PageJsonContent = P00902_n431PageJsonContent[0];
-            AV16SDT_ContentPage = new SdtSDT_ContentPage(context);
-            AV16SDT_ContentPage.gxTpr_Pageid = A310Trn_PageId;
-            AV16SDT_ContentPage.gxTpr_Pagename = A318Trn_PageName;
-            AV16SDT_ContentPage.FromJSonString(A431PageJsonContent, null);
-            AV17SDT_ContentPageCollection.Add(AV16SDT_ContentPage, 0);
+            AV23SDT_ContentPageV1 = new SdtSDT_ContentPageV1(context);
+            AV23SDT_ContentPageV1.gxTpr_Pageid = A310Trn_PageId;
+            AV23SDT_ContentPageV1.gxTpr_Pagename = A318Trn_PageName;
+            AV23SDT_ContentPageV1.FromJSonString(A431PageJsonContent, null);
+            AV24SDT_ContentPageV1Collection.Add(AV23SDT_ContentPageV1, 0);
             pr_default.readNext(0);
          }
          pr_default.close(0);
@@ -160,7 +160,8 @@ namespace GeneXus.Programs {
          A310Trn_PageId = Guid.Empty;
          A318Trn_PageName = "";
          A431PageJsonContent = "";
-         AV16SDT_ContentPage = new SdtSDT_ContentPage(context);
+         AV23SDT_ContentPageV1 = new SdtSDT_ContentPageV1(context);
+         AV24SDT_ContentPageV1Collection = new GXBaseCollection<SdtSDT_ContentPageV1>( context, "SDT_ContentPageV1", "Comforta_version2");
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.aprc_contentpagesapi__default(),
             new Object[][] {
                 new Object[] {
@@ -194,7 +195,8 @@ namespace GeneXus.Programs {
       private string[] P00902_A318Trn_PageName ;
       private string[] P00902_A431PageJsonContent ;
       private bool[] P00902_n431PageJsonContent ;
-      private SdtSDT_ContentPage AV16SDT_ContentPage ;
+      private SdtSDT_ContentPageV1 AV23SDT_ContentPageV1 ;
+      private GXBaseCollection<SdtSDT_ContentPageV1> AV24SDT_ContentPageV1Collection ;
       private GXBaseCollection<SdtSDT_ContentPage> aP2_SDT_ContentPageCollection ;
    }
 

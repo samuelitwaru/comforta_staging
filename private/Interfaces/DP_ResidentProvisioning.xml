@@ -1,16 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CallableObject guid="2709ca39-a0b1-4196-a933-c865a9652f78" name="DP_ResidentProvisioning" description="DP_Resident Provisioning" namespace="GeneXus.Programs">
-  <Signature name="Par">
-    <Parameter name="OrganisationId">
-      <Field>
-        <Properties>
-          <Property>
-            <Name>Type</Name>
-            <Value>GUID</Value>
-          </Property>
-        </Properties>
-      </Field>
-    </Parameter>
+  <Signature name="parm">
     <Parameter name="ReturnValue" accessor="out">
       <Field name="SDT_ResidentProvisioning" description="SDT_Resident Provisioning" collection="true">
         <Fields>

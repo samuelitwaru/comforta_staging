@@ -413,4 +413,64 @@
 "ServiceMethod":"gxep_getthemes",
 "Implementation":"Prc_GetThemes",
 "Verb":"GET"
+},
+{
+"PathRegexp":"toolbox/v2/appversions",
+"Path":"toolbox/v2/appversions",
+"Name":"getappversions",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_getappversions",
+"Implementation":"Prc_GetAppVersions",
+"Verb":"GET"
+},
+{
+"Verb":"POST",
+"PathRegexp":"toolbox/v2/save-page",
+"Path":"toolbox/v2/save-page",
+"Name":"savepagev2",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_savepagev2",
+"Implementation":"Prc_SavePageV2"
+},
+{
+"Verb":"POST",
+"PathRegexp":"toolbox/v2/publish-pages",
+"Path":"toolbox/v2/publish-pages",
+"Name":"publishpages",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_publishpages",
+"Implementation":"Prc_PublishPages"
+},
+{
+"Verb":"POST",
+"PathRegexp":"toolbox/v2/create-menu-page",
+"Path":"toolbox/v2/create-menu-page",
+"Name":"createmenupage",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_createmenupage",
+"Implementation":"Prc_CreateMenuPage"
+},
+{
+"Verb":"POST",
+"PathRegexp":"toolbox/v2/create-service-page",
+"Path":"toolbox/v2/create-service-page",
+"Name":"createservicepage",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_createservicepage",
+"Implementation":"Prc_CreateServicePage"
+},
+{
+"PathRegexp":"toolbox/v2/delete-page",
+"Path":"toolbox/v2/delete-page",
+"Name":"deletepagev2",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_deletepagev2",
+"Implementation":"Prc_DeletePage",
+"Verb":"GET"
 }]}

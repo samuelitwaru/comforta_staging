@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250308083544"
+  version: "20250313090100"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/api
 paths:
@@ -641,6 +641,12 @@ paths:
           schema:
             type: "string"
             format: "uuid"
+        - name: "Userid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            
       
       responses:
         200:
@@ -722,7 +728,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SDT_ContentPage"  
+                $ref: "#/components/schemas/SDT_ContentPageV1"  
 
         404:
           description: "Not found"
@@ -1117,6 +1123,154 @@ paths:
         404:
           description: "Not found"
 
+  /toolbox/v2/appversions:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.GetAppVersions"
+      summary: "Get App Versions"
+      security: 
+        - oAuthGXGAM: []
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetAppVersionsOutput"
+        404:
+          description: "Not found"
+
+  /toolbox/v2/save-page:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.SavePageV2"
+      summary: "Save Page V2"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SavePageV2Input"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Error"  
+
+        404:
+          description: "Not found"
+
+  /toolbox/v2/publish-pages:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.PublishPages"
+      summary: "Publish Page V2"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PublishPagesInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Error"  
+
+        404:
+          description: "Not found"
+
+  /toolbox/v2/create-menu-page:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.CreateMenuPage"
+      summary: "Create Menu Page"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateMenuPageInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateMenuPageOutput"
+        404:
+          description: "Not found"
+
+  /toolbox/v2/create-service-page:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.CreateServicePage"
+      summary: "Create Service Page"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateServicePageInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateServicePageOutput"
+        404:
+          description: "Not found"
+
+  /toolbox/V2/delete-page:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.DeletePageV2"
+      summary: "Delete Page V2"
+      security: 
+        - oAuthGXGAM: []
+      parameters:
+        - name: "Pageid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Error"  
+
+        404:
+          description: "Not found"
+
 components:
   securitySchemes:
     oAuthGXGAM:
@@ -1294,6 +1448,38 @@ components:
         error:
           description: "SDT_Error"
           $ref: "#/components/schemas/SDT_Error"
+
+    GetAppVersionsOutput:
+      properties:
+        SDT_AppVersionCollection:
+          description: "SDT_App Version"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_AppVersion"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+
+
+    CreateMenuPageOutput:
+      properties:
+        SDT_MenuPage:
+          description: "SDT_Menu Page"
+          $ref: "#/components/schemas/SDT_MenuPage"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+    CreateServicePageOutput:
+      properties:
+        ContentPage:
+          description: "SDT_Content Page"
+          $ref: "#/components/schemas/SDT_ContentPage"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
 
     LoginWithQrCodeInput:  
       properties:
@@ -1479,6 +1665,52 @@ components:
 
 
 
+
+
+
+    SavePageV2Input:  
+      properties:
+        AppVersionId:
+          type: "string"
+          format: "uuid"
+        PageId:
+          type: "string"
+          format: "uuid"
+        PageName:
+          type: "string"
+        PageType:
+          type: "string"
+        PageStructure:
+          type: "string"
+
+    PublishPagesInput:  
+      properties:
+        AppVersionId:
+          type: "string"
+          format: "uuid"
+        PageId:
+          type: "string"
+          format: "uuid"
+        PageName:
+          type: "string"
+        PageType:
+          type: "string"
+        PageStructure:
+          type: "string"
+
+    CreateMenuPageInput:  
+      properties:
+        AppVersionId:
+          type: "string"
+          format: "uuid"
+        PageName:
+          type: "string"
+
+    CreateServicePageInput:  
+      properties:
+        ProductServiceId:
+          type: "string"
+          format: "uuid"
 
   
     SDT_LoginResidentResponse:
@@ -1904,14 +2136,6 @@ components:
 
     SDT_ContentPage:
       properties:
-        PageName:
-          description: "Page Name"
-          type: "string"
-        PageId:
-          description: "Page Id"
-          type: "string"
-          format: "uuid"
-
         Content:
           type: array
           items:
@@ -1965,6 +2189,70 @@ components:
 
 
       x-gx-level: "SDT_ContentPage"
+
+    SDT_ContentPageV1:
+      properties:
+        PageId:
+          description: "Page Id"
+          type: "string"
+          format: "uuid"
+        PageName:
+          description: "Page Name"
+          type: "string"
+
+        Content:
+          type: array
+          items:
+            description: ContentItem
+            $ref: "#/components/schemas/SDT_ContentPageV1.Content_ContentItem"
+
+        Cta:
+          type: array
+          items:
+            description: CtaItem
+            $ref: "#/components/schemas/SDT_ContentPageV1.Cta_CtaItem"
+
+
+    SDT_ContentPageV1.Content_ContentItem:
+      properties:
+        ContentType:
+          description: "Content Type"
+          type: "string"
+        ContentValue:
+          description: "Content Value"
+          type: "string"
+
+
+      x-gx-level: "SDT_ContentPageV1"
+
+
+    SDT_ContentPageV1.Cta_CtaItem:
+      properties:
+        CtaId:
+          description: "Cta Id"
+          type: "string"
+          format: "uuid"
+        CtaType:
+          description: "Cta Type"
+          type: "string"
+        CtaLabel:
+          description: "Cta Label"
+          type: "string"
+        CtaAction:
+          description: "Cta Action"
+          type: "string"
+        CtaBGColor:
+          description: "Cta BGColor"
+          type: "string"
+        IsFullWidth:
+          description: "Is Full Width"
+          type: "boolean"
+        IsImageButton:
+          description: "Is Image Button"
+          type: "boolean"
+
+
+      x-gx-level: "SDT_ContentPageV1"
 
     SDT_PageStructure:
       properties:
@@ -2167,6 +2455,131 @@ components:
           format: "int32"
 
 
+
+    SDT_AppVersion:
+      properties:
+        AppVersionId:
+          description: "App Version Id"
+          type: "string"
+          format: "uuid"
+        AppVersionName:
+          description: "App Version Name"
+          type: "string"
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
+
+        Page:
+          type: array
+          items:
+            description: PageItem
+            $ref: "#/components/schemas/SDT_AppVersion.Page_PageItem"
+
+
+    SDT_AppVersion.Page_PageItem:
+      properties:
+        PageId:
+          description: "Page Id"
+          type: "string"
+          format: "uuid"
+        PageName:
+          description: "Page Name"
+          type: "string"
+        PageStructure:
+          description: "Page Structure"
+          type: "string"
+        PageType:
+          description: "Page Type"
+          type: "string"
+        PageMenuStructure:
+          description: "SDT_Menu Page"
+          $ref: "#/components/schemas/SDT_MenuPage"
+        PageContentStructure:
+          description: "SDT_Content Page"
+          $ref: "#/components/schemas/SDT_ContentPage"
+
+
+      x-gx-level: "SDT_AppVersion"
+
+    SDT_MenuPage:
+      properties:
+        Rows:
+          type: array
+          items:
+            description: RowsItem
+            $ref: "#/components/schemas/SDT_MenuPage.Rows_RowsItem"
+
+
+    SDT_MenuPage.Rows_RowsItem:
+      properties:
+        Id:
+          description: "Id"
+          type: "string"
+
+        Tiles:
+          type: array
+          items:
+            description: TilesItem
+            $ref: "#/components/schemas/SDT_MenuPage.Rows.Tiles_TilesItem"
+
+      x-gx-level: "SDT_MenuPage"
+
+    SDT_MenuPage.Rows.Tiles_TilesItem:
+      properties:
+        Id:
+          description: "Id"
+          type: "string"
+        Name:
+          description: "Name"
+          type: "string"
+        Text:
+          description: "Text"
+          type: "string"
+        Color:
+          description: "Color"
+          type: "string"
+        Align:
+          description: "Align"
+          type: "string"
+        Icon:
+          description: "Icon"
+          type: "string"
+        BGColor:
+          description: "BGColor"
+          type: "string"
+        BGImageUrl:
+          description: "BGImage Url"
+          type: "string"
+        Opacity:
+          description: "Opacity"
+          type: "integer"
+          format: "int32"
+        Permissions:
+          description: "Permissions"
+          type: array
+          items:
+            type: "string"
+
+        Action:
+          $ref: "#/components/schemas/SDT_MenuPage.Rows.Tiles.Action"
+
+      x-gx-level: "SDT_MenuPage.Rows"
+
+    SDT_MenuPage.Rows.Tiles.Action:
+      properties:
+        ObjectType:
+          description: "Object Type"
+          type: "string"
+        ObjectId:
+          description: "Object Id"
+          type: "string"
+        ObjectUrl:
+          description: "Object Url"
+          type: "string"
+
+
+      x-gx-level: "SDT_MenuPage.Rows.Tiles"
 
     SDT_ApiResidentFilledForms:
       properties:

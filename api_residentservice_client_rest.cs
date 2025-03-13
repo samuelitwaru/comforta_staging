@@ -731,7 +731,8 @@ namespace GeneXus.Programs {
       public void gxep_pageapi( Guid aP0_PageId ,
                                 Guid aP1_locationId ,
                                 Guid aP2_organisationId ,
-                                out SdtSDT_MobilePage aP3_SDT_MobilePage )
+                                string aP3_userId ,
+                                out SdtSDT_MobilePage aP4_SDT_MobilePage )
       {
          restCliPageAPI = new GXRestAPIClient();
          if ( restLocation == null )
@@ -744,17 +745,18 @@ namespace GeneXus.Programs {
          restCliPageAPI.AddQueryVar("Pageid", (Guid)(aP0_PageId));
          restCliPageAPI.AddQueryVar("Locationid", (Guid)(aP1_locationId));
          restCliPageAPI.AddQueryVar("Organisationid", (Guid)(aP2_organisationId));
+         restCliPageAPI.AddQueryVar("Userid", (string)(aP3_userId));
          restCliPageAPI.RestExecute();
          if ( restCliPageAPI.ErrorCode != 0 )
          {
             gxProperties.ErrorCode = restCliPageAPI.ErrorCode;
             gxProperties.ErrorMessage = restCliPageAPI.ErrorMessage;
             gxProperties.StatusCode = restCliPageAPI.StatusCode;
-            aP3_SDT_MobilePage = new SdtSDT_MobilePage();
+            aP4_SDT_MobilePage = new SdtSDT_MobilePage();
          }
          else
          {
-            aP3_SDT_MobilePage = restCliPageAPI.GetBodySdt<SdtSDT_MobilePage>("SDT_MobilePage");
+            aP4_SDT_MobilePage = restCliPageAPI.GetBodySdt<SdtSDT_MobilePage>("SDT_MobilePage");
          }
          /* PageAPI Constructor */
       }
@@ -791,7 +793,7 @@ namespace GeneXus.Programs {
       public void gxep_contentpageapi( Guid aP0_PageId ,
                                        Guid aP1_locationId ,
                                        Guid aP2_organisationId ,
-                                       out SdtSDT_ContentPage aP3_SDT_ContentPage )
+                                       out SdtSDT_ContentPageV1 aP3_SDT_ContentPage )
       {
          restCliContentPageAPI = new GXRestAPIClient();
          if ( restLocation == null )
@@ -810,11 +812,11 @@ namespace GeneXus.Programs {
             gxProperties.ErrorCode = restCliContentPageAPI.ErrorCode;
             gxProperties.ErrorMessage = restCliContentPageAPI.ErrorMessage;
             gxProperties.StatusCode = restCliContentPageAPI.StatusCode;
-            aP3_SDT_ContentPage = new SdtSDT_ContentPage();
+            aP3_SDT_ContentPage = new SdtSDT_ContentPageV1();
          }
          else
          {
-            aP3_SDT_ContentPage = restCliContentPageAPI.GetBodySdt<SdtSDT_ContentPage>("SDT_ContentPage");
+            aP3_SDT_ContentPage = restCliContentPageAPI.GetBodySdt<SdtSDT_ContentPageV1>("SDT_ContentPage");
          }
          /* ContentPageAPI Constructor */
       }
@@ -1312,6 +1314,193 @@ namespace GeneXus.Programs {
          /* GetThemes Constructor */
       }
 
+      public void gxep_getappversions( out GXBaseCollection<SdtSDT_AppVersion> aP0_SDT_AppVersionCollection ,
+                                       out SdtSDT_Error aP1_error )
+      {
+         restCliGetAppVersions = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/v2/appversions";
+         restCliGetAppVersions.Location = restLocation;
+         restCliGetAppVersions.HttpMethod = "GET";
+         restCliGetAppVersions.RestExecute();
+         if ( restCliGetAppVersions.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliGetAppVersions.ErrorCode;
+            gxProperties.ErrorMessage = restCliGetAppVersions.ErrorMessage;
+            gxProperties.StatusCode = restCliGetAppVersions.StatusCode;
+            aP0_SDT_AppVersionCollection = new GXBaseCollection<SdtSDT_AppVersion>();
+            aP1_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP0_SDT_AppVersionCollection = restCliGetAppVersions.GetBodySdtCollection<SdtSDT_AppVersion>("SDT_AppVersionCollection");
+            aP1_error = restCliGetAppVersions.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* GetAppVersions Constructor */
+      }
+
+      public void gxep_savepagev2( Guid aP0_AppVersionId ,
+                                   Guid aP1_PageId ,
+                                   string aP2_PageName ,
+                                   string aP3_PageType ,
+                                   string aP4_PageStructure ,
+                                   out SdtSDT_Error aP5_error )
+      {
+         restCliSavePageV2 = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/v2/save-page";
+         restCliSavePageV2.Location = restLocation;
+         restCliSavePageV2.HttpMethod = "POST";
+         restCliSavePageV2.AddBodyVar("AppVersionId", (Guid)(aP0_AppVersionId));
+         restCliSavePageV2.AddBodyVar("PageId", (Guid)(aP1_PageId));
+         restCliSavePageV2.AddBodyVar("PageName", (string)(aP2_PageName));
+         restCliSavePageV2.AddBodyVar("PageType", (string)(aP3_PageType));
+         restCliSavePageV2.AddBodyVar("PageStructure", (string)(aP4_PageStructure));
+         restCliSavePageV2.RestExecute();
+         if ( restCliSavePageV2.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliSavePageV2.ErrorCode;
+            gxProperties.ErrorMessage = restCliSavePageV2.ErrorMessage;
+            gxProperties.StatusCode = restCliSavePageV2.StatusCode;
+            aP5_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP5_error = restCliSavePageV2.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* SavePageV2 Constructor */
+      }
+
+      public void gxep_publishpages( Guid aP0_AppVersionId ,
+                                     Guid aP1_PageId ,
+                                     string aP2_PageName ,
+                                     string aP3_PageType ,
+                                     string aP4_PageStructure ,
+                                     out SdtSDT_Error aP5_error )
+      {
+         restCliPublishPages = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/v2/publish-pages";
+         restCliPublishPages.Location = restLocation;
+         restCliPublishPages.HttpMethod = "POST";
+         restCliPublishPages.AddBodyVar("AppVersionId", (Guid)(aP0_AppVersionId));
+         restCliPublishPages.AddBodyVar("PageId", (Guid)(aP1_PageId));
+         restCliPublishPages.AddBodyVar("PageName", (string)(aP2_PageName));
+         restCliPublishPages.AddBodyVar("PageType", (string)(aP3_PageType));
+         restCliPublishPages.AddBodyVar("PageStructure", (string)(aP4_PageStructure));
+         restCliPublishPages.RestExecute();
+         if ( restCliPublishPages.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliPublishPages.ErrorCode;
+            gxProperties.ErrorMessage = restCliPublishPages.ErrorMessage;
+            gxProperties.StatusCode = restCliPublishPages.StatusCode;
+            aP5_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP5_error = restCliPublishPages.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* PublishPages Constructor */
+      }
+
+      public void gxep_createmenupage( Guid aP0_AppVersionId ,
+                                       string aP1_PageName ,
+                                       out SdtSDT_MenuPage aP2_SDT_MenuPage ,
+                                       out SdtSDT_Error aP3_error )
+      {
+         restCliCreateMenuPage = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/v2/create-menu-page";
+         restCliCreateMenuPage.Location = restLocation;
+         restCliCreateMenuPage.HttpMethod = "POST";
+         restCliCreateMenuPage.AddBodyVar("AppVersionId", (Guid)(aP0_AppVersionId));
+         restCliCreateMenuPage.AddBodyVar("PageName", (string)(aP1_PageName));
+         restCliCreateMenuPage.RestExecute();
+         if ( restCliCreateMenuPage.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliCreateMenuPage.ErrorCode;
+            gxProperties.ErrorMessage = restCliCreateMenuPage.ErrorMessage;
+            gxProperties.StatusCode = restCliCreateMenuPage.StatusCode;
+            aP2_SDT_MenuPage = new SdtSDT_MenuPage();
+            aP3_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP2_SDT_MenuPage = restCliCreateMenuPage.GetBodySdt<SdtSDT_MenuPage>("SDT_MenuPage");
+            aP3_error = restCliCreateMenuPage.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* CreateMenuPage Constructor */
+      }
+
+      public void gxep_createservicepage( Guid aP0_ProductServiceId ,
+                                          out SdtSDT_ContentPage aP1_ContentPage ,
+                                          out SdtSDT_Error aP2_error )
+      {
+         restCliCreateServicePage = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/v2/create-service-page";
+         restCliCreateServicePage.Location = restLocation;
+         restCliCreateServicePage.HttpMethod = "POST";
+         restCliCreateServicePage.AddBodyVar("ProductServiceId", (Guid)(aP0_ProductServiceId));
+         restCliCreateServicePage.RestExecute();
+         if ( restCliCreateServicePage.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliCreateServicePage.ErrorCode;
+            gxProperties.ErrorMessage = restCliCreateServicePage.ErrorMessage;
+            gxProperties.StatusCode = restCliCreateServicePage.StatusCode;
+            aP1_ContentPage = new SdtSDT_ContentPage();
+            aP2_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP1_ContentPage = restCliCreateServicePage.GetBodySdt<SdtSDT_ContentPage>("ContentPage");
+            aP2_error = restCliCreateServicePage.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* CreateServicePage Constructor */
+      }
+
+      public void gxep_deletepagev2( Guid aP0_PageId ,
+                                     out SdtSDT_Error aP1_error )
+      {
+         restCliDeletePageV2 = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/v2/delete-page";
+         restCliDeletePageV2.Location = restLocation;
+         restCliDeletePageV2.HttpMethod = "GET";
+         restCliDeletePageV2.AddQueryVar("Pageid", (Guid)(aP0_PageId));
+         restCliDeletePageV2.RestExecute();
+         if ( restCliDeletePageV2.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliDeletePageV2.ErrorCode;
+            gxProperties.ErrorMessage = restCliDeletePageV2.ErrorMessage;
+            gxProperties.StatusCode = restCliDeletePageV2.StatusCode;
+            aP1_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP1_error = restCliDeletePageV2.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* DeletePageV2 Constructor */
+      }
+
       public override void cleanup( )
       {
          CloseCursors();
@@ -1364,11 +1553,11 @@ namespace GeneXus.Programs {
          restCliPagesAPI = new GXRestAPIClient();
          aP2_SDT_MobilePageCollection = new GXBaseCollection<SdtSDT_MobilePage>();
          restCliPageAPI = new GXRestAPIClient();
-         aP3_SDT_MobilePage = new SdtSDT_MobilePage();
+         aP4_SDT_MobilePage = new SdtSDT_MobilePage();
          restCliContentPagesAPI = new GXRestAPIClient();
          aP2_SDT_ContentPageCollection = new GXBaseCollection<SdtSDT_ContentPage>();
          restCliContentPageAPI = new GXRestAPIClient();
-         aP3_SDT_ContentPage = new SdtSDT_ContentPage();
+         aP3_SDT_ContentPage = new SdtSDT_ContentPageV1();
          restCliGetSinglePage = new GXRestAPIClient();
          aP1_SDT_Page = new SdtSDT_Page();
          restCliDeletePage = new GXRestAPIClient();
@@ -1398,6 +1587,15 @@ namespace GeneXus.Programs {
          aP0_SDT_LocationTheme = new SdtSDT_LocationTheme();
          restCliGetThemes = new GXRestAPIClient();
          aP0_SDT_ThemeCollection = new GXBaseCollection<SdtSDT_Theme>();
+         restCliGetAppVersions = new GXRestAPIClient();
+         aP0_SDT_AppVersionCollection = new GXBaseCollection<SdtSDT_AppVersion>();
+         restCliSavePageV2 = new GXRestAPIClient();
+         restCliPublishPages = new GXRestAPIClient();
+         restCliCreateMenuPage = new GXRestAPIClient();
+         aP2_SDT_MenuPage = new SdtSDT_MenuPage();
+         restCliCreateServicePage = new GXRestAPIClient();
+         aP1_ContentPage = new SdtSDT_ContentPage();
+         restCliDeletePageV2 = new GXRestAPIClient();
          /* GeneXus formulas. */
       }
 
@@ -1443,6 +1641,12 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliGetLocationTheme ;
       protected GXRestAPIClient restCliToolboxGetLocationTheme ;
       protected GXRestAPIClient restCliGetThemes ;
+      protected GXRestAPIClient restCliGetAppVersions ;
+      protected GXRestAPIClient restCliSavePageV2 ;
+      protected GXRestAPIClient restCliPublishPages ;
+      protected GXRestAPIClient restCliCreateMenuPage ;
+      protected GXRestAPIClient restCliCreateServicePage ;
+      protected GXRestAPIClient restCliDeletePageV2 ;
       protected GxLocation restLocation ;
       protected GxObjectProperties gxProperties ;
       protected IGxDataStore dsDataStore1 ;
@@ -1469,9 +1673,9 @@ namespace GeneXus.Programs {
       protected SdtSDT_Error aP1_error ;
       protected GXBaseCollection<SdtSDT_Page> aP0_SDT_PageCollection ;
       protected GXBaseCollection<SdtSDT_MobilePage> aP2_SDT_MobilePageCollection ;
-      protected SdtSDT_MobilePage aP3_SDT_MobilePage ;
+      protected SdtSDT_MobilePage aP4_SDT_MobilePage ;
       protected GXBaseCollection<SdtSDT_ContentPage> aP2_SDT_ContentPageCollection ;
-      protected SdtSDT_ContentPage aP3_SDT_ContentPage ;
+      protected SdtSDT_ContentPageV1 aP3_SDT_ContentPage ;
       protected SdtSDT_Page aP1_SDT_Page ;
       protected GXBaseCollection<SdtSDT_PageStructure> aP0_SDT_PageStructureCollection ;
       protected SdtSDT_Error aP3_error ;
@@ -1485,6 +1689,9 @@ namespace GeneXus.Programs {
       protected SdtSDT_LocationTheme aP2_SDT_LocationTheme ;
       protected SdtSDT_LocationTheme aP0_SDT_LocationTheme ;
       protected GXBaseCollection<SdtSDT_Theme> aP0_SDT_ThemeCollection ;
+      protected GXBaseCollection<SdtSDT_AppVersion> aP0_SDT_AppVersionCollection ;
+      protected SdtSDT_MenuPage aP2_SDT_MenuPage ;
+      protected SdtSDT_ContentPage aP1_ContentPage ;
    }
 
 }
