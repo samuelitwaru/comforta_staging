@@ -80,36 +80,36 @@ namespace GeneXus.Programs {
       public void execute( Guid aP0_PageId ,
                            Guid aP1_LocationId ,
                            Guid aP2_OrganisationId ,
-                           out SdtSDT_ContentPageV1 aP3_Res_SDT_ContentPage )
+                           out SdtSDT_ContentPageV1 aP3_SDT_ContentPage )
       {
          this.AV23PageId = aP0_PageId;
          this.AV8LocationId = aP1_LocationId;
          this.AV9OrganisationId = aP2_OrganisationId;
-         this.AV25Res_SDT_ContentPage = new SdtSDT_ContentPageV1(context) ;
+         this.AV14SDT_ContentPage = new SdtSDT_ContentPageV1(context) ;
          initialize();
          ExecuteImpl();
-         aP3_Res_SDT_ContentPage=this.AV25Res_SDT_ContentPage;
+         aP3_SDT_ContentPage=this.AV14SDT_ContentPage;
       }
 
       public SdtSDT_ContentPageV1 executeUdp( Guid aP0_PageId ,
                                               Guid aP1_LocationId ,
                                               Guid aP2_OrganisationId )
       {
-         execute(aP0_PageId, aP1_LocationId, aP2_OrganisationId, out aP3_Res_SDT_ContentPage);
-         return AV25Res_SDT_ContentPage ;
+         execute(aP0_PageId, aP1_LocationId, aP2_OrganisationId, out aP3_SDT_ContentPage);
+         return AV14SDT_ContentPage ;
       }
 
       public void executeSubmit( Guid aP0_PageId ,
                                  Guid aP1_LocationId ,
                                  Guid aP2_OrganisationId ,
-                                 out SdtSDT_ContentPageV1 aP3_Res_SDT_ContentPage )
+                                 out SdtSDT_ContentPageV1 aP3_SDT_ContentPage )
       {
          this.AV23PageId = aP0_PageId;
          this.AV8LocationId = aP1_LocationId;
          this.AV9OrganisationId = aP2_OrganisationId;
-         this.AV25Res_SDT_ContentPage = new SdtSDT_ContentPageV1(context) ;
+         this.AV14SDT_ContentPage = new SdtSDT_ContentPageV1(context) ;
          SubmitImpl();
-         aP3_Res_SDT_ContentPage=this.AV25Res_SDT_ContentPage;
+         aP3_SDT_ContentPage=this.AV14SDT_ContentPage;
       }
 
       protected override void ExecutePrivate( )
@@ -137,11 +137,10 @@ namespace GeneXus.Programs {
             A60ProductServiceDescription = P009L2_A60ProductServiceDescription[0];
             AV14SDT_ContentPage = new SdtSDT_ContentPageV1(context);
             AV14SDT_ContentPage.FromJSonString(A431PageJsonContent, null);
-            AV25Res_SDT_ContentPage = new SdtSDT_ContentPageV1(context);
-            AV25Res_SDT_ContentPage = AV14SDT_ContentPage;
             AV10BC_Trn_ProductService.Load(AV23PageId, AV8LocationId, AV9OrganisationId);
             if ( ! A504PageIsPredefined )
             {
+               new prc_logtoserver(context ).execute(  AV14SDT_ContentPage.gxTpr_Content.ToJSonString(false)) ;
                AV32GXV1 = 1;
                while ( AV32GXV1 <= AV14SDT_ContentPage.gxTpr_Content.Count )
                {
@@ -159,6 +158,7 @@ namespace GeneXus.Programs {
                   }
                   AV32GXV1 = (int)(AV32GXV1+1);
                }
+               new prc_logtoserver(context ).execute(  AV14SDT_ContentPage.gxTpr_Content.ToJSonString(false)) ;
                AV33GXV2 = 1;
                while ( AV33GXV2 <= AV14SDT_ContentPage.gxTpr_Cta.Count )
                {
@@ -183,9 +183,10 @@ namespace GeneXus.Programs {
                   else
                   {
                   }
-                  AV25Res_SDT_ContentPage.gxTpr_Cta.Add(AV21CtaItem, 0);
+                  AV14SDT_ContentPage.gxTpr_Cta.Add(AV21CtaItem, 0);
                   AV33GXV2 = (int)(AV33GXV2+1);
                }
+               new prc_logtoserver(context ).execute(  AV14SDT_ContentPage.gxTpr_Content.ToJSonString(false)) ;
             }
             else
             {
@@ -225,6 +226,7 @@ namespace GeneXus.Programs {
             if (true) break;
          }
          pr_default.close(0);
+         new prc_logtoserver(context ).execute(  AV14SDT_ContentPage.ToJSonString(false, true)) ;
          cleanup();
       }
 
@@ -240,7 +242,7 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV25Res_SDT_ContentPage = new SdtSDT_ContentPageV1(context);
+         AV14SDT_ContentPage = new SdtSDT_ContentPageV1(context);
          P009L2_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          P009L2_n58ProductServiceId = new bool[] {false} ;
          P009L2_A439PageIsContentPage = new bool[] {false} ;
@@ -262,7 +264,6 @@ namespace GeneXus.Programs {
          A40000ProductServiceImage_GXI = "";
          A60ProductServiceDescription = "";
          A318Trn_PageName = "";
-         AV14SDT_ContentPage = new SdtSDT_ContentPageV1(context);
          AV10BC_Trn_ProductService = new SdtTrn_ProductService(context);
          AV26ContentItem = new SdtSDT_ContentPageV1_ContentItem(context);
          AV21CtaItem = new SdtSDT_ContentPageV1_CtaItem(context);
@@ -300,7 +301,7 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private SdtSDT_ContentPageV1 AV25Res_SDT_ContentPage ;
+      private SdtSDT_ContentPageV1 AV14SDT_ContentPage ;
       private IDataStoreProvider pr_default ;
       private Guid[] P009L2_A58ProductServiceId ;
       private bool[] P009L2_n58ProductServiceId ;
@@ -315,13 +316,12 @@ namespace GeneXus.Programs {
       private string[] P009L2_A40000ProductServiceImage_GXI ;
       private string[] P009L2_A60ProductServiceDescription ;
       private string[] P009L2_A318Trn_PageName ;
-      private SdtSDT_ContentPageV1 AV14SDT_ContentPage ;
       private SdtTrn_ProductService AV10BC_Trn_ProductService ;
       private SdtSDT_ContentPageV1_ContentItem AV26ContentItem ;
       private SdtSDT_ContentPageV1_CtaItem AV21CtaItem ;
       private SdtTrn_CallToAction AV29BC_Trn_CallToAction ;
       private SdtTrn_Location AV30BC_Trn_Location ;
-      private SdtSDT_ContentPageV1 aP3_Res_SDT_ContentPage ;
+      private SdtSDT_ContentPageV1 aP3_SDT_ContentPage ;
    }
 
    public class aprc_contentpageapi__default : DataStoreHelperBase, IDataStoreHelper
