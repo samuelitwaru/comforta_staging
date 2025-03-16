@@ -78,32 +78,37 @@ namespace GeneXus.Programs {
 
       public void execute( Guid aP0_LocationId ,
                            Guid aP1_OrganisationId ,
-                           out GXBaseCollection<SdtSDT_MobilePage> aP2_SDT_PageCollection )
+                           string aP2_UserId ,
+                           out GXBaseCollection<SdtSDT_MobilePage> aP3_SDT_PageCollection )
       {
          this.AV16LocationId = aP0_LocationId;
          this.AV17OrganisationId = aP1_OrganisationId;
+         this.AV18UserId = aP2_UserId;
          this.AV9SDT_PageCollection = new GXBaseCollection<SdtSDT_MobilePage>( context, "SDT_MobilePage", "Comforta_version2") ;
          initialize();
          ExecuteImpl();
-         aP2_SDT_PageCollection=this.AV9SDT_PageCollection;
+         aP3_SDT_PageCollection=this.AV9SDT_PageCollection;
       }
 
       public GXBaseCollection<SdtSDT_MobilePage> executeUdp( Guid aP0_LocationId ,
-                                                             Guid aP1_OrganisationId )
+                                                             Guid aP1_OrganisationId ,
+                                                             string aP2_UserId )
       {
-         execute(aP0_LocationId, aP1_OrganisationId, out aP2_SDT_PageCollection);
+         execute(aP0_LocationId, aP1_OrganisationId, aP2_UserId, out aP3_SDT_PageCollection);
          return AV9SDT_PageCollection ;
       }
 
       public void executeSubmit( Guid aP0_LocationId ,
                                  Guid aP1_OrganisationId ,
-                                 out GXBaseCollection<SdtSDT_MobilePage> aP2_SDT_PageCollection )
+                                 string aP2_UserId ,
+                                 out GXBaseCollection<SdtSDT_MobilePage> aP3_SDT_PageCollection )
       {
          this.AV16LocationId = aP0_LocationId;
          this.AV17OrganisationId = aP1_OrganisationId;
+         this.AV18UserId = aP2_UserId;
          this.AV9SDT_PageCollection = new GXBaseCollection<SdtSDT_MobilePage>( context, "SDT_MobilePage", "Comforta_version2") ;
          SubmitImpl();
-         aP2_SDT_PageCollection=this.AV9SDT_PageCollection;
+         aP3_SDT_PageCollection=this.AV9SDT_PageCollection;
       }
 
       protected override void ExecutePrivate( )
@@ -124,9 +129,20 @@ namespace GeneXus.Programs {
             A310Trn_PageId = P007W2_A310Trn_PageId[0];
             AV8SDT_Page = new SdtSDT_MobilePage(context);
             AV8SDT_Page.FromJSonString(A431PageJsonContent, null);
-            if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV8SDT_Page.gxTpr_Pagename))) )
+            new prc_logtoserver(context ).execute(  AV8SDT_Page.gxTpr_Pagename) ;
+            if ( StringUtil.StrCmp(AV8SDT_Page.gxTpr_Pagename, context.GetMessage( "Home", "")) == 0 )
             {
-               AV9SDT_PageCollection.Add(AV8SDT_Page, 0);
+               GXt_SdtSDT_MobilePage1 = AV19Filtered_SDT_MobilePage;
+               new prc_filterpagetiles(context ).execute(  AV8SDT_Page,  AV18UserId, out  GXt_SdtSDT_MobilePage1) ;
+               AV19Filtered_SDT_MobilePage = GXt_SdtSDT_MobilePage1;
+               AV9SDT_PageCollection.Add(AV19Filtered_SDT_MobilePage, 0);
+            }
+            else
+            {
+               if ( ! String.IsNullOrEmpty(StringUtil.RTrim( StringUtil.Trim( AV8SDT_Page.gxTpr_Pagename))) )
+               {
+                  AV9SDT_PageCollection.Add(AV8SDT_Page, 0);
+               }
             }
             pr_default.readNext(0);
          }
@@ -159,6 +175,8 @@ namespace GeneXus.Programs {
          A431PageJsonContent = "";
          A310Trn_PageId = Guid.Empty;
          AV8SDT_Page = new SdtSDT_MobilePage(context);
+         AV19Filtered_SDT_MobilePage = new SdtSDT_MobilePage(context);
+         GXt_SdtSDT_MobilePage1 = new SdtSDT_MobilePage(context);
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.aprc_pagesapi__default(),
             new Object[][] {
                 new Object[] {
@@ -173,6 +191,7 @@ namespace GeneXus.Programs {
       private bool n439PageIsContentPage ;
       private bool n431PageJsonContent ;
       private string A431PageJsonContent ;
+      private string AV18UserId ;
       private Guid AV16LocationId ;
       private Guid AV17OrganisationId ;
       private Guid A11OrganisationId ;
@@ -191,7 +210,9 @@ namespace GeneXus.Programs {
       private bool[] P007W2_n431PageJsonContent ;
       private Guid[] P007W2_A310Trn_PageId ;
       private SdtSDT_MobilePage AV8SDT_Page ;
-      private GXBaseCollection<SdtSDT_MobilePage> aP2_SDT_PageCollection ;
+      private SdtSDT_MobilePage AV19Filtered_SDT_MobilePage ;
+      private SdtSDT_MobilePage GXt_SdtSDT_MobilePage1 ;
+      private GXBaseCollection<SdtSDT_MobilePage> aP3_SDT_PageCollection ;
    }
 
    public class aprc_pagesapi__default : DataStoreHelperBase, IDataStoreHelper
@@ -215,7 +236,7 @@ namespace GeneXus.Programs {
           new ParDef("AV17OrganisationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P007W2", "SELECT PageIsContentPage, OrganisationId, LocationId, PageJsonContent, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV16LocationId) AND (OrganisationId = :AV17OrganisationId) AND (PageIsContentPage = FALSE) ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007W2,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P007W2", "SELECT PageIsContentPage, OrganisationId, LocationId, PageJsonContent, Trn_PageId FROM Trn_Page WHERE (LocationId = :AV16LocationId) AND (OrganisationId = :AV17OrganisationId) AND (PageIsContentPage = FALSE) ORDER BY Trn_PageId, LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP007W2,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }

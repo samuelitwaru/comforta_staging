@@ -170,6 +170,7 @@ namespace GeneXus.Programs {
             {
                A13OrganisationName = P008D2_A13OrganisationName[0];
                A11OrganisationId = P008D2_A11OrganisationId[0];
+               n11OrganisationId = P008D2_n11OrganisationId[0];
                AV16Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
                AV16Combo_DataItem.gxTpr_Id = StringUtil.Trim( A11OrganisationId.ToString());
                AV16Combo_DataItem.gxTpr_Title = A13OrganisationName;
@@ -196,6 +197,7 @@ namespace GeneXus.Programs {
                   {
                      A415AuditId = P008D3_A415AuditId[0];
                      A11OrganisationId = P008D3_A11OrganisationId[0];
+                     n11OrganisationId = P008D3_n11OrganisationId[0];
                      A13OrganisationName = P008D3_A13OrganisationName[0];
                      A13OrganisationName = P008D3_A13OrganisationName[0];
                      AV22SelectedValue = ((Guid.Empty==A11OrganisationId) ? "" : StringUtil.Trim( A11OrganisationId.ToString()));
@@ -213,6 +215,7 @@ namespace GeneXus.Programs {
                   while ( (pr_default.getStatus(2) != 101) )
                   {
                      A11OrganisationId = P008D4_A11OrganisationId[0];
+                     n11OrganisationId = P008D4_n11OrganisationId[0];
                      A13OrganisationName = P008D4_A13OrganisationName[0];
                      AV23SelectedText = A13OrganisationName;
                      /* Exit For each command. Update data (if necessary), close cursors & exit. */
@@ -247,15 +250,18 @@ namespace GeneXus.Programs {
          A13OrganisationName = "";
          P008D2_A13OrganisationName = new string[] {""} ;
          P008D2_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         P008D2_n11OrganisationId = new bool[] {false} ;
          A11OrganisationId = Guid.Empty;
          AV16Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
          AV15Combo_Data = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
          P008D3_A415AuditId = new Guid[] {Guid.Empty} ;
          P008D3_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         P008D3_n11OrganisationId = new bool[] {false} ;
          P008D3_A13OrganisationName = new string[] {""} ;
          A415AuditId = Guid.Empty;
          AV28OrganisationId = Guid.Empty;
          P008D4_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         P008D4_n11OrganisationId = new bool[] {false} ;
          P008D4_A13OrganisationName = new string[] {""} ;
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_auditloaddvcombo__default(),
             new Object[][] {
@@ -263,7 +269,7 @@ namespace GeneXus.Programs {
                P008D2_A13OrganisationName, P008D2_A11OrganisationId
                }
                , new Object[] {
-               P008D3_A415AuditId, P008D3_A11OrganisationId, P008D3_A13OrganisationName
+               P008D3_A415AuditId, P008D3_A11OrganisationId, P008D3_n11OrganisationId, P008D3_A13OrganisationName
                }
                , new Object[] {
                P008D4_A11OrganisationId, P008D4_A13OrganisationName
@@ -281,6 +287,7 @@ namespace GeneXus.Programs {
       private string AV18TrnMode ;
       private bool AV19IsDynamicCall ;
       private bool returnInSub ;
+      private bool n11OrganisationId ;
       private string AV24Combo_DataJson ;
       private string AV17ComboName ;
       private string AV21SearchTxtParms ;
@@ -300,12 +307,15 @@ namespace GeneXus.Programs {
       private IDataStoreProvider pr_default ;
       private string[] P008D2_A13OrganisationName ;
       private Guid[] P008D2_A11OrganisationId ;
+      private bool[] P008D2_n11OrganisationId ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item AV16Combo_DataItem ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> AV15Combo_Data ;
       private Guid[] P008D3_A415AuditId ;
       private Guid[] P008D3_A11OrganisationId ;
+      private bool[] P008D3_n11OrganisationId ;
       private string[] P008D3_A13OrganisationName ;
       private Guid[] P008D4_A11OrganisationId ;
+      private bool[] P008D4_n11OrganisationId ;
       private string[] P008D4_A13OrganisationName ;
       private string aP5_SelectedValue ;
       private string aP6_SelectedText ;
@@ -387,7 +397,7 @@ namespace GeneXus.Programs {
           };
           def= new CursorDef[] {
               new CursorDef("P008D2", "scmdbuf",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008D2,100, GxCacheFrequency.OFF ,false,false )
-             ,new CursorDef("P008D3", "SELECT T1.AuditId, T1.OrganisationId, T2.OrganisationName FROM (Trn_Audit T1 INNER JOIN Trn_Organisation T2 ON T2.OrganisationId = T1.OrganisationId) WHERE T1.AuditId = :AV20AuditId ORDER BY T1.AuditId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008D3,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("P008D3", "SELECT T1.AuditId, T1.OrganisationId, T2.OrganisationName FROM (Trn_Audit T1 LEFT JOIN Trn_Organisation T2 ON T2.OrganisationId = T1.OrganisationId) WHERE T1.AuditId = :AV20AuditId ORDER BY T1.AuditId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008D3,1, GxCacheFrequency.OFF ,false,true )
              ,new CursorDef("P008D4", "SELECT OrganisationId, OrganisationName FROM Trn_Organisation WHERE OrganisationId = :AV28OrganisationId ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP008D4,1, GxCacheFrequency.OFF ,false,true )
           };
        }
@@ -406,7 +416,8 @@ namespace GeneXus.Programs {
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((string[]) buf[2])[0] = rslt.getVarchar(3);
+                ((bool[]) buf[2])[0] = rslt.wasNull(2);
+                ((string[]) buf[3])[0] = rslt.getVarchar(3);
                 return;
              case 2 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);

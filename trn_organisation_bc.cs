@@ -131,17 +131,17 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          AV11TrnContext.FromXml(AV12WebSession.Get("TrnContext"), null, "", "");
-         if ( ( StringUtil.StrCmp(AV11TrnContext.gxTpr_Transactionname, AV32Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         if ( ( StringUtil.StrCmp(AV11TrnContext.gxTpr_Transactionname, AV34Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
          {
-            AV33GXV1 = 1;
-            while ( AV33GXV1 <= AV11TrnContext.gxTpr_Attributes.Count )
+            AV35GXV1 = 1;
+            while ( AV35GXV1 <= AV11TrnContext.gxTpr_Attributes.Count )
             {
-               AV14TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV11TrnContext.gxTpr_Attributes.Item(AV33GXV1));
+               AV14TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV11TrnContext.gxTpr_Attributes.Item(AV35GXV1));
                if ( StringUtil.StrCmp(AV14TrnContextAtt.gxTpr_Attributename, "OrganisationTypeId") == 0 )
                {
                   AV13Insert_OrganisationTypeId = StringUtil.StrToGuid( AV14TrnContextAtt.gxTpr_Attributevalue);
                }
-               AV33GXV1 = (int)(AV33GXV1+1);
+               AV35GXV1 = (int)(AV35GXV1+1);
             }
          }
          if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
@@ -211,7 +211,7 @@ namespace GeneXus.Programs {
       protected void standaloneNotModal( )
       {
          AV31VatPattern = context.GetMessage( context.GetMessage( "[A-Za-z]{2}\\d{9}[A-Za-z]\\d{2}", ""), "");
-         AV32Pgmname = "Trn_Organisation_BC";
+         AV34Pgmname = "Trn_Organisation_BC";
       }
 
       protected void standaloneModal( )
@@ -630,7 +630,7 @@ namespace GeneXus.Programs {
             pr_default.execute(11, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(11) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "General Suppliers", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Themes", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(11);
@@ -638,7 +638,7 @@ namespace GeneXus.Programs {
             pr_default.execute(12, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(12) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_OrganisationSetting", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "General Suppliers", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(12);
@@ -646,7 +646,7 @@ namespace GeneXus.Programs {
             pr_default.execute(13, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(13) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_OrganisationDynamicForm", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_OrganisationSetting", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(13);
@@ -654,7 +654,7 @@ namespace GeneXus.Programs {
             pr_default.execute(14, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(14) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Locations", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_OrganisationDynamicForm", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(14);
@@ -662,10 +662,26 @@ namespace GeneXus.Programs {
             pr_default.execute(15, new Object[] {n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(15) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Managers", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Receptionists", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(15);
+            /* Using cursor BC000118 */
+            pr_default.execute(16, new Object[] {n11OrganisationId, A11OrganisationId});
+            if ( (pr_default.getStatus(16) != 101) )
+            {
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Resident", "")}), "CannotDeleteReferencedRecord", 1, "");
+               AnyError = 1;
+            }
+            pr_default.close(16);
+            /* Using cursor BC000119 */
+            pr_default.execute(17, new Object[] {n11OrganisationId, A11OrganisationId});
+            if ( (pr_default.getStatus(17) != 101) )
+            {
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Managers", "")}), "CannotDeleteReferencedRecord", 1, "");
+               AnyError = 1;
+            }
+            pr_default.close(17);
          }
       }
 
@@ -698,30 +714,30 @@ namespace GeneXus.Programs {
       public void ScanKeyStart013( )
       {
          /* Scan By routine */
-         /* Using cursor BC000118 */
-         pr_default.execute(16, new Object[] {n11OrganisationId, A11OrganisationId});
+         /* Using cursor BC000120 */
+         pr_default.execute(18, new Object[] {n11OrganisationId, A11OrganisationId});
          RcdFound3 = 0;
-         if ( (pr_default.getStatus(16) != 101) )
+         if ( (pr_default.getStatus(18) != 101) )
          {
             RcdFound3 = 1;
-            A11OrganisationId = BC000118_A11OrganisationId[0];
-            n11OrganisationId = BC000118_n11OrganisationId[0];
-            A17OrganisationPhone = BC000118_A17OrganisationPhone[0];
-            A288OrganisationAddressZipCode = BC000118_A288OrganisationAddressZipCode[0];
-            A13OrganisationName = BC000118_A13OrganisationName[0];
-            A12OrganisationKvkNumber = BC000118_A12OrganisationKvkNumber[0];
-            A16OrganisationEmail = BC000118_A16OrganisationEmail[0];
-            A389OrganisationPhoneCode = BC000118_A389OrganisationPhoneCode[0];
-            A390OrganisationPhoneNumber = BC000118_A390OrganisationPhoneNumber[0];
-            A18OrganisationVATNumber = BC000118_A18OrganisationVATNumber[0];
-            A40000OrganisationLogo_GXI = BC000118_A40000OrganisationLogo_GXI[0];
-            A331OrganisationAddressCountry = BC000118_A331OrganisationAddressCountry[0];
-            A289OrganisationAddressCity = BC000118_A289OrganisationAddressCity[0];
-            A342OrganisationAddressLine1 = BC000118_A342OrganisationAddressLine1[0];
-            A343OrganisationAddressLine2 = BC000118_A343OrganisationAddressLine2[0];
-            A20OrganisationTypeName = BC000118_A20OrganisationTypeName[0];
-            A19OrganisationTypeId = BC000118_A19OrganisationTypeId[0];
-            A520OrganisationLogo = BC000118_A520OrganisationLogo[0];
+            A11OrganisationId = BC000120_A11OrganisationId[0];
+            n11OrganisationId = BC000120_n11OrganisationId[0];
+            A17OrganisationPhone = BC000120_A17OrganisationPhone[0];
+            A288OrganisationAddressZipCode = BC000120_A288OrganisationAddressZipCode[0];
+            A13OrganisationName = BC000120_A13OrganisationName[0];
+            A12OrganisationKvkNumber = BC000120_A12OrganisationKvkNumber[0];
+            A16OrganisationEmail = BC000120_A16OrganisationEmail[0];
+            A389OrganisationPhoneCode = BC000120_A389OrganisationPhoneCode[0];
+            A390OrganisationPhoneNumber = BC000120_A390OrganisationPhoneNumber[0];
+            A18OrganisationVATNumber = BC000120_A18OrganisationVATNumber[0];
+            A40000OrganisationLogo_GXI = BC000120_A40000OrganisationLogo_GXI[0];
+            A331OrganisationAddressCountry = BC000120_A331OrganisationAddressCountry[0];
+            A289OrganisationAddressCity = BC000120_A289OrganisationAddressCity[0];
+            A342OrganisationAddressLine1 = BC000120_A342OrganisationAddressLine1[0];
+            A343OrganisationAddressLine2 = BC000120_A343OrganisationAddressLine2[0];
+            A20OrganisationTypeName = BC000120_A20OrganisationTypeName[0];
+            A19OrganisationTypeId = BC000120_A19OrganisationTypeId[0];
+            A520OrganisationLogo = BC000120_A520OrganisationLogo[0];
          }
          /* Load Subordinate Levels */
       }
@@ -729,7 +745,7 @@ namespace GeneXus.Programs {
       protected void ScanKeyNext013( )
       {
          /* Scan next routine */
-         pr_default.readNext(16);
+         pr_default.readNext(18);
          RcdFound3 = 0;
          ScanKeyLoad013( ) ;
       }
@@ -738,34 +754,34 @@ namespace GeneXus.Programs {
       {
          sMode3 = Gx_mode;
          Gx_mode = "DSP";
-         if ( (pr_default.getStatus(16) != 101) )
+         if ( (pr_default.getStatus(18) != 101) )
          {
             RcdFound3 = 1;
-            A11OrganisationId = BC000118_A11OrganisationId[0];
-            n11OrganisationId = BC000118_n11OrganisationId[0];
-            A17OrganisationPhone = BC000118_A17OrganisationPhone[0];
-            A288OrganisationAddressZipCode = BC000118_A288OrganisationAddressZipCode[0];
-            A13OrganisationName = BC000118_A13OrganisationName[0];
-            A12OrganisationKvkNumber = BC000118_A12OrganisationKvkNumber[0];
-            A16OrganisationEmail = BC000118_A16OrganisationEmail[0];
-            A389OrganisationPhoneCode = BC000118_A389OrganisationPhoneCode[0];
-            A390OrganisationPhoneNumber = BC000118_A390OrganisationPhoneNumber[0];
-            A18OrganisationVATNumber = BC000118_A18OrganisationVATNumber[0];
-            A40000OrganisationLogo_GXI = BC000118_A40000OrganisationLogo_GXI[0];
-            A331OrganisationAddressCountry = BC000118_A331OrganisationAddressCountry[0];
-            A289OrganisationAddressCity = BC000118_A289OrganisationAddressCity[0];
-            A342OrganisationAddressLine1 = BC000118_A342OrganisationAddressLine1[0];
-            A343OrganisationAddressLine2 = BC000118_A343OrganisationAddressLine2[0];
-            A20OrganisationTypeName = BC000118_A20OrganisationTypeName[0];
-            A19OrganisationTypeId = BC000118_A19OrganisationTypeId[0];
-            A520OrganisationLogo = BC000118_A520OrganisationLogo[0];
+            A11OrganisationId = BC000120_A11OrganisationId[0];
+            n11OrganisationId = BC000120_n11OrganisationId[0];
+            A17OrganisationPhone = BC000120_A17OrganisationPhone[0];
+            A288OrganisationAddressZipCode = BC000120_A288OrganisationAddressZipCode[0];
+            A13OrganisationName = BC000120_A13OrganisationName[0];
+            A12OrganisationKvkNumber = BC000120_A12OrganisationKvkNumber[0];
+            A16OrganisationEmail = BC000120_A16OrganisationEmail[0];
+            A389OrganisationPhoneCode = BC000120_A389OrganisationPhoneCode[0];
+            A390OrganisationPhoneNumber = BC000120_A390OrganisationPhoneNumber[0];
+            A18OrganisationVATNumber = BC000120_A18OrganisationVATNumber[0];
+            A40000OrganisationLogo_GXI = BC000120_A40000OrganisationLogo_GXI[0];
+            A331OrganisationAddressCountry = BC000120_A331OrganisationAddressCountry[0];
+            A289OrganisationAddressCity = BC000120_A289OrganisationAddressCity[0];
+            A342OrganisationAddressLine1 = BC000120_A342OrganisationAddressLine1[0];
+            A343OrganisationAddressLine2 = BC000120_A343OrganisationAddressLine2[0];
+            A20OrganisationTypeName = BC000120_A20OrganisationTypeName[0];
+            A19OrganisationTypeId = BC000120_A19OrganisationTypeId[0];
+            A520OrganisationLogo = BC000120_A520OrganisationLogo[0];
          }
          Gx_mode = sMode3;
       }
 
       protected void ScanKeyEnd013( )
       {
-         pr_default.close(16);
+         pr_default.close(18);
       }
 
       protected void AfterConfirm013( )
@@ -1408,7 +1424,7 @@ namespace GeneXus.Programs {
          AV8WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV11TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV12WebSession = context.GetSession();
-         AV32Pgmname = "";
+         AV34Pgmname = "";
          AV14TrnContextAtt = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute(context);
          AV13Insert_OrganisationTypeId = Guid.Empty;
          Z17OrganisationPhone = "";
@@ -1503,37 +1519,43 @@ namespace GeneXus.Programs {
          BC00012_A520OrganisationLogo = new string[] {""} ;
          BC000111_A20OrganisationTypeName = new string[] {""} ;
          BC000112_A415AuditId = new Guid[] {Guid.Empty} ;
-         BC000113_A42SupplierGenId = new Guid[] {Guid.Empty} ;
-         BC000114_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
-         BC000114_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         BC000114_n11OrganisationId = new bool[] {false} ;
-         BC000115_A542OrganisationDynamicFormId = new Guid[] {Guid.Empty} ;
+         BC000113_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         BC000114_A42SupplierGenId = new Guid[] {Guid.Empty} ;
+         BC000115_A100OrganisationSettingid = new Guid[] {Guid.Empty} ;
          BC000115_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC000115_n11OrganisationId = new bool[] {false} ;
-         BC000116_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC000116_A542OrganisationDynamicFormId = new Guid[] {Guid.Empty} ;
          BC000116_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC000116_n11OrganisationId = new bool[] {false} ;
-         BC000117_A21ManagerId = new Guid[] {Guid.Empty} ;
+         BC000117_A89ReceptionistId = new Guid[] {Guid.Empty} ;
          BC000117_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC000117_n11OrganisationId = new bool[] {false} ;
+         BC000117_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC000118_A62ResidentId = new Guid[] {Guid.Empty} ;
+         BC000118_A29LocationId = new Guid[] {Guid.Empty} ;
          BC000118_A11OrganisationId = new Guid[] {Guid.Empty} ;
          BC000118_n11OrganisationId = new bool[] {false} ;
-         BC000118_A17OrganisationPhone = new string[] {""} ;
-         BC000118_A288OrganisationAddressZipCode = new string[] {""} ;
-         BC000118_A13OrganisationName = new string[] {""} ;
-         BC000118_A12OrganisationKvkNumber = new string[] {""} ;
-         BC000118_A16OrganisationEmail = new string[] {""} ;
-         BC000118_A389OrganisationPhoneCode = new string[] {""} ;
-         BC000118_A390OrganisationPhoneNumber = new string[] {""} ;
-         BC000118_A18OrganisationVATNumber = new string[] {""} ;
-         BC000118_A40000OrganisationLogo_GXI = new string[] {""} ;
-         BC000118_A331OrganisationAddressCountry = new string[] {""} ;
-         BC000118_A289OrganisationAddressCity = new string[] {""} ;
-         BC000118_A342OrganisationAddressLine1 = new string[] {""} ;
-         BC000118_A343OrganisationAddressLine2 = new string[] {""} ;
-         BC000118_A20OrganisationTypeName = new string[] {""} ;
-         BC000118_A19OrganisationTypeId = new Guid[] {Guid.Empty} ;
-         BC000118_A520OrganisationLogo = new string[] {""} ;
+         BC000119_A21ManagerId = new Guid[] {Guid.Empty} ;
+         BC000119_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC000119_n11OrganisationId = new bool[] {false} ;
+         BC000120_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC000120_n11OrganisationId = new bool[] {false} ;
+         BC000120_A17OrganisationPhone = new string[] {""} ;
+         BC000120_A288OrganisationAddressZipCode = new string[] {""} ;
+         BC000120_A13OrganisationName = new string[] {""} ;
+         BC000120_A12OrganisationKvkNumber = new string[] {""} ;
+         BC000120_A16OrganisationEmail = new string[] {""} ;
+         BC000120_A389OrganisationPhoneCode = new string[] {""} ;
+         BC000120_A390OrganisationPhoneNumber = new string[] {""} ;
+         BC000120_A18OrganisationVATNumber = new string[] {""} ;
+         BC000120_A40000OrganisationLogo_GXI = new string[] {""} ;
+         BC000120_A331OrganisationAddressCountry = new string[] {""} ;
+         BC000120_A289OrganisationAddressCity = new string[] {""} ;
+         BC000120_A342OrganisationAddressLine1 = new string[] {""} ;
+         BC000120_A343OrganisationAddressLine2 = new string[] {""} ;
+         BC000120_A20OrganisationTypeName = new string[] {""} ;
+         BC000120_A19OrganisationTypeId = new Guid[] {Guid.Empty} ;
+         BC000120_A520OrganisationLogo = new string[] {""} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_organisation_bc__datastore1(),
@@ -1579,27 +1601,33 @@ namespace GeneXus.Programs {
                BC000112_A415AuditId
                }
                , new Object[] {
-               BC000113_A42SupplierGenId
+               BC000113_A247Trn_ThemeId
                }
                , new Object[] {
-               BC000114_A100OrganisationSettingid, BC000114_A11OrganisationId
+               BC000114_A42SupplierGenId
                }
                , new Object[] {
-               BC000115_A542OrganisationDynamicFormId, BC000115_A11OrganisationId
+               BC000115_A100OrganisationSettingid, BC000115_A11OrganisationId
                }
                , new Object[] {
-               BC000116_A29LocationId, BC000116_A11OrganisationId
+               BC000116_A542OrganisationDynamicFormId, BC000116_A11OrganisationId
                }
                , new Object[] {
-               BC000117_A21ManagerId, BC000117_A11OrganisationId
+               BC000117_A89ReceptionistId, BC000117_A11OrganisationId, BC000117_A29LocationId
                }
                , new Object[] {
-               BC000118_A11OrganisationId, BC000118_A17OrganisationPhone, BC000118_A288OrganisationAddressZipCode, BC000118_A13OrganisationName, BC000118_A12OrganisationKvkNumber, BC000118_A16OrganisationEmail, BC000118_A389OrganisationPhoneCode, BC000118_A390OrganisationPhoneNumber, BC000118_A18OrganisationVATNumber, BC000118_A40000OrganisationLogo_GXI,
-               BC000118_A331OrganisationAddressCountry, BC000118_A289OrganisationAddressCity, BC000118_A342OrganisationAddressLine1, BC000118_A343OrganisationAddressLine2, BC000118_A20OrganisationTypeName, BC000118_A19OrganisationTypeId, BC000118_A520OrganisationLogo
+               BC000118_A62ResidentId, BC000118_A29LocationId, BC000118_A11OrganisationId
+               }
+               , new Object[] {
+               BC000119_A21ManagerId, BC000119_A11OrganisationId
+               }
+               , new Object[] {
+               BC000120_A11OrganisationId, BC000120_A17OrganisationPhone, BC000120_A288OrganisationAddressZipCode, BC000120_A13OrganisationName, BC000120_A12OrganisationKvkNumber, BC000120_A16OrganisationEmail, BC000120_A389OrganisationPhoneCode, BC000120_A390OrganisationPhoneNumber, BC000120_A18OrganisationVATNumber, BC000120_A40000OrganisationLogo_GXI,
+               BC000120_A331OrganisationAddressCountry, BC000120_A289OrganisationAddressCity, BC000120_A342OrganisationAddressLine1, BC000120_A343OrganisationAddressLine2, BC000120_A20OrganisationTypeName, BC000120_A19OrganisationTypeId, BC000120_A520OrganisationLogo
                }
             }
          );
-         AV32Pgmname = "Trn_Organisation_BC";
+         AV34Pgmname = "Trn_Organisation_BC";
          INITTRN();
          /* Execute Start event if defined. */
          /* Execute user event: Start */
@@ -1610,11 +1638,11 @@ namespace GeneXus.Programs {
       private short AnyError ;
       private short RcdFound3 ;
       private int trnEnded ;
-      private int AV33GXV1 ;
+      private int AV35GXV1 ;
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
-      private string AV32Pgmname ;
+      private string AV34Pgmname ;
       private string Z17OrganisationPhone ;
       private string A17OrganisationPhone ;
       private string GXt_char1 ;
@@ -1721,37 +1749,43 @@ namespace GeneXus.Programs {
       private string[] BC00012_A520OrganisationLogo ;
       private string[] BC000111_A20OrganisationTypeName ;
       private Guid[] BC000112_A415AuditId ;
-      private Guid[] BC000113_A42SupplierGenId ;
-      private Guid[] BC000114_A100OrganisationSettingid ;
-      private Guid[] BC000114_A11OrganisationId ;
-      private bool[] BC000114_n11OrganisationId ;
-      private Guid[] BC000115_A542OrganisationDynamicFormId ;
+      private Guid[] BC000113_A247Trn_ThemeId ;
+      private Guid[] BC000114_A42SupplierGenId ;
+      private Guid[] BC000115_A100OrganisationSettingid ;
       private Guid[] BC000115_A11OrganisationId ;
       private bool[] BC000115_n11OrganisationId ;
-      private Guid[] BC000116_A29LocationId ;
+      private Guid[] BC000116_A542OrganisationDynamicFormId ;
       private Guid[] BC000116_A11OrganisationId ;
       private bool[] BC000116_n11OrganisationId ;
-      private Guid[] BC000117_A21ManagerId ;
+      private Guid[] BC000117_A89ReceptionistId ;
       private Guid[] BC000117_A11OrganisationId ;
       private bool[] BC000117_n11OrganisationId ;
+      private Guid[] BC000117_A29LocationId ;
+      private Guid[] BC000118_A62ResidentId ;
+      private Guid[] BC000118_A29LocationId ;
       private Guid[] BC000118_A11OrganisationId ;
       private bool[] BC000118_n11OrganisationId ;
-      private string[] BC000118_A17OrganisationPhone ;
-      private string[] BC000118_A288OrganisationAddressZipCode ;
-      private string[] BC000118_A13OrganisationName ;
-      private string[] BC000118_A12OrganisationKvkNumber ;
-      private string[] BC000118_A16OrganisationEmail ;
-      private string[] BC000118_A389OrganisationPhoneCode ;
-      private string[] BC000118_A390OrganisationPhoneNumber ;
-      private string[] BC000118_A18OrganisationVATNumber ;
-      private string[] BC000118_A40000OrganisationLogo_GXI ;
-      private string[] BC000118_A331OrganisationAddressCountry ;
-      private string[] BC000118_A289OrganisationAddressCity ;
-      private string[] BC000118_A342OrganisationAddressLine1 ;
-      private string[] BC000118_A343OrganisationAddressLine2 ;
-      private string[] BC000118_A20OrganisationTypeName ;
-      private Guid[] BC000118_A19OrganisationTypeId ;
-      private string[] BC000118_A520OrganisationLogo ;
+      private Guid[] BC000119_A21ManagerId ;
+      private Guid[] BC000119_A11OrganisationId ;
+      private bool[] BC000119_n11OrganisationId ;
+      private Guid[] BC000120_A11OrganisationId ;
+      private bool[] BC000120_n11OrganisationId ;
+      private string[] BC000120_A17OrganisationPhone ;
+      private string[] BC000120_A288OrganisationAddressZipCode ;
+      private string[] BC000120_A13OrganisationName ;
+      private string[] BC000120_A12OrganisationKvkNumber ;
+      private string[] BC000120_A16OrganisationEmail ;
+      private string[] BC000120_A389OrganisationPhoneCode ;
+      private string[] BC000120_A390OrganisationPhoneNumber ;
+      private string[] BC000120_A18OrganisationVATNumber ;
+      private string[] BC000120_A40000OrganisationLogo_GXI ;
+      private string[] BC000120_A331OrganisationAddressCountry ;
+      private string[] BC000120_A289OrganisationAddressCity ;
+      private string[] BC000120_A342OrganisationAddressLine1 ;
+      private string[] BC000120_A343OrganisationAddressLine2 ;
+      private string[] BC000120_A20OrganisationTypeName ;
+      private Guid[] BC000120_A19OrganisationTypeId ;
+      private string[] BC000120_A520OrganisationLogo ;
       private SdtTrn_Organisation bcTrn_Organisation ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
@@ -1846,6 +1880,8 @@ public class trn_organisation_bc__default : DataStoreHelperBase, IDataStoreHelpe
       ,new ForEachCursor(def[14])
       ,new ForEachCursor(def[15])
       ,new ForEachCursor(def[16])
+      ,new ForEachCursor(def[17])
+      ,new ForEachCursor(def[18])
     };
  }
 
@@ -1952,6 +1988,14 @@ public class trn_organisation_bc__default : DataStoreHelperBase, IDataStoreHelpe
        prmBC000118 = new Object[] {
        new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
+       Object[] prmBC000119;
+       prmBC000119 = new Object[] {
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC000120;
+       prmBC000120 = new Object[] {
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
        def= new CursorDef[] {
            new CursorDef("BC00012", "SELECT OrganisationId, OrganisationPhone, OrganisationAddressZipCode, OrganisationName, OrganisationKvkNumber, OrganisationEmail, OrganisationPhoneCode, OrganisationPhoneNumber, OrganisationVATNumber, OrganisationLogo_GXI, OrganisationAddressCountry, OrganisationAddressCity, OrganisationAddressLine1, OrganisationAddressLine2, OrganisationTypeId, OrganisationLogo FROM Trn_Organisation WHERE OrganisationId = :OrganisationId  FOR UPDATE OF Trn_Organisation",true, GxErrorMask.GX_NOMASK, false, this,prmBC00012,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC00013", "SELECT OrganisationId, OrganisationPhone, OrganisationAddressZipCode, OrganisationName, OrganisationKvkNumber, OrganisationEmail, OrganisationPhoneCode, OrganisationPhoneNumber, OrganisationVATNumber, OrganisationLogo_GXI, OrganisationAddressCountry, OrganisationAddressCity, OrganisationAddressLine1, OrganisationAddressLine2, OrganisationTypeId, OrganisationLogo FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC00013,1, GxCacheFrequency.OFF ,true,false )
@@ -1964,12 +2008,14 @@ public class trn_organisation_bc__default : DataStoreHelperBase, IDataStoreHelpe
           ,new CursorDef("BC000110", "SAVEPOINT gxupdate;DELETE FROM Trn_Organisation  WHERE OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000110)
           ,new CursorDef("BC000111", "SELECT OrganisationTypeName FROM Trn_OrganisationType WHERE OrganisationTypeId = :OrganisationTypeId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000111,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC000112", "SELECT AuditId FROM Trn_Audit WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000112,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC000113", "SELECT SupplierGenId FROM Trn_SupplierGen WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000113,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC000114", "SELECT OrganisationSettingid, OrganisationId FROM Trn_OrganisationSetting WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000114,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC000115", "SELECT OrganisationDynamicFormId, OrganisationId FROM Trn_OrganisationDynamicForm WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000115,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC000116", "SELECT LocationId, OrganisationId FROM Trn_Location WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000116,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC000117", "SELECT ManagerId, OrganisationId FROM Trn_Manager WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000117,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC000118", "SELECT TM1.OrganisationId, TM1.OrganisationPhone, TM1.OrganisationAddressZipCode, TM1.OrganisationName, TM1.OrganisationKvkNumber, TM1.OrganisationEmail, TM1.OrganisationPhoneCode, TM1.OrganisationPhoneNumber, TM1.OrganisationVATNumber, TM1.OrganisationLogo_GXI, TM1.OrganisationAddressCountry, TM1.OrganisationAddressCity, TM1.OrganisationAddressLine1, TM1.OrganisationAddressLine2, T2.OrganisationTypeName, TM1.OrganisationTypeId, TM1.OrganisationLogo FROM (Trn_Organisation TM1 INNER JOIN Trn_OrganisationType T2 ON T2.OrganisationTypeId = TM1.OrganisationTypeId) WHERE TM1.OrganisationId = :OrganisationId ORDER BY TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000118,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000113", "SELECT Trn_ThemeId FROM Trn_Theme WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000113,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000114", "SELECT SupplierGenId FROM Trn_SupplierGen WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000114,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000115", "SELECT OrganisationSettingid, OrganisationId FROM Trn_OrganisationSetting WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000115,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000116", "SELECT OrganisationDynamicFormId, OrganisationId FROM Trn_OrganisationDynamicForm WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000116,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000117", "SELECT ReceptionistId, OrganisationId, LocationId FROM Trn_Receptionist WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000117,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000118", "SELECT ResidentId, LocationId, OrganisationId FROM Trn_Resident WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000118,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000119", "SELECT ManagerId, OrganisationId FROM Trn_Manager WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000119,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000120", "SELECT TM1.OrganisationId, TM1.OrganisationPhone, TM1.OrganisationAddressZipCode, TM1.OrganisationName, TM1.OrganisationKvkNumber, TM1.OrganisationEmail, TM1.OrganisationPhoneCode, TM1.OrganisationPhoneNumber, TM1.OrganisationVATNumber, TM1.OrganisationLogo_GXI, TM1.OrganisationAddressCountry, TM1.OrganisationAddressCity, TM1.OrganisationAddressLine1, TM1.OrganisationAddressLine2, T2.OrganisationTypeName, TM1.OrganisationTypeId, TM1.OrganisationLogo FROM (Trn_Organisation TM1 INNER JOIN Trn_OrganisationType T2 ON T2.OrganisationTypeId = TM1.OrganisationTypeId) WHERE TM1.OrganisationId = :OrganisationId ORDER BY TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000120,100, GxCacheFrequency.OFF ,true,false )
        };
     }
  }
@@ -2052,7 +2098,6 @@ public class trn_organisation_bc__default : DataStoreHelperBase, IDataStoreHelpe
              return;
           case 12 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              return;
           case 13 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -2065,8 +2110,18 @@ public class trn_organisation_bc__default : DataStoreHelperBase, IDataStoreHelpe
           case 15 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
              return;
           case 16 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             return;
+          case 17 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             return;
+          case 18 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((string[]) buf[1])[0] = rslt.getString(2, 20);
              ((string[]) buf[2])[0] = rslt.getVarchar(3);

@@ -45,43 +45,48 @@ namespace GeneXus.Programs {
 
       public void execute( Guid aP0_LocationId ,
                            Guid aP1_OrganisationId ,
-                           out GXBaseCollection<SdtSDT_MobilePage> aP2_SDT_PageCollection )
+                           string aP2_UserId ,
+                           out GXBaseCollection<SdtSDT_MobilePage> aP3_SDT_PageCollection )
       {
          this.AV2LocationId = aP0_LocationId;
          this.AV3OrganisationId = aP1_OrganisationId;
-         this.AV4SDT_PageCollection = new GXBaseCollection<SdtSDT_MobilePage>( context, "SDT_MobilePage", "Comforta_version2") ;
+         this.AV4UserId = aP2_UserId;
+         this.AV5SDT_PageCollection = new GXBaseCollection<SdtSDT_MobilePage>( context, "SDT_MobilePage", "Comforta_version2") ;
          initialize();
          ExecuteImpl();
-         aP2_SDT_PageCollection=this.AV4SDT_PageCollection;
+         aP3_SDT_PageCollection=this.AV5SDT_PageCollection;
       }
 
       public GXBaseCollection<SdtSDT_MobilePage> executeUdp( Guid aP0_LocationId ,
-                                                             Guid aP1_OrganisationId )
+                                                             Guid aP1_OrganisationId ,
+                                                             string aP2_UserId )
       {
-         execute(aP0_LocationId, aP1_OrganisationId, out aP2_SDT_PageCollection);
-         return AV4SDT_PageCollection ;
+         execute(aP0_LocationId, aP1_OrganisationId, aP2_UserId, out aP3_SDT_PageCollection);
+         return AV5SDT_PageCollection ;
       }
 
       public void executeSubmit( Guid aP0_LocationId ,
                                  Guid aP1_OrganisationId ,
-                                 out GXBaseCollection<SdtSDT_MobilePage> aP2_SDT_PageCollection )
+                                 string aP2_UserId ,
+                                 out GXBaseCollection<SdtSDT_MobilePage> aP3_SDT_PageCollection )
       {
          this.AV2LocationId = aP0_LocationId;
          this.AV3OrganisationId = aP1_OrganisationId;
-         this.AV4SDT_PageCollection = new GXBaseCollection<SdtSDT_MobilePage>( context, "SDT_MobilePage", "Comforta_version2") ;
+         this.AV4UserId = aP2_UserId;
+         this.AV5SDT_PageCollection = new GXBaseCollection<SdtSDT_MobilePage>( context, "SDT_MobilePage", "Comforta_version2") ;
          SubmitImpl();
-         aP2_SDT_PageCollection=this.AV4SDT_PageCollection;
+         aP3_SDT_PageCollection=this.AV5SDT_PageCollection;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
-         args = new Object[] {(Guid)AV2LocationId,(Guid)AV3OrganisationId,(GXBaseCollection<SdtSDT_MobilePage>)AV4SDT_PageCollection} ;
+         args = new Object[] {(Guid)AV2LocationId,(Guid)AV3OrganisationId,(string)AV4UserId,(GXBaseCollection<SdtSDT_MobilePage>)AV5SDT_PageCollection} ;
          ClassLoader.Execute("aprc_pagesapi","GeneXus.Programs","aprc_pagesapi", new Object[] {context }, "execute", args);
-         if ( ( args != null ) && ( args.Length == 3 ) )
+         if ( ( args != null ) && ( args.Length == 4 ) )
          {
-            AV4SDT_PageCollection = (GXBaseCollection<SdtSDT_MobilePage>)(args[2]) ;
+            AV5SDT_PageCollection = (GXBaseCollection<SdtSDT_MobilePage>)(args[3]) ;
          }
          cleanup();
       }
@@ -97,18 +102,19 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         AV4SDT_PageCollection = new GXBaseCollection<SdtSDT_MobilePage>( context, "SDT_MobilePage", "Comforta_version2");
+         AV5SDT_PageCollection = new GXBaseCollection<SdtSDT_MobilePage>( context, "SDT_MobilePage", "Comforta_version2");
          /* GeneXus formulas. */
       }
 
+      private string AV4UserId ;
       private Guid AV2LocationId ;
       private Guid AV3OrganisationId ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
-      private GXBaseCollection<SdtSDT_MobilePage> AV4SDT_PageCollection ;
+      private GXBaseCollection<SdtSDT_MobilePage> AV5SDT_PageCollection ;
       private Object[] args ;
-      private GXBaseCollection<SdtSDT_MobilePage> aP2_SDT_PageCollection ;
+      private GXBaseCollection<SdtSDT_MobilePage> aP3_SDT_PageCollection ;
    }
 
 }

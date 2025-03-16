@@ -67,9 +67,12 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("LocationId", gxTpr_Locationid, false);
 
-			if (gxTv_SdtSDT_AppVersion_Page != null)
+
+			AddObjectProperty("IsActive", gxTpr_Isactive, false);
+
+			if (gxTv_SdtSDT_AppVersion_Pages != null)
 			{
-				AddObjectProperty("Page", gxTv_SdtSDT_AppVersion_Page, false);
+				AddObjectProperty("Pages", gxTv_SdtSDT_AppVersion_Pages, false);
 			}
 			return;
 		}
@@ -125,38 +128,54 @@ namespace GeneXus.Programs
 
 
 
-		[SoapElement(ElementName="Page" )]
-		[XmlArray(ElementName="Page"  )]
-		[XmlArrayItemAttribute(ElementName="PageItem" , IsNullable=false )]
-		public GXBaseCollection<SdtSDT_AppVersion_PageItem> gxTpr_Page
+		[SoapElement(ElementName="IsActive")]
+		[XmlElement(ElementName="IsActive")]
+		public bool gxTpr_Isactive
 		{
 			get {
-				if ( gxTv_SdtSDT_AppVersion_Page == null )
-				{
-					gxTv_SdtSDT_AppVersion_Page = new GXBaseCollection<SdtSDT_AppVersion_PageItem>( context, "SDT_AppVersion.PageItem", "");
-				}
-				return gxTv_SdtSDT_AppVersion_Page;
+				return gxTv_SdtSDT_AppVersion_Isactive; 
 			}
 			set {
-				gxTv_SdtSDT_AppVersion_Page_N = false;
-				gxTv_SdtSDT_AppVersion_Page = value;
-				SetDirty("Page");
+				gxTv_SdtSDT_AppVersion_Isactive = value;
+				SetDirty("Isactive");
 			}
 		}
 
-		public void gxTv_SdtSDT_AppVersion_Page_SetNull()
+
+
+
+		[SoapElement(ElementName="Pages" )]
+		[XmlArray(ElementName="Pages"  )]
+		[XmlArrayItemAttribute(ElementName="PagesItem" , IsNullable=false )]
+		public GXBaseCollection<SdtSDT_AppVersion_PagesItem> gxTpr_Pages
 		{
-			gxTv_SdtSDT_AppVersion_Page_N = true;
-			gxTv_SdtSDT_AppVersion_Page = null;
+			get {
+				if ( gxTv_SdtSDT_AppVersion_Pages == null )
+				{
+					gxTv_SdtSDT_AppVersion_Pages = new GXBaseCollection<SdtSDT_AppVersion_PagesItem>( context, "SDT_AppVersion.PagesItem", "");
+				}
+				return gxTv_SdtSDT_AppVersion_Pages;
+			}
+			set {
+				gxTv_SdtSDT_AppVersion_Pages_N = false;
+				gxTv_SdtSDT_AppVersion_Pages = value;
+				SetDirty("Pages");
+			}
 		}
 
-		public bool gxTv_SdtSDT_AppVersion_Page_IsNull()
+		public void gxTv_SdtSDT_AppVersion_Pages_SetNull()
 		{
-			return gxTv_SdtSDT_AppVersion_Page == null;
+			gxTv_SdtSDT_AppVersion_Pages_N = true;
+			gxTv_SdtSDT_AppVersion_Pages = null;
 		}
-		public bool ShouldSerializegxTpr_Page_GxSimpleCollection_Json()
+
+		public bool gxTv_SdtSDT_AppVersion_Pages_IsNull()
 		{
-			return gxTv_SdtSDT_AppVersion_Page != null && gxTv_SdtSDT_AppVersion_Page.Count > 0;
+			return gxTv_SdtSDT_AppVersion_Pages == null;
+		}
+		public bool ShouldSerializegxTpr_Pages_GxSimpleCollection_Json()
+		{
+			return gxTv_SdtSDT_AppVersion_Pages != null && gxTv_SdtSDT_AppVersion_Pages.Count > 0;
 
 		}
 
@@ -185,7 +204,8 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_AppVersion_Appversionname = "";
 
 
-			gxTv_SdtSDT_AppVersion_Page_N = true;
+
+			gxTv_SdtSDT_AppVersion_Pages_N = true;
 
 			return  ;
 		}
@@ -204,8 +224,11 @@ namespace GeneXus.Programs
 
 		protected Guid gxTv_SdtSDT_AppVersion_Locationid;
 		 
-		protected bool gxTv_SdtSDT_AppVersion_Page_N;
-		protected GXBaseCollection<SdtSDT_AppVersion_PageItem> gxTv_SdtSDT_AppVersion_Page = null; 
+
+		protected bool gxTv_SdtSDT_AppVersion_Isactive;
+		 
+		protected bool gxTv_SdtSDT_AppVersion_Pages_N;
+		protected GXBaseCollection<SdtSDT_AppVersion_PagesItem> gxTv_SdtSDT_AppVersion_Pages = null; 
 
 
 
@@ -261,18 +284,30 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="Page", Order=3, EmitDefaultValue=false)]
-		public GxGenericCollection<SdtSDT_AppVersion_PageItem_RESTInterface> gxTpr_Page
+		[DataMember(Name="IsActive", Order=3)]
+		public bool gxTpr_Isactive
+		{
+			get { 
+				return sdt.gxTpr_Isactive;
+
+			}
+			set { 
+				sdt.gxTpr_Isactive = value;
+			}
+		}
+
+		[DataMember(Name="Pages", Order=4, EmitDefaultValue=false)]
+		public GxGenericCollection<SdtSDT_AppVersion_PagesItem_RESTInterface> gxTpr_Pages
 		{
 			get {
-				if (sdt.ShouldSerializegxTpr_Page_GxSimpleCollection_Json())
-					return new GxGenericCollection<SdtSDT_AppVersion_PageItem_RESTInterface>(sdt.gxTpr_Page);
+				if (sdt.ShouldSerializegxTpr_Pages_GxSimpleCollection_Json())
+					return new GxGenericCollection<SdtSDT_AppVersion_PagesItem_RESTInterface>(sdt.gxTpr_Pages);
 				else
 					return null;
 
 			}
 			set {
-				value.LoadCollection(sdt.gxTpr_Page);
+				value.LoadCollection(sdt.gxTpr_Pages);
 			}
 		}
 

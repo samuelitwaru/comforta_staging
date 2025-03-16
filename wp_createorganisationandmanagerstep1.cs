@@ -710,7 +710,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, divUnnamedtable6_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, divUnnamedtable6_Internalname, divUnnamedtable6_Visible, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
@@ -1550,6 +1550,9 @@ namespace GeneXus.Programs {
          /* Execute user subroutine: 'LOADCOMBOORGANISATIONADDRESSCOUNTRY' */
          S142 ();
          if (returnInSub) return;
+         /* Execute user subroutine: 'ATTRIBUTESSECURITYCODE' */
+         S152 ();
+         if (returnInSub) return;
          edtavOrganisationid_Visible = 0;
          AssignProp(sPrefix, false, edtavOrganisationid_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtavOrganisationid_Visible), 5, 0), true);
          edtavOrganisationphone_Visible = 0;
@@ -1597,7 +1600,7 @@ namespace GeneXus.Programs {
          AV7GoingBack = false;
          AssignAttri(sPrefix, false, "AV7GoingBack", AV7GoingBack);
          /* Execute user subroutine: 'CHECKSECURITYFORACTIONS' */
-         S152 ();
+         S162 ();
          if (returnInSub) return;
          /*  Sending Event outputs  */
       }
@@ -1614,12 +1617,12 @@ namespace GeneXus.Programs {
          /* Enter Routine */
          returnInSub = false;
          /* Execute user subroutine: 'CHECKREQUIREDFIELDS' */
-         S162 ();
+         S172 ();
          if (returnInSub) return;
          if ( AV22CheckRequiredFieldsResult && ! AV10HasValidationErrors )
          {
             /* Execute user subroutine: 'SAVEVARIABLESTOWIZARDDATA' */
-            S172 ();
+            S182 ();
             if (returnInSub) return;
             GXKey = Crypto.GetSiteKey( );
             GXEncryptionTmp = "wp_createorganisationandmanager.aspx"+UrlEncode(StringUtil.RTrim("Step1")) + "," + UrlEncode(StringUtil.RTrim("Step2")) + "," + UrlEncode(StringUtil.BoolToStr(false));
@@ -1678,7 +1681,7 @@ namespace GeneXus.Programs {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV43OrganisationTypeId_Data", AV43OrganisationTypeId_Data);
       }
 
-      protected void S152( )
+      protected void S162( )
       {
          /* 'CHECKSECURITYFORACTIONS' Routine */
          returnInSub = false;
@@ -1728,7 +1731,7 @@ namespace GeneXus.Programs {
          AssignAttri(sPrefix, false, "AV38OrganisationPhoneCode", AV38OrganisationPhoneCode);
       }
 
-      protected void S172( )
+      protected void S182( )
       {
          /* 'SAVEVARIABLESTOWIZARDDATA' Routine */
          returnInSub = false;
@@ -1781,7 +1784,7 @@ namespace GeneXus.Programs {
          AV5WebSession.Set(AV6WebSessionKey, AV11WizardData.ToJSonString(false, true));
       }
 
-      protected void S162( )
+      protected void S172( )
       {
          /* 'CHECKREQUIREDFIELDS' Routine */
          returnInSub = false;
@@ -1841,6 +1844,14 @@ namespace GeneXus.Programs {
             AV22CheckRequiredFieldsResult = false;
             AssignAttri(sPrefix, false, "AV22CheckRequiredFieldsResult", AV22CheckRequiredFieldsResult);
          }
+      }
+
+      protected void S152( )
+      {
+         /* 'ATTRIBUTESSECURITYCODE' Routine */
+         returnInSub = false;
+         divUnnamedtable6_Visible = (((1==0)) ? 1 : 0);
+         AssignProp(sPrefix, false, divUnnamedtable6_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divUnnamedtable6_Visible), 5, 0), true);
       }
 
       protected void S142( )
@@ -2301,7 +2312,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253810123361", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531412103961", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2317,7 +2328,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createorganisationandmanagerstep1.js", "?20253810123362", false, true);
+         context.AddJavascriptSource("wp_createorganisationandmanagerstep1.js", "?202531412103962", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2447,6 +2458,7 @@ namespace GeneXus.Programs {
          edtavOrganisationaddressline2_Enabled = 1;
          edtavOrganisationaddressline1_Jsonclick = "";
          edtavOrganisationaddressline1_Enabled = 1;
+         divUnnamedtable6_Visible = 1;
          edtavOrganisationphonenumber_Jsonclick = "";
          edtavOrganisationphonenumber_Enabled = 1;
          Combo_organisationphonecode_Emptyitem = Convert.ToBoolean( 0);
@@ -2644,6 +2656,7 @@ namespace GeneXus.Programs {
       private int edtavOrganisationvatnumber_Enabled ;
       private int edtavOrganisationemail_Enabled ;
       private int edtavOrganisationphonenumber_Enabled ;
+      private int divUnnamedtable6_Visible ;
       private int edtavOrganisationaddressline1_Enabled ;
       private int edtavOrganisationaddressline2_Enabled ;
       private int edtavOrganisationaddresszipcode_Enabled ;

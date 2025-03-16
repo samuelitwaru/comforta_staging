@@ -591,18 +591,22 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell", "start", "top", "", "", "div");
          /* Div Control */
-         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+edtLocationDescription_Internalname+"\"", "", "div");
+         GxWebStd.gx_div_start( context, "", -1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+Locationdescription_Internalname+"\"", "", "div");
          /* Attribute/Variable Label */
-         GxWebStd.gx_label_element( context, edtLocationDescription_Internalname, context.GetMessage( "Description", ""), "col-sm-4 AttributeLabel", 1, true, "");
+         GxWebStd.gx_label_element( context, Locationdescription_Internalname, context.GetMessage( "Description", ""), "col-sm-4 AttributeLabel", 1, true, "");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
-         /* Multiple line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 68,'',false,'',0)\"";
-         ClassString = "Attribute";
-         StyleString = "";
-         ClassString = "Attribute";
-         StyleString = "";
-         GxWebStd.gx_html_textarea( context, edtLocationDescription_Internalname, A36LocationDescription, "", TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,68);\"", 0, 1, edtLocationDescription_Enabled, 0, 40, "chr", 3, "row", 0, StyleString, ClassString, "", "", "2097152", 1, 0, "", context.GetMessage( "Description", ""), -1, true, "LongDescription", "'"+""+"'"+",false,"+"'"+""+"'", 0, "", "HLP_Trn_Location.htm");
+         /* User Defined Control */
+         ucLocationdescription.SetProperty("Width", Locationdescription_Width);
+         ucLocationdescription.SetProperty("Height", Locationdescription_Height);
+         ucLocationdescription.SetProperty("Attribute", LocationDescription);
+         ucLocationdescription.SetProperty("Toolbar", Locationdescription_Toolbar);
+         ucLocationdescription.SetProperty("CustomToolbar", Locationdescription_Customtoolbar);
+         ucLocationdescription.SetProperty("CustomConfiguration", Locationdescription_Customconfiguration);
+         ucLocationdescription.SetProperty("CaptionClass", Locationdescription_Captionclass);
+         ucLocationdescription.SetProperty("CaptionStyle", Locationdescription_Captionstyle);
+         ucLocationdescription.SetProperty("CaptionPosition", Locationdescription_Captionposition);
+         ucLocationdescription.Render(context, "fckeditor", Locationdescription_Internalname, "LOCATIONDESCRIPTIONContainer");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -755,9 +759,16 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
          TempTags = "  onfocus=\"gx.evt.onfocus(this, 111,'',false,'',0)\"";
-         ClassString = "ButtonMaterialDefault";
+         ClassString = "ButtonMaterialDefault hidden-xs hidden-sm hidden-md hidden-lg";
          StyleString = "";
          GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtntrn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Location.htm");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 113,'',false,'',0)\"";
+         ClassString = "ButtonMaterialDefault";
+         StyleString = "";
+         GxWebStd.gx_button_ctrl( context, bttBtnudelete_Internalname, "", context.GetMessage( "Delete", ""), bttBtnudelete_Jsonclick, 5, context.GetMessage( "Delete", ""), "", StyleString, ClassString, bttBtnudelete_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"E\\'DOUDELETE\\'."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Location.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -774,21 +785,21 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, divSectionattribute_locationphonecode_Internalname, 1, 0, "px", 0, "px", "Section", "start", "top", "", "", "div");
          /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 116,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtavCombolocationphonecode_Internalname, AV16ComboLocationPhoneCode, StringUtil.RTrim( context.localUtil.Format( AV16ComboLocationPhoneCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,116);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCombolocationphonecode_Jsonclick, 0, "Attribute", "", "", "", "", edtavCombolocationphonecode_Visible, edtavCombolocationphonecode_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Location.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 118,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtavCombolocationphonecode_Internalname, AV16ComboLocationPhoneCode, StringUtil.RTrim( context.localUtil.Format( AV16ComboLocationPhoneCode, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,118);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCombolocationphonecode_Jsonclick, 0, "Attribute", "", "", "", "", edtavCombolocationphonecode_Visible, edtavCombolocationphonecode_Enabled, 0, "text", "", 40, "chr", 1, "row", 40, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Location.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, divSectionattribute_locationcountry_Internalname, 1, 0, "px", 0, "px", "Section", "start", "top", "", "", "div");
          /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 118,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtavCombolocationcountry_Internalname, AV23ComboLocationCountry, StringUtil.RTrim( context.localUtil.Format( AV23ComboLocationCountry, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,118);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCombolocationcountry_Jsonclick, 0, "Attribute", "", "", "", "", edtavCombolocationcountry_Visible, edtavCombolocationcountry_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Location.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 120,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtavCombolocationcountry_Internalname, AV23ComboLocationCountry, StringUtil.RTrim( context.localUtil.Format( AV23ComboLocationCountry, "")), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,120);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtavCombolocationcountry_Jsonclick, 0, "Attribute", "", "", "", "", edtavCombolocationcountry_Visible, edtavCombolocationcountry_Enabled, 0, "text", "", 80, "chr", 1, "row", 100, 0, 0, 0, 0, -1, -1, true, "", "start", true, "", "HLP_Trn_Location.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 119,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtLocationId_Internalname, A29LocationId.ToString(), A29LocationId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,119);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtLocationId_Jsonclick, 0, "Attribute", "", "", "", "", edtLocationId_Visible, edtLocationId_Enabled, 1, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_Location.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 121,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtLocationId_Internalname, A29LocationId.ToString(), A29LocationId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,121);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtLocationId_Jsonclick, 0, "Attribute", "", "", "", "", edtLocationId_Visible, edtLocationId_Enabled, 1, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_Location.htm");
          /* Single line edit */
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 120,'',false,'',0)\"";
-         GxWebStd.gx_single_line_edit( context, edtOrganisationId_Internalname, A11OrganisationId.ToString(), A11OrganisationId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,120);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtOrganisationId_Jsonclick, 0, "Attribute", "", "", "", "", edtOrganisationId_Visible, edtOrganisationId_Enabled, 1, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_Location.htm");
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 122,'',false,'',0)\"";
+         GxWebStd.gx_single_line_edit( context, edtOrganisationId_Internalname, A11OrganisationId.ToString(), A11OrganisationId.ToString(), TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,122);\"", "'"+""+"'"+",false,"+"'"+""+"'", "", "", "", "", edtOrganisationId_Jsonclick, 0, "Attribute", "", "", "", "", edtOrganisationId_Visible, edtOrganisationId_Enabled, 1, "text", "", 36, "chr", 1, "row", 36, 0, 0, 0, 0, 0, 0, true, "Id", "", false, "", "HLP_Trn_Location.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -875,11 +886,12 @@ namespace GeneXus.Programs {
                n247Trn_ThemeId = ((Guid.Empty==A247Trn_ThemeId) ? true : false);
                ajax_req_read_hidden_sdt(cgiGet( "vAUDITINGOBJECT"), AV24AuditingObject);
                A40000LocationImage_GXI = cgiGet( "LOCATIONIMAGE_GXI");
+               A36LocationDescription = cgiGet( "LOCATIONDESCRIPTION");
                A517ToolBoxDefaultLogo = cgiGet( "TOOLBOXDEFAULTLOGO");
                n517ToolBoxDefaultLogo = (String.IsNullOrEmpty(StringUtil.RTrim( A517ToolBoxDefaultLogo)) ? true : false);
                A518ToolBoxDefaultProfileImage = cgiGet( "TOOLBOXDEFAULTPROFILEIMAGE");
                n518ToolBoxDefaultProfileImage = (String.IsNullOrEmpty(StringUtil.RTrim( A518ToolBoxDefaultProfileImage)) ? true : false);
-               AV29Pgmname = cgiGet( "vPGMNAME");
+               AV31Pgmname = cgiGet( "vPGMNAME");
                Combo_locationphonecode_Objectcall = cgiGet( "COMBO_LOCATIONPHONECODE_Objectcall");
                Combo_locationphonecode_Class = cgiGet( "COMBO_LOCATIONPHONECODE_Class");
                Combo_locationphonecode_Icontype = cgiGet( "COMBO_LOCATIONPHONECODE_Icontype");
@@ -921,6 +933,29 @@ namespace GeneXus.Programs {
                Combo_locationphonecode_Multiplevaluesseparator = cgiGet( "COMBO_LOCATIONPHONECODE_Multiplevaluesseparator");
                Combo_locationphonecode_Addnewoptiontext = cgiGet( "COMBO_LOCATIONPHONECODE_Addnewoptiontext");
                Combo_locationphonecode_Gxcontroltype = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COMBO_LOCATIONPHONECODE_Gxcontroltype"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               Locationdescription_Objectcall = cgiGet( "LOCATIONDESCRIPTION_Objectcall");
+               Locationdescription_Class = cgiGet( "LOCATIONDESCRIPTION_Class");
+               Locationdescription_Enabled = StringUtil.StrToBool( cgiGet( "LOCATIONDESCRIPTION_Enabled"));
+               Locationdescription_Width = cgiGet( "LOCATIONDESCRIPTION_Width");
+               Locationdescription_Height = cgiGet( "LOCATIONDESCRIPTION_Height");
+               Locationdescription_Skin = cgiGet( "LOCATIONDESCRIPTION_Skin");
+               Locationdescription_Toolbar = cgiGet( "LOCATIONDESCRIPTION_Toolbar");
+               Locationdescription_Customtoolbar = cgiGet( "LOCATIONDESCRIPTION_Customtoolbar");
+               Locationdescription_Customconfiguration = cgiGet( "LOCATIONDESCRIPTION_Customconfiguration");
+               Locationdescription_Toolbarcancollapse = StringUtil.StrToBool( cgiGet( "LOCATIONDESCRIPTION_Toolbarcancollapse"));
+               Locationdescription_Toolbarexpanded = StringUtil.StrToBool( cgiGet( "LOCATIONDESCRIPTION_Toolbarexpanded"));
+               Locationdescription_Color = (int)(Math.Round(context.localUtil.CToN( cgiGet( "LOCATIONDESCRIPTION_Color"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               Locationdescription_Buttonpressedid = cgiGet( "LOCATIONDESCRIPTION_Buttonpressedid");
+               Locationdescription_Captionvalue = cgiGet( "LOCATIONDESCRIPTION_Captionvalue");
+               Locationdescription_Captionclass = cgiGet( "LOCATIONDESCRIPTION_Captionclass");
+               Locationdescription_Captionstyle = cgiGet( "LOCATIONDESCRIPTION_Captionstyle");
+               Locationdescription_Captionposition = cgiGet( "LOCATIONDESCRIPTION_Captionposition");
+               Locationdescription_Isabstractlayoutcontrol = StringUtil.StrToBool( cgiGet( "LOCATIONDESCRIPTION_Isabstractlayoutcontrol"));
+               Locationdescription_Coltitle = cgiGet( "LOCATIONDESCRIPTION_Coltitle");
+               Locationdescription_Coltitlefont = cgiGet( "LOCATIONDESCRIPTION_Coltitlefont");
+               Locationdescription_Coltitlecolor = (int)(Math.Round(context.localUtil.CToN( cgiGet( "LOCATIONDESCRIPTION_Coltitlecolor"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               Locationdescription_Usercontroliscolumn = StringUtil.StrToBool( cgiGet( "LOCATIONDESCRIPTION_Usercontroliscolumn"));
+               Locationdescription_Visible = StringUtil.StrToBool( cgiGet( "LOCATIONDESCRIPTION_Visible"));
                Combo_locationcountry_Objectcall = cgiGet( "COMBO_LOCATIONCOUNTRY_Objectcall");
                Combo_locationcountry_Class = cgiGet( "COMBO_LOCATIONCOUNTRY_Class");
                Combo_locationcountry_Icontype = cgiGet( "COMBO_LOCATIONCOUNTRY_Icontype");
@@ -975,8 +1010,6 @@ namespace GeneXus.Programs {
                AssignAttri("", false, "A35LocationPhone", A35LocationPhone);
                A506LocationImage = cgiGet( imgLocationImage_Internalname);
                AssignAttri("", false, "A506LocationImage", A506LocationImage);
-               A36LocationDescription = cgiGet( edtLocationDescription_Internalname);
-               AssignAttri("", false, "A36LocationDescription", A36LocationDescription);
                A340LocationAddressLine1 = cgiGet( edtLocationAddressLine1_Internalname);
                AssignAttri("", false, "A340LocationAddressLine1", A340LocationAddressLine1);
                A341LocationAddressLine2 = cgiGet( edtLocationAddressLine2_Internalname);
@@ -1040,7 +1073,7 @@ namespace GeneXus.Programs {
                forbiddenHiddens = new GXProperties();
                forbiddenHiddens.Add("hshsalt", "hsh"+"Trn_Location");
                forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
-               forbiddenHiddens.Add("Pgmname", StringUtil.RTrim( context.localUtil.Format( AV29Pgmname, "")));
+               forbiddenHiddens.Add("Pgmname", StringUtil.RTrim( context.localUtil.Format( AV31Pgmname, "")));
                forbiddenHiddens.Add("ToolBoxDefaultLogo", StringUtil.RTrim( context.localUtil.Format( A517ToolBoxDefaultLogo, "")));
                forbiddenHiddens.Add("ToolBoxDefaultProfileImage", StringUtil.RTrim( context.localUtil.Format( A518ToolBoxDefaultProfileImage, "")));
                hsh = cgiGet( "hsh");
@@ -1204,6 +1237,14 @@ namespace GeneXus.Programs {
                            dynload_actions( ) ;
                            /* Execute user event: After Trn */
                            E12042 ();
+                        }
+                        else if ( StringUtil.StrCmp(sEvt, "'DOUDELETE'") == 0 )
+                        {
+                           context.wbHandled = 1;
+                           dynload_actions( ) ;
+                           /* Execute user event: 'DoUDelete' */
+                           E13042 ();
+                           nKeyPressed = 3;
                         }
                         else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                         {
@@ -1371,20 +1412,20 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          AV12TrnContext.FromXml(AV13WebSession.Get("TrnContext"), null, "", "");
-         if ( ( StringUtil.StrCmp(AV12TrnContext.gxTpr_Transactionname, AV29Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         if ( ( StringUtil.StrCmp(AV12TrnContext.gxTpr_Transactionname, AV31Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
          {
-            AV30GXV1 = 1;
-            AssignAttri("", false, "AV30GXV1", StringUtil.LTrimStr( (decimal)(AV30GXV1), 8, 0));
-            while ( AV30GXV1 <= AV12TrnContext.gxTpr_Attributes.Count )
+            AV32GXV1 = 1;
+            AssignAttri("", false, "AV32GXV1", StringUtil.LTrimStr( (decimal)(AV32GXV1), 8, 0));
+            while ( AV32GXV1 <= AV12TrnContext.gxTpr_Attributes.Count )
             {
-               AV26TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV12TrnContext.gxTpr_Attributes.Item(AV30GXV1));
+               AV26TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV12TrnContext.gxTpr_Attributes.Item(AV32GXV1));
                if ( StringUtil.StrCmp(AV26TrnContextAtt.gxTpr_Attributename, "Trn_ThemeId") == 0 )
                {
                   AV25Insert_Trn_ThemeId = StringUtil.StrToGuid( AV26TrnContextAtt.gxTpr_Attributevalue);
                   AssignAttri("", false, "AV25Insert_Trn_ThemeId", AV25Insert_Trn_ThemeId.ToString());
                }
-               AV30GXV1 = (int)(AV30GXV1+1);
-               AssignAttri("", false, "AV30GXV1", StringUtil.LTrimStr( (decimal)(AV30GXV1), 8, 0));
+               AV32GXV1 = (int)(AV32GXV1+1);
+               AssignAttri("", false, "AV32GXV1", StringUtil.LTrimStr( (decimal)(AV32GXV1), 8, 0));
             }
          }
          edtLocationId_Visible = 0;
@@ -1421,7 +1462,7 @@ namespace GeneXus.Programs {
          {
             AV13WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Location Inserted successfully", ""));
          }
-         new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV24AuditingObject,  AV29Pgmname) ;
+         new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV24AuditingObject,  AV31Pgmname) ;
          if ( ( StringUtil.StrCmp(Gx_mode, "DLT") == 0 ) && ! AV12TrnContext.gxTpr_Callerondelete )
          {
             CallWebObject(formatLink("trn_locationww.aspx") );
@@ -1444,6 +1485,26 @@ namespace GeneXus.Programs {
          AssignProp("", false, edtLocationPhone_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtLocationPhone_Visible), 5, 0), true);
          divLocationphone_cell_Class = "Invisible";
          AssignProp("", false, divLocationphone_cell_Internalname, "Class", divLocationphone_cell_Class, true);
+      }
+
+      protected void E13042( )
+      {
+         /* 'DoUDelete' Routine */
+         returnInSub = false;
+         new prc_deletecascadelocation(context ).execute(  A29LocationId,  Guid.Empty,  A11OrganisationId,  true, ref  AV28isSuccessful, ref  AV29Message) ;
+         AssignAttri("", false, "AV28isSuccessful", AV28isSuccessful);
+         AssignAttri("", false, "AV29Message", AV29Message);
+         if ( AV28isSuccessful )
+         {
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Success",  context.GetMessage( "Deleted location successfully", ""),  "success",  "",  "true",  ""));
+            CallWebObject(formatLink("trn_location.aspx") );
+            context.wjLocDisableFrm = 1;
+         }
+         else
+         {
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Failed",  AV29Message,  "error",  "",  "true",  ""));
+         }
+         /*  Sending Event outputs  */
       }
 
       protected void S122( )
@@ -1561,8 +1622,8 @@ namespace GeneXus.Programs {
          }
          divUnnamedtable5_Visible = (((StringUtil.StrCmp(Gx_mode, "INS")==0)||(StringUtil.StrCmp(Gx_mode, "UPD")==0)) ? 1 : 0);
          AssignProp("", false, divUnnamedtable5_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divUnnamedtable5_Visible), 5, 0), true);
-         AV29Pgmname = "Trn_Location";
-         AssignAttri("", false, "AV29Pgmname", AV29Pgmname);
+         AV31Pgmname = "Trn_Location";
+         AssignAttri("", false, "AV31Pgmname", AV31Pgmname);
          Gx_BScreen = 0;
          AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
          bttBtntrn_delete_Enabled = 0;
@@ -1679,7 +1740,6 @@ namespace GeneXus.Programs {
             A384LocationPhoneNumber = T00046_A384LocationPhoneNumber[0];
             AssignAttri("", false, "A384LocationPhoneNumber", A384LocationPhoneNumber);
             A36LocationDescription = T00046_A36LocationDescription[0];
-            AssignAttri("", false, "A36LocationDescription", A36LocationDescription);
             A517ToolBoxDefaultLogo = T00046_A517ToolBoxDefaultLogo[0];
             n517ToolBoxDefaultLogo = T00046_n517ToolBoxDefaultLogo[0];
             A518ToolBoxDefaultProfileImage = T00046_A518ToolBoxDefaultProfileImage[0];
@@ -1930,7 +1990,6 @@ namespace GeneXus.Programs {
             A384LocationPhoneNumber = T00043_A384LocationPhoneNumber[0];
             AssignAttri("", false, "A384LocationPhoneNumber", A384LocationPhoneNumber);
             A36LocationDescription = T00043_A36LocationDescription[0];
-            AssignAttri("", false, "A36LocationDescription", A36LocationDescription);
             A517ToolBoxDefaultLogo = T00043_A517ToolBoxDefaultLogo[0];
             n517ToolBoxDefaultLogo = T00043_n517ToolBoxDefaultLogo[0];
             A518ToolBoxDefaultProfileImage = T00043_A518ToolBoxDefaultProfileImage[0];
@@ -2635,8 +2694,6 @@ namespace GeneXus.Programs {
          AssignProp("", false, edtLocationPhone_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtLocationPhone_Enabled), 5, 0), true);
          imgLocationImage_Enabled = 0;
          AssignProp("", false, imgLocationImage_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(imgLocationImage_Enabled), 5, 0), true);
-         edtLocationDescription_Enabled = 0;
-         AssignProp("", false, edtLocationDescription_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtLocationDescription_Enabled), 5, 0), true);
          edtLocationAddressLine1_Enabled = 0;
          AssignProp("", false, edtLocationAddressLine1_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtLocationAddressLine1_Enabled), 5, 0), true);
          edtLocationAddressLine2_Enabled = 0;
@@ -2655,6 +2712,8 @@ namespace GeneXus.Programs {
          AssignProp("", false, edtLocationId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtLocationId_Enabled), 5, 0), true);
          edtOrganisationId_Enabled = 0;
          AssignProp("", false, edtOrganisationId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtOrganisationId_Enabled), 5, 0), true);
+         Locationdescription_Enabled = Convert.ToBoolean( 0);
+         AssignProp("", false, Locationdescription_Internalname, "Enabled", StringUtil.BoolToStr( Locationdescription_Enabled), true);
       }
 
       protected void send_integrity_lvl_hashes046( )
@@ -2708,6 +2767,8 @@ namespace GeneXus.Programs {
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
+         context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
+         context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2753,7 +2814,7 @@ namespace GeneXus.Programs {
          forbiddenHiddens = new GXProperties();
          forbiddenHiddens.Add("hshsalt", "hsh"+"Trn_Location");
          forbiddenHiddens.Add("Gx_mode", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")));
-         forbiddenHiddens.Add("Pgmname", StringUtil.RTrim( context.localUtil.Format( AV29Pgmname, "")));
+         forbiddenHiddens.Add("Pgmname", StringUtil.RTrim( context.localUtil.Format( AV31Pgmname, "")));
          forbiddenHiddens.Add("ToolBoxDefaultLogo", StringUtil.RTrim( context.localUtil.Format( A517ToolBoxDefaultLogo, "")));
          forbiddenHiddens.Add("ToolBoxDefaultProfileImage", StringUtil.RTrim( context.localUtil.Format( A518ToolBoxDefaultProfileImage, "")));
          GxWebStd.gx_hidden_field( context, "hsh", GetEncryptedHash( forbiddenHiddens.ToString(), GXKey));
@@ -2820,6 +2881,8 @@ namespace GeneXus.Programs {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vTRNCONTEXT", AV12TrnContext);
          }
          GxWebStd.gx_hidden_field( context, "gxhash_vTRNCONTEXT", GetSecureSignedToken( "", AV12TrnContext, context));
+         GxWebStd.gx_boolean_hidden_field( context, "vISSUCCESSFUL", AV28isSuccessful);
+         GxWebStd.gx_hidden_field( context, "vMESSAGE", StringUtil.RTrim( AV29Message));
          GxWebStd.gx_hidden_field( context, "vLOCATIONID", AV7LocationId.ToString());
          GxWebStd.gx_hidden_field( context, "gxhash_vLOCATIONID", GetSecureSignedToken( "", AV7LocationId, context));
          GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
@@ -2836,9 +2899,10 @@ namespace GeneXus.Programs {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vAUDITINGOBJECT", AV24AuditingObject);
          }
          GxWebStd.gx_hidden_field( context, "LOCATIONIMAGE_GXI", A40000LocationImage_GXI);
+         GxWebStd.gx_hidden_field( context, "LOCATIONDESCRIPTION", A36LocationDescription);
          GxWebStd.gx_hidden_field( context, "TOOLBOXDEFAULTLOGO", A517ToolBoxDefaultLogo);
          GxWebStd.gx_hidden_field( context, "TOOLBOXDEFAULTPROFILEIMAGE", A518ToolBoxDefaultProfileImage);
-         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV29Pgmname));
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV31Pgmname));
          GXCCtlgxBlob = "LOCATIONIMAGE" + "_gxBlob";
          GxWebStd.gx_hidden_field( context, GXCCtlgxBlob, A506LocationImage);
          GxWebStd.gx_hidden_field( context, "COMBO_LOCATIONPHONECODE_Objectcall", StringUtil.RTrim( Combo_locationphonecode_Objectcall));
@@ -2848,6 +2912,16 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "COMBO_LOCATIONPHONECODE_Enabled", StringUtil.BoolToStr( Combo_locationphonecode_Enabled));
          GxWebStd.gx_hidden_field( context, "COMBO_LOCATIONPHONECODE_Emptyitem", StringUtil.BoolToStr( Combo_locationphonecode_Emptyitem));
          GxWebStd.gx_hidden_field( context, "COMBO_LOCATIONPHONECODE_Htmltemplate", StringUtil.RTrim( Combo_locationphonecode_Htmltemplate));
+         GxWebStd.gx_hidden_field( context, "LOCATIONDESCRIPTION_Objectcall", StringUtil.RTrim( Locationdescription_Objectcall));
+         GxWebStd.gx_hidden_field( context, "LOCATIONDESCRIPTION_Enabled", StringUtil.BoolToStr( Locationdescription_Enabled));
+         GxWebStd.gx_hidden_field( context, "LOCATIONDESCRIPTION_Width", StringUtil.RTrim( Locationdescription_Width));
+         GxWebStd.gx_hidden_field( context, "LOCATIONDESCRIPTION_Height", StringUtil.RTrim( Locationdescription_Height));
+         GxWebStd.gx_hidden_field( context, "LOCATIONDESCRIPTION_Toolbar", StringUtil.RTrim( Locationdescription_Toolbar));
+         GxWebStd.gx_hidden_field( context, "LOCATIONDESCRIPTION_Customtoolbar", StringUtil.RTrim( Locationdescription_Customtoolbar));
+         GxWebStd.gx_hidden_field( context, "LOCATIONDESCRIPTION_Customconfiguration", StringUtil.RTrim( Locationdescription_Customconfiguration));
+         GxWebStd.gx_hidden_field( context, "LOCATIONDESCRIPTION_Captionclass", StringUtil.RTrim( Locationdescription_Captionclass));
+         GxWebStd.gx_hidden_field( context, "LOCATIONDESCRIPTION_Captionstyle", StringUtil.RTrim( Locationdescription_Captionstyle));
+         GxWebStd.gx_hidden_field( context, "LOCATIONDESCRIPTION_Captionposition", StringUtil.RTrim( Locationdescription_Captionposition));
          GxWebStd.gx_hidden_field( context, "COMBO_LOCATIONCOUNTRY_Objectcall", StringUtil.RTrim( Combo_locationcountry_Objectcall));
          GxWebStd.gx_hidden_field( context, "COMBO_LOCATIONCOUNTRY_Cls", StringUtil.RTrim( Combo_locationcountry_Cls));
          GxWebStd.gx_hidden_field( context, "COMBO_LOCATIONCOUNTRY_Selectedvalue_set", StringUtil.RTrim( Combo_locationcountry_Selectedvalue_set));
@@ -3017,7 +3091,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025312155915", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531417165344", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3033,10 +3107,12 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_location.js", "?2025312155917", false, true);
+         context.AddJavascriptSource("trn_location.js", "?202531417165346", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
+         context.AddJavascriptSource("CKEditor/ckeditor/ckeditor.js", "", false, true);
+         context.AddJavascriptSource("CKEditor/CKEditorRender.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3058,7 +3134,7 @@ namespace GeneXus.Programs {
          edtLocationPhone_Internalname = "LOCATIONPHONE";
          divLocationphone_cell_Internalname = "LOCATIONPHONE_CELL";
          imgLocationImage_Internalname = "LOCATIONIMAGE";
-         edtLocationDescription_Internalname = "LOCATIONDESCRIPTION";
+         Locationdescription_Internalname = "LOCATIONDESCRIPTION";
          divUnnamedtable1_Internalname = "UNNAMEDTABLE1";
          grpUnnamedgroup2_Internalname = "UNNAMEDGROUP2";
          edtLocationAddressLine1_Internalname = "LOCATIONADDRESSLINE1";
@@ -3076,6 +3152,7 @@ namespace GeneXus.Programs {
          bttBtntrn_enter_Internalname = "BTNTRN_ENTER";
          bttBtntrn_cancel_Internalname = "BTNTRN_CANCEL";
          bttBtntrn_delete_Internalname = "BTNTRN_DELETE";
+         bttBtnudelete_Internalname = "BTNUDELETE";
          divTablemain_Internalname = "TABLEMAIN";
          edtavCombolocationphonecode_Internalname = "vCOMBOLOCATIONPHONECODE";
          divSectionattribute_locationphonecode_Internalname = "SECTIONATTRIBUTE_LOCATIONPHONECODE";
@@ -3115,6 +3192,7 @@ namespace GeneXus.Programs {
          edtavCombolocationphonecode_Jsonclick = "";
          edtavCombolocationphonecode_Enabled = 0;
          edtavCombolocationphonecode_Visible = 1;
+         bttBtnudelete_Visible = 1;
          bttBtntrn_delete_Enabled = 0;
          bttBtntrn_delete_Visible = 1;
          bttBtntrn_cancel_Visible = 1;
@@ -3135,7 +3213,15 @@ namespace GeneXus.Programs {
          edtLocationAddressLine2_Enabled = 1;
          edtLocationAddressLine1_Jsonclick = "";
          edtLocationAddressLine1_Enabled = 1;
-         edtLocationDescription_Enabled = 1;
+         Locationdescription_Captionposition = "Left";
+         Locationdescription_Captionstyle = "";
+         Locationdescription_Captionclass = "col-sm-4 AttributeLabel";
+         Locationdescription_Customconfiguration = "myconfig.js";
+         Locationdescription_Customtoolbar = "myToolbar";
+         Locationdescription_Toolbar = "Custom";
+         Locationdescription_Height = "250";
+         Locationdescription_Width = "100%";
+         Locationdescription_Enabled = Convert.ToBoolean( 1);
          imgLocationImage_Enabled = 1;
          edtLocationPhone_Jsonclick = "";
          edtLocationPhone_Enabled = 1;
@@ -3416,8 +3502,10 @@ namespace GeneXus.Programs {
       public override void InitializeDynEvents( )
       {
          setEventMetadata("ENTER","""{"handler":"UserMainFullajax","iparms":[{"postForm":true},{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV7LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV8OrganisationId","fld":"vORGANISATIONID","hsh":true}]}""");
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV12TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"AV7LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV8OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV29Pgmname","fld":"vPGMNAME"},{"av":"A517ToolBoxDefaultLogo","fld":"TOOLBOXDEFAULTLOGO"},{"av":"A518ToolBoxDefaultProfileImage","fld":"TOOLBOXDEFAULTPROFILEIMAGE"}]}""");
-         setEventMetadata("AFTER TRN","""{"handler":"E12042","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV24AuditingObject","fld":"vAUDITINGOBJECT"},{"av":"AV29Pgmname","fld":"vPGMNAME"},{"av":"AV12TrnContext","fld":"vTRNCONTEXT","hsh":true}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV12TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"AV7LocationId","fld":"vLOCATIONID","hsh":true},{"av":"AV8OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV31Pgmname","fld":"vPGMNAME"},{"av":"A517ToolBoxDefaultLogo","fld":"TOOLBOXDEFAULTLOGO"},{"av":"A518ToolBoxDefaultProfileImage","fld":"TOOLBOXDEFAULTPROFILEIMAGE"}]}""");
+         setEventMetadata("AFTER TRN","""{"handler":"E12042","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV24AuditingObject","fld":"vAUDITINGOBJECT"},{"av":"AV31Pgmname","fld":"vPGMNAME"},{"av":"AV12TrnContext","fld":"vTRNCONTEXT","hsh":true}]}""");
+         setEventMetadata("'DOUDELETE'","""{"handler":"E13042","iparms":[{"av":"A29LocationId","fld":"LOCATIONID"},{"av":"A11OrganisationId","fld":"ORGANISATIONID"},{"av":"AV28isSuccessful","fld":"vISSUCCESSFUL"},{"av":"AV29Message","fld":"vMESSAGE"}]""");
+         setEventMetadata("'DOUDELETE'",""","oparms":[{"av":"AV29Message","fld":"vMESSAGE"},{"av":"AV28isSuccessful","fld":"vISSUCCESSFUL"}]}""");
          setEventMetadata("VALID_LOCATIONEMAIL","""{"handler":"Valid_Locationemail","iparms":[]}""");
          setEventMetadata("VALID_LOCATIONPHONECODE","""{"handler":"Valid_Locationphonecode","iparms":[]}""");
          setEventMetadata("VALID_LOCATIONPHONENUMBER","""{"handler":"Valid_Locationphonenumber","iparms":[{"av":"A383LocationPhoneCode","fld":"LOCATIONPHONECODE"},{"av":"A384LocationPhoneNumber","fld":"LOCATIONPHONENUMBER"},{"av":"A35LocationPhone","fld":"LOCATIONPHONE"}]""");
@@ -3497,7 +3585,8 @@ namespace GeneXus.Programs {
          A506LocationImage = "";
          A40000LocationImage_GXI = "";
          sImgUrl = "";
-         A36LocationDescription = "";
+         ucLocationdescription = new GXUserControl();
+         LocationDescription = "";
          A340LocationAddressLine1 = "";
          A341LocationAddressLine2 = "";
          A339LocationZipCode = "";
@@ -3509,12 +3598,14 @@ namespace GeneXus.Programs {
          bttBtntrn_enter_Jsonclick = "";
          bttBtntrn_cancel_Jsonclick = "";
          bttBtntrn_delete_Jsonclick = "";
+         bttBtnudelete_Jsonclick = "";
          AV16ComboLocationPhoneCode = "";
          AV23ComboLocationCountry = "";
          A517ToolBoxDefaultLogo = "";
          A518ToolBoxDefaultProfileImage = "";
          AV24AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
-         AV29Pgmname = "";
+         A36LocationDescription = "";
+         AV31Pgmname = "";
          Combo_locationphonecode_Objectcall = "";
          Combo_locationphonecode_Class = "";
          Combo_locationphonecode_Icontype = "";
@@ -3541,6 +3632,13 @@ namespace GeneXus.Programs {
          Combo_locationphonecode_Selectalltext = "";
          Combo_locationphonecode_Multiplevaluesseparator = "";
          Combo_locationphonecode_Addnewoptiontext = "";
+         Locationdescription_Objectcall = "";
+         Locationdescription_Class = "";
+         Locationdescription_Skin = "";
+         Locationdescription_Buttonpressedid = "";
+         Locationdescription_Captionvalue = "";
+         Locationdescription_Coltitle = "";
+         Locationdescription_Coltitlefont = "";
          Combo_locationcountry_Objectcall = "";
          Combo_locationcountry_Class = "";
          Combo_locationcountry_Icontype = "";
@@ -3582,6 +3680,7 @@ namespace GeneXus.Programs {
          AV13WebSession = context.GetSession();
          AV26TrnContextAtt = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute(context);
          AV20defaultCountryPhoneCode = "";
+         AV29Message = "";
          AV18ComboSelectedValue = "";
          AV17ComboSelectedText = "";
          GXt_objcol_SdtDVB_SDTComboData_Item4 = new GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item>( context, "Item", "");
@@ -3769,7 +3868,7 @@ namespace GeneXus.Programs {
          );
          Z29LocationId = Guid.NewGuid( );
          A29LocationId = Guid.NewGuid( );
-         AV29Pgmname = "Trn_Location";
+         AV31Pgmname = "Trn_Location";
          Z247Trn_ThemeId = new prc_getdefaulttheme(context).executeUdp( );
          n247Trn_ThemeId = false;
          N247Trn_ThemeId = new prc_getdefaulttheme(context).executeUdp( );
@@ -3796,7 +3895,6 @@ namespace GeneXus.Programs {
       private int edtLocationPhone_Visible ;
       private int edtLocationPhone_Enabled ;
       private int imgLocationImage_Enabled ;
-      private int edtLocationDescription_Enabled ;
       private int edtLocationAddressLine1_Enabled ;
       private int edtLocationAddressLine2_Enabled ;
       private int edtLocationZipCode_Enabled ;
@@ -3808,6 +3906,7 @@ namespace GeneXus.Programs {
       private int bttBtntrn_cancel_Visible ;
       private int bttBtntrn_delete_Visible ;
       private int bttBtntrn_delete_Enabled ;
+      private int bttBtnudelete_Visible ;
       private int edtavCombolocationphonecode_Visible ;
       private int edtavCombolocationphonecode_Enabled ;
       private int edtavCombolocationcountry_Visible ;
@@ -3818,9 +3917,11 @@ namespace GeneXus.Programs {
       private int edtOrganisationId_Enabled ;
       private int Combo_locationphonecode_Datalistupdateminimumcharacters ;
       private int Combo_locationphonecode_Gxcontroltype ;
+      private int Locationdescription_Color ;
+      private int Locationdescription_Coltitlecolor ;
       private int Combo_locationcountry_Datalistupdateminimumcharacters ;
       private int Combo_locationcountry_Gxcontroltype ;
-      private int AV30GXV1 ;
+      private int AV32GXV1 ;
       private int idxLst ;
       private string sPrefix ;
       private string wcpOGx_mode ;
@@ -3870,7 +3971,15 @@ namespace GeneXus.Programs {
       private string edtLocationPhone_Jsonclick ;
       private string imgLocationImage_Internalname ;
       private string sImgUrl ;
-      private string edtLocationDescription_Internalname ;
+      private string Locationdescription_Internalname ;
+      private string Locationdescription_Width ;
+      private string Locationdescription_Height ;
+      private string Locationdescription_Toolbar ;
+      private string Locationdescription_Customtoolbar ;
+      private string Locationdescription_Customconfiguration ;
+      private string Locationdescription_Captionclass ;
+      private string Locationdescription_Captionstyle ;
+      private string Locationdescription_Captionposition ;
       private string grpUnnamedgroup4_Internalname ;
       private string divUnnamedtable3_Internalname ;
       private string edtLocationAddressLine1_Internalname ;
@@ -3895,6 +4004,8 @@ namespace GeneXus.Programs {
       private string bttBtntrn_cancel_Jsonclick ;
       private string bttBtntrn_delete_Internalname ;
       private string bttBtntrn_delete_Jsonclick ;
+      private string bttBtnudelete_Internalname ;
+      private string bttBtnudelete_Jsonclick ;
       private string divHtml_bottomauxiliarcontrols_Internalname ;
       private string divSectionattribute_locationphonecode_Internalname ;
       private string edtavCombolocationphonecode_Internalname ;
@@ -3906,7 +4017,7 @@ namespace GeneXus.Programs {
       private string edtLocationId_Jsonclick ;
       private string edtOrganisationId_Internalname ;
       private string edtOrganisationId_Jsonclick ;
-      private string AV29Pgmname ;
+      private string AV31Pgmname ;
       private string Combo_locationphonecode_Objectcall ;
       private string Combo_locationphonecode_Class ;
       private string Combo_locationphonecode_Icontype ;
@@ -3934,6 +4045,13 @@ namespace GeneXus.Programs {
       private string Combo_locationphonecode_Selectalltext ;
       private string Combo_locationphonecode_Multiplevaluesseparator ;
       private string Combo_locationphonecode_Addnewoptiontext ;
+      private string Locationdescription_Objectcall ;
+      private string Locationdescription_Class ;
+      private string Locationdescription_Skin ;
+      private string Locationdescription_Buttonpressedid ;
+      private string Locationdescription_Captionvalue ;
+      private string Locationdescription_Coltitle ;
+      private string Locationdescription_Coltitlefont ;
       private string Combo_locationcountry_Objectcall ;
       private string Combo_locationcountry_Class ;
       private string Combo_locationcountry_Icontype ;
@@ -3969,6 +4087,7 @@ namespace GeneXus.Programs {
       private string sEvtType ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
+      private string AV29Message ;
       private string sDynURL ;
       private string FormProcess ;
       private string bodyStyle ;
@@ -3992,6 +4111,12 @@ namespace GeneXus.Programs {
       private bool Combo_locationphonecode_Includeonlyselectedoption ;
       private bool Combo_locationphonecode_Includeselectalloption ;
       private bool Combo_locationphonecode_Includeaddnewoption ;
+      private bool Locationdescription_Enabled ;
+      private bool Locationdescription_Toolbarcancollapse ;
+      private bool Locationdescription_Toolbarexpanded ;
+      private bool Locationdescription_Isabstractlayoutcontrol ;
+      private bool Locationdescription_Usercontroliscolumn ;
+      private bool Locationdescription_Visible ;
       private bool Combo_locationcountry_Enabled ;
       private bool Combo_locationcountry_Visible ;
       private bool Combo_locationcountry_Allowmultipleselection ;
@@ -4001,7 +4126,9 @@ namespace GeneXus.Programs {
       private bool Combo_locationcountry_Includeselectalloption ;
       private bool Combo_locationcountry_Includeaddnewoption ;
       private bool returnInSub ;
+      private bool AV28isSuccessful ;
       private bool Gx_longc ;
+      private string LocationDescription ;
       private string A36LocationDescription ;
       private string Z36LocationDescription ;
       private string Z359LocationCountry ;
@@ -4051,6 +4178,7 @@ namespace GeneXus.Programs {
       private IGxSession AV13WebSession ;
       private GXProperties forbiddenHiddens ;
       private GXUserControl ucCombo_locationphonecode ;
+      private GXUserControl ucLocationdescription ;
       private GXUserControl ucCombo_locationcountry ;
       private GXWebForm Form ;
       private IGxDataStore dsDataStore1 ;

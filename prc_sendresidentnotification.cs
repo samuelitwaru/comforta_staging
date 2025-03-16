@@ -77,7 +77,7 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         if ( StringUtil.StrCmp(AV23topic, context.GetMessage( "Toolbox", "")) == 0 )
+         if ( StringUtil.StrCmp(AV23topic, "Toolbox") == 0 )
          {
             AV30isToolboxNotification = true;
          }
@@ -153,7 +153,7 @@ namespace GeneXus.Programs {
                   }
                }
                context.CommitDataStores("prc_sendresidentnotification",pr_default);
-               if ( StringUtil.StrCmp(AV10title, context.GetMessage( "New Filled Form", "")) != 0 )
+               if ( StringUtil.StrCmp(AV10title, "New Filled Form") != 0 )
                {
                   pr_default.dynParam(2, new Object[]{ new Object[]{
                                                        A365DeviceUserId ,

@@ -949,6 +949,7 @@ namespace GeneXus.Programs {
                               A503AuditTableDiaplayName = cgiGet( edtAuditTableDiaplayName_Internalname);
                               A419AuditShortDescription = cgiGet( edtAuditShortDescription_Internalname);
                               A11OrganisationId = StringUtil.StrToGuid( cgiGet( edtOrganisationId_Internalname));
+                              n11OrganisationId = false;
                               AV45Display = cgiGet( edtavDisplay_Internalname);
                               AssignAttri("", false, edtavDisplay_Internalname, AV45Display);
                               sEvtType = StringUtil.Right( sEvt, 1);
@@ -1203,7 +1204,7 @@ namespace GeneXus.Programs {
                                                  A11OrganisationId ,
                                                  AV62Udparg1 } ,
                                                  new int[]{
-                                                 TypeConstants.DATE, TypeConstants.DATE, TypeConstants.DATE, TypeConstants.SHORT, TypeConstants.BOOLEAN
+                                                 TypeConstants.DATE, TypeConstants.DATE, TypeConstants.DATE, TypeConstants.SHORT, TypeConstants.BOOLEAN, TypeConstants.BOOLEAN
                                                  }
             });
             lV64Trn_auditwwds_2_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV64Trn_auditwwds_2_filterfulltext), "%", "");
@@ -1222,6 +1223,7 @@ namespace GeneXus.Programs {
             while ( ( (pr_default.getStatus(0) != 101) ) && ( ( ( subGrid_Rows == 0 ) || ( GRID_nCurrentRecord < subGrid_fnc_Recordsperpage( ) ) ) ) )
             {
                A11OrganisationId = H007J2_A11OrganisationId[0];
+               n11OrganisationId = H007J2_n11OrganisationId[0];
                A419AuditShortDescription = H007J2_A419AuditShortDescription[0];
                A421AuditUserName = H007J2_A421AuditUserName[0];
                A420GAMUserId = H007J2_A420GAMUserId[0];
@@ -1298,7 +1300,7 @@ namespace GeneXus.Programs {
                                               A11OrganisationId ,
                                               AV62Udparg1 } ,
                                               new int[]{
-                                              TypeConstants.DATE, TypeConstants.DATE, TypeConstants.DATE, TypeConstants.SHORT, TypeConstants.BOOLEAN
+                                              TypeConstants.DATE, TypeConstants.DATE, TypeConstants.DATE, TypeConstants.SHORT, TypeConstants.BOOLEAN, TypeConstants.BOOLEAN
                                               }
          });
          lV64Trn_auditwwds_2_filterfulltext = StringUtil.Concat( StringUtil.RTrim( AV64Trn_auditwwds_2_filterfulltext), "%", "");
@@ -1612,6 +1614,7 @@ namespace GeneXus.Programs {
                A503AuditTableDiaplayName = cgiGet( edtAuditTableDiaplayName_Internalname);
                A419AuditShortDescription = cgiGet( edtAuditShortDescription_Internalname);
                A11OrganisationId = StringUtil.StrToGuid( cgiGet( edtOrganisationId_Internalname));
+               n11OrganisationId = false;
                AV45Display = cgiGet( edtavDisplay_Internalname);
                AssignAttri("", false, edtavDisplay_Internalname, AV45Display);
             }
@@ -2313,7 +2316,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025361114333", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531412122934", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2329,7 +2332,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_auditww.js", "?2025361114335", false, true);
+         context.AddJavascriptSource("trn_auditww.js", "?202531412122937", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2957,6 +2960,7 @@ namespace GeneXus.Programs {
          AV73Trn_auditwwds_11_tfauditshortdescription = "";
          AV62Udparg1 = Guid.Empty;
          H007J2_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         H007J2_n11OrganisationId = new bool[] {false} ;
          H007J2_A419AuditShortDescription = new string[] {""} ;
          H007J2_A421AuditUserName = new string[] {""} ;
          H007J2_A420GAMUserId = new string[] {""} ;
@@ -2993,7 +2997,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_auditww__default(),
             new Object[][] {
                 new Object[] {
-               H007J2_A11OrganisationId, H007J2_A419AuditShortDescription, H007J2_A421AuditUserName, H007J2_A420GAMUserId, H007J2_A418AuditDescription, H007J2_A422AuditAction, H007J2_A415AuditId, H007J2_A416AuditDate, H007J2_A417AuditTableName
+               H007J2_A11OrganisationId, H007J2_n11OrganisationId, H007J2_A419AuditShortDescription, H007J2_A421AuditUserName, H007J2_A420GAMUserId, H007J2_A418AuditDescription, H007J2_A422AuditAction, H007J2_A415AuditId, H007J2_A416AuditDate, H007J2_A417AuditTableName
                }
                , new Object[] {
                H007J3_AGRID_nRecordCount
@@ -3209,6 +3213,7 @@ namespace GeneXus.Programs {
       private bool wbLoad ;
       private bool Rfr0gs ;
       private bool wbErr ;
+      private bool n11OrganisationId ;
       private bool bGXsfl_35_Refreshing=false ;
       private bool gxdyncontrolsrefreshing ;
       private bool returnInSub ;
@@ -3272,6 +3277,7 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtWWPGridState AV11GridState ;
       private IDataStoreProvider pr_default ;
       private Guid[] H007J2_A11OrganisationId ;
+      private bool[] H007J2_n11OrganisationId ;
       private string[] H007J2_A419AuditShortDescription ;
       private string[] H007J2_A421AuditUserName ;
       private string[] H007J2_A420GAMUserId ;
@@ -3756,14 +3762,15 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((string[]) buf[1])[0] = rslt.getVarchar(2);
-                ((string[]) buf[2])[0] = rslt.getVarchar(3);
-                ((string[]) buf[3])[0] = rslt.getString(4, 40);
-                ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
-                ((string[]) buf[5])[0] = rslt.getVarchar(6);
-                ((Guid[]) buf[6])[0] = rslt.getGuid(7);
-                ((DateTime[]) buf[7])[0] = rslt.getGXDateTime(8);
-                ((string[]) buf[8])[0] = rslt.getVarchar(9);
+                ((bool[]) buf[1])[0] = rslt.wasNull(1);
+                ((string[]) buf[2])[0] = rslt.getVarchar(2);
+                ((string[]) buf[3])[0] = rslt.getVarchar(3);
+                ((string[]) buf[4])[0] = rslt.getString(4, 40);
+                ((string[]) buf[5])[0] = rslt.getLongVarchar(5);
+                ((string[]) buf[6])[0] = rslt.getVarchar(6);
+                ((Guid[]) buf[7])[0] = rslt.getGuid(7);
+                ((DateTime[]) buf[8])[0] = rslt.getGXDateTime(8);
+                ((string[]) buf[9])[0] = rslt.getVarchar(9);
                 return;
              case 1 :
                 ((long[]) buf[0])[0] = rslt.getLong(1);

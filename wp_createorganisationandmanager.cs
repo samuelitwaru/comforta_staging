@@ -851,8 +851,8 @@ namespace GeneXus.Programs {
          AV13WizardSteps.Add(AV14WizardStep, 0);
          AV14WizardStep = new GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem(context);
          AV14WizardStep.gxTpr_Code = "Step3";
-         AV14WizardStep.gxTpr_Title = context.GetMessage( "Provisioning", "");
-         AV14WizardStep.gxTpr_Description = context.GetMessage( "Provisioning", "");
+         AV14WizardStep.gxTpr_Title = context.GetMessage( "License", "");
+         AV14WizardStep.gxTpr_Description = context.GetMessage( "License", "");
          AV13WizardSteps.Add(AV14WizardStep, 0);
          if ( String.IsNullOrEmpty(StringUtil.RTrim( AV11CurrentStep)) )
          {
@@ -1047,7 +1047,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253611123597", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531412111372", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1063,7 +1063,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_createorganisationandmanager.js", "?20253611123597", false, true);
+         context.AddJavascriptSource("wp_createorganisationandmanager.js", "?202531412111372", false, true);
          /* End function include_jscripts */
       }
 

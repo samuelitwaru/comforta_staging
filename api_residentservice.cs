@@ -725,14 +725,16 @@ namespace GeneXus.Programs {
 
       public void gxep_pagesapi( Guid aP0_locationId ,
                                  Guid aP1_organisationId ,
-                                 out GXBaseCollection<SdtSDT_MobilePage> aP2_SDT_MobilePageCollection )
+                                 string aP2_userId ,
+                                 out GXBaseCollection<SdtSDT_MobilePage> aP3_SDT_MobilePageCollection )
       {
          this.AV12locationId = aP0_locationId;
          this.AV16organisationId = aP1_organisationId;
+         this.AV8userId = aP2_userId;
          initialize();
          /* PagesAPI Constructor */
-         new prc_pagesapi(context ).execute(  AV12locationId,  AV16organisationId, out  AV70SDT_MobilePageCollection) ;
-         aP2_SDT_MobilePageCollection=this.AV70SDT_MobilePageCollection;
+         new prc_pagesapi(context ).execute(  AV12locationId,  AV16organisationId,  AV8userId, out  AV70SDT_MobilePageCollection) ;
+         aP3_SDT_MobilePageCollection=this.AV70SDT_MobilePageCollection;
       }
 
       public void gxep_pageapi( Guid aP0_PageId ,
@@ -1001,14 +1003,14 @@ namespace GeneXus.Programs {
          aP1_error=this.AV91error;
       }
 
-      public void gxep_getappversions( out GXBaseCollection<SdtSDT_AppVersion> aP0_SDT_AppVersionCollection ,
+      public void gxep_getappversions( out GXBaseCollection<SdtSDT_AppVersion> aP0_AppVersions ,
                                        out SdtSDT_Error aP1_error )
       {
          AV91error = new SdtSDT_Error(context);
          initialize();
          /* GetAppVersions Constructor */
-         new prc_getappversions(context ).execute( ref  AV112SDT_AppVersionCollection, ref  AV91error) ;
-         aP0_SDT_AppVersionCollection=this.AV112SDT_AppVersionCollection;
+         new prc_getappversions(context ).execute( ref  AV119AppVersions, ref  AV91error) ;
+         aP0_AppVersions=this.AV119AppVersions;
          aP1_error=this.AV91error;
       }
 
@@ -1052,7 +1054,7 @@ namespace GeneXus.Programs {
 
       public void gxep_createmenupage( Guid aP0_AppVersionId ,
                                        string aP1_PageName ,
-                                       out SdtSDT_MenuPage aP2_SDT_MenuPage ,
+                                       out SdtSDT_AppVersion_PagesItem aP2_MenuPage ,
                                        out SdtSDT_Error aP3_error )
       {
          this.AV115AppVersionId = aP0_AppVersionId;
@@ -1060,22 +1062,24 @@ namespace GeneXus.Programs {
          AV91error = new SdtSDT_Error(context);
          initialize();
          /* CreateMenuPage Constructor */
-         new prc_createmenupage(context ).execute(  AV115AppVersionId,  AV60PageName, out  AV116SDT_MenuPage, out  AV91error) ;
-         aP2_SDT_MenuPage=this.AV116SDT_MenuPage;
+         new prc_createmenupage(context ).execute(  AV115AppVersionId,  AV60PageName, out  AV120MenuPage, out  AV91error) ;
+         aP2_MenuPage=this.AV120MenuPage;
          aP3_error=this.AV91error;
       }
 
-      public void gxep_createservicepage( Guid aP0_ProductServiceId ,
-                                          out SdtSDT_ContentPage aP1_ContentPage ,
-                                          out SdtSDT_Error aP2_error )
+      public void gxep_createservicepage( Guid aP0_AppVersionId ,
+                                          Guid aP1_ProductServiceId ,
+                                          out SdtSDT_AppVersion_PagesItem aP2_ContentPage ,
+                                          out SdtSDT_Error aP3_error )
       {
-         this.AV66ProductServiceId = aP0_ProductServiceId;
+         this.AV115AppVersionId = aP0_AppVersionId;
+         this.AV66ProductServiceId = aP1_ProductServiceId;
          AV91error = new SdtSDT_Error(context);
          initialize();
          /* CreateServicePage Constructor */
          new prc_createservicepage(context ).execute(  AV115AppVersionId,  AV66ProductServiceId, out  AV118ContentPage, out  AV91error) ;
-         aP1_ContentPage=this.AV118ContentPage;
-         aP2_error=this.AV91error;
+         aP2_ContentPage=this.AV118ContentPage;
+         aP3_error=this.AV91error;
       }
 
       public void gxep_deletepagev2( Guid aP0_PageId ,
@@ -1122,10 +1126,10 @@ namespace GeneXus.Programs {
          AV101SDT_ProductServiceCollection = new GXBaseCollection<SdtSDT_ProductService>( context, "SDT_ProductService", "Comforta_version2");
          AV83SDT_LocationTheme = new SdtSDT_LocationTheme(context);
          AV111SDT_ThemeCollection = new GXBaseCollection<SdtSDT_Theme>( context, "SDT_Theme", "Comforta_version2");
-         AV112SDT_AppVersionCollection = new GXBaseCollection<SdtSDT_AppVersion>( context, "SDT_AppVersion", "Comforta_version2");
+         AV119AppVersions = new GXBaseCollection<SdtSDT_AppVersion>( context, "SDT_AppVersion", "Comforta_version2");
          AV117PageCollection = new GXBaseCollection<SdtSDT_PageV2>( context, "SDT_PageV2", "Comforta_version2");
-         AV116SDT_MenuPage = new SdtSDT_MenuPage(context);
-         AV118ContentPage = new SdtSDT_ContentPage(context);
+         AV120MenuPage = new SdtSDT_AppVersion_PagesItem(context);
+         AV118ContentPage = new SdtSDT_AppVersion_PagesItem(context);
          /* GeneXus formulas. */
       }
 
@@ -1214,7 +1218,7 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_Page> AV44SDT_PageCollection ;
       protected GXBaseCollection<SdtSDT_Page> aP0_SDT_PageCollection ;
       protected GXBaseCollection<SdtSDT_MobilePage> AV70SDT_MobilePageCollection ;
-      protected GXBaseCollection<SdtSDT_MobilePage> aP2_SDT_MobilePageCollection ;
+      protected GXBaseCollection<SdtSDT_MobilePage> aP3_SDT_MobilePageCollection ;
       protected SdtSDT_MobilePage AV75SDT_MobilePage ;
       protected SdtSDT_MobilePage aP4_SDT_MobilePage ;
       protected GXBaseCollection<SdtSDT_ContentPage> AV69SDT_ContentPageCollection ;
@@ -1242,13 +1246,13 @@ namespace GeneXus.Programs {
       protected SdtSDT_LocationTheme aP0_SDT_LocationTheme ;
       protected GXBaseCollection<SdtSDT_Theme> AV111SDT_ThemeCollection ;
       protected GXBaseCollection<SdtSDT_Theme> aP0_SDT_ThemeCollection ;
-      protected GXBaseCollection<SdtSDT_AppVersion> AV112SDT_AppVersionCollection ;
-      protected GXBaseCollection<SdtSDT_AppVersion> aP0_SDT_AppVersionCollection ;
+      protected GXBaseCollection<SdtSDT_AppVersion> AV119AppVersions ;
+      protected GXBaseCollection<SdtSDT_AppVersion> aP0_AppVersions ;
       protected GXBaseCollection<SdtSDT_PageV2> AV117PageCollection ;
-      protected SdtSDT_MenuPage AV116SDT_MenuPage ;
-      protected SdtSDT_MenuPage aP2_SDT_MenuPage ;
-      protected SdtSDT_ContentPage AV118ContentPage ;
-      protected SdtSDT_ContentPage aP1_ContentPage ;
+      protected SdtSDT_AppVersion_PagesItem AV120MenuPage ;
+      protected SdtSDT_AppVersion_PagesItem aP2_MenuPage ;
+      protected SdtSDT_AppVersion_PagesItem AV118ContentPage ;
+      protected SdtSDT_AppVersion_PagesItem aP2_ContentPage ;
    }
 
 }

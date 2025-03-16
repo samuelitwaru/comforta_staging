@@ -82,6 +82,7 @@ namespace GeneXus.Programs {
             AV10BC_Trn_AppVersion.gxTpr_Appversionid = Guid.NewGuid( );
             AV10BC_Trn_AppVersion.gxTpr_Appversionname = context.GetMessage( "Version 1", "");
             AV10BC_Trn_AppVersion.gxTpr_Locationid = AV8LocationId;
+            AV10BC_Trn_AppVersion.gxTpr_Isactive = true;
             GXt_SdtTrn_AppVersion_Page1 = AV29BC_ReceptionPage;
             new prc_initreceptionpage(context ).execute( ref  AV8LocationId, ref  AV15OrganisationId, out  GXt_SdtTrn_AppVersion_Page1) ;
             AV29BC_ReceptionPage = GXt_SdtTrn_AppVersion_Page1;

@@ -59,6 +59,7 @@ namespace GeneXus.Programs {
          chkavOrganisationhasmycare = new GXCheckbox();
          chkavOrganisationhasmyliving = new GXCheckbox();
          chkavOrganisationhasmyservices = new GXCheckbox();
+         chkavOrganisationhasownbrand = new GXCheckbox();
          chkavOrganisationhasdynamicforms = new GXCheckbox();
       }
 
@@ -242,6 +243,10 @@ namespace GeneXus.Programs {
          }
          context.AddJavascriptSource("UserControls/UC_ThemeSelectorRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/UC_CtaThemeSelectorRender.js", "", false, true);
+         context.AddJavascriptSource("UserControls/UC_FileUploadRender.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Bootstrap/ConfirmPanel/BootstrapConfirmPanelRender.js", "", false, true);
          context.WriteHtmlText( Form.Headerrawhtml) ;
          context.CloseHtmlHeader();
          if ( context.isSpaRequest( ) )
@@ -287,8 +292,8 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vISNEWSETTING", GetSecureSignedToken( "", AV24isNewSetting, context));
          GxWebStd.gx_hidden_field( context, "vORGANISATIONSETTINGID", AV18OrganisationSettingId.ToString());
          GxWebStd.gx_hidden_field( context, "gxhash_vORGANISATIONSETTINGID", GetSecureSignedToken( "", AV18OrganisationSettingId, context));
-         GxWebStd.gx_hidden_field( context, "vORGANISATIONID", AV17OrganisationId.ToString());
-         GxWebStd.gx_hidden_field( context, "gxhash_vORGANISATIONID", GetSecureSignedToken( "", AV17OrganisationId, context));
+         GxWebStd.gx_hidden_field( context, "vIMAGEPLACEHOLDER", AV30ImagePlaceholder);
+         GxWebStd.gx_hidden_field( context, "gxhash_vIMAGEPLACEHOLDER", GetSecureSignedToken( "", AV30ImagePlaceholder, context));
          GXKey = Crypto.GetSiteKey( );
       }
 
@@ -313,12 +318,20 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vSELECTEDCTATHEME", AV23SelectedCtaTheme);
          }
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vFILEUPLOADEDDATA", AV29FileUploadedData);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vFILEUPLOADEDDATA", AV29FileUploadedData);
+         }
          GxWebStd.gx_boolean_hidden_field( context, "vISNEWSETTING", AV24isNewSetting);
          GxWebStd.gx_hidden_field( context, "gxhash_vISNEWSETTING", GetSecureSignedToken( "", AV24isNewSetting, context));
          GxWebStd.gx_hidden_field( context, "vORGANISATIONID", AV17OrganisationId.ToString());
-         GxWebStd.gx_hidden_field( context, "gxhash_vORGANISATIONID", GetSecureSignedToken( "", AV17OrganisationId, context));
          GxWebStd.gx_hidden_field( context, "vORGANISATIONSETTINGID", AV18OrganisationSettingId.ToString());
          GxWebStd.gx_hidden_field( context, "gxhash_vORGANISATIONSETTINGID", GetSecureSignedToken( "", AV18OrganisationSettingId, context));
+         GxWebStd.gx_hidden_field( context, "vBASE64STRING", AV28base64String);
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "vERRORMESSAGES", AV9ErrorMessages);
@@ -327,6 +340,8 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt("vERRORMESSAGES", AV9ErrorMessages);
          }
+         GxWebStd.gx_hidden_field( context, "vIMAGEPLACEHOLDER", AV30ImagePlaceholder);
+         GxWebStd.gx_hidden_field( context, "gxhash_vIMAGEPLACEHOLDER", GetSecureSignedToken( "", AV30ImagePlaceholder, context));
          GxWebStd.gx_hidden_field( context, "THEMESELECTOR_Accentcolorvalue", StringUtil.RTrim( Themeselector_Accentcolorvalue));
          GxWebStd.gx_hidden_field( context, "THEMESELECTOR_Backgroundcolorvalue", StringUtil.RTrim( Themeselector_Backgroundcolorvalue));
          GxWebStd.gx_hidden_field( context, "THEMESELECTOR_Bordercolorvalue", StringUtil.RTrim( Themeselector_Bordercolorvalue));
@@ -341,6 +356,14 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "CALLTOACTIONTHEMESELECTOR_Ctacolor2", StringUtil.RTrim( Calltoactionthemeselector_Ctacolor2));
          GxWebStd.gx_hidden_field( context, "CALLTOACTIONTHEMESELECTOR_Ctacolor3", StringUtil.RTrim( Calltoactionthemeselector_Ctacolor3));
          GxWebStd.gx_hidden_field( context, "CALLTOACTIONTHEMESELECTOR_Ctacolor4", StringUtil.RTrim( Calltoactionthemeselector_Ctacolor4));
+         GxWebStd.gx_hidden_field( context, "LOGOUPLOAD_Previewimagelink", StringUtil.RTrim( Logoupload_Previewimagelink));
+         GxWebStd.gx_hidden_field( context, "COMFIRMDELETEMODAL_Title", StringUtil.RTrim( Comfirmdeletemodal_Title));
+         GxWebStd.gx_hidden_field( context, "COMFIRMDELETEMODAL_Confirmationtext", StringUtil.RTrim( Comfirmdeletemodal_Confirmationtext));
+         GxWebStd.gx_hidden_field( context, "COMFIRMDELETEMODAL_Yesbuttoncaption", StringUtil.RTrim( Comfirmdeletemodal_Yesbuttoncaption));
+         GxWebStd.gx_hidden_field( context, "COMFIRMDELETEMODAL_Nobuttoncaption", StringUtil.RTrim( Comfirmdeletemodal_Nobuttoncaption));
+         GxWebStd.gx_hidden_field( context, "COMFIRMDELETEMODAL_Bodytype", StringUtil.RTrim( Comfirmdeletemodal_Bodytype));
+         GxWebStd.gx_hidden_field( context, "LOGOUPLOAD_Previewimagelink", StringUtil.RTrim( Logoupload_Previewimagelink));
+         GxWebStd.gx_hidden_field( context, "LOGOUPLOAD_Previewimagelink", StringUtil.RTrim( Logoupload_Previewimagelink));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -464,13 +487,13 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
             /* Control Group */
-            GxWebStd.gx_group_start( context, grpUnnamedgroup1_Internalname, context.GetMessage( "Organisation Provisioning", ""), 1, 0, "px", 0, "px", "Group", "", "HLP_WP_ManageOrganisationProvisioning.htm");
+            GxWebStd.gx_group_start( context, grpUnnamedgroup1_Internalname, context.GetMessage( "License", ""), 1, 0, "px", 0, "px", "Group", "", "HLP_WP_ManageOrganisationProvisioning.htm");
             /* Div Control */
             GxWebStd.gx_div_start( context, divGroupattributes_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-5", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, divAgreementfields_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
@@ -485,7 +508,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 23,'',false,'',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavOrganisationhasmycare_Internalname, StringUtil.BoolToStr( AV14OrganisationHasMyCare), "", context.GetMessage( "Organisation Has My Care", ""), 1, chkavOrganisationhasmycare.Enabled, "true", context.GetMessage( "Grant access to the 'My Care' category", ""), StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(23, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,23);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavOrganisationhasmycare_Internalname, StringUtil.BoolToStr( AV14OrganisationHasMyCare), "", context.GetMessage( "Organisation Has My Care", ""), 1, chkavOrganisationhasmycare.Enabled, "true", context.GetMessage( "My Care", ""), StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(23, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,23);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -501,7 +524,7 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 27,'',false,'',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavOrganisationhasmyliving_Internalname, StringUtil.BoolToStr( AV15OrganisationHasMyLiving), "", context.GetMessage( "Organisation Has My Living", ""), 1, chkavOrganisationhasmyliving.Enabled, "true", context.GetMessage( "Grant access to the 'My Living' category", ""), StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(27, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,27);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavOrganisationhasmyliving_Internalname, StringUtil.BoolToStr( AV15OrganisationHasMyLiving), "", context.GetMessage( "Organisation Has My Living", ""), 1, chkavOrganisationhasmyliving.Enabled, "true", context.GetMessage( "My Living", ""), StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(27, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,27);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -517,38 +540,38 @@ namespace GeneXus.Programs {
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 31,'',false,'',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavOrganisationhasmyservices_Internalname, StringUtil.BoolToStr( AV16OrganisationHasMyServices), "", context.GetMessage( "Organisation Has My Services", ""), 1, chkavOrganisationhasmyservices.Enabled, "true", context.GetMessage( "Grant access to the 'My Services' category", ""), StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(31, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,31);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavOrganisationhasmyservices_Internalname, StringUtil.BoolToStr( AV16OrganisationHasMyServices), "", context.GetMessage( "Organisation Has My Services", ""), 1, chkavOrganisationhasmyservices.Enabled, "true", context.GetMessage( "My Services", ""), StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(31, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,31);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell CellMarginBottom10", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 DataContentCell", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", " gx-attribute", "start", "top", "", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, chkavOrganisationhasdynamicforms_Internalname, context.GetMessage( "Organisation Has Dynamic Forms", ""), "col-sm-3 AttributeCheckBoxLabel", 0, true, "");
+            GxWebStd.gx_label_element( context, chkavOrganisationhasownbrand_Internalname, context.GetMessage( "Organisation Has Own Brand", ""), "col-sm-3 AttributeCheckBoxLabel", 0, true, "");
             /* Check box */
             TempTags = "  onfocus=\"gx.evt.onfocus(this, 35,'',false,'',0)\"";
             ClassString = "AttributeCheckBox";
             StyleString = "";
-            GxWebStd.gx_checkbox_ctrl( context, chkavOrganisationhasdynamicforms_Internalname, StringUtil.BoolToStr( AV13OrganisationHasDynamicForms), "", context.GetMessage( "Organisation Has Dynamic Forms", ""), 1, chkavOrganisationhasdynamicforms.Enabled, "true", context.GetMessage( "Grant access to apply 'Dynamic Forms'", ""), StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(35, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,35);\"");
+            GxWebStd.gx_checkbox_ctrl( context, chkavOrganisationhasownbrand_Internalname, StringUtil.BoolToStr( AV32OrganisationHasOwnBrand), "", context.GetMessage( "Organisation Has Own Brand", ""), 1, chkavOrganisationhasownbrand.Enabled, "true", context.GetMessage( "Brand Theme", ""), StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(35, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,35);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-6", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-7", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, divBrandthemetable_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-4", "start", "top", "", "", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, divBrandtable_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            GxWebStd.gx_div_start( context, divBrandtable_Internalname, divBrandtable_Visible, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
@@ -568,17 +591,14 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
-            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-sm-8", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divCtatable_Internalname, divCtatable_Visible, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, divCtatable_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
-            /* Div Control */
-            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 CellMarginTop10", "start", "top", "", "", "div");
             /* Text block */
             GxWebStd.gx_label_ctrl( context, lblCtatheme_Internalname, context.GetMessage( "Call To Action Theme", ""), "", "", lblCtatheme_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_ManageOrganisationProvisioning.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -590,6 +610,30 @@ namespace GeneXus.Programs {
             /* User Defined Control */
             ucCalltoactionthemeselector.SetProperty("ResultTheme", AV23SelectedCtaTheme);
             ucCalltoactionthemeselector.Render(context, "uc_ctathemeselector", Calltoactionthemeselector_Internalname, "CALLTOACTIONTHEMESELECTORContainer");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 CellMarginTop10", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divFieldavatartable_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 CellMarginTop10", "start", "top", "", "", "div");
+            /* Text block */
+            GxWebStd.gx_label_ctrl( context, lblAvatarlabel_Internalname, context.GetMessage( "Application Logo", ""), "", "", lblAvatarlabel_Jsonclick, "'"+""+"'"+",false,"+"'"+""+"'", "", "Label", 0, "", 1, 1, 0, 0, "HLP_WP_ManageOrganisationProvisioning.htm");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* User Defined Control */
+            ucLogoupload.SetProperty("UploadedFile", AV29FileUploadedData);
+            ucLogoupload.SetProperty("PreviewImageLink", Logoupload_Previewimagelink);
+            ucLogoupload.Render(context, "uc_fileupload", Logoupload_Internalname, "LOGOUPLOADContainer");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -613,14 +657,14 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group CellMarginTop10", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 60,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 67,'',false,'',0)\"";
             ClassString = "ButtonMaterial";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtnenter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtnenter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_ManageOrganisationProvisioning.htm");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-            TempTags = "  onfocus=\"gx.evt.onfocus(this, 62,'',false,'',0)\"";
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 69,'',false,'',0)\"";
             ClassString = "ButtonMaterialDefault";
             StyleString = "";
             GxWebStd.gx_button_ctrl( context, bttBtncancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtncancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, 1, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_WP_ManageOrganisationProvisioning.htm");
@@ -628,6 +672,33 @@ namespace GeneXus.Programs {
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* User Defined Control */
+            ucComfirmdeletemodal.SetProperty("Title", Comfirmdeletemodal_Title);
+            ucComfirmdeletemodal.SetProperty("ConfirmationText", Comfirmdeletemodal_Confirmationtext);
+            ucComfirmdeletemodal.SetProperty("YesButtonCaption", Comfirmdeletemodal_Yesbuttoncaption);
+            ucComfirmdeletemodal.SetProperty("NoButtonCaption", Comfirmdeletemodal_Nobuttoncaption);
+            ucComfirmdeletemodal.SetProperty("BodyType", Comfirmdeletemodal_Bodytype);
+            ucComfirmdeletemodal.Render(context, "dvelop.gxbootstrap.confirmpanel", Comfirmdeletemodal_Internalname, "COMFIRMDELETEMODALContainer");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            GxWebStd.gx_div_end( context, "start", "top", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12", "start", "top", "", "", "div");
+            /* Div Control */
+            GxWebStd.gx_div_start( context, divHtml_bottomauxiliarcontrols_Internalname, 1, 0, "px", 0, "px", "Section", "start", "top", "", "", "div");
+            /* Check box */
+            TempTags = "  onfocus=\"gx.evt.onfocus(this, 76,'',false,'',0)\"";
+            ClassString = "Attribute";
+            StyleString = "";
+            GxWebStd.gx_checkbox_ctrl( context, chkavOrganisationhasdynamicforms_Internalname, StringUtil.BoolToStr( AV13OrganisationHasDynamicForms), "", "", chkavOrganisationhasdynamicforms.Visible, 1, "true", "", StyleString, ClassString, "", "", TempTags+" onclick="+"\"gx.fn.checkboxClick(76, this, 'true', 'false',"+"''"+");"+"gx.evt.onchange(this, event);\""+" onblur=\""+""+";gx.evt.onblur(this,76);\"");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
             GxWebStd.gx_div_end( context, "start", "top", "div");
@@ -693,12 +764,33 @@ namespace GeneXus.Programs {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                            }
+                           else if ( StringUtil.StrCmp(sEvt, "LOGOUPLOAD.ONUPLOAD") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: Logoupload.Onupload */
+                              E11AT2 ();
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "LOGOUPLOAD.ONFAILEDUPLOAD") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: Logoupload.Onfailedupload */
+                              E12AT2 ();
+                           }
+                           else if ( StringUtil.StrCmp(sEvt, "LOGOUPLOAD.ONCLICKDELETE") == 0 )
+                           {
+                              context.wbHandled = 1;
+                              dynload_actions( ) ;
+                              /* Execute user event: Logoupload.Onclickdelete */
+                              E13AT2 ();
+                           }
                            else if ( StringUtil.StrCmp(sEvt, "START") == 0 )
                            {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Start */
-                              E11AT2 ();
+                              E14AT2 ();
                            }
                            else if ( StringUtil.StrCmp(sEvt, "ENTER") == 0 )
                            {
@@ -709,7 +801,7 @@ namespace GeneXus.Programs {
                                  if ( ! Rfr0gs )
                                  {
                                     /* Execute user event: Enter */
-                                    E12AT2 ();
+                                    E15AT2 ();
                                  }
                                  dynload_actions( ) ;
                               }
@@ -719,7 +811,7 @@ namespace GeneXus.Programs {
                               context.wbHandled = 1;
                               dynload_actions( ) ;
                               /* Execute user event: Load */
-                              E13AT2 ();
+                              E16AT2 ();
                               /* No code required for Cancel button. It is implemented as the Reset button. */
                            }
                            else if ( StringUtil.StrCmp(sEvt, "LSCR") == 0 )
@@ -793,7 +885,6 @@ namespace GeneXus.Programs {
                   {
                      AV17OrganisationId = StringUtil.StrToGuid( gxfirstwebparm);
                      AssignAttri("", false, "AV17OrganisationId", AV17OrganisationId.ToString());
-                     GxWebStd.gx_hidden_field( context, "gxhash_vORGANISATIONID", GetSecureSignedToken( "", AV17OrganisationId, context));
                   }
                   if ( toggleJsOutput )
                   {
@@ -852,6 +943,8 @@ namespace GeneXus.Programs {
          AssignAttri("", false, "AV15OrganisationHasMyLiving", AV15OrganisationHasMyLiving);
          AV16OrganisationHasMyServices = StringUtil.StrToBool( StringUtil.BoolToStr( AV16OrganisationHasMyServices));
          AssignAttri("", false, "AV16OrganisationHasMyServices", AV16OrganisationHasMyServices);
+         AV32OrganisationHasOwnBrand = StringUtil.StrToBool( StringUtil.BoolToStr( AV32OrganisationHasOwnBrand));
+         AssignAttri("", false, "AV32OrganisationHasOwnBrand", AV32OrganisationHasOwnBrand);
          AV13OrganisationHasDynamicForms = StringUtil.StrToBool( StringUtil.BoolToStr( AV13OrganisationHasDynamicForms));
          AssignAttri("", false, "AV13OrganisationHasDynamicForms", AV13OrganisationHasDynamicForms);
       }
@@ -881,7 +974,7 @@ namespace GeneXus.Programs {
          if ( ! context.WillRedirect( ) && ( context.nUserReturn != 1 ) )
          {
             /* Execute user event: Load */
-            E13AT2 ();
+            E16AT2 ();
             WBAT0( ) ;
          }
       }
@@ -892,6 +985,8 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vISNEWSETTING", GetSecureSignedToken( "", AV24isNewSetting, context));
          GxWebStd.gx_hidden_field( context, "vORGANISATIONSETTINGID", AV18OrganisationSettingId.ToString());
          GxWebStd.gx_hidden_field( context, "gxhash_vORGANISATIONSETTINGID", GetSecureSignedToken( "", AV18OrganisationSettingId, context));
+         GxWebStd.gx_hidden_field( context, "vIMAGEPLACEHOLDER", AV30ImagePlaceholder);
+         GxWebStd.gx_hidden_field( context, "gxhash_vIMAGEPLACEHOLDER", GetSecureSignedToken( "", AV30ImagePlaceholder, context));
       }
 
       protected void before_start_formulas( )
@@ -906,7 +1001,7 @@ namespace GeneXus.Programs {
          /* Execute Start event if defined. */
          context.wbGlbDoneStart = 0;
          /* Execute user event: Start */
-         E11AT2 ();
+         E14AT2 ();
          context.wbGlbDoneStart = 1;
          /* After Start, stand alone formulas. */
          if ( StringUtil.StrCmp(context.GetRequestMethod( ), "POST") == 0 )
@@ -914,7 +1009,10 @@ namespace GeneXus.Programs {
             /* Read saved SDTs. */
             ajax_req_read_hidden_sdt(cgiGet( "vSELECTEDBRANDTHEME"), AV20SelectedBrandTheme);
             ajax_req_read_hidden_sdt(cgiGet( "vSELECTEDCTATHEME"), AV23SelectedCtaTheme);
+            ajax_req_read_hidden_sdt(cgiGet( "vFILEUPLOADEDDATA"), AV29FileUploadedData);
             /* Read saved values. */
+            AV30ImagePlaceholder = cgiGet( "vIMAGEPLACEHOLDER");
+            AV28base64String = cgiGet( "vBASE64STRING");
             Themeselector_Accentcolorvalue = cgiGet( "THEMESELECTOR_Accentcolorvalue");
             Themeselector_Backgroundcolorvalue = cgiGet( "THEMESELECTOR_Backgroundcolorvalue");
             Themeselector_Bordercolorvalue = cgiGet( "THEMESELECTOR_Bordercolorvalue");
@@ -929,6 +1027,13 @@ namespace GeneXus.Programs {
             Calltoactionthemeselector_Ctacolor2 = cgiGet( "CALLTOACTIONTHEMESELECTOR_Ctacolor2");
             Calltoactionthemeselector_Ctacolor3 = cgiGet( "CALLTOACTIONTHEMESELECTOR_Ctacolor3");
             Calltoactionthemeselector_Ctacolor4 = cgiGet( "CALLTOACTIONTHEMESELECTOR_Ctacolor4");
+            Logoupload_Previewimagelink = cgiGet( "LOGOUPLOAD_Previewimagelink");
+            Comfirmdeletemodal_Title = cgiGet( "COMFIRMDELETEMODAL_Title");
+            Comfirmdeletemodal_Confirmationtext = cgiGet( "COMFIRMDELETEMODAL_Confirmationtext");
+            Comfirmdeletemodal_Yesbuttoncaption = cgiGet( "COMFIRMDELETEMODAL_Yesbuttoncaption");
+            Comfirmdeletemodal_Nobuttoncaption = cgiGet( "COMFIRMDELETEMODAL_Nobuttoncaption");
+            Comfirmdeletemodal_Bodytype = cgiGet( "COMFIRMDELETEMODAL_Bodytype");
+            Logoupload_Previewimagelink = cgiGet( "LOGOUPLOAD_Previewimagelink");
             /* Read variables values. */
             AV14OrganisationHasMyCare = StringUtil.StrToBool( cgiGet( chkavOrganisationhasmycare_Internalname));
             AssignAttri("", false, "AV14OrganisationHasMyCare", AV14OrganisationHasMyCare);
@@ -936,6 +1041,8 @@ namespace GeneXus.Programs {
             AssignAttri("", false, "AV15OrganisationHasMyLiving", AV15OrganisationHasMyLiving);
             AV16OrganisationHasMyServices = StringUtil.StrToBool( cgiGet( chkavOrganisationhasmyservices_Internalname));
             AssignAttri("", false, "AV16OrganisationHasMyServices", AV16OrganisationHasMyServices);
+            AV32OrganisationHasOwnBrand = StringUtil.StrToBool( cgiGet( chkavOrganisationhasownbrand_Internalname));
+            AssignAttri("", false, "AV32OrganisationHasOwnBrand", AV32OrganisationHasOwnBrand);
             AV13OrganisationHasDynamicForms = StringUtil.StrToBool( cgiGet( chkavOrganisationhasdynamicforms_Internalname));
             AssignAttri("", false, "AV13OrganisationHasDynamicForms", AV13OrganisationHasDynamicForms);
             /* Read subfile selected row values. */
@@ -951,17 +1058,18 @@ namespace GeneXus.Programs {
       protected void GXStart( )
       {
          /* Execute user event: Start */
-         E11AT2 ();
+         E14AT2 ();
          if (returnInSub) return;
       }
 
-      protected void E11AT2( )
+      protected void E14AT2( )
       {
          /* Start Routine */
          returnInSub = false;
-         divLayoutmaintable_Class = divLayoutmaintable_Class+" "+"EditForm";
-         AssignProp("", false, divLayoutmaintable_Internalname, "Class", divLayoutmaintable_Class, true);
-         AV26GXLvl11 = 0;
+         AV30ImagePlaceholder = context.GetMessage( "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALAAAACUCAMAAAAEVFNMAAAANlBMVEX///+hoaH8/PycnJzJycmzs7OlpaWXl5fX19e6urqrq6vT09Pn5+fCwsK2trb5+fnx8fHd3d33lFFhAAACAElEQVR4nO3Z7XKDIBCFYWAVFFHx/m+2qNEhUSaFtllmep6/CZN3yIr5EAIAAAAAAAAAAAAAAAAAAAAAAP4J3/3E/Png1lA5M3w+2EpdTFLz8V5lqStePBmO4PK3VfXMwUplrmUNVt7nXvKMwUq4Xut2yNtizh32mqQkGvPWMu5wG3ql1GbJWssX7LTcZW0xY/Dy6KUpay3/DucNMecM97Qlk7t9khuWu/OD95QwITfx+k6b261nvXHMjbXt/Rnh7Xrk3Xzi4L41J+4aYVy2I89dnsAdfP+4GGi/HtvLnbvKYOFIpk6QKoO9lYfLbbDGYDXSGSy1fx7jGoO7qFdS/3zZVRIcR3kjYy99dQQv43AcB2pu6Sn45U5YRfASvrwfn4BU89IrpfXx2gqCXXyAdZfeMMbRaVxB8Gy3RtoOMH/JXR+KEisIPmZgfefn6brB+xgflyV/8HJWTUpcB3h/SJ9DwR7s9ZllmuW+dxtjVUewepoBmwqWdC5gDk7MwA1XRXByBq5b/Bhj3uDoY9n74pE/+PG94rs69uDGvK+MracxZ7DL2t8wFFax7vCcPsRSxY1QTMHhC/zcF/wzM3DtcHhlN/X5Rs+3w+HdLSAEU/DUlLIMf3sJS2QKUerHuD81tD8w+fcv8OuK5jcaZAAAAAAAAAAAAAAAAAAAAAAAyPcFE4AcP6bJZ48AAAAASUVORK5CYII=", "");
+         AssignAttri("", false, "AV30ImagePlaceholder", AV30ImagePlaceholder);
+         GxWebStd.gx_hidden_field( context, "gxhash_vIMAGEPLACEHOLDER", GetSecureSignedToken( "", AV30ImagePlaceholder, context));
+         AV33GXLvl5 = 0;
          /* Using cursor H00AT2 */
          pr_default.execute(0, new Object[] {AV17OrganisationId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -973,8 +1081,9 @@ namespace GeneXus.Programs {
             A547OrganisationHasMyLiving = H00AT2_A547OrganisationHasMyLiving[0];
             A548OrganisationHasMyServices = H00AT2_A548OrganisationHasMyServices[0];
             A550OrganisationBrandTheme = H00AT2_A550OrganisationBrandTheme[0];
+            A566OrganisationHasOwnBrand = H00AT2_A566OrganisationHasOwnBrand[0];
             A551OrganisationCtaTheme = H00AT2_A551OrganisationCtaTheme[0];
-            AV26GXLvl11 = 1;
+            AV33GXLvl5 = 1;
             AV18OrganisationSettingId = A100OrganisationSettingid;
             AssignAttri("", false, "AV18OrganisationSettingId", AV18OrganisationSettingId.ToString());
             GxWebStd.gx_hidden_field( context, "gxhash_vORGANISATIONSETTINGID", GetSecureSignedToken( "", AV18OrganisationSettingId, context));
@@ -987,15 +1096,28 @@ namespace GeneXus.Programs {
             AV16OrganisationHasMyServices = A548OrganisationHasMyServices;
             AssignAttri("", false, "AV16OrganisationHasMyServices", AV16OrganisationHasMyServices);
             AV11OrganisationBrandTheme = A550OrganisationBrandTheme;
+            AV32OrganisationHasOwnBrand = A566OrganisationHasOwnBrand;
+            AssignAttri("", false, "AV32OrganisationHasOwnBrand", AV32OrganisationHasOwnBrand);
             AV12OrganisationCtaTheme = A551OrganisationCtaTheme;
             pr_default.readNext(0);
          }
          pr_default.close(0);
-         if ( AV26GXLvl11 == 0 )
+         if ( AV33GXLvl5 == 0 )
          {
             AV24isNewSetting = true;
             AssignAttri("", false, "AV24isNewSetting", AV24isNewSetting);
             GxWebStd.gx_hidden_field( context, "gxhash_vISNEWSETTING", GetSecureSignedToken( "", AV24isNewSetting, context));
+         }
+         AV27Trn_Organisation.Load(AV17OrganisationId);
+         if ( String.IsNullOrEmpty(StringUtil.RTrim( AV27Trn_Organisation.gxTpr_Organisationlogo)) )
+         {
+            Logoupload_Previewimagelink = AV30ImagePlaceholder;
+            ucLogoupload.SendProperty(context, "", false, Logoupload_Internalname, "PreviewImageLink", Logoupload_Previewimagelink);
+         }
+         else
+         {
+            Logoupload_Previewimagelink = AV27Trn_Organisation.gxTpr_Organisationlogo_gxi;
+            ucLogoupload.SendProperty(context, "", false, Logoupload_Internalname, "PreviewImageLink", Logoupload_Previewimagelink);
          }
          if ( AV5DefaultBrandTheme.FromJSonString(AV11OrganisationBrandTheme, null) )
          {
@@ -1031,16 +1153,33 @@ namespace GeneXus.Programs {
             Calltoactionthemeselector_Ctacolor4 = AV6DefaultCtaTheme.gxTpr_Ctacolor4;
             ucCalltoactionthemeselector.SendProperty(context, "", false, Calltoactionthemeselector_Internalname, "ctaColor4", Calltoactionthemeselector_Ctacolor4);
          }
+         divLayoutmaintable_Class = divLayoutmaintable_Class+" "+"EditForm";
+         AssignProp("", false, divLayoutmaintable_Internalname, "Class", divLayoutmaintable_Class, true);
+         /* Execute user subroutine: 'ATTRIBUTESSECURITYCODE' */
+         S112 ();
+         if (returnInSub) return;
+         chkavOrganisationhasdynamicforms.Visible = 0;
+         AssignProp("", false, chkavOrganisationhasdynamicforms_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(chkavOrganisationhasdynamicforms.Visible), 5, 0), true);
+      }
+
+      protected void S112( )
+      {
+         /* 'ATTRIBUTESSECURITYCODE' Routine */
+         returnInSub = false;
+         divBrandtable_Visible = (((AV32OrganisationHasOwnBrand)) ? 1 : 0);
+         AssignProp("", false, divBrandtable_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divBrandtable_Visible), 5, 0), true);
+         divCtatable_Visible = (((AV32OrganisationHasOwnBrand)) ? 1 : 0);
+         AssignProp("", false, divCtatable_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divCtatable_Visible), 5, 0), true);
       }
 
       public void GXEnter( )
       {
          /* Execute user event: Enter */
-         E12AT2 ();
+         E15AT2 ();
          if (returnInSub) return;
       }
 
-      protected void E12AT2( )
+      protected void E15AT2( )
       {
          /* Enter Routine */
          returnInSub = false;
@@ -1053,6 +1192,7 @@ namespace GeneXus.Programs {
             AV21Trn_OrganisationSetting.gxTpr_Organisationhasmyliving = AV15OrganisationHasMyLiving;
             AV21Trn_OrganisationSetting.gxTpr_Organisationhasmyservices = AV16OrganisationHasMyServices;
             AV21Trn_OrganisationSetting.gxTpr_Organisationhasdynamicforms = AV13OrganisationHasDynamicForms;
+            AV21Trn_OrganisationSetting.gxTpr_Organisationhasownbrand = AV32OrganisationHasOwnBrand;
             AV21Trn_OrganisationSetting.gxTpr_Organisationbrandtheme = AV20SelectedBrandTheme.ToJSonString(false, true);
             AV21Trn_OrganisationSetting.gxTpr_Organisationctatheme = AV23SelectedCtaTheme.ToJSonString(false, true);
             AV21Trn_OrganisationSetting.Insert();
@@ -1066,6 +1206,23 @@ namespace GeneXus.Programs {
                AV21Trn_OrganisationSetting.gxTpr_Organisationhasmyliving = AV15OrganisationHasMyLiving;
                AV21Trn_OrganisationSetting.gxTpr_Organisationhasmyservices = AV16OrganisationHasMyServices;
                AV21Trn_OrganisationSetting.gxTpr_Organisationhasdynamicforms = AV13OrganisationHasDynamicForms;
+               AV21Trn_OrganisationSetting.gxTpr_Organisationhasownbrand = AV32OrganisationHasOwnBrand;
+               if ( AV32OrganisationHasOwnBrand )
+               {
+                  AV27Trn_Organisation.Load(AV17OrganisationId);
+                  if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV28base64String)) )
+                  {
+                     AV31OrganisationBlob=context.FileFromBase64( AV28base64String) ;
+                     AV27Trn_Organisation.gxTpr_Organisationlogo = AV31OrganisationBlob;
+                     AV27Trn_Organisation.gxTpr_Organisationlogo_gxi = GXDbFile.GetUriFromFile( "", "", AV31OrganisationBlob);
+                  }
+                  else
+                  {
+                     AV27Trn_Organisation.gxTpr_Organisationlogo = "";
+                     AV27Trn_Organisation.gxTpr_Organisationlogo_gxi = "";
+                  }
+                  AV27Trn_Organisation.Save();
+               }
                AV21Trn_OrganisationSetting.gxTpr_Organisationbrandtheme = AV20SelectedBrandTheme.ToJSonString(false, true);
                AV21Trn_OrganisationSetting.gxTpr_Organisationctatheme = AV23SelectedCtaTheme.ToJSonString(false, true);
                AV21Trn_OrganisationSetting.Save();
@@ -1073,6 +1230,10 @@ namespace GeneXus.Programs {
          }
          if ( AV21Trn_OrganisationSetting.Success() )
          {
+            GXt_char1 = AV20SelectedBrandTheme.ToJSonString(false, true);
+            GXt_char2 = AV23SelectedCtaTheme.ToJSonString(false, true);
+            new prc_updateorganisationthemesetting(context ).execute( ref  AV17OrganisationId, ref  GXt_char1, ref  GXt_char2) ;
+            AssignAttri("", false, "AV17OrganisationId", AV17OrganisationId.ToString());
             context.CommitDataStores("wp_manageorganisationprovisioning",pr_default);
             AV22websession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Provisions updated successfully", ""));
             CallWebObject(formatLink("trn_organisationww.aspx") );
@@ -1082,23 +1243,60 @@ namespace GeneXus.Programs {
          {
             AV9ErrorMessages = AV21Trn_OrganisationSetting.GetMessages();
             /* Execute user subroutine: 'DISPLAYMESSAGES' */
-            S112 ();
+            S122 ();
             if (returnInSub) return;
          }
          /*  Sending Event outputs  */
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV23SelectedCtaTheme", AV23SelectedCtaTheme);
+         context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV20SelectedBrandTheme", AV20SelectedBrandTheme);
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, "AV9ErrorMessages", AV9ErrorMessages);
       }
 
-      protected void S112( )
+      protected void E11AT2( )
+      {
+         /* Logoupload_Onupload Routine */
+         returnInSub = false;
+         AV26OrganisationLogo = "";
+         AV34Organisationlogo_GXI = "";
+         if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV29FileUploadedData.gxTpr_Base64image)) )
+         {
+            AV28base64String = GxRegex.Split(AV29FileUploadedData.gxTpr_Base64image,",").GetString(2);
+            AssignAttri("", false, "AV28base64String", AV28base64String);
+         }
+         /*  Sending Event outputs  */
+      }
+
+      protected void E12AT2( )
+      {
+         /* Logoupload_Onfailedupload Routine */
+         returnInSub = false;
+         GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  context.GetMessage( "Maximum file size allowed is 2MB.", ""),  "error",  "",  "true",  ""));
+      }
+
+      protected void E13AT2( )
+      {
+         /* Logoupload_Onclickdelete Routine */
+         returnInSub = false;
+         if ( ( StringUtil.StrCmp(Logoupload_Previewimagelink, AV30ImagePlaceholder) == 0 ) && String.IsNullOrEmpty(StringUtil.RTrim( AV29FileUploadedData.gxTpr_Base64image)) )
+         {
+            GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "",  context.GetMessage( "No logo to delete", ""),  "info",  "",  "true",  ""));
+         }
+         else
+         {
+            this.executeUsercontrolMethod("", false, "COMFIRMDELETEMODALContainer", "Confirm", "", new Object[] {});
+         }
+      }
+
+      protected void S122( )
       {
          /* 'DISPLAYMESSAGES' Routine */
          returnInSub = false;
-         AV27GXV1 = 1;
-         while ( AV27GXV1 <= AV9ErrorMessages.Count )
+         AV35GXV1 = 1;
+         while ( AV35GXV1 <= AV9ErrorMessages.Count )
          {
-            AV25Message = ((GeneXus.Utils.SdtMessages_Message)AV9ErrorMessages.Item(AV27GXV1));
+            AV25Message = ((GeneXus.Utils.SdtMessages_Message)AV9ErrorMessages.Item(AV35GXV1));
             GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Error",  AV25Message.gxTpr_Description,  "error",  "",  "true",  ""));
-            AV27GXV1 = (int)(AV27GXV1+1);
+            AV35GXV1 = (int)(AV35GXV1+1);
          }
          AV9ErrorMessages.Clear();
       }
@@ -1107,7 +1305,7 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void E13AT2( )
+      protected void E16AT2( )
       {
          /* Load Routine */
          returnInSub = false;
@@ -1119,7 +1317,6 @@ namespace GeneXus.Programs {
          initialize();
          AV17OrganisationId = (Guid)getParm(obj,0);
          AssignAttri("", false, "AV17OrganisationId", AV17OrganisationId.ToString());
-         GxWebStd.gx_hidden_field( context, "gxhash_vORGANISATIONID", GetSecureSignedToken( "", AV17OrganisationId, context));
       }
 
       public override string getresponse( string sGXDynURL )
@@ -1146,6 +1343,7 @@ namespace GeneXus.Programs {
 
       protected void define_styles( )
       {
+         AddStyleSheetFile("DVelop/Bootstrap/Shared/DVelopBootstrap.css", "");
          AddThemeStyleSheetFile("", context.GetTheme( )+".css", "?"+GetCacheInvalidationToken( ));
          bool outputEnabled = isOutputEnabled( );
          if ( context.isSpaRequest( ) )
@@ -1155,7 +1353,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025361263794", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531420225671", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1171,9 +1369,13 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_manageorganisationprovisioning.js", "?2025361263794", false, true);
+         context.AddJavascriptSource("wp_manageorganisationprovisioning.js", "?202531420225671", false, true);
          context.AddJavascriptSource("UserControls/UC_ThemeSelectorRender.js", "", false, true);
          context.AddJavascriptSource("UserControls/UC_CtaThemeSelectorRender.js", "", false, true);
+         context.AddJavascriptSource("UserControls/UC_FileUploadRender.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
+         context.AddJavascriptSource("DVelop/Bootstrap/ConfirmPanel/BootstrapConfirmPanelRender.js", "", false, true);
          /* End function include_jscripts */
       }
 
@@ -1200,9 +1402,16 @@ namespace GeneXus.Programs {
          chkavOrganisationhasmyservices.CheckedValue = "false";
          AV16OrganisationHasMyServices = StringUtil.StrToBool( StringUtil.BoolToStr( AV16OrganisationHasMyServices));
          AssignAttri("", false, "AV16OrganisationHasMyServices", AV16OrganisationHasMyServices);
+         chkavOrganisationhasownbrand.Name = "vORGANISATIONHASOWNBRAND";
+         chkavOrganisationhasownbrand.WebTags = "";
+         chkavOrganisationhasownbrand.Caption = context.GetMessage( "Organisation Has Own Brand", "");
+         AssignProp("", false, chkavOrganisationhasownbrand_Internalname, "TitleCaption", chkavOrganisationhasownbrand.Caption, true);
+         chkavOrganisationhasownbrand.CheckedValue = "false";
+         AV32OrganisationHasOwnBrand = StringUtil.StrToBool( StringUtil.BoolToStr( AV32OrganisationHasOwnBrand));
+         AssignAttri("", false, "AV32OrganisationHasOwnBrand", AV32OrganisationHasOwnBrand);
          chkavOrganisationhasdynamicforms.Name = "vORGANISATIONHASDYNAMICFORMS";
          chkavOrganisationhasdynamicforms.WebTags = "";
-         chkavOrganisationhasdynamicforms.Caption = context.GetMessage( "Organisation Has Dynamic Forms", "");
+         chkavOrganisationhasdynamicforms.Caption = "";
          AssignProp("", false, chkavOrganisationhasdynamicforms_Internalname, "TitleCaption", chkavOrganisationhasdynamicforms.Caption, true);
          chkavOrganisationhasdynamicforms.CheckedValue = "false";
          AV13OrganisationHasDynamicForms = StringUtil.StrToBool( StringUtil.BoolToStr( AV13OrganisationHasDynamicForms));
@@ -1215,13 +1424,16 @@ namespace GeneXus.Programs {
          chkavOrganisationhasmycare_Internalname = "vORGANISATIONHASMYCARE";
          chkavOrganisationhasmyliving_Internalname = "vORGANISATIONHASMYLIVING";
          chkavOrganisationhasmyservices_Internalname = "vORGANISATIONHASMYSERVICES";
-         chkavOrganisationhasdynamicforms_Internalname = "vORGANISATIONHASDYNAMICFORMS";
+         chkavOrganisationhasownbrand_Internalname = "vORGANISATIONHASOWNBRAND";
          divAgreementfields_Internalname = "AGREEMENTFIELDS";
          lblThemelabel_Internalname = "THEMELABEL";
          Themeselector_Internalname = "THEMESELECTOR";
          divBrandtable_Internalname = "BRANDTABLE";
          lblCtatheme_Internalname = "CTATHEME";
          Calltoactionthemeselector_Internalname = "CALLTOACTIONTHEMESELECTOR";
+         lblAvatarlabel_Internalname = "AVATARLABEL";
+         Logoupload_Internalname = "LOGOUPLOAD";
+         divFieldavatartable_Internalname = "FIELDAVATARTABLE";
          divCtatable_Internalname = "CTATABLE";
          divBrandthemetable_Internalname = "BRANDTHEMETABLE";
          divGroupattributes_Internalname = "GROUPATTRIBUTES";
@@ -1229,7 +1441,10 @@ namespace GeneXus.Programs {
          divTableattributes_Internalname = "TABLEATTRIBUTES";
          bttBtnenter_Internalname = "BTNENTER";
          bttBtncancel_Internalname = "BTNCANCEL";
+         Comfirmdeletemodal_Internalname = "COMFIRMDELETEMODAL";
          divTablemain_Internalname = "TABLEMAIN";
+         chkavOrganisationhasdynamicforms_Internalname = "vORGANISATIONHASDYNAMICFORMS";
+         divHtml_bottomauxiliarcontrols_Internalname = "HTML_BOTTOMAUXILIARCONTROLS";
          divLayoutmaintable_Internalname = "LAYOUTMAINTABLE";
          Form.Internalname = "FORM";
       }
@@ -1242,15 +1457,25 @@ namespace GeneXus.Programs {
             disableJsOutput();
          }
          init_default_properties( ) ;
-         chkavOrganisationhasdynamicforms.Caption = context.GetMessage( "Organisation Has Dynamic Forms", "");
+         chkavOrganisationhasdynamicforms.Caption = "";
+         chkavOrganisationhasownbrand.Caption = context.GetMessage( "Organisation Has Own Brand", "");
          chkavOrganisationhasmyservices.Caption = context.GetMessage( "Organisation Has My Services", "");
          chkavOrganisationhasmyliving.Caption = context.GetMessage( "Organisation Has My Living", "");
          chkavOrganisationhasmycare.Caption = context.GetMessage( "Organisation Has My Care", "");
-         chkavOrganisationhasdynamicforms.Enabled = 1;
+         chkavOrganisationhasdynamicforms.Visible = 1;
+         divCtatable_Visible = 1;
+         divBrandtable_Visible = 1;
+         chkavOrganisationhasownbrand.Enabled = 1;
          chkavOrganisationhasmyservices.Enabled = 1;
          chkavOrganisationhasmyliving.Enabled = 1;
          chkavOrganisationhasmycare.Enabled = 1;
          divLayoutmaintable_Class = "Table TableTransactionTemplate";
+         Comfirmdeletemodal_Bodytype = "No";
+         Comfirmdeletemodal_Nobuttoncaption = "Cancel";
+         Comfirmdeletemodal_Yesbuttoncaption = "Yes";
+         Comfirmdeletemodal_Confirmationtext = "Are you sure you want to delete the current logo?";
+         Comfirmdeletemodal_Title = context.GetMessage( "Comfirm Delete", "");
+         Logoupload_Previewimagelink = "&ImagePalceholder";
          Calltoactionthemeselector_Ctacolor4 = "#C4A082";
          Calltoactionthemeselector_Ctacolor3 = "#B2B997";
          Calltoactionthemeselector_Ctacolor2 = "#D4A76A";
@@ -1284,9 +1509,13 @@ namespace GeneXus.Programs {
 
       public override void InitializeDynEvents( )
       {
-         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV14OrganisationHasMyCare","fld":"vORGANISATIONHASMYCARE"},{"av":"AV15OrganisationHasMyLiving","fld":"vORGANISATIONHASMYLIVING"},{"av":"AV16OrganisationHasMyServices","fld":"vORGANISATIONHASMYSERVICES"},{"av":"AV13OrganisationHasDynamicForms","fld":"vORGANISATIONHASDYNAMICFORMS"},{"av":"AV24isNewSetting","fld":"vISNEWSETTING","hsh":true},{"av":"AV17OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV18OrganisationSettingId","fld":"vORGANISATIONSETTINGID","hsh":true}]}""");
-         setEventMetadata("ENTER","""{"handler":"E12AT2","iparms":[{"av":"AV24isNewSetting","fld":"vISNEWSETTING","hsh":true},{"av":"AV17OrganisationId","fld":"vORGANISATIONID","hsh":true},{"av":"AV14OrganisationHasMyCare","fld":"vORGANISATIONHASMYCARE"},{"av":"AV15OrganisationHasMyLiving","fld":"vORGANISATIONHASMYLIVING"},{"av":"AV16OrganisationHasMyServices","fld":"vORGANISATIONHASMYSERVICES"},{"av":"AV13OrganisationHasDynamicForms","fld":"vORGANISATIONHASDYNAMICFORMS"},{"av":"AV20SelectedBrandTheme","fld":"vSELECTEDBRANDTHEME"},{"av":"AV23SelectedCtaTheme","fld":"vSELECTEDCTATHEME"},{"av":"AV18OrganisationSettingId","fld":"vORGANISATIONSETTINGID","hsh":true},{"av":"AV9ErrorMessages","fld":"vERRORMESSAGES"}]""");
-         setEventMetadata("ENTER",""","oparms":[{"av":"AV9ErrorMessages","fld":"vERRORMESSAGES"}]}""");
+         setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV14OrganisationHasMyCare","fld":"vORGANISATIONHASMYCARE"},{"av":"AV15OrganisationHasMyLiving","fld":"vORGANISATIONHASMYLIVING"},{"av":"AV16OrganisationHasMyServices","fld":"vORGANISATIONHASMYSERVICES"},{"av":"AV32OrganisationHasOwnBrand","fld":"vORGANISATIONHASOWNBRAND"},{"av":"AV13OrganisationHasDynamicForms","fld":"vORGANISATIONHASDYNAMICFORMS"},{"av":"AV24isNewSetting","fld":"vISNEWSETTING","hsh":true},{"av":"AV18OrganisationSettingId","fld":"vORGANISATIONSETTINGID","hsh":true},{"av":"AV30ImagePlaceholder","fld":"vIMAGEPLACEHOLDER","hsh":true}]}""");
+         setEventMetadata("ENTER","""{"handler":"E15AT2","iparms":[{"av":"AV24isNewSetting","fld":"vISNEWSETTING","hsh":true},{"av":"AV17OrganisationId","fld":"vORGANISATIONID"},{"av":"AV14OrganisationHasMyCare","fld":"vORGANISATIONHASMYCARE"},{"av":"AV15OrganisationHasMyLiving","fld":"vORGANISATIONHASMYLIVING"},{"av":"AV16OrganisationHasMyServices","fld":"vORGANISATIONHASMYSERVICES"},{"av":"AV13OrganisationHasDynamicForms","fld":"vORGANISATIONHASDYNAMICFORMS"},{"av":"AV32OrganisationHasOwnBrand","fld":"vORGANISATIONHASOWNBRAND"},{"av":"AV20SelectedBrandTheme","fld":"vSELECTEDBRANDTHEME"},{"av":"AV23SelectedCtaTheme","fld":"vSELECTEDCTATHEME"},{"av":"AV18OrganisationSettingId","fld":"vORGANISATIONSETTINGID","hsh":true},{"av":"AV28base64String","fld":"vBASE64STRING"},{"av":"AV9ErrorMessages","fld":"vERRORMESSAGES"}]""");
+         setEventMetadata("ENTER",""","oparms":[{"av":"AV23SelectedCtaTheme","fld":"vSELECTEDCTATHEME"},{"av":"AV20SelectedBrandTheme","fld":"vSELECTEDBRANDTHEME"},{"av":"AV17OrganisationId","fld":"vORGANISATIONID"},{"av":"AV9ErrorMessages","fld":"vERRORMESSAGES"}]}""");
+         setEventMetadata("LOGOUPLOAD.ONUPLOAD","""{"handler":"E11AT2","iparms":[{"av":"AV29FileUploadedData","fld":"vFILEUPLOADEDDATA"}]""");
+         setEventMetadata("LOGOUPLOAD.ONUPLOAD",""","oparms":[{"av":"AV28base64String","fld":"vBASE64STRING"}]}""");
+         setEventMetadata("LOGOUPLOAD.ONFAILEDUPLOAD","""{"handler":"E12AT2","iparms":[]}""");
+         setEventMetadata("LOGOUPLOAD.ONCLICKDELETE","""{"handler":"E13AT2","iparms":[{"av":"Logoupload_Previewimagelink","ctrl":"LOGOUPLOAD","prop":"PreviewImageLink"},{"av":"AV30ImagePlaceholder","fld":"vIMAGEPLACEHOLDER","hsh":true},{"av":"AV29FileUploadedData","fld":"vFILEUPLOADEDDATA"}]}""");
          return  ;
       }
 
@@ -1310,8 +1539,11 @@ namespace GeneXus.Programs {
          GXKey = "";
          GXEncryptionTmp = "";
          AV18OrganisationSettingId = Guid.Empty;
+         AV30ImagePlaceholder = "";
          AV20SelectedBrandTheme = new SdtSDT_BrandThemeColors(context);
          AV23SelectedCtaTheme = new SdtSDT_CtaThemeColors(context);
+         AV29FileUploadedData = new SdtSDT_AvatarUpload(context);
+         AV28base64String = "";
          AV9ErrorMessages = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          GX_FocusControl = "";
          Form = new GXWebForm();
@@ -1323,8 +1555,11 @@ namespace GeneXus.Programs {
          ucThemeselector = new GXUserControl();
          lblCtatheme_Jsonclick = "";
          ucCalltoactionthemeselector = new GXUserControl();
+         lblAvatarlabel_Jsonclick = "";
+         ucLogoupload = new GXUserControl();
          bttBtnenter_Jsonclick = "";
          bttBtncancel_Jsonclick = "";
+         ucComfirmdeletemodal = new GXUserControl();
          sEvt = "";
          EvtGridId = "";
          EvtRowId = "";
@@ -1337,6 +1572,7 @@ namespace GeneXus.Programs {
          H00AT2_A547OrganisationHasMyLiving = new bool[] {false} ;
          H00AT2_A548OrganisationHasMyServices = new bool[] {false} ;
          H00AT2_A550OrganisationBrandTheme = new string[] {""} ;
+         H00AT2_A566OrganisationHasOwnBrand = new bool[] {false} ;
          H00AT2_A551OrganisationCtaTheme = new string[] {""} ;
          A11OrganisationId = Guid.Empty;
          A100OrganisationSettingid = Guid.Empty;
@@ -1344,10 +1580,16 @@ namespace GeneXus.Programs {
          A551OrganisationCtaTheme = "";
          AV11OrganisationBrandTheme = "";
          AV12OrganisationCtaTheme = "";
+         AV27Trn_Organisation = new SdtTrn_Organisation(context);
          AV5DefaultBrandTheme = new SdtSDT_BrandThemeColors(context);
          AV6DefaultCtaTheme = new SdtSDT_CtaThemeColors(context);
          AV21Trn_OrganisationSetting = new SdtTrn_OrganisationSetting(context);
+         AV31OrganisationBlob = "";
+         GXt_char1 = "";
+         GXt_char2 = "";
          AV22websession = context.GetSession();
+         AV26OrganisationLogo = "";
+         AV34Organisationlogo_GXI = "";
          AV25Message = new GeneXus.Utils.SdtMessages_Message(context);
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
@@ -1362,7 +1604,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.wp_manageorganisationprovisioning__default(),
             new Object[][] {
                 new Object[] {
-               H00AT2_A11OrganisationId, H00AT2_A100OrganisationSettingid, H00AT2_A549OrganisationHasDynamicForms, H00AT2_A546OrganisationHasMyCare, H00AT2_A547OrganisationHasMyLiving, H00AT2_A548OrganisationHasMyServices, H00AT2_A550OrganisationBrandTheme, H00AT2_A551OrganisationCtaTheme
+               H00AT2_A11OrganisationId, H00AT2_A100OrganisationSettingid, H00AT2_A549OrganisationHasDynamicForms, H00AT2_A546OrganisationHasMyCare, H00AT2_A547OrganisationHasMyLiving, H00AT2_A548OrganisationHasMyServices, H00AT2_A550OrganisationBrandTheme, H00AT2_A566OrganisationHasOwnBrand, H00AT2_A551OrganisationCtaTheme
                }
             }
          );
@@ -1377,10 +1619,13 @@ namespace GeneXus.Programs {
       private short wbEnd ;
       private short wbStart ;
       private short nDonePA ;
-      private short AV26GXLvl11 ;
+      private short AV33GXLvl5 ;
       private short nGXWrapped ;
-      private int AV27GXV1 ;
+      private int divBrandtable_Visible ;
+      private int divCtatable_Visible ;
+      private int AV35GXV1 ;
       private int idxLst ;
+      private string Logoupload_Previewimagelink ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
       private string sDynURL ;
@@ -1402,6 +1647,11 @@ namespace GeneXus.Programs {
       private string Calltoactionthemeselector_Ctacolor2 ;
       private string Calltoactionthemeselector_Ctacolor3 ;
       private string Calltoactionthemeselector_Ctacolor4 ;
+      private string Comfirmdeletemodal_Title ;
+      private string Comfirmdeletemodal_Confirmationtext ;
+      private string Comfirmdeletemodal_Yesbuttoncaption ;
+      private string Comfirmdeletemodal_Nobuttoncaption ;
+      private string Comfirmdeletemodal_Bodytype ;
       private string GX_FocusControl ;
       private string sPrefix ;
       private string divLayoutmaintable_Internalname ;
@@ -1417,7 +1667,7 @@ namespace GeneXus.Programs {
       private string TempTags ;
       private string chkavOrganisationhasmyliving_Internalname ;
       private string chkavOrganisationhasmyservices_Internalname ;
-      private string chkavOrganisationhasdynamicforms_Internalname ;
+      private string chkavOrganisationhasownbrand_Internalname ;
       private string divBrandthemetable_Internalname ;
       private string divBrandtable_Internalname ;
       private string lblThemelabel_Internalname ;
@@ -1427,15 +1677,24 @@ namespace GeneXus.Programs {
       private string lblCtatheme_Internalname ;
       private string lblCtatheme_Jsonclick ;
       private string Calltoactionthemeselector_Internalname ;
+      private string divFieldavatartable_Internalname ;
+      private string lblAvatarlabel_Internalname ;
+      private string lblAvatarlabel_Jsonclick ;
+      private string Logoupload_Internalname ;
       private string bttBtnenter_Internalname ;
       private string bttBtnenter_Jsonclick ;
       private string bttBtncancel_Internalname ;
       private string bttBtncancel_Jsonclick ;
+      private string Comfirmdeletemodal_Internalname ;
+      private string divHtml_bottomauxiliarcontrols_Internalname ;
+      private string chkavOrganisationhasdynamicforms_Internalname ;
       private string sEvt ;
       private string EvtGridId ;
       private string EvtRowId ;
       private string sEvtType ;
       private string GXDecQS ;
+      private string GXt_char1 ;
+      private string GXt_char2 ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
       private bool AV24isNewSetting ;
@@ -1443,6 +1702,7 @@ namespace GeneXus.Programs {
       private bool AV14OrganisationHasMyCare ;
       private bool AV15OrganisationHasMyLiving ;
       private bool AV16OrganisationHasMyServices ;
+      private bool AV32OrganisationHasOwnBrand ;
       private bool AV13OrganisationHasDynamicForms ;
       private bool Rfr0gs ;
       private bool wbErr ;
@@ -1452,17 +1712,25 @@ namespace GeneXus.Programs {
       private bool A546OrganisationHasMyCare ;
       private bool A547OrganisationHasMyLiving ;
       private bool A548OrganisationHasMyServices ;
+      private bool A566OrganisationHasOwnBrand ;
+      private string AV30ImagePlaceholder ;
+      private string AV28base64String ;
       private string A550OrganisationBrandTheme ;
       private string A551OrganisationCtaTheme ;
       private string AV11OrganisationBrandTheme ;
       private string AV12OrganisationCtaTheme ;
+      private string AV34Organisationlogo_GXI ;
+      private string AV26OrganisationLogo ;
       private Guid AV17OrganisationId ;
       private Guid wcpOAV17OrganisationId ;
       private Guid AV18OrganisationSettingId ;
       private Guid A11OrganisationId ;
       private Guid A100OrganisationSettingid ;
+      private string AV31OrganisationBlob ;
       private GXUserControl ucThemeselector ;
       private GXUserControl ucCalltoactionthemeselector ;
+      private GXUserControl ucLogoupload ;
+      private GXUserControl ucComfirmdeletemodal ;
       private IGxSession AV22websession ;
       private GXWebForm Form ;
       private IGxDataStore dsDataStore1 ;
@@ -1471,9 +1739,11 @@ namespace GeneXus.Programs {
       private GXCheckbox chkavOrganisationhasmycare ;
       private GXCheckbox chkavOrganisationhasmyliving ;
       private GXCheckbox chkavOrganisationhasmyservices ;
+      private GXCheckbox chkavOrganisationhasownbrand ;
       private GXCheckbox chkavOrganisationhasdynamicforms ;
       private SdtSDT_BrandThemeColors AV20SelectedBrandTheme ;
       private SdtSDT_CtaThemeColors AV23SelectedCtaTheme ;
+      private SdtSDT_AvatarUpload AV29FileUploadedData ;
       private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV9ErrorMessages ;
       private IDataStoreProvider pr_default ;
       private Guid[] H00AT2_A11OrganisationId ;
@@ -1483,7 +1753,9 @@ namespace GeneXus.Programs {
       private bool[] H00AT2_A547OrganisationHasMyLiving ;
       private bool[] H00AT2_A548OrganisationHasMyServices ;
       private string[] H00AT2_A550OrganisationBrandTheme ;
+      private bool[] H00AT2_A566OrganisationHasOwnBrand ;
       private string[] H00AT2_A551OrganisationCtaTheme ;
+      private SdtTrn_Organisation AV27Trn_Organisation ;
       private SdtSDT_BrandThemeColors AV5DefaultBrandTheme ;
       private SdtSDT_CtaThemeColors AV6DefaultCtaTheme ;
       private SdtTrn_OrganisationSetting AV21Trn_OrganisationSetting ;
@@ -1578,7 +1850,7 @@ public class wp_manageorganisationprovisioning__default : DataStoreHelperBase, I
        new ParDef("AV17OrganisationId",GXType.UniqueIdentifier,36,0)
        };
        def= new CursorDef[] {
-           new CursorDef("H00AT2", "SELECT OrganisationId, OrganisationSettingid, OrganisationHasDynamicForms, OrganisationHasMyCare, OrganisationHasMyLiving, OrganisationHasMyServices, OrganisationBrandTheme, OrganisationCtaTheme FROM Trn_OrganisationSetting WHERE OrganisationId = :AV17OrganisationId ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00AT2,100, GxCacheFrequency.OFF ,false,false )
+           new CursorDef("H00AT2", "SELECT OrganisationId, OrganisationSettingid, OrganisationHasDynamicForms, OrganisationHasMyCare, OrganisationHasMyLiving, OrganisationHasMyServices, OrganisationBrandTheme, OrganisationHasOwnBrand, OrganisationCtaTheme FROM Trn_OrganisationSetting WHERE OrganisationId = :AV17OrganisationId ORDER BY OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH00AT2,100, GxCacheFrequency.OFF ,false,false )
        };
     }
  }
@@ -1597,7 +1869,8 @@ public class wp_manageorganisationprovisioning__default : DataStoreHelperBase, I
              ((bool[]) buf[4])[0] = rslt.getBool(5);
              ((bool[]) buf[5])[0] = rslt.getBool(6);
              ((string[]) buf[6])[0] = rslt.getLongVarchar(7);
-             ((string[]) buf[7])[0] = rslt.getLongVarchar(8);
+             ((bool[]) buf[7])[0] = rslt.getBool(8);
+             ((string[]) buf[8])[0] = rslt.getLongVarchar(9);
              return;
     }
  }

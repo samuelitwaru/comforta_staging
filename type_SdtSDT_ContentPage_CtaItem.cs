@@ -38,6 +38,8 @@ namespace GeneXus.Programs
 
 			gxTv_SdtSDT_ContentPage_CtaItem_Ctabgcolor = "";
 
+			gxTv_SdtSDT_ContentPage_CtaItem_Ctabuttontype = "";
+
 		}
 
 		public SdtSDT_ContentPage_CtaItem(IGxContext context)
@@ -80,10 +82,7 @@ namespace GeneXus.Programs
 			AddObjectProperty("CtaBGColor", gxTpr_Ctabgcolor, false);
 
 
-			AddObjectProperty("IsFullWidth", gxTpr_Isfullwidth, false);
-
-
-			AddObjectProperty("IsImageButton", gxTpr_Isimagebutton, false);
+			AddObjectProperty("CtaButtonType", gxTpr_Ctabuttontype, false);
 
 			return;
 		}
@@ -171,32 +170,16 @@ namespace GeneXus.Programs
 
 
 
-		[SoapElement(ElementName="IsFullWidth")]
-		[XmlElement(ElementName="IsFullWidth")]
-		public bool gxTpr_Isfullwidth
+		[SoapElement(ElementName="CtaButtonType")]
+		[XmlElement(ElementName="CtaButtonType")]
+		public string gxTpr_Ctabuttontype
 		{
 			get {
-				return gxTv_SdtSDT_ContentPage_CtaItem_Isfullwidth; 
+				return gxTv_SdtSDT_ContentPage_CtaItem_Ctabuttontype; 
 			}
 			set {
-				gxTv_SdtSDT_ContentPage_CtaItem_Isfullwidth = value;
-				SetDirty("Isfullwidth");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="IsImageButton")]
-		[XmlElement(ElementName="IsImageButton")]
-		public bool gxTpr_Isimagebutton
-		{
-			get {
-				return gxTv_SdtSDT_ContentPage_CtaItem_Isimagebutton; 
-			}
-			set {
-				gxTv_SdtSDT_ContentPage_CtaItem_Isimagebutton = value;
-				SetDirty("Isimagebutton");
+				gxTv_SdtSDT_ContentPage_CtaItem_Ctabuttontype = value;
+				SetDirty("Ctabuttontype");
 			}
 		}
 
@@ -227,8 +210,7 @@ namespace GeneXus.Programs
 			gxTv_SdtSDT_ContentPage_CtaItem_Ctalabel = "";
 			gxTv_SdtSDT_ContentPage_CtaItem_Ctaaction = "";
 			gxTv_SdtSDT_ContentPage_CtaItem_Ctabgcolor = "";
-
-
+			gxTv_SdtSDT_ContentPage_CtaItem_Ctabuttontype = "";
 			return  ;
 		}
 
@@ -253,10 +235,7 @@ namespace GeneXus.Programs
 		protected string gxTv_SdtSDT_ContentPage_CtaItem_Ctabgcolor;
 		 
 
-		protected bool gxTv_SdtSDT_ContentPage_CtaItem_Isfullwidth;
-		 
-
-		protected bool gxTv_SdtSDT_ContentPage_CtaItem_Isimagebutton;
+		protected string gxTv_SdtSDT_ContentPage_CtaItem_Ctabuttontype;
 		 
 
 
@@ -336,27 +315,15 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="IsFullWidth", Order=5)]
-		public bool gxTpr_Isfullwidth
+		[DataMember(Name="CtaButtonType", Order=5)]
+		public  string gxTpr_Ctabuttontype
 		{
 			get { 
-				return sdt.gxTpr_Isfullwidth;
+				return sdt.gxTpr_Ctabuttontype;
 
 			}
 			set { 
-				sdt.gxTpr_Isfullwidth = value;
-			}
-		}
-
-		[DataMember(Name="IsImageButton", Order=6)]
-		public bool gxTpr_Isimagebutton
-		{
-			get { 
-				return sdt.gxTpr_Isimagebutton;
-
-			}
-			set { 
-				sdt.gxTpr_Isimagebutton = value;
+				 sdt.gxTpr_Ctabuttontype = value;
 			}
 		}
 

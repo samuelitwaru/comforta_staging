@@ -78,38 +78,38 @@ namespace GeneXus.Programs {
          AV18BC_LivingPage.gxTpr_Pagename = "My Living";
          AV18BC_LivingPage.gxTpr_Pagetype = "Menu";
          AV20SDT_MenuPage = new SdtSDT_MenuPage(context);
-         /* Execute user subroutine: 'DEFAULTMENUPAGETILE' */
-         S111 ();
-         if ( returnInSub )
-         {
-            cleanup();
-            if (true) return;
-         }
+         GXt_SdtSDT_MenuPage_RowsItem_TilesItem1 = AV22TilesItem;
+         new prc_createpagetile(context ).execute(  context.GetMessage( "Tile", ""),  "#000000",  context.GetMessage( "center", ""),  "",  0,  "",  "",  "",  "",  "", out  GXt_SdtSDT_MenuPage_RowsItem_TilesItem1) ;
+         AV22TilesItem = GXt_SdtSDT_MenuPage_RowsItem_TilesItem1;
+         AV23RowsItem = new SdtSDT_MenuPage_RowsItem(context);
+         AV23RowsItem.gxTpr_Id = Guid.NewGuid( ).ToString();
+         AV23RowsItem.gxTpr_Tiles.Add(AV22TilesItem, 0);
+         AV20SDT_MenuPage.gxTpr_Rows.Add(AV23RowsItem, 0);
          AV18BC_LivingPage.gxTpr_Pagestructure = AV20SDT_MenuPage.ToJSonString(false, true);
          AV15BC_CarePage.gxTpr_Pageid = Guid.NewGuid( );
          AV15BC_CarePage.gxTpr_Pagename = "My Care";
          AV15BC_CarePage.gxTpr_Pagetype = "Menu";
          AV20SDT_MenuPage = new SdtSDT_MenuPage(context);
-         /* Execute user subroutine: 'DEFAULTMENUPAGETILE' */
-         S111 ();
-         if ( returnInSub )
-         {
-            cleanup();
-            if (true) return;
-         }
-         AV18BC_LivingPage.gxTpr_Pagestructure = AV20SDT_MenuPage.ToJSonString(false, true);
+         GXt_SdtSDT_MenuPage_RowsItem_TilesItem1 = AV22TilesItem;
+         new prc_createpagetile(context ).execute(  context.GetMessage( "Tile", ""),  "#000000",  context.GetMessage( "center", ""),  "",  0,  "",  "",  "",  "",  "", out  GXt_SdtSDT_MenuPage_RowsItem_TilesItem1) ;
+         AV22TilesItem = GXt_SdtSDT_MenuPage_RowsItem_TilesItem1;
+         AV23RowsItem = new SdtSDT_MenuPage_RowsItem(context);
+         AV23RowsItem.gxTpr_Id = Guid.NewGuid( ).ToString();
+         AV23RowsItem.gxTpr_Tiles.Add(AV22TilesItem, 0);
+         AV20SDT_MenuPage.gxTpr_Rows.Add(AV23RowsItem, 0);
+         AV15BC_CarePage.gxTpr_Pagestructure = AV20SDT_MenuPage.ToJSonString(false, true);
          AV17BC_ServicesPage.gxTpr_Pageid = Guid.NewGuid( );
          AV17BC_ServicesPage.gxTpr_Pagename = "My Services";
          AV17BC_ServicesPage.gxTpr_Pagetype = "Menu";
          AV20SDT_MenuPage = new SdtSDT_MenuPage(context);
-         /* Execute user subroutine: 'DEFAULTMENUPAGETILE' */
-         S111 ();
-         if ( returnInSub )
-         {
-            cleanup();
-            if (true) return;
-         }
-         AV18BC_LivingPage.gxTpr_Pagestructure = AV20SDT_MenuPage.ToJSonString(false, true);
+         GXt_SdtSDT_MenuPage_RowsItem_TilesItem1 = AV22TilesItem;
+         new prc_createpagetile(context ).execute(  context.GetMessage( "Tile", ""),  "#000000",  context.GetMessage( "center", ""),  "",  0,  "",  "",  "",  "",  "", out  GXt_SdtSDT_MenuPage_RowsItem_TilesItem1) ;
+         AV22TilesItem = GXt_SdtSDT_MenuPage_RowsItem_TilesItem1;
+         AV23RowsItem = new SdtSDT_MenuPage_RowsItem(context);
+         AV23RowsItem.gxTpr_Id = Guid.NewGuid( ).ToString();
+         AV23RowsItem.gxTpr_Tiles.Add(AV22TilesItem, 0);
+         AV20SDT_MenuPage.gxTpr_Rows.Add(AV23RowsItem, 0);
+         AV17BC_ServicesPage.gxTpr_Pagestructure = AV20SDT_MenuPage.ToJSonString(false, true);
          cleanup();
       }
 
@@ -142,6 +142,7 @@ namespace GeneXus.Programs {
          AV20SDT_MenuPage = new SdtSDT_MenuPage(context);
          AV22TilesItem = new SdtSDT_MenuPage_RowsItem_TilesItem(context);
          AV23RowsItem = new SdtSDT_MenuPage_RowsItem(context);
+         GXt_SdtSDT_MenuPage_RowsItem_TilesItem1 = new SdtSDT_MenuPage_RowsItem_TilesItem(context);
          /* GeneXus formulas. */
       }
 
@@ -152,6 +153,7 @@ namespace GeneXus.Programs {
       private SdtSDT_MenuPage AV20SDT_MenuPage ;
       private SdtSDT_MenuPage_RowsItem_TilesItem AV22TilesItem ;
       private SdtSDT_MenuPage_RowsItem AV23RowsItem ;
+      private SdtSDT_MenuPage_RowsItem_TilesItem GXt_SdtSDT_MenuPage_RowsItem_TilesItem1 ;
       private SdtTrn_AppVersion_Page aP0_BC_CarePage ;
       private SdtTrn_AppVersion_Page aP1_BC_LivingPage ;
       private SdtTrn_AppVersion_Page aP2_BC_ServicesPage ;

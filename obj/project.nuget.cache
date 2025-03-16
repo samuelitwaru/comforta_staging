@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "skAX632rsEc=",
+  "dgSpecHash": "ASXChpNWYNI=",
   "success": true,
   "projectFilePath": "C:\\KBs\\Comforta_version2\\Data018\\Web\\GxDeps.csproj",
   "expectedPackageFiles": [
@@ -173,5 +173,18 @@
     "C:\\Users\\samuelitwaru\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\samuelitwaru\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
+    },
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://pkgs.dev.azure.com/genexuslabs/13fb82d9-57a8-49ef-95bb-0ec8324e470c/_packaging/dotnet-prereleases/nuget/v3/index.json."
+    }
+  ]
 }

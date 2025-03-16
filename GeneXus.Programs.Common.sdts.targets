@@ -18,7 +18,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ApiListResponse.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ApiResidentFilledForms.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_AppVersion.cs" />
- 	<Compile Include="$(WebDirectory)\type_SdtSDT_AppVersion_PageItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_AppVersion_PagesItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_AvatarUpload.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_BrandThemeColors.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_CallToAction_SDT_CallToActionItem.cs" />

@@ -91,12 +91,14 @@ namespace GeneXus.Programs {
          AV12CtaItem.gxTpr_Ctalabel = "CALL US";
          AV12CtaItem.gxTpr_Ctatype = "Phone";
          AV12CtaItem.gxTpr_Ctaaction = AV9BC_Trn_Location.gxTpr_Locationphone;
+         AV12CtaItem.gxTpr_Ctabuttontype = "Round";
          AV10SDT_ContentPage.gxTpr_Cta.Add(AV12CtaItem, 0);
          AV12CtaItem = new SdtSDT_ContentPage_CtaItem(context);
          AV12CtaItem.gxTpr_Ctaid = Guid.NewGuid( );
          AV12CtaItem.gxTpr_Ctalabel = "EMAIL US";
          AV12CtaItem.gxTpr_Ctatype = "Phone";
          AV12CtaItem.gxTpr_Ctaaction = AV9BC_Trn_Location.gxTpr_Locationphone;
+         AV12CtaItem.gxTpr_Ctabuttontype = "Round";
          AV10SDT_ContentPage.gxTpr_Cta.Add(AV12CtaItem, 0);
          AV8BC_Page.gxTpr_Pagestructure = AV10SDT_ContentPage.ToJSonString(false, true);
          cleanup();

@@ -133,17 +133,17 @@ namespace GeneXus.Programs {
             if (true) return;
          }
          AV12TrnContext.FromXml(AV13WebSession.Get("TrnContext"), null, "", "");
-         if ( ( StringUtil.StrCmp(AV12TrnContext.gxTpr_Transactionname, AV29Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         if ( ( StringUtil.StrCmp(AV12TrnContext.gxTpr_Transactionname, AV31Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
          {
-            AV30GXV1 = 1;
-            while ( AV30GXV1 <= AV12TrnContext.gxTpr_Attributes.Count )
+            AV32GXV1 = 1;
+            while ( AV32GXV1 <= AV12TrnContext.gxTpr_Attributes.Count )
             {
-               AV26TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV12TrnContext.gxTpr_Attributes.Item(AV30GXV1));
+               AV26TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV12TrnContext.gxTpr_Attributes.Item(AV32GXV1));
                if ( StringUtil.StrCmp(AV26TrnContextAtt.gxTpr_Attributename, "Trn_ThemeId") == 0 )
                {
                   AV25Insert_Trn_ThemeId = StringUtil.StrToGuid( AV26TrnContextAtt.gxTpr_Attributevalue);
                }
-               AV30GXV1 = (int)(AV30GXV1+1);
+               AV32GXV1 = (int)(AV32GXV1+1);
             }
          }
          if ( StringUtil.StrCmp(Gx_mode, "INS") == 0 )
@@ -170,7 +170,7 @@ namespace GeneXus.Programs {
          {
             AV13WebSession.Set(context.GetMessage( "NotificationMessage", ""), context.GetMessage( "Location Inserted successfully", ""));
          }
-         new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV24AuditingObject,  AV29Pgmname) ;
+         new GeneXus.Programs.wwpbaseobjects.audittransaction(context ).execute(  AV24AuditingObject,  AV31Pgmname) ;
       }
 
       protected void S112( )
@@ -228,7 +228,7 @@ namespace GeneXus.Programs {
 
       protected void standaloneNotModal( )
       {
-         AV29Pgmname = "Trn_Location_BC";
+         AV31Pgmname = "Trn_Location_BC";
          Gx_BScreen = 0;
       }
 
@@ -1518,7 +1518,7 @@ namespace GeneXus.Programs {
          AV9WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV12TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV13WebSession = context.GetSession();
-         AV29Pgmname = "";
+         AV31Pgmname = "";
          AV26TrnContextAtt = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute(context);
          AV25Insert_Trn_ThemeId = Guid.Empty;
          AV24AuditingObject = new GeneXus.Programs.wwpbaseobjects.SdtAuditingObject(context);
@@ -1735,7 +1735,7 @@ namespace GeneXus.Programs {
          );
          Z29LocationId = Guid.NewGuid( );
          A29LocationId = Guid.NewGuid( );
-         AV29Pgmname = "Trn_Location_BC";
+         AV31Pgmname = "Trn_Location_BC";
          Z247Trn_ThemeId = new prc_getdefaulttheme(context).executeUdp( );
          n247Trn_ThemeId = false;
          A247Trn_ThemeId = new prc_getdefaulttheme(context).executeUdp( );
@@ -1751,11 +1751,11 @@ namespace GeneXus.Programs {
       private short Gx_BScreen ;
       private short RcdFound6 ;
       private int trnEnded ;
-      private int AV30GXV1 ;
+      private int AV32GXV1 ;
       private string Gx_mode ;
       private string endTrnMsgTxt ;
       private string endTrnMsgCod ;
-      private string AV29Pgmname ;
+      private string AV31Pgmname ;
       private string Z35LocationPhone ;
       private string A35LocationPhone ;
       private string GXt_char2 ;

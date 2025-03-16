@@ -65,6 +65,7 @@ namespace GeneXus.Programs {
          AV9TilesItem.gxTpr_Text = context.GetMessage( "Tile", "");
          AV9TilesItem.gxTpr_Color = "";
          AV9TilesItem.gxTpr_Bgcolor = "";
+         AV9TilesItem.gxTpr_Align = context.GetMessage( "Center", "");
          AV9TilesItem.gxTpr_Bgimageurl = "";
          AV9TilesItem.gxTpr_Opacity = 0;
          AV9TilesItem.gxTpr_Permissions = new();

@@ -30,10 +30,6 @@ namespace GeneXus.Programs
 		public SdtWP_CreateOrganisationAndManagerData_Step3( )
 		{
 			/* Constructor for serialization */
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_Organisationctatheme = "";
-
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_Organisationbrandtheme = "";
-
 		}
 
 		public SdtWP_CreateOrganisationAndManagerData_Step3(IGxContext context)
@@ -61,12 +57,6 @@ namespace GeneXus.Programs
 
 		public override void ToJSON(bool includeState)
 		{
-			AddObjectProperty("OrganisationCtaTheme", gxTpr_Organisationctatheme, false);
-
-
-			AddObjectProperty("OrganisationBrandTheme", gxTpr_Organisationbrandtheme, false);
-
-
 			AddObjectProperty("OrganisationHasMyCare", gxTpr_Organisationhasmycare, false);
 
 
@@ -78,43 +68,14 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("OrganisationHasDynamicForms", gxTpr_Organisationhasdynamicforms, false);
 
+
+			AddObjectProperty("OrganisationHasOwnBrand", gxTpr_Organisationhasownbrand, false);
+
 			return;
 		}
 		#endregion
 
 		#region Properties
-
-		[SoapElement(ElementName="OrganisationCtaTheme")]
-		[XmlElement(ElementName="OrganisationCtaTheme")]
-		public string gxTpr_Organisationctatheme
-		{
-			get {
-				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_Organisationctatheme; 
-			}
-			set {
-				gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_Organisationctatheme = value;
-				SetDirty("Organisationctatheme");
-			}
-		}
-
-
-
-
-		[SoapElement(ElementName="OrganisationBrandTheme")]
-		[XmlElement(ElementName="OrganisationBrandTheme")]
-		public string gxTpr_Organisationbrandtheme
-		{
-			get {
-				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_Organisationbrandtheme; 
-			}
-			set {
-				gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_Organisationbrandtheme = value;
-				SetDirty("Organisationbrandtheme");
-			}
-		}
-
-
-
 
 		[SoapElement(ElementName="OrganisationHasMyCare")]
 		[XmlElement(ElementName="OrganisationHasMyCare")]
@@ -179,6 +140,22 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="OrganisationHasOwnBrand")]
+		[XmlElement(ElementName="OrganisationHasOwnBrand")]
+		public bool gxTpr_Organisationhasownbrand
+		{
+			get {
+				return gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_Organisationhasownbrand; 
+			}
+			set {
+				gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_Organisationhasownbrand = value;
+				SetDirty("Organisationhasownbrand");
+			}
+		}
+
+
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -200,12 +177,6 @@ namespace GeneXus.Programs
 
 		public void initialize( )
 		{
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_Organisationctatheme = "";
-			gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_Organisationbrandtheme = "";
-
-
-
-
 			return  ;
 		}
 
@@ -214,12 +185,6 @@ namespace GeneXus.Programs
 		#endregion
 
 		#region Declaration
-
-		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_Organisationctatheme;
-		 
-
-		protected string gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_Organisationbrandtheme;
-		 
 
 		protected bool gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_Organisationhasmycare;
 		 
@@ -231,6 +196,9 @@ namespace GeneXus.Programs
 		 
 
 		protected bool gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_Organisationhasdynamicforms;
+		 
+
+		protected bool gxTv_SdtWP_CreateOrganisationAndManagerData_Step3_Organisationhasownbrand;
 		 
 
 
@@ -250,31 +218,7 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
-		[DataMember(Name="OrganisationCtaTheme", Order=0)]
-		public  string gxTpr_Organisationctatheme
-		{
-			get { 
-				return sdt.gxTpr_Organisationctatheme;
-
-			}
-			set { 
-				 sdt.gxTpr_Organisationctatheme = value;
-			}
-		}
-
-		[DataMember(Name="OrganisationBrandTheme", Order=1)]
-		public  string gxTpr_Organisationbrandtheme
-		{
-			get { 
-				return sdt.gxTpr_Organisationbrandtheme;
-
-			}
-			set { 
-				 sdt.gxTpr_Organisationbrandtheme = value;
-			}
-		}
-
-		[DataMember(Name="OrganisationHasMyCare", Order=2)]
+		[DataMember(Name="OrganisationHasMyCare", Order=0)]
 		public bool gxTpr_Organisationhasmycare
 		{
 			get { 
@@ -286,7 +230,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="OrganisationHasMyLiving", Order=3)]
+		[DataMember(Name="OrganisationHasMyLiving", Order=1)]
 		public bool gxTpr_Organisationhasmyliving
 		{
 			get { 
@@ -298,7 +242,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="OrganisationHasMyServices", Order=4)]
+		[DataMember(Name="OrganisationHasMyServices", Order=2)]
 		public bool gxTpr_Organisationhasmyservices
 		{
 			get { 
@@ -310,7 +254,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="OrganisationHasDynamicForms", Order=5)]
+		[DataMember(Name="OrganisationHasDynamicForms", Order=3)]
 		public bool gxTpr_Organisationhasdynamicforms
 		{
 			get { 
@@ -319,6 +263,18 @@ namespace GeneXus.Programs
 			}
 			set { 
 				sdt.gxTpr_Organisationhasdynamicforms = value;
+			}
+		}
+
+		[DataMember(Name="OrganisationHasOwnBrand", Order=4)]
+		public bool gxTpr_Organisationhasownbrand
+		{
+			get { 
+				return sdt.gxTpr_Organisationhasownbrand;
+
+			}
+			set { 
+				sdt.gxTpr_Organisationhasownbrand = value;
 			}
 		}
 

@@ -1,11 +1,58 @@
-1>>>e19ee11e-42f5-4add-8885-857d5d6c0100
-1>>>{"ProductServiceId":"e19ee11e-42f5-4add-8885-857d5d6c0100","ProductServiceId_N":0,"LocationId":"a81dfcef-c383-44ce-8cad-891516e1a568","OrganisationId":"aca3bfc6-a3ff-4130-9ebd-b30269c32aef","ProductServiceName":"Food Delivery","ProductServiceTileName":"Food Delivery       ","ProductServiceDescription":"Best food ever","ProductServiceClass":"My Services","ProductServiceImage":"","ProductServiceGroup":"5474e63c-f78e-407d-a5b1-c745fc9c19a6","SupplierGenId":"00000000-0000-0000-0000-000000000000","SupplierGenId_N":1,"SupplierGenCompanyName":"","SupplierAgbId":"00000000-0000-0000-0000-000000000000","SupplierAgbId_N":1,"SupplierAgbName":"","ProductServiceImage_GXI":"multimedia-file.tmp","Mode":"UPD","Initialized":0,"ProductServiceId_Z":"e19ee11e-42f5-4add-8885-857d5d6c0100","LocationId_Z":"a81dfcef-c383-44ce-8cad-891516e1a568","OrganisationId_Z":"aca3bfc6-a3ff-4130-9ebd-b30269c32aef","ProductServiceName_Z":"Food Delivery","ProductServiceTileName_Z":"Food Delivery       ","ProductServiceClass_Z":"My Services","ProductServiceGroup_Z":"5474e63c-f78e-407d-a5b1-c745fc9c19a6","SupplierGenId_Z":"00000000-0000-0000-0000-000000000000","SupplierGenCompanyName_Z":"","SupplierAgbId_Z":"00000000-0000-0000-0000-000000000000","SupplierAgbName_Z":"","ProductServiceImage_GXI_Z":"multimedia-file.tmp"}
-1>>>[{"ContentType":"Image","ContentValue":"https://staging.comforta.yukon.software/multimedia-file.tmp"},{"ContentType":"Description","ContentValue":"Best food ever"}]
-2>>>[{"ContentType":"Image","ContentValue":"multimedia-file.tmp"},{"ContentType":"Description","ContentValue":"Best food ever"}]
-1>>>e19ee11e-42f5-4add-8885-857d5d6c0100
-1>>>{"ProductServiceId":"e19ee11e-42f5-4add-8885-857d5d6c0100","ProductServiceId_N":0,"LocationId":"a81dfcef-c383-44ce-8cad-891516e1a568","OrganisationId":"aca3bfc6-a3ff-4130-9ebd-b30269c32aef","ProductServiceName":"Food Delivery","ProductServiceTileName":"Food Delivery       ","ProductServiceDescription":"Best food ever","ProductServiceClass":"My Services","ProductServiceImage":"","ProductServiceGroup":"5474e63c-f78e-407d-a5b1-c745fc9c19a6","SupplierGenId":"00000000-0000-0000-0000-000000000000","SupplierGenId_N":1,"SupplierGenCompanyName":"","SupplierAgbId":"00000000-0000-0000-0000-000000000000","SupplierAgbId_N":1,"SupplierAgbName":"","ProductServiceImage_GXI":"multimedia-file.tmp","Mode":"UPD","Initialized":0,"ProductServiceId_Z":"e19ee11e-42f5-4add-8885-857d5d6c0100","LocationId_Z":"a81dfcef-c383-44ce-8cad-891516e1a568","OrganisationId_Z":"aca3bfc6-a3ff-4130-9ebd-b30269c32aef","ProductServiceName_Z":"Food Delivery","ProductServiceTileName_Z":"Food Delivery       ","ProductServiceClass_Z":"My Services","ProductServiceGroup_Z":"5474e63c-f78e-407d-a5b1-c745fc9c19a6","SupplierGenId_Z":"00000000-0000-0000-0000-000000000000","SupplierGenCompanyName_Z":"","SupplierAgbId_Z":"00000000-0000-0000-0000-000000000000","SupplierAgbName_Z":"","ProductServiceImage_GXI_Z":"multimedia-file.tmp"}
-1>>>[{"ContentType":"Image","ContentValue":"https://staging.comforta.yukon.software/multimedia-file.tmp"},{"ContentType":"Description","ContentValue":"Best food ever"}]
-2>>>[{"CtaId":"974eb7d0-2eed-495d-8fd9-350391dda2e8","CtaType":"SiteUrl","CtaLabel":"SiteUrl","CtaAction":"https://mail.google.com/mail/u/0/#inbox","CtaBGColor":"#b2b997","IsFullWidth":false,"IsImageButton":false}]
-3>>>[{"ContentType":"Image","ContentValue":"multimedia-file.tmp"},{"ContentType":"Description","ContentValue":"Best food ever"}]
-{"PageId":"e19ee11e-42f5-4add-8885-857d5d6c0100","PageName":"Food Delivery","Content":[{"ContentType":"Image","ContentValue":"multimedia-file.tmp"},{"ContentType":"Description","ContentValue":"Best food ever"}],"Cta":[{"CtaId":"974eb7d0-2eed-495d-8fd9-350391dda2e8","CtaType":"SiteUrl","CtaLabel":"SiteUrl","CtaAction":"https://mail.google.com/mail/u/0/#inbox","CtaBGColor":"#b2b997","IsFullWidth":false,"IsImageButton":false}]}
-Token: 
+Transport1
+Web Link
+Web Link
+Dynamic Forms
+NewForm
+Works
+Home
+>>U["my care","my living"]
+>>["my care","my living","my services"]
+To retain >> reception
+RECEPTION
+To retain >> 
+
+To retain >> my activity
+My Activity
+To retain >> location
+Location
+To retain A >> my care
+My Care
+To retain A >> my living
+My Living
+To remove A >> my services
+My Services
+To retain >> transport
+Transport
+To retain >> title
+Title
+To retain >> transport1
+Transport1
+{"PageId":"ef2bbad3-19f9-4001-911f-02090e6505b2","PageName":"Home","PageIsPublished":false,"PageIsContentPage":false,"Row":[{"Col":[{"Tile":{"TileId":"00000000-0000-0000-0000-000000000000","TileName":"RECEPTION","TileText":"RECEPTION","TileColor":"#ffffff","TileAlignment":"left","TileIcon":"Curtain","TileBGColor":"#00000063","TileBGImageUrl":"https://staging.comforta.yukon.software/media/receptie-197@3x.png","TileBGImageOpacity":39,"TileAction":{"ObjectType":"Predefined Page, Reception","ObjectId":"ffaa56c7-141d-4143-8cbf-ed3a8424f772","ObjectUrl":""}}}]},{"Col":[{"Tile":{"TileId":"00000000-0000-0000-0000-000000000000","TileName":"","TileText":"","TileColor":"#ffffff","TileAlignment":"center","TileIcon":"Key","TileBGColor":"#000000b0","TileBGImageUrl":"https://staging.comforta.yukon.software/media/Calendar.png","TileBGImageOpacity":69,"TileAction":{"ObjectType":"Predefined Page, Calendar","ObjectId":"1d8fed57-601e-46eb-bb6c-66613565cdd8","ObjectUrl":""}}},{"Tile":{"TileId":"00000000-0000-0000-0000-000000000000","TileName":"My Activity","TileText":"My Activity","TileColor":"#ffffff","TileAlignment":"left","TileIcon":"Monitor","TileBGColor":"#969674","TileBGImageUrl":"","TileBGImageOpacity":100,"TileAction":{"ObjectType":"Predefined Page, My Activity","ObjectId":"f10da583-2c8b-44f8-bb8f-7dcce6fb68e2","ObjectUrl":""}}}]},{"Col":[{"Tile":{"TileId":"00000000-0000-0000-0000-000000000000","TileName":"Location","TileText":"Location","TileColor":"#ffffff","TileAlignment":"left","TileIcon":"Intercom","TileBGColor":"#000000ff","TileBGImageUrl":"https://staging.comforta.yukon.software/media/LocationInfo.png","TileBGImageOpacity":100,"TileAction":{"ObjectType":"Predefined Page, Location","ObjectId":"b7c11a6d-b69b-45a2-bf97-b96d94a819db","ObjectUrl":""}}}]},{"Col":[{"Tile":{"TileId":"00000000-0000-0000-0000-000000000000","TileName":"My Care","TileText":"My Care","TileColor":"#ffffff","TileAlignment":"center","TileIcon":"","TileBGColor":"#400040","TileBGImageUrl":"","TileBGImageOpacity":0,"TileAction":{"ObjectType":"Page","ObjectId":"00000000-0000-0000-0000-000000000000","ObjectUrl":""}}},{"Tile":{"TileId":"00000000-0000-0000-0000-000000000000","TileName":"My Living","TileText":"My Living","TileColor":"#ffffff","TileAlignment":"center","TileIcon":"","TileBGColor":"#a48f79","TileBGImageUrl":"","TileBGImageOpacity":0,"TileAction":{"ObjectType":"Page","ObjectId":"00000000-0000-0000-0000-000000000000","ObjectUrl":""}}}]},{"Col":[{"Tile":{"TileId":"00000000-0000-0000-0000-000000000000","TileName":"Transport","TileText":"Transport","TileColor":"#333333","TileAlignment":"left","TileIcon":"","TileBGColor":"#00ff40","TileBGImageUrl":"","TileBGImageOpacity":0,"TileAction":{"ObjectType":"Service/Product Page, Transport","ObjectId":"13f31bbf-c84b-4684-a32b-ab396c8e0585","ObjectUrl":""}}},{"Tile":{"TileId":"00000000-0000-0000-0000-000000000000","TileName":"Title","TileText":"Title","TileColor":"#333333","TileAlignment":"left","TileIcon":"","TileBGColor":"#b5e9ab","TileBGImageUrl":"","TileBGImageOpacity":0,"TileAction":{"ObjectType":"Page","ObjectId":"00000000-0000-0000-0000-000000000000","ObjectUrl":""}}}]},{"Col":[{"Tile":{"TileId":"00000000-0000-0000-0000-000000000000","TileName":"Transport1","TileText":"Transport1","TileColor":"#ffffff","TileAlignment":"left","TileIcon":"","TileBGColor":"#8080ff","TileBGImageUrl":"","TileBGImageOpacity":0,"TileAction":{"ObjectType":"Page, Transport1","ObjectId":"115b34ad-debe-4ef1-916c-c24e44374b39","ObjectUrl":""}}}]},{"Col":[]},{"Col":[]},{"Col":[]},{"Col":[]},{"Col":[]},{"Col":[]},{"Col":[]},{"Col":[]},{"Col":[]},{"Col":[]},{"Col":[]},{"Col":[]},{"Col":[]},{"Col":[]},{"Col":[]}]}
+Transport1
+Web Link
+Web Link
+Dynamic Forms
+NewForm
+Works
+Home
+Transport1
+Web Link
+Web Link
+Dynamic Forms
+NewForm
+Works
+Home
+Transport1
+Web Link
+Web Link
+Dynamic Forms
+NewForm
+Works
+Home
+Transport1
+Web Link
+Web Link
+Dynamic Forms
+NewForm
+Works
+Home

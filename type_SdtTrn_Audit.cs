@@ -79,6 +79,7 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Auditaction_Z");
          state.Add("gxTpr_Auditdisplaydescription_Z");
          state.Add("gxTpr_Organisationid_Z");
+         state.Add("gxTpr_Organisationid_N");
          return state ;
       }
 
@@ -109,6 +110,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Audit_Auditaction_Z = sdt.gxTv_SdtTrn_Audit_Auditaction_Z ;
          gxTv_SdtTrn_Audit_Auditdisplaydescription_Z = sdt.gxTv_SdtTrn_Audit_Auditdisplaydescription_Z ;
          gxTv_SdtTrn_Audit_Organisationid_Z = sdt.gxTv_SdtTrn_Audit_Organisationid_Z ;
+         gxTv_SdtTrn_Audit_Organisationid_N = sdt.gxTv_SdtTrn_Audit_Organisationid_N ;
          return  ;
       }
 
@@ -157,6 +159,7 @@ namespace GeneXus.Programs {
          AddObjectProperty("AuditAction", gxTv_SdtTrn_Audit_Auditaction, false, includeNonInitialized);
          AddObjectProperty("AuditDisplayDescription", gxTv_SdtTrn_Audit_Auditdisplaydescription, false, includeNonInitialized);
          AddObjectProperty("OrganisationId", gxTv_SdtTrn_Audit_Organisationid, false, includeNonInitialized);
+         AddObjectProperty("OrganisationId_N", gxTv_SdtTrn_Audit_Organisationid_N, false, includeNonInitialized);
          if ( includeState )
          {
             AddObjectProperty("Mode", gxTv_SdtTrn_Audit_Mode, false, includeNonInitialized);
@@ -190,6 +193,7 @@ namespace GeneXus.Programs {
             AddObjectProperty("AuditAction_Z", gxTv_SdtTrn_Audit_Auditaction_Z, false, includeNonInitialized);
             AddObjectProperty("AuditDisplayDescription_Z", gxTv_SdtTrn_Audit_Auditdisplaydescription_Z, false, includeNonInitialized);
             AddObjectProperty("OrganisationId_Z", gxTv_SdtTrn_Audit_Organisationid_Z, false, includeNonInitialized);
+            AddObjectProperty("OrganisationId_N", gxTv_SdtTrn_Audit_Organisationid_N, false, includeNonInitialized);
          }
          return  ;
       }
@@ -248,6 +252,7 @@ namespace GeneXus.Programs {
          }
          if ( sdt.IsDirty("OrganisationId") )
          {
+            gxTv_SdtTrn_Audit_Organisationid_N = (short)(sdt.gxTv_SdtTrn_Audit_Organisationid_N);
             sdtIsNull = 0;
             gxTv_SdtTrn_Audit_Organisationid = sdt.gxTv_SdtTrn_Audit_Organisationid ;
          }
@@ -480,11 +485,25 @@ namespace GeneXus.Programs {
          }
 
          set {
+            gxTv_SdtTrn_Audit_Organisationid_N = 0;
             sdtIsNull = 0;
             gxTv_SdtTrn_Audit_Organisationid = value;
             SetDirty("Organisationid");
          }
 
+      }
+
+      public void gxTv_SdtTrn_Audit_Organisationid_SetNull( )
+      {
+         gxTv_SdtTrn_Audit_Organisationid_N = 1;
+         gxTv_SdtTrn_Audit_Organisationid = Guid.Empty;
+         SetDirty("Organisationid");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Audit_Organisationid_IsNull( )
+      {
+         return (gxTv_SdtTrn_Audit_Organisationid_N==1) ;
       }
 
       [  SoapElement( ElementName = "Mode" )]
@@ -842,6 +861,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "OrganisationId_N" )]
+      [  XmlElement( ElementName = "OrganisationId_N"   )]
+      public short gxTpr_Organisationid_N
+      {
+         get {
+            return gxTv_SdtTrn_Audit_Organisationid_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Audit_Organisationid_N = value;
+            SetDirty("Organisationid_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Audit_Organisationid_N_SetNull( )
+      {
+         gxTv_SdtTrn_Audit_Organisationid_N = 0;
+         SetDirty("Organisationid_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Audit_Organisationid_N_IsNull( )
+      {
+         return false ;
+      }
+
       [XmlIgnore]
       private static GXTypeInfo _typeProps;
       protected override GXTypeInfo TypeInfo
@@ -900,6 +947,7 @@ namespace GeneXus.Programs {
 
       private short sdtIsNull ;
       private short gxTv_SdtTrn_Audit_Initialized ;
+      private short gxTv_SdtTrn_Audit_Organisationid_N ;
       private string gxTv_SdtTrn_Audit_Gamuserid ;
       private string gxTv_SdtTrn_Audit_Mode ;
       private string gxTv_SdtTrn_Audit_Gamuserid_Z ;

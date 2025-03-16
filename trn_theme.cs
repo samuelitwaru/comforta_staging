@@ -53,6 +53,20 @@ namespace GeneXus.Programs {
             dyncall( GetNextPar( )) ;
             return  ;
          }
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxExecAct_"+"gxLoad_18") == 0 )
+         {
+            A11OrganisationId = StringUtil.StrToGuid( GetPar( "OrganisationId"));
+            n11OrganisationId = false;
+            AssignAttri("", false, "A11OrganisationId", A11OrganisationId.ToString());
+            setAjaxCallMode();
+            if ( ! IsValidAjaxCall( true) )
+            {
+               GxWebError = 1;
+               return  ;
+            }
+            gxLoad_18( A11OrganisationId) ;
+            return  ;
+         }
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxEvt") == 0 )
          {
             setAjaxEventMode();
@@ -71,6 +85,11 @@ namespace GeneXus.Programs {
                return  ;
             }
             gxfirstwebparm = GetFirstPar( "Mode");
+         }
+         else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxNewRow_"+"Gridlevel_ctacolor") == 0 )
+         {
+            gxnrGridlevel_ctacolor_newrow_invoke( ) ;
+            return  ;
          }
          else if ( StringUtil.StrCmp(gxfirstwebparm, "gxajaxNewRow_"+"Gridlevel_icon") == 0 )
          {
@@ -184,11 +203,28 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void gxnrGridlevel_icon_newrow_invoke( )
+      protected void gxnrGridlevel_ctacolor_newrow_invoke( )
       {
          nRC_GXsfl_42 = (int)(Math.Round(NumberUtil.Val( GetPar( "nRC_GXsfl_42"), "."), 18, MidpointRounding.ToEven));
          nGXsfl_42_idx = (int)(Math.Round(NumberUtil.Val( GetPar( "nGXsfl_42_idx"), "."), 18, MidpointRounding.ToEven));
          sGXsfl_42_idx = GetPar( "sGXsfl_42_idx");
+         Gx_BScreen = (short)(Math.Round(NumberUtil.Val( GetPar( "Gx_BScreen"), "."), 18, MidpointRounding.ToEven));
+         Gx_mode = GetPar( "Mode");
+         setAjaxCallMode();
+         if ( ! IsValidAjaxCall( true) )
+         {
+            GxWebError = 1;
+            return  ;
+         }
+         gxnrGridlevel_ctacolor_newrow( ) ;
+         /* End function gxnrGridlevel_ctacolor_newrow_invoke */
+      }
+
+      protected void gxnrGridlevel_icon_newrow_invoke( )
+      {
+         nRC_GXsfl_51 = (int)(Math.Round(NumberUtil.Val( GetPar( "nRC_GXsfl_51"), "."), 18, MidpointRounding.ToEven));
+         nGXsfl_51_idx = (int)(Math.Round(NumberUtil.Val( GetPar( "nGXsfl_51_idx"), "."), 18, MidpointRounding.ToEven));
+         sGXsfl_51_idx = GetPar( "sGXsfl_51_idx");
          Gx_BScreen = (short)(Math.Round(NumberUtil.Val( GetPar( "Gx_BScreen"), "."), 18, MidpointRounding.ToEven));
          Gx_mode = GetPar( "Mode");
          setAjaxCallMode();
@@ -203,9 +239,9 @@ namespace GeneXus.Programs {
 
       protected void gxnrGridlevel_color_newrow_invoke( )
       {
-         nRC_GXsfl_55 = (int)(Math.Round(NumberUtil.Val( GetPar( "nRC_GXsfl_55"), "."), 18, MidpointRounding.ToEven));
-         nGXsfl_55_idx = (int)(Math.Round(NumberUtil.Val( GetPar( "nGXsfl_55_idx"), "."), 18, MidpointRounding.ToEven));
-         sGXsfl_55_idx = GetPar( "sGXsfl_55_idx");
+         nRC_GXsfl_64 = (int)(Math.Round(NumberUtil.Val( GetPar( "nRC_GXsfl_64"), "."), 18, MidpointRounding.ToEven));
+         nGXsfl_64_idx = (int)(Math.Round(NumberUtil.Val( GetPar( "nGXsfl_64_idx"), "."), 18, MidpointRounding.ToEven));
+         sGXsfl_64_idx = GetPar( "sGXsfl_64_idx");
          Gx_BScreen = (short)(Math.Round(NumberUtil.Val( GetPar( "Gx_BScreen"), "."), 18, MidpointRounding.ToEven));
          setAjaxCallMode();
          if ( ! IsValidAjaxCall( true) )
@@ -456,6 +492,22 @@ namespace GeneXus.Programs {
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-lg-9 CellMarginTop", "start", "top", "", "", "div");
          /* Div Control */
+         GxWebStd.gx_div_start( context, divTableleaflevel_ctacolor_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 SectionGrid GridNoBorderCell GridFixedColumnBorders", "start", "top", "", "", "div");
+         gxdraw_Gridlevel_ctacolor( ) ;
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         GxWebStd.gx_div_end( context, "start", "top", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
+         /* Div Control */
+         GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-xs-12 col-lg-9 CellMarginTop", "start", "top", "", "", "div");
+         /* Div Control */
          GxWebStd.gx_div_start( context, divTableleaflevel_icon_Internalname, 1, 0, "px", 0, "px", "Table", "start", "top", "", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "row", "start", "top", "", "", "div");
@@ -499,21 +551,21 @@ namespace GeneXus.Programs {
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-action-group CellMarginTop10", "start", "top", " "+"data-gx-actiongroup-type=\"toolbar\""+" ", "", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 63,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 72,'',false,'',0)\"";
          ClassString = "ButtonMaterial";
          StyleString = "";
          GxWebStd.gx_button_ctrl( context, bttBtntrn_enter_Internalname, "", context.GetMessage( "GX_BtnEnter", ""), bttBtntrn_enter_Jsonclick, 5, context.GetMessage( "GX_BtnEnter", ""), "", StyleString, ClassString, bttBtntrn_enter_Visible, bttBtntrn_enter_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EENTER."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Theme.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 65,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 74,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
          GxWebStd.gx_button_ctrl( context, bttBtntrn_cancel_Internalname, "", context.GetMessage( "GX_BtnCancel", ""), bttBtntrn_cancel_Jsonclick, 1, context.GetMessage( "GX_BtnCancel", ""), "", StyleString, ClassString, bttBtntrn_cancel_Visible, 1, "standard", "'"+""+"'"+",false,"+"'"+"ECANCEL."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Theme.htm");
          GxWebStd.gx_div_end( context, "start", "top", "div");
          /* Div Control */
          GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "gx-button", "start", "top", "", "", "div");
-         TempTags = "  onfocus=\"gx.evt.onfocus(this, 67,'',false,'',0)\"";
+         TempTags = "  onfocus=\"gx.evt.onfocus(this, 76,'',false,'',0)\"";
          ClassString = "ButtonMaterialDefault";
          StyleString = "";
          GxWebStd.gx_button_ctrl( context, bttBtntrn_delete_Internalname, "", context.GetMessage( "GX_BtnDelete", ""), bttBtntrn_delete_Jsonclick, 5, context.GetMessage( "GX_BtnDelete", ""), "", StyleString, ClassString, bttBtntrn_delete_Visible, bttBtntrn_delete_Enabled, "standard", "'"+""+"'"+",false,"+"'"+"EDELETE."+"'", TempTags, "", context.GetButtonType( ), "HLP_Trn_Theme.htm");
@@ -528,11 +580,135 @@ namespace GeneXus.Programs {
          GxWebStd.gx_div_end( context, "start", "top", "div");
       }
 
-      protected void gxdraw_Gridlevel_icon( )
+      protected void gxdraw_Gridlevel_ctacolor( )
       {
          /*  Grid Control  */
          StartGridControl42( ) ;
          nGXsfl_42_idx = 0;
+         if ( ( nKeyPressed == 1 ) && ( AnyError == 0 ) )
+         {
+            /* Enter key processing. */
+            nBlankRcdCount112 = 5;
+            if ( ! IsIns( ) )
+            {
+               /* Display confirmed (stored) records */
+               nRcdExists_112 = 1;
+               ScanStart0W112( ) ;
+               while ( RcdFound112 != 0 )
+               {
+                  init_level_properties112( ) ;
+                  getByPrimaryKey0W112( ) ;
+                  AddRow0W112( ) ;
+                  ScanNext0W112( ) ;
+               }
+               ScanEnd0W112( ) ;
+               nBlankRcdCount112 = 5;
+            }
+         }
+         else if ( ( nKeyPressed == 3 ) || ( nKeyPressed == 4 ) || ( ( nKeyPressed == 1 ) && ( AnyError != 0 ) ) )
+         {
+            /* Button check  or addlines. */
+            standaloneNotModal0W112( ) ;
+            standaloneModal0W112( ) ;
+            sMode112 = Gx_mode;
+            while ( nGXsfl_42_idx < nRC_GXsfl_42 )
+            {
+               bGXsfl_42_Refreshing = true;
+               ReadRow0W112( ) ;
+               edtCtaColorId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "CTACOLORID_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp("", false, edtCtaColorId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtCtaColorId_Enabled), 5, 0), !bGXsfl_42_Refreshing);
+               edtCtaColorName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "CTACOLORNAME_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp("", false, edtCtaColorName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtCtaColorName_Enabled), 5, 0), !bGXsfl_42_Refreshing);
+               edtCtaColorCode_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "CTACOLORCODE_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp("", false, edtCtaColorCode_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtCtaColorCode_Enabled), 5, 0), !bGXsfl_42_Refreshing);
+               if ( ( nRcdExists_112 == 0 ) && ! IsIns( ) )
+               {
+                  Gx_mode = "INS";
+                  AssignAttri("", false, "Gx_mode", Gx_mode);
+                  standaloneModal0W112( ) ;
+               }
+               SendRow0W112( ) ;
+               bGXsfl_42_Refreshing = false;
+            }
+            Gx_mode = sMode112;
+            AssignAttri("", false, "Gx_mode", Gx_mode);
+         }
+         else
+         {
+            /* Get or get-alike key processing. */
+            nBlankRcdCount112 = 5;
+            nRcdExists_112 = 1;
+            if ( ! IsIns( ) )
+            {
+               ScanStart0W112( ) ;
+               while ( RcdFound112 != 0 )
+               {
+                  sGXsfl_42_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_42_idx+1), 4, 0), 4, "0");
+                  SubsflControlProps_42112( ) ;
+                  init_level_properties112( ) ;
+                  standaloneNotModal0W112( ) ;
+                  getByPrimaryKey0W112( ) ;
+                  standaloneModal0W112( ) ;
+                  AddRow0W112( ) ;
+                  ScanNext0W112( ) ;
+               }
+               ScanEnd0W112( ) ;
+            }
+         }
+         /* Initialize fields for 'new' records and send them. */
+         if ( ! IsDsp( ) && ! IsDlt( ) )
+         {
+            sMode112 = Gx_mode;
+            Gx_mode = "INS";
+            AssignAttri("", false, "Gx_mode", Gx_mode);
+            sGXsfl_42_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_42_idx+1), 4, 0), 4, "0");
+            SubsflControlProps_42112( ) ;
+            InitAll0W112( ) ;
+            init_level_properties112( ) ;
+            nRcdExists_112 = 0;
+            nIsMod_112 = 0;
+            nRcdDeleted_112 = 0;
+            nBlankRcdCount112 = (short)(nBlankRcdUsr112+nBlankRcdCount112);
+            fRowAdded = 0;
+            while ( nBlankRcdCount112 > 0 )
+            {
+               A563CtaColorId = Guid.Empty;
+               standaloneNotModal0W112( ) ;
+               standaloneModal0W112( ) ;
+               AddRow0W112( ) ;
+               if ( ( nKeyPressed == 4 ) && ( fRowAdded == 0 ) )
+               {
+                  fRowAdded = 1;
+                  GX_FocusControl = edtCtaColorId_Internalname;
+                  AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
+               }
+               nBlankRcdCount112 = (short)(nBlankRcdCount112-1);
+            }
+            Gx_mode = sMode112;
+            AssignAttri("", false, "Gx_mode", Gx_mode);
+         }
+         sStyleString = "";
+         context.WriteHtmlText( "<div id=\""+"Gridlevel_ctacolorContainer"+"Div\" "+sStyleString+">"+"</div>") ;
+         context.httpAjaxContext.ajax_rsp_assign_grid("_"+"Gridlevel_ctacolor", Gridlevel_ctacolorContainer, subGridlevel_ctacolor_Internalname);
+         if ( ! context.isAjaxRequest( ) && ! context.isSpaRequest( ) )
+         {
+            GxWebStd.gx_hidden_field( context, "Gridlevel_ctacolorContainerData", Gridlevel_ctacolorContainer.ToJavascriptSource());
+         }
+         if ( context.isAjaxRequest( ) || context.isSpaRequest( ) )
+         {
+            GxWebStd.gx_hidden_field( context, "Gridlevel_ctacolorContainerData"+"V", Gridlevel_ctacolorContainer.GridValuesHidden());
+         }
+         else
+         {
+            context.WriteHtmlText( "<input type=\"hidden\" "+"name=\""+"Gridlevel_ctacolorContainerData"+"V"+"\" value='"+Gridlevel_ctacolorContainer.GridValuesHidden()+"'/>") ;
+         }
+      }
+
+      protected void gxdraw_Gridlevel_icon( )
+      {
+         /*  Grid Control  */
+         StartGridControl51( ) ;
+         nGXsfl_51_idx = 0;
          if ( ( nKeyPressed == 1 ) && ( AnyError == 0 ) )
          {
             /* Enter key processing. */
@@ -559,18 +735,18 @@ namespace GeneXus.Programs {
             standaloneNotModal0W87( ) ;
             standaloneModal0W87( ) ;
             sMode87 = Gx_mode;
-            while ( nGXsfl_42_idx < nRC_GXsfl_42 )
+            while ( nGXsfl_51_idx < nRC_GXsfl_51 )
             {
-               bGXsfl_42_Refreshing = true;
+               bGXsfl_51_Refreshing = true;
                ReadRow0W87( ) ;
-               edtIconId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONID_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-               AssignProp("", false, edtIconId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconId_Enabled), 5, 0), !bGXsfl_42_Refreshing);
-               edtIconName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONNAME_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-               AssignProp("", false, edtIconName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconName_Enabled), 5, 0), !bGXsfl_42_Refreshing);
-               cmbIconCategory.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONCATEGORY_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-               AssignProp("", false, cmbIconCategory_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbIconCategory.Enabled), 5, 0), !bGXsfl_42_Refreshing);
-               edtIconSVG_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONSVG_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-               AssignProp("", false, edtIconSVG_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconSVG_Enabled), 5, 0), !bGXsfl_42_Refreshing);
+               edtIconId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONID_"+sGXsfl_51_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp("", false, edtIconId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconId_Enabled), 5, 0), !bGXsfl_51_Refreshing);
+               edtIconName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONNAME_"+sGXsfl_51_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp("", false, edtIconName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconName_Enabled), 5, 0), !bGXsfl_51_Refreshing);
+               cmbIconCategory.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONCATEGORY_"+sGXsfl_51_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp("", false, cmbIconCategory_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbIconCategory.Enabled), 5, 0), !bGXsfl_51_Refreshing);
+               edtIconSVG_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONSVG_"+sGXsfl_51_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp("", false, edtIconSVG_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconSVG_Enabled), 5, 0), !bGXsfl_51_Refreshing);
                if ( ( nRcdExists_87 == 0 ) && ! IsIns( ) )
                {
                   Gx_mode = "INS";
@@ -578,7 +754,7 @@ namespace GeneXus.Programs {
                   standaloneModal0W87( ) ;
                }
                SendRow0W87( ) ;
-               bGXsfl_42_Refreshing = false;
+               bGXsfl_51_Refreshing = false;
             }
             Gx_mode = sMode87;
             AssignAttri("", false, "Gx_mode", Gx_mode);
@@ -593,8 +769,8 @@ namespace GeneXus.Programs {
                ScanStart0W87( ) ;
                while ( RcdFound87 != 0 )
                {
-                  sGXsfl_42_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_42_idx+1), 4, 0), 4, "0");
-                  SubsflControlProps_4287( ) ;
+                  sGXsfl_51_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_51_idx+1), 4, 0), 4, "0");
+                  SubsflControlProps_5187( ) ;
                   init_level_properties87( ) ;
                   standaloneNotModal0W87( ) ;
                   getByPrimaryKey0W87( ) ;
@@ -611,8 +787,8 @@ namespace GeneXus.Programs {
             sMode87 = Gx_mode;
             Gx_mode = "INS";
             AssignAttri("", false, "Gx_mode", Gx_mode);
-            sGXsfl_42_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_42_idx+1), 4, 0), 4, "0");
-            SubsflControlProps_4287( ) ;
+            sGXsfl_51_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_51_idx+1), 4, 0), 4, "0");
+            SubsflControlProps_5187( ) ;
             InitAll0W87( ) ;
             init_level_properties87( ) ;
             nRcdExists_87 = 0;
@@ -657,8 +833,8 @@ namespace GeneXus.Programs {
       protected void gxdraw_Gridlevel_color( )
       {
          /*  Grid Control  */
-         StartGridControl55( ) ;
-         nGXsfl_55_idx = 0;
+         StartGridControl64( ) ;
+         nGXsfl_64_idx = 0;
          if ( ( nKeyPressed == 1 ) && ( AnyError == 0 ) )
          {
             /* Enter key processing. */
@@ -685,16 +861,16 @@ namespace GeneXus.Programs {
             standaloneNotModal0W47( ) ;
             standaloneModal0W47( ) ;
             sMode47 = Gx_mode;
-            while ( nGXsfl_55_idx < nRC_GXsfl_55 )
+            while ( nGXsfl_64_idx < nRC_GXsfl_64 )
             {
-               bGXsfl_55_Refreshing = true;
+               bGXsfl_64_Refreshing = true;
                ReadRow0W47( ) ;
-               edtColorId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORID_"+sGXsfl_55_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-               AssignProp("", false, edtColorId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtColorId_Enabled), 5, 0), !bGXsfl_55_Refreshing);
-               cmbColorName.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORNAME_"+sGXsfl_55_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-               AssignProp("", false, cmbColorName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbColorName.Enabled), 5, 0), !bGXsfl_55_Refreshing);
-               edtColorCode_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORCODE_"+sGXsfl_55_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-               AssignProp("", false, edtColorCode_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtColorCode_Enabled), 5, 0), !bGXsfl_55_Refreshing);
+               edtColorId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORID_"+sGXsfl_64_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp("", false, edtColorId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtColorId_Enabled), 5, 0), !bGXsfl_64_Refreshing);
+               cmbColorName.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORNAME_"+sGXsfl_64_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp("", false, cmbColorName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbColorName.Enabled), 5, 0), !bGXsfl_64_Refreshing);
+               edtColorCode_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORCODE_"+sGXsfl_64_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AssignProp("", false, edtColorCode_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtColorCode_Enabled), 5, 0), !bGXsfl_64_Refreshing);
                if ( ( nRcdExists_47 == 0 ) && ! IsIns( ) )
                {
                   Gx_mode = "INS";
@@ -702,7 +878,7 @@ namespace GeneXus.Programs {
                   standaloneModal0W47( ) ;
                }
                SendRow0W47( ) ;
-               bGXsfl_55_Refreshing = false;
+               bGXsfl_64_Refreshing = false;
             }
             Gx_mode = sMode47;
             AssignAttri("", false, "Gx_mode", Gx_mode);
@@ -717,8 +893,8 @@ namespace GeneXus.Programs {
                ScanStart0W47( ) ;
                while ( RcdFound47 != 0 )
                {
-                  sGXsfl_55_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_55_idx+1), 4, 0), 4, "0");
-                  SubsflControlProps_5547( ) ;
+                  sGXsfl_64_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_64_idx+1), 4, 0), 4, "0");
+                  SubsflControlProps_6447( ) ;
                   init_level_properties47( ) ;
                   standaloneNotModal0W47( ) ;
                   getByPrimaryKey0W47( ) ;
@@ -735,8 +911,8 @@ namespace GeneXus.Programs {
             sMode47 = Gx_mode;
             Gx_mode = "INS";
             AssignAttri("", false, "Gx_mode", Gx_mode);
-            sGXsfl_55_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_55_idx+1), 4, 0), 4, "0");
-            SubsflControlProps_5547( ) ;
+            sGXsfl_64_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_64_idx+1), 4, 0), 4, "0");
+            SubsflControlProps_6447( ) ;
             InitAll0W47( ) ;
             init_level_properties47( ) ;
             nRcdExists_47 = 0;
@@ -818,13 +994,25 @@ namespace GeneXus.Programs {
                Z248Trn_ThemeName = cgiGet( "Z248Trn_ThemeName");
                Z260Trn_ThemeFontFamily = cgiGet( "Z260Trn_ThemeFontFamily");
                Z399Trn_ThemeFontSize = (short)(Math.Round(context.localUtil.CToN( cgiGet( "Z399Trn_ThemeFontSize"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               Z11OrganisationId = StringUtil.StrToGuid( cgiGet( "Z11OrganisationId"));
+               n11OrganisationId = ((Guid.Empty==A11OrganisationId) ? true : false);
+               A11OrganisationId = StringUtil.StrToGuid( cgiGet( "Z11OrganisationId"));
+               n11OrganisationId = false;
+               n11OrganisationId = ((Guid.Empty==A11OrganisationId) ? true : false);
                IsConfirmed = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsConfirmed"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                IsModified = (short)(Math.Round(context.localUtil.CToN( cgiGet( "IsModified"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
                Gx_mode = cgiGet( "Mode");
                nRC_GXsfl_42 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_42"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-               nRC_GXsfl_55 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_55"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               nRC_GXsfl_51 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_51"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               nRC_GXsfl_64 = (int)(Math.Round(context.localUtil.CToN( cgiGet( "nRC_GXsfl_64"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               N11OrganisationId = StringUtil.StrToGuid( cgiGet( "N11OrganisationId"));
+               n11OrganisationId = ((Guid.Empty==A11OrganisationId) ? true : false);
                AV13Trn_ThemeId = StringUtil.StrToGuid( cgiGet( "vTRN_THEMEID"));
                Gx_BScreen = (short)(Math.Round(context.localUtil.CToN( cgiGet( "vGXBSCREEN"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+               AV14Insert_OrganisationId = StringUtil.StrToGuid( cgiGet( "vINSERT_ORGANISATIONID"));
+               A11OrganisationId = StringUtil.StrToGuid( cgiGet( "ORGANISATIONID"));
+               n11OrganisationId = ((Guid.Empty==A11OrganisationId) ? true : false);
+               AV16Pgmname = cgiGet( "vPGMNAME");
                /* Read variables values. */
                if ( StringUtil.StrCmp(cgiGet( edtTrn_ThemeId_Internalname), "") == 0 )
                {
@@ -887,6 +1075,7 @@ namespace GeneXus.Programs {
                   AnyError = 1;
                   return  ;
                }
+               /* Check if conditions changed and reset current page numbers */
                /* Check if conditions changed and reset current page numbers */
                /* Check if conditions changed and reset current page numbers */
                standaloneNotModal( ) ;
@@ -1118,17 +1307,21 @@ namespace GeneXus.Programs {
          {
             /* Save parent mode. */
             sMode46 = Gx_mode;
-            CONFIRM_0W87( ) ;
+            CONFIRM_0W112( ) ;
             if ( AnyError == 0 )
             {
-               CONFIRM_0W47( ) ;
+               CONFIRM_0W87( ) ;
                if ( AnyError == 0 )
                {
-                  /* Restore parent mode. */
-                  Gx_mode = sMode46;
-                  AssignAttri("", false, "Gx_mode", Gx_mode);
-                  IsConfirmed = 1;
-                  AssignAttri("", false, "IsConfirmed", StringUtil.LTrimStr( (decimal)(IsConfirmed), 4, 0));
+                  CONFIRM_0W47( ) ;
+                  if ( AnyError == 0 )
+                  {
+                     /* Restore parent mode. */
+                     Gx_mode = sMode46;
+                     AssignAttri("", false, "Gx_mode", Gx_mode);
+                     IsConfirmed = 1;
+                     AssignAttri("", false, "IsConfirmed", StringUtil.LTrimStr( (decimal)(IsConfirmed), 4, 0));
+                  }
                }
             }
             /* Restore parent mode. */
@@ -1139,8 +1332,8 @@ namespace GeneXus.Programs {
 
       protected void CONFIRM_0W47( )
       {
-         nGXsfl_55_idx = 0;
-         while ( nGXsfl_55_idx < nRC_GXsfl_55 )
+         nGXsfl_64_idx = 0;
+         while ( nGXsfl_64_idx < nRC_GXsfl_64 )
          {
             ReadRow0W47( ) ;
             if ( ( nRcdExists_47 != 0 ) || ( nIsMod_47 != 0 ) )
@@ -1223,17 +1416,17 @@ namespace GeneXus.Programs {
             ChangePostValue( edtColorId_Internalname, A249ColorId.ToString()) ;
             ChangePostValue( cmbColorName_Internalname, A250ColorName) ;
             ChangePostValue( edtColorCode_Internalname, A251ColorCode) ;
-            ChangePostValue( "ZT_"+"Z249ColorId_"+sGXsfl_55_idx, Z249ColorId.ToString()) ;
-            ChangePostValue( "ZT_"+"Z250ColorName_"+sGXsfl_55_idx, Z250ColorName) ;
-            ChangePostValue( "ZT_"+"Z251ColorCode_"+sGXsfl_55_idx, Z251ColorCode) ;
-            ChangePostValue( "nRcdDeleted_47_"+sGXsfl_55_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_47), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
-            ChangePostValue( "nRcdExists_47_"+sGXsfl_55_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_47), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
-            ChangePostValue( "nIsMod_47_"+sGXsfl_55_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_47), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "ZT_"+"Z249ColorId_"+sGXsfl_64_idx, Z249ColorId.ToString()) ;
+            ChangePostValue( "ZT_"+"Z250ColorName_"+sGXsfl_64_idx, Z250ColorName) ;
+            ChangePostValue( "ZT_"+"Z251ColorCode_"+sGXsfl_64_idx, Z251ColorCode) ;
+            ChangePostValue( "nRcdDeleted_47_"+sGXsfl_64_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_47), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nRcdExists_47_"+sGXsfl_64_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_47), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nIsMod_47_"+sGXsfl_64_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_47), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
             if ( nIsMod_47 != 0 )
             {
-               ChangePostValue( "COLORID_"+sGXsfl_55_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtColorId_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( "COLORNAME_"+sGXsfl_55_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbColorName.Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( "COLORCODE_"+sGXsfl_55_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtColorCode_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "COLORID_"+sGXsfl_64_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtColorId_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "COLORNAME_"+sGXsfl_64_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbColorName.Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "COLORCODE_"+sGXsfl_64_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtColorCode_Enabled), 5, 0, ".", ""))) ;
             }
          }
          /* Start of After( level) rules */
@@ -1242,8 +1435,8 @@ namespace GeneXus.Programs {
 
       protected void CONFIRM_0W87( )
       {
-         nGXsfl_42_idx = 0;
-         while ( nGXsfl_42_idx < nRC_GXsfl_42 )
+         nGXsfl_51_idx = 0;
+         while ( nGXsfl_51_idx < nRC_GXsfl_51 )
          {
             ReadRow0W87( ) ;
             if ( ( nRcdExists_87 != 0 ) || ( nIsMod_87 != 0 ) )
@@ -1269,7 +1462,7 @@ namespace GeneXus.Programs {
                   }
                   else
                   {
-                     GXCCtl = "ICONID_" + sGXsfl_42_idx;
+                     GXCCtl = "ICONID_" + sGXsfl_51_idx;
                      GX_msglist.addItem(context.GetMessage( "GXM_noupdate", ""), "DuplicatePrimaryKey", 1, GXCCtl);
                      AnyError = 1;
                      GX_FocusControl = edtIconId_Internalname;
@@ -1316,7 +1509,7 @@ namespace GeneXus.Programs {
                   {
                      if ( nRcdDeleted_87 == 0 )
                      {
-                        GXCCtl = "ICONID_" + sGXsfl_42_idx;
+                        GXCCtl = "ICONID_" + sGXsfl_51_idx;
                         GX_msglist.addItem(context.GetMessage( "GXM_recdeleted", ""), 1, GXCCtl);
                         AnyError = 1;
                         GX_FocusControl = edtIconId_Internalname;
@@ -1329,18 +1522,123 @@ namespace GeneXus.Programs {
             ChangePostValue( edtIconName_Internalname, A262IconName) ;
             ChangePostValue( cmbIconCategory_Internalname, A443IconCategory) ;
             ChangePostValue( edtIconSVG_Internalname, A263IconSVG) ;
-            ChangePostValue( "ZT_"+"Z261IconId_"+sGXsfl_42_idx, Z261IconId.ToString()) ;
-            ChangePostValue( "ZT_"+"Z443IconCategory_"+sGXsfl_42_idx, Z443IconCategory) ;
-            ChangePostValue( "ZT_"+"Z262IconName_"+sGXsfl_42_idx, Z262IconName) ;
-            ChangePostValue( "nRcdDeleted_87_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_87), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
-            ChangePostValue( "nRcdExists_87_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_87), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
-            ChangePostValue( "nIsMod_87_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_87), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "ZT_"+"Z261IconId_"+sGXsfl_51_idx, Z261IconId.ToString()) ;
+            ChangePostValue( "ZT_"+"Z443IconCategory_"+sGXsfl_51_idx, Z443IconCategory) ;
+            ChangePostValue( "ZT_"+"Z262IconName_"+sGXsfl_51_idx, Z262IconName) ;
+            ChangePostValue( "nRcdDeleted_87_"+sGXsfl_51_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_87), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nRcdExists_87_"+sGXsfl_51_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_87), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nIsMod_87_"+sGXsfl_51_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_87), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
             if ( nIsMod_87 != 0 )
             {
-               ChangePostValue( "ICONID_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconId_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( "ICONNAME_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconName_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( "ICONCATEGORY_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbIconCategory.Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( "ICONSVG_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconSVG_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "ICONID_"+sGXsfl_51_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconId_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "ICONNAME_"+sGXsfl_51_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconName_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "ICONCATEGORY_"+sGXsfl_51_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbIconCategory.Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "ICONSVG_"+sGXsfl_51_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconSVG_Enabled), 5, 0, ".", ""))) ;
+            }
+         }
+         /* Start of After( level) rules */
+         /* End of After( level) rules */
+      }
+
+      protected void CONFIRM_0W112( )
+      {
+         nGXsfl_42_idx = 0;
+         while ( nGXsfl_42_idx < nRC_GXsfl_42 )
+         {
+            ReadRow0W112( ) ;
+            if ( ( nRcdExists_112 != 0 ) || ( nIsMod_112 != 0 ) )
+            {
+               GetKey0W112( ) ;
+               if ( ( nRcdExists_112 == 0 ) && ( nRcdDeleted_112 == 0 ) )
+               {
+                  if ( RcdFound112 == 0 )
+                  {
+                     Gx_mode = "INS";
+                     AssignAttri("", false, "Gx_mode", Gx_mode);
+                     BeforeValidate0W112( ) ;
+                     if ( AnyError == 0 )
+                     {
+                        CheckExtendedTable0W112( ) ;
+                        CloseExtendedTableCursors0W112( ) ;
+                        if ( AnyError == 0 )
+                        {
+                           IsConfirmed = 1;
+                           AssignAttri("", false, "IsConfirmed", StringUtil.LTrimStr( (decimal)(IsConfirmed), 4, 0));
+                        }
+                     }
+                  }
+                  else
+                  {
+                     GXCCtl = "CTACOLORID_" + sGXsfl_42_idx;
+                     GX_msglist.addItem(context.GetMessage( "GXM_noupdate", ""), "DuplicatePrimaryKey", 1, GXCCtl);
+                     AnyError = 1;
+                     GX_FocusControl = edtCtaColorId_Internalname;
+                     AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
+                  }
+               }
+               else
+               {
+                  if ( RcdFound112 != 0 )
+                  {
+                     if ( nRcdDeleted_112 != 0 )
+                     {
+                        Gx_mode = "DLT";
+                        AssignAttri("", false, "Gx_mode", Gx_mode);
+                        getByPrimaryKey0W112( ) ;
+                        Load0W112( ) ;
+                        BeforeValidate0W112( ) ;
+                        if ( AnyError == 0 )
+                        {
+                           OnDeleteControls0W112( ) ;
+                        }
+                     }
+                     else
+                     {
+                        if ( nIsMod_112 != 0 )
+                        {
+                           Gx_mode = "UPD";
+                           AssignAttri("", false, "Gx_mode", Gx_mode);
+                           BeforeValidate0W112( ) ;
+                           if ( AnyError == 0 )
+                           {
+                              CheckExtendedTable0W112( ) ;
+                              CloseExtendedTableCursors0W112( ) ;
+                              if ( AnyError == 0 )
+                              {
+                                 IsConfirmed = 1;
+                                 AssignAttri("", false, "IsConfirmed", StringUtil.LTrimStr( (decimal)(IsConfirmed), 4, 0));
+                              }
+                           }
+                        }
+                     }
+                  }
+                  else
+                  {
+                     if ( nRcdDeleted_112 == 0 )
+                     {
+                        GXCCtl = "CTACOLORID_" + sGXsfl_42_idx;
+                        GX_msglist.addItem(context.GetMessage( "GXM_recdeleted", ""), 1, GXCCtl);
+                        AnyError = 1;
+                        GX_FocusControl = edtCtaColorId_Internalname;
+                        AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
+                     }
+                  }
+               }
+            }
+            ChangePostValue( edtCtaColorId_Internalname, A563CtaColorId.ToString()) ;
+            ChangePostValue( edtCtaColorName_Internalname, A564CtaColorName) ;
+            ChangePostValue( edtCtaColorCode_Internalname, A565CtaColorCode) ;
+            ChangePostValue( "ZT_"+"Z563CtaColorId_"+sGXsfl_42_idx, Z563CtaColorId.ToString()) ;
+            ChangePostValue( "ZT_"+"Z564CtaColorName_"+sGXsfl_42_idx, Z564CtaColorName) ;
+            ChangePostValue( "ZT_"+"Z565CtaColorCode_"+sGXsfl_42_idx, Z565CtaColorCode) ;
+            ChangePostValue( "nRcdDeleted_112_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_112), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nRcdExists_112_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_112), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nIsMod_112_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_112), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            if ( nIsMod_112 != 0 )
+            {
+               ChangePostValue( "CTACOLORID_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtCtaColorId_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "CTACOLORNAME_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtCtaColorName_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "CTACOLORCODE_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtCtaColorCode_Enabled), 5, 0, ".", ""))) ;
             }
          }
          /* Start of After( level) rules */
@@ -1359,6 +1657,22 @@ namespace GeneXus.Programs {
          AssignProp("", false, divLayoutmaintable_Internalname, "Class", divLayoutmaintable_Class, true);
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV8WWPContext) ;
          AV11TrnContext.FromXml(AV12WebSession.Get("TrnContext"), null, "", "");
+         if ( ( StringUtil.StrCmp(AV11TrnContext.gxTpr_Transactionname, AV16Pgmname) == 0 ) && ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) )
+         {
+            AV17GXV1 = 1;
+            AssignAttri("", false, "AV17GXV1", StringUtil.LTrimStr( (decimal)(AV17GXV1), 8, 0));
+            while ( AV17GXV1 <= AV11TrnContext.gxTpr_Attributes.Count )
+            {
+               AV15TrnContextAtt = ((GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute)AV11TrnContext.gxTpr_Attributes.Item(AV17GXV1));
+               if ( StringUtil.StrCmp(AV15TrnContextAtt.gxTpr_Attributename, "OrganisationId") == 0 )
+               {
+                  AV14Insert_OrganisationId = StringUtil.StrToGuid( AV15TrnContextAtt.gxTpr_Attributevalue);
+                  AssignAttri("", false, "AV14Insert_OrganisationId", AV14Insert_OrganisationId.ToString());
+               }
+               AV17GXV1 = (int)(AV17GXV1+1);
+               AssignAttri("", false, "AV17GXV1", StringUtil.LTrimStr( (decimal)(AV17GXV1), 8, 0));
+            }
+         }
       }
 
       protected void E120W2( )
@@ -1380,27 +1694,30 @@ namespace GeneXus.Programs {
 
       protected void ZM0W46( short GX_JID )
       {
-         if ( ( GX_JID == 11 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 17 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
-               Z248Trn_ThemeName = T000W7_A248Trn_ThemeName[0];
-               Z260Trn_ThemeFontFamily = T000W7_A260Trn_ThemeFontFamily[0];
-               Z399Trn_ThemeFontSize = T000W7_A399Trn_ThemeFontSize[0];
+               Z248Trn_ThemeName = T000W9_A248Trn_ThemeName[0];
+               Z260Trn_ThemeFontFamily = T000W9_A260Trn_ThemeFontFamily[0];
+               Z399Trn_ThemeFontSize = T000W9_A399Trn_ThemeFontSize[0];
+               Z11OrganisationId = T000W9_A11OrganisationId[0];
             }
             else
             {
                Z248Trn_ThemeName = A248Trn_ThemeName;
                Z260Trn_ThemeFontFamily = A260Trn_ThemeFontFamily;
                Z399Trn_ThemeFontSize = A399Trn_ThemeFontSize;
+               Z11OrganisationId = A11OrganisationId;
             }
          }
-         if ( GX_JID == -11 )
+         if ( GX_JID == -17 )
          {
             Z247Trn_ThemeId = A247Trn_ThemeId;
             Z248Trn_ThemeName = A248Trn_ThemeName;
             Z260Trn_ThemeFontFamily = A260Trn_ThemeFontFamily;
             Z399Trn_ThemeFontSize = A399Trn_ThemeFontSize;
+            Z11OrganisationId = A11OrganisationId;
          }
       }
 
@@ -1408,6 +1725,8 @@ namespace GeneXus.Programs {
       {
          Gx_BScreen = 0;
          AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
+         AV16Pgmname = "Trn_Theme";
+         AssignAttri("", false, "AV16Pgmname", AV16Pgmname);
          bttBtntrn_delete_Enabled = 0;
          AssignProp("", false, bttBtntrn_delete_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(bttBtntrn_delete_Enabled), 5, 0), true);
          if ( ! (Guid.Empty==AV13Trn_ThemeId) )
@@ -1461,25 +1780,44 @@ namespace GeneXus.Programs {
 
       protected void Load0W46( )
       {
-         /* Using cursor T000W8 */
-         pr_default.execute(6, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
-         if ( (pr_default.getStatus(6) != 101) )
+         /* Using cursor T000W11 */
+         pr_default.execute(9, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
+         if ( (pr_default.getStatus(9) != 101) )
          {
             RcdFound46 = 1;
-            A248Trn_ThemeName = T000W8_A248Trn_ThemeName[0];
+            A248Trn_ThemeName = T000W11_A248Trn_ThemeName[0];
             AssignAttri("", false, "A248Trn_ThemeName", A248Trn_ThemeName);
-            A260Trn_ThemeFontFamily = T000W8_A260Trn_ThemeFontFamily[0];
+            A260Trn_ThemeFontFamily = T000W11_A260Trn_ThemeFontFamily[0];
             AssignAttri("", false, "A260Trn_ThemeFontFamily", A260Trn_ThemeFontFamily);
-            A399Trn_ThemeFontSize = T000W8_A399Trn_ThemeFontSize[0];
+            A399Trn_ThemeFontSize = T000W11_A399Trn_ThemeFontSize[0];
             AssignAttri("", false, "A399Trn_ThemeFontSize", StringUtil.LTrimStr( (decimal)(A399Trn_ThemeFontSize), 4, 0));
-            ZM0W46( -11) ;
+            A11OrganisationId = T000W11_A11OrganisationId[0];
+            n11OrganisationId = T000W11_n11OrganisationId[0];
+            ZM0W46( -17) ;
          }
-         pr_default.close(6);
+         pr_default.close(9);
          OnLoadActions0W46( ) ;
       }
 
       protected void OnLoadActions0W46( )
       {
+         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ! (Guid.Empty==AV14Insert_OrganisationId) )
+         {
+            A11OrganisationId = AV14Insert_OrganisationId;
+            n11OrganisationId = false;
+            AssignAttri("", false, "A11OrganisationId", A11OrganisationId.ToString());
+         }
+         else
+         {
+            if ( (Guid.Empty==A11OrganisationId) )
+            {
+               A11OrganisationId = Guid.Empty;
+               n11OrganisationId = false;
+               AssignAttri("", false, "A11OrganisationId", A11OrganisationId.ToString());
+               n11OrganisationId = true;
+               AssignAttri("", false, "A11OrganisationId", A11OrganisationId.ToString());
+            }
+         }
       }
 
       protected void CheckExtendedTable0W46( )
@@ -1487,21 +1825,74 @@ namespace GeneXus.Programs {
          Gx_BScreen = 1;
          AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
          standaloneModal( ) ;
+         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ! (Guid.Empty==AV14Insert_OrganisationId) )
+         {
+            A11OrganisationId = AV14Insert_OrganisationId;
+            n11OrganisationId = false;
+            AssignAttri("", false, "A11OrganisationId", A11OrganisationId.ToString());
+         }
+         else
+         {
+            if ( (Guid.Empty==A11OrganisationId) )
+            {
+               A11OrganisationId = Guid.Empty;
+               n11OrganisationId = false;
+               AssignAttri("", false, "A11OrganisationId", A11OrganisationId.ToString());
+               n11OrganisationId = true;
+               AssignAttri("", false, "A11OrganisationId", A11OrganisationId.ToString());
+            }
+         }
+         /* Using cursor T000W10 */
+         pr_default.execute(8, new Object[] {n11OrganisationId, A11OrganisationId});
+         if ( (pr_default.getStatus(8) == 101) )
+         {
+            if ( ! ( (Guid.Empty==A11OrganisationId) ) )
+            {
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Organisations", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               AnyError = 1;
+            }
+         }
+         pr_default.close(8);
       }
 
       protected void CloseExtendedTableCursors0W46( )
       {
+         pr_default.close(8);
       }
 
       protected void enableDisable( )
       {
       }
 
+      protected void gxLoad_18( Guid A11OrganisationId )
+      {
+         /* Using cursor T000W12 */
+         pr_default.execute(10, new Object[] {n11OrganisationId, A11OrganisationId});
+         if ( (pr_default.getStatus(10) == 101) )
+         {
+            if ( ! ( (Guid.Empty==A11OrganisationId) ) )
+            {
+               GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Organisations", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
+               AnyError = 1;
+            }
+         }
+         GxWebStd.set_html_headers( context, 0, "", "");
+         AddString( "[[") ;
+         AddString( "]") ;
+         if ( (pr_default.getStatus(10) == 101) )
+         {
+            AddString( ",") ;
+            AddString( "101") ;
+         }
+         AddString( "]") ;
+         pr_default.close(10);
+      }
+
       protected void GetKey0W46( )
       {
-         /* Using cursor T000W9 */
-         pr_default.execute(7, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
-         if ( (pr_default.getStatus(7) != 101) )
+         /* Using cursor T000W13 */
+         pr_default.execute(11, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
+         if ( (pr_default.getStatus(11) != 101) )
          {
             RcdFound46 = 1;
          }
@@ -1509,26 +1900,28 @@ namespace GeneXus.Programs {
          {
             RcdFound46 = 0;
          }
-         pr_default.close(7);
+         pr_default.close(11);
       }
 
       protected void getByPrimaryKey( )
       {
-         /* Using cursor T000W7 */
-         pr_default.execute(5, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
-         if ( (pr_default.getStatus(5) != 101) )
+         /* Using cursor T000W9 */
+         pr_default.execute(7, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
+         if ( (pr_default.getStatus(7) != 101) )
          {
-            ZM0W46( 11) ;
+            ZM0W46( 17) ;
             RcdFound46 = 1;
-            A247Trn_ThemeId = T000W7_A247Trn_ThemeId[0];
-            n247Trn_ThemeId = T000W7_n247Trn_ThemeId[0];
+            A247Trn_ThemeId = T000W9_A247Trn_ThemeId[0];
+            n247Trn_ThemeId = T000W9_n247Trn_ThemeId[0];
             AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
-            A248Trn_ThemeName = T000W7_A248Trn_ThemeName[0];
+            A248Trn_ThemeName = T000W9_A248Trn_ThemeName[0];
             AssignAttri("", false, "A248Trn_ThemeName", A248Trn_ThemeName);
-            A260Trn_ThemeFontFamily = T000W7_A260Trn_ThemeFontFamily[0];
+            A260Trn_ThemeFontFamily = T000W9_A260Trn_ThemeFontFamily[0];
             AssignAttri("", false, "A260Trn_ThemeFontFamily", A260Trn_ThemeFontFamily);
-            A399Trn_ThemeFontSize = T000W7_A399Trn_ThemeFontSize[0];
+            A399Trn_ThemeFontSize = T000W9_A399Trn_ThemeFontSize[0];
             AssignAttri("", false, "A399Trn_ThemeFontSize", StringUtil.LTrimStr( (decimal)(A399Trn_ThemeFontSize), 4, 0));
+            A11OrganisationId = T000W9_A11OrganisationId[0];
+            n11OrganisationId = T000W9_n11OrganisationId[0];
             Z247Trn_ThemeId = A247Trn_ThemeId;
             sMode46 = Gx_mode;
             Gx_mode = "DSP";
@@ -1553,7 +1946,7 @@ namespace GeneXus.Programs {
             Gx_mode = sMode46;
             AssignAttri("", false, "Gx_mode", Gx_mode);
          }
-         pr_default.close(5);
+         pr_default.close(7);
       }
 
       protected void getEqualNoModal( )
@@ -1571,45 +1964,45 @@ namespace GeneXus.Programs {
       protected void move_next( )
       {
          RcdFound46 = 0;
-         /* Using cursor T000W10 */
-         pr_default.execute(8, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
-         if ( (pr_default.getStatus(8) != 101) )
+         /* Using cursor T000W14 */
+         pr_default.execute(12, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
+         if ( (pr_default.getStatus(12) != 101) )
          {
-            while ( (pr_default.getStatus(8) != 101) && ( ( GuidUtil.Compare(T000W10_A247Trn_ThemeId[0], A247Trn_ThemeId, 0) < 0 ) ) )
+            while ( (pr_default.getStatus(12) != 101) && ( ( GuidUtil.Compare(T000W14_A247Trn_ThemeId[0], A247Trn_ThemeId, 0) < 0 ) ) )
             {
-               pr_default.readNext(8);
+               pr_default.readNext(12);
             }
-            if ( (pr_default.getStatus(8) != 101) && ( ( GuidUtil.Compare(T000W10_A247Trn_ThemeId[0], A247Trn_ThemeId, 0) > 0 ) ) )
+            if ( (pr_default.getStatus(12) != 101) && ( ( GuidUtil.Compare(T000W14_A247Trn_ThemeId[0], A247Trn_ThemeId, 0) > 0 ) ) )
             {
-               A247Trn_ThemeId = T000W10_A247Trn_ThemeId[0];
-               n247Trn_ThemeId = T000W10_n247Trn_ThemeId[0];
+               A247Trn_ThemeId = T000W14_A247Trn_ThemeId[0];
+               n247Trn_ThemeId = T000W14_n247Trn_ThemeId[0];
                AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
                RcdFound46 = 1;
             }
          }
-         pr_default.close(8);
+         pr_default.close(12);
       }
 
       protected void move_previous( )
       {
          RcdFound46 = 0;
-         /* Using cursor T000W11 */
-         pr_default.execute(9, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
-         if ( (pr_default.getStatus(9) != 101) )
+         /* Using cursor T000W15 */
+         pr_default.execute(13, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
+         if ( (pr_default.getStatus(13) != 101) )
          {
-            while ( (pr_default.getStatus(9) != 101) && ( ( GuidUtil.Compare(T000W11_A247Trn_ThemeId[0], A247Trn_ThemeId, 0) > 0 ) ) )
+            while ( (pr_default.getStatus(13) != 101) && ( ( GuidUtil.Compare(T000W15_A247Trn_ThemeId[0], A247Trn_ThemeId, 0) > 0 ) ) )
             {
-               pr_default.readNext(9);
+               pr_default.readNext(13);
             }
-            if ( (pr_default.getStatus(9) != 101) && ( ( GuidUtil.Compare(T000W11_A247Trn_ThemeId[0], A247Trn_ThemeId, 0) < 0 ) ) )
+            if ( (pr_default.getStatus(13) != 101) && ( ( GuidUtil.Compare(T000W15_A247Trn_ThemeId[0], A247Trn_ThemeId, 0) < 0 ) ) )
             {
-               A247Trn_ThemeId = T000W11_A247Trn_ThemeId[0];
-               n247Trn_ThemeId = T000W11_n247Trn_ThemeId[0];
+               A247Trn_ThemeId = T000W15_A247Trn_ThemeId[0];
+               n247Trn_ThemeId = T000W15_n247Trn_ThemeId[0];
                AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
                RcdFound46 = 1;
             }
          }
-         pr_default.close(9);
+         pr_default.close(13);
       }
 
       protected void btn_enter( )
@@ -1733,33 +2126,39 @@ namespace GeneXus.Programs {
       {
          if ( ! IsIns( ) )
          {
-            /* Using cursor T000W6 */
-            pr_default.execute(4, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
-            if ( (pr_default.getStatus(4) == 103) )
+            /* Using cursor T000W8 */
+            pr_default.execute(6, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
+            if ( (pr_default.getStatus(6) == 103) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_Theme"}), "RecordIsLocked", 1, "");
                AnyError = 1;
                return  ;
             }
-            if ( (pr_default.getStatus(4) == 101) || ( StringUtil.StrCmp(Z248Trn_ThemeName, T000W6_A248Trn_ThemeName[0]) != 0 ) || ( StringUtil.StrCmp(Z260Trn_ThemeFontFamily, T000W6_A260Trn_ThemeFontFamily[0]) != 0 ) || ( Z399Trn_ThemeFontSize != T000W6_A399Trn_ThemeFontSize[0] ) )
+            if ( (pr_default.getStatus(6) == 101) || ( StringUtil.StrCmp(Z248Trn_ThemeName, T000W8_A248Trn_ThemeName[0]) != 0 ) || ( StringUtil.StrCmp(Z260Trn_ThemeFontFamily, T000W8_A260Trn_ThemeFontFamily[0]) != 0 ) || ( Z399Trn_ThemeFontSize != T000W8_A399Trn_ThemeFontSize[0] ) || ( Z11OrganisationId != T000W8_A11OrganisationId[0] ) )
             {
-               if ( StringUtil.StrCmp(Z248Trn_ThemeName, T000W6_A248Trn_ThemeName[0]) != 0 )
+               if ( StringUtil.StrCmp(Z248Trn_ThemeName, T000W8_A248Trn_ThemeName[0]) != 0 )
                {
                   GXUtil.WriteLog("trn_theme:[seudo value changed for attri]"+"Trn_ThemeName");
                   GXUtil.WriteLogRaw("Old: ",Z248Trn_ThemeName);
-                  GXUtil.WriteLogRaw("Current: ",T000W6_A248Trn_ThemeName[0]);
+                  GXUtil.WriteLogRaw("Current: ",T000W8_A248Trn_ThemeName[0]);
                }
-               if ( StringUtil.StrCmp(Z260Trn_ThemeFontFamily, T000W6_A260Trn_ThemeFontFamily[0]) != 0 )
+               if ( StringUtil.StrCmp(Z260Trn_ThemeFontFamily, T000W8_A260Trn_ThemeFontFamily[0]) != 0 )
                {
                   GXUtil.WriteLog("trn_theme:[seudo value changed for attri]"+"Trn_ThemeFontFamily");
                   GXUtil.WriteLogRaw("Old: ",Z260Trn_ThemeFontFamily);
-                  GXUtil.WriteLogRaw("Current: ",T000W6_A260Trn_ThemeFontFamily[0]);
+                  GXUtil.WriteLogRaw("Current: ",T000W8_A260Trn_ThemeFontFamily[0]);
                }
-               if ( Z399Trn_ThemeFontSize != T000W6_A399Trn_ThemeFontSize[0] )
+               if ( Z399Trn_ThemeFontSize != T000W8_A399Trn_ThemeFontSize[0] )
                {
                   GXUtil.WriteLog("trn_theme:[seudo value changed for attri]"+"Trn_ThemeFontSize");
                   GXUtil.WriteLogRaw("Old: ",Z399Trn_ThemeFontSize);
-                  GXUtil.WriteLogRaw("Current: ",T000W6_A399Trn_ThemeFontSize[0]);
+                  GXUtil.WriteLogRaw("Current: ",T000W8_A399Trn_ThemeFontSize[0]);
+               }
+               if ( Z11OrganisationId != T000W8_A11OrganisationId[0] )
+               {
+                  GXUtil.WriteLog("trn_theme:[seudo value changed for attri]"+"OrganisationId");
+                  GXUtil.WriteLogRaw("Old: ",Z11OrganisationId);
+                  GXUtil.WriteLogRaw("Current: ",T000W8_A11OrganisationId[0]);
                }
                GX_msglist.addItem(context.GetMessage( "GXM_waschg", new   object[]  {"Trn_Theme"}), "RecordWasChanged", 1, "");
                AnyError = 1;
@@ -1793,11 +2192,11 @@ namespace GeneXus.Programs {
                   BeforeInsert0W46( ) ;
                   if ( AnyError == 0 )
                   {
-                     /* Using cursor T000W12 */
-                     pr_default.execute(10, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A248Trn_ThemeName, A260Trn_ThemeFontFamily, A399Trn_ThemeFontSize});
-                     pr_default.close(10);
+                     /* Using cursor T000W16 */
+                     pr_default.execute(14, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A248Trn_ThemeName, A260Trn_ThemeFontFamily, A399Trn_ThemeFontSize, n11OrganisationId, A11OrganisationId});
+                     pr_default.close(14);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Theme");
-                     if ( (pr_default.getStatus(10) == 1) )
+                     if ( (pr_default.getStatus(14) == 1) )
                      {
                         GX_msglist.addItem(context.GetMessage( "GXM_noupdate", ""), "DuplicatePrimaryKey", 1, "");
                         AnyError = 1;
@@ -1862,11 +2261,11 @@ namespace GeneXus.Programs {
                   BeforeUpdate0W46( ) ;
                   if ( AnyError == 0 )
                   {
-                     /* Using cursor T000W13 */
-                     pr_default.execute(11, new Object[] {A248Trn_ThemeName, A260Trn_ThemeFontFamily, A399Trn_ThemeFontSize, n247Trn_ThemeId, A247Trn_ThemeId});
-                     pr_default.close(11);
+                     /* Using cursor T000W17 */
+                     pr_default.execute(15, new Object[] {A248Trn_ThemeName, A260Trn_ThemeFontFamily, A399Trn_ThemeFontSize, n11OrganisationId, A11OrganisationId, n247Trn_ThemeId, A247Trn_ThemeId});
+                     pr_default.close(15);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Theme");
-                     if ( (pr_default.getStatus(11) == 103) )
+                     if ( (pr_default.getStatus(15) == 103) )
                      {
                         GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_Theme"}), "RecordIsLocked", 1, "");
                         AnyError = 1;
@@ -1930,6 +2329,14 @@ namespace GeneXus.Programs {
                BeforeDelete0W46( ) ;
                if ( AnyError == 0 )
                {
+                  ScanStart0W112( ) ;
+                  while ( RcdFound112 != 0 )
+                  {
+                     getByPrimaryKey0W112( ) ;
+                     Delete0W112( ) ;
+                     ScanNext0W112( ) ;
+                  }
+                  ScanEnd0W112( ) ;
                   ScanStart0W87( ) ;
                   while ( RcdFound87 != 0 )
                   {
@@ -1948,9 +2355,9 @@ namespace GeneXus.Programs {
                   ScanEnd0W47( ) ;
                   if ( AnyError == 0 )
                   {
-                     /* Using cursor T000W14 */
-                     pr_default.execute(12, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
-                     pr_default.close(12);
+                     /* Using cursor T000W18 */
+                     pr_default.execute(16, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
+                     pr_default.close(16);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Theme");
                      if ( AnyError == 0 )
                      {
@@ -1990,21 +2397,97 @@ namespace GeneXus.Programs {
          /* No delete mode formulas found. */
          if ( AnyError == 0 )
          {
-            /* Using cursor T000W15 */
-            pr_default.execute(13, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
-            if ( (pr_default.getStatus(13) != 101) )
+            /* Using cursor T000W19 */
+            pr_default.execute(17, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
+            if ( (pr_default.getStatus(17) != 101) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Locations", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
-            pr_default.close(13);
+            pr_default.close(17);
          }
+      }
+
+      protected void ProcessNestedLevel0W112( )
+      {
+         nGXsfl_42_idx = 0;
+         while ( nGXsfl_42_idx < nRC_GXsfl_42 )
+         {
+            ReadRow0W112( ) ;
+            if ( ( nRcdExists_112 != 0 ) || ( nIsMod_112 != 0 ) )
+            {
+               standaloneNotModal0W112( ) ;
+               GetKey0W112( ) ;
+               if ( ( nRcdExists_112 == 0 ) && ( nRcdDeleted_112 == 0 ) )
+               {
+                  Gx_mode = "INS";
+                  AssignAttri("", false, "Gx_mode", Gx_mode);
+                  Insert0W112( ) ;
+               }
+               else
+               {
+                  if ( RcdFound112 != 0 )
+                  {
+                     if ( ( nRcdDeleted_112 != 0 ) && ( nRcdExists_112 != 0 ) )
+                     {
+                        Gx_mode = "DLT";
+                        AssignAttri("", false, "Gx_mode", Gx_mode);
+                        Delete0W112( ) ;
+                     }
+                     else
+                     {
+                        if ( nRcdExists_112 != 0 )
+                        {
+                           Gx_mode = "UPD";
+                           AssignAttri("", false, "Gx_mode", Gx_mode);
+                           Update0W112( ) ;
+                        }
+                     }
+                  }
+                  else
+                  {
+                     if ( nRcdDeleted_112 == 0 )
+                     {
+                        GXCCtl = "CTACOLORID_" + sGXsfl_42_idx;
+                        GX_msglist.addItem(context.GetMessage( "GXM_recdeleted", ""), 1, GXCCtl);
+                        AnyError = 1;
+                        GX_FocusControl = edtCtaColorId_Internalname;
+                        AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
+                     }
+                  }
+               }
+            }
+            ChangePostValue( edtCtaColorId_Internalname, A563CtaColorId.ToString()) ;
+            ChangePostValue( edtCtaColorName_Internalname, A564CtaColorName) ;
+            ChangePostValue( edtCtaColorCode_Internalname, A565CtaColorCode) ;
+            ChangePostValue( "ZT_"+"Z563CtaColorId_"+sGXsfl_42_idx, Z563CtaColorId.ToString()) ;
+            ChangePostValue( "ZT_"+"Z564CtaColorName_"+sGXsfl_42_idx, Z564CtaColorName) ;
+            ChangePostValue( "ZT_"+"Z565CtaColorCode_"+sGXsfl_42_idx, Z565CtaColorCode) ;
+            ChangePostValue( "nRcdDeleted_112_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_112), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nRcdExists_112_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_112), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nIsMod_112_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_112), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            if ( nIsMod_112 != 0 )
+            {
+               ChangePostValue( "CTACOLORID_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtCtaColorId_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "CTACOLORNAME_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtCtaColorName_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "CTACOLORCODE_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtCtaColorCode_Enabled), 5, 0, ".", ""))) ;
+            }
+         }
+         /* Start of After( level) rules */
+         /* End of After( level) rules */
+         InitAll0W112( ) ;
+         if ( AnyError != 0 )
+         {
+         }
+         nRcdExists_112 = 0;
+         nIsMod_112 = 0;
+         nRcdDeleted_112 = 0;
       }
 
       protected void ProcessNestedLevel0W87( )
       {
-         nGXsfl_42_idx = 0;
-         while ( nGXsfl_42_idx < nRC_GXsfl_42 )
+         nGXsfl_51_idx = 0;
+         while ( nGXsfl_51_idx < nRC_GXsfl_51 )
          {
             ReadRow0W87( ) ;
             if ( ( nRcdExists_87 != 0 ) || ( nIsMod_87 != 0 ) )
@@ -2041,7 +2524,7 @@ namespace GeneXus.Programs {
                   {
                      if ( nRcdDeleted_87 == 0 )
                      {
-                        GXCCtl = "ICONID_" + sGXsfl_42_idx;
+                        GXCCtl = "ICONID_" + sGXsfl_51_idx;
                         GX_msglist.addItem(context.GetMessage( "GXM_recdeleted", ""), 1, GXCCtl);
                         AnyError = 1;
                         GX_FocusControl = edtIconId_Internalname;
@@ -2054,18 +2537,18 @@ namespace GeneXus.Programs {
             ChangePostValue( edtIconName_Internalname, A262IconName) ;
             ChangePostValue( cmbIconCategory_Internalname, A443IconCategory) ;
             ChangePostValue( edtIconSVG_Internalname, A263IconSVG) ;
-            ChangePostValue( "ZT_"+"Z261IconId_"+sGXsfl_42_idx, Z261IconId.ToString()) ;
-            ChangePostValue( "ZT_"+"Z443IconCategory_"+sGXsfl_42_idx, Z443IconCategory) ;
-            ChangePostValue( "ZT_"+"Z262IconName_"+sGXsfl_42_idx, Z262IconName) ;
-            ChangePostValue( "nRcdDeleted_87_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_87), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
-            ChangePostValue( "nRcdExists_87_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_87), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
-            ChangePostValue( "nIsMod_87_"+sGXsfl_42_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_87), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "ZT_"+"Z261IconId_"+sGXsfl_51_idx, Z261IconId.ToString()) ;
+            ChangePostValue( "ZT_"+"Z443IconCategory_"+sGXsfl_51_idx, Z443IconCategory) ;
+            ChangePostValue( "ZT_"+"Z262IconName_"+sGXsfl_51_idx, Z262IconName) ;
+            ChangePostValue( "nRcdDeleted_87_"+sGXsfl_51_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_87), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nRcdExists_87_"+sGXsfl_51_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_87), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nIsMod_87_"+sGXsfl_51_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_87), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
             if ( nIsMod_87 != 0 )
             {
-               ChangePostValue( "ICONID_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconId_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( "ICONNAME_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconName_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( "ICONCATEGORY_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbIconCategory.Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( "ICONSVG_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconSVG_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "ICONID_"+sGXsfl_51_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconId_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "ICONNAME_"+sGXsfl_51_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconName_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "ICONCATEGORY_"+sGXsfl_51_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbIconCategory.Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "ICONSVG_"+sGXsfl_51_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconSVG_Enabled), 5, 0, ".", ""))) ;
             }
          }
          /* Start of After( level) rules */
@@ -2081,8 +2564,8 @@ namespace GeneXus.Programs {
 
       protected void ProcessNestedLevel0W47( )
       {
-         nGXsfl_55_idx = 0;
-         while ( nGXsfl_55_idx < nRC_GXsfl_55 )
+         nGXsfl_64_idx = 0;
+         while ( nGXsfl_64_idx < nRC_GXsfl_64 )
          {
             ReadRow0W47( ) ;
             if ( ( nRcdExists_47 != 0 ) || ( nIsMod_47 != 0 ) )
@@ -2130,17 +2613,17 @@ namespace GeneXus.Programs {
             ChangePostValue( edtColorId_Internalname, A249ColorId.ToString()) ;
             ChangePostValue( cmbColorName_Internalname, A250ColorName) ;
             ChangePostValue( edtColorCode_Internalname, A251ColorCode) ;
-            ChangePostValue( "ZT_"+"Z249ColorId_"+sGXsfl_55_idx, Z249ColorId.ToString()) ;
-            ChangePostValue( "ZT_"+"Z250ColorName_"+sGXsfl_55_idx, Z250ColorName) ;
-            ChangePostValue( "ZT_"+"Z251ColorCode_"+sGXsfl_55_idx, Z251ColorCode) ;
-            ChangePostValue( "nRcdDeleted_47_"+sGXsfl_55_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_47), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
-            ChangePostValue( "nRcdExists_47_"+sGXsfl_55_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_47), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
-            ChangePostValue( "nIsMod_47_"+sGXsfl_55_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_47), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "ZT_"+"Z249ColorId_"+sGXsfl_64_idx, Z249ColorId.ToString()) ;
+            ChangePostValue( "ZT_"+"Z250ColorName_"+sGXsfl_64_idx, Z250ColorName) ;
+            ChangePostValue( "ZT_"+"Z251ColorCode_"+sGXsfl_64_idx, Z251ColorCode) ;
+            ChangePostValue( "nRcdDeleted_47_"+sGXsfl_64_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_47), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nRcdExists_47_"+sGXsfl_64_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_47), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
+            ChangePostValue( "nIsMod_47_"+sGXsfl_64_idx, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_47), 4, 0, context.GetLanguageProperty( "decimal_point"), ""))) ;
             if ( nIsMod_47 != 0 )
             {
-               ChangePostValue( "COLORID_"+sGXsfl_55_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtColorId_Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( "COLORNAME_"+sGXsfl_55_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbColorName.Enabled), 5, 0, ".", ""))) ;
-               ChangePostValue( "COLORCODE_"+sGXsfl_55_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtColorCode_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "COLORID_"+sGXsfl_64_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtColorId_Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "COLORNAME_"+sGXsfl_64_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbColorName.Enabled), 5, 0, ".", ""))) ;
+               ChangePostValue( "COLORCODE_"+sGXsfl_64_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtColorCode_Enabled), 5, 0, ".", ""))) ;
             }
          }
          /* Start of After( level) rules */
@@ -2158,6 +2641,7 @@ namespace GeneXus.Programs {
       {
          /* Save parent mode. */
          sMode46 = Gx_mode;
+         ProcessNestedLevel0W112( ) ;
          ProcessNestedLevel0W87( ) ;
          ProcessNestedLevel0W47( ) ;
          if ( AnyError != 0 )
@@ -2173,7 +2657,7 @@ namespace GeneXus.Programs {
       {
          if ( ! IsIns( ) )
          {
-            pr_default.close(4);
+            pr_default.close(6);
          }
          if ( AnyError == 0 )
          {
@@ -2205,14 +2689,14 @@ namespace GeneXus.Programs {
       public void ScanStart0W46( )
       {
          /* Scan By routine */
-         /* Using cursor T000W16 */
-         pr_default.execute(14);
+         /* Using cursor T000W20 */
+         pr_default.execute(18);
          RcdFound46 = 0;
-         if ( (pr_default.getStatus(14) != 101) )
+         if ( (pr_default.getStatus(18) != 101) )
          {
             RcdFound46 = 1;
-            A247Trn_ThemeId = T000W16_A247Trn_ThemeId[0];
-            n247Trn_ThemeId = T000W16_n247Trn_ThemeId[0];
+            A247Trn_ThemeId = T000W20_A247Trn_ThemeId[0];
+            n247Trn_ThemeId = T000W20_n247Trn_ThemeId[0];
             AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
          }
          /* Load Subordinate Levels */
@@ -2221,20 +2705,20 @@ namespace GeneXus.Programs {
       protected void ScanNext0W46( )
       {
          /* Scan next routine */
-         pr_default.readNext(14);
+         pr_default.readNext(18);
          RcdFound46 = 0;
-         if ( (pr_default.getStatus(14) != 101) )
+         if ( (pr_default.getStatus(18) != 101) )
          {
             RcdFound46 = 1;
-            A247Trn_ThemeId = T000W16_A247Trn_ThemeId[0];
-            n247Trn_ThemeId = T000W16_n247Trn_ThemeId[0];
+            A247Trn_ThemeId = T000W20_A247Trn_ThemeId[0];
+            n247Trn_ThemeId = T000W20_n247Trn_ThemeId[0];
             AssignAttri("", false, "A247Trn_ThemeId", A247Trn_ThemeId.ToString());
          }
       }
 
       protected void ScanEnd0W46( )
       {
-         pr_default.close(14);
+         pr_default.close(18);
       }
 
       protected void AfterConfirm0W46( )
@@ -2279,9 +2763,457 @@ namespace GeneXus.Programs {
          AssignProp("", false, edtTrn_ThemeFontSize_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtTrn_ThemeFontSize_Enabled), 5, 0), true);
       }
 
+      protected void ZM0W112( short GX_JID )
+      {
+         if ( ( GX_JID == 19 ) || ( GX_JID == 0 ) )
+         {
+            if ( ! IsIns( ) )
+            {
+               Z564CtaColorName = T000W7_A564CtaColorName[0];
+               Z565CtaColorCode = T000W7_A565CtaColorCode[0];
+            }
+            else
+            {
+               Z564CtaColorName = A564CtaColorName;
+               Z565CtaColorCode = A565CtaColorCode;
+            }
+         }
+         if ( GX_JID == -19 )
+         {
+            Z247Trn_ThemeId = A247Trn_ThemeId;
+            Z563CtaColorId = A563CtaColorId;
+            Z564CtaColorName = A564CtaColorName;
+            Z565CtaColorCode = A565CtaColorCode;
+         }
+      }
+
+      protected void standaloneNotModal0W112( )
+      {
+      }
+
+      protected void standaloneModal0W112( )
+      {
+         if ( IsIns( )  && (Guid.Empty==A563CtaColorId) && ( Gx_BScreen == 0 ) )
+         {
+            A563CtaColorId = Guid.NewGuid( );
+         }
+         if ( StringUtil.StrCmp(Gx_mode, "INS") != 0 )
+         {
+            edtCtaColorId_Enabled = 0;
+            AssignProp("", false, edtCtaColorId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtCtaColorId_Enabled), 5, 0), !bGXsfl_42_Refreshing);
+         }
+         else
+         {
+            edtCtaColorId_Enabled = 1;
+            AssignProp("", false, edtCtaColorId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtCtaColorId_Enabled), 5, 0), !bGXsfl_42_Refreshing);
+         }
+         if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ( Gx_BScreen == 0 ) )
+         {
+         }
+      }
+
+      protected void Load0W112( )
+      {
+         /* Using cursor T000W21 */
+         pr_default.execute(19, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A563CtaColorId});
+         if ( (pr_default.getStatus(19) != 101) )
+         {
+            RcdFound112 = 1;
+            A564CtaColorName = T000W21_A564CtaColorName[0];
+            A565CtaColorCode = T000W21_A565CtaColorCode[0];
+            ZM0W112( -19) ;
+         }
+         pr_default.close(19);
+         OnLoadActions0W112( ) ;
+      }
+
+      protected void OnLoadActions0W112( )
+      {
+      }
+
+      protected void CheckExtendedTable0W112( )
+      {
+         nIsDirty_112 = 0;
+         Gx_BScreen = 1;
+         AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
+         standaloneModal0W112( ) ;
+         /* Using cursor T000W22 */
+         pr_default.execute(20, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A564CtaColorName, A563CtaColorId});
+         if ( (pr_default.getStatus(20) != 101) )
+         {
+            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Cta Color Name", "")}), 1, "TRN_THEMEID");
+            AnyError = 1;
+            GX_FocusControl = edtTrn_ThemeId_Internalname;
+            AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
+         }
+         pr_default.close(20);
+      }
+
+      protected void CloseExtendedTableCursors0W112( )
+      {
+      }
+
+      protected void enableDisable0W112( )
+      {
+      }
+
+      protected void GetKey0W112( )
+      {
+         /* Using cursor T000W23 */
+         pr_default.execute(21, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A563CtaColorId});
+         if ( (pr_default.getStatus(21) != 101) )
+         {
+            RcdFound112 = 1;
+         }
+         else
+         {
+            RcdFound112 = 0;
+         }
+         pr_default.close(21);
+      }
+
+      protected void getByPrimaryKey0W112( )
+      {
+         /* Using cursor T000W7 */
+         pr_default.execute(5, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A563CtaColorId});
+         if ( (pr_default.getStatus(5) != 101) )
+         {
+            ZM0W112( 19) ;
+            RcdFound112 = 1;
+            InitializeNonKey0W112( ) ;
+            A563CtaColorId = T000W7_A563CtaColorId[0];
+            A564CtaColorName = T000W7_A564CtaColorName[0];
+            A565CtaColorCode = T000W7_A565CtaColorCode[0];
+            Z247Trn_ThemeId = A247Trn_ThemeId;
+            Z563CtaColorId = A563CtaColorId;
+            sMode112 = Gx_mode;
+            Gx_mode = "DSP";
+            AssignAttri("", false, "Gx_mode", Gx_mode);
+            Load0W112( ) ;
+            Gx_mode = sMode112;
+            AssignAttri("", false, "Gx_mode", Gx_mode);
+         }
+         else
+         {
+            RcdFound112 = 0;
+            InitializeNonKey0W112( ) ;
+            sMode112 = Gx_mode;
+            Gx_mode = "DSP";
+            AssignAttri("", false, "Gx_mode", Gx_mode);
+            standaloneModal0W112( ) ;
+            Gx_mode = sMode112;
+            AssignAttri("", false, "Gx_mode", Gx_mode);
+         }
+         if ( IsDsp( ) || IsDlt( ) )
+         {
+            DisableAttributes0W112( ) ;
+         }
+         pr_default.close(5);
+      }
+
+      protected void CheckOptimisticConcurrency0W112( )
+      {
+         if ( ! IsIns( ) )
+         {
+            /* Using cursor T000W6 */
+            pr_default.execute(4, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A563CtaColorId});
+            if ( (pr_default.getStatus(4) == 103) )
+            {
+               GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_ThemeCtaColor"}), "RecordIsLocked", 1, "");
+               AnyError = 1;
+               return  ;
+            }
+            if ( (pr_default.getStatus(4) == 101) || ( StringUtil.StrCmp(Z564CtaColorName, T000W6_A564CtaColorName[0]) != 0 ) || ( StringUtil.StrCmp(Z565CtaColorCode, T000W6_A565CtaColorCode[0]) != 0 ) )
+            {
+               if ( StringUtil.StrCmp(Z564CtaColorName, T000W6_A564CtaColorName[0]) != 0 )
+               {
+                  GXUtil.WriteLog("trn_theme:[seudo value changed for attri]"+"CtaColorName");
+                  GXUtil.WriteLogRaw("Old: ",Z564CtaColorName);
+                  GXUtil.WriteLogRaw("Current: ",T000W6_A564CtaColorName[0]);
+               }
+               if ( StringUtil.StrCmp(Z565CtaColorCode, T000W6_A565CtaColorCode[0]) != 0 )
+               {
+                  GXUtil.WriteLog("trn_theme:[seudo value changed for attri]"+"CtaColorCode");
+                  GXUtil.WriteLogRaw("Old: ",Z565CtaColorCode);
+                  GXUtil.WriteLogRaw("Current: ",T000W6_A565CtaColorCode[0]);
+               }
+               GX_msglist.addItem(context.GetMessage( "GXM_waschg", new   object[]  {"Trn_ThemeCtaColor"}), "RecordWasChanged", 1, "");
+               AnyError = 1;
+               return  ;
+            }
+         }
+      }
+
+      protected void Insert0W112( )
+      {
+         if ( ! IsAuthorized("trn_theme_Insert") )
+         {
+            GX_msglist.addItem(context.GetMessage( "GXM_notauthorized", ""), 1, "");
+            AnyError = 1;
+            return  ;
+         }
+         BeforeValidate0W112( ) ;
+         if ( AnyError == 0 )
+         {
+            CheckExtendedTable0W112( ) ;
+         }
+         if ( AnyError == 0 )
+         {
+            ZM0W112( 0) ;
+            CheckOptimisticConcurrency0W112( ) ;
+            if ( AnyError == 0 )
+            {
+               AfterConfirm0W112( ) ;
+               if ( AnyError == 0 )
+               {
+                  BeforeInsert0W112( ) ;
+                  if ( AnyError == 0 )
+                  {
+                     /* Using cursor T000W24 */
+                     pr_default.execute(22, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A563CtaColorId, A564CtaColorName, A565CtaColorCode});
+                     pr_default.close(22);
+                     pr_default.SmartCacheProvider.SetUpdated("Trn_ThemeCtaColor");
+                     if ( (pr_default.getStatus(22) == 1) )
+                     {
+                        GX_msglist.addItem(context.GetMessage( "GXM_noupdate", ""), "DuplicatePrimaryKey", 1, "");
+                        AnyError = 1;
+                     }
+                     if ( AnyError == 0 )
+                     {
+                        /* Start of After( Insert) rules */
+                        /* End of After( Insert) rules */
+                        if ( AnyError == 0 )
+                        {
+                           /* Save values for previous() function. */
+                        }
+                     }
+                  }
+                  else
+                  {
+                     GX_msglist.addItem(context.GetMessage( "GXM_unexp", ""), 1, "");
+                     AnyError = 1;
+                  }
+               }
+            }
+            else
+            {
+               Load0W112( ) ;
+            }
+            EndLevel0W112( ) ;
+         }
+         CloseExtendedTableCursors0W112( ) ;
+      }
+
+      protected void Update0W112( )
+      {
+         if ( ! IsAuthorized("trn_theme_Update") )
+         {
+            GX_msglist.addItem(context.GetMessage( "GXM_notauthorized", ""), 1, "");
+            AnyError = 1;
+            return  ;
+         }
+         BeforeValidate0W112( ) ;
+         if ( AnyError == 0 )
+         {
+            CheckExtendedTable0W112( ) ;
+         }
+         if ( ( nIsMod_112 != 0 ) || ( nIsDirty_112 != 0 ) )
+         {
+            if ( AnyError == 0 )
+            {
+               CheckOptimisticConcurrency0W112( ) ;
+               if ( AnyError == 0 )
+               {
+                  AfterConfirm0W112( ) ;
+                  if ( AnyError == 0 )
+                  {
+                     BeforeUpdate0W112( ) ;
+                     if ( AnyError == 0 )
+                     {
+                        /* Using cursor T000W25 */
+                        pr_default.execute(23, new Object[] {A564CtaColorName, A565CtaColorCode, n247Trn_ThemeId, A247Trn_ThemeId, A563CtaColorId});
+                        pr_default.close(23);
+                        pr_default.SmartCacheProvider.SetUpdated("Trn_ThemeCtaColor");
+                        if ( (pr_default.getStatus(23) == 103) )
+                        {
+                           GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_ThemeCtaColor"}), "RecordIsLocked", 1, "");
+                           AnyError = 1;
+                        }
+                        DeferredUpdate0W112( ) ;
+                        if ( AnyError == 0 )
+                        {
+                           /* Start of After( update) rules */
+                           /* End of After( update) rules */
+                           if ( AnyError == 0 )
+                           {
+                              getByPrimaryKey0W112( ) ;
+                           }
+                        }
+                        else
+                        {
+                           GX_msglist.addItem(context.GetMessage( "GXM_unexp", ""), 1, "");
+                           AnyError = 1;
+                        }
+                     }
+                  }
+               }
+               EndLevel0W112( ) ;
+            }
+         }
+         CloseExtendedTableCursors0W112( ) ;
+      }
+
+      protected void DeferredUpdate0W112( )
+      {
+      }
+
+      protected void Delete0W112( )
+      {
+         if ( ! IsAuthorized("trn_theme_Delete") )
+         {
+            GX_msglist.addItem(context.GetMessage( "GXM_notauthorized", ""), 1, "");
+            AnyError = 1;
+            return  ;
+         }
+         Gx_mode = "DLT";
+         AssignAttri("", false, "Gx_mode", Gx_mode);
+         BeforeValidate0W112( ) ;
+         if ( AnyError == 0 )
+         {
+            CheckOptimisticConcurrency0W112( ) ;
+         }
+         if ( AnyError == 0 )
+         {
+            OnDeleteControls0W112( ) ;
+            AfterConfirm0W112( ) ;
+            if ( AnyError == 0 )
+            {
+               BeforeDelete0W112( ) ;
+               if ( AnyError == 0 )
+               {
+                  /* No cascading delete specified. */
+                  /* Using cursor T000W26 */
+                  pr_default.execute(24, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A563CtaColorId});
+                  pr_default.close(24);
+                  pr_default.SmartCacheProvider.SetUpdated("Trn_ThemeCtaColor");
+                  if ( AnyError == 0 )
+                  {
+                     /* Start of After( delete) rules */
+                     /* End of After( delete) rules */
+                  }
+                  else
+                  {
+                     GX_msglist.addItem(context.GetMessage( "GXM_unexp", ""), 1, "");
+                     AnyError = 1;
+                  }
+               }
+            }
+         }
+         sMode112 = Gx_mode;
+         Gx_mode = "DLT";
+         AssignAttri("", false, "Gx_mode", Gx_mode);
+         EndLevel0W112( ) ;
+         Gx_mode = sMode112;
+         AssignAttri("", false, "Gx_mode", Gx_mode);
+      }
+
+      protected void OnDeleteControls0W112( )
+      {
+         standaloneModal0W112( ) ;
+         /* No delete mode formulas found. */
+      }
+
+      protected void EndLevel0W112( )
+      {
+         if ( ! IsIns( ) )
+         {
+            pr_default.close(4);
+         }
+         if ( AnyError != 0 )
+         {
+            context.wjLoc = "";
+            context.nUserReturn = 0;
+         }
+      }
+
+      public void ScanStart0W112( )
+      {
+         /* Scan By routine */
+         /* Using cursor T000W27 */
+         pr_default.execute(25, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
+         RcdFound112 = 0;
+         if ( (pr_default.getStatus(25) != 101) )
+         {
+            RcdFound112 = 1;
+            A563CtaColorId = T000W27_A563CtaColorId[0];
+         }
+         /* Load Subordinate Levels */
+      }
+
+      protected void ScanNext0W112( )
+      {
+         /* Scan next routine */
+         pr_default.readNext(25);
+         RcdFound112 = 0;
+         if ( (pr_default.getStatus(25) != 101) )
+         {
+            RcdFound112 = 1;
+            A563CtaColorId = T000W27_A563CtaColorId[0];
+         }
+      }
+
+      protected void ScanEnd0W112( )
+      {
+         pr_default.close(25);
+      }
+
+      protected void AfterConfirm0W112( )
+      {
+         /* After Confirm Rules */
+      }
+
+      protected void BeforeInsert0W112( )
+      {
+         /* Before Insert Rules */
+      }
+
+      protected void BeforeUpdate0W112( )
+      {
+         /* Before Update Rules */
+      }
+
+      protected void BeforeDelete0W112( )
+      {
+         /* Before Delete Rules */
+      }
+
+      protected void BeforeComplete0W112( )
+      {
+         /* Before Complete Rules */
+      }
+
+      protected void BeforeValidate0W112( )
+      {
+         /* Before Validate Rules */
+      }
+
+      protected void DisableAttributes0W112( )
+      {
+         edtCtaColorId_Enabled = 0;
+         AssignProp("", false, edtCtaColorId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtCtaColorId_Enabled), 5, 0), !bGXsfl_42_Refreshing);
+         edtCtaColorName_Enabled = 0;
+         AssignProp("", false, edtCtaColorName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtCtaColorName_Enabled), 5, 0), !bGXsfl_42_Refreshing);
+         edtCtaColorCode_Enabled = 0;
+         AssignProp("", false, edtCtaColorCode_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtCtaColorCode_Enabled), 5, 0), !bGXsfl_42_Refreshing);
+      }
+
+      protected void send_integrity_lvl_hashes0W112( )
+      {
+      }
+
       protected void ZM0W87( short GX_JID )
       {
-         if ( ( GX_JID == 12 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 21 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
@@ -2294,7 +3226,7 @@ namespace GeneXus.Programs {
                Z262IconName = A262IconName;
             }
          }
-         if ( GX_JID == -12 )
+         if ( GX_JID == -21 )
          {
             Z247Trn_ThemeId = A247Trn_ThemeId;
             Z261IconId = A261IconId;
@@ -2317,12 +3249,12 @@ namespace GeneXus.Programs {
          if ( StringUtil.StrCmp(Gx_mode, "INS") != 0 )
          {
             edtIconId_Enabled = 0;
-            AssignProp("", false, edtIconId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconId_Enabled), 5, 0), !bGXsfl_42_Refreshing);
+            AssignProp("", false, edtIconId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconId_Enabled), 5, 0), !bGXsfl_51_Refreshing);
          }
          else
          {
             edtIconId_Enabled = 1;
-            AssignProp("", false, edtIconId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconId_Enabled), 5, 0), !bGXsfl_42_Refreshing);
+            AssignProp("", false, edtIconId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconId_Enabled), 5, 0), !bGXsfl_51_Refreshing);
          }
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ( Gx_BScreen == 0 ) )
          {
@@ -2331,17 +3263,17 @@ namespace GeneXus.Programs {
 
       protected void Load0W87( )
       {
-         /* Using cursor T000W17 */
-         pr_default.execute(15, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A261IconId});
-         if ( (pr_default.getStatus(15) != 101) )
+         /* Using cursor T000W28 */
+         pr_default.execute(26, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A261IconId});
+         if ( (pr_default.getStatus(26) != 101) )
          {
             RcdFound87 = 1;
-            A443IconCategory = T000W17_A443IconCategory[0];
-            A262IconName = T000W17_A262IconName[0];
-            A263IconSVG = T000W17_A263IconSVG[0];
-            ZM0W87( -12) ;
+            A443IconCategory = T000W28_A443IconCategory[0];
+            A262IconName = T000W28_A262IconName[0];
+            A263IconSVG = T000W28_A263IconSVG[0];
+            ZM0W87( -21) ;
          }
-         pr_default.close(15);
+         pr_default.close(26);
          OnLoadActions0W87( ) ;
       }
 
@@ -2355,19 +3287,19 @@ namespace GeneXus.Programs {
          Gx_BScreen = 1;
          AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
          standaloneModal0W87( ) ;
-         /* Using cursor T000W18 */
-         pr_default.execute(16, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A262IconName, A443IconCategory, A261IconId});
-         if ( (pr_default.getStatus(16) != 101) )
+         /* Using cursor T000W29 */
+         pr_default.execute(27, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A262IconName, A443IconCategory, A261IconId});
+         if ( (pr_default.getStatus(27) != 101) )
          {
             GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Icon Name", "")+","+context.GetMessage( "Icon Category", "")}), 1, "TRN_THEMEID");
             AnyError = 1;
             GX_FocusControl = edtTrn_ThemeId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
-         pr_default.close(16);
+         pr_default.close(27);
          if ( ! ( ( StringUtil.StrCmp(A443IconCategory, "General") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Services") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Living") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Health") == 0 ) ) )
          {
-            GXCCtl = "ICONCATEGORY_" + sGXsfl_42_idx;
+            GXCCtl = "ICONCATEGORY_" + sGXsfl_51_idx;
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Icon Category", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, GXCCtl);
             AnyError = 1;
             GX_FocusControl = cmbIconCategory_Internalname;
@@ -2385,9 +3317,9 @@ namespace GeneXus.Programs {
 
       protected void GetKey0W87( )
       {
-         /* Using cursor T000W19 */
-         pr_default.execute(17, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A261IconId});
-         if ( (pr_default.getStatus(17) != 101) )
+         /* Using cursor T000W30 */
+         pr_default.execute(28, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A261IconId});
+         if ( (pr_default.getStatus(28) != 101) )
          {
             RcdFound87 = 1;
          }
@@ -2395,7 +3327,7 @@ namespace GeneXus.Programs {
          {
             RcdFound87 = 0;
          }
-         pr_default.close(17);
+         pr_default.close(28);
       }
 
       protected void getByPrimaryKey0W87( )
@@ -2404,7 +3336,7 @@ namespace GeneXus.Programs {
          pr_default.execute(3, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A261IconId});
          if ( (pr_default.getStatus(3) != 101) )
          {
-            ZM0W87( 12) ;
+            ZM0W87( 21) ;
             RcdFound87 = 1;
             InitializeNonKey0W87( ) ;
             A261IconId = T000W5_A261IconId[0];
@@ -2496,11 +3428,11 @@ namespace GeneXus.Programs {
                   BeforeInsert0W87( ) ;
                   if ( AnyError == 0 )
                   {
-                     /* Using cursor T000W20 */
-                     pr_default.execute(18, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A261IconId, A443IconCategory, A262IconName, A263IconSVG});
-                     pr_default.close(18);
+                     /* Using cursor T000W31 */
+                     pr_default.execute(29, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A261IconId, A443IconCategory, A262IconName, A263IconSVG});
+                     pr_default.close(29);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_ThemeIcon");
-                     if ( (pr_default.getStatus(18) == 1) )
+                     if ( (pr_default.getStatus(29) == 1) )
                      {
                         GX_msglist.addItem(context.GetMessage( "GXM_noupdate", ""), "DuplicatePrimaryKey", 1, "");
                         AnyError = 1;
@@ -2557,11 +3489,11 @@ namespace GeneXus.Programs {
                      BeforeUpdate0W87( ) ;
                      if ( AnyError == 0 )
                      {
-                        /* Using cursor T000W21 */
-                        pr_default.execute(19, new Object[] {A443IconCategory, A262IconName, A263IconSVG, n247Trn_ThemeId, A247Trn_ThemeId, A261IconId});
-                        pr_default.close(19);
+                        /* Using cursor T000W32 */
+                        pr_default.execute(30, new Object[] {A443IconCategory, A262IconName, A263IconSVG, n247Trn_ThemeId, A247Trn_ThemeId, A261IconId});
+                        pr_default.close(30);
                         pr_default.SmartCacheProvider.SetUpdated("Trn_ThemeIcon");
-                        if ( (pr_default.getStatus(19) == 103) )
+                        if ( (pr_default.getStatus(30) == 103) )
                         {
                            GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_ThemeIcon"}), "RecordIsLocked", 1, "");
                            AnyError = 1;
@@ -2619,9 +3551,9 @@ namespace GeneXus.Programs {
                if ( AnyError == 0 )
                {
                   /* No cascading delete specified. */
-                  /* Using cursor T000W22 */
-                  pr_default.execute(20, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A261IconId});
-                  pr_default.close(20);
+                  /* Using cursor T000W33 */
+                  pr_default.execute(31, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A261IconId});
+                  pr_default.close(31);
                   pr_default.SmartCacheProvider.SetUpdated("Trn_ThemeIcon");
                   if ( AnyError == 0 )
                   {
@@ -2666,13 +3598,13 @@ namespace GeneXus.Programs {
       public void ScanStart0W87( )
       {
          /* Scan By routine */
-         /* Using cursor T000W23 */
-         pr_default.execute(21, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
+         /* Using cursor T000W34 */
+         pr_default.execute(32, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
          RcdFound87 = 0;
-         if ( (pr_default.getStatus(21) != 101) )
+         if ( (pr_default.getStatus(32) != 101) )
          {
             RcdFound87 = 1;
-            A261IconId = T000W23_A261IconId[0];
+            A261IconId = T000W34_A261IconId[0];
          }
          /* Load Subordinate Levels */
       }
@@ -2680,18 +3612,18 @@ namespace GeneXus.Programs {
       protected void ScanNext0W87( )
       {
          /* Scan next routine */
-         pr_default.readNext(21);
+         pr_default.readNext(32);
          RcdFound87 = 0;
-         if ( (pr_default.getStatus(21) != 101) )
+         if ( (pr_default.getStatus(32) != 101) )
          {
             RcdFound87 = 1;
-            A261IconId = T000W23_A261IconId[0];
+            A261IconId = T000W34_A261IconId[0];
          }
       }
 
       protected void ScanEnd0W87( )
       {
-         pr_default.close(21);
+         pr_default.close(32);
       }
 
       protected void AfterConfirm0W87( )
@@ -2727,13 +3659,13 @@ namespace GeneXus.Programs {
       protected void DisableAttributes0W87( )
       {
          edtIconId_Enabled = 0;
-         AssignProp("", false, edtIconId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconId_Enabled), 5, 0), !bGXsfl_42_Refreshing);
+         AssignProp("", false, edtIconId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconId_Enabled), 5, 0), !bGXsfl_51_Refreshing);
          edtIconName_Enabled = 0;
-         AssignProp("", false, edtIconName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconName_Enabled), 5, 0), !bGXsfl_42_Refreshing);
+         AssignProp("", false, edtIconName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconName_Enabled), 5, 0), !bGXsfl_51_Refreshing);
          cmbIconCategory.Enabled = 0;
-         AssignProp("", false, cmbIconCategory_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbIconCategory.Enabled), 5, 0), !bGXsfl_42_Refreshing);
+         AssignProp("", false, cmbIconCategory_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbIconCategory.Enabled), 5, 0), !bGXsfl_51_Refreshing);
          edtIconSVG_Enabled = 0;
-         AssignProp("", false, edtIconSVG_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconSVG_Enabled), 5, 0), !bGXsfl_42_Refreshing);
+         AssignProp("", false, edtIconSVG_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconSVG_Enabled), 5, 0), !bGXsfl_51_Refreshing);
       }
 
       protected void send_integrity_lvl_hashes0W87( )
@@ -2742,7 +3674,7 @@ namespace GeneXus.Programs {
 
       protected void ZM0W47( short GX_JID )
       {
-         if ( ( GX_JID == 14 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 23 ) || ( GX_JID == 0 ) )
          {
             if ( ! IsIns( ) )
             {
@@ -2755,7 +3687,7 @@ namespace GeneXus.Programs {
                Z251ColorCode = A251ColorCode;
             }
          }
-         if ( GX_JID == -14 )
+         if ( GX_JID == -23 )
          {
             Z247Trn_ThemeId = A247Trn_ThemeId;
             Z249ColorId = A249ColorId;
@@ -2767,7 +3699,7 @@ namespace GeneXus.Programs {
       protected void standaloneNotModal0W47( )
       {
          edtColorId_Enabled = 0;
-         AssignProp("", false, edtColorId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtColorId_Enabled), 5, 0), !bGXsfl_55_Refreshing);
+         AssignProp("", false, edtColorId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtColorId_Enabled), 5, 0), !bGXsfl_64_Refreshing);
       }
 
       protected void standaloneModal0W47( )
@@ -2783,16 +3715,16 @@ namespace GeneXus.Programs {
 
       protected void Load0W47( )
       {
-         /* Using cursor T000W24 */
-         pr_default.execute(22, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A249ColorId});
-         if ( (pr_default.getStatus(22) != 101) )
+         /* Using cursor T000W35 */
+         pr_default.execute(33, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A249ColorId});
+         if ( (pr_default.getStatus(33) != 101) )
          {
             RcdFound47 = 1;
-            A250ColorName = T000W24_A250ColorName[0];
-            A251ColorCode = T000W24_A251ColorCode[0];
-            ZM0W47( -14) ;
+            A250ColorName = T000W35_A250ColorName[0];
+            A251ColorCode = T000W35_A251ColorCode[0];
+            ZM0W47( -23) ;
          }
-         pr_default.close(22);
+         pr_default.close(33);
          OnLoadActions0W47( ) ;
       }
 
@@ -2806,16 +3738,26 @@ namespace GeneXus.Programs {
          Gx_BScreen = 1;
          AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
          standaloneModal0W47( ) ;
-         /* Using cursor T000W25 */
-         pr_default.execute(23, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A250ColorName, A251ColorCode, A249ColorId});
-         if ( (pr_default.getStatus(23) != 101) )
+         /* Using cursor T000W36 */
+         pr_default.execute(34, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A250ColorName, A249ColorId});
+         if ( (pr_default.getStatus(34) != 101) )
+         {
+            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Color Name", "")}), 1, "TRN_THEMEID");
+            AnyError = 1;
+            GX_FocusControl = edtTrn_ThemeId_Internalname;
+            AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
+         }
+         pr_default.close(34);
+         /* Using cursor T000W37 */
+         pr_default.execute(35, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A250ColorName, A251ColorCode, A249ColorId});
+         if ( (pr_default.getStatus(35) != 101) )
          {
             GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Color Name", "")+","+context.GetMessage( "Color Code", "")}), 1, "TRN_THEMEID");
             AnyError = 1;
             GX_FocusControl = edtTrn_ThemeId_Internalname;
             AssignAttri("", false, "GX_FocusControl", GX_FocusControl);
          }
-         pr_default.close(23);
+         pr_default.close(35);
       }
 
       protected void CloseExtendedTableCursors0W47( )
@@ -2828,9 +3770,9 @@ namespace GeneXus.Programs {
 
       protected void GetKey0W47( )
       {
-         /* Using cursor T000W26 */
-         pr_default.execute(24, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A249ColorId});
-         if ( (pr_default.getStatus(24) != 101) )
+         /* Using cursor T000W38 */
+         pr_default.execute(36, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A249ColorId});
+         if ( (pr_default.getStatus(36) != 101) )
          {
             RcdFound47 = 1;
          }
@@ -2838,7 +3780,7 @@ namespace GeneXus.Programs {
          {
             RcdFound47 = 0;
          }
-         pr_default.close(24);
+         pr_default.close(36);
       }
 
       protected void getByPrimaryKey0W47( )
@@ -2847,7 +3789,7 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A249ColorId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM0W47( 14) ;
+            ZM0W47( 23) ;
             RcdFound47 = 1;
             InitializeNonKey0W47( ) ;
             A249ColorId = T000W3_A249ColorId[0];
@@ -2938,11 +3880,11 @@ namespace GeneXus.Programs {
                   BeforeInsert0W47( ) ;
                   if ( AnyError == 0 )
                   {
-                     /* Using cursor T000W27 */
-                     pr_default.execute(25, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A249ColorId, A250ColorName, A251ColorCode});
-                     pr_default.close(25);
+                     /* Using cursor T000W39 */
+                     pr_default.execute(37, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A249ColorId, A250ColorName, A251ColorCode});
+                     pr_default.close(37);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_ThemeColor");
-                     if ( (pr_default.getStatus(25) == 1) )
+                     if ( (pr_default.getStatus(37) == 1) )
                      {
                         GX_msglist.addItem(context.GetMessage( "GXM_noupdate", ""), "DuplicatePrimaryKey", 1, "");
                         AnyError = 1;
@@ -2999,11 +3941,11 @@ namespace GeneXus.Programs {
                      BeforeUpdate0W47( ) ;
                      if ( AnyError == 0 )
                      {
-                        /* Using cursor T000W28 */
-                        pr_default.execute(26, new Object[] {A250ColorName, A251ColorCode, n247Trn_ThemeId, A247Trn_ThemeId, A249ColorId});
-                        pr_default.close(26);
+                        /* Using cursor T000W40 */
+                        pr_default.execute(38, new Object[] {A250ColorName, A251ColorCode, n247Trn_ThemeId, A247Trn_ThemeId, A249ColorId});
+                        pr_default.close(38);
                         pr_default.SmartCacheProvider.SetUpdated("Trn_ThemeColor");
-                        if ( (pr_default.getStatus(26) == 103) )
+                        if ( (pr_default.getStatus(38) == 103) )
                         {
                            GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_ThemeColor"}), "RecordIsLocked", 1, "");
                            AnyError = 1;
@@ -3061,9 +4003,9 @@ namespace GeneXus.Programs {
                if ( AnyError == 0 )
                {
                   /* No cascading delete specified. */
-                  /* Using cursor T000W29 */
-                  pr_default.execute(27, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A249ColorId});
-                  pr_default.close(27);
+                  /* Using cursor T000W41 */
+                  pr_default.execute(39, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A249ColorId});
+                  pr_default.close(39);
                   pr_default.SmartCacheProvider.SetUpdated("Trn_ThemeColor");
                   if ( AnyError == 0 )
                   {
@@ -3108,13 +4050,13 @@ namespace GeneXus.Programs {
       public void ScanStart0W47( )
       {
          /* Scan By routine */
-         /* Using cursor T000W30 */
-         pr_default.execute(28, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
+         /* Using cursor T000W42 */
+         pr_default.execute(40, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId});
          RcdFound47 = 0;
-         if ( (pr_default.getStatus(28) != 101) )
+         if ( (pr_default.getStatus(40) != 101) )
          {
             RcdFound47 = 1;
-            A249ColorId = T000W30_A249ColorId[0];
+            A249ColorId = T000W42_A249ColorId[0];
          }
          /* Load Subordinate Levels */
       }
@@ -3122,18 +4064,18 @@ namespace GeneXus.Programs {
       protected void ScanNext0W47( )
       {
          /* Scan next routine */
-         pr_default.readNext(28);
+         pr_default.readNext(40);
          RcdFound47 = 0;
-         if ( (pr_default.getStatus(28) != 101) )
+         if ( (pr_default.getStatus(40) != 101) )
          {
             RcdFound47 = 1;
-            A249ColorId = T000W30_A249ColorId[0];
+            A249ColorId = T000W42_A249ColorId[0];
          }
       }
 
       protected void ScanEnd0W47( )
       {
-         pr_default.close(28);
+         pr_default.close(40);
       }
 
       protected void AfterConfirm0W47( )
@@ -3169,11 +4111,11 @@ namespace GeneXus.Programs {
       protected void DisableAttributes0W47( )
       {
          edtColorId_Enabled = 0;
-         AssignProp("", false, edtColorId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtColorId_Enabled), 5, 0), !bGXsfl_55_Refreshing);
+         AssignProp("", false, edtColorId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtColorId_Enabled), 5, 0), !bGXsfl_64_Refreshing);
          cmbColorName.Enabled = 0;
-         AssignProp("", false, cmbColorName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbColorName.Enabled), 5, 0), !bGXsfl_55_Refreshing);
+         AssignProp("", false, cmbColorName_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(cmbColorName.Enabled), 5, 0), !bGXsfl_64_Refreshing);
          edtColorCode_Enabled = 0;
-         AssignProp("", false, edtColorCode_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtColorCode_Enabled), 5, 0), !bGXsfl_55_Refreshing);
+         AssignProp("", false, edtColorCode_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtColorCode_Enabled), 5, 0), !bGXsfl_64_Refreshing);
       }
 
       protected void send_integrity_lvl_hashes0W47( )
@@ -3184,27 +4126,194 @@ namespace GeneXus.Programs {
       {
       }
 
-      protected void SubsflControlProps_4287( )
+      protected void SubsflControlProps_42112( )
       {
-         edtIconId_Internalname = "ICONID_"+sGXsfl_42_idx;
-         edtIconName_Internalname = "ICONNAME_"+sGXsfl_42_idx;
-         cmbIconCategory_Internalname = "ICONCATEGORY_"+sGXsfl_42_idx;
-         edtIconSVG_Internalname = "ICONSVG_"+sGXsfl_42_idx;
+         edtCtaColorId_Internalname = "CTACOLORID_"+sGXsfl_42_idx;
+         edtCtaColorName_Internalname = "CTACOLORNAME_"+sGXsfl_42_idx;
+         edtCtaColorCode_Internalname = "CTACOLORCODE_"+sGXsfl_42_idx;
       }
 
-      protected void SubsflControlProps_fel_4287( )
+      protected void SubsflControlProps_fel_42112( )
       {
-         edtIconId_Internalname = "ICONID_"+sGXsfl_42_fel_idx;
-         edtIconName_Internalname = "ICONNAME_"+sGXsfl_42_fel_idx;
-         cmbIconCategory_Internalname = "ICONCATEGORY_"+sGXsfl_42_fel_idx;
-         edtIconSVG_Internalname = "ICONSVG_"+sGXsfl_42_fel_idx;
+         edtCtaColorId_Internalname = "CTACOLORID_"+sGXsfl_42_fel_idx;
+         edtCtaColorName_Internalname = "CTACOLORNAME_"+sGXsfl_42_fel_idx;
+         edtCtaColorCode_Internalname = "CTACOLORCODE_"+sGXsfl_42_fel_idx;
+      }
+
+      protected void AddRow0W112( )
+      {
+         nGXsfl_42_idx = (int)(nGXsfl_42_idx+1);
+         sGXsfl_42_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_42_idx), 4, 0), 4, "0");
+         SubsflControlProps_42112( ) ;
+         SendRow0W112( ) ;
+      }
+
+      protected void SendRow0W112( )
+      {
+         Gridlevel_ctacolorRow = GXWebRow.GetNew(context);
+         if ( subGridlevel_ctacolor_Backcolorstyle == 0 )
+         {
+            /* None style subfile background logic. */
+            subGridlevel_ctacolor_Backstyle = 0;
+            if ( StringUtil.StrCmp(subGridlevel_ctacolor_Class, "") != 0 )
+            {
+               subGridlevel_ctacolor_Linesclass = subGridlevel_ctacolor_Class+"Odd";
+            }
+         }
+         else if ( subGridlevel_ctacolor_Backcolorstyle == 1 )
+         {
+            /* Uniform style subfile background logic. */
+            subGridlevel_ctacolor_Backstyle = 0;
+            subGridlevel_ctacolor_Backcolor = subGridlevel_ctacolor_Allbackcolor;
+            if ( StringUtil.StrCmp(subGridlevel_ctacolor_Class, "") != 0 )
+            {
+               subGridlevel_ctacolor_Linesclass = subGridlevel_ctacolor_Class+"Uniform";
+            }
+         }
+         else if ( subGridlevel_ctacolor_Backcolorstyle == 2 )
+         {
+            /* Header style subfile background logic. */
+            subGridlevel_ctacolor_Backstyle = 1;
+            if ( StringUtil.StrCmp(subGridlevel_ctacolor_Class, "") != 0 )
+            {
+               subGridlevel_ctacolor_Linesclass = subGridlevel_ctacolor_Class+"Odd";
+            }
+            subGridlevel_ctacolor_Backcolor = (int)(0x0);
+         }
+         else if ( subGridlevel_ctacolor_Backcolorstyle == 3 )
+         {
+            /* Report style subfile background logic. */
+            subGridlevel_ctacolor_Backstyle = 1;
+            if ( ((int)((nGXsfl_42_idx) % (2))) == 0 )
+            {
+               subGridlevel_ctacolor_Backcolor = (int)(0x0);
+               if ( StringUtil.StrCmp(subGridlevel_ctacolor_Class, "") != 0 )
+               {
+                  subGridlevel_ctacolor_Linesclass = subGridlevel_ctacolor_Class+"Even";
+               }
+            }
+            else
+            {
+               subGridlevel_ctacolor_Backcolor = (int)(0x0);
+               if ( StringUtil.StrCmp(subGridlevel_ctacolor_Class, "") != 0 )
+               {
+                  subGridlevel_ctacolor_Linesclass = subGridlevel_ctacolor_Class+"Odd";
+               }
+            }
+         }
+         /* Subfile cell */
+         /* Single line edit */
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_112_" + sGXsfl_42_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 43,'',false,'" + sGXsfl_42_idx + "',42)\"";
+         ROClassString = "Attribute";
+         Gridlevel_ctacolorRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtCtaColorId_Internalname,A563CtaColorId.ToString(),A563CtaColorId.ToString(),TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,43);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtCtaColorId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtCtaColorId_Enabled,(short)1,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)42,(short)0,(short)0,(short)0,(bool)true,(string)"Id",(string)"",(bool)false,(string)""});
+         /* Subfile cell */
+         /* Single line edit */
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_112_" + sGXsfl_42_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 44,'',false,'" + sGXsfl_42_idx + "',42)\"";
+         ROClassString = "Attribute";
+         Gridlevel_ctacolorRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtCtaColorName_Internalname,(string)A564CtaColorName,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,44);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtCtaColorName_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtCtaColorName_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)42,(short)0,(short)-1,(short)-1,(bool)true,(string)"Name",(string)"start",(bool)true,(string)""});
+         /* Subfile cell */
+         /* Single line edit */
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_112_" + sGXsfl_42_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 45,'',false,'" + sGXsfl_42_idx + "',42)\"";
+         ROClassString = "Attribute";
+         Gridlevel_ctacolorRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtCtaColorCode_Internalname,(string)A565CtaColorCode,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,45);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtCtaColorCode_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtCtaColorCode_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)42,(short)0,(short)-1,(short)-1,(bool)true,(string)"GeneXusUnanimo\\Code",(string)"start",(bool)true,(string)""});
+         ajax_sending_grid_row(Gridlevel_ctacolorRow);
+         send_integrity_lvl_hashes0W112( ) ;
+         GXCCtl = "Z563CtaColorId_" + sGXsfl_42_idx;
+         GxWebStd.gx_hidden_field( context, GXCCtl, Z563CtaColorId.ToString());
+         GXCCtl = "Z564CtaColorName_" + sGXsfl_42_idx;
+         GxWebStd.gx_hidden_field( context, GXCCtl, Z564CtaColorName);
+         GXCCtl = "Z565CtaColorCode_" + sGXsfl_42_idx;
+         GxWebStd.gx_hidden_field( context, GXCCtl, Z565CtaColorCode);
+         GXCCtl = "nRcdDeleted_112_" + sGXsfl_42_idx;
+         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_112), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GXCCtl = "nRcdExists_112_" + sGXsfl_42_idx;
+         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_112), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GXCCtl = "nIsMod_112_" + sGXsfl_42_idx;
+         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_112), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GXCCtl = "vMODE_" + sGXsfl_42_idx;
+         GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.RTrim( Gx_mode));
+         GXCCtl = "vTRNCONTEXT_" + sGXsfl_42_idx;
+         if ( context.isAjaxRequest( ) )
+         {
+            context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, GXCCtl, AV11TrnContext);
+         }
+         else
+         {
+            context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(GXCCtl, AV11TrnContext);
+         }
+         GXCCtl = "vTRN_THEMEID_" + sGXsfl_42_idx;
+         GxWebStd.gx_hidden_field( context, GXCCtl, AV13Trn_ThemeId.ToString());
+         GxWebStd.gx_hidden_field( context, "CTACOLORID_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtCtaColorId_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "CTACOLORNAME_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtCtaColorName_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "CTACOLORCODE_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtCtaColorCode_Enabled), 5, 0, ".", "")));
+         ajax_sending_grid_row(null);
+         Gridlevel_ctacolorContainer.AddRow(Gridlevel_ctacolorRow);
+      }
+
+      protected void ReadRow0W112( )
+      {
+         nGXsfl_42_idx = (int)(nGXsfl_42_idx+1);
+         sGXsfl_42_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_42_idx), 4, 0), 4, "0");
+         SubsflControlProps_42112( ) ;
+         edtCtaColorId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "CTACOLORID_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtCtaColorName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "CTACOLORNAME_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtCtaColorCode_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "CTACOLORCODE_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         if ( StringUtil.StrCmp(cgiGet( edtCtaColorId_Internalname), "") == 0 )
+         {
+            A563CtaColorId = Guid.Empty;
+         }
+         else
+         {
+            try
+            {
+               A563CtaColorId = StringUtil.StrToGuid( cgiGet( edtCtaColorId_Internalname));
+            }
+            catch ( Exception  )
+            {
+               GXCCtl = "CTACOLORID_" + sGXsfl_42_idx;
+               GX_msglist.addItem(context.GetMessage( "GXM_invalidguid", ""), 1, GXCCtl);
+               AnyError = 1;
+               GX_FocusControl = edtCtaColorId_Internalname;
+               wbErr = true;
+            }
+         }
+         A564CtaColorName = cgiGet( edtCtaColorName_Internalname);
+         A565CtaColorCode = cgiGet( edtCtaColorCode_Internalname);
+         GXCCtl = "Z563CtaColorId_" + sGXsfl_42_idx;
+         Z563CtaColorId = StringUtil.StrToGuid( cgiGet( GXCCtl));
+         GXCCtl = "Z564CtaColorName_" + sGXsfl_42_idx;
+         Z564CtaColorName = cgiGet( GXCCtl);
+         GXCCtl = "Z565CtaColorCode_" + sGXsfl_42_idx;
+         Z565CtaColorCode = cgiGet( GXCCtl);
+         GXCCtl = "nRcdDeleted_112_" + sGXsfl_42_idx;
+         nRcdDeleted_112 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         GXCCtl = "nRcdExists_112_" + sGXsfl_42_idx;
+         nRcdExists_112 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         GXCCtl = "nIsMod_112_" + sGXsfl_42_idx;
+         nIsMod_112 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+      }
+
+      protected void SubsflControlProps_5187( )
+      {
+         edtIconId_Internalname = "ICONID_"+sGXsfl_51_idx;
+         edtIconName_Internalname = "ICONNAME_"+sGXsfl_51_idx;
+         cmbIconCategory_Internalname = "ICONCATEGORY_"+sGXsfl_51_idx;
+         edtIconSVG_Internalname = "ICONSVG_"+sGXsfl_51_idx;
+      }
+
+      protected void SubsflControlProps_fel_5187( )
+      {
+         edtIconId_Internalname = "ICONID_"+sGXsfl_51_fel_idx;
+         edtIconName_Internalname = "ICONNAME_"+sGXsfl_51_fel_idx;
+         cmbIconCategory_Internalname = "ICONCATEGORY_"+sGXsfl_51_fel_idx;
+         edtIconSVG_Internalname = "ICONSVG_"+sGXsfl_51_fel_idx;
       }
 
       protected void AddRow0W87( )
       {
-         nGXsfl_42_idx = (int)(nGXsfl_42_idx+1);
-         sGXsfl_42_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_42_idx), 4, 0), 4, "0");
-         SubsflControlProps_4287( ) ;
+         nGXsfl_51_idx = (int)(nGXsfl_51_idx+1);
+         sGXsfl_51_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_51_idx), 4, 0), 4, "0");
+         SubsflControlProps_5187( ) ;
          SendRow0W87( ) ;
       }
 
@@ -3244,7 +4353,7 @@ namespace GeneXus.Programs {
          {
             /* Report style subfile background logic. */
             subGridlevel_icon_Backstyle = 1;
-            if ( ((int)((nGXsfl_42_idx) % (2))) == 0 )
+            if ( ((int)((nGXsfl_51_idx) % (2))) == 0 )
             {
                subGridlevel_icon_Backcolor = (int)(0x0);
                if ( StringUtil.StrCmp(subGridlevel_icon_Class, "") != 0 )
@@ -3263,19 +4372,19 @@ namespace GeneXus.Programs {
          }
          /* Subfile cell */
          /* Single line edit */
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_87_" + sGXsfl_42_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 43,'',false,'" + sGXsfl_42_idx + "',42)\"";
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_87_" + sGXsfl_51_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 52,'',false,'" + sGXsfl_51_idx + "',51)\"";
          ROClassString = "Attribute";
-         Gridlevel_iconRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtIconId_Internalname,A261IconId.ToString(),A261IconId.ToString(),TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,43);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtIconId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtIconId_Enabled,(short)1,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)42,(short)0,(short)0,(short)0,(bool)true,(string)"Id",(string)"",(bool)false,(string)""});
+         Gridlevel_iconRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtIconId_Internalname,A261IconId.ToString(),A261IconId.ToString(),TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,52);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtIconId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtIconId_Enabled,(short)1,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)51,(short)0,(short)0,(short)0,(bool)true,(string)"Id",(string)"",(bool)false,(string)""});
          /* Subfile cell */
          /* Single line edit */
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_87_" + sGXsfl_42_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 44,'',false,'" + sGXsfl_42_idx + "',42)\"";
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_87_" + sGXsfl_51_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 53,'',false,'" + sGXsfl_51_idx + "',51)\"";
          ROClassString = "Attribute";
-         Gridlevel_iconRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtIconName_Internalname,(string)A262IconName,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,44);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtIconName_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtIconName_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)42,(short)0,(short)-1,(short)-1,(bool)true,(string)"Name",(string)"start",(bool)true,(string)""});
+         Gridlevel_iconRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtIconName_Internalname,(string)A262IconName,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,53);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtIconName_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtIconName_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)51,(short)0,(short)-1,(short)-1,(bool)true,(string)"Name",(string)"start",(bool)true,(string)""});
          /* Subfile cell */
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_87_" + sGXsfl_42_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 45,'',false,'" + sGXsfl_42_idx + "',42)\"";
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_87_" + sGXsfl_51_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 54,'',false,'" + sGXsfl_51_idx + "',51)\"";
          if ( ( cmbIconCategory.ItemCount == 0 ) && isAjaxCallMode( ) )
          {
-            GXCCtl = "ICONCATEGORY_" + sGXsfl_42_idx;
+            GXCCtl = "ICONCATEGORY_" + sGXsfl_51_idx;
             cmbIconCategory.Name = GXCCtl;
             cmbIconCategory.WebTags = "";
             cmbIconCategory.addItem("General", context.GetMessage( "General", ""), 0);
@@ -3288,31 +4397,31 @@ namespace GeneXus.Programs {
             }
          }
          /* ComboBox */
-         Gridlevel_iconRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbIconCategory,(string)cmbIconCategory_Internalname,StringUtil.RTrim( A443IconCategory),(short)1,(string)cmbIconCategory_Jsonclick,(short)0,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"svchar",(string)"",(short)-1,cmbIconCategory.Enabled,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"TrnColumn",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,45);\"",(string)"",(bool)true,(short)0});
+         Gridlevel_iconRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbIconCategory,(string)cmbIconCategory_Internalname,StringUtil.RTrim( A443IconCategory),(short)1,(string)cmbIconCategory_Jsonclick,(short)0,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"svchar",(string)"",(short)-1,cmbIconCategory.Enabled,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"TrnColumn",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,54);\"",(string)"",(bool)true,(short)0});
          cmbIconCategory.CurrentValue = StringUtil.RTrim( A443IconCategory);
-         AssignProp("", false, cmbIconCategory_Internalname, "Values", (string)(cmbIconCategory.ToJavascriptSource()), !bGXsfl_42_Refreshing);
+         AssignProp("", false, cmbIconCategory_Internalname, "Values", (string)(cmbIconCategory.ToJavascriptSource()), !bGXsfl_51_Refreshing);
          /* Subfile cell */
          /* Single line edit */
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_87_" + sGXsfl_42_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 46,'',false,'" + sGXsfl_42_idx + "',42)\"";
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_87_" + sGXsfl_51_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 55,'',false,'" + sGXsfl_51_idx + "',51)\"";
          ROClassString = "Attribute";
-         Gridlevel_iconRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtIconSVG_Internalname,(string)A263IconSVG,(string)A263IconSVG,TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,46);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtIconSVG_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtIconSVG_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(int)2097152,(short)0,(short)0,(short)42,(short)0,(short)0,(short)-1,(bool)true,(string)"",(string)"start",(bool)false,(string)""});
+         Gridlevel_iconRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtIconSVG_Internalname,(string)A263IconSVG,(string)A263IconSVG,TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,55);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtIconSVG_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtIconSVG_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(int)2097152,(short)0,(short)0,(short)51,(short)0,(short)0,(short)-1,(bool)true,(string)"",(string)"start",(bool)false,(string)""});
          ajax_sending_grid_row(Gridlevel_iconRow);
          send_integrity_lvl_hashes0W87( ) ;
-         GXCCtl = "Z261IconId_" + sGXsfl_42_idx;
+         GXCCtl = "Z261IconId_" + sGXsfl_51_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, Z261IconId.ToString());
-         GXCCtl = "Z443IconCategory_" + sGXsfl_42_idx;
+         GXCCtl = "Z443IconCategory_" + sGXsfl_51_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, Z443IconCategory);
-         GXCCtl = "Z262IconName_" + sGXsfl_42_idx;
+         GXCCtl = "Z262IconName_" + sGXsfl_51_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, Z262IconName);
-         GXCCtl = "nRcdDeleted_87_" + sGXsfl_42_idx;
+         GXCCtl = "nRcdDeleted_87_" + sGXsfl_51_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_87), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
-         GXCCtl = "nRcdExists_87_" + sGXsfl_42_idx;
+         GXCCtl = "nRcdExists_87_" + sGXsfl_51_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_87), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
-         GXCCtl = "nIsMod_87_" + sGXsfl_42_idx;
+         GXCCtl = "nIsMod_87_" + sGXsfl_51_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_87), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
-         GXCCtl = "vMODE_" + sGXsfl_42_idx;
+         GXCCtl = "vMODE_" + sGXsfl_51_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.RTrim( Gx_mode));
-         GXCCtl = "vTRNCONTEXT_" + sGXsfl_42_idx;
+         GXCCtl = "vTRNCONTEXT_" + sGXsfl_51_idx;
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, GXCCtl, AV11TrnContext);
@@ -3321,25 +4430,25 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(GXCCtl, AV11TrnContext);
          }
-         GXCCtl = "vTRN_THEMEID_" + sGXsfl_42_idx;
+         GXCCtl = "vTRN_THEMEID_" + sGXsfl_51_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, AV13Trn_ThemeId.ToString());
-         GxWebStd.gx_hidden_field( context, "ICONID_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconId_Enabled), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "ICONNAME_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconName_Enabled), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "ICONCATEGORY_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbIconCategory.Enabled), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "ICONSVG_"+sGXsfl_42_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconSVG_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "ICONID_"+sGXsfl_51_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconId_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "ICONNAME_"+sGXsfl_51_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconName_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "ICONCATEGORY_"+sGXsfl_51_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbIconCategory.Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "ICONSVG_"+sGXsfl_51_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtIconSVG_Enabled), 5, 0, ".", "")));
          ajax_sending_grid_row(null);
          Gridlevel_iconContainer.AddRow(Gridlevel_iconRow);
       }
 
       protected void ReadRow0W87( )
       {
-         nGXsfl_42_idx = (int)(nGXsfl_42_idx+1);
-         sGXsfl_42_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_42_idx), 4, 0), 4, "0");
-         SubsflControlProps_4287( ) ;
-         edtIconId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONID_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-         edtIconName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONNAME_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-         cmbIconCategory.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONCATEGORY_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-         edtIconSVG_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONSVG_"+sGXsfl_42_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         nGXsfl_51_idx = (int)(nGXsfl_51_idx+1);
+         sGXsfl_51_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_51_idx), 4, 0), 4, "0");
+         SubsflControlProps_5187( ) ;
+         edtIconId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONID_"+sGXsfl_51_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtIconName_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONNAME_"+sGXsfl_51_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         cmbIconCategory.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONCATEGORY_"+sGXsfl_51_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtIconSVG_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "ICONSVG_"+sGXsfl_51_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          if ( StringUtil.StrCmp(cgiGet( edtIconId_Internalname), "") == 0 )
          {
             A261IconId = Guid.Empty;
@@ -3352,7 +4461,7 @@ namespace GeneXus.Programs {
             }
             catch ( Exception  )
             {
-               GXCCtl = "ICONID_" + sGXsfl_42_idx;
+               GXCCtl = "ICONID_" + sGXsfl_51_idx;
                GX_msglist.addItem(context.GetMessage( "GXM_invalidguid", ""), 1, GXCCtl);
                AnyError = 1;
                GX_FocusControl = edtIconId_Internalname;
@@ -3364,39 +4473,39 @@ namespace GeneXus.Programs {
          cmbIconCategory.CurrentValue = cgiGet( cmbIconCategory_Internalname);
          A443IconCategory = cgiGet( cmbIconCategory_Internalname);
          A263IconSVG = cgiGet( edtIconSVG_Internalname);
-         GXCCtl = "Z261IconId_" + sGXsfl_42_idx;
+         GXCCtl = "Z261IconId_" + sGXsfl_51_idx;
          Z261IconId = StringUtil.StrToGuid( cgiGet( GXCCtl));
-         GXCCtl = "Z443IconCategory_" + sGXsfl_42_idx;
+         GXCCtl = "Z443IconCategory_" + sGXsfl_51_idx;
          Z443IconCategory = cgiGet( GXCCtl);
-         GXCCtl = "Z262IconName_" + sGXsfl_42_idx;
+         GXCCtl = "Z262IconName_" + sGXsfl_51_idx;
          Z262IconName = cgiGet( GXCCtl);
-         GXCCtl = "nRcdDeleted_87_" + sGXsfl_42_idx;
+         GXCCtl = "nRcdDeleted_87_" + sGXsfl_51_idx;
          nRcdDeleted_87 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-         GXCCtl = "nRcdExists_87_" + sGXsfl_42_idx;
+         GXCCtl = "nRcdExists_87_" + sGXsfl_51_idx;
          nRcdExists_87 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-         GXCCtl = "nIsMod_87_" + sGXsfl_42_idx;
+         GXCCtl = "nIsMod_87_" + sGXsfl_51_idx;
          nIsMod_87 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
       }
 
-      protected void SubsflControlProps_5547( )
+      protected void SubsflControlProps_6447( )
       {
-         edtColorId_Internalname = "COLORID_"+sGXsfl_55_idx;
-         cmbColorName_Internalname = "COLORNAME_"+sGXsfl_55_idx;
-         edtColorCode_Internalname = "COLORCODE_"+sGXsfl_55_idx;
+         edtColorId_Internalname = "COLORID_"+sGXsfl_64_idx;
+         cmbColorName_Internalname = "COLORNAME_"+sGXsfl_64_idx;
+         edtColorCode_Internalname = "COLORCODE_"+sGXsfl_64_idx;
       }
 
-      protected void SubsflControlProps_fel_5547( )
+      protected void SubsflControlProps_fel_6447( )
       {
-         edtColorId_Internalname = "COLORID_"+sGXsfl_55_fel_idx;
-         cmbColorName_Internalname = "COLORNAME_"+sGXsfl_55_fel_idx;
-         edtColorCode_Internalname = "COLORCODE_"+sGXsfl_55_fel_idx;
+         edtColorId_Internalname = "COLORID_"+sGXsfl_64_fel_idx;
+         cmbColorName_Internalname = "COLORNAME_"+sGXsfl_64_fel_idx;
+         edtColorCode_Internalname = "COLORCODE_"+sGXsfl_64_fel_idx;
       }
 
       protected void AddRow0W47( )
       {
-         nGXsfl_55_idx = (int)(nGXsfl_55_idx+1);
-         sGXsfl_55_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_55_idx), 4, 0), 4, "0");
-         SubsflControlProps_5547( ) ;
+         nGXsfl_64_idx = (int)(nGXsfl_64_idx+1);
+         sGXsfl_64_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_64_idx), 4, 0), 4, "0");
+         SubsflControlProps_6447( ) ;
          SendRow0W47( ) ;
       }
 
@@ -3436,7 +4545,7 @@ namespace GeneXus.Programs {
          {
             /* Report style subfile background logic. */
             subGridlevel_color_Backstyle = 1;
-            if ( ((int)((nGXsfl_55_idx) % (2))) == 0 )
+            if ( ((int)((nGXsfl_64_idx) % (2))) == 0 )
             {
                subGridlevel_color_Backcolor = (int)(0x0);
                if ( StringUtil.StrCmp(subGridlevel_color_Class, "") != 0 )
@@ -3456,12 +4565,12 @@ namespace GeneXus.Programs {
          /* Subfile cell */
          /* Single line edit */
          ROClassString = "Attribute";
-         Gridlevel_colorRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtColorId_Internalname,A249ColorId.ToString(),A249ColorId.ToString(),""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtColorId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)0,(int)edtColorId_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)55,(short)0,(short)0,(short)0,(bool)true,(string)"Id",(string)"",(bool)false,(string)""});
+         Gridlevel_colorRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtColorId_Internalname,A249ColorId.ToString(),A249ColorId.ToString(),""+" onchange=\""+""+";gx.evt.onchange(this, event)\" ",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtColorId_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)0,(int)edtColorId_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)36,(short)0,(short)0,(short)64,(short)0,(short)0,(short)0,(bool)true,(string)"Id",(string)"",(bool)false,(string)""});
          /* Subfile cell */
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_47_" + sGXsfl_55_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 57,'',false,'" + sGXsfl_55_idx + "',55)\"";
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_47_" + sGXsfl_64_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 66,'',false,'" + sGXsfl_64_idx + "',64)\"";
          if ( ( cmbColorName.ItemCount == 0 ) && isAjaxCallMode( ) )
          {
-            GXCCtl = "COLORNAME_" + sGXsfl_55_idx;
+            GXCCtl = "COLORNAME_" + sGXsfl_64_idx;
             cmbColorName.Name = GXCCtl;
             cmbColorName.WebTags = "";
             cmbColorName.addItem("cardBgColor", context.GetMessage( "Card BG Color", ""), 0);
@@ -3480,31 +4589,31 @@ namespace GeneXus.Programs {
             }
          }
          /* ComboBox */
-         Gridlevel_colorRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbColorName,(string)cmbColorName_Internalname,StringUtil.RTrim( A250ColorName),(short)1,(string)cmbColorName_Jsonclick,(short)0,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"svchar",(string)"",(short)-1,cmbColorName.Enabled,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"TrnColumn",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,57);\"",(string)"",(bool)true,(short)0});
+         Gridlevel_colorRow.AddColumnProperties("combobox", 2, isAjaxCallMode( ), new Object[] {(GXCombobox)cmbColorName,(string)cmbColorName_Internalname,StringUtil.RTrim( A250ColorName),(short)1,(string)cmbColorName_Jsonclick,(short)0,(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"svchar",(string)"",(short)-1,cmbColorName.Enabled,(short)0,(short)0,(short)0,(string)"px",(short)0,(string)"px",(string)"",(string)"Attribute",(string)"TrnColumn",(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,66);\"",(string)"",(bool)true,(short)0});
          cmbColorName.CurrentValue = StringUtil.RTrim( A250ColorName);
-         AssignProp("", false, cmbColorName_Internalname, "Values", (string)(cmbColorName.ToJavascriptSource()), !bGXsfl_55_Refreshing);
+         AssignProp("", false, cmbColorName_Internalname, "Values", (string)(cmbColorName.ToJavascriptSource()), !bGXsfl_64_Refreshing);
          /* Subfile cell */
          /* Single line edit */
-         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_47_" + sGXsfl_55_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 58,'',false,'" + sGXsfl_55_idx + "',55)\"";
+         TempTags = " data-gxoch1=\"gx.fn.setControlValue('nIsMod_47_" + sGXsfl_64_idx + "',1);\"  onfocus=\"gx.evt.onfocus(this, 67,'',false,'" + sGXsfl_64_idx + "',64)\"";
          ROClassString = "Attribute";
-         Gridlevel_colorRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtColorCode_Internalname,(string)A251ColorCode,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,58);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtColorCode_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtColorCode_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)55,(short)0,(short)-1,(short)-1,(bool)true,(string)"GeneXusUnanimo\\Code",(string)"start",(bool)true,(string)""});
+         Gridlevel_colorRow.AddColumnProperties("edit", 1, isAjaxCallMode( ), new Object[] {(string)edtColorCode_Internalname,(string)A251ColorCode,(string)"",TempTags+" onchange=\""+""+";gx.evt.onchange(this, event)\" "+" onblur=\""+""+";gx.evt.onblur(this,67);\"",(string)"'"+""+"'"+",false,"+"'"+""+"'",(string)"",(string)"",(string)"",(string)"",(string)edtColorCode_Jsonclick,(short)0,(string)"Attribute",(string)"",(string)ROClassString,(string)"TrnColumn",(string)"",(short)-1,(int)edtColorCode_Enabled,(short)0,(string)"text",(string)"",(short)0,(string)"px",(short)17,(string)"px",(short)100,(short)0,(short)0,(short)64,(short)0,(short)-1,(short)-1,(bool)true,(string)"GeneXusUnanimo\\Code",(string)"start",(bool)true,(string)""});
          ajax_sending_grid_row(Gridlevel_colorRow);
          send_integrity_lvl_hashes0W47( ) ;
-         GXCCtl = "Z249ColorId_" + sGXsfl_55_idx;
+         GXCCtl = "Z249ColorId_" + sGXsfl_64_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, Z249ColorId.ToString());
-         GXCCtl = "Z250ColorName_" + sGXsfl_55_idx;
+         GXCCtl = "Z250ColorName_" + sGXsfl_64_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, Z250ColorName);
-         GXCCtl = "Z251ColorCode_" + sGXsfl_55_idx;
+         GXCCtl = "Z251ColorCode_" + sGXsfl_64_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, Z251ColorCode);
-         GXCCtl = "nRcdDeleted_47_" + sGXsfl_55_idx;
+         GXCCtl = "nRcdDeleted_47_" + sGXsfl_64_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdDeleted_47), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
-         GXCCtl = "nRcdExists_47_" + sGXsfl_55_idx;
+         GXCCtl = "nRcdExists_47_" + sGXsfl_64_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nRcdExists_47), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
-         GXCCtl = "nIsMod_47_" + sGXsfl_55_idx;
+         GXCCtl = "nIsMod_47_" + sGXsfl_64_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.LTrim( StringUtil.NToC( (decimal)(nIsMod_47), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
-         GXCCtl = "vMODE_" + sGXsfl_55_idx;
+         GXCCtl = "vMODE_" + sGXsfl_64_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, StringUtil.RTrim( Gx_mode));
-         GXCCtl = "vTRNCONTEXT_" + sGXsfl_55_idx;
+         GXCCtl = "vTRNCONTEXT_" + sGXsfl_64_idx;
          if ( context.isAjaxRequest( ) )
          {
             context.httpAjaxContext.ajax_rsp_assign_sdt_attri("", false, GXCCtl, AV11TrnContext);
@@ -3513,39 +4622,39 @@ namespace GeneXus.Programs {
          {
             context.httpAjaxContext.ajax_rsp_assign_hidden_sdt(GXCCtl, AV11TrnContext);
          }
-         GXCCtl = "vTRN_THEMEID_" + sGXsfl_55_idx;
+         GXCCtl = "vTRN_THEMEID_" + sGXsfl_64_idx;
          GxWebStd.gx_hidden_field( context, GXCCtl, AV13Trn_ThemeId.ToString());
-         GxWebStd.gx_hidden_field( context, "COLORID_"+sGXsfl_55_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtColorId_Enabled), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "COLORNAME_"+sGXsfl_55_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbColorName.Enabled), 5, 0, ".", "")));
-         GxWebStd.gx_hidden_field( context, "COLORCODE_"+sGXsfl_55_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtColorCode_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "COLORID_"+sGXsfl_64_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtColorId_Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "COLORNAME_"+sGXsfl_64_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(cmbColorName.Enabled), 5, 0, ".", "")));
+         GxWebStd.gx_hidden_field( context, "COLORCODE_"+sGXsfl_64_idx+"Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtColorCode_Enabled), 5, 0, ".", "")));
          ajax_sending_grid_row(null);
          Gridlevel_colorContainer.AddRow(Gridlevel_colorRow);
       }
 
       protected void ReadRow0W47( )
       {
-         nGXsfl_55_idx = (int)(nGXsfl_55_idx+1);
-         sGXsfl_55_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_55_idx), 4, 0), 4, "0");
-         SubsflControlProps_5547( ) ;
-         edtColorId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORID_"+sGXsfl_55_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-         cmbColorName.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORNAME_"+sGXsfl_55_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-         edtColorCode_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORCODE_"+sGXsfl_55_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         nGXsfl_64_idx = (int)(nGXsfl_64_idx+1);
+         sGXsfl_64_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_64_idx), 4, 0), 4, "0");
+         SubsflControlProps_6447( ) ;
+         edtColorId_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORID_"+sGXsfl_64_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         cmbColorName.Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORNAME_"+sGXsfl_64_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
+         edtColorCode_Enabled = (int)(Math.Round(context.localUtil.CToN( cgiGet( "COLORCODE_"+sGXsfl_64_idx+"Enabled"), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
          A249ColorId = StringUtil.StrToGuid( cgiGet( edtColorId_Internalname));
          cmbColorName.Name = cmbColorName_Internalname;
          cmbColorName.CurrentValue = cgiGet( cmbColorName_Internalname);
          A250ColorName = cgiGet( cmbColorName_Internalname);
          A251ColorCode = cgiGet( edtColorCode_Internalname);
-         GXCCtl = "Z249ColorId_" + sGXsfl_55_idx;
+         GXCCtl = "Z249ColorId_" + sGXsfl_64_idx;
          Z249ColorId = StringUtil.StrToGuid( cgiGet( GXCCtl));
-         GXCCtl = "Z250ColorName_" + sGXsfl_55_idx;
+         GXCCtl = "Z250ColorName_" + sGXsfl_64_idx;
          Z250ColorName = cgiGet( GXCCtl);
-         GXCCtl = "Z251ColorCode_" + sGXsfl_55_idx;
+         GXCCtl = "Z251ColorCode_" + sGXsfl_64_idx;
          Z251ColorCode = cgiGet( GXCCtl);
-         GXCCtl = "nRcdDeleted_47_" + sGXsfl_55_idx;
+         GXCCtl = "nRcdDeleted_47_" + sGXsfl_64_idx;
          nRcdDeleted_47 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-         GXCCtl = "nRcdExists_47_" + sGXsfl_55_idx;
+         GXCCtl = "nRcdExists_47_" + sGXsfl_64_idx;
          nRcdExists_47 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
-         GXCCtl = "nIsMod_47_" + sGXsfl_55_idx;
+         GXCCtl = "nIsMod_47_" + sGXsfl_64_idx;
          nIsMod_47 = (short)(Math.Round(context.localUtil.CToN( cgiGet( GXCCtl), context.GetLanguageProperty( "decimal_point"), context.GetLanguageProperty( "thousand_sep")), 18, MidpointRounding.ToEven));
       }
 
@@ -3553,39 +4662,55 @@ namespace GeneXus.Programs {
       {
          defedtColorId_Enabled = edtColorId_Enabled;
          defedtIconId_Enabled = edtIconId_Enabled;
+         defedtCtaColorId_Enabled = edtCtaColorId_Enabled;
       }
 
       protected void ConfirmValues0W0( )
       {
          nGXsfl_42_idx = 0;
          sGXsfl_42_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_42_idx), 4, 0), 4, "0");
-         SubsflControlProps_4287( ) ;
+         SubsflControlProps_42112( ) ;
          while ( nGXsfl_42_idx < nRC_GXsfl_42 )
          {
             nGXsfl_42_idx = (int)(nGXsfl_42_idx+1);
             sGXsfl_42_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_42_idx), 4, 0), 4, "0");
-            SubsflControlProps_4287( ) ;
-            ChangePostValue( "Z261IconId_"+sGXsfl_42_idx, cgiGet( "ZT_"+"Z261IconId_"+sGXsfl_42_idx)) ;
-            DeletePostValue( "ZT_"+"Z261IconId_"+sGXsfl_42_idx) ;
-            ChangePostValue( "Z443IconCategory_"+sGXsfl_42_idx, cgiGet( "ZT_"+"Z443IconCategory_"+sGXsfl_42_idx)) ;
-            DeletePostValue( "ZT_"+"Z443IconCategory_"+sGXsfl_42_idx) ;
-            ChangePostValue( "Z262IconName_"+sGXsfl_42_idx, cgiGet( "ZT_"+"Z262IconName_"+sGXsfl_42_idx)) ;
-            DeletePostValue( "ZT_"+"Z262IconName_"+sGXsfl_42_idx) ;
+            SubsflControlProps_42112( ) ;
+            ChangePostValue( "Z563CtaColorId_"+sGXsfl_42_idx, cgiGet( "ZT_"+"Z563CtaColorId_"+sGXsfl_42_idx)) ;
+            DeletePostValue( "ZT_"+"Z563CtaColorId_"+sGXsfl_42_idx) ;
+            ChangePostValue( "Z564CtaColorName_"+sGXsfl_42_idx, cgiGet( "ZT_"+"Z564CtaColorName_"+sGXsfl_42_idx)) ;
+            DeletePostValue( "ZT_"+"Z564CtaColorName_"+sGXsfl_42_idx) ;
+            ChangePostValue( "Z565CtaColorCode_"+sGXsfl_42_idx, cgiGet( "ZT_"+"Z565CtaColorCode_"+sGXsfl_42_idx)) ;
+            DeletePostValue( "ZT_"+"Z565CtaColorCode_"+sGXsfl_42_idx) ;
          }
-         nGXsfl_55_idx = 0;
-         sGXsfl_55_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_55_idx), 4, 0), 4, "0");
-         SubsflControlProps_5547( ) ;
-         while ( nGXsfl_55_idx < nRC_GXsfl_55 )
+         nGXsfl_51_idx = 0;
+         sGXsfl_51_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_51_idx), 4, 0), 4, "0");
+         SubsflControlProps_5187( ) ;
+         while ( nGXsfl_51_idx < nRC_GXsfl_51 )
          {
-            nGXsfl_55_idx = (int)(nGXsfl_55_idx+1);
-            sGXsfl_55_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_55_idx), 4, 0), 4, "0");
-            SubsflControlProps_5547( ) ;
-            ChangePostValue( "Z249ColorId_"+sGXsfl_55_idx, cgiGet( "ZT_"+"Z249ColorId_"+sGXsfl_55_idx)) ;
-            DeletePostValue( "ZT_"+"Z249ColorId_"+sGXsfl_55_idx) ;
-            ChangePostValue( "Z250ColorName_"+sGXsfl_55_idx, cgiGet( "ZT_"+"Z250ColorName_"+sGXsfl_55_idx)) ;
-            DeletePostValue( "ZT_"+"Z250ColorName_"+sGXsfl_55_idx) ;
-            ChangePostValue( "Z251ColorCode_"+sGXsfl_55_idx, cgiGet( "ZT_"+"Z251ColorCode_"+sGXsfl_55_idx)) ;
-            DeletePostValue( "ZT_"+"Z251ColorCode_"+sGXsfl_55_idx) ;
+            nGXsfl_51_idx = (int)(nGXsfl_51_idx+1);
+            sGXsfl_51_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_51_idx), 4, 0), 4, "0");
+            SubsflControlProps_5187( ) ;
+            ChangePostValue( "Z261IconId_"+sGXsfl_51_idx, cgiGet( "ZT_"+"Z261IconId_"+sGXsfl_51_idx)) ;
+            DeletePostValue( "ZT_"+"Z261IconId_"+sGXsfl_51_idx) ;
+            ChangePostValue( "Z443IconCategory_"+sGXsfl_51_idx, cgiGet( "ZT_"+"Z443IconCategory_"+sGXsfl_51_idx)) ;
+            DeletePostValue( "ZT_"+"Z443IconCategory_"+sGXsfl_51_idx) ;
+            ChangePostValue( "Z262IconName_"+sGXsfl_51_idx, cgiGet( "ZT_"+"Z262IconName_"+sGXsfl_51_idx)) ;
+            DeletePostValue( "ZT_"+"Z262IconName_"+sGXsfl_51_idx) ;
+         }
+         nGXsfl_64_idx = 0;
+         sGXsfl_64_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_64_idx), 4, 0), 4, "0");
+         SubsflControlProps_6447( ) ;
+         while ( nGXsfl_64_idx < nRC_GXsfl_64 )
+         {
+            nGXsfl_64_idx = (int)(nGXsfl_64_idx+1);
+            sGXsfl_64_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_64_idx), 4, 0), 4, "0");
+            SubsflControlProps_6447( ) ;
+            ChangePostValue( "Z249ColorId_"+sGXsfl_64_idx, cgiGet( "ZT_"+"Z249ColorId_"+sGXsfl_64_idx)) ;
+            DeletePostValue( "ZT_"+"Z249ColorId_"+sGXsfl_64_idx) ;
+            ChangePostValue( "Z250ColorName_"+sGXsfl_64_idx, cgiGet( "ZT_"+"Z250ColorName_"+sGXsfl_64_idx)) ;
+            DeletePostValue( "ZT_"+"Z250ColorName_"+sGXsfl_64_idx) ;
+            ChangePostValue( "Z251ColorCode_"+sGXsfl_64_idx, cgiGet( "ZT_"+"Z251ColorCode_"+sGXsfl_64_idx)) ;
+            DeletePostValue( "ZT_"+"Z251ColorCode_"+sGXsfl_64_idx) ;
          }
       }
 
@@ -3680,12 +4805,15 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "Z248Trn_ThemeName", Z248Trn_ThemeName);
          GxWebStd.gx_hidden_field( context, "Z260Trn_ThemeFontFamily", Z260Trn_ThemeFontFamily);
          GxWebStd.gx_hidden_field( context, "Z399Trn_ThemeFontSize", StringUtil.LTrim( StringUtil.NToC( (decimal)(Z399Trn_ThemeFontSize), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "Z11OrganisationId", Z11OrganisationId.ToString());
          GxWebStd.gx_hidden_field( context, "IsConfirmed", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsConfirmed), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "IsModified", StringUtil.LTrim( StringUtil.NToC( (decimal)(IsModified), 4, 0, context.GetLanguageProperty( "decimal_point"), "")));
          GxWebStd.gx_hidden_field( context, "Mode", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "gxhash_Mode", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")), context));
          GxWebStd.gx_hidden_field( context, "nRC_GXsfl_42", StringUtil.LTrim( StringUtil.NToC( (decimal)(nGXsfl_42_idx), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
-         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_55", StringUtil.LTrim( StringUtil.NToC( (decimal)(nGXsfl_55_idx), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_51", StringUtil.LTrim( StringUtil.NToC( (decimal)(nGXsfl_51_idx), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "nRC_GXsfl_64", StringUtil.LTrim( StringUtil.NToC( (decimal)(nGXsfl_64_idx), 8, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "N11OrganisationId", A11OrganisationId.ToString());
          GxWebStd.gx_hidden_field( context, "vMODE", StringUtil.RTrim( Gx_mode));
          GxWebStd.gx_hidden_field( context, "gxhash_vMODE", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( Gx_mode, "@!")), context));
          if ( context.isAjaxRequest( ) )
@@ -3700,6 +4828,9 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "vTRN_THEMEID", AV13Trn_ThemeId.ToString());
          GxWebStd.gx_hidden_field( context, "gxhash_vTRN_THEMEID", GetSecureSignedToken( "", AV13Trn_ThemeId, context));
          GxWebStd.gx_hidden_field( context, "vGXBSCREEN", StringUtil.LTrim( StringUtil.NToC( (decimal)(Gx_BScreen), 1, 0, context.GetLanguageProperty( "decimal_point"), "")));
+         GxWebStd.gx_hidden_field( context, "vINSERT_ORGANISATIONID", AV14Insert_OrganisationId.ToString());
+         GxWebStd.gx_hidden_field( context, "ORGANISATIONID", A11OrganisationId.ToString());
+         GxWebStd.gx_hidden_field( context, "vPGMNAME", StringUtil.RTrim( AV16Pgmname));
       }
 
       public override void RenderHtmlCloseForm( )
@@ -3785,6 +4916,9 @@ namespace GeneXus.Programs {
 
       protected void InitializeNonKey0W46( )
       {
+         A11OrganisationId = Guid.Empty;
+         n11OrganisationId = false;
+         AssignAttri("", false, "A11OrganisationId", A11OrganisationId.ToString());
          A248Trn_ThemeName = "";
          AssignAttri("", false, "A248Trn_ThemeName", A248Trn_ThemeName);
          A260Trn_ThemeFontFamily = "";
@@ -3794,6 +4928,7 @@ namespace GeneXus.Programs {
          Z248Trn_ThemeName = "";
          Z260Trn_ThemeFontFamily = "";
          Z399Trn_ThemeFontSize = 0;
+         Z11OrganisationId = Guid.Empty;
       }
 
       protected void InitAll0W46( )
@@ -3805,6 +4940,24 @@ namespace GeneXus.Programs {
       }
 
       protected void StandaloneModalInsert( )
+      {
+      }
+
+      protected void InitializeNonKey0W112( )
+      {
+         A564CtaColorName = "";
+         A565CtaColorCode = "";
+         Z564CtaColorName = "";
+         Z565CtaColorCode = "";
+      }
+
+      protected void InitAll0W112( )
+      {
+         A563CtaColorId = Guid.NewGuid( );
+         InitializeNonKey0W112( ) ;
+      }
+
+      protected void StandaloneModalInsert0W112( )
       {
       }
 
@@ -3856,7 +5009,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025361110540", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253152155844", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3872,23 +5025,60 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_theme.js", "?2025361110541", false, true);
+         context.AddJavascriptSource("trn_theme.js", "?20253152155844", false, true);
          /* End function include_jscripts */
+      }
+
+      protected void init_level_properties112( )
+      {
+         edtCtaColorId_Enabled = defedtCtaColorId_Enabled;
+         AssignProp("", false, edtCtaColorId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtCtaColorId_Enabled), 5, 0), !bGXsfl_42_Refreshing);
       }
 
       protected void init_level_properties87( )
       {
          edtIconId_Enabled = defedtIconId_Enabled;
-         AssignProp("", false, edtIconId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconId_Enabled), 5, 0), !bGXsfl_42_Refreshing);
+         AssignProp("", false, edtIconId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtIconId_Enabled), 5, 0), !bGXsfl_51_Refreshing);
       }
 
       protected void init_level_properties47( )
       {
          edtColorId_Enabled = defedtColorId_Enabled;
-         AssignProp("", false, edtColorId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtColorId_Enabled), 5, 0), !bGXsfl_55_Refreshing);
+         AssignProp("", false, edtColorId_Internalname, "Enabled", StringUtil.LTrimStr( (decimal)(edtColorId_Enabled), 5, 0), !bGXsfl_64_Refreshing);
       }
 
       protected void StartGridControl42( )
+      {
+         Gridlevel_ctacolorContainer.AddObjectProperty("GridName", "Gridlevel_ctacolor");
+         Gridlevel_ctacolorContainer.AddObjectProperty("Header", subGridlevel_ctacolor_Header);
+         Gridlevel_ctacolorContainer.AddObjectProperty("Class", "WorkWith");
+         Gridlevel_ctacolorContainer.AddObjectProperty("Cellpadding", StringUtil.LTrim( StringUtil.NToC( (decimal)(1), 4, 0, ".", "")));
+         Gridlevel_ctacolorContainer.AddObjectProperty("Cellspacing", StringUtil.LTrim( StringUtil.NToC( (decimal)(2), 4, 0, ".", "")));
+         Gridlevel_ctacolorContainer.AddObjectProperty("Backcolorstyle", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridlevel_ctacolor_Backcolorstyle), 1, 0, ".", "")));
+         Gridlevel_ctacolorContainer.AddObjectProperty("CmpContext", "");
+         Gridlevel_ctacolorContainer.AddObjectProperty("InMasterPage", "false");
+         Gridlevel_ctacolorColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
+         Gridlevel_ctacolorColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A563CtaColorId.ToString()));
+         Gridlevel_ctacolorColumn.AddObjectProperty("Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtCtaColorId_Enabled), 5, 0, ".", "")));
+         Gridlevel_ctacolorContainer.AddColumnProperties(Gridlevel_ctacolorColumn);
+         Gridlevel_ctacolorColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
+         Gridlevel_ctacolorColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A564CtaColorName));
+         Gridlevel_ctacolorColumn.AddObjectProperty("Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtCtaColorName_Enabled), 5, 0, ".", "")));
+         Gridlevel_ctacolorContainer.AddColumnProperties(Gridlevel_ctacolorColumn);
+         Gridlevel_ctacolorColumn = GXWebColumn.GetNew(isAjaxCallMode( ));
+         Gridlevel_ctacolorColumn.AddObjectProperty("Value", GXUtil.ValueEncode( A565CtaColorCode));
+         Gridlevel_ctacolorColumn.AddObjectProperty("Enabled", StringUtil.LTrim( StringUtil.NToC( (decimal)(edtCtaColorCode_Enabled), 5, 0, ".", "")));
+         Gridlevel_ctacolorContainer.AddColumnProperties(Gridlevel_ctacolorColumn);
+         Gridlevel_ctacolorContainer.AddObjectProperty("Selectedindex", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridlevel_ctacolor_Selectedindex), 4, 0, ".", "")));
+         Gridlevel_ctacolorContainer.AddObjectProperty("Allowselection", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridlevel_ctacolor_Allowselection), 1, 0, ".", "")));
+         Gridlevel_ctacolorContainer.AddObjectProperty("Selectioncolor", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridlevel_ctacolor_Selectioncolor), 9, 0, ".", "")));
+         Gridlevel_ctacolorContainer.AddObjectProperty("Allowhover", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridlevel_ctacolor_Allowhovering), 1, 0, ".", "")));
+         Gridlevel_ctacolorContainer.AddObjectProperty("Hovercolor", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridlevel_ctacolor_Hoveringcolor), 9, 0, ".", "")));
+         Gridlevel_ctacolorContainer.AddObjectProperty("Allowcollapsing", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridlevel_ctacolor_Allowcollapsing), 1, 0, ".", "")));
+         Gridlevel_ctacolorContainer.AddObjectProperty("Collapsed", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridlevel_ctacolor_Collapsed), 1, 0, ".", "")));
+      }
+
+      protected void StartGridControl51( )
       {
          Gridlevel_iconContainer.AddObjectProperty("GridName", "Gridlevel_icon");
          Gridlevel_iconContainer.AddObjectProperty("Header", subGridlevel_icon_Header);
@@ -3923,7 +5113,7 @@ namespace GeneXus.Programs {
          Gridlevel_iconContainer.AddObjectProperty("Collapsed", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGridlevel_icon_Collapsed), 1, 0, ".", "")));
       }
 
-      protected void StartGridControl55( )
+      protected void StartGridControl64( )
       {
          Gridlevel_colorContainer.AddObjectProperty("GridName", "Gridlevel_color");
          Gridlevel_colorContainer.AddObjectProperty("Header", subGridlevel_color_Header);
@@ -3963,6 +5153,10 @@ namespace GeneXus.Programs {
          divTableattributes_Internalname = "TABLEATTRIBUTES";
          divTablecontent_Internalname = "TABLECONTENT";
          grpUnnamedgroup1_Internalname = "UNNAMEDGROUP1";
+         edtCtaColorId_Internalname = "CTACOLORID";
+         edtCtaColorName_Internalname = "CTACOLORNAME";
+         edtCtaColorCode_Internalname = "CTACOLORCODE";
+         divTableleaflevel_ctacolor_Internalname = "TABLELEAFLEVEL_CTACOLOR";
          edtIconId_Internalname = "ICONID";
          edtIconName_Internalname = "ICONNAME";
          cmbIconCategory_Internalname = "ICONCATEGORY";
@@ -3979,6 +5173,7 @@ namespace GeneXus.Programs {
          divTablemain_Internalname = "TABLEMAIN";
          divLayoutmaintable_Internalname = "LAYOUTMAINTABLE";
          Form.Internalname = "FORM";
+         subGridlevel_ctacolor_Internalname = "GRIDLEVEL_CTACOLOR";
          subGridlevel_icon_Internalname = "GRIDLEVEL_ICON";
          subGridlevel_color_Internalname = "GRIDLEVEL_COLOR";
       }
@@ -3997,6 +5192,9 @@ namespace GeneXus.Programs {
          subGridlevel_icon_Allowcollapsing = 0;
          subGridlevel_icon_Allowselection = 0;
          subGridlevel_icon_Header = "";
+         subGridlevel_ctacolor_Allowcollapsing = 0;
+         subGridlevel_ctacolor_Allowselection = 0;
+         subGridlevel_ctacolor_Header = "";
          Form.Headerrawhtml = "";
          Form.Background = "";
          Form.Textcolor = 0;
@@ -4013,6 +5211,11 @@ namespace GeneXus.Programs {
          edtIconId_Jsonclick = "";
          subGridlevel_icon_Class = "WorkWith";
          subGridlevel_icon_Backcolorstyle = 0;
+         edtCtaColorCode_Jsonclick = "";
+         edtCtaColorName_Jsonclick = "";
+         edtCtaColorId_Jsonclick = "";
+         subGridlevel_ctacolor_Class = "WorkWith";
+         subGridlevel_ctacolor_Backcolorstyle = 0;
          edtColorCode_Enabled = 1;
          cmbColorName.Enabled = 1;
          edtColorId_Enabled = 0;
@@ -4020,6 +5223,9 @@ namespace GeneXus.Programs {
          cmbIconCategory.Enabled = 1;
          edtIconName_Enabled = 1;
          edtIconId_Enabled = 1;
+         edtCtaColorCode_Enabled = 1;
+         edtCtaColorName_Enabled = 1;
+         edtCtaColorId_Enabled = 1;
          bttBtntrn_delete_Enabled = 0;
          bttBtntrn_delete_Visible = 1;
          bttBtntrn_cancel_Visible = 1;
@@ -4046,13 +5252,36 @@ namespace GeneXus.Programs {
          /* End function dynload_actions */
       }
 
+      protected void gxnrGridlevel_ctacolor_newrow( )
+      {
+         GxWebStd.set_html_headers( context, 0, "", "");
+         Gx_mode = "INS";
+         AssignAttri("", false, "Gx_mode", Gx_mode);
+         SubsflControlProps_42112( ) ;
+         while ( nGXsfl_42_idx <= nRC_GXsfl_42 )
+         {
+            standaloneNotModal( ) ;
+            standaloneModal( ) ;
+            standaloneNotModal0W112( ) ;
+            standaloneModal0W112( ) ;
+            init_web_controls( ) ;
+            dynload_actions( ) ;
+            SendRow0W112( ) ;
+            nGXsfl_42_idx = (int)(nGXsfl_42_idx+1);
+            sGXsfl_42_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_42_idx), 4, 0), 4, "0");
+            SubsflControlProps_42112( ) ;
+         }
+         AddString( context.httpAjaxContext.getJSONContainerResponse( Gridlevel_ctacolorContainer)) ;
+         /* End function gxnrGridlevel_ctacolor_newrow */
+      }
+
       protected void gxnrGridlevel_icon_newrow( )
       {
          GxWebStd.set_html_headers( context, 0, "", "");
          Gx_mode = "INS";
          AssignAttri("", false, "Gx_mode", Gx_mode);
-         SubsflControlProps_4287( ) ;
-         while ( nGXsfl_42_idx <= nRC_GXsfl_42 )
+         SubsflControlProps_5187( ) ;
+         while ( nGXsfl_51_idx <= nRC_GXsfl_51 )
          {
             standaloneNotModal( ) ;
             standaloneModal( ) ;
@@ -4061,9 +5290,9 @@ namespace GeneXus.Programs {
             init_web_controls( ) ;
             dynload_actions( ) ;
             SendRow0W87( ) ;
-            nGXsfl_42_idx = (int)(nGXsfl_42_idx+1);
-            sGXsfl_42_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_42_idx), 4, 0), 4, "0");
-            SubsflControlProps_4287( ) ;
+            nGXsfl_51_idx = (int)(nGXsfl_51_idx+1);
+            sGXsfl_51_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_51_idx), 4, 0), 4, "0");
+            SubsflControlProps_5187( ) ;
          }
          AddString( context.httpAjaxContext.getJSONContainerResponse( Gridlevel_iconContainer)) ;
          /* End function gxnrGridlevel_icon_newrow */
@@ -4074,8 +5303,8 @@ namespace GeneXus.Programs {
          GxWebStd.set_html_headers( context, 0, "", "");
          Gx_mode = "INS";
          AssignAttri("", false, "Gx_mode", Gx_mode);
-         SubsflControlProps_5547( ) ;
-         while ( nGXsfl_55_idx <= nRC_GXsfl_55 )
+         SubsflControlProps_6447( ) ;
+         while ( nGXsfl_64_idx <= nRC_GXsfl_64 )
          {
             standaloneNotModal( ) ;
             standaloneModal( ) ;
@@ -4084,9 +5313,9 @@ namespace GeneXus.Programs {
             init_web_controls( ) ;
             dynload_actions( ) ;
             SendRow0W47( ) ;
-            nGXsfl_55_idx = (int)(nGXsfl_55_idx+1);
-            sGXsfl_55_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_55_idx), 4, 0), 4, "0");
-            SubsflControlProps_5547( ) ;
+            nGXsfl_64_idx = (int)(nGXsfl_64_idx+1);
+            sGXsfl_64_idx = StringUtil.PadL( StringUtil.LTrimStr( (decimal)(nGXsfl_64_idx), 4, 0), 4, "0");
+            SubsflControlProps_6447( ) ;
          }
          AddString( context.httpAjaxContext.getJSONContainerResponse( Gridlevel_colorContainer)) ;
          /* End function gxnrGridlevel_color_newrow */
@@ -4094,7 +5323,7 @@ namespace GeneXus.Programs {
 
       protected void init_web_controls( )
       {
-         GXCCtl = "ICONCATEGORY_" + sGXsfl_42_idx;
+         GXCCtl = "ICONCATEGORY_" + sGXsfl_51_idx;
          cmbIconCategory.Name = GXCCtl;
          cmbIconCategory.WebTags = "";
          cmbIconCategory.addItem("General", context.GetMessage( "General", ""), 0);
@@ -4105,7 +5334,7 @@ namespace GeneXus.Programs {
          {
             A443IconCategory = cmbIconCategory.getValidValue(A443IconCategory);
          }
-         GXCCtl = "COLORNAME_" + sGXsfl_55_idx;
+         GXCCtl = "COLORNAME_" + sGXsfl_64_idx;
          cmbColorName.Name = GXCCtl;
          cmbColorName.WebTags = "";
          cmbColorName.addItem("cardBgColor", context.GetMessage( "Card BG Color", ""), 0);
@@ -4145,19 +5374,35 @@ namespace GeneXus.Programs {
          return ((StringUtil.StrCmp(Gx_mode, "DSP")==0) ? true : false) ;
       }
 
+      public void Valid_Ctacolorname( )
+      {
+         n247Trn_ThemeId = false;
+         /* Using cursor T000W43 */
+         pr_default.execute(41, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A564CtaColorName, A563CtaColorId});
+         if ( (pr_default.getStatus(41) != 101) )
+         {
+            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Cta Color Name", "")}), 1, "TRN_THEMEID");
+            AnyError = 1;
+            GX_FocusControl = edtTrn_ThemeId_Internalname;
+         }
+         pr_default.close(41);
+         dynload_actions( ) ;
+         /*  Sending validation outputs */
+      }
+
       public void Valid_Iconcategory( )
       {
          n247Trn_ThemeId = false;
          A443IconCategory = cmbIconCategory.CurrentValue;
-         /* Using cursor T000W31 */
-         pr_default.execute(29, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A262IconName, A443IconCategory, A261IconId});
-         if ( (pr_default.getStatus(29) != 101) )
+         /* Using cursor T000W44 */
+         pr_default.execute(42, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A262IconName, A443IconCategory, A261IconId});
+         if ( (pr_default.getStatus(42) != 101) )
          {
             GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Icon Name", "")+","+context.GetMessage( "Icon Category", "")}), 1, "TRN_THEMEID");
             AnyError = 1;
             GX_FocusControl = edtTrn_ThemeId_Internalname;
          }
-         pr_default.close(29);
+         pr_default.close(42);
          if ( ! ( ( StringUtil.StrCmp(A443IconCategory, "General") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Services") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Living") == 0 ) || ( StringUtil.StrCmp(A443IconCategory, "Health") == 0 ) ) )
          {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Icon Category", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "ICONCATEGORY");
@@ -4168,19 +5413,36 @@ namespace GeneXus.Programs {
          /*  Sending validation outputs */
       }
 
+      public void Valid_Colorname( )
+      {
+         n247Trn_ThemeId = false;
+         A250ColorName = cmbColorName.CurrentValue;
+         /* Using cursor T000W45 */
+         pr_default.execute(43, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A250ColorName, A249ColorId});
+         if ( (pr_default.getStatus(43) != 101) )
+         {
+            GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Color Name", "")}), 1, "TRN_THEMEID");
+            AnyError = 1;
+            GX_FocusControl = edtTrn_ThemeId_Internalname;
+         }
+         pr_default.close(43);
+         dynload_actions( ) ;
+         /*  Sending validation outputs */
+      }
+
       public void Valid_Colorcode( )
       {
          n247Trn_ThemeId = false;
          A250ColorName = cmbColorName.CurrentValue;
-         /* Using cursor T000W32 */
-         pr_default.execute(30, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A250ColorName, A251ColorCode, A249ColorId});
-         if ( (pr_default.getStatus(30) != 101) )
+         /* Using cursor T000W46 */
+         pr_default.execute(44, new Object[] {n247Trn_ThemeId, A247Trn_ThemeId, A250ColorName, A251ColorCode, A249ColorId});
+         if ( (pr_default.getStatus(44) != 101) )
          {
             GX_msglist.addItem(context.GetMessage( "GXM_1004", new   object[]  {context.GetMessage( "Trn_Theme Id", "")+","+context.GetMessage( "Color Name", "")+","+context.GetMessage( "Color Code", "")}), 1, "TRN_THEMEID");
             AnyError = 1;
             GX_FocusControl = edtTrn_ThemeId_Internalname;
          }
-         pr_default.close(30);
+         pr_default.close(44);
          dynload_actions( ) ;
          /*  Sending validation outputs */
       }
@@ -4196,12 +5458,15 @@ namespace GeneXus.Programs {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true},{"av":"AV13Trn_ThemeId","fld":"vTRN_THEMEID","hsh":true}]}""");
          setEventMetadata("AFTER TRN","""{"handler":"E120W2","iparms":[{"av":"Gx_mode","fld":"vMODE","pic":"@!","hsh":true},{"av":"AV11TrnContext","fld":"vTRNCONTEXT","hsh":true}]}""");
          setEventMetadata("VALID_TRN_THEMEID","""{"handler":"Valid_Trn_themeid","iparms":[]}""");
+         setEventMetadata("VALID_CTACOLORID","""{"handler":"Valid_Ctacolorid","iparms":[]}""");
+         setEventMetadata("VALID_CTACOLORNAME","""{"handler":"Valid_Ctacolorname","iparms":[{"av":"A247Trn_ThemeId","fld":"TRN_THEMEID"},{"av":"A564CtaColorName","fld":"CTACOLORNAME"},{"av":"A563CtaColorId","fld":"CTACOLORID"}]}""");
+         setEventMetadata("NULL","""{"handler":"Valid_Ctacolorcode","iparms":[]}""");
          setEventMetadata("VALID_ICONID","""{"handler":"Valid_Iconid","iparms":[]}""");
          setEventMetadata("VALID_ICONNAME","""{"handler":"Valid_Iconname","iparms":[]}""");
          setEventMetadata("VALID_ICONCATEGORY","""{"handler":"Valid_Iconcategory","iparms":[{"av":"A247Trn_ThemeId","fld":"TRN_THEMEID"},{"av":"A262IconName","fld":"ICONNAME"},{"av":"cmbIconCategory"},{"av":"A443IconCategory","fld":"ICONCATEGORY"},{"av":"A261IconId","fld":"ICONID"}]}""");
          setEventMetadata("NULL","""{"handler":"Valid_Iconsvg","iparms":[]}""");
          setEventMetadata("VALID_COLORID","""{"handler":"Valid_Colorid","iparms":[]}""");
-         setEventMetadata("VALID_COLORNAME","""{"handler":"Valid_Colorname","iparms":[]}""");
+         setEventMetadata("VALID_COLORNAME","""{"handler":"Valid_Colorname","iparms":[{"av":"A247Trn_ThemeId","fld":"TRN_THEMEID"},{"av":"cmbColorName"},{"av":"A250ColorName","fld":"COLORNAME"},{"av":"A249ColorId","fld":"COLORID"}]}""");
          setEventMetadata("VALID_COLORCODE","""{"handler":"Valid_Colorcode","iparms":[{"av":"A247Trn_ThemeId","fld":"TRN_THEMEID"},{"av":"cmbColorName"},{"av":"A250ColorName","fld":"COLORNAME"},{"av":"A251ColorCode","fld":"COLORCODE"},{"av":"A249ColorId","fld":"COLORID"}]}""");
          return  ;
       }
@@ -4220,6 +5485,7 @@ namespace GeneXus.Programs {
          pr_default.close(1);
          pr_default.close(3);
          pr_default.close(5);
+         pr_default.close(7);
       }
 
       public override void initialize( )
@@ -4230,6 +5496,11 @@ namespace GeneXus.Programs {
          Z247Trn_ThemeId = Guid.Empty;
          Z248Trn_ThemeName = "";
          Z260Trn_ThemeFontFamily = "";
+         Z11OrganisationId = Guid.Empty;
+         N11OrganisationId = Guid.Empty;
+         Z563CtaColorId = Guid.Empty;
+         Z564CtaColorName = "";
+         Z565CtaColorCode = "";
          Z261IconId = Guid.Empty;
          Z443IconCategory = "";
          Z262IconName = "";
@@ -4238,6 +5509,7 @@ namespace GeneXus.Programs {
          Z251ColorCode = "";
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
+         A11OrganisationId = Guid.Empty;
          GXKey = "";
          GXDecQS = "";
          PreviousTooltip = "";
@@ -4254,13 +5526,18 @@ namespace GeneXus.Programs {
          bttBtntrn_enter_Jsonclick = "";
          bttBtntrn_cancel_Jsonclick = "";
          bttBtntrn_delete_Jsonclick = "";
+         Gridlevel_ctacolorContainer = new GXWebGrid( context);
+         sMode112 = "";
+         A563CtaColorId = Guid.Empty;
+         sStyleString = "";
          Gridlevel_iconContainer = new GXWebGrid( context);
          sMode87 = "";
          A261IconId = Guid.Empty;
-         sStyleString = "";
          Gridlevel_colorContainer = new GXWebGrid( context);
          sMode47 = "";
          A249ColorId = Guid.Empty;
+         AV14Insert_OrganisationId = Guid.Empty;
+         AV16Pgmname = "";
          forbiddenHiddens = new GXProperties();
          hsh = "";
          sMode46 = "";
@@ -4276,46 +5553,83 @@ namespace GeneXus.Programs {
          A262IconName = "";
          A443IconCategory = "";
          A263IconSVG = "";
+         A564CtaColorName = "";
+         A565CtaColorCode = "";
          AV8WWPContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPContext(context);
          AV11TrnContext = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext(context);
          AV12WebSession = context.GetSession();
+         AV15TrnContextAtt = new GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute(context);
+         T000W11_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W11_n247Trn_ThemeId = new bool[] {false} ;
+         T000W11_A248Trn_ThemeName = new string[] {""} ;
+         T000W11_A260Trn_ThemeFontFamily = new string[] {""} ;
+         T000W11_A399Trn_ThemeFontSize = new short[1] ;
+         T000W11_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         T000W11_n11OrganisationId = new bool[] {false} ;
+         T000W10_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         T000W10_n11OrganisationId = new bool[] {false} ;
+         T000W12_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         T000W12_n11OrganisationId = new bool[] {false} ;
+         T000W13_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W13_n247Trn_ThemeId = new bool[] {false} ;
+         T000W9_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W9_n247Trn_ThemeId = new bool[] {false} ;
+         T000W9_A248Trn_ThemeName = new string[] {""} ;
+         T000W9_A260Trn_ThemeFontFamily = new string[] {""} ;
+         T000W9_A399Trn_ThemeFontSize = new short[1] ;
+         T000W9_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         T000W9_n11OrganisationId = new bool[] {false} ;
+         T000W14_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W14_n247Trn_ThemeId = new bool[] {false} ;
+         T000W15_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W15_n247Trn_ThemeId = new bool[] {false} ;
          T000W8_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          T000W8_n247Trn_ThemeId = new bool[] {false} ;
          T000W8_A248Trn_ThemeName = new string[] {""} ;
          T000W8_A260Trn_ThemeFontFamily = new string[] {""} ;
          T000W8_A399Trn_ThemeFontSize = new short[1] ;
-         T000W9_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         T000W9_n247Trn_ThemeId = new bool[] {false} ;
+         T000W8_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         T000W8_n11OrganisationId = new bool[] {false} ;
+         T000W19_A29LocationId = new Guid[] {Guid.Empty} ;
+         T000W19_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         T000W19_n11OrganisationId = new bool[] {false} ;
+         T000W20_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W20_n247Trn_ThemeId = new bool[] {false} ;
+         T000W21_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W21_n247Trn_ThemeId = new bool[] {false} ;
+         T000W21_A563CtaColorId = new Guid[] {Guid.Empty} ;
+         T000W21_A564CtaColorName = new string[] {""} ;
+         T000W21_A565CtaColorCode = new string[] {""} ;
+         T000W22_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W22_n247Trn_ThemeId = new bool[] {false} ;
+         T000W23_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W23_n247Trn_ThemeId = new bool[] {false} ;
+         T000W23_A563CtaColorId = new Guid[] {Guid.Empty} ;
          T000W7_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          T000W7_n247Trn_ThemeId = new bool[] {false} ;
-         T000W7_A248Trn_ThemeName = new string[] {""} ;
-         T000W7_A260Trn_ThemeFontFamily = new string[] {""} ;
-         T000W7_A399Trn_ThemeFontSize = new short[1] ;
-         T000W10_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         T000W10_n247Trn_ThemeId = new bool[] {false} ;
-         T000W11_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         T000W11_n247Trn_ThemeId = new bool[] {false} ;
+         T000W7_A563CtaColorId = new Guid[] {Guid.Empty} ;
+         T000W7_A564CtaColorName = new string[] {""} ;
+         T000W7_A565CtaColorCode = new string[] {""} ;
          T000W6_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          T000W6_n247Trn_ThemeId = new bool[] {false} ;
-         T000W6_A248Trn_ThemeName = new string[] {""} ;
-         T000W6_A260Trn_ThemeFontFamily = new string[] {""} ;
-         T000W6_A399Trn_ThemeFontSize = new short[1] ;
-         T000W15_A29LocationId = new Guid[] {Guid.Empty} ;
-         T000W15_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         T000W16_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         T000W16_n247Trn_ThemeId = new bool[] {false} ;
+         T000W6_A563CtaColorId = new Guid[] {Guid.Empty} ;
+         T000W6_A564CtaColorName = new string[] {""} ;
+         T000W6_A565CtaColorCode = new string[] {""} ;
+         T000W27_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W27_n247Trn_ThemeId = new bool[] {false} ;
+         T000W27_A563CtaColorId = new Guid[] {Guid.Empty} ;
          Z263IconSVG = "";
-         T000W17_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         T000W17_n247Trn_ThemeId = new bool[] {false} ;
-         T000W17_A261IconId = new Guid[] {Guid.Empty} ;
-         T000W17_A443IconCategory = new string[] {""} ;
-         T000W17_A262IconName = new string[] {""} ;
-         T000W17_A263IconSVG = new string[] {""} ;
-         T000W18_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         T000W18_n247Trn_ThemeId = new bool[] {false} ;
-         T000W19_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         T000W19_n247Trn_ThemeId = new bool[] {false} ;
-         T000W19_A261IconId = new Guid[] {Guid.Empty} ;
+         T000W28_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W28_n247Trn_ThemeId = new bool[] {false} ;
+         T000W28_A261IconId = new Guid[] {Guid.Empty} ;
+         T000W28_A443IconCategory = new string[] {""} ;
+         T000W28_A262IconName = new string[] {""} ;
+         T000W28_A263IconSVG = new string[] {""} ;
+         T000W29_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W29_n247Trn_ThemeId = new bool[] {false} ;
+         T000W30_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W30_n247Trn_ThemeId = new bool[] {false} ;
+         T000W30_A261IconId = new Guid[] {Guid.Empty} ;
          T000W5_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          T000W5_n247Trn_ThemeId = new bool[] {false} ;
          T000W5_A261IconId = new Guid[] {Guid.Empty} ;
@@ -4328,19 +5642,21 @@ namespace GeneXus.Programs {
          T000W4_A443IconCategory = new string[] {""} ;
          T000W4_A262IconName = new string[] {""} ;
          T000W4_A263IconSVG = new string[] {""} ;
-         T000W23_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         T000W23_n247Trn_ThemeId = new bool[] {false} ;
-         T000W23_A261IconId = new Guid[] {Guid.Empty} ;
-         T000W24_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         T000W24_n247Trn_ThemeId = new bool[] {false} ;
-         T000W24_A249ColorId = new Guid[] {Guid.Empty} ;
-         T000W24_A250ColorName = new string[] {""} ;
-         T000W24_A251ColorCode = new string[] {""} ;
-         T000W25_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         T000W25_n247Trn_ThemeId = new bool[] {false} ;
-         T000W26_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         T000W26_n247Trn_ThemeId = new bool[] {false} ;
-         T000W26_A249ColorId = new Guid[] {Guid.Empty} ;
+         T000W34_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W34_n247Trn_ThemeId = new bool[] {false} ;
+         T000W34_A261IconId = new Guid[] {Guid.Empty} ;
+         T000W35_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W35_n247Trn_ThemeId = new bool[] {false} ;
+         T000W35_A249ColorId = new Guid[] {Guid.Empty} ;
+         T000W35_A250ColorName = new string[] {""} ;
+         T000W35_A251ColorCode = new string[] {""} ;
+         T000W36_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W36_n247Trn_ThemeId = new bool[] {false} ;
+         T000W37_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W37_n247Trn_ThemeId = new bool[] {false} ;
+         T000W38_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W38_n247Trn_ThemeId = new bool[] {false} ;
+         T000W38_A249ColorId = new Guid[] {Guid.Empty} ;
          T000W3_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          T000W3_n247Trn_ThemeId = new bool[] {false} ;
          T000W3_A249ColorId = new Guid[] {Guid.Empty} ;
@@ -4351,24 +5667,31 @@ namespace GeneXus.Programs {
          T000W2_A249ColorId = new Guid[] {Guid.Empty} ;
          T000W2_A250ColorName = new string[] {""} ;
          T000W2_A251ColorCode = new string[] {""} ;
-         T000W30_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         T000W30_n247Trn_ThemeId = new bool[] {false} ;
-         T000W30_A249ColorId = new Guid[] {Guid.Empty} ;
+         T000W42_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W42_n247Trn_ThemeId = new bool[] {false} ;
+         T000W42_A249ColorId = new Guid[] {Guid.Empty} ;
+         Gridlevel_ctacolorRow = new GXWebRow();
+         subGridlevel_ctacolor_Linesclass = "";
+         ROClassString = "";
          Gridlevel_iconRow = new GXWebRow();
          subGridlevel_icon_Linesclass = "";
-         ROClassString = "";
          Gridlevel_colorRow = new GXWebRow();
          subGridlevel_color_Linesclass = "";
          sDynURL = "";
          FormProcess = "";
          bodyStyle = "";
          GXEncryptionTmp = "";
+         Gridlevel_ctacolorColumn = new GXWebColumn();
          Gridlevel_iconColumn = new GXWebColumn();
          Gridlevel_colorColumn = new GXWebColumn();
-         T000W31_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         T000W31_n247Trn_ThemeId = new bool[] {false} ;
-         T000W32_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         T000W32_n247Trn_ThemeId = new bool[] {false} ;
+         T000W43_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W43_n247Trn_ThemeId = new bool[] {false} ;
+         T000W44_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W44_n247Trn_ThemeId = new bool[] {false} ;
+         T000W45_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W45_n247Trn_ThemeId = new bool[] {false} ;
+         T000W46_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         T000W46_n247Trn_ThemeId = new bool[] {false} ;
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_theme__datastore1(),
             new Object[][] {
             }
@@ -4392,43 +5715,34 @@ namespace GeneXus.Programs {
                T000W5_A247Trn_ThemeId, T000W5_A261IconId, T000W5_A443IconCategory, T000W5_A262IconName, T000W5_A263IconSVG
                }
                , new Object[] {
-               T000W6_A247Trn_ThemeId, T000W6_A248Trn_ThemeName, T000W6_A260Trn_ThemeFontFamily, T000W6_A399Trn_ThemeFontSize
+               T000W6_A247Trn_ThemeId, T000W6_A563CtaColorId, T000W6_A564CtaColorName, T000W6_A565CtaColorCode
                }
                , new Object[] {
-               T000W7_A247Trn_ThemeId, T000W7_A248Trn_ThemeName, T000W7_A260Trn_ThemeFontFamily, T000W7_A399Trn_ThemeFontSize
+               T000W7_A247Trn_ThemeId, T000W7_A563CtaColorId, T000W7_A564CtaColorName, T000W7_A565CtaColorCode
                }
                , new Object[] {
-               T000W8_A247Trn_ThemeId, T000W8_A248Trn_ThemeName, T000W8_A260Trn_ThemeFontFamily, T000W8_A399Trn_ThemeFontSize
+               T000W8_A247Trn_ThemeId, T000W8_A248Trn_ThemeName, T000W8_A260Trn_ThemeFontFamily, T000W8_A399Trn_ThemeFontSize, T000W8_A11OrganisationId, T000W8_n11OrganisationId
                }
                , new Object[] {
-               T000W9_A247Trn_ThemeId
+               T000W9_A247Trn_ThemeId, T000W9_A248Trn_ThemeName, T000W9_A260Trn_ThemeFontFamily, T000W9_A399Trn_ThemeFontSize, T000W9_A11OrganisationId, T000W9_n11OrganisationId
                }
                , new Object[] {
-               T000W10_A247Trn_ThemeId
+               T000W10_A11OrganisationId
                }
                , new Object[] {
-               T000W11_A247Trn_ThemeId
+               T000W11_A247Trn_ThemeId, T000W11_A248Trn_ThemeName, T000W11_A260Trn_ThemeFontFamily, T000W11_A399Trn_ThemeFontSize, T000W11_A11OrganisationId, T000W11_n11OrganisationId
                }
                , new Object[] {
+               T000W12_A11OrganisationId
                }
                , new Object[] {
+               T000W13_A247Trn_ThemeId
                }
                , new Object[] {
+               T000W14_A247Trn_ThemeId
                }
                , new Object[] {
-               T000W15_A29LocationId, T000W15_A11OrganisationId
-               }
-               , new Object[] {
-               T000W16_A247Trn_ThemeId
-               }
-               , new Object[] {
-               T000W17_A247Trn_ThemeId, T000W17_A261IconId, T000W17_A443IconCategory, T000W17_A262IconName, T000W17_A263IconSVG
-               }
-               , new Object[] {
-               T000W18_A247Trn_ThemeId
-               }
-               , new Object[] {
-               T000W19_A247Trn_ThemeId, T000W19_A261IconId
+               T000W15_A247Trn_ThemeId
                }
                , new Object[] {
                }
@@ -4437,16 +5751,19 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               T000W23_A247Trn_ThemeId, T000W23_A261IconId
+               T000W19_A29LocationId, T000W19_A11OrganisationId
                }
                , new Object[] {
-               T000W24_A247Trn_ThemeId, T000W24_A249ColorId, T000W24_A250ColorName, T000W24_A251ColorCode
+               T000W20_A247Trn_ThemeId
                }
                , new Object[] {
-               T000W25_A247Trn_ThemeId
+               T000W21_A247Trn_ThemeId, T000W21_A563CtaColorId, T000W21_A564CtaColorName, T000W21_A565CtaColorCode
                }
                , new Object[] {
-               T000W26_A247Trn_ThemeId, T000W26_A249ColorId
+               T000W22_A247Trn_ThemeId
+               }
+               , new Object[] {
+               T000W23_A247Trn_ThemeId, T000W23_A563CtaColorId
                }
                , new Object[] {
                }
@@ -4455,13 +5772,58 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               T000W30_A247Trn_ThemeId, T000W30_A249ColorId
+               T000W27_A247Trn_ThemeId, T000W27_A563CtaColorId
                }
                , new Object[] {
-               T000W31_A247Trn_ThemeId
+               T000W28_A247Trn_ThemeId, T000W28_A261IconId, T000W28_A443IconCategory, T000W28_A262IconName, T000W28_A263IconSVG
                }
                , new Object[] {
-               T000W32_A247Trn_ThemeId
+               T000W29_A247Trn_ThemeId
+               }
+               , new Object[] {
+               T000W30_A247Trn_ThemeId, T000W30_A261IconId
+               }
+               , new Object[] {
+               }
+               , new Object[] {
+               }
+               , new Object[] {
+               }
+               , new Object[] {
+               T000W34_A247Trn_ThemeId, T000W34_A261IconId
+               }
+               , new Object[] {
+               T000W35_A247Trn_ThemeId, T000W35_A249ColorId, T000W35_A250ColorName, T000W35_A251ColorCode
+               }
+               , new Object[] {
+               T000W36_A247Trn_ThemeId
+               }
+               , new Object[] {
+               T000W37_A247Trn_ThemeId
+               }
+               , new Object[] {
+               T000W38_A247Trn_ThemeId, T000W38_A249ColorId
+               }
+               , new Object[] {
+               }
+               , new Object[] {
+               }
+               , new Object[] {
+               }
+               , new Object[] {
+               T000W42_A247Trn_ThemeId, T000W42_A249ColorId
+               }
+               , new Object[] {
+               T000W43_A247Trn_ThemeId
+               }
+               , new Object[] {
+               T000W44_A247Trn_ThemeId
+               }
+               , new Object[] {
+               T000W45_A247Trn_ThemeId
+               }
+               , new Object[] {
+               T000W46_A247Trn_ThemeId
                }
             }
          );
@@ -4469,13 +5831,19 @@ namespace GeneXus.Programs {
          A249ColorId = Guid.NewGuid( );
          Z261IconId = Guid.NewGuid( );
          A261IconId = Guid.NewGuid( );
+         Z563CtaColorId = Guid.NewGuid( );
+         A563CtaColorId = Guid.NewGuid( );
          Z247Trn_ThemeId = Guid.NewGuid( );
          n247Trn_ThemeId = false;
          A247Trn_ThemeId = Guid.NewGuid( );
          n247Trn_ThemeId = false;
+         AV16Pgmname = "Trn_Theme";
       }
 
       private short Z399Trn_ThemeFontSize ;
+      private short nRcdDeleted_112 ;
+      private short nRcdExists_112 ;
+      private short nIsMod_112 ;
       private short nRcdDeleted_87 ;
       private short nRcdExists_87 ;
       private short nIsMod_87 ;
@@ -4489,6 +5857,9 @@ namespace GeneXus.Programs {
       private short nKeyPressed ;
       private short Gx_BScreen ;
       private short A399Trn_ThemeFontSize ;
+      private short nBlankRcdCount112 ;
+      private short RcdFound112 ;
+      private short nBlankRcdUsr112 ;
       private short nBlankRcdCount87 ;
       private short RcdFound87 ;
       private short nBlankRcdUsr87 ;
@@ -4496,13 +5867,20 @@ namespace GeneXus.Programs {
       private short RcdFound47 ;
       private short nBlankRcdUsr47 ;
       private short RcdFound46 ;
+      private short nIsDirty_112 ;
       private short nIsDirty_87 ;
       private short nIsDirty_47 ;
+      private short subGridlevel_ctacolor_Backcolorstyle ;
+      private short subGridlevel_ctacolor_Backstyle ;
       private short subGridlevel_icon_Backcolorstyle ;
       private short subGridlevel_icon_Backstyle ;
       private short subGridlevel_color_Backcolorstyle ;
       private short subGridlevel_color_Backstyle ;
       private short gxajaxcallmode ;
+      private short subGridlevel_ctacolor_Allowselection ;
+      private short subGridlevel_ctacolor_Allowhovering ;
+      private short subGridlevel_ctacolor_Allowcollapsing ;
+      private short subGridlevel_ctacolor_Collapsed ;
       private short subGridlevel_icon_Allowselection ;
       private short subGridlevel_icon_Allowhovering ;
       private short subGridlevel_icon_Allowcollapsing ;
@@ -4513,8 +5891,10 @@ namespace GeneXus.Programs {
       private short subGridlevel_color_Collapsed ;
       private int nRC_GXsfl_42 ;
       private int nGXsfl_42_idx=1 ;
-      private int nRC_GXsfl_55 ;
-      private int nGXsfl_55_idx=1 ;
+      private int nRC_GXsfl_51 ;
+      private int nGXsfl_51_idx=1 ;
+      private int nRC_GXsfl_64 ;
+      private int nGXsfl_64_idx=1 ;
       private int trnEnded ;
       private int edtTrn_ThemeId_Enabled ;
       private int edtTrn_ThemeName_Enabled ;
@@ -4525,25 +5905,36 @@ namespace GeneXus.Programs {
       private int bttBtntrn_cancel_Visible ;
       private int bttBtntrn_delete_Visible ;
       private int bttBtntrn_delete_Enabled ;
+      private int edtCtaColorId_Enabled ;
+      private int edtCtaColorName_Enabled ;
+      private int edtCtaColorCode_Enabled ;
+      private int fRowAdded ;
       private int edtIconId_Enabled ;
       private int edtIconName_Enabled ;
       private int edtIconSVG_Enabled ;
-      private int fRowAdded ;
       private int edtColorId_Enabled ;
       private int edtColorCode_Enabled ;
+      private int AV17GXV1 ;
+      private int subGridlevel_ctacolor_Backcolor ;
+      private int subGridlevel_ctacolor_Allbackcolor ;
       private int subGridlevel_icon_Backcolor ;
       private int subGridlevel_icon_Allbackcolor ;
       private int subGridlevel_color_Backcolor ;
       private int subGridlevel_color_Allbackcolor ;
       private int defedtColorId_Enabled ;
       private int defedtIconId_Enabled ;
+      private int defedtCtaColorId_Enabled ;
       private int idxLst ;
+      private int subGridlevel_ctacolor_Selectedindex ;
+      private int subGridlevel_ctacolor_Selectioncolor ;
+      private int subGridlevel_ctacolor_Hoveringcolor ;
       private int subGridlevel_icon_Selectedindex ;
       private int subGridlevel_icon_Selectioncolor ;
       private int subGridlevel_icon_Hoveringcolor ;
       private int subGridlevel_color_Selectedindex ;
       private int subGridlevel_color_Selectioncolor ;
       private int subGridlevel_color_Hoveringcolor ;
+      private long GRIDLEVEL_CTACOLOR_nFirstRecordOnPage ;
       private long GRIDLEVEL_ICON_nFirstRecordOnPage ;
       private long GRIDLEVEL_COLOR_nFirstRecordOnPage ;
       private string sPrefix ;
@@ -4558,7 +5949,8 @@ namespace GeneXus.Programs {
       private string GX_FocusControl ;
       private string edtTrn_ThemeId_Internalname ;
       private string sGXsfl_42_idx="0001" ;
-      private string sGXsfl_55_idx="0001" ;
+      private string sGXsfl_51_idx="0001" ;
+      private string sGXsfl_64_idx="0001" ;
       private string divLayoutmaintable_Internalname ;
       private string divLayoutmaintable_Class ;
       private string divTablemain_Internalname ;
@@ -4575,6 +5967,7 @@ namespace GeneXus.Programs {
       private string edtTrn_ThemeFontFamily_Jsonclick ;
       private string edtTrn_ThemeFontSize_Internalname ;
       private string edtTrn_ThemeFontSize_Jsonclick ;
+      private string divTableleaflevel_ctacolor_Internalname ;
       private string divTableleaflevel_icon_Internalname ;
       private string lblTextblock1_Internalname ;
       private string lblTextblock1_Jsonclick ;
@@ -4585,18 +5978,24 @@ namespace GeneXus.Programs {
       private string bttBtntrn_cancel_Jsonclick ;
       private string bttBtntrn_delete_Internalname ;
       private string bttBtntrn_delete_Jsonclick ;
+      private string sMode112 ;
+      private string edtCtaColorId_Internalname ;
+      private string edtCtaColorName_Internalname ;
+      private string edtCtaColorCode_Internalname ;
+      private string sStyleString ;
+      private string subGridlevel_ctacolor_Internalname ;
       private string sMode87 ;
       private string edtIconId_Internalname ;
       private string edtIconName_Internalname ;
       private string cmbIconCategory_Internalname ;
       private string edtIconSVG_Internalname ;
-      private string sStyleString ;
       private string subGridlevel_icon_Internalname ;
       private string sMode47 ;
       private string edtColorId_Internalname ;
       private string cmbColorName_Internalname ;
       private string edtColorCode_Internalname ;
       private string subGridlevel_color_Internalname ;
+      private string AV16Pgmname ;
       private string hsh ;
       private string sMode46 ;
       private string sEvt ;
@@ -4607,14 +6006,20 @@ namespace GeneXus.Programs {
       private string endTrnMsgCod ;
       private string GXCCtl ;
       private string sGXsfl_42_fel_idx="0001" ;
+      private string subGridlevel_ctacolor_Class ;
+      private string subGridlevel_ctacolor_Linesclass ;
+      private string ROClassString ;
+      private string edtCtaColorId_Jsonclick ;
+      private string edtCtaColorName_Jsonclick ;
+      private string edtCtaColorCode_Jsonclick ;
+      private string sGXsfl_51_fel_idx="0001" ;
       private string subGridlevel_icon_Class ;
       private string subGridlevel_icon_Linesclass ;
-      private string ROClassString ;
       private string edtIconId_Jsonclick ;
       private string edtIconName_Jsonclick ;
       private string cmbIconCategory_Jsonclick ;
       private string edtIconSVG_Jsonclick ;
-      private string sGXsfl_55_fel_idx="0001" ;
+      private string sGXsfl_64_fel_idx="0001" ;
       private string subGridlevel_color_Class ;
       private string subGridlevel_color_Linesclass ;
       private string edtColorId_Jsonclick ;
@@ -4624,19 +6029,24 @@ namespace GeneXus.Programs {
       private string FormProcess ;
       private string bodyStyle ;
       private string GXEncryptionTmp ;
+      private string subGridlevel_ctacolor_Header ;
       private string subGridlevel_icon_Header ;
       private string subGridlevel_color_Header ;
       private bool entryPointCalled ;
       private bool toggleJsOutput ;
+      private bool n11OrganisationId ;
       private bool wbErr ;
       private bool bGXsfl_42_Refreshing=false ;
-      private bool bGXsfl_55_Refreshing=false ;
+      private bool bGXsfl_51_Refreshing=false ;
+      private bool bGXsfl_64_Refreshing=false ;
       private bool n247Trn_ThemeId ;
       private bool returnInSub ;
       private string A263IconSVG ;
       private string Z263IconSVG ;
       private string Z248Trn_ThemeName ;
       private string Z260Trn_ThemeFontFamily ;
+      private string Z564CtaColorName ;
+      private string Z565CtaColorCode ;
       private string Z443IconCategory ;
       private string Z262IconName ;
       private string Z250ColorName ;
@@ -4647,20 +6057,31 @@ namespace GeneXus.Programs {
       private string A251ColorCode ;
       private string A262IconName ;
       private string A443IconCategory ;
+      private string A564CtaColorName ;
+      private string A565CtaColorCode ;
       private Guid wcpOAV13Trn_ThemeId ;
       private Guid Z247Trn_ThemeId ;
+      private Guid Z11OrganisationId ;
+      private Guid N11OrganisationId ;
+      private Guid Z563CtaColorId ;
       private Guid Z261IconId ;
       private Guid Z249ColorId ;
+      private Guid A11OrganisationId ;
       private Guid AV13Trn_ThemeId ;
       private Guid A247Trn_ThemeId ;
+      private Guid A563CtaColorId ;
       private Guid A261IconId ;
       private Guid A249ColorId ;
+      private Guid AV14Insert_OrganisationId ;
       private IGxSession AV12WebSession ;
       private GXProperties forbiddenHiddens ;
+      private GXWebGrid Gridlevel_ctacolorContainer ;
       private GXWebGrid Gridlevel_iconContainer ;
       private GXWebGrid Gridlevel_colorContainer ;
+      private GXWebRow Gridlevel_ctacolorRow ;
       private GXWebRow Gridlevel_iconRow ;
       private GXWebRow Gridlevel_colorRow ;
+      private GXWebColumn Gridlevel_ctacolorColumn ;
       private GXWebColumn Gridlevel_iconColumn ;
       private GXWebColumn Gridlevel_colorColumn ;
       private GXWebForm Form ;
@@ -4671,43 +6092,78 @@ namespace GeneXus.Programs {
       private GXCombobox cmbColorName ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPContext AV8WWPContext ;
       private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext AV11TrnContext ;
+      private GeneXus.Programs.wwpbaseobjects.SdtWWPTransactionContext_Attribute AV15TrnContextAtt ;
       private IDataStoreProvider pr_default ;
+      private Guid[] T000W11_A247Trn_ThemeId ;
+      private bool[] T000W11_n247Trn_ThemeId ;
+      private string[] T000W11_A248Trn_ThemeName ;
+      private string[] T000W11_A260Trn_ThemeFontFamily ;
+      private short[] T000W11_A399Trn_ThemeFontSize ;
+      private Guid[] T000W11_A11OrganisationId ;
+      private bool[] T000W11_n11OrganisationId ;
+      private Guid[] T000W10_A11OrganisationId ;
+      private bool[] T000W10_n11OrganisationId ;
+      private Guid[] T000W12_A11OrganisationId ;
+      private bool[] T000W12_n11OrganisationId ;
+      private Guid[] T000W13_A247Trn_ThemeId ;
+      private bool[] T000W13_n247Trn_ThemeId ;
+      private Guid[] T000W9_A247Trn_ThemeId ;
+      private bool[] T000W9_n247Trn_ThemeId ;
+      private string[] T000W9_A248Trn_ThemeName ;
+      private string[] T000W9_A260Trn_ThemeFontFamily ;
+      private short[] T000W9_A399Trn_ThemeFontSize ;
+      private Guid[] T000W9_A11OrganisationId ;
+      private bool[] T000W9_n11OrganisationId ;
+      private Guid[] T000W14_A247Trn_ThemeId ;
+      private bool[] T000W14_n247Trn_ThemeId ;
+      private Guid[] T000W15_A247Trn_ThemeId ;
+      private bool[] T000W15_n247Trn_ThemeId ;
       private Guid[] T000W8_A247Trn_ThemeId ;
       private bool[] T000W8_n247Trn_ThemeId ;
       private string[] T000W8_A248Trn_ThemeName ;
       private string[] T000W8_A260Trn_ThemeFontFamily ;
       private short[] T000W8_A399Trn_ThemeFontSize ;
-      private Guid[] T000W9_A247Trn_ThemeId ;
-      private bool[] T000W9_n247Trn_ThemeId ;
+      private Guid[] T000W8_A11OrganisationId ;
+      private bool[] T000W8_n11OrganisationId ;
+      private Guid[] T000W19_A29LocationId ;
+      private Guid[] T000W19_A11OrganisationId ;
+      private bool[] T000W19_n11OrganisationId ;
+      private Guid[] T000W20_A247Trn_ThemeId ;
+      private bool[] T000W20_n247Trn_ThemeId ;
+      private Guid[] T000W21_A247Trn_ThemeId ;
+      private bool[] T000W21_n247Trn_ThemeId ;
+      private Guid[] T000W21_A563CtaColorId ;
+      private string[] T000W21_A564CtaColorName ;
+      private string[] T000W21_A565CtaColorCode ;
+      private Guid[] T000W22_A247Trn_ThemeId ;
+      private bool[] T000W22_n247Trn_ThemeId ;
+      private Guid[] T000W23_A247Trn_ThemeId ;
+      private bool[] T000W23_n247Trn_ThemeId ;
+      private Guid[] T000W23_A563CtaColorId ;
       private Guid[] T000W7_A247Trn_ThemeId ;
       private bool[] T000W7_n247Trn_ThemeId ;
-      private string[] T000W7_A248Trn_ThemeName ;
-      private string[] T000W7_A260Trn_ThemeFontFamily ;
-      private short[] T000W7_A399Trn_ThemeFontSize ;
-      private Guid[] T000W10_A247Trn_ThemeId ;
-      private bool[] T000W10_n247Trn_ThemeId ;
-      private Guid[] T000W11_A247Trn_ThemeId ;
-      private bool[] T000W11_n247Trn_ThemeId ;
+      private Guid[] T000W7_A563CtaColorId ;
+      private string[] T000W7_A564CtaColorName ;
+      private string[] T000W7_A565CtaColorCode ;
       private Guid[] T000W6_A247Trn_ThemeId ;
       private bool[] T000W6_n247Trn_ThemeId ;
-      private string[] T000W6_A248Trn_ThemeName ;
-      private string[] T000W6_A260Trn_ThemeFontFamily ;
-      private short[] T000W6_A399Trn_ThemeFontSize ;
-      private Guid[] T000W15_A29LocationId ;
-      private Guid[] T000W15_A11OrganisationId ;
-      private Guid[] T000W16_A247Trn_ThemeId ;
-      private bool[] T000W16_n247Trn_ThemeId ;
-      private Guid[] T000W17_A247Trn_ThemeId ;
-      private bool[] T000W17_n247Trn_ThemeId ;
-      private Guid[] T000W17_A261IconId ;
-      private string[] T000W17_A443IconCategory ;
-      private string[] T000W17_A262IconName ;
-      private string[] T000W17_A263IconSVG ;
-      private Guid[] T000W18_A247Trn_ThemeId ;
-      private bool[] T000W18_n247Trn_ThemeId ;
-      private Guid[] T000W19_A247Trn_ThemeId ;
-      private bool[] T000W19_n247Trn_ThemeId ;
-      private Guid[] T000W19_A261IconId ;
+      private Guid[] T000W6_A563CtaColorId ;
+      private string[] T000W6_A564CtaColorName ;
+      private string[] T000W6_A565CtaColorCode ;
+      private Guid[] T000W27_A247Trn_ThemeId ;
+      private bool[] T000W27_n247Trn_ThemeId ;
+      private Guid[] T000W27_A563CtaColorId ;
+      private Guid[] T000W28_A247Trn_ThemeId ;
+      private bool[] T000W28_n247Trn_ThemeId ;
+      private Guid[] T000W28_A261IconId ;
+      private string[] T000W28_A443IconCategory ;
+      private string[] T000W28_A262IconName ;
+      private string[] T000W28_A263IconSVG ;
+      private Guid[] T000W29_A247Trn_ThemeId ;
+      private bool[] T000W29_n247Trn_ThemeId ;
+      private Guid[] T000W30_A247Trn_ThemeId ;
+      private bool[] T000W30_n247Trn_ThemeId ;
+      private Guid[] T000W30_A261IconId ;
       private Guid[] T000W5_A247Trn_ThemeId ;
       private bool[] T000W5_n247Trn_ThemeId ;
       private Guid[] T000W5_A261IconId ;
@@ -4720,19 +6176,21 @@ namespace GeneXus.Programs {
       private string[] T000W4_A443IconCategory ;
       private string[] T000W4_A262IconName ;
       private string[] T000W4_A263IconSVG ;
-      private Guid[] T000W23_A247Trn_ThemeId ;
-      private bool[] T000W23_n247Trn_ThemeId ;
-      private Guid[] T000W23_A261IconId ;
-      private Guid[] T000W24_A247Trn_ThemeId ;
-      private bool[] T000W24_n247Trn_ThemeId ;
-      private Guid[] T000W24_A249ColorId ;
-      private string[] T000W24_A250ColorName ;
-      private string[] T000W24_A251ColorCode ;
-      private Guid[] T000W25_A247Trn_ThemeId ;
-      private bool[] T000W25_n247Trn_ThemeId ;
-      private Guid[] T000W26_A247Trn_ThemeId ;
-      private bool[] T000W26_n247Trn_ThemeId ;
-      private Guid[] T000W26_A249ColorId ;
+      private Guid[] T000W34_A247Trn_ThemeId ;
+      private bool[] T000W34_n247Trn_ThemeId ;
+      private Guid[] T000W34_A261IconId ;
+      private Guid[] T000W35_A247Trn_ThemeId ;
+      private bool[] T000W35_n247Trn_ThemeId ;
+      private Guid[] T000W35_A249ColorId ;
+      private string[] T000W35_A250ColorName ;
+      private string[] T000W35_A251ColorCode ;
+      private Guid[] T000W36_A247Trn_ThemeId ;
+      private bool[] T000W36_n247Trn_ThemeId ;
+      private Guid[] T000W37_A247Trn_ThemeId ;
+      private bool[] T000W37_n247Trn_ThemeId ;
+      private Guid[] T000W38_A247Trn_ThemeId ;
+      private bool[] T000W38_n247Trn_ThemeId ;
+      private Guid[] T000W38_A249ColorId ;
       private Guid[] T000W3_A247Trn_ThemeId ;
       private bool[] T000W3_n247Trn_ThemeId ;
       private Guid[] T000W3_A249ColorId ;
@@ -4743,13 +6201,17 @@ namespace GeneXus.Programs {
       private Guid[] T000W2_A249ColorId ;
       private string[] T000W2_A250ColorName ;
       private string[] T000W2_A251ColorCode ;
-      private Guid[] T000W30_A247Trn_ThemeId ;
-      private bool[] T000W30_n247Trn_ThemeId ;
-      private Guid[] T000W30_A249ColorId ;
-      private Guid[] T000W31_A247Trn_ThemeId ;
-      private bool[] T000W31_n247Trn_ThemeId ;
-      private Guid[] T000W32_A247Trn_ThemeId ;
-      private bool[] T000W32_n247Trn_ThemeId ;
+      private Guid[] T000W42_A247Trn_ThemeId ;
+      private bool[] T000W42_n247Trn_ThemeId ;
+      private Guid[] T000W42_A249ColorId ;
+      private Guid[] T000W43_A247Trn_ThemeId ;
+      private bool[] T000W43_n247Trn_ThemeId ;
+      private Guid[] T000W44_A247Trn_ThemeId ;
+      private bool[] T000W44_n247Trn_ThemeId ;
+      private Guid[] T000W45_A247Trn_ThemeId ;
+      private bool[] T000W45_n247Trn_ThemeId ;
+      private Guid[] T000W46_A247Trn_ThemeId ;
+      private bool[] T000W46_n247Trn_ThemeId ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
@@ -4834,27 +6296,41 @@ public class trn_theme__default : DataStoreHelperBase, IDataStoreHelper
       ,new ForEachCursor(def[7])
       ,new ForEachCursor(def[8])
       ,new ForEachCursor(def[9])
-      ,new UpdateCursor(def[10])
-      ,new UpdateCursor(def[11])
-      ,new UpdateCursor(def[12])
+      ,new ForEachCursor(def[10])
+      ,new ForEachCursor(def[11])
+      ,new ForEachCursor(def[12])
       ,new ForEachCursor(def[13])
-      ,new ForEachCursor(def[14])
-      ,new ForEachCursor(def[15])
-      ,new ForEachCursor(def[16])
+      ,new UpdateCursor(def[14])
+      ,new UpdateCursor(def[15])
+      ,new UpdateCursor(def[16])
       ,new ForEachCursor(def[17])
-      ,new UpdateCursor(def[18])
-      ,new UpdateCursor(def[19])
-      ,new UpdateCursor(def[20])
+      ,new ForEachCursor(def[18])
+      ,new ForEachCursor(def[19])
+      ,new ForEachCursor(def[20])
       ,new ForEachCursor(def[21])
-      ,new ForEachCursor(def[22])
-      ,new ForEachCursor(def[23])
-      ,new ForEachCursor(def[24])
-      ,new UpdateCursor(def[25])
-      ,new UpdateCursor(def[26])
-      ,new UpdateCursor(def[27])
+      ,new UpdateCursor(def[22])
+      ,new UpdateCursor(def[23])
+      ,new UpdateCursor(def[24])
+      ,new ForEachCursor(def[25])
+      ,new ForEachCursor(def[26])
+      ,new ForEachCursor(def[27])
       ,new ForEachCursor(def[28])
-      ,new ForEachCursor(def[29])
-      ,new ForEachCursor(def[30])
+      ,new UpdateCursor(def[29])
+      ,new UpdateCursor(def[30])
+      ,new UpdateCursor(def[31])
+      ,new ForEachCursor(def[32])
+      ,new ForEachCursor(def[33])
+      ,new ForEachCursor(def[34])
+      ,new ForEachCursor(def[35])
+      ,new ForEachCursor(def[36])
+      ,new UpdateCursor(def[37])
+      ,new UpdateCursor(def[38])
+      ,new UpdateCursor(def[39])
+      ,new ForEachCursor(def[40])
+      ,new ForEachCursor(def[41])
+      ,new ForEachCursor(def[42])
+      ,new ForEachCursor(def[43])
+      ,new ForEachCursor(def[44])
     };
  }
 
@@ -4885,11 +6361,13 @@ public class trn_theme__default : DataStoreHelperBase, IDataStoreHelper
        };
        Object[] prmT000W6;
        prmT000W6 = new Object[] {
-       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("CtaColorId",GXType.UniqueIdentifier,36,0)
        };
        Object[] prmT000W7;
        prmT000W7 = new Object[] {
-       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("CtaColorId",GXType.UniqueIdentifier,36,0)
        };
        Object[] prmT000W8;
        prmT000W8 = new Object[] {
@@ -4901,7 +6379,7 @@ public class trn_theme__default : DataStoreHelperBase, IDataStoreHelper
        };
        Object[] prmT000W10;
        prmT000W10 = new Object[] {
-       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmT000W11;
        prmT000W11 = new Object[] {
@@ -4909,16 +6387,10 @@ public class trn_theme__default : DataStoreHelperBase, IDataStoreHelper
        };
        Object[] prmT000W12;
        prmT000W12 = new Object[] {
-       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-       new ParDef("Trn_ThemeName",GXType.VarChar,100,0) ,
-       new ParDef("Trn_ThemeFontFamily",GXType.VarChar,40,0) ,
-       new ParDef("Trn_ThemeFontSize",GXType.Int16,4,0)
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmT000W13;
        prmT000W13 = new Object[] {
-       new ParDef("Trn_ThemeName",GXType.VarChar,100,0) ,
-       new ParDef("Trn_ThemeFontFamily",GXType.VarChar,40,0) ,
-       new ParDef("Trn_ThemeFontSize",GXType.Int16,4,0) ,
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmT000W14;
@@ -4931,98 +6403,179 @@ public class trn_theme__default : DataStoreHelperBase, IDataStoreHelper
        };
        Object[] prmT000W16;
        prmT000W16 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("Trn_ThemeName",GXType.VarChar,100,0) ,
+       new ParDef("Trn_ThemeFontFamily",GXType.VarChar,40,0) ,
+       new ParDef("Trn_ThemeFontSize",GXType.Int16,4,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmT000W17;
        prmT000W17 = new Object[] {
-       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-       new ParDef("IconId",GXType.UniqueIdentifier,36,0)
+       new ParDef("Trn_ThemeName",GXType.VarChar,100,0) ,
+       new ParDef("Trn_ThemeFontFamily",GXType.VarChar,40,0) ,
+       new ParDef("Trn_ThemeFontSize",GXType.Int16,4,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmT000W18;
        prmT000W18 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmT000W19;
+       prmT000W19 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmT000W20;
+       prmT000W20 = new Object[] {
+       };
+       Object[] prmT000W21;
+       prmT000W21 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("CtaColorId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000W22;
+       prmT000W22 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("CtaColorName",GXType.VarChar,100,0) ,
+       new ParDef("CtaColorId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000W23;
+       prmT000W23 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("CtaColorId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000W24;
+       prmT000W24 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("CtaColorId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("CtaColorName",GXType.VarChar,100,0) ,
+       new ParDef("CtaColorCode",GXType.VarChar,100,0)
+       };
+       Object[] prmT000W25;
+       prmT000W25 = new Object[] {
+       new ParDef("CtaColorName",GXType.VarChar,100,0) ,
+       new ParDef("CtaColorCode",GXType.VarChar,100,0) ,
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("CtaColorId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000W26;
+       prmT000W26 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("CtaColorId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000W27;
+       prmT000W27 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmT000W28;
+       prmT000W28 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("IconId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000W29;
+       prmT000W29 = new Object[] {
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("IconName",GXType.VarChar,100,0) ,
        new ParDef("IconCategory",GXType.VarChar,40,0) ,
        new ParDef("IconId",GXType.UniqueIdentifier,36,0)
        };
-       Object[] prmT000W19;
-       prmT000W19 = new Object[] {
+       Object[] prmT000W30;
+       prmT000W30 = new Object[] {
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("IconId",GXType.UniqueIdentifier,36,0)
        };
-       Object[] prmT000W20;
-       prmT000W20 = new Object[] {
+       Object[] prmT000W31;
+       prmT000W31 = new Object[] {
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("IconId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("IconCategory",GXType.VarChar,40,0) ,
        new ParDef("IconName",GXType.VarChar,100,0) ,
        new ParDef("IconSVG",GXType.LongVarChar,2097152,0)
        };
-       Object[] prmT000W21;
-       prmT000W21 = new Object[] {
+       Object[] prmT000W32;
+       prmT000W32 = new Object[] {
        new ParDef("IconCategory",GXType.VarChar,40,0) ,
        new ParDef("IconName",GXType.VarChar,100,0) ,
        new ParDef("IconSVG",GXType.LongVarChar,2097152,0) ,
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("IconId",GXType.UniqueIdentifier,36,0)
        };
-       Object[] prmT000W22;
-       prmT000W22 = new Object[] {
+       Object[] prmT000W33;
+       prmT000W33 = new Object[] {
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("IconId",GXType.UniqueIdentifier,36,0)
        };
-       Object[] prmT000W23;
-       prmT000W23 = new Object[] {
+       Object[] prmT000W34;
+       prmT000W34 = new Object[] {
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
-       Object[] prmT000W24;
-       prmT000W24 = new Object[] {
+       Object[] prmT000W35;
+       prmT000W35 = new Object[] {
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("ColorId",GXType.UniqueIdentifier,36,0)
        };
-       Object[] prmT000W25;
-       prmT000W25 = new Object[] {
+       Object[] prmT000W36;
+       prmT000W36 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("ColorName",GXType.VarChar,100,0) ,
+       new ParDef("ColorId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000W37;
+       prmT000W37 = new Object[] {
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("ColorName",GXType.VarChar,100,0) ,
        new ParDef("ColorCode",GXType.VarChar,100,0) ,
        new ParDef("ColorId",GXType.UniqueIdentifier,36,0)
        };
-       Object[] prmT000W26;
-       prmT000W26 = new Object[] {
+       Object[] prmT000W38;
+       prmT000W38 = new Object[] {
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("ColorId",GXType.UniqueIdentifier,36,0)
        };
-       Object[] prmT000W27;
-       prmT000W27 = new Object[] {
+       Object[] prmT000W39;
+       prmT000W39 = new Object[] {
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("ColorId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("ColorName",GXType.VarChar,100,0) ,
        new ParDef("ColorCode",GXType.VarChar,100,0)
        };
-       Object[] prmT000W28;
-       prmT000W28 = new Object[] {
+       Object[] prmT000W40;
+       prmT000W40 = new Object[] {
        new ParDef("ColorName",GXType.VarChar,100,0) ,
        new ParDef("ColorCode",GXType.VarChar,100,0) ,
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("ColorId",GXType.UniqueIdentifier,36,0)
        };
-       Object[] prmT000W29;
-       prmT000W29 = new Object[] {
+       Object[] prmT000W41;
+       prmT000W41 = new Object[] {
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("ColorId",GXType.UniqueIdentifier,36,0)
        };
-       Object[] prmT000W30;
-       prmT000W30 = new Object[] {
+       Object[] prmT000W42;
+       prmT000W42 = new Object[] {
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
-       Object[] prmT000W31;
-       prmT000W31 = new Object[] {
+       Object[] prmT000W43;
+       prmT000W43 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("CtaColorName",GXType.VarChar,100,0) ,
+       new ParDef("CtaColorId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000W44;
+       prmT000W44 = new Object[] {
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("IconName",GXType.VarChar,100,0) ,
        new ParDef("IconCategory",GXType.VarChar,40,0) ,
        new ParDef("IconId",GXType.UniqueIdentifier,36,0)
        };
-       Object[] prmT000W32;
-       prmT000W32 = new Object[] {
+       Object[] prmT000W45;
+       prmT000W45 = new Object[] {
+       new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("ColorName",GXType.VarChar,100,0) ,
+       new ParDef("ColorId",GXType.UniqueIdentifier,36,0)
+       };
+       Object[] prmT000W46;
+       prmT000W46 = new Object[] {
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("ColorName",GXType.VarChar,100,0) ,
        new ParDef("ColorCode",GXType.VarChar,100,0) ,
@@ -5033,33 +6586,47 @@ public class trn_theme__default : DataStoreHelperBase, IDataStoreHelper
           ,new CursorDef("T000W3", "SELECT Trn_ThemeId, ColorId, ColorName, ColorCode FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId AND ColorId = :ColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W3,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T000W4", "SELECT Trn_ThemeId, IconId, IconCategory, IconName, IconSVG FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId  FOR UPDATE OF Trn_ThemeIcon NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000W4,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("T000W5", "SELECT Trn_ThemeId, IconId, IconCategory, IconName, IconSVG FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W5,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T000W6", "SELECT Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily, Trn_ThemeFontSize FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId  FOR UPDATE OF Trn_Theme NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000W6,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T000W7", "SELECT Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily, Trn_ThemeFontSize FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W7,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T000W8", "SELECT TM1.Trn_ThemeId, TM1.Trn_ThemeName, TM1.Trn_ThemeFontFamily, TM1.Trn_ThemeFontSize FROM Trn_Theme TM1 WHERE TM1.Trn_ThemeId = :Trn_ThemeId ORDER BY TM1.Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W8,100, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T000W9", "SELECT Trn_ThemeId FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W9,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T000W10", "SELECT Trn_ThemeId FROM Trn_Theme WHERE ( Trn_ThemeId > :Trn_ThemeId) ORDER BY Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W10,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("T000W11", "SELECT Trn_ThemeId FROM Trn_Theme WHERE ( Trn_ThemeId < :Trn_ThemeId) ORDER BY Trn_ThemeId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W11,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("T000W12", "SAVEPOINT gxupdate;INSERT INTO Trn_Theme(Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily, Trn_ThemeFontSize) VALUES(:Trn_ThemeId, :Trn_ThemeName, :Trn_ThemeFontFamily, :Trn_ThemeFontSize);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000W12)
-          ,new CursorDef("T000W13", "SAVEPOINT gxupdate;UPDATE Trn_Theme SET Trn_ThemeName=:Trn_ThemeName, Trn_ThemeFontFamily=:Trn_ThemeFontFamily, Trn_ThemeFontSize=:Trn_ThemeFontSize  WHERE Trn_ThemeId = :Trn_ThemeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000W13)
-          ,new CursorDef("T000W14", "SAVEPOINT gxupdate;DELETE FROM Trn_Theme  WHERE Trn_ThemeId = :Trn_ThemeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000W14)
-          ,new CursorDef("T000W15", "SELECT LocationId, OrganisationId FROM Trn_Location WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W15,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("T000W16", "SELECT Trn_ThemeId FROM Trn_Theme ORDER BY Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W16,100, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T000W17", "SELECT Trn_ThemeId, IconId, IconCategory, IconName, IconSVG FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId and IconId = :IconId ORDER BY Trn_ThemeId, IconId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W17,11, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T000W18", "SELECT Trn_ThemeId FROM Trn_ThemeIcon WHERE (Trn_ThemeId = :Trn_ThemeId AND IconName = :IconName AND IconCategory = :IconCategory) AND (Not ( Trn_ThemeId = :Trn_ThemeId and IconId = :IconId)) ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W18,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T000W19", "SELECT Trn_ThemeId, IconId FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W19,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T000W20", "SAVEPOINT gxupdate;INSERT INTO Trn_ThemeIcon(Trn_ThemeId, IconId, IconCategory, IconName, IconSVG) VALUES(:Trn_ThemeId, :IconId, :IconCategory, :IconName, :IconSVG);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000W20)
-          ,new CursorDef("T000W21", "SAVEPOINT gxupdate;UPDATE Trn_ThemeIcon SET IconCategory=:IconCategory, IconName=:IconName, IconSVG=:IconSVG  WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000W21)
-          ,new CursorDef("T000W22", "SAVEPOINT gxupdate;DELETE FROM Trn_ThemeIcon  WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000W22)
-          ,new CursorDef("T000W23", "SELECT Trn_ThemeId, IconId FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId ORDER BY Trn_ThemeId, IconId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W23,11, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T000W24", "SELECT Trn_ThemeId, ColorId, ColorName, ColorCode FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId and ColorId = :ColorId ORDER BY Trn_ThemeId, ColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W24,11, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T000W25", "SELECT Trn_ThemeId FROM Trn_ThemeColor WHERE (Trn_ThemeId = :Trn_ThemeId AND ColorName = :ColorName AND ColorCode = :ColorCode) AND (Not ( Trn_ThemeId = :Trn_ThemeId and ColorId = :ColorId)) ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W25,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T000W26", "SELECT Trn_ThemeId, ColorId FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId AND ColorId = :ColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W26,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T000W27", "SAVEPOINT gxupdate;INSERT INTO Trn_ThemeColor(Trn_ThemeId, ColorId, ColorName, ColorCode) VALUES(:Trn_ThemeId, :ColorId, :ColorName, :ColorCode);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000W27)
-          ,new CursorDef("T000W28", "SAVEPOINT gxupdate;UPDATE Trn_ThemeColor SET ColorName=:ColorName, ColorCode=:ColorCode  WHERE Trn_ThemeId = :Trn_ThemeId AND ColorId = :ColorId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000W28)
-          ,new CursorDef("T000W29", "SAVEPOINT gxupdate;DELETE FROM Trn_ThemeColor  WHERE Trn_ThemeId = :Trn_ThemeId AND ColorId = :ColorId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000W29)
-          ,new CursorDef("T000W30", "SELECT Trn_ThemeId, ColorId FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId ORDER BY Trn_ThemeId, ColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W30,11, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T000W31", "SELECT Trn_ThemeId FROM Trn_ThemeIcon WHERE (Trn_ThemeId = :Trn_ThemeId AND IconName = :IconName AND IconCategory = :IconCategory) AND (Not ( Trn_ThemeId = :Trn_ThemeId and IconId = :IconId)) ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W31,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("T000W32", "SELECT Trn_ThemeId FROM Trn_ThemeColor WHERE (Trn_ThemeId = :Trn_ThemeId AND ColorName = :ColorName AND ColorCode = :ColorCode) AND (Not ( Trn_ThemeId = :Trn_ThemeId and ColorId = :ColorId)) ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W32,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W6", "SELECT Trn_ThemeId, CtaColorId, CtaColorName, CtaColorCode FROM Trn_ThemeCtaColor WHERE Trn_ThemeId = :Trn_ThemeId AND CtaColorId = :CtaColorId  FOR UPDATE OF Trn_ThemeCtaColor NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000W6,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W7", "SELECT Trn_ThemeId, CtaColorId, CtaColorName, CtaColorCode FROM Trn_ThemeCtaColor WHERE Trn_ThemeId = :Trn_ThemeId AND CtaColorId = :CtaColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W7,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W8", "SELECT Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily, Trn_ThemeFontSize, OrganisationId FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId  FOR UPDATE OF Trn_Theme NOWAIT",true, GxErrorMask.GX_NOMASK, false, this,prmT000W8,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W9", "SELECT Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily, Trn_ThemeFontSize, OrganisationId FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W9,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W10", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W10,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W11", "SELECT TM1.Trn_ThemeId, TM1.Trn_ThemeName, TM1.Trn_ThemeFontFamily, TM1.Trn_ThemeFontSize, TM1.OrganisationId FROM Trn_Theme TM1 WHERE TM1.Trn_ThemeId = :Trn_ThemeId ORDER BY TM1.Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W11,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W12", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W12,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W13", "SELECT Trn_ThemeId FROM Trn_Theme WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W13,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W14", "SELECT Trn_ThemeId FROM Trn_Theme WHERE ( Trn_ThemeId > :Trn_ThemeId) ORDER BY Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W14,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000W15", "SELECT Trn_ThemeId FROM Trn_Theme WHERE ( Trn_ThemeId < :Trn_ThemeId) ORDER BY Trn_ThemeId DESC ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W15,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000W16", "SAVEPOINT gxupdate;INSERT INTO Trn_Theme(Trn_ThemeId, Trn_ThemeName, Trn_ThemeFontFamily, Trn_ThemeFontSize, OrganisationId) VALUES(:Trn_ThemeId, :Trn_ThemeName, :Trn_ThemeFontFamily, :Trn_ThemeFontSize, :OrganisationId);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000W16)
+          ,new CursorDef("T000W17", "SAVEPOINT gxupdate;UPDATE Trn_Theme SET Trn_ThemeName=:Trn_ThemeName, Trn_ThemeFontFamily=:Trn_ThemeFontFamily, Trn_ThemeFontSize=:Trn_ThemeFontSize, OrganisationId=:OrganisationId  WHERE Trn_ThemeId = :Trn_ThemeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000W17)
+          ,new CursorDef("T000W18", "SAVEPOINT gxupdate;DELETE FROM Trn_Theme  WHERE Trn_ThemeId = :Trn_ThemeId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000W18)
+          ,new CursorDef("T000W19", "SELECT LocationId, OrganisationId FROM Trn_Location WHERE Trn_ThemeId = :Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W19,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("T000W20", "SELECT Trn_ThemeId FROM Trn_Theme ORDER BY Trn_ThemeId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W20,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W21", "SELECT Trn_ThemeId, CtaColorId, CtaColorName, CtaColorCode FROM Trn_ThemeCtaColor WHERE Trn_ThemeId = :Trn_ThemeId and CtaColorId = :CtaColorId ORDER BY Trn_ThemeId, CtaColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W21,11, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W22", "SELECT Trn_ThemeId FROM Trn_ThemeCtaColor WHERE (Trn_ThemeId = :Trn_ThemeId AND CtaColorName = :CtaColorName) AND (Not ( Trn_ThemeId = :Trn_ThemeId and CtaColorId = :CtaColorId)) ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W22,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W23", "SELECT Trn_ThemeId, CtaColorId FROM Trn_ThemeCtaColor WHERE Trn_ThemeId = :Trn_ThemeId AND CtaColorId = :CtaColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W23,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W24", "SAVEPOINT gxupdate;INSERT INTO Trn_ThemeCtaColor(Trn_ThemeId, CtaColorId, CtaColorName, CtaColorCode) VALUES(:Trn_ThemeId, :CtaColorId, :CtaColorName, :CtaColorCode);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000W24)
+          ,new CursorDef("T000W25", "SAVEPOINT gxupdate;UPDATE Trn_ThemeCtaColor SET CtaColorName=:CtaColorName, CtaColorCode=:CtaColorCode  WHERE Trn_ThemeId = :Trn_ThemeId AND CtaColorId = :CtaColorId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000W25)
+          ,new CursorDef("T000W26", "SAVEPOINT gxupdate;DELETE FROM Trn_ThemeCtaColor  WHERE Trn_ThemeId = :Trn_ThemeId AND CtaColorId = :CtaColorId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000W26)
+          ,new CursorDef("T000W27", "SELECT Trn_ThemeId, CtaColorId FROM Trn_ThemeCtaColor WHERE Trn_ThemeId = :Trn_ThemeId ORDER BY Trn_ThemeId, CtaColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W27,11, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W28", "SELECT Trn_ThemeId, IconId, IconCategory, IconName, IconSVG FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId and IconId = :IconId ORDER BY Trn_ThemeId, IconId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W28,11, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W29", "SELECT Trn_ThemeId FROM Trn_ThemeIcon WHERE (Trn_ThemeId = :Trn_ThemeId AND IconName = :IconName AND IconCategory = :IconCategory) AND (Not ( Trn_ThemeId = :Trn_ThemeId and IconId = :IconId)) ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W29,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W30", "SELECT Trn_ThemeId, IconId FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W30,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W31", "SAVEPOINT gxupdate;INSERT INTO Trn_ThemeIcon(Trn_ThemeId, IconId, IconCategory, IconName, IconSVG) VALUES(:Trn_ThemeId, :IconId, :IconCategory, :IconName, :IconSVG);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000W31)
+          ,new CursorDef("T000W32", "SAVEPOINT gxupdate;UPDATE Trn_ThemeIcon SET IconCategory=:IconCategory, IconName=:IconName, IconSVG=:IconSVG  WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000W32)
+          ,new CursorDef("T000W33", "SAVEPOINT gxupdate;DELETE FROM Trn_ThemeIcon  WHERE Trn_ThemeId = :Trn_ThemeId AND IconId = :IconId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000W33)
+          ,new CursorDef("T000W34", "SELECT Trn_ThemeId, IconId FROM Trn_ThemeIcon WHERE Trn_ThemeId = :Trn_ThemeId ORDER BY Trn_ThemeId, IconId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W34,11, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W35", "SELECT Trn_ThemeId, ColorId, ColorName, ColorCode FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId and ColorId = :ColorId ORDER BY Trn_ThemeId, ColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W35,11, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W36", "SELECT Trn_ThemeId FROM Trn_ThemeColor WHERE (Trn_ThemeId = :Trn_ThemeId AND ColorName = :ColorName) AND (Not ( Trn_ThemeId = :Trn_ThemeId and ColorId = :ColorId)) ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W36,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W37", "SELECT Trn_ThemeId FROM Trn_ThemeColor WHERE (Trn_ThemeId = :Trn_ThemeId AND ColorName = :ColorName AND ColorCode = :ColorCode) AND (Not ( Trn_ThemeId = :Trn_ThemeId and ColorId = :ColorId)) ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W37,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W38", "SELECT Trn_ThemeId, ColorId FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId AND ColorId = :ColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W38,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W39", "SAVEPOINT gxupdate;INSERT INTO Trn_ThemeColor(Trn_ThemeId, ColorId, ColorName, ColorCode) VALUES(:Trn_ThemeId, :ColorId, :ColorName, :ColorCode);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmT000W39)
+          ,new CursorDef("T000W40", "SAVEPOINT gxupdate;UPDATE Trn_ThemeColor SET ColorName=:ColorName, ColorCode=:ColorCode  WHERE Trn_ThemeId = :Trn_ThemeId AND ColorId = :ColorId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000W40)
+          ,new CursorDef("T000W41", "SAVEPOINT gxupdate;DELETE FROM Trn_ThemeColor  WHERE Trn_ThemeId = :Trn_ThemeId AND ColorId = :ColorId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmT000W41)
+          ,new CursorDef("T000W42", "SELECT Trn_ThemeId, ColorId FROM Trn_ThemeColor WHERE Trn_ThemeId = :Trn_ThemeId ORDER BY Trn_ThemeId, ColorId ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W42,11, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W43", "SELECT Trn_ThemeId FROM Trn_ThemeCtaColor WHERE (Trn_ThemeId = :Trn_ThemeId AND CtaColorName = :CtaColorName) AND (Not ( Trn_ThemeId = :Trn_ThemeId and CtaColorId = :CtaColorId)) ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W43,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W44", "SELECT Trn_ThemeId FROM Trn_ThemeIcon WHERE (Trn_ThemeId = :Trn_ThemeId AND IconName = :IconName AND IconCategory = :IconCategory) AND (Not ( Trn_ThemeId = :Trn_ThemeId and IconId = :IconId)) ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W44,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W45", "SELECT Trn_ThemeId FROM Trn_ThemeColor WHERE (Trn_ThemeId = :Trn_ThemeId AND ColorName = :ColorName) AND (Not ( Trn_ThemeId = :Trn_ThemeId and ColorId = :ColorId)) ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W45,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("T000W46", "SELECT Trn_ThemeId FROM Trn_ThemeColor WHERE (Trn_ThemeId = :Trn_ThemeId AND ColorName = :ColorName AND ColorCode = :ColorCode) AND (Not ( Trn_ThemeId = :Trn_ThemeId and ColorId = :ColorId)) ",true, GxErrorMask.GX_NOMASK, false, this,prmT000W46,1, GxCacheFrequency.OFF ,true,false )
        };
     }
  }
@@ -5098,87 +6665,127 @@ public class trn_theme__default : DataStoreHelperBase, IDataStoreHelper
              return;
           case 4 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-             ((short[]) buf[3])[0] = rslt.getShort(4);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
              return;
           case 5 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
-             ((short[]) buf[3])[0] = rslt.getShort(4);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
              return;
           case 6 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((string[]) buf[1])[0] = rslt.getVarchar(2);
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
              ((short[]) buf[3])[0] = rslt.getShort(4);
+             ((Guid[]) buf[4])[0] = rslt.getGuid(5);
+             ((bool[]) buf[5])[0] = rslt.wasNull(5);
              return;
           case 7 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((short[]) buf[3])[0] = rslt.getShort(4);
+             ((Guid[]) buf[4])[0] = rslt.getGuid(5);
+             ((bool[]) buf[5])[0] = rslt.wasNull(5);
              return;
           case 8 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              return;
           case 9 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((string[]) buf[1])[0] = rslt.getVarchar(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((short[]) buf[3])[0] = rslt.getShort(4);
+             ((Guid[]) buf[4])[0] = rslt.getGuid(5);
+             ((bool[]) buf[5])[0] = rslt.wasNull(5);
+             return;
+          case 10 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 11 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 12 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              return;
           case 13 :
-             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-             return;
-          case 14 :
-             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             return;
-          case 15 :
-             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-             ((string[]) buf[2])[0] = rslt.getVarchar(3);
-             ((string[]) buf[3])[0] = rslt.getVarchar(4);
-             ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
-             return;
-          case 16 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              return;
           case 17 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              return;
-          case 21 :
+          case 18 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              return;
-          case 22 :
+          case 19 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
              ((string[]) buf[3])[0] = rslt.getVarchar(4);
              return;
-          case 23 :
+          case 20 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              return;
-          case 24 :
+          case 21 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             return;
+          case 25 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             return;
+          case 26 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
+             return;
+          case 27 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              return;
           case 28 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
              return;
-          case 29 :
+          case 32 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             return;
+          case 33 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((string[]) buf[2])[0] = rslt.getVarchar(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
+             return;
+          case 34 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              return;
-    }
-    getresults30( cursor, rslt, buf) ;
- }
-
- public void getresults30( int cursor ,
-                           IFieldGetter rslt ,
-                           Object[] buf )
- {
-    switch ( cursor )
-    {
-          case 30 :
+          case 35 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 36 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             return;
+          case 40 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             return;
+          case 41 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 42 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 43 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             return;
+          case 44 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              return;
     }

@@ -918,6 +918,7 @@ namespace GeneXus.Programs {
             while ( (pr_default.getStatus(0) != 101) )
             {
                A11OrganisationId = H007K2_A11OrganisationId[0];
+               n11OrganisationId = H007K2_n11OrganisationId[0];
                A420GAMUserId = H007K2_A420GAMUserId[0];
                AssignAttri(sPrefix, false, "A420GAMUserId", A420GAMUserId);
                A13OrganisationName = H007K2_A13OrganisationName[0];
@@ -1297,7 +1298,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025361173295", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531412102097", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1313,7 +1314,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_auditgeneral.js", "?2025361173295", false, true);
+         context.AddJavascriptSource("trn_auditgeneral.js", "?202531412102097", false, true);
          /* End function include_jscripts */
       }
 
@@ -1449,6 +1450,7 @@ namespace GeneXus.Programs {
          GXDecQS = "";
          H007K2_A415AuditId = new Guid[] {Guid.Empty} ;
          H007K2_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         H007K2_n11OrganisationId = new bool[] {false} ;
          H007K2_A420GAMUserId = new string[] {""} ;
          H007K2_A13OrganisationName = new string[] {""} ;
          H007K2_A422AuditAction = new string[] {""} ;
@@ -1468,7 +1470,8 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_auditgeneral__default(),
             new Object[][] {
                 new Object[] {
-               H007K2_A415AuditId, H007K2_A11OrganisationId, H007K2_A420GAMUserId, H007K2_A13OrganisationName, H007K2_A422AuditAction, H007K2_A421AuditUserName, H007K2_A418AuditDescription, H007K2_A416AuditDate, H007K2_A417AuditTableName, H007K2_A419AuditShortDescription
+               H007K2_A415AuditId, H007K2_A11OrganisationId, H007K2_n11OrganisationId, H007K2_A420GAMUserId, H007K2_A13OrganisationName, H007K2_A422AuditAction, H007K2_A421AuditUserName, H007K2_A418AuditDescription, H007K2_A416AuditDate, H007K2_A417AuditTableName,
+               H007K2_A419AuditShortDescription
                }
             }
          );
@@ -1558,6 +1561,7 @@ namespace GeneXus.Programs {
       private bool Rfr0gs ;
       private bool wbErr ;
       private bool gxdyncontrolsrefreshing ;
+      private bool n11OrganisationId ;
       private bool returnInSub ;
       private bool AV14TempBoolean ;
       private bool GXt_boolean1 ;
@@ -1581,6 +1585,7 @@ namespace GeneXus.Programs {
       private IDataStoreProvider pr_default ;
       private Guid[] H007K2_A415AuditId ;
       private Guid[] H007K2_A11OrganisationId ;
+      private bool[] H007K2_n11OrganisationId ;
       private string[] H007K2_A420GAMUserId ;
       private string[] H007K2_A13OrganisationName ;
       private string[] H007K2_A422AuditAction ;
@@ -1615,7 +1620,7 @@ namespace GeneXus.Programs {
           new ParDef("AuditId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("H007K2", "SELECT T1.AuditId, T1.OrganisationId, T1.GAMUserId, T2.OrganisationName, T1.AuditAction, T1.AuditUserName, T1.AuditDescription, T1.AuditDate, T1.AuditTableName, T1.AuditShortDescription FROM (Trn_Audit T1 INNER JOIN Trn_Organisation T2 ON T2.OrganisationId = T1.OrganisationId) WHERE T1.AuditId = :AuditId ORDER BY T1.AuditId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH007K2,1, GxCacheFrequency.OFF ,true,true )
+              new CursorDef("H007K2", "SELECT T1.AuditId, T1.OrganisationId, T1.GAMUserId, T2.OrganisationName, T1.AuditAction, T1.AuditUserName, T1.AuditDescription, T1.AuditDate, T1.AuditTableName, T1.AuditShortDescription FROM (Trn_Audit T1 LEFT JOIN Trn_Organisation T2 ON T2.OrganisationId = T1.OrganisationId) WHERE T1.AuditId = :AuditId ORDER BY T1.AuditId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmH007K2,1, GxCacheFrequency.OFF ,true,true )
           };
        }
     }
@@ -1629,14 +1634,15 @@ namespace GeneXus.Programs {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-                ((string[]) buf[2])[0] = rslt.getString(3, 40);
-                ((string[]) buf[3])[0] = rslt.getVarchar(4);
-                ((string[]) buf[4])[0] = rslt.getVarchar(5);
-                ((string[]) buf[5])[0] = rslt.getVarchar(6);
-                ((string[]) buf[6])[0] = rslt.getLongVarchar(7);
-                ((DateTime[]) buf[7])[0] = rslt.getGXDateTime(8);
-                ((string[]) buf[8])[0] = rslt.getVarchar(9);
-                ((string[]) buf[9])[0] = rslt.getVarchar(10);
+                ((bool[]) buf[2])[0] = rslt.wasNull(2);
+                ((string[]) buf[3])[0] = rslt.getString(3, 40);
+                ((string[]) buf[4])[0] = rslt.getVarchar(4);
+                ((string[]) buf[5])[0] = rslt.getVarchar(5);
+                ((string[]) buf[6])[0] = rslt.getVarchar(6);
+                ((string[]) buf[7])[0] = rslt.getLongVarchar(7);
+                ((DateTime[]) buf[8])[0] = rslt.getGXDateTime(8);
+                ((string[]) buf[9])[0] = rslt.getVarchar(9);
+                ((string[]) buf[10])[0] = rslt.getVarchar(10);
                 return;
        }
     }
