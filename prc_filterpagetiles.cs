@@ -81,6 +81,7 @@ namespace GeneXus.Programs {
          AV12Filtered_SDT_MobilePage.FromJSonString(AV10SDT_MobilePage.ToJSonString(false, true), null);
          AV11ModuleCollection.FromJSonString(context.GetMessage( "[\"my care\",\"my living\",\"my services\"]", ""), null);
          new prc_logtoserver(context ).execute(  ">>>>>>>"+AV11ModuleCollection.ToJSonString(false)) ;
+         new prc_logtoserver(context ).execute(  context.GetMessage( "User: ", "")+AV9UserId) ;
          /* Using cursor P00CH2 */
          pr_default.execute(0, new Object[] {AV9UserId});
          while ( (pr_default.getStatus(0) != 101) )
