@@ -89,6 +89,7 @@ namespace GeneXus.Programs {
             A554ResidentPackageId = P00CH2_A554ResidentPackageId[0];
             n554ResidentPackageId = P00CH2_n554ResidentPackageId[0];
             A558ResidentPackageModules = P00CH2_A558ResidentPackageModules[0];
+            A71ResidentGUID = P00CH2_A71ResidentGUID[0];
             A62ResidentId = P00CH2_A62ResidentId[0];
             A29LocationId = P00CH2_A29LocationId[0];
             A11OrganisationId = P00CH2_A11OrganisationId[0];
@@ -162,11 +163,13 @@ namespace GeneXus.Programs {
          P00CH2_A554ResidentPackageId = new Guid[] {Guid.Empty} ;
          P00CH2_n554ResidentPackageId = new bool[] {false} ;
          P00CH2_A558ResidentPackageModules = new string[] {""} ;
+         P00CH2_A71ResidentGUID = new string[] {""} ;
          P00CH2_A62ResidentId = new Guid[] {Guid.Empty} ;
          P00CH2_A29LocationId = new Guid[] {Guid.Empty} ;
          P00CH2_A11OrganisationId = new Guid[] {Guid.Empty} ;
          A554ResidentPackageId = Guid.Empty;
          A558ResidentPackageModules = "";
+         A71ResidentGUID = "";
          A62ResidentId = Guid.Empty;
          A29LocationId = Guid.Empty;
          A11OrganisationId = Guid.Empty;
@@ -180,7 +183,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_filterpagetiles__default(),
             new Object[][] {
                 new Object[] {
-               P00CH2_A554ResidentPackageId, P00CH2_n554ResidentPackageId, P00CH2_A558ResidentPackageModules, P00CH2_A62ResidentId, P00CH2_A29LocationId, P00CH2_A11OrganisationId
+               P00CH2_A554ResidentPackageId, P00CH2_n554ResidentPackageId, P00CH2_A558ResidentPackageModules, P00CH2_A71ResidentGUID, P00CH2_A62ResidentId, P00CH2_A29LocationId, P00CH2_A11OrganisationId
                }
                , new Object[] {
                P00CH3_A554ResidentPackageId
@@ -196,6 +199,7 @@ namespace GeneXus.Programs {
       private bool n554ResidentPackageId ;
       private string A558ResidentPackageModules ;
       private string AV9UserId ;
+      private string A71ResidentGUID ;
       private string AV17TileName ;
       private Guid A554ResidentPackageId ;
       private Guid A62ResidentId ;
@@ -211,6 +215,7 @@ namespace GeneXus.Programs {
       private Guid[] P00CH2_A554ResidentPackageId ;
       private bool[] P00CH2_n554ResidentPackageId ;
       private string[] P00CH2_A558ResidentPackageModules ;
+      private string[] P00CH2_A71ResidentGUID ;
       private Guid[] P00CH2_A62ResidentId ;
       private Guid[] P00CH2_A29LocationId ;
       private Guid[] P00CH2_A11OrganisationId ;
@@ -248,7 +253,7 @@ namespace GeneXus.Programs {
           new ParDef("ResidentPackageId",GXType.UniqueIdentifier,36,0){Nullable=true}
           };
           def= new CursorDef[] {
-              new CursorDef("P00CH2", "SELECT T1.ResidentPackageId, T2.ResidentPackageModules, T1.ResidentId, T1.LocationId, T1.OrganisationId FROM (Trn_Resident T1 LEFT JOIN Trn_ResidentPackage T2 ON T2.ResidentPackageId = T1.ResidentPackageId) WHERE T1.ResidentId = CASE WHEN (:AV9UserId ~ ('[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}')) THEN RTRIM(:AV9UserId) ELSE '00000000-0000-0000-0000-000000000000' END ORDER BY T1.ResidentId, T1.LocationId, T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00CH2,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P00CH2", "SELECT T1.ResidentPackageId, T2.ResidentPackageModules, T1.ResidentGUID, T1.ResidentId, T1.LocationId, T1.OrganisationId FROM (Trn_Resident T1 LEFT JOIN Trn_ResidentPackage T2 ON T2.ResidentPackageId = T1.ResidentPackageId) WHERE T1.ResidentGUID = ( :AV9UserId) ORDER BY T1.ResidentId, T1.LocationId, T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00CH2,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("P00CH3", "SELECT ResidentPackageId FROM Trn_ResidentPackage WHERE ResidentPackageId = :ResidentPackageId ORDER BY ResidentPackageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00CH3,1, GxCacheFrequency.OFF ,true,true )
           };
        }
@@ -264,9 +269,10 @@ namespace GeneXus.Programs {
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
                 ((bool[]) buf[1])[0] = rslt.wasNull(1);
                 ((string[]) buf[2])[0] = rslt.getLongVarchar(2);
-                ((Guid[]) buf[3])[0] = rslt.getGuid(3);
+                ((string[]) buf[3])[0] = rslt.getVarchar(3);
                 ((Guid[]) buf[4])[0] = rslt.getGuid(4);
                 ((Guid[]) buf[5])[0] = rslt.getGuid(5);
+                ((Guid[]) buf[6])[0] = rslt.getGuid(6);
                 return;
              case 1 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);

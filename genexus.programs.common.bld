@@ -36,7 +36,6 @@ wwpbaseobjects\type_SdtUserCustomizations.cs
 wwpbaseobjects\notifications\common\type_SdtWWP_Notification.cs
 wwpbaseobjects\mail\type_SdtWWP_Mail.cs
 wwpbaseobjects\mail\type_SdtWWP_Mail_Attachments.cs
-type_SdtTrn_Media.cs
 type_SdtTrn_Template.cs
 type_SdtTrn_SupplierAgbType.cs
 type_SdtTrn_AgendaCalendar.cs
@@ -67,6 +66,7 @@ type_SdtTrn_Theme_CtaColor.cs
 type_SdtTrn_Theme_Icon.cs
 type_SdtTrn_AppVersion.cs
 type_SdtTrn_AppVersion_Page.cs
+type_SdtTrn_Media.cs
 type_SdtQRCodeLibrary.cs
 type_SdtEO_Base64Image.cs
 type_SdtRandomStringGenerator.cs

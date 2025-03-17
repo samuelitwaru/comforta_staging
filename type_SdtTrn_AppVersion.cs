@@ -58,6 +58,7 @@ namespace GeneXus.Programs {
          metadata.Set("PK", "[ \"AppVersionId\" ]");
          metadata.Set("PKAssigned", "[ \"AppVersionId\" ]");
          metadata.Set("Levels", "[ \"Page\" ]");
+         metadata.Set("FKList", "[ { \"FK\":[ \"LocationId\",\"OrganisationId\" ],\"FKMap\":[  ] },{ \"FK\":[ \"OrganisationId\" ],\"FKMap\":[  ] } ]");
          metadata.Set("AllowInsert", "True");
          metadata.Set("AllowUpdate", "True");
          metadata.Set("AllowDelete", "True");
@@ -72,7 +73,10 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Appversionid_Z");
          state.Add("gxTpr_Appversionname_Z");
          state.Add("gxTpr_Locationid_Z");
+         state.Add("gxTpr_Organisationid_Z");
          state.Add("gxTpr_Isactive_Z");
+         state.Add("gxTpr_Locationid_N");
+         state.Add("gxTpr_Organisationid_N");
          return state ;
       }
 
@@ -83,6 +87,7 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_AppVersion_Appversionid = sdt.gxTv_SdtTrn_AppVersion_Appversionid ;
          gxTv_SdtTrn_AppVersion_Appversionname = sdt.gxTv_SdtTrn_AppVersion_Appversionname ;
          gxTv_SdtTrn_AppVersion_Locationid = sdt.gxTv_SdtTrn_AppVersion_Locationid ;
+         gxTv_SdtTrn_AppVersion_Organisationid = sdt.gxTv_SdtTrn_AppVersion_Organisationid ;
          gxTv_SdtTrn_AppVersion_Isactive = sdt.gxTv_SdtTrn_AppVersion_Isactive ;
          gxTv_SdtTrn_AppVersion_Page = sdt.gxTv_SdtTrn_AppVersion_Page ;
          gxTv_SdtTrn_AppVersion_Mode = sdt.gxTv_SdtTrn_AppVersion_Mode ;
@@ -90,7 +95,10 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_AppVersion_Appversionid_Z = sdt.gxTv_SdtTrn_AppVersion_Appversionid_Z ;
          gxTv_SdtTrn_AppVersion_Appversionname_Z = sdt.gxTv_SdtTrn_AppVersion_Appversionname_Z ;
          gxTv_SdtTrn_AppVersion_Locationid_Z = sdt.gxTv_SdtTrn_AppVersion_Locationid_Z ;
+         gxTv_SdtTrn_AppVersion_Organisationid_Z = sdt.gxTv_SdtTrn_AppVersion_Organisationid_Z ;
          gxTv_SdtTrn_AppVersion_Isactive_Z = sdt.gxTv_SdtTrn_AppVersion_Isactive_Z ;
+         gxTv_SdtTrn_AppVersion_Locationid_N = sdt.gxTv_SdtTrn_AppVersion_Locationid_N ;
+         gxTv_SdtTrn_AppVersion_Organisationid_N = sdt.gxTv_SdtTrn_AppVersion_Organisationid_N ;
          return  ;
       }
 
@@ -112,6 +120,9 @@ namespace GeneXus.Programs {
          AddObjectProperty("AppVersionId", gxTv_SdtTrn_AppVersion_Appversionid, false, includeNonInitialized);
          AddObjectProperty("AppVersionName", gxTv_SdtTrn_AppVersion_Appversionname, false, includeNonInitialized);
          AddObjectProperty("LocationId", gxTv_SdtTrn_AppVersion_Locationid, false, includeNonInitialized);
+         AddObjectProperty("LocationId_N", gxTv_SdtTrn_AppVersion_Locationid_N, false, includeNonInitialized);
+         AddObjectProperty("OrganisationId", gxTv_SdtTrn_AppVersion_Organisationid, false, includeNonInitialized);
+         AddObjectProperty("OrganisationId_N", gxTv_SdtTrn_AppVersion_Organisationid_N, false, includeNonInitialized);
          AddObjectProperty("IsActive", gxTv_SdtTrn_AppVersion_Isactive, false, includeNonInitialized);
          if ( gxTv_SdtTrn_AppVersion_Page != null )
          {
@@ -124,7 +135,10 @@ namespace GeneXus.Programs {
             AddObjectProperty("AppVersionId_Z", gxTv_SdtTrn_AppVersion_Appversionid_Z, false, includeNonInitialized);
             AddObjectProperty("AppVersionName_Z", gxTv_SdtTrn_AppVersion_Appversionname_Z, false, includeNonInitialized);
             AddObjectProperty("LocationId_Z", gxTv_SdtTrn_AppVersion_Locationid_Z, false, includeNonInitialized);
+            AddObjectProperty("OrganisationId_Z", gxTv_SdtTrn_AppVersion_Organisationid_Z, false, includeNonInitialized);
             AddObjectProperty("IsActive_Z", gxTv_SdtTrn_AppVersion_Isactive_Z, false, includeNonInitialized);
+            AddObjectProperty("LocationId_N", gxTv_SdtTrn_AppVersion_Locationid_N, false, includeNonInitialized);
+            AddObjectProperty("OrganisationId_N", gxTv_SdtTrn_AppVersion_Organisationid_N, false, includeNonInitialized);
          }
          return  ;
       }
@@ -143,8 +157,15 @@ namespace GeneXus.Programs {
          }
          if ( sdt.IsDirty("LocationId") )
          {
+            gxTv_SdtTrn_AppVersion_Locationid_N = (short)(sdt.gxTv_SdtTrn_AppVersion_Locationid_N);
             sdtIsNull = 0;
             gxTv_SdtTrn_AppVersion_Locationid = sdt.gxTv_SdtTrn_AppVersion_Locationid ;
+         }
+         if ( sdt.IsDirty("OrganisationId") )
+         {
+            gxTv_SdtTrn_AppVersion_Organisationid_N = (short)(sdt.gxTv_SdtTrn_AppVersion_Organisationid_N);
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AppVersion_Organisationid = sdt.gxTv_SdtTrn_AppVersion_Organisationid ;
          }
          if ( sdt.IsDirty("IsActive") )
          {
@@ -196,6 +217,7 @@ namespace GeneXus.Programs {
                this.gxTv_SdtTrn_AppVersion_Appversionid_Z_SetNull( );
                this.gxTv_SdtTrn_AppVersion_Appversionname_Z_SetNull( );
                this.gxTv_SdtTrn_AppVersion_Locationid_Z_SetNull( );
+               this.gxTv_SdtTrn_AppVersion_Organisationid_Z_SetNull( );
                this.gxTv_SdtTrn_AppVersion_Isactive_Z_SetNull( );
                if ( gxTv_SdtTrn_AppVersion_Page != null )
                {
@@ -242,11 +264,55 @@ namespace GeneXus.Programs {
          }
 
          set {
+            gxTv_SdtTrn_AppVersion_Locationid_N = 0;
             sdtIsNull = 0;
             gxTv_SdtTrn_AppVersion_Locationid = value;
             SetDirty("Locationid");
          }
 
+      }
+
+      public void gxTv_SdtTrn_AppVersion_Locationid_SetNull( )
+      {
+         gxTv_SdtTrn_AppVersion_Locationid_N = 1;
+         gxTv_SdtTrn_AppVersion_Locationid = Guid.Empty;
+         SetDirty("Locationid");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_AppVersion_Locationid_IsNull( )
+      {
+         return (gxTv_SdtTrn_AppVersion_Locationid_N==1) ;
+      }
+
+      [  SoapElement( ElementName = "OrganisationId" )]
+      [  XmlElement( ElementName = "OrganisationId"   )]
+      public Guid gxTpr_Organisationid
+      {
+         get {
+            return gxTv_SdtTrn_AppVersion_Organisationid ;
+         }
+
+         set {
+            gxTv_SdtTrn_AppVersion_Organisationid_N = 0;
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AppVersion_Organisationid = value;
+            SetDirty("Organisationid");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_AppVersion_Organisationid_SetNull( )
+      {
+         gxTv_SdtTrn_AppVersion_Organisationid_N = 1;
+         gxTv_SdtTrn_AppVersion_Organisationid = Guid.Empty;
+         SetDirty("Organisationid");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_AppVersion_Organisationid_IsNull( )
+      {
+         return (gxTv_SdtTrn_AppVersion_Organisationid_N==1) ;
       }
 
       [  SoapElement( ElementName = "IsActive" )]
@@ -465,6 +531,34 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "OrganisationId_Z" )]
+      [  XmlElement( ElementName = "OrganisationId_Z"   )]
+      public Guid gxTpr_Organisationid_Z
+      {
+         get {
+            return gxTv_SdtTrn_AppVersion_Organisationid_Z ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AppVersion_Organisationid_Z = value;
+            SetDirty("Organisationid_Z");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_AppVersion_Organisationid_Z_SetNull( )
+      {
+         gxTv_SdtTrn_AppVersion_Organisationid_Z = Guid.Empty;
+         SetDirty("Organisationid_Z");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_AppVersion_Organisationid_Z_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "IsActive_Z" )]
       [  XmlElement( ElementName = "IsActive_Z"   )]
       public bool gxTpr_Isactive_Z
@@ -493,6 +587,62 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "LocationId_N" )]
+      [  XmlElement( ElementName = "LocationId_N"   )]
+      public short gxTpr_Locationid_N
+      {
+         get {
+            return gxTv_SdtTrn_AppVersion_Locationid_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AppVersion_Locationid_N = value;
+            SetDirty("Locationid_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_AppVersion_Locationid_N_SetNull( )
+      {
+         gxTv_SdtTrn_AppVersion_Locationid_N = 0;
+         SetDirty("Locationid_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_AppVersion_Locationid_N_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "OrganisationId_N" )]
+      [  XmlElement( ElementName = "OrganisationId_N"   )]
+      public short gxTpr_Organisationid_N
+      {
+         get {
+            return gxTv_SdtTrn_AppVersion_Organisationid_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_AppVersion_Organisationid_N = value;
+            SetDirty("Organisationid_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_AppVersion_Organisationid_N_SetNull( )
+      {
+         gxTv_SdtTrn_AppVersion_Organisationid_N = 0;
+         SetDirty("Organisationid_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_AppVersion_Organisationid_N_IsNull( )
+      {
+         return false ;
+      }
+
       [XmlIgnore]
       private static GXTypeInfo _typeProps;
       protected override GXTypeInfo TypeInfo
@@ -513,10 +663,12 @@ namespace GeneXus.Programs {
          sdtIsNull = 1;
          gxTv_SdtTrn_AppVersion_Appversionname = "";
          gxTv_SdtTrn_AppVersion_Locationid = Guid.Empty;
+         gxTv_SdtTrn_AppVersion_Organisationid = Guid.Empty;
          gxTv_SdtTrn_AppVersion_Mode = "";
          gxTv_SdtTrn_AppVersion_Appversionid_Z = Guid.Empty;
          gxTv_SdtTrn_AppVersion_Appversionname_Z = "";
          gxTv_SdtTrn_AppVersion_Locationid_Z = Guid.Empty;
+         gxTv_SdtTrn_AppVersion_Organisationid_Z = Guid.Empty;
          IGxSilentTrn obj;
          obj = (IGxSilentTrn)ClassLoader.FindInstance( "trn_appversion", "GeneXus.Programs.trn_appversion_bc", new Object[] {context}, constructorCallingAssembly);;
          obj.initialize();
@@ -533,6 +685,8 @@ namespace GeneXus.Programs {
 
       private short sdtIsNull ;
       private short gxTv_SdtTrn_AppVersion_Initialized ;
+      private short gxTv_SdtTrn_AppVersion_Locationid_N ;
+      private short gxTv_SdtTrn_AppVersion_Organisationid_N ;
       private string gxTv_SdtTrn_AppVersion_Mode ;
       private bool gxTv_SdtTrn_AppVersion_Isactive ;
       private bool gxTv_SdtTrn_AppVersion_Isactive_Z ;
@@ -540,8 +694,10 @@ namespace GeneXus.Programs {
       private string gxTv_SdtTrn_AppVersion_Appversionname_Z ;
       private Guid gxTv_SdtTrn_AppVersion_Appversionid ;
       private Guid gxTv_SdtTrn_AppVersion_Locationid ;
+      private Guid gxTv_SdtTrn_AppVersion_Organisationid ;
       private Guid gxTv_SdtTrn_AppVersion_Appversionid_Z ;
       private Guid gxTv_SdtTrn_AppVersion_Locationid_Z ;
+      private Guid gxTv_SdtTrn_AppVersion_Organisationid_Z ;
       private GXBCLevelCollection<SdtTrn_AppVersion_Page> gxTv_SdtTrn_AppVersion_Page=null ;
    }
 
@@ -599,7 +755,21 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "IsActive" , Order = 3 )]
+      [DataMember( Name = "OrganisationId" , Order = 3 )]
+      [GxSeudo()]
+      public Guid gxTpr_Organisationid
+      {
+         get {
+            return sdt.gxTpr_Organisationid ;
+         }
+
+         set {
+            sdt.gxTpr_Organisationid = value;
+         }
+
+      }
+
+      [DataMember( Name = "IsActive" , Order = 4 )]
       [GxSeudo()]
       public bool gxTpr_Isactive
       {
@@ -613,7 +783,7 @@ namespace GeneXus.Programs {
 
       }
 
-      [DataMember( Name = "Page" , Order = 4 )]
+      [DataMember( Name = "Page" , Order = 5 )]
       public GxGenericCollection<SdtTrn_AppVersion_Page_RESTInterface> gxTpr_Page
       {
          get {
@@ -647,7 +817,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      [DataMember( Name = "gx_md5_hash", Order = 5 )]
+      [DataMember( Name = "gx_md5_hash", Order = 6 )]
       public string Hash
       {
          get {

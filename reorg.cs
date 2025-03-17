@@ -57,25 +57,101 @@ namespace GeneXus.Programs {
 
       private void FirstActions( )
       {
+         Status = 0;
+         /* API remote call */
+         new gxrtctls(context ).execute( out  Status) ;
+         if ( Status != 0 )
+         {
+            if (GXReorganization._ReorgReader != null)
+            {
+               GXReorganization._ReorgReader.NotifyMessage( "Reorganization error. See previous messages." ,null) ;
+            }
+            System.Environment.Exit(1);
+         }
          /* Load data into tables. */
       }
 
-      public void ReorganizeTrn_AppVersionPage( )
+      public void ReorganizeTrn_Media( )
       {
          string cmdBuffer = "";
-         /* Indices for table Trn_AppVersionPage */
-         cmdBuffer=" ALTER TABLE Trn_AppVersionPage ADD IsPredefined BOOLEAN NOT NULL DEFAULT FALSE "
+         /* Indices for table Trn_Media */
+         cmdBuffer=" ALTER TABLE Trn_Media ADD OrganisationId CHAR(36) NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000' "
          ;
          RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
          RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
          RGZ.ExecuteStmt() ;
          RGZ.Drop();
-         cmdBuffer=" ALTER TABLE Trn_AppVersionPage ALTER COLUMN IsPredefined DROP DEFAULT "
+         cmdBuffer=" ALTER TABLE Trn_Media ALTER COLUMN OrganisationId DROP DEFAULT "
          ;
          RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
          RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
          RGZ.ExecuteStmt() ;
          RGZ.Drop();
+         cmdBuffer=" ALTER TABLE Trn_Media ALTER COLUMN LocationId DROP DEFAULT "
+         ;
+         RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+         RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+         RGZ.ExecuteStmt() ;
+         RGZ.Drop();
+         try
+         {
+            cmdBuffer=" CREATE INDEX ITRN_MEDIA1 ON Trn_Media (LocationId ,OrganisationId ) "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+         }
+         catch
+         {
+            cmdBuffer=" DROP INDEX ITRN_MEDIA1 "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+            cmdBuffer=" CREATE INDEX ITRN_MEDIA1 ON Trn_Media (LocationId ,OrganisationId ) "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+         }
+      }
+
+      public void RITrn_MediaTrn_Location( )
+      {
+         string cmdBuffer;
+         try
+         {
+            cmdBuffer=" ALTER TABLE Trn_Media ADD CONSTRAINT ITRN_MEDIA1 FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId) "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+         }
+         catch
+         {
+            try
+            {
+               cmdBuffer=" ALTER TABLE Trn_Media DROP CONSTRAINT ITRN_MEDIA1 "
+               ;
+               RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+               RGZ.ErrorMask = GxErrorMask.GX_MASKNOTFOUND | GxErrorMask.GX_MASKLOOPLOCK;
+               RGZ.ExecuteStmt() ;
+               RGZ.Drop();
+            }
+            catch
+            {
+            }
+            cmdBuffer=" ALTER TABLE Trn_Media ADD CONSTRAINT ITRN_MEDIA1 FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId) "
+            ;
+            RGZ = new GxCommand(dsDefault.Db, cmdBuffer, dsDefault,0,true,false,null);
+            RGZ.ErrorMask = GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK;
+            RGZ.ExecuteStmt() ;
+            RGZ.Drop();
+         }
       }
 
       private void TablesCount( )
@@ -84,9 +160,9 @@ namespace GeneXus.Programs {
          {
             /* Using cursor P00012 */
             pr_default.execute(0);
-            Trn_AppVersionPageCount = P00012_ATrn_AppVersionPageCount[0];
+            Trn_MediaCount = P00012_ATrn_MediaCount[0];
             pr_default.close(0);
-            PrintRecordCount ( "Trn_AppVersionPage" ,  Trn_AppVersionPageCount );
+            PrintRecordCount ( "Trn_Media" ,  Trn_MediaCount );
          }
       }
 
@@ -97,9 +173,9 @@ namespace GeneXus.Programs {
             return true ;
          }
          sSchemaVar = GXUtil.UserId( "Server", context, pr_default);
-         if ( ColumnExist("Trn_AppVersionPage",sSchemaVar,"IsPredefined") )
+         if ( ColumnExist("Trn_Media",sSchemaVar,"OrganisationId") )
          {
-            SetCheckError ( GXResourceManager.GetMessage("GXM_column_exist", new   object[]  {"IsPredefined", "Trn_AppVersionPage"}) ) ;
+            SetCheckError ( GXResourceManager.GetMessage("GXM_column_exist", new   object[]  {"OrganisationId", "Trn_Media"}) ) ;
             return false ;
          }
          return true ;
@@ -136,11 +212,12 @@ namespace GeneXus.Programs {
 
       private void ExecuteOnlyTablesReorganization( )
       {
-         ReorgExecute.RegisterBlockForSubmit( 1 ,  "ReorganizeTrn_AppVersionPage" , new Object[]{ });
+         ReorgExecute.RegisterBlockForSubmit( 1 ,  "ReorganizeTrn_Media" , new Object[]{ });
       }
 
       private void ExecuteOnlyRisReorganization( )
       {
+         ReorgExecute.RegisterBlockForSubmit( 2 ,  "RITrn_MediaTrn_Location" , new Object[]{ });
       }
 
       private void ExecuteTablesReorganization( )
@@ -158,11 +235,13 @@ namespace GeneXus.Programs {
 
       private void SetPrecedencetables( )
       {
-         GXReorganization.SetMsg( 1 ,  GXResourceManager.GetMessage("GXM_fileupdate", new   object[]  {"Trn_AppVersionPage", ""}) );
+         GXReorganization.SetMsg( 1 ,  GXResourceManager.GetMessage("GXM_fileupdate", new   object[]  {"Trn_Media", ""}) );
       }
 
       private void SetPrecedenceris( )
       {
+         GXReorganization.SetMsg( 2 ,  GXResourceManager.GetMessage("GXM_refintcrea", new   object[]  {"ITRN_MEDIA1"}) );
+         ReorgExecute.RegisterPrecedence( "RITrn_MediaTrn_Location" ,  "ReorganizeTrn_Media" );
       }
 
       private void ExecuteReorganization( )
@@ -191,7 +270,7 @@ namespace GeneXus.Programs {
 
       public override void initialize( )
       {
-         P00012_ATrn_AppVersionPageCount = new int[1] ;
+         P00012_ATrn_MediaCount = new int[1] ;
          sSchemaVar = "";
          sTableName = "";
          sMySchemaName = "";
@@ -223,7 +302,7 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.reorg__default(),
             new Object[][] {
                 new Object[] {
-               P00012_ATrn_AppVersionPageCount
+               P00012_ATrn_MediaCount
                }
                , new Object[] {
                P00023_Atablename, P00023_Aschemaname, P00023_Acolumnname, P00023_Aattrelid, P00023_Aoid, P00023_Arelname
@@ -233,8 +312,9 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
+      protected short Status ;
       protected short ErrCode ;
-      protected int Trn_AppVersionPageCount ;
+      protected int Trn_MediaCount ;
       protected string sSchemaVar ;
       protected string sTableName ;
       protected string sMySchemaName ;
@@ -256,7 +336,7 @@ namespace GeneXus.Programs {
       protected IGxDataStore dsDefault ;
       protected GxCommand RGZ ;
       protected IDataStoreProvider pr_default ;
-      protected int[] P00012_ATrn_AppVersionPageCount ;
+      protected int[] P00012_ATrn_MediaCount ;
       protected string[] P00023_Atablename ;
       protected bool[] P00023_ntablename ;
       protected string[] P00023_Aschemaname ;
@@ -297,7 +377,7 @@ namespace GeneXus.Programs {
           new ParDef("sMyColumnName",GXType.Char,255,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P00012", "SELECT COUNT(*) FROM Trn_AppVersionPage ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00012,100, GxCacheFrequency.OFF ,true,false )
+              new CursorDef("P00012", "SELECT COUNT(*) FROM Trn_Media ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00012,100, GxCacheFrequency.OFF ,true,false )
              ,new CursorDef("P00023", "SELECT T.TABLENAME, T.TABLEOWNER, T1.ATTNAME, T1.ATTRELID, T2.OID, T2.RELNAME FROM PG_TABLES T, PG_ATTRIBUTE T1, PG_CLASS T2 WHERE (UPPER(T.TABLENAME) = ( UPPER(:sTableName))) AND (UPPER(T.TABLEOWNER) = ( UPPER(:sMySchemaName))) AND (UPPER(T1.ATTNAME) = ( UPPER(:sMyColumnName))) AND (T2.OID = ( T1.ATTRELID)) AND (T2.RELNAME = ( T.TABLENAME)) ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00023,100, GxCacheFrequency.OFF ,true,false )
           };
        }

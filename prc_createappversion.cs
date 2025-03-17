@@ -95,6 +95,9 @@ namespace GeneXus.Programs {
          GXt_guid1 = AV10LocationId;
          new prc_getuserlocationid(context ).execute( out  GXt_guid1) ;
          AV10LocationId = GXt_guid1;
+         GXt_guid1 = AV13OrganisationId;
+         new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
+         AV13OrganisationId = GXt_guid1;
          AV11BC_Trn_AppVersion.gxTpr_Appversionid = Guid.NewGuid( );
          AV11BC_Trn_AppVersion.gxTpr_Appversionname = AV22AppVersionName;
          AV11BC_Trn_AppVersion.gxTpr_Locationid = AV10LocationId;
@@ -130,6 +133,7 @@ namespace GeneXus.Programs {
          if ( AV11BC_Trn_AppVersion.Success() )
          {
             context.CommitDataStores("prc_createappversion",pr_default);
+            new prc_loadappversionsdt(context ).execute(  AV11BC_Trn_AppVersion, out  AV8SDT_AppVersion) ;
          }
          else
          {
@@ -160,10 +164,10 @@ namespace GeneXus.Programs {
          AV8SDT_AppVersion = new SdtSDT_AppVersion(context);
          AV9SDT_Error = new SdtSDT_Error(context);
          AV10LocationId = Guid.Empty;
+         AV13OrganisationId = Guid.Empty;
          GXt_guid1 = Guid.Empty;
          AV11BC_Trn_AppVersion = new SdtTrn_AppVersion(context);
          AV12BC_ReceptionPage = new SdtTrn_AppVersion_Page(context);
-         AV13OrganisationId = Guid.Empty;
          AV14BC_LocationPage = new SdtTrn_AppVersion_Page(context);
          AV15BC_CarePage = new SdtTrn_AppVersion_Page(context);
          AV16BC_LivingPage = new SdtTrn_AppVersion_Page(context);
@@ -193,8 +197,8 @@ namespace GeneXus.Programs {
       private bool AV23IsActive ;
       private string AV22AppVersionName ;
       private Guid AV10LocationId ;
-      private Guid GXt_guid1 ;
       private Guid AV13OrganisationId ;
+      private Guid GXt_guid1 ;
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;

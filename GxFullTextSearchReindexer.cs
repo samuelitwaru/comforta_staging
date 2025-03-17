@@ -93,9 +93,6 @@ namespace GeneXus.Programs {
          obj = new GeneXus.Programs.wwpbaseobjects.mail.SdtWWP_Mail(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
-         obj = new SdtTrn_Media(context);
-         trn = obj.getTransaction();
-         result = trn.Reindex();
          obj = new SdtTrn_Template(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
@@ -169,6 +166,9 @@ namespace GeneXus.Programs {
          trn = obj.getTransaction();
          result = trn.Reindex();
          obj = new SdtTrn_AppVersion(context);
+         trn = obj.getTransaction();
+         result = trn.Reindex();
+         obj = new SdtTrn_Media(context);
          trn = obj.getTransaction();
          result = trn.Reindex();
          return 1 ;
