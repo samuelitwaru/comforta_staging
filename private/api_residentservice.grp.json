@@ -425,6 +425,36 @@
 "Verb":"GET"
 },
 {
+"PathRegexp":"toolbox/v2/create-appversion",
+"Path":"toolbox/v2/create-appversion",
+"Name":"createappversion",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_createappversion",
+"Implementation":"Prc_CreateAppVersion",
+"Verb":"GET"
+},
+{
+"PathRegexp":"toolbox/v2/update-appversion",
+"Path":"toolbox/v2/update-appversion",
+"Name":"updateappversion",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_updateappversion",
+"Implementation":"Prc_UpdateAppVersion",
+"Verb":"GET"
+},
+{
+"PathRegexp":"toolbox/v2/activate-appversion",
+"Path":"toolbox/v2/activate-appversion",
+"Name":"activateappversion",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_activateappversion",
+"Implementation":"Prc_ActivateAppVersion",
+"Verb":"GET"
+},
+{
 "Verb":"POST",
 "PathRegexp":"toolbox/v2/save-page",
 "Path":"toolbox/v2/save-page",

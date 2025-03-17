@@ -222,13 +222,13 @@ namespace GeneXus.Programs {
 
       protected void ZM1Q109( short GX_JID )
       {
-         if ( ( GX_JID == 8 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 9 ) || ( GX_JID == 0 ) )
          {
             Z29LocationId = A29LocationId;
             Z544AppVersionName = A544AppVersionName;
             Z561IsActive = A561IsActive;
          }
-         if ( GX_JID == -8 )
+         if ( GX_JID == -9 )
          {
             Z543AppVersionId = A543AppVersionId;
             Z29LocationId = A29LocationId;
@@ -239,6 +239,7 @@ namespace GeneXus.Programs {
 
       protected void standaloneNotModal( )
       {
+         Gx_BScreen = 0;
       }
 
       protected void standaloneModal( )
@@ -266,7 +267,7 @@ namespace GeneXus.Programs {
             A29LocationId = BC001Q6_A29LocationId[0];
             A544AppVersionName = BC001Q6_A544AppVersionName[0];
             A561IsActive = BC001Q6_A561IsActive[0];
-            ZM1Q109( -8) ;
+            ZM1Q109( -9) ;
          }
          pr_default.close(4);
          OnLoadActions1Q109( ) ;
@@ -318,7 +319,7 @@ namespace GeneXus.Programs {
          pr_default.execute(3, new Object[] {A543AppVersionId});
          if ( (pr_default.getStatus(3) != 101) )
          {
-            ZM1Q109( 8) ;
+            ZM1Q109( 9) ;
             RcdFound109 = 1;
             A543AppVersionId = BC001Q5_A543AppVersionId[0];
             A29LocationId = BC001Q5_A29LocationId[0];
@@ -782,15 +783,17 @@ namespace GeneXus.Programs {
 
       protected void ZM1Q110( short GX_JID )
       {
-         if ( ( GX_JID == 10 ) || ( GX_JID == 0 ) )
+         if ( ( GX_JID == 11 ) || ( GX_JID == 0 ) )
          {
+            Z567IsPredefined = A567IsPredefined;
             Z522PageName = A522PageName;
             Z545PageType = A545PageType;
          }
-         if ( GX_JID == -10 )
+         if ( GX_JID == -11 )
          {
             Z543AppVersionId = A543AppVersionId;
             Z521PageId = A521PageId;
+            Z567IsPredefined = A567IsPredefined;
             Z522PageName = A522PageName;
             Z523PageStructure = A523PageStructure;
             Z562PagePublishedStructure = A562PagePublishedStructure;
@@ -808,6 +811,10 @@ namespace GeneXus.Programs {
          {
             A521PageId = Guid.NewGuid( );
          }
+         if ( IsIns( )  && (false==A567IsPredefined) && ( Gx_BScreen == 0 ) )
+         {
+            A567IsPredefined = false;
+         }
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ( Gx_BScreen == 0 ) )
          {
          }
@@ -820,11 +827,12 @@ namespace GeneXus.Programs {
          if ( (pr_default.getStatus(11) != 101) )
          {
             RcdFound110 = 1;
+            A567IsPredefined = BC001Q13_A567IsPredefined[0];
             A522PageName = BC001Q13_A522PageName[0];
             A523PageStructure = BC001Q13_A523PageStructure[0];
             A562PagePublishedStructure = BC001Q13_A562PagePublishedStructure[0];
             A545PageType = BC001Q13_A545PageType[0];
-            ZM1Q110( -10) ;
+            ZM1Q110( -11) ;
          }
          pr_default.close(11);
          OnLoadActions1Q110( ) ;
@@ -839,7 +847,7 @@ namespace GeneXus.Programs {
          Gx_BScreen = 1;
          standaloneModal1Q110( ) ;
          Gx_BScreen = 0;
-         if ( ! ( ( StringUtil.StrCmp(A545PageType, "Menu") == 0 ) || ( StringUtil.StrCmp(A545PageType, "Content") == 0 ) ) )
+         if ( ! ( ( StringUtil.StrCmp(A545PageType, "Menu") == 0 ) || ( StringUtil.StrCmp(A545PageType, "Content") == 0 ) || ( StringUtil.StrCmp(A545PageType, "WebLink") == 0 ) || ( StringUtil.StrCmp(A545PageType, "DynamicForm") == 0 ) ) )
          {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Page Type", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;
@@ -875,10 +883,11 @@ namespace GeneXus.Programs {
          pr_default.execute(1, new Object[] {A543AppVersionId, A521PageId});
          if ( (pr_default.getStatus(1) != 101) )
          {
-            ZM1Q110( 10) ;
+            ZM1Q110( 11) ;
             RcdFound110 = 1;
             InitializeNonKey1Q110( ) ;
             A521PageId = BC001Q3_A521PageId[0];
+            A567IsPredefined = BC001Q3_A567IsPredefined[0];
             A522PageName = BC001Q3_A522PageName[0];
             A523PageStructure = BC001Q3_A523PageStructure[0];
             A562PagePublishedStructure = BC001Q3_A562PagePublishedStructure[0];
@@ -919,7 +928,7 @@ namespace GeneXus.Programs {
                AnyError = 1;
                return  ;
             }
-            if ( (pr_default.getStatus(0) == 101) || ( StringUtil.StrCmp(Z522PageName, BC001Q2_A522PageName[0]) != 0 ) || ( StringUtil.StrCmp(Z545PageType, BC001Q2_A545PageType[0]) != 0 ) )
+            if ( (pr_default.getStatus(0) == 101) || ( Z567IsPredefined != BC001Q2_A567IsPredefined[0] ) || ( StringUtil.StrCmp(Z522PageName, BC001Q2_A522PageName[0]) != 0 ) || ( StringUtil.StrCmp(Z545PageType, BC001Q2_A545PageType[0]) != 0 ) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_waschg", new   object[]  {"Trn_AppVersionPage"}), "RecordWasChanged", 1, "");
                AnyError = 1;
@@ -948,7 +957,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC001Q15 */
-                     pr_default.execute(13, new Object[] {A543AppVersionId, A521PageId, A522PageName, A523PageStructure, A562PagePublishedStructure, A545PageType});
+                     pr_default.execute(13, new Object[] {A543AppVersionId, A521PageId, A567IsPredefined, A522PageName, A523PageStructure, A562PagePublishedStructure, A545PageType});
                      pr_default.close(13);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_AppVersionPage");
                      if ( (pr_default.getStatus(13) == 1) )
@@ -1001,7 +1010,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC001Q16 */
-                     pr_default.execute(14, new Object[] {A522PageName, A523PageStructure, A562PagePublishedStructure, A545PageType, A543AppVersionId, A521PageId});
+                     pr_default.execute(14, new Object[] {A567IsPredefined, A522PageName, A523PageStructure, A562PagePublishedStructure, A545PageType, A543AppVersionId, A521PageId});
                      pr_default.close(14);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_AppVersionPage");
                      if ( (pr_default.getStatus(14) == 103) )
@@ -1106,6 +1115,7 @@ namespace GeneXus.Programs {
          {
             RcdFound110 = 1;
             A521PageId = BC001Q18_A521PageId[0];
+            A567IsPredefined = BC001Q18_A567IsPredefined[0];
             A522PageName = BC001Q18_A522PageName[0];
             A523PageStructure = BC001Q18_A523PageStructure[0];
             A562PagePublishedStructure = BC001Q18_A562PagePublishedStructure[0];
@@ -1130,6 +1140,7 @@ namespace GeneXus.Programs {
          {
             RcdFound110 = 1;
             A521PageId = BC001Q18_A521PageId[0];
+            A567IsPredefined = BC001Q18_A567IsPredefined[0];
             A522PageName = BC001Q18_A522PageName[0];
             A523PageStructure = BC001Q18_A523PageStructure[0];
             A562PagePublishedStructure = BC001Q18_A562PagePublishedStructure[0];
@@ -1238,6 +1249,8 @@ namespace GeneXus.Programs {
          A523PageStructure = "";
          A562PagePublishedStructure = "";
          A545PageType = "";
+         A567IsPredefined = false;
+         Z567IsPredefined = false;
          Z522PageName = "";
          Z545PageType = "";
       }
@@ -1250,6 +1263,7 @@ namespace GeneXus.Programs {
 
       protected void StandaloneModalInsert1Q110( )
       {
+         A567IsPredefined = i567IsPredefined;
       }
 
       protected bool IsIns( )
@@ -1316,9 +1330,11 @@ namespace GeneXus.Programs {
          obj110.gxTpr_Pagestructure = A523PageStructure;
          obj110.gxTpr_Pagepublishedstructure = A562PagePublishedStructure;
          obj110.gxTpr_Pagetype = A545PageType;
+         obj110.gxTpr_Ispredefined = A567IsPredefined;
          obj110.gxTpr_Pageid = A521PageId;
          obj110.gxTpr_Pageid_Z = Z521PageId;
          obj110.gxTpr_Pagename_Z = Z522PageName;
+         obj110.gxTpr_Ispredefined_Z = Z567IsPredefined;
          obj110.gxTpr_Pagetype_Z = Z545PageType;
          obj110.gxTpr_Modified = nIsMod_110;
          return  ;
@@ -1338,9 +1354,11 @@ namespace GeneXus.Programs {
          A523PageStructure = obj110.gxTpr_Pagestructure;
          A562PagePublishedStructure = obj110.gxTpr_Pagepublishedstructure;
          A545PageType = obj110.gxTpr_Pagetype;
+         A567IsPredefined = obj110.gxTpr_Ispredefined;
          A521PageId = obj110.gxTpr_Pageid;
          Z521PageId = obj110.gxTpr_Pageid_Z;
          Z522PageName = obj110.gxTpr_Pagename_Z;
+         Z567IsPredefined = obj110.gxTpr_Ispredefined_Z;
          Z545PageType = obj110.gxTpr_Pagetype_Z;
          nIsMod_110 = obj110.gxTpr_Modified;
          return  ;
@@ -1364,7 +1382,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z543AppVersionId = A543AppVersionId;
          }
-         ZM1Q109( -8) ;
+         ZM1Q109( -9) ;
          OnLoadActions1Q109( ) ;
          AddRow1Q109( ) ;
          bcTrn_AppVersion.gxTpr_Page.ClearCollection();
@@ -1376,7 +1394,7 @@ namespace GeneXus.Programs {
             {
                Z543AppVersionId = A543AppVersionId;
                Z521PageId = A521PageId;
-               ZM1Q110( -10) ;
+               ZM1Q110( -11) ;
                OnLoadActions1Q110( ) ;
                nRcdExists_110 = 1;
                nIsMod_110 = 0;
@@ -1412,7 +1430,7 @@ namespace GeneXus.Programs {
             Gx_mode = "UPD";
             Z543AppVersionId = A543AppVersionId;
          }
-         ZM1Q109( -8) ;
+         ZM1Q109( -9) ;
          OnLoadActions1Q109( ) ;
          AddRow1Q109( ) ;
          bcTrn_AppVersion.gxTpr_Page.ClearCollection();
@@ -1424,7 +1442,7 @@ namespace GeneXus.Programs {
             {
                Z543AppVersionId = A543AppVersionId;
                Z521PageId = A521PageId;
-               ZM1Q110( -10) ;
+               ZM1Q110( -11) ;
                OnLoadActions1Q110( ) ;
                nRcdExists_110 = 1;
                nIsMod_110 = 0;
@@ -1851,6 +1869,7 @@ namespace GeneXus.Programs {
          A562PagePublishedStructure = "";
          BC001Q13_A543AppVersionId = new Guid[] {Guid.Empty} ;
          BC001Q13_A521PageId = new Guid[] {Guid.Empty} ;
+         BC001Q13_A567IsPredefined = new bool[] {false} ;
          BC001Q13_A522PageName = new string[] {""} ;
          BC001Q13_A523PageStructure = new string[] {""} ;
          BC001Q13_A562PagePublishedStructure = new string[] {""} ;
@@ -1859,6 +1878,7 @@ namespace GeneXus.Programs {
          BC001Q14_A521PageId = new Guid[] {Guid.Empty} ;
          BC001Q3_A543AppVersionId = new Guid[] {Guid.Empty} ;
          BC001Q3_A521PageId = new Guid[] {Guid.Empty} ;
+         BC001Q3_A567IsPredefined = new bool[] {false} ;
          BC001Q3_A522PageName = new string[] {""} ;
          BC001Q3_A523PageStructure = new string[] {""} ;
          BC001Q3_A562PagePublishedStructure = new string[] {""} ;
@@ -1866,12 +1886,14 @@ namespace GeneXus.Programs {
          sMode110 = "";
          BC001Q2_A543AppVersionId = new Guid[] {Guid.Empty} ;
          BC001Q2_A521PageId = new Guid[] {Guid.Empty} ;
+         BC001Q2_A567IsPredefined = new bool[] {false} ;
          BC001Q2_A522PageName = new string[] {""} ;
          BC001Q2_A523PageStructure = new string[] {""} ;
          BC001Q2_A562PagePublishedStructure = new string[] {""} ;
          BC001Q2_A545PageType = new string[] {""} ;
          BC001Q18_A543AppVersionId = new Guid[] {Guid.Empty} ;
          BC001Q18_A521PageId = new Guid[] {Guid.Empty} ;
+         BC001Q18_A567IsPredefined = new bool[] {false} ;
          BC001Q18_A522PageName = new string[] {""} ;
          BC001Q18_A523PageStructure = new string[] {""} ;
          BC001Q18_A562PagePublishedStructure = new string[] {""} ;
@@ -1890,10 +1912,10 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.trn_appversion_bc__default(),
             new Object[][] {
                 new Object[] {
-               BC001Q2_A543AppVersionId, BC001Q2_A521PageId, BC001Q2_A522PageName, BC001Q2_A523PageStructure, BC001Q2_A562PagePublishedStructure, BC001Q2_A545PageType
+               BC001Q2_A543AppVersionId, BC001Q2_A521PageId, BC001Q2_A567IsPredefined, BC001Q2_A522PageName, BC001Q2_A523PageStructure, BC001Q2_A562PagePublishedStructure, BC001Q2_A545PageType
                }
                , new Object[] {
-               BC001Q3_A543AppVersionId, BC001Q3_A521PageId, BC001Q3_A522PageName, BC001Q3_A523PageStructure, BC001Q3_A562PagePublishedStructure, BC001Q3_A545PageType
+               BC001Q3_A543AppVersionId, BC001Q3_A521PageId, BC001Q3_A567IsPredefined, BC001Q3_A522PageName, BC001Q3_A523PageStructure, BC001Q3_A562PagePublishedStructure, BC001Q3_A545PageType
                }
                , new Object[] {
                BC001Q4_A543AppVersionId, BC001Q4_A29LocationId, BC001Q4_A544AppVersionName, BC001Q4_A561IsActive
@@ -1920,7 +1942,7 @@ namespace GeneXus.Programs {
                BC001Q12_A543AppVersionId, BC001Q12_A29LocationId, BC001Q12_A544AppVersionName, BC001Q12_A561IsActive
                }
                , new Object[] {
-               BC001Q13_A543AppVersionId, BC001Q13_A521PageId, BC001Q13_A522PageName, BC001Q13_A523PageStructure, BC001Q13_A562PagePublishedStructure, BC001Q13_A545PageType
+               BC001Q13_A543AppVersionId, BC001Q13_A521PageId, BC001Q13_A567IsPredefined, BC001Q13_A522PageName, BC001Q13_A523PageStructure, BC001Q13_A562PagePublishedStructure, BC001Q13_A545PageType
                }
                , new Object[] {
                BC001Q14_A543AppVersionId, BC001Q14_A521PageId
@@ -1932,7 +1954,7 @@ namespace GeneXus.Programs {
                , new Object[] {
                }
                , new Object[] {
-               BC001Q18_A543AppVersionId, BC001Q18_A521PageId, BC001Q18_A522PageName, BC001Q18_A523PageStructure, BC001Q18_A562PagePublishedStructure, BC001Q18_A545PageType
+               BC001Q18_A543AppVersionId, BC001Q18_A521PageId, BC001Q18_A567IsPredefined, BC001Q18_A522PageName, BC001Q18_A523PageStructure, BC001Q18_A562PagePublishedStructure, BC001Q18_A545PageType
                }
             }
          );
@@ -1943,6 +1965,9 @@ namespace GeneXus.Programs {
          i29LocationId = Guid.NewGuid( );
          Z543AppVersionId = Guid.NewGuid( );
          A543AppVersionId = Guid.NewGuid( );
+         Z567IsPredefined = false;
+         A567IsPredefined = false;
+         i567IsPredefined = false;
          INITTRN();
          /* Execute Start event if defined. */
          standaloneNotModal( ) ;
@@ -1964,6 +1989,9 @@ namespace GeneXus.Programs {
       private string sMode110 ;
       private bool Z561IsActive ;
       private bool A561IsActive ;
+      private bool Z567IsPredefined ;
+      private bool A567IsPredefined ;
+      private bool i567IsPredefined ;
       private string Z523PageStructure ;
       private string A523PageStructure ;
       private string Z562PagePublishedStructure ;
@@ -2006,6 +2034,7 @@ namespace GeneXus.Programs {
       private bool[] BC001Q12_A561IsActive ;
       private Guid[] BC001Q13_A543AppVersionId ;
       private Guid[] BC001Q13_A521PageId ;
+      private bool[] BC001Q13_A567IsPredefined ;
       private string[] BC001Q13_A522PageName ;
       private string[] BC001Q13_A523PageStructure ;
       private string[] BC001Q13_A562PagePublishedStructure ;
@@ -2014,18 +2043,21 @@ namespace GeneXus.Programs {
       private Guid[] BC001Q14_A521PageId ;
       private Guid[] BC001Q3_A543AppVersionId ;
       private Guid[] BC001Q3_A521PageId ;
+      private bool[] BC001Q3_A567IsPredefined ;
       private string[] BC001Q3_A522PageName ;
       private string[] BC001Q3_A523PageStructure ;
       private string[] BC001Q3_A562PagePublishedStructure ;
       private string[] BC001Q3_A545PageType ;
       private Guid[] BC001Q2_A543AppVersionId ;
       private Guid[] BC001Q2_A521PageId ;
+      private bool[] BC001Q2_A567IsPredefined ;
       private string[] BC001Q2_A522PageName ;
       private string[] BC001Q2_A523PageStructure ;
       private string[] BC001Q2_A562PagePublishedStructure ;
       private string[] BC001Q2_A545PageType ;
       private Guid[] BC001Q18_A543AppVersionId ;
       private Guid[] BC001Q18_A521PageId ;
+      private bool[] BC001Q18_A567IsPredefined ;
       private string[] BC001Q18_A522PageName ;
       private string[] BC001Q18_A523PageStructure ;
       private string[] BC001Q18_A562PagePublishedStructure ;
@@ -2199,6 +2231,7 @@ public class trn_appversion_bc__default : DataStoreHelperBase, IDataStoreHelper
        prmBC001Q15 = new Object[] {
        new ParDef("AppVersionId",GXType.UniqueIdentifier,36,0) ,
        new ParDef("PageId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("IsPredefined",GXType.Boolean,4,0) ,
        new ParDef("PageName",GXType.VarChar,100,0) ,
        new ParDef("PageStructure",GXType.LongVarChar,2097152,0) ,
        new ParDef("PagePublishedStructure",GXType.LongVarChar,2097152,0) ,
@@ -2206,6 +2239,7 @@ public class trn_appversion_bc__default : DataStoreHelperBase, IDataStoreHelper
        };
        Object[] prmBC001Q16;
        prmBC001Q16 = new Object[] {
+       new ParDef("IsPredefined",GXType.Boolean,4,0) ,
        new ParDef("PageName",GXType.VarChar,100,0) ,
        new ParDef("PageStructure",GXType.LongVarChar,2097152,0) ,
        new ParDef("PagePublishedStructure",GXType.LongVarChar,2097152,0) ,
@@ -2223,8 +2257,8 @@ public class trn_appversion_bc__default : DataStoreHelperBase, IDataStoreHelper
        new ParDef("AppVersionId",GXType.UniqueIdentifier,36,0)
        };
        def= new CursorDef[] {
-           new CursorDef("BC001Q2", "SELECT AppVersionId, PageId, PageName, PageStructure, PagePublishedStructure, PageType FROM Trn_AppVersionPage WHERE AppVersionId = :AppVersionId AND PageId = :PageId  FOR UPDATE OF Trn_AppVersionPage",true, GxErrorMask.GX_NOMASK, false, this,prmBC001Q2,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC001Q3", "SELECT AppVersionId, PageId, PageName, PageStructure, PagePublishedStructure, PageType FROM Trn_AppVersionPage WHERE AppVersionId = :AppVersionId AND PageId = :PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001Q3,1, GxCacheFrequency.OFF ,true,false )
+           new CursorDef("BC001Q2", "SELECT AppVersionId, PageId, IsPredefined, PageName, PageStructure, PagePublishedStructure, PageType FROM Trn_AppVersionPage WHERE AppVersionId = :AppVersionId AND PageId = :PageId  FOR UPDATE OF Trn_AppVersionPage",true, GxErrorMask.GX_NOMASK, false, this,prmBC001Q2,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001Q3", "SELECT AppVersionId, PageId, IsPredefined, PageName, PageStructure, PagePublishedStructure, PageType FROM Trn_AppVersionPage WHERE AppVersionId = :AppVersionId AND PageId = :PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001Q3,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC001Q4", "SELECT AppVersionId, LocationId, AppVersionName, IsActive FROM Trn_AppVersion WHERE AppVersionId = :AppVersionId  FOR UPDATE OF Trn_AppVersion",true, GxErrorMask.GX_NOMASK, false, this,prmBC001Q4,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC001Q5", "SELECT AppVersionId, LocationId, AppVersionName, IsActive FROM Trn_AppVersion WHERE AppVersionId = :AppVersionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001Q5,1, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC001Q6", "SELECT TM1.AppVersionId, TM1.LocationId, TM1.AppVersionName, TM1.IsActive FROM Trn_AppVersion TM1 WHERE TM1.AppVersionId = :AppVersionId ORDER BY TM1.AppVersionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001Q6,100, GxCacheFrequency.OFF ,true,false )
@@ -2234,12 +2268,12 @@ public class trn_appversion_bc__default : DataStoreHelperBase, IDataStoreHelper
           ,new CursorDef("BC001Q10", "SAVEPOINT gxupdate;UPDATE Trn_AppVersion SET LocationId=:LocationId, AppVersionName=:AppVersionName, IsActive=:IsActive  WHERE AppVersionId = :AppVersionId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001Q10)
           ,new CursorDef("BC001Q11", "SAVEPOINT gxupdate;DELETE FROM Trn_AppVersion  WHERE AppVersionId = :AppVersionId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001Q11)
           ,new CursorDef("BC001Q12", "SELECT TM1.AppVersionId, TM1.LocationId, TM1.AppVersionName, TM1.IsActive FROM Trn_AppVersion TM1 WHERE TM1.AppVersionId = :AppVersionId ORDER BY TM1.AppVersionId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001Q12,100, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC001Q13", "SELECT AppVersionId, PageId, PageName, PageStructure, PagePublishedStructure, PageType FROM Trn_AppVersionPage WHERE AppVersionId = :AppVersionId and PageId = :PageId ORDER BY AppVersionId, PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001Q13,11, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001Q13", "SELECT AppVersionId, PageId, IsPredefined, PageName, PageStructure, PagePublishedStructure, PageType FROM Trn_AppVersionPage WHERE AppVersionId = :AppVersionId and PageId = :PageId ORDER BY AppVersionId, PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001Q13,11, GxCacheFrequency.OFF ,true,false )
           ,new CursorDef("BC001Q14", "SELECT AppVersionId, PageId FROM Trn_AppVersionPage WHERE AppVersionId = :AppVersionId AND PageId = :PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001Q14,1, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC001Q15", "SAVEPOINT gxupdate;INSERT INTO Trn_AppVersionPage(AppVersionId, PageId, PageName, PageStructure, PagePublishedStructure, PageType) VALUES(:AppVersionId, :PageId, :PageName, :PageStructure, :PagePublishedStructure, :PageType);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC001Q15)
-          ,new CursorDef("BC001Q16", "SAVEPOINT gxupdate;UPDATE Trn_AppVersionPage SET PageName=:PageName, PageStructure=:PageStructure, PagePublishedStructure=:PagePublishedStructure, PageType=:PageType  WHERE AppVersionId = :AppVersionId AND PageId = :PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001Q16)
+          ,new CursorDef("BC001Q15", "SAVEPOINT gxupdate;INSERT INTO Trn_AppVersionPage(AppVersionId, PageId, IsPredefined, PageName, PageStructure, PagePublishedStructure, PageType) VALUES(:AppVersionId, :PageId, :IsPredefined, :PageName, :PageStructure, :PagePublishedStructure, :PageType);RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT,prmBC001Q15)
+          ,new CursorDef("BC001Q16", "SAVEPOINT gxupdate;UPDATE Trn_AppVersionPage SET IsPredefined=:IsPredefined, PageName=:PageName, PageStructure=:PageStructure, PagePublishedStructure=:PagePublishedStructure, PageType=:PageType  WHERE AppVersionId = :AppVersionId AND PageId = :PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001Q16)
           ,new CursorDef("BC001Q17", "SAVEPOINT gxupdate;DELETE FROM Trn_AppVersionPage  WHERE AppVersionId = :AppVersionId AND PageId = :PageId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC001Q17)
-          ,new CursorDef("BC001Q18", "SELECT AppVersionId, PageId, PageName, PageStructure, PagePublishedStructure, PageType FROM Trn_AppVersionPage WHERE AppVersionId = :AppVersionId ORDER BY AppVersionId, PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001Q18,11, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC001Q18", "SELECT AppVersionId, PageId, IsPredefined, PageName, PageStructure, PagePublishedStructure, PageType FROM Trn_AppVersionPage WHERE AppVersionId = :AppVersionId ORDER BY AppVersionId, PageId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC001Q18,11, GxCacheFrequency.OFF ,true,false )
        };
     }
  }
@@ -2253,18 +2287,20 @@ public class trn_appversion_bc__default : DataStoreHelperBase, IDataStoreHelper
           case 0 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-             ((string[]) buf[2])[0] = rslt.getVarchar(3);
-             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((bool[]) buf[2])[0] = rslt.getBool(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
              ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
-             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
              return;
           case 1 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-             ((string[]) buf[2])[0] = rslt.getVarchar(3);
-             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((bool[]) buf[2])[0] = rslt.getBool(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
              ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
-             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
              return;
           case 2 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -2299,10 +2335,11 @@ public class trn_appversion_bc__default : DataStoreHelperBase, IDataStoreHelper
           case 11 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-             ((string[]) buf[2])[0] = rslt.getVarchar(3);
-             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((bool[]) buf[2])[0] = rslt.getBool(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
              ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
-             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
              return;
           case 12 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -2311,10 +2348,11 @@ public class trn_appversion_bc__default : DataStoreHelperBase, IDataStoreHelper
           case 16 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-             ((string[]) buf[2])[0] = rslt.getVarchar(3);
-             ((string[]) buf[3])[0] = rslt.getLongVarchar(4);
+             ((bool[]) buf[2])[0] = rslt.getBool(3);
+             ((string[]) buf[3])[0] = rslt.getVarchar(4);
              ((string[]) buf[4])[0] = rslt.getLongVarchar(5);
-             ((string[]) buf[5])[0] = rslt.getVarchar(6);
+             ((string[]) buf[5])[0] = rslt.getLongVarchar(6);
+             ((string[]) buf[6])[0] = rslt.getVarchar(7);
              return;
     }
  }

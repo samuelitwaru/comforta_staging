@@ -1,4 +1,6 @@
 CKEDITOR.config.toolbar_myToolbar = [
-  ["Bold", "Italic"],
+  ["Bold", "Italic", "Underline"],
   ["NumberedList", "BulletedList"],
 ];
+
+CKEDITOR.config.forcePasteAsPlainText = true;

@@ -129,7 +129,6 @@ namespace GeneXus.Programs {
             A310Trn_PageId = P007W2_A310Trn_PageId[0];
             AV8SDT_Page = new SdtSDT_MobilePage(context);
             AV8SDT_Page.FromJSonString(A431PageJsonContent, null);
-            new prc_logtoserver(context ).execute(  AV8SDT_Page.gxTpr_Pagename) ;
             if ( StringUtil.StrCmp(AV8SDT_Page.gxTpr_Pagename, context.GetMessage( "Home", "")) == 0 )
             {
                GXt_SdtSDT_MobilePage1 = AV19Filtered_SDT_MobilePage;

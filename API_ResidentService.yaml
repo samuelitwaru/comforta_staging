@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250316030944"
+  version: "20250317062600"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/api
 paths:
@@ -1148,6 +1148,90 @@ paths:
         404:
           description: "Not found"
 
+  /toolbox/v2/create-appversion:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.CreateAppVersion"
+      summary: "Create App Version"
+      security: 
+        - oAuthGXGAM: []
+      parameters:
+        - name: "Appversionname"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateAppVersionOutput"
+        404:
+          description: "Not found"
+
+  /toolbox/v2/update-appversion:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.UpdateAppVersion"
+      summary: "Update App Version"
+      security: 
+        - oAuthGXGAM: []
+      parameters:
+        - name: "Appversionid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+        - name: "Appversionname"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateAppVersionOutput"
+        404:
+          description: "Not found"
+
+  /toolbox/v2/activate-appversion:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.ActivateAppVersion"
+      summary: "Update App Version"
+      security: 
+        - oAuthGXGAM: []
+      parameters:
+        - name: "Appversionid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ActivateAppVersionOutput"
+        404:
+          description: "Not found"
+
   /toolbox/v2/save-page:
     post:
       tags:
@@ -1466,6 +1550,33 @@ components:
           description: "SDT_Error"
           $ref: "#/components/schemas/SDT_Error"
 
+    CreateAppVersionOutput:
+      properties:
+        AppVersion:
+          description: "SDT_App Version"
+          $ref: "#/components/schemas/SDT_AppVersion"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+    UpdateAppVersionOutput:
+      properties:
+        AppVersion:
+          description: "SDT_App Version"
+          $ref: "#/components/schemas/SDT_AppVersion"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+    ActivateAppVersionOutput:
+      properties:
+        AppVersion:
+          description: "SDT_App Version"
+          $ref: "#/components/schemas/SDT_AppVersion"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
 
 
     CreateMenuPageOutput:
@@ -1671,6 +1782,9 @@ components:
         ThemeId:
           type: "string"
           format: "uuid"
+
+
+
 
 
 
@@ -2180,7 +2294,6 @@ components:
         CtaId:
           description: "Cta Id"
           type: "string"
-          format: "uuid"
         CtaType:
           description: "Cta Type"
           type: "string"
@@ -2499,6 +2612,9 @@ components:
         PageName:
           description: "Page Name"
           type: "string"
+        IsPredefined:
+          description: "Is Predefined"
+          type: "boolean"
         PageStructure:
           description: "Page Structure"
           type: "string"

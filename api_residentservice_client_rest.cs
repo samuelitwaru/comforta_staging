@@ -1344,6 +1344,98 @@ namespace GeneXus.Programs {
          /* GetAppVersions Constructor */
       }
 
+      public void gxep_createappversion( string aP0_AppVersionName ,
+                                         out SdtSDT_AppVersion aP1_AppVersion ,
+                                         out SdtSDT_Error aP2_error )
+      {
+         restCliCreateAppVersion = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/v2/create-appversion";
+         restCliCreateAppVersion.Location = restLocation;
+         restCliCreateAppVersion.HttpMethod = "GET";
+         restCliCreateAppVersion.AddQueryVar("Appversionname", (string)(aP0_AppVersionName));
+         restCliCreateAppVersion.RestExecute();
+         if ( restCliCreateAppVersion.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliCreateAppVersion.ErrorCode;
+            gxProperties.ErrorMessage = restCliCreateAppVersion.ErrorMessage;
+            gxProperties.StatusCode = restCliCreateAppVersion.StatusCode;
+            aP1_AppVersion = new SdtSDT_AppVersion();
+            aP2_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP1_AppVersion = restCliCreateAppVersion.GetBodySdt<SdtSDT_AppVersion>("AppVersion");
+            aP2_error = restCliCreateAppVersion.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* CreateAppVersion Constructor */
+      }
+
+      public void gxep_updateappversion( Guid aP0_AppVersionId ,
+                                         string aP1_AppVersionName ,
+                                         out SdtSDT_AppVersion aP2_AppVersion ,
+                                         out SdtSDT_Error aP3_error )
+      {
+         restCliUpdateAppVersion = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/v2/update-appversion";
+         restCliUpdateAppVersion.Location = restLocation;
+         restCliUpdateAppVersion.HttpMethod = "GET";
+         restCliUpdateAppVersion.AddQueryVar("Appversionid", (Guid)(aP0_AppVersionId));
+         restCliUpdateAppVersion.AddQueryVar("Appversionname", (string)(aP1_AppVersionName));
+         restCliUpdateAppVersion.RestExecute();
+         if ( restCliUpdateAppVersion.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliUpdateAppVersion.ErrorCode;
+            gxProperties.ErrorMessage = restCliUpdateAppVersion.ErrorMessage;
+            gxProperties.StatusCode = restCliUpdateAppVersion.StatusCode;
+            aP2_AppVersion = new SdtSDT_AppVersion();
+            aP3_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP2_AppVersion = restCliUpdateAppVersion.GetBodySdt<SdtSDT_AppVersion>("AppVersion");
+            aP3_error = restCliUpdateAppVersion.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* UpdateAppVersion Constructor */
+      }
+
+      public void gxep_activateappversion( Guid aP0_AppVersionId ,
+                                           out SdtSDT_AppVersion aP1_AppVersion ,
+                                           out SdtSDT_Error aP2_error )
+      {
+         restCliActivateAppVersion = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/v2/activate-appversion";
+         restCliActivateAppVersion.Location = restLocation;
+         restCliActivateAppVersion.HttpMethod = "GET";
+         restCliActivateAppVersion.AddQueryVar("Appversionid", (Guid)(aP0_AppVersionId));
+         restCliActivateAppVersion.RestExecute();
+         if ( restCliActivateAppVersion.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliActivateAppVersion.ErrorCode;
+            gxProperties.ErrorMessage = restCliActivateAppVersion.ErrorMessage;
+            gxProperties.StatusCode = restCliActivateAppVersion.StatusCode;
+            aP1_AppVersion = new SdtSDT_AppVersion();
+            aP2_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP1_AppVersion = restCliActivateAppVersion.GetBodySdt<SdtSDT_AppVersion>("AppVersion");
+            aP2_error = restCliActivateAppVersion.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* ActivateAppVersion Constructor */
+      }
+
       public void gxep_savepagev2( Guid aP0_AppVersionId ,
                                    Guid aP1_PageId ,
                                    string aP2_PageName ,
@@ -1593,6 +1685,11 @@ namespace GeneXus.Programs {
          aP0_SDT_ThemeCollection = new GXBaseCollection<SdtSDT_Theme>();
          restCliGetAppVersions = new GXRestAPIClient();
          aP0_AppVersions = new GXBaseCollection<SdtSDT_AppVersion>();
+         restCliCreateAppVersion = new GXRestAPIClient();
+         aP1_AppVersion = new SdtSDT_AppVersion();
+         restCliUpdateAppVersion = new GXRestAPIClient();
+         aP2_AppVersion = new SdtSDT_AppVersion();
+         restCliActivateAppVersion = new GXRestAPIClient();
          restCliSavePageV2 = new GXRestAPIClient();
          restCliPublishPages = new GXRestAPIClient();
          restCliCreateMenuPage = new GXRestAPIClient();
@@ -1646,6 +1743,9 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliToolboxGetLocationTheme ;
       protected GXRestAPIClient restCliGetThemes ;
       protected GXRestAPIClient restCliGetAppVersions ;
+      protected GXRestAPIClient restCliCreateAppVersion ;
+      protected GXRestAPIClient restCliUpdateAppVersion ;
+      protected GXRestAPIClient restCliActivateAppVersion ;
       protected GXRestAPIClient restCliSavePageV2 ;
       protected GXRestAPIClient restCliPublishPages ;
       protected GXRestAPIClient restCliCreateMenuPage ;
@@ -1694,6 +1794,8 @@ namespace GeneXus.Programs {
       protected SdtSDT_LocationTheme aP0_SDT_LocationTheme ;
       protected GXBaseCollection<SdtSDT_Theme> aP0_SDT_ThemeCollection ;
       protected GXBaseCollection<SdtSDT_AppVersion> aP0_AppVersions ;
+      protected SdtSDT_AppVersion aP1_AppVersion ;
+      protected SdtSDT_AppVersion aP2_AppVersion ;
       protected SdtSDT_AppVersion_PagesItem aP2_MenuPage ;
       protected SdtSDT_AppVersion_PagesItem aP2_ContentPage ;
    }

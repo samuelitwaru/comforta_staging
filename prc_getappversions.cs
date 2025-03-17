@@ -90,6 +90,8 @@ namespace GeneXus.Programs {
                A543AppVersionId = P00BL2_A543AppVersionId[0];
                A29LocationId = P00BL2_A29LocationId[0];
                A544AppVersionName = P00BL2_A544AppVersionName[0];
+               AV9SDT_AppVersion = new SdtSDT_AppVersion(context);
+               AV10BC_Trn_AppVersion = new SdtTrn_AppVersion(context);
                AV10BC_Trn_AppVersion.Load(A543AppVersionId);
                AV9SDT_AppVersion.FromJSonString(AV10BC_Trn_AppVersion.ToJSonString(true, true), null);
                AV9SDT_AppVersion.gxTpr_Pages.Clear();
@@ -168,8 +170,8 @@ namespace GeneXus.Programs {
          A543AppVersionId = Guid.Empty;
          A29LocationId = Guid.Empty;
          A544AppVersionName = "";
-         AV10BC_Trn_AppVersion = new SdtTrn_AppVersion(context);
          AV9SDT_AppVersion = new SdtSDT_AppVersion(context);
+         AV10BC_Trn_AppVersion = new SdtTrn_AppVersion(context);
          P00BL3_A543AppVersionId = new Guid[] {Guid.Empty} ;
          P00BL3_A521PageId = new Guid[] {Guid.Empty} ;
          P00BL3_A522PageName = new string[] {""} ;
@@ -229,8 +231,8 @@ namespace GeneXus.Programs {
       private Guid[] P00BL2_A543AppVersionId ;
       private Guid[] P00BL2_A29LocationId ;
       private string[] P00BL2_A544AppVersionName ;
-      private SdtTrn_AppVersion AV10BC_Trn_AppVersion ;
       private SdtSDT_AppVersion AV9SDT_AppVersion ;
+      private SdtTrn_AppVersion AV10BC_Trn_AppVersion ;
       private Guid[] P00BL3_A543AppVersionId ;
       private Guid[] P00BL3_A521PageId ;
       private string[] P00BL3_A522PageName ;

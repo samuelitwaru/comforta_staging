@@ -298,11 +298,11 @@ namespace GeneXus.Programs {
           new ParDef("ProductServiceId",GXType.UniqueIdentifier,36,0) ,
           new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
           new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
-          new ParDef("AV12CtaItem__Ctaid",GXType.UniqueIdentifier,36,0)
+          new ParDef("AV12CtaItem__Ctaid",GXType.VarChar,40,0)
           };
           def= new CursorDef[] {
               new CursorDef("P00BX2", "SELECT OrganisationId, LocationId, ProductServiceId, ProductServiceImage_GXI, ProductServiceDescription FROM Trn_ProductService WHERE ProductServiceId = :AV8ProductServiceId ORDER BY ProductServiceId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BX2,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P00BX3", "SELECT T1.LocationDynamicFormId, T2.WWPFormId, T2.WWPFormVersionNumber, T1.ProductServiceId, T1.LocationId, T1.OrganisationId, T1.CallToActionId, T1.CallToActionType, T1.CallToActionPhone, T3.WWPFormReferenceName, T1.CallToActionUrl, T1.CallToActionEmail FROM ((Trn_CallToAction T1 LEFT JOIN Trn_LocationDynamicForm T2 ON T2.LocationDynamicFormId = T1.LocationDynamicFormId AND T2.OrganisationId = T1.OrganisationId AND T2.LocationId = T1.LocationId) LEFT JOIN WWP_Form T3 ON T3.WWPFormId = T2.WWPFormId AND T3.WWPFormVersionNumber = T2.WWPFormVersionNumber) WHERE (T1.ProductServiceId = :ProductServiceId and T1.LocationId = :LocationId and T1.OrganisationId = :OrganisationId) AND (T1.CallToActionId = :AV12CtaItem__Ctaid) ORDER BY T1.ProductServiceId, T1.LocationId, T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BX3,100, GxCacheFrequency.OFF ,true,false )
+             ,new CursorDef("P00BX3", "SELECT T1.LocationDynamicFormId, T2.WWPFormId, T2.WWPFormVersionNumber, T1.ProductServiceId, T1.LocationId, T1.OrganisationId, T1.CallToActionId, T1.CallToActionType, T1.CallToActionPhone, T3.WWPFormReferenceName, T1.CallToActionUrl, T1.CallToActionEmail FROM ((Trn_CallToAction T1 LEFT JOIN Trn_LocationDynamicForm T2 ON T2.LocationDynamicFormId = T1.LocationDynamicFormId AND T2.OrganisationId = T1.OrganisationId AND T2.LocationId = T1.LocationId) LEFT JOIN WWP_Form T3 ON T3.WWPFormId = T2.WWPFormId AND T3.WWPFormVersionNumber = T2.WWPFormVersionNumber) WHERE (T1.ProductServiceId = :ProductServiceId and T1.LocationId = :LocationId and T1.OrganisationId = :OrganisationId) AND ((T1.CallToActionId) = ( :AV12CtaItem__Ctaid)) ORDER BY T1.ProductServiceId, T1.LocationId, T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BX3,100, GxCacheFrequency.OFF ,true,false )
           };
        }
     }

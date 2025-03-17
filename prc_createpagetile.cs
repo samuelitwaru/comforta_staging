@@ -111,7 +111,7 @@ namespace GeneXus.Programs {
          /* GeneXus formulas */
          /* Output device settings */
          AV8TilesItem = new SdtSDT_MenuPage_RowsItem_TilesItem(context);
-         AV8TilesItem.gxTpr_Id = Guid.NewGuid( ).ToString().ToString();
+         AV8TilesItem.gxTpr_Id = new SdtRandomStringGenerator(context).generate(15);
          AV8TilesItem.gxTpr_Name = AV9TileName;
          AV8TilesItem.gxTpr_Text = AV9TileName;
          AV8TilesItem.gxTpr_Color = AV16TileColor;

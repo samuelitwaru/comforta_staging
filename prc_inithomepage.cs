@@ -89,6 +89,7 @@ namespace GeneXus.Programs {
          AV20baseUrl = AV19GAMApplication.gxTpr_Environment.gxTpr_Url;
          AV15BC_HomePage.gxTpr_Pageid = Guid.NewGuid( );
          AV15BC_HomePage.gxTpr_Pagename = "Home";
+         AV15BC_HomePage.gxTpr_Ispredefined = true;
          AV15BC_HomePage.gxTpr_Pagetype = "Menu";
          /* Execute user subroutine: 'RECEPTIONTILE' */
          S111 ();
@@ -127,9 +128,9 @@ namespace GeneXus.Programs {
          /* 'RECEPTIONTILE' Routine */
          returnInSub = false;
          AV18RowsItem = new SdtSDT_MenuPage_RowsItem(context);
-         AV18RowsItem.gxTpr_Id = Guid.NewGuid( ).ToString();
+         AV18RowsItem.gxTpr_Id = new SdtRandomStringGenerator(context).generate(15);
          GXt_SdtSDT_MenuPage_RowsItem_TilesItem1 = AV17TilesItem;
-         new prc_createpagetile(context ).execute(  context.GetMessage( "Reception", ""),  "#000000",  context.GetMessage( "center", ""),  context.GetMessage( "Reception", ""),  0,  "",  AV20baseUrl+context.GetMessage( "/media/receptie-197@3x.png", ""),  AV10ReceptionPageId.ToString(),  "Content",  "", out  GXt_SdtSDT_MenuPage_RowsItem_TilesItem1) ;
+         new prc_createpagetile(context ).execute(  context.GetMessage( "Reception", ""),  "#000000",  context.GetMessage( "left", ""),  context.GetMessage( "Reception", ""),  0,  "",  AV20baseUrl+context.GetMessage( "/media/receptie-197@3x.png", ""),  AV10ReceptionPageId.ToString(),  "Content",  "", out  GXt_SdtSDT_MenuPage_RowsItem_TilesItem1) ;
          AV17TilesItem = GXt_SdtSDT_MenuPage_RowsItem_TilesItem1;
          AV18RowsItem.gxTpr_Tiles.Add(AV17TilesItem, 0);
          AV16SDT_MenuPage.gxTpr_Rows.Add(AV18RowsItem, 0);
@@ -140,9 +141,9 @@ namespace GeneXus.Programs {
          /* 'CALENDARANDMYACTIVITYTILES' Routine */
          returnInSub = false;
          AV18RowsItem = new SdtSDT_MenuPage_RowsItem(context);
-         AV18RowsItem.gxTpr_Id = Guid.NewGuid( ).ToString();
+         AV18RowsItem.gxTpr_Id = new SdtRandomStringGenerator(context).generate(15);
          GXt_SdtSDT_MenuPage_RowsItem_TilesItem1 = AV17TilesItem;
-         new prc_createpagetile(context ).execute(  "",  "#000000",  context.GetMessage( "center", ""),  context.GetMessage( "Calendar", ""),  0,  "",  AV20baseUrl+context.GetMessage( "/media/Calendar.png", ""),  "",  "",  "", out  GXt_SdtSDT_MenuPage_RowsItem_TilesItem1) ;
+         new prc_createpagetile(context ).execute(  context.GetMessage( "Agenda", ""),  "#000000",  context.GetMessage( "left", ""),  context.GetMessage( "Calendar", ""),  0,  "",  AV20baseUrl+context.GetMessage( "/media/Calendar.png", ""),  "",  "",  "", out  GXt_SdtSDT_MenuPage_RowsItem_TilesItem1) ;
          AV17TilesItem = GXt_SdtSDT_MenuPage_RowsItem_TilesItem1;
          AV18RowsItem.gxTpr_Tiles.Add(AV17TilesItem, 0);
          GXt_SdtSDT_MenuPage_RowsItem_TilesItem1 = AV17TilesItem;
@@ -157,12 +158,12 @@ namespace GeneXus.Programs {
          /* 'LOCATIONTILE' Routine */
          returnInSub = false;
          AV18RowsItem = new SdtSDT_MenuPage_RowsItem(context);
-         AV18RowsItem.gxTpr_Id = Guid.NewGuid( ).ToString();
+         AV18RowsItem.gxTpr_Id = new SdtRandomStringGenerator(context).generate(15);
          GXt_SdtSDT_MenuPage_RowsItem_TilesItem1 = AV17TilesItem;
-         new prc_createpagetile(context ).execute(  context.GetMessage( "Location", ""),  "#000000",  context.GetMessage( "center", ""),  "",  0,  "",  AV20baseUrl+context.GetMessage( "/media/LocationInfo.png", ""),  AV11LocationPageId.ToString(),  "Content",  "", out  GXt_SdtSDT_MenuPage_RowsItem_TilesItem1) ;
+         new prc_createpagetile(context ).execute(  context.GetMessage( "Location", ""),  "#000000",  context.GetMessage( "left", ""),  "",  0,  "",  AV20baseUrl+context.GetMessage( "/media/LocationInfo.png", ""),  AV11LocationPageId.ToString(),  "Content",  "", out  GXt_SdtSDT_MenuPage_RowsItem_TilesItem1) ;
          AV17TilesItem = GXt_SdtSDT_MenuPage_RowsItem_TilesItem1;
          AV17TilesItem = new SdtSDT_MenuPage_RowsItem_TilesItem(context);
-         AV17TilesItem.gxTpr_Id = Guid.NewGuid( ).ToString().ToString();
+         AV17TilesItem.gxTpr_Id = new SdtRandomStringGenerator(context).generate(15);
          AV17TilesItem.gxTpr_Name = context.GetMessage( "Location", "");
          AV17TilesItem.gxTpr_Text = context.GetMessage( "Location", "");
          AV17TilesItem.gxTpr_Color = "";
@@ -180,7 +181,7 @@ namespace GeneXus.Programs {
          /* 'SERVICESTILES' Routine */
          returnInSub = false;
          AV18RowsItem = new SdtSDT_MenuPage_RowsItem(context);
-         AV18RowsItem.gxTpr_Id = Guid.NewGuid( ).ToString();
+         AV18RowsItem.gxTpr_Id = new SdtRandomStringGenerator(context).generate(15);
          GXt_SdtSDT_MenuPage_RowsItem_TilesItem1 = AV17TilesItem;
          new prc_createpagetile(context ).execute(  context.GetMessage( "My Care", ""),  "#000000",  context.GetMessage( "center", ""),  "",  0,  "",  "",  AV12CarePageId.ToString(),  "Menu",  "", out  GXt_SdtSDT_MenuPage_RowsItem_TilesItem1) ;
          AV17TilesItem = GXt_SdtSDT_MenuPage_RowsItem_TilesItem1;

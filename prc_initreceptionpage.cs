@@ -77,6 +77,7 @@ namespace GeneXus.Programs {
          AV9BC_Trn_Location.Load(AV13LocationId, AV14OrganisationId);
          AV8BC_Page.gxTpr_Pageid = Guid.NewGuid( );
          AV8BC_Page.gxTpr_Pagename = "Reception";
+         AV8BC_Page.gxTpr_Ispredefined = true;
          AV8BC_Page.gxTpr_Pagetype = "Content";
          AV11ContentItem = new SdtSDT_ContentPage_ContentItem(context);
          AV11ContentItem.gxTpr_Contenttype = context.GetMessage( "Image", "");
@@ -87,14 +88,14 @@ namespace GeneXus.Programs {
          AV11ContentItem.gxTpr_Contentvalue = AV9BC_Trn_Location.gxTpr_Locationdescription;
          AV10SDT_ContentPage.gxTpr_Content.Add(AV11ContentItem, 0);
          AV12CtaItem = new SdtSDT_ContentPage_CtaItem(context);
-         AV12CtaItem.gxTpr_Ctaid = Guid.NewGuid( );
+         AV12CtaItem.gxTpr_Ctaid = new SdtRandomStringGenerator(context).generate(15);
          AV12CtaItem.gxTpr_Ctalabel = "CALL US";
          AV12CtaItem.gxTpr_Ctatype = "Phone";
          AV12CtaItem.gxTpr_Ctaaction = AV9BC_Trn_Location.gxTpr_Locationphone;
          AV12CtaItem.gxTpr_Ctabuttontype = "Round";
          AV10SDT_ContentPage.gxTpr_Cta.Add(AV12CtaItem, 0);
          AV12CtaItem = new SdtSDT_ContentPage_CtaItem(context);
-         AV12CtaItem.gxTpr_Ctaid = Guid.NewGuid( );
+         AV12CtaItem.gxTpr_Ctaid = new SdtRandomStringGenerator(context).generate(15);
          AV12CtaItem.gxTpr_Ctalabel = "EMAIL US";
          AV12CtaItem.gxTpr_Ctatype = "Phone";
          AV12CtaItem.gxTpr_Ctaaction = AV9BC_Trn_Location.gxTpr_Locationphone;

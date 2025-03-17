@@ -30,6 +30,8 @@ namespace GeneXus.Programs
 		public SdtSDT_ContentPage_CtaItem( )
 		{
 			/* Constructor for serialization */
+			gxTv_SdtSDT_ContentPage_CtaItem_Ctaid = "";
+
 			gxTv_SdtSDT_ContentPage_CtaItem_Ctatype = "";
 
 			gxTv_SdtSDT_ContentPage_CtaItem_Ctalabel = "";
@@ -92,7 +94,7 @@ namespace GeneXus.Programs
 
 		[SoapElement(ElementName="CtaId")]
 		[XmlElement(ElementName="CtaId")]
-		public Guid gxTpr_Ctaid
+		public string gxTpr_Ctaid
 		{
 			get {
 				return gxTv_SdtSDT_ContentPage_CtaItem_Ctaid; 
@@ -206,6 +208,7 @@ namespace GeneXus.Programs
 
 		public void initialize( )
 		{
+			gxTv_SdtSDT_ContentPage_CtaItem_Ctaid = "";
 			gxTv_SdtSDT_ContentPage_CtaItem_Ctatype = "";
 			gxTv_SdtSDT_ContentPage_CtaItem_Ctalabel = "";
 			gxTv_SdtSDT_ContentPage_CtaItem_Ctaaction = "";
@@ -220,7 +223,7 @@ namespace GeneXus.Programs
 
 		#region Declaration
 
-		protected Guid gxTv_SdtSDT_ContentPage_CtaItem_Ctaid;
+		protected string gxTv_SdtSDT_ContentPage_CtaItem_Ctaid;
 		 
 
 		protected string gxTv_SdtSDT_ContentPage_CtaItem_Ctatype;
@@ -256,14 +259,14 @@ namespace GeneXus.Programs
 
 		#region Rest Properties
 		[DataMember(Name="CtaId", Order=0)]
-		public Guid gxTpr_Ctaid
+		public  string gxTpr_Ctaid
 		{
 			get { 
 				return sdt.gxTpr_Ctaid;
 
 			}
 			set { 
-				sdt.gxTpr_Ctaid = value;
+				 sdt.gxTpr_Ctaid = value;
 			}
 		}
 

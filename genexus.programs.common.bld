@@ -1,5 +1,6 @@
 QRCodeLibrary.dll
 Base64Image.dll
+RandomStringGenerator.dll
 GeneXus.dll
 GeneXusSecurity.dll
 GxWebStd.cs
@@ -59,15 +60,16 @@ type_SdtTrn_SupplierGenType.cs
 type_SdtTrn_ResidentType.cs
 type_SdtTrn_MedicalIndication.cs
 type_SdtTrn_Location.cs
-type_SdtTrn_AppVersion.cs
-type_SdtTrn_AppVersion_Page.cs
 type_SdtTrn_OrganisationSetting.cs
 type_SdtTrn_Theme.cs
 type_SdtTrn_Theme_Color.cs
 type_SdtTrn_Theme_CtaColor.cs
 type_SdtTrn_Theme_Icon.cs
+type_SdtTrn_AppVersion.cs
+type_SdtTrn_AppVersion_Page.cs
 type_SdtQRCodeLibrary.cs
 type_SdtEO_Base64Image.cs
+type_SdtRandomStringGenerator.cs
 gxdomainsalutation.cs
 gxdomainwwpdomains.cs
 genexusreporting\gxdomainqueryviewervisible.cs

@@ -96,6 +96,7 @@ namespace GeneXus.Programs {
             while ( (pr_default.getStatus(1) != 101) )
             {
                AV16UserModuleCollection.FromJSonString(StringUtil.Lower( A558ResidentPackageModules), null);
+               new prc_logtoserver(context ).execute(  AV16UserModuleCollection.ToJSonString(false)) ;
                /* Exiting from a For First loop. */
                if (true) break;
             }
@@ -103,27 +104,41 @@ namespace GeneXus.Programs {
             pr_default.readNext(0);
          }
          pr_default.close(0);
-         AV21GXV1 = 1;
-         while ( AV21GXV1 <= AV12Filtered_SDT_MobilePage.gxTpr_Row.Count )
+         AV12Filtered_SDT_MobilePage.gxTpr_Row.Clear();
+         AV22GXV1 = 1;
+         while ( AV22GXV1 <= AV10SDT_MobilePage.gxTpr_Row.Count )
          {
-            AV13RowItem = ((SdtSDT_Row)AV12Filtered_SDT_MobilePage.gxTpr_Row.Item(AV21GXV1));
+            AV13RowItem = ((SdtSDT_Row)AV10SDT_MobilePage.gxTpr_Row.Item(AV22GXV1));
             AV18Index = 1;
-            AV22GXV2 = 1;
-            while ( AV22GXV2 <= AV13RowItem.gxTpr_Col.Count )
+            AV19FilteredRow = new SdtSDT_Row(context);
+            if ( AV13RowItem.gxTpr_Col.Count > 0 )
             {
-               AV14ColItem = ((SdtSDT_Col)AV13RowItem.gxTpr_Col.Item(AV22GXV2));
-               AV17TileName = StringUtil.Lower( AV14ColItem.gxTpr_Tile.gxTpr_Tilename);
-               if ( (AV11ModuleCollection.IndexOf(StringUtil.RTrim( AV17TileName))>0) )
+               new prc_logtoserver(context ).execute(  context.GetMessage( "Row: ", "")+StringUtil.Str( (decimal)(AV18Index), 4, 0)) ;
+               AV23GXV2 = 1;
+               while ( AV23GXV2 <= AV13RowItem.gxTpr_Col.Count )
                {
-                  if ( ! ( (AV16UserModuleCollection.IndexOf(StringUtil.RTrim( AV17TileName))>0) ) )
+                  AV14ColItem = ((SdtSDT_Col)AV13RowItem.gxTpr_Col.Item(AV23GXV2));
+                  AV17TileName = StringUtil.Lower( AV14ColItem.gxTpr_Tile.gxTpr_Tilename);
+                  new prc_logtoserver(context ).execute(  "    "+AV17TileName) ;
+                  if ( (AV11ModuleCollection.IndexOf(StringUtil.RTrim( AV17TileName))>0) )
                   {
-                     AV13RowItem.gxTpr_Col.RemoveItem(AV18Index);
+                     if ( (AV16UserModuleCollection.IndexOf(StringUtil.RTrim( AV17TileName))>0) )
+                     {
+                        AV19FilteredRow.gxTpr_Col.Add(AV14ColItem, 0);
+                     }
                   }
+                  else
+                  {
+                     AV19FilteredRow.gxTpr_Col.Add(AV14ColItem, 0);
+                  }
+                  AV18Index = (short)(AV18Index+1);
+                  AV23GXV2 = (int)(AV23GXV2+1);
                }
-               AV18Index = (short)(AV18Index+1);
-               AV22GXV2 = (int)(AV22GXV2+1);
             }
-            AV21GXV1 = (int)(AV21GXV1+1);
+            AV12Filtered_SDT_MobilePage.gxTpr_Row.Add(AV19FilteredRow, 0);
+            new prc_logtoserver(context ).execute(  AV12Filtered_SDT_MobilePage.gxTpr_Row.ToJSonString(false)) ;
+            new prc_logtoserver(context ).execute(  "-------------------------------------------------------------------------") ;
+            AV22GXV1 = (int)(AV22GXV1+1);
          }
          cleanup();
       }
@@ -157,6 +172,7 @@ namespace GeneXus.Programs {
          P00CH3_n554ResidentPackageId = new bool[] {false} ;
          AV16UserModuleCollection = new GxSimpleCollection<string>();
          AV13RowItem = new SdtSDT_Row(context);
+         AV19FilteredRow = new SdtSDT_Row(context);
          AV14ColItem = new SdtSDT_Col(context);
          AV17TileName = "";
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_filterpagetiles__default(),
@@ -173,8 +189,8 @@ namespace GeneXus.Programs {
       }
 
       private short AV18Index ;
-      private int AV21GXV1 ;
-      private int AV22GXV2 ;
+      private int AV22GXV1 ;
+      private int AV23GXV2 ;
       private bool n554ResidentPackageId ;
       private string A558ResidentPackageModules ;
       private string AV9UserId ;
@@ -200,6 +216,7 @@ namespace GeneXus.Programs {
       private bool[] P00CH3_n554ResidentPackageId ;
       private GxSimpleCollection<string> AV16UserModuleCollection ;
       private SdtSDT_Row AV13RowItem ;
+      private SdtSDT_Row AV19FilteredRow ;
       private SdtSDT_Col AV14ColItem ;
       private SdtSDT_MobilePage aP2_Filtered_SDT_MobilePage ;
    }
@@ -230,7 +247,7 @@ namespace GeneXus.Programs {
           };
           def= new CursorDef[] {
               new CursorDef("P00CH2", "SELECT T1.ResidentPackageId, T2.ResidentPackageModules, T1.ResidentId, T1.LocationId, T1.OrganisationId FROM (Trn_Resident T1 LEFT JOIN Trn_ResidentPackage T2 ON T2.ResidentPackageId = T1.ResidentPackageId) WHERE T1.ResidentId = CASE WHEN (:AV9UserId ~ ('[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}')) THEN RTRIM(:AV9UserId) ELSE '00000000-0000-0000-0000-000000000000' END ORDER BY T1.ResidentId, T1.LocationId, T1.OrganisationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00CH2,100, GxCacheFrequency.OFF ,true,false )
-             ,new CursorDef("P00CH3", "SELECT ResidentPackageId FROM Trn_ResidentPackage WHERE ResidentPackageId = :ResidentPackageId ORDER BY ResidentPackageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00CH3,1, GxCacheFrequency.OFF ,false,true )
+             ,new CursorDef("P00CH3", "SELECT ResidentPackageId FROM Trn_ResidentPackage WHERE ResidentPackageId = :ResidentPackageId ORDER BY ResidentPackageId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00CH3,1, GxCacheFrequency.OFF ,true,true )
           };
        }
     }

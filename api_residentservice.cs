@@ -199,6 +199,18 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityNone ;
          }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_createappversion") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_updateappversion") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_activateappversion") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
          else if ( StringUtil.StrCmp(permissionMethod, "gxep_savepagev2") == 0 )
          {
             return GAMSecurityLevel.SecurityNone ;
@@ -1014,6 +1026,49 @@ namespace GeneXus.Programs {
          aP1_error=this.AV91error;
       }
 
+      public void gxep_createappversion( string aP0_AppVersionName ,
+                                         out SdtSDT_AppVersion aP1_AppVersion ,
+                                         out SdtSDT_Error aP2_error )
+      {
+         this.AV122AppVersionName = aP0_AppVersionName;
+         AV91error = new SdtSDT_Error(context);
+         initialize();
+         /* CreateAppVersion Constructor */
+         new prc_createappversion(context ).execute(  AV122AppVersionName, out  AV121AppVersion, out  AV91error) ;
+         aP1_AppVersion=this.AV121AppVersion;
+         aP2_error=this.AV91error;
+      }
+
+      public void gxep_updateappversion( Guid aP0_AppVersionId ,
+                                         string aP1_AppVersionName ,
+                                         out SdtSDT_AppVersion aP2_AppVersion ,
+                                         out SdtSDT_Error aP3_error )
+      {
+         this.AV115AppVersionId = aP0_AppVersionId;
+         this.AV122AppVersionName = aP1_AppVersionName;
+         AV121AppVersion = new SdtSDT_AppVersion(context);
+         AV91error = new SdtSDT_Error(context);
+         initialize();
+         /* UpdateAppVersion Constructor */
+         new prc_updateappversion(context ).execute(  AV115AppVersionId,  AV122AppVersionName, out  AV121AppVersion, out  AV91error) ;
+         aP2_AppVersion=this.AV121AppVersion;
+         aP3_error=this.AV91error;
+      }
+
+      public void gxep_activateappversion( Guid aP0_AppVersionId ,
+                                           out SdtSDT_AppVersion aP1_AppVersion ,
+                                           out SdtSDT_Error aP2_error )
+      {
+         this.AV115AppVersionId = aP0_AppVersionId;
+         AV121AppVersion = new SdtSDT_AppVersion(context);
+         AV91error = new SdtSDT_Error(context);
+         initialize();
+         /* ActivateAppVersion Constructor */
+         new prc_activateappversion(context ).execute(  AV115AppVersionId, out  AV121AppVersion, out  AV91error) ;
+         aP1_AppVersion=this.AV121AppVersion;
+         aP2_error=this.AV91error;
+      }
+
       public void gxep_savepagev2( Guid aP0_AppVersionId ,
                                    Guid aP1_PageId ,
                                    string aP2_PageName ,
@@ -1127,6 +1182,7 @@ namespace GeneXus.Programs {
          AV83SDT_LocationTheme = new SdtSDT_LocationTheme(context);
          AV111SDT_ThemeCollection = new GXBaseCollection<SdtSDT_Theme>( context, "SDT_Theme", "Comforta_version2");
          AV119AppVersions = new GXBaseCollection<SdtSDT_AppVersion>( context, "SDT_AppVersion", "Comforta_version2");
+         AV121AppVersion = new SdtSDT_AppVersion(context);
          AV117PageCollection = new GXBaseCollection<SdtSDT_PageV2>( context, "SDT_PageV2", "Comforta_version2");
          AV120MenuPage = new SdtSDT_AppVersion_PagesItem(context);
          AV118ContentPage = new SdtSDT_AppVersion_PagesItem(context);
@@ -1168,6 +1224,7 @@ namespace GeneXus.Programs {
       protected string AV105LogoUrl ;
       protected string AV104ProfileImageUrl ;
       protected string AV60PageName ;
+      protected string AV122AppVersionName ;
       protected string AV114PageType ;
       protected Guid AV16organisationId ;
       protected Guid AV12locationId ;
@@ -1248,6 +1305,9 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_Theme> aP0_SDT_ThemeCollection ;
       protected GXBaseCollection<SdtSDT_AppVersion> AV119AppVersions ;
       protected GXBaseCollection<SdtSDT_AppVersion> aP0_AppVersions ;
+      protected SdtSDT_AppVersion AV121AppVersion ;
+      protected SdtSDT_AppVersion aP1_AppVersion ;
+      protected SdtSDT_AppVersion aP2_AppVersion ;
       protected GXBaseCollection<SdtSDT_PageV2> AV117PageCollection ;
       protected SdtSDT_AppVersion_PagesItem AV120MenuPage ;
       protected SdtSDT_AppVersion_PagesItem aP2_MenuPage ;

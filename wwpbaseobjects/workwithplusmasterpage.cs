@@ -216,7 +216,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          context.AddJavascriptSource("DVelop/Shared/daterangepicker/daterangepicker.min.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/DatePicker/DatePickerRender.js", "", false, true);
-         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?20253121584428", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?202531618155366", false, true);
          context.WriteHtmlTextNl( "</body>") ;
          context.WriteHtmlTextNl( "</html>") ;
          if ( context.isSpaRequest( ) )
@@ -926,7 +926,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          {
             (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Headerrawhtml = "<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\""+AV34SDT_OrganisationSetting.gxTpr_Organisationsettingfavicon_gxi+"\">";
          }
-         (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Headerrawhtml = (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Headerrawhtml+"<link rel=\"stylesheet\" href=\"/Resources/UCGrapes1/dist/grapes/grapes.css\">"+"<link rel=\"stylesheet\" href=\"/Resources/UCGrapes1/src/css/styles.css\" />"+"<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Roboto:wght@400;500&display=swap\" />"+"<script src=\"/Resources/UCGrapes1/dist/grapes/grapes.js\"></script>"+"<script type=\"module\" src=\"/Resources/UCGrapes1/toolbox/build/js/bundle.js\"></script>"+"<script type=\"module\" src=\"/Resources/UCGrapes1/tb/dist/bundle.js\"></script>"+"<script src=\"/Resources/UCGrapes1/src/combined.js\"></script>"+"<script src=\"/Resources/UCGrapes1/src/utils/data-mapper.js\"></script>";
+         (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Headerrawhtml = (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Headerrawhtml+"<link rel=\"stylesheet\" href=\"/Resources/UCGrapes1/dist/grapes/grapes.css\">"+"<link rel=\"stylesheet\" href=\"/Resources/UCGrapes1/src/css/styles.css\" />"+"<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Roboto:wght@400;500&display=swap\" />"+"<script src=\"/Resources/UCGrapes1/dist/grapes/grapes.js\"></script>"+"<script type=\"module\" src=\"/Resources/UCGrapes1/toolbox/dist/bundle.js\"></script>"+"<script src=\"/Resources/UCGrapes1/src/combined.js\"></script>"+"<script src=\"/Resources/UCGrapes1/src/utils/data-mapper.js\"></script>";
          divLayoutmaintable_Class = "MainContainerWithFooter";
          AssignProp("", true, divLayoutmaintable_Internalname, "Class", divLayoutmaintable_Class, true);
          AV10DVelop_Menu_UserData.gxTpr_Firstline = AV42WWPContext.gxTpr_Organisationname;
@@ -1289,7 +1289,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
          idxLst = 1;
          while ( idxLst <= (getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?2025312159556", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)(getDataAreaObject() == null ? Form : getDataAreaObject().GetForm()).Jscriptsrc.Item(idxLst))), "?20253161816319", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1304,7 +1304,7 @@ namespace GeneXus.Programs.wwpbaseobjects {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?2025312159561", false, true);
+         context.AddJavascriptSource("wwpbaseobjects/workwithplusmasterpage.js", "?20253161816321", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
