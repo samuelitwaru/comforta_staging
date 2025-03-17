@@ -136,8 +136,6 @@ namespace GeneXus.Programs {
                }
             }
             AV12Filtered_SDT_MobilePage.gxTpr_Row.Add(AV19FilteredRow, 0);
-            new prc_logtoserver(context ).execute(  AV12Filtered_SDT_MobilePage.gxTpr_Row.ToJSonString(false)) ;
-            new prc_logtoserver(context ).execute(  "-------------------------------------------------------------------------") ;
             AV22GXV1 = (int)(AV22GXV1+1);
          }
          cleanup();
