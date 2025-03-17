@@ -1027,16 +1027,18 @@ namespace GeneXus.Programs {
       }
 
       public void gxep_createappversion( string aP0_AppVersionName ,
-                                         out SdtSDT_AppVersion aP1_AppVersion ,
-                                         out SdtSDT_Error aP2_error )
+                                         bool aP1_IsActive ,
+                                         out SdtSDT_AppVersion aP2_AppVersion ,
+                                         out SdtSDT_Error aP3_error )
       {
          this.AV122AppVersionName = aP0_AppVersionName;
+         this.AV123IsActive = aP1_IsActive;
          AV91error = new SdtSDT_Error(context);
          initialize();
          /* CreateAppVersion Constructor */
-         new prc_createappversion(context ).execute(  AV122AppVersionName, out  AV121AppVersion, out  AV91error) ;
-         aP1_AppVersion=this.AV121AppVersion;
-         aP2_error=this.AV91error;
+         new prc_createappversion(context ).execute(  AV122AppVersionName,  AV123IsActive, out  AV121AppVersion, out  AV91error) ;
+         aP2_AppVersion=this.AV121AppVersion;
+         aP3_error=this.AV91error;
       }
 
       public void gxep_updateappversion( Guid aP0_AppVersionId ,
@@ -1200,6 +1202,7 @@ namespace GeneXus.Programs {
       protected bool returnInSub ;
       protected bool AV65PageIsPublished ;
       protected bool AV88IsNotifyResidents ;
+      protected bool AV123IsActive ;
       protected string AV17result ;
       protected string AV7secretKey ;
       protected string AV89refreshToken ;
@@ -1306,8 +1309,8 @@ namespace GeneXus.Programs {
       protected GXBaseCollection<SdtSDT_AppVersion> AV119AppVersions ;
       protected GXBaseCollection<SdtSDT_AppVersion> aP0_AppVersions ;
       protected SdtSDT_AppVersion AV121AppVersion ;
-      protected SdtSDT_AppVersion aP1_AppVersion ;
       protected SdtSDT_AppVersion aP2_AppVersion ;
+      protected SdtSDT_AppVersion aP1_AppVersion ;
       protected GXBaseCollection<SdtSDT_PageV2> AV117PageCollection ;
       protected SdtSDT_AppVersion_PagesItem AV120MenuPage ;
       protected SdtSDT_AppVersion_PagesItem aP2_MenuPage ;

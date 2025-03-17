@@ -91,6 +91,7 @@ namespace GeneXus.Programs {
             A29LocationId = P00CH2_A29LocationId[0];
             A11OrganisationId = P00CH2_A11OrganisationId[0];
             A558ResidentPackageModules = P00CH2_A558ResidentPackageModules[0];
+            new prc_logtoserver(context ).execute(  ">>>>>>"+A62ResidentId.ToString()) ;
             /* Using cursor P00CH3 */
             pr_default.execute(1, new Object[] {n554ResidentPackageId, A554ResidentPackageId});
             while ( (pr_default.getStatus(1) != 101) )
@@ -104,6 +105,7 @@ namespace GeneXus.Programs {
             pr_default.readNext(0);
          }
          pr_default.close(0);
+         new prc_logtoserver(context ).execute(  ">>>>>>>"+AV16UserModuleCollection.ToJSonString(false)) ;
          AV12Filtered_SDT_MobilePage.gxTpr_Row.Clear();
          AV22GXV1 = 1;
          while ( AV22GXV1 <= AV10SDT_MobilePage.gxTpr_Row.Count )

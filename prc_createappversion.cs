@@ -45,35 +45,40 @@ namespace GeneXus.Programs {
       }
 
       public void execute( string aP0_AppVersionName ,
-                           out SdtSDT_AppVersion aP1_SDT_AppVersion ,
-                           out SdtSDT_Error aP2_SDT_Error )
+                           bool aP1_IsActive ,
+                           out SdtSDT_AppVersion aP2_SDT_AppVersion ,
+                           out SdtSDT_Error aP3_SDT_Error )
       {
          this.AV22AppVersionName = aP0_AppVersionName;
+         this.AV23IsActive = aP1_IsActive;
          this.AV8SDT_AppVersion = new SdtSDT_AppVersion(context) ;
          this.AV9SDT_Error = new SdtSDT_Error(context) ;
          initialize();
          ExecuteImpl();
-         aP1_SDT_AppVersion=this.AV8SDT_AppVersion;
-         aP2_SDT_Error=this.AV9SDT_Error;
+         aP2_SDT_AppVersion=this.AV8SDT_AppVersion;
+         aP3_SDT_Error=this.AV9SDT_Error;
       }
 
       public SdtSDT_Error executeUdp( string aP0_AppVersionName ,
-                                      out SdtSDT_AppVersion aP1_SDT_AppVersion )
+                                      bool aP1_IsActive ,
+                                      out SdtSDT_AppVersion aP2_SDT_AppVersion )
       {
-         execute(aP0_AppVersionName, out aP1_SDT_AppVersion, out aP2_SDT_Error);
+         execute(aP0_AppVersionName, aP1_IsActive, out aP2_SDT_AppVersion, out aP3_SDT_Error);
          return AV9SDT_Error ;
       }
 
       public void executeSubmit( string aP0_AppVersionName ,
-                                 out SdtSDT_AppVersion aP1_SDT_AppVersion ,
-                                 out SdtSDT_Error aP2_SDT_Error )
+                                 bool aP1_IsActive ,
+                                 out SdtSDT_AppVersion aP2_SDT_AppVersion ,
+                                 out SdtSDT_Error aP3_SDT_Error )
       {
          this.AV22AppVersionName = aP0_AppVersionName;
+         this.AV23IsActive = aP1_IsActive;
          this.AV8SDT_AppVersion = new SdtSDT_AppVersion(context) ;
          this.AV9SDT_Error = new SdtSDT_Error(context) ;
          SubmitImpl();
-         aP1_SDT_AppVersion=this.AV8SDT_AppVersion;
-         aP2_SDT_Error=this.AV9SDT_Error;
+         aP2_SDT_AppVersion=this.AV8SDT_AppVersion;
+         aP3_SDT_Error=this.AV9SDT_Error;
       }
 
       protected override void ExecutePrivate( )
@@ -93,7 +98,7 @@ namespace GeneXus.Programs {
          AV11BC_Trn_AppVersion.gxTpr_Appversionid = Guid.NewGuid( );
          AV11BC_Trn_AppVersion.gxTpr_Appversionname = AV22AppVersionName;
          AV11BC_Trn_AppVersion.gxTpr_Locationid = AV10LocationId;
-         AV11BC_Trn_AppVersion.gxTpr_Isactive = true;
+         AV11BC_Trn_AppVersion.gxTpr_Isactive = AV23IsActive;
          GXt_SdtTrn_AppVersion_Page2 = AV12BC_ReceptionPage;
          new prc_initreceptionpage(context ).execute( ref  AV10LocationId, ref  AV13OrganisationId, out  GXt_SdtTrn_AppVersion_Page2) ;
          AV12BC_ReceptionPage = GXt_SdtTrn_AppVersion_Page2;
@@ -128,13 +133,13 @@ namespace GeneXus.Programs {
          }
          else
          {
-            AV24GXV2 = 1;
-            AV23GXV1 = AV11BC_Trn_AppVersion.GetMessages();
-            while ( AV24GXV2 <= AV23GXV1.Count )
+            AV25GXV2 = 1;
+            AV24GXV1 = AV11BC_Trn_AppVersion.GetMessages();
+            while ( AV25GXV2 <= AV24GXV1.Count )
             {
-               AV21Message = ((GeneXus.Utils.SdtMessages_Message)AV23GXV1.Item(AV24GXV2));
+               AV21Message = ((GeneXus.Utils.SdtMessages_Message)AV24GXV1.Item(AV25GXV2));
                GX_msglist.addItem(AV21Message.gxTpr_Description);
-               AV24GXV2 = (int)(AV24GXV2+1);
+               AV25GXV2 = (int)(AV25GXV2+1);
             }
          }
          cleanup();
@@ -167,7 +172,7 @@ namespace GeneXus.Programs {
          GXt_SdtTrn_AppVersion_Page2 = new SdtTrn_AppVersion_Page(context);
          AV19BC_WebLinkPage = new SdtTrn_AppVersion_Page(context);
          AV20BC_DynamicFormPage = new SdtTrn_AppVersion_Page(context);
-         AV23GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
+         AV24GXV1 = new GXBaseCollection<GeneXus.Utils.SdtMessages_Message>( context, "Message", "GeneXus");
          AV21Message = new GeneXus.Utils.SdtMessages_Message(context);
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.prc_createappversion__datastore1(),
             new Object[][] {
@@ -184,7 +189,8 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
-      private int AV24GXV2 ;
+      private int AV25GXV2 ;
+      private bool AV23IsActive ;
       private string AV22AppVersionName ;
       private Guid AV10LocationId ;
       private Guid GXt_guid1 ;
@@ -205,10 +211,10 @@ namespace GeneXus.Programs {
       private SdtTrn_AppVersion_Page AV19BC_WebLinkPage ;
       private SdtTrn_AppVersion_Page AV20BC_DynamicFormPage ;
       private IDataStoreProvider pr_default ;
-      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV23GXV1 ;
+      private GXBaseCollection<GeneXus.Utils.SdtMessages_Message> AV24GXV1 ;
       private GeneXus.Utils.SdtMessages_Message AV21Message ;
-      private SdtSDT_AppVersion aP1_SDT_AppVersion ;
-      private SdtSDT_Error aP2_SDT_Error ;
+      private SdtSDT_AppVersion aP2_SDT_AppVersion ;
+      private SdtSDT_Error aP3_SDT_Error ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }

@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250317062600"
+  version: "20250317101640"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/api
 paths:
@@ -1162,6 +1162,12 @@ paths:
           required: false
           schema:
             type: "string"
+            
+        - name: "Isactive"
+          in: "query"
+          required: false
+          schema:
+            type: "boolean"
             
       
       responses:
