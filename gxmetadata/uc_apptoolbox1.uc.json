@@ -140,7 +140,7 @@
 		"AfterShow": [
 			{
 				"Name": "Start",
-				"Source": "   	const themes = this.BC_Trn_ThemeCollection.map(theme => {		let res = {			ThemeId: theme.Trn_ThemeId,			ThemeName: theme.Trn_ThemeName, 			ThemeFontFamily: theme.Trn_ThemeFontFamily,			ThemeColors: {},			ThemeIcons: theme.Icon		}		theme.Color.forEach(color => {			res.ThemeColors[color.ColorName] = color.ColorCode			})		return res     	})				console.log(\"Current_Theme\", this.Current_Theme)	if (typeof App !== \'undefined\') {		new App(			themes,			this.SDT_ProductServiceCollection, 			this.SDT_DynamicFormsCollection, 			this.BC_Trn_MediaCollection,			this.Current_Theme,			this.OrganisationLogo		);	} else {	console.error(\"App class is not defined. Check if bundle.js is loaded.\");	}",
+				"Source": "   	const themes = this.BC_Trn_ThemeCollection.map(theme => {		let res = {			ThemeId: theme.Trn_ThemeId,			ThemeName: theme.Trn_ThemeName, 			ThemeFontFamily: theme.Trn_ThemeFontFamily,			ThemeColors: {},			ThemeIcons: theme.Icon		}		theme.Color.forEach(color => {			res.ThemeColors[color.ColorName] = color.ColorCode			})		return res     	})	if (typeof App !== \'undefined\') {		localStorage.clear();		new App(			themes,			this.SDT_ProductServiceCollection, 			this.SDT_DynamicFormsCollection, 			this.BC_Trn_MediaCollection,			this.Current_Theme,			this.OrganisationLogo		);	} else {		console.error(\"App class is not defined. Check if bundle.js is loaded.\");	}",
 				"AngularLocation": ""
 			} 
 		],

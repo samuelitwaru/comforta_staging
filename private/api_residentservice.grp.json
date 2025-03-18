@@ -435,6 +435,16 @@
 "Verb":"GET"
 },
 {
+"PathRegexp":"toolbox/v2/copy-appversion",
+"Path":"toolbox/v2/copy-appversion",
+"Name":"copyappversion",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_copyappversion",
+"Implementation":"Prc_CopyAppVersion",
+"Verb":"GET"
+},
+{
 "PathRegexp":"toolbox/v2/update-appversion",
 "Path":"toolbox/v2/update-appversion",
 "Name":"updateappversion",
@@ -503,4 +513,14 @@
 "ServiceMethod":"gxep_deletepagev2",
 "Implementation":"Prc_DeletePage",
 "Verb":"GET"
+},
+{
+"Verb":"POST",
+"PathRegexp":"toolbox/v2/debug",
+"Path":"toolbox/v2/debug",
+"Name":"debugappversion",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_debugappversion",
+"Implementation":"Prc_DebugAppVersion"
 }]}

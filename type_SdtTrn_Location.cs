@@ -87,6 +87,8 @@ namespace GeneXus.Programs {
          state.Add("gxTpr_Toolboxdefaultprofileimage_Z");
          state.Add("gxTpr_Trn_themeid_Z");
          state.Add("gxTpr_Locationimage_gxi_Z");
+         state.Add("gxTpr_Locationid_N");
+         state.Add("gxTpr_Organisationid_N");
          state.Add("gxTpr_Toolboxdefaultlogo_N");
          state.Add("gxTpr_Toolboxdefaultprofileimage_N");
          state.Add("gxTpr_Trn_themeid_N");
@@ -133,6 +135,8 @@ namespace GeneXus.Programs {
          gxTv_SdtTrn_Location_Toolboxdefaultprofileimage_Z = sdt.gxTv_SdtTrn_Location_Toolboxdefaultprofileimage_Z ;
          gxTv_SdtTrn_Location_Trn_themeid_Z = sdt.gxTv_SdtTrn_Location_Trn_themeid_Z ;
          gxTv_SdtTrn_Location_Locationimage_gxi_Z = sdt.gxTv_SdtTrn_Location_Locationimage_gxi_Z ;
+         gxTv_SdtTrn_Location_Locationid_N = sdt.gxTv_SdtTrn_Location_Locationid_N ;
+         gxTv_SdtTrn_Location_Organisationid_N = sdt.gxTv_SdtTrn_Location_Organisationid_N ;
          gxTv_SdtTrn_Location_Toolboxdefaultlogo_N = sdt.gxTv_SdtTrn_Location_Toolboxdefaultlogo_N ;
          gxTv_SdtTrn_Location_Toolboxdefaultprofileimage_N = sdt.gxTv_SdtTrn_Location_Toolboxdefaultprofileimage_N ;
          gxTv_SdtTrn_Location_Trn_themeid_N = sdt.gxTv_SdtTrn_Location_Trn_themeid_N ;
@@ -155,7 +159,9 @@ namespace GeneXus.Programs {
                                    bool includeNonInitialized )
       {
          AddObjectProperty("LocationId", gxTv_SdtTrn_Location_Locationid, false, includeNonInitialized);
+         AddObjectProperty("LocationId_N", gxTv_SdtTrn_Location_Locationid_N, false, includeNonInitialized);
          AddObjectProperty("OrganisationId", gxTv_SdtTrn_Location_Organisationid, false, includeNonInitialized);
+         AddObjectProperty("OrganisationId_N", gxTv_SdtTrn_Location_Organisationid_N, false, includeNonInitialized);
          AddObjectProperty("LocationName", gxTv_SdtTrn_Location_Locationname, false, includeNonInitialized);
          AddObjectProperty("LocationImage", gxTv_SdtTrn_Location_Locationimage, false, includeNonInitialized);
          AddObjectProperty("LocationCountry", gxTv_SdtTrn_Location_Locationcountry, false, includeNonInitialized);
@@ -195,6 +201,8 @@ namespace GeneXus.Programs {
             AddObjectProperty("ToolBoxDefaultProfileImage_Z", gxTv_SdtTrn_Location_Toolboxdefaultprofileimage_Z, false, includeNonInitialized);
             AddObjectProperty("Trn_ThemeId_Z", gxTv_SdtTrn_Location_Trn_themeid_Z, false, includeNonInitialized);
             AddObjectProperty("LocationImage_GXI_Z", gxTv_SdtTrn_Location_Locationimage_gxi_Z, false, includeNonInitialized);
+            AddObjectProperty("LocationId_N", gxTv_SdtTrn_Location_Locationid_N, false, includeNonInitialized);
+            AddObjectProperty("OrganisationId_N", gxTv_SdtTrn_Location_Organisationid_N, false, includeNonInitialized);
             AddObjectProperty("ToolBoxDefaultLogo_N", gxTv_SdtTrn_Location_Toolboxdefaultlogo_N, false, includeNonInitialized);
             AddObjectProperty("ToolBoxDefaultProfileImage_N", gxTv_SdtTrn_Location_Toolboxdefaultprofileimage_N, false, includeNonInitialized);
             AddObjectProperty("Trn_ThemeId_N", gxTv_SdtTrn_Location_Trn_themeid_N, false, includeNonInitialized);
@@ -1175,6 +1183,62 @@ namespace GeneXus.Programs {
          return false ;
       }
 
+      [  SoapElement( ElementName = "LocationId_N" )]
+      [  XmlElement( ElementName = "LocationId_N"   )]
+      public short gxTpr_Locationid_N
+      {
+         get {
+            return gxTv_SdtTrn_Location_Locationid_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Location_Locationid_N = value;
+            SetDirty("Locationid_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Location_Locationid_N_SetNull( )
+      {
+         gxTv_SdtTrn_Location_Locationid_N = 0;
+         SetDirty("Locationid_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Location_Locationid_N_IsNull( )
+      {
+         return false ;
+      }
+
+      [  SoapElement( ElementName = "OrganisationId_N" )]
+      [  XmlElement( ElementName = "OrganisationId_N"   )]
+      public short gxTpr_Organisationid_N
+      {
+         get {
+            return gxTv_SdtTrn_Location_Organisationid_N ;
+         }
+
+         set {
+            sdtIsNull = 0;
+            gxTv_SdtTrn_Location_Organisationid_N = value;
+            SetDirty("Organisationid_N");
+         }
+
+      }
+
+      public void gxTv_SdtTrn_Location_Organisationid_N_SetNull( )
+      {
+         gxTv_SdtTrn_Location_Organisationid_N = 0;
+         SetDirty("Organisationid_N");
+         return  ;
+      }
+
+      public bool gxTv_SdtTrn_Location_Organisationid_N_IsNull( )
+      {
+         return false ;
+      }
+
       [  SoapElement( ElementName = "ToolBoxDefaultLogo_N" )]
       [  XmlElement( ElementName = "ToolBoxDefaultLogo_N"   )]
       public short gxTpr_Toolboxdefaultlogo_N
@@ -1327,6 +1391,8 @@ namespace GeneXus.Programs {
 
       private short sdtIsNull ;
       private short gxTv_SdtTrn_Location_Initialized ;
+      private short gxTv_SdtTrn_Location_Locationid_N ;
+      private short gxTv_SdtTrn_Location_Organisationid_N ;
       private short gxTv_SdtTrn_Location_Toolboxdefaultlogo_N ;
       private short gxTv_SdtTrn_Location_Toolboxdefaultprofileimage_N ;
       private short gxTv_SdtTrn_Location_Trn_themeid_N ;

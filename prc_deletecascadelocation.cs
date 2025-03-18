@@ -129,6 +129,8 @@ namespace GeneXus.Programs {
                {
                   AV11isSuccessful = true;
                   GXTC02 = 1;
+                  CallWebObject(formatLink("trn_locationww.aspx") );
+                  context.wjLocDisableFrm = 1;
                }
                else
                {

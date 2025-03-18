@@ -91,6 +91,7 @@ namespace GeneXus.Programs {
          while ( (pr_default.getStatus(0) != 101) )
          {
             A11OrganisationId = P00BZ2_A11OrganisationId[0];
+            AV12Message = "";
             GXt_boolean1 = false;
             GXt_char2 = "";
             new prc_deletecascadelocation(context ).execute(  Guid.Empty,  Guid.Empty,  A11OrganisationId,  false, ref  GXt_boolean1, ref  GXt_char2) ;
@@ -99,13 +100,15 @@ namespace GeneXus.Programs {
             new prc_deletecascademanager(context ).execute(  Guid.Empty,  A11OrganisationId) ;
             new prc_deletecascadeorganisationsetting(context ).execute(  Guid.Empty,  A11OrganisationId) ;
             new prc_deletecascadesuppliergen(context ).execute(  Guid.Empty,  A11OrganisationId) ;
-            AV12Message = "";
+            new prc_deletecascadetheme(context ).execute(  Guid.Empty,  A11OrganisationId, ref  AV9isSuccessful, ref  AV12Message) ;
             AV14Trn_Organisation.Load(A11OrganisationId);
             AV14Trn_Organisation.Delete();
             if ( AV14Trn_Organisation.Success() )
             {
                AV9isSuccessful = true;
                context.CommitDataStores("prc_deletecascadeorganisation",pr_default);
+               CallWebObject(formatLink("trn_organisationww.aspx") );
+               context.wjLocDisableFrm = 1;
             }
             else
             {

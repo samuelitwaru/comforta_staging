@@ -1,5 +1,6 @@
 QRCodeLibrary.dll
 Base64Image.dll
 RandomStringGenerator.dll
+UrlValidator.dll
 GeneXus.dll
 GeneXusSecurity.dll

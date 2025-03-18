@@ -237,12 +237,14 @@ namespace GeneXus.Programs {
          if ( IsIns( )  && (Guid.Empty==A29LocationId) )
          {
             A29LocationId = Guid.NewGuid( );
+            n29LocationId = false;
          }
          if ( IsIns( )  )
          {
             GXt_guid1 = A11OrganisationId;
             new prc_getuserorganisationid(context ).execute( out  GXt_guid1) ;
             A11OrganisationId = GXt_guid1;
+            n11OrganisationId = false;
          }
          if ( ( StringUtil.StrCmp(Gx_mode, "INS") == 0 ) && ( Gx_BScreen == 0 ) )
          {
@@ -252,7 +254,7 @@ namespace GeneXus.Programs {
       protected void Load046( )
       {
          /* Using cursor BC00046 */
-         pr_default.execute(4, new Object[] {A29LocationId, A11OrganisationId});
+         pr_default.execute(4, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
          if ( (pr_default.getStatus(4) != 101) )
          {
             RcdFound6 = 1;
@@ -309,7 +311,7 @@ namespace GeneXus.Programs {
       {
          standaloneModal( ) ;
          /* Using cursor BC00044 */
-         pr_default.execute(2, new Object[] {A11OrganisationId});
+         pr_default.execute(2, new Object[] {n11OrganisationId, A11OrganisationId});
          if ( (pr_default.getStatus(2) == 101) )
          {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Organisations", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
@@ -382,7 +384,7 @@ namespace GeneXus.Programs {
       protected void GetKey046( )
       {
          /* Using cursor BC00047 */
-         pr_default.execute(5, new Object[] {A29LocationId, A11OrganisationId});
+         pr_default.execute(5, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
          if ( (pr_default.getStatus(5) != 101) )
          {
             RcdFound6 = 1;
@@ -397,12 +399,13 @@ namespace GeneXus.Programs {
       protected void getByPrimaryKey( )
       {
          /* Using cursor BC00043 */
-         pr_default.execute(1, new Object[] {A29LocationId, A11OrganisationId});
+         pr_default.execute(1, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
          if ( (pr_default.getStatus(1) != 101) )
          {
             ZM046( 20) ;
             RcdFound6 = 1;
             A29LocationId = BC00043_A29LocationId[0];
+            n29LocationId = BC00043_n29LocationId[0];
             A35LocationPhone = BC00043_A35LocationPhone[0];
             A339LocationZipCode = BC00043_A339LocationZipCode[0];
             A31LocationName = BC00043_A31LocationName[0];
@@ -420,6 +423,7 @@ namespace GeneXus.Programs {
             A518ToolBoxDefaultProfileImage = BC00043_A518ToolBoxDefaultProfileImage[0];
             n518ToolBoxDefaultProfileImage = BC00043_n518ToolBoxDefaultProfileImage[0];
             A11OrganisationId = BC00043_A11OrganisationId[0];
+            n11OrganisationId = BC00043_n11OrganisationId[0];
             A247Trn_ThemeId = BC00043_A247Trn_ThemeId[0];
             n247Trn_ThemeId = BC00043_n247Trn_ThemeId[0];
             A506LocationImage = BC00043_A506LocationImage[0];
@@ -482,7 +486,7 @@ namespace GeneXus.Programs {
          if ( ! IsIns( ) )
          {
             /* Using cursor BC00042 */
-            pr_default.execute(0, new Object[] {A29LocationId, A11OrganisationId});
+            pr_default.execute(0, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(0) == 103) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_lock", new   object[]  {"Trn_Location"}), "RecordIsLocked", 1, "");
@@ -527,7 +531,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC00048 */
-                     pr_default.execute(6, new Object[] {A29LocationId, A35LocationPhone, A339LocationZipCode, A31LocationName, A506LocationImage, A40000LocationImage_GXI, A359LocationCountry, A338LocationCity, A340LocationAddressLine1, A341LocationAddressLine2, A34LocationEmail, A383LocationPhoneCode, A384LocationPhoneNumber, A36LocationDescription, n517ToolBoxDefaultLogo, A517ToolBoxDefaultLogo, n518ToolBoxDefaultProfileImage, A518ToolBoxDefaultProfileImage, A11OrganisationId, n247Trn_ThemeId, A247Trn_ThemeId});
+                     pr_default.execute(6, new Object[] {n29LocationId, A29LocationId, A35LocationPhone, A339LocationZipCode, A31LocationName, A506LocationImage, A40000LocationImage_GXI, A359LocationCountry, A338LocationCity, A340LocationAddressLine1, A341LocationAddressLine2, A34LocationEmail, A383LocationPhoneCode, A384LocationPhoneNumber, A36LocationDescription, n517ToolBoxDefaultLogo, A517ToolBoxDefaultLogo, n518ToolBoxDefaultProfileImage, A518ToolBoxDefaultProfileImage, n11OrganisationId, A11OrganisationId, n247Trn_ThemeId, A247Trn_ThemeId});
                      pr_default.close(6);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Location");
                      if ( (pr_default.getStatus(6) == 1) )
@@ -582,7 +586,7 @@ namespace GeneXus.Programs {
                   if ( AnyError == 0 )
                   {
                      /* Using cursor BC00049 */
-                     pr_default.execute(7, new Object[] {A35LocationPhone, A339LocationZipCode, A31LocationName, A359LocationCountry, A338LocationCity, A340LocationAddressLine1, A341LocationAddressLine2, A34LocationEmail, A383LocationPhoneCode, A384LocationPhoneNumber, A36LocationDescription, n517ToolBoxDefaultLogo, A517ToolBoxDefaultLogo, n518ToolBoxDefaultProfileImage, A518ToolBoxDefaultProfileImage, n247Trn_ThemeId, A247Trn_ThemeId, A29LocationId, A11OrganisationId});
+                     pr_default.execute(7, new Object[] {A35LocationPhone, A339LocationZipCode, A31LocationName, A359LocationCountry, A338LocationCity, A340LocationAddressLine1, A341LocationAddressLine2, A34LocationEmail, A383LocationPhoneCode, A384LocationPhoneNumber, A36LocationDescription, n517ToolBoxDefaultLogo, A517ToolBoxDefaultLogo, n518ToolBoxDefaultProfileImage, A518ToolBoxDefaultProfileImage, n247Trn_ThemeId, A247Trn_ThemeId, n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
                      pr_default.close(7);
                      pr_default.SmartCacheProvider.SetUpdated("Trn_Location");
                      if ( (pr_default.getStatus(7) == 103) )
@@ -620,7 +624,7 @@ namespace GeneXus.Programs {
          if ( AnyError == 0 )
          {
             /* Using cursor BC000410 */
-            pr_default.execute(8, new Object[] {A506LocationImage, A40000LocationImage_GXI, A29LocationId, A11OrganisationId});
+            pr_default.execute(8, new Object[] {A506LocationImage, A40000LocationImage_GXI, n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
             pr_default.close(8);
             pr_default.SmartCacheProvider.SetUpdated("Trn_Location");
          }
@@ -645,7 +649,7 @@ namespace GeneXus.Programs {
                {
                   /* No cascading delete specified. */
                   /* Using cursor BC000411 */
-                  pr_default.execute(9, new Object[] {A29LocationId, A11OrganisationId});
+                  pr_default.execute(9, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
                   pr_default.close(9);
                   pr_default.SmartCacheProvider.SetUpdated("Trn_Location");
                   if ( AnyError == 0 )
@@ -679,7 +683,7 @@ namespace GeneXus.Programs {
          if ( AnyError == 0 )
          {
             /* Using cursor BC000412 */
-            pr_default.execute(10, new Object[] {A29LocationId, A11OrganisationId});
+            pr_default.execute(10, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(10) != 101) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_ResidentPackage", "")}), "CannotDeleteReferencedRecord", 1, "");
@@ -687,45 +691,53 @@ namespace GeneXus.Programs {
             }
             pr_default.close(10);
             /* Using cursor BC000413 */
-            pr_default.execute(11, new Object[] {A29LocationId, A11OrganisationId});
+            pr_default.execute(11, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(11) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Agenda/Calendar", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_AppVersion", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(11);
             /* Using cursor BC000414 */
-            pr_default.execute(12, new Object[] {A29LocationId, A11OrganisationId});
+            pr_default.execute(12, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(12) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Location Dynamic Forms", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Agenda/Calendar", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(12);
             /* Using cursor BC000415 */
-            pr_default.execute(13, new Object[] {A29LocationId, A11OrganisationId});
+            pr_default.execute(13, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(13) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Services", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Location Dynamic Forms", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(13);
             /* Using cursor BC000416 */
-            pr_default.execute(14, new Object[] {A29LocationId, A11OrganisationId});
+            pr_default.execute(14, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(14) != 101) )
             {
-               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Receptionists", "")}), "CannotDeleteReferencedRecord", 1, "");
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Services", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
             pr_default.close(14);
             /* Using cursor BC000417 */
-            pr_default.execute(15, new Object[] {A29LocationId, A11OrganisationId});
+            pr_default.execute(15, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
             if ( (pr_default.getStatus(15) != 101) )
+            {
+               GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Receptionists", "")}), "CannotDeleteReferencedRecord", 1, "");
+               AnyError = 1;
+            }
+            pr_default.close(15);
+            /* Using cursor BC000418 */
+            pr_default.execute(16, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
+            if ( (pr_default.getStatus(16) != 101) )
             {
                GX_msglist.addItem(context.GetMessage( "GXM_del", new   object[]  {context.GetMessage( "Trn_Resident", "")}), "CannotDeleteReferencedRecord", 1, "");
                AnyError = 1;
             }
-            pr_default.close(15);
+            pr_default.close(16);
          }
       }
 
@@ -758,33 +770,35 @@ namespace GeneXus.Programs {
       public void ScanKeyStart046( )
       {
          /* Scan By routine */
-         /* Using cursor BC000418 */
-         pr_default.execute(16, new Object[] {A29LocationId, A11OrganisationId});
+         /* Using cursor BC000419 */
+         pr_default.execute(17, new Object[] {n29LocationId, A29LocationId, n11OrganisationId, A11OrganisationId});
          RcdFound6 = 0;
-         if ( (pr_default.getStatus(16) != 101) )
+         if ( (pr_default.getStatus(17) != 101) )
          {
             RcdFound6 = 1;
-            A29LocationId = BC000418_A29LocationId[0];
-            A35LocationPhone = BC000418_A35LocationPhone[0];
-            A339LocationZipCode = BC000418_A339LocationZipCode[0];
-            A31LocationName = BC000418_A31LocationName[0];
-            A40000LocationImage_GXI = BC000418_A40000LocationImage_GXI[0];
-            A359LocationCountry = BC000418_A359LocationCountry[0];
-            A338LocationCity = BC000418_A338LocationCity[0];
-            A340LocationAddressLine1 = BC000418_A340LocationAddressLine1[0];
-            A341LocationAddressLine2 = BC000418_A341LocationAddressLine2[0];
-            A34LocationEmail = BC000418_A34LocationEmail[0];
-            A383LocationPhoneCode = BC000418_A383LocationPhoneCode[0];
-            A384LocationPhoneNumber = BC000418_A384LocationPhoneNumber[0];
-            A36LocationDescription = BC000418_A36LocationDescription[0];
-            A517ToolBoxDefaultLogo = BC000418_A517ToolBoxDefaultLogo[0];
-            n517ToolBoxDefaultLogo = BC000418_n517ToolBoxDefaultLogo[0];
-            A518ToolBoxDefaultProfileImage = BC000418_A518ToolBoxDefaultProfileImage[0];
-            n518ToolBoxDefaultProfileImage = BC000418_n518ToolBoxDefaultProfileImage[0];
-            A11OrganisationId = BC000418_A11OrganisationId[0];
-            A247Trn_ThemeId = BC000418_A247Trn_ThemeId[0];
-            n247Trn_ThemeId = BC000418_n247Trn_ThemeId[0];
-            A506LocationImage = BC000418_A506LocationImage[0];
+            A29LocationId = BC000419_A29LocationId[0];
+            n29LocationId = BC000419_n29LocationId[0];
+            A35LocationPhone = BC000419_A35LocationPhone[0];
+            A339LocationZipCode = BC000419_A339LocationZipCode[0];
+            A31LocationName = BC000419_A31LocationName[0];
+            A40000LocationImage_GXI = BC000419_A40000LocationImage_GXI[0];
+            A359LocationCountry = BC000419_A359LocationCountry[0];
+            A338LocationCity = BC000419_A338LocationCity[0];
+            A340LocationAddressLine1 = BC000419_A340LocationAddressLine1[0];
+            A341LocationAddressLine2 = BC000419_A341LocationAddressLine2[0];
+            A34LocationEmail = BC000419_A34LocationEmail[0];
+            A383LocationPhoneCode = BC000419_A383LocationPhoneCode[0];
+            A384LocationPhoneNumber = BC000419_A384LocationPhoneNumber[0];
+            A36LocationDescription = BC000419_A36LocationDescription[0];
+            A517ToolBoxDefaultLogo = BC000419_A517ToolBoxDefaultLogo[0];
+            n517ToolBoxDefaultLogo = BC000419_n517ToolBoxDefaultLogo[0];
+            A518ToolBoxDefaultProfileImage = BC000419_A518ToolBoxDefaultProfileImage[0];
+            n518ToolBoxDefaultProfileImage = BC000419_n518ToolBoxDefaultProfileImage[0];
+            A11OrganisationId = BC000419_A11OrganisationId[0];
+            n11OrganisationId = BC000419_n11OrganisationId[0];
+            A247Trn_ThemeId = BC000419_A247Trn_ThemeId[0];
+            n247Trn_ThemeId = BC000419_n247Trn_ThemeId[0];
+            A506LocationImage = BC000419_A506LocationImage[0];
          }
          /* Load Subordinate Levels */
       }
@@ -792,7 +806,7 @@ namespace GeneXus.Programs {
       protected void ScanKeyNext046( )
       {
          /* Scan next routine */
-         pr_default.readNext(16);
+         pr_default.readNext(17);
          RcdFound6 = 0;
          ScanKeyLoad046( ) ;
       }
@@ -801,37 +815,39 @@ namespace GeneXus.Programs {
       {
          sMode6 = Gx_mode;
          Gx_mode = "DSP";
-         if ( (pr_default.getStatus(16) != 101) )
+         if ( (pr_default.getStatus(17) != 101) )
          {
             RcdFound6 = 1;
-            A29LocationId = BC000418_A29LocationId[0];
-            A35LocationPhone = BC000418_A35LocationPhone[0];
-            A339LocationZipCode = BC000418_A339LocationZipCode[0];
-            A31LocationName = BC000418_A31LocationName[0];
-            A40000LocationImage_GXI = BC000418_A40000LocationImage_GXI[0];
-            A359LocationCountry = BC000418_A359LocationCountry[0];
-            A338LocationCity = BC000418_A338LocationCity[0];
-            A340LocationAddressLine1 = BC000418_A340LocationAddressLine1[0];
-            A341LocationAddressLine2 = BC000418_A341LocationAddressLine2[0];
-            A34LocationEmail = BC000418_A34LocationEmail[0];
-            A383LocationPhoneCode = BC000418_A383LocationPhoneCode[0];
-            A384LocationPhoneNumber = BC000418_A384LocationPhoneNumber[0];
-            A36LocationDescription = BC000418_A36LocationDescription[0];
-            A517ToolBoxDefaultLogo = BC000418_A517ToolBoxDefaultLogo[0];
-            n517ToolBoxDefaultLogo = BC000418_n517ToolBoxDefaultLogo[0];
-            A518ToolBoxDefaultProfileImage = BC000418_A518ToolBoxDefaultProfileImage[0];
-            n518ToolBoxDefaultProfileImage = BC000418_n518ToolBoxDefaultProfileImage[0];
-            A11OrganisationId = BC000418_A11OrganisationId[0];
-            A247Trn_ThemeId = BC000418_A247Trn_ThemeId[0];
-            n247Trn_ThemeId = BC000418_n247Trn_ThemeId[0];
-            A506LocationImage = BC000418_A506LocationImage[0];
+            A29LocationId = BC000419_A29LocationId[0];
+            n29LocationId = BC000419_n29LocationId[0];
+            A35LocationPhone = BC000419_A35LocationPhone[0];
+            A339LocationZipCode = BC000419_A339LocationZipCode[0];
+            A31LocationName = BC000419_A31LocationName[0];
+            A40000LocationImage_GXI = BC000419_A40000LocationImage_GXI[0];
+            A359LocationCountry = BC000419_A359LocationCountry[0];
+            A338LocationCity = BC000419_A338LocationCity[0];
+            A340LocationAddressLine1 = BC000419_A340LocationAddressLine1[0];
+            A341LocationAddressLine2 = BC000419_A341LocationAddressLine2[0];
+            A34LocationEmail = BC000419_A34LocationEmail[0];
+            A383LocationPhoneCode = BC000419_A383LocationPhoneCode[0];
+            A384LocationPhoneNumber = BC000419_A384LocationPhoneNumber[0];
+            A36LocationDescription = BC000419_A36LocationDescription[0];
+            A517ToolBoxDefaultLogo = BC000419_A517ToolBoxDefaultLogo[0];
+            n517ToolBoxDefaultLogo = BC000419_n517ToolBoxDefaultLogo[0];
+            A518ToolBoxDefaultProfileImage = BC000419_A518ToolBoxDefaultProfileImage[0];
+            n518ToolBoxDefaultProfileImage = BC000419_n518ToolBoxDefaultProfileImage[0];
+            A11OrganisationId = BC000419_A11OrganisationId[0];
+            n11OrganisationId = BC000419_n11OrganisationId[0];
+            A247Trn_ThemeId = BC000419_A247Trn_ThemeId[0];
+            n247Trn_ThemeId = BC000419_n247Trn_ThemeId[0];
+            A506LocationImage = BC000419_A506LocationImage[0];
          }
          Gx_mode = sMode6;
       }
 
       protected void ScanKeyEnd046( )
       {
-         pr_default.close(16);
+         pr_default.close(17);
       }
 
       protected void AfterConfirm046( )
@@ -933,7 +949,9 @@ namespace GeneXus.Programs {
       protected void InitAll046( )
       {
          A29LocationId = Guid.NewGuid( );
+         n29LocationId = false;
          A11OrganisationId = Guid.Empty;
+         n11OrganisationId = false;
          InitializeNonKey046( ) ;
       }
 
@@ -998,6 +1016,8 @@ namespace GeneXus.Programs {
          obj6.gxTpr_Toolboxdefaultprofileimage_Z = Z518ToolBoxDefaultProfileImage;
          obj6.gxTpr_Trn_themeid_Z = Z247Trn_ThemeId;
          obj6.gxTpr_Locationimage_gxi_Z = Z40000LocationImage_GXI;
+         obj6.gxTpr_Locationid_N = (short)(Convert.ToInt16(n29LocationId));
+         obj6.gxTpr_Organisationid_N = (short)(Convert.ToInt16(n11OrganisationId));
          obj6.gxTpr_Toolboxdefaultlogo_N = (short)(Convert.ToInt16(n517ToolBoxDefaultLogo));
          obj6.gxTpr_Toolboxdefaultprofileimage_N = (short)(Convert.ToInt16(n518ToolBoxDefaultProfileImage));
          obj6.gxTpr_Trn_themeid_N = (short)(Convert.ToInt16(n247Trn_ThemeId));
@@ -1036,7 +1056,9 @@ namespace GeneXus.Programs {
          A247Trn_ThemeId = obj6.gxTpr_Trn_themeid;
          n247Trn_ThemeId = false;
          A29LocationId = obj6.gxTpr_Locationid;
+         n29LocationId = false;
          A11OrganisationId = obj6.gxTpr_Organisationid;
+         n11OrganisationId = false;
          Z29LocationId = obj6.gxTpr_Locationid_Z;
          Z11OrganisationId = obj6.gxTpr_Organisationid_Z;
          Z31LocationName = obj6.gxTpr_Locationname_Z;
@@ -1053,6 +1075,8 @@ namespace GeneXus.Programs {
          Z518ToolBoxDefaultProfileImage = obj6.gxTpr_Toolboxdefaultprofileimage_Z;
          Z247Trn_ThemeId = obj6.gxTpr_Trn_themeid_Z;
          Z40000LocationImage_GXI = obj6.gxTpr_Locationimage_gxi_Z;
+         n29LocationId = (bool)(Convert.ToBoolean(obj6.gxTpr_Locationid_N));
+         n11OrganisationId = (bool)(Convert.ToBoolean(obj6.gxTpr_Organisationid_N));
          n517ToolBoxDefaultLogo = (bool)(Convert.ToBoolean(obj6.gxTpr_Toolboxdefaultlogo_N));
          n518ToolBoxDefaultProfileImage = (bool)(Convert.ToBoolean(obj6.gxTpr_Toolboxdefaultprofileimage_N));
          n247Trn_ThemeId = (bool)(Convert.ToBoolean(obj6.gxTpr_Trn_themeid_N));
@@ -1065,7 +1089,9 @@ namespace GeneXus.Programs {
          BackMsgLst = context.GX_msglist;
          context.GX_msglist = LclMsgLst;
          A29LocationId = (Guid)getParm(obj,0);
+         n29LocationId = false;
          A11OrganisationId = (Guid)getParm(obj,1);
+         n11OrganisationId = false;
          AnyError = 0;
          context.GX_msglist.removeAllItems();
          InitializeNonKey046( ) ;
@@ -1073,14 +1099,14 @@ namespace GeneXus.Programs {
          if ( RcdFound6 == 0 )
          {
             Gx_mode = "INS";
-            /* Using cursor BC000419 */
-            pr_default.execute(17, new Object[] {A11OrganisationId});
-            if ( (pr_default.getStatus(17) == 101) )
+            /* Using cursor BC000420 */
+            pr_default.execute(18, new Object[] {n11OrganisationId, A11OrganisationId});
+            if ( (pr_default.getStatus(18) == 101) )
             {
                GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Organisations", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
-            pr_default.close(17);
+            pr_default.close(18);
          }
          else
          {
@@ -1111,14 +1137,14 @@ namespace GeneXus.Programs {
          if ( RcdFound6 == 0 )
          {
             Gx_mode = "INS";
-            /* Using cursor BC000419 */
-            pr_default.execute(17, new Object[] {A11OrganisationId});
-            if ( (pr_default.getStatus(17) == 101) )
+            /* Using cursor BC000420 */
+            pr_default.execute(18, new Object[] {n11OrganisationId, A11OrganisationId});
+            if ( (pr_default.getStatus(18) == 101) )
             {
                GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_ForeignKeyNotFound", ""), context.GetMessage( "Organisations", ""), "", "", "", "", "", "", "", ""), "ForeignKeyNotFound", 1, "ORGANISATIONID");
                AnyError = 1;
             }
-            pr_default.close(17);
+            pr_default.close(18);
          }
          else
          {
@@ -1153,7 +1179,9 @@ namespace GeneXus.Programs {
                if ( ( A29LocationId != Z29LocationId ) || ( A11OrganisationId != Z11OrganisationId ) )
                {
                   A29LocationId = Z29LocationId;
+                  n29LocationId = false;
                   A11OrganisationId = Z11OrganisationId;
+                  n11OrganisationId = false;
                   GX_msglist.addItem(context.GetMessage( "GXM_getbeforeupd", ""), "CandidateKeyNotFound", 1, "");
                   AnyError = 1;
                }
@@ -1332,7 +1360,9 @@ namespace GeneXus.Programs {
             else if ( ( A29LocationId != Z29LocationId ) || ( A11OrganisationId != Z11OrganisationId ) )
             {
                A29LocationId = Z29LocationId;
+               n29LocationId = false;
                A11OrganisationId = Z11OrganisationId;
+               n11OrganisationId = false;
                GX_msglist.addItem(context.GetMessage( "GXM_getbeforeupd", ""), "DuplicatePrimaryKey", 1, "");
                AnyError = 1;
             }
@@ -1503,7 +1533,7 @@ namespace GeneXus.Programs {
       protected override void CloseCursors( )
       {
          pr_default.close(1);
-         pr_default.close(17);
+         pr_default.close(18);
       }
 
       public override void initialize( )
@@ -1555,6 +1585,7 @@ namespace GeneXus.Programs {
          Z36LocationDescription = "";
          A36LocationDescription = "";
          BC00046_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC00046_n29LocationId = new bool[] {false} ;
          BC00046_A35LocationPhone = new string[] {""} ;
          BC00046_A339LocationZipCode = new string[] {""} ;
          BC00046_A31LocationName = new string[] {""} ;
@@ -1572,17 +1603,22 @@ namespace GeneXus.Programs {
          BC00046_A518ToolBoxDefaultProfileImage = new string[] {""} ;
          BC00046_n518ToolBoxDefaultProfileImage = new bool[] {false} ;
          BC00046_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC00046_n11OrganisationId = new bool[] {false} ;
          BC00046_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          BC00046_n247Trn_ThemeId = new bool[] {false} ;
          BC00046_A506LocationImage = new string[] {""} ;
          BC00044_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC00044_n11OrganisationId = new bool[] {false} ;
          GXt_char2 = "";
          GXt_guid1 = Guid.Empty;
          BC00045_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          BC00045_n247Trn_ThemeId = new bool[] {false} ;
          BC00047_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC00047_n29LocationId = new bool[] {false} ;
          BC00047_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC00047_n11OrganisationId = new bool[] {false} ;
          BC00043_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC00043_n29LocationId = new bool[] {false} ;
          BC00043_A35LocationPhone = new string[] {""} ;
          BC00043_A339LocationZipCode = new string[] {""} ;
          BC00043_A31LocationName = new string[] {""} ;
@@ -1600,11 +1636,13 @@ namespace GeneXus.Programs {
          BC00043_A518ToolBoxDefaultProfileImage = new string[] {""} ;
          BC00043_n518ToolBoxDefaultProfileImage = new bool[] {false} ;
          BC00043_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC00043_n11OrganisationId = new bool[] {false} ;
          BC00043_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          BC00043_n247Trn_ThemeId = new bool[] {false} ;
          BC00043_A506LocationImage = new string[] {""} ;
          sMode6 = "";
          BC00042_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC00042_n29LocationId = new bool[] {false} ;
          BC00042_A35LocationPhone = new string[] {""} ;
          BC00042_A339LocationZipCode = new string[] {""} ;
          BC00042_A31LocationName = new string[] {""} ;
@@ -1622,47 +1660,60 @@ namespace GeneXus.Programs {
          BC00042_A518ToolBoxDefaultProfileImage = new string[] {""} ;
          BC00042_n518ToolBoxDefaultProfileImage = new bool[] {false} ;
          BC00042_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC00042_n11OrganisationId = new bool[] {false} ;
          BC00042_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
          BC00042_n247Trn_ThemeId = new bool[] {false} ;
          BC00042_A506LocationImage = new string[] {""} ;
          BC000412_A554ResidentPackageId = new Guid[] {Guid.Empty} ;
-         BC000413_A303AgendaCalendarId = new Guid[] {Guid.Empty} ;
-         BC000414_A395LocationDynamicFormId = new Guid[] {Guid.Empty} ;
-         BC000414_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         BC000414_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC000415_A58ProductServiceId = new Guid[] {Guid.Empty} ;
-         BC000415_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC000413_A543AppVersionId = new Guid[] {Guid.Empty} ;
+         BC000414_A303AgendaCalendarId = new Guid[] {Guid.Empty} ;
+         BC000415_A395LocationDynamicFormId = new Guid[] {Guid.Empty} ;
          BC000415_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         BC000416_A89ReceptionistId = new Guid[] {Guid.Empty} ;
-         BC000416_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC000415_n11OrganisationId = new bool[] {false} ;
+         BC000415_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC000415_n29LocationId = new bool[] {false} ;
+         BC000416_A58ProductServiceId = new Guid[] {Guid.Empty} ;
          BC000416_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC000417_A62ResidentId = new Guid[] {Guid.Empty} ;
-         BC000417_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC000416_n29LocationId = new bool[] {false} ;
+         BC000416_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC000416_n11OrganisationId = new bool[] {false} ;
+         BC000417_A89ReceptionistId = new Guid[] {Guid.Empty} ;
          BC000417_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC000417_n11OrganisationId = new bool[] {false} ;
+         BC000417_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC000417_n29LocationId = new bool[] {false} ;
+         BC000418_A62ResidentId = new Guid[] {Guid.Empty} ;
          BC000418_A29LocationId = new Guid[] {Guid.Empty} ;
-         BC000418_A35LocationPhone = new string[] {""} ;
-         BC000418_A339LocationZipCode = new string[] {""} ;
-         BC000418_A31LocationName = new string[] {""} ;
-         BC000418_A40000LocationImage_GXI = new string[] {""} ;
-         BC000418_A359LocationCountry = new string[] {""} ;
-         BC000418_A338LocationCity = new string[] {""} ;
-         BC000418_A340LocationAddressLine1 = new string[] {""} ;
-         BC000418_A341LocationAddressLine2 = new string[] {""} ;
-         BC000418_A34LocationEmail = new string[] {""} ;
-         BC000418_A383LocationPhoneCode = new string[] {""} ;
-         BC000418_A384LocationPhoneNumber = new string[] {""} ;
-         BC000418_A36LocationDescription = new string[] {""} ;
-         BC000418_A517ToolBoxDefaultLogo = new string[] {""} ;
-         BC000418_n517ToolBoxDefaultLogo = new bool[] {false} ;
-         BC000418_A518ToolBoxDefaultProfileImage = new string[] {""} ;
-         BC000418_n518ToolBoxDefaultProfileImage = new bool[] {false} ;
+         BC000418_n29LocationId = new bool[] {false} ;
          BC000418_A11OrganisationId = new Guid[] {Guid.Empty} ;
-         BC000418_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
-         BC000418_n247Trn_ThemeId = new bool[] {false} ;
-         BC000418_A506LocationImage = new string[] {""} ;
+         BC000418_n11OrganisationId = new bool[] {false} ;
+         BC000419_A29LocationId = new Guid[] {Guid.Empty} ;
+         BC000419_n29LocationId = new bool[] {false} ;
+         BC000419_A35LocationPhone = new string[] {""} ;
+         BC000419_A339LocationZipCode = new string[] {""} ;
+         BC000419_A31LocationName = new string[] {""} ;
+         BC000419_A40000LocationImage_GXI = new string[] {""} ;
+         BC000419_A359LocationCountry = new string[] {""} ;
+         BC000419_A338LocationCity = new string[] {""} ;
+         BC000419_A340LocationAddressLine1 = new string[] {""} ;
+         BC000419_A341LocationAddressLine2 = new string[] {""} ;
+         BC000419_A34LocationEmail = new string[] {""} ;
+         BC000419_A383LocationPhoneCode = new string[] {""} ;
+         BC000419_A384LocationPhoneNumber = new string[] {""} ;
+         BC000419_A36LocationDescription = new string[] {""} ;
+         BC000419_A517ToolBoxDefaultLogo = new string[] {""} ;
+         BC000419_n517ToolBoxDefaultLogo = new bool[] {false} ;
+         BC000419_A518ToolBoxDefaultProfileImage = new string[] {""} ;
+         BC000419_n518ToolBoxDefaultProfileImage = new bool[] {false} ;
+         BC000419_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC000419_n11OrganisationId = new bool[] {false} ;
+         BC000419_A247Trn_ThemeId = new Guid[] {Guid.Empty} ;
+         BC000419_n247Trn_ThemeId = new bool[] {false} ;
+         BC000419_A506LocationImage = new string[] {""} ;
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
-         BC000419_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC000420_A11OrganisationId = new Guid[] {Guid.Empty} ;
+         BC000420_n11OrganisationId = new bool[] {false} ;
          pr_datastore1 = new DataStoreProvider(context, new GeneXus.Programs.trn_location_bc__datastore1(),
             new Object[][] {
             }
@@ -1709,32 +1760,37 @@ namespace GeneXus.Programs {
                BC000412_A554ResidentPackageId
                }
                , new Object[] {
-               BC000413_A303AgendaCalendarId
+               BC000413_A543AppVersionId
                }
                , new Object[] {
-               BC000414_A395LocationDynamicFormId, BC000414_A11OrganisationId, BC000414_A29LocationId
+               BC000414_A303AgendaCalendarId
                }
                , new Object[] {
-               BC000415_A58ProductServiceId, BC000415_A29LocationId, BC000415_A11OrganisationId
+               BC000415_A395LocationDynamicFormId, BC000415_A11OrganisationId, BC000415_A29LocationId
                }
                , new Object[] {
-               BC000416_A89ReceptionistId, BC000416_A11OrganisationId, BC000416_A29LocationId
+               BC000416_A58ProductServiceId, BC000416_A29LocationId, BC000416_A11OrganisationId
                }
                , new Object[] {
-               BC000417_A62ResidentId, BC000417_A29LocationId, BC000417_A11OrganisationId
+               BC000417_A89ReceptionistId, BC000417_A11OrganisationId, BC000417_A29LocationId
                }
                , new Object[] {
-               BC000418_A29LocationId, BC000418_A35LocationPhone, BC000418_A339LocationZipCode, BC000418_A31LocationName, BC000418_A40000LocationImage_GXI, BC000418_A359LocationCountry, BC000418_A338LocationCity, BC000418_A340LocationAddressLine1, BC000418_A341LocationAddressLine2, BC000418_A34LocationEmail,
-               BC000418_A383LocationPhoneCode, BC000418_A384LocationPhoneNumber, BC000418_A36LocationDescription, BC000418_A517ToolBoxDefaultLogo, BC000418_n517ToolBoxDefaultLogo, BC000418_A518ToolBoxDefaultProfileImage, BC000418_n518ToolBoxDefaultProfileImage, BC000418_A11OrganisationId, BC000418_A247Trn_ThemeId, BC000418_n247Trn_ThemeId,
-               BC000418_A506LocationImage
+               BC000418_A62ResidentId, BC000418_A29LocationId, BC000418_A11OrganisationId
                }
                , new Object[] {
-               BC000419_A11OrganisationId
+               BC000419_A29LocationId, BC000419_A35LocationPhone, BC000419_A339LocationZipCode, BC000419_A31LocationName, BC000419_A40000LocationImage_GXI, BC000419_A359LocationCountry, BC000419_A338LocationCity, BC000419_A340LocationAddressLine1, BC000419_A341LocationAddressLine2, BC000419_A34LocationEmail,
+               BC000419_A383LocationPhoneCode, BC000419_A384LocationPhoneNumber, BC000419_A36LocationDescription, BC000419_A517ToolBoxDefaultLogo, BC000419_n517ToolBoxDefaultLogo, BC000419_A518ToolBoxDefaultProfileImage, BC000419_n518ToolBoxDefaultProfileImage, BC000419_A11OrganisationId, BC000419_A247Trn_ThemeId, BC000419_n247Trn_ThemeId,
+               BC000419_A506LocationImage
+               }
+               , new Object[] {
+               BC000420_A11OrganisationId
                }
             }
          );
          Z29LocationId = Guid.NewGuid( );
+         n29LocationId = false;
          A29LocationId = Guid.NewGuid( );
+         n29LocationId = false;
          AV31Pgmname = "Trn_Location_BC";
          Z247Trn_ThemeId = new prc_getdefaulttheme(context).executeUdp( );
          n247Trn_ThemeId = false;
@@ -1761,6 +1817,8 @@ namespace GeneXus.Programs {
       private string GXt_char2 ;
       private string sMode6 ;
       private bool returnInSub ;
+      private bool n29LocationId ;
+      private bool n11OrganisationId ;
       private bool n517ToolBoxDefaultLogo ;
       private bool n518ToolBoxDefaultProfileImage ;
       private bool n247Trn_ThemeId ;
@@ -1811,6 +1869,7 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtAuditingObject AV24AuditingObject ;
       private IDataStoreProvider pr_default ;
       private Guid[] BC00046_A29LocationId ;
+      private bool[] BC00046_n29LocationId ;
       private string[] BC00046_A35LocationPhone ;
       private string[] BC00046_A339LocationZipCode ;
       private string[] BC00046_A31LocationName ;
@@ -1828,15 +1887,20 @@ namespace GeneXus.Programs {
       private string[] BC00046_A518ToolBoxDefaultProfileImage ;
       private bool[] BC00046_n518ToolBoxDefaultProfileImage ;
       private Guid[] BC00046_A11OrganisationId ;
+      private bool[] BC00046_n11OrganisationId ;
       private Guid[] BC00046_A247Trn_ThemeId ;
       private bool[] BC00046_n247Trn_ThemeId ;
       private string[] BC00046_A506LocationImage ;
       private Guid[] BC00044_A11OrganisationId ;
+      private bool[] BC00044_n11OrganisationId ;
       private Guid[] BC00045_A247Trn_ThemeId ;
       private bool[] BC00045_n247Trn_ThemeId ;
       private Guid[] BC00047_A29LocationId ;
+      private bool[] BC00047_n29LocationId ;
       private Guid[] BC00047_A11OrganisationId ;
+      private bool[] BC00047_n11OrganisationId ;
       private Guid[] BC00043_A29LocationId ;
+      private bool[] BC00043_n29LocationId ;
       private string[] BC00043_A35LocationPhone ;
       private string[] BC00043_A339LocationZipCode ;
       private string[] BC00043_A31LocationName ;
@@ -1854,10 +1918,12 @@ namespace GeneXus.Programs {
       private string[] BC00043_A518ToolBoxDefaultProfileImage ;
       private bool[] BC00043_n518ToolBoxDefaultProfileImage ;
       private Guid[] BC00043_A11OrganisationId ;
+      private bool[] BC00043_n11OrganisationId ;
       private Guid[] BC00043_A247Trn_ThemeId ;
       private bool[] BC00043_n247Trn_ThemeId ;
       private string[] BC00043_A506LocationImage ;
       private Guid[] BC00042_A29LocationId ;
+      private bool[] BC00042_n29LocationId ;
       private string[] BC00042_A35LocationPhone ;
       private string[] BC00042_A339LocationZipCode ;
       private string[] BC00042_A31LocationName ;
@@ -1875,48 +1941,61 @@ namespace GeneXus.Programs {
       private string[] BC00042_A518ToolBoxDefaultProfileImage ;
       private bool[] BC00042_n518ToolBoxDefaultProfileImage ;
       private Guid[] BC00042_A11OrganisationId ;
+      private bool[] BC00042_n11OrganisationId ;
       private Guid[] BC00042_A247Trn_ThemeId ;
       private bool[] BC00042_n247Trn_ThemeId ;
       private string[] BC00042_A506LocationImage ;
       private Guid[] BC000412_A554ResidentPackageId ;
-      private Guid[] BC000413_A303AgendaCalendarId ;
-      private Guid[] BC000414_A395LocationDynamicFormId ;
-      private Guid[] BC000414_A11OrganisationId ;
-      private Guid[] BC000414_A29LocationId ;
-      private Guid[] BC000415_A58ProductServiceId ;
-      private Guid[] BC000415_A29LocationId ;
+      private Guid[] BC000413_A543AppVersionId ;
+      private Guid[] BC000414_A303AgendaCalendarId ;
+      private Guid[] BC000415_A395LocationDynamicFormId ;
       private Guid[] BC000415_A11OrganisationId ;
-      private Guid[] BC000416_A89ReceptionistId ;
-      private Guid[] BC000416_A11OrganisationId ;
+      private bool[] BC000415_n11OrganisationId ;
+      private Guid[] BC000415_A29LocationId ;
+      private bool[] BC000415_n29LocationId ;
+      private Guid[] BC000416_A58ProductServiceId ;
       private Guid[] BC000416_A29LocationId ;
-      private Guid[] BC000417_A62ResidentId ;
-      private Guid[] BC000417_A29LocationId ;
+      private bool[] BC000416_n29LocationId ;
+      private Guid[] BC000416_A11OrganisationId ;
+      private bool[] BC000416_n11OrganisationId ;
+      private Guid[] BC000417_A89ReceptionistId ;
       private Guid[] BC000417_A11OrganisationId ;
+      private bool[] BC000417_n11OrganisationId ;
+      private Guid[] BC000417_A29LocationId ;
+      private bool[] BC000417_n29LocationId ;
+      private Guid[] BC000418_A62ResidentId ;
       private Guid[] BC000418_A29LocationId ;
-      private string[] BC000418_A35LocationPhone ;
-      private string[] BC000418_A339LocationZipCode ;
-      private string[] BC000418_A31LocationName ;
-      private string[] BC000418_A40000LocationImage_GXI ;
-      private string[] BC000418_A359LocationCountry ;
-      private string[] BC000418_A338LocationCity ;
-      private string[] BC000418_A340LocationAddressLine1 ;
-      private string[] BC000418_A341LocationAddressLine2 ;
-      private string[] BC000418_A34LocationEmail ;
-      private string[] BC000418_A383LocationPhoneCode ;
-      private string[] BC000418_A384LocationPhoneNumber ;
-      private string[] BC000418_A36LocationDescription ;
-      private string[] BC000418_A517ToolBoxDefaultLogo ;
-      private bool[] BC000418_n517ToolBoxDefaultLogo ;
-      private string[] BC000418_A518ToolBoxDefaultProfileImage ;
-      private bool[] BC000418_n518ToolBoxDefaultProfileImage ;
+      private bool[] BC000418_n29LocationId ;
       private Guid[] BC000418_A11OrganisationId ;
-      private Guid[] BC000418_A247Trn_ThemeId ;
-      private bool[] BC000418_n247Trn_ThemeId ;
-      private string[] BC000418_A506LocationImage ;
+      private bool[] BC000418_n11OrganisationId ;
+      private Guid[] BC000419_A29LocationId ;
+      private bool[] BC000419_n29LocationId ;
+      private string[] BC000419_A35LocationPhone ;
+      private string[] BC000419_A339LocationZipCode ;
+      private string[] BC000419_A31LocationName ;
+      private string[] BC000419_A40000LocationImage_GXI ;
+      private string[] BC000419_A359LocationCountry ;
+      private string[] BC000419_A338LocationCity ;
+      private string[] BC000419_A340LocationAddressLine1 ;
+      private string[] BC000419_A341LocationAddressLine2 ;
+      private string[] BC000419_A34LocationEmail ;
+      private string[] BC000419_A383LocationPhoneCode ;
+      private string[] BC000419_A384LocationPhoneNumber ;
+      private string[] BC000419_A36LocationDescription ;
+      private string[] BC000419_A517ToolBoxDefaultLogo ;
+      private bool[] BC000419_n517ToolBoxDefaultLogo ;
+      private string[] BC000419_A518ToolBoxDefaultProfileImage ;
+      private bool[] BC000419_n518ToolBoxDefaultProfileImage ;
+      private Guid[] BC000419_A11OrganisationId ;
+      private bool[] BC000419_n11OrganisationId ;
+      private Guid[] BC000419_A247Trn_ThemeId ;
+      private bool[] BC000419_n247Trn_ThemeId ;
+      private string[] BC000419_A506LocationImage ;
       private SdtTrn_Location bcTrn_Location ;
       private msglist BackMsgLst ;
       private msglist LclMsgLst ;
-      private Guid[] BC000419_A11OrganisationId ;
+      private Guid[] BC000420_A11OrganisationId ;
+      private bool[] BC000420_n11OrganisationId ;
       private IDataStoreProvider pr_datastore1 ;
       private IDataStoreProvider pr_gam ;
    }
@@ -2009,6 +2088,7 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
       ,new ForEachCursor(def[15])
       ,new ForEachCursor(def[16])
       ,new ForEachCursor(def[17])
+      ,new ForEachCursor(def[18])
     };
  }
 
@@ -2019,17 +2099,17 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
     {
        Object[] prmBC00042;
        prmBC00042 = new Object[] {
-       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC00043;
        prmBC00043 = new Object[] {
-       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC00044;
        prmBC00044 = new Object[] {
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC00045;
        prmBC00045 = new Object[] {
@@ -2037,17 +2117,17 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
        };
        Object[] prmBC00046;
        prmBC00046 = new Object[] {
-       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC00047;
        prmBC00047 = new Object[] {
-       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC00048;
        prmBC00048 = new Object[] {
-       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("LocationPhone",GXType.Char,20,0) ,
        new ParDef("LocationZipCode",GXType.VarChar,100,0) ,
        new ParDef("LocationName",GXType.VarChar,100,0) ,
@@ -2063,7 +2143,7 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
        new ParDef("LocationDescription",GXType.LongVarChar,2097152,0) ,
        new ParDef("ToolBoxDefaultLogo",GXType.VarChar,200,0){Nullable=true} ,
        new ParDef("ToolBoxDefaultProfileImage",GXType.VarChar,200,0){Nullable=true} ,
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0) ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC00049;
@@ -2082,59 +2162,64 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
        new ParDef("ToolBoxDefaultLogo",GXType.VarChar,200,0){Nullable=true} ,
        new ParDef("ToolBoxDefaultProfileImage",GXType.VarChar,200,0){Nullable=true} ,
        new ParDef("Trn_ThemeId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
-       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC000410;
        prmBC000410 = new Object[] {
        new ParDef("LocationImage",GXType.Byte,1024,0){InDB=false} ,
        new ParDef("LocationImage_GXI",GXType.VarChar,2048,0){AddAtt=true, ImgIdx=0, Tbl="Trn_Location", Fld="LocationImage"} ,
-       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC000411;
        prmBC000411 = new Object[] {
-       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC000412;
        prmBC000412 = new Object[] {
-       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC000413;
        prmBC000413 = new Object[] {
-       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC000414;
        prmBC000414 = new Object[] {
-       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC000415;
        prmBC000415 = new Object[] {
-       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC000416;
        prmBC000416 = new Object[] {
-       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC000417;
        prmBC000417 = new Object[] {
-       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC000418;
        prmBC000418 = new Object[] {
-       new ParDef("LocationId",GXType.UniqueIdentifier,36,0) ,
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        Object[] prmBC000419;
        prmBC000419 = new Object[] {
-       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0)
+       new ParDef("LocationId",GXType.UniqueIdentifier,36,0){Nullable=true} ,
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
+       };
+       Object[] prmBC000420;
+       prmBC000420 = new Object[] {
+       new ParDef("OrganisationId",GXType.UniqueIdentifier,36,0){Nullable=true}
        };
        def= new CursorDef[] {
            new CursorDef("BC00042", "SELECT LocationId, LocationPhone, LocationZipCode, LocationName, LocationImage_GXI, LocationCountry, LocationCity, LocationAddressLine1, LocationAddressLine2, LocationEmail, LocationPhoneCode, LocationPhoneNumber, LocationDescription, ToolBoxDefaultLogo, ToolBoxDefaultProfileImage, OrganisationId, Trn_ThemeId, LocationImage FROM Trn_Location WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId  FOR UPDATE OF Trn_Location",true, GxErrorMask.GX_NOMASK, false, this,prmBC00042,1, GxCacheFrequency.OFF ,true,false )
@@ -2148,13 +2233,14 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
           ,new CursorDef("BC000410", "SAVEPOINT gxupdate;UPDATE Trn_Location SET LocationImage=:LocationImage, LocationImage_GXI=:LocationImage_GXI  WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000410)
           ,new CursorDef("BC000411", "SAVEPOINT gxupdate;DELETE FROM Trn_Location  WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId;RELEASE SAVEPOINT gxupdate", GxErrorMask.GX_ROLLBACKSAVEPOINT | GxErrorMask.GX_NOMASK,prmBC000411)
           ,new CursorDef("BC000412", "SELECT ResidentPackageId FROM Trn_ResidentPackage WHERE SG_LocationId = :LocationId AND SG_OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000412,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC000413", "SELECT AgendaCalendarId FROM Trn_AgendaCalendar WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000413,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC000414", "SELECT LocationDynamicFormId, OrganisationId, LocationId FROM Trn_LocationDynamicForm WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000414,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC000415", "SELECT ProductServiceId, LocationId, OrganisationId FROM Trn_ProductService WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000415,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC000416", "SELECT ReceptionistId, OrganisationId, LocationId FROM Trn_Receptionist WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000416,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC000417", "SELECT ResidentId, LocationId, OrganisationId FROM Trn_Resident WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000417,1, GxCacheFrequency.OFF ,true,true )
-          ,new CursorDef("BC000418", "SELECT TM1.LocationId, TM1.LocationPhone, TM1.LocationZipCode, TM1.LocationName, TM1.LocationImage_GXI, TM1.LocationCountry, TM1.LocationCity, TM1.LocationAddressLine1, TM1.LocationAddressLine2, TM1.LocationEmail, TM1.LocationPhoneCode, TM1.LocationPhoneNumber, TM1.LocationDescription, TM1.ToolBoxDefaultLogo, TM1.ToolBoxDefaultProfileImage, TM1.OrganisationId, TM1.Trn_ThemeId, TM1.LocationImage FROM Trn_Location TM1 WHERE TM1.LocationId = :LocationId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.LocationId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000418,100, GxCacheFrequency.OFF ,true,false )
-          ,new CursorDef("BC000419", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000419,1, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000413", "SELECT AppVersionId FROM Trn_AppVersion WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000413,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000414", "SELECT AgendaCalendarId FROM Trn_AgendaCalendar WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000414,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000415", "SELECT LocationDynamicFormId, OrganisationId, LocationId FROM Trn_LocationDynamicForm WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000415,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000416", "SELECT ProductServiceId, LocationId, OrganisationId FROM Trn_ProductService WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000416,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000417", "SELECT ReceptionistId, OrganisationId, LocationId FROM Trn_Receptionist WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000417,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000418", "SELECT ResidentId, LocationId, OrganisationId FROM Trn_Resident WHERE LocationId = :LocationId AND OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000418,1, GxCacheFrequency.OFF ,true,true )
+          ,new CursorDef("BC000419", "SELECT TM1.LocationId, TM1.LocationPhone, TM1.LocationZipCode, TM1.LocationName, TM1.LocationImage_GXI, TM1.LocationCountry, TM1.LocationCity, TM1.LocationAddressLine1, TM1.LocationAddressLine2, TM1.LocationEmail, TM1.LocationPhoneCode, TM1.LocationPhoneNumber, TM1.LocationDescription, TM1.ToolBoxDefaultLogo, TM1.ToolBoxDefaultProfileImage, TM1.OrganisationId, TM1.Trn_ThemeId, TM1.LocationImage FROM Trn_Location TM1 WHERE TM1.LocationId = :LocationId and TM1.OrganisationId = :OrganisationId ORDER BY TM1.LocationId, TM1.OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000419,100, GxCacheFrequency.OFF ,true,false )
+          ,new CursorDef("BC000420", "SELECT OrganisationId FROM Trn_Organisation WHERE OrganisationId = :OrganisationId ",true, GxErrorMask.GX_NOMASK, false, this,prmBC000420,1, GxCacheFrequency.OFF ,true,false )
        };
     }
  }
@@ -2252,8 +2338,6 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
              return;
           case 12 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
-             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
              return;
           case 13 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
@@ -2271,6 +2355,11 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((Guid[]) buf[2])[0] = rslt.getGuid(3);
              return;
           case 16 :
+             ((Guid[]) buf[0])[0] = rslt.getGuid(1);
+             ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+             ((Guid[]) buf[2])[0] = rslt.getGuid(3);
+             return;
+          case 17 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              ((string[]) buf[1])[0] = rslt.getString(2, 20);
              ((string[]) buf[2])[0] = rslt.getVarchar(3);
@@ -2293,7 +2382,7 @@ public class trn_location_bc__default : DataStoreHelperBase, IDataStoreHelper
              ((bool[]) buf[19])[0] = rslt.wasNull(17);
              ((string[]) buf[20])[0] = rslt.getMultimediaFile(18, rslt.getVarchar(5));
              return;
-          case 17 :
+          case 18 :
              ((Guid[]) buf[0])[0] = rslt.getGuid(1);
              return;
     }

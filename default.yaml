@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250317125243"
+  version: "20250318104353"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -2261,6 +2261,42 @@ components:
           description: "Is Image Button"
           type: "boolean"
       x-gx-level: "SDT_ContentPageV1"
+    SDT_DebugResults:
+      properties:
+        Summary:
+          $ref: "#/components/schemas/SDT_DebugResults.Summary"
+        UrlList:
+          type: array
+          items:
+            description: UrlListItem
+            $ref: "#/components/schemas/SDT_DebugResults.UrlList_UrlListItem"
+    SDT_DebugResults.Summary:
+      properties:
+        TotalUrls:
+          description: "Total Urls"
+          type: "integer"
+          format: "int32"
+        SuccessCount:
+          description: "Success Count"
+          type: "integer"
+          format: "int32"
+        FailureCount:
+          description: "Failure Count"
+          type: "integer"
+          format: "int32"
+      x-gx-level: "SDT_DebugResults"
+    SDT_DebugResults.UrlList_UrlListItem:
+      properties:
+        Url:
+          description: "Url"
+          type: "string"
+        StatusCode:
+          description: "Status Code"
+          type: "string"
+        StatusMessage:
+          description: "Status Message"
+          type: "string"
+      x-gx-level: "SDT_DebugResults"
     SDT_Error:
       properties:
         Status:

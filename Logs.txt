@@ -56,3 +56,15 @@ Row:    1
     my care
     my living
     my services
+>>{"ctaColor1":"#2c405a","ctaColor2":"#d4a76a","ctaColor3":"#b2b997","ctaColor4":"#c4a082"}
+["ctaColor1","ctaColor2","ctaColor3","ctaColor4"]
+["#2c405a","#d4a76a","#b2b997","#c4a082"]
+>>{"ctaColor1":"#2c405a","ctaColor2":"#d4a76a","ctaColor3":"#b2b997","ctaColor4":"#c4a082"}
+["ctaColor1","ctaColor2","ctaColor3","ctaColor4"]
+["#2c405a","#d4a76a","#b2b997","#c4a082"]
+>>{"ctaColor1":"#2c405a","ctaColor2":"#d4a76a","ctaColor3":"#b2b997","ctaColor4":"#c4a082"}
+["ctaColor1","ctaColor2","ctaColor3","ctaColor4"]
+["#2c405a","#d4a76a","#b2b997","#c4a082"]
+>>{"ctaColor1":"#2c405a","ctaColor2":"#d4a76a","ctaColor3":"#b2b997","ctaColor4":"#c4a082"}
+["ctaColor1","ctaColor2","ctaColor3","ctaColor4"]
+["#2c405a","#d4a76a","#b2b997","#c4a082"]

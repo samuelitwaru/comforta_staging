@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250317125243"
+  version: "20250318104353"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/api
 paths:
@@ -1180,6 +1180,32 @@ paths:
         404:
           description: "Not found"
 
+  /toolbox/v2/copy-appversion:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.CopyAppVersion"
+      summary: "Copy App Version"
+      security: 
+        - oAuthGXGAM: []
+      parameters:
+        - name: "Appversionid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CopyAppVersionOutput"
+        404:
+          description: "Not found"
+
   /toolbox/v2/update-appversion:
     get:
       tags:
@@ -1364,6 +1390,31 @@ paths:
               schema:
                 $ref: "#/components/schemas/SDT_Error"  
 
+        404:
+          description: "Not found"
+
+  /toolbox/v2/debug:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.DebugAppVersion"
+      summary: "Debug the appversion urls"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DebugAppVersionInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DebugAppVersionOutput"
         404:
           description: "Not found"
 
@@ -1565,6 +1616,15 @@ components:
           description: "SDT_Error"
           $ref: "#/components/schemas/SDT_Error"
 
+    CopyAppVersionOutput:
+      properties:
+        AppVersion:
+          description: "SDT_App Version"
+          $ref: "#/components/schemas/SDT_AppVersion"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
     UpdateAppVersionOutput:
       properties:
         AppVersion:
@@ -1607,6 +1667,15 @@ components:
           description: "SDT_Error"
           $ref: "#/components/schemas/SDT_Error"
 
+
+    DebugAppVersionOutput:
+      properties:
+        DebugResults:
+          description: "SDT_Debug Results"
+          $ref: "#/components/schemas/SDT_DebugResults"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
 
     LoginWithQrCodeInput:  
       properties:
@@ -1798,6 +1867,7 @@ components:
 
 
 
+
     SavePageV2Input:  
       properties:
         AppVersionId:
@@ -1845,6 +1915,13 @@ components:
           type: "string"
           format: "uuid"
 
+
+    DebugAppVersionInput:  
+      properties:
+        UrlList:
+          type: array
+          items:
+            type: "string"
   
     SDT_LoginResidentResponse:
       properties:
@@ -2636,6 +2713,52 @@ components:
 
 
       x-gx-level: "SDT_AppVersion"
+
+    SDT_DebugResults:
+      properties:
+        Summary:
+          $ref: "#/components/schemas/SDT_DebugResults.Summary"
+
+        UrlList:
+          type: array
+          items:
+            description: UrlListItem
+            $ref: "#/components/schemas/SDT_DebugResults.UrlList_UrlListItem"
+
+
+    SDT_DebugResults.Summary:
+      properties:
+        TotalUrls:
+          description: "Total Urls"
+          type: "integer"
+          format: "int32"
+        SuccessCount:
+          description: "Success Count"
+          type: "integer"
+          format: "int32"
+        FailureCount:
+          description: "Failure Count"
+          type: "integer"
+          format: "int32"
+
+
+      x-gx-level: "SDT_DebugResults"
+
+
+    SDT_DebugResults.UrlList_UrlListItem:
+      properties:
+        Url:
+          description: "Url"
+          type: "string"
+        StatusCode:
+          description: "Status Code"
+          type: "string"
+        StatusMessage:
+          description: "Status Message"
+          type: "string"
+
+
+      x-gx-level: "SDT_DebugResults"
 
     SDT_ApiResidentFilledForms:
       properties:

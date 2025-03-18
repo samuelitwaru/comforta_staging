@@ -46,40 +46,49 @@ namespace GeneXus.Programs {
 
       public void execute( Guid aP0_LocationId ,
                            out Guid aP1_ResidentPackageId ,
-                           out string aP2_ResidentPackageName )
+                           out string aP2_ResidentPackageName ,
+                           out bool aP3_NoDefault )
       {
          this.AV9LocationId = aP0_LocationId;
          this.AV10ResidentPackageId = Guid.Empty ;
          this.AV11ResidentPackageName = "" ;
+         this.AV12NoDefault = false ;
          initialize();
          ExecuteImpl();
          aP1_ResidentPackageId=this.AV10ResidentPackageId;
          aP2_ResidentPackageName=this.AV11ResidentPackageName;
+         aP3_NoDefault=this.AV12NoDefault;
       }
 
-      public string executeUdp( Guid aP0_LocationId ,
-                                out Guid aP1_ResidentPackageId )
+      public bool executeUdp( Guid aP0_LocationId ,
+                              out Guid aP1_ResidentPackageId ,
+                              out string aP2_ResidentPackageName )
       {
-         execute(aP0_LocationId, out aP1_ResidentPackageId, out aP2_ResidentPackageName);
-         return AV11ResidentPackageName ;
+         execute(aP0_LocationId, out aP1_ResidentPackageId, out aP2_ResidentPackageName, out aP3_NoDefault);
+         return AV12NoDefault ;
       }
 
       public void executeSubmit( Guid aP0_LocationId ,
                                  out Guid aP1_ResidentPackageId ,
-                                 out string aP2_ResidentPackageName )
+                                 out string aP2_ResidentPackageName ,
+                                 out bool aP3_NoDefault )
       {
          this.AV9LocationId = aP0_LocationId;
          this.AV10ResidentPackageId = Guid.Empty ;
          this.AV11ResidentPackageName = "" ;
+         this.AV12NoDefault = false ;
          SubmitImpl();
          aP1_ResidentPackageId=this.AV10ResidentPackageId;
          aP2_ResidentPackageName=this.AV11ResidentPackageName;
+         aP3_NoDefault=this.AV12NoDefault;
       }
 
       protected override void ExecutePrivate( )
       {
          /* GeneXus formulas */
          /* Output device settings */
+         AV12NoDefault = false;
+         AV13GXLvl2 = 0;
          /* Using cursor P00BM2 */
          pr_default.execute(0, new Object[] {AV9LocationId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -88,6 +97,7 @@ namespace GeneXus.Programs {
             A555SG_LocationId = P00BM2_A555SG_LocationId[0];
             A554ResidentPackageId = P00BM2_A554ResidentPackageId[0];
             A557ResidentPackageName = P00BM2_A557ResidentPackageName[0];
+            AV13GXLvl2 = 1;
             AV10ResidentPackageId = A554ResidentPackageId;
             AV11ResidentPackageName = A557ResidentPackageName;
             /* Exit For each command. Update data (if necessary), close cursors & exit. */
@@ -95,6 +105,10 @@ namespace GeneXus.Programs {
             pr_default.readNext(0);
          }
          pr_default.close(0);
+         if ( AV13GXLvl2 == 0 )
+         {
+            AV12NoDefault = true;
+         }
          cleanup();
       }
 
@@ -129,6 +143,8 @@ namespace GeneXus.Programs {
          /* GeneXus formulas. */
       }
 
+      private short AV13GXLvl2 ;
+      private bool AV12NoDefault ;
       private bool A559ResidentPackageDefault ;
       private string AV11ResidentPackageName ;
       private string A557ResidentPackageName ;
@@ -146,6 +162,7 @@ namespace GeneXus.Programs {
       private string[] P00BM2_A557ResidentPackageName ;
       private Guid aP1_ResidentPackageId ;
       private string aP2_ResidentPackageName ;
+      private bool aP3_NoDefault ;
    }
 
    public class prc_getdefaultresidentpackage__default : DataStoreHelperBase, IDataStoreHelper
