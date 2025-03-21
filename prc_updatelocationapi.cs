@@ -129,8 +129,8 @@ namespace GeneXus.Programs {
          }
          if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV20ReceptionImageFile)) )
          {
-            AV9BC_Trn_Location.gxTpr_Locationimage = AV20ReceptionImageFile;
-            AV9BC_Trn_Location.gxTpr_Locationimage_gxi = GXDbFile.GetUriFromFile( "", "", AV20ReceptionImageFile);
+            AV9BC_Trn_Location.gxTpr_Receptionimage = AV20ReceptionImageFile;
+            AV9BC_Trn_Location.gxTpr_Receptionimage_gxi = GXDbFile.GetUriFromFile( "", "", AV20ReceptionImageFile);
          }
          if ( AV9BC_Trn_Location.Update() )
          {
