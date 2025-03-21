@@ -298,36 +298,39 @@ namespace GeneXus.Programs {
                {
                   if ( (0==AV60Wp_locationdynamicformds_12_tfwwpformlatestversionnumber_to) || ( ( A219WWPFormLatestVersionNumber <= AV60Wp_locationdynamicformds_12_tfwwpformlatestversionnumber_to ) ) )
                   {
-                     W240WWPFormType = A240WWPFormType;
-                     AV31count = 0;
-                     while ( (pr_default.getStatus(0) != 101) && ( P007Y2_A240WWPFormType[0] == A240WWPFormType ) && ( StringUtil.StrCmp(P007Y2_A209WWPFormTitle[0], A209WWPFormTitle) == 0 ) )
+                     if ( A207WWPFormVersionNumber == A219WWPFormLatestVersionNumber )
                      {
-                        BRK7Y2 = false;
-                        A29LocationId = P007Y2_A29LocationId[0];
-                        A207WWPFormVersionNumber = P007Y2_A207WWPFormVersionNumber[0];
-                        A206WWPFormId = P007Y2_A206WWPFormId[0];
-                        A395LocationDynamicFormId = P007Y2_A395LocationDynamicFormId[0];
-                        A11OrganisationId = P007Y2_A11OrganisationId[0];
-                        AV31count = (long)(AV31count+1);
-                        BRK7Y2 = true;
-                        pr_default.readNext(0);
-                     }
-                     if ( (0==AV22SkipItems) )
-                     {
-                        AV26Option = (String.IsNullOrEmpty(StringUtil.RTrim( A209WWPFormTitle)) ? "<#Empty#>" : A209WWPFormTitle);
-                        AV27Options.Add(AV26Option, 0);
-                        AV30OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV31count), "Z,ZZZ,ZZZ,ZZ9")), 0);
-                        if ( AV27Options.Count == 10 )
+                        W240WWPFormType = A240WWPFormType;
+                        AV31count = 0;
+                        while ( (pr_default.getStatus(0) != 101) && ( P007Y2_A240WWPFormType[0] == A240WWPFormType ) && ( StringUtil.StrCmp(P007Y2_A209WWPFormTitle[0], A209WWPFormTitle) == 0 ) )
                         {
-                           /* Exit For each command. Update data (if necessary), close cursors & exit. */
-                           if (true) break;
+                           BRK7Y2 = false;
+                           A29LocationId = P007Y2_A29LocationId[0];
+                           A207WWPFormVersionNumber = P007Y2_A207WWPFormVersionNumber[0];
+                           A206WWPFormId = P007Y2_A206WWPFormId[0];
+                           A395LocationDynamicFormId = P007Y2_A395LocationDynamicFormId[0];
+                           A11OrganisationId = P007Y2_A11OrganisationId[0];
+                           AV31count = (long)(AV31count+1);
+                           BRK7Y2 = true;
+                           pr_default.readNext(0);
                         }
+                        if ( (0==AV22SkipItems) )
+                        {
+                           AV26Option = (String.IsNullOrEmpty(StringUtil.RTrim( A209WWPFormTitle)) ? "<#Empty#>" : A209WWPFormTitle);
+                           AV27Options.Add(AV26Option, 0);
+                           AV30OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV31count), "Z,ZZZ,ZZZ,ZZ9")), 0);
+                           if ( AV27Options.Count == 10 )
+                           {
+                              /* Exit For each command. Update data (if necessary), close cursors & exit. */
+                              if (true) break;
+                           }
+                        }
+                        else
+                        {
+                           AV22SkipItems = (short)(AV22SkipItems-1);
+                        }
+                        A240WWPFormType = W240WWPFormType;
                      }
-                     else
-                     {
-                        AV22SkipItems = (short)(AV22SkipItems-1);
-                     }
-                     A240WWPFormType = W240WWPFormType;
                   }
                }
             }
@@ -413,32 +416,35 @@ namespace GeneXus.Programs {
                {
                   if ( (0==AV60Wp_locationdynamicformds_12_tfwwpformlatestversionnumber_to) || ( ( A219WWPFormLatestVersionNumber <= AV60Wp_locationdynamicformds_12_tfwwpformlatestversionnumber_to ) ) )
                   {
-                     W240WWPFormType = A240WWPFormType;
-                     AV31count = 0;
-                     while ( (pr_default.getStatus(1) != 101) && ( P007Y3_A240WWPFormType[0] == A240WWPFormType ) && ( P007Y3_A206WWPFormId[0] == A206WWPFormId ) && ( P007Y3_A207WWPFormVersionNumber[0] == A207WWPFormVersionNumber ) )
+                     if ( A207WWPFormVersionNumber == A219WWPFormLatestVersionNumber )
                      {
-                        BRK7Y4 = false;
-                        A29LocationId = P007Y3_A29LocationId[0];
-                        A395LocationDynamicFormId = P007Y3_A395LocationDynamicFormId[0];
-                        A11OrganisationId = P007Y3_A11OrganisationId[0];
-                        AV31count = (long)(AV31count+1);
-                        BRK7Y4 = true;
-                        pr_default.readNext(1);
+                        W240WWPFormType = A240WWPFormType;
+                        AV31count = 0;
+                        while ( (pr_default.getStatus(1) != 101) && ( P007Y3_A240WWPFormType[0] == A240WWPFormType ) && ( P007Y3_A206WWPFormId[0] == A206WWPFormId ) && ( P007Y3_A207WWPFormVersionNumber[0] == A207WWPFormVersionNumber ) )
+                        {
+                           BRK7Y4 = false;
+                           A29LocationId = P007Y3_A29LocationId[0];
+                           A395LocationDynamicFormId = P007Y3_A395LocationDynamicFormId[0];
+                           A11OrganisationId = P007Y3_A11OrganisationId[0];
+                           AV31count = (long)(AV31count+1);
+                           BRK7Y4 = true;
+                           pr_default.readNext(1);
+                        }
+                        AV26Option = (String.IsNullOrEmpty(StringUtil.RTrim( A208WWPFormReferenceName)) ? "<#Empty#>" : A208WWPFormReferenceName);
+                        AV25InsertIndex = 1;
+                        while ( ( StringUtil.StrCmp(AV26Option, "<#Empty#>") != 0 ) && ( AV25InsertIndex <= AV27Options.Count ) && ( ( StringUtil.StrCmp(((string)AV27Options.Item(AV25InsertIndex)), AV26Option) < 0 ) || ( StringUtil.StrCmp(((string)AV27Options.Item(AV25InsertIndex)), "<#Empty#>") == 0 ) ) )
+                        {
+                           AV25InsertIndex = (int)(AV25InsertIndex+1);
+                        }
+                        AV27Options.Add(AV26Option, AV25InsertIndex);
+                        AV30OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV31count), "Z,ZZZ,ZZZ,ZZ9")), AV25InsertIndex);
+                        if ( AV27Options.Count == AV22SkipItems + 11 )
+                        {
+                           AV27Options.RemoveItem(AV27Options.Count);
+                           AV30OptionIndexes.RemoveItem(AV30OptionIndexes.Count);
+                        }
+                        A240WWPFormType = W240WWPFormType;
                      }
-                     AV26Option = (String.IsNullOrEmpty(StringUtil.RTrim( A208WWPFormReferenceName)) ? "<#Empty#>" : A208WWPFormReferenceName);
-                     AV25InsertIndex = 1;
-                     while ( ( StringUtil.StrCmp(AV26Option, "<#Empty#>") != 0 ) && ( AV25InsertIndex <= AV27Options.Count ) && ( ( StringUtil.StrCmp(((string)AV27Options.Item(AV25InsertIndex)), AV26Option) < 0 ) || ( StringUtil.StrCmp(((string)AV27Options.Item(AV25InsertIndex)), "<#Empty#>") == 0 ) ) )
-                     {
-                        AV25InsertIndex = (int)(AV25InsertIndex+1);
-                     }
-                     AV27Options.Add(AV26Option, AV25InsertIndex);
-                     AV30OptionIndexes.Add(StringUtil.Trim( context.localUtil.Format( (decimal)(AV31count), "Z,ZZZ,ZZZ,ZZ9")), AV25InsertIndex);
-                     if ( AV27Options.Count == AV22SkipItems + 11 )
-                     {
-                        AV27Options.RemoveItem(AV27Options.Count);
-                        AV30OptionIndexes.RemoveItem(AV30OptionIndexes.Count);
-                     }
-                     A240WWPFormType = W240WWPFormType;
                   }
                }
             }

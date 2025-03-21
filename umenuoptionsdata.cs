@@ -311,7 +311,7 @@ namespace GeneXus.Programs {
          AV5id = (short)(AV5id+1);
          Gxm1dvelop_menu.gxTpr_Id = StringUtil.Str( (decimal)(AV5id), 4, 0);
          Gxm1dvelop_menu.gxTpr_Tooltip = "";
-         Gxm1dvelop_menu.gxTpr_Link = formatLink("wp_applicationdesign.aspx") ;
+         Gxm1dvelop_menu.gxTpr_Link = formatLink("wp_applicationdesignv1.aspx") ;
          Gxm1dvelop_menu.gxTpr_Linktarget = "";
          Gxm1dvelop_menu.gxTpr_Iconclass = "menu-icon fas fa-mobile-alt";
          Gxm1dvelop_menu.gxTpr_Caption = context.GetMessage( "The App Builder", "");

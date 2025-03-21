@@ -1708,7 +1708,10 @@ namespace GeneXus.Programs {
                {
                   if ( (0==AV98Wp_locationdynamicformds_12_tfwwpformlatestversionnumber_to) || ( ( A219WWPFormLatestVersionNumber <= AV98Wp_locationdynamicformds_12_tfwwpformlatestversionnumber_to ) ) )
                   {
-                     GRID_nRecordCount = (long)(GRID_nRecordCount+1);
+                     if ( A207WWPFormVersionNumber == A219WWPFormLatestVersionNumber )
+                     {
+                        GRID_nRecordCount = (long)(GRID_nRecordCount+1);
+                     }
                   }
                }
             }
@@ -1823,8 +1826,11 @@ namespace GeneXus.Programs {
                   {
                      if ( (0==AV98Wp_locationdynamicformds_12_tfwwpformlatestversionnumber_to) || ( ( A219WWPFormLatestVersionNumber <= AV98Wp_locationdynamicformds_12_tfwwpformlatestversionnumber_to ) ) )
                      {
-                        /* Execute user event: Grid.Load */
-                        E22702 ();
+                        if ( A207WWPFormVersionNumber == A219WWPFormLatestVersionNumber )
+                        {
+                           /* Execute user event: Grid.Load */
+                           E22702 ();
+                        }
                      }
                   }
                }
@@ -3461,7 +3467,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532113443550", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?2025321164716", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3477,7 +3483,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_locationdynamicform.js", "?202532113443553", false, true);
+         context.AddJavascriptSource("wp_locationdynamicform.js", "?2025321164721", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
