@@ -647,7 +647,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;", "div");
             /* Div Control */
-            GxWebStd.gx_div_start( context, divTableheadercontent_Internalname, divTableheadercontent_Visible, 0, "px", 0, "px", "Flex", "start", "top", " "+"data-gx-flex"+" ", "flex-wrap:wrap;", "div");
+            GxWebStd.gx_div_start( context, divTableheadercontent_Internalname, 1, 0, "px", 0, "px", "Flex", "start", "top", " "+"data-gx-flex"+" ", "flex-wrap:wrap;", "div");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "", "start", "top", "", "flex-grow:1;align-self:center;", "div");
             /* Div Control */
@@ -1860,19 +1860,12 @@ namespace GeneXus.Programs {
             GX_msglist.addItem(new GeneXus.Programs.wwpbaseobjects.dvmessagegetbasicnotificationmsg(context).executeUdp(  "Success",  AV51successmsg,  "success",  "",  "true",  ""));
             AV52websession.Remove(context.GetMessage( "NotificationMessage", ""));
          }
-         /* Execute user subroutine: 'ATTRIBUTESSECURITYCODE' */
-         S112 ();
-         if ( returnInSub )
-         {
-            returnInSub = true;
-            if (true) return;
-         }
          subGrid_Rows = 10;
          GxWebStd.gx_hidden_field( context, sPrefix+"GRID_Rows", StringUtil.LTrim( StringUtil.NToC( (decimal)(subGrid_Rows), 6, 0, ".", "")));
          Grid_empowerer_Gridinternalname = subGrid_Internalname;
          ucGrid_empowerer.SendProperty(context, sPrefix, false, Grid_empowerer_Internalname, "GridInternalName", Grid_empowerer_Gridinternalname);
          /* Execute user subroutine: 'LOADSAVEDFILTERS' */
-         S122 ();
+         S112 ();
          if ( returnInSub )
          {
             returnInSub = true;
@@ -1888,14 +1881,14 @@ namespace GeneXus.Programs {
          edtOrganisationId_Visible = 0;
          AssignProp(sPrefix, false, edtOrganisationId_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(edtOrganisationId_Visible), 5, 0), true);
          /* Execute user subroutine: 'PREPARETRANSACTION' */
-         S132 ();
+         S122 ();
          if ( returnInSub )
          {
             returnInSub = true;
             if (true) return;
          }
          /* Execute user subroutine: 'LOADGRIDSTATE' */
-         S142 ();
+         S132 ();
          if ( returnInSub )
          {
             returnInSub = true;
@@ -1906,7 +1899,7 @@ namespace GeneXus.Programs {
             AV14OrderedBy = 1;
             AssignAttri(sPrefix, false, "AV14OrderedBy", StringUtil.LTrimStr( (decimal)(AV14OrderedBy), 4, 0));
             /* Execute user subroutine: 'SETDDOSORTEDSTATUS' */
-            S152 ();
+            S142 ();
             if ( returnInSub )
             {
                returnInSub = true;
@@ -1931,7 +1924,7 @@ namespace GeneXus.Programs {
          returnInSub = false;
          new GeneXus.Programs.wwpbaseobjects.loadwwpcontext(context ).execute( out  AV6WWPContext) ;
          /* Execute user subroutine: 'CHECKSECURITYFORACTIONS' */
-         S162 ();
+         S152 ();
          if ( returnInSub )
          {
             returnInSub = true;
@@ -1947,7 +1940,7 @@ namespace GeneXus.Programs {
             AV20ManageFiltersExecutionStep = 0;
             AssignAttri(sPrefix, false, "AV20ManageFiltersExecutionStep", StringUtil.Str( (decimal)(AV20ManageFiltersExecutionStep), 1, 0));
             /* Execute user subroutine: 'LOADSAVEDFILTERS' */
-            S122 ();
+            S112 ();
             if ( returnInSub )
             {
                returnInSub = true;
@@ -1955,7 +1948,7 @@ namespace GeneXus.Programs {
             }
          }
          /* Execute user subroutine: 'SAVEGRIDSTATE' */
-         S172 ();
+         S162 ();
          if ( returnInSub )
          {
             returnInSub = true;
@@ -2016,7 +2009,7 @@ namespace GeneXus.Programs {
             AV15OrderedDsc = ((StringUtil.StrCmp(Ddo_grid_Activeeventkey, "<#OrderDSC#>")==0) ? true : false);
             AssignAttri(sPrefix, false, "AV15OrderedDsc", AV15OrderedDsc);
             /* Execute user subroutine: 'SETDDOSORTEDSTATUS' */
-            S152 ();
+            S142 ();
             if ( returnInSub )
             {
                returnInSub = true;
@@ -2136,7 +2129,7 @@ namespace GeneXus.Programs {
          if ( StringUtil.StrCmp(Ddo_managefilters_Activeeventkey, "<#Clean#>") == 0 )
          {
             /* Execute user subroutine: 'CLEANFILTERS' */
-            S182 ();
+            S172 ();
             if ( returnInSub )
             {
                returnInSub = true;
@@ -2147,7 +2140,7 @@ namespace GeneXus.Programs {
          else if ( StringUtil.StrCmp(Ddo_managefilters_Activeeventkey, "<#Save#>") == 0 )
          {
             /* Execute user subroutine: 'SAVEGRIDSTATE' */
-            S172 ();
+            S162 ();
             if ( returnInSub )
             {
                returnInSub = true;
@@ -2181,7 +2174,7 @@ namespace GeneXus.Programs {
             else
             {
                /* Execute user subroutine: 'CLEANFILTERS' */
-               S182 ();
+               S172 ();
                if ( returnInSub )
                {
                   returnInSub = true;
@@ -2194,14 +2187,14 @@ namespace GeneXus.Programs {
                AV15OrderedDsc = AV12GridState.gxTpr_Ordereddsc;
                AssignAttri(sPrefix, false, "AV15OrderedDsc", AV15OrderedDsc);
                /* Execute user subroutine: 'SETDDOSORTEDSTATUS' */
-               S152 ();
+               S142 ();
                if ( returnInSub )
                {
                   returnInSub = true;
                   if (true) return;
                }
                /* Execute user subroutine: 'LOADREGFILTERSSTATE' */
-               S192 ();
+               S182 ();
                if ( returnInSub )
                {
                   returnInSub = true;
@@ -2222,7 +2215,7 @@ namespace GeneXus.Programs {
          if ( AV36ActionGroup == 1 )
          {
             /* Execute user subroutine: 'DO RESENDINVITE' */
-            S202 ();
+            S192 ();
             if ( returnInSub )
             {
                returnInSub = true;
@@ -2232,7 +2225,7 @@ namespace GeneXus.Programs {
          else if ( AV36ActionGroup == 2 )
          {
             /* Execute user subroutine: 'DO DISPLAY' */
-            S212 ();
+            S202 ();
             if ( returnInSub )
             {
                returnInSub = true;
@@ -2242,7 +2235,7 @@ namespace GeneXus.Programs {
          else if ( AV36ActionGroup == 3 )
          {
             /* Execute user subroutine: 'DO UPDATE' */
-            S222 ();
+            S212 ();
             if ( returnInSub )
             {
                returnInSub = true;
@@ -2252,7 +2245,7 @@ namespace GeneXus.Programs {
          else if ( AV36ActionGroup == 4 )
          {
             /* Execute user subroutine: 'DO DELETE' */
-            S232 ();
+            S222 ();
             if ( returnInSub )
             {
                returnInSub = true;
@@ -2275,7 +2268,7 @@ namespace GeneXus.Programs {
          if ( StringUtil.StrCmp(Dvelop_confirmpanel_resendinvite_Result, "Yes") == 0 )
          {
             /* Execute user subroutine: 'DO ACTION RESENDINVITE' */
-            S242 ();
+            S232 ();
             if ( returnInSub )
             {
                returnInSub = true;
@@ -2306,7 +2299,7 @@ namespace GeneXus.Programs {
          context.httpAjaxContext.ajax_rsp_assign_sdt_attri(sPrefix, false, "AV12GridState", AV12GridState);
       }
 
-      protected void S152( )
+      protected void S142( )
       {
          /* 'SETDDOSORTEDSTATUS' Routine */
          returnInSub = false;
@@ -2314,7 +2307,7 @@ namespace GeneXus.Programs {
          ucDdo_grid.SendProperty(context, sPrefix, false, Ddo_grid_Internalname, "SortedStatus", Ddo_grid_Sortedstatus);
       }
 
-      protected void S162( )
+      protected void S152( )
       {
          /* 'CHECKSECURITYFORACTIONS' Routine */
          returnInSub = false;
@@ -2345,7 +2338,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void S122( )
+      protected void S112( )
       {
          /* 'LOADSAVEDFILTERS' Routine */
          returnInSub = false;
@@ -2354,7 +2347,7 @@ namespace GeneXus.Programs {
          AV18ManageFiltersData = GXt_objcol_SdtDVB_SDTDropDownOptionsData_Item4;
       }
 
-      protected void S182( )
+      protected void S172( )
       {
          /* 'CLEANFILTERS' Routine */
          returnInSub = false;
@@ -2362,7 +2355,7 @@ namespace GeneXus.Programs {
          AssignAttri(sPrefix, false, "AV16FilterFullText", AV16FilterFullText);
       }
 
-      protected void S202( )
+      protected void S192( )
       {
          /* 'DO RESENDINVITE' Routine */
          returnInSub = false;
@@ -2371,7 +2364,7 @@ namespace GeneXus.Programs {
          this.executeUsercontrolMethod(sPrefix, false, "DVELOP_CONFIRMPANEL_RESENDINVITEContainer", "Confirm", "", new Object[] {});
       }
 
-      protected void S242( )
+      protected void S232( )
       {
          /* 'DO ACTION RESENDINVITE' Routine */
          returnInSub = false;
@@ -2397,7 +2390,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void S212( )
+      protected void S202( )
       {
          /* 'DO DISPLAY' Routine */
          returnInSub = false;
@@ -2415,7 +2408,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void S222( )
+      protected void S212( )
       {
          /* 'DO UPDATE' Routine */
          returnInSub = false;
@@ -2433,7 +2426,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void S232( )
+      protected void S222( )
       {
          /* 'DO DELETE' Routine */
          returnInSub = false;
@@ -2451,7 +2444,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void S142( )
+      protected void S132( )
       {
          /* 'LOADGRIDSTATE' Routine */
          returnInSub = false;
@@ -2468,14 +2461,14 @@ namespace GeneXus.Programs {
          AV15OrderedDsc = AV12GridState.gxTpr_Ordereddsc;
          AssignAttri(sPrefix, false, "AV15OrderedDsc", AV15OrderedDsc);
          /* Execute user subroutine: 'SETDDOSORTEDSTATUS' */
-         S152 ();
+         S142 ();
          if ( returnInSub )
          {
             returnInSub = true;
             if (true) return;
          }
          /* Execute user subroutine: 'LOADREGFILTERSSTATE' */
-         S192 ();
+         S182 ();
          if ( returnInSub )
          {
             returnInSub = true;
@@ -2488,7 +2481,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void S192( )
+      protected void S182( )
       {
          /* 'LOADREGFILTERSSTATE' Routine */
          returnInSub = false;
@@ -2505,7 +2498,7 @@ namespace GeneXus.Programs {
          }
       }
 
-      protected void S172( )
+      protected void S162( )
       {
          /* 'SAVEGRIDSTATE' Routine */
          returnInSub = false;
@@ -2518,7 +2511,7 @@ namespace GeneXus.Programs {
          new GeneXus.Programs.wwpbaseobjects.savegridstate(context ).execute(  AV53Pgmname+"GridState",  AV12GridState.ToXml(false, true, "", "")) ;
       }
 
-      protected void S132( )
+      protected void S122( )
       {
          /* 'PREPARETRANSACTION' Routine */
          returnInSub = false;
@@ -2532,14 +2525,6 @@ namespace GeneXus.Programs {
          AV11TrnContextAtt.gxTpr_Attributevalue = AV8OrganisationId.ToString();
          AV10TrnContext.gxTpr_Attributes.Add(AV11TrnContextAtt, 0);
          AV17Session.Set("TrnContext", AV10TrnContext.ToXml(false, true, "", ""));
-      }
-
-      protected void S112( )
-      {
-         /* 'ATTRIBUTESSECURITYCODE' Routine */
-         returnInSub = false;
-         divTableheadercontent_Visible = ((false) ? 1 : 0);
-         AssignProp(sPrefix, false, divTableheadercontent_Internalname, "Visible", StringUtil.LTrimStr( (decimal)(divTableheadercontent_Visible), 5, 0), true);
       }
 
       protected void wb_table1_59_9T2( bool wbgen )
@@ -2779,7 +2764,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531811361173", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532113404625", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -2795,7 +2780,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("trn_organisationtrn_managerwc.js", "?202531811361174", false, true);
+         context.AddJavascriptSource("trn_organisationtrn_managerwc.js", "?202532113404627", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -3387,7 +3372,6 @@ namespace GeneXus.Programs {
          edtavFilterfulltext_Jsonclick = "";
          edtavFilterfulltext_Enabled = 1;
          bttBtninsert_Visible = 1;
-         divTableheadercontent_Visible = 1;
          Grid_empowerer_Hastitlesettings = Convert.ToBoolean( -1);
          Dvelop_confirmpanel_resendinvite_Confirmtype = "1";
          Dvelop_confirmpanel_resendinvite_Yesbuttonposition = "left";
@@ -3651,7 +3635,6 @@ namespace GeneXus.Programs {
       private int nGXsfl_35_idx=1 ;
       private int edtavManagerisactive_Enabled ;
       private int Gridpaginationbar_Pagestoshow ;
-      private int divTableheadercontent_Visible ;
       private int bttBtninsert_Visible ;
       private int edtavFilterfulltext_Enabled ;
       private int edtOrganisationId_Visible ;

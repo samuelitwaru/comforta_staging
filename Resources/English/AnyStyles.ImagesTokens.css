@@ -105,6 +105,7 @@
 	--GX-Image_GAMActionMenu : url(../GAMActionMenu.png);
 	--GX-Image_avatar : url(../avatar.png);
 	--GX-Image_emailTemplateLogo : url(../emailTemplateLogo.svg);
+	--GX-Image_ReceptionImageFile : url(../ReceptionImageFile.png);
 }
 
 .GX_Image_SelectRow_Class{content: var(--GX-Image_SelectRow);}
@@ -211,4 +212,5 @@
 .GX_Image_GAMActionMenu_Class{content: var(--GX-Image_GAMActionMenu);}
 .GX_Image_avatar_Class{content: var(--GX-Image_avatar);}
 .GX_Image_emailTemplateLogo_Class{content: var(--GX-Image_emailTemplateLogo);}
+.GX_Image_ReceptionImageFile_Class{content: var(--GX-Image_ReceptionImageFile);}
 }

@@ -889,7 +889,7 @@ namespace GeneXus.Programs {
          Gx_BScreen = 1;
          standaloneModal1Q110( ) ;
          Gx_BScreen = 0;
-         if ( ! ( ( StringUtil.StrCmp(A545PageType, "Menu") == 0 ) || ( StringUtil.StrCmp(A545PageType, "Content") == 0 ) || ( StringUtil.StrCmp(A545PageType, "WebLink") == 0 ) || ( StringUtil.StrCmp(A545PageType, "DynamicForm") == 0 ) ) )
+         if ( ! ( ( StringUtil.StrCmp(A545PageType, "Menu") == 0 ) || ( StringUtil.StrCmp(A545PageType, "Content") == 0 ) || ( StringUtil.StrCmp(A545PageType, "WebLink") == 0 ) || ( StringUtil.StrCmp(A545PageType, "DynamicForm") == 0 ) || ( StringUtil.StrCmp(A545PageType, "Calendar") == 0 ) || ( StringUtil.StrCmp(A545PageType, "MyActivity") == 0 ) ) )
          {
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Page Type", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, "");
             AnyError = 1;

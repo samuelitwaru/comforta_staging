@@ -22,9 +22,16 @@ const files = [
     "components/ActionListComponent.js",
     "components/MappingComponent.js",
     "components/MediaComponent.js",
+    "components/NewPageComponent.js",
+    "components/NewPageButton.js",
+    "components/TileContextMenu.js",
+    "components/PageNameEditor.js",
     "classes/ImageCropper.js",
+    "classes/ContentEditorManager.js",
     "utils/defaults.js",
     "utils/helper.js",
+    "utils/helper.js",
+    "../dist/quill/quill.js"
 ];
 
 

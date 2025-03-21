@@ -30,6 +30,8 @@ namespace GeneXus.Programs
 		public SdtSDT_ContentPage_ContentItem( )
 		{
 			/* Constructor for serialization */
+			gxTv_SdtSDT_ContentPage_ContentItem_Contentid = "";
+
 			gxTv_SdtSDT_ContentPage_ContentItem_Contenttype = "";
 
 			gxTv_SdtSDT_ContentPage_ContentItem_Contentvalue = "";
@@ -61,6 +63,9 @@ namespace GeneXus.Programs
 
 		public override void ToJSON(bool includeState)
 		{
+			AddObjectProperty("ContentId", gxTpr_Contentid, false);
+
+
 			AddObjectProperty("ContentType", gxTpr_Contenttype, false);
 
 
@@ -71,6 +76,22 @@ namespace GeneXus.Programs
 		#endregion
 
 		#region Properties
+
+		[SoapElement(ElementName="ContentId")]
+		[XmlElement(ElementName="ContentId")]
+		public string gxTpr_Contentid
+		{
+			get {
+				return gxTv_SdtSDT_ContentPage_ContentItem_Contentid; 
+			}
+			set {
+				gxTv_SdtSDT_ContentPage_ContentItem_Contentid = value;
+				SetDirty("Contentid");
+			}
+		}
+
+
+
 
 		[SoapElement(ElementName="ContentType")]
 		[XmlElement(ElementName="ContentType")]
@@ -124,6 +145,7 @@ namespace GeneXus.Programs
 
 		public void initialize( )
 		{
+			gxTv_SdtSDT_ContentPage_ContentItem_Contentid = "";
 			gxTv_SdtSDT_ContentPage_ContentItem_Contenttype = "";
 			gxTv_SdtSDT_ContentPage_ContentItem_Contentvalue = "";
 			return  ;
@@ -134,6 +156,9 @@ namespace GeneXus.Programs
 		#endregion
 
 		#region Declaration
+
+		protected string gxTv_SdtSDT_ContentPage_ContentItem_Contentid;
+		 
 
 		protected string gxTv_SdtSDT_ContentPage_ContentItem_Contenttype;
 		 
@@ -158,7 +183,19 @@ namespace GeneXus.Programs
 		}
 
 		#region Rest Properties
-		[DataMember(Name="ContentType", Order=0)]
+		[DataMember(Name="ContentId", Order=0)]
+		public  string gxTpr_Contentid
+		{
+			get { 
+				return sdt.gxTpr_Contentid;
+
+			}
+			set { 
+				 sdt.gxTpr_Contentid = value;
+			}
+		}
+
+		[DataMember(Name="ContentType", Order=1)]
 		public  string gxTpr_Contenttype
 		{
 			get { 
@@ -170,7 +207,7 @@ namespace GeneXus.Programs
 			}
 		}
 
-		[DataMember(Name="ContentValue", Order=1)]
+		[DataMember(Name="ContentValue", Order=2)]
 		public  string gxTpr_Contentvalue
 		{
 			get { 

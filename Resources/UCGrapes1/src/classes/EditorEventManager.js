@@ -37,12 +37,13 @@ class EditorEventManager {
       const previousSelected =
         this.editorManager.currentEditor.editor.getSelected();
       if (previousSelected) {
-        this.editorManager.currentEditor.editor.selectRemove(previousSelected);
-        this.editorManager.selectedComponent = null;
-        this.editorManager.selectedTemplateWrapper = null;
+        // this.editorManager.currentEditor.editor.selectRemove(previousSelected);
+        // this.editorManager.selectedComponent = null;
+        // this.editorManager.selectedTemplateWrapper = null;
       }
 
       this.handleEditorClick(e, editor);
+      new ContentEditorManager(e, editor, this.editorManager);
     });
   }
 
@@ -161,10 +162,25 @@ class EditorEventManager {
         .replace("Dynamic Forms, ", "");
     }
 
-    const page = this.editorManager.getPage(pageId);
+    let page = this.editorManager.getPage(pageId);
     $(editorContainerId).nextAll().remove();
+    console.log('page',page);
     if (page) {
       this.editorManager.createChildEditor(page, pageUrl, linkLabel);
+    }else{
+      // show new button component
+      const container = document.getElementById("child-container");
+      this.newPageButton = new NewPageButton(this.editorManager);
+      container.appendChild(this.newPageButton.render());
+
+      // page = {
+      //   "PageId": null,
+      //   "PageName": "New Page",
+      //   "PageGJSJson": "",
+      //   "PageGJSHtml": "",
+      //   "PageJsonContent": ""
+      // }
+      // this.editorManager.createChildEditor(page, pageUrl, linkLabel);
     }
   }
 
@@ -187,8 +203,9 @@ class EditorEventManager {
   }
 
   editorOnSelected(editor) {
-    editor.on("component:selected", (component) =>
+    editor.on("component:selected", (component) => {
       this.handleComponentSelected(component)
+    }
     );
     this.editorOnComponentAdd(editor);
   }
@@ -271,6 +288,7 @@ class EditorEventManager {
         this.editorManager.selectedComponent
       );
     }
+    
 
     this.editorManager.toolsSection.ui.updateTileProperties(
       this.editorManager.selectedComponent,

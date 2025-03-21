@@ -1,3 +1,5 @@
+trn_memo
+trn_memocategory
 trn_residentpackage
 trn_appversion
 trn_organisationdynamicform
@@ -49,6 +51,18 @@ trn_location
 trn_manager
 trn_organisationtype
 trn_organisation
+wp_createlocationandlicensestep2
+wp_createlocationandlicensestep1
+trn_organisationtrn_locationwc
+wp_managelocationbranding
+wp_createlocationandlicense
+trn_memogeneral
+trn_memocategorytrn_memowc
+trn_memocategorygeneral
+trn_memoww
+trn_memoview
+trn_memocategoryww
+trn_memocategoryview
 wp_applicationdesignv1
 wp_applicationdesignv1
 trn_themectacolorwc
@@ -355,6 +369,10 @@ gx0040
 gx0030
 general\ui\masterprompt
 general\ui\masterunanimosidebar
+trn_organisationtrn_locationwcgetfilterdata
+trn_memowwgetfilterdata
+trn_memoloaddvcombo
+trn_memocategorywwgetfilterdata
 trn_residentpackagewwgetfilterdata
 wp_organisationdynamicformgetfilterdata
 aprc_uploadprofileimage

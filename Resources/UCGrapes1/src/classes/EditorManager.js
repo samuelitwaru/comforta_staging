@@ -32,6 +32,8 @@ class EditorManager {
     this.mediaCollection = mediaCollection;
     this.addServiceButtonEvent = addServiceButtonEvent;
     this.organisationLogo = organisationLogo;
+    this.newPageComponent = new NewPageComponent(this)
+    this.tileContextMenu = new TileContextMenu(this);
 
     this.templateManager = new TemplateManager(this.currentLanguage, this); //
     this.editorEventManager = new EditorEventManager(
@@ -101,8 +103,10 @@ class EditorManager {
   createChildEditor(page, linkUrl = "", linkLabel = "") {
     const editorDetails = this.setupEditorContainer(page, linkLabel);
     const editor = this.initializeGrapesEditor(editorDetails.editorId);
-    this.editorEventManager.addEditorEventListeners(editor, page);
-    this.loadEditorContent(editor, page, linkUrl);
+    if (page.PageId) {
+      this.editorEventManager.addEditorEventListeners(editor, page);
+      this.loadEditorContent(editor, page, linkUrl);
+    }
     this.setupEditorLayout(editor, page, editorDetails.containerId);
     this.finalizeEditorSetup(editor, page, editorDetails);
     return editor
@@ -112,15 +116,19 @@ class EditorManager {
     const count = this.container.children.length;
     const editorId = `gjs-${count}`;
     const containerId = `${editorId}-frame`;
-
     const editorContainer = document.createElement("div");
     editorContainer.innerHTML = this.generateEditorHTML(
       page,
       editorId,
       linkLabel
     );
+    
     this.configureEditorContainer(editorContainer, containerId, page.PageId);
-
+    if (!page.PageId) {
+      this.newPageComponent.createNewPageMenu();
+    }
+    //new PageNameEditor(this, page);
+    
     return { editorId, containerId };
   }
 
@@ -139,7 +147,11 @@ class EditorManager {
     const appBar = this.shouldShowAppBar(page)
       ? this.createContentPageAppBar(pageTitle, page.PageId)
       : this.createHomePageAppBar();
-
+    
+    let editorContainer = `<div id="${editorId}"></div>`;
+    if (!page.PageId) {
+      editorContainer = `<div id="new-page-menu"></div>`
+    }
     return `
       <div class="header">
           <span id="current-time-${page.PageId}"></span>
@@ -150,7 +162,7 @@ class EditorManager {
           </span>
       </div>
       ${appBar}
-      <div id="${editorId}"></div>
+      ${editorContainer}
     `;
   }
 
@@ -179,9 +191,11 @@ class EditorManager {
             </g>
             <path id="Icon_ionic-ios-arrow-round-up" data-name="Icon ionic-ios-arrow-round-up" d="M13.242,7.334a.919.919,0,0,1-1.294.007L7.667,3.073V19.336a.914.914,0,0,1-1.828,0V3.073L1.557,7.348A.925.925,0,0,1,.263,7.341.91.91,0,0,1,.27,6.054L6.106.26h0A1.026,1.026,0,0,1,6.394.07.872.872,0,0,1,6.746,0a.916.916,0,0,1,.64.26l5.836,5.794A.9.9,0,0,1,13.242,7.334Z" transform="translate(13 30.501) rotate(-90)" fill="#262626"/>
           </svg>
-          <h1 class="title" title=${pageName} style="text-transform: uppercase;">${
-      pageName.length > 20 ? pageName.substring(0, 16) + "..." : pageName
-    }</h1>
+          <div id="page-name-editor">
+            <h1 class="title" title=${pageName} style="text-transform: uppercase;">${
+              pageName.length > 20 ? pageName.substring(0, 16) + "..." : pageName
+            }</h1>
+          </div>
       </div>
     `;
   }
@@ -254,10 +268,14 @@ class EditorManager {
   async loadExistingContent(editor, page) {
     try {
       const pageData = JSON.parse(page.PageGJSJson);
-      if (page.PageIsPredefined && page.PageName === "Location") {
-        await this.handleLocationPage(editor, pageData);
+      if (page.PageIsPredefined && page.PageName === "Calendar") {
+        await this.handleCalendarPage(editor);
+      } else if (page.PageIsPredefined && page.PageName === "Location") {
+        editor.loadProjectData(pageData);
+        await this.handlePredefinedContentPage(editor, page);
       } else if (page.PageIsPredefined && page.PageName === "Reception") {
         editor.loadProjectData(pageData);
+        this.handlePredefinedContentPage(editor, page);
       } else if (page.PageIsContentPage) {
         editor.loadProjectData(pageData);
         await this.handleContentPage(editor, page);
@@ -270,8 +288,6 @@ class EditorManager {
   }
 
   async handleLocationPage(editor, pageData) {
-    // if (this.toolsSection.checkIfNotAuthenticated(locationData)) return;
-
     const locationData = this.dataManager.Location;
 
     const dataComponents =
@@ -297,6 +313,44 @@ class EditorManager {
     }
   }
 
+  formatDate() {
+    const date = new Date().toLocaleDateString('en-GB', {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+    }).replace(/(\d{2} \w{3}) (\d{4})/, "$1, $2");
+
+    return date;
+ }
+
+  async handleCalendarPage(editor) {
+    let pageData = `
+      <div class="tb-date-selector" ${defaultConstraints}>
+        <span class="tb-arrow" ${defaultConstraints}>❮</span>
+        <span class="tb-date-text" id="current-date" ${defaultConstraints}> ${this.formatDate()}</span>
+        <span class="tb-arrow" ${defaultConstraints}>❯</span>
+      </div>
+      <div class="tb-schedule" id="schedule-container" ${defaultConstraints}>
+    `;
+    
+    for (let hour = 0; hour < 24; hour++) {
+        const formattedHour = hour.toString().padStart(2, "0") + ":00";
+        pageData += `
+          <div class="tb-time-slot" ${defaultConstraints}>
+            <div class="tb-time" ${defaultConstraints}>${formattedHour}</div>
+            <div class="tb-events" ${defaultConstraints}></div>
+            ${hour === new Date().getHours() ? `
+              <div class="tb-current-time-indicator" ${defaultConstraints}></div>
+              <div class="tb-current-time-dot" ${defaultConstraints}></div>` : ''}
+          </div>
+        `;
+    }
+    
+    pageData += `</div>`;
+    
+    editor.setComponents(pageData);
+  }
+
   async handleContentPage(editor, page) {
     try {
       const res = await this.dataManager.getContentPageData(page.PageId);
@@ -315,6 +369,47 @@ class EditorManager {
     }
   }
 
+  async handlePredefinedContentPage(editor, page) {
+    try {
+      const res = await this.dataManager.getLocationData();
+      if (this.toolsSection.checkIfNotAuthenticated(res)) return;
+      console.log("Location data:", res.BC_Trn_Location, "page", page);
+      const locationInfo = res.BC_Trn_Location;
+      let contentPageData = "";
+      if (page.PageName === "Location") {
+        contentPageData = {
+          ProductServiceImage: locationInfo.LocationImage,
+          ProductServiceDescription: locationInfo.LocationDescription,
+          // CallToActions: {
+          //   CallToActionId: 
+          //   CallToActionName: 
+          //   CallToActionType: 
+          // }
+        }
+      } else if(page.PageName === "Reception") {
+        contentPageData = {
+          ProductServiceImage: locationInfo.ReceptionImage,
+          ProductServiceDescription: locationInfo.ReceptionDescription,
+          // CallToActions: {
+          //   CallToActionId: 
+          //   CallToActionName: 
+          //   CallToActionType: 
+          // }
+        }
+      }
+
+      if (!contentPageData) {
+        console.warn("No content page data received");
+        return;
+      }
+
+      await this.updateContentPageElements(editor, contentPageData);
+      // await this.updateEditorCtaButtons(editor, contentPageData);
+    } catch (error) {
+      console.error("Error loading content page data:", error);
+    }
+  }
+
   async updateContentPageElements(editor, contentPageData) {
     const wrapper = editor.DomComponents.getWrapper();
     if (!wrapper) {
@@ -322,25 +417,46 @@ class EditorManager {
       return;
     }
 
+    console.log("cnontent", contentPageData);
     await this.updateImage(wrapper, contentPageData);
     await this.updateDescription(wrapper, contentPageData);
     this.toolsSection.ui.pageContentCtas(contentPageData.CallToActions, editor);
   }
 
   async updateImage(wrapper, contentPageData) {
-    const img = wrapper.find("#product-service-image");
-    if (img.length > 0) {
-      if (!contentPageData?.ProductServiceImage) {
-        img[0].remove();
-      } else {
-        try {
-          img[0].setAttributes({
-            src: contentPageData.ProductServiceImage,
-            alt: "Product Service Image",
-          });
-        } catch (err) {
-          console.error("Error updating image:", err);
-        }
+    if (contentPageData?.ProductServiceImage) {
+      console.log("Image removed", wrapper.getEl());
+      const imageWrapper = wrapper.find("#content-image")[0];
+      if(imageWrapper) {
+        console.log("imageWrapper imageWrapper");
+        const image = `
+        <img
+            id="product-service-image"
+            data-gjs-draggable="true"
+            data-gjs-selectable="false"
+            data-gjs-editable="false"
+            data-gjs-droppable="false"
+            data-gjs-highlightable="false"
+            data-gjs-hoverable="true"
+            src="${contentPageData.ProductServiceImage}"
+            data-gjs-type="product-service-image"
+            alt="Full-width Image"
+        />
+        `;
+
+        const existingImage = imageWrapper.find("#product-service-image")[0];
+        if (existingImage) {
+          existingImage.replaceWith(image);
+        } else {
+          imageWrapper.append(image, { at: 2});
+          console.log("Image not found");
+        }        
+      }
+    } else{
+      const img = wrapper.find("#product-service-image")[0];
+      if (img) {
+        img.remove();
+        console.log("Image not found");
       }
     }
   }
@@ -352,8 +468,18 @@ class EditorManager {
         p[0].remove();
       } else {
         try {
-          const content = contentPageData.ProductServiceDescription.trim()
-          p[0].components(content);
+          const content = this.editorEventManager.templateManager
+            .addDefaultConstraintsToContentDesc(contentPageData.ProductServiceDescription);
+          const updatedContent = `
+            <button ${defaultConstraints} class="tb-edit-content-icon">
+              <?xml ${defaultConstraints}  version="1.0" ?>
+              <svg ${defaultConstraints} width="14px" height="14px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path ${defaultConstraints} fill-rule="evenodd" clip-rule="evenodd" d="M18.4324 4C18.2266 4 18.0227 4.04055 17.8325 4.11933C17.6423 4.19811 17.4695 4.31358 17.3239 4.45914L5.25659 16.5265L4.42524 19.5748L7.47353 18.7434L19.5409 6.67608C19.6864 6.53051 19.8019 6.3577 19.8807 6.16751C19.9595 5.97732 20 5.77348 20 5.56761C20 5.36175 19.9595 5.1579 19.8807 4.96771C19.8019 4.77752 19.6864 4.60471 19.5409 4.45914C19.3953 4.31358 19.2225 4.19811 19.0323 4.11933C18.8421 4.04055 18.6383 4 18.4324 4ZM17.0671 2.27157C17.5 2.09228 17.9639 2 18.4324 2C18.9009 2 19.3648 2.09228 19.7977 2.27157C20.2305 2.45086 20.6238 2.71365 20.9551 3.04493C21.2864 3.37621 21.5492 3.7695 21.7285 4.20235C21.9077 4.63519 22 5.09911 22 5.56761C22 6.03611 21.9077 6.50003 21.7285 6.93288C21.5492 7.36572 21.2864 7.75901 20.9551 8.09029L8.69996 20.3454C8.57691 20.4685 8.42387 20.5573 8.25597 20.6031L3.26314 21.9648C2.91693 22.0592 2.54667 21.9609 2.29292 21.7071C2.03917 21.4534 1.94084 21.0831 2.03526 20.7369L3.39694 15.7441C3.44273 15.5762 3.53154 15.4231 3.6546 15.3001L15.9097 3.04493C16.241 2.71365 16.6343 2.45086 17.0671 2.27157Z" fill="#5068a8"/>
+              </svg>
+            </button>
+            <div ${defaultConstraints} id="contentDescription">${content}</div>
+          `
+          p[0].components(updatedContent);
         } catch (err) {
           console.error("Error updating description:", err);
         }
@@ -380,7 +506,6 @@ class EditorManager {
       }
       const windowWidth = window.innerWidth;
       ctaContainer.getEl().style.gap = windowWidth <= 1440 ? "0.2rem" : "1.0rem";
-      console.log("ctaContainer");
     }
   }
 
@@ -557,6 +682,11 @@ class EditorManager {
     if (canvas) {
       canvas.style.setProperty("height", "calc(100% - 100px)", "important");
     }
+
+    const canvasBody = editor.Canvas.getBody();
+    if (canvasBody) {
+      canvasBody.style.setProperty("background-color", "#EFEEEC", "important");
+    }    
     this.backButtonAction(containerId, page.PageId);
   }
 

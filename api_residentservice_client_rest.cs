@@ -1659,6 +1659,393 @@ namespace GeneXus.Programs {
          /* DebugAppVersion Constructor */
       }
 
+      public void gxep_updateproductserviceapi( Guid aP0_ProductServiceId ,
+                                                string aP1_ProductServiceDescription ,
+                                                string aP2_ProductServiceImageBase64 ,
+                                                out SdtSDT_Error aP3_error )
+      {
+         restCliUpdateProductServiceAPI = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/v2/update-service";
+         restCliUpdateProductServiceAPI.Location = restLocation;
+         restCliUpdateProductServiceAPI.HttpMethod = "POST";
+         restCliUpdateProductServiceAPI.AddBodyVar("ProductServiceId", (Guid)(aP0_ProductServiceId));
+         restCliUpdateProductServiceAPI.AddBodyVar("ProductServiceDescription", (string)(aP1_ProductServiceDescription));
+         restCliUpdateProductServiceAPI.AddBodyVar("ProductServiceImageBase64", (string)(aP2_ProductServiceImageBase64));
+         restCliUpdateProductServiceAPI.RestExecute();
+         if ( restCliUpdateProductServiceAPI.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliUpdateProductServiceAPI.ErrorCode;
+            gxProperties.ErrorMessage = restCliUpdateProductServiceAPI.ErrorMessage;
+            gxProperties.StatusCode = restCliUpdateProductServiceAPI.StatusCode;
+            aP3_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP3_error = restCliUpdateProductServiceAPI.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* UpdateProductServiceAPI Constructor */
+      }
+
+      public void gxep_deleteproductserviceimageapi( Guid aP0_ProductServiceId ,
+                                                     out SdtSDT_Error aP1_error )
+      {
+         restCliDeleteProductServiceImageAPI = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/v2/delete-service-image";
+         restCliDeleteProductServiceImageAPI.Location = restLocation;
+         restCliDeleteProductServiceImageAPI.HttpMethod = "POST";
+         restCliDeleteProductServiceImageAPI.AddBodyVar("ProductServiceId", (Guid)(aP0_ProductServiceId));
+         restCliDeleteProductServiceImageAPI.RestExecute();
+         if ( restCliDeleteProductServiceImageAPI.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliDeleteProductServiceImageAPI.ErrorCode;
+            gxProperties.ErrorMessage = restCliDeleteProductServiceImageAPI.ErrorMessage;
+            gxProperties.StatusCode = restCliDeleteProductServiceImageAPI.StatusCode;
+            aP1_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP1_error = restCliDeleteProductServiceImageAPI.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* DeleteProductServiceImageAPI Constructor */
+      }
+
+      public void gxep_updatelocationapi__get( out SdtTrn_Location aP0_BC_Trn_Location ,
+                                               out SdtSDT_Error aP1_error )
+      {
+         restCliUpdateLocationAPI__get = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/v2/get-location";
+         restCliUpdateLocationAPI__get.Location = restLocation;
+         restCliUpdateLocationAPI__get.HttpMethod = "GET";
+         restCliUpdateLocationAPI__get.RestExecute();
+         if ( restCliUpdateLocationAPI__get.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliUpdateLocationAPI__get.ErrorCode;
+            gxProperties.ErrorMessage = restCliUpdateLocationAPI__get.ErrorMessage;
+            gxProperties.StatusCode = restCliUpdateLocationAPI__get.StatusCode;
+            aP0_BC_Trn_Location = new SdtTrn_Location();
+            aP1_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP0_BC_Trn_Location = restCliUpdateLocationAPI__get.GetBodySdt<SdtTrn_Location>("BC_Trn_Location");
+            aP1_error = restCliUpdateLocationAPI__get.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* UpdateLocationAPI__get Constructor */
+      }
+
+      public void gxep_updatelocationapi__post( string aP0_LocationDescription ,
+                                                string aP1_LocationImageBase64 ,
+                                                string aP2_ReceptionDescription ,
+                                                string aP3_ReceptionImageBase64 ,
+                                                out SdtSDT_Error aP4_error )
+      {
+         restCliUpdateLocationAPI__post = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/toolbox/v2/update-location";
+         restCliUpdateLocationAPI__post.Location = restLocation;
+         restCliUpdateLocationAPI__post.HttpMethod = "POST";
+         restCliUpdateLocationAPI__post.AddBodyVar("LocationDescription", (string)(aP0_LocationDescription));
+         restCliUpdateLocationAPI__post.AddBodyVar("LocationImageBase64", (string)(aP1_LocationImageBase64));
+         restCliUpdateLocationAPI__post.AddBodyVar("ReceptionDescription", (string)(aP2_ReceptionDescription));
+         restCliUpdateLocationAPI__post.AddBodyVar("ReceptionImageBase64", (string)(aP3_ReceptionImageBase64));
+         restCliUpdateLocationAPI__post.RestExecute();
+         if ( restCliUpdateLocationAPI__post.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliUpdateLocationAPI__post.ErrorCode;
+            gxProperties.ErrorMessage = restCliUpdateLocationAPI__post.ErrorMessage;
+            gxProperties.StatusCode = restCliUpdateLocationAPI__post.StatusCode;
+            aP4_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP4_error = restCliUpdateLocationAPI__post.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* UpdateLocationAPI__post Constructor */
+      }
+
+      public void gxep_getmemocategories( out GXBaseCollection<SdtSDT_MemoCategory> aP0_SDT_MemoCategories )
+      {
+         restCliGetMemoCategories = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/bulletin-board/memo-categories";
+         restCliGetMemoCategories.Location = restLocation;
+         restCliGetMemoCategories.HttpMethod = "GET";
+         restCliGetMemoCategories.RestExecute();
+         if ( restCliGetMemoCategories.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliGetMemoCategories.ErrorCode;
+            gxProperties.ErrorMessage = restCliGetMemoCategories.ErrorMessage;
+            gxProperties.StatusCode = restCliGetMemoCategories.StatusCode;
+            aP0_SDT_MemoCategories = new GXBaseCollection<SdtSDT_MemoCategory>();
+         }
+         else
+         {
+            aP0_SDT_MemoCategories = restCliGetMemoCategories.GetBodySdtCollection<SdtSDT_MemoCategory>("SDT_MemoCategories");
+         }
+         /* GetMemoCategories Constructor */
+      }
+
+      public void gxep_getmemocategory( Guid aP0_MemoCategoryId ,
+                                        out SdtSDT_MemoCategory aP1_SDT_MemoCategory )
+      {
+         restCliGetMemoCategory = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/bulletin-board/memo-category";
+         restCliGetMemoCategory.Location = restLocation;
+         restCliGetMemoCategory.HttpMethod = "GET";
+         restCliGetMemoCategory.AddQueryVar("Memocategoryid", (Guid)(aP0_MemoCategoryId));
+         restCliGetMemoCategory.RestExecute();
+         if ( restCliGetMemoCategory.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliGetMemoCategory.ErrorCode;
+            gxProperties.ErrorMessage = restCliGetMemoCategory.ErrorMessage;
+            gxProperties.StatusCode = restCliGetMemoCategory.StatusCode;
+            aP1_SDT_MemoCategory = new SdtSDT_MemoCategory();
+         }
+         else
+         {
+            aP1_SDT_MemoCategory = restCliGetMemoCategory.GetBodySdt<SdtSDT_MemoCategory>("SDT_MemoCategory");
+         }
+         /* GetMemoCategory Constructor */
+      }
+
+      public void gxep_creatememo( string aP0_ResidentId ,
+                                   Guid aP1_MemoCategoryId ,
+                                   string aP2_MemoTitle ,
+                                   string aP3_MemoDescription ,
+                                   string aP4_MemoImage ,
+                                   string aP5_MemoDocument ,
+                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP6_MemoStartDateTime ,
+                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP7_MemoEndDateTime ,
+                                   short aP8_MemoDuration ,
+                                   [GxJsonFormat("yyyy-MM-dd")] DateTime aP9_MemoRemoveDate ,
+                                   string aP10_MemoBgColorCode ,
+                                   string aP11_MemoForm ,
+                                   out SdtSDT_Error aP12_error )
+      {
+         restCliCreateMemo = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/bulletin-board/create-memo";
+         restCliCreateMemo.Location = restLocation;
+         restCliCreateMemo.HttpMethod = "POST";
+         restCliCreateMemo.AddBodyVar("ResidentId", (string)(aP0_ResidentId));
+         restCliCreateMemo.AddBodyVar("MemoCategoryId", (Guid)(aP1_MemoCategoryId));
+         restCliCreateMemo.AddBodyVar("MemoTitle", (string)(aP2_MemoTitle));
+         restCliCreateMemo.AddBodyVar("MemoDescription", (string)(aP3_MemoDescription));
+         restCliCreateMemo.AddBodyVar("MemoImage", (string)(aP4_MemoImage));
+         restCliCreateMemo.AddBodyVar("MemoDocument", (string)(aP5_MemoDocument));
+         restCliCreateMemo.AddBodyVar("MemoStartDateTime", (DateTime)(aP6_MemoStartDateTime), false);
+         restCliCreateMemo.AddBodyVar("MemoEndDateTime", (DateTime)(aP7_MemoEndDateTime), false);
+         restCliCreateMemo.AddBodyVar("MemoDuration", (short)(aP8_MemoDuration));
+         restCliCreateMemo.AddBodyVar("MemoRemoveDate", (DateTime)(aP9_MemoRemoveDate));
+         restCliCreateMemo.AddBodyVar("MemoBgColorCode", (string)(aP10_MemoBgColorCode));
+         restCliCreateMemo.AddBodyVar("MemoForm", (string)(aP11_MemoForm));
+         restCliCreateMemo.RestExecute();
+         if ( restCliCreateMemo.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliCreateMemo.ErrorCode;
+            gxProperties.ErrorMessage = restCliCreateMemo.ErrorMessage;
+            gxProperties.StatusCode = restCliCreateMemo.StatusCode;
+            aP12_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP12_error = restCliCreateMemo.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* CreateMemo Constructor */
+      }
+
+      public void gxep_updatememo( Guid aP0_MemoId ,
+                                   string aP1_ResidentId ,
+                                   Guid aP2_MemoCategoryId ,
+                                   string aP3_MemoTitle ,
+                                   string aP4_MemoDescription ,
+                                   string aP5_MemoImage ,
+                                   string aP6_MemoDocument ,
+                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP7_MemoStartDateTime ,
+                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP8_MemoEndDateTime ,
+                                   short aP9_MemoDuration ,
+                                   [GxJsonFormat("yyyy-MM-dd")] DateTime aP10_MemoRemoveDate ,
+                                   string aP11_MemoBgColorCode ,
+                                   string aP12_MemoForm ,
+                                   out SdtSDT_Error aP13_error )
+      {
+         restCliupdateMemo = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/bulletin-board/update-memo";
+         restCliupdateMemo.Location = restLocation;
+         restCliupdateMemo.HttpMethod = "POST";
+         restCliupdateMemo.AddBodyVar("MemoId", (Guid)(aP0_MemoId));
+         restCliupdateMemo.AddBodyVar("ResidentId", (string)(aP1_ResidentId));
+         restCliupdateMemo.AddBodyVar("MemoCategoryId", (Guid)(aP2_MemoCategoryId));
+         restCliupdateMemo.AddBodyVar("MemoTitle", (string)(aP3_MemoTitle));
+         restCliupdateMemo.AddBodyVar("MemoDescription", (string)(aP4_MemoDescription));
+         restCliupdateMemo.AddBodyVar("MemoImage", (string)(aP5_MemoImage));
+         restCliupdateMemo.AddBodyVar("MemoDocument", (string)(aP6_MemoDocument));
+         restCliupdateMemo.AddBodyVar("MemoStartDateTime", (DateTime)(aP7_MemoStartDateTime), false);
+         restCliupdateMemo.AddBodyVar("MemoEndDateTime", (DateTime)(aP8_MemoEndDateTime), false);
+         restCliupdateMemo.AddBodyVar("MemoDuration", (short)(aP9_MemoDuration));
+         restCliupdateMemo.AddBodyVar("MemoRemoveDate", (DateTime)(aP10_MemoRemoveDate));
+         restCliupdateMemo.AddBodyVar("MemoBgColorCode", (string)(aP11_MemoBgColorCode));
+         restCliupdateMemo.AddBodyVar("MemoForm", (string)(aP12_MemoForm));
+         restCliupdateMemo.RestExecute();
+         if ( restCliupdateMemo.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliupdateMemo.ErrorCode;
+            gxProperties.ErrorMessage = restCliupdateMemo.ErrorMessage;
+            gxProperties.StatusCode = restCliupdateMemo.StatusCode;
+            aP13_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP13_error = restCliupdateMemo.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* updateMemo Constructor */
+      }
+
+      public void gxep_getmemo( Guid aP0_MemoId ,
+                                out SdtSDT_Memo aP1_SDT_Memo )
+      {
+         restCliGetMemo = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/bulletin-board/memo";
+         restCliGetMemo.Location = restLocation;
+         restCliGetMemo.HttpMethod = "GET";
+         restCliGetMemo.AddQueryVar("Memoid", (Guid)(aP0_MemoId));
+         restCliGetMemo.RestExecute();
+         if ( restCliGetMemo.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliGetMemo.ErrorCode;
+            gxProperties.ErrorMessage = restCliGetMemo.ErrorMessage;
+            gxProperties.StatusCode = restCliGetMemo.StatusCode;
+            aP1_SDT_Memo = new SdtSDT_Memo();
+         }
+         else
+         {
+            aP1_SDT_Memo = restCliGetMemo.GetBodySdt<SdtSDT_Memo>("SDT_Memo");
+         }
+         /* GetMemo Constructor */
+      }
+
+      public void gxep_getresidentmemos( string aP0_ResidentId ,
+                                         short aP1_PageSize ,
+                                         short aP2_PageNumber ,
+                                         out SdtSDT_ApiListResponse aP3_SDT_ApiListResponse )
+      {
+         restCliGetResidentMemos = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/bulletin-board/resident-memos";
+         restCliGetResidentMemos.Location = restLocation;
+         restCliGetResidentMemos.HttpMethod = "GET";
+         restCliGetResidentMemos.AddQueryVar("Residentid", (string)(aP0_ResidentId));
+         restCliGetResidentMemos.AddQueryVar("Pagesize", (short)(aP1_PageSize));
+         restCliGetResidentMemos.AddQueryVar("Pagenumber", (short)(aP2_PageNumber));
+         restCliGetResidentMemos.RestExecute();
+         if ( restCliGetResidentMemos.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliGetResidentMemos.ErrorCode;
+            gxProperties.ErrorMessage = restCliGetResidentMemos.ErrorMessage;
+            gxProperties.StatusCode = restCliGetResidentMemos.StatusCode;
+            aP3_SDT_ApiListResponse = new SdtSDT_ApiListResponse();
+         }
+         else
+         {
+            aP3_SDT_ApiListResponse = restCliGetResidentMemos.GetBodySdt<SdtSDT_ApiListResponse>("SDT_ApiListResponse");
+         }
+         /* GetResidentMemos Constructor */
+      }
+
+      public void gxep_getlocationmemos( string aP0_ResidentId ,
+                                         short aP1_PageSize ,
+                                         short aP2_PageNumber ,
+                                         out SdtSDT_ApiListResponse aP3_SDT_ApiListResponse )
+      {
+         restCliGetLocationMemos = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/bulletin-board/location-memos";
+         restCliGetLocationMemos.Location = restLocation;
+         restCliGetLocationMemos.HttpMethod = "GET";
+         restCliGetLocationMemos.AddQueryVar("Residentid", (string)(aP0_ResidentId));
+         restCliGetLocationMemos.AddQueryVar("Pagesize", (short)(aP1_PageSize));
+         restCliGetLocationMemos.AddQueryVar("Pagenumber", (short)(aP2_PageNumber));
+         restCliGetLocationMemos.RestExecute();
+         if ( restCliGetLocationMemos.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliGetLocationMemos.ErrorCode;
+            gxProperties.ErrorMessage = restCliGetLocationMemos.ErrorMessage;
+            gxProperties.StatusCode = restCliGetLocationMemos.StatusCode;
+            aP3_SDT_ApiListResponse = new SdtSDT_ApiListResponse();
+         }
+         else
+         {
+            aP3_SDT_ApiListResponse = restCliGetLocationMemos.GetBodySdt<SdtSDT_ApiListResponse>("SDT_ApiListResponse");
+         }
+         /* GetLocationMemos Constructor */
+      }
+
+      public void gxep_deletememo( Guid aP0_MemoId ,
+                                   out SdtSDT_Error aP1_error )
+      {
+         restCliDeleteMemo = new GXRestAPIClient();
+         if ( restLocation == null )
+         {
+            InitLocation();
+         }
+         restLocation.ResourceName = "/bulletin-board/delete-memo";
+         restCliDeleteMemo.Location = restLocation;
+         restCliDeleteMemo.HttpMethod = "GET";
+         restCliDeleteMemo.AddQueryVar("Memoid", (Guid)(aP0_MemoId));
+         restCliDeleteMemo.RestExecute();
+         if ( restCliDeleteMemo.ErrorCode != 0 )
+         {
+            gxProperties.ErrorCode = restCliDeleteMemo.ErrorCode;
+            gxProperties.ErrorMessage = restCliDeleteMemo.ErrorMessage;
+            gxProperties.StatusCode = restCliDeleteMemo.StatusCode;
+            aP1_error = new SdtSDT_Error();
+         }
+         else
+         {
+            aP1_error = restCliDeleteMemo.GetBodySdt<SdtSDT_Error>("error");
+         }
+         /* DeleteMemo Constructor */
+      }
+
       public override void cleanup( )
       {
          CloseCursors();
@@ -1762,6 +2149,25 @@ namespace GeneXus.Programs {
          restCliDeletePageV2 = new GXRestAPIClient();
          restCliDebugAppVersion = new GXRestAPIClient();
          aP1_DebugResults = new SdtSDT_DebugResults();
+         restCliUpdateProductServiceAPI = new GXRestAPIClient();
+         restCliDeleteProductServiceImageAPI = new GXRestAPIClient();
+         restCliUpdateLocationAPI__get = new GXRestAPIClient();
+         aP0_BC_Trn_Location = new SdtTrn_Location();
+         restCliUpdateLocationAPI__post = new GXRestAPIClient();
+         aP4_error = new SdtSDT_Error();
+         restCliGetMemoCategories = new GXRestAPIClient();
+         aP0_SDT_MemoCategories = new GXBaseCollection<SdtSDT_MemoCategory>();
+         restCliGetMemoCategory = new GXRestAPIClient();
+         aP1_SDT_MemoCategory = new SdtSDT_MemoCategory();
+         restCliCreateMemo = new GXRestAPIClient();
+         aP12_error = new SdtSDT_Error();
+         restCliupdateMemo = new GXRestAPIClient();
+         aP13_error = new SdtSDT_Error();
+         restCliGetMemo = new GXRestAPIClient();
+         aP1_SDT_Memo = new SdtSDT_Memo();
+         restCliGetResidentMemos = new GXRestAPIClient();
+         restCliGetLocationMemos = new GXRestAPIClient();
+         restCliDeleteMemo = new GXRestAPIClient();
          /* GeneXus formulas. */
       }
 
@@ -1818,6 +2224,18 @@ namespace GeneXus.Programs {
       protected GXRestAPIClient restCliCreateServicePage ;
       protected GXRestAPIClient restCliDeletePageV2 ;
       protected GXRestAPIClient restCliDebugAppVersion ;
+      protected GXRestAPIClient restCliUpdateProductServiceAPI ;
+      protected GXRestAPIClient restCliDeleteProductServiceImageAPI ;
+      protected GXRestAPIClient restCliUpdateLocationAPI__get ;
+      protected GXRestAPIClient restCliUpdateLocationAPI__post ;
+      protected GXRestAPIClient restCliGetMemoCategories ;
+      protected GXRestAPIClient restCliGetMemoCategory ;
+      protected GXRestAPIClient restCliCreateMemo ;
+      protected GXRestAPIClient restCliupdateMemo ;
+      protected GXRestAPIClient restCliGetMemo ;
+      protected GXRestAPIClient restCliGetResidentMemos ;
+      protected GXRestAPIClient restCliGetLocationMemos ;
+      protected GXRestAPIClient restCliDeleteMemo ;
       protected GxLocation restLocation ;
       protected GxObjectProperties gxProperties ;
       protected IGxDataStore dsDataStore1 ;
@@ -1866,6 +2284,13 @@ namespace GeneXus.Programs {
       protected SdtSDT_AppVersion_PagesItem aP2_MenuPage ;
       protected SdtSDT_AppVersion_PagesItem aP2_ContentPage ;
       protected SdtSDT_DebugResults aP1_DebugResults ;
+      protected SdtTrn_Location aP0_BC_Trn_Location ;
+      protected SdtSDT_Error aP4_error ;
+      protected GXBaseCollection<SdtSDT_MemoCategory> aP0_SDT_MemoCategories ;
+      protected SdtSDT_MemoCategory aP1_SDT_MemoCategory ;
+      protected SdtSDT_Error aP12_error ;
+      protected SdtSDT_Error aP13_error ;
+      protected SdtSDT_Memo aP1_SDT_Memo ;
    }
 
 }

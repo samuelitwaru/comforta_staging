@@ -66,21 +66,23 @@ namespace GeneXus.Programs {
          /* GeneXus formulas */
          /* Output device settings */
          AV16BC_Trn_Location.Load(AV8LocationId, AV15OrganisationId);
-         AV35GXLvl4 = 0;
+         AV36GXLvl4 = 0;
          /* Using cursor P00BG2 */
          pr_default.execute(0, new Object[] {AV8LocationId});
          while ( (pr_default.getStatus(0) != 101) )
          {
             A29LocationId = P00BG2_A29LocationId[0];
+            n29LocationId = P00BG2_n29LocationId[0];
             A543AppVersionId = P00BG2_A543AppVersionId[0];
-            AV35GXLvl4 = 1;
+            AV36GXLvl4 = 1;
             pr_default.readNext(0);
          }
          pr_default.close(0);
-         if ( AV35GXLvl4 == 0 )
+         if ( AV36GXLvl4 == 0 )
          {
             AV34AppVersionName = context.GetMessage( "Version 1", "");
-            new prc_createappversion(context ).execute(  AV34AppVersionName, out  AV32SDT_AppVersion, out  AV33SDT_Error) ;
+            AV35IsActive = true;
+            new prc_createappversion(context ).execute(  AV34AppVersionName,  AV35IsActive, out  AV32SDT_AppVersion, out  AV33SDT_Error) ;
          }
          cleanup();
       }
@@ -99,6 +101,7 @@ namespace GeneXus.Programs {
       {
          AV16BC_Trn_Location = new SdtTrn_Location(context);
          P00BG2_A29LocationId = new Guid[] {Guid.Empty} ;
+         P00BG2_n29LocationId = new bool[] {false} ;
          P00BG2_A543AppVersionId = new Guid[] {Guid.Empty} ;
          A29LocationId = Guid.Empty;
          A543AppVersionId = Guid.Empty;
@@ -108,14 +111,16 @@ namespace GeneXus.Programs {
          pr_default = new DataStoreProvider(context, new GeneXus.Programs.prc_initlocationpagesv2__default(),
             new Object[][] {
                 new Object[] {
-               P00BG2_A29LocationId, P00BG2_A543AppVersionId
+               P00BG2_A29LocationId, P00BG2_n29LocationId, P00BG2_A543AppVersionId
                }
             }
          );
          /* GeneXus formulas. */
       }
 
-      private short AV35GXLvl4 ;
+      private short AV36GXLvl4 ;
+      private bool n29LocationId ;
+      private bool AV35IsActive ;
       private string AV34AppVersionName ;
       private Guid AV8LocationId ;
       private Guid AV15OrganisationId ;
@@ -127,6 +132,7 @@ namespace GeneXus.Programs {
       private SdtTrn_Location AV16BC_Trn_Location ;
       private IDataStoreProvider pr_default ;
       private Guid[] P00BG2_A29LocationId ;
+      private bool[] P00BG2_n29LocationId ;
       private Guid[] P00BG2_A543AppVersionId ;
       private SdtSDT_AppVersion AV32SDT_AppVersion ;
       private SdtSDT_Error AV33SDT_Error ;
@@ -152,7 +158,7 @@ namespace GeneXus.Programs {
           new ParDef("AV8LocationId",GXType.UniqueIdentifier,36,0)
           };
           def= new CursorDef[] {
-              new CursorDef("P00BG2", "SELECT LocationId, AppVersionId FROM Trn_AppVersion WHERE LocationId = :AV8LocationId ORDER BY AppVersionId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BG2,100, GxCacheFrequency.OFF ,false,false )
+              new CursorDef("P00BG2", "SELECT LocationId, AppVersionId FROM Trn_AppVersion WHERE LocationId = :AV8LocationId ORDER BY LocationId ",false, GxErrorMask.GX_NOMASK | GxErrorMask.GX_MASKLOOPLOCK, false, this,prmP00BG2,100, GxCacheFrequency.OFF ,false,false )
           };
        }
     }
@@ -165,7 +171,8 @@ namespace GeneXus.Programs {
        {
              case 0 :
                 ((Guid[]) buf[0])[0] = rslt.getGuid(1);
-                ((Guid[]) buf[1])[0] = rslt.getGuid(2);
+                ((bool[]) buf[1])[0] = rslt.wasNull(1);
+                ((Guid[]) buf[2])[0] = rslt.getGuid(2);
                 return;
        }
     }

@@ -239,6 +239,54 @@ namespace GeneXus.Programs {
          {
             return GAMSecurityLevel.SecurityNone ;
          }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_updateproductserviceapi") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_deleteproductserviceimageapi") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_updatelocationapi__get") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_updatelocationapi__post") == 0 )
+         {
+            return GAMSecurityLevel.SecurityNone ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getmemocategories") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getmemocategory") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_creatememo") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_updatememo") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getmemo") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getresidentmemos") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_getlocationmemos") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
+         else if ( StringUtil.StrCmp(permissionMethod, "gxep_deletememo") == 0 )
+         {
+            return GAMSecurityLevel.SecurityLow ;
+         }
          return GAMSecurityLevel.SecurityLow ;
       }
 
@@ -395,6 +443,34 @@ namespace GeneXus.Programs {
          }
          else
          {
+         }
+      }
+
+      protected void E22012( )
+      {
+         /* Getlocationmemos_After Routine */
+         returnInSub = false;
+         AV110SDT_ApiListResponse = new SdtSDT_ApiListResponse(context);
+         if ( AV110SDT_ApiListResponse.FromJSonString(AV17result, null) )
+         {
+         }
+         else
+         {
+            new prc_logtofile(context ).execute(  context.GetMessage( "Loc Memos API Response: ", "")+AV17result) ;
+         }
+      }
+
+      protected void E23012( )
+      {
+         /* Getresidentmemos_After Routine */
+         returnInSub = false;
+         AV110SDT_ApiListResponse = new SdtSDT_ApiListResponse(context);
+         if ( AV110SDT_ApiListResponse.FromJSonString(AV17result, null) )
+         {
+         }
+         else
+         {
+            new prc_logtofile(context ).execute(  context.GetMessage( "Memos API Response: ", "")+AV17result) ;
          }
       }
 
@@ -1185,6 +1261,211 @@ namespace GeneXus.Programs {
          aP2_error=this.AV91error;
       }
 
+      public void gxep_updateproductserviceapi( Guid aP0_ProductServiceId ,
+                                                string aP1_ProductServiceDescription ,
+                                                string aP2_ProductServiceImageBase64 ,
+                                                out SdtSDT_Error aP3_error )
+      {
+         this.AV66ProductServiceId = aP0_ProductServiceId;
+         this.AV137ProductServiceDescription = aP1_ProductServiceDescription;
+         this.AV139ProductServiceImageBase64 = aP2_ProductServiceImageBase64;
+         AV91error = new SdtSDT_Error(context);
+         initialize();
+         /* UpdateProductServiceAPI Constructor */
+         new prc_updateproductserviceapi(context ).execute(  AV66ProductServiceId,  AV137ProductServiceDescription,  AV139ProductServiceImageBase64, out  AV91error) ;
+         aP3_error=this.AV91error;
+      }
+
+      public void gxep_deleteproductserviceimageapi( Guid aP0_ProductServiceId ,
+                                                     out SdtSDT_Error aP1_error )
+      {
+         this.AV66ProductServiceId = aP0_ProductServiceId;
+         AV91error = new SdtSDT_Error(context);
+         initialize();
+         /* DeleteProductServiceImageAPI Constructor */
+         new prc_deleteproductserviceimageapi(context ).execute(  AV66ProductServiceId, out  AV91error) ;
+         aP1_error=this.AV91error;
+      }
+
+      public void gxep_updatelocationapi__get( out SdtTrn_Location aP0_BC_Trn_Location ,
+                                               out SdtSDT_Error aP1_error )
+      {
+         AV91error = new SdtSDT_Error(context);
+         initialize();
+         /* UpdateLocationAPI__get Constructor */
+         new prc_getlocationapi(context ).execute( out  AV160BC_Trn_Location, out  AV91error) ;
+         aP0_BC_Trn_Location=this.AV160BC_Trn_Location;
+         aP1_error=this.AV91error;
+      }
+
+      public void gxep_updatelocationapi__post( string aP0_LocationDescription ,
+                                                string aP1_LocationImageBase64 ,
+                                                string aP2_ReceptionDescription ,
+                                                string aP3_ReceptionImageBase64 ,
+                                                out SdtSDT_Error aP4_error )
+      {
+         this.AV146LocationDescription = aP0_LocationDescription;
+         this.AV147LocationImageBase64 = aP1_LocationImageBase64;
+         this.AV158ReceptionDescription = aP2_ReceptionDescription;
+         this.AV159ReceptionImageBase64 = aP3_ReceptionImageBase64;
+         AV91error = new SdtSDT_Error(context);
+         initialize();
+         /* UpdateLocationAPI__post Constructor */
+         new prc_updatelocationapi(context ).execute(  AV146LocationDescription,  AV147LocationImageBase64,  AV158ReceptionDescription,  AV159ReceptionImageBase64, out  AV91error) ;
+         aP4_error=this.AV91error;
+      }
+
+      public void gxep_getmemocategories( out GXBaseCollection<SdtSDT_MemoCategory> aP0_SDT_MemoCategories )
+      {
+         initialize();
+         /* GetMemoCategories Constructor */
+         new prc_getmemocategories(context ).execute( out  AV144SDT_MemoCategories) ;
+         aP0_SDT_MemoCategories=this.AV144SDT_MemoCategories;
+      }
+
+      public void gxep_getmemocategory( Guid aP0_MemoCategoryId ,
+                                        out SdtSDT_MemoCategory aP1_SDT_MemoCategory )
+      {
+         this.AV127MemoCategoryId = aP0_MemoCategoryId;
+         initialize();
+         /* GetMemoCategory Constructor */
+         new prc_getmemocategory(context ).execute(  AV127MemoCategoryId, out  AV145SDT_MemoCategory) ;
+         aP1_SDT_MemoCategory=this.AV145SDT_MemoCategory;
+      }
+
+      public void gxep_creatememo( string aP0_ResidentId ,
+                                   Guid aP1_MemoCategoryId ,
+                                   string aP2_MemoTitle ,
+                                   string aP3_MemoDescription ,
+                                   string aP4_MemoImage ,
+                                   string aP5_MemoDocument ,
+                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP6_MemoStartDateTime ,
+                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP7_MemoEndDateTime ,
+                                   short aP8_MemoDuration ,
+                                   [GxJsonFormat("yyyy-MM-dd")] DateTime aP9_MemoRemoveDate ,
+                                   string aP10_MemoBgColorCode ,
+                                   string aP11_MemoForm ,
+                                   out SdtSDT_Error aP12_error )
+      {
+         this.AV74ResidentId = aP0_ResidentId;
+         this.AV127MemoCategoryId = aP1_MemoCategoryId;
+         this.AV136MemoTitle = aP2_MemoTitle;
+         this.AV128MemoDescription = aP3_MemoDescription;
+         this.AV133MemoImage = aP4_MemoImage;
+         this.AV129MemoDocument = aP5_MemoDocument;
+         this.AV135MemoStartDateTime = aP6_MemoStartDateTime;
+         this.AV131MemoEndDateTime = aP7_MemoEndDateTime;
+         this.AV130MemoDuration = aP8_MemoDuration;
+         this.AV134MemoRemoveDate = aP9_MemoRemoveDate;
+         this.AV156MemoBgColorCode = aP10_MemoBgColorCode;
+         this.AV157MemoForm = aP11_MemoForm;
+         AV91error = new SdtSDT_Error(context);
+         initialize();
+         /* CreateMemo Constructor */
+         new prc_creatememo(context ).execute(  AV74ResidentId,  AV127MemoCategoryId,  AV136MemoTitle,  AV128MemoDescription,  AV133MemoImage,  AV129MemoDocument,  AV135MemoStartDateTime,  AV131MemoEndDateTime,  AV130MemoDuration,  AV134MemoRemoveDate,  AV156MemoBgColorCode,  AV157MemoForm, out  AV91error) ;
+         aP12_error=this.AV91error;
+      }
+
+      public void gxep_updatememo( Guid aP0_MemoId ,
+                                   string aP1_ResidentId ,
+                                   Guid aP2_MemoCategoryId ,
+                                   string aP3_MemoTitle ,
+                                   string aP4_MemoDescription ,
+                                   string aP5_MemoImage ,
+                                   string aP6_MemoDocument ,
+                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP7_MemoStartDateTime ,
+                                   [GxJsonFormat("yyyy-MM-dd'T'HH:mm:ss")] DateTime aP8_MemoEndDateTime ,
+                                   short aP9_MemoDuration ,
+                                   [GxJsonFormat("yyyy-MM-dd")] DateTime aP10_MemoRemoveDate ,
+                                   string aP11_MemoBgColorCode ,
+                                   string aP12_MemoForm ,
+                                   out SdtSDT_Error aP13_error )
+      {
+         this.AV132MemoId = aP0_MemoId;
+         this.AV74ResidentId = aP1_ResidentId;
+         this.AV127MemoCategoryId = aP2_MemoCategoryId;
+         this.AV136MemoTitle = aP3_MemoTitle;
+         this.AV128MemoDescription = aP4_MemoDescription;
+         this.AV133MemoImage = aP5_MemoImage;
+         this.AV129MemoDocument = aP6_MemoDocument;
+         this.AV135MemoStartDateTime = aP7_MemoStartDateTime;
+         this.AV131MemoEndDateTime = aP8_MemoEndDateTime;
+         this.AV130MemoDuration = aP9_MemoDuration;
+         this.AV134MemoRemoveDate = aP10_MemoRemoveDate;
+         this.AV156MemoBgColorCode = aP11_MemoBgColorCode;
+         this.AV157MemoForm = aP12_MemoForm;
+         AV91error = new SdtSDT_Error(context);
+         initialize();
+         /* updateMemo Constructor */
+         new prc_updatememo(context ).execute(  AV132MemoId,  AV74ResidentId,  AV127MemoCategoryId,  AV136MemoTitle,  AV128MemoDescription,  AV133MemoImage,  AV129MemoDocument,  AV135MemoStartDateTime,  AV131MemoEndDateTime,  AV130MemoDuration,  AV134MemoRemoveDate,  AV156MemoBgColorCode,  AV157MemoForm, out  AV91error) ;
+         aP13_error=this.AV91error;
+      }
+
+      public void gxep_getmemo( Guid aP0_MemoId ,
+                                out SdtSDT_Memo aP1_SDT_Memo )
+      {
+         this.AV132MemoId = aP0_MemoId;
+         initialize();
+         /* GetMemo Constructor */
+         new prc_getmemo(context ).execute(  AV132MemoId, out  AV143SDT_Memo) ;
+         aP1_SDT_Memo=this.AV143SDT_Memo;
+      }
+
+      public void gxep_getresidentmemos( string aP0_ResidentId ,
+                                         short aP1_PageSize ,
+                                         short aP2_PageNumber ,
+                                         out SdtSDT_ApiListResponse aP3_SDT_ApiListResponse )
+      {
+         this.AV74ResidentId = aP0_ResidentId;
+         this.AV109PageSize = aP1_PageSize;
+         this.AV108PageNumber = aP2_PageNumber;
+         AV110SDT_ApiListResponse = new SdtSDT_ApiListResponse(context);
+         initialize();
+         /* GetResidentMemos Constructor */
+         new prc_getresidentmemos(context ).execute(  AV74ResidentId,  AV109PageSize,  AV108PageNumber, out  AV17result) ;
+         /* Execute user event: Getresidentmemos.After */
+         E23012 ();
+         if ( returnInSub )
+         {
+            aP3_SDT_ApiListResponse=this.AV110SDT_ApiListResponse;
+            return;
+         }
+         aP3_SDT_ApiListResponse=this.AV110SDT_ApiListResponse;
+      }
+
+      public void gxep_getlocationmemos( string aP0_ResidentId ,
+                                         short aP1_PageSize ,
+                                         short aP2_PageNumber ,
+                                         out SdtSDT_ApiListResponse aP3_SDT_ApiListResponse )
+      {
+         this.AV74ResidentId = aP0_ResidentId;
+         this.AV109PageSize = aP1_PageSize;
+         this.AV108PageNumber = aP2_PageNumber;
+         AV110SDT_ApiListResponse = new SdtSDT_ApiListResponse(context);
+         initialize();
+         /* GetLocationMemos Constructor */
+         new prc_getlocationmemos(context ).execute(  AV74ResidentId,  AV109PageSize,  AV108PageNumber, out  AV17result) ;
+         /* Execute user event: Getlocationmemos.After */
+         E22012 ();
+         if ( returnInSub )
+         {
+            aP3_SDT_ApiListResponse=this.AV110SDT_ApiListResponse;
+            return;
+         }
+         aP3_SDT_ApiListResponse=this.AV110SDT_ApiListResponse;
+      }
+
+      public void gxep_deletememo( Guid aP0_MemoId ,
+                                   out SdtSDT_Error aP1_error )
+      {
+         this.AV132MemoId = aP0_MemoId;
+         AV91error = new SdtSDT_Error(context);
+         initialize();
+         /* DeleteMemo Constructor */
+         new prc_deletememo(context ).execute(  AV132MemoId, out  AV91error) ;
+         aP1_error=this.AV91error;
+      }
+
       public override void cleanup( )
       {
          CloseCursors();
@@ -1224,17 +1505,26 @@ namespace GeneXus.Programs {
          AV120MenuPage = new SdtSDT_AppVersion_PagesItem(context);
          AV118ContentPage = new SdtSDT_AppVersion_PagesItem(context);
          AV124DebugResults = new SdtSDT_DebugResults(context);
+         AV160BC_Trn_Location = new SdtTrn_Location(context);
+         AV144SDT_MemoCategories = new GXBaseCollection<SdtSDT_MemoCategory>( context, "SDT_MemoCategory", "Comforta_version2");
+         AV145SDT_MemoCategory = new SdtSDT_MemoCategory(context);
+         AV143SDT_Memo = new SdtSDT_Memo(context);
          /* GeneXus formulas. */
       }
 
       protected short AV109PageSize ;
       protected short AV108PageNumber ;
       protected short AV11DeviceType ;
+      protected short AV130MemoDuration ;
       protected int AV51MediaSize ;
       protected string Gx_restmethod ;
       protected string AV10DeviceToken ;
       protected string AV9DeviceID ;
       protected string AV52MediaType ;
+      protected string AV157MemoForm ;
+      protected DateTime AV135MemoStartDateTime ;
+      protected DateTime AV131MemoEndDateTime ;
+      protected DateTime AV134MemoRemoveDate ;
       protected bool returnInSub ;
       protected bool AV65PageIsPublished ;
       protected bool AV88IsNotifyResidents ;
@@ -1248,6 +1538,12 @@ namespace GeneXus.Programs {
       protected string AV56PageGJSHtml ;
       protected string AV57PageGJSJson ;
       protected string AV113PageStructure ;
+      protected string AV137ProductServiceDescription ;
+      protected string AV139ProductServiceImageBase64 ;
+      protected string AV146LocationDescription ;
+      protected string AV147LocationImageBase64 ;
+      protected string AV158ReceptionDescription ;
+      protected string AV159ReceptionImageBase64 ;
       protected string AV93username ;
       protected string AV94password ;
       protected string AV8userId ;
@@ -1265,6 +1561,11 @@ namespace GeneXus.Programs {
       protected string AV60PageName ;
       protected string AV122AppVersionName ;
       protected string AV114PageType ;
+      protected string AV136MemoTitle ;
+      protected string AV128MemoDescription ;
+      protected string AV133MemoImage ;
+      protected string AV129MemoDocument ;
+      protected string AV156MemoBgColorCode ;
       protected Guid AV16organisationId ;
       protected Guid AV12locationId ;
       protected Guid AV46MediaId ;
@@ -1275,6 +1576,8 @@ namespace GeneXus.Programs {
       protected Guid AV71ThemeId ;
       protected Guid AV66ProductServiceId ;
       protected Guid AV115AppVersionId ;
+      protected Guid AV127MemoCategoryId ;
+      protected Guid AV132MemoId ;
       protected IGxDataStore dsDataStore1 ;
       protected IGxDataStore dsGAM ;
       protected IGxDataStore dsDefault ;
@@ -1355,6 +1658,17 @@ namespace GeneXus.Programs {
       protected GxSimpleCollection<string> AV125UrlList ;
       protected SdtSDT_DebugResults AV124DebugResults ;
       protected SdtSDT_DebugResults aP1_DebugResults ;
+      protected SdtTrn_Location AV160BC_Trn_Location ;
+      protected SdtTrn_Location aP0_BC_Trn_Location ;
+      protected SdtSDT_Error aP4_error ;
+      protected GXBaseCollection<SdtSDT_MemoCategory> AV144SDT_MemoCategories ;
+      protected GXBaseCollection<SdtSDT_MemoCategory> aP0_SDT_MemoCategories ;
+      protected SdtSDT_MemoCategory AV145SDT_MemoCategory ;
+      protected SdtSDT_MemoCategory aP1_SDT_MemoCategory ;
+      protected SdtSDT_Error aP12_error ;
+      protected SdtSDT_Error aP13_error ;
+      protected SdtSDT_Memo AV143SDT_Memo ;
+      protected SdtSDT_Memo aP1_SDT_Memo ;
    }
 
 }

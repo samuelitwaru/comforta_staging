@@ -2389,6 +2389,7 @@ namespace GeneXus.Programs {
             while ( AV87GXV15 <= AV86GXV14.Count )
             {
                AV32Message = ((GeneXus.Utils.SdtMessages_Message)AV86GXV14.Item(AV87GXV15));
+               new prc_logtoserver(context ).execute(  ">> "+AV32Message.gxTpr_Description) ;
                GX_msglist.addItem(AV32Message.gxTpr_Description);
                AV87GXV15 = (int)(AV87GXV15+1);
             }
@@ -3075,7 +3076,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253313322720", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253219261510", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3091,7 +3092,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_productservicestep2.js", "?20253313322723", false, true);
+         context.AddJavascriptSource("wp_productservicestep2.js", "?20253219261512", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);

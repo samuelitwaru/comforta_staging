@@ -225,6 +225,22 @@ namespace GeneXus.Programs {
          Gxm4trn_theme_icon.gxTpr_Iconcategory = "Services";
          Gxm4trn_theme_icon.gxTpr_Iconname = context.GetMessage( "Wash", "");
          Gxm4trn_theme_icon.gxTpr_Iconsvg = context.GetMessage( "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"27.002\" height=\"29.436\" viewBox=\"0 0 27.002 29.436\">  <path id=\"Group_634-converted_1_\" data-name=\"Group 634-converted (1)\" d=\"M2.542.031A3.123,3.123,0,0,0,.213,1.89a3.71,3.71,0,0,0-.164.56c-.069.376-.069,24.244,0,24.62a2.94,2.94,0,0,0,.881,1.6,2.831,2.831,0,0,0,.982.652l.316.131H24.773l.314-.131a3.149,3.149,0,0,0,1.846-2.165c.056-.272.066-1.96.066-12.377,0-8.47-.014-12.143-.048-12.33A3.142,3.142,0,0,0,24.84.106c-.238-.08-.678-.084-11.2-.088-6.027,0-11.018,0-11.093.013M24.43,2.112a1.283,1.283,0,0,1,.5.528c.026.068.042,4.8.042,12.125,0,11.774,0,12.017-.087,12.184a1.061,1.061,0,0,1-.675.541c-.331.071-21.1.071-21.427,0a.836.836,0,0,1-.426-.227c-.368-.34-.335.665-.335-10.069V7.605H3.6c.947,0,1.662-.019,1.8-.048a1.07,1.07,0,0,0,.7-.6.993.993,0,0,0-.418-1.224L5.467,5.6,3.746,5.589,2.025,5.576V4.156c0-1.563,0-1.581.283-1.851.316-.305-.7-.279,11.183-.28,10.57,0,10.771,0,10.939.087M20.188,5.643a1,1,0,0,0-.412,1.588.988.988,0,0,0,.767.34.917.917,0,0,0,.71-.3A.982.982,0,0,0,21.268,5.9a1.11,1.11,0,0,0-1.08-.259M12.783,7.791A9.228,9.228,0,0,0,9.832,8.9a9.089,9.089,0,0,0-2.195,1.975A8.071,8.071,0,0,0,6.279,17.8a8.354,8.354,0,0,0,.864,2.044,8,8,0,0,0,14.776-2.989,11.059,11.059,0,0,0,0-2.25,8.084,8.084,0,0,0-2.261-4.517,7.9,7.9,0,0,0-4.523-2.274,12.557,12.557,0,0,0-2.354-.02M15.22,9.857a6,6,0,0,1,4.719,5.077,8.252,8.252,0,0,1-.072,2.031,5.987,5.987,0,0,1-1.788,3.15l-.123.1.033-.217a7.9,7.9,0,0,0,.03-.846,3.784,3.784,0,0,0-.326-1.667,4.477,4.477,0,0,0-2.146-2.271,4.389,4.389,0,0,0-1.845-.471,4.963,4.963,0,0,1-.989-.158,2.6,2.6,0,0,1-1.514-1.51,3.318,3.318,0,0,1-.088-1.377,2.586,2.586,0,0,1,1.6-1.817,6.322,6.322,0,0,1,2.51-.02M9.3,13.669a4.307,4.307,0,0,0,1.158,1.8,4.412,4.412,0,0,0,2.962,1.254,6.018,6.018,0,0,1,.753.091,2.508,2.508,0,0,1,1.848,2.066,2.468,2.468,0,0,1-.766,2.173,2.635,2.635,0,0,1-1.212.627,4.766,4.766,0,0,1-1.452-.125,5.844,5.844,0,0,1-2.894-1.673A5.967,5.967,0,0,1,8.832,12.7l.189-.331.078.478a6.473,6.473,0,0,0,.2.825\" transform=\"translate(0.003 -0.017)\" fill=\"#7c8791\" fill-rule=\"evenodd\"/></svg>", "");
+         Gxm5trn_theme_ctacolor = new SdtTrn_Theme_CtaColor(context);
+         Gxm1trn_theme.gxTpr_Ctacolor.Add(Gxm5trn_theme_ctacolor, 0);
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorname = context.GetMessage( "CtaColorOne", "");
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorcode = "#C8653E";
+         Gxm5trn_theme_ctacolor = new SdtTrn_Theme_CtaColor(context);
+         Gxm1trn_theme.gxTpr_Ctacolor.Add(Gxm5trn_theme_ctacolor, 0);
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorname = context.GetMessage( "CtaColorTwo", "");
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorcode = "#B3783E";
+         Gxm5trn_theme_ctacolor = new SdtTrn_Theme_CtaColor(context);
+         Gxm1trn_theme.gxTpr_Ctacolor.Add(Gxm5trn_theme_ctacolor, 0);
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorname = context.GetMessage( "CtaColorThree", "");
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorcode = "#668D63";
+         Gxm5trn_theme_ctacolor = new SdtTrn_Theme_CtaColor(context);
+         Gxm1trn_theme.gxTpr_Ctacolor.Add(Gxm5trn_theme_ctacolor, 0);
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorname = context.GetMessage( "CtaColorFour", "");
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorcode = "#7A8F92";
          Gxm1trn_theme = new SdtTrn_Theme(context);
          Gxm2rootcol.Add(Gxm1trn_theme, 0);
          Gxm1trn_theme.gxTpr_Trn_themeid = StringUtil.StrToGuid( context.GetMessage( "4ddc1f46-d08a-4c11-9280-0695be8b833f", ""));
@@ -356,6 +372,22 @@ namespace GeneXus.Programs {
          Gxm4trn_theme_icon.gxTpr_Iconcategory = "Services";
          Gxm4trn_theme_icon.gxTpr_Iconname = context.GetMessage( "Wash", "");
          Gxm4trn_theme_icon.gxTpr_Iconsvg = context.GetMessage( "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"30.411\" height=\"28.722\" viewBox=\"0 0 30.411 28.722\">  <path id=\"Path_943\" data-name=\"Path 943\" d=\"M13.236,4a2.053,2.053,0,0,0,0,4.1h2.323l-.32.333-.034.033-2.493,2.58a8.153,8.153,0,0,1-1.539-1.907.674.674,0,0,0-1.158,0c-.021.036-1.94,3.543-5.723,3.73l-.98-6.247a.669.669,0,0,0-.638-.584.652.652,0,0,0-.517.238.7.7,0,0,0-.149.564l1.07,6.83s0,.005,0,.008L5.973,32.147s0,.006,0,.009a.7.7,0,0,0,.071.21l.012.02a.679.679,0,0,0,.137.17l.009.007a.657.657,0,0,0,.186.114l.008,0a.641.641,0,0,0,.227.041H27.778A.641.641,0,0,0,28,32.68l.019-.007a.656.656,0,0,0,.186-.114h0l0-.005a.679.679,0,0,0,.136-.168l.009-.017a.7.7,0,0,0,.075-.22l2.9-18.464s0-.005,0-.008l1.07-6.83a.7.7,0,0,0-.222-.662.644.644,0,0,0-.668-.112.681.681,0,0,0-.413.555l-.98,6.252a6.184,6.184,0,0,1-2.519-.672A4.91,4.91,0,0,0,26.423,7.5L24.262,5.265a4.348,4.348,0,0,0-3.184-1.256L13.238,4Zm0,1.368,7.84.009a3.031,3.031,0,0,1,2.251.855l2.161,2.236a3.493,3.493,0,0,1,0,4.832l-6.758,6.9,0,0a.636.636,0,0,1-.935,0,.685.685,0,0,1-.154-.711l2.573-2.662.009-.009q.024-.024.045-.049a.7.7,0,0,0-.016-.908.645.645,0,0,0-.874-.091l-.005.005-.026.021q-.021.018-.041.037l-.008.008-.01.009-.022.023-2.4,2.383-.009.009a2,2,0,0,0-.292.4l-1.508,1.56a.636.636,0,0,1-.935,0,.69.69,0,0,1,0-.967l4.228-4.374a.682.682,0,0,0,.12-.162h0a.7.7,0,0,0-.094-.793.646.646,0,0,0-.756-.16l-.005,0a.659.659,0,0,0-.161.108l-.037.037L13.191,18.29l-.8.825a.636.636,0,0,1-.935,0,.69.69,0,0,1,0-.967l.567-.586,4.185-4.33a.682.682,0,0,0,.12-.163.7.7,0,0,0-.166-.863.644.644,0,0,0-.85.02l-.005.005-.034.033-4.185,4.329a.636.636,0,0,1-.935,0,.688.688,0,0,1,0-.966L16.14,9.436,17.623,7.9a.7.7,0,0,0,.143-.745.661.661,0,0,0-.61-.422H13.236a.684.684,0,0,1,0-1.368Z\" transform=\"translate(-1.998 -4)\" fill=\"#7c8791\"/></svg>", "");
+         Gxm5trn_theme_ctacolor = new SdtTrn_Theme_CtaColor(context);
+         Gxm1trn_theme.gxTpr_Ctacolor.Add(Gxm5trn_theme_ctacolor, 0);
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorname = context.GetMessage( "CtaColorOne", "");
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorcode = "#20639B";
+         Gxm5trn_theme_ctacolor = new SdtTrn_Theme_CtaColor(context);
+         Gxm1trn_theme.gxTpr_Ctacolor.Add(Gxm5trn_theme_ctacolor, 0);
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorname = context.GetMessage( "CtaColorTwo", "");
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorcode = "#788799";
+         Gxm5trn_theme_ctacolor = new SdtTrn_Theme_CtaColor(context);
+         Gxm1trn_theme.gxTpr_Ctacolor.Add(Gxm5trn_theme_ctacolor, 0);
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorname = context.GetMessage( "CtaColorThree", "");
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorcode = "#758A71";
+         Gxm5trn_theme_ctacolor = new SdtTrn_Theme_CtaColor(context);
+         Gxm1trn_theme.gxTpr_Ctacolor.Add(Gxm5trn_theme_ctacolor, 0);
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorname = context.GetMessage( "CtaColorFour", "");
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorcode = "#EEA622";
          Gxm1trn_theme = new SdtTrn_Theme(context);
          Gxm2rootcol.Add(Gxm1trn_theme, 0);
          Gxm1trn_theme.gxTpr_Trn_themeid = StringUtil.StrToGuid( context.GetMessage( "2db8770b-2e22-4522-870f-d0d8b3ea0ed3", ""));
@@ -487,6 +519,22 @@ namespace GeneXus.Programs {
          Gxm4trn_theme_icon.gxTpr_Iconcategory = "Services";
          Gxm4trn_theme_icon.gxTpr_Iconname = context.GetMessage( "Wash", "");
          Gxm4trn_theme_icon.gxTpr_Iconsvg = context.GetMessage( "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"22.073\" height=\"27.25\" viewBox=\"0 0 22.073 27.25\"><path id=\"wash\" d=\"M174.541,73.406h19.9a1.09,1.09,0,0,1,1.087,1.087v3.228H173.454V74.493a1.09,1.09,0,0,1,1.087-1.087Zm20.986,5.151v19.41H173.454V78.557Zm0,20.246v.767a1.09,1.09,0,0,1-1.087,1.087h-19.9a1.09,1.09,0,0,1-1.087-1.087V98.8ZM184.49,80.1a8.159,8.159,0,1,0,5.769,2.39A8.134,8.134,0,0,0,184.49,80.1Zm5.178,2.981a7.323,7.323,0,1,0,2.145,5.178A7.3,7.3,0,0,0,189.669,83.082ZM184.49,82.4a5.858,5.858,0,1,0,4.142,1.716A5.838,5.838,0,0,0,184.49,82.4Zm-4.971,5.141c1.786.91,3.595.505,5.428.1a11.525,11.525,0,0,1,4.46-.4,5.022,5.022,0,0,0-9.888.3Zm9.99.566a10.3,10.3,0,0,0-4.381.343c-1.877.42-3.73.834-5.656-.009a5.021,5.021,0,0,0,10.039-.183c0-.051,0-.1,0-.151Zm-3.389-13.094a.756.756,0,1,0,.756.756A.756.756,0,0,0,186.121,75.015Zm3.227,0a.756.756,0,1,0,.756.756A.756.756,0,0,0,189.348,75.015Zm3.227,0a.756.756,0,1,0,.756.756A.756.756,0,0,0,192.575,75.015Z\" transform=\"translate(-173.454 -73.406)\" fill=\"#7c8791\" fill-rule=\"evenodd\"/></svg>", "");
+         Gxm5trn_theme_ctacolor = new SdtTrn_Theme_CtaColor(context);
+         Gxm1trn_theme.gxTpr_Ctacolor.Add(Gxm5trn_theme_ctacolor, 0);
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorname = context.GetMessage( "CtaColorOne", "");
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorcode = "#18668B";
+         Gxm5trn_theme_ctacolor = new SdtTrn_Theme_CtaColor(context);
+         Gxm1trn_theme.gxTpr_Ctacolor.Add(Gxm5trn_theme_ctacolor, 0);
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorname = context.GetMessage( "CtaColorTwo", "");
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorcode = "#126E68";
+         Gxm5trn_theme_ctacolor = new SdtTrn_Theme_CtaColor(context);
+         Gxm1trn_theme.gxTpr_Ctacolor.Add(Gxm5trn_theme_ctacolor, 0);
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorname = context.GetMessage( "CtaColorThree", "");
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorcode = "#844A27";
+         Gxm5trn_theme_ctacolor = new SdtTrn_Theme_CtaColor(context);
+         Gxm1trn_theme.gxTpr_Ctacolor.Add(Gxm5trn_theme_ctacolor, 0);
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorname = context.GetMessage( "CtaColorFour", "");
+         Gxm5trn_theme_ctacolor.gxTpr_Ctacolorcode = "#F09605";
          cleanup();
       }
 
@@ -505,6 +553,7 @@ namespace GeneXus.Programs {
          Gxm1trn_theme = new SdtTrn_Theme(context);
          Gxm3trn_theme_color = new SdtTrn_Theme_Color(context);
          Gxm4trn_theme_icon = new SdtTrn_Theme_Icon(context);
+         Gxm5trn_theme_ctacolor = new SdtTrn_Theme_CtaColor(context);
          /* GeneXus formulas. */
       }
 
@@ -512,6 +561,7 @@ namespace GeneXus.Programs {
       private SdtTrn_Theme Gxm1trn_theme ;
       private SdtTrn_Theme_Color Gxm3trn_theme_color ;
       private SdtTrn_Theme_Icon Gxm4trn_theme_icon ;
+      private SdtTrn_Theme_CtaColor Gxm5trn_theme_ctacolor ;
       private GXBCCollection<SdtTrn_Theme> aP0_Gxm2rootcol ;
    }
 

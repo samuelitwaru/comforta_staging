@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overflow Demo</title>
+    <style>
+        .parent {
+            position: relative;
+            overflow: hidden; /* Restricts overflow for most elements */
+            width: 300px;
+            height: 150px;
+            background: lightgray;
+            border: 2px solid black;
+            padding: 10px;
+        }
+
+        .child {
+            width: 100%;
+            height: 50px;
+            background: blue;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .overflow-visible {
+            position:fixed; /* Allows it to overflow */
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%);
+            overflow: visible;
+            background: red;
+            color: white;
+            width: 700px;
+            padding: 10px;
+            border: 2px solid black;
+        }
+
+        .clip-example {
+            background: green;
+            color: white;
+            width: 700px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            clip-path: inset(0 0 -10px 0); /* Allows overflow only at the bottom */
+        }
+    </style>
+</head>
+<body>
+    <h2>Overflow Visibility Demo</h2>
+    <div class="parent">
+        <div class="child">Normal Content</div>
+        <div class="clip-example">Clipped Content</div>
+        <div class="overflow-visible">Overflowing Content</div>
+    </div>
+</body>
+</html>

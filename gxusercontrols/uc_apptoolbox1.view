@@ -5,40 +5,15 @@
    <!-- Navbar -->
    <div class="tb-navbar" id="tb-navbar">
       <h3 id="navbar_title"></h3>
+	  
       <div class="navbar-buttons" id="navbar-buttons"></div>
    </div>
    <div class="tb-container">
       <!-- Editor Container -->
-      <div class="main-content" id="main-content">
-         <!--<div class="navigator page-navigator-left" style="display:none">
-            <span id="scroll-left"><i class="fa fa-arrow-left-long"></i></span>
-         </div>
-         <div class="frame-list" id="child-container">
-         </div>
-         <div class="navigator page-navigator-right" style="display:none">
-            <span id="scroll-right"><i
-               class="fa fa-arrow-right-long"></i></span>
-         </div> -->
-      </div>
+      <div class="main-content" id="main-content"></div>
 	
       <div class="sidebar sidebar-right" id="tb-sidebar">
-         <div id="tools-section">
-	   
-            <!--<div class="tb-tabs">
-               <button id="pages-button" class="tb-tab-button active"
-                  data-tab="pages">
-               <span id="sidebar_tabs_pages_label">
-               </span>
-               </button>
-               <button id="templates-button" class="tb-tab-button"
-                  data-tab="templates">
-               <span id="sidebar_tabs_templates_label">
-               </span>
-               </button>
-            </div> -->
-		
-            
-         </div>
+         <div id="tools-section"></div>
 	   
          <div id="mapping-section" style="display: none;">
             <div class="mapping-header">
@@ -48,6 +23,7 @@
                </h3>
             </div>
             <div class="sidebar-section">
+				
                <div class="page-form" id="page-form">
                   <input type="text" class="add-page-input" id="page-title"
                      placeholder="Page name..." />
@@ -69,13 +45,6 @@
          </div>
       </div>
       <div class="tb-alerts-container" id="tb-alerts-container">
-      </div>
-      <div class="context-menu" id="contextMenu">
-         <ul>
-            <li data-card-id="1" id="delete-bg-image">
-               Delete image
-            </li>
-         </ul>
       </div>
    </div>
 </div>

@@ -21,6 +21,7 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_AppVersion_PagesItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_AvatarUpload.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_BrandThemeColors.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_BulletinBoard.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_CallToAction_SDT_CallToActionItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_ChangeYourPassword.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Col.cs" />
@@ -44,6 +45,8 @@
  	<Compile Include="$(WebDirectory)\type_SdtSDT_LoginResidentResponse.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Managers_SDT_ManagersItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_Media.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_Memo.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtSDT_MemoCategory.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_MenuPage.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_MenuPage_RowsItem.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtSDT_MenuPage_RowsItem_TilesItem.cs" />
@@ -91,6 +94,9 @@
  	<Compile Include="$(WebDirectory)\workwithplus\type_SdtWWPConfFormattingVariable.cs" />
  	<Compile Include="$(WebDirectory)\workwithplus\type_SdtWWP_Calendar_Events_Item.cs" />
  	<Compile Include="$(WebDirectory)\workwithplus\type_SdtWWP_Calendar_Events_Item_ActionsItem.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtWP_CreateLocationAndLicenseData.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtWP_CreateLocationAndLicenseData_Step1.cs" />
+ 	<Compile Include="$(WebDirectory)\type_SdtWP_CreateLocationAndLicenseData_Step2.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtWP_CreateLocationAndReceptionistData.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtWP_CreateLocationAndReceptionistData_Step1.cs" />
  	<Compile Include="$(WebDirectory)\type_SdtWP_CreateLocationAndReceptionistData_Step2.cs" />

@@ -158,7 +158,6 @@ namespace GeneXus.Programs {
          AV16ContentItem.gxTpr_Contenttype = context.GetMessage( "Description", "");
          AV16ContentItem.gxTpr_Contentvalue = AV12BC_Trn_ProductService.gxTpr_Productservicedescription;
          AV8SDT_ContentPage.gxTpr_Content.Add(AV16ContentItem, 0);
-         new prc_logtoserver(context ).execute(  ">>"+AV8SDT_ContentPage.ToJSonString(false, true)) ;
          AV22BC_Page.gxTpr_Pagestructure = AV8SDT_ContentPage.ToJSonString(false, true);
          AV23BC_Trn_AppVersion.gxTpr_Page.Add(AV22BC_Page, 0);
          AV23BC_Trn_AppVersion.Save();

@@ -41,26 +41,32 @@ namespace GeneXus.Programs {
                            Guid aP2_CarePageId ,
                            Guid aP3_LivingPageId ,
                            Guid aP4_ServicesPageId ,
-                           out SdtTrn_AppVersion_Page aP5_BC_HomePage )
+                           Guid aP5_MyActivityId ,
+                           Guid aP6_CalendarId ,
+                           out SdtTrn_AppVersion_Page aP7_BC_HomePage )
       {
          this.AV10ReceptionPageId = aP0_ReceptionPageId;
          this.AV11LocationPageId = aP1_LocationPageId;
          this.AV12CarePageId = aP2_CarePageId;
          this.AV13LivingPageId = aP3_LivingPageId;
          this.AV14ServicesPageId = aP4_ServicesPageId;
+         this.AV22MyActivityId = aP5_MyActivityId;
+         this.AV21CalendarId = aP6_CalendarId;
          this.AV15BC_HomePage = new SdtTrn_AppVersion_Page(context) ;
          initialize();
          ExecuteImpl();
-         aP5_BC_HomePage=this.AV15BC_HomePage;
+         aP7_BC_HomePage=this.AV15BC_HomePage;
       }
 
       public SdtTrn_AppVersion_Page executeUdp( Guid aP0_ReceptionPageId ,
                                                 Guid aP1_LocationPageId ,
                                                 Guid aP2_CarePageId ,
                                                 Guid aP3_LivingPageId ,
-                                                Guid aP4_ServicesPageId )
+                                                Guid aP4_ServicesPageId ,
+                                                Guid aP5_MyActivityId ,
+                                                Guid aP6_CalendarId )
       {
-         execute(aP0_ReceptionPageId, aP1_LocationPageId, aP2_CarePageId, aP3_LivingPageId, aP4_ServicesPageId, out aP5_BC_HomePage);
+         execute(aP0_ReceptionPageId, aP1_LocationPageId, aP2_CarePageId, aP3_LivingPageId, aP4_ServicesPageId, aP5_MyActivityId, aP6_CalendarId, out aP7_BC_HomePage);
          return AV15BC_HomePage ;
       }
 
@@ -69,16 +75,20 @@ namespace GeneXus.Programs {
                                  Guid aP2_CarePageId ,
                                  Guid aP3_LivingPageId ,
                                  Guid aP4_ServicesPageId ,
-                                 out SdtTrn_AppVersion_Page aP5_BC_HomePage )
+                                 Guid aP5_MyActivityId ,
+                                 Guid aP6_CalendarId ,
+                                 out SdtTrn_AppVersion_Page aP7_BC_HomePage )
       {
          this.AV10ReceptionPageId = aP0_ReceptionPageId;
          this.AV11LocationPageId = aP1_LocationPageId;
          this.AV12CarePageId = aP2_CarePageId;
          this.AV13LivingPageId = aP3_LivingPageId;
          this.AV14ServicesPageId = aP4_ServicesPageId;
+         this.AV22MyActivityId = aP5_MyActivityId;
+         this.AV21CalendarId = aP6_CalendarId;
          this.AV15BC_HomePage = new SdtTrn_AppVersion_Page(context) ;
          SubmitImpl();
-         aP5_BC_HomePage=this.AV15BC_HomePage;
+         aP7_BC_HomePage=this.AV15BC_HomePage;
       }
 
       protected override void ExecutePrivate( )
@@ -143,11 +153,11 @@ namespace GeneXus.Programs {
          AV18RowsItem = new SdtSDT_MenuPage_RowsItem(context);
          AV18RowsItem.gxTpr_Id = new SdtRandomStringGenerator(context).generate(15);
          GXt_SdtSDT_MenuPage_RowsItem_TilesItem1 = AV17TilesItem;
-         new prc_createpagetile(context ).execute(  context.GetMessage( "Agenda", ""),  "#333333",  context.GetMessage( "left", ""),  context.GetMessage( "Calendar", ""),  0,  "",  AV20baseUrl+context.GetMessage( "/media/Calendar.png", ""),  "",  "",  "", out  GXt_SdtSDT_MenuPage_RowsItem_TilesItem1) ;
+         new prc_createpagetile(context ).execute(  context.GetMessage( "Agenda", ""),  "#333333",  context.GetMessage( "left", ""),  context.GetMessage( "Calendar", ""),  0,  "",  AV20baseUrl+context.GetMessage( "/media/Calendar.png", ""),  AV21CalendarId.ToString(),  context.GetMessage( "Calendar", ""),  "", out  GXt_SdtSDT_MenuPage_RowsItem_TilesItem1) ;
          AV17TilesItem = GXt_SdtSDT_MenuPage_RowsItem_TilesItem1;
          AV18RowsItem.gxTpr_Tiles.Add(AV17TilesItem, 0);
          GXt_SdtSDT_MenuPage_RowsItem_TilesItem1 = AV17TilesItem;
-         new prc_createpagetile(context ).execute(  context.GetMessage( "My Activity", ""),  "#333333",  context.GetMessage( "left", ""),  "",  0,  "",  "",  "",  "",  "", out  GXt_SdtSDT_MenuPage_RowsItem_TilesItem1) ;
+         new prc_createpagetile(context ).execute(  context.GetMessage( "My Activity", ""),  "#333333",  context.GetMessage( "left", ""),  "",  0,  "",  "",  AV22MyActivityId.ToString(),  context.GetMessage( "My Activity", ""),  "", out  GXt_SdtSDT_MenuPage_RowsItem_TilesItem1) ;
          AV17TilesItem = GXt_SdtSDT_MenuPage_RowsItem_TilesItem1;
          AV18RowsItem.gxTpr_Tiles.Add(AV17TilesItem, 0);
          AV16SDT_MenuPage.gxTpr_Rows.Add(AV18RowsItem, 0);
@@ -226,13 +236,15 @@ namespace GeneXus.Programs {
       private Guid AV12CarePageId ;
       private Guid AV13LivingPageId ;
       private Guid AV14ServicesPageId ;
+      private Guid AV22MyActivityId ;
+      private Guid AV21CalendarId ;
       private SdtTrn_AppVersion_Page AV15BC_HomePage ;
       private GeneXus.Programs.genexussecurity.SdtGAMApplication AV19GAMApplication ;
       private SdtSDT_MenuPage AV16SDT_MenuPage ;
       private SdtSDT_MenuPage_RowsItem AV18RowsItem ;
       private SdtSDT_MenuPage_RowsItem_TilesItem AV17TilesItem ;
       private SdtSDT_MenuPage_RowsItem_TilesItem GXt_SdtSDT_MenuPage_RowsItem_TilesItem1 ;
-      private SdtTrn_AppVersion_Page aP5_BC_HomePage ;
+      private SdtTrn_AppVersion_Page aP7_BC_HomePage ;
    }
 
 }

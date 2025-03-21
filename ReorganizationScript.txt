@@ -1,7 +1,22 @@
-ALTER TABLE Trn_Media ADD OrganisationId CHAR(36) NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
-ALTER TABLE Trn_Media ALTER COLUMN OrganisationId DROP DEFAULT;
-ALTER TABLE Trn_Media ALTER COLUMN LocationId DROP DEFAULT;
-CREATE INDEX ITRN_MEDIA1 ON Trn_Media (LocationId ,OrganisationId );
+ALTER TABLE Trn_Location ADD LocationBrandTheme TEXT , ADD LocationCtaTheme TEXT , ADD LocationHasMyCare BOOLEAN NOT NULL DEFAULT FALSE, ADD LocationHasMyServices BOOLEAN NOT NULL DEFAULT FALSE, ADD LocationHasMyLiving BOOLEAN NOT NULL DEFAULT FALSE, ADD LocationHasOwnBrand BOOLEAN NOT NULL DEFAULT FALSE, ADD ReceptionImage BYTEA , ADD ReceptionImage_GXI VARCHAR(2048) , ADD ReceptionDescription VARCHAR(200);
+ALTER TABLE Trn_Location ALTER COLUMN LocationHasMyCare DROP DEFAULT;
+ALTER TABLE Trn_Location ALTER COLUMN LocationHasMyServices DROP DEFAULT;
+ALTER TABLE Trn_Location ALTER COLUMN LocationHasMyLiving DROP DEFAULT;
+ALTER TABLE Trn_Location ALTER COLUMN LocationHasOwnBrand DROP DEFAULT;
 
-ALTER TABLE Trn_Media ADD CONSTRAINT ITRN_MEDIA1 FOREIGN KEY (LocationId, OrganisationId) REFERENCES Trn_Location (LocationId, OrganisationId);
+ALTER TABLE Trn_Memo ADD MemoBgColorCode VARCHAR(100) NOT NULL DEFAULT '', ADD MemoForm CHAR(20) NOT NULL DEFAULT '', ADD SG_OrganisationId CHAR(36) NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000', ADD SG_LocationId CHAR(36) NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000';
+ALTER TABLE Trn_Memo ALTER COLUMN MemoBgColorCode DROP DEFAULT;
+ALTER TABLE Trn_Memo ALTER COLUMN MemoForm DROP DEFAULT;
+UPDATE Trn_Memo SET SG_OrganisationId=T.SG_OrganisationId, SG_LocationId=T.SG_LocationId FROM (SELECT T1.MemoId, T2.SG_OrganisationId, T2.SG_LocationId FROM (((Trn_Memo T1 INNER JOIN Trn_BulletinBoard T4 ON T4.BulletinBoardId = T1.BulletinBoardId) LEFT JOIN Trn_Resident T3 ON T3.ResidentId = T1.ResidentId AND T3.LocationId = T4.LocationId AND T3.OrganisationId = T4.OrganisationId) LEFT JOIN Trn_ResidentPackage T2 ON T2.ResidentPackageId = T3.ResidentPackageId)) T WHERE Trn_Memo.MemoId= T.MemoId;
+ALTER TABLE Trn_Memo ALTER COLUMN SG_OrganisationId DROP DEFAULT;
+ALTER TABLE Trn_Memo ALTER COLUMN SG_LocationId DROP DEFAULT;
+ALTER TABLE Trn_Memo ALTER COLUMN ResidentId DROP DEFAULT;
+DROP INDEX ITRN_MEMO2;
+CREATE INDEX ITRN_MEMO2 ON Trn_Memo (ResidentId ,SG_LocationId ,SG_OrganisationId );
+ALTER TABLE Trn_Memo DROP CONSTRAINT ITRN_MEMO2;
+ALTER TABLE Trn_Memo DROP BulletinBoardId;
+
+DROP TABLE Trn_BulletinBoard CASCADE;
+
+ALTER TABLE Trn_Memo ADD CONSTRAINT ITRN_MEMO2 FOREIGN KEY (ResidentId, SG_LocationId, SG_OrganisationId) REFERENCES Trn_Resident (ResidentId, LocationId, OrganisationId);
 

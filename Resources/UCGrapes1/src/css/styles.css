@@ -236,7 +236,7 @@ span#scroll-right:hover {
   height: 90vh;
   max-width: 320px;
   max-height: 680px;
-  background-color: #fdfdfd;
+  background-color: #efeeec;
   border-radius: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   position: relative;
@@ -1209,12 +1209,12 @@ div#cta-selected-actions {
 }
 
 .sidebar-section .icons-list .icon {
-  display: flex; /* Enables Flexbox */
-  align-items: center; /* Vertical alignment */
-  justify-content: center; /* Horizontal alignment */
-  flex-direction: column; /* Stacks the SVG and the span vertically */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   background-color: #f9f9f9;
-  border: 1px solid #7070702b;
+  border: 1.5px solid #7070702e;
   border-radius: 6px;
   padding: 4px 8px;
   text-align: center;
@@ -1981,6 +1981,14 @@ button.add-new-service i {
   animation: spin 1s ease-in-out infinite;
 }
 
+.selected-tile-icon {
+  border: 2px solid #5068a8 !important;
+}
+
+.selected-tile-icon path {
+  fill: #5068a8 !important;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -1993,4 +2001,103 @@ button.add-new-service i {
 @font-face {
   font-family: "Segoe UI";
   src: url("../fonts/segoeui.ttf") format("truetype");
+}
+
+/* Create Page Menu */
+#new-page-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60%;
+  background-color: white;
+  border-radius: 5px;
+
+}
+.tb-menu {
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  width: 200px;
+}
+.tb-menu div {
+  padding: 5px 10px;
+  cursor: pointer;
+  border-bottom:1px #ccc solid;
+}
+.tb-menu div:hover {
+  background-color: #f0f0f0;
+}
+
+/* Tile Context Menu */
+.context-menu {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  display: none;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+.context-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.context-menu li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.context-menu li:hover {
+  background-color: #f0f0f0;
+}
+
+/* New Page Button */
+.menu-container {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  margin-left: -30px;
+}
+.menu-button {
+  background-color: #f4f4f4;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+}
+.menu-button:hover {
+  background-color: #5068A8;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+.menu-button:hover .icon-path {
+  fill: #fff;
+}
+.menu-container:hover .menu {
+  display: block;
+}
+.menu {
+  display: none;
+  position: absolute;
+  top: -10px;
+  left: 100%;
+  background-color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.menu.show {
+  display: block;
+}
+.menu-item {
+  padding: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 1px #ccc solid;
+}
+.menu-item:hover {
+  background-color: #eee;
 }

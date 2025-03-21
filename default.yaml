@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: "Development"
-  version: "20250318104353"
+  version: "20250321104536"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/rest
 paths:
@@ -72,6 +72,52 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Trn_AuditWWGetFilterDataOutput"
+        404:
+          description: "Not found"
+  /Trn_BulletinBoardLoadDVCombo:
+    post:
+      tags:
+        - Trn_BulletinBoardLoadDVCombo
+      operationId: "Trn_BulletinBoardLoadDVCombo"
+      summary: "Trn_Bulletin Board Load DVCombo"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Trn_BulletinBoardLoadDVComboInput"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Trn_BulletinBoardLoadDVComboOutput"
+        404:
+          description: "Not found"
+  /Trn_BulletinBoardWWGetFilterData:
+    post:
+      tags:
+        - Trn_BulletinBoardWWGetFilterData
+      operationId: "Trn_BulletinBoardWWGetFilterData"
+      summary: "Trn_Bulletin Board WWGet Filter Data"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Trn_BulletinBoardWWGetFilterDataInput"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Trn_BulletinBoardWWGetFilterDataOutput"
         404:
           description: "Not found"
   /Trn_CallToActionLoadDVCombo:
@@ -189,6 +235,75 @@ paths:
                 $ref: "#/components/schemas/Trn_MedicalIndicationWWGetFilterDataOutput"
         404:
           description: "Not found"
+  /Trn_MemoCategoryWWGetFilterData:
+    post:
+      tags:
+        - Trn_MemoCategoryWWGetFilterData
+      operationId: "Trn_MemoCategoryWWGetFilterData"
+      summary: "Trn_Memo Category WWGet Filter Data"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Trn_MemoCategoryWWGetFilterDataInput"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Trn_MemoCategoryWWGetFilterDataOutput"
+        404:
+          description: "Not found"
+  /Trn_MemoLoadDVCombo:
+    post:
+      tags:
+        - Trn_MemoLoadDVCombo
+      operationId: "Trn_MemoLoadDVCombo"
+      summary: "Trn_Memo Load DVCombo"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Trn_MemoLoadDVComboInput"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Trn_MemoLoadDVComboOutput"
+        404:
+          description: "Not found"
+  /Trn_MemoWWGetFilterData:
+    post:
+      tags:
+        - Trn_MemoWWGetFilterData
+      operationId: "Trn_MemoWWGetFilterData"
+      summary: "Trn_Memo WWGet Filter Data"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Trn_MemoWWGetFilterDataInput"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Trn_MemoWWGetFilterDataOutput"
+        404:
+          description: "Not found"
   /Trn_OrganisationLoadDVCombo:
     post:
       tags:
@@ -256,6 +371,29 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Trn_OrganisationSettingWWGetFilterDataOutput"
+        404:
+          description: "Not found"
+  /Trn_OrganisationTrn_LocationWCGetFilterData:
+    post:
+      tags:
+        - Trn_OrganisationTrn_LocationWCGetFilterData
+      operationId: "Trn_OrganisationTrn_LocationWCGetFilterData"
+      summary: "Trn_Organisation Trn_Location WCGet Filter Data"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Trn_OrganisationTrn_LocationWCGetFilterDataInput"
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Trn_OrganisationTrn_LocationWCGetFilterDataOutput"
         404:
           description: "Not found"
   /Trn_OrganisationTypeWWGetFilterData:
@@ -1191,6 +1329,22 @@ components:
           type: "string"
         OptionIndexesJson:
           type: "string"
+    Trn_BulletinBoardLoadDVComboOutput:
+      properties:
+        SelectedValue:
+          type: "string"
+        SelectedText:
+          type: "string"
+        Combo_DataJson:
+          type: "string"
+    Trn_BulletinBoardWWGetFilterDataOutput:
+      properties:
+        OptionsJson:
+          type: "string"
+        OptionsDescJson:
+          type: "string"
+        OptionIndexesJson:
+          type: "string"
     Trn_CallToActionLoadDVComboOutput:
       properties:
         SelectedValue:
@@ -1231,6 +1385,30 @@ components:
           type: "string"
         OptionIndexesJson:
           type: "string"
+    Trn_MemoCategoryWWGetFilterDataOutput:
+      properties:
+        OptionsJson:
+          type: "string"
+        OptionsDescJson:
+          type: "string"
+        OptionIndexesJson:
+          type: "string"
+    Trn_MemoLoadDVComboOutput:
+      properties:
+        SelectedValue:
+          type: "string"
+        SelectedText:
+          type: "string"
+        Combo_DataJson:
+          type: "string"
+    Trn_MemoWWGetFilterDataOutput:
+      properties:
+        OptionsJson:
+          type: "string"
+        OptionsDescJson:
+          type: "string"
+        OptionIndexesJson:
+          type: "string"
     Trn_OrganisationLoadDVComboOutput:
       properties:
         SelectedValue:
@@ -1249,6 +1427,14 @@ components:
           items:
             $ref: "#/components/schemas/WWPBaseObjects.DVB_SDTComboData_Item"
     Trn_OrganisationSettingWWGetFilterDataOutput:
+      properties:
+        OptionsJson:
+          type: "string"
+        OptionsDescJson:
+          type: "string"
+        OptionIndexesJson:
+          type: "string"
+    Trn_OrganisationTrn_LocationWCGetFilterDataOutput:
       properties:
         OptionsJson:
           type: "string"
@@ -1545,6 +1731,30 @@ components:
           type: "string"
         SearchTxtTo:
           type: "string"
+    Trn_BulletinBoardLoadDVComboInput:  
+      properties:
+        ComboName:
+          type: "string"
+        TrnMode:
+          type: "string"
+        IsDynamicCall:
+          type: "boolean"
+        BulletinBoardId:
+          type: "string"
+          format: "uuid"
+        Cond_OrganisationId:
+          type: "string"
+          format: "uuid"
+        SearchTxtParms:
+          type: "string"
+    Trn_BulletinBoardWWGetFilterDataInput:  
+      properties:
+        DDOName:
+          type: "string"
+        SearchTxtParms:
+          type: "string"
+        SearchTxtTo:
+          type: "string"
     Trn_CallToActionLoadDVComboInput:  
       properties:
         ComboName:
@@ -1590,6 +1800,35 @@ components:
           type: "string"
         SearchTxtTo:
           type: "string"
+    Trn_MemoCategoryWWGetFilterDataInput:  
+      properties:
+        DDOName:
+          type: "string"
+        SearchTxtParms:
+          type: "string"
+        SearchTxtTo:
+          type: "string"
+    Trn_MemoLoadDVComboInput:  
+      properties:
+        ComboName:
+          type: "string"
+        TrnMode:
+          type: "string"
+        IsDynamicCall:
+          type: "boolean"
+        MemoId:
+          type: "string"
+          format: "uuid"
+        SearchTxtParms:
+          type: "string"
+    Trn_MemoWWGetFilterDataInput:  
+      properties:
+        DDOName:
+          type: "string"
+        SearchTxtParms:
+          type: "string"
+        SearchTxtTo:
+          type: "string"
     Trn_OrganisationLoadDVComboInput:  
       properties:
         ComboName:
@@ -1616,6 +1855,14 @@ components:
           type: "string"
           format: "uuid"
     Trn_OrganisationSettingWWGetFilterDataInput:  
+      properties:
+        DDOName:
+          type: "string"
+        SearchTxtParms:
+          type: "string"
+        SearchTxtTo:
+          type: "string"
+    Trn_OrganisationTrn_LocationWCGetFilterDataInput:  
       properties:
         DDOName:
           type: "string"
@@ -1989,6 +2236,11 @@ components:
           description: "number Of Pages"
           type: "integer"
           format: "int32"
+        memos:
+          description: "SDT_Memo"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_Memo"
     SDT_ApiResidentFilledForms:
       properties:
         FormId:
@@ -2062,6 +2314,26 @@ components:
           description: "SDT_Content Page"
           $ref: "#/components/schemas/SDT_ContentPage"
       x-gx-level: "SDT_AppVersion"
+    SDT_BulletinBoard:
+      properties:
+        BulletinBoardId:
+          description: "Bulletin Board Id"
+          type: "string"
+          format: "uuid"
+        OrganisationId:
+          description: "Organisation Id"
+          type: "string"
+          format: "uuid"
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
+        BulletinBoardBgColorCode:
+          description: "Bulletin Board Bg Color Code"
+          type: "string"
+        BulletinBoardForm:
+          description: "Bulletin Board Form"
+          type: "string"
     SDT_CallToAction_SDT_CallToActionItem:
       properties:
         CallToActionId:
@@ -2180,6 +2452,9 @@ components:
             $ref: "#/components/schemas/SDT_ContentPage.Cta_CtaItem"
     SDT_ContentPage.Content_ContentItem:
       properties:
+        ContentId:
+          description: "Content Id"
+          type: "string"
         ContentType:
           description: "Content Type"
           type: "string"
@@ -2411,6 +2686,82 @@ components:
           type: "string"
         MediaUrl:
           description: "Media Url"
+          type: "string"
+    SDT_Memo:
+      properties:
+        MemoId:
+          description: "Memo Id"
+          type: "string"
+          format: "uuid"
+        BulletinBoardId:
+          description: "Bulletin Board Id"
+          type: "string"
+          format: "uuid"
+        MemoCategoryId:
+          description: "Memo Category Id"
+          type: "string"
+          format: "uuid"
+        MemoCategoryName:
+          description: "Memo Category Name"
+          type: "string"
+        MemoTitle:
+          description: "Memo Title"
+          type: "string"
+        MemoDescription:
+          description: "Memo Description"
+          type: "string"
+        MemoImage:
+          description: "Memo Image"
+          type: "string"
+        MemoDocument:
+          description: "Memo Document"
+          type: "string"
+        MemoStartDateTime:
+          description: "Memo Start Date Time"
+          type: "string"
+          format: "date-time"
+        MemoEndDateTime:
+          description: "Memo End Date Time"
+          type: "string"
+          format: "date-time"
+        MemoDuration:
+          description: "Memo Duration"
+          type: "integer"
+          format: "int32"
+        MemoRemoveDate:
+          description: "Memo Remove Date"
+          type: "string"
+          format: "date"
+        ResidentId:
+          description: "Resident Id"
+          type: "string"
+          format: "uuid"
+        ResidentSalutation:
+          description: "Resident Salutation"
+          type: "string"
+        ResidentGivenName:
+          description: "Resident Given Name"
+          type: "string"
+        ResidentLastName:
+          description: "Resident Last Name"
+          type: "string"
+        ResidentGUID:
+          description: "Resident GUID"
+          type: "string"
+        MemoBgColorCode:
+          description: "Memo Bg Color Code"
+          type: "string"
+        MemoForm:
+          description: "Memo Form"
+          type: "string"
+    SDT_MemoCategory:
+      properties:
+        MemoCategoryId:
+          description: "Memo Category Id"
+          type: "string"
+          format: "uuid"
+        MemoCategoryName:
+          description: "Memo Category Name"
           type: "string"
     SDT_MenuPage:
       properties:
@@ -2969,6 +3320,86 @@ components:
         ObjectUrl:
           description: "Object Url"
           type: "string"
+    Trn_Location:
+      properties:
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
+        OrganisationId:
+          description: "Organisation Id"
+          type: "string"
+          format: "uuid"
+        LocationName:
+          description: "Location Name"
+          type: "string"
+        LocationImage:
+          description: "Location Image"
+          type: "string"
+        LocationCountry:
+          description: "Location Country"
+          type: "string"
+        LocationCity:
+          description: "Location City"
+          type: "string"
+        LocationZipCode:
+          description: "Location Zip Code"
+          type: "string"
+        LocationAddressLine1:
+          description: "Location Address Line1"
+          type: "string"
+        LocationAddressLine2:
+          description: "Location Address Line2"
+          type: "string"
+        LocationEmail:
+          description: "Location Email"
+          type: "string"
+        LocationPhoneCode:
+          description: "Location Phone Code"
+          type: "string"
+        LocationPhoneNumber:
+          description: "Location Phone Number"
+          type: "string"
+        LocationPhone:
+          description: "Location Phone"
+          type: "string"
+        LocationDescription:
+          description: "Location Description"
+          type: "string"
+        LocationBrandTheme:
+          description: "Location Brand Theme"
+          type: "string"
+        LocationCtaTheme:
+          description: "Location Cta Theme"
+          type: "string"
+        LocationHasMyCare:
+          description: "Location Has My Care"
+          type: "boolean"
+        LocationHasMyServices:
+          description: "Location Has My Services"
+          type: "boolean"
+        LocationHasMyLiving:
+          description: "Location Has My Living"
+          type: "boolean"
+        LocationHasOwnBrand:
+          description: "Location Has Own Brand"
+          type: "boolean"
+        ToolBoxDefaultProfileImage:
+          description: "Tool Box Default Profile Image"
+          type: "string"
+        ToolBoxDefaultLogo:
+          description: "Tool Box Default Logo"
+          type: "string"
+        ReceptionImage:
+          description: "Reception Image"
+          type: "string"
+        ReceptionDescription:
+          description: "Reception Description"
+          type: "string"
+        Trn_ThemeId:
+          description: "Trn_Theme Id"
+          type: "string"
+          format: "uuid"
     Trn_Media:
       properties:
         MediaId:

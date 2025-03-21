@@ -44,12 +44,15 @@ namespace GeneXus.Programs {
 
       public void execute( string aP0_PreviousStep ,
                            string aP1_CurrentStep ,
-                           bool aP2_GoingBack )
+                           bool aP2_GoingBack ,
+                           ref Guid aP3_OrganisationId )
       {
          this.AV10PreviousStep = aP0_PreviousStep;
          this.AV11CurrentStep = aP1_CurrentStep;
          this.AV9GoingBack = aP2_GoingBack;
+         this.AV19OrganisationId = aP3_OrganisationId;
          ExecuteImpl();
+         aP3_OrganisationId=this.AV19OrganisationId;
       }
 
       protected override void ExecutePrivate( )
@@ -265,7 +268,7 @@ namespace GeneXus.Programs {
          context.WriteHtmlText( FormProcess+">") ;
          context.skipLines(1);
          GXKey = Crypto.GetSiteKey( );
-         GXEncryptionTmp = "wp_createlocationandreceptionist.aspx"+UrlEncode(StringUtil.RTrim(AV10PreviousStep)) + "," + UrlEncode(StringUtil.RTrim(AV11CurrentStep)) + "," + UrlEncode(StringUtil.BoolToStr(AV9GoingBack));
+         GXEncryptionTmp = "wp_createlocationandreceptionist.aspx"+UrlEncode(StringUtil.RTrim(AV10PreviousStep)) + "," + UrlEncode(StringUtil.RTrim(AV11CurrentStep)) + "," + UrlEncode(StringUtil.BoolToStr(AV9GoingBack)) + "," + UrlEncode(AV19OrganisationId.ToString());
          context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wp_createlocationandreceptionist.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
          GxWebStd.gx_hidden_field( context, "_EventName", "");
          GxWebStd.gx_hidden_field( context, "_EventGridId", "");
@@ -323,6 +326,7 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, "gxhash_vCURRENTSTEP", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV11CurrentStep, "")), context));
          GxWebStd.gx_boolean_hidden_field( context, "vGOINGBACK", AV9GoingBack);
          GxWebStd.gx_hidden_field( context, "gxhash_vGOINGBACK", GetSecureSignedToken( "", AV9GoingBack, context));
+         GxWebStd.gx_hidden_field( context, "vORGANISATIONID", AV19OrganisationId.ToString());
       }
 
       public override void RenderHtmlCloseForm( )
@@ -397,7 +401,7 @@ namespace GeneXus.Programs {
       public override string GetSelfLink( )
       {
          GXKey = Crypto.GetSiteKey( );
-         GXEncryptionTmp = "wp_createlocationandreceptionist.aspx"+UrlEncode(StringUtil.RTrim(AV10PreviousStep)) + "," + UrlEncode(StringUtil.RTrim(AV11CurrentStep)) + "," + UrlEncode(StringUtil.BoolToStr(AV9GoingBack));
+         GXEncryptionTmp = "wp_createlocationandreceptionist.aspx"+UrlEncode(StringUtil.RTrim(AV10PreviousStep)) + "," + UrlEncode(StringUtil.RTrim(AV11CurrentStep)) + "," + UrlEncode(StringUtil.BoolToStr(AV9GoingBack)) + "," + UrlEncode(AV19OrganisationId.ToString());
          return formatLink("wp_createlocationandreceptionist.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey) ;
       }
 
@@ -725,6 +729,8 @@ namespace GeneXus.Programs {
                         AV9GoingBack = StringUtil.StrToBool( GetPar( "GoingBack"));
                         AssignAttri("", false, "AV9GoingBack", AV9GoingBack);
                         GxWebStd.gx_hidden_field( context, "gxhash_vGOINGBACK", GetSecureSignedToken( "", AV9GoingBack, context));
+                        AV19OrganisationId = StringUtil.StrToGuid( GetPar( "OrganisationId"));
+                        AssignAttri("", false, "AV19OrganisationId", AV19OrganisationId.ToString());
                      }
                   }
                   if ( toggleJsOutput )
@@ -791,7 +797,7 @@ namespace GeneXus.Programs {
       protected void initialize_formulas( )
       {
          /* GeneXus formulas. */
-         AV19Pgmname = "WP_CreateLocationAndReceptionist";
+         AV20Pgmname = "WP_CreateLocationAndReceptionist";
       }
 
       protected void RF6I2( )
@@ -848,7 +854,7 @@ namespace GeneXus.Programs {
 
       protected void before_start_formulas( )
       {
-         AV19Pgmname = "WP_CreateLocationAndReceptionist";
+         AV20Pgmname = "WP_CreateLocationAndReceptionist";
          fix_multi_value_controls( ) ;
       }
 
@@ -904,7 +910,7 @@ namespace GeneXus.Programs {
             AV12CurrentStepAux = "Step1";
             AssignAttri("", false, "AV12CurrentStepAux", AV12CurrentStepAux);
             GxWebStd.gx_hidden_field( context, "gxhash_vCURRENTSTEPAUX", GetSecureSignedToken( "", StringUtil.RTrim( context.localUtil.Format( AV12CurrentStepAux, "")), context));
-            AV7WebSession.Remove(AV19Pgmname+"_Data");
+            AV7WebSession.Remove(AV20Pgmname+"_Data");
          }
          else
          {
@@ -956,8 +962,8 @@ namespace GeneXus.Programs {
             if ( StringUtil.Len( WebComp_Wizardstepwc_Component) != 0 )
             {
                WebComp_Wizardstepwc.setjustcreated();
-               WebComp_Wizardstepwc.componentprepare(new Object[] {(string)"W0018",(string)"",(string)AV19Pgmname+"_Data",(string)AV10PreviousStep,(bool)AV9GoingBack});
-               WebComp_Wizardstepwc.componentbind(new Object[] {(string)""+""+"",(string)"",(string)""});
+               WebComp_Wizardstepwc.componentprepare(new Object[] {(string)"W0018",(string)"",(string)AV20Pgmname+"_Data",(string)AV10PreviousStep,(bool)AV9GoingBack,(Guid)AV19OrganisationId});
+               WebComp_Wizardstepwc.componentbind(new Object[] {(string)""+""+"",(string)"",(string)"",(string)""});
             }
             if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wizardstepwc )
             {
@@ -983,8 +989,8 @@ namespace GeneXus.Programs {
             if ( StringUtil.Len( WebComp_Wizardstepwc_Component) != 0 )
             {
                WebComp_Wizardstepwc.setjustcreated();
-               WebComp_Wizardstepwc.componentprepare(new Object[] {(string)"W0018",(string)"",(string)AV19Pgmname+"_Data",(string)AV10PreviousStep,(bool)AV9GoingBack});
-               WebComp_Wizardstepwc.componentbind(new Object[] {(string)""+""+"",(string)"",(string)""});
+               WebComp_Wizardstepwc.componentprepare(new Object[] {(string)"W0018",(string)"",(string)AV20Pgmname+"_Data",(string)AV10PreviousStep,(bool)AV9GoingBack,(Guid)AV19OrganisationId});
+               WebComp_Wizardstepwc.componentbind(new Object[] {(string)""+""+"",(string)"",(string)"",(string)""});
             }
             if ( isFullAjaxMode( ) || isAjaxCallMode( ) && bDynCreated_Wizardstepwc )
             {
@@ -1002,10 +1008,10 @@ namespace GeneXus.Programs {
          lblWizardstepdescription_Caption = "";
          AssignProp("", false, lblWizardstepdescription_Internalname, "Caption", lblWizardstepdescription_Caption, true);
          AV15StepNumber = 1;
-         AV20GXV1 = 1;
-         while ( AV20GXV1 <= AV13WizardSteps.Count )
+         AV21GXV1 = 1;
+         while ( AV21GXV1 <= AV13WizardSteps.Count )
          {
-            AV14WizardStep = ((GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem)AV13WizardSteps.Item(AV20GXV1));
+            AV14WizardStep = ((GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem)AV13WizardSteps.Item(AV21GXV1));
             if ( StringUtil.StrCmp(AV14WizardStep.gxTpr_Code, AV12CurrentStepAux) == 0 )
             {
                if ( ! String.IsNullOrEmpty(StringUtil.RTrim( AV14WizardStep.gxTpr_Description)) )
@@ -1018,7 +1024,7 @@ namespace GeneXus.Programs {
             {
                AV15StepNumber = (short)(AV15StepNumber+1);
             }
-            AV20GXV1 = (int)(AV20GXV1+1);
+            AV21GXV1 = (int)(AV21GXV1+1);
          }
          /*  Sending Event outputs  */
       }
@@ -1046,6 +1052,8 @@ namespace GeneXus.Programs {
          AV9GoingBack = (bool)getParm(obj,2);
          AssignAttri("", false, "AV9GoingBack", AV9GoingBack);
          GxWebStd.gx_hidden_field( context, "gxhash_vGOINGBACK", GetSecureSignedToken( "", AV9GoingBack, context));
+         AV19OrganisationId = (Guid)getParm(obj,3);
+         AssignAttri("", false, "AV19OrganisationId", AV19OrganisationId.ToString());
       }
 
       public override string getresponse( string sGXDynURL )
@@ -1095,7 +1103,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531215888", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532113431114", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1111,7 +1119,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("wp_createlocationandreceptionist.js", "?202531215889", false, true);
+         context.AddJavascriptSource("wp_createlocationandreceptionist.js", "?202532113431114", false, true);
          /* End function include_jscripts */
       }
 
@@ -1174,6 +1182,7 @@ namespace GeneXus.Programs {
       {
          wcpOAV10PreviousStep = "";
          wcpOAV11CurrentStep = "";
+         wcpOAV19OrganisationId = Guid.Empty;
          gxfirstwebparm = "";
          gxfirstwebparm_bkp = "";
          sDynURL = "";
@@ -1196,16 +1205,16 @@ namespace GeneXus.Programs {
          EvtRowId = "";
          sEvtType = "";
          GXDecQS = "";
-         AV19Pgmname = "";
+         AV20Pgmname = "";
          AV14WizardStep = new GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem(context);
          AV7WebSession = context.GetSession();
          BackMsgLst = new msglist();
          LclMsgLst = new msglist();
          WebComp_Steptitles = new GeneXus.Http.GXNullWebComponent();
          WebComp_Wizardstepwc = new GeneXus.Http.GXNullWebComponent();
-         AV19Pgmname = "WP_CreateLocationAndReceptionist";
+         AV20Pgmname = "WP_CreateLocationAndReceptionist";
          /* GeneXus formulas. */
-         AV19Pgmname = "WP_CreateLocationAndReceptionist";
+         AV20Pgmname = "WP_CreateLocationAndReceptionist";
       }
 
       private short nGotPars ;
@@ -1217,7 +1226,7 @@ namespace GeneXus.Programs {
       private short nDonePA ;
       private short AV15StepNumber ;
       private short nGXWrapped ;
-      private int AV20GXV1 ;
+      private int AV21GXV1 ;
       private int idxLst ;
       private string gxfirstwebparm ;
       private string gxfirstwebparm_bkp ;
@@ -1243,7 +1252,7 @@ namespace GeneXus.Programs {
       private string EvtRowId ;
       private string sEvtType ;
       private string GXDecQS ;
-      private string AV19Pgmname ;
+      private string AV20Pgmname ;
       private bool AV9GoingBack ;
       private bool wcpOAV9GoingBack ;
       private bool entryPointCalled ;
@@ -1260,6 +1269,8 @@ namespace GeneXus.Programs {
       private string wcpOAV10PreviousStep ;
       private string wcpOAV11CurrentStep ;
       private string AV12CurrentStepAux ;
+      private Guid AV19OrganisationId ;
+      private Guid wcpOAV19OrganisationId ;
       private GXWebComponent WebComp_Steptitles ;
       private GXWebComponent WebComp_Wizardstepwc ;
       private IGxSession AV7WebSession ;
@@ -1267,6 +1278,7 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
+      private Guid aP3_OrganisationId ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem> AV13WizardSteps ;
       private GeneXus.Programs.wwpbaseobjects.SdtWizardSteps_WizardStepsItem AV14WizardStep ;
       private msglist BackMsgLst ;

@@ -78,7 +78,7 @@ namespace GeneXus.Programs {
       {
          /* GeneXus formulas */
          /* Output device settings */
-         AV10Update_SDT_ContentPage = AV9SDT_ContentPage;
+         AV10Update_SDT_ContentPage.FromJSonString(AV9SDT_ContentPage.ToJSonString(false, true), null);
          /* Using cursor P00BX2 */
          pr_default.execute(0, new Object[] {AV8ProductServiceId});
          while ( (pr_default.getStatus(0) != 101) )
@@ -93,6 +93,7 @@ namespace GeneXus.Programs {
             while ( AV14GXV1 <= AV9SDT_ContentPage.gxTpr_Content.Count )
             {
                AV11ContentItem = ((SdtSDT_ContentPage_ContentItem)AV9SDT_ContentPage.gxTpr_Content.Item(AV14GXV1));
+               AV11ContentItem.gxTpr_Contentid = new SdtRandomStringGenerator(context).generate(15);
                if ( StringUtil.StrCmp(AV11ContentItem.gxTpr_Contenttype, context.GetMessage( "Image", "")) == 0 )
                {
                   AV11ContentItem.gxTpr_Contentvalue = A40000ProductServiceImage_GXI;

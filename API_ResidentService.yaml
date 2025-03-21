@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: "API_ResidentService"
   description: "API Services"
-  version: "20250318104353"
+  version: "20250321104537"
 servers:
   - url: http://localhost:8083/Comforta_version2DevelopmentNETPostgreSQL/api
 paths:
@@ -1418,6 +1418,336 @@ paths:
         404:
           description: "Not found"
 
+  /toolbox/v2/update-service:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.UpdateProductServiceAPI"
+      summary: "Update Service on toolbox"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateProductServiceAPIInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Error"  
+
+        404:
+          description: "Not found"
+
+  /toolbox/v2/delete-service-image:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.DeleteProductServiceImageAPI"
+      summary: "Delete service image on toolbox"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeleteProductServiceImageAPIInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Error"  
+
+        404:
+          description: "Not found"
+
+  /toolbox/v2/get-location:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.UpdateLocationAPI__get"
+      summary: "Get location on toolbox"
+      security: 
+        - oAuthGXGAM: []
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateLocationAPI__getOutput"
+        404:
+          description: "Not found"
+
+  /toolbox/v2/update-location:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.UpdateLocationAPI__post"
+      summary: "Update location on toolbox"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateLocationAPI__postInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Error"  
+
+        404:
+          description: "Not found"
+
+  /bulletin-board/memo-categories:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.GetMemoCategories"
+      summary: "Get Memo Categories"
+      security: 
+        - oAuthGXGAM: []
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SDT_MemoCategory"  
+
+        404:
+          description: "Not found"
+
+  /bulletin-board/memo-category:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.GetMemoCategory"
+      summary: "Get Memo Category"
+      security: 
+        - oAuthGXGAM: []
+      parameters:
+        - name: "Memocategoryid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_MemoCategory"  
+
+        404:
+          description: "Not found"
+
+  /bulletin-board/create-memo:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.CreateMemo"
+      summary: "Create Memo"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateMemoInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Error"  
+
+        404:
+          description: "Not found"
+
+  /bulletin-board/update-memo:
+    post:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.updateMemo"
+      summary: "Update Memo"
+      security: 
+        - oAuthGXGAM: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateMemoInput"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Error"  
+
+        404:
+          description: "Not found"
+
+  /bulletin-board/memo:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.GetMemo"
+      summary: "Get Memo"
+      security: 
+        - oAuthGXGAM: []
+      parameters:
+        - name: "Memoid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Memo"  
+
+        404:
+          description: "Not found"
+
+  /bulletin-board/resident-memos:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.GetResidentMemos"
+      summary: "Get Resident Memos"
+      security: 
+        - oAuthGXGAM: []
+      parameters:
+        - name: "Residentid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            
+        - name: "Pagesize"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "Pagenumber"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_ApiListResponse"  
+
+        404:
+          description: "Not found"
+
+  /bulletin-board/location-memos:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.GetLocationMemos"
+      summary: "Get Location Memos"
+      security: 
+        - oAuthGXGAM: []
+      parameters:
+        - name: "Residentid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            
+        - name: "Pagesize"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "Pagenumber"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_ApiListResponse"  
+
+        404:
+          description: "Not found"
+
+  /bulletin-board/delete-memo:
+    get:
+      tags:
+        - API_ResidentService  
+      operationId: "API_ResidentService.DeleteMemo"
+      summary: "Delete Memo"
+      security: 
+        - oAuthGXGAM: []
+      parameters:
+        - name: "Memoid"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      
+      responses:
+        200:
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SDT_Error"  
+
+        404:
+          description: "Not found"
+
 components:
   securitySchemes:
     oAuthGXGAM:
@@ -1677,6 +2007,26 @@ components:
           description: "SDT_Error"
           $ref: "#/components/schemas/SDT_Error"
 
+
+
+    UpdateLocationAPI__getOutput:
+      properties:
+        BC_Trn_Location:
+          description: "Location"
+          $ref: "#/components/schemas/Trn_Location"
+        error:
+          description: "SDT_Error"
+          $ref: "#/components/schemas/SDT_Error"
+
+
+
+
+
+
+
+
+
+
     LoginWithQrCodeInput:  
       properties:
         secretKey:
@@ -1922,6 +2272,107 @@ components:
           type: array
           items:
             type: "string"
+
+    UpdateProductServiceAPIInput:  
+      properties:
+        ProductServiceId:
+          type: "string"
+          format: "uuid"
+        ProductServiceDescription:
+          type: "string"
+        ProductServiceImageBase64:
+          type: "string"
+
+    DeleteProductServiceImageAPIInput:  
+      properties:
+        ProductServiceId:
+          type: "string"
+          format: "uuid"
+
+
+    UpdateLocationAPI__postInput:  
+      properties:
+        LocationDescription:
+          type: "string"
+        LocationImageBase64:
+          type: "string"
+        ReceptionDescription:
+          type: "string"
+        ReceptionImageBase64:
+          type: "string"
+
+
+
+    CreateMemoInput:  
+      properties:
+        ResidentId:
+          type: "string"
+        MemoCategoryId:
+          type: "string"
+          format: "uuid"
+        MemoTitle:
+          type: "string"
+        MemoDescription:
+          type: "string"
+        MemoImage:
+          type: "string"
+        MemoDocument:
+          type: "string"
+        MemoStartDateTime:
+          type: "string"
+          format: "date-time"
+        MemoEndDateTime:
+          type: "string"
+          format: "date-time"
+        MemoDuration:
+          type: "integer"
+          format: "int32"
+        MemoRemoveDate:
+          type: "string"
+          format: "date"
+        MemoBgColorCode:
+          type: "string"
+        MemoForm:
+          type: "string"
+
+    updateMemoInput:  
+      properties:
+        MemoId:
+          type: "string"
+          format: "uuid"
+        ResidentId:
+          type: "string"
+        MemoCategoryId:
+          type: "string"
+          format: "uuid"
+        MemoTitle:
+          type: "string"
+        MemoDescription:
+          type: "string"
+        MemoImage:
+          type: "string"
+        MemoDocument:
+          type: "string"
+        MemoStartDateTime:
+          type: "string"
+          format: "date-time"
+        MemoEndDateTime:
+          type: "string"
+          format: "date-time"
+        MemoDuration:
+          type: "integer"
+          format: "int32"
+        MemoRemoveDate:
+          type: "string"
+          format: "date"
+        MemoBgColorCode:
+          type: "string"
+        MemoForm:
+          type: "string"
+
+
+
+
   
     SDT_LoginResidentResponse:
       properties:
@@ -2153,6 +2604,11 @@ components:
           description: "number Of Pages"
           type: "integer"
           format: "int32"
+        memos:
+          description: "SDT_Memo"
+          type: array
+          items:
+            $ref: "#/components/schemas/SDT_Memo"
 
 
 
@@ -2361,6 +2817,9 @@ components:
 
     SDT_ContentPage.Content_ContentItem:
       properties:
+        ContentId:
+          description: "Content Id"
+          type: "string"
         ContentType:
           description: "Content Type"
           type: "string"
@@ -2759,6 +3218,171 @@ components:
 
 
       x-gx-level: "SDT_DebugResults"
+
+    Trn_Location:
+      properties:
+        LocationId:
+          description: "Location Id"
+          type: "string"
+          format: "uuid"
+        OrganisationId:
+          description: "Organisation Id"
+          type: "string"
+          format: "uuid"
+        LocationName:
+          description: "Location Name"
+          type: "string"
+        LocationImage:
+          description: "Location Image"
+          type: "string"
+        LocationCountry:
+          description: "Location Country"
+          type: "string"
+        LocationCity:
+          description: "Location City"
+          type: "string"
+        LocationZipCode:
+          description: "Location Zip Code"
+          type: "string"
+        LocationAddressLine1:
+          description: "Location Address Line1"
+          type: "string"
+        LocationAddressLine2:
+          description: "Location Address Line2"
+          type: "string"
+        LocationEmail:
+          description: "Location Email"
+          type: "string"
+        LocationPhoneCode:
+          description: "Location Phone Code"
+          type: "string"
+        LocationPhoneNumber:
+          description: "Location Phone Number"
+          type: "string"
+        LocationPhone:
+          description: "Location Phone"
+          type: "string"
+        LocationDescription:
+          description: "Location Description"
+          type: "string"
+        LocationBrandTheme:
+          description: "Location Brand Theme"
+          type: "string"
+        LocationCtaTheme:
+          description: "Location Cta Theme"
+          type: "string"
+        LocationHasMyCare:
+          description: "Location Has My Care"
+          type: "boolean"
+        LocationHasMyServices:
+          description: "Location Has My Services"
+          type: "boolean"
+        LocationHasMyLiving:
+          description: "Location Has My Living"
+          type: "boolean"
+        LocationHasOwnBrand:
+          description: "Location Has Own Brand"
+          type: "boolean"
+        ToolBoxDefaultProfileImage:
+          description: "Tool Box Default Profile Image"
+          type: "string"
+        ToolBoxDefaultLogo:
+          description: "Tool Box Default Logo"
+          type: "string"
+        ReceptionImage:
+          description: "Reception Image"
+          type: "string"
+        ReceptionDescription:
+          description: "Reception Description"
+          type: "string"
+        Trn_ThemeId:
+          description: "Trn_Theme Id"
+          type: "string"
+          format: "uuid"
+
+
+
+    SDT_MemoCategory:
+      properties:
+        MemoCategoryId:
+          description: "Memo Category Id"
+          type: "string"
+          format: "uuid"
+        MemoCategoryName:
+          description: "Memo Category Name"
+          type: "string"
+
+
+
+    SDT_Memo:
+      properties:
+        MemoId:
+          description: "Memo Id"
+          type: "string"
+          format: "uuid"
+        BulletinBoardId:
+          description: "Bulletin Board Id"
+          type: "string"
+          format: "uuid"
+        MemoCategoryId:
+          description: "Memo Category Id"
+          type: "string"
+          format: "uuid"
+        MemoCategoryName:
+          description: "Memo Category Name"
+          type: "string"
+        MemoTitle:
+          description: "Memo Title"
+          type: "string"
+        MemoDescription:
+          description: "Memo Description"
+          type: "string"
+        MemoImage:
+          description: "Memo Image"
+          type: "string"
+        MemoDocument:
+          description: "Memo Document"
+          type: "string"
+        MemoStartDateTime:
+          description: "Memo Start Date Time"
+          type: "string"
+          format: "date-time"
+        MemoEndDateTime:
+          description: "Memo End Date Time"
+          type: "string"
+          format: "date-time"
+        MemoDuration:
+          description: "Memo Duration"
+          type: "integer"
+          format: "int32"
+        MemoRemoveDate:
+          description: "Memo Remove Date"
+          type: "string"
+          format: "date"
+        ResidentId:
+          description: "Resident Id"
+          type: "string"
+          format: "uuid"
+        ResidentSalutation:
+          description: "Resident Salutation"
+          type: "string"
+        ResidentGivenName:
+          description: "Resident Given Name"
+          type: "string"
+        ResidentLastName:
+          description: "Resident Last Name"
+          type: "string"
+        ResidentGUID:
+          description: "Resident GUID"
+          type: "string"
+        MemoBgColorCode:
+          description: "Memo Bg Color Code"
+          type: "string"
+        MemoForm:
+          description: "Memo Form"
+          type: "string"
+
+
 
     SDT_ApiResidentFilledForms:
       properties:

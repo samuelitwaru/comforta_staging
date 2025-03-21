@@ -2202,7 +2202,7 @@ namespace GeneXus.Programs {
          Gx_BScreen = 1;
          AssignAttri("", false, "Gx_BScreen", StringUtil.Str( (decimal)(Gx_BScreen), 1, 0));
          standaloneModal1Q110( ) ;
-         if ( ! ( ( StringUtil.StrCmp(A545PageType, "Menu") == 0 ) || ( StringUtil.StrCmp(A545PageType, "Content") == 0 ) || ( StringUtil.StrCmp(A545PageType, "WebLink") == 0 ) || ( StringUtil.StrCmp(A545PageType, "DynamicForm") == 0 ) ) )
+         if ( ! ( ( StringUtil.StrCmp(A545PageType, "Menu") == 0 ) || ( StringUtil.StrCmp(A545PageType, "Content") == 0 ) || ( StringUtil.StrCmp(A545PageType, "WebLink") == 0 ) || ( StringUtil.StrCmp(A545PageType, "DynamicForm") == 0 ) || ( StringUtil.StrCmp(A545PageType, "Calendar") == 0 ) || ( StringUtil.StrCmp(A545PageType, "MyActivity") == 0 ) ) )
          {
             GXCCtl = "PAGETYPE_" + sGXsfl_63_idx;
             GX_msglist.addItem(StringUtil.Format( context.GetMessage( "GXSPC_OutOfRange", ""), context.GetMessage( "Page Type", ""), "", "", "", "", "", "", "", ""), "OutOfRange", 1, GXCCtl);
@@ -2722,6 +2722,8 @@ namespace GeneXus.Programs {
             cmbPageType.addItem("Content", context.GetMessage( "Content", ""), 0);
             cmbPageType.addItem("WebLink", context.GetMessage( "Web Link", ""), 0);
             cmbPageType.addItem("DynamicForm", context.GetMessage( "Dynamic Form", ""), 0);
+            cmbPageType.addItem("Calendar", context.GetMessage( "Calendar", ""), 0);
+            cmbPageType.addItem("MyActivity", context.GetMessage( "My Activity", ""), 0);
             if ( cmbPageType.ItemCount > 0 )
             {
                A545PageType = cmbPageType.getValidValue(A545PageType);
@@ -3072,7 +3074,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?20253171454471", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532113423699", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -3088,7 +3090,7 @@ namespace GeneXus.Programs {
       protected void include_jscripts( )
       {
          context.AddJavascriptSource("messages."+StringUtil.Lower( context.GetLanguageProperty( "code"))+".js", "?"+GetCacheInvalidationToken( ), false, true);
-         context.AddJavascriptSource("trn_appversion.js", "?20253171454471", false, true);
+         context.AddJavascriptSource("trn_appversion.js", "?202532113423699", false, true);
          /* End function include_jscripts */
       }
 
@@ -3283,6 +3285,8 @@ namespace GeneXus.Programs {
          cmbPageType.addItem("Content", context.GetMessage( "Content", ""), 0);
          cmbPageType.addItem("WebLink", context.GetMessage( "Web Link", ""), 0);
          cmbPageType.addItem("DynamicForm", context.GetMessage( "Dynamic Form", ""), 0);
+         cmbPageType.addItem("Calendar", context.GetMessage( "Calendar", ""), 0);
+         cmbPageType.addItem("MyActivity", context.GetMessage( "My Activity", ""), 0);
          if ( cmbPageType.ItemCount > 0 )
          {
             A545PageType = cmbPageType.getValidValue(A545PageType);

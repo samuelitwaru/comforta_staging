@@ -523,4 +523,124 @@
 "VariableAlias": [],
 "ServiceMethod":"gxep_debugappversion",
 "Implementation":"Prc_DebugAppVersion"
+},
+{
+"PathRegexp":"toolbox/v2/update-service",
+"Path":"toolbox/v2/update-service",
+"Verb":"POST",
+"Name":"updateproductserviceapi",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_updateproductserviceapi",
+"Implementation":"Prc_UpdateProductServiceAPI"
+},
+{
+"PathRegexp":"toolbox/v2/delete-service-image",
+"Path":"toolbox/v2/delete-service-image",
+"Verb":"POST",
+"Name":"deleteproductserviceimageapi",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_deleteproductserviceimageapi",
+"Implementation":"Prc_DeleteProductServiceImageAPI"
+},
+{
+"PathRegexp":"toolbox/v2/get-location",
+"Path":"toolbox/v2/get-location",
+"Verb":"GET",
+"Name":"updatelocationapi__get",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_updatelocationapi__get",
+"Implementation":"Prc_GetLocationAPI"
+},
+{
+"PathRegexp":"toolbox/v2/update-location",
+"Path":"toolbox/v2/update-location",
+"Verb":"POST",
+"Name":"updatelocationapi__post",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_updatelocationapi__post",
+"Implementation":"Prc_UpdateLocationAPI"
+},
+{
+"PathRegexp":"bulletin-board/memo-categories",
+"Path":"bulletin-board/memo-categories",
+"Name":"getmemocategories",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_getmemocategories",
+"Implementation":"Prc_GetMemoCategories",
+"Verb":"GET"
+},
+{
+"PathRegexp":"bulletin-board/memo-category",
+"Path":"bulletin-board/memo-category",
+"Name":"getmemocategory",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_getmemocategory",
+"Implementation":"Prc_GetMemoCategory",
+"Verb":"GET"
+},
+{
+"Verb":"POST",
+"PathRegexp":"bulletin-board/create-memo",
+"Path":"bulletin-board/create-memo",
+"Name":"creatememo",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_creatememo",
+"Implementation":"Prc_CreateMemo"
+},
+{
+"Verb":"POST",
+"PathRegexp":"bulletin-board/update-memo",
+"Path":"bulletin-board/update-memo",
+"Name":"updatememo",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_updatememo",
+"Implementation":"Prc_UpdateMemo"
+},
+{
+"PathRegexp":"bulletin-board/memo",
+"Path":"bulletin-board/memo",
+"Name":"getmemo",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_getmemo",
+"Implementation":"Prc_GetMemo",
+"Verb":"GET"
+},
+{
+"PathRegexp":"bulletin-board/resident-memos",
+"Path":"bulletin-board/resident-memos",
+"Name":"getresidentmemos",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_getresidentmemos",
+"Implementation":"Prc_GetResidentMemos",
+"Verb":"GET"
+},
+{
+"PathRegexp":"bulletin-board/location-memos",
+"Path":"bulletin-board/location-memos",
+"Name":"getlocationmemos",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_getlocationmemos",
+"Implementation":"Prc_GetLocationMemos",
+"Verb":"GET"
+},
+{
+"PathRegexp":"bulletin-board/delete-memo",
+"Path":"bulletin-board/delete-memo",
+"Name":"deletememo",
+"Bodystyle":"Wrapped",
+"VariableAlias": [],
+"ServiceMethod":"gxep_deletememo",
+"Implementation":"Prc_DeleteMemo",
+"Verb":"GET"
 }]}

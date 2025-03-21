@@ -74,6 +74,10 @@ namespace GeneXus.Programs
 
 			AddObjectProperty("numberOfPages", gxTpr_Numberofpages, false);
 
+			if (gxTv_SdtSDT_ApiListResponse_Memos != null)
+			{
+				AddObjectProperty("memos", gxTv_SdtSDT_ApiListResponse_Memos, false);
+			}
 			return;
 		}
 		#endregion
@@ -233,6 +237,59 @@ namespace GeneXus.Programs
 
 
 
+
+		[SoapElement(ElementName="memos" )]
+		[XmlArray(ElementName="memos"  )]
+		[XmlArrayItemAttribute(ElementName="Item" , IsNullable=false )]
+		public GXBaseCollection<GeneXus.Programs.SdtSDT_Memo> gxTpr_Memos_GXBaseCollection
+		{
+			get {
+				if ( gxTv_SdtSDT_ApiListResponse_Memos == null )
+				{
+					gxTv_SdtSDT_ApiListResponse_Memos = new GXBaseCollection<GeneXus.Programs.SdtSDT_Memo>( context, "SDT_Memo", "");
+				}
+				return gxTv_SdtSDT_ApiListResponse_Memos;
+			}
+			set {
+				gxTv_SdtSDT_ApiListResponse_Memos_N = false;
+				gxTv_SdtSDT_ApiListResponse_Memos = value;
+			}
+		}
+
+		[XmlIgnore]
+		public GXBaseCollection<GeneXus.Programs.SdtSDT_Memo> gxTpr_Memos
+		{
+			get {
+				if ( gxTv_SdtSDT_ApiListResponse_Memos == null )
+				{
+					gxTv_SdtSDT_ApiListResponse_Memos = new GXBaseCollection<GeneXus.Programs.SdtSDT_Memo>( context, "SDT_Memo", "");
+				}
+				gxTv_SdtSDT_ApiListResponse_Memos_N = false;
+				return gxTv_SdtSDT_ApiListResponse_Memos ;
+			}
+			set {
+				gxTv_SdtSDT_ApiListResponse_Memos_N = false;
+				gxTv_SdtSDT_ApiListResponse_Memos = value;
+				SetDirty("Memos");
+			}
+		}
+
+		public void gxTv_SdtSDT_ApiListResponse_Memos_SetNull()
+		{
+			gxTv_SdtSDT_ApiListResponse_Memos_N = true;
+			gxTv_SdtSDT_ApiListResponse_Memos = null;
+		}
+
+		public bool gxTv_SdtSDT_ApiListResponse_Memos_IsNull()
+		{
+			return gxTv_SdtSDT_ApiListResponse_Memos == null;
+		}
+		public bool ShouldSerializegxTpr_Memos_GXBaseCollection_Json()
+		{
+			return gxTv_SdtSDT_ApiListResponse_Memos != null && gxTv_SdtSDT_ApiListResponse_Memos.Count > 0;
+
+		}
+
 		public override bool ShouldSerializeSdtJson()
 		{
 			return true;
@@ -262,6 +319,9 @@ namespace GeneXus.Programs
 
 
 
+
+			gxTv_SdtSDT_ApiListResponse_Memos_N = true;
+
 			return  ;
 		}
 
@@ -284,6 +344,8 @@ namespace GeneXus.Programs
 
 		protected short gxTv_SdtSDT_ApiListResponse_Numberofpages;
 		 
+		protected bool gxTv_SdtSDT_ApiListResponse_Memos_N;
+		protected GXBaseCollection<GeneXus.Programs.SdtSDT_Memo> gxTv_SdtSDT_ApiListResponse_Memos = null;  
 
 
 		#endregion
@@ -365,6 +427,21 @@ namespace GeneXus.Programs
 			}
 			set { 
 				sdt.gxTpr_Numberofpages = value;
+			}
+		}
+
+		[DataMember(Name="memos", Order=5, EmitDefaultValue=false)]
+		public  GxGenericCollection<GeneXus.Programs.SdtSDT_Memo_RESTInterface> gxTpr_Memos
+		{
+			get { 
+				if (sdt.ShouldSerializegxTpr_Memos_GXBaseCollection_Json())
+					return new GxGenericCollection<GeneXus.Programs.SdtSDT_Memo_RESTInterface>(sdt.gxTpr_Memos);
+				else
+					return null;
+
+			}
+			set { 
+				value.LoadCollection(sdt.gxTpr_Memos);
 			}
 		}
 

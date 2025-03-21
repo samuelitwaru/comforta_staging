@@ -99,7 +99,7 @@ namespace GeneXus.Programs {
             }
             pr_default.close(0);
          }
-         new prc_logtoserver(context ).execute(  AV8SDT_AppVersionCollection.ToJSonString(false)) ;
+         new prc_logtoserver(context ).execute(  context.GetMessage( "&SDT_AppVersionCollection : ", "")+AV8SDT_AppVersionCollection.ToJSonString(false)) ;
          cleanup();
       }
 

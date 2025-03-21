@@ -81,6 +81,7 @@
                     </span>
                     </button>
                 </div>
+				
                 <div class="tb-tab-content active-tab" id="pages-content">
                     <div id="menu-page-section">
                         <div class="sidebar-section theme-section"

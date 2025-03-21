@@ -47,12 +47,15 @@ namespace GeneXus.Programs {
 
       public void execute( string aP0_WebSessionKey ,
                            string aP1_PreviousStep ,
-                           bool aP2_GoingBack )
+                           bool aP2_GoingBack ,
+                           ref Guid aP3_OrganisationId )
       {
          this.AV6WebSessionKey = aP0_WebSessionKey;
          this.AV8PreviousStep = aP1_PreviousStep;
          this.AV7GoingBack = aP2_GoingBack;
+         this.AV41OrganisationId = aP3_OrganisationId;
          ExecuteImpl();
+         aP3_OrganisationId=this.AV41OrganisationId;
       }
 
       protected override void ExecutePrivate( )
@@ -114,8 +117,10 @@ namespace GeneXus.Programs {
                   AssignAttri(sPrefix, false, "AV8PreviousStep", AV8PreviousStep);
                   AV7GoingBack = StringUtil.StrToBool( GetPar( "GoingBack"));
                   AssignAttri(sPrefix, false, "AV7GoingBack", AV7GoingBack);
+                  AV41OrganisationId = StringUtil.StrToGuid( GetPar( "OrganisationId"));
+                  AssignAttri(sPrefix, false, "AV41OrganisationId", AV41OrganisationId.ToString());
                   setjustcreated();
-                  componentprepare(new Object[] {(string)sCompPrefix,(string)sSFPrefix,(string)AV6WebSessionKey,(string)AV8PreviousStep,(bool)AV7GoingBack});
+                  componentprepare(new Object[] {(string)sCompPrefix,(string)sSFPrefix,(string)AV6WebSessionKey,(string)AV8PreviousStep,(bool)AV7GoingBack,(Guid)AV41OrganisationId});
                   componentstart();
                   context.httpAjaxContext.ajax_rspStartCmp(sPrefix);
                   componentdraw();
@@ -290,7 +295,7 @@ namespace GeneXus.Programs {
             context.WriteHtmlText( FormProcess+">") ;
             context.skipLines(1);
             GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "wp_createlocationandreceptioniststep1.aspx"+UrlEncode(StringUtil.RTrim(AV6WebSessionKey)) + "," + UrlEncode(StringUtil.RTrim(AV8PreviousStep)) + "," + UrlEncode(StringUtil.BoolToStr(AV7GoingBack));
+            GXEncryptionTmp = "wp_createlocationandreceptioniststep1.aspx"+UrlEncode(StringUtil.RTrim(AV6WebSessionKey)) + "," + UrlEncode(StringUtil.RTrim(AV8PreviousStep)) + "," + UrlEncode(StringUtil.BoolToStr(AV7GoingBack)) + "," + UrlEncode(AV41OrganisationId.ToString());
             context.WriteHtmlTextNl( "<form id=\"MAINFORM\" autocomplete=\"off\" name=\"MAINFORM\" method=\"post\" tabindex=-1  class=\"form-horizontal Form\" data-gx-class=\"form-horizontal Form\" novalidate action=\""+formatLink("wp_createlocationandreceptioniststep1.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey)+"\">") ;
             GxWebStd.gx_hidden_field( context, "_EventName", "");
             GxWebStd.gx_hidden_field( context, "_EventGridId", "");
@@ -392,10 +397,12 @@ namespace GeneXus.Programs {
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV6WebSessionKey", wcpOAV6WebSessionKey);
          GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV8PreviousStep", wcpOAV8PreviousStep);
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"wcpOAV7GoingBack", wcpOAV7GoingBack);
+         GxWebStd.gx_hidden_field( context, sPrefix+"wcpOAV41OrganisationId", wcpOAV41OrganisationId.ToString());
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vGOINGBACK", AV7GoingBack);
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vCHECKREQUIREDFIELDSRESULT", AV22CheckRequiredFieldsResult);
          GxWebStd.gx_boolean_hidden_field( context, sPrefix+"vHASVALIDATIONERRORS", AV10HasValidationErrors);
          GxWebStd.gx_hidden_field( context, sPrefix+"gxhash_vHASVALIDATIONERRORS", GetSecureSignedToken( sPrefix, AV10HasValidationErrors, context));
+         GxWebStd.gx_hidden_field( context, sPrefix+"vORGANISATIONID", AV41OrganisationId.ToString());
          GxWebStd.gx_hidden_field( context, sPrefix+"vWEBSESSIONKEY", AV6WebSessionKey);
          GxWebStd.gx_hidden_field( context, sPrefix+"vPREVIOUSSTEP", AV8PreviousStep);
          GxWebStd.gx_hidden_field( context, sPrefix+"COMBO_LOCATIONCOUNTRY_Selectedvalue_get", StringUtil.RTrim( Combo_locationcountry_Selectedvalue_get));
@@ -665,7 +672,7 @@ namespace GeneXus.Programs {
             /* Div Control */
             GxWebStd.gx_div_start( context, "", -1, 0, "px", 0, "px", "form-group gx-form-group", "start", "top", ""+" data-gx-for=\""+Locationdescription_Internalname+"\"", "", "div");
             /* Attribute/Variable Label */
-            GxWebStd.gx_label_element( context, Locationdescription_Internalname, context.GetMessage( "Description", ""), "col-sm-4 AttributeLabel", 1, true, "");
+            GxWebStd.gx_label_element( context, Locationdescription_Internalname, context.GetMessage( "Location Description", ""), "col-sm-4 AttributeLabel", 1, true, "");
             /* Div Control */
             GxWebStd.gx_div_start( context, "", 1, 0, "px", 0, "px", "col-sm-8 gx-attribute", "start", "top", "", "", "div");
             /* User Defined Control */
@@ -1306,6 +1313,7 @@ namespace GeneXus.Programs {
             wcpOAV6WebSessionKey = cgiGet( sPrefix+"wcpOAV6WebSessionKey");
             wcpOAV8PreviousStep = cgiGet( sPrefix+"wcpOAV8PreviousStep");
             wcpOAV7GoingBack = StringUtil.StrToBool( cgiGet( sPrefix+"wcpOAV7GoingBack"));
+            wcpOAV41OrganisationId = StringUtil.StrToGuid( cgiGet( sPrefix+"wcpOAV41OrganisationId"));
             /* Read variables values. */
             /* Read subfile selected row values. */
             /* Read hidden variables. */
@@ -1421,7 +1429,7 @@ namespace GeneXus.Programs {
             S162 ();
             if (returnInSub) return;
             GXKey = Crypto.GetSiteKey( );
-            GXEncryptionTmp = "wp_createlocationandreceptionist.aspx"+UrlEncode(StringUtil.RTrim("Step1")) + "," + UrlEncode(StringUtil.RTrim("Step2")) + "," + UrlEncode(StringUtil.BoolToStr(false));
+            GXEncryptionTmp = "wp_createlocationandreceptionist.aspx"+UrlEncode(StringUtil.RTrim("Step1")) + "," + UrlEncode(StringUtil.RTrim("Step2")) + "," + UrlEncode(StringUtil.BoolToStr(false)) + "," + UrlEncode(AV41OrganisationId.ToString());
             CallWebObject(formatLink("wp_createlocationandreceptionist.aspx") + "?" + UriEncrypt64( GXEncryptionTmp+Crypto.CheckSum( GXEncryptionTmp, 6), GXKey));
             context.wjLocDisableFrm = 1;
          }
@@ -1434,8 +1442,8 @@ namespace GeneXus.Programs {
          returnInSub = false;
          CallWebObject(formatLink("trn_locationww.aspx") );
          context.wjLocDisableFrm = 1;
-         context.setWebReturnParms(new Object[] {});
-         context.setWebReturnParmsMetadata(new Object[] {});
+         context.setWebReturnParms(new Object[] {(Guid)AV41OrganisationId});
+         context.setWebReturnParmsMetadata(new Object[] {"AV41OrganisationId"});
          context.wjLocDisableFrm = 1;
          context.nUserReturn = 1;
          returnInSub = true;
@@ -1579,13 +1587,13 @@ namespace GeneXus.Programs {
       {
          /* 'LOADCOMBOLOCATIONCOUNTRY' Routine */
          returnInSub = false;
-         AV42GXV2 = 1;
-         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV41GXV1;
+         AV43GXV2 = 1;
+         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV42GXV1;
          new dp_country(context ).execute( out  GXt_objcol_SdtSDT_Country_SDT_CountryItem3) ;
-         AV41GXV1 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
-         while ( AV42GXV2 <= AV41GXV1.Count )
+         AV42GXV1 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
+         while ( AV43GXV2 <= AV42GXV1.Count )
          {
-            AV30LocationCountry_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV41GXV1.Item(AV42GXV2));
+            AV30LocationCountry_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV42GXV1.Item(AV43GXV2));
             AV24Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
             AV24Combo_DataItem.gxTpr_Id = AV30LocationCountry_DPItem.gxTpr_Countryname;
             AV26ComboTitles = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
@@ -1593,7 +1601,7 @@ namespace GeneXus.Programs {
             AV26ComboTitles.Add(AV30LocationCountry_DPItem.gxTpr_Countryflag, 0);
             AV24Combo_DataItem.gxTpr_Title = AV26ComboTitles.ToJSonString(false);
             AV29LocationCountry_Data.Add(AV24Combo_DataItem, 0);
-            AV42GXV2 = (int)(AV42GXV2+1);
+            AV43GXV2 = (int)(AV43GXV2+1);
          }
          AV29LocationCountry_Data.Sort("Title");
          Combo_locationcountry_Selectedvalue_set = AV16LocationCountry;
@@ -1604,13 +1612,13 @@ namespace GeneXus.Programs {
       {
          /* 'LOADCOMBOLOCATIONPHONECODE' Routine */
          returnInSub = false;
-         AV44GXV4 = 1;
-         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV43GXV3;
+         AV45GXV4 = 1;
+         GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = AV44GXV3;
          new dp_country(context ).execute( out  GXt_objcol_SdtSDT_Country_SDT_CountryItem3) ;
-         AV43GXV3 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
-         while ( AV44GXV4 <= AV43GXV3.Count )
+         AV44GXV3 = GXt_objcol_SdtSDT_Country_SDT_CountryItem3;
+         while ( AV45GXV4 <= AV44GXV3.Count )
          {
-            AV33LocationPhoneCode_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV43GXV3.Item(AV44GXV4));
+            AV33LocationPhoneCode_DPItem = ((SdtSDT_Country_SDT_CountryItem)AV44GXV3.Item(AV45GXV4));
             AV24Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
             AV24Combo_DataItem.gxTpr_Id = AV33LocationPhoneCode_DPItem.gxTpr_Countrydialcode;
             AV26ComboTitles = (GxSimpleCollection<string>)(new GxSimpleCollection<string>());
@@ -1618,7 +1626,7 @@ namespace GeneXus.Programs {
             AV26ComboTitles.Add(AV33LocationPhoneCode_DPItem.gxTpr_Countryflag, 0);
             AV24Combo_DataItem.gxTpr_Title = AV26ComboTitles.ToJSonString(false);
             AV32LocationPhoneCode_Data.Add(AV24Combo_DataItem, 0);
-            AV44GXV4 = (int)(AV44GXV4+1);
+            AV45GXV4 = (int)(AV45GXV4+1);
          }
          AV32LocationPhoneCode_Data.Sort("Title");
          Combo_locationphonecode_Selectedvalue_set = AV31LocationPhoneCode;
@@ -1732,6 +1740,8 @@ namespace GeneXus.Programs {
          AssignAttri(sPrefix, false, "AV8PreviousStep", AV8PreviousStep);
          AV7GoingBack = (bool)getParm(obj,2);
          AssignAttri(sPrefix, false, "AV7GoingBack", AV7GoingBack);
+         AV41OrganisationId = (Guid)getParm(obj,3);
+         AssignAttri(sPrefix, false, "AV41OrganisationId", AV41OrganisationId.ToString());
       }
 
       public override string getresponse( string sGXDynURL )
@@ -1771,6 +1781,7 @@ namespace GeneXus.Programs {
          sCtrlAV6WebSessionKey = (string)((string)getParm(obj,0));
          sCtrlAV8PreviousStep = (string)((string)getParm(obj,1));
          sCtrlAV7GoingBack = (string)((string)getParm(obj,2));
+         sCtrlAV41OrganisationId = (string)((string)getParm(obj,3));
       }
 
       public override void componentrestorestate( string sPPrefix ,
@@ -1810,17 +1821,21 @@ namespace GeneXus.Programs {
             AssignAttri(sPrefix, false, "AV8PreviousStep", AV8PreviousStep);
             AV7GoingBack = (bool)getParm(obj,4);
             AssignAttri(sPrefix, false, "AV7GoingBack", AV7GoingBack);
+            AV41OrganisationId = (Guid)getParm(obj,5);
+            AssignAttri(sPrefix, false, "AV41OrganisationId", AV41OrganisationId.ToString());
          }
          wcpOAV6WebSessionKey = cgiGet( sPrefix+"wcpOAV6WebSessionKey");
          wcpOAV8PreviousStep = cgiGet( sPrefix+"wcpOAV8PreviousStep");
          wcpOAV7GoingBack = StringUtil.StrToBool( cgiGet( sPrefix+"wcpOAV7GoingBack"));
-         if ( ! GetJustCreated( ) && ( ( StringUtil.StrCmp(AV6WebSessionKey, wcpOAV6WebSessionKey) != 0 ) || ( StringUtil.StrCmp(AV8PreviousStep, wcpOAV8PreviousStep) != 0 ) || ( AV7GoingBack != wcpOAV7GoingBack ) ) )
+         wcpOAV41OrganisationId = StringUtil.StrToGuid( cgiGet( sPrefix+"wcpOAV41OrganisationId"));
+         if ( ! GetJustCreated( ) && ( ( StringUtil.StrCmp(AV6WebSessionKey, wcpOAV6WebSessionKey) != 0 ) || ( StringUtil.StrCmp(AV8PreviousStep, wcpOAV8PreviousStep) != 0 ) || ( AV7GoingBack != wcpOAV7GoingBack ) || ( AV41OrganisationId != wcpOAV41OrganisationId ) ) )
          {
             setjustcreated();
          }
          wcpOAV6WebSessionKey = AV6WebSessionKey;
          wcpOAV8PreviousStep = AV8PreviousStep;
          wcpOAV7GoingBack = AV7GoingBack;
+         wcpOAV41OrganisationId = AV41OrganisationId;
       }
 
       protected void WCParametersGet( )
@@ -1855,6 +1870,16 @@ namespace GeneXus.Programs {
          else
          {
             AV7GoingBack = StringUtil.StrToBool( cgiGet( sPrefix+"AV7GoingBack_PARM"));
+         }
+         sCtrlAV41OrganisationId = cgiGet( sPrefix+"AV41OrganisationId_CTRL");
+         if ( StringUtil.Len( sCtrlAV41OrganisationId) > 0 )
+         {
+            AV41OrganisationId = StringUtil.StrToGuid( cgiGet( sCtrlAV41OrganisationId));
+            AssignAttri(sPrefix, false, "AV41OrganisationId", AV41OrganisationId.ToString());
+         }
+         else
+         {
+            AV41OrganisationId = StringUtil.StrToGuid( cgiGet( sPrefix+"AV41OrganisationId_PARM"));
          }
       }
 
@@ -1916,6 +1941,11 @@ namespace GeneXus.Programs {
          {
             GxWebStd.gx_hidden_field( context, sPrefix+"AV7GoingBack_CTRL", StringUtil.RTrim( sCtrlAV7GoingBack));
          }
+         GxWebStd.gx_hidden_field( context, sPrefix+"AV41OrganisationId_PARM", AV41OrganisationId.ToString());
+         if ( StringUtil.Len( StringUtil.RTrim( sCtrlAV41OrganisationId)) > 0 )
+         {
+            GxWebStd.gx_hidden_field( context, sPrefix+"AV41OrganisationId_CTRL", StringUtil.RTrim( sCtrlAV41OrganisationId));
+         }
       }
 
       public override void componentdraw( )
@@ -1968,7 +1998,7 @@ namespace GeneXus.Programs {
          idxLst = 1;
          while ( idxLst <= Form.Jscriptsrc.Count )
          {
-            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202531417163579", true, true);
+            context.AddJavascriptSource(StringUtil.RTrim( ((string)Form.Jscriptsrc.Item(idxLst))), "?202532113394880", true, true);
             idxLst = (int)(idxLst+1);
          }
          if ( ! outputEnabled )
@@ -1984,7 +2014,7 @@ namespace GeneXus.Programs {
 
       protected void include_jscripts( )
       {
-         context.AddJavascriptSource("wp_createlocationandreceptioniststep1.js", "?202531417163580", false, true);
+         context.AddJavascriptSource("wp_createlocationandreceptioniststep1.js", "?202532113394881", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/Shared/DVelopBootstrap.js", "", false, true);
          context.AddJavascriptSource("DVelop/Shared/WorkWithPlusCommon.js", "", false, true);
          context.AddJavascriptSource("DVelop/Bootstrap/DropDownOptions/BootstrapDropDownOptionsRender.js", "", false, true);
@@ -2145,9 +2175,9 @@ namespace GeneXus.Programs {
       {
          setEventMetadata("REFRESH","""{"handler":"Refresh","iparms":[{"av":"AV7GoingBack","fld":"vGOINGBACK"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true}]""");
          setEventMetadata("REFRESH",""","oparms":[{"av":"AV7GoingBack","fld":"vGOINGBACK"},{"av":"Btnwizardfirstprevious_Visible","ctrl":"BTNWIZARDFIRSTPREVIOUS","prop":"Visible"}]}""");
-         setEventMetadata("ENTER","""{"handler":"E136T2","iparms":[{"av":"AV22CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV13LocationName","fld":"vLOCATIONNAME"},{"av":"AV19LocationAddressLine1","fld":"vLOCATIONADDRESSLINE1"},{"av":"AV18LocationZipCode","fld":"vLOCATIONZIPCODE"},{"av":"AV17LocationCity","fld":"vLOCATIONCITY"},{"av":"AV14LocationEmail","fld":"vLOCATIONEMAIL"},{"av":"AV37UploadedFiles","fld":"vUPLOADEDFILES"},{"av":"AV35LocationImageVar","fld":"vLOCATIONIMAGEVAR"},{"av":"AV36FileName","fld":"vFILENAME"},{"av":"AV31LocationPhoneCode","fld":"vLOCATIONPHONECODE"},{"av":"AV34LocationPhoneNumber","fld":"vLOCATIONPHONENUMBER"},{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV20LocationAddressLine2","fld":"vLOCATIONADDRESSLINE2"},{"av":"AV16LocationCountry","fld":"vLOCATIONCOUNTRY"},{"av":"AV21LocationDescription","fld":"vLOCATIONDESCRIPTION"}]""");
-         setEventMetadata("ENTER",""","oparms":[{"av":"AV22CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV35LocationImageVar","fld":"vLOCATIONIMAGEVAR"},{"av":"AV36FileName","fld":"vFILENAME"},{"av":"AV12LocationId","fld":"vLOCATIONID"},{"av":"AV15LocationPhone","fld":"vLOCATIONPHONE"}]}""");
-         setEventMetadata("'WIZARDPREVIOUS'","""{"handler":"E146T2","iparms":[]}""");
+         setEventMetadata("ENTER","""{"handler":"E136T2","iparms":[{"av":"AV22CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV10HasValidationErrors","fld":"vHASVALIDATIONERRORS","hsh":true},{"av":"AV41OrganisationId","fld":"vORGANISATIONID"},{"av":"AV13LocationName","fld":"vLOCATIONNAME"},{"av":"AV19LocationAddressLine1","fld":"vLOCATIONADDRESSLINE1"},{"av":"AV18LocationZipCode","fld":"vLOCATIONZIPCODE"},{"av":"AV17LocationCity","fld":"vLOCATIONCITY"},{"av":"AV14LocationEmail","fld":"vLOCATIONEMAIL"},{"av":"AV37UploadedFiles","fld":"vUPLOADEDFILES"},{"av":"AV35LocationImageVar","fld":"vLOCATIONIMAGEVAR"},{"av":"AV36FileName","fld":"vFILENAME"},{"av":"AV31LocationPhoneCode","fld":"vLOCATIONPHONECODE"},{"av":"AV34LocationPhoneNumber","fld":"vLOCATIONPHONENUMBER"},{"av":"AV6WebSessionKey","fld":"vWEBSESSIONKEY"},{"av":"AV20LocationAddressLine2","fld":"vLOCATIONADDRESSLINE2"},{"av":"AV16LocationCountry","fld":"vLOCATIONCOUNTRY"},{"av":"AV21LocationDescription","fld":"vLOCATIONDESCRIPTION"}]""");
+         setEventMetadata("ENTER",""","oparms":[{"av":"AV41OrganisationId","fld":"vORGANISATIONID"},{"av":"AV22CheckRequiredFieldsResult","fld":"vCHECKREQUIREDFIELDSRESULT"},{"av":"AV35LocationImageVar","fld":"vLOCATIONIMAGEVAR"},{"av":"AV36FileName","fld":"vFILENAME"},{"av":"AV12LocationId","fld":"vLOCATIONID"},{"av":"AV15LocationPhone","fld":"vLOCATIONPHONE"}]}""");
+         setEventMetadata("'WIZARDPREVIOUS'","""{"handler":"E146T2","iparms":[{"av":"AV41OrganisationId","fld":"vORGANISATIONID"}]}""");
          setEventMetadata("'DOUSERACTIONDELETE'","""{"handler":"E196T1","iparms":[]""");
          setEventMetadata("'DOUSERACTIONDELETE'",""","oparms":[{"av":"AV35LocationImageVar","fld":"vLOCATIONIMAGEVAR"},{"av":"AV36FileName","fld":"vFILENAME"},{"av":"lblUseractiondelete_Visible","ctrl":"USERACTIONDELETE","prop":"Visible"}]}""");
          setEventMetadata("VLOCATIONZIPCODE.CONTROLVALUECHANGED","""{"handler":"E156T2","iparms":[{"av":"AV18LocationZipCode","fld":"vLOCATIONZIPCODE"}]""");
@@ -2178,6 +2208,7 @@ namespace GeneXus.Programs {
       {
          wcpOAV6WebSessionKey = "";
          wcpOAV8PreviousStep = "";
+         wcpOAV41OrganisationId = Guid.Empty;
          Combo_locationcountry_Selectedvalue_get = "";
          Combo_locationphonecode_Selectedvalue_get = "";
          gxfirstwebparm = "";
@@ -2236,11 +2267,11 @@ namespace GeneXus.Programs {
          AV5WebSession = context.GetSession();
          AV36FileName = "";
          GXt_char2 = "";
-         AV41GXV1 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
+         AV42GXV1 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          AV30LocationCountry_DPItem = new SdtSDT_Country_SDT_CountryItem(context);
          AV24Combo_DataItem = new GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item(context);
          AV26ComboTitles = new GxSimpleCollection<string>();
-         AV43GXV3 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
+         AV44GXV3 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          GXt_objcol_SdtSDT_Country_SDT_CountryItem3 = new GXBaseCollection<SdtSDT_Country_SDT_CountryItem>( context, "SDT_CountryItem", "Comforta_version2");
          AV33LocationPhoneCode_DPItem = new SdtSDT_Country_SDT_CountryItem(context);
          sStyleString = "";
@@ -2251,6 +2282,7 @@ namespace GeneXus.Programs {
          sCtrlAV6WebSessionKey = "";
          sCtrlAV8PreviousStep = "";
          sCtrlAV7GoingBack = "";
+         sCtrlAV41OrganisationId = "";
          /* GeneXus formulas. */
          edtavFilename_Enabled = 0;
       }
@@ -2280,8 +2312,8 @@ namespace GeneXus.Programs {
       private int edtavLocationphone_Visible ;
       private int lblUseractiondelete_Visible ;
       private int edtavFilename_Visible ;
-      private int AV42GXV2 ;
-      private int AV44GXV4 ;
+      private int AV43GXV2 ;
+      private int AV45GXV4 ;
       private int Usercontrol1_Maxfilesize ;
       private int Usercontrol1_Maxnumberoffiles ;
       private int idxLst ;
@@ -2397,6 +2429,7 @@ namespace GeneXus.Programs {
       private string sCtrlAV6WebSessionKey ;
       private string sCtrlAV8PreviousStep ;
       private string sCtrlAV7GoingBack ;
+      private string sCtrlAV41OrganisationId ;
       private bool AV7GoingBack ;
       private bool wcpOAV7GoingBack ;
       private bool entryPointCalled ;
@@ -2434,6 +2467,8 @@ namespace GeneXus.Programs {
       private string AV16LocationCountry ;
       private string AV28defaultCountryPhoneCode ;
       private string AV36FileName ;
+      private Guid AV41OrganisationId ;
+      private Guid wcpOAV41OrganisationId ;
       private Guid AV12LocationId ;
       private IGxSession AV5WebSession ;
       private GXUserControl ucCombo_locationphonecode ;
@@ -2446,6 +2481,7 @@ namespace GeneXus.Programs {
       private IGxDataStore dsDataStore1 ;
       private IGxDataStore dsGAM ;
       private IGxDataStore dsDefault ;
+      private Guid aP3_OrganisationId ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons AV27DDO_TitleSettingsIcons ;
       private GXBaseCollection<GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item> AV32LocationPhoneCode_Data ;
       private GXBaseCollection<SdtFileUploadData> AV37UploadedFiles ;
@@ -2454,11 +2490,11 @@ namespace GeneXus.Programs {
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTDropDownOptionsTitleSettingsIcons GXt_SdtDVB_SDTDropDownOptionsTitleSettingsIcons1 ;
       private SdtTrn_Organisation AV23Trn_Organisation ;
       private SdtWP_CreateLocationAndReceptionistData AV11WizardData ;
-      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV41GXV1 ;
+      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV42GXV1 ;
       private SdtSDT_Country_SDT_CountryItem AV30LocationCountry_DPItem ;
       private GeneXus.Programs.wwpbaseobjects.SdtDVB_SDTComboData_Item AV24Combo_DataItem ;
       private GxSimpleCollection<string> AV26ComboTitles ;
-      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV43GXV3 ;
+      private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> AV44GXV3 ;
       private GXBaseCollection<SdtSDT_Country_SDT_CountryItem> GXt_objcol_SdtSDT_Country_SDT_CountryItem3 ;
       private SdtSDT_Country_SDT_CountryItem AV33LocationPhoneCode_DPItem ;
       private msglist BackMsgLst ;
