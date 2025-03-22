@@ -282,7 +282,7 @@ class LoadingManager {
 }
 
 // Content from classes/DataManager.js
-const environment = "/ComfortaKBDevelopmentNETSQLServer";
+const environment = "/Comforta_version2DevelopmentNETPostgreSQL";
 const baseURL = window.location.origin + (window.location.origin.startsWith("http://localhost") ? environment : "");
 
 class DataManager {
@@ -920,7 +920,7 @@ class EditorManager {
     this.mediaCollection = mediaCollection;
     this.addServiceButtonEvent = addServiceButtonEvent;
     this.organisationLogo = organisationLogo;
-    this.newPageComponent = new NewPageComponent(this)
+    // this.newPageComponent = new NewPageComponent(this)
     this.tileContextMenu = new TileContextMenu(this);
 
     this.templateManager = new TemplateManager(this.currentLanguage, this); //
@@ -1010,13 +1010,7 @@ class EditorManager {
       editorId,
       linkLabel
     );
-    
     this.configureEditorContainer(editorContainer, containerId, page.PageId);
-    if (!page.PageId) {
-      this.newPageComponent.createNewPageMenu();
-    }
-    //new PageNameEditor(this, page);
-    
     return { editorId, containerId };
   }
 
@@ -1273,7 +1267,6 @@ class EditorManager {
     try {
       const res = await this.dataManager.getLocationData();
       if (this.toolsSection.checkIfNotAuthenticated(res)) return;
-      console.log("Location data:", res.BC_Trn_Location, "page", page);
       const locationInfo = res.BC_Trn_Location;
       let contentPageData = "";
       if (page.PageName === "Location") {
@@ -1391,7 +1384,6 @@ class EditorManager {
           existingImage.replaceWith(image);
         } else {
           imageWrapper.append(image, { at: 2});
-          console.log("Image not found");
         }        
       }
     } else{
@@ -1880,15 +1872,8 @@ class EditorEventManager {
       const container = document.getElementById("child-container");
       this.newPageButton = new NewPageButton(this.editorManager);
       container.appendChild(this.newPageButton.render());
-
-      // page = {
-      //   "PageId": null,
-      //   "PageName": "New Page",
-      //   "PageGJSJson": "",
-      //   "PageGJSHtml": "",
-      //   "PageJsonContent": ""
-      // }
-      // this.editorManager.createChildEditor(page, pageUrl, linkLabel);
+      // auto scroll to the extreme right of the container
+      container.scrollLeft = container.scrollWidth - container.clientWidth;
     }
   }
 
@@ -7166,7 +7151,6 @@ class MediaComponent {
         "profile-image-added"
       );
       
-      console.log("changeLocationImage: ", data)
       const addProfileSection = document.getElementById("add-profile-image");
 
       if (profileAddedSection && addProfileSection) {
@@ -7191,8 +7175,6 @@ class MediaComponent {
         ProductServiceImageBase64: base64String
       };
       
-      console.log("changeLocationImage: ", data)
-
       const res = await this.editorManager.dataManager.updateContentImage(data);
       
       if (res) {
@@ -7222,8 +7204,6 @@ class MediaComponent {
         ReceptionDescription: "",
         ReceptionImageBase64: ""
       };
-
-      console.log("changeLocationImage: ", data)
       const res = await this.editorManager.dataManager.updateLocationInfo(data);
       
       if (res) {
@@ -7256,8 +7236,9 @@ class MediaComponent {
 
       const res = await this.editorManager.dataManager.updateLocationInfo(data);
       
+      console.log("changeReceptionImage: ", data)
+
       if (res) {
-        console.log(res)
         const imageComponent = this.editorManager
           .currentEditor.editor.Components
             .getWrapper().find("#product-service-image")[0];
@@ -7417,6 +7398,25 @@ class NewPageButton {
         // Append elements to the container
         menuContainer.appendChild(menuButton);
         menuContainer.appendChild(dropdownMenu);
+
+        // on button hover
+        menuButton.addEventListener("mouseover", () => {
+            // get position of the button in parent div
+            const rect = menuContainer.getBoundingClientRect();
+            console.log(rect);
+            console.log(menuContainer.offsetWidth);
+            // get number of children of the parent div
+            const children = menuContainer.parentNode.children;
+            console.log(children.length);
+
+            if (children.length > 2) {
+                dropdownMenu.style.top = "60px"
+                dropdownMenu.style.left = "-100%"
+            } else {
+                dropdownMenu.style.top = "-10px";
+                dropdownMenu.style.left = "100%";
+            }
+        });
 
         return menuContainer;
     }

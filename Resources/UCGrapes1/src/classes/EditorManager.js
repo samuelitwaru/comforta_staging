@@ -32,7 +32,7 @@ class EditorManager {
     this.mediaCollection = mediaCollection;
     this.addServiceButtonEvent = addServiceButtonEvent;
     this.organisationLogo = organisationLogo;
-    this.newPageComponent = new NewPageComponent(this)
+    // this.newPageComponent = new NewPageComponent(this)
     this.tileContextMenu = new TileContextMenu(this);
 
     this.templateManager = new TemplateManager(this.currentLanguage, this); //
@@ -122,13 +122,7 @@ class EditorManager {
       editorId,
       linkLabel
     );
-    
     this.configureEditorContainer(editorContainer, containerId, page.PageId);
-    if (!page.PageId) {
-      this.newPageComponent.createNewPageMenu();
-    }
-    //new PageNameEditor(this, page);
-    
     return { editorId, containerId };
   }
 
@@ -385,7 +379,6 @@ class EditorManager {
     try {
       const res = await this.dataManager.getLocationData();
       if (this.toolsSection.checkIfNotAuthenticated(res)) return;
-      console.log("Location data:", res.BC_Trn_Location, "page", page);
       const locationInfo = res.BC_Trn_Location;
       let contentPageData = "";
       if (page.PageName === "Location") {
@@ -503,7 +496,6 @@ class EditorManager {
           existingImage.replaceWith(image);
         } else {
           imageWrapper.append(image, { at: 2});
-          console.log("Image not found");
         }        
       }
     } else{
