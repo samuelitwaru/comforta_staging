@@ -134,7 +134,7 @@ namespace GeneXus.Programs {
                GXt_SdtSDT_MobilePage1 = AV19Filtered_SDT_MobilePage;
                new prc_filterpagetiles(context ).execute(  AV8SDT_Page,  AV18UserId, out  GXt_SdtSDT_MobilePage1) ;
                AV19Filtered_SDT_MobilePage = GXt_SdtSDT_MobilePage1;
-               AV9SDT_PageCollection.Add(AV8SDT_Page, 0);
+               AV9SDT_PageCollection.Add(AV19Filtered_SDT_MobilePage, 0);
             }
             else
             {

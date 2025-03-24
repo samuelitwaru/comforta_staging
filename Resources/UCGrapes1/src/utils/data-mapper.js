@@ -204,7 +204,7 @@ function mapContentToPageData(templateData, page) {
     Content: [],
     Cta: [],
   };
-  console.log('>>>>>>>>>>>', page.PageName)
+  console.log('Page being published:', page.PageName)
   if (pages) {
     const components =
       pages[0].frames[0].component.components[0].components[0].components;

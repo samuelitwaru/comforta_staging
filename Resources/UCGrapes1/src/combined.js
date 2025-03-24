@@ -660,6 +660,7 @@ class ToolBoxManager {
       const jsonData = page.PageIsContentPage
         ? mapContentToPageData(projectData, page)
         : mapTemplateToPageData(projectData, page);
+      
       return {
         PageId: page.PageId,
         PageName: page.PageName,
